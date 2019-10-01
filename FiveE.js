@@ -149,7 +149,20 @@ FiveE.CLASSES = [
   'Barbarian', 'Bard', 'Cleric', 'Druid', 'Fighter', 'Monk', 'Paladin',
   'Ranger', 'Rogue', 'Sorcerer', 'Warlock', 'Wizard'
 ];
-FiveE.DEITIES = ['None:'];
+FiveE.DEITIES = [
+  'Auril (NE):Nature/Tempest', 'Azuth (LN):Knowledge', 'Bane (LE):War',
+  'Beshaba (CE):Trickery', 'Bhaal:Death (NE)', 'Chauntea (NG):Life',
+  'Cyric (CE):Trickery', 'Deneir (NG):Knowledge', 'Eldath (NG):Life/Nature',
+  'Gond (N)::Knowledge', 'Helm (LN):Life/Light', 'Ilmater (LG):Life',
+  'Kelemvor (LN):Death', 'Lathander (NG):Life/Light', 'Leira (CN):Trickery',
+  'Lliira (CG):Life', 'Loviatar (LE):Death', 'Malar (CE):Nature',
+  'Mask (CN):Trickery', 'Milil (NG):Light', 'Myrkul (NE):Death',
+  'Mystra (NG):Knowledge', 'Oghma (N):Knowledge', 'Savras (LN):Knowledge',
+  'Selune (CG):Knowledge/Life', 'Shar (NE):Death/Trickery',
+  'Silvanus (N):Nature', 'Talona (CE):Death', 'Talos (CE):Tempest',
+  'Torm (LG):War', 'Tymora (CG):Trickery', 'Tyr (LG):War',
+  'Umberlee (CE):Tempest', 'Waukeen (N):Knowledge/Trickery', 'None:'
+];
 FiveE.DOMAINS = [
   'Knowledge', 'Life', 'Light', 'Nature', 'Tempest', 'Trickery', 'War'
 ];
@@ -1765,22 +1778,38 @@ FiveE.abilityRules = function(rules) {
   rules.defineRule
     ('wisdomModifier', 'wisdom', '=', 'Math.floor((source - 10) / 2)');
 
+  rules.defineNote([
+    'charisma:%V (%1)',
+    'constitution:%V (%1)',
+    'dexterity:%V (%1)',
+    'intelligence:%V (%1)',
+    'strength:%V (%1)',
+    'wisdom:%V (%1)'
+  ]);
+
+  rules.defineRule('charisma.1', 'charismaModifier', '=', null);
+  rules.defineRule('constitution.1', 'constitutionModifier', '=', null);
+  rules.defineRule('dexterity.1', 'dexterityModifier', '=', null);
+  rules.defineRule('strength.1', 'strengthModifier', '=', null);
+  rules.defineRule('intelligence.1', 'intelligenceModifier', '=', null);
+  rules.defineRule('wisdom.1', 'wisdomModifier', '=', null);
+
   // Effects of ability modifiers
   rules.defineRule('combatNotes.constitutionHitPointsAdjustment',
-    'constitutionModifier', '=', 'source || null',
+    'constitutionModifier', '=', null,
     'level', '*', null
   );
   rules.defineRule('combatNotes.dexterityArmorClassAdjustment',
-    'dexterityModifier', '=', 'source || null'
+    'dexterityModifier', '=', null
   );
   rules.defineRule('combatNotes.dexterityAttackAdjustment',
-    'dexterityModifier', '=', 'source || null'
+    'dexterityModifier', '=', null
   );
   rules.defineRule('combatNotes.strengthAttackAdjustment',
-    'strengthModifier', '=', 'source || null'
+    'strengthModifier', '=', null
   );
   rules.defineRule('combatNotes.strengthDamageAdjustment',
-    'strengthModifier', '=', 'source || null'
+    'strengthModifier', '=', null
   );
 
   // Effects of the notes computed above
@@ -1794,7 +1823,38 @@ FiveE.abilityRules = function(rules) {
 /* Defines the rules related to character backgrounds. */
 FiveE.backgroundRules = function(rules, backgrounds) {
   for(var i = 0; i < backgrounds.length; i++) {
-    rules.defineChoice('backgrounds', backgrounds[i]);
+    var name = backgrounds[i];
+    var notes = null;
+    if(name === 'Acolyte') {
+      // TODO
+    } else if(name == 'Charlatan') {
+      // TODO
+    } else if(name == 'Criminal') {
+      // TODO
+    } else if(name == 'Entertainer') {
+      // TODO
+    } else if(name == 'Folk Hero') {
+      // TODO
+    } else if(name == 'Guild Artisan') {
+      // TODO
+    } else if(name == 'Hermit') {
+      // TODO
+    } else if(name == 'Noble') {
+      // TODO
+    } else if(name == 'Outlander') {
+      // TODO
+    } else if(name == 'Sage') {
+      // TODO
+    } else if(name == 'Sailor') {
+      // TODO
+    } else if(name == 'Soldier') {
+      // TODO
+    } else if(name == 'Urchin') {
+      // TODO
+    } else {
+      continue
+    }
+    FiveE.defineBackground(rules, name, notes);
   }
 };
 
@@ -1836,14 +1896,12 @@ FiveE.classRules = function(rules, classes) {
 
   for(var i = 0; i < classes.length; i++) {
 
-    var features, hitDie, notes, profArmors, profCounts, profSaves, profShields,
-        profSkills, profTools, profWeapons, selectableFeatures, spellAbility,
-        spellsKnown, spellsPerDay;
-    var klass = classes[i];
-    var klassNoSpace =
-      klass.substring(0,1).toLowerCase() + klass.substring(1).replace(/ /g, '');
+    var features, hitDie, notes, profCounts, profLevelArmor, profLevelShield,
+        profLevelWeapon, profsSuggested, profsGiven, selectableFeatures,
+        spellAbility, spellsKnown, spellsPerDay;
+    var name = classes[i];
 
-    if(klass == 'Barbarian') {
+    if(name == 'Barbarian') {
 
       features = [
         '1:Rage', '1:Unarmored Defense', '2:Danger Sense', '2:Reckless Attack',
@@ -1862,7 +1920,7 @@ FiveE.classRules = function(rules, classes) {
         'abilityNotes.aspectOfTheEagleFeature:See 1 mile clearly, no perception Disadv in dim light',
         'abilityNotes.aspectOfTheWolfFeature:Track at fast pace, stealth at normal pace',
         'abilityNotes.eagleTotemicAttunement:Fly for short bursts when raging',
-        'abilityNotes.fastMovementFeature:+%V speed in light/no armor',
+        'abilityNotes.fastMovementFeature:+10 speed in light/no armor',
         'abilityNotes.indominableMightFeature:Use strength instead of roll for Str check',
         'abilityNotes.primalChampionFeature:+4 strength/+4 constitution',
         'abilityNotes.rageFeature:Adv Str checks',
@@ -1888,16 +1946,15 @@ FiveE.classRules = function(rules, classes) {
         'saveNotes.dangerSenseFeature:Adv vs. seen effects',
         'saveNotes.mindlessRageFeature:Immune charmed/frightened during rage'
       ];
-      profArmors = FiveE.PROFICIENCY_MEDIUM;
-      profShields = FiveE.PROFICIENCY_HEAVY;
-      profWeapons = FiveE.PROFICIENCY_MARTIAL;
-      profSaves = ['Constitution', 'Strength'];
-      profTools = null;
-      profSkills = [
+      profLevelArmor = FiveE.PROFICIENCY_MEDIUM;
+      profLevelShield = FiveE.PROFICIENCY_HEAVY;
+      profLevelWeapon = FiveE.PROFICIENCY_MARTIAL;
+      profCounts = {'Saves':2, 'Skills':2};
+      profsGiven = {'Saves': ['Constitution', 'Strength']};
+      profsSuggested = {'Skills':[
         'Animal Handling', 'Athletics', 'Intimidation', 'Nature', 'Perception',
         'Survival'
-      ];
-      profCounts = {'Saves':2, 'Skills':2};
+      ]};
       selectableFeatures = [
         'Primal Path (Berserker)', 'Primal Path (Totem Warrior)',
         'Bear Totem', 'Eagle Totem', 'Wolf Totem'
@@ -1949,7 +2006,6 @@ FiveE.classRules = function(rules, classes) {
         'barbarianFeatures.Wolf Totem', '?', null
       );
 
-      rules.defineRule('abilityNotes.fastMovementFeature', '', '=', '10');
       rules.defineRule('combatNotes.brutalCriticalFeature',
         'levels.Barbarian', '=', 'source >= 17 ? 3 : source >= 13 ? 2 : source >= 9 ? 1 : null'
       );
@@ -1983,11 +2039,10 @@ FiveE.classRules = function(rules, classes) {
         'levels.Barbarian', '=', 'source < 3 ? null : 1',
         'barbarianFeatures.Primal Path (Totem Warrior)', '+', '1'
       );
-      rules.defineRule('speed', 'abilityNotes.fastMovementFeature', '+', null);
+      rules.defineRule('speed', 'abilityNotes.fastMovementFeature', '+', '10');
 
-    } else if(klass == 'Bard') {
+    } else if(name == 'Bard') {
 
-      continue;
       features = [
         '1:Bardic Inspiration', '2:Jack Of All Trades', '2:Song Of Rest',
         '3:Bard College', 'Combat Inspiration', '3:Cutting Words',
@@ -2011,16 +2066,18 @@ FiveE.classRules = function(rules, classes) {
         'magicNotes.countercharmFeature:Friendly listeners w/in 30\' Adv vs. charmed/frightened',
         'magicNotes.magicalSecretsFeature:Know %V additional spells from any class'
       ];
-      profArmors = FiveE.PROFICIENCY_LIGHT;
-      profShields = FiveE.PROFICIENCY_HEAVY;
-      profWeapons = FiveE.PROFICIENCY_LIGHT;
-      profTools = [
-        'Bagpipes', 'Drum', 'Dulcimer', 'Flute', 'Lute', 'Lyre', 'Horn',
-        'Pan Flute', 'Shawm', 'Viol'
-      ];
-      profSave = ['Charisma', 'Dexterity'];
-      profSkills = FiveE.SKILLS.map(function(skill){return skill.substring(0, skill.indexOf(':'));});
-      profCounts = {'Tools':3, 'Skills':3};
+      profLevelArmor = FiveE.PROFICIENCY_LIGHT;
+      profLevelShield = FiveE.PROFICIENCY_HEAVY;
+      profLevelWeapon = FiveE.PROFICIENCY_LIGHT;
+      profCounts = {'Saves':2, 'Skills':3, 'Tools':3};
+      profsGiven = {'Saves':['Charisma', 'Dexterity']};
+      profsSuggested = {
+        'Skills': FiveE.SKILLS.map(function(skill){return skill.substring(0, skill.indexOf(':'));}),
+        'Tools':[
+          'Bagpipes', 'Drum', 'Dulcimer', 'Flute', 'Lute', 'Lyre', 'Horn',
+          'Pan Flute', 'Shawm', 'Viol'
+        ]
+      };
       selectableFeatures = ['College Of Lore', 'College Of Valor'];
       spellAbility = 'charisma';
       // TODO spells known are total, not per level
@@ -2093,7 +2150,7 @@ FiveE.classRules = function(rules, classes) {
       rules.defineRule
         ('selectableFeatureCount.Bard', 'bardFeatures.Bard College', '=', '1');
 
-    } else if(klass == 'Cleric') {
+    } else if(name == 'Cleric') {
 
       features = [
         '1:Divine Domain', '2:Channel Divinity', '5:Destroy Undead',
@@ -2102,13 +2159,12 @@ FiveE.classRules = function(rules, classes) {
       hitDie = 8;
       notes = [
       ];
-      profArmors = FiveE.PROFICIENCY_MEDIUM;
-      profShields = FiveE.PROFICIENCY_HEAVY;
-      profWeapons = FiveE.PROFICIENCY_LIGHT;
-      profSaves = ['Wisdom', 'Charisma'];
-      profSkills = ['History', 'Insight', 'Medicine', 'Persuasion', 'Religion'];
-      profTools = null;
+      profLevelArmor = FiveE.PROFICIENCY_MEDIUM;
+      profLevelShield = FiveE.PROFICIENCY_HEAVY;
+      profLevelWeapon = FiveE.PROFICIENCY_LIGHT;
       profCounts = {'Saves':2, 'Skills': 2};
+      profsGiven = {'Saves':['Charisma', 'Wisdom']};
+      profsSuggested = {'Skills':['History', 'Insight', 'Medicine', 'Persuasion', 'Religion']};
       selectableFeatures = [
         'Knowledge Domain', 'Life Domain', 'Light Domain', 'Nature Domain',
         'Tempest Domain', 'Trickery Domain', 'War Domain'
@@ -2140,9 +2196,9 @@ FiveE.classRules = function(rules, classes) {
         'clericFeatures.Divine Domain', '=', '1'
       );
 
-    } else if(klass == 'Druid') {
+    } else if(name == 'Druid') {
 
-      continue;
+      continue; // TODO
       feats = null;
       features = [
         '1:Animal Companion', '1:Nature Sense', '1:Spontaneous Druid Spell',
@@ -2234,9 +2290,9 @@ FiveE.classRules = function(rules, classes) {
         'charismaModifier', '+', null
       );
 
-    } else if(klass == 'Fighter') {
+    } else if(name == 'Fighter') {
 
-      continue;
+      continue; // TODO
       feats = null;
       features = null;
       hitDie = 10;
@@ -2255,7 +2311,7 @@ FiveE.classRules = function(rules, classes) {
         'levels.Fighter', '=', '1 + Math.floor(source / 2)'
       );
 
-    } else if(klass == 'Monk') {
+    } else if(name == 'Monk') {
 
       continue;
       feats = null;
@@ -2377,9 +2433,9 @@ FiveE.classRules = function(rules, classes) {
         '              ("2d" + (6 + Math.floor((source - 12) / 4) * 2))'
       );
 
-    } else if(klass == 'Paladin') {
+    } else if(name == 'Paladin') {
 
-      continue;
+      continue; // TODO
       feats = null;
       features = [
         '1:Aura Of Good', '1:Detect Evil', '1:Smite Evil', '2:Divine Grace',
@@ -2454,7 +2510,7 @@ FiveE.classRules = function(rules, classes) {
       );
       rules.defineRule('turningLevel', 'turnUndead.level', '^=', null);
 
-    } else if(klass == 'Ranger') {
+    } else if(name == 'Ranger') {
 
       continue;
       feats = null;
@@ -2555,9 +2611,9 @@ FiveE.classRules = function(rules, classes) {
         'charismaModifier', '+', null
       );
 
-    } else if(klass == 'Rogue') {
+    } else if(name == 'Rogue') {
 
-      continue;
+      continue; // TODO
       feats = null;
       features = [
         '1:Sneak Attack', '1:Trapfinding',
@@ -2620,9 +2676,9 @@ FiveE.classRules = function(rules, classes) {
         'rogueFeatures.Skill Mastery', '*', null
       );
 
-    } else if(klass == 'Sorcerer') {
+    } else if(name == 'Sorcerer') {
 
-      continue;
+      continue; // TODO
       feats = null;
       features = ['1:Familiar'];
       hitDie = 4;
@@ -2665,13 +2721,13 @@ FiveE.classRules = function(rules, classes) {
       rules.defineRule('casterLevelArcane', 'levels.Sorcerer', '+=', null);
       rules.defineRule('familiarMasterLevel', 'levels.Sorcerer', '+=', null);
 
-    } else if(klass == 'Warlock') {
+    } else if(name == 'Warlock') {
 
-      continue;
+      continue; // TODO
 
-    } else if(klass == 'Wizard') {
+    } else if(name == 'Wizard') {
 
-      continue;
+      continue; // TODO
       feats = ['Spell Mastery'];
       for(var j = 0; j < FiveE.FEATS.length; j++) {
         var pieces = FiveE.FEATS[j].split(':');
@@ -2740,24 +2796,9 @@ FiveE.classRules = function(rules, classes) {
       continue;
 
     FiveE.defineClass
-      (rules, klass, hitDie, profArmors, profShields, profWeapons, profTools,
-       profSaves, profSkills, profCounts, features, spellsKnown, spellsPerDay,
-       spellAbility);
-    if(notes != null)
-      rules.defineNote(notes);
-    if(selectableFeatures != null) {
-      for(var j = 0; j < selectableFeatures.length; j++) {
-        var selectable = selectableFeatures[j];
-        var choice = klass + ' - ' + selectable;
-        rules.defineChoice('selectableFeatures', choice + ':' + klass);
-        rules.defineRule(klassNoSpace + 'Features.' + selectable,
-          'selectableFeatures.' + choice, '+=', null
-        );
-        rules.defineRule('features.' + selectable,
-          'selectableFeatures.' + choice, '+=', null
-        );
-      }
-    }
+      (rules, name, hitDie, profLevelArmor, profLevelShield, profLevelWeapon,
+       profCounts, profsGiven, profsSuggested, features, selectableFeatures,
+       notes, spellsKnown, spellsPerDay, spellAbility);
 
   }
 
@@ -3198,9 +3239,7 @@ FiveE.createViewers = function(rules, viewers) {
                separator: '/'},
             {name: 'Hit Points', within: 'Section 1', format: '<b>HP</b> %V'},
             {name: 'Initiative', within: 'Section 1', format: '<b>Init</b> %V'},
-            {name: 'Speeds', within: 'Section 1', format: '%V', separator: ''},
-              {name: 'Speed', within: 'Speeds', format: '<b>Speed</b> %V'},
-              {name: 'Run Speed', within: 'Speeds', format: '/%V'},
+            {name: 'Speed', within: 'Section 1', format: '<b>Speed</b> %V'},
             {name: 'Armor Class', within: 'Section 1', format: '<b>AC</b> %V'},
             {name: 'Weapons', within: 'Section 1', format: '<b>%N</b> %V',
              separator: '/'},
@@ -3247,26 +3286,12 @@ FiveE.createViewers = function(rules, viewers) {
           {name: 'Image Url', within: 'Header', format: '<img src="%V"/>'},
         {name: 'Attributes', within: '_top', separator: outerSep},
           {name: 'Abilities', within: 'Attributes', separator: innerSep},
-            {name: 'StrInfo', within: 'Abilities', separator: ''},
-              {name: 'Strength', within: 'StrInfo'},
-              {name: 'Strength Modifier', within: 'StrInfo', format: ' (%V)'},
-            {name: 'IntInfo', within: 'Abilities', separator: ''},
-              {name: 'Intelligence', within: 'IntInfo'},
-              {name: 'Intelligence Modifier', within: 'IntInfo',
-               format: ' (%V)'},
-            {name: 'WisInfo', within: 'Abilities', separator: ''},
-              {name: 'Wisdom', within: 'WisInfo'},
-              {name: 'Wisdom Modifier', within: 'WisInfo', format: ' (%V)'},
-            {name: 'DexInfo', within: 'Abilities', separator: ''},
-              {name: 'Dexterity', within: 'DexInfo'},
-              {name: 'Dexterity Modifier', within: 'DexInfo', format: ' (%V)'},
-            {name: 'ConInfo', within: 'Abilities', separator: ''},
-              {name: 'Constitution', within: 'ConInfo'},
-              {name: 'Constitution Modifier', within: 'ConInfo',
-               format: ' (%V)'},
-            {name: 'ChaInfo', within: 'Abilities', separator: ''},
-              {name: 'Charisma', within: 'ChaInfo'},
-              {name: 'Charisma Modifier', within: 'ChaInfo', format: ' (%V)'},
+            {name: 'Strength', within: 'Abilities'},
+            {name: 'Intelligence', within: 'Abilities'},
+            {name: 'Wisdom', within: 'Abilities'},
+            {name: 'Dexterity', within: 'Abilities'},
+            {name: 'Constitution', within: 'Abilities'},
+            {name: 'Charisma', within: 'Abilities'},
           {name: 'Description', within: 'Attributes', separator: innerSep},
             {name: 'Background', within: 'Description'},
             {name: 'Alignment', within: 'Description'},
@@ -3276,10 +3301,7 @@ FiveE.createViewers = function(rules, viewers) {
             {name: 'Player', within: 'Description'},
           {name: 'AbilityStats', within: 'Attributes', separator: innerSep},
             {name: 'Level', within: 'AbilityStats'},
-            {name: 'SpeedInfo', within: 'AbilityStats', separator: ''},
-              {name: 'Speed', within: 'SpeedInfo',
-               format: '<b>Speed/Run</b>: %V'},
-              {name: 'Run Speed', within: 'SpeedInfo', format: '/%V'},
+            {name: 'Speed', within: 'AbilityStats'},
             {name: 'LoadInfo', within: 'AbilityStats', separator: ''},
               {name: 'Load Light', within: 'LoadInfo',
                format: '<b>Light/Med/Max Load:</b> %V'},
@@ -3392,10 +3414,6 @@ FiveE.equipmentRules = function(rules, armors, goodies, shields, weapons) {
     'armor', 'v', 'FiveE.armorsMaxDexBonuses[source]'
   );
   rules.defineRule('speed', 'abilityNotes.armorSpeedAdjustment', '+', null);
-  // TODO combatNotes.strengthDamageAdjustment handled directly by Scribe
-  // Hack to get it to appear in italics
-  rules.defineRule
-    ('level', 'combatNotes.strengthDamageAdjustment', '=', 'null');
   rules.defineNote(
     'sanityNotes.casterLevelArcaneArmor:Implies Armor == None',
     'sanityNotes.casterLevelArcaneShield:Implies Shield == None'
@@ -3474,10 +3492,10 @@ FiveE.featRules = function(rules, feats) {
       // TODO
     } else if(feat == 'Actor') {
       notes = [
-        'abilityNotes.actorFeature:+1 Charisma',
+        //'abilityNotes.actorFeature:+1 Charisma',
         'skillNotes.actorFeature:Mimic others\' speech/sounds, Adv on Charisma(Deception/Performance) when impersonating'
       ];
-      rules.defineRule('charisma', 'abilityNotes.actorFeature', '+', '1');
+      //rules.defineRule('charisma', 'abilityNotes.actorFeature', '+', '1');
     } else if(feat == 'Charger') {
       // TODO
     } else if(feat == 'Crossbow Expert') {
@@ -4941,12 +4959,7 @@ FiveE.movementRules = function(rules) {
 FiveE.raceRules = function(rules, languages, races) {
 
   rules.defineChoice('languages', languages);
-  for(var i = 0; i < languages.length; i++) {
-    if(languages[i] == 'Common')
-      rules.defineRule('languages.Common', '', '=', '1');
-  }
-  rules.defineRule
-    ('languageCount', 'race', '=', 'source.match(/Human/) ? 1 : 2');
+  rules.defineRule('languageCount', 'race', '=', '2');
   rules.defineNote
     ('validationNotes.languageAllocation:%1 available vs. %2 allocated');
   rules.defineRule('validationNotes.languageAllocation.1',
@@ -4964,7 +4977,7 @@ FiveE.raceRules = function(rules, languages, races) {
 
   for(var i = 0; i < races.length; i++) {
 
-    var adjustment, features, languages, notes, proficiencies;
+    var adjustment, features, languages, notes, profsGiven;
     var race = races[i];
     var raceNoSpace =
       race.substring(0,1).toLowerCase() + race.substring(1).replace(/ /g, '');
@@ -4972,14 +4985,22 @@ FiveE.raceRules = function(rules, languages, races) {
     if(race == 'Half-Elf') {
 
       adjustment = '+2 charisma';
-      features = ['Darkvision', 'Fey Ancestry', 'Skill Versatility'];
+      features = [
+        'Darkvision', 'Extra Language', 'Fey Ancestry', 'Skill Versatility'
+      ];
       languages = ['Common', 'Elf'];
       notes = [
         'featureNotes.darkvisionFeature:See one light level better 60\'',
+        'featureNotes.extraLanguageFeature:Speak 1 additional language',
         'saveNotes.feyAncestryFeature:Adv vs. charmed, immune sleep',
         'skillNotes.skillVersatilityFeature:Prof in two additional skills'
       ];
-      proficiencies = [];
+      profsGiven = {};
+      rules.defineRule
+        ('languageCount', 'featureNotes.extraLanguageFeature', '+', '1');
+      rules.defineRule('proficiencyCounts.Skills',
+        'skillNotes.skillVersatilityFeature', '+=', '2'
+      );
 
     } else if(race == 'Half-Orc') {
 
@@ -4987,14 +5008,14 @@ FiveE.raceRules = function(rules, languages, races) {
       features = [
         'Darkvision', 'Menacing', 'Relentless Endurance', 'Savage Attacks'
       ];
-      languages = ['Common', 'Orc'];
+      languages = ['Orc'];
       notes = [
         'combatNotes.relentlessEnduranceFeature:Avoid drop below 1 hp 1/long rest',
         'combatNotes.savageAttacksFeature:Add extra die on critical damage',
         'featureNotes.darkvisionFeature:See one light level better 60\'',
         'skillNotes.menacingFeature:Prof in Intimidation'
       ];
-      proficiencies = [];
+      profsGiven = {};
 
     } else if(race.match(/Dragonborn/)) {
 
@@ -5006,7 +5027,7 @@ FiveE.raceRules = function(rules, languages, races) {
           '%1 %Vd6 %2 damage (DC %3 %4 save for half)',
         'saveNotes.draconicFeature:Resistance to breath weapon damage type'
       ];
-      proficiencies = [];
+      profsGiven = {};
 
       rules.defineRule('combatNotes.draconicBreathFeature',
         'level', '=', '1 + Math.floor((source-1) / 5)'
@@ -5039,9 +5060,12 @@ FiveE.raceRules = function(rules, languages, races) {
         'featureNotes.darkvisionFeature:See one light level better 60\'',
         'featureNotes.toolProficiencyFeature:' +
           'Proficient in choice of artisan tool',
-        'saveNotes.resistPoisonFeature:Adv vs. poison'
+        'saveNotes.resistPoisonFeature:Adv vs. poison',
+        'skillNotes.stonecunningFeature:Double prof on stonework History checks'
       ];
-      proficiencies = ['Battleaxe', 'Handaxe', 'Throwing Hammer', 'Warhammer'];
+      profsGiven = {
+        'Weapons':['Battleaxe', 'Handaxe', 'Throwing Hammer', 'Warhammer']
+      };
 
       if(race == 'Hill Dwarf') {
         adjustment += '/+1 wisdom';
@@ -5052,30 +5076,43 @@ FiveE.raceRules = function(rules, languages, races) {
       rules.defineRule('abilityNotes.armorSpeedAdjustment',
         'abilityNotes.dwarfArmorSpeedAdjustment', '^', '0'
       );
+      rules.defineRule('proficiencyCounts.Tools',
+        'featureNotes.toolProficiencyFeature', '+=', '1'
+      );
       rules.defineRule('speed', 'abilityNotes.slowFeature', '+', '-5');
 
     } else if(race.match(/Elf/)) {
 
       adjustment = '+2 dexterity';
-      features = ['Darkvision', 'Fey Ancestry', 'Trance'];
+      features = ['Fey Ancestry', 'Trance'];
       languages = ['Common', 'Elvish'];
       notes = [
-        'featureNotes.darkvisionFeature:See one light level better 60\'',
         'featureNotes.tranceFeature:' +
-          '4 hours meditation gives benefit of 8 hours sleep',
+          '4 hour meditation gives benefit of 8 hour sleep',
         'saveNotes.feyAncestryFeature:Adv vs. charmed, immune sleep'
       ];
-      proficiencies = ['Perception'];
+      profsGiven = {'Skills':['Perception']};
 
       if(race == 'High Elf') {
         adjustment += '/+1 intelligence';
-        proficiencies.push('Longsword', 'Shortsword', 'Shortbow', 'Longbow');
+        profsGiven['Weapons'] =
+          ['Longbow', 'Longsword', 'Shortbow', 'Shortsword'];
+        features.push('Cantrip', 'Darkvision', 'Extra Language');
+        // TODO Cantrip
+        notes.push(
+          'featureNotes.darkvisionFeature:See one light level better 60\'',
+          'featureNotes.extraLanguageFeature:Speak 1 additional language'
+        );
+        rules.defineRule
+          ('languageCount', 'featureNotes.extraLanguageFeature', '+', '1');
       } else if(race == 'Wood Elf') {
         adjustment += '/+1 wisdom';
-        features.push('Mask Of The Wild', 'Quick');
-        proficiencies.push('Longsword', 'Shortsword', 'Shortbow', 'Longbow');
+        features.push('Darkvision', 'Mask Of The Wild', 'Quick');
+        profsGiven['Weapons'] =
+          ['Longbow', 'Longsword', 'Shortbow', 'Shortsword'];
         notes.push(
           'abilityNotes.quickFeature:+5 speed',
+          'featureNotes.darkvisionFeature:See one light level better 60\'',
           'featureNotes.maskOfTheWildFeature:' +
             'Hide when lightly obscured by nature'
         );
@@ -5089,34 +5126,40 @@ FiveE.raceRules = function(rules, languages, races) {
             'See one light level better 120\'',
           'featureNotes.sunlightSensitivityFeature:' +
             'Disadv attack and sight perception in direct sunlight',
-          'magicNotes.drowMagicFeature:Cast <i>Dancing Lights</i> cantrip%V'
+          'magicNotes.drowMagicFeature:Cast %V 1/day (cha)'
         );
-        proficiencies.push('Rapier', 'Shortsword', 'Hand Crossbow');
-        rules.defineRule('magicNotes.drowMagicFeature', 'level', '=', 'source < 3 ? "" : source < 5 ? ", <i>Faerie Fire</i> 1/day" : ", <i>Faerie Fire</i>, <i>Darkness</i> 1/day"');
+        profsGiven['Weapons'] = ['Hand Crossbow', 'Rapier', 'Shortsword'];
+        rules.defineRule('magicNotes.drowMagicFeature', 'level', '=', '"<i>Dancing Lights</i>" + (source < 3 ? "" : ", <i>Faerie Fire</i>") + (source < 5 ? "" : ", <i>Darkness</i>")');
       }
 
     } else if(race.match(/Gnome/)) {
 
       adjustment = '+2 intelligence';
-      features = ['Cunning', 'Slow', 'Small'];
+      features = ['Cunning', 'Slow'];
       languages = ['Common', 'Gnome'];
       notes = [
         'abilityNotes.slowFeature:-5 speed',
         'saveNotes.cunningFeature:Adv vs cha/int/wis magic'
       ];
-      proficiencies = [];
+      profsGiven = {};
 
       if(race == 'Forest Gnome') {
         adjustment += '/+1 dexterity';
         features.push('Natural Illusionist', 'Speak With Small Beasts');
         notes.push(
           'featureNotes.speakWithSmallBeastsFeature:Simple communication with small or smaller animals',
-          'magicNotes.naturalIllisionistFeature:Cast <i>Minor Illusion</i> cantrip (int)'
+          'magicNotes.naturalIllusionistFeature:Cast <i>Minor Illusion</i> (int)'
         );
       } else if(race == 'Rock Gnome') {
         adjustment += '/+1 constitution';
         features.push('Artificier\'s Lore', 'Tinker');
-        proficiencies.push('Artisan\'s Tools');
+        notes.push(
+          'featureNotes.tinkerFeature:Prof w/artisan\'s tools',
+          'skillNotes.artificier\'sLoreFeature:Double prof on magic, alchemical, tech objects History checks'
+        );
+        profsGiven['Tools'] = ['Artisan\'s Tools'];
+        rules.defineRule
+          ('proficiencyCounts.Tools', 'featureNotes.tinkerFeature', '+=', '1');
       }
 
       rules.defineRule('speed', 'abilityNotes.slowFeature', '+', '-5');
@@ -5124,7 +5167,7 @@ FiveE.raceRules = function(rules, languages, races) {
     } else if(race.match(/Halfling/)) {
 
       adjustment = '+2 dexterity';
-      features = ['Brave', 'Lucky', 'Nimble', 'Slow', 'Small'];
+      features = ['Brave', 'Lucky', 'Nimble', 'Slow'];
       languages = ['Common', 'Halfling'];
       notes = [
         'abilityNotes.nimbleFeature:' +
@@ -5133,7 +5176,7 @@ FiveE.raceRules = function(rules, languages, races) {
         'featureNotes.luckyFeature:Reroll 1 on attack/ability/save',
         'saveNotes.braveFeature:Adv vs. frightened'
       ];
-      proficiencies = [];
+      profsGiven = {};
 
       if(race == 'Lightfoot Halfling') {
         adjustment += '/+1 charisma';
@@ -5142,9 +5185,9 @@ FiveE.raceRules = function(rules, languages, races) {
           (['featureNotes.stealthyFeature:Hide behind bigger creature']);
       } else if(race == 'Stout Halfling') {
         adjustment += '/+1 constitution';
-        features = features.concat(['Stout']);
-        notes = notes.concat
-          (['saveNotes.stoutFeature:Adv vs. poison, resist poison damage']);
+        features.push('Stout');
+        notes.push
+          ('saveNotes.stoutFeature:Adv vs. poison, resist poison damage');
       }
 
       rules.defineRule('speed', 'abilityNotes.slowFeature', '+', '-5');
@@ -5155,6 +5198,7 @@ FiveE.raceRules = function(rules, languages, races) {
       features = [];
       languages = ['Common'];
       notes = [];
+      profsGiven = {};
 
     } else if(race.match(/Tiefling/)) {
 
@@ -5163,20 +5207,18 @@ FiveE.raceRules = function(rules, languages, races) {
       languages = ['Common', 'Infernal'];
       notes = [
         'featureNotes.darkvisionFeature:See one light level better 60\'',
-        'magicNotes.infernalLegacyFeature:Cast <i>Thaumaturgy</i> cantrip%V',
+        'magicNotes.infernalLegacyFeature:Cast %V 1/day (cha)',
         'saveNotes.hellishResistanceFeature:Resistance to fire damage'
       ];
+      profsGiven = {};
 
-      rules.defineRule('magicNotes.infernalLegacyFeature', 'level', '=', 'source < 3 ? "" : source < 5 ? ", <i>Hellish Rebuke</i> 1/day" : "<i>Hellish Rebuke</i>, <i>Darkness</i> 1/day"');
+      rules.defineRule('magicNotes.infernalLegacyFeature', 'level', '=', '"<i>Thaumaturgy</i>" + (source < 3 ? "" : ", <i>Hellish Rebuke</i>") + (source < 5 ? "" : ", <i>Darkness</i>")');
 
     } else
       continue;
 
     FiveE.defineRace
-      (rules, race, adjustment, features, languages, proficiencies);
-    if(notes != null) {
-      rules.defineNote(notes);
-    }
+      (rules, race, adjustment, features, languages, profsGiven, notes);
 
   }
 
@@ -5962,6 +6004,12 @@ FiveE.ruleNotes = function() {
     '</p>\n';
 };
 
+FiveE.defineBackground = function
+  (rules, name, notes) {
+  rules.defineChoice('backgrounds', name);
+  // TODO
+}
+
 /*
  * A convenience function that adds #name# to the list of valid classes in
  * #rules#.  Characters of class #name# roll #hitDice# ([Nd]S, where N is the
@@ -5983,12 +6031,13 @@ FiveE.ruleNotes = function() {
  */
 FiveE.defineClass = function
   (rules, name, hitDice, armorProficiencyLevel, shieldProficiencyLevel,
-   weaponProficiencyLevel, toolProficiencies, saveProficiencies,
-   skillProficiencies, proficiencyCounts, features, spellsKnown,
-   spellsPerDay, spellAbility) {
+   weaponProficiencyLevel, proficiencyCounts, proficienciesGiven,
+   proficienciesSuggested, features, selectableFeatures, spellsKnown,
+   spellsPerDay, spellAbility, notes) {
 
   var classLevel = 'levels.' + name;
   rules.defineChoice('levels', name + ':' + hitDice);
+
   if(armorProficiencyLevel == null)
     armorProficiencyLevel = FiveE.PROFICIENCY_NONE;
   rules.defineRule
@@ -6001,27 +6050,22 @@ FiveE.defineClass = function
     weaponProficiencyLevel = FiveE.PROFICIENCY_NONE;
   rules.defineRule
     ('classWeaponProficiencyLevel', classLevel, '^=', weaponProficiencyLevel);
-  if(toolProficiencies != null) {
-    for(var i = 0; i < toolProficiencies.length; i++) {
-      rules.defineRule('classProficiencies.' + toolProficiencies[i], classLevel, '=', '1');
+
+  for(var a in proficiencyCounts) {
+    rules.defineRule('proficiencyCounts.' + a, classLevel, '+=', proficiencyCounts[a]);
+  }
+
+  for(var a in proficienciesSuggested) {
+    for(var i = 0; i < proficienciesSuggested[a].length; i++) {
+      rules.defineRule('classProficiencies.' + proficienciesSuggested[a][i], classLevel, '=', '1');
     }
   }
-  console.log(saveProficiencies);
-  if(saveProficiencies != null) {
-    for(var i = 0; i < saveProficiencies.length; i++) {
-      rules.defineRule('classProficiencies.' + saveProficiencies[i], classLevel, '=', '1');
+  for(var a in proficienciesGiven) {
+    for(var i = 0; i < proficienciesGiven[a].length; i++) {
+      rules.defineRule(a.toLowerCase() + 'Proficiencies.' + proficienciesGiven[a][i], classLevel, '=', '1');
     }
   }
-  if(skillProficiencies != null) {
-    for(var i = 0; i < skillProficiencies.length; i++) {
-      rules.defineRules('classProficiencies.' + skillProficiencies[i], classLevel, '=', '1');
-    }
-  }
-  if(proficiencyCounts > 0) {
-    for(var a in proficiencyCounts) {
-      rules.defineRule('proficiencyCounts.' + a, classLevel, '+=', proficiencyCounts[a]);
-    }
-  }
+
   if(features != null) {
     var prefix =
       name.substring(0, 1).toLowerCase() + name.substring(1).replace(/ /g, '');
@@ -6045,6 +6089,21 @@ FiveE.defineClass = function
     }
     rules.defineSheetElement(name + ' Features', 'Feats+', null, '; ');
   }
+  if(selectableFeatures != null) {
+    for(var j = 0; j < selectableFeatures.length; j++) {
+      var selectable = selectableFeatures[j];
+      var choice = name + ' - ' + selectable;
+      var nameNoSpace =
+        name.substring(0,1).toLowerCase() + name.substring(1).replace(/ /g, '');
+      rules.defineChoice('selectableFeatures', choice + ':' + name);
+      rules.defineRule(nameNoSpace + 'Features.' + selectable,
+        'selectableFeatures.' + choice, '+=', null
+      );
+      rules.defineRule('features.' + selectable,
+        'selectableFeatures.' + choice, '+=', null
+      );
+    }
+  }
   if(spellAbility != null) {
     rules.defineRule('spellDifficultyClass.' + name,
       'levels.' + name, '?', null,
@@ -6057,21 +6116,21 @@ FiveE.defineClass = function
       'magicNotes.casterLevelBonusFeature', '+', null
     );
   }
-  if(spellsKnown != null) {
-    for(var j = 0; j < spellsKnown.length; j++) {
-      var typeAndLevel = spellsKnown[j].split(/:/)[0];
-      var level = typeAndLevel.replace(/[A-Za-z]*/g, '');
-      var code = spellsKnown[j].substring(typeAndLevel.length + 1).
-                 split(/\//).reverse().join('source >= ');
-      code = code.replace(/:/g, ' ? ').replace(/source/g, ' : source');
-      code = 'source >= ' + code + ' : null';
-      if(code.indexOf('source >= 1 ?') >= 0) {
-        code = code.replace(/source >= 1 ./, '').replace(/ : null/, '');
-      }
-      rules.defineRule
-        ('spellsKnown.' + typeAndLevel, 'casterSpellLevel.' + name, '=', code);
-    }
-  }
+  // if(spellsKnown != null) {
+  //   for(var j = 0; j < spellsKnown.length; j++) {
+  //     var typeAndLevel = spellsKnown[j].split(/:/)[0];
+  //     var level = typeAndLevel.replace(/[A-Za-z]*/g, '');
+  //     var code = spellsKnown[j].substring(typeAndLevel.length + 1).
+  //                split(/\//).reverse().join('source >= ');
+  //     code = code.replace(/:/g, ' ? ').replace(/source/g, ' : source');
+  //     code = 'source >= ' + code + ' : null';
+  //     if(code.indexOf('source >= 1 ?') >= 0) {
+  //       code = code.replace(/source >= 1 ./, '').replace(/ : null/, '');
+  //     }
+  //     rules.defineRule
+  //       ('spellsKnown.' + typeAndLevel, 'casterSpellLevel.' + name, '=', code);
+  //   }
+  // }
   if(spellsPerDay != null) {
     for(var j = 0; j < spellsPerDay.length; j++) {
       var typeAndLevel = spellsPerDay[j].split(/:/)[0];
@@ -6097,6 +6156,8 @@ FiveE.defineClass = function
       }
     }
   }
+  if(notes != null)
+    rules.defineNote(notes);
 
 };
 
@@ -6109,8 +6170,9 @@ FiveE.defineClass = function
  * and the character levels at which they're acquired.  If no level is included
  * with a feature, the feature is acquired at level 1.
  */
-FiveE.defineRace = function(rules, name, abilityAdjustment, features, languages, proficiencies) {
+FiveE.defineRace = function(rules, name, abilityAdjustment, features, languages, proficienciesGiven, notes) {
   rules.defineChoice('races', name);
+  rules.defineRule('isRace.' + name, 'race', '=', 'source == "' + name + '"');
   var prefix =
     name.substring(0, 1).toLowerCase() + name.substring(1).replace(/ /g, '');
   if(abilityAdjustment != null) {
@@ -6147,11 +6209,16 @@ FiveE.defineRace = function(rules, name, abilityAdjustment, features, languages,
     }
     rules.defineSheetElement(name + ' Features', 'Feats+', null, '; ');
   }
-  if(languages != null) {
-    // TODO
+  for(var i = 0; i < languages.length; i++) {
+    rules.defineRule('languages.' + languages[i], 'isRace.' + name, '=', '1');
   }
-  if(proficiencies != null) {
-    // TODO
+  for(var a in proficienciesGiven) {
+    for(var i = 0; i < proficienciesGiven[a].length; i++) {
+      rules.defineRule(a.toLowerCase() + 'Proficiencies.' + proficienciesGiven[a][i], 'isRace.' + name, '=', '1');
+    }
+  }
+  if(notes != null) {
+    rules.defineNote(notes);
   }
 };
 

@@ -1824,9 +1824,17 @@ FiveE.abilityRules = function(rules) {
 FiveE.backgroundRules = function(rules, backgrounds) {
   for(var i = 0; i < backgrounds.length; i++) {
     var name = backgrounds[i];
-    var notes = null;
+    var features = [];
+    var languages = [];
+    var notes = [];
+    var proficiencyCounts = {};
+    var proficienciesGiven = {};
     if(name === 'Acolyte') {
-      // TODO
+      features = ['Shelter Of The Faithful'];
+      languages = ['', ''];
+      notes = ['featureNotes.shelterOfTheFaithfulFeature:Aid from associated temple(s)'];
+      proficiencyCounts = {'Skills':2};
+      proficienciesGiven = {'Skills':['Insight', 'Religion']};
     } else if(name == 'Charlatan') {
       // TODO
     } else if(name == 'Criminal') {
@@ -1854,7 +1862,10 @@ FiveE.backgroundRules = function(rules, backgrounds) {
     } else {
       continue
     }
-    FiveE.defineBackground(rules, name, notes);
+    FiveE.defineBackground(
+      rules, name, proficiencyCounts, proficienciesGiven, features, languages,
+      notes
+    );
   }
 };
 
@@ -1941,7 +1952,7 @@ FiveE.classRules = function(rules, classes) {
         'combatNotes.wolfTotemicAttunement:Bonus knock large or smaller foe after successful attack',
         'combatNotes.wolfTotemSpiritFeature:Allies Adv attack vs. foes w/in 5\' of self',
         'featureNotes.intimidatingPresenceFeature:Target creature DC %V Will save or frightened',
-        'magicNotes.spiritSeekerFeature:<i>Beast Sense</i> and <i>Speak With Animals</i> via ritual',
+        'magicNotes.spiritSeekerFeature:<i>Beast Sense</i>, <i>Speak With Animals</i> via ritual',
         'magicNotes.spiritWalkerFeature:<i>Commune With Nature</i> via ritual',
         'saveNotes.dangerSenseFeature:Adv vs. seen effects',
         'saveNotes.mindlessRageFeature:Immune charmed/frightened during rage'
@@ -2534,7 +2545,7 @@ FiveE.classRules = function(rules, classes) {
           'Second off-hand -5 attack',
         'combatNotes.manyshotFeature:' +
           'Fire up to %V arrows simultaneously at -2 attack',
-        'combatNotes.rapidShotFeature:Normal and extra ranged -2 attacks',
+        'combatNotes.rapidShotFeature:Normal, extra ranged -2 attacks',
         'combatNotes.two-WeaponFightingFeature:' +
           'Reduce on-hand penalty by 2, off-hand by 6',
         'featureNotes.animalCompanionFeature:Special bond/abilities',
@@ -2636,7 +2647,7 @@ FiveE.classRules = function(rules, classes) {
         'saveNotes.evasionFeature:Reflex save yields no damage instead of 1/2',
         'saveNotes.improvedEvasionFeature:Failed save yields 1/2 damage',
         'saveNotes.slipperyMindFeature:Second save vs. enchantment',
-        'saveNotes.trapSenseFeature:+%V Reflex and AC vs. traps',
+        'saveNotes.trapSenseFeature:+%V Reflex, AC vs. traps',
         'skillNotes.skillMasteryFeature:' +
           'Take 10 despite distraction on %V designated skills',
         'skillNotes.trapfindingFeature:' +
@@ -2798,7 +2809,7 @@ FiveE.classRules = function(rules, classes) {
     FiveE.defineClass
       (rules, name, hitDie, profLevelArmor, profLevelShield, profLevelWeapon,
        profCounts, profsGiven, profsSuggested, features, selectableFeatures,
-       notes, spellsKnown, spellsPerDay, spellAbility);
+       spellsKnown, spellsPerDay, spellAbility, notes);
 
   }
 
@@ -3312,7 +3323,9 @@ FiveE.createViewers = function(rules, viewers) {
          format: '<b>Features/Skills</b><br/>%V'},
           {name: 'Proficiency Bonus', within: 'FeaturesAndSkills'},
           {name: 'Proficiency Counts', within: 'FeaturesAndSkills', separator: listSep},
-          {name: 'Proficiencies ', within: 'FeaturesAndSkills', separator: listSep},
+          {name: 'Save Proficiencies ', within: 'FeaturesAndSkills', separator: listSep},
+          {name: 'Skill Proficiencies ', within: 'FeaturesAndSkills', separator: listSep},
+          {name: 'Tool Proficiencies ', within: 'FeaturesAndSkills', separator: listSep},
           {name: 'FeaturePart', within: 'FeaturesAndSkills', separator: '\n'},
             {name: 'FeatStats', within: 'FeaturePart', separator: innerSep},
               {name: 'Feat Count', within: 'FeatStats', separator: listSep},
@@ -5125,7 +5138,7 @@ FiveE.raceRules = function(rules, languages, races) {
           'featureNotes.superiorDarkvisionFeature:' +
             'See one light level better 120\'',
           'featureNotes.sunlightSensitivityFeature:' +
-            'Disadv attack and sight perception in direct sunlight',
+            'Disadv attack, sight perception in direct sunlight',
           'magicNotes.drowMagicFeature:Cast %V 1/day (cha)'
         );
         profsGiven['Weapons'] = ['Hand Crossbow', 'Rapier', 'Shortsword'];
@@ -6004,10 +6017,56 @@ FiveE.ruleNotes = function() {
     '</p>\n';
 };
 
-FiveE.defineBackground = function
-  (rules, name, notes) {
+FiveE.defineBackground = function(
+  rules, name, proficiencyCounts, proficienciesGiven, features, languages,
+  notes) {
+
   rules.defineChoice('backgrounds', name);
-  // TODO
+  rules.defineRule
+    ('isBackground.' + name, 'background', '=', 'source == "' + name + '" ? 1 : null');
+
+  for(var a in proficiencyCounts) {
+    rules.defineRule('proficiencyCounts.' + a,
+      'isBackground.' + name, '+=', proficiencyCounts[a]
+    );
+  }
+
+  for(var a in proficienciesGiven) {
+    for(var i = 0; i < proficienciesGiven[a].length; i++) {
+      rules.defineRule(a.toLowerCase() + 'Proficiencies.' + proficienciesGiven[a][i], 'isBackground.' + name, '=', '1');
+    }
+  }
+
+  if(features != null) {
+    for(var i = 0; i < features.length; i++) {
+      var levelAndFeature = features[i].split(/:/);
+      var feature = levelAndFeature[levelAndFeature.length == 1 ? 0 : 1];
+      var level = levelAndFeature.length == 1 ? 1 : levelAndFeature[0];
+      var matchInfo;
+      var prefix =
+        name.substring(0, 1).toLowerCase() + name.substring(1).replace(/ /g, '');
+      rules.defineRule(prefix + 'Features.' + feature,
+        'background', '?', 'source == "' + name + '"',
+        'level', '=', 'source >= ' + level + ' ? 1 : null'
+      );
+      rules.defineRule
+        ('features.' + feature, prefix + 'Features.' + feature, '+=', null);
+    }
+    rules.defineSheetElement(name + ' Features', 'Feats+', null, '; ');
+  }
+
+  if(languages != null) {
+    rules.defineRule
+      ('languageCount', 'isBackground.' + name, '+', languages.length);
+    for(var i = 0; i < languages.length; i++) {
+      if(languages[i] != '')
+        rules.defineRule
+          ('languages.' + languages[i], 'isBackground.' + name, '=', '1');
+    }
+  }
+
+  if(notes != null)
+    rules.defineNote(notes);
 }
 
 /*
@@ -6172,7 +6231,8 @@ FiveE.defineClass = function
  */
 FiveE.defineRace = function(rules, name, abilityAdjustment, features, languages, proficienciesGiven, notes) {
   rules.defineChoice('races', name);
-  rules.defineRule('isRace.' + name, 'race', '=', 'source == "' + name + '"');
+  rules.defineRule
+    ('isRace.' + name, 'race', '=', 'source == "' + name + '" ? 1 : null');
   var prefix =
     name.substring(0, 1).toLowerCase() + name.substring(1).replace(/ /g, '');
   if(abilityAdjustment != null) {
@@ -6210,7 +6270,8 @@ FiveE.defineRace = function(rules, name, abilityAdjustment, features, languages,
     rules.defineSheetElement(name + ' Features', 'Feats+', null, '; ');
   }
   for(var i = 0; i < languages.length; i++) {
-    rules.defineRule('languages.' + languages[i], 'isRace.' + name, '=', '1');
+    if(languages[i] != '')
+      rules.defineRule('languages.' + languages[i], 'isRace.' + name, '=', '1');
   }
   for(var a in proficienciesGiven) {
     for(var i = 0; i < proficienciesGiven[a].length; i++) {

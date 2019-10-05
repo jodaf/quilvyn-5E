@@ -145,6 +145,9 @@ FiveE.BACKGROUNDS = [
   'Guild Artisan', 'Hermit', 'Noble', 'Outlander', 'Sage', 'Sailor', 'Soldier',
   'Urchin'
 ];
+FiveE.BARD_COLLEGES = ['Lore', 'Valor'];
+FiveE.BARBARIAN_PATHS = ['Berserker', 'Totem Warrior'];
+FiveE.BARBARIAN_TOTEMS = ['Bear', 'Eagle', 'Wolf'];
 FiveE.CLASSES = [
   'Barbarian', 'Bard', 'Cleric', 'Druid', 'Fighter', 'Monk', 'Paladin',
   'Ranger', 'Rogue', 'Sorcerer', 'Warlock', 'Wizard'
@@ -242,8 +245,8 @@ FiveE.RACES = [
 FiveE.RANDOMIZABLE_ATTRIBUTES = [
   'charisma', 'constitution', 'dexterity', 'intelligence', 'strength', 'wisdom',
   'name', 'race', 'gender', 'alignment', 'background', 'deity', 'levels',
-  'domains', 'features', 'feats', 'skills', 'languages', 'hitPoints', 'armor',
-  'shield', 'weapons', 'spells', 'goodies'
+  'features', 'feats', 'skills', 'languages', 'hitPoints', 'armor', 'shield',
+  'weapons', 'spells', 'goodies'
 ];
 FiveE.SCHOOLS = [
   'Abjuration:Abju', 'Conjuration:Conj', 'Divination:Divi', 'Enchantment:Ench',
@@ -335,16 +338,6 @@ FiveE.spellsAbbreviations = {
 };
 FiveE.spellsDescriptions = {
 /*
-  "Acid Arrow": "R$RL' Ranged touch 2d4 HP/rd for ${1 + Math.floor(lvl/3)} rd",
-  "Acid Fog": "R$RM' 20' fog cylinder 2d6 HP/rd for $L rd",
-  "Acid Splash": "R$RS' Ranged touch 1d3 HP",
-  "Aid": "Touched +1 attack/fear saves, +1d8+$Lmin10 HP for $L min",
-  "Air Walk": "Touched walks on air for $L10 min",
-  "Alarm": "R$RS' 20' radius alarmed for $L2 hr",
-  "Align Weapon": "Touched weapon Will save or gains alignment for $L min",
-  "Alter Self": "Self becomes small (+2 Dex) or medium (+2 Str) humanoid for $L min",
-  "Analyze Dweomer": "R$RS' Target Will save or reveals magical aspects for $L rd",
-  "Animal Growth": "R$RM' Animal target Fort save or double in size for $L min",
   "Animal Messenger": "R$RS' Tiny animal target goes to specified place for $L dy",
   "Animal Shapes": "R$RS' $L allies in 30' area become chosen animal for $L hr",
   "Animal Trance": "R$RS' 2d6 HD animals Will save or facinated for conc",
@@ -962,11 +955,11 @@ FiveE.spellsDescriptions = {
   "Zone Of Silence": "No sound escapes 5' radius around self for $L hr",
   "Zone Of Truth": "R$RS' Creatures w/in 20' radius Will save or cannot lie for $L min"
 */
-  'Acid Splash':'Conjuration',
-  'Aid':'Abjuration',
-  'Alarm':'Abjuration',
-  'Alter Self':'Transmutation',
-  'Animal Friendship':'Enchantment',
+  "Acid Splash": "R60' Ranged touch ${Math.floor((lvl+1)/6) + 1}d6 HP (Ref neg)",
+  'Aid':"R30' Three targets +5 or more HP for 8 hr",
+  'Alarm':"R30' Alert when tiny or larger creature enters 20' cube for 8 hr",
+  'Alter Self':"Self aquatic, look different, or nat weapons for conc up to 1 hr",
+  'Animal Friendship':"R30' Target beast(s) Wis save or convinced of good intent for 1 dy",
   'Animal Messenger':'Enchantment',
   'Animal Shapes':'Transmutation',
   'Animate Dead':'Necromancy',
@@ -1764,35 +1757,13 @@ FiveE.weaponsProficiencyLevels = {
 /* Defines the rules related to character abilities. */
 FiveE.abilityRules = function(rules) {
 
-  // Ability modifier computation
-  rules.defineRule
-    ('charismaModifier', 'charisma', '=', 'Math.floor((source - 10) / 2)');
-  rules.defineRule
-    ('constitutionModifier', 'constitution', '=', 'Math.floor((source-10)/2)');
-  rules.defineRule
-    ('dexterityModifier', 'dexterity', '=', 'Math.floor((source - 10) / 2)');
-  rules.defineRule
-    ('intelligenceModifier', 'intelligence', '=', 'Math.floor((source-10)/2)');
-  rules.defineRule
-    ('strengthModifier', 'strength', '=', 'Math.floor((source - 10) / 2)');
-  rules.defineRule
-    ('wisdomModifier', 'wisdom', '=', 'Math.floor((source - 10) / 2)');
-
-  rules.defineNote([
-    'charisma:%V (%1)',
-    'constitution:%V (%1)',
-    'dexterity:%V (%1)',
-    'intelligence:%V (%1)',
-    'strength:%V (%1)',
-    'wisdom:%V (%1)'
-  ]);
-
-  rules.defineRule('charisma.1', 'charismaModifier', '=', null);
-  rules.defineRule('constitution.1', 'constitutionModifier', '=', null);
-  rules.defineRule('dexterity.1', 'dexterityModifier', '=', null);
-  rules.defineRule('strength.1', 'strengthModifier', '=', null);
-  rules.defineRule('intelligence.1', 'intelligenceModifier', '=', null);
-  rules.defineRule('wisdom.1', 'wisdomModifier', '=', null);
+  for(var ability in {'charisma':'', 'constitution':'', 'dexterity':'',
+                      'intelligence':'', 'strength':'', 'wisdom':''}) {
+    rules.defineRule
+      (ability + 'Modifier', ability, '=', 'Math.floor((source - 10) / 2)');
+    rules.defineNote(ability + ':%V (%1)');
+    rules.defineRule(ability + '.1', ability + 'Modifier', '=', null);
+  }
 
   // Effects of ability modifiers
   rules.defineRule('combatNotes.constitutionHitPointsAdjustment',
@@ -1822,13 +1793,16 @@ FiveE.abilityRules = function(rules) {
 
 /* Defines the rules related to character backgrounds. */
 FiveE.backgroundRules = function(rules, backgrounds) {
+
   for(var i = 0; i < backgrounds.length; i++) {
+
     var name = backgrounds[i];
     var features = [];
     var languages = [];
     var notes = [];
     var proficiencyCounts = {};
     var proficienciesGiven = {};
+
     if(name === 'Acolyte') {
       features = ['Shelter Of The Faithful'];
       languages = ['', ''];
@@ -1859,14 +1833,16 @@ FiveE.backgroundRules = function(rules, backgrounds) {
       // TODO
     } else if(name == 'Urchin') {
       // TODO
-    } else {
-      continue
-    }
+    } else
+      continue;
+
     FiveE.defineBackground(
       rules, name, proficiencyCounts, proficienciesGiven, features, languages,
       notes
     );
+
   }
+
 };
 
 /* Defines the rules related to character classes. */
@@ -1966,10 +1942,7 @@ FiveE.classRules = function(rules, classes) {
         'Animal Handling', 'Athletics', 'Intimidation', 'Nature', 'Perception',
         'Survival'
       ]};
-      selectableFeatures = [
-        'Primal Path (Berserker)', 'Primal Path (Totem Warrior)',
-        'Bear Totem', 'Eagle Totem', 'Wolf Totem'
-      ];
+      selectableFeatures = FiveE.BARBARIAN_PATHS.map(function (path) {return 'Primal Path (' + path + ')'}).concat(FiveE.BARBARIAN_TOTEMS.map(function (totem) {return totem + ' Totem'}));
       spellAbility = null;
       spellsKnown = null;
       spellsPerDay = null;
@@ -2089,7 +2062,7 @@ FiveE.classRules = function(rules, classes) {
           'Pan Flute', 'Shawm', 'Viol'
         ]
       };
-      selectableFeatures = ['College Of Lore', 'College Of Valor'];
+      selectableFeatures = FiveE.BARD_COLLEGES;
       spellAbility = 'charisma';
       // TODO spells known are total, not per level
       // 4, 5, 6, 7, 8, 9, 10, 11, 12, 14, 15, 15, 16, 18, 19, 19, 20, 22
@@ -2169,6 +2142,10 @@ FiveE.classRules = function(rules, classes) {
       ];
       hitDie = 8;
       notes = [
+        'combatNotes.destroyUndeadFeature:Turn destroys up to CR %V',
+        'featureNotes.channelDivinityFeature:Turn undead, domain effect %V/short rest',
+        'magicNotes.divineDomainFeature:Gain chosen domain benefits',
+        'magicNotes.divineInterventionFeature:%V% chance of deity help 1/wk'
       ];
       profLevelArmor = FiveE.PROFICIENCY_MEDIUM;
       profLevelShield = FiveE.PROFICIENCY_HEAVY;
@@ -2203,6 +2180,9 @@ FiveE.classRules = function(rules, classes) {
       ];
 
       rules.defineRule('casterLevelDivine', 'levels.Cleric', '+=', null);
+      rules.defineRule('combatNotes.destroyUndeadFeature', 'levels.Cleric', '=', 'source < 8 ? 0.5 : Math.floor((source - 5) / 3)');
+      rules.defineRule('featureNotes.channelDivinityFeature', 'levels.Cleric', '=', 'source < 6 ? 1: source < 18 ? 2 : 3');
+      rules.defineRule('magicNotes.divineInterventionFeature', 'level.Cleric', '=', null);
       rules.defineRule('selectableFeatureCount.Cleric',
         'clericFeatures.Divine Domain', '=', '1'
       );
@@ -2242,9 +2222,9 @@ FiveE.classRules = function(rules, classes) {
           'Requires Armor =~ None|Hide|Leather|Padded',
         'validationNotes.druidClassShield:Requires Shield =~ None|Wooden'
       ];
-      profArmor = FiveE.PROFICIENCY_MEDIUM;
-      profShield = FiveE.PROFICIENCY_HEAVY;
-      profWeapon = FiveE.PROFICIENCY_NONE;
+      profLevelArmor = FiveE.PROFICIENCY_MEDIUM;
+      profLevelShield = FiveE.PROFICIENCY_HEAVY;
+      profLevelWeapon = FiveE.PROFICIENCY_NONE;
       selectableFeatures = null;
       skills = [
         'Concentration', 'Craft', 'Diplomacy', 'Handle Animal', 'Heal',
@@ -2303,28 +2283,39 @@ FiveE.classRules = function(rules, classes) {
 
     } else if(name == 'Fighter') {
 
-      continue; // TODO
-      feats = null;
-      features = null;
-      hitDie = 10;
-      notes = null;
-      profArmor = FiveE.PROFICIENCY_HEAVY;
-      profShield = FiveE.PROFICIENCY_HEAVY;
-      profWeapon = FiveE.PROFICIENCY_MEDIUM;
-      selectableFeatures = null;
-      skills = [
-        'Climb', 'Craft', 'Handle Animal', 'Intimidate', 'Jump', 'Ride', 'Swim'
+      features = [
+        '1:Fighting Style', '1:Second Wind', '2:Action Surge',
+        '3:Martial Archetype', '5:Extra Attack', '9:Indomitable'
       ];
+      hitDie = 10;
+      notes = [
+        'combatNotes.actionSurgeFeature:TODO',
+        'combatNotes.extraAttackFeature:+1 attack per Attack action',
+        'combatNotes.fightingStyleFeature:TODO',
+        'combatNotes.indomitableFeature:TODO',
+        'combatNotes.martialArchetypeFeature:TODO',
+        'combatNotes.secondWindFeature:TODO'
+      ];
+      profLevelArmor = FiveE.PROFICIENCY_HEAVY;
+      profLevelShield = FiveE.PROFICIENCY_HEAVY;
+      profLevelWeapon = FiveE.PROFICIENCY_MEDIUM;
+      profCounts = {'Saves':2, 'Skills':2};
+      profsGiven = {'Saves':['Constitution', 'Strength']};
+      profsSuggested = {
+        'Skills': ['Acrobatics', 'Animal Handling', 'Athletics', 'History',
+                   'Insight', 'Intimidation', 'Perception', 'Survival']
+      };
+      selectableFeatures = null;
       spellAbility = null;
       spellsKnown = null;
       spellsPerDay = null;
-      rules.defineRule('featCount.Fighter',
-        'levels.Fighter', '=', '1 + Math.floor(source / 2)'
-      );
+
+      rules.defineRule
+        ('attacksPerRound', 'combatNotes.extraAttackFeature', '+', '1');
 
     } else if(name == 'Monk') {
 
-      continue;
+      continue; // TODO
       feats = null;
       features = [
         '1:Flurry Of Blows', '1:Improved Unarmed Strike',
@@ -2382,9 +2373,9 @@ FiveE.classRules = function(rules, classes) {
         'validationNotes.monkClassAlignment:Requires Alignment =~ Lawful',
         'validationNotes.stunningFistSelectableFeatureLevels:Requires Monk >= 1'
       ];
-      profArmor = FiveE.PROFICIENCY_NONE;
-      profShield = FiveE.PROFICIENCY_NONE;
-      profWeapon = FiveE.PROFICIENCY_NONE;
+      profLevelArmor = FiveE.PROFICIENCY_NONE;
+      profLevelShield = FiveE.PROFICIENCY_NONE;
+      profLevelWeapon = FiveE.PROFICIENCY_NONE;
       selectableFeatures = [
         'Combat Reflexes', 'Deflect Arrows', 'Improved Disarm',
         'Improved Grapple', 'Improved Trip', 'Stunning Fist'
@@ -2457,8 +2448,6 @@ FiveE.classRules = function(rules, classes) {
       notes = [
         'combatNotes.smiteEvilFeature:' +
           '+%V attack/+%1 damage vs. evil foe %2/day',
-        'combatNotes.turnUndeadFeature:' +
-          'Turn (good) or rebuke (evil) undead creatures',
         'featureNotes.specialMountFeature:Magical mount w/special abilities',
         'magicNotes.auraOfGoodFeature:Visible to <i>Detect Good</i>',
         'magicNotes.detectEvilFeature:<i>Detect Evil</i> at will',
@@ -2470,9 +2459,9 @@ FiveE.classRules = function(rules, classes) {
         'validationNotes.paladinClassAlignment:' +
           'Requires Alignment == Lawful Good'
       ];
-      profArmor = FiveE.PROFICIENCY_HEAVY;
-      profShield = FiveE.PROFICIENCY_HEAVY;
-      profWeapon = FiveE.PROFICIENCY_MEDIUM;
+      profLevelArmor = FiveE.PROFICIENCY_HEAVY;
+      profLevelShield = FiveE.PROFICIENCY_HEAVY;
+      profLevelWeapon = FiveE.PROFICIENCY_MEDIUM;
       selectableFeatures = null;
       skills = [
         'Concentration', 'Craft', 'Diplomacy', 'Handle Animal', 'Heal',
@@ -2523,7 +2512,7 @@ FiveE.classRules = function(rules, classes) {
 
     } else if(name == 'Ranger') {
 
-      continue;
+      continue; // TODO
       feats = null;
       features = [
         '1:Favored Enemy', '1:Track', '1:Wild Empathy', '2:Rapid Shot',
@@ -2562,9 +2551,9 @@ FiveE.classRules = function(rules, classes) {
         'skillNotes.trackFeature:Survival to follow creatures\' trail',
         'skillNotes.wildEmpathyFeature:+%V Diplomacy w/animals'
       ];
-      profArmor = FiveE.PROFICIENCY_LIGHT;
-      profShield = FiveE.PROFICIENCY_HEAVY;
-      profWeapon = FiveE.PROFICIENCY_MEDIUM;
+      profLevelArmor = FiveE.PROFICIENCY_LIGHT;
+      profLevelShield = FiveE.PROFICIENCY_HEAVY;
+      profLevelWeapon = FiveE.PROFICIENCY_MEDIUM;
       selectableFeatures = [
         'Combat Style (Archery)', 'Combat Style (Two-Weapon Combat)'
       ];
@@ -2653,9 +2642,9 @@ FiveE.classRules = function(rules, classes) {
         'skillNotes.trapfindingFeature:' +
           'Use Search/Disable Device to find/remove DC 20+ traps'
       ];
-      profArmor = FiveE.PROFICIENCY_LIGHT;
-      profShield = FiveE.PROFICIENCY_NONE;
-      profWeapon = FiveE.PROFICIENCY_LIGHT;
+      profLevelArmor = FiveE.PROFICIENCY_LIGHT;
+      profLevelShield = FiveE.PROFICIENCY_NONE;
+      profLevelWeapon = FiveE.PROFICIENCY_LIGHT;
       selectableFeatures = [
         'Crippling Strike', 'Defensive Roll', 'Feat Bonus', 'Improved Evasion',
         'Opportunist', 'Skill Mastery', 'Slippery Mind'
@@ -2696,9 +2685,9 @@ FiveE.classRules = function(rules, classes) {
       notes = [
         'featureNotes.familiarFeature:Special bond/abilities'
       ];
-      profArmor = FiveE.PROFICIENCY_NONE;
-      profShield = FiveE.PROFICIENCY_NONE;
-      profWeapon = FiveE.PROFICIENCY_LIGHT;
+      profLevelArmor = FiveE.PROFICIENCY_NONE;
+      profLevelShield = FiveE.PROFICIENCY_NONE;
+      profLevelWeapon = FiveE.PROFICIENCY_LIGHT;
       selectableFeatures = null;
       skills = [
         'Bluff', 'Concentration', 'Craft', 'Knowledge (Arcana)', 'Profession',
@@ -2738,34 +2727,33 @@ FiveE.classRules = function(rules, classes) {
 
     } else if(name == 'Wizard') {
 
-      continue; // TODO
-      feats = ['Spell Mastery'];
-      for(var j = 0; j < FiveE.FEATS.length; j++) {
-        var pieces = FiveE.FEATS[j].split(':');
-        if(pieces[1].match(/Item Creation|Metamagic/)) {
-          feats[feats.length] = pieces[0];
-        }
-      }
       features = [
-        '1:Scribe Scroll', '1:Familiar',
-        '1:Weapon Proficiency ' +
-          '(Club/Dagger/Heavy Crossbow/Light Crossbow/Quarterstaff)'
+        '1:Arcane Recovery', '2:Arcane Tradition',
+        '1:Weapon Proficiency (Dagger/Dart/Light Crossbow/Quarterstaff/Sling)',
+        '18:Spell Mastery', '20:Signature Spell'
       ];
-      hitDie = 4;
+      hitDie = 6;
       notes = [
-        'featureNotes.familiarFeature:Special bond/abilities',
-        'magicNotes.scribeScrollFeature:Create scroll of any known spell',
-        'magicNotes.wizardSpecialization:Extra %V spell/day each spell level',
-        'skillNotes.wizardSpecialization:+2 Spellcraft (%V)'
+        'magicNotes.arcaneRecoveryFeature:' +
+          'Short rest recovers %V spell slots 1/dy',
+        'magicNotes.arcaneTraditionFeature:Gain chosen school effects',
+        'magicNotes.signatureSpellFeature:' +
+          'Cast 2 2nd spells w/o using spell slot 1/short rest',
+        'magicNotes.spellMasteryFeature:' +
+          'Cast 1 ea 1st/2nd spell w/o using spell slot'
       ];
-      profArmor = FiveE.PROFICIENCY_NONE;
-      profShield = FiveE.PROFICIENCY_NONE;
-      profWeapon = FiveE.PROFICIENCY_NONE;
-      selectableFeatures = null;
-      skills = [
-        'Concentration', 'Craft', 'Decipher Script', 'Knowledge', 'Profession',
-        'Spellcraft'
-      ];
+      profLevelArmor = FiveE.PROFICIENCY_NONE;
+      profLevelShield = FiveE.PROFICIENCY_NONE;
+      profLevelWeapon = FiveE.PROFICIENCY_NONE;
+      profCounts = {'Saves':2, 'Skills':3};
+      profsGiven = {'Saves':['Intelligence', 'Wisdom']};
+      profsSuggested = {
+        'Skills': [
+          'Arcana', 'History', 'Insight', 'Investigation', 'Medicine',
+          'Religion'
+        ]
+      };
+      selectableFeatures = FiveE.SCHOOLS.map(function(school){return school.substring(0, school.indexOf(':'));}),
       spellAbility = 'intelligence';
       spellsKnown = [
         'W0:1:"all"', 'W1:1:3/2:5', 'W2:3:2/4:4', 'W3:5:2/6:4',
@@ -2773,35 +2761,25 @@ FiveE.classRules = function(rules, classes) {
         'W8:15:2/16:4', 'W9:17:2/18:4/19:6/20:8'
       ];
       spellsPerDay = [
-        'W0:1:3/2:4',
-        'W1:1:1/2:2/4:3/7:4',
-        'W2:3:1/4:2/6:3/9:4',
-        'W3:5:1/6:2/8:3/11:4',
-        'W4:7:1/8:2/10:3/13:4',
-        'W5:9:1/10:2/12:3/15:4',
-        'W6:11:1/12:2/14:3/17:4',
-        'W7:13:1/14:2/16:3/19:4',
-        'W8:15:1/16:2/18:3/20:4',
-        'W9:17:1/18:2/19:3/20:4'
+        'W0:1:3/2:4/10:5',
+        'W1:1:2/2:3/3:5',
+        'W2:3:2/4:3',
+        'W3:5:2/6:3',
+        'W4:7:1/8:2/9:3',
+        'W5:9:1/10:2/18:3',
+        'W6:11:1/19:2',
+        'W7:13:1/20:2',
+        'W8:15:1',
+        'W9:17:1'
       ];
+
       rules.defineRule('casterLevelArcane', 'levels.Wizard', '+=', null);
-      rules.defineRule('familiarMasterLevel', 'levels.Wizard', '+=', null);
-      rules.defineRule('featCount.Wizard',
-        'levels.Wizard', '=', 'source >= 5 ? Math.floor(source / 5) : null'
+      rules.defineRule('magicNotes.arcaneRecoveryFeature',
+        'levels.Wizard', '=', 'Math.floor(source / 2)'
       );
-      for(var j = 0; j < FiveE.SCHOOLS.length; j++) {
-        var school = FiveE.SCHOOLS[j].split(':')[0];
-        rules.defineRule('magicNotes.wizardSpecialization',
-         'specialize.' + school, '=', '"' + school + '"'
-        );
-        rules.defineRule('skillNotes.wizardSpecialization',
-          'specialize.' + school, '=', '"' + school + '"'
-        );
-      }
-      for(var j = 0; j < 10; j++) {
-        rules.defineRule
-          ('spellsPerDay.W' + j, 'magicNotes.wizardSpecialization', '+', '1');
-      }
+      rules.defineRule('selectableFeatureCount.Wizard',
+        'wizardFeatures.Arcane Tradition', '=', '1'
+      );
 
     } else
       continue;
@@ -2817,11 +2795,6 @@ FiveE.classRules = function(rules, classes) {
 
 /* Defines the rules related to combat. */
 FiveE.combatRules = function(rules) {
-  rules.defineNote([
-    'turnUndead.damageModifier:2d6+%V',
-    'turnUndead.frequency:%V/day',
-    'turnUndead.maxHitDice:(d20+%V)/3'
-  ]);
   rules.defineRule('armorClass',
     '', '=', '10',
     'armor', '+', 'FiveE.armorsArmorClassBonuses[source]',
@@ -2846,18 +2819,6 @@ FiveE.combatRules = function(rules) {
   rules.defineRule('shieldProficiencyLevel',
     '', '=', FiveE.PROFICIENCY_NONE,
     'classShieldProficiencyLevel', '^', null
-  );
-  rules.defineRule('turnUndead.damageModifier',
-    'turnUndead.level', '=', null,
-    'charismaModifier', '+', null
-  );
-  rules.defineRule('turnUndead.frequency',
-    'turnUndead.level', '=', '3',
-    'charismaModifier', '+', null
-  );
-  rules.defineRule('turnUndead.maxHitDice',
-    'turnUndead.level', '=', 'source * 3 - 10',
-    'charismaModifier', '+', null
   );
   rules.defineRule('weaponProficiency',
     'weaponProficiencyLevel', '=',
@@ -4664,231 +4625,26 @@ FiveE.magicRules = function(rules, classes, domains, schools) {
     }
   }
 
+  'Knowledge', 'Life', 'Light', 'Nature', 'Tempest', 'Trickery', 'War'
   rules.defineChoice('domains', domains);
   for(var i = 0; i < domains.length; i++) {
     var domain = domains[i];
-    var notes;
-    var spells;
-    var turn;
-    if(domain == 'Air') {
-      notes = ['combatNotes.airDomain:Turn earth, rebuke air'];
-      spells = [
-        'Obscuring Mist', 'Wind Wall', 'Gaseous Form', 'Air Walk',
-        'Control Winds', 'Chain Lightning', 'Control Weather', 'Whirlwind',
-        'Elemental Swarm'
-      ];
-      turn = 'Earth';
-    } else if(domain == 'Animal') {
-      notes = [
-        'magicNotes.animalDomain:<i>Speak With Animals</i> 1/Day',
-        'skillNotes.animalDomain:Knowledge (Nature) is a class skill'
-      ];
-      spells = [
-        'Calm Animals', 'Hold Animal', 'Dominate Animal',
-        'Summon Nature\'s Ally IV', 'Commune With Nature', 'Antilife Shell',
-        'Animal Shapes', 'Summon Nature\'s Ally VIII', 'Shapechange'
-      ];
-      turn = null;
-      rules.defineRule
-        ('classSkills.Knowledge (Nature)', 'skillNotes.animalDomain', '=', '1');
-    } else if(domain == 'Chaos') {
-      notes = ['magicNotes.chaosDomain:+1 caster level chaos spells'];
-      spells = [
-        'Protection From Law', 'Shatter', 'Magic Circle Against Law',
-        'Chaos Hammer', 'Dispel Law', 'Animate Objects', 'Word Of Chaos',
-        'Cloak Of Chaos', 'Summon Monster IX'
-      ];
-      turn = null;
-    } else if(domain == 'Death') {
-      notes = ['magicNotes.deathDomain:<i>Death Touch</i> 1/Day'];
-      spells = [
-        'Cause Fear', 'Death Knell', 'Animate Dead', 'Death Ward',
-        'Slay Living', 'Create Undead', 'Destruction', 'Create Greater Undead',
-        'Wail Of The Banshee'
-      ];
-      turn = null;
-    } else if(domain == 'Destruction') {
-      notes = [
-        'combatNotes.destructionDomain:+4 attack, +%V damage smite 1/day'
-      ];
-      spells = [
-        'Inflict Light Wounds', 'Shatter', 'Contagion',
-        'Inflict Critical Wounds', 'Mass Inflict Light Wounds', 'Harm',
-        'Disintegrate', 'Earthquake', 'Implosion'
-      ];
-      turn = null;
-      rules.defineRule
-        ('combatNotes.destructionDomain', 'levels.Cleric', '=', null);
-    } else if(domain == 'Earth') {
-      notes = ['combatNotes.earthDomain:Turn air, rebuke earth'];
-      spells = [
-        'Magic Stone', 'Soften Earth And Stone', 'Stone Shape', 'Spike Stones',
-        'Wall Of Stone', 'Stoneskin', 'Earthquake', 'Iron Body',
-        'Elemental Swarm'
-      ];
-      turn = 'Air';
-    } else if(domain == 'Evil') {
-      notes = ['magicNotes.evilDomain:+1 caster level evil spells'];
-      spells = [
-        'Protection From Good', 'Desecrate', 'Magic Circle Against Good',
-        'Unholy Blight', 'Dispel Good', 'Create Undead', 'Blasphemy',
-        'Unholy Aura', 'Summon Monster IX'
-      ];
-      turn = null;
-    } else if(domain == 'Fire') {
-      notes = ['combatNotes.fireDomain:Turn water, rebuke fire'];
-      spells = [
-        'Burning Hands', 'Produce Flame', 'Resist Energy', 'Wall Of Fire',
-        'Fire Shield', 'Fire Seeds', 'Fire Storm', 'Incendiary Cloud',
-        'Elemental Swarm'
-      ];
-      turn = 'Water';
-    } else if(domain == 'Good') {
-      notes = ['magicNotes.goodDomain:+1 caster level good spells'];
-      spells = [
-        'Protection From Evil', 'Aid', 'Magic Circle Against Evil',
-        'Holy Smite', 'Dispel Evil', 'Blade Barrier', 'Holy Word', 'Holy Aura',
-        'Summon Monster IX'
-      ];
-      turn = null;
-    } else if(domain == 'Healing') {
-      notes = ['magicNotes.healingDomain:+1 caster level heal spells'];
-      spells = [
-        'Cure Light Wounds', 'Cure Moderate Wounds', 'Cure Serious Wounds',
-        'Cure Critical Wounds', 'Mass Cure Light Wounds', 'Heal', 'Regenerate',
-        'Mass Cure Critical Wounds', 'Mass Heal'
-      ];
-      turn = null;
-    } else if(domain == 'Knowledge') {
-      notes = [
-        'magicNotes.knowledgeDomain:+1 caster level divination spells',
-        'skillNotes.knowledgeDomain:All Knowledge skills are class skills'
-      ];
-      spells = [
-        'Detect Secret Doors', 'Detect Thoughts', 'Clairaudience/Clairvoyance',
-        'Divination', 'True Seeing', 'Find The Path', 'Legend Lore',
-        'Discern Location', 'Foresight'
-      ];
-      turn = null;
-      rules.defineRule
-        (/^classSkills.Knowledge/, 'skillNotes.knowledgeDomain', '=', '1');
-    } else if(domain == 'Law') {
-      notes = ['magicNotes.lawDomain:+1 caster level law spells'];
-      spells = [
-        'Protection From Chaos', 'Calm Emotions', 'Magic Circle Against Chaos',
-        'Order\'s Wrath', 'Dispel Chaos', 'Hold Monster', 'Dictum',
-        'Shield Of Law', 'Summon Monster IX'
-      ];
-      turn = null;
-    } else if(domain == 'Luck') {
-      notes = ['saveNotes.luckDomain:Reroll 1/day'];
-      spells = [
-        'Entropic Shield', 'Aid', 'Protection From Energy',
-        'Freedom Of Movement', 'Break Enchantment', 'Mislead', 'Spell Turning',
-        'Moment Of Prescience', 'Miracle'
-      ];
-      turn = null;
-    } else if(domain == 'Magic') {
-      notes = ['skillNotes.magicDomain:Use Magic Device at level %V'];
-      spells = [
-        'Magic Aura', 'Identify', 'Dispel Magic',
-        'Imbue With Spell Ability', 'Spell Resistance', 'Antimagic Field',
-        'Spell Turning', 'Protection From Spells', 'Mage\'s Disjunction'
-      ];
-      turn = null;
-      rules.defineRule('skillNotes.magicDomain',
-        'levels.Cleric', '=', 'Math.floor(source / 2)',
-        'levels.Wizard', '+', null
-      );
-    } else if(domain == 'Plant') {
-      notes = [
-        'combatNotes.plantDomain:Rebuke plants',
-        'skillNotes.plantDomain:Knowledge (Nature) is a class skill'
-      ];
-      spells = [
-        'Entangle', 'Barkskin', 'Plant Growth', 'Command Plants',
-        'Wall Of Thorns', 'Repel Wood', 'Animate Plants', 'Control Plants',
-        'Shambler'
-      ];
-      turn = 'Plant';
-      rules.defineRule
-        ('classSkills.Knowledge (Nature)', 'skillNotes.plantDomain', '=', '1');
-    } else if(domain == 'Protection') {
-      notes = [
-        'magicNotes.protectionDomain:' +
-          '<i>Protective Ward</i> +%V bonus to next save w/in 1 hour 1/day'
-      ];
-      spells = [
-        'Sanctuary', 'Shield Other', 'Protection From Energy',
-        'Spell Immunity', 'Spell Resistance', 'Antimagic Field', 'Repulsion',
-        'Mind Blank', 'Prismatic Sphere'
-      ];
-      turn = null;
-      rules.defineRule
-        ('magicNotes.protectionDomain', 'levels.Cleric', '=', null);
-    } else if(domain == 'Strength') {
-      notes = ['abilityNotes.strengthDomain:Add %V to strength 1 round/day'];
-      spells = [
-        'Enlarge Person', 'Bull\'s Strength', 'Magic Vestment',
-        'Spell Immunity', 'Righteous Might', 'Stoneskin', 'Grasping Hand',
-        'Clenched Fist', 'Crushing Hand'
-      ];
-      turn = null;
-      rules.defineRule
-        ('abilityNotes.strengthDomain', 'levels.Cleric', '=', null);
-    } else if(domain == 'Sun') {
-      notes = ['combatNotes.sunDomain:Destroy turned undead 1/day'];
-      spells = [
-        'Endure Elements', 'Heat Metal', 'Searing Light', 'Fire Shield',
-        'Flame Strike', 'Fire Seeds', 'Sunbeam', 'Sunburst', 'Prismatic Sphere'
-      ];
-      turn = null;
-    } else if(domain == 'Travel') {
-      notes = [
-        'magicNotes.travelDomain:<i>Freedom of Movement</i> %V rounds/day',
-        'skillNotes.travelDomain:Survival is a class skill'
-      ];
-      spells = [
-        'Longstrider', 'Locate Object', 'Fly', 'Dimension Door', 'Teleport',
-        'Find The Path', 'Greater Teleport', 'Phase Door', 'Astral Projection'
-      ];
-      turn = null;
-      rules.defineRule
-        ('classSkills.Survival', 'skillNotes.travelDomain', '=', '1');
-      rules.defineRule('magicNotes.travelDomain', 'levels.Cleric', '=', null);
+    var notes = null;
+    var spells = null;
+    if(domain == 'Knowledge') {
+      // TODO
+    } else if(domain == 'Life') {
+      // TODO
+    } else if(domain == 'Light') {
+      // TODO
+    } else if(domain == 'Nature') {
+      // TODO
+    } else if(domain == 'Tempest') {
+      // TODO
     } else if(domain == 'Trickery') {
-      notes =
-        ['skillNotes.trickeryDomain:Bluff/Disguise/Hide are class skills'];
-      spells = [
-        'Disguise Self', 'Invisibility', 'Nondetection', 'Confusion',
-        'False Vision', 'Mislead', 'Screen', 'Polymorph Any Object', 'Time Stop'
-      ];
-      turn = null;
-      rules.defineRule
-        ('classSkills.Bluff', 'skillNotes.trickeryDomain', '=', '1');
-      rules.defineRule
-        ('classSkills.Disguise', 'skillNotes.trickeryDomain', '=', '1');
-      rules.defineRule
-        ('classSkills.Hide', 'skillNotes.trickeryDomain', '=', '1');
+      // TODO
     } else if(domain == 'War') {
-      notes = [
-        'featureNotes.warDomain:' +
-          'Weapon Proficiency/Weapon Focus in favored weapon'
-      ];
-      spells = [
-        'Magic Weapon', 'Spiritual Weapon', 'Magic Vestment', 'Divine Power',
-        'Flame Strike', 'Blade Barrier', 'Power Word Blind', 'Power Word Stun',
-        'Power Word Kill'
-      ];
-      turn = null;
-    } else if(domain == 'Water') {
-      notes = ['combatNotes.waterDomain:Turn fire, rebuke water'];
-      spells = [
-        'Obscuring Mist', 'Fog Cloud', 'Water Breathing', 'Control Water',
-        'Ice Storm', 'Cone Of Cold', 'Acid Fog', 'Horrid Wilting',
-        'Elemental Swarm'
-      ];
-      turn = 'Fire';
+      // TODO
     } else
       continue;
     if(notes != null) {
@@ -4901,52 +4657,11 @@ FiveE.magicRules = function(rules, classes, domains, schools) {
         if(school == null) {
           continue;
         }
-        spell += '(' + domain + (j + 1) + ' ' +
-                  (school == 'Universal' ? 'Univ' : schools[school]) + ')';
+        spell += '(' + domain + (j + 1) + ' ' + schools[school] + ')';
         rules.defineChoice('spells', spell);
       }
     }
-    if(turn != null) {
-      var prefix = 'turn' + turn;
-      rules.defineRule(prefix + '.level',
-        'domains.' + domain, '?', null,
-        'levels.Cleric', '+=', null
-      );
-      rules.defineRule('turningLevel', prefix + '.level', '^=', null);
-      rules.defineRule(prefix + '.damageModifier',
-        prefix + '.level', '=', null,
-        'charismaModifier', '+', null
-      );
-      rules.defineRule(prefix + '.frequency',
-        prefix + '.level', '=', '3',
-        'charismaModifier', '+', null
-      );
-      rules.defineRule(prefix + '.maxHitDice',
-        prefix + '.level', '=', 'source * 3 - 10',
-        'charismaModifier', '+', null
-      );
-      rules.defineNote([
-        prefix + '.damageModifier:2d6+%V',
-        prefix + '.frequency:%V/day',
-        prefix + '.maxHitDice:(d20+%V)/3'
-      ]);
-      rules.defineSheetElement('Turn ' + turn, 'Turn Undead', null, '; ');
-    }
   }
-  rules.defineNote
-    ('validationNotes.domainAllocation:%1 available vs. %2 allocated');
-  rules.defineRule('validationNotes.domainAllocation.1',
-    '', '=', '0',
-    'domainCount', '=', null
-  );
-  rules.defineRule('validationNotes.domainAllocation.2',
-    '', '=', '0',
-    /^domains\./, '+=', null
-  );
-  rules.defineRule('validationNotes.domainAllocation',
-    'validationNotes.domainAllocation.1', '=', '-source',
-    'validationNotes.domainAllocation.2', '+=', null
-  );
 
   rules.defineRule
     ('armorClass', 'combatNotes.goodiesArmorClassAdjustment', '+', null);
@@ -5417,17 +5132,6 @@ FiveE.randomizeOneAttribute = function(attributes, attribute) {
     }
     if(choices.length > 0) {
       attributes['deity'] = choices[ScribeUtils.random(0, choices.length - 1)];
-    }
-  } else if(attribute == 'domains') {
-    attrs = this.applyRules(attributes);
-    howMany = attrs.domainCount;
-    if(howMany != null) {
-      if((choices = this.getChoices('deities')[attributes.deity]) == null)
-        choices = ScribeUtils.getKeys(this.getChoices('domains'));
-      else
-        choices = choices.split('/');
-      pickAttrs(attributes, 'domains.', choices, howMany -
-                ScribeUtils.sumMatching(attributes, /^domains\./), 1);
     }
   } else if(attribute == 'feats' || attribute == 'features') {
     attribute = attribute == 'feats' ? 'feat' : 'selectableFeature';
@@ -6166,7 +5870,8 @@ FiveE.defineClass = function
   if(spellAbility != null) {
     rules.defineRule('spellDifficultyClass.' + name,
       'levels.' + name, '?', null,
-      spellAbility + 'Modifier', '=', '10 + source'
+      spellAbility + 'Modifier', '=', '8 + source',
+      'proficiencyBonus', '+', null
     );
   }
   if(spellsKnown != null || spellsPerDay != null) {

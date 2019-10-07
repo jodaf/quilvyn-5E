@@ -338,15 +338,6 @@ FiveE.spellsAbbreviations = {
 };
 FiveE.spellsDescriptions = {
 /*
-  "Animal Messenger": "R$RS' Tiny animal target goes to specified place for $L dy",
-  "Animal Shapes": "R$RS' $L allies in 30' area become chosen animal for $L hr",
-  "Animal Trance": "R$RS' 2d6 HD animals Will save or facinated for conc",
-  "Animate Dead": "Touched corpses become $L2 HD of skeletons/zombies",
-  "Animate Objects": "R$RM' $L objects attack foes for $L rd",
-  "Animate Plants": "R$RS' $Ldiv3 plants attack/entwine foes for $L rd/hr",
-  "Animate Rope": "R$RM' ${50 + 5 * lvl}' rope obey for $L rd",
-  "Antilife Shell": "10'-radius bars living for $L min",
-  "Antimagic Field": "10'-radius suppresses magic for $L10 min",
   "Antipathy": "Named kind/align creatures Will save or avoid $L10' cube for $L2 hr",
   "Antiplant Shell": "10'-radius bars animate plants for $L min",
   "Arcane Eye": "Invisible remote eye moves 30' for $L min",
@@ -960,12 +951,12 @@ FiveE.spellsDescriptions = {
   'Alarm':"R30' Alert when tiny or larger creature enters 20' cube for 8 hr",
   'Alter Self':"Self aquatic, look different, or nat weapons for conc up to 1 hr",
   'Animal Friendship':"R30' Target beast(s) Wis save or convinced of good intent for 1 dy",
-  'Animal Messenger':'Enchantment',
-  'Animal Shapes':'Transmutation',
-  'Animate Dead':'Necromancy',
-  'Animate Objects':'Transmutation',
-  'Antilife Shell':'Abjuration',
-  'Antimagic Field':'Abjuration',
+  'Animal Messenger':"R30' Tiny beast target move 24+ hr to deliver 25-word messsage to person described",
+  'Animal Shapes':"R30' Polymorph all targets in range into max large creature max CR 4",
+  'Animate Dead':"R10' Animate med/small bones/corpse, command w/in 60' for 1 dy",
+  'Animate Objects':"R120' Animate 10 sm/5 md/2 lg/1 hg objects, command w/in 500' for conc/1 min",
+  'Antilife Shell':"Self 10' sphere prevents living passage for conc/1 hr",
+  'Antimagic Field':"Self 10' sphere supresses magic for conc/1 hr",
   'Antipathy/Sympathy':'Enchantment',
   'Arcane Eye':'Divination',
   'Arcane Gate':'Conjuration',
@@ -1797,48 +1788,193 @@ FiveE.backgroundRules = function(rules, backgrounds) {
   for(var i = 0; i < backgrounds.length; i++) {
 
     var name = backgrounds[i];
+    var equipment = [];
     var features = [];
     var languages = [];
     var notes = [];
     var proficiencyCounts = {};
     var proficienciesGiven = {};
+    var proficienciesSuggested = {};
 
     if(name === 'Acolyte') {
+      equipment = [
+        'Holy Symbol', 'Prayer Book/Wheel', 'Incense', 'Vestments', 'Clothing',
+        '15 GP'
+      ];
       features = ['Shelter Of The Faithful'];
       languages = ['', ''];
-      notes = ['featureNotes.shelterOfTheFaithfulFeature:Aid from associated temple(s)'];
+      notes = [
+        'featureNotes.shelterOfTheFaithfulFeature:Aid from associated temple'
+      ];
       proficiencyCounts = {'Skills':2};
       proficienciesGiven = {'Skills':['Insight', 'Religion']};
     } else if(name == 'Charlatan') {
-      // TODO
+      equipment = [
+        'Fine Clothes', 'Disguise Kit', 'Con Tools', '15 GP'
+      ];
+      features = ['False Identity'];
+      notes = [
+        'featureNotes.falseIdentityFeature:Documented 2nd ID, forgery skills'
+      ];
+      proficiencyCounts = {'Skills':2, 'Tools':2};
+      proficienciesGiven = {
+        'Skills':['Deception', 'Sleight Of Hand'],
+        'Tools':['Diguise Kit', 'Forgery Kit']
+      };
     } else if(name == 'Criminal') {
-      // TODO
+      equipment = ['Crowbar', 'Dark Clothes w/Hood', '15 GP'];
+      features = ['Criminal Contact'];
+      notes = [
+        'featureNotes.criminalContactFeature:Liaison to criminal network'
+      ];
+      proficiencyCounts = {'Skills':2, 'Tools':2};
+      proficienciesGiven = {
+        'Skills':['Deception', 'Stealth'],
+        'Tools':['Gaming Set', "Thieves' Tools"]
+      };
     } else if(name == 'Entertainer') {
-      // TODO
+      equipment = [
+        'Musical Instrument', "Admirer's Favor", 'Costume', '15 GP'
+      ];
+      features = ['By Popular Demand'];
+      notes = [
+        'featureNotes.byPopularDemandFeature:Welcome, lodging for performing'
+      ];
+      proficiencyCounts = {'Skills':2, 'Tools':2};
+      proficienciesGiven = {
+        'Skills':['Acrobatics', 'Performance'],
+        'Tools':['Disguise Kit', 'Musical Instrument']
+      };
     } else if(name == 'Folk Hero') {
-      // TODO
+      equipment = [
+        "Artisan's Tools", 'Shovel', 'Iron Pot', 'Clothes', '10 GP'
+      ];
+      features = ['Rustic Hospitality'];
+      notes = [
+        'featureNotes.rusticHospitalityFeature:Aid from common folk'
+      ]
+      proficiencyCounts = {'Skills':2, 'Tools':2};
+      proficienciesGiven = {
+        'Skills':['Animal Handling', 'Survival'],
+        'Tools':["Artisan's Tools", 'Vehicles (Land)']
+      };
     } else if(name == 'Guild Artisan') {
-      // TODO
+      equipment = [
+        "Artisan's Tools", 'Introduction Letter', "Traveler's Clothes",
+        '15 GP'
+      ];
+      features = ['Guild Membership'];
+      notes = [
+        'featureNotes.guildMembershipFeature:Aid from guild and members'
+      ];
+      proficiencyCounts = {'Skills':2, 'Tools':1};
+      proficienciesGiven = {
+        'Skills':['Insight', 'Persuasion'],
+        'Tools':["Artisan's Tools"]
+      };
     } else if(name == 'Hermit') {
-      // TODO
+      equipment = [
+        'Scroll Case With Notes', 'Winter Blanket', 'Clothes', 'Herbalism Kit',
+        '5 GP'
+      ];
+      features = ['Discovery'];
+      languages = [''];
+      notes = [
+        'featureNotes.discoveryFeature:Knows rare truth'
+      ];
+      proficiencyCounts = {'Skills':2, 'Tools':1};
+      proficienciesGiven = {
+        'Skills':['Medicine', 'Religion'],
+        'Tools':['Herbalism Kit']
+      };
     } else if(name == 'Noble') {
-      // TODO
+      equipment = [
+        'Fine Clothes', 'Signet Ring', 'Pedigree Scroll', '25 GP'
+      ];
+      features = ['Position Of Priviledge'];
+      languages = [''];
+      notes = [
+        'featureNotes.positionOfPriviledgeFeature:Treated with respect/deference'
+      ];
+      proficiencyCounts = {'Skills':2, 'Tools':1};
+      proficienciesGiven = {
+        'Skills':['History', 'Persuasion'],
+        'Tools':['Gaming Set']
+      };
     } else if(name == 'Outlander') {
-      // TODO
+      equipment = [
+        'Staff', 'Hunting Trap', 'Animal Trophy', "Traveler's Clothes", '10 GP'
+      ];
+      features = ['Wanderer'];
+      languages = [''];
+      notes = [
+        'featureNotes.wandererFeature:Excellent geography memory, can forage for 6 people'
+      ];
+      proficiencyCounts = {'Skills':2, 'Tools':1};
+      proficienciesGiven = {
+        'Skills':['Athletics', 'Survival'],
+        'Tools':['Musical Instrument']
+      };
     } else if(name == 'Sage') {
-      // TODO
+      equipment = [
+        'Bottle Ink', 'Quill', 'Small Knife', 'Letter With Unanswered Question',
+        'Clothes', '10 GP'
+      ];
+      features = ['Researcher'];
+      languages = ['', ''];
+      notes = [
+        'featureNotes.researcherFeature:Know where to find lore'
+      ];
+      proficiencyCounts = {'Skills':2};
+      proficienciesGiven = {
+        'Skills':['Arcana', 'History']
+      };
     } else if(name == 'Sailor') {
-      // TODO
+      equipment = [
+        'Belaying Pin', "50' Silk Rope", 'Lucky Charm', 'Clothes', '10 GP'
+      ];
+      features == ["Ship's Passage"];
+      notes = [
+        "featureNotes.ship'sPassageFeature:Free passage for self/companions"
+      ];
+      proficiencyCounts = {'Skills':2, 'Tools':2};
+      proficienciesGiven = {
+        'Skills':['Athletics', 'Perception'],
+        'Tools':["Navigator's Tools", 'Vehicles (Water)']
+      };
     } else if(name == 'Soldier') {
-      // TODO
+      equipment = [
+        'Rank Insignia', 'Battle Trophy', 'Gambling Objects', 'Clothes', '10 GP'
+      ];
+      features = ['Military Rank'];
+      notes = [
+        'featureNotes.militaryRankFeature:Respect/deference from soldiers'
+      ];
+      proficiencyCounts = {'Skills':2, 'Tools':2};
+      proficienciesGiven = {
+        'Skills':['Athletics', 'Intimidation'],
+        'Tools':['Gaming Set', 'Vehicles (Land)']
+      };
     } else if(name == 'Urchin') {
-      // TODO
+      equipment = [
+        'Small Knife', 'City Map', 'Pet Mouse', "Parents' Token", 'Clothes',
+        '10 GP'
+      ];
+      features = ['City Secrets'];
+      notes = [
+        'featureNotes.citySecretsFeature:Double speed through hidden urban ways'
+      ];
+      proficiencyCounts = {'Skills':2, 'Tools':2};
+      proficienciesGiven = {
+        'Skills':['Sleight Of Hand', 'Stealth'],
+        'Tools':['Diguise Kit', "Theives' Tools"]
+      };
     } else
       continue;
 
     FiveE.defineBackground(
-      rules, name, proficiencyCounts, proficienciesGiven, features, languages,
-      notes
+      rules, name, proficiencyCounts, proficienciesGiven,
+      proficienciesSuggested, features, languages, notes
     );
 
   }
@@ -3467,7 +3603,7 @@ FiveE.featRules = function(rules, feats) {
     } else if(feat == 'Actor') {
       notes = [
         //'abilityNotes.actorFeature:+1 Charisma',
-        'skillNotes.actorFeature:Mimic others\' speech/sounds, Adv on Charisma(Deception/Performance) when impersonating'
+        "skillNotes.actorFeature:Mimic others' speech/sounds, Adv on Charisma(Deception/Performance) when impersonating"
       ];
       //rules.defineRule('charisma', 'abilityNotes.actorFeature', '+', '1');
     } else if(feat == 'Charger') {
@@ -4718,7 +4854,7 @@ FiveE.raceRules = function(rules, languages, races) {
       ];
       languages = ['Common', 'Elf'];
       notes = [
-        'featureNotes.darkvisionFeature:See one light level better 60\'',
+        "featureNotes.darkvisionFeature:See one light level better 60'",
         'featureNotes.extraLanguageFeature:Speak 1 additional language',
         'saveNotes.feyAncestryFeature:Adv vs. charmed, immune sleep',
         'skillNotes.skillVersatilityFeature:Prof in two additional skills'
@@ -4740,7 +4876,7 @@ FiveE.raceRules = function(rules, languages, races) {
       notes = [
         'combatNotes.relentlessEnduranceFeature:Avoid drop below 1 hp 1/long rest',
         'combatNotes.savageAttacksFeature:Add extra die on critical damage',
-        'featureNotes.darkvisionFeature:See one light level better 60\'',
+        "featureNotes.darkvisionFeature:See one light level better 60'",
         'skillNotes.menacingFeature:Prof in Intimidation'
       ];
       profsGiven = {};
@@ -4785,7 +4921,7 @@ FiveE.raceRules = function(rules, languages, races) {
       notes = [
         'abilityNotes.dwarfArmorSpeedAdjustment:No speed penalty in armor',
         'abilityNotes.slowFeature:-5 speed',
-        'featureNotes.darkvisionFeature:See one light level better 60\'',
+        "featureNotes.darkvisionFeature:See one light level better 60'",
         'featureNotes.toolProficiencyFeature:' +
           'Proficient in choice of artisan tool',
         'saveNotes.resistPoisonFeature:Adv vs. poison',
@@ -4828,7 +4964,7 @@ FiveE.raceRules = function(rules, languages, races) {
         features.push('Cantrip', 'Darkvision', 'Extra Language');
         // TODO Cantrip
         notes.push(
-          'featureNotes.darkvisionFeature:See one light level better 60\'',
+          "featureNotes.darkvisionFeature:See one light level better 60'",
           'featureNotes.extraLanguageFeature:Speak 1 additional language'
         );
         rules.defineRule
@@ -4840,7 +4976,7 @@ FiveE.raceRules = function(rules, languages, races) {
           ['Longbow', 'Longsword', 'Shortbow', 'Shortsword'];
         notes.push(
           'abilityNotes.quickFeature:+5 speed',
-          'featureNotes.darkvisionFeature:See one light level better 60\'',
+          "featureNotes.darkvisionFeature:See one light level better 60'",
           'featureNotes.maskOfTheWildFeature:' +
             'Hide when lightly obscured by nature'
         );
@@ -4851,7 +4987,7 @@ FiveE.raceRules = function(rules, languages, races) {
           ('Drow Magic', 'Sunlight Sensitivity', 'Superior Darkvision');
         notes.push(
           'featureNotes.superiorDarkvisionFeature:' +
-            'See one light level better 120\'',
+            "See one light level better 120'",
           'featureNotes.sunlightSensitivityFeature:' +
             'Disadv attack, sight perception in direct sunlight',
           'magicNotes.drowMagicFeature:Cast %V 1/day (cha)'
@@ -4880,12 +5016,12 @@ FiveE.raceRules = function(rules, languages, races) {
         );
       } else if(race == 'Rock Gnome') {
         adjustment += '/+1 constitution';
-        features.push('Artificier\'s Lore', 'Tinker');
+        features.push("Artificier's Lore", 'Tinker');
         notes.push(
-          'featureNotes.tinkerFeature:Prof w/artisan\'s tools',
-          'skillNotes.artificier\'sLoreFeature:Double prof on magic, alchemical, tech objects History checks'
+          "featureNotes.tinkerFeature:Prof w/artisan's tools",
+          "skillNotes.artificier'sLoreFeature:Double prof on magic, alchemical, tech objects History checks"
         );
-        profsGiven['Tools'] = ['Artisan\'s Tools'];
+        profsGiven['Tools'] = ["Artisan's Tools"];
         rules.defineRule
           ('proficiencyCounts.Tools', 'featureNotes.tinkerFeature', '+=', '1');
       }
@@ -4934,7 +5070,7 @@ FiveE.raceRules = function(rules, languages, races) {
       features = ['Darkvision', 'Hellish Resistance', 'Infernal Legacy'];
       languages = ['Common', 'Infernal'];
       notes = [
-        'featureNotes.darkvisionFeature:See one light level better 60\'',
+        "featureNotes.darkvisionFeature:See one light level better 60'",
         'magicNotes.infernalLegacyFeature:Cast %V 1/day (cha)',
         'saveNotes.hellishResistanceFeature:Resistance to fire damage'
       ];
@@ -5722,8 +5858,8 @@ FiveE.ruleNotes = function() {
 };
 
 FiveE.defineBackground = function(
-  rules, name, proficiencyCounts, proficienciesGiven, features, languages,
-  notes) {
+  rules, name, proficiencyCounts, proficienciesGiven, proficienciesSuggested,
+  features, languages, notes) {
 
   rules.defineChoice('backgrounds', name);
   rules.defineRule

@@ -51,7 +51,7 @@ function FiveE() {
   FiveE.movementRules(rules);
   FiveE.magicRules(rules, FiveE.CLASSES, FiveE.DOMAINS, FiveE.SCHOOLS);
   FiveE.spellDescriptionRules(rules);
-  rules.defineChoice('preset', 'race', 'level', 'levels');
+  rules.defineChoice('preset', 'background', 'race', 'level', 'levels');
   rules.defineChoice('random', FiveE.RANDOMIZABLE_ATTRIBUTES);
   Scribe.addRuleSet(rules);
   FiveE.rules = rules;
@@ -130,9 +130,9 @@ FiveE.ANIMAL_COMPANIONS = {
 };
 */
 FiveE.ARMORS = [
-  'None', 'Padded', 'Leather', 'Studded Leather', 'Hide', 'Chain Shirt',
-  'Scale Mail', 'Breastplate', 'Half Plate', 'Ring Mail', 'Chain Mail',
-  'Splint', 'Plate'
+  'None:', 'Padded:L', 'Leather:L', 'Studded Leather:L', 'Hide:M',
+  'Chain Shirt:L', 'Scale Mail:M', 'Breastplate:M', 'Half Plate:M',
+  'Ring Mail:H', 'Chain Mail:H', 'Splint:H', 'Plate:H'
 ];
 FiveE.BACKGROUNDS = [
   'Acolyte', 'Charlatan', 'Criminal', 'Entertainer', 'Folk Hero',
@@ -214,9 +214,6 @@ FiveE.FEATS = [
   'Shield Master', 'Skilled', 'Skulker', 'Spell Sniper', 'Tavern Brawler',
   'Tough', 'War Caster', 'Weapon Master'
 ];
-FiveE.GAMES = [
-  'Dice', 'Dragonchess', 'Playing Cards', 'Three-Dragon Ante'
-];
 FiveE.GENDERS = ['Female', 'Male'];
 FiveE.GOODIES = [
   'Ring Of Protection +1',
@@ -259,8 +256,8 @@ FiveE.TOOLS = [
   "Smith's Tools:Artisan", "Tinker's Tools:Artisan",
   "Weaver's Tools:Artisan", "Woodcarver's Tools:Artisan",
   "Disguise Kit:", "Forgery Kit:",
-  "Dice Set:Gaming", "Dragonchess Set:Gaming", "Playing Card Set:Gaming",
-  "Three-Dragon Ante Set:Gaming",
+  "Dice Set:Game", "Dragonchess Set:Game", "Playing Card Set:Game",
+  "Three-Dragon Ante Set:Game",
   "Herbalism Kit:",
   "Bagpipes:Music", "Drum:Music", "Dulcimer:Music", "Flute:Music",
   "Lute:Music", "Lyre:Music", "Horn:Music", "Pan Flute:Music", "Shawm:Music",
@@ -281,14 +278,16 @@ FiveE.SKILLS = [
 ];
 FiveE.VIEWERS = ['Compact', 'Standard', 'Vertical'];
 FiveE.WEAPONS = [
-  'Battleaxe:d10', 'Blowgun:d1r25', 'Club:d4', 'Dagger:d4', 'Dart:d4r20',
-  'Flail:d8', 'Glaive:d10', 'Greataxe:d12', 'Greatclub:d8', 'Halberd:d10',
-  'Hand Crossbow:d6r30', 'Handaxe:d6r20', 'Heavy Crossbow:d10r100',
-  'Javelin:d6r30', 'Lance:d12', 'Light Crossbow:d8r80', 'Light Hammer:d4r20',
-  'Longbow:d8r150', 'Longsword:d10', 'Mace:d6', 'Maul:2d6', 'Morningstar:d8',
-  'Net:d0r5', 'Pike:d10', 'Quarterstaff:d8', 'Rapier:d8', 'Scimitar:d6',
-  'Shortbow:d6r80', 'Shortsword:d6', 'Sickle:d4', 'Sling:d4r30', 'Spear:d8r20',
-  'Trident:d8r20', 'Unarmed:d1', 'War Pick:d8', 'Whip:d4'
+  'Battleaxe:d10M', 'Blowgun:d1r25M', 'Club:d4S', 'Dagger:d4S', 'Dart:d4r20S',
+  'Flail:d8M', 'Glaive:d10M', 'Greataxe:d12M', 'Greatclub:d8S',
+  'Greatsword:2d6M', 'Halberd:d10M', 'Hand Crossbow:d6r30M', 'Handaxe:d6r20S',
+  'Heavy Crossbow:d10r100M', 'Javelin:d6r30S', 'Lance:d12M',
+  'Light Crossbow:d8r80S', 'Light Hammer:d4r20S', 'Longbow:d8r150M',
+  'Longsword:d10M', 'Mace:d6S', 'Maul:2d6M', 'Morningstar:d8M', 'Net:d0r5M',
+  'Pike:d10M', 'Quarterstaff:d8S', 'Rapier:d8M', 'Scimitar:d6M',
+  'Shortbow:d6r80S', 'Shortsword:d6M', 'Sickle:d4S', 'Sling:d4r30S',
+  'Spear:d8r20S', 'Trident:d8r20M', 'Unarmed:d1S', 'War Pick:d8',
+  'Warhammer:d8M', 'Whip:d4M'
 ];
 
 // Related information used internally by FiveE
@@ -301,12 +300,6 @@ FiveE.armorsMaxDexBonuses = {
   'None': null, 'Padded': null, 'Leather': null, 'Studded Leather': null,
   'Hide': 2, 'Chain Shirt': 2, 'Scale Mail': 2, 'Breastplate': 2,
   'Half Plate': 2, 'Ring Mail': 0, 'Chainmail': 0, 'Splint': 0, 'Plate': 0
-};
-FiveE.armorsCategories = {
-  'None':null, 'Padded':'Light', 'Leather':'Light', 'Studded Leather':'Light',
-  'Hide':'Medium', 'Chain Shirt':'Light', 'Scale Mail':'Medium',
-  'Breastplate':'Medium', 'Half Plate':'Medium', 'Ring Mail':'Heavy',
-  'Chain Mail':'Heavy', 'Splint':'Heavy', 'Plate':'Heavy'
 };
 FiveE.draconicBreathTypes = {
   'Black Dragonborn': 'acid',
@@ -1712,27 +1705,6 @@ FiveE.spellsSchools = {
   'Zone Of Truth':'Enchantment'
 
 };
-FiveE.weaponsCategories = {
-
-  'Club':'Simple', 'Dagger':'Simple', 'Greatclub':'Simple', 'Handaxe':'Simple',
-  'Javelin':'Simple', 'Light Hammer':'Simple', 'Mace':'Simple',
-  'Quarterstaff':'Simple', 'Sickle':'Simple', 'Spear':'Simple',
-  'Unarmed':'Simple',
-
-  'Light Crossbow':'Simple', 'Dart':'Simple', 'Shortbow':'Simple',
-  'Sling':'Simple',
-
-  'Battleaxe':'Martial', 'Flail':'Martial', 'Glaive':'Martial',
-  'Greataxe':'Martial', 'Greatsword':'Martial', 'Halberd':'Martial',
-  'Lance':'Martial', 'Longsword':'Martial', 'Maul':'Martial',
-  'Morningstar':'Martial', 'Pike':'Martial', 'Rapier':'Martial',
-  'Scimitar':'Martial', 'Shortsword':'Martial', 'Trident':'Martial',
-  'War Pick':'Martial', 'Warhammer':'Martial', 'Whip':'Martial',
-
-  'Blowgun':'Martial', 'Hand Crossbow':'Martial', 'Heavy Crossbow':'Martial',
-  'Longbow':'Martial', 'Net':'Martial'
-
-};
 
 /* Defines the rules related to character abilities. */
 FiveE.abilityRules = function(rules) {
@@ -1825,7 +1797,7 @@ FiveE.backgroundRules = function(rules, backgrounds) {
         'Tool':["Thieves' Tools"]
       };
       proficiencyChoices = {
-        'Tool':FiveE.GAMES
+        'Tool':['Game']
       };
     } else if(name == 'Entertainer') {
       equipment = [
@@ -1841,7 +1813,7 @@ FiveE.backgroundRules = function(rules, backgrounds) {
         'Tool':['Disguise Kit']
       };
       proficiencyChoices == {
-        'Tool':FiveE.TOOLS.filter(function(tool){return tool.indexOf('Music') >= 0;})
+        'Tool':['Music']
       };
     } else if(name == 'Folk Hero') {
       equipment = [
@@ -1857,7 +1829,7 @@ FiveE.backgroundRules = function(rules, backgrounds) {
         'Tool':['Vehicles (Land)']
       };
       proficiencyChoices = {
-        'Tool':FiveE.TOOLS.filter(function(tool){return tool.indexOf('Artisan') >= 0;})
+        'Tool':['Artisan']
       };
     } else if(name == 'Guild Artisan') {
       equipment = [
@@ -1873,7 +1845,7 @@ FiveE.backgroundRules = function(rules, backgrounds) {
         'Skill':['Insight', 'Persuasion']
       };
       proficiencyChoices = {
-        'Tool':FiveE.TOOLS.filter(function(tool){return tool.indexOf('Artisan') >= 0;})
+        'Tool':['Artisan']
       };
     } else if(name == 'Hermit') {
       equipment = [
@@ -1904,7 +1876,7 @@ FiveE.backgroundRules = function(rules, backgrounds) {
         'Skill':['History', 'Persuasion']
       };
       proficiencyChoices = {
-        'Tool':FiveE.GAMES
+        'Tool':['Game']
       };
     } else if(name == 'Outlander') {
       equipment = [
@@ -1919,8 +1891,8 @@ FiveE.backgroundRules = function(rules, backgrounds) {
       proficienciesGiven = {
         'Skill':['Athletics', 'Survival']
       };
-      proficienciesGiven = {
-        'Tool':FiveE.TOOLS.filter(function(tool){return tool.indexOf('Music') >= 0;})
+      proficiencyChoices = {
+        'Tool':['Music']
       };
     } else if(name == 'Sage') {
       equipment = [
@@ -1947,7 +1919,7 @@ FiveE.backgroundRules = function(rules, backgrounds) {
       proficiencyCounts = {'Skill':2, 'Tool':2};
       proficienciesGiven = {
         'Skill':['Athletics', 'Perception'],
-        'Tool':['Navigator', 'Vehicles (Water)']
+        'Tool':["Navigator's Tools", 'Vehicles (Water)']
       };
     } else if(name == 'Soldier') {
       equipment = [
@@ -1962,8 +1934,8 @@ FiveE.backgroundRules = function(rules, backgrounds) {
         'Skill':['Athletics', 'Intimidation'],
         'Tool':['Vehicles (Land)']
       };
-      proficienciesGiven = {
-        'Tool':FiveE.GAMES
+      proficiencyChoices = {
+        'Tool':['Game']
       };
     } else if(name == 'Urchin') {
       equipment = [
@@ -2206,10 +2178,7 @@ FiveE.classRules = function(rules, classes) {
       };
       proficiencyChoices = {
         'Skill': FiveE.SKILLS.map(function(skill){return skill.substring(0, skill.indexOf(':'));}),
-        'Tool':[
-          'Bagpipes', 'Drum', 'Dulcimer', 'Flute', 'Lute', 'Lyre', 'Horn',
-          'Pan Flute', 'Shawm', 'Viol'
-        ]
+        'Tool':['Music']
       };
       selectableFeatures = FiveE.BARD_COLLEGES;
       spellAbility = 'charisma';
@@ -3452,12 +3421,6 @@ FiveE.createViewers = function(rules, viewers) {
          format: '<b>Features/Skills</b><br/>%V'},
           {name: 'Proficiency Bonus', within: 'FeaturesAndSkills'},
           {name: 'Proficiency Counts', within: 'FeaturesAndSkills', separator: listSep},
-          {name: 'Save Proficiencies', within: 'FeaturesAndSkills', separator: listSep},
-          {name: 'Skill Proficiencies', within: 'FeaturesAndSkills', separator: listSep},
-          {name: 'Tool Proficiencies', within: 'FeaturesAndSkills', separator: listSep},
-          {name: 'Armor Proficiencies', within: 'FeaturesAndSkills', separator: listSep},
-          {name: 'Shield Proficiencies', within: 'FeaturesAndSkills', separator: listSep},
-          {name: 'Weapon Proficiencies', within: 'FeaturesAndSkills', separator: listSep},
           {name: 'FeaturePart', within: 'FeaturesAndSkills', separator: '\n'},
             {name: 'FeatStats', within: 'FeaturePart', separator: innerSep},
               {name: 'Feat Count', within: 'FeatStats', separator: listSep},
@@ -3467,8 +3430,10 @@ FiveE.createViewers = function(rules, viewers) {
               {name: 'Feats', within: 'FeatLists', separator: listSep},
             {name: 'Feature Notes', within: 'FeaturePart', separator: noteSep},
           {name: 'SkillPart', within: 'FeaturesAndSkills', separator: '\n'},
+            {name: 'Skill Proficiencies', within: 'SkillPart', separator: listSep},
             {name: 'Skills', within: 'SkillPart', columns: '3LE', separator: null},
             {name: 'Skill Notes', within: 'SkillPart', separator: noteSep},
+          {name: 'Tool Proficiencies', within: 'FeaturesAndSkills', separator: listSep},
           {name: 'Tools', within: 'FeaturesAndSkills', separator: listSep},
           {name: 'LanguagePart', within: 'FeaturesAndSkills', separator: '\n'},
             {name: 'LanguageStats', within: 'LanguagePart', separator:innerSep},
@@ -3482,10 +3447,9 @@ FiveE.createViewers = function(rules, viewers) {
               {name: 'Initiative', within: 'CombatStats'},
               {name: 'Armor Class', within: 'CombatStats'},
               {name: 'Attacks Per Round', within: 'CombatStats'},
-            {name: 'Proficiencies', within: 'CombatPart', separator: innerSep},
-              {name: 'Armor Proficiency', within: 'Proficiencies'},
-              {name: 'Shield Proficiency', within: 'Proficiencies'},
-              {name: 'Weapon Proficiency', within: 'Proficiencies'},
+            {name: 'Armor Proficiencies', within: 'CombatPart', separator: listSep},
+            {name: 'Shield Proficiencies', within: 'CombatPart', separator: listSep},
+            {name: 'Weapon Proficiencies', within: 'CombatPart', separator: listSep},
             {name: 'Gear', within: 'CombatPart', separator: innerSep},
               {name: 'Armor', within: 'Gear'},
               {name: 'Shield', within: 'Gear'},
@@ -3494,6 +3458,7 @@ FiveE.createViewers = function(rules, viewers) {
               {name: 'Turn Undead', within: 'Turning', separator: listSep},
             {name: 'Combat Notes', within: 'CombatPart', separator: noteSep},
           {name: 'SavePart', within: 'Combat', separator: '\n'},
+            {name: 'Save Proficiencies', within: 'SavePart', separator: listSep},
             {name: 'SaveAndResistance', within: 'SavePart', separator:innerSep},
               {name: 'Damage Reduction', within: 'SaveAndResistance',
                separator: innerSep},
@@ -3550,10 +3515,11 @@ FiveE.equipmentRules = function(rules, armors, goodies, shields, weapons) {
   for(var i = 0; i < weapons.length; i++) {
 
     var pieces = weapons[i].split(':');
-    var matchInfo = pieces[1].match(/(\d?d\d+)(r(\d+))?/);
+    var matchInfo = pieces[1].match(/(\d?d\d+)(r(\d+))?(M|S)?/);
     if(! matchInfo)
       continue;
 
+    var category = !matchInfo[4] || matchInfo[4] == 'S' ? 'Simple' : 'Martial';
     var damage = matchInfo[1];
     var name = pieces[0];
     var range = matchInfo[3];
@@ -3562,13 +3528,10 @@ FiveE.equipmentRules = function(rules, armors, goodies, shields, weapons) {
 
     rules.defineNote(weaponName + ':' + format);
 
-    rules.defineRule
-      ('proficient.' + name, 'weaponProficiencies.' + name, '=', '1');
-    if(FiveE.weaponsCategories[name]) {
-      rules.defineRule('proficient.' + name,
-        'weaponProficiencies.' + FiveE.weaponsCategories[name], '=', '1'
-      );
-    }
+    rules.defineRule('proficient.' + name,
+      'weaponProficiencies.' + name, '=', '1',
+      'weaponProficiencies.' + category, '=', '1'
+    );
     rules.defineRule('weaponBonus.' + name,
       'proficient.' + name, '?', null,
       'proficiencyBonus', '=', null
@@ -3601,11 +3564,23 @@ FiveE.equipmentRules = function(rules, armors, goodies, shields, weapons) {
 
   }
 
+  for(var i = 0; i < armors.length; i++) {
+    var pieces = armors[i].split(':');
+    var name = pieces[0];
+    rules.defineRule
+      ('proficient.' + name, 'armorProficiencies.' + name, '=', '1');
+    if(pieces[1] != '') {
+      var category = pieces[1] == 'H' ? 'Heavy' : pieces[1] == 'M' ? 'Medium' : 'Light';
+      rules.defineRule
+        ('proficient.' + name, 'armorProficiencies.' + category, '=', '1');
+    }
+  }
+
   // TODO Strength overcomes this; see PHB 144
-  rules.defineRule('abilityNotes.armorSpeedAdjustment',
-    'armor', '=',
-    'FiveE.armorsCategories[source] == "Heavy" ? -10 : null'
-  );
+  // rules.defineRule('abilityNotes.armorSpeedAdjustment',
+  //   'armor', '=',
+  //   'FiveE.armorsCategories[source] == "Heavy" ? -10 : null'
+  // );
   rules.defineRule('combatNotes.dexterityArmorClassAdjustment',
     'armor', 'v', 'FiveE.armorsMaxDexBonuses[source]'
   );
@@ -4791,8 +4766,8 @@ FiveE.magicRules = function(rules, classes, domains, schools) {
     }
   }
 
-  'Knowledge', 'Life', 'Light', 'Nature', 'Tempest', 'Trickery', 'War'
   rules.defineChoice('domains', domains);
+
   for(var i = 0; i < domains.length; i++) {
     var domain = domains[i];
     var notes = null;
@@ -5150,6 +5125,9 @@ FiveE.skillRules = function(rules, skills, tools) {
     'int':'intelligence', 'str':'strength', 'wis':'wisdom'
   };
 
+  rules.defineChoice('skills', skills);
+  rules.defineChoice('tools', tools);
+
   for(var i = 0; i < skills.length; i++) {
     var pieces = skills[i].split(':');
     var skill = pieces[0];
@@ -5164,8 +5142,6 @@ FiveE.skillRules = function(rules, skills, tools) {
       'skillBonus.' + skill, '+', null
     );
   }
-
-  rules.defineChoice('tools', tools);
 
 };
 
@@ -5326,7 +5302,8 @@ FiveE.initialEditorElements = function() {
     ['origin', 'Origin', 'text', [20]],
     ['feats', 'Feats', 'set', 'feats'],
     ['selectableFeatures', 'Selectable Features', 'bag', 'selectableFeatures'],
-    ['tools', 'Tools', 'bag', 'tools'],
+    ['skillProficiencies', 'Skills', 'set', 'skills'],
+    ['toolProficiencies', 'Tools', 'set', 'tools'],
     ['languages', 'Languages', 'set', 'languages'],
     ['hitPoints', 'Hit Points', 'text', [4]],
     ['armor', 'Armor', 'select-one', 'armors'],
@@ -5367,15 +5344,11 @@ FiveE.randomizeOneAttribute = function(attributes, attribute) {
     attrs = this.applyRules(attributes);
     choices = ['None'];
     for(attr in this.getChoices('armors')) {
-      if(attrs['armorProficiencies.' + attr] ||
-         (FiveE.armorsCategories[attr] &&
-          attrs['armorProficiencies.' + FiveE.armorsCategories[attr]])) {
+      if(attrs['proficient.' + attr]) {
         choices[choices.length] = attr;
       }
     }
-    if(choices.length > 0) {
-      attributes['armor'] = choices[ScribeUtils.random(0, choices.length - 1)];
-    }
+    attributes['armor'] = choices[ScribeUtils.random(0, choices.length - 1)];
   } else if(attribute == 'deity') {
     /* Pick a deity that's no more than one alignment position removed. */
     var aliInfo = attributes.alignment.match(/^([CLN]).* ([GEN])/);
@@ -5496,16 +5469,10 @@ FiveE.randomizeOneAttribute = function(attributes, attribute) {
     }
   } else if(attribute == 'languages') {
     attrs = this.applyRules(attributes);
-    choices = [];
-    howMany = attrs.languageCount;
-    for(attr in this.getChoices('languages')) {
-      if(attrs['languages.' + attr] == null) {
-        choices[choices.length] = attr;
-      } else {
-        howMany--;
-      }
-    }
-    pickAttrs(attributes, 'languages.', choices, howMany, 1);
+    howMany = attrs['languageCount'] || 0;
+    choices = ScribeUtils.getKeys(this.getChoices('languages'));
+    pickAttrs(attributes, 'languages.', choices,
+              howMany - ScribeUtils.sumMatching(attrs, /^languages\./), 1);
   } else if(attribute == 'levels') {
     choices = ScribeUtils.getKeys(this.getChoices('levels'));
     var soFar = ScribeUtils.sumMatching(attributes, /^levels\./); 
@@ -5552,51 +5519,18 @@ FiveE.randomizeOneAttribute = function(attributes, attribute) {
         choices[choices.length] = attr;
       }
     }
-    if(choices.length > 0) {
-      attributes['shield'] = choices[ScribeUtils.random(0, choices.length - 1)];
-    }
+    attributes['shield'] = choices[ScribeUtils.random(0, choices.length - 1)];
   } else if(attribute == 'skills') {
     attrs = this.applyRules(attributes);
-    var maxPoints = attrs.maxAllowedSkillPoints;
-    howMany =
-      attrs.skillPoints - ScribeUtils.sumMatching(attributes, '^skills\\.'),
-    choices = ScribeUtils.getKeys(this.getChoices('skills'));
-    for(i = choices.length - 1; i >= 0; i--)
-      if(choices[i].indexOf(' (') >= 0)
-        choices = choices.slice(0, i).concat(choices.slice(i + 1));
-    while(howMany > 0 && choices.length > 0) {
-      var pickClassSkill = ScribeUtils.random(0, 99) >= 15;
-      i = ScribeUtils.random(0, choices.length - 1);
-      var skill = choices[i];
-      if((attrs['classSkills.' + skill] != null) != pickClassSkill)
-        continue;
-      attr = 'skills.' + skill;
-      var current = attributes[attr];
-      if(current != null && current >= maxPoints) {
-        choices = choices.slice(0, i).concat(choices.slice(i + 1));
-        continue;
-      }
-      if(current == null)
-        current = attributes[attr] = 0;
-      var toAssign =
-        ScribeUtils.random(0, 99) >= 66 ? maxPoints :
-        ScribeUtils.random(0, 99) >= 50 ? Math.floor(maxPoints / 2) : 2;
-      if(toAssign > howMany)
-        toAssign = howMany;
-      if(toAssign == 0)
-        toAssign = 1;
-      if(current + toAssign > maxPoints)
-        toAssign = maxPoints - current;
-      attributes[attr] = attributes[attr] - 0 + toAssign;
-      howMany -= toAssign;
-      // Select only one of a set of subskills (Craft, Perform, etc.)
-      if((i = skill.indexOf(' (')) >= 0) {
-        skill = skill.substring(0, i);
-        for(i = choices.length - 1; i >= 0; i--)
-          if(choices[i].search(skill) == 0)
-            choices = choices.slice(0, i).concat(choices.slice(i + 1));
+    howMany = attrs['proficiencyCounts.Skill'] || 0;
+    choices = [];
+    for(attr in this.getChoices('skills')) {
+      if(attrs['skillChoices.' + attr]) {
+        choices[choices.length] = attr;
       }
     }
+    pickAttrs(attributes, 'skillProficiencies.', choices,
+              howMany - ScribeUtils.sumMatching(attrs, /^skillProficiencies\./), 1);
   } else if(attribute == 'spells') {
     var availableSpellsByLevel = {};
     var matchInfo;
@@ -5655,28 +5589,26 @@ FiveE.randomizeOneAttribute = function(attributes, attribute) {
     }
   } else if(attribute == 'tools') {
     attrs = this.applyRules(attributes);
+    howMany = attrs['proficiencyCounts.Tool'] || 0;
     choices = [];
     for(attr in this.getChoices('tools')) {
-//      if(attrs['toolProficiencies.' + attr] ||
-//         (FiveE.toolsCategories[attr] &&
-//          attrs['toolProficiencies.' + FiveE.toolsCategories[attr]])) {
+      if(attrs['toolChoices.' + attr] ||
+         attrs['toolChoices.' + this.getChoices('tools')[attr]]) {
         choices[choices.length] = attr;
-//      }
+      }
     }
-    pickAttrs(attributes, 'tools.', choices,
-              2 - ScribeUtils.sumMatching(attributes, /^tools\./), 1);
+    pickAttrs(attributes, 'toolProficiencies.', choices,
+              howMany - ScribeUtils.sumMatching(attrs, /^toolProficiencies\./), 1);
   } else if(attribute == 'weapons') {
     attrs = this.applyRules(attributes);
-    choices = ['Unarmed'];
+    choices = [];
     for(attr in this.getChoices('weapons')) {
-      if(attrs['weaponProficiencies.' + attr] ||
-         (FiveE.weaponsCategories[attr] &&
-          attrs['weaponProficiencies.' + FiveE.weaponsCategories[attr]])) {
+      if(attrs['proficient.' + attr]) {
         choices[choices.length] = attr;
       }
     }
     pickAttrs(attributes, 'weapons.', choices,
-              2 - ScribeUtils.sumMatching(attributes, /^weapons\./), 1);
+              3 - ScribeUtils.sumMatching(attributes, /^weapons\./), 1);
   } else if(attribute == 'charisma' || attribute == 'constitution' ||
      attribute == 'dexterity' || attribute == 'intelligence' ||
      attribute == 'strength' || attribute == 'wisdom') {
@@ -6036,7 +5968,11 @@ FiveE.defineBackground = function(
   }
 
   if(proficiencyChoices != null) {
-    // TODO
+    for(var a in proficiencyChoices) {
+      for(var i = 0; i < proficiencyChoices[a].length; i++) {
+        rules.defineRule(a.toLowerCase() + 'Choices.' + proficiencyChoices[a][i], 'isBackground.' + name, '=', '1');
+      }
+    }
   }
 
   if(notes != null)
@@ -6126,7 +6062,11 @@ FiveE.defineClass = function(
   }
 
   if(proficiencyChoices != null) {
-    //TODO
+    for(var a in proficiencyChoices) {
+      for(var i = 0; i < proficiencyChoices[a].length; i++) {
+        rules.defineRule(a.toLowerCase() + 'Choices.' + proficiencyChoices[a][i], classLevel, '=', '1');
+      }
+    }
   }
 
   if(spellAbility != null) {
@@ -6222,8 +6162,7 @@ FiveE.defineRace = function(
       rules.defineRule
         (amountAndAbility[1], abilityNote, '+', amountAndAbility[0]);
     }
-    rules.defineRule
-      (abilityNote, 'race', '=', 'source == "' + name + '" ? 1 : null');
+    rules.defineRule(abilityNote, 'isRace.' + name, '=', '1');
   }
 
   if(features != null) {
@@ -6274,7 +6213,11 @@ FiveE.defineRace = function(
   }
 
   if(proficiencyChoices != null) {
-    // TODO
+    for(var a in proficiencyChoices) {
+      for(var i = 0; i < proficiencyChoices[a].length; i++) {
+        rules.defineRule(a.toLowerCase() + 'Choices.' + proficiencyChoices[a][i], 'isRace.' + name, '=', '1');
+      }
+    }
   }
 
   if(notes != null)

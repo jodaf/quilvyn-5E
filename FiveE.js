@@ -1756,7 +1756,7 @@ FiveE.backgroundRules = function(rules, backgrounds) {
     var features = [];
     var languages = [];
     var notes = [];
-    var proficiencyCounts = {};
+    var proficiencyCount = {};
     var proficienciesGiven = {};
     var proficiencyChoices = {};
 
@@ -1770,7 +1770,7 @@ FiveE.backgroundRules = function(rules, backgrounds) {
       notes = [
         'featureNotes.shelterOfTheFaithfulFeature:Aid from associated temple'
       ];
-      proficiencyCounts = {'Skill':2};
+      proficiencyCount = {'Skill':2};
       proficienciesGiven = {'Skill':['Insight', 'Religion']};
     } else if(name == 'Charlatan') {
       equipment = [
@@ -1780,7 +1780,7 @@ FiveE.backgroundRules = function(rules, backgrounds) {
       notes = [
         'featureNotes.falseIdentityFeature:Documented 2nd ID, forgery skills'
       ];
-      proficiencyCounts = {'Skill':2, 'Tool':2};
+      proficiencyCount = {'Skill':2, 'Tool':2};
       proficienciesGiven = {
         'Skill':['Deception', 'Sleight Of Hand'],
         'Tool':['Diguise Kit', 'Forgery Kit']
@@ -1791,7 +1791,7 @@ FiveE.backgroundRules = function(rules, backgrounds) {
       notes = [
         'featureNotes.criminalContactFeature:Liaison to criminal network'
       ];
-      proficiencyCounts = {'Skill':2, 'Tool':2};
+      proficiencyCount = {'Skill':2, 'Tool':2};
       proficienciesGiven = {
         'Skill':['Deception', 'Stealth'],
         'Tool':["Thieves' Tools"]
@@ -1807,7 +1807,7 @@ FiveE.backgroundRules = function(rules, backgrounds) {
       notes = [
         'featureNotes.byPopularDemandFeature:Welcome, lodging for performing'
       ];
-      proficiencyCounts = {'Skill':2, 'Tool':2};
+      proficiencyCount = {'Skill':2, 'Tool':2};
       proficienciesGiven = {
         'Skill':['Acrobatics', 'Performance'],
         'Tool':['Disguise Kit']
@@ -1823,7 +1823,7 @@ FiveE.backgroundRules = function(rules, backgrounds) {
       notes = [
         'featureNotes.rusticHospitalityFeature:Aid from common folk'
       ]
-      proficiencyCounts = {'Skill':2, 'Tool':2};
+      proficiencyCount = {'Skill':2, 'Tool':2};
       proficienciesGiven = {
         'Skill':['Animal Handling', 'Survival'],
         'Tool':['Vehicles (Land)']
@@ -1840,7 +1840,7 @@ FiveE.backgroundRules = function(rules, backgrounds) {
       notes = [
         'featureNotes.guildMembershipFeature:Aid from guild and members'
       ];
-      proficiencyCounts = {'Skill':2, 'Tool':1};
+      proficiencyCount = {'Skill':2, 'Tool':1};
       proficienciesGiven = {
         'Skill':['Insight', 'Persuasion']
       };
@@ -1857,7 +1857,7 @@ FiveE.backgroundRules = function(rules, backgrounds) {
       notes = [
         'featureNotes.discoveryFeature:Knows rare truth'
       ];
-      proficiencyCounts = {'Skill':2, 'Tool':1};
+      proficiencyCount = {'Skill':2, 'Tool':1};
       proficienciesGiven = {
         'Skill':['Medicine', 'Religion'],
         'Tool':['Herbalism Kit']
@@ -1871,7 +1871,7 @@ FiveE.backgroundRules = function(rules, backgrounds) {
       notes = [
         'featureNotes.positionOfPriviledgeFeature:Treated with respect/deference'
       ];
-      proficiencyCounts = {'Skill':2, 'Tool':1};
+      proficiencyCount = {'Skill':2, 'Tool':1};
       proficienciesGiven = {
         'Skill':['History', 'Persuasion']
       };
@@ -1887,7 +1887,7 @@ FiveE.backgroundRules = function(rules, backgrounds) {
       notes = [
         'featureNotes.wandererFeature:Excellent geography memory, can forage for 6 people'
       ];
-      proficiencyCounts = {'Skill':2, 'Tool':1};
+      proficiencyCount = {'Skill':2, 'Tool':1};
       proficienciesGiven = {
         'Skill':['Athletics', 'Survival']
       };
@@ -1904,7 +1904,7 @@ FiveE.backgroundRules = function(rules, backgrounds) {
       notes = [
         'featureNotes.researcherFeature:Know where to find lore'
       ];
-      proficiencyCounts = {'Skill':2};
+      proficiencyCount = {'Skill':2};
       proficienciesGiven = {
         'Skill':['Arcana', 'History']
       };
@@ -1916,7 +1916,7 @@ FiveE.backgroundRules = function(rules, backgrounds) {
       notes = [
         "featureNotes.ship'sPassageFeature:Free passage for self/companions"
       ];
-      proficiencyCounts = {'Skill':2, 'Tool':2};
+      proficiencyCount = {'Skill':2, 'Tool':2};
       proficienciesGiven = {
         'Skill':['Athletics', 'Perception'],
         'Tool':["Navigator's Tools", 'Vehicles (Water)']
@@ -1929,7 +1929,7 @@ FiveE.backgroundRules = function(rules, backgrounds) {
       notes = [
         'featureNotes.militaryRankFeature:Respect/deference from soldiers'
       ];
-      proficiencyCounts = {'Skill':2, 'Tool':2};
+      proficiencyCount = {'Skill':2, 'Tool':2};
       proficienciesGiven = {
         'Skill':['Athletics', 'Intimidation'],
         'Tool':['Vehicles (Land)']
@@ -1946,7 +1946,7 @@ FiveE.backgroundRules = function(rules, backgrounds) {
       notes = [
         'featureNotes.citySecretsFeature:Double speed through hidden urban ways'
       ];
-      proficiencyCounts = {'Skill':2, 'Tool':2};
+      proficiencyCount = {'Skill':2, 'Tool':2};
       proficienciesGiven = {
         'Skill':['Sleight Of Hand', 'Stealth'],
         'Tool':['Diguise Kit', "Thieves' Tools"]
@@ -1955,7 +1955,7 @@ FiveE.backgroundRules = function(rules, backgrounds) {
       continue;
 
     FiveE.defineBackground(
-      rules, name, features, languages, proficiencyCounts, proficienciesGiven,
+      rules, name, features, languages, proficiencyCount, proficienciesGiven,
       proficiencyChoices, notes
     );
 
@@ -2001,9 +2001,9 @@ FiveE.classRules = function(rules, classes) {
 
   for(var i = 0; i < classes.length; i++) {
 
-    var features, hitDie, notes, proficiencyCounts, proficiencyChoices,
+    var features, hitDie, notes, proficiencyCount, proficiencyChoices,
         proficienciesGiven, selectableFeatures, spellAbility, spellsKnown,
-        spellsPerDay;
+        spellSlots;
     var name = classes[i];
 
     if(name == 'Barbarian') {
@@ -2051,7 +2051,7 @@ FiveE.classRules = function(rules, classes) {
         'saveNotes.dangerSenseFeature:Adv vs. seen effects',
         'saveNotes.mindlessRageFeature:Immune charmed/frightened during rage'
       ];
-      proficiencyCounts = {'Save':2, 'Skill':2, 'Armor':3, 'Weapon':2};
+      proficiencyCount = {'Save':2, 'Skill':2, 'Armor':3, 'Weapon':2};
       proficienciesGiven = {
         'Save': ['Constitution', 'Strength'],
         'Armor': ['Light', 'Medium', 'Shield'],
@@ -2064,7 +2064,7 @@ FiveE.classRules = function(rules, classes) {
       selectableFeatures = FiveE.BARBARIAN_PATHS.map(function (path) {return 'Primal Path (' + path + ')'}).concat(FiveE.BARBARIAN_TOTEMS.map(function (totem) {return totem + ' Totem'}));
       spellAbility = null;
       spellsKnown = null;
-      spellsPerDay = null;
+      spellSlots = null;
 
       rules.defineRule('barbarianFeatures.Frenzy',
         'barbarianFeatures.Primal Path (Berserker)', '?', null
@@ -2169,7 +2169,7 @@ FiveE.classRules = function(rules, classes) {
         'magicNotes.countercharmFeature:Friendly listeners w/in 30\' Adv vs. charmed/frightened',
         'magicNotes.magicalSecretsFeature:Know %V additional spells from any class'
       ];
-      proficiencyCounts =
+      proficiencyCount =
         {'Save':2, 'Skill':3, 'Tool':3, 'Armor':1, 'Weapon':5};
       proficienciesGiven = {
         'Save':['Charisma', 'Dexterity'],
@@ -2182,22 +2182,11 @@ FiveE.classRules = function(rules, classes) {
       };
       selectableFeatures = FiveE.BARD_COLLEGES;
       spellAbility = 'charisma';
-      // TODO spells known are total, not per level
-      // 4, 5, 6, 7, 8, 9, 10, 11, 12, 14, 15, 15, 16, 18, 19, 19, 20, 22
       spellsKnown = [
-        'B0:1:4/4:3/10:4',
-        'B1:1:2/2:3/3:4',
-        'B2:3:2/4:3',
-        'B3:5:2/6:3',
-        'B4:7:1/8:2/9:3',
-        'B5:9:1/10:2/18:3',
-        'B6:11:1/19:2',
-        'B7:13:1/20:2',
-        'B8:15:1',
-        'B9:17:1'
+        'B0:1:2/4:3/10:4',
+        'B:1:4/2:5/3:6/4:7/5:8/6:0/7:10/8:11/9:12/10:14/11:15/13:16/14:18/15:19/17:20/18:22'
       ];
-      spellsPerDay = [
-        'B0:1:4/4:3/10:4',
+      spellSlots = [
         'B1:1:2/2:3/3:4',
         'B2:3:2/4:3',
         'B3:5:2/6:3',
@@ -2265,7 +2254,7 @@ FiveE.classRules = function(rules, classes) {
         'magicNotes.divineDomainFeature:Gain chosen domain benefits',
         'magicNotes.divineInterventionFeature:%V% chance of deity help 1/wk'
       ];
-      proficiencyCounts = {'Save':2, 'Skill':2, 'Armor':3, 'Weapon':1};
+      proficiencyCount = {'Save':2, 'Skill':2, 'Armor':3, 'Weapon':1};
       proficienciesGiven = {
         'Save':['Charisma', 'Wisdom'],
         'Armor':['Light', 'Medium', 'Shield'],
@@ -2287,8 +2276,7 @@ FiveE.classRules = function(rules, classes) {
         'Dom5:9:"all"', 'Dom6:11:"all"', 'Dom7:13:"all"', 'Dom8:15:"all"',
         'Dom9:17:"all"'
       ];
-      spellsPerDay = [
-        'C0:1:3/4:4/10:5',
+      spellSlots = [
         'C1:1:2/2:3/3:4',
         'C2:3:2/4:3',
         'C3:5:2/6:3',
@@ -2343,7 +2331,7 @@ FiveE.classRules = function(rules, classes) {
           'Requires Armor =~ None|Hide|Leather|Padded',
         'validationNotes.druidClassShield:Requires Shield =~ None|Wooden'
       ];
-      proficiencyCounts =
+      proficiencyCount =
        {'Save':2, 'Skill':2, 'Tool':1, 'Armor':3, 'Weapon':10};
       proficienciesGiven = {
         'Save':['Intelligence', 'Wisdom'],
@@ -2363,8 +2351,7 @@ FiveE.classRules = function(rules, classes) {
         'D4:7:"all"', 'D5:9:"all"', 'D6:11:"all"', 'D7:13:"all"',
         'D8:15:"all"', 'D9:17:"all"'
       ];
-      spellsPerDay = [
-        'D0:1:3/2:4/4:5/7:6',
+      spellSlots = [
         'D1:1:1/2:2/4:3/7:4/11:5',
         'D2:3:1/4:2/6:3/9:4/13:5',
         'D3:5:1/6:2/8:3/11:4/15:5',
@@ -2422,7 +2409,7 @@ FiveE.classRules = function(rules, classes) {
         'combatNotes.martialArchetypeFeature:TODO',
         'combatNotes.secondWindFeature:TODO'
       ];
-      proficiencyCounts = {'Save':2, 'Skill':2, 'Armor':4, 'Weapon':2};
+      proficiencyCount = {'Save':2, 'Skill':2, 'Armor':4, 'Weapon':2};
       proficienciesGiven = {
         'Save':['Constitution', 'Strength'],
         'Armor':['Light', 'Medium', 'Heavy', 'Shield'],
@@ -2435,7 +2422,7 @@ FiveE.classRules = function(rules, classes) {
       selectableFeatures = null;
       spellAbility = null;
       spellsKnown = null;
-      spellsPerDay = null;
+      spellSlots = null;
 
       rules.defineRule
         ('attacksPerRound', 'combatNotes.extraAttackFeature', '+', '1');
@@ -2500,7 +2487,7 @@ FiveE.classRules = function(rules, classes) {
         'validationNotes.monkClassAlignment:Requires Alignment =~ Lawful',
         'validationNotes.stunningFistSelectableFeatureLevels:Requires Monk >= 1'
       ];
-      proficiencyCounts = {'Save':2, 'Skill':2, 'Weapon':2};
+      proficiencyCount = {'Save':2, 'Skill':2, 'Weapon':2};
       proficienciesGiven = {
         'Save':['Dexterity', 'Strength'],
         'Weapon':['Simple', 'Shortsword']
@@ -2515,7 +2502,7 @@ FiveE.classRules = function(rules, classes) {
       ];
       spellAbility = null;
       spellsKnown = null;
-      spellsPerDay = null;
+      spellSlots = null;
       rules.defineRule('abilityNotes.fastMovementFeature',
         'levels.Monk', '+=', '10 * Math.floor(source / 3)'
       );
@@ -2586,7 +2573,7 @@ FiveE.classRules = function(rules, classes) {
         'validationNotes.paladinClassAlignment:' +
           'Requires Alignment == Lawful Good'
       ];
-      proficiencyCounts = {'Save':2, 'Skill':2, 'Armor':4, 'Weapon':2};
+      proficiencyCount = {'Save':2, 'Skill':2, 'Armor':4, 'Weapon':2};
       proficienciesGiven = {
         'Save':['Charisma', 'Wisdom'],
         'Armor':['Light', 'Medium', 'Heavy', 'Shield'],
@@ -2606,7 +2593,7 @@ FiveE.classRules = function(rules, classes) {
       spellsKnown = [
         'P1:4:"all"', 'P2:8:"all"', 'P3:11:"all"', 'P4:14:"all"'
       ];
-      spellsPerDay = [
+      spellSlots = [
         'P1:4:0/6:1/14:2/18:3',
         'P2:8:0/10:1/16:2/19:3',
         'P3:11:0/12:1/17:2/19:3',
@@ -2685,7 +2672,7 @@ FiveE.classRules = function(rules, classes) {
         'skillNotes.trackFeature:Survival to follow creatures\' trail',
         'skillNotes.wildEmpathyFeature:+%V Diplomacy w/animals'
       ];
-      proficiencyCounts = {'Save':2, 'Skill':3, 'Armor':3, 'Weapon':2};
+      proficiencyCount = {'Save':2, 'Skill':3, 'Armor':3, 'Weapon':2};
       proficienciesGiven = {
         'Save':['Dexterity', 'Strength'],
         'Armor':['Light', 'Medium', 'Shield'],
@@ -2702,7 +2689,7 @@ FiveE.classRules = function(rules, classes) {
       spellsKnown = [
         'R1:4:"all"', 'R2:8:"all"', 'R3:11:"all"', 'R4:14:"all"'
       ];
-      spellsPerDay = [
+      spellSlots = [
         'R1:4:0/6:1/14:2/18:3',
         'R2:8:0/10:1/16:2/19:3',
         'R3:11:0/12:1/17:2/19:3',
@@ -2777,7 +2764,7 @@ FiveE.classRules = function(rules, classes) {
         'skillNotes.trapfindingFeature:' +
           'Use Search/Disable Device to find/remove DC 20+ traps'
       ];
-      proficiencyCounts =
+      proficiencyCount =
         {'Save':2, 'Skill':4, 'Tool':1, 'Armor':1, 'Weapon':5};
       proficienciesGiven = {
         'Save':['Dexterity', 'Intelligence'],
@@ -2796,7 +2783,7 @@ FiveE.classRules = function(rules, classes) {
       ];
       spellAbility = null;
       spellsKnown = null;
-      spellsPerDay = null;
+      spellSlots = null;
       rules.defineRule('combatNotes.sneakAttackFeature',
         'levels.Rogue', '+=', 'Math.floor((source + 1) / 2)'
       );
@@ -2822,7 +2809,7 @@ FiveE.classRules = function(rules, classes) {
       notes = [
         'featureNotes.familiarFeature:Special bond/abilities'
       ];
-      proficiencyCounts = {'Save':2, 'Skill':2, 'Weapon':5};
+      proficiencyCount = {'Save':2, 'Skill':2, 'Weapon':5};
       proficienciesGiven = {
         'Save':['Charisma', 'Constitution'],
         'Weapon':['Dagger', 'Dart', 'Sling', 'Quarterstaff', 'Light Crossbow']
@@ -2845,8 +2832,7 @@ FiveE.classRules = function(rules, classes) {
         'S8:16:1/17:2/19:3',
         'S9:18:1/19:2/20:3'
       ];
-      spellsPerDay = [
-        'S0:1:5/2:6',
+      spellSlots = [
         'S1:1:3/2:4/3:5/4:6',
         'S2:4:3/5:4/6:5/7:6',
         'S3:6:3/7:4/8:5/9:6',
@@ -2868,7 +2854,7 @@ FiveE.classRules = function(rules, classes) {
       hitDie = 8;
       notes = [
       ];
-      proficiencyCounts = {'Save':2, 'Skill':2, 'Armor':1, 'Weapon':1};
+      proficiencyCount = {'Save':2, 'Skill':2, 'Armor':1, 'Weapon':1};
       proficienciesGiven = {
         'Save':['Charisma', 'Wisdom'],
         'Armor':['Light'],
@@ -2896,7 +2882,7 @@ FiveE.classRules = function(rules, classes) {
         'magicNotes.spellMasteryFeature:' +
           'Cast 1 ea 1st/2nd spell w/o using spell slot'
       ];
-      proficiencyCounts = {'Save':2, 'Skill':3, 'Weapon':5};
+      proficiencyCount = {'Save':2, 'Skill':3, 'Weapon':5};
       proficienciesGiven = {
         'Save':['Intelligence', 'Wisdom'],
         'Weapon':['Dagger', 'Dart', 'Sling', 'Quarterstaff', 'Light Crossbow']
@@ -2912,8 +2898,7 @@ FiveE.classRules = function(rules, classes) {
         'W4:7:2/8:4', 'W5:9:2/10:4', 'W6:11:2/12:4', 'W7:13:2/14:4',
         'W8:15:2/16:4', 'W9:17:2/18:4/19:6/20:8'
       ];
-      spellsPerDay = [
-        'W0:1:3/2:4/10:5',
+      spellSlots = [
         'W1:1:2/2:3/3:5',
         'W2:3:2/4:3',
         'W3:5:2/6:3',
@@ -2937,9 +2922,9 @@ FiveE.classRules = function(rules, classes) {
       continue;
 
     FiveE.defineClass(
-      rules, name, hitDie, features, selectableFeatures, proficiencyCounts,
+      rules, name, hitDie, features, selectableFeatures, proficiencyCount,
       proficienciesGiven, proficiencyChoices, spellAbility, spellsKnown,
-      spellsPerDay, notes
+      spellSlots, notes
     );
 
   }
@@ -3471,18 +3456,16 @@ FiveE.createViewers = function(rules, viewers) {
           {name: 'SpellPart', within: 'Magic', separator: '\n'},
             {name: 'SpellStats', within: 'SpellPart', separator: innerSep},
               {name: 'Spells Known', within: 'SpellStats', separator: listSep},
-              {name: 'Spells Per Day', within: 'SpellStats', separator:listSep},
+              {name: 'Spell Slots', within: 'SpellStats', separator:listSep},
+              {name: 'Spell Attack Modifier', within: 'SpellStats',
+               format: '<b>Attack</b>: %V', separator: listSep},
               {name: 'Spell Difficulty Class', within: 'SpellStats',
                format: '<b>Spell DC</b>: %V', separator: listSep},
-            {name: 'SpellSpecialties', within: 'SpellPart', separator:innerSep},
-              {name: 'Domains', within: 'SpellSpecialties', separator: listSep},
-              {name: 'Specialize', within: 'SpellSpecialties'},
-              {name: 'Prohibit', within: 'SpellSpecialties', separator:listSep},
-            {name: 'Goodies', within: 'SpellPart', separator: listSep},
           {name: 'Spells', within: 'Magic', columns: '1L', separator: null},
           {name: 'Magic Notes', within: 'Magic', separator: noteSep},
         {name: 'Notes Area', within: '_top', separator: outerSep,
          format: '<b>Notes</b><br/>%V'},
+          {name: 'Goodies', within: 'Notes Area', separator: listSep},
           {name: 'NotesPart', within: 'Notes Area', separator: '\n'},
             {name: 'Notes', within: 'NotesPart', format: '%V'},
             {name: 'Hidden Notes', within: 'NotesPart', format: '%V'},
@@ -4847,7 +4830,7 @@ FiveE.raceRules = function(rules, languages, races) {
   for(var i = 0; i < races.length; i++) {
 
     var adjustment, features, languages, notes;
-    var proficiencyCounts = null;
+    var proficiencyCount = null;
     var proficienciesGiven = null;
     var proficiencyChoices = null;
     var race = races[i];
@@ -4866,7 +4849,7 @@ FiveE.raceRules = function(rules, languages, races) {
         'saveNotes.feyAncestryFeature:Adv vs. charmed, immune sleep',
         'skillNotes.skillVersatilityFeature:Prof in two additional skills'
       ];
-      proficiencyCounts = {'Skill': 2};
+      proficiencyCount = {'Skill': 2};
       proficienciesGiven = {};
       proficiencyChoices = {
         'Skill': FiveE.SKILLS.map(function(skill){return skill.substring(0, skill.indexOf(':'));})
@@ -4885,7 +4868,7 @@ FiveE.raceRules = function(rules, languages, races) {
         "featureNotes.darkvisionFeature:See one light level better 60'",
         'skillNotes.menacingFeature:Prof in Intimidation'
       ];
-      proficiencyCounts = {'Skill': 2};
+      proficiencyCount = {'Skill': 2};
       proficienciesGiven = {'Skill': ['Intimidation']};
       proficiencyChoices = {};
 
@@ -4899,7 +4882,7 @@ FiveE.raceRules = function(rules, languages, races) {
           '%1 %Vd6 %2 damage (DC %3 %4 save for half)',
         'saveNotes.draconicFeature:Resistance to breath weapon damage type'
       ];
-      proficiencyCounts = {};
+      proficiencyCount = {};
       proficienciesGiven = {};
       proficiencyChoices = {};
 
@@ -4937,7 +4920,7 @@ FiveE.raceRules = function(rules, languages, races) {
         'saveNotes.resistPoisonFeature:Adv vs. poison',
         'skillNotes.stonecunningFeature:Double prof on stonework History checks'
       ];
-      proficiencyCounts = {
+      proficiencyCount = {
         'Tool':1, 'Weapon':4
       };
       proficienciesGiven = {
@@ -4951,7 +4934,7 @@ FiveE.raceRules = function(rules, languages, races) {
         adjustment += '/+1 wisdom';
       } else if(race == 'Mountain Dwarf') {
         adjustment += '/+2 strength';
-        proficiencyCounts['Armor'] = 2;
+        proficiencyCount['Armor'] = 2;
         proficienciesGiven['Armor'] = ['Light', 'Medium'];
       }
 
@@ -4970,13 +4953,13 @@ FiveE.raceRules = function(rules, languages, races) {
           '4 hour meditation gives benefit of 8 hour sleep',
         'saveNotes.feyAncestryFeature:Adv vs. charmed, immune sleep'
       ];
-      proficiencyCounts = {'Skill': 1};
+      proficiencyCount = {'Skill': 1};
       proficienciesGiven = {'Skill': ['Perception']};
       proficiencyChoices = {};;
 
       if(race == 'High Elf') {
         adjustment += '/+1 intelligence';
-        proficiencyCounts['Weapons'] = 4;
+        proficiencyCount['Weapons'] = 4;
         proficienciesGiven['Weapons'] =
           ['Longbow', 'Longsword', 'Shortbow', 'Shortsword'];
         features.push('Cantrip', 'Darkvision', 'Extra Language');
@@ -4990,7 +4973,7 @@ FiveE.raceRules = function(rules, languages, races) {
       } else if(race == 'Wood Elf') {
         adjustment += '/+1 wisdom';
         features.push('Darkvision', 'Mask Of The Wild', 'Quick');
-        proficiencyCounts['Weapons'] = 4;
+        proficiencyCount['Weapons'] = 4;
         proficienciesGiven['Weapons'] =
           ['Longbow', 'Longsword', 'Shortbow', 'Shortsword'];
         notes.push(
@@ -5011,7 +4994,7 @@ FiveE.raceRules = function(rules, languages, races) {
             'Disadv attack, sight perception in direct sunlight',
           'magicNotes.drowMagicFeature:Cast %V 1/day (cha)'
         );
-        proficiencyCounts['Weapons'] = 3;
+        proficiencyCount['Weapons'] = 3;
         proficienciesGiven['Weapons'] = ['Hand Crossbow', 'Rapier', 'Shortsword'];
         rules.defineRule('magicNotes.drowMagicFeature', 'level', '=', '"<i>Dancing Lights</i>" + (source < 3 ? "" : ", <i>Faerie Fire</i>") + (source < 5 ? "" : ", <i>Darkness</i>")');
       }
@@ -5025,7 +5008,7 @@ FiveE.raceRules = function(rules, languages, races) {
         'abilityNotes.slowFeature:-5 speed',
         'saveNotes.cunningFeature:Adv vs cha/int/wis magic'
       ];
-      proficiencyCounts = {};
+      proficiencyCount = {};
       proficienciesGiven = {};
       proficiencyChoices = {};
 
@@ -5043,7 +5026,7 @@ FiveE.raceRules = function(rules, languages, races) {
           "featureNotes.tinkerFeature:Prof w/artisan's tools",
           "skillNotes.artificier'sLoreFeature:Double prof on magic, alchemical, tech objects History checks"
         );
-        proficiencyCounts['Tool'] = 1;
+        proficiencyCount['Tool'] = 1;
         proficienciesGiven['Tool'] = ["Artisan's Tools"];
       }
 
@@ -5061,7 +5044,7 @@ FiveE.raceRules = function(rules, languages, races) {
         'featureNotes.luckyFeature:Reroll 1 on attack/ability/save',
         'saveNotes.braveFeature:Adv vs. frightened'
       ];
-      proficiencyCounts = {};
+      proficiencyCount = {};
       proficienciesGiven = {};
       proficiencyChoices = {};
 
@@ -5085,7 +5068,7 @@ FiveE.raceRules = function(rules, languages, races) {
       features = [];
       languages = ['Common'];
       notes = [];
-      proficiencyCounts = {};
+      proficiencyCount = {};
       proficienciesGiven = {};
       proficiencyChoices = {};
 
@@ -5099,7 +5082,7 @@ FiveE.raceRules = function(rules, languages, races) {
         'magicNotes.infernalLegacyFeature:Cast %V 1/day (cha)',
         'saveNotes.hellishResistanceFeature:Resistance to fire damage'
       ];
-      proficiencyCounts = {};
+      proficiencyCount = {};
       proficienciesGiven = {};
       proficiencyChoices = {};
 
@@ -5109,7 +5092,7 @@ FiveE.raceRules = function(rules, languages, races) {
       continue;
 
     FiveE.defineRace(
-      rules, race, adjustment, features, languages, proficiencyCounts,
+      rules, race, adjustment, features, languages, proficiencyCount,
       proficienciesGiven, proficiencyChoices, notes
     );
 
@@ -5368,6 +5351,8 @@ FiveE.randomizeOneAttribute = function(attributes, attribute) {
     }
     if(choices.length > 0) {
       attributes['deity'] = choices[ScribeUtils.random(0, choices.length - 1)];
+    } else {
+      attributes['deity'] = 'None';
     }
   } else if(attribute == 'feats' || attribute == 'features') {
     attribute = attribute == 'feats' ? 'feat' : 'selectableFeature';
@@ -5522,7 +5507,7 @@ FiveE.randomizeOneAttribute = function(attributes, attribute) {
     attributes['shield'] = choices[ScribeUtils.random(0, choices.length - 1)];
   } else if(attribute == 'skills') {
     attrs = this.applyRules(attributes);
-    howMany = attrs['proficiencyCounts.Skill'] || 0;
+    howMany = attrs['proficiencyCount.Skill'] || 0;
     choices = [];
     for(attr in this.getChoices('skills')) {
       if(attrs['skillChoices.' + attr]) {
@@ -5532,27 +5517,23 @@ FiveE.randomizeOneAttribute = function(attributes, attribute) {
     pickAttrs(attributes, 'skillProficiencies.', choices,
               howMany - ScribeUtils.sumMatching(attrs, /^skillProficiencies\./), 1);
   } else if(attribute == 'spells') {
-    var availableSpellsByLevel = {};
-    var matchInfo;
-    var schools = this.getChoices('schools');
-    var spellLevel;
+    var allSpellsByClassAndLevel = {};
+    var classAndLevel;
     attrs = this.applyRules(attributes);
     for(attr in this.getChoices('spells')) {
-      spellLevel = attr.split('(')[1].split(' ')[0];
-      if(availableSpellsByLevel[spellLevel] == null)
-        availableSpellsByLevel[spellLevel] = [];
-      availableSpellsByLevel[spellLevel]
-        [availableSpellsByLevel[spellLevel].length] = attr;
+      classAndLevel = attr.split('(')[1].split(' ')[0];
+      if(allSpellsByClassAndLevel[classAndLevel] == null)
+        allSpellsByClassAndLevel[classAndLevel] = [];
+      allSpellsByClassAndLevel[classAndLevel].push(attr);
     }
     for(attr in attrs) {
-      if((matchInfo = attr.match(/^spellsKnown\.(.*)/)) == null) {
+      if(!attr.startsWith('spellsKnown.'))
         continue;
-      }
-      spellLevel = matchInfo[1];
+      classAndLevel = attr.split('.')[1];
       howMany = attrs[attr];
-      if(spellLevel.match(/^S\d+$/)) {
-        spellLevel = spellLevel.replace(/S/, 'W');
-        var additional = attrs['spellsKnown.' + spellLevel];
+      if(classAndLevel.match(/^S\d+$/)) {
+        classAndLevel = classAndLevel.replace(/S/, 'W');
+        var additional = attrs['spellsKnown.' + classAndLevel];
         if(additional == null)
           ; // empty
         else if(additional == 'all' || howMany == 'all')
@@ -5560,36 +5541,44 @@ FiveE.randomizeOneAttribute = function(attributes, attribute) {
         else
           howMany += additional;
       }
-      if(spellLevel.substring(0, 3) == 'Dom') {
+      if(!classAndLevel.match(/\d$/)) {
+        choices = [];
+        for(var a in allSpellsByClassAndLevel) {
+          if(a.startsWith(classAndLevel) &&
+             !a.endsWith('0') &&
+             attrs['spellSlots.' + a]) {
+            choices = choices.concat(allSpellsByClassAndLevel[a]);
+          }
+        }
+      } else if(classAndLevel.substring(0, 3) == 'Dom') {
         choices = [];
         for(var domain in this.getChoices('domains')) {
-          if(attrs['domains.' + domain] != null) {
-            var domainLevel = domain + spellLevel.substring(3);
-            if(availableSpellsByLevel[domainLevel] != null) {
-              choices = choices.concat(availableSpellsByLevel[domainLevel]);
+          if(attrs['domains.' + domain]) {
+            var domainAndLevel = domain + classAndLevel.substring(3);
+            if(allSpellsByClassAndLevel[domainAndLevel] != null) {
+              choices=choices.concat(allSpellsByClassANdLevel[domainAndLevel]);
             }
           }
         }
       } else {
-        choices = availableSpellsByLevel[spellLevel];
+        choices = allSpellsByClassAndLevel[classAndLevel];
       }
       if(choices != null) {
         if(howMany == 'all') {
           howMany = choices.length;
         }
-        var perDay = attrs['spellsPerDay.' + spellLevel];
-        if(perDay != null && perDay < howMany) {
-          howMany = perDay;
+        var slots = attrs['spellSlots.' + classAndLevel];
+        if(slots != null && slots < howMany) {
+          howMany = slots;
         }
         pickAttrs
           (attributes, 'spells.', choices, howMany -
-           ScribeUtils.sumMatching(attributes, '^spells\\..*' + spellLevel),
-           1);
+           ScribeUtils.sumMatching(attributes, '^spells\\..*[(]' + classAndLevel + '[^0]'), 1);
       }
     }
   } else if(attribute == 'tools') {
     attrs = this.applyRules(attributes);
-    howMany = attrs['proficiencyCounts.Tool'] || 0;
+    howMany = attrs['proficiencyCount.Tool'] || 0;
     choices = [];
     for(attr in this.getChoices('tools')) {
       if(attrs['toolChoices.' + attr] ||
@@ -5915,7 +5904,7 @@ FiveE.ruleNotes = function() {
 };
 
 FiveE.defineBackground = function(
-  rules, name, features, languages, proficiencyCounts, proficienciesGiven,
+  rules, name, features, languages, proficiencyCount, proficienciesGiven,
   proficiencyChoices, notes
 ) {
 
@@ -5951,10 +5940,10 @@ FiveE.defineBackground = function(
     }
   }
 
-  if(proficiencyCounts != null) {
-    for(var a in proficiencyCounts) {
-      rules.defineRule('proficiencyCounts.' + a,
-        'isBackground.' + name, '+=', proficiencyCounts[a]
+  if(proficiencyCount != null) {
+    for(var a in proficiencyCount) {
+      rules.defineRule('proficiencyCount.' + a,
+        'isBackground.' + name, '+=', proficiencyCount[a]
       );
     }
   }
@@ -5994,14 +5983,14 @@ FiveE.defineBackground = function(
  * cross-class) for the class, #features# an array of level:feature name pairs
  * indicating features that the class acquires when advancing levels,
  * #spellsKnown# an array of information about the type, number, and level of
- * spells known at each class level, #spellsPerDay# an array of information
+ * spells known at each class level, #spellSlots# an array of information
  * about the type, number, and level of spells castable per day at each class
  * level, and #spellAbility# the ability that pertains to this class' spells.
  */
 FiveE.defineClass = function(
-  rules, name, hitDice, features, selectableFeatures, proficiencyCounts,
+  rules, name, hitDice, features, selectableFeatures, proficiencyCount,
   proficienciesGiven, proficiencyChoices, spellAbility, spellsKnown,
-  spellsPerDay, notes
+  spellSlots, notes
 ) {
 
   var classLevel = 'levels.' + name;
@@ -6046,10 +6035,10 @@ FiveE.defineClass = function(
     }
   }
 
-  if(proficiencyCounts != null) {
-    for(var a in proficiencyCounts) {
+  if(proficiencyCount != null) {
+    for(var a in proficiencyCount) {
       rules.defineRule
-        ('proficiencyCounts.' + a, classLevel, '+=', proficiencyCounts[a]);
+        ('proficiencyCount.' + a, classLevel, '+=', proficiencyCount[a]);
     }
   }
 
@@ -6070,6 +6059,11 @@ FiveE.defineClass = function(
   }
 
   if(spellAbility != null) {
+    rules.defineRule('spellAttackModifier.' + name,
+      'levels.' + name, '?', null,
+      spellAbility + 'Modifier', '=', null,
+      'proficiencyBonus', '+', null
+    );
     rules.defineRule('spellDifficultyClass.' + name,
       'levels.' + name, '?', null,
       spellAbility + 'Modifier', '=', '8 + source',
@@ -6077,34 +6071,17 @@ FiveE.defineClass = function(
     );
   }
 
-  if(spellsKnown != null || spellsPerDay != null) {
+  if(spellsKnown != null || spellSlots != null) {
     rules.defineRule('casterSpellLevel.' + name,
       'levels.' + name, '=', null,
       'magicNotes.casterLevelBonusFeature', '+', null
     );
   }
 
-  // if(spellsKnown != null) {
-  //   for(var j = 0; j < spellsKnown.length; j++) {
-  //     var typeAndLevel = spellsKnown[j].split(/:/)[0];
-  //     var level = typeAndLevel.replace(/[A-Za-z]*/g, '');
-  //     var code = spellsKnown[j].substring(typeAndLevel.length + 1).
-  //                split(/\//).reverse().join('source >= ');
-  //     code = code.replace(/:/g, ' ? ').replace(/source/g, ' : source');
-  //     code = 'source >= ' + code + ' : null';
-  //     if(code.indexOf('source >= 1 ?') >= 0) {
-  //       code = code.replace(/source >= 1 ./, '').replace(/ : null/, '');
-  //     }
-  //     rules.defineRule
-  //       ('spellsKnown.' + typeAndLevel, 'casterSpellLevel.' + name, '=', code);
-  //   }
-  // }
-
-  if(spellsPerDay != null) {
-    for(var j = 0; j < spellsPerDay.length; j++) {
-      var typeAndLevel = spellsPerDay[j].split(/:/)[0];
-      var level = typeAndLevel.replace(/[A-Z]*/, '');
-      var code = spellsPerDay[j].substring(typeAndLevel.length + 1).
+  if(spellsKnown != null) {
+    for(var j = 0; j < spellsKnown.length; j++) {
+      var typeAndLevel = spellsKnown[j].split(/:/)[0];
+      var code = spellsKnown[j].substring(typeAndLevel.length + 1).
                  split(/\//).reverse().join('source >= ');
       code = code.replace(/:/g, ' ? ').replace(/source/g, ' : source');
       code = 'source >= ' + code + ' : null';
@@ -6112,17 +6089,22 @@ FiveE.defineClass = function(
         code = code.replace(/source >= 1 ./, '').replace(/ : null/, '');
       }
       rules.defineRule
-        ('spellsPerDay.' + typeAndLevel, 'casterSpellLevel.' + name, '=', code);
-      if(spellAbility != null) {
-        var modifier = spellAbility + 'Modifier';
-        var level = typeAndLevel.replace(/[A-Za-z]*/g, '');
-        if(level > 0) {
-          code = 'source >= ' + level +
-                 ' ? 1 + Math.floor((source - ' + level + ') / 4) : null';
-          rules.defineRule
-            ('spellsPerDay.' + typeAndLevel, modifier, '+', code);
-        }
+        ('spellsKnown.' + typeAndLevel, 'casterSpellLevel.' + name, '=', code);
+    }
+  }
+
+  if(spellSlots != null) {
+    for(var j = 0; j < spellSlots.length; j++) {
+      var typeAndLevel = spellSlots[j].split(/:/)[0];
+      var code = spellSlots[j].substring(typeAndLevel.length + 1).
+                 split(/\//).reverse().join('source >= ');
+      code = code.replace(/:/g, ' ? ').replace(/source/g, ' : source');
+      code = 'source >= ' + code + ' : null';
+      if(code.indexOf('source >= 1 ?') >= 0) {
+        code = code.replace(/source >= 1 ./, '').replace(/ : null/, '');
       }
+      rules.defineRule
+        ('spellSlots.' + typeAndLevel, 'casterSpellLevel.' + name, '=', code);
     }
   }
 
@@ -6141,7 +6123,7 @@ FiveE.defineClass = function(
  * with a feature, the feature is acquired at level 1.
  */
 FiveE.defineRace = function(
-  rules, name, abilityAdjustment, features, languages, proficiencyCounts,
+  rules, name, abilityAdjustment, features, languages, proficiencyCount,
   proficienciesGiven, proficiencyChoices, notes
 ) {
 
@@ -6197,10 +6179,10 @@ FiveE.defineRace = function(
     }
   }
 
-  if(proficiencyCounts != null) {
-    for(var a in proficiencyCounts) {
+  if(proficiencyCount != null) {
+    for(var a in proficiencyCount) {
       rules.defineRule
-        ('proficiencyCounts.'+a, 'isRace.' + name, '+=', proficiencyCounts[a]);
+        ('proficiencyCount.' + a, 'isRace.' + name, '+=', proficiencyCount[a]);
     }
   }
 

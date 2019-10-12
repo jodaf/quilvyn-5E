@@ -62,73 +62,6 @@ FiveE.ALIGNMENTS = [
   'Chaotic Evil', 'Chaotic Good', 'Chaotic Neutral', 'Neutral', 'Neutral Evil',
   'Neutral Good', 'Lawful Evil', 'Lawful Good', 'Lawful Neutral'
 ];
-/*
-FiveE.ANIMAL_COMPANIONS = {
-  'Badger': 'HD=1 AC=15 Dam=2x1d2-1,1d3-1 Str=8 Dex=17 Con=15 Int=2 Wis=12 Cha=6',
-  'Camel': 'HD=3 AC=13 Dam=1d4+2 Str=18 Dex=16 Con=14 Int=2 Wis=11 Cha=4',
-  'Crocodile': 'HD=3 AC=15 Dam=1d8+6,1d12+6 Str=19 Dex=12 Con=17 Int=1 Wis=12 Cha=2',
-  'Dire Rat': 'HD=1 AC=15 Dam=1d4 Str=10 Dex=17 Con=12 Int=1 Wis=12 Cha=4',
-  'Dog': 'HD=1 AC=15 Dam=1d4+1 Str=13 Dex=17 Con=15 Int=2 Wis=12 Cha=6',
-  'Riding Dog': 'HD=2 AC=16 Dam=1d6+3 Str=15 Dex=15 Con=15 Int=2 Wis=12 Cha=6',
-  'Eagle': 'HD=1 AC=14 Dam=2x1d4,1d4 Str=10 Dex=15 Con=12 Int=2 Wis=14 Cha=6',
-  'Hawk': 'HD=1 AC=17 Dam=1d4-2 Str=6 Dex=17 Con=10 Int=2 Wis=14 Cha=6',
-  'Heavy Horse': 'HD=3 AC=13 Dam=1d6+1 Str=16 Dex=13 Con=15 Int=2 Wis=12 Cha=6',
-  'Light Horse': 'HD=3 AC=13 Dam=1d4+1 Str=14 Dex=13 Con=15 Int=2 Wis=12 Cha=6',
-  'Medium Shark': 'HD=3 AC=15 Dam=1d6+1 Str=13 Dex=15 Con=13 Int=1 Wis=12 Cha=2',
-  'Medium Viper': 'HD=2 AC=16 Dam=1d4-2 Str=8 Dex=17 Con=11 Int=1 Wis=12 Cha=2',
-  'Owl': 'HD=1 AC=17 Dam=1d4-3 Str=4 Dex=17 Con=10 Int=2 Wis=14 Cha=4',
-  'Pony': 'HD=2 AC=13 Dam=1d3 Str=13 Dex=13 Con=12 Int=2 Wis=11 Cha=4',
-  'Porpoise': 'HD=2 AC=15 Dam=2d4 Str=11 Dex=17 Con=13 Int=2 Wis=12 Cha=6',
-  'Small Viper': 'HD=1 AC=17 Dam=1d2-2 Str=6 Dex=17 Con=11 Int=1 Wis=12 Cha=2',
-  'Squid': 'HD=3 AC=16 Dam=0 Str=14 Dex=17 Con=11 Int=1 Wis=12 Cha=2',
-  'Wolf': 'HD=2 AC=14 Dam=1d6+1 Str=13 Dex=15 Con=15 Int=2 Wis=12 Cha=6',
-
-  'Ape': 'HD=4 AC=14 Dam=1d6+5 Str=21 Dex=15 Con=14 Int=2 Wis=12 Cha=7 Level=4',
-  'Bison': 'HD=5 AC=13 Dam=1d8+9 Str=22 Dex=10 Con=16 Int=2 Wis=11 Cha=4 Level=4',
-  'Black Bear': 'HD=3 AC=13 Dam=2x1d4+4,1d6+2 Str=19 Dex=13 Con=15 Int=2 Wis=12 Cha=6 Level=4',
-  'Boar': 'HD=3 AC=16 Dam=1d8+3 Str=15 Dex=10 Con=17 Int=2 Wis=13 Cha=4 Level=4',
-  'Cheetah': 'HD=3 AC=15 Dam=2x1d2+1,1d6+3 Str=16 Dex=19 Con=15 Int=2 Wis=12 Cha=6 Level=4',
-  'Constrictor': 'HD=3 AC=15 Dam=1d3+4 Str=17 Dex=17 Con=13 Int=1 Wis=12 Cha=2 Level=4',
-  'Dire Badger': 'HD=3 AC=16 Dam=2x1d4+2,1d6+1 Str=14 Dex=17 Con=19 Int=2 Wis=12 Cha=10 Level=4',
-  'Dire Bat': 'HD=4 AC=20 Dam=1d8+4 Str=17 Dex=22 Con=17 Int=2 Wis=14 Cha=6 Level=4',
-  'Dire Weasel': 'HD=3 AC=16 Dam=1d6+3 Str=14 Dex=19 Con=10 Int=2 Wis=12 Cha=11 Level=4',
-  'Large Shark': 'HD=7 AC=15 Dam=1d8+4 Str=17 Dex=15 Con=13 Int=1 Wis=12 Cha=2 Level=4',
-  'Large Viper': 'HD=3 AC=15 Dam=1d4 Str=10 Dex=17 Con=11 Int=1 Wis=12 Cha=2 Level=4',
-  'Leopard': 'HD=3 AC=15 Dam=1d6+3 Str=16 Dex=19 Con=15 Int=2 Wis=12 Cha=6 Level=4',
-  'Monitor Lizard': 'HD=3 AC=15 Dam=1d8+4 Str=17 Dex=15 Con=17 Int=1 Wis=12 Cha=2 Level=4',
-  'Wolverine': 'HD=3 AC=14 Dam=2x1d4+2,1d6+1 Str=14 Dex=15 Con=19 Int=2 Wis=12 Cha=10 Level=4',
-
-  'Brown Bear': 'HD=6 AC=15 Dam=1d8+8,2d6+4 Str=27 Dex=13 Con=19 Int=2 Wis=12 Cha=6 Level=7',
-  'Deinonychus': 'HD=4 AC=17 Dam=1d8+4,2x1d3+2,2d4+2 Str=19 Dex=15 Con=19 Int=2 Wis=12 Cha=10 Level=7',
-  'Dire Ape': 'HD=5 AC=15 Dam=2x1d6+6,1d8+3 Str=22 Dex=15 Con=14 Int=2 Wis=12 Cha=7 Level=7',
-  'Dire Boar': 'HD=7 AC=15 Dam=1d8+12 Str=27 Dex=10 Con=17 Int=2 Wis=13 Cha=8 Level=7',
-  'Dire Wolf': 'HD=6 AC=14 Dam=1d8+10 Str=25 Dex=15 Con=17 Int=2 Wis=12 Cha=10 Level=7',
-  'Dire Wolverine': 'HD=5 AC=16 Dam=2x1d6+6,1d8+3 Str=22 Dex=17 Con=19 Int=2 Wis=12 Cha=10 Level=7',
-  'Elasmosaurus': 'HD=10 AC=13 Dam=2d8+12 Str=26 Dex=14 Con=22 Int=2 Wis=13 Cha=9 Level=7',
-  'Giant Crocodile': 'HD=7 AC=16 Dam=2d8+12,1d12+12 Str=27 Dex=12 Con=19 Int=1 Wis=12 Cha=2 Level=7',
-  'Huge Viper': 'HD=6 AC=15 Dam=1d6+4 Str=16 Dex=15 Con=13 Int=1 Wis=12 Cha=2 Level=7',
-  'Lion': 'HD=5 AC=15 Dam=2x1d4+5,1d8+2 Str=21 Dex=17 Con=15 Int=2 Wis=12 Cha=6 Level=7',
-  'Rhinoceros': 'HD=8 AC=16 Dam=2d6+12 Str=26 Dex=10 Con=21 Int=2 Wis=13 Cha=2 Level=7',
-  'Tiger': 'HD=6 AC=14 Dam=2x1d8+6,2d6+3 Str=23 Dex=15 Con=17 Int=2 Wis=12 Cha=6 Level=7',
-
-  'Dire Lion': 'HD=8 AC=15 Dam=2x1d6+7,1d8+3 Str=25 Dex=15 Con=17 Int=2 Wis=12 Cha=10 Level=10',
-  'Giant Constrictor': 'HD=11 AC=15 Dam=1d8+10 Str=25 Dex=17 Con=13 Int=1 Wis=12 Cha=2 Level=10',
-  'Huge Shark': 'HD=10 AC=15 Dam=2d6+7 Str=21 Dex=15 Con=15 Int=1 Wis=12 Cha=2 Level=10',
-  'Megaraptor': 'HD=8 AC=17 Dam=2d6+5,2x1d4+2,1d8+2 Str=21 Dex=15 Con=21 Int=2 Wis=15 Cha=6 Level=10',
-  'Orca': 'HD=9 AC=15 Dam=2d6+12 Str=27 Dex=15 Con=21 Int=2 Wis=14 Cha=6 Level=10',
-  'Polar Bear': 'HD=8 AC=15 Dam=2x1d8+8,2d6+4 Str=27 Dex=13 Con=19 Int=2 Wis=12 Cha=6 Level=10',
-
-  'Dire Bear': 'HD=12 AC=17 Dam=2x2d4+10,2d8+5 Str=31 Dex=13 Con=19 Int=2 Wis=12 Cha=10 Level=13',
-  'Elephant': 'HD=11 AC=15 Dam=2d6+10,2d6+5 Str=30 Dex=10 Con=21 Int=2 Wis=13 Cha=7 Level=13',
-  'Giant Octopus': 'HD=8 AC=18 Dam=8x1d4+5,1d8+2 Str=20 Dex=15 Con=13 Int=2 Wis=12 Cha=3 Level=13',
-
-  'Dire Shark': 'HD=18 AC=17 Dam=2d8+9 Str=23 Dex=15 Con=17 Int=1 Wis=12 Cha=10 Level=16',
-  'Dire Tiger': 'HD=16 AC=17 Dam=2x2d4+8,2d6+4 Str=27 Dex=15 Con=17 Int=2 Wis=12 Cha=10 Level=16',
-  'Giant Squid': 'HD=12 AC=17 Dam=10x1d6+8,2d8+4 Str=26 Dex=17 Con=13 Int=1 Wis=12 Cha=2 Level=16',
-  'Triceratops': 'HD=16 AC=18 Dam=2d8+15 Str=30 Dex=9 Con=25 Int=1 Wis=12 Cha=7 Level=16',
-  'Tyrannosaurus': 'HD=18 AC=14 Dam=3d6+13 Str=29 Dex=12 Con=21 Int=2 Wis=15 Cha=10 Level=16'
-};
-*/
 FiveE.ARMORS = [
   'None:', 'Padded:L', 'Leather:L', 'Studded Leather:L', 'Hide:M',
   'Chain Shirt:L', 'Scale Mail:M', 'Breastplate:M', 'Half Plate:M',
@@ -163,45 +96,6 @@ FiveE.DEITIES = [
 FiveE.DOMAINS = [
   'Knowledge', 'Life', 'Light', 'Nature', 'Tempest', 'Trickery', 'War'
 ];
-/*
-FiveE.FAMILIARS = {
-  'Bat': 'HD=1 AC=16 Dam=0 Str=1 Dex=15 Con=10 Int=2 Wis=14 Cha=4',
-  'Cat': 'HD=1 AC=14 Dam=2@1d2-4,1d3-4 Str=3 Dex=15 Con=10 Int=2 Wis=12 Cha=7',
-  'Hawk': 'HD=1 AC=17 Dam=1d4-2 Str=6 Dex=17 Con=10 Int=2 Wis=14 Cha=6',
-  'Lizard': 'HD=1 AC=14 Dam=1d4-4 Str=3 Dex=15 Con=10 Int=1 Wis=12 Cha=2',
-  'Owl': 'HD=1 AC=17 Dam=1d4-3 Str=4 Dex=17 Con=10 Int=2 Wis=14 Cha=4',
-  'Rat': 'HD=1 AC=14 Dam=1d3-4 Str=2 Dex=15 Con=10 Int=2 Wis=12 Cha=2',
-  'Raven': 'HD=1 AC=14 Dam=1d2-5 Str=1 Dex=15 Con=10 Int=2 Wis=14 Cha=6',
-  'Tiny Viper': 'HD=1 AC=17 Dam=1 Str=4 Dex=17 Con=11 Int=1 Wis=12 Cha=2',
-  'Toad': 'HD=1 AC=15 Dam=0 Str=1 Dex=12 Con=11 Int=1 Wis=14 Cha=4',
-  'Weasel': 'HD=1 AC=14 Dam=1d3-4 Str=3 Dex=15 Con=10 Int=2 Wis=12 Cha=5',
-
-  'Air Mephit': 'HD=3 AC=17 Dam=1d3 Str=10 Dex=17 Con=10 Int=6 Wis=11 Cha=15 Level=7',
-  'Dust Mephit': 'HD=3 AC=17 Dam=1d3 Str=10 Dex=17 Con=10 Int=6 Wis=11 Cha=15 Level=7',
-  'Earth Elemental': 'HD=2 AC=17 Dam=1d6+4 Str=17 Dex=8 Con=13 Int=4 Wis=11 Cha=11 Level=5',
-  'Earth Mephit': 'HD=3 AC=16 Dam=1d3+3 Str=17 Dex=8 Con=13 Int=6 Wis=11 Cha=15 Level=7',
-  'Fire Elemental': 'HD=2 AC=15 Dam=1d4+1d4 Str=10 Dex=13 Con=10 Int=4 Wis=11 Cha=11 Level=5',
-  'Fire Mephit': 'HD=3 AC=16 Dam=1d3+1d4 Str=10 Dex=13 Con=10 Int=6 Wis=11 Cha=15 Level=7',
-  'Formian Worker': 'HD=1 AC=17 Dam=1d4+1 Str=13 Dex=14 Con=13 Int=6 Wis=10 Cha=9 Level=7',
-  'Homunculus': 'HD=2 AC=14 Dam=1d4-1 Str=8 Dex=15 Con=0 Int=10 Wis=12 Cha=7 Level=7',
-  'Ice Mephit': 'HD=3 AC=18 Dam=1d3+1d4 Str=10 Dex=17 Con=10 Int=6 Wis=11 Cha=15 Level=7',
-  'Imp': 'HD=3 AC=20 Dam=1d4 Str=10 Dex=17 Con=10 Int=10 Wis=12 Cha=14 Level=7',
-  'Magma Mephit': 'HD=3 AC=16 Dam=1d3+1d4 Str=10 Dex=13 Con=10 Int=6 Wis=11 Cha=15 Level=7',
-  'Ooze Mephit': 'HD=3 AC=16 Dam=1d3+2 Str=14 Dex=10 Con=13 Int=6 Wis=11 Cha=15 Level=7',
-  'Pseudodragon': 'HD=2 AC=18 Dam=1d3-2 Str=6 Dex=15 Con=13 Int=10 Wis=12 Cha=10 Level=7',
-  'Quasit': 'HD=3 AC=18 Dam=1d3-1 Str=8 Dex=17 Con=10 Int=10 Wis=12 Cha=10 Level=7',
-  'Salt Mephit': 'HD=3 AC=16 Dam=1d3+3 Str=17 Dex=8 Con=13 Int=6 Wis=11 Cha=15 Level=7',
-  'Shocker Lizard': 'HD=2 AC=16 Dam=1d4 Str=10 Dex=15 Con=13 Int=2 Wis=12 Cha=6 Level=5',
-  'Steam Mephit': 'HD=3 AC=16 Dam=1d3+1d4 Str=10 Dex=13 Con=10 Int=6 Wis=11 Cha=15 Level=7',
-  'Stirge': 'HD=1 AC=16 Dam=0 Str=3 Dex=19 Con=10 Int=1 Wis=12 Cha=6 Level=5',
-  'Water Elemental': 'HD=2 AC=17 Dam=1d6+3 Str=14 Dex=10 Con=13 Int=4 Wis=11 Cha=11 Level=5',
-  'Water Mephit': 'HD=3 AC=16 Dam=1d3+2 Str=14 Dex=10 Con=13 Int=6 Wis=11 Cha=15 Level=7',
-
-  'Celestial': 'Level=3',
-  'Fiendish': 'Level=3'
-
-};
-*/
 FiveE.FEATS = [
   'Alert', 'Athleete', 'Actor', 'Charger', 'Crossbow Expert',
   'Defensive Duelist', 'Dual Wielder', 'Dungeon Delver', 'Durable',
@@ -313,7 +207,6 @@ FiveE.draconicBreathTypes = {
   'Silver Dragonborn': 'cold',
   'White Dragonborn': 'cold'
 };
-FiveE.proficiencyLevelNames = ['None', 'Light', 'Medium', 'Heavy'];
 FiveE.spellsAbbreviations = {
   "BarkskinAC": "2 + (source < 6 ? 0 : Math.min(Math.floor((source - 3)/ 3), 3))",
   "L": "lvl",
@@ -344,16 +237,6 @@ FiveE.spellsAbbreviations = {
 };
 FiveE.spellsDescriptions = {
 /*
-  "Antipathy": "Named kind/align creatures Will save or avoid $L10' cube for $L2 hr",
-  "Antiplant Shell": "10'-radius bars animate plants for $L min",
-  "Arcane Eye": "Invisible remote eye moves 30' for $L min",
-  "Arcane Lock": "Magical lock on door/portal/chest open DC +10 with lock/20 otherwise",
-  "Arcane Mark": "Permanent in/visible personal rune on object/creature",
-  "Arcane Sight": "R120' See auras/spell abilities for $L min, DC 15+level to know school",
-  "Astral Projection": "Projects you and others to Astral Plane",
-  "Atonement": "Restore alignment/holy powers",
-  "Augury": "${Math.min(70 + lvl, 90)}% chance to know weal/woe of act proposed w/in 30 min",
-  "Awaken": "Animal/tree target gains human sentience",
   "Baleful Polymorph": "R$RS' Target Fort save or become 1HD creature, Will save to keep abilities",
   "Bane": "Enemies w/in 50' Will save or -1 attack/fear saves $L min",
   "Banishment": "R$RS' $L2 HD extraplanar creatures Will save or banished from plane",
@@ -963,18 +846,18 @@ FiveE.spellsDescriptions = {
   'Animate Objects':"R120' Animate 10 sm/5 md/2 lg/1 hg objects, command w/in 500' for conc/1 min",
   'Antilife Shell':"Self 10' sphere prevents living passage for conc/1 hr",
   'Antimagic Field':"Self 10' sphere supresses magic for conc/1 hr",
-  'Antipathy/Sympathy':'Enchantment',
-  'Arcane Eye':'Divination',
-  'Arcane Gate':'Conjuration',
-  'Arcane Lock':'Abjuration',
-  'Armor Of Agathys':'Abjuration',
-  'Arms Of Hadar':'Conjuaration',
-  'Astral Projection':'Necromancy',
-  'Augury':'Divination',
-  'Aura Of Life':'Abjuration',
-  'Aura Of Purity':'Abjuration',
-  'Aura Of Vitality':'Evocation',
-  'Awaken':'Transmutation',
+  'Antipathy/Sympathy':"R60' Target object repels/attracts specified creatures for 10 dy",
+  'Arcane Eye':"R30' See through invisible eye for conc/1 hr",
+  'Arcane Gate':"R10'/500' Connect portal pair for conc/10 min",
+  'Arcane Lock':"Touched barrier passable only by designated until dispelled",
+  'Armor Of Agathys':"Self frosted, +5 HP causes 5 HP cold to successful attcker",
+  'Arms Of Hadar':"All in 10' radius take 2d6 HP necrotic (Str half), no reactions until next turn",
+  'Astral Projection':"Self + 8 companions w/in 10' project to astral plane until dispelled or 0 HP",
+  'Augury':"Discern whether act w/in 30 min will yield weal/woe/both/neither",
+  'Aura Of Life':"Self 30' radius gives resistance to necrotic damage, raise 0 HP to 1HP to nonhostile for conc/10 min",
+  'Aura Of Purity':"Self 30' radius gives resist poison, no disease, Adv conditions for conc/10 min",
+  'Aura Of Vitality':"Self 30' radius heals designated target 2d6 HP 1/rd for conc/1 min",
+  'Awaken':"Touched beast or plant Int 10, friendly for 30 dy",
 
   'Bane':'Enchantment',
   'Banishing Smite':'Abjuration',
@@ -2061,7 +1944,7 @@ FiveE.classRules = function(rules, classes) {
         'Skill':['Animal Handling', 'Athletics', 'Intimidation', 'Nature',
                  'Perception', 'Survival']
       };
-      selectableFeatures = FiveE.BARBARIAN_PATHS.map(function (path) {return 'Primal Path (' + path + ')'}).concat(FiveE.BARBARIAN_TOTEMS.map(function (totem) {return totem + ' Totem'}));
+      selectableFeatures = FiveE.BARBARIAN_PATHS.map(function (path) {return 'Primal Path (' + path + ')';}).concat(FiveE.BARBARIAN_TOTEMS.map(function (totem) {return totem + ' Totem';}));
       spellAbility = null;
       spellsKnown = null;
       spellSlots = null;
@@ -2184,7 +2067,7 @@ FiveE.classRules = function(rules, classes) {
       spellAbility = 'charisma';
       spellsKnown = [
         'B0:1:2/4:3/10:4',
-        'B:1:4/2:5/3:6/4:7/5:8/6:0/7:10/8:11/9:12/10:14/11:15/13:16/14:18/15:19/17:20/18:22'
+        'B:1:4/2:5/3:6/4:7/5:8/6:9/7:10/8:11/9:12/10:14/11:15/13:16/14:18/15:19/17:20/18:22'
       ];
       spellSlots = [
         'B1:1:2/2:3/3:4',
@@ -2263,15 +2146,14 @@ FiveE.classRules = function(rules, classes) {
       proficiencyChoices = {
         'Skill':['History', 'Insight', 'Medicine', 'Persuasion', 'Religion']
       };
-      selectableFeatures = [
-        'Knowledge Domain', 'Life Domain', 'Light Domain', 'Nature Domain',
-        'Tempest Domain', 'Trickery Domain', 'War Domain'
-      ];
+      selectableFeatures =
+        FiveE.DOMAINS.map(function(domain){return domain + ' Domain';});
       spellAbility = 'wisdom';
       spellsKnown = [
-        'C0:1:"all"', 'C1:1:"all"', 'C2:3:"all"', 'C3:5:"all"',
-        'C4:7:"all"', 'C5:9:"all"', 'C6:11:"all"', 'C7:13:"all"',
-        'C8:15:"all"', 'C9:17:"all"',
+        'C0:1:3/2:4/10:5',
+        'C1:1:"all"', 'C2:3:"all"', 'C3:5:"all"', 'C4:7:"all"',
+        'C5:9:"all"', 'C6:11:"all"', 'C7:13:"all"', 'C8:15:"all"',
+        'C9:17:"all"',
         'Dom1:1:"all"', 'Dom2:3:"all"', 'Dom3:5:"all"', 'Dom4:7:"all"',
         'Dom5:9:"all"', 'Dom6:11:"all"', 'Dom7:13:"all"', 'Dom8:15:"all"',
         'Dom9:17:"all"'
@@ -2298,38 +2180,12 @@ FiveE.classRules = function(rules, classes) {
 
     } else if(name == 'Druid') {
 
-      continue; // TODO
-      feats = null;
       features = [
-        '1:Animal Companion', '1:Nature Sense', '1:Spontaneous Druid Spell',
-        '1:Wild Empathy',
-        '1:Weapon Proficiency ' +
-          '(Club/Dagger/Dart/Quarterstaff/Scimitar/Sickle/Short Spear/Sling/Spear)',
-        '2:Woodland Stride', '3:Trackless Step', '4:Resist Nature\'s Lure',
-        '5:Wild Shape', '9:Venom Immunity', '13:Thousand Faces',
-        '15:Timeless Body', '16:Elemental Shape'
+        // TODO
       ];
       hitDie = 8;
       notes = [
-        'featureNotes.animalCompanionFeature:Special bond/abilities',
-        'featureNotes.timelessBodyFeature:No aging penalties',
-        'featureNotes.tracklessStepFeature:Untrackable outdoors',
-        'featureNotes.woodlandStrideFeature:' +
-          'Normal movement through undergrowth',
-        'magicNotes.elementalShapeFeature:Wild Shape to elemental %V/day',
-        'magicNotes.spontaneousDruidSpellFeature:' +
-          '<i>Summon Nature\'s Ally</i>',
-        'magicNotes.thousandFacesFeature:<i>Alter Self</i> at will',
-        'magicNotes.wildShapeFeature:' +
-          'Change into creature of size %V for %1 hours %2/day',
-        'saveNotes.resistNature\'sLureFeature:+4 vs. spells of feys',
-        'saveNotes.venomImmunityFeature:Immune to poisons',
-        'skillNotes.natureSenseFeature:+2 Knowledge (Nature)/Survival',
-        'skillNotes.wildEmpathyFeature:+%V Diplomacy w/animals',
-        'validationNotes.druidClassAlignment:Requires Alignment =~ Neutral',
-        'validationNotes.druidClassArmor:' +
-          'Requires Armor =~ None|Hide|Leather|Padded',
-        'validationNotes.druidClassShield:Requires Shield =~ None|Wooden'
+        // TODO
       ];
       proficiencyCount =
        {'Save':2, 'Skill':2, 'Tool':1, 'Armor':3, 'Weapon':10};
@@ -2347,52 +2203,21 @@ FiveE.classRules = function(rules, classes) {
       selectableFeatures = null;
       spellAbility = 'wisdom';
       spellsKnown = [
-        'D0:1:"all"', 'D1:1:"all"', 'D2:3:"all"', 'D3:5:"all"',
-        'D4:7:"all"', 'D5:9:"all"', 'D6:11:"all"', 'D7:13:"all"',
-        'D8:15:"all"', 'D9:17:"all"'
+        'D0:1:2/4:3/10:4',
+        'D1:1:"all"', 'D2:3:"all"', 'D3:5:"all"', 'D4:7:"all"', 'D5:9:"all"',
+        'D6:11:"all"', 'D7:13:"all"', 'D8:15:"all"', 'D9:17:"all"'
       ];
       spellSlots = [
-        'D1:1:1/2:2/4:3/7:4/11:5',
-        'D2:3:1/4:2/6:3/9:4/13:5',
-        'D3:5:1/6:2/8:3/11:4/15:5',
-        'D4:7:1/8:2/10:3/13:4/17:5',
-        'D5:9:1/10:2/12:3/15:4/19:5',
-        'D6:11:1/12:2/14:3/17:4',
-        'D7:13:1/14:2/16:3/19:4',
-        'D8:15:1/16:2/18:3/20:4',
-        'D9:17:1/18:2/19:3/20:4'
+        'D1:1:2/2:3/3:4',
+        'D2:3:2/4:3',
+        'D3:5:2/6:3',
+        'D4:7:1/8:2/9:3',
+        'D5:9:1/10:2/18:3',
+        'D6:11:1/19:2',
+        'D7:13:1/20:2',
+        'D8:15:1',
+        'D9:17:1'
       ];
-      rules.defineRule
-        ('animalCompanionMasterLevel', 'levels.Druid', '+=', null);
-      rules.defineRule('casterLevelDivine', 'levels.Druid', '+=', null);
-      rules.defineRule('languageCount', 'levels.Druid', '+', '1');
-      rules.defineRule('languages.Druidic', 'levels.Druid', '=', '1');
-      rules.defineRule('magicNotes.elementalShapeFeature',
-        'levels.Druid', '=', 'source < 16 ? null : Math.floor((source-14) / 2)'
-      );
-      rules.defineRule('magicNotes.wildShapeFeature',
-        'levels.Druid', '=',
-          'source < 5 ? null : ' +
-          'source < 8 ? "small-medium" : ' +
-          'source < 11 ? "small-large" : ' +
-          'source == 11 ? "tiny-large" : ' +
-          'source < 15 ? "tiny-large/plant" : "tiny-huge/plant"'
-      );
-      rules.defineRule
-        ('magicNotes.wildShapeFeature.1', 'levels.Druid', '=', null);
-      rules.defineRule('magicNotes.wildShapeFeature.2',
-        'levels.Druid', '=',
-           'source < 5 ? null : ' +
-           'source == 5 ? 1 : ' +
-           'source == 6 ? 2 : ' +
-           'source < 10 ? 3 : ' +
-           'source < 14 ? 4 : ' +
-           'source < 18 ? 5 : 6'
-      );
-      rules.defineRule('skillNotes.wildEmpathyFeature',
-        'levels.Druid', '+=', null,
-        'charismaModifier', '+', null
-      );
 
     } else if(name == 'Fighter') {
 
@@ -2429,63 +2254,12 @@ FiveE.classRules = function(rules, classes) {
 
     } else if(name == 'Monk') {
 
-      continue; // TODO
-      feats = null;
       features = [
-        '1:Flurry Of Blows', '1:Improved Unarmed Strike',
-        '1:Weapon Proficiency ' +
-          '(Club/Dagger/Handaxe/Heavy Crossbow/Javelin/Kama/Light Crossbow/Nunchaku/Quarterstaff/Sai/Shuriken/Siangham/Sling)',
-        '2:Evasion', '3:Fast Movement', '3:Still Mind', '4:Ki Strike',
-        '4:Slow Fall', '5:Purity Of Body', '7:Wholeness Of Body',
-        '9:Improved Evasion', '10:Lawful Ki Strike', '11:Diamond Body',
-        '11:Greater Flurry', '12:Abundant Step', '13:Diamond Soul',
-        '15:Quivering Palm', '16:Adamantine Ki Strike', '17:Timeless Body',
-        '17:Tongue Of The Sun And Moon', '19:Empty Body', '20:Perfect Self'
+        // TODO
       ];
       hitDie = 8;
       notes = [
-        'abilityNotes.fastMovementFeature:+%V speed',
-        'combatNotes.adamantineKiStrikeFeature:' +
-          'Treat unarmed as adamantine weapon',
-        'combatNotes.flurryOfBlowsFeature:Take %V penalty for extra attack',
-        'combatNotes.greaterFlurryFeature:Extra attack',
-        'combatNotes.improvedUnarmedStrikeFeature:' +
-          'No AOO on unarmed attack, may deal lethal damage',
-        'combatNotes.kiStrikeFeature:Treat unarmed as magic weapon',
-        'combatNotes.lawfulKiStrikeFeature:Treat unarmed as lawful weapon',
-        'combatNotes.perfectSelfFeature:' +
-          'Ignore first 10 points of non-magical damage',
-        'combatNotes.quiveringPalmFeature:' +
-          'Foe makes DC %V Fortitude save or dies 1/week',
-        'featureNotes.timelessBodyFeature:No aging penalties',
-        'featureNotes.tongueOfTheSunAndMoonFeature:Speak w/any living creature',
-        'magicNotes.abundantStepFeature:' +
-          '<i>Dimension Door</i> at level %V 1/day',
-        'magicNotes.emptyBodyFeature:<i>Etherealness</i> %V rounds/day',
-        'magicNotes.wholenessOfBodyFeature:Heal %V damage to self/day',
-        'sanityNotes.monkClassArmor:Implies Armor == None',
-        'sanityNotes.monkClassShield:Implies Shield == None',
-        'saveNotes.diamondBodyFeature:Immune to poison',
-        'saveNotes.diamondSoulFeature:DC %V spell resistance',
-        'saveNotes.evasionFeature:Reflex save yields no damage instead of 1/2',
-        'saveNotes.improvedEvasionFeature:Failed save yields 1/2 damage',
-        'saveNotes.perfectSelfFeature:Treat as outsider for magic saves',
-        'saveNotes.purityOfBodyFeature:Immune to normal disease',
-        'saveNotes.slowFallFeature:' +
-          'Subtract %V ft from falling damage distance',
-        'saveNotes.stillMindFeature:+2 vs. enchantment',
-        'validationNotes.combatReflexesSelectableFeatureLevels:' +
-           'Requires Monk >= 2',
-        'validationNotes.deflectArrowsSelectableFeatureLevels:' +
-           'Requires Monk >= 2',
-        'validationNotes.improvedDisarmSelectableFeatureLevels:' +
-           'Requires Monk >= 6',
-        'validationNotes.improvedGrappleSelectableFeatureLevels:' +
-           'Requires Monk >= 1',
-        'validationNotes.improvedTripSelectableFeatureLevels:' +
-           'Requires Monk >= 6',
-        'validationNotes.monkClassAlignment:Requires Alignment =~ Lawful',
-        'validationNotes.stunningFistSelectableFeatureLevels:Requires Monk >= 1'
+        // TODO
       ];
       proficiencyCount = {'Save':2, 'Skill':2, 'Weapon':2};
       proficienciesGiven = {
@@ -2503,75 +2277,15 @@ FiveE.classRules = function(rules, classes) {
       spellAbility = null;
       spellsKnown = null;
       spellSlots = null;
-      rules.defineRule('abilityNotes.fastMovementFeature',
-        'levels.Monk', '+=', '10 * Math.floor(source / 3)'
-      );
-      rules.defineRule
-        ('armorClass', 'combatNotes.monkArmorClassAdjustment', '+', null);
-      rules.defineRule('combatNotes.flurryOfBlowsFeature',
-        'levels.Monk', '=', 'source < 5 ? -2 : source < 9 ? -1 : 0'
-      );
-      rules.defineRule('combatNotes.monkArmorClassAdjustment',
-        'levels.Monk', '+=', 'source >= 5 ? Math.floor(source / 5) : null',
-        'wisdomModifier', '+', 'source > 0 ? source : null'
-      );
-      rules.defineRule('combatNotes.quiveringPalmFeature',
-        'levels.Monk', '+=', '10 + Math.floor(source / 2)',
-        'wisdomModifier', '+', null
-      );
-      rules.defineRule('combatNotes.stunningFistFeature.1',
-        'levels.Monk', '+=', 'source - Math.floor(source / 4)'
-      );
-      rules.defineRule('magicNotes.abundantStepFeature',
-        'levels.Monk', '+=', 'Math.floor(source / 2)'
-      );
-      rules.defineRule
-        ('magicNotes.emptyBodyFeature', 'levels.Monk', '+=', null);
-      rules.defineRule
-        ('magicNotes.wholenessOfBodyFeature', 'levels.Monk', '+=', '2*source');
-      rules.defineRule
-        ('resistance.Enchantment', 'saveNotes.stillMindFeature', '+=', '2');
-      rules.defineRule
-        ('resistance.Spell', 'saveNotes.diamondSoulFeature', '+=', null);
-      rules.defineRule
-        ('saveNotes.diamondSoulFeature', 'levels.Monk', '+=', '10 + source');
-      rules.defineRule('saveNotes.slowFallFeature',
-        'levels.Monk', '=',
-        'source < 4 ? null : source < 20 ? Math.floor(source / 2) * 10 : "all"'
-      );
-      rules.defineRule('selectableFeatureCount.Monk',
-        'levels.Monk', '=', 'source < 2 ? 1 : source < 6 ? 2 : 3'
-      );
-      rules.defineRule('speed', 'abilityNotes.fastMovementFeature', '+', null);
-      rules.defineRule('weaponDamage.Unarmed',
-        'levels.Monk', '=',
-        'source < 12 ? ("d" + (6 + Math.floor(source / 4) * 2)) : ' +
-        '              ("2d" + (6 + Math.floor((source - 12) / 4) * 2))'
-      );
 
     } else if(name == 'Paladin') {
 
-      continue; // TODO
-      feats = null;
       features = [
-        '1:Aura Of Good', '1:Detect Evil', '1:Smite Evil', '2:Divine Grace',
-        '2:Lay On Hands', '3:Aura Of Courage', '3:Divine Health',
-        '4:Turn Undead', '5:Special Mount', '6:Remove Disease'
+        // TODO
       ];
       hitDie = 10;
       notes = [
-        'combatNotes.smiteEvilFeature:' +
-          '+%V attack/+%1 damage vs. evil foe %2/day',
-        'featureNotes.specialMountFeature:Magical mount w/special abilities',
-        'magicNotes.auraOfGoodFeature:Visible to <i>Detect Good</i>',
-        'magicNotes.detectEvilFeature:<i>Detect Evil</i> at will',
-        'magicNotes.layOnHandsFeature:Harm undead or heal %V HP/day',
-        'magicNotes.removeDiseaseFeature:<i>Remove Disease</i> %V/week',
-        'saveNotes.auraOfCourageFeature:Immune fear, +4 to allies w/in 30 ft',
-        'saveNotes.divineGraceFeature:+%V all saves',
-        'saveNotes.divineHealthFeature:Immune to disease',
-        'validationNotes.paladinClassAlignment:' +
-          'Requires Alignment == Lawful Good'
+        // TODO
       ];
       proficiencyCount = {'Save':2, 'Skill':2, 'Armor':4, 'Weapon':2};
       proficienciesGiven = {
@@ -2584,93 +2298,26 @@ FiveE.classRules = function(rules, classes) {
                  'Persuasion', 'Religion']
       };
       selectableFeatures = null;
-      skills = [
-        'Concentration', 'Craft', 'Diplomacy', 'Handle Animal', 'Heal',
-        'Knowledge (Nobility)', 'Knowledge (Religion)', 'Profession', 'Ride',
-        'Sense Motive'
-      ];
       spellAbility = 'wisdom';
       spellsKnown = [
-        'P1:4:"all"', 'P2:8:"all"', 'P3:11:"all"', 'P4:14:"all"'
+        'P1:2:"all"', 'P2:5:"all"', 'P3:9:"all"', 'P4:13:"all"', 'P5:17:"all"'
       ];
       spellSlots = [
-        'P1:4:0/6:1/14:2/18:3',
-        'P2:8:0/10:1/16:2/19:3',
-        'P3:11:0/12:1/17:2/19:3',
-        'P4:14:0/15:1/19:2/20:3'
+        'P1:2:2/3:3/5:4',
+        'P2:5:2/7:3',
+        'P3:9:2/11:3',
+        'P4:13:1/15:2/17:3',
+        'P5:17:1/19:2'
       ];
-      rules.defineRule('casterLevelDivine',
-        'levels.Paladin', '+=', 'source < 4 ? null : Math.floor(source / 2)'
-      );
-      rules.defineRule('combatNotes.smiteEvilFeature',
-        'charismaModifier', '=', 'source > 0 ? source : 0'
-      );
-      rules.defineRule
-        ('combatNotes.smiteEvilFeature.1', 'levels.Paladin', '=', null);
-      rules.defineRule('combatNotes.smiteEvilFeature.2',
-        'levels.Paladin', '=', '1 + Math.floor(source / 5)'
-      );
-      rules.defineRule('magicNotes.layOnHandsFeature',
-        'levels.Paladin', '+=', null,
-        'charismaModifier', '*', null,
-        'charisma', '?', 'source >= 12'
-      );
-      rules.defineRule('magicNotes.removeDiseaseFeature',
-        'levels.Paladin', '+=', 'Math.floor((source - 3) / 3)'
-      );
-      rules.defineRule('mountMasterLevel', 'levels.Paladin', '=', null);
-      rules.defineRule
-        ('save.Fortitude', 'saveNotes.divineGraceFeature', '+', null);
-      rules.defineRule
-        ('save.Reflex', 'saveNotes.divineGraceFeature', '+', null);
-      rules.defineRule('save.Will', 'saveNotes.divineGraceFeature', '+', null);
-      rules.defineRule
-        ('saveNotes.divineGraceFeature', 'charismaModifier', '=', null);
-      rules.defineRule('turnUndead.level',
-        'levels.Paladin', '+=', 'source > 3 ? source - 3 : null'
-      );
-      rules.defineRule('turningLevel', 'turnUndead.level', '^=', null);
 
     } else if(name == 'Ranger') {
 
-      continue; // TODO
-      feats = null;
       features = [
-        '1:Favored Enemy', '1:Track', '1:Wild Empathy', '2:Rapid Shot',
-        '2:Two-Weapon Fighting', '3:Endurance', '4:Animal Companion',
-        '6:Manyshot', '6:Improved Two-Weapon Fighting', '7:Woodland Stride',
-        '8:Swift Tracker', '9:Evasion', '11:Improved Precise Shot',
-        '11:Greater Two-Weapon Fighting', '13:Camouflage',
-        '17:Hide In Plain Sight'
+        // TODO
       ];
-      hitDie = 8;
+      hitDie = 10;
       notes = [
-        'combatNotes.favoredEnemyFeature:' +
-          '+2 or more damage vs. %V type(s) of creatures',
-        'combatNotes.greaterTwo-WeaponFightingFeature:' +
-          'Third off-hand -10 attack',
-        'combatNotes.improvedPreciseShotFeature:' +
-          'No foe AC bonus for partial concealment, attack grappling target',
-        'combatNotes.improvedTwo-WeaponFightingFeature:' +
-          'Second off-hand -5 attack',
-        'combatNotes.manyshotFeature:' +
-          'Fire up to %V arrows simultaneously at -2 attack',
-        'combatNotes.rapidShotFeature:Normal, extra ranged -2 attacks',
-        'combatNotes.two-WeaponFightingFeature:' +
-          'Reduce on-hand penalty by 2, off-hand by 6',
-        'featureNotes.animalCompanionFeature:Special bond/abilities',
-        'featureNotes.woodlandStrideFeature:' +
-          'Normal movement through undergrowth',
-        'saveNotes.enduranceFeature:+4 extended physical action',
-        'saveNotes.evasionFeature:Reflex save yields no damage instead of 1/2',
-        'skillNotes.camouflageFeature:Hide in any natural terrain',
-        'skillNotes.favoredEnemyFeature:' +
-          '+2 or more Bluff/Listen/Sense Motive/Spot/Survival ' +
-          'vs. %V type(s) of creatures',
-        'skillNotes.hideInPlainSightFeature:Hide even when observed',
-        'skillNotes.swiftTrackerFeature:Track at full speed',
-        'skillNotes.trackFeature:Survival to follow creatures\' trail',
-        'skillNotes.wildEmpathyFeature:+%V Diplomacy w/animals'
+        // TODO
       ];
       proficiencyCount = {'Save':2, 'Skill':3, 'Armor':3, 'Weapon':2};
       proficienciesGiven = {
@@ -2682,87 +2329,27 @@ FiveE.classRules = function(rules, classes) {
         'Skill':['Animal Handling', 'Athletics', 'Insight', 'Investigation',
                  'Nature', 'Perception', 'Stealth', 'Survival']
       };
-      selectableFeatures = [
-        'Combat Style (Archery)', 'Combat Style (Two-Weapon Combat)'
-      ];
+      selectableFeatures = null;
       spellAbility = 'wisdom';
       spellsKnown = [
-        'R1:4:"all"', 'R2:8:"all"', 'R3:11:"all"', 'R4:14:"all"'
+        'R1:2:"all"', 'R2:5:"all"', 'R3:9:"all"', 'R4:13:"all"', 'R5:17:"all"'
       ];
       spellSlots = [
-        'R1:4:0/6:1/14:2/18:3',
-        'R2:8:0/10:1/16:2/19:3',
-        'R3:11:0/12:1/17:2/19:3',
-        'R4:14:0/15:1/19:2/20:3'
+        'R1:2:2/3:3/5:4',
+        'R2:5:2/7:3',
+        'R3:9:2/11:3',
+        'R4:13:1/15:2/17:3',
+        'R5:17:1/19:2'
       ];
-      rules.defineRule('animalCompanionMasterLevel',
-        'levels.Ranger', '+=', 'source < 4 ? null : Math.floor(source / 2)'
-      );
-      rules.defineRule('casterLevelDivine',
-        'levels.Ranger', '+=', 'source < 4 ? null : Math.floor(source / 2)'
-      );
-      rules.defineRule('combatNotes.favoredEnemyFeature',
-        'levels.Ranger', '+=', '1 + Math.floor(source / 5)'
-      );
-      rules.defineRule('rangerFeatures.Rapid Shot',
-        'rangerFeatures.Combat Style (Archery)', '?', null
-      );
-      rules.defineRule('rangerFeatures.Manyshot',
-        'rangerFeatures.Combat Style (Archery)', '?', null
-      );
-      rules.defineRule('rangerFeatures.Improved Precise Shot',
-        'rangerFeatures.Combat Style (Archery)', '?', null
-      );
-      rules.defineRule('rangerFeatures.Two-Weapon Fighting',
-        'rangerFeatures.Combat Style (Two-Weapon Combat)', '?', null
-      );
-      rules.defineRule('rangerFeatures.Improved Two-Weapon Fighting',
-        'rangerFeatures.Combat Style (Two-Weapon Combat)', '?', null
-      );
-      rules.defineRule('rangerFeatures.Greater Two-Weapon Fighting',
-        'rangerFeatures.Combat Style (Two-Weapon Combat)', '?', null
-      );
-      rules.defineRule('selectableFeatureCount.Ranger',
-        'levels.Ranger', '=', 'source >= 2 ? 1 : null'
-      );
-      rules.defineRule('skillNotes.favoredEnemyFeature',
-        'levels.Ranger', '+=', '1 + Math.floor(source / 5)'
-      );
-      rules.defineRule('skillNotes.wildEmpathyFeature',
-        'levels.Ranger', '+=', null,
-        'charismaModifier', '+', null
-      );
 
     } else if(name == 'Rogue') {
 
-      continue; // TODO
-      feats = null;
       features = [
-        '1:Sneak Attack', '1:Trapfinding',
-        '1:Weapon Proficiency (Hand Crossbow/Rapier/Shortbow/Short Sword)',
-        '2:Evasion', '3:Trap Sense', '4:Uncanny Dodge',
-        '8:Improved Uncanny Dodge'
+        // TODO
       ];
-      hitDie = 6;
+      hitDie = 8;
       notes = [
-        'combatNotes.cripplingStrikeFeature: ' +
-          '2 points strength damage from sneak attack',
-        'combatNotes.defensiveRollFeature:' +
-          'DC damage Reflex save vs. lethal blow for half damage',
-        'combatNotes.improvedUncannyDodgeFeature:' +
-          'Flanked only by rogue four levels higher',
-        'combatNotes.opportunistFeature:AOO vs. foe struck by ally',
-        'combatNotes.sneakAttackFeature:' +
-          '%Vd6 extra damage when surprising or flanking',
-        'combatNotes.uncannyDodgeFeature:Always adds dexterity modifier to AC',
-        'saveNotes.evasionFeature:Reflex save yields no damage instead of 1/2',
-        'saveNotes.improvedEvasionFeature:Failed save yields 1/2 damage',
-        'saveNotes.slipperyMindFeature:Second save vs. enchantment',
-        'saveNotes.trapSenseFeature:+%V Reflex, AC vs. traps',
-        'skillNotes.skillMasteryFeature:' +
-          'Take 10 despite distraction on %V designated skills',
-        'skillNotes.trapfindingFeature:' +
-          'Use Search/Disable Device to find/remove DC 20+ traps'
+        // TODO
       ];
       proficiencyCount =
         {'Save':2, 'Skill':4, 'Tool':1, 'Armor':1, 'Weapon':5};
@@ -2777,37 +2364,19 @@ FiveE.classRules = function(rules, classes) {
                  'Intimidation', 'Investigation', 'Perception', 'Performance',
                  'Persuasion', 'Sleight Of Hand', 'Stealth']
       };
-      selectableFeatures = [
-        'Crippling Strike', 'Defensive Roll', 'Feat Bonus', 'Improved Evasion',
-        'Opportunist', 'Skill Mastery', 'Slippery Mind'
-      ];
+      selectableFeatures = null
       spellAbility = null;
       spellsKnown = null;
       spellSlots = null;
-      rules.defineRule('combatNotes.sneakAttackFeature',
-        'levels.Rogue', '+=', 'Math.floor((source + 1) / 2)'
-      );
-      rules.defineRule
-        ('featCount.General', 'features.Feat Bonus', '+=', 'null');
-      rules.defineRule('saveNotes.trapSenseFeature',
-        'levels.Rogue', '+=', 'source >= 3 ? Math.floor(source / 3) : null'
-      );
-      rules.defineRule('selectableFeatureCount.Rogue',
-        'levels.Rogue', '+=', 'source>=10 ? Math.floor((source-7)/3) : null'
-      );
-      rules.defineRule('skillNotes.skillMasteryFeature',
-        'intelligenceModifier', '=', 'source + 3',
-        'rogueFeatures.Skill Mastery', '*', null
-      );
 
     } else if(name == 'Sorcerer') {
 
-      continue; // TODO
-      feats = null;
-      features = ['1:Familiar'];
-      hitDie = 4;
+      features = [
+        // TODO
+      ];
+      hitDie = 8;
       notes = [
-        'featureNotes.familiarFeature:Special bond/abilities'
+        // TODO
       ];
       proficiencyCount = {'Save':2, 'Skill':2, 'Weapon':5};
       proficienciesGiven = {
@@ -2821,38 +2390,31 @@ FiveE.classRules = function(rules, classes) {
       selectableFeatures = null;
       spellAbility = 'charisma';
       spellsKnown = [
-        'S0:1:4/2:5/4:6/6:7/8:8/10:9',
-        'S1:1:2/3:3/5:4/7:5',
-        'S2:4:1/5:2/7:3/9:4/11:5',
-        'S3:6:1/7:2/9:3/11:4',
-        'S4:8:1/9:2/11:3/13:4',
-        'S5:10:1/11:2/13:3/15:4',
-        'S6:12:1/13:2/15:3',
-        'S7:14:1/15:2/17:3',
-        'S8:16:1/17:2/19:3',
-        'S9:18:1/19:2/20:3'
+        'S0:1:4/4:5/10:6',
+        'S:1:2/2:3/3:4/4:5/5:6/6:7/7:8/8:9/9:10/10:11/11:12/13:13/15:14/17:15'
       ];
       spellSlots = [
-        'S1:1:3/2:4/3:5/4:6',
-        'S2:4:3/5:4/6:5/7:6',
-        'S3:6:3/7:4/8:5/9:6',
-        'S4:8:3/9:4/10:5/11:6',
-        'S5:10:3/11:4/12:5/13:6',
-        'S6:12:3/13:4/14:5/15:6',
-        'S7:14:3/15:4/16:5/17:6',
-        'S8:16:3/17:4/18:5/19:6',
-        'S9:18:3/19:4/20:6'
+        'S1:1:2/2:3/3:4',
+        'S2:3:2/4:3',
+        'S3:5:2/6:3',
+        'S4:7:1/8:2/9:3',
+        'S5:9:1/10:2/18:3',
+        'S6:11:1/19:2',
+        'S7:13:1/20:2',
+        'S8:15:1',
+        'S9:17:1'
       ];
+
       rules.defineRule('casterLevelArcane', 'levels.Sorcerer', '+=', null);
-      rules.defineRule('familiarMasterLevel', 'levels.Sorcerer', '+=', null);
 
     } else if(name == 'Warlock') {
 
-      continue; // TODO
       features = [
+        // TODO
       ];
       hitDie = 8;
       notes = [
+        // TODO
       ];
       proficiencyCount = {'Save':2, 'Skill':2, 'Armor':1, 'Weapon':1};
       proficienciesGiven = {
@@ -2864,6 +2426,20 @@ FiveE.classRules = function(rules, classes) {
         'Skill':['Arcana', 'Deception', 'History', 'Intimidation',
                  'Investigation', 'Nature', 'Religion']
       };
+      spellAbility = 'charisma';
+      spellsKnown = [
+        'K0:1:2/4:3/10:4',
+        'K:1:1/2:2/11:3/17:4'
+      ];
+      spellSlots = [
+        'K1:1:1/2:2/3:0',
+        'K2:3:2/5:0',
+        'K3:5:2/7:0',
+        'K4:7:2/9:0',
+        'K5:9:2/11:3/17:4'
+      ];
+
+      rules.defineRule('casterLevelArcane', 'levels.Warlock', '+=', null);
 
     } else if(name == 'Wizard') {
 
@@ -2894,12 +2470,11 @@ FiveE.classRules = function(rules, classes) {
       selectableFeatures = FiveE.SCHOOLS.map(function(school){return school.substring(0, school.indexOf(':')) + ' Tradition';}),
       spellAbility = 'intelligence';
       spellsKnown = [
-        'W0:1:"all"', 'W1:1:3/2:5', 'W2:3:2/4:4', 'W3:5:2/6:4',
-        'W4:7:2/8:4', 'W5:9:2/10:4', 'W6:11:2/12:4', 'W7:13:2/14:4',
-        'W8:15:2/16:4', 'W9:17:2/18:4/19:6/20:8'
+        'W0:1:3/4:4/10:5',
+        'W:1:6/2:8/3:10/4:12/5:14/6:16/7:18/8:20/9:22/10:24/11:26/12:28/13:30/14:32/15:34/16:36/17:38/18:40/19:42/20:44'
       ];
       spellSlots = [
-        'W1:1:2/2:3/3:5',
+        'W1:1:2/2:3/3:4',
         'W2:3:2/4:3',
         'W3:5:2/6:3',
         'W4:7:1/8:2/9:3',
@@ -3578,9 +3153,11 @@ FiveE.equipmentRules = function(rules, armors, goodies, shields, weapons) {
 FiveE.featRules = function(rules, feats) {
 
   for(var i = 0; i < feats.length; i++) {
+
     var feat = feats[i];
     var matchInfo;
     var notes = null;
+
     if(feat == 'Alert') {
       notes = [
         'combatNotes.alertFeature:+5 Initiative, foes no surprise or hidden Adv'
@@ -3680,804 +3257,6 @@ FiveE.featRules = function(rules, feats) {
     if(notes != null)
       rules.defineNote(notes);
 
-/*
-    if(feat == 'Acrobatic') {
-      notes = [
-        'sanityNotes.acrobaticFeatSkills:Implies Jump||Tumble',
-        'skillNotes.acrobaticFeature:+2 Jump/Tumble'
-      ];
-    } else if(feat == 'Agile') {
-      notes = [
-        'sanityNotes.agileFeatSkills:Implies Balance||Escape Artist',
-        'skillNotes.agileFeature:+2 Balance/Escape Artist'
-      ];
-    } else if(feat == 'Alertness') {
-      notes = [
-        'sanityNotes.alertnessFeatSkills:Implies Listen||Spot',
-        'skillNotes.alertnessFeature:+2 Listen/Spot'
-      ];
-    } else if(feat == 'Animal Affinity') {
-      notes = [
-        'sanityNotes.animalAffinityFeatSkills:Implies Handle Animal||Ride',
-        'skillNotes.animalAffinityFeature:+2 Handle Animal/Ride'
-      ];
-    } else if(feat == 'Armor Proficiency (Heavy)') {
-      notes = [
-        'sanityNotes.armorProficiency(Heavy)FeatProficiency:' +
-          'Implies Class Armor Proficiency Level < ' + FiveE.PROFICIENCY_HEAVY,
-        'validationNotes.armorProficiency(Heavy)FeatProficiency:' +
-          'Requires Armor Proficiency (Medium) || ' +
-          'Class Armor Proficiency Level >= ' + FiveE.PROFICIENCY_MEDIUM
-      ];
-      rules.defineRule('armorProficiencyLevel',
-        'features.Armor Proficiency (Heavy)', '^', FiveE.PROFICIENCY_HEAVY
-      );
-      rules.defineRule('validationNotes.armorProficiency(Heavy)FeatProficiency',
-        'feats.Armor Proficiency (Heavy)', '=', '-1',
-        'features.Armor Proficiency (Medium)', '+', '1',
-        'classArmorProficiencyLevel', '+',
-        'source == ' + FiveE.PROFICIENCY_MEDIUM + ' ? 1 : null'
-      );
-    } else if(feat == 'Armor Proficiency (Light)') {
-      notes = [
-        'sanityNotes.armorProficiency(Light)FeatProficiency:' +
-          'Implies Class Armor Proficiency Level < ' + FiveE.PROFICIENCY_LIGHT
-      ];
-      rules.defineRule('armorProficiencyLevel',
-        'features.Armor Proficiency (Light)', '^', FiveE.PROFICIENCY_LIGHT
-      );
-    } else if(feat == 'Armor Proficiency (Medium)') {
-      notes = [
-        'sanityNotes.armorProficiency(Medium)FeatProficiency:' +
-          'Implies Class Armor Proficiency Level < '+FiveE.PROFICIENCY_MEDIUM,
-        'validationNotes.armorProficiency(Medium)FeatProficiency:' +
-          'Requires Armor Proficiency (Light) || ' +
-          'Class Armor Proficiency Level >= ' + FiveE.PROFICIENCY_LIGHT
-      ];
-      rules.defineRule('armorProficiencyLevel',
-        'features.Armor Proficiency (Medium)', '^', FiveE.PROFICIENCY_MEDIUM
-      );
-      rules.defineRule(
-        'validationNotes.armorProficiency(Medium)FeatProficiency',
-        'feats.Armor Proficiency (Medium)', '=', '-1',
-        'features.Armor Proficiency (Light)', '+', '1',
-        'classArmorProficiencyLevel', '+',
-        'source == ' + FiveE.PROFICIENCY_LIGHT + ' ? 1 : null'
-      );
-    } else if(feat == 'Athletic') {
-      notes = [
-        'sanityNotes.athleticFeatSkills:Implies Climb||Swim',
-        'skillNotes.athleticFeature:+2 Climb/Swim'
-      ];
-    } else if(feat == 'Augment Summoning') {
-      notes = [
-        'magicNotes.augmentSummoningFeature:' +
-          'Summoned creatures +4 strength/constitution',
-        'validationNotes.augmentSummoningFeatFeatures:' +
-          'Requires Spell Focus (Conjuration)'
-      ];
-    } else if(feat == 'Blind-Fight') {
-      notes = [
-        'combatNotes.blind-FightFeature:' +
-          'Reroll concealed miss, no bonus to invisible foe, half penalty ' +
-          'for impaired vision'
-      ];
-    } else if(feat == 'Brew Potion') {
-      notes = [
-        'magicNotes.brewPotionFeature:Create potion for up to 3rd level spell',
-        'validationNotes.brewPotionFeatCasterLevel:Requires Caster Level >= 3'
-      ];
-    } else if(feat == 'Cleave') {
-      notes = [
-        'combatNotes.cleaveFeature:Extra attack when foe drops',
-        'validationNotes.cleaveFeatAbility:Requires Strength >= 13',
-        'validationNotes.cleaveFeatFeatures:Requires Power Attack'
-      ];
-    } else if(feat == 'Combat Casting') {
-      notes = [
-        'sanityNotes.combatCastingFeatCasterLevel:Implies Caster Level >= 1',
-        'skillNotes.combatCastingFeature:' +
-          '+4 Concentration when casting on defensive/grappling'
-      ];
-    } else if(feat == 'Combat Expertise') {
-      notes = [
-        'combatNotes.combatExpertiseFeature:Up to -5 attack, +5 AC',
-        'validationNotes.combatExpertiseFeatAbility:Requires Intelligence >= 13'
-      ];
-    } else if(feat == 'Combat Reflexes') {
-      notes = [
-        'combatNotes.combatReflexesFeature:Flatfooted AOO, up to %V AOO/round',
-        'sanityNotes.combatReflexesFeatAbility:Implies Dexterity >= 12'
-      ];
-      rules.defineRule('combatNotes.combatReflexesFeature',
-        'dexterityModifier', '=', 'source + 1'
-      );
-    } else if(feat == 'Craft Magic Arms And Armor') {
-      notes = [
-        'magicNotes.craftMagicArmsAndArmorFeature:' +
-          'Create/mend magic weapon/armor/shield',
-        'validationNotes.craftMagicArmsAndArmorFeatCasterLevel:' +
-          'Requires Caster Level >= 5'
-      ];
-    } else if(feat == 'Craft Rod') {
-      notes = [
-        'magicNotes.craftRodFeature:Create magic rod',
-        'validationNotes.craftRodFeatCasterLevel:Requires Caster Level >= 9'
-      ];
-    } else if(feat == 'Craft Staff') {
-      notes = [
-        'magicNotes.craftStaffFeature:Create magic staff',
-        'validationNotes.craftStaffFeatCasterLevel:Requires Caster Level >= 12'
-      ];
-    } else if(feat == 'Craft Wand') {
-      notes = [
-        'magicNotes.craftWandFeature:Create wand for up to 4th level spell',
-        'validationNotes.craftWandFeatCasterLevel:Requires Caster Level >= 5'
-      ];
-    } else if(feat == 'Craft Wondrous Item') {
-      notes = [
-        'magicNotes.craftWondrousItemFeature:' +
-          'Create/mend miscellaneous magic item',
-        'validationNotes.craftWondrousItemFeatCasterLevel:' +
-          'Requires Caster Level >= 3'
-      ];
-    } else if(feat == 'Deceitful') {
-      notes = [
-        'sanityNotes.deceitfulFeatSkills:Implies Disguise||Forgery',
-        'skillNotes.deceitfulFeature:+2 Disguise/Forgery'
-      ];
-    } else if(feat == 'Deflect Arrows') {
-      notes = [
-        'combatNotes.deflectArrowsFeature:Deflect ranged 1/round',
-        'validationNotes.deflectArrowsFeatAbility:Requires Dexterity >= 13',
-        'validationNotes.deflectArrowsFeatFeatures:' +
-          'Requires Improved Unarmed Strike'
-      ];
-    } else if(feat == 'Deft Hands') {
-      notes = [
-        'sanityNotes.deftHandsFeatSkills:Implies Sleight Of Hand||Use Rope',
-        'skillNotes.deftHandsFeature:+2 Sleight Of Hand/Use Rope'
-      ];
-    } else if(feat == 'Diehard') {
-      notes = [
-        'combatNotes.diehardFeature:Remain conscious/stable w/HP <= 0',
-        'validationNotes.diehardFeatFeatures:Requires Endurance'
-      ];
-    } else if(feat == 'Diligent') {
-      notes = [
-        'sanityNotes.diligentFeatSkills:Implies Appraise||Decipher Script',
-        'skillNotes.diligentFeature:+2 Appraise/Decipher Script'
-      ];
-    } else if(feat == 'Dodge') {
-      notes = [
-        'combatNotes.dodgeFeature:+1 AC vs. designated foe',
-        'validationNotes.dodgeFeatAbility:Requires Dexterity >= 13'
-      ];
-      rules.defineRule('armorClass', 'combatNotes.dodgeFeature', '+', '1');
-    } else if(feat == 'Empower Spell') {
-      notes = [
-        'magicNotes.empowerSpellFeature:' +
-          'x1.5 designated spell variable effects uses +2 spell slot',
-        'sanityNotes.empowerSpellFeatCasterLevel:Implies Caster Level >= 1'
-      ];
-    } else if(feat == 'Endurance') {
-      notes = ['saveNotes.enduranceFeature:+4 extended physical action'];
-    } else if(feat == 'Enlarge Spell') {
-      notes = [
-        'magicNotes.enlargeSpellFeature:' +
-          'x2 designated spell range uses +1 spell slot',
-        'sanityNotes.enlargeSpellFeatCasterLevel:Implies Caster Level >= 1'
-      ];
-    } else if(feat == 'Eschew Materials') {
-      notes = [
-        'magicNotes.eschewMaterialsFeature:Cast spells w/out materials',
-        'sanityNotes.eschewMaterialsFeatCasterLevel:Implies Caster Level >= 1'
-      ];
-    } else if(feat == 'Extend Spell') {
-      notes = [
-        'magicNotes.extendSpellFeature:' +
-          'x2 designated spell duration uses +1 spell slot',
-        'sanityNotes.extendSpellFeatCasterLevel:Implies Caster Level >= 1'
-      ];
-    } else if(feat == 'Extra Turning') {
-      notes = [
-        'combatNotes.extraTurningFeature:+4/day',
-        'validationNotes.extraTurningFeatTurningLevel:' +
-          'Requires Turning Level >= 1'
-      ];
-      rules.defineRule(/^turn.*\.frequency$/,
-        'combatNotes.extraTurningFeature', '+', '4 * source'
-      );
-    } else if(feat == 'Far Shot') {
-      notes = [
-        'combatNotes.farShotFeature:x1.5 projectile range, x2 thrown',
-        'validationNotes.farShotFeatFeatures:Requires Point Blank Shot'
-      ];
-    } else if(feat == 'Forge Ring') {
-      notes = [
-        'magicNotes.forgeRingFeature:Create/mend magic ring',
-        'validationNotes.forgeRingFeatCasterLevel:Requires Caster Level >= 12'
-      ];
-    } else if(feat == 'Great Cleave') {
-      notes = [
-        'combatNotes.greatCleaveFeature:Cleave w/out limit',
-        'validationNotes.greatCleaveFeatAbility:Requires Strength >= 13',
-        'validationNotes.greatCleaveFeatBaseAttack:Requires Base Attack >= 4',
-        'validationNotes.greatCleaveFeatFeatures:Requires Cleave/Power Attack'
-      ];
-    } else if(feat == 'Great Fortitude') {
-      notes = ['saveNotes.greatFortitudeFeature:+2 Fortitude'];
-      rules.defineRule
-        ('save.Fortitude', 'saveNotes.greatFortitudeFeature', '+', '2');
-    } else if((matchInfo = feat.match(/^Greater Spell Focus \((.*)\)$/))!=null){
-      var school = matchInfo[1];
-      var schoolNoSpace = school.replace(/ /g, '');
-      notes = [
-        'magicNotes.spellFocus(' + schoolNoSpace + ')Feat:' +
-          '+1 DC on ' + school + ' spells',
-        'sanityNotes.greaterSpellFocus(' + schoolNoSpace + ')FeatCasterLevel:' +
-          'Implies Caster Level >= 1',
-        'validationNotes.greaterSpellFocus(' + schoolNoSpace + ')FeatFeatures:'+
-          'Requires Spell Focus (' + school + ')'
-      ];
-    } else if(feat == 'Greater Spell Penetration') {
-      notes = [
-        'magicNotes.greaterSpellPenetrationFeature:' +
-          '+2 caster level vs. resistance checks',
-        'sanityNotes.greaterSpellPenetrationFeatCasterLevel:' +
-          'Implies Caster Level >= 1',
-        'validationNotes.greaterSpellPenetrationFeatFeatures:' +
-          'Requires Spell Penetration'
-      ];
-    } else if(feat == 'Greater Two-Weapon Fighting') {
-      notes = [
-        'combatNotes.greaterTwo-WeaponFightingFeature:' +
-          'Third off-hand -10 attack',
-        'validationNotes.greaterTwo-WeaponFightingFeatAbility:' +
-          'Requires Dexterity >= 19',
-        'validationNotes.greaterTwo-WeaponFightingFeatBaseAttack:' +
-          'Requires Base Attack >= 11',
-        'validationNotes.greaterTwo-WeaponFightingFeatFeatures:' +
-          'Requires Two-Weapon Fighting/Improved Two-Weapon Fighting'
-      ];
-    } else if((matchInfo =
-               feat.match(/^Greater Weapon Focus \((.*)\)$/)) != null) {
-      var weapon = matchInfo[1];
-      var weaponNoSpace = weapon.replace(/ /g, '');
-      var note = 'combatNotes.greaterWeaponFocus(' + weaponNoSpace + ')Feature';
-      notes = [
-        note + ':+1 attack',
-        'sanityNotes.greaterWeaponFocus(' + weaponNoSpace + ')FeatWeapons:' +
-          'Implies ' + weapon,
-        'validationNotes.greaterWeaponFocus('+weaponNoSpace+')FeatFeatures:' +
-          'Requires Weapon Focus (' + weapon + ')',
-        'validationNotes.greaterWeaponFocus(' + weaponNoSpace + ')FeatLevels:' +
-          'Requires Fighter >= 8'
-      ];
-      rules.defineRule('weaponAttackAdjustment.' + weapon, note, '+=', '1');
-    } else if((matchInfo =
-               feat.match(/^Greater Weapon Specialization \((.*)\)$/))!=null) {
-      var weapon = matchInfo[1];
-      var weaponNoSpace = weapon.replace(/ /g, '');
-      var lead = 'greaterWeaponSpecialization(' + weaponNoSpace + ')';
-      var note = 'combatNotes.' + lead + 'Feature';
-      notes = [
-        note + ':+2 damage',
-        'sanityNotes.' + lead + 'FeatWeapons:Implies ' + weapon,
-        'validationNotes.' + lead + 'FeatFeatures:' +
-          'Requires Weapon Focus (' + weapon + ')/' +
-          'Greater Weapon Focus (' + weapon + ')/' +
-          'Weapon Specialization (' + weapon + ')',
-        'validationNotes.' + lead + 'FeatLevels:Requires Fighter >= 12'
-      ];
-      rules.defineRule('weaponDamageAdjustment.' + weapon, note, '+=', '2');
-    } else if(feat == 'Heighten Spell') {
-      notes = [
-        'magicNotes.heightenSpellFeature:Increase designated spell level',
-        'sanityNotes.heightenSpellFeatCasterLevel:Implies Caster Level >= 1'
-      ];
-    } else if(feat == 'Improved Bull Rush') {
-      notes = [
-        'combatNotes.improvedBullRushFeature:' +
-          'No AOO on Bull Rush, +4 strength check',
-        'validationNotes.improvedBullRushFeatAbility:Requires Strength >= 13',
-        'validationNotes.improvedBullRushFeatFeatures:Requires Power Attack'
-      ];
-    } else if(feat == 'Improved Counterspell') {
-      notes = [
-        'magicNotes.improvedCounterspellFeature:' +
-          'Counter w/higher-level spell from same school',
-        'sanityNotes.improvedCounterspellFeatCasterLevel:' +
-          'Implies Caster Level >= 1'
-      ];
-    } else if((matchInfo = feat.match(/^Improved Critical \((.*)\)$/)) != null){
-      var weapon = matchInfo[1];
-      var weaponNoSpace = weapon.replace(/ /g, '');
-      var note = 'combatNotes.improvedCritical(' + weaponNoSpace + ')Feature';
-      notes = [
-        note + ':x2 critical threat range',
-        'sanityNotes.improvedCritical('+weaponNoSpace+')FeatWeapons:' +
-          'Implies ' + weapon,
-        'validationNotes.improvedCritical('+weaponNoSpace+')FeatBaseAttack:' +
-          'Requires Base Attack >= 8'
-      ];
-      var weaponPat = new RegExp('^' + weapon + ':');
-      var bump = 1;
-      for(var j = 0; j < FiveE.WEAPONS.length; j++) {
-        var spec = FiveE.WEAPONS[j];
-        var criticalMatchInfo;
-        if(weapon == null || !spec.match(weaponPat))
-          continue;
-        if((criticalMatchInfo = spec.match(/@(\d+)/)) != null)
-          bump = 21 - criticalMatchInfo[1];
-        break;
-      }
-      rules.defineRule('weaponCriticalAdjustment.' + weapon, note, '+=', bump);
-    } else if(feat == 'Improved Disarm') {
-      notes = [
-        'combatNotes.improvedDisarmFeature:No AOO on Disarm, +4 attack',
-        'validationNotes.improvedDisarmFeatAbility:Requires Intelligence >= 13',
-        'validationNotes.improvedDisarmFeatFeatures:Requires Combat Expertise'
-      ];
-    } else if(feat == 'Improved Familiar') {
-      notes = [
-        'featureNotes.improvedFamiliarFeature:Expanded Familiar choices',
-        'validationNotes.improvedFamiliarFeatFeatures:Requires Familiar'
-      ];
-    } else if(feat == 'Improved Feint') {
-      notes = [
-        'combatNotes.improvedFeintFeature:Bluff check to Feint as move action',
-        'validationNotes.improvedFeintFeatAbility:Requires Intelligence >= 13',
-        'validationNotes.improvedFeintFeatFeatures:Requires Combat Expertise'
-      ];
-    } else if(feat == 'Improved Grapple') {
-      notes = [
-        'combatNotes.improvedGrappleFeature:No AOO on Grapple, +4 Grapple',
-        'validationNotes.improvedGrappleFeatAbility:Requires Dexterity >= 13',
-        'validationNotes.improvedGrappleFeatFeatures:' +
-          'Requires Improved Unarmed Strike'
-      ];
-    } else if(feat == 'Improved Initiative') {
-      notes = ['combatNotes.improvedInitiativeFeature:+4 initiative'];
-      rules.defineRule
-        ('initiative', 'combatNotes.improvedInitiativeFeature', '+', '4');
-    } else if(feat == 'Improved Overrun') {
-      notes = [
-        'combatNotes.improvedOverrunFeature:' +
-          'Foe cannot avoid, +4 strength check',
-        'validationNotes.improvedOverrunFeatAbility:Requires Strength >= 13',
-        'validationNotes.improvedOverrunFeatFeatures:Requires Power Attack'
-      ];
-    } else if(feat == 'Improved Precise Shot') {
-      notes = [
-        'combatNotes.improvedPreciseShotFeature:' +
-          'No foe AC bonus for partial concealment, attack grappling target',
-        'validationNotes.improvedPreciseShotFeatAbility:' +
-          'Requires Dexterity >= 19',
-        'validationNotes.improvedPreciseShotFeatBaseAttack:' +
-          'Requires Base Attack >= 11',
-        'validationNotes.improvedPreciseShotFeatFeatures:' +
-          'Requires Point Blank Shot/Precise Shot'
-      ];
-    } else if(feat == 'Improved Shield Bash') {
-      notes = [
-        'combatNotes.improvedShieldBashFeature:No AC penalty on Shield Bash',
-        'sanityNotes.improvedShieldBashShield:Implies Shield != None',
-        'validationNotes.improvedShieldBashFeatFeatures:' +
-          'Requires Shield Proficiency (Heavy)'
-      ];
-    } else if(feat == 'Improved Sunder') {
-      notes = [
-        'combatNotes.improvedSunderFeature:No AOO on Sunder, +4 attack',
-        'validationNotes.improvedSunderFeatAbility:Requires Strength >= 13',
-        'validationNotes.improvedSunderFeatFeatures:Requires Power Attack'
-      ];
-    } else if(feat == 'Improved Trip') {
-      notes = [
-        'combatNotes.improvedTripFeature:' +
-          'No AOO on Trip, +4 strength check, attack after trip',
-        'validationNotes.improvedTripFeatAbility:Requires Intelligence >= 13',
-        'validationNotes.improvedTripFeatFeats:Requires Combat Expertise'
-      ];
-    } else if(feat == 'Improved Turning') {
-      notes = [
-        'combatNotes.improvedTurningFeature:+1 turning level',
-        'validationNotes.improvedTurningFeatTurningLevel:' +
-          'Requires Turning Level >= 1'
-      ];
-      rules.defineRule
-        (/^turn.*\.level$/, 'combatNotes.improvedTurningFeature', '+', '1');
-    } else if(feat == 'Improved Two-Weapon Fighting') {
-      notes = [
-        'combatNotes.improvedTwo-WeaponFightingFeature:' +
-          'Second off-hand -5 attack',
-        'validationNotes.improvedTwo-WeaponFightingFeatAbility:' +
-          'Requires Dexterity >= 17',
-        'validationNotes.improvedTwo-WeaponFightingFeatBaseAttack:' +
-          'Requires Base Attack >= 6',
-        'validationNotes.improvedTwo-WeaponFightingFeatFeatures:' +
-          'Requires Two-Weapon Fighting'
-      ];
-    } else if(feat == 'Improved Unarmed Strike') {
-      notes = [
-        'combatNotes.improvedUnarmedStrikeFeature:' +
-          'No AOO on unarmed attack, may deal lethal damage'
-      ];
-    } else if(feat == 'Investigator') {
-      notes = [
-        'sanityNotes.investigatorFeatSkills:Implies Gather Information||Search',
-        'skillNotes.investigatorFeature:+2 Gather Information/Search'
-      ];
-    } else if(feat == 'Iron Will') {
-      notes = ['saveNotes.ironWillFeature:+2 Will'];
-      rules.defineRule('save.Will', 'saveNotes.ironWillFeature', '+', '2');
-    } else if(feat == 'Leadership') {
-      notes = [
-        'featureNotes.leadershipFeature:Attract followers',
-        'validationNotes.leadershipFeatLevel:Requires Level >= 6'
-      ];
-    } else if(feat == 'Lightning Reflexes') {
-      notes = ['saveNotes.lightningReflexesFeature:+2 Reflex'];
-      rules.defineRule
-        ('save.Reflex', 'saveNotes.lightningReflexesFeature', '+', '2');
-    } else if(feat == 'Magical Aptitude') {
-      notes = [
-        'sanityNotes.magicalAptitudeFeatSkills:' +
-          'Implies Spellcraft||Use Magic Device',
-        'skillNotes.magicalAptitudeFeature:+2 Spellcraft/Use Magic Device'
-      ];
-    } else if(feat == 'Manyshot') {
-      notes = [
-        'combatNotes.manyshotFeature:' +
-          'Fire up to %V arrows simultaneously at -2 attack',
-        'validationNotes.manyshotFeatAbility:Requires Dexterity >= 17',
-        'validationNotes.manyshotFeatBaseAttack:Requires Base Attack >= 6',
-        'validationNotes.manyshotFeatFeatures:' +
-          'Requires Point Blank Shot/Rapid Shot'
-      ];
-      rules.defineRule('combatNotes.manyshotFeature',
-        'baseAttack', '=', 'Math.floor((source + 9) / 5)'
-      );
-    } else if(feat == 'Maximize Spell') {
-      notes = [
-        'magicNotes.maximizeSpellFeature:' +
-          'Maximize all designated spell variable effects uses +3 spell slot',
-        'sanityNotes.maximizeSpellFeatCasterLevel:Implies Caster Level >= 1'
-      ];
-    } else if(feat == 'Mobility') {
-      notes = [
-        'combatNotes.mobilityFeature:+4 AC vs. movement AOO',
-        'validationNotes.mobilityFeatAbility:Requires Dexterity >= 13',
-        'validationNotes.mobilityFeatFeatures:Requires Dodge'
-      ];
-    } else if(feat == 'Mounted Archery') {
-      notes = [
-        'combatNotes.mountedArcheryFeature:x.5 mounted ranged penalty',
-        'validationNotes.mountedArcheryFeatFeatures:Requires Mounted Combat',
-        'validationNotes.mountedArcheryFeatSkills:Requires Ride'
-      ];
-    } else if(feat == 'Mounted Combat') {
-      notes = [
-        'combatNotes.mountedCombatFeature:' +
-          'Ride skill save vs. mount damage 1/round',
-        'validationNotes.mountedCombatFeatSkills:Requires Ride'
-      ];
-    } else if(feat == 'Natural Spell') {
-      notes = [
-        'magicNotes.naturalSpellFeature:Cast spell during <i>Wild Shape</i>',
-        'validationNotes.naturalSpellFeatAbility:Requires Wisdom >= 13',
-        'validationNotes.naturalSpellFeatFeatures:Requires Wild Shape'
-      ];
-    } else if(feat == 'Negotiator') {
-      notes = [
-        'sanityNotes.negotiatorFeatSkills:Implies Diplomacy||Sense Motive',
-        'skillNotes.negotiatorFeature:+2 Diplomacy/Sense Motive'
-      ];
-    } else if(feat == 'Nimble Fingers') {
-      notes = [
-        'sanityNotes.nimbleFingersFeatSkills:Implies Disable Device||Open Lock',
-        'skillNotes.nimbleFingersFeature:+2 Disable Device/Open Lock'
-      ];
-    } else if(feat == 'Persuasive') {
-      notes = [
-        'sanityNotes.persuasiveFeatSkills:Implies Bluff||Intimidate',
-        'skillNotes.persuasiveFeature:+2 Bluff/Intimidate'
-      ];
-    } else if(feat == 'Point Blank Shot') {
-      notes = [
-        'combatNotes.pointBlankShotFeature:+1 ranged attack/damage w/in 30 ft'
-      ];
-    } else if(feat == 'Power Attack') {
-      notes = [
-        'combatNotes.powerAttackFeature:Attack base -attack/+damage',
-        'validationNotes.powerAttackFeatAbility:Requires Strength >= 13'
-      ];
-    } else if(feat == 'Precise Shot') {
-      notes = [
-        'combatNotes.preciseShotFeature:No penalty on shot into melee',
-        'validationNotes.preciseShotFeatFeatures:Requires Point Blank Shot'
-      ];
-    } else if(feat == 'Quick Draw') {
-      notes = [
-        'combatNotes.quickDrawFeature:Draw weapon as free action',
-        'validationNotes.quickDrawFeatBaseAttack:Requires Base Attack >= 1'
-      ];
-    } else if(feat == 'Quicken Spell') {
-      notes = [
-        'magicNotes.quickenSpellFeature:' +
-          'Free action casting 1/round uses +4 spell slot',
-        'sanityNotes.quickenSpellFeatCasterLevel:Implies Caster Level >= 1'
-      ];
-    } else if((matchInfo = feat.match(/^Rapid Reload \((.*)\)$/)) != null) {
-      var weapon = matchInfo[1];
-      var weaponNoSpace = weapon.replace(/ /g, '');
-      notes = [
-        'combatNotes.rapidReload(' + weaponNoSpace + ')Feature:' +
-          'Reload ' + weapon + ' Crossbow as ' +
-          (weapon == 'Heavy' ? 'move' : 'free') + ' action',
-        'sanityNotes.rapidReload(' + weaponNoSpace + ')FeatWeapons:' +
-          'Implies ' + weapon + ' Crossbow'
-      ];
-    } else if(feat == 'Rapid Shot') {
-      notes = [
-        'combatNotes.rapidShotFeature:Normal and extra ranged -2 attacks',
-        'validationNotes.rapidShotFeatAbility:Requires Dexterity >= 13',
-        'validationNotes.rapidShotFeatFeatures:Requires Point Blank Shot'
-      ];
-    } else if(feat == 'Ride-By Attack') {
-      notes = [
-        'combatNotes.ride-ByAttackFeature:Move before and after mounted attack',
-        'validationNotes.ride-ByAttackFeatFeatures:Requires Mounted Combat',
-        'validationNotes.ride-ByAttackFeatSkills:Requires Ride'
-      ];
-    } else if(feat == 'Run') {
-      notes = [
-        'abilityNotes.runFeature:+1 run speed multiplier',
-        'skillNotes.runFeature:+4 running Jump'
-      ];
-      rules.defineRule
-        ('runSpeedMultiplier', 'abilityNotes.runFeature', '+', '1');
-    } else if(feat == 'Scribe Scroll') {
-      notes = [
-        'magicNotes.scribeScrollFeature:Create scroll of any known spell',
-        'validationNotes.scribeScrollFeatCasterLevel:Requires Caster Level >= 1'
-      ];
-    } else if(feat == 'Self Sufficient') {
-      notes = [
-        'sanityNotes.selfSufficientFeatSkills:Implies Heal||Survival',
-        'skillNotes.selfSufficientFeature:+2 Heal/Survival'
-      ];
-    } else if(feat == 'Shield Proficiency (Heavy)') {
-      notes = [
-        'sanityNotes.shieldProficiency(Heavy)FeatProficiency:' +
-          'Implies Class Shield Proficiency Level < ' + FiveE.PROFICIENCY_HEAVY
-      ];
-      rules.defineRule('shieldProficiencyLevel',
-        'features.Shield Proficiency (Heavy)', '^', FiveE.PROFICIENCY_HEAVY
-      );
-    } else if(feat == 'Shot On The Run') {
-      notes = [
-        'combatNotes.shotOnTheRunFeature:Move before and after ranged attack',
-        'validationNotes.shotOnTheRunFeatAbility:Requires Dexterity >= 13',
-        'validationNotes.shotOnTheRunFeatBaseAttack:Requires Base Attack >= 4',
-        'validationNotes.shotOnTheRunFeatFeatures:' +
-          'Requires Dodge/Mobility/Point Blank Shot'
-      ];
-    } else if(feat == 'Silent Spell') {
-      notes = [
-        'magicNotes.silentSpellFeature:' +
-          'Cast spell w/out speech uses +1 spell slot',
-        'sanityNotes.silentSpellFeatCasterLevel:Implies Caster Level >= 1'
-      ];
-    } else if((matchInfo = feat.match(/^Skill Focus \((.*)\)$/)) != null) {
-      var skill = matchInfo[1];
-      var skillNoSpace = skill.replace(/ /g, '');
-      var note = 'skillNotes.skillFocus(' + skillNoSpace + ')Feature';
-      notes = [
-        note + ':+3 checks',
-        'sanityNotes.skillFocus(' + skillNoSpace + ')FeatSkills:' +
-          'Implies ' + skill
-      ];
-      rules.defineRule('skillModifier.' + skill, note, '+', '3');
-    } else if(feat == 'Snatch Arrows') {
-      notes = [
-        'combatNotes.snatchArrowsFeature:Catch ranged weapons',
-        'validationNotes.snatchArrowsFeatAbility:Requires Dexterity >= 15',
-        'validationNotes.snatchArrowsFeatFeatures:' +
-          'Requires Deflect Arrows/Improved Unarmed Strike'
-      ];
-    } else if((matchInfo = feat.match(/^Spell Focus \((.*)\)$/)) != null) {
-      var school = matchInfo[1];
-      var schoolNoSpace = school.replace(/ /g, '');
-      notes = [
-        'magicNotes.spellFocus(' + schoolNoSpace + ')Feature:' +
-          '+1 DC on ' + school + ' spells',
-        'sanityNotes.spellFocus(' + schoolNoSpace + ')FeatCasterLevel:' +
-          'Implies Caster Level >= 1'
-      ];
-    } else if(feat == 'Spell Mastery') {
-      notes = [
-        'magicNotes.spellMasteryFeature:Prepare %V spells w/out spellbook',
-        'validationNotes.spellMasteryFeatLevels:Requires Wizard >= 1'
-      ];
-      rules.defineRule
-        ('magicNotes.spellMasteryFeature', 'intelligenceModifier', '=', null);
-    } else if(feat == 'Spell Penetration') {
-      notes = [
-        'magicNotes.spellPenetrationFeature:' +
-          '+2 checks to overcome spell resistance',
-        'sanityNotes.spellPenetrationFeatCasterLevel:Implies Caster Level >= 1'
-      ];
-    } else if(feat == 'Spirited Charge') {
-      notes = [
-        'combatNotes.spiritedChargeFeature:' +
-          'x2 damage (x3 lance) from mounted charge',
-        'validationNotes.spiritedChargeFeatFeatures:' +
-          'Requires Mounted Combat/Ride-By Attack',
-        'validationNotes.spiritedChargeFeatSkills:Requires Ride'
-      ];
-    } else if(feat == 'Spring Attack') {
-      notes = [
-        'combatNotes.springAttackFeature:Move before and after melee attack',
-        'validationNotes.springAttackFeatAbility:Requires Dexterity >= 13',
-        'validationNotes.springAttackFeatBaseAttack:Requires Base Attack >= 4',
-        'validationNotes.springAttackFeatFeatures:Requires Dodge/Mobility'
-      ];
-    } else if(feat == 'Stealthy') {
-      notes = [
-        'sanityNotes.stealthyFeatSkills:Implies Hide||Move Silently',
-        'skillNotes.stealthyFeature:+2 Hide/Move Silently'
-      ];
-    } else if(feat == 'Still Spell') {
-      notes = [
-        'magicNotes.stillSpellFeature:' +
-          'Cast spell w/out movement uses +1 spell slot',
-        'sanityNotes.stillSpellFeatCasterLevel:Implies Caster Level >= 1'
-      ];
-    } else if(feat == 'Stunning Fist') {
-      notes = [
-        'combatNotes.stunningFistFeature:' +
-          'Foe %V Fortitude save or stunned %1/day',
-        'validationNotes.stunningFistFeatAbility:' +
-          'Requires Dexterity >= 13/Wisdom >= 13',
-        'validationNotes.stunningFistFeatBaseAttack:Requires Base Attack >= 8',
-        'validationNotes.stunningFistFeatFeatures:' +
-          'Requires Improved Unarmed Strike'
-      ];
-      rules.defineRule('combatNotes.stunningFistFeature',
-        'level', '=', '10 + Math.floor(source / 2)',
-        'wisdomModifier', '+', null
-      );
-      rules.defineRule('combatNotes.stunningFistFeature.1',
-        'level', '+=', 'Math.floor(source / 4)'
-      );
-    } else if(feat == 'Toughness') {
-      notes = ['combatNotes.toughnessFeature:+3 HP'];
-      rules.defineRule('hitPoints', 'combatNotes.toughnessFeature', '+', '3');
-    } else if(feat == 'Track') {
-      notes = [
-        'sanityNotes.trackFeatSkills:Implies Survival',
-        'skillNotes.trackFeature:Survival to follow creatures\' trail'
-      ];
-    } else if(feat == 'Trample') {
-      notes = [
-        'combatNotes.trampleFeature:' +
-          'Mounted overrun unavoidable, bonus hoof attack',
-        'validationNotes.trampleFeatFeatures:Requires Mounted Combat',
-        'validationNotes.trampleFeatSkills:Requires Ride'
-      ];
-    } else if(feat == 'Two-Weapon Defense') {
-      notes = [
-        'combatNotes.two-WeaponDefenseFeature:' +
-          '+1 AC w/two weapons, +2 when fighting defensively',
-        'validationNotes.two-WeaponDefenseFeatAbility:Requires Dexterity >= 15',
-        'validationNotes.two-WeaponDefenseFeatFeatures:' +
-          'Requires Two-Weapon Fighting'
-      ];
-    } else if(feat == 'Two-Weapon Fighting') {
-      notes = [
-        'combatNotes.two-WeaponFightingFeature:' +
-          'Reduce on-hand penalty by 2, off-hand by 6',
-        'validationNotes.two-WeaponFightingFeatAbility:Requires Dexterity >= 15'
-      ];
-    } else if(feat == 'Weapon Finesse') {
-      notes = [
-        'combatNotes.weaponFinesseFeature:' +
-          '+%V light melee attack (dex instead of str)',
-        'sanityNotes.weaponFinesseFeatAbility:' +
-          'Implies Dexterity Modifier exceed Strength Modifier',
-        'validationNotes.weaponFinesseFeatBaseAttack:Requires Base Attack >= 1'
-      ];
-      rules.defineRule('combatNotes.weaponFinesseFeature',
-        'dexterityModifier', '=', null,
-        'strengthModifier', '+', '-source'
-      );
-      rules.defineRule
-        ('meleeAttack', 'combatNotes.weaponFinesseFeature', '+', null);
-      rules.defineRule('sanityNotes.weaponFinesseFeatAbility',
-        'feats.Weapon Finesse', '=', '-1',
-        'dexterityModifier', '+', 'source',
-        'strengthModifier', '+', '-source',
-        '', 'v', '0'
-      );
-    } else if((matchInfo = feat.match(/^Weapon Focus \((.*)\)$/)) != null) {
-      var weapon = matchInfo[1];
-      var weaponNoSpace = weapon.replace(/ /g, '');
-      var note = 'combatNotes.weaponFocus(' + weaponNoSpace + ')Feature';
-      notes = [
-        note + ':+1 attack',
-        'sanityNotes.weaponFocus(' + weaponNoSpace + ')FeatWeapons:' +
-          'Implies ' + weapon,
-        'validationNotes.weaponFocus(' + weaponNoSpace + ')FeatBaseAttack:' +
-          'Requires Base Attack >= 1'
-      ];
-      rules.defineRule('weaponAttackAdjustment.' + weapon, note, '+=', '1');
-    } else if(feat == 'Weapon Proficiency (Simple)') {
-      notes = [
-        'sanityNotes.weaponProficiency(Simple)FeatProficiency:' +
-          'Implies Class Weapon Proficiency Level < ' + FiveE.PROFICIENCY_LIGHT
-      ];
-      rules.defineRule('weaponProficiencyLevel',
-        'features.' + feat, '^', FiveE.PROFICIENCY_LIGHT
-      );
-    } else if((matchInfo = feat.match(/^Weapon Proficiency \((.*)\)$/))!=null) {
-      var weapon = matchInfo[1];
-      var weaponNoSpace = weapon.replace(/ /g, '');
-      var familiarityAttr = 'features.Weapon Familiarity (' + weapon + ')';
-      notes = [
-        'sanityNotes.weaponProficiency(' + weaponNoSpace + ')FeatWeapons:' +
-          'Implies ' + weapon,
-      ];
-      if(FiveE.weaponsCategories[weapon] == FiveE.PROFICIENCY_HEAVY) {
-        notes = notes.concat([
-          'validationNotes.weaponProficiency(' + weaponNoSpace +
-            ')FeatBaseAttack:Requires Base Attack >= 1'
-        ]);
-        rules.defineRule('validationNotes.weaponProficiency(' + weaponNoSpace +
-          ')FeatBaseAttack', familiarityAttr, '^', '0');
-      }
-      if(weapon == 'Bastard Sword' || weapon == 'Dwarven Waraxe') {
-        notes = notes.concat([
-          'validationNotes.weaponProficiency(' + weaponNoSpace +
-            ')FeatStrength:Requires Strength >= 13'
-        ]);
-        rules.defineRule('validationNotes.weaponProficiency(' + weaponNoSpace +
-          ')FeatStrength', familiarityAttr, '^', '0');
-      }
-    } else if((matchInfo =
-               feat.match(/^Weapon Specialization \((.*)\)$/)) != null) {
-      var weapon = matchInfo[1];
-      var weaponNoSpace = weapon.replace(/ /g, '');
-      var note = 'combatNotes.weaponSpecialization('+weaponNoSpace+')Feature';
-      notes = [
-        note + ':+2 damage',
-        'sanityNotes.weaponSpecialization(' + weaponNoSpace + ')FeatWeapons:' +
-          'Implies ' + weapon,
-        'validationNotes.weaponSpecialization('+weaponNoSpace+')FeatFeatures:' +
-          'Requires Weapon Focus (' + weapon + ')',
-        'validationNotes.weaponSpecialization('+weaponNoSpace+')FeatLevels:' +
-          'Requires Fighter >= 4'
-      ];
-      rules.defineRule('weaponDamageAdjustment.' + weapon, note, '+=', '2');
-    } else if(feat == 'Whirlwind Attack') {
-      notes = [
-        'combatNotes.whirlwindAttackFeature:Attack all foes w/in reach',
-        'validationNotes.whirlwindAttackFeatAbility:' +
-          'Requires Dexterity >= 13/Intelligence >= 13',
-        'validationNotes.whirlwindAttackFeatBaseAttack:' +
-          'Requires Base Attack >= 4',
-        'validationNotes.whirlwindAttackFeatFeatures:' +
-          'Requires Combat Expertise/Dodge/Mobility/Spring Attack'
-      ];
-    } else if(feat == 'Widen Spell') {
-      notes = [
-        'magicNotes.widenSpellFeature:x2 area of affect uses +3 spell slot',
-        'sanityNotes.widenSpellFeatCasterLevel:Implies Caster Level >= 1'
-      ];
-    } else {
-      continue;
-    }
-*/
   }
 
 };
@@ -4519,7 +3298,7 @@ FiveE.magicRules = function(rules, classes, domains, schools) {
         'B6:Eyebite:Find The Path:Guards And Wards:Mass Suggestion:' +
         'Otto\'s Irresistible Dance:Programmed Illusion:True Seeing',
         'B7:Etherealness:Forcecage:Mirage Arcane:' +
-        'Mordenkainen\'s Magnificent Mansion:Mordenkainen\'s Hound:' +
+        'Mordenkainen\'s Magnificent Mansion:Mordenkainen\'s Sword:' +
         'Project Image:Regenerate:Resurrection:Symbol:Teleport',
         'B8:Dominate Monster:Feeblemind:Glibness:Mind Blank:Power Word Stun',
         'B9:Foresight:Power Word Heal:Power Word Kill:True Polymorph'
@@ -4533,10 +3312,11 @@ FiveE.magicRules = function(rules, classes, domains, schools) {
         'Guiding Bolt:Healing Word:Inflict Wounds:' +
         'Protection From Evil And Good:Purify Food And Drink:Sanctuary:' +
         'Shield Of Faith',
-        'C2:Aid:Augury:Blindness/Deafness:Calm Emotions:Enhance Ability:' +
-        'Find Traps:Gentle Repose:Hold Person:Lesser Restoration:' +
-        'Locate Object:Prayer Of Healing:Protection From Poison:Silence:' +
-        'Spiritual Weapon:Warding Bond:Zone Of Truth',
+        'C2:Aid:Augury:Blindness/Deafness:Calm Emotions:Continual Flame:' +
+        'Enhance Ability:Find Traps:Gentle Repose:Hold Person:' +
+        'Lesser Restoration:Locate Object:Prayer Of Healing:' +
+        'Protection From Poison:Silence:Spiritual Weapon:Warding Bond:' +
+        'Zone Of Truth',
         'C3:Animate Dead:Beacon Of Hope:Bestow Curse:Clairvoyance:' +
         'Create Food And Water:Daylight:Dispel Magic:Feign Death:' +
         'Glyph Of Warding:Magic Circle:Mass Healing Word:Meld Into Stone:' +
@@ -4556,179 +3336,176 @@ FiveE.magicRules = function(rules, classes, domains, schools) {
       ];
     } else if(klass == 'Druid') {
       spells = [
-        'D0:Create Water:Cure Minor Wounds:Detect Magic:Detect Poison:Flare:' +
-        'Guidance:Know Direction:Light:Mending:Purify Food And Drink:' +
-        'Read Magic:Resistance:Virtue',
-        'D1:Calm Animals:Charm Animal:Cure Light Wounds:' +
-        'Detect Animals Or Plants:Detect Snares And Pits:Endure Elements:' +
-        'Entangle:Faerie Fire:Goodberry:Hide From Animals:Jump:Longstrider:' +
-        'Magic Fang:Magic Stone:Obscuring Mist:Pass Without Trace:' +
-        'Produce Flame:Shillelagh:Speak With Animals:Summon Nature\'s Ally I',
-        'D2:Animal Messenger:Animal Trance:Barkskin:Bear\'s Endurance:' +
-        'Bull\'s Strength:Cat\'s Grace:Chill Metal:Delay Poison:Fire Trap:' +
-        'Flame Blade:Flaming Sphere:Fog Cloud:Gust Of Wind:Heat Metal:' +
-        'Hold Animal:Lesser Restoration:Owl\'s Wisdom:Reduce Animal:' +
-        'Resist Energy:Soften Earth And Stone:Spider Climb:' +
-        'Summon Nature\'s Ally II:Summon Swarm:Tree Shape:Warp Wood:Wood Shape',
-        'D3:Call Lightning:Contagion:Cure Moderate Wounds:Daylight:' +
-        'Diminish Plants:Dominate Animal:Greater Magic Fang:Meld Into Stone:' +
-        'Neutralize Poison:Plant Growth:Poison:Protection From Energy:Quench:' +
-        'Remove Disease:Sleet Storm:Snare:Speak With Plants:Spike Growth:' +
-        'Stone Shape:Summon Nature\'s Ally III:Water Breathing:Wind Wall',
-        'D4:Air Walk:Antiplant Shell:Blight:Command Plants:Control Water:' +
-        'Cure Serious Wounds:Dispel Magic:Flame Strike:Freedom Of Movement:' +
-        'Giant Vermin:Ice Storm:Reincarnate:Repel Vermin:Rusting Grasp:' +
-        'Scrying:Spike Stones:Summon Nature\'s Ally IV',
-        'D5:Animal Growth:Atonement:Awaken:Baleful Polymorph:' +
-        'Call Lightning Storm:Commune With Nature:Control Winds:' +
-        'Cure Critical Wounds:Death Ward:Hallow:Insect Plague:Stoneskin:' +
-        'Summon Nature\'s Ally V:Transmute Mud To Rock:Transmute Rock To Mud:' +
-        'Tree Stride:Unhallow:Wall Of Fire:Wall Of Thorns',
-        'D6:Antilife Shell:Find The Path:Fire Seeds:Greater Dispel Magic:' +
-        'Ironwood:Liveoak:Mass Bear\'s Endurance:Mass Bull\'s Strength:' +
-        'Mass Cat\'s Grace:Mass Cure Light Wounds:Mass Owl\'s Wisdom:' +
-        'Move Earth:Repel Wood:Spellstaff:Stone Tell:' +
-        'Summon Nature\'s Ally VI:Transport Via Plants:Wall Of Stone',
-        'D7:Animate Plants:Changestaff:Control Weather:Creeping Doom:' +
-        'Fire Storm:Greater Scrying:Heal:Mass Cure Moderate Wounds:' +
-        'Summon Nature\'s Ally VII:Sunbeam:Transmute Metal To Wood:' +
-        'True Seeing:Wind Walk',
-        'D8:Animal Shapes:Control Plants:Earthquake:Finger Of Death:' +
-        'Mass Cure Serious Wounds:Repel Metal Or Stone:Reverse Gravity:' +
-        'Summon Nature\'s Ally VIII:Sunburst:Whirlwind:Word Of Recall',
-        'D9:Antipathy:Elemental Swarm:Foresight:Mass Cure Critical Wounds:' +
-        'Regenerate:Shambler:Shapechange:Storm Of Vengeance:' +
-        'Summon Nature\'s Ally IX:Sympathy'
+        'D0:Druidcraft:Guidance:Mending:Poison Spray:Produce Flame:' +
+        'Resistance:Shillelagh:Thorn Whip',
+        'D1:Animal Friendship:Charm Person:Create Or Destroy Water:' +
+        'Cure Wounds:Detect Magic:Detect Poison And Disease:Entangle:' +
+        'Faerie Fire:Fog Cloud:Goodberry:Healing Word:Jump:Longstrider:' +
+        'Purify Food And Drink:Speak With Animals:Thunderwave',
+        'D2:Animal Messenger:Barkskin:Beast Sense:Darkvision:Enhance Ability:' +
+        'Find Traps:Flame Blade:Flaming Sphere:Gust Of Wind:Heat Metal:' +
+        'Hold Person:Lesser Restoration:Locate Animals Or Plants:' +
+        'Locate Object:Moonbeam:Pass Without Trace:Protection From Poison:' +
+        'Spike Growth',
+        'D3:Call Lightning:Conjure Animals:Daylight:Dispel Magic:Feign Death:' +
+        'Meld Into Stone:Plant Growth:Protection From Energy:Sleet Storm:' +
+        'Speak With Plants:Water Breathing:Water Walk:Wind Wall',
+        'D4:Blight:Confusion:Conjure Minor Elementals:' +
+        'Conjure Woodland Beings:Control Water:Dominate Beast:' +
+        'Freedom Of Movement:Giant Insect:Grasping Vine:' +
+        'Hallucinatory Terrain:Ice Storm:Locate Creature:Polymorph:' +
+        'Stone Shape:Stoneskin:Wall Of Fire',
+        'D5:Antilife Shell:Awaken:Commune With Nature:Conjure Elemental:' +
+        'Contagion:Geas:Greater Restoration:Insect Plague:Mass Cure Wounds:' +
+        'Planar Binding:Reincarnate:Scrying:Tree Stride:Wall Of Stone',
+        'D6:Conjure Fey:Find The Path:Heal:Heroes\' Feast:Move Earth:Sunbeam:' +
+        'Transport Via Plants:Wall Of Thorns:Wind Walk',
+        'D7:Fire Storm:Mirage Arcane:Plane Shift:Regenerate:Reverse Gravity',
+        'D8:Animal Shapes:Antipathy/Sympathy:Control Weather:Earthquake:' +
+        'Feeblemind:Sunburst:Tsunami',
+        'D9:Foresight:Shapechange:Storm Of Vengeance:True Resurrection'
       ];
     } else if(klass == 'Paladin') {
       spells = [
-        'P1:Bless:Bless Water:Bless Weapon:Create Water:Cure Light Wounds:' +
-        'Detect Poison:Detect Undead:Divine Favor:Endure Elements:' +
-        'Lesser Restoration:Magic Weapon:Protection From Chaos:' +
-        'Protection From Evil:Read Magic:Resistance:Virtue',
-        'P2:Bull\'s Strength:Delay Poison:Eagle\'s Splendor:Owl\'s Wisdom:' +
-        'Remove Paralysis:Resist Energy:Shield Other:Undetectable Alignment:' +
-        'Zone Of Truth',
-        'P3:Cure Moderate Wounds:Daylight:Discern Lies:Dispel Magic:' +
-        'Greater Magic Weapon:Heal Mount:Magic Circle Against Chaos:' +
-        'Magic Circle Against Evil:Prayer:Remove Blindness/Deafness:' +
-        'Remove Curse',
-        'P4:Break Enchantment:Cure Serious Wounds:Death Ward:Dispel Chaos:' +
-        'Dispel Evil:Holy Sword:Mark Of Justice:Neutralize Poison:Restoration'
+        'P1:Bless:Command:Compelled Duel:Cure Wounds:Detect Evil And Good:' +
+        'Detect Magic:Detect Poison And Disease:Divine Favor:Heroism:' +
+        'Protection From Evil And Good:Purify Food And Drink:Searing Smite:' +
+        'Shield Of Faith:Thunderous Smite:Wrathful Smite',
+        'P2:Aid:Branding Smite:Find Steed:Lesser Restoration:Locate Object:' +
+        'Magic Weapon:Protection From Poison:Zone Of Truth',
+        'P3:Aura Of Vitality:Blinding Smite:Create Food And Water:' +
+        'Crusader\'s Mantle:Daylight:Dispel Magic:Elemental Weapon:' +
+        'Magic Circle:Remove Curse:Revivify',
+        'P4:Aura Of Life:Aura Of Purity:Banishment:Death Ward:' +
+        'Locate Creature:Staggering Smite',
+        'P5:Banishing Smite:Circle Of Power:Destructive Smite:' +
+        'Dispel Evil And Good:Geas:Raise Dead'
       ];
     } else if(klass == 'Ranger') {
       spells = [
-        'R1:Alarm:Animal Messenger:Calm Animals:Charm Animal:Delay Poison:' +
-        'Detect Animals Or Plants:Detect Poison:Detect Snares And Pits:' +
-        'Endure Elements:Entangle:Hide From Animals:Jump:Longstrider:' +
-        'Magic Fang:Pass Without Trace:Read Magic:Resist Energy:' +
-        'Speak With Animals:Summon Nature\'s Ally I',
-        'R2:Barkskin:Bear\'s Endurance:Cat\'s Grace:Cure Light Wounds:' +
-        'Hold Animal:Owl\'s Wisdom:Protection From Energy:Snare:' +
-        'Speak With Plants:Spike Growth:Summon Nature\'s Ally II:Wind Wall',
-        'R3:Command Plants:Cure Moderate Wounds:Darkvision:Diminish Plants:' +
-        'Greater Magic Fang:Neutralize Poison:Plant Growth:Reduce Animal:' +
-        'Remove Disease:Repel Vermin:Summon Nature\'s Ally III:Tree Shape:' +
-        'Water Walk',
-        'R4:Animal Growth:Commune With Nature:Cure Serious Wounds:' +
-        'Freedom Of Movement:Nondetection:Summon Nature\'s Ally IV:Tree Stride'
+        'R1:Alarm:Animal Friendship:Cure Wounds:Detect Magic:' +
+        'Detect Poison And Disease:Ensnaring Strike:Fog Cloud:Goodberry:' +
+        'Hail Of Thorns:Hunter\'s Mark:Jump:Longstrider:Speak With Animals',
+        'R2:Animal Messenger:Barkskin:Beast Sense:Cordon Of Arrows:' +
+        'Darkvision:Find Traps:Lesser Restoration:Locate Animals Or Plants:' +
+        'Locate Object:Pass Without Trace:Protection From Poison:Silence:' +
+        'Spike Growth',
+        'R3:Conjure Animals:Conjure Barrage:Daylight:Lightning Arrow:' +
+        'Nondetection:Plant Growth:Protection From Energy:Speak With Plants:' +
+        'Water Breathing:Water Walk:Wind Wall',
+        'R4:Conjure Woodland Beings:Freedom Of Movement:Grasping Vine:' +
+        'Locate Creature:Stoneskin',
+        'R5:Commune With Nature:Conjure Volley:Swift Quiver:Tree Stride'
       ];
-    } else if(klass == 'Sorcerer' || klass == 'Wizard') {
-      // Identical spell lists
+    } else if(klass == 'Sorcerer') {
       spells = [
-        'W0:Acid Splash:Arcane Mark:Dancing Lights:Daze:Detect Magic:' +
-        'Detect Poison:Disrupt Undead:Flare:Ghost Sound:Light:Mage Hand:' +
-        'Mending:Message:Open/Close:Prestidigitation:Ray Of Frost:Read Magic:' +
-        'Resistance:Touch Of Fatigue',
-        'W1:Alarm:Animate Rope:Burning Hands:Cause Fear:Charm Person:' +
-        'Chill Touch:Color Spray:Comprehend Languages:Detect Secret Doors:' +
-        'Detect Undead:Disguise Self:Endure Elements:Enlarge Person:Erase:' +
-        'Expeditious Retreat:Feather Fall:Floating Disk:Grease:Hold Portal:' +
-        'Hypnotism:Identify:Jump:Mage Armor:Magic Missile:Magic Weapon:' +
-        'Magic Aura:Mount:Obscuring Mist:Protection From Chaos:' +
-        'Protection From Evil:Protection From Good:Protection From Law:' +
-        'Ray Of Enfeeblement:Reduce Person:Shield:Shocking Grasp:' +
-        'Silent Image:Sleep:Summon Monster I:' +
-        'True Strike:Unseen Servant:Ventriloquism',
-        'W2:Acid Arrow:Alter Self:Arcane Lock:Bear\'s Endurance:' +
-        'Blindness/Deafness:Blur:Bull\'s Strength:Cat\'s Grace:' +
-        'Command Undead:Continual Flame:Darkness:Darkvision:Daze Monster:' +
-        'Detect Thoughts:Eagle\'s Splendor:False Life:Flaming Sphere:' +
-        'Fog Cloud:Fox\'s Cunning:Ghoul Touch:Glitterdust:Gust Of Wind:' +
-        'Hideous Laughter:Hypnotic Pattern:Invisibility:Knock:Levitate:' +
-        'Locate Object:Magic Mouth:Minor Image:Mirror Image:Misdirection:' +
-        'Obscure Object:Owl\'s Wisdom:Phantom Trap:Protection From Arrows:' +
-        'Pyrotechnics:Resist Energy:Rope Trick:Scare:Scorching Ray:' +
-        'See Invisibility:Shatter:Spectral Hand:Spider Climb:' +
-        'Summon Monster II:Summon Swarm:Touch Of Idiocy:Web:Whispering Wind',
-        'W3:Arcane Sight:Blink:Clairaudience/Clairvoyance:Daylight:' +
-        'Deep Slumber:Dispel Magic:Displacement:Explosive Runes:Fireball:' +
-        'Flame Arrow:Fly:Gaseous Form:Gentle Repose:Greater Magic Weapon:' +
-        'Halt Undead:Haste:Heroism:Hold Person:Illusory Script:' +
-        'Invisibility Sphere:Keen Edge:Lightning Bolt:' +
-        'Magic Circle Against Chaos:Magic Circle Against Evil:' +
-        'Magic Circle Against Good:Magic Circle Against Law:Major Image:' +
-        'Nondetection:Phantom Steed:Protection From Energy:Rage:' +
-        'Ray Of Exhaustion:Secret Page:Sepia Snake Sigil:Shrink Item:' +
-        'Sleet Storm:Slow:Stinking Cloud:Suggestion:Summon Monster III:' +
-        'Tiny Hut:Tongues:Vampiric Touch:Water Breathing:Wind Wall',
-        'W4:Animate Dead:Arcane Eye:Bestow Curse:Black Tentacles:' +
-        'Charm Monster:Confusion:Contagion:Crushing Despair:Detect Scrying:' +
-        'Dimension Door:Dimensional Anchor:Enervation:Fear:Fire Shield:' +
-        'Fire Trap:Greater Invisibility:Hallucinatory Terrain:Ice Storm:' +
-        'Illusory Wall:Lesser Geas:Lesser Globe Of Invulnerability:' +
-        'Locate Creature:Mass Enlarge Person:Mass Reduce Person:' +
-        'Minor Creation:Mnemonic Enhancer:Phantasmal Killer:Polymorph:' +
-        'Rainbow Pattern:Remove Curse:Resilient Sphere:Scrying:' +
-        'Secure Shelter:Shadow Conjuration:Shout:Solid Fog:Stone Shape:' +
-        'Stoneskin:Summon Monster IV:Wall Of Fire:Wall Of Ice',
-        'W5:Animal Growth:Baleful Polymorph:Blight:Break Enchantment:' +
-        'Cloudkill:Cone Of Cold:Contact Other Plane:Dismissal:' +
-        'Dominate Person:Dream:Fabricate:False Vision:Feeblemind:' +
-        'Hold Monster:Interposing Hand:Lesser Planar Binding:' +
-        'Mage\'s Faithful Hound:Mage\'s Private Sanctum:Magic Jar:' +
-        'Major Creation:Mind Fog:Mirage Arcana:Nightmare:Overland Flight:' +
-        'Passwall:Permanency:Persistent Image:Prying Eyes:Secret Chest:' +
-        'Seeming:Sending:Shadow Evocation:Summon Monster V:Symbol Of Pain:' +
-        'Symbol Of Sleep:Telekinesis:Telepathic Bond:Teleport:' +
-        'Transmute Mud To Rock:Transmute Rock To Mud:Wall Of Force:' +
-        'Wall Of Stone:Waves Of Fatigue',
-        'W6:Acid Fog:Analyze Dweomer:Antimagic Field:Chain Lightning:' +
-        'Circle Of Death:Contingency:Control Water:Create Undead:' +
-        'Disintegrate:Eyebite:Flesh To Stone:Forceful Hand:Freezing Sphere:' +
-        'Geas/Quest:Globe Of Invulnerability:Greater Dispel Magic:' +
-        'Greater Heroism:Guards And Wards:Legend Lore:Mage\'s Lucubration:' +
-        'Mass Bear\'s Endurance:Mass Bull\'s Strength:Mass Cat\'s Grace:' +
-        'Mass Eagle\'s Splendor:Mass Fox\'s Cunning:Mass Owl\'s Wisdom:' +
-        'Mass Suggestion:Mislead:Move Earth:Permanent Image:Planar Binding:' +
-        'Programmed Image:Repulsion:Shadow Walk:Stone To Flesh:' +
-        'Summon Monster VI:Symbol Of Fear:Symbol Of Persuasion:' +
-        'Transformation:True Seeing:Undeath To Death:Veil:Wall Of Iron',
-        'W7:Banishment:Control Undead:Control Weather:' +
-        'Delayed Blast Fireball:Ethereal Jaunt:Finger Of Death:Forcecage:' +
-        'Grasping Hand:Greater Arcane Sight:Greater Scrying:' +
-        'Greater Shadow Conjuration:Greater Teleport:Insanity:' +
-        'Instant Summons:Limited Wish:Mage\'s Magnificent Mansion:' +
-        'Mage\'s Sword:Mass Hold Person:Mass Invisibility:Phase Door:' +
-        'Plane Shift:Power Word Blind:Prismatic Spray:Project Image:' +
-        'Reverse Gravity:Sequester:Simulacrum:Spell Turning:Statue:' +
-        'Summon Monster VII:Symbol Of Stunning:Symbol Of Weakness:' +
-        'Teleport Object:Vision:Waves Of Exhaustion',
-        'W8:Antipathy:Binding:Clenched Fist:Clone:Create Greater Undead:' +
-        'Demand:Dimensional Lock:Discern Location:Greater Planar Binding:' +
-        'Greater Prying Eyes:Greater Shadow Evocation:Greater Shout:' +
-        'Horrid Wilting:Incendiary Cloud:Iron Body:Irresistible Dance:' +
-        'Mass Charm Monster:Maze:Mind Blank:Moment Of Prescience:Polar Ray:' +
-        'Polymorph Any Object:Power Word Stun:Prismatic Wall:' +
-        'Protection From Spells:Scintillating Pattern:Screen:' +
-        'Summon Monster VIII:Sunburst:Symbol Of Death:Symbol Of Insanity:' +
-        'Sympathy:Telekinetic Sphere:Temporal Stasis:Trap The Soul',
-        'W9:Astral Projection:Crushing Hand:Dominate Monster:Energy Drain:' +
-        'Etherealness:Foresight:Freedom:Gate:Imprisonment:' +
-        'Mage\'s Disjunction:Mass Hold Monster:Meteor Swarm:Power Word Kill:' +
-        'Prismatic Sphere:Refuge:Shades:Shapechange:Soul Bind:' +
-        'Summon Monster IX:Teleportation Circle:Time Stop:' +
-        'Wail Of The Banshee:Weird:Wish'
+        'S0:Acid Splash:Blade Ward:Chill Touch:Dancing Lights:Fire Bolt:' +
+        'Friends:Light:Mage Hand:Mending:Message:Minor Illusion:Poison Spray:' +
+        'Prestidigitation:Ray Of Frost:Shocking Grasp:True Strike',
+        'S1:Burning Hands:Charm Person:Chromatic Orb:Color Spray:' +
+        'Comprehend Languages:Detect Magic:Disguise Self:Expeditious Retreat:' +
+        'False Life:Feather Fall:Fog Cloud:Jump:Mage Armor:Magic Missile:' +
+        'Ray Of Sickness:Shield:Silent Image:Sleep:Thunderwave:Witch Bolt',
+        'S2:Alter Self:Blindness/Deafness:Blur:Cloud Of Daggers:' +
+        'Crown Of Madness:Darkness:Darkvision:Detect Thoughts:' +
+        'Enhance Ability:Enlarge/Reduce:Gust Of Wind:Hold Person:' +
+        'Invisibility:Knock:Levitate:Mirror Image:Misty Step:' +
+        'Phantasmal Force:Scorching Ray:See Invisibility:Shatter:' +
+        'Spider Climb:Suggestion:Web',
+        'S3:Blink:Clairvoyance:Counterspell:Daylight:Dispel Magic:Fear:' +
+        'Fireball:Fly:Gaseous Form:Haste:Hypnotic Pattern:Lightning Bolt:' +
+        'Major Image:Protection From Energy:Sleet Storm:Slow:Stinking Cloud:' +
+        'Tongues:Water Breathing:Water Walk',
+        'S4:Banishment:Blight:Confusion:Dimension Door:Dominate Beast:' +
+        'Greater Invisibility:Ice Storm:Polymorph:Stoneskin:Wall Of Fire',
+        'S5:Animate Objects:Cloudkill:Cone Of Cold:Creation:Dominate Person:' +
+        'Hold Monster:Insect Plague:Seeming:Telekinesis:Teleportation Circle:' +
+        'Wall Of Stone',
+        'S6:Arcane Gate:Chain Lightning:Circle Of Death:Disintegrate:Eyebite:' +
+        'Globe Of Invulnerability:Mass Suggestion:Move Earth:Sunbeam:' +
+        'True Seeing',
+        'S7:Delayed Blast Fireball:Etherealness:Finger Of Death:Fire Storm:' +
+        'Plane Shift:Prismatic Spray:Reverse Gravity:Teleport',
+        'S8:Dominate Monster:Earthquake:Incendiary Cloud:Power Word Stun:' +
+        'Sunburst',
+        'S9:Gate:Meteor Swarm:Power Word Kill:Time Stop:Wish'
+      ];
+    } else if(klass == 'Warlock') {
+      spells = [
+        'K0:Blade Ward:Chill Touch:Eldritch Blast:Friends:Mage Hand:' +
+        'Minor Illusion:Poison Spray:Prestidigitation:True Strike',
+        'K1:Armor Of Agathys:Arms Of Hadar:Charm Person:Comprehend Languages:' +
+        'Expeditious Retreat:Hellish Rebuke:Hex:Illusory Script:' +
+        'Protection From Evil And Good:Unseen Servant:Witch Bolt',
+        'K2:Cloud Of Daggers:Crown Of Madness:Darkness:Enthrall:Hold Person:' +
+        'Invisibility:Mirror Image:Misty Step:Ray Of Enfeeblement:Shatter:' +
+        'Spider Climb:Suggestion',
+        'K3:Counterspell:Dispel Magic:Fear:Fly:Gaseous Form:Hunger Of Hadar:' +
+        'Hypnotic Pattern:Magic Circle:Major Image:Remove Curse:Tongues:' +
+        'Vampiric Touch',
+        'K4:Banishment:Blight:Dimension Door:Hallucinatory Terrain',
+        'K5:Contact Other Plane:Dream:Hold Monster:Scrying',
+        'K6:Arcane Gate:Circle Of Death:Conjure Fey:Create Undead:Eyebite:' +
+        'Flesh To Stone:Mass Suggestion:True Seeing',
+        'K7:Etherealness:Finger Of Death:Forcecage:Plane Shift',
+        'K8:Demiplane:Dominate Monster:Feeblemind:Glibness:Power Word Stun',
+        'K9:Astral Projection:Foresight:Imprisonment:Power Word Kill:' +
+        'True Polymorph'
+      ];
+    } else if(klass == 'Wizard') {
+      spells = [
+        'W0:Acid Splash:Blade Ward:Chill Touch:Dancing Lights:Fire Bolt:' +
+        'Friends:Light:Mage Hand:Mending:Message:Minor Illusion:Poison Spray:' +
+        'Prestidigitation:Ray Of Frost:Shocking Grasp:True Strike',
+        'W1:Alarm:Burning Hands:Charm Person:Chromatic Orb:Color Spray:' +
+        'Comprehend Languages:Detect Magic:Disguise Self:Expeditious Retreat:' +
+        'False Life:Feather Fall:Find Familiar:Fog Cloud:Grease:Identify:' +
+        'Illusory Script:Jump:Longstrider:Mage Armor:Magic Missile:' +
+        'Protection From Evil And Good:Ray Of Sickness:Shield:Silent Image:' +
+        'Sleep:Tasha\'s Hideous Laughter:Tenser\'s Floating Disk:Thunderwave:' +
+        'Unseen Servant:Witch Bolt',
+        'W2:Alter Self:Arcane Lock:Blindness/Deafness:Blur:Cloud Of Daggers:' +
+        'Continual Flame:Crown Of Madness:Darkness:Darkvision:' +
+        'Detect Thoughts:Enlarge/Reduce:Flaming Sphere:Gentle Repose:' +
+        'Gust Of Wind:Hold Person:Invisibility:Knock:Levitate:Locate Object:' +
+        'Magic Mouth:Magic Weapon:Melf\'s Acid Arrow:Mirror Image:Misty Step:' +
+        'Nystul\'s Magic Aura:Phantasmal Force:Ray Of Enfeeblement:' +
+        'Rope Trick:Scorching Ray:See Invisibility:Shatter:Spider Climb:' +
+        'Suggestion:Web',
+        'W3:Animate Dead:Bestow Curse:Blink:Clairvoyance:Counterspell:' +
+        'Dispel Magic:Fear:Feign Death:Fireball:Fly:Gaseous Form:' +
+        'Glyph Of Warding:Haste:Hypnotic Pattern:Leomund\'s Tiny Hut:' +
+        'Lightning Bolt:Magic Circle:Major Image:Nondetection:Phantom Steed:' +
+        'Protection From Energy:Remove Curse:Sending:Sleet Storm:Slow:' +
+        'Stinking Cloud:Tongues:Vampiric Touch:Water Breathing',
+        'W4:Arcane Eye:Banishment:Blight:Confusion:Conjure Minor Elementals:' +
+        'Control Water:Dimension Door:Evard\'s Black Tentacles:Fabricate:' +
+        'Fire Shield:Greater Invisibility:Hallucinatory Terrain:Ice Storm:' +
+        'Leomund\'s Secret Chest:Locate Creature:' +
+        'Mordenkainen\'s Faithful Hound:Mordenkainen\'s Private Sanctum:' +
+        'Otiluke\'s Resilient Sphere:Phantasmal Killer:Polymorph:Stone Shape:' +
+        'Stoneskin:Wall Of Fire',
+        'W5:Animate Objects:Bigby\'s Hand:Cloudkill:Cone Of Cold:' +
+        'Conjure Elemental:Contact Other Plane:Creation:Dominate Person:' +
+        'Dream:Geas:Hold Monster:Legend Lore:Mislead:Modify Memory:Passwall:' +
+        'Planar Binding:Rary\'s Telepathic Bond:Scrying:Seeming:Telekinesis:' +
+        'Teleportation Circle:Wall Of Force:Wall Of Stone',
+        'W6:Arcane Gate:Chain Lightning:Circle Of Death:Contingency:' +
+        'Create Undead:Disintegrate:Drawmij\'s Instant Summons:Eyebite:' +
+        'Flesh To Stone:Globe Of Invulnerability:Guards And Wards:Magic Jar:' +
+        'Mass Suggestion:Move Earth:Otiluke\'s Freezing Sphere:' +
+        'Otto\'s Irresistible Dance:Programmed Illusion:Sunbeam:True Seeing:' +
+        'Wall Of Ice',
+        'W7:Delayed Blast Fireball:Etherealness:Finger Of Death:Forcecage:' +
+        'Mirage Arcane:Mordenkainen\'s Magnificent Mansion:' +
+        'Mordenkainen\'s Sword:Plane Shift:Prismatic Spray:Project Image:' +
+        'Reverse Gravity:Sequester:Simulacrum:Symbol:Teleport',
+        'W8:Antimagic Field:Antipathy/Sympathy:Clone:Control Weather:' +
+        'Demiplane:Dominate Monster:Feeblemind:Incendiary Cloud:Maze:' +
+        'Mind Blank:Power Word Stun:Sunburst:Telepathy:Trap The Soul',
+        'W9:Astral Projection:Foresight:Gate:Imprisonment:Meteor Swarm:' +
+        'Power Word Kill:Prismatic Wall:Shapechange:Time Stop:True Polymorph:' +
+        'Weird:Wish'
       ];
     } else
       continue;
@@ -4738,11 +3515,9 @@ FiveE.magicRules = function(rules, classes, domains, schools) {
         for(var k = 1; k < pieces.length; k++) {
           var spell = pieces[k];
           var school = FiveE.spellsSchools[spell];
-          if(school == null) {
+          if(school == null)
             continue;
-          }
-          spell += '(' + pieces[0] + ' ' +
-                    (school == 'Universal' ? 'Univ' : schools[school]) + ')';
+          spell += '(' + pieces[0] + ' ' + schools[school] + ')';
           rules.defineChoice('spells', spell);
         }
       }
@@ -4752,9 +3527,11 @@ FiveE.magicRules = function(rules, classes, domains, schools) {
   rules.defineChoice('domains', domains);
 
   for(var i = 0; i < domains.length; i++) {
+
     var domain = domains[i];
     var notes = null;
     var spells = null;
+
     if(domain == 'Knowledge') {
       // TODO
     } else if(domain == 'Life') {
@@ -4771,9 +3548,7 @@ FiveE.magicRules = function(rules, classes, domains, schools) {
       // TODO
     } else
       continue;
-    if(notes != null) {
-      rules.defineNote(notes);
-    }
+
     if(spells != null) {
       for(var j = 0; j < spells.length; j++) {
         var spell = spells[j];
@@ -4785,6 +3560,10 @@ FiveE.magicRules = function(rules, classes, domains, schools) {
         rules.defineChoice('spells', spell);
       }
     }
+
+    if(notes != null)
+      rules.defineNote(notes);
+
   }
 
   rules.defineRule
@@ -5130,12 +3909,14 @@ FiveE.skillRules = function(rules, skills, tools) {
 
 /* Replaces spell names with longer descriptions on the character sheet. */
 FiveE.spellDescriptionRules = function(rules, spells, descriptions) {
+
   if(spells == null) {
     spells = ScribeUtils.getKeys(rules.choices.spells);
   }
   if(descriptions == null) {
     descriptions = FiveE.spellsDescriptions;
   }
+
   rules.defineRule('casterLevels.B', 'levels.Bard', '=', null);
   rules.defineRule('casterLevels.C', 'levels.Cleric', '=', null);
   rules.defineRule('casterLevels.D', 'levels.Druid', '=', null);
@@ -5143,25 +3924,32 @@ FiveE.spellDescriptionRules = function(rules, spells, descriptions) {
   rules.defineRule('casterLevels.R', 'levels.Ranger', '=', null);
   rules.defineRule('casterLevels.W', 'levels.Sorcerer', '=', null);
   rules.defineRule('casterLevels.W', 'levels.Wizard', '=', null);
+
   for(var i = 0; i < spells.length; i++) {
+
     var spell = spells[i];
     var matchInfo = spell.match(/^([^\(]+)\(([A-Za-z]+)(\d+)\s*\w*\)$/);
     if(matchInfo == null) {
-      alert("Bad format for spell " + spell);
+      console.log("Bad format for spell " + spell);
       continue;
     }
+
     var abbr = matchInfo[2];
     var level = matchInfo[3];
     var name = matchInfo[1];
     var description = descriptions[name];
+
     if(description == null) {
-      alert("No description for spell " + name);
+      console.log("No description for spell " + name);
       continue;
     }
+
     if(abbr.length > 2) {
       abbr = "Dom"; // Assume domain spell
     }
+
     var inserts = description.match(/\$(\w+|{[^}]+})/g);
+
     if(inserts != null) {
       for(var index = 1; index <= inserts.length; index++) {
         var insert = inserts[index - 1];
@@ -5176,8 +3964,11 @@ FiveE.spellDescriptionRules = function(rules, spells, descriptions) {
         description = description.replace(insert, "%" + index);
       }
     }
+
     rules.defineChoice("notes", "spells." + spell + ":" + description);
+
   }
+
 };
 
 /* Returns a random name for a character of race #race#. */
@@ -5261,7 +4052,7 @@ FiveE.randomName = function(race) {
 
 };
 
-/* Returns the elements in a basic SRD character editor. */
+/* Returns the elements in a basic 5E character editor. */
 FiveE.initialEditorElements = function() {
   var abilityChoices = [
     3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18
@@ -5531,16 +4322,6 @@ FiveE.randomizeOneAttribute = function(attributes, attribute) {
         continue;
       classAndLevel = attr.split('.')[1];
       howMany = attrs[attr];
-      if(classAndLevel.match(/^S\d+$/)) {
-        classAndLevel = classAndLevel.replace(/S/, 'W');
-        var additional = attrs['spellsKnown.' + classAndLevel];
-        if(additional == null)
-          ; // empty
-        else if(additional == 'all' || howMany == 'all')
-          howMany = 'all';
-        else
-          howMany += additional;
-      }
       if(!classAndLevel.match(/\d$/)) {
         choices = [];
         for(var a in allSpellsByClassAndLevel) {
@@ -5966,6 +4747,7 @@ FiveE.defineBackground = function(
 
   if(notes != null)
     rules.defineNote(notes);
+
 }
 
 /*

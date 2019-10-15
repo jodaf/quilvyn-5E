@@ -136,6 +136,7 @@ FiveE.RANDOMIZABLE_ATTRIBUTES = [
   'features', 'feats', 'skills', 'languages', 'hitPoints', 'armor', 'shield',
   'weapons', 'spells', 'tools', 'goodies'
 ];
+FiveE.ROGUISH_ARCHETYPES = ['Arcane Trickster', 'Assassin', 'Thief'];
 FiveE.SCHOOLS = [
   'Abjuration:Abju', 'Conjuration:Conj', 'Divination:Divi', 'Enchantment:Ench',
   'Evocation:Evoc', 'Illusion:Illu', 'Necromancy:Necr', 'Transmutation:Tran'
@@ -1892,18 +1893,23 @@ FiveE.classRules = function(rules, classes) {
     if(name == 'Barbarian') {
 
       features = [
+        '1:Armor Proficiency (Light/Medium/Shield)',
+        '1:Weapon Proficiency (Simple/Martial)',
         '1:Rage', '1:Unarmored Defense', '2:Danger Sense', '2:Reckless Attack',
         '3:Frenzy', '3:Primal Path', '3:Spirit Seeker', '3:Bear Totem Spirit',
-        '3:Eagle Totem Spirit', '3:Wolf Totem Spirit', '5:Extra Attack',
-        '5:Fast Movement', '6:Mindless Rage', '6:Aspect Of The Bear',
-        '6:Aspect Of The Eagle', '6:Aspect Of The Wolf', '7:Feral Instinct',
-        '9:Brutal Critical', '10:Intimidating Presence', '10:Spirit Walker',
-        '11:Relentless Rage', '14:Retaliation', '14:Bear Totemic Attunement',
+        '3:Eagle Totem Spirit', '3:Wolf Totem Spirit',
+        '4:Ability Score Improvement', '5:Extra Attack', '5:Fast Movement',
+        '6:Mindless Rage', '6:Aspect Of The Bear', '6:Aspect Of The Eagle',
+        '6:Aspect Of The Wolf', '7:Feral Instinct', '9:Brutal Critical',
+        '10:Intimidating Presence', '10:Spirit Walker', '11:Relentless Rage',
+        '14:Retaliation', '14:Bear Totemic Attunement',
         '14:Eagle Totemic Attunement', '14:Wolf Totemic Attunement',
         '15:Persistent Rage', '18:Indominable Might', '20:Primal Champion'
       ];
       hitDie = 12;
       notes = [
+        'abilityNotes.abilityScoreImprovementFeature:' +
+          'Distribute +%V among ability scores',
         'abilityNotes.aspectOfTheBearFeature:Double load/lift, Adv Str checks',
         'abilityNotes.aspectOfTheEagleFeature:See 1 mile clearly, no perception Disadv in dim light',
         'abilityNotes.aspectOfTheWolfFeature:Track at fast pace, stealth at normal pace',
@@ -1992,6 +1998,9 @@ FiveE.classRules = function(rules, classes) {
         'barbarianFeatures.Wolf Totem', '?', null
       );
 
+      rules.defineRule('abilityNotes.abilityScoreImprovementFeature',
+        'levels.Barbarian', '+=', 'source >= 19 ? 5 : Math.floor(source / 4)'
+      );
       rules.defineRule('combatNotes.brutalCriticalFeature',
         'levels.Barbarian', '=', 'source >= 17 ? 3 : source >= 13 ? 2 : source >= 9 ? 1 : null'
       );
@@ -2030,14 +2039,20 @@ FiveE.classRules = function(rules, classes) {
     } else if(name == 'Bard') {
 
       features = [
+        '1:Armor Proficiency (Light)',
+        '1:Weapon Proficiency (Simple/Hand Crossbow/Longsword/Rapier/Shortsword)',
+        '1:Tool Proficiency (3 Musical Instruments)',
         '1:Bardic Inspiration', '2:Jack Of All Trades', '2:Song Of Rest',
         '3:Bard College', 'Combat Inspiration', '3:Cutting Words',
-        '3:Expertise', '5:Font Of Inspiration', '6:Countercharm',
-        '6:Additional Magical Secrets', '6:Extra Attack', '10:Magical Secrets',
-        '14:Battle Magic', '14:Peerless Skill', '20:Superior Inspiration'
+        '3:Expertise', '4:Ability Score Improvement', '5:Font Of Inspiration',
+        '6:Countercharm', '6:Additional Magical Secrets', '6:Extra Attack',
+        '10:Magical Secrets', '14:Battle Magic', '14:Peerless Skill',
+        '20:Superior Inspiration'
       ];
       hitDie = 8;
       notes = [
+        'abilityNotes.abilityScoreImprovementFeature:' +
+          'Distribute +%V among ability scores',
         'combatNotes.battleMagicFeature:Bonus attack after casting Bard spell',
         'combatNotes.extraAttackFeature:+1 attack per Attack action',
         'featureNotes.bardicInspirationFeature:Grant d%V inspiration %1/long rest',
@@ -2100,6 +2115,9 @@ FiveE.classRules = function(rules, classes) {
         'bardFeatures.College Of Lore', '?', null
       );
 
+      rules.defineRule('abilityNotes.abilityScoreImprovementFeature',
+        'levels.Bard', '+=', 'source >= 19 ? 5 : Math.floor(source / 4)'
+      );
       rules.defineRule
         ('attacksPerRound', 'combatNotes.extraAttackFeature', '+', '1');
       rules.defineRule('casterLevelArcane', 'levels.Bard', '+=', null);
@@ -2127,11 +2145,15 @@ FiveE.classRules = function(rules, classes) {
     } else if(name == 'Cleric') {
 
       features = [
-        '1:Divine Domain', '2:Channel Divinity', '5:Destroy Undead',
-        '10:Divine Intervention'
+        '1:Armor Proficiency (Light/Medium/Shield)',
+        '1:Weapon Proficiency (Simple)',
+        '1:Divine Domain', '2:Channel Divinity', '4:Ability Score Improvement',
+        '5:Destroy Undead', '10:Divine Intervention'
       ];
       hitDie = 8;
       notes = [
+        'abilityNotes.abilityScoreImprovementFeature:' +
+          'Distribute +%V among ability scores',
         'combatNotes.destroyUndeadFeature:Turn destroys up to CR %V',
         'featureNotes.channelDivinityFeature:Turn undead, domain effect %V/short rest',
         'magicNotes.divineDomainFeature:Gain chosen domain benefits',
@@ -2170,6 +2192,9 @@ FiveE.classRules = function(rules, classes) {
         'C9:17:1'
       ];
 
+      rules.defineRule('abilityNotes.abilityScoreImprovementFeature',
+        'levels.Cleric', '+=', 'source >= 19 ? 5 : Math.floor(source / 4)'
+      );
       rules.defineRule('casterLevelDivine', 'levels.Cleric', '+=', null);
       rules.defineRule('combatNotes.destroyUndeadFeature', 'levels.Cleric', '=', 'source < 8 ? 0.5 : Math.floor((source - 5) / 3)');
       rules.defineRule('featureNotes.channelDivinityFeature', 'levels.Cleric', '=', 'source < 6 ? 1: source < 18 ? 2 : 3');
@@ -2181,10 +2206,17 @@ FiveE.classRules = function(rules, classes) {
     } else if(name == 'Druid') {
 
       features = [
-        // TODO
+        '1:Amor Proficiency (Light/Medium/Shield)',
+        '1:Weapon Proficiency (Club/Dagger/Dart/Javelin/Mace/Quarterstaff/Scimitar/Sickle/Sling/Spear)',
+        '1:Tool Proficiency (Herbalism Kit)',
+        '1:Druidic', '2:Wild Shape', '2:Druid Circle',
+        '4:Ability Score Improvement', '18:Timeless Body', '18:Beast Spells',
+        '20:Archdruid'
       ];
       hitDie = 8;
       notes = [
+        'abilityNotes.abilityScoreImprovementFeature:' +
+          'Distribute +%V among ability scores'
         // TODO
       ];
       proficiencyCount =
@@ -2219,14 +2251,23 @@ FiveE.classRules = function(rules, classes) {
         'D9:17:1'
       ];
 
+      rules.defineRule('abilityNotes.abilityScoreImprovementFeature',
+        'levels.Druid', '+=', 'source >= 19 ? 5 : Math.floor(source / 4)'
+      );
+
     } else if(name == 'Fighter') {
 
       features = [
+        '1:Armor Proficiency (Light/Medium/Heavy/Shield)',
+        '1:Weapon Proficiency (Simple/Martial)',
         '1:Fighting Style', '1:Second Wind', '2:Action Surge',
-        '3:Martial Archetype', '5:Extra Attack', '9:Indomitable'
+        '3:Martial Archetype', '4:Ability Score Improvement', '5:Extra Attack',
+        '9:Indomitable'
       ];
       hitDie = 10;
       notes = [
+        'abilityNotes.abilityScoreImprovementFeature:' +
+          'Distribute +%V among ability scores',
         'combatNotes.actionSurgeFeature:TODO',
         'combatNotes.extraAttackFeature:+1 attack per Attack action',
         'combatNotes.fightingStyleFeature:TODO',
@@ -2249,26 +2290,40 @@ FiveE.classRules = function(rules, classes) {
       spellsKnown = null;
       spellSlots = null;
 
+      rules.defineRule('abilityNotes.abilityScoreImprovementFeature',
+        'levels.Fighter', '+=', '[0,0,0,0,2,2,4,4,6,6,6,6,8,8,10,10,12,12,12,14,14][source]'
+      );
       rules.defineRule
         ('attacksPerRound', 'combatNotes.extraAttackFeature', '+', '1');
 
     } else if(name == 'Monk') {
 
       features = [
-        // TODO
+        '1:Weapon Proficiency (Simple/Shortsword)',
+        "1:Tool Proficiency (Artisan's Tools or Musical Instrument)",
+        '1:Unarmored Defense', '1:Martial Arts', '2:Ki', '2:Unarmored Movement',
+        '3:Monastic Tradition', '3:Deflect Missles',
+        '4:Ability Score Improvement', '4:Slow Fall', '5:Extra Attack',
+        '5:Stunning Strike', '6:Ki-Empowered Strikes', '7:Evasion',
+        '7:Stillness Of Mind', '10:Purity Of Body', '13:Tongue Of Sun And Moon',
+        '14:Diamond Soul', '15:Timeless Body', '18:Empty Body',
+        '20:Perfect Self'
       ];
       hitDie = 8;
       notes = [
+        'abilityNotes.abilityScoreImprovementFeature:' +
+          'Distribute +%V among ability scores'
         // TODO
       ];
-      proficiencyCount = {'Save':2, 'Skill':2, 'Weapon':2};
+      proficiencyCount = {'Save':2, 'Skill':2, 'Tool':1, 'Weapon':2};
       proficienciesGiven = {
         'Save':['Dexterity', 'Strength'],
         'Weapon':['Simple', 'Shortsword']
       };
       proficiencyChoices = {
         'Skill':['Acrobatics', 'Athletics', 'History', 'Insight', 'Religion',
-                 'Stealth']
+                 'Stealth'],
+        'Tool':['Artisan', 'Music']
       };
       selectableFeatures = [
         'Combat Reflexes', 'Deflect Arrows', 'Improved Disarm',
@@ -2278,13 +2333,24 @@ FiveE.classRules = function(rules, classes) {
       spellsKnown = null;
       spellSlots = null;
 
+      rules.defineRule('abilityNotes.abilityScoreImprovementFeature',
+        'levels.Monk', '+=', 'source >= 19 ? 5 : Math.floor(source / 4)'
+      );
+
     } else if(name == 'Paladin') {
 
       features = [
-        // TODO
+        '1:Armor Proficiency (Light/Medium/Heavy/Shield)',
+        '1:Weapon Proficiency (Simple/Martial)',
+        '1:Divine Sense', '1:Lay On Hands', '2:Fighting Style',
+        '2:Divine Smite', '3:Divine Health', '3:Sacred Oath',
+        '4:Ability Score Improvement', '5:Extra Attack', '6:Aura Of Protection',
+        '10:Aura Of Courage', '14:Cleansing Touch'
       ];
       hitDie = 10;
       notes = [
+        'abilityNotes.abilityScoreImprovementFeature:' +
+          'Distribute +%V among ability scores'
         // TODO
       ];
       proficiencyCount = {'Save':2, 'Skill':2, 'Armor':4, 'Weapon':2};
@@ -2310,13 +2376,25 @@ FiveE.classRules = function(rules, classes) {
         'P5:17:1/19:2'
       ];
 
+      rules.defineRule('abilityNotes.abilityScoreImprovementFeature',
+        'levels.Paladin', '+=', 'source >= 19 ? 5 : Math.floor(source / 4)'
+      );
+
     } else if(name == 'Ranger') {
 
       features = [
-        // TODO
+        '1:Armor Proficiency (Light/Medium/Shield)',
+        '1:Weapon Proficiency (Simple/Martial)',
+        '1:Favored Enemy', '1:Natural Explorer', '2:Fighting Style',
+        '3:Ranger Archetype', '3:Primeval Awareness',
+        '4:Ability Score Improvement', '5:Extra Attack', "8:Land's Stride",
+        '10:Hide In Plain Sight', '14:Vanish', '18:Feral Senses',
+        '20:Foe Slayer'
       ];
       hitDie = 10;
       notes = [
+        'abilityNotes.abilityScoreImprovementFeature:' +
+          'Distribute +%V among ability scores'
         // TODO
       ];
       proficiencyCount = {'Save':2, 'Skill':3, 'Armor':3, 'Weapon':2};
@@ -2342,13 +2420,32 @@ FiveE.classRules = function(rules, classes) {
         'R5:17:1/19:2'
       ];
 
+      rules.defineRule('abilityNotes.abilityScoreImprovementFeature',
+        'levels.Ranger', '+=', 'source >= 19 ? 5 : Math.floor(source / 4)'
+      );
+
     } else if(name == 'Rogue') {
 
       features = [
-        // TODO
+        '1:Armor Proficiency (Light)',
+        '1:Weapon Proficiency (Simple/Hand Crossbow/Longsword/Rapier/Shortsword)',
+        "1:Tool Proficiency (Thieves' Tools)",
+        '1:Expertise', '1:Sneak Attack', "1:Thieves' Cant", '2:Cunning Action',
+        '3:Roguish Archetype', '4:Ability Score Improvement', '5:Uncanny Dodge',
+        '7:Evasion', '11:Reliable Talent', '14:Blindsense',
+        '15:Slippery Mind', '18:Elusive', '20:Stroke Of Luck'
       ];
       hitDie = 8;
       notes = [
+        'abilityNotes.abilityScoreImprovementFeature:' +
+          'Distribute +%V among ability scores',
+        'combatNotes.cunningAction:Bonus dash/disengage/hide each turn',
+        'combatNotes.sneakAttackFeature:+%Vd6 damage on Adv/flanked attacks',
+        'combatNotes.uncannyDodgeFeature:Use reaction for half damage',
+        'saveNotes.evasionFeature:No damage on successful Dex save, half on fail',
+        'skillNotes.expertiseFeature:Double proficiency in %V skills/tools',
+        'skillNotes.reliableTalentFeature:Min 10 roll on proficient skills',
+        "skillNotes.thieves'CantFeature:Signs and symbols known only by rogues"
         // TODO
       ];
       proficiencyCount =
@@ -2364,18 +2461,35 @@ FiveE.classRules = function(rules, classes) {
                  'Intimidation', 'Investigation', 'Perception', 'Performance',
                  'Persuasion', 'Sleight Of Hand', 'Stealth']
       };
-      selectableFeatures = null
+      selectableFeatures = FiveE.ROGUE_ARCHETYPES;
       spellAbility = null;
       spellsKnown = null;
       spellSlots = null;
 
+      rules.defineRule('abilityNotes.abilityScoreImprovementFeature',
+        'levels.Rogue', '+=', 'source >= 19 ? 5 : Math.floor(source / 4)'
+      );
+      rules.defineRule('combatNotes.sneakAttackFeature',
+        'levels.Rogue', '=', 'Math.floor((source + 1) / 2)'
+      );
+      rules.defineRule('skillNotes.expertiseFeature',
+        'levels.Rogue', '=', 'source >= 6 ? 4 : 2'
+      );
+      rules.defineRule('selectableFeatureCount.Rogue',
+        'rogueFeatures.Roguish Archetype', '=', '1'
+      );
+
     } else if(name == 'Sorcerer') {
 
       features = [
-        // TODO
+        '1:Weapon Proficiency (Dagger/Dart/Sling/Quarterstaff/Light Crossbow)',
+        '1:Sorcerous Origin', '2:Font Of Magic', '3:Metamagic',
+        '4:Ability Score Improvement', '20:Sorcerous Restoration'
       ];
       hitDie = 8;
       notes = [
+        'abilityNotes.abilityScoreImprovementFeature:' +
+          'Distribute +%V among ability scores'
         // TODO
       ];
       proficiencyCount = {'Save':2, 'Skill':2, 'Weapon':5};
@@ -2405,15 +2519,24 @@ FiveE.classRules = function(rules, classes) {
         'S9:17:1'
       ];
 
+      rules.defineRule('abilityNotes.abilityScoreImprovementFeature',
+        'levels.Sorcerer', '+=', 'source >= 19 ? 5 : Math.floor(source / 4)'
+      );
       rules.defineRule('casterLevelArcane', 'levels.Sorcerer', '+=', null);
 
     } else if(name == 'Warlock') {
 
       features = [
-        // TODO
+        '1:Armor Proficiency (Light)',
+        '1:Weapon Proficiency (Simple)',
+        '1:Otherworldly Patron', '1:Pact Magic', '2:Eldritch Invocation',
+        '3:Pact Boon', '4:Ability Score Improvement', '11:Mystic Arcanum',
+        '20:Eldritch Master'
       ];
       hitDie = 8;
       notes = [
+        'abilityNotes.abilityScoreImprovementFeature:' +
+          'Distribute +%V among ability scores',
         // TODO
       ];
       proficiencyCount = {'Save':2, 'Skill':2, 'Armor':1, 'Weapon':1};
@@ -2439,17 +2562,22 @@ FiveE.classRules = function(rules, classes) {
         'K5:9:2/11:3/17:4'
       ];
 
+      rules.defineRule('abilityNotes.abilityScoreImprovementFeature',
+        'levels.Warlock', '+=', 'source >= 19 ? 5 : Math.floor(source / 4)'
+      );
       rules.defineRule('casterLevelArcane', 'levels.Warlock', '+=', null);
 
     } else if(name == 'Wizard') {
 
       features = [
-        '1:Arcane Recovery', '2:Arcane Tradition',
         '1:Weapon Proficiency (Dagger/Dart/Light Crossbow/Quarterstaff/Sling)',
-        '18:Spell Mastery', '20:Signature Spell'
+        '1:Arcane Recovery', '2:Arcane Tradition',
+        '4:Ability Score Improvement', '18:Spell Mastery', '20:Signature Spell'
       ];
       hitDie = 6;
       notes = [
+        'abilityNotes.abilityScoreImprovementFeature:' +
+          'Distribute +%V among ability scores',
         'magicNotes.arcaneRecoveryFeature:' +
           'Short rest recovers %V spell slots 1/dy',
         'magicNotes.arcaneTraditionFeature:Gain chosen school effects',
@@ -2485,6 +2613,9 @@ FiveE.classRules = function(rules, classes) {
         'W9:17:1'
       ];
 
+      rules.defineRule('abilityNotes.abilityScoreImprovementFeature',
+        'levels.Wizard', '+=', 'source >= 19 ? 5 : Math.floor(source / 4)'
+      );
       rules.defineRule('casterLevelArcane', 'levels.Wizard', '+=', null);
       rules.defineRule('magicNotes.arcaneRecoveryFeature',
         'levels.Wizard', '=', 'Math.floor(source / 2)'

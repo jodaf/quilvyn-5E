@@ -658,17 +658,17 @@ FiveE.spellsDescriptions = {
   'Branding Smite':"Self next attack +2d6 radiant and visible for conc/1 min",
   'Burning Hands':"15' cone 3d6 fire (Dex half)",
 
-  'Call Lightning':"TODO",
-  'Calm Emotions':"TODO",
-  'Chain Lightning':"TODO",
-  'Charm Person':"TODO",
-  'Chill Touch':"TODO",
-  'Chromatic Orb':"TODO",
-  'Circle Of Death':"TODO",
-  'Circle Of Power':"TODO",
-  'Clairvoyance':"TODO",
-  'Clone':"TODO",
-  'Cloud Of Daggers':"TODO",
+  'Call Lightning':"R120' Conjured storm cloud 100' overhead generates bolt for 3d10 HP (Dex half) in 5' radius each rd for conc/10 min",
+  'Calm Emotions':"R60' 10' radius suppresses charm/fright or hostility (Cha neg) for conc/1 min",
+  'Chain Lightning':"R150' 4 targets in 30' radius 10d8 lightning (Dex half)",
+  'Charm Person':"R30' Target regards you as friend (Wis neg) for 1 hr/until harmed",
+  'Chill Touch':"R120' Ghost hand ${Math.floor((lvl + 1) / 6) + 1} necrotic, undead also Disadv self attack for 1 rd",
+  'Chromatic Orb':"R90' 4\" hurled sphere 3d8 acid/poison/energy",
+  'Circle Of Death':"R150' 60' radius 8d6 necrotic (Con half)",
+  'Circle Of Power':"Allies in 30' radius from self Adv save vs. magic, neg instead of half for conc/10 min",
+  'Clairvoyance':"R1 mi Invisible sensor allows sight or hearing for conc/10 min",
+  'Clone':"Grow backup body for touched target",
+  'Cloud Of Daggers':"R60' Spinning daggers in 5' cube 4d4 slashing for conc/1 min",
   'Cloudkill':"TODO",
   'Color Spray':"TODO",
   'Command':"TODO",
@@ -995,8 +995,10 @@ FiveE.spellsDescriptions = {
 /* Defines the rules related to character abilities. */
 FiveE.abilityRules = function(rules) {
 
+  // Ability modifier computation
   for(var ability in {'charisma':'', 'constitution':'', 'dexterity':'',
                       'intelligence':'', 'strength':'', 'wisdom':''}) {
+    rules.defineRule(ability, ability + 'Adjust', '+', null);
     rules.defineRule
       (ability + 'Modifier', ability, '=', 'Math.floor((source - 10) / 2)');
     rules.defineNote(ability + ':%V (%1)');

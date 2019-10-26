@@ -3787,7 +3787,7 @@ FiveE.randomizeOneAttribute = function(attributes, attribute) {
   } else if(attribute == 'levels') {
     choices = ScribeUtils.getKeys(this.getChoices('levels'));
     var soFar = ScribeUtils.sumMatching(attributes, /^levels\./); 
-    var level = attributes.level != null ? attributes.level - 0 : soFar;
+    var level = attributes.level != null ? attributes.level : soFar;
     if(level == 0) {
       level = ScribeUtils.random(1, 100);
       level = level<=50 ? 1 : level<=75 ? 2 : level<=87 ? 3 : level<=93 ? 4 :
@@ -4090,7 +4090,7 @@ FiveE.makeValid = function(attributes) {
           } else {
             for(toFixAttr in abilities) {
               if(applied[toFixAttr + 'Modifier'] <= 0) {
-                toFixValue = attributes[toFixAttr] - 0 + 2;
+                toFixValue = attributes[toFixAttr] + 2;
                 debug[debug.length] =
                   attr + " '" + toFixAttr + "': '" + attributes[toFixAttr] +
                   "' => '" + toFixValue + "'";

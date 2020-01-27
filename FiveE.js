@@ -17,7 +17,7 @@ Place, Suite 330, Boston, MA 02111-1307 USA.
 
 "use strict";
 
-var FiveE_VERSION = '1.4.0.1alpha';
+var FiveE_VERSION = '1.5.0.1alpha';
 
 /*
  * This module loads the rules from Fifth Edition.  The FiveE function
@@ -45,8 +45,7 @@ function FiveE() {
   FiveE.skillRules(rules, FiveE.SKILLS, FiveE.TOOLS);
   FiveE.featRules(rules, FiveE.FEATS);
   FiveE.descriptionRules(rules, FiveE.ALIGNMENTS, FiveE.DEITIES, FiveE.GENDERS);
-  FiveE.equipmentRules
-    (rules, FiveE.ARMORS, FiveE.GOODIES, FiveE.SHIELDS, FiveE.WEAPONS);
+  FiveE.equipmentRules(rules, FiveE.ARMORS, FiveE.SHIELDS, FiveE.WEAPONS);
   FiveE.combatRules(rules);
   FiveE.movementRules(rules);
   FiveE.magicRules(rules, FiveE.CLASSES, FiveE.DOMAINS, FiveE.SCHOOLS);
@@ -109,12 +108,6 @@ FiveE.FEATS = [
   'Tough', 'War Caster', 'Weapon Master'
 ];
 FiveE.GENDERS = ['Female', 'Male'];
-FiveE.GOODIES = [
-  'Ring Of Protection +1',
-  'Ring Of Protection +2',
-  'Ring Of Protection +3',
-  'Ring Of Protection +4'
-];
 FiveE.LANGUAGES = [
   'Abyssal', 'Celestial', 'Common', 'Deep Speech', 'Draconic', 'Dwarvish',
   'Elvish', 'Giant', 'Gnomish', 'Goblin', 'Halfling', 'Infernal', 'Orc',
@@ -134,7 +127,7 @@ FiveE.RANDOMIZABLE_ATTRIBUTES = [
   'charisma', 'constitution', 'dexterity', 'intelligence', 'strength', 'wisdom',
   'name', 'race', 'gender', 'alignment', 'background', 'deity', 'levels',
   'features', 'feats', 'skills', 'languages', 'hitPoints', 'armor', 'shield',
-  'weapons', 'spells', 'tools', 'goodies'
+  'weapons', 'spells', 'tools'
 ];
 FiveE.ROGUISH_ARCHETYPES = ['Arcane Trickster', 'Assassin', 'Thief'];
 FiveE.SCHOOLS = [
@@ -2469,7 +2462,6 @@ FiveE.createViewers = function(rules, viewers) {
             {name: 'Spell Difficulty Class', within: 'Section 2',
              separator: '/'},
             {name: 'Domains', within: 'Section 2', separator: '/'},
-            {name: 'Goodies', within: 'Section 2', separator: '/'},
             {name: 'Notes', within: 'Section 2'},
             {name: 'Hidden Notes', within: 'Section 2', format: '%V'}
       );
@@ -2575,7 +2567,6 @@ FiveE.createViewers = function(rules, viewers) {
           {name: 'Magic Notes', within: 'Magic', separator: noteSep},
         {name: 'Notes Area', within: '_top', separator: outerSep,
          format: '<b>Notes</b><br/>%V'},
-          {name: 'Goodies', within: 'Notes Area', separator: listSep},
           {name: 'NotesPart', within: 'Notes Area', separator: '\n'},
             {name: 'Notes', within: 'NotesPart', format: '%V'},
             {name: 'Hidden Notes', within: 'NotesPart', format: '%V'},
@@ -2598,10 +2589,9 @@ FiveE.descriptionRules = function(rules, alignments, deities, genders) {
 };
 
 /* Defines the rules related to equipment. */
-FiveE.equipmentRules = function(rules, armors, goodies, shields, weapons) {
+FiveE.equipmentRules = function(rules, armors, shields, weapons) {
 
   rules.defineChoice('armors', armors);
-  rules.defineChoice('goodies', goodies);
   rules.defineChoice('shields', shields);
   rules.defineChoice('weapons', weapons);
 
@@ -3101,14 +3091,6 @@ FiveE.magicRules = function(rules, classes, domains, schools) {
 
   }
 
-  rules.defineRule
-    ('armorClass', 'combatNotes.goodiesArmorClassAdjustment', '+', null);
-  rules.defineRule('combatNotes.goodiesArmorClassAdjustment',
-    'goodies.Ring Of Protection +1', '+=', null,
-    'goodies.Ring Of Protection +2', '+=', 'source * 2',
-    'goodies.Ring Of Protection +3', '+=', 'source * 3',
-    'goodies.Ring Of Protection +4', '+=', 'source * 4'
-  );
   rules.defineRule('casterLevel',
     'casterLevelArcane', '+=', null,
     'casterLevelDivine', '+=', null
@@ -3619,7 +3601,6 @@ FiveE.initialEditorElements = function() {
     ['shield', 'Shield', 'select-one', 'shields'],
     ['weapons', 'Weapons', 'bag', 'weapons'],
     ['spells', 'Spells', 'fset', 'spells'],
-    ['goodies', 'Goodies', 'bag', 'goodies'],
     ['domains', 'Cleric Domains', 'set', 'domains'],
     ['notes', 'Notes', 'textarea', [40,10]],
     ['hiddenNotes', 'Hidden Notes', 'textarea', [40,10]]
@@ -3757,12 +3738,6 @@ FiveE.randomizeOneAttribute = function(attributes, attribute) {
       attributes.notes =
         (notes != null ? attributes.notes + '\n' : '') + debug.join('\n');
     }
-  } else if(attribute == 'goodies') {
-    attrs = this.applyRules(attributes);
-    choices = ScribeUtils.getKeys(this.getChoices('goodies'));
-    howMany = Math.floor((attrs.level + 1) / 3);
-    pickAttrs(attributes, 'goodies.', choices, howMany -
-              ScribeUtils.sumMatching(attrs, /^goodies\./), 1);
   } else if(attribute == 'hitPoints') {
     attributes.hitPoints = 0;
     for(var klass in this.getChoices('levels')) {

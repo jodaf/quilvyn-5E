@@ -28,7 +28,7 @@ var FiveE_VERSION = '1.5.0.1alpha';
  * FEATS, etc.) can be manipulated to modify the choices.
  */
 function FiveE() {
-  var rules = new ScribeRules('FiveE', FiveE_VERSION);
+  var rules = new QuilvynRules('FiveE', FiveE_VERSION);
   rules.editorElements = FiveE.initialEditorElements();
   rules.randomizeOneAttribute = FiveE.randomizeOneAttribute;
   rules.makeValid = FiveE.makeValid;
@@ -52,7 +52,7 @@ function FiveE() {
   FiveE.spellDescriptionRules(rules);
   rules.defineChoice('preset', 'background', 'race', 'level', 'levels');
   rules.defineChoice('random', FiveE.RANDOMIZABLE_ATTRIBUTES);
-  Scribe.addRuleSet(rules);
+  Quilvyn.addRuleSet(rules);
   FiveE.rules = rules;
 }
 
@@ -2121,7 +2121,7 @@ FiveE.companionRules = function(rules, companions, familiars) {
 
   if(companions != null) {
 
-    rules.defineChoice('animalCompanions', ScribeUtils.getKeys(companions));
+    rules.defineChoice('animalCompanions', QuilvynUtils.getKeys(companions));
     rules.defineEditorElement
       ('animalCompanion', 'Animal Companion', 'set', 'animalCompanions',
        'notes');
@@ -2274,7 +2274,7 @@ FiveE.companionRules = function(rules, companions, familiars) {
 
   if(familiars != null) {
 
-    rules.defineChoice('familiars', ScribeUtils.getKeys(familiars));
+    rules.defineChoice('familiars', QuilvynUtils.getKeys(familiars));
     rules.defineEditorElement
       ('familiar', 'Familiar', 'set', 'familiars', 'notes');
     rules.defineEditorElement('familiarName', '', 'text', [20], 'notes');
@@ -3428,7 +3428,7 @@ FiveE.skillRules = function(rules, skills, tools) {
 FiveE.spellDescriptionRules = function(rules, spells, descriptions) {
 
   if(spells == null) {
-    spells = ScribeUtils.getKeys(rules.choices.spells);
+    spells = QuilvynUtils.getKeys(rules.choices.spells);
   }
   if(descriptions == null) {
     descriptions = FiveE.spellsDescriptions;
@@ -3493,13 +3493,13 @@ FiveE.randomName = function(race) {
 
   /* Return a random character from #string#. */
   function randomChar(string) {
-    return string.charAt(ScribeUtils.random(0, string.length - 1));
+    return string.charAt(QuilvynUtils.random(0, string.length - 1));
   }
 
   if(race == null)
     race = 'Human';
   else if(race == 'Half Elf')
-    race = ScribeUtils.random(0, 99) < 50 ? 'Elf' : 'Human';
+    race = QuilvynUtils.random(0, 99) < 50 ? 'Elf' : 'Human';
   else if(race.match(/Dwarf/))
     race = 'Dwarf';
   else if(race.match(/Elf/))
@@ -3528,7 +3528,7 @@ FiveE.randomName = function(race) {
     {'Dwarf': 'aeiou', 'Elf': 'aeioy', 'Gnome': 'aeiou',
      'Halfling': 'aeiou', 'Human': 'aeiou', 'Orc': 'aou'}[race];
   var diphthongs = {a:'wy', e:'aei', o: 'aiouy', u: 'ae'};
-  var syllables = ScribeUtils.random(0, 99);
+  var syllables = QuilvynUtils.random(0, 99);
   syllables = syllables < 50 ? 2 :
               syllables < 75 ? 3 :
               syllables < 90 ? 4 :
@@ -3538,28 +3538,28 @@ FiveE.randomName = function(race) {
   var vowel;
 
   for(var i = 0; i < syllables; i++) {
-    if(ScribeUtils.random(0, 99) <= 80) {
+    if(QuilvynUtils.random(0, 99) <= 80) {
       endConsonant = randomChar(consonants).toUpperCase();
-      if(clusters[endConsonant] != null && ScribeUtils.random(0, 99) < 15)
+      if(clusters[endConsonant] != null && QuilvynUtils.random(0, 99) < 15)
         endConsonant += randomChar(clusters[endConsonant]);
       result += endConsonant;
       if(endConsonant == 'Q')
         result += 'u';
     }
-    else if(endConsonant.length == 1 && ScribeUtils.random(0, 99) < 10) {
+    else if(endConsonant.length == 1 && QuilvynUtils.random(0, 99) < 10) {
       result += endConsonant;
       endConsonant += endConsonant;
     }
     vowel = randomChar(vowels);
     if(endConsonant.length > 0 && diphthongs[vowel] != null &&
-       ScribeUtils.random(0, 99) < 15)
+       QuilvynUtils.random(0, 99) < 15)
       vowel += randomChar(diphthongs[vowel]);
     result += vowel;
     endConsonant = '';
-    if(ScribeUtils.random(0, 99) <= 60) {
+    if(QuilvynUtils.random(0, 99) <= 60) {
       while(leading.indexOf((endConsonant = randomChar(consonants))) >= 0)
         ; /* empty */
-      if(clusters[endConsonant] != null && ScribeUtils.random(0, 99) < 15)
+      if(clusters[endConsonant] != null && QuilvynUtils.random(0, 99) < 15)
         endConsonant += randomChar(clusters[endConsonant]);
       result += endConsonant;
     }
@@ -3618,7 +3618,7 @@ FiveE.randomizeOneAttribute = function(attributes, attribute) {
   function pickAttrs(attributes, prefix, choices, howMany, value) {
     var remaining = [].concat(choices);
     for(var i = 0; i < howMany && remaining.length > 0; i++) {
-      var which = ScribeUtils.random(0, remaining.length - 1);
+      var which = QuilvynUtils.random(0, remaining.length - 1);
       attributes[prefix + remaining[which]] = value;
       remaining = remaining.slice(0, which).concat(remaining.slice(which + 1));
     }
@@ -3638,7 +3638,7 @@ FiveE.randomizeOneAttribute = function(attributes, attribute) {
         choices[choices.length] = attr;
       }
     }
-    attributes['armor'] = choices[ScribeUtils.random(0, choices.length - 1)];
+    attributes['armor'] = choices[QuilvynUtils.random(0, choices.length - 1)];
   } else if(attribute == 'deity') {
     /* Pick a deity that's no more than one alignment position removed. */
     var aliInfo = attributes.alignment.match(/^([CLN]).* ([GEN])/);
@@ -3657,7 +3657,7 @@ FiveE.randomizeOneAttribute = function(attributes, attribute) {
         choices[choices.length] = attr;
     }
     if(choices.length > 0) {
-      attributes['deity'] = choices[ScribeUtils.random(0, choices.length - 1)];
+      attributes['deity'] = choices[QuilvynUtils.random(0, choices.length - 1)];
     } else {
       attributes['deity'] = 'None';
     }
@@ -3680,7 +3680,7 @@ FiveE.randomizeOneAttribute = function(attributes, attribute) {
       if(attrs[prefix + '.' + attr] != null) {
         var type = 'General';
         for(var a in toAllocateByType) {
-          if(ScribeUtils.findElement(allChoices[attr].split('/'), a) >= 0 &&
+          if(QuilvynUtils.findElement(allChoices[attr].split('/'), a) >= 0 &&
              toAllocateByType[a] > 0) {
             type = a;
             break;
@@ -3696,21 +3696,21 @@ FiveE.randomizeOneAttribute = function(attributes, attribute) {
       var availableChoicesInType = {};
       for(var a in availableChoices) {
         if(attr == 'General' ||
-           ScribeUtils.findElement(availableChoices[a].split('/'), attr) >= 0) {
+           QuilvynUtils.findElement(availableChoices[a].split('/'), attr) >= 0) {
           availableChoicesInType[a] = '';
         }
       }
       howMany = toAllocateByType[attr];
       debug[debug.length] = 'Choose ' + howMany + ' ' + attr + ' ' + prefix;
       while(howMany > 0 &&
-            (choices=ScribeUtils.getKeys(availableChoicesInType)).length > 0) {
+            (choices=QuilvynUtils.getKeys(availableChoicesInType)).length > 0) {
         debug[debug.length] =
           'Pick ' + howMany + ' from ' +
-          ScribeUtils.getKeys(availableChoicesInType).length;
+          QuilvynUtils.getKeys(availableChoicesInType).length;
         var picks = {};
         pickAttrs(picks, '', choices, howMany, 1);
         debug[debug.length] =
-          'From ' + ScribeUtils.getKeys(picks).join(", ") + ' reject';
+          'From ' + QuilvynUtils.getKeys(picks).join(", ") + ' reject';
         for(var pick in picks) {
           attributes[prefix + '.' + pick] = 1;
           delete availableChoicesInType[pick];
@@ -3720,7 +3720,7 @@ FiveE.randomizeOneAttribute = function(attributes, attribute) {
           var name = pick.substring(0, 1).toLowerCase() +
                      pick.substring(1).replace(/ /g, '').
                      replace(/\(/g, '\\(').replace(/\)/g, '\\)');
-          if(ScribeUtils.sumMatching
+          if(QuilvynUtils.sumMatching
                (validate,
                 new RegExp('^(sanity|validation)Notes.'+name+suffix)) != 0) {
             delete attributes[prefix + '.' + pick];
@@ -3751,43 +3751,43 @@ FiveE.randomizeOneAttribute = function(attributes, attribute) {
                   matchInfo[3] == '' ? 6 : matchInfo[3];
       attributes.hitPoints += number * sides;
       while(--attr > 0)
-        attributes.hitPoints += ScribeUtils.random(number, number * sides);
+        attributes.hitPoints += QuilvynUtils.random(number, number * sides);
     }
   } else if(attribute == 'languages') {
     attrs = this.applyRules(attributes);
     howMany = attrs['languageCount'] || 0;
-    choices = ScribeUtils.getKeys(this.getChoices('languages'));
+    choices = QuilvynUtils.getKeys(this.getChoices('languages'));
     pickAttrs(attributes, 'languages.', choices,
-              howMany - ScribeUtils.sumMatching(attrs, /^languages\./), 1);
+              howMany - QuilvynUtils.sumMatching(attrs, /^languages\./), 1);
   } else if(attribute == 'levels') {
-    choices = ScribeUtils.getKeys(this.getChoices('levels'));
-    var soFar = ScribeUtils.sumMatching(attributes, /^levels\./); 
+    choices = QuilvynUtils.getKeys(this.getChoices('levels'));
+    var soFar = QuilvynUtils.sumMatching(attributes, /^levels\./); 
     var level = attributes.level != null ? attributes.level : soFar;
     if(level == 0) {
-      level = ScribeUtils.random(1, 100);
+      level = QuilvynUtils.random(1, 100);
       level = level<=50 ? 1 : level<=75 ? 2 : level<=87 ? 3 : level<=93 ? 4 :
               level<=96 ? 5 : level<=98 ? 6 : level<=99 ? 7 : 8;
     }
     howMany = level - soFar;
-    var classes = ScribeUtils.random(1, 100);
+    var classes = QuilvynUtils.random(1, 100);
     classes = classes < 60 ? 1 : classes < 90 ? 2 : 3;
     if(classes > howMany) {
-      classes = ScribeUtils.random(1, howMany);
+      classes = QuilvynUtils.random(1, howMany);
     }
     for(i = 1; howMany > 0; i++) {
-      var thisLevel = i == classes ? howMany : ScribeUtils.random(1, howMany);
-      var which = 'levels.' + choices[ScribeUtils.random(0, choices.length-1)];
+      var thisLevel = i == classes ? howMany : QuilvynUtils.random(1, howMany);
+      var which = 'levels.' + choices[QuilvynUtils.random(0, choices.length-1)];
       // Find a choice that is valid or can be made so
       while(attributes[which] == null) {
         attributes[which] = 1;
-        if(ScribeUtils.sumMatching(this.applyRules(attributes),
+        if(QuilvynUtils.sumMatching(this.applyRules(attributes),
              /^validationNotes.*(BaseAttack|CasterLevel|Spells)/) == 0) {
           // ok
           attributes[which] = 0;
         } else {
           // try another
           delete attributes[which];
-          which = 'levels.'+choices[ScribeUtils.random(0, choices.length-1)];
+          which = 'levels.'+choices[QuilvynUtils.random(0, choices.length-1)];
         }
       }
       attributes[which] += thisLevel;
@@ -3805,7 +3805,7 @@ FiveE.randomizeOneAttribute = function(attributes, attribute) {
         choices[choices.length] = attr;
       }
     }
-    attributes['shield'] = choices[ScribeUtils.random(0, choices.length - 1)];
+    attributes['shield'] = choices[QuilvynUtils.random(0, choices.length - 1)];
   } else if(attribute == 'skills') {
     attrs = this.applyRules(attributes);
     howMany = attrs['proficiencyCount.Skill'] || 0;
@@ -3816,7 +3816,7 @@ FiveE.randomizeOneAttribute = function(attributes, attribute) {
       }
     }
     pickAttrs(attributes, 'skillProficiencies.', choices,
-              howMany - ScribeUtils.sumMatching(attrs, /^skillProficiencies\./), 1);
+              howMany - QuilvynUtils.sumMatching(attrs, /^skillProficiencies\./), 1);
   } else if(attribute == 'spells') {
     var allSpellsByClassAndLevel = {};
     var classAndLevel;
@@ -3864,7 +3864,7 @@ FiveE.randomizeOneAttribute = function(attributes, attribute) {
         }
         pickAttrs
           (attributes, 'spells.', choices, howMany -
-           ScribeUtils.sumMatching(attributes, '^spells\\..*[(]' + classAndLevel + '[^0]'), 1);
+           QuilvynUtils.sumMatching(attributes, '^spells\\..*[(]' + classAndLevel + '[^0]'), 1);
       }
     }
   } else if(attribute == 'tools') {
@@ -3878,7 +3878,7 @@ FiveE.randomizeOneAttribute = function(attributes, attribute) {
       }
     }
     pickAttrs(attributes, 'toolProficiencies.', choices,
-              howMany - ScribeUtils.sumMatching(attrs, /^toolProficiencies\./), 1);
+              howMany - QuilvynUtils.sumMatching(attrs, /^toolProficiencies\./), 1);
   } else if(attribute == 'weapons') {
     attrs = this.applyRules(attributes);
     choices = [];
@@ -3888,18 +3888,18 @@ FiveE.randomizeOneAttribute = function(attributes, attribute) {
       }
     }
     pickAttrs(attributes, 'weapons.', choices,
-              3 - ScribeUtils.sumMatching(attributes, /^weapons\./), 1);
+              3 - QuilvynUtils.sumMatching(attributes, /^weapons\./), 1);
   } else if(attribute == 'charisma' || attribute == 'constitution' ||
      attribute == 'dexterity' || attribute == 'intelligence' ||
      attribute == 'strength' || attribute == 'wisdom') {
     var rolls = [];
     for(i = 0; i < 4; i++)
-      rolls[i] = ScribeUtils.random(1, 6);
+      rolls[i] = QuilvynUtils.random(1, 6);
     rolls.sort();
     attributes[attribute] = rolls[1] + rolls[2] + rolls[3];
   } else if(this.getChoices(attribute + 's') != null) {
     attributes[attribute] =
-      ScribeUtils.randomKey(this.getChoices(attribute + 's'));
+      QuilvynUtils.randomKey(this.getChoices(attribute + 's'));
   }
 
 };
@@ -3942,7 +3942,7 @@ FiveE.makeValid = function(attributes) {
         // Find a random requirement choice w/the format "name [op value]"
         var choices = requirements[i].split(/\s*\|\|\s*/);
         while(choices.length > 0) {
-          var index = ScribeUtils.random(0, choices.length - 1);
+          var index = QuilvynUtils.random(0, choices.length - 1);
           matchInfo = choices[index].match(/^([^<>!=]+)(([<>!=~]+)(.*))?/);
           if(matchInfo != null) {
             break;
@@ -3991,10 +3991,10 @@ FiveE.makeValid = function(attributes) {
           if(target == toFixName) {
             toFixAttr =
               problemCategory + '.' +
-              possibilities[ScribeUtils.random(0, possibilities.length - 1)];
+              possibilities[QuilvynUtils.random(0, possibilities.length - 1)];
           } else {
             toFixValue =
-              possibilities[ScribeUtils.random(0, possibilities.length - 1)];
+              possibilities[QuilvynUtils.random(0, possibilities.length - 1)];
           }
         }
         if((choices != null || attributes[toFixAttr] != null) &&
@@ -4021,7 +4021,7 @@ FiveE.makeValid = function(attributes) {
             }
           }
           while(possibilities.length > 0 && attrValue > 0) {
-            var index = ScribeUtils.random(0, possibilities.length - 1);
+            var index = QuilvynUtils.random(0, possibilities.length - 1);
             toFixAttr = possibilities[index];
             possibilities =
               possibilities.slice(0,index).concat(possibilities.slice(index+1));
@@ -4054,7 +4054,7 @@ FiveE.makeValid = function(attributes) {
             'intelligence':'', 'strength':'', 'wisdom':''
           };
           if(attr == 'validationNotes.abilityModifierMinimum') {
-            toFixAttr = ScribeUtils.randomKey(abilities);
+            toFixAttr = QuilvynUtils.randomKey(abilities);
             toFixValue = 14;
             debug[debug.length] =
               attr + " '" + toFixAttr + "': '" + attributes[toFixAttr] +
@@ -4099,8 +4099,8 @@ FiveE.makeValid = function(attributes) {
 /* Returns HTML body content for user notes associated with this rule set. */
 FiveE.ruleNotes = function() {
   return '' +
-    '<h2>FiveE Scribe Module Notes</h2>\n' +
-    'FiveE Scribe Module Version ' + FiveE_VERSION + '\n' +
+    '<h2>FiveE Quilvyn Module Notes</h2>\n' +
+    'FiveE Quilvyn Module Version ' + FiveE_VERSION + '\n' +
     '\n' +
     '<h3>Usage Notes</h3>\n' +
     '<p>\n' +
@@ -4151,21 +4151,21 @@ FiveE.ruleNotes = function() {
     '    and Toughness once.  Multiple selections of these feats can be\n' +
     '    handled by defining custom feats (e.g., Improved Toughness).\n' +
     '  </li><li>\n' +
-    '    Scribe provides no place other than the notes section to enter\n' +
+    '    Quilvyn provides no place other than the notes section to enter\n' +
     '    mundane possessions like lanterns and rope. The same goes for\n' +
     '    physical description.\n' +
     '  </li><li>\n' +
-    '    Scribe presently defines no way to add additional types of armor\n' +
+    '    Quilvyn presently defines no way to add additional types of armor\n' +
     '    because of all the extra information that would need to be\n' +
     '    specified&#151;arcane spell failure percentage, AC bonus, max\n' +
     '    dexterity bonus, skill check penalty, etc.\n' +
     '  </li><li>\n' +
-    '    Scribe has problems dealing with attributes containing an\n' +
-    '    uncapitalized word.  This is why, e.g., Scribe defines the skills\n' +
+    '    Quilvyn has problems dealing with attributes containing an\n' +
+    '    uncapitalized word.  This is why, e.g., Quilvyn defines the skills\n' +
     '    "Sleight Of Hand" and "Knowledge (Arcana)" instead of "Sleight of\n' +
     '    Hand" and "Knowledge (arcana)".  There are other occasions when\n' +
-    '    Scribe is picky about case; when defining your own attributes,\n' +
-    '    it\'s safest to follow the conventions Scribe uses.\n' +
+    '    Quilvyn is picky about case; when defining your own attributes,\n' +
+    '    it\'s safest to follow the conventions Quilvyn uses.\n' +
     '  </li><li>\n' +
     '    The customRule interface is not very intuitive, making it more\n' +
     '    confusing to add new rules than it should be.\n' +
@@ -4177,14 +4177,14 @@ FiveE.ruleNotes = function() {
     '<p>\n' +
     '<ul>\n' +
     '  <li>\n' +
-    '    Scribe adds the dexterity modifier to attack throws for all\n' +
+    '    Quilvyn adds the dexterity modifier to attack throws for all\n' +
     '    weapons of characters with the Weapon Finesse feat, not just\n' +
     '    light weapons.\n' +
     '  </li><li>\n' +
-    '    When an character ability score is modified, Scribe recalculates\n' +
+    '    When an character ability score is modified, Quilvyn recalculates\n' +
     '    attributes based on that ability from scratch.  For example,\n' +
     '    bumping intelligence when a character reaches fourth level causes\n' +
-    '    Scribe to recompute the number of skill points awarded at first\n' +
+    '    Quilvyn to recompute the number of skill points awarded at first\n' +
     '    level.\n' +
     '  </li><li>\n' +
     '    Multi-class characters get quadruple spell points for the first\n' +
@@ -4499,7 +4499,7 @@ FiveE.defineRace = function(
 
 };
 
-/* Convenience functions that invoke ScribeRules methods on the FiveE rules. */
+/* Convenience functions that invoke QuilvynRules methods on the FiveE rules. */
 FiveE.applyRules = function() {
   return FiveE.rules.applyRules.apply(FiveE.rules, arguments);
 };

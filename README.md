@@ -1,5 +1,4 @@
 ## 5th Edition plugin for the Quilvyn RPG character sheet generator.
-## 1st Edition plugin for the Quilvyn RPG character sheet generator
 
 The quilvyn-5E package bundles modules that extend Quilvyn to work
 with the fifth edition of D&D, applying the rules of the

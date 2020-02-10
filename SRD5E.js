@@ -71,22 +71,23 @@ SRD5E.BACKGROUNDS = [
   'Guild Artisan', 'Hermit', 'Noble', 'Outlander', 'Sage', 'Sailor', 'Soldier',
   'Urchin'
 ];
-SRD5E.BARD_COLLEGES = ['Lore'];
+SRD5E.BARD_COLLEGES = ['College Of Lore'];
 // PHB
-SRD5E.BARD_COLLEGES.push('Valor');
+SRD5E.BARD_COLLEGES.push('College Of Valor');
 // ENDPHB
-SRD5E.BARBARIAN_PATHS = ['Berserker', 'Totem Warrior'];
+SRD5E.BARBARIAN_PATHS = ['Path Of The Berserker', 'Path Of The Totem Warrior'];
 // PHB
-SRD5E.BARBARIAN_TOTEMS = ['Bear', 'Eagle', 'Wolf'];
+SRD5E.BARBARIAN_TOTEMS = ['Bear Totem', 'Eagle Totem', 'Wolf Totem'];
 // ENDPHB
 SRD5E.CLASSES = [
   'Barbarian', 'Bard', 'Cleric', 'Druid', 'Fighter', 'Monk', 'Paladin',
   'Ranger', 'Rogue', 'Sorcerer', 'Warlock', 'Wizard'
 ];
-SRD5E.CLERIC_DOMAINS = ['Life'];
+SRD5E.CLERIC_DOMAINS = ['Life Domain'];
 // PHB
 SRD5E.CLERIC_DOMAINS = SRD5E.CLERIC_DOMAINS.concat([
-  'Knowledge', 'Light', 'Nature', 'Tempest', 'Trickery', 'War'
+  'Knowledge Domain', 'Light Domain', 'Nature Domain', 'Tempest Domain',
+  'Trickery Domain', 'War Domain'
 ]);
 // ENDPHB
 SRD5E.DEITIES = [
@@ -103,15 +104,16 @@ SRD5E.DEITIES = [
   'Torm (LG):War', 'Tymora (CG):Trickery', 'Tyr (LG):War',
   'Umberlee (CE):Tempest', 'Waukeen (N):Knowledge/Trickery', 'None:'
 ];
-SRD5E.DRUID_CIRCLES = ['Land'];
+SRD5E.DRUID_CIRCLES = ['Circle Of The Land'];
 // PHB
-SRD5E.DRUID_CIRCLES = SRD5E.DRUID_CIRCLES.concat(['Moon']);
+SRD5E.DRUID_CIRCLES = SRD5E.DRUID_CIRCLES.concat(['Circle Of The Moon']);
 // ENDPHB
 SRD5E.DRUID_LANDS = [
-  'Arctic', 'Coast', 'Desert', 'Forest', 'Grassland', 'Mountain', 'Swamp'
+  'Arctic Land', 'Coast Land', 'Desert Land', 'Forest Land', 'Grassland Land',
+  'Mountain Land', 'Swamp Land'
 ];
 // PHB
-SRD5E.DRUID_LANDS.push('Underdark');
+SRD5E.DRUID_LANDS.push('Underdark Land');
 // ENDPHB
 SRD5E.FEATS = [
   'Alert', 'Athleete', 'Actor', 'Charger', 'Crossbow Expert',
@@ -125,6 +127,22 @@ SRD5E.FEATS = [
   'Shield Master', 'Skilled', 'Skulker', 'Spell Sniper', 'Tavern Brawler',
   'Tough', 'War Caster', 'Weapon Master'
 ];
+SRD5E.FIGHTER_FIGHTING_STYLES = [
+  'Archery Style', 'Defense Style', 'Dueling Style',
+  'Great Weapon Fighting Style', 'Protection Style', 'Two-Weapon Fighting Style'
+];
+SRD5E.FIGHTER_MARTIAL_ARCHETYPES = ['Champion Archetype'];
+// PHB
+SRD5E.FIGHTER_MARTIAL_ARCHETYPES = SRD5E.FIGHTER_MARTIAL_ARCHETYPES.concat([
+  'Battle Master Archetype', 'Eldritch Knight Archetype'
+]);
+SRD5E.FIGHTER_MANEUVERS = [
+  "Commander's Strike", 'Disarming Attack', 'Distracting Strike',
+  'Evasive Footwork', 'Feinting Attack', 'Goading Attack', 'Lunging Attack',
+  'Maneuvering Attack', 'Menacing Attack', 'Parry', 'Precision Attack',
+  'Pushing Attack', 'Rally', 'Riposte', 'Sweeping Attack', 'Trip Attack'
+];
+// ENDPHB
 SRD5E.GENDERS = ['Female', 'Male'];
 SRD5E.LANGUAGES = [
   'Abyssal', 'Celestial', 'Common', 'Deep Speech', 'Draconic', 'Dwarvish',
@@ -597,38 +615,38 @@ SRD5E.draconicBreathTypes = {
   'Silver Dragonborn': 'cold',
   'White Dragonborn': 'cold'
 };
-SRD5E.landsSpells = {
-  'Arctic':[
+SRD5E.landsCircleSpells = {
+  'Arctic Land':[
     '3:Hold Person', '3:Spike Growth', '5:Sleet Storm', '5:Slow',
     '7:Freedom Of Movement', '7:Ice Storm', '9:Commune With Nature', '9:Cone Of Cold'
   ],
-  'Coast':[
+  'Coast Land':[
     '3:Mirror Image', '3:Misty Step', '5:Water Breathing', '5:Water Walk',
     '7:Control Weather', '7:Freedom Of Movement', '9:Conjure Elemental', '9:Scrying'
   ],
-  'Desert':[
+  'Desert Land':[
     '3:Blur', '3:Silence', '5:Create Food And Water', '5:Protection From Energy',
     '7:Blight', '7:Hallucinatory Terrain', '9:Insect Plague', '9:Wall Of Stone'
   ],
-  'Forest':[
+  'Forest Land':[
     '3:Barkskin', '3:Spider Climb', '5:Call Lightning', '5:Plant Growth',
     '7:Divination', '7:Freedom Of Movement', '9:Commune With Nature', '9:Tree Stride'
   ],
-  'Grassland':[
+  'Grassland Land':[
     '3:Invisibility', '3:Pass Without Trace', '5:Daylight', '5:Haste',
     '7:Divination', '7:Freedom Of Movement', '9:Dream', '9:Insect Plague'
   ],
-  'Mountain':[
+  'Mountain Land':[
     '3:Spider Climb', '3:Spike Growth', '5:Lightning Bolt', '5:Meld Into Stone',
     '7:Stone Shape', '7:Soneskin', '9:Passwall', '9:Wall Of Stone'
   ],
-  'Swamp':[
+  'Swamp Land':[
     '3:Acid Arrow', '3:Darkness', '5:Water Walk', '5:Stinking Cloud',
     '7:Freedom Of Movement', '7:Locate Creature', '9:Insect Plague', '9:Scrying'
   ]
 };
 // PHB
-SRD5E.landsSpells['Underdark'] = [
+SRD5E.landsCircleSpells['Underdark Land'] = [
   '3:Spider Climb', '3:Web', '5:Gaseous Form', '5:Stinking Cloud',
   '7:Greater Invisibility', '7:Stone Shape', '9:Cloudkill', '9:Insect Plague'
 ];
@@ -1351,10 +1369,14 @@ SRD5E.classRules = function(rules, classes) {
         '5:Extra Attack', '5:Fast Movement', '6:Mindless Rage',
         '7:Feral Instinct', '9:Brutal Critical', '10:Intimidating Presence',
         '11:Relentless Rage', '14:Retaliation',
-        '15:Persistent Rage', '18:Indominable Might', '20:Primal Champion'
+        '15:Persistent Rage', '18:Indominable Might', '20:Primal Champion',
+        // Path Of The Berserker
+        '3:Frenzy', '6:Mindless Rage', '10:Intimidating Presence',
+        '14:Retaliation'
       ];
 // PHB
       features = features.concat([
+        // Path Of The Totem Warrior
         '3:Spirit Seeker', '3:Bear Totem Spirit', '3:Eagle Totem Spirit',
         '3:Wolf Totem Spirit', '6:Aspect Of The Bear', '6:Aspect Of The Eagle',
         '6:Aspect Of The Wolf', '10:Spirit Walker',
@@ -1410,12 +1432,12 @@ SRD5E.classRules = function(rules, classes) {
         'magicNotes.spiritSeekerFeature:' +
           '<i>Beast Sense</i>, <i>Speak With Animals</i> via ritual',
         'magicNotes.spiritWalkerFeature:<i>Commune With Nature</i> via ritual',
-        'validationNotes.barbarian-BearTotemSelectableFeatureFeatures:' +
-          'Requires Primal Path (Totem Warrior)',
-        'validationNotes.barbarian-EagleTotemSelectableFeatureFeatures:' +
-          'Requires Primal Path (Totem Warrior)',
-        'validationNotes.barbarian-WolfTotemSelectableFeatureFeatures:' +
-          'Requires Primal Path (Totem Warrior)'
+        'validationNotes.barbarianBearTotemSelectableFeatureFeatures:' +
+          'Requires Path Of The Totem Warrior',
+        'validationNotes.barbarianEagleTotemSelectableFeatureFeatures:' +
+          'Requires Path Of The Totem Warrior',
+        'validationNotes.barbarianWolfTotemSelectableFeatureFeatures:' +
+          'Requires Path Of The Totem Warrior'
       ]);
 // ENDPHB
       proficiencyCount = {'Save':2, 'Skill':2, 'Armor':3, 'Weapon':2};
@@ -1428,22 +1450,22 @@ SRD5E.classRules = function(rules, classes) {
         'Skill':['Animal Handling', 'Athletics', 'Intimidation', 'Nature',
                  'Perception', 'Survival']
       };
-      selectableFeatures = SRD5E.BARBARIAN_PATHS.map(function (path) {return 'Primal Path (' + path + ')';}).concat(SRD5E.BARBARIAN_TOTEMS.map(function (totem) {return totem + ' Totem';}));
+      selectableFeatures = SRD5E.BARBARIAN_PATHS.concat(SRD5E.BARBARIAN_TOTEMS);
       spellAbility = null;
       spellsKnown = null;
       spellSlots = null;
 
       rules.defineRule('barbarianFeatures.Frenzy',
-        'barbarianFeatures.Primal Path (Berserker)', '?', null
+        'barbarianFeatures.Path Of The Berserker', '?', null
       );
       rules.defineRule('barbarianFeatures.Mindless Rage',
-        'barbarianFeatures.Primal Path (Berserker)', '?', null
+        'barbarianFeatures.Path Of The Berserker', '?', null
       );
       rules.defineRule('barbarianFeatures.Intimidating Presence',
-        'barbarianFeatures.Primal Path (Berserker)', '?', null
+        'barbarianFeatures.Path Of The Berserker', '?', null
       );
       rules.defineRule('barbarianFeatures.Retaliation',
-        'barbarianFeatures.Primal Path (Berserker)', '?', null
+        'barbarianFeatures.Path Of The Berserker', '?', null
       );
 // PHB
       rules.defineRule('barbarianFeatures.Aspect Of The Bear',
@@ -1471,10 +1493,10 @@ SRD5E.classRules = function(rules, classes) {
         'barbarianFeatures.Wolf Totem', '?', null
       );
       rules.defineRule('barbarianFeatures.Spirit Seeker',
-        'barbarianFeatures.Primal Path (Totem Warrior)', '?', null
+        'barbarianFeatures.Path Of The Totem Warrior', '?', null
       );
       rules.defineRule('barbarianFeatures.Spirit Walker',
-        'barbarianFeatures.Primal Path (Totem Warrior)', '?', null
+        'barbarianFeatures.Path Of The Totem Warrior', '?', null
       );
       rules.defineRule('barbarianFeatures.Wolf Totemic Attunement',
         'barbarianFeatures.Wolf Totem', '?', null
@@ -1497,14 +1519,14 @@ SRD5E.classRules = function(rules, classes) {
       // Inelegant hacks to show unarmoredDefense note properly even when armor
       // != "None" or constitutionModifier == 0
       rules.defineRule('combatNotes.unarmoredDefenseFeature.1',
+        'barbarianFeatures.Unarmored Defense', '?', null,
         'constitutionModifier', '=', null
       );
       rules.defineRule('combatNotes.unarmoredDefenseFeature.2',
-        'constitutionModifier', '=', '-source',
-        'armor', '?', 'source != "None"'
+        'armor', '?', 'source == "None"',
+        'combatNotes.unarmoedDefenseFeature.1', '=', null
       );
       rules.defineRule('armorClass',
-        'combatNotes.unarmoredDefenseFeature', '+', '0',
         'combatNotes.unarmoredDefenseFeature.2', '+', null
       );
       rules.defineRule('featureNotes.intimidatingPresenceFeature',
@@ -1515,7 +1537,7 @@ SRD5E.classRules = function(rules, classes) {
         ('attacksPerRound', 'combatNotes.extraAttackFeature', '+', '1');
       rules.defineRule('selectableFeatureCount.Barbarian',
         'barbarianFeatures.Primal Path', '=', '1',
-        'barbarianFeatures.Primal Path (Totem Warrior)', '+', '1'
+        'barbarianFeatures.Path Of The Totem Warrior', '+', '1'
       );
       rules.defineRule('speed', 'abilityNotes.fastMovementFeature', '+', '10');
 
@@ -1680,8 +1702,7 @@ SRD5E.classRules = function(rules, classes) {
       proficiencyChoices = {
         'Skill':['History', 'Insight', 'Medicine', 'Persuasion', 'Religion']
       };
-      selectableFeatures =
-        SRD5E.CLERIC_DOMAINS.map(function(domain){return domain + ' Domain';});
+      selectableFeatures = SRD5E.CLERIC_DOMAINS;
       spellAbility = 'wisdom';
       spellsKnown = [
         'C0:1:3/4:4/10:5',
@@ -1730,13 +1751,15 @@ SRD5E.classRules = function(rules, classes) {
         '1:Armor Proficiency (Light/Medium/Shield)',
         '1:Weapon Proficiency (Club/Dagger/Dart/Javelin/Mace/Quarterstaff/Scimitar/Sickle/Sling/Spear)',
         '1:Tool Proficiency (Herbalism Kit)', '1:Druidic', '1:Spellcasting',
-        '2:Bonus Cantrip', '2:Druid Circle', '2:Natural Recovery',
-        '2:Wild Shape', '3:Circle Spells', '4:Ability Score Improvement',
-        "6:Land's Stride", "10:Nature's Ward", "14:Nature's Sanctuary",
-        '18:Timeless Body', '18:Beast Spells', '20:Archdruid'
+        '2:Druid Circle', '2:Wild Shape', '4:Ability Score Improvement',
+        '18:Timeless Body', '18:Beast Spells', '20:Archdruid',
+        // Circle Of The Land
+        '2:Bonus Cantrip', '2:Natural Recovery', '3:Circle Spells',
+        "6:Land's Stride", "10:Nature's Ward", "14:Nature's Sanctuary"
       ];
 // PHB
       features = features.concat([
+        // Circle Of The Moon
         '2:Combat Wild Shape', '2:Circle Forms', '6:Primal Strike',
         '10:Elemental Wild Shape', '14:Thousand Forms'
       ]);
@@ -1751,15 +1774,42 @@ SRD5E.classRules = function(rules, classes) {
         'featureNotes.timelessBodyFeature:Age at 1/10 rate',
         'magicNotes.archdruidFeature:Unlimited Wild Shape',
         'magicNotes.beastSpellsFeature:Cast spells during Wild Shape',
-        'magicNotes.circleSpellsFeature:Access to additional spells',
+        'magicNotes.circleSpellsFeature:%1 1/long rest',
         'magicNotes.naturalRecoveryFeature:' +
           'Recover %V spell slots during short rest',
         'magicNotes.wildShapeFeature:' +
-          'Transform into CR %1 creature for %2 hr 2/short rest',
+          'Transform into CR %1%2 creature for %3 hr 2/short rest',
         "saveNotes.land'sStrideFeature:Adv vs. impeding plants",
         "saveNotes.nature'sWardFeature:" +
-          'Immune disease, poison, elemental or fey charm and frighten'
+          'Immune disease, poison, elemental or fey charm and frighten',
+        'validationNotes.druidArcticLandSelectableFeatureFeatures:' +
+          'Requires Circle Of The Land',
+        'validationNotes.druidCoastLandSelectableFeatureFeatures:' +
+          'Requires Circle Of The Land',
+        'validationNotes.druidDesertLandSelectableFeatureFeatures:' +
+          'Requires Circle Of The Land',
+        'validationNotes.druidForestLandSelectableFeatureFeatures:' +
+          'Requires Circle Of The Land',
+        'validationNotes.druidGrasslandLandSelectableFeatureFeatures:' +
+          'Requires Circle Of The Land',
+        'validationNotes.druidMountainLandSelectableFeatureFeatures:' +
+          'Requires Circle Of The Land',
+        'validationNotes.druidSwampLandSelectableFeatureFeatures:' +
+          'Requires Circle Of The Land',
       ];
+//PHB
+      notes = notes.concat([
+        'combatNotes.combatWildShapeFeature:' +
+          'Wild Shape as bonus action, use spell slot to regain 1d8 * slot level HP',
+        'combatNotes.primalStrikeFeature:Wild Shape attacks count as magical',
+        'magicNotes.circleFormsFeature:Increase Wild Shape CR to %V',
+        'magicNotes.elementalWildShapeFeature:' +
+          'Use two Wild Shape uses to become elemental',
+        'magicNotes.thousandFacesFeature:<i>Alter Self<i> at will',
+        'validationNotes.druidUnderdarkLandSelectableFeatureFeatures:' +
+          'Requires Circle Of The Land',
+      ]);
+//ENDPHB
       proficiencyCount =
        {'Save':2, 'Skill':2, 'Tool':1, 'Armor':3, 'Weapon':10};
       proficienciesGiven = {
@@ -1773,7 +1823,7 @@ SRD5E.classRules = function(rules, classes) {
         'Skill':['Arcana', 'Animal Handling', 'Insight', 'Medicine', 'Nature',
                  'Perception', 'Religion', 'Survival']
       };
-      selectableFeatures = SRD5E.DRUID_CIRCLES.map(function (circle) {return 'Druid Circle (' + circle + ')';}).concat(SRD5E.DRUID_LANDS.map(function (land) {return land + ' Land';}));
+      selectableFeatures = SRD5E.DRUID_CIRCLES.concat(SRD5E.DRUID_LANDS);
       spellAbility = 'wisdom';
       spellsKnown = [
         'D0:1:2/4:3/10:4',
@@ -1793,60 +1843,78 @@ SRD5E.classRules = function(rules, classes) {
       ];
 
       rules.defineRule('druidFeatures.Bonus Cantrip',
-        'druidFeatures.Druid Circle (Land)', '?', null
+        'druidFeatures.Circle Of The Land', '?', null
       );
       rules.defineRule('druidFeatures.Circle Spells',
-        'druidFeatures.Druid Circle (Land)', '?', null
+        'druidFeatures.Circle Of The Land', '?', null
       );
       rules.defineRule("druidFeatures.Land's Stride",
-        'druidFeatures.Druid Circle (Land)', '?', null
+        'druidFeatures.Circle Of The Land', '?', null
       );
       rules.defineRule("druidFeatures.Nature's Ward",
-        'druidFeatures.Druid Circle (Land)', '?', null
+        'druidFeatures.Circle Of The Land', '?', null
       );
       rules.defineRule("druidFeatures.Nature's Sanctuary",
-        'druidFeatures.Druid Circle (Land)', '?', null
+        'druidFeatures.Circle Of The Land', '?', null
       );
 // PHB
       rules.defineRule('druidFeatures.Combat Wild Shape',
-        'druidFeatures.Druid Circle (Moon)', '?', null
+        'druidFeatures.Circle Of The Moon', '?', null
       );
       rules.defineRule('druidFeatures.Circle Forms',
-        'druidFeatures.Druid Circle (Moon)', '?', null
+        'druidFeatures.Circle Of The Moon', '?', null
       );
       rules.defineRule('druidFeatures.Primal Strike',
-        'druidFeatures.Druid Circle (Moon)', '?', null
+        'druidFeatures.Circle Of The Moon', '?', null
       );
       rules.defineRule('druidFeatures.Elemental Wild Shape',
-        'druidFeatures.Druid Circle (Moon)', '?', null
+        'druidFeatures.Circle Of The Moon', '?', null
       );
       rules.defineRule('druidFeatures.Thousand Forms',
-        'druidFeatures.Druid Circle (Moon)', '?', null
+        'druidFeatures.Circle Of The Moon', '?', null
       );
 // ENDPHB
 
       rules.defineRule('abilityNotes.abilityScoreImprovementFeature',
         'levels.Druid', '+=', 'source >= 19 ? 5 : Math.floor(source / 4)'
       );
-      rules.defineRule("combatNotes.nature'sSanctuaryFeature:",
+      rules.defineRule("combatNotes.nature'sSanctuaryFeature",
         'wisdomModifier', '=', 'source + 8',
         'proficiencyBonus', '+', null
       );
       rules.defineRule('languageCount', 'features.Druidic', '+', '1');
       rules.defineRule('languages.Druidic', 'features.Druidic', '=', '1');
+      rules.defineRule('magicNotes.circleFormsFeature',
+        'levels.Druid', '=', 'source < 6 ? 1 : Math.floor(source / 3)'
+      );
       rules.defineRule('magicNotes.naturalRecoveryFeature',
         'levels.Druid', '=', 'Math.floor(source / 2)'
       );
       rules.defineRule('magicNotes.wildShapeFeature.1',
-        'levels.Druid', '=', 'source < 4 ? "1/4 (land only)" : source < 8 ? "1/2 (non-flying)" : "1"'
+        'levels.Druid', '=', 'source < 4 ? "1/4" : source < 8 ? "1/2" : "1"',
+        'magicNotes.circleFormsFeature', '=', null
       );
       rules.defineRule('magicNotes.wildShapeFeature.2',
+        'levels.Druid', '=', 'source < 4 ? "(land only)" : source < 8 ? "(non-flying)" : ""'
+      );
+      rules.defineRule('magicNotes.wildShapeFeature.3',
         'levels.Druid', '=', 'Math.floor(source /2)'
       );
       rules.defineRule('selectableFeatureCount.Druid',
         'druidFeatures.Druid Circle', '=', '1',
-        'druidFeatures.Druid Circle (Land)', '+', '1'
+        'druidFeatures.Circle Of The Land', '+', '1'
       );
+      rules.defineRule('magicNotes.circleSpellsFeature.1',
+        'features.Circle Spells', '?', 'SRD5E.landsCircleSpells.current = []'
+      );
+      for(var land in SRD5E.landsCircleSpells) {
+        rules.defineRule('magicNotes.circleSpellsFeature.1',
+          'druidFeatures.' + land, '=', 'SRD5E.landsCircleSpells.current = SRD5E.landsCircleSpells["' + land + '"]'
+        );
+      }
+      rules.defineRule('magicNotes.circleSpellsFeature.1',
+        'levels.Druid', '=', 'SRD5E.landsCircleSpells.current.filter(item => item.split(":")[0] <= source).map(function(spell){return "<i>" + spell.split(":")[1] + "</i>";}).join(", ")'
+        );
 
     } else if(name == 'Fighter') {
 
@@ -1855,17 +1923,43 @@ SRD5E.classRules = function(rules, classes) {
         '1:Weapon Proficiency (Simple/Martial)',
         '1:Fighting Style', '1:Second Wind', '2:Action Surge',
         '3:Martial Archetype', '4:Ability Score Improvement', '5:Extra Attack',
-        '9:Indomitable'
+        '9:Indomitable',
+        // Champion Archetype
+        '3:Improved Critical', '7:Remarkable Athlete',
+        '10:Additional Fighting Style', '15:Superior Critical', '18:Survivor'
       ];
+// PHB
+      features = features.concat([
+        // Battle Master Archetype
+        '3:Maneuvers', '3:Student Of War', '3:Superiority Dice',
+        '7:Know Your Enemy', '15:Relentless',
+        // Eldritch Knight Archetype
+        '3:Spellcasting', '3:Weapon Bond', '7:War Magic', '10:Eldritch Strike',
+        '15:Arcane Charge'
+      ]);
+// ENDPHB
       hitDie = 10;
       notes = [
         'abilityNotes.abilityScoreImprovementFeature:+%V distributed',
-        'combatNotes.actionSurgeFeature:TODO',
+        'abilityNotes.remarkableAthleteFeature:' +
+          '+%V non-proficient Str/Dex/Con checks',
+        'combatNotes.actionSurgeFeature:Extra action %V/short rest',
+        'combatNotes.archeryStyleFeature:+2 ranged attack',
+        'combatNotes.defenseStyleFeature:+1 AC in armor',
+        'combatNotes.duelingStyleFeature:+2 HP with single, one-hand weapon',
         'combatNotes.extraAttackFeature:+1 attack per Attack action',
-        'combatNotes.fightingStyleFeature:TODO',
-        'combatNotes.indomitableFeature:TODO',
-        'combatNotes.martialArchetypeFeature:TODO',
-        'combatNotes.secondWindFeature:TODO'
+        'combatNotes.greatWeaponFightingStyleFeature:' +
+          'Reroll damage of 1 or 2 with two-handed weapons',
+        'combatNotes.improvedCriticalFeature:Crit on natural 19',
+        'combatNotes.protectionStyleFeature:' +
+          "Use shield to impose attack DisAdv on foe w/in 5'",
+        'combatNotes.secondWindFeature:Regain 1d10+%V HP 1/short rest',
+        'combatNotes.superiorCriticalFeature:Crit on natural 18',
+        'combatNotes.survivorFeature:' +
+          'Regain %V HP each turn when between 1 and %1',
+        'combatNotes.two-weaponFightingStyleFeature:' +
+          'Add ability modifier to second attack damage',
+        'saveNotes.indomitableFeature:Reroll failed save %V/long rest'
       ];
       proficiencyCount = {'Save':2, 'Skill':2, 'Armor':4, 'Weapon':2};
       proficienciesGiven = {
@@ -1877,16 +1971,77 @@ SRD5E.classRules = function(rules, classes) {
         'Skill': ['Acrobatics', 'Animal Handling', 'Athletics', 'History',
                   'Insight', 'Intimidation', 'Perception', 'Survival']
       };
-      selectableFeatures = null;
+      selectableFeatures = SRD5E.FIGHTER_FIGHTING_STYLES.concat(SRD5E.FIGHTER_MARTIAL_ARCHETYPES);
+// PHB
+      selectableFeatures = selectableFeatures.concat(SRD5E.FIGHER_MANEUVERS);
+// ENDPHB
       spellAbility = null;
       spellsKnown = null;
       spellSlots = null;
 
+      rules.defineRule('fighterFeatures.Improved Critical',
+        'fighterFeatures.Champion Archetype', '?', null
+      );
+      rules.defineRule('fighterFeatures.Remarkable Athlete',
+        'fighterFeatures.Champion Archetype', '?', null
+      );
+      rules.defineRule('fighterFeatures.Additional Fighting Style',
+        'fighterFeatures.Champion Archetype', '?', null
+      );
+      rules.defineRule('fighterFeatures.Superior Critical',
+        'fighterFeatures.Champion Archetype', '?', null
+      );
+      rules.defineRule('fighterFeatures.Survivor',
+        'fighterFeatures.Champion Archetype', '?', null
+      );
+
       rules.defineRule('abilityNotes.abilityScoreImprovementFeature',
         'levels.Fighter', '+=', '[0,0,0,0,2,2,4,4,6,6,6,6,8,8,10,10,12,12,12,14,14][source]'
       );
+      rules.defineRule('abilityNotes.remarkableAthleteFeature',
+        'proficiencyBonus', '=', 'Math.ceil(source / 2)'
+      );
       rules.defineRule
         ('attacksPerRound', 'combatNotes.extraAttackFeature', '+', '1');
+      rules.defineRule('combatNotes.actionSurgeFeature',
+        'levels.Fighter', '=', 'source < 17 ? 1 : 2'
+      );
+      // Inelegant hacks to show defenseStyle note properly even when armor
+      // == "None"
+      rules.defineRule('combatNotes.defenseStyleFeature.1',
+        'fighterFeatures.Defense Style', '?', null,
+        'armor', '=', 'source == "None" ? null : 1'
+      );
+      rules.defineRule('armorClass',
+        'combatNotes.defenseStyleFeature.1', '+', null
+      );
+      rules.defineRule
+        ('rangedAttack', 'combatNotes.archeryStyleFeature', '+', '2');
+      rules.defineRule
+        ('combatNotes.secondWindFeature', 'levels.Fighter', '=', null);
+      rules.defineRule('saveNotes.indomitableFeature',
+        'levels.Fighter', '=', 'source < 13 ? 1 : source < 17 ? 2 : 3'
+      );
+      rules.defineRule('selectableFeatureCount.Fighter',
+        'fighterFeatures.Fighting Style', '=', '1',
+        'fighterFeatures.Additional Fighting Style', '+', '1',
+        'fighterFeatures.Martial Archetype', '+', '1'
+      );
+      rules.defineRule('combatNotes.survivorFeature',
+        'constitutionModifier', '=', '5 + source'
+      );
+      rules.defineRule('combatNotes.survivorFeature.1',
+        'hitPoints', '=', 'Math.floor(source / 2)'
+      );
+// PHB
+      rules.defineRule('combatNotes.maneuversFeature',
+        'fighterFeatures.Battle Master', '?', null,
+        'level.Fighter', '=', 'source<7 ? 3 : source<10 ? 5 : source<15 ? 7 : 9'
+      );
+      rules.defineRule('selectableFeatureCount.Fighter',
+        'combatNotes.maneuversFeature', '+', null
+      );
+// ENDPHB
 
     } else if(name == 'Monk') {
 
@@ -3302,7 +3457,7 @@ SRD5E.magicRules = function(rules, classes, domains, schools) {
         var prefix =
           name.substring(0, 1).toLowerCase() + name.substring(1).replace(/ /g, '');
         rules.defineRule('clericFeatures.' + feature,
-          'selectableFeatures.Cleric - ' + domain + ' Domain', '?', null,
+          'selectableFeatures.' + domain + ' Domain', '?', null,
           'level', '=', 'source >= ' + level + ' ? 1 : null'
         );
         rules.defineRule
@@ -4560,7 +4715,7 @@ SRD5E.defineClass = function(
   if(selectableFeatures != null) {
     for(var j = 0; j < selectableFeatures.length; j++) {
       var selectable = selectableFeatures[j];
-      var choice = name + ' - ' + selectable;
+      var choice = name + ' ' + selectable;
       var nameNoSpace =
         name.substring(0,1).toLowerCase() + name.substring(1).replace(/ /g, '');
       rules.defineChoice('selectableFeatures', choice + ':' + name);

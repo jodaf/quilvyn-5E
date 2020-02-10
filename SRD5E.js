@@ -17,73 +17,73 @@ Place, Suite 330, Boston, MA 02111-1307 USA.
 
 "use strict";
 
-var FiveE_VERSION = '1.6.0.1alpha';
+var SRD5E_VERSION = '1.6.0.1alpha';
 
 /*
- * This module loads the rules from Fifth Edition.  The FiveE function
+ * This module loads the rules from Fifth Edition.  The SRD5E function
  * contains methods that load rules for particular parts of the rules;
  * raceRules for character races, magicRules for spells, etc.  These member
  * methods can be called independently in order to use a subset of the Fifth
- * Edition rules.  Similarly, the constant fields of FiveE (ALIGNMENTS,
+ * Edition rules.  Similarly, the constant fields of SRD5E (ALIGNMENTS,
  * FEATS, etc.) can be manipulated to modify the choices.
  */
-function FiveE() {
-  var rules = new QuilvynRules('5E', FiveE_VERSION);
-  rules.editorElements = FiveE.initialEditorElements();
-  rules.randomizeOneAttribute = FiveE.randomizeOneAttribute;
-  rules.makeValid = FiveE.makeValid;
-  rules.ruleNotes = FiveE.ruleNotes;
-  FiveE.viewer = new ObjectViewer();
-  FiveE.createViewers(rules, FiveE.VIEWERS);
-  FiveE.abilityRules(rules);
-  FiveE.raceRules(rules, FiveE.LANGUAGES, FiveE.RACES);
-  FiveE.classRules(rules, FiveE.CLASSES);
-  FiveE.backgroundRules(rules, FiveE.BACKGROUNDS);
+function SRD5E() {
+  var rules = new QuilvynRules('5E', SRD5E_VERSION);
+  rules.editorElements = SRD5E.initialEditorElements();
+  rules.randomizeOneAttribute = SRD5E.randomizeOneAttribute;
+  rules.makeValid = SRD5E.makeValid;
+  rules.ruleNotes = SRD5E.ruleNotes;
+  SRD5E.viewer = new ObjectViewer();
+  SRD5E.createViewers(rules, SRD5E.VIEWERS);
+  SRD5E.abilityRules(rules);
+  SRD5E.raceRules(rules, SRD5E.LANGUAGES, SRD5E.RACES);
+  SRD5E.classRules(rules, SRD5E.CLASSES);
+  SRD5E.backgroundRules(rules, SRD5E.BACKGROUNDS);
 /*
-  FiveE.companionRules(rules, FiveE.ANIMAL_COMPANIONS, FiveE.FAMILIARS);
+  SRD5E.companionRules(rules, SRD5E.ANIMAL_COMPANIONS, SRD5E.FAMILIARS);
 */
-  FiveE.skillRules(rules, FiveE.SKILLS, FiveE.TOOLS);
-  FiveE.featRules(rules, FiveE.FEATS);
-  FiveE.descriptionRules(rules, FiveE.ALIGNMENTS, FiveE.DEITIES, FiveE.GENDERS);
-  FiveE.equipmentRules(rules, FiveE.ARMORS, FiveE.SHIELDS, FiveE.WEAPONS);
-  FiveE.combatRules(rules);
-  FiveE.movementRules(rules);
-  FiveE.magicRules(rules, FiveE.CLASSES, FiveE.DOMAINS, FiveE.SCHOOLS);
-  FiveE.spellDescriptionRules(rules);
+  SRD5E.skillRules(rules, SRD5E.SKILLS, SRD5E.TOOLS);
+  SRD5E.featRules(rules, SRD5E.FEATS);
+  SRD5E.descriptionRules(rules, SRD5E.ALIGNMENTS, SRD5E.DEITIES, SRD5E.GENDERS);
+  SRD5E.equipmentRules(rules, SRD5E.ARMORS, SRD5E.SHIELDS, SRD5E.WEAPONS);
+  SRD5E.combatRules(rules);
+  SRD5E.movementRules(rules);
+  SRD5E.magicRules(rules, SRD5E.CLASSES, SRD5E.DOMAINS, SRD5E.SCHOOLS);
+  SRD5E.spellDescriptionRules(rules);
   rules.defineChoice('preset', 'background', 'race', 'level', 'levels');
-  rules.defineChoice('random', FiveE.RANDOMIZABLE_ATTRIBUTES);
+  rules.defineChoice('random', SRD5E.RANDOMIZABLE_ATTRIBUTES);
   Quilvyn.addRuleSet(rules);
-  FiveE.rules = rules;
+  SRD5E.rules = rules;
 }
 
 // Arrays of choices
-FiveE.ALIGNMENTS = [
+SRD5E.ALIGNMENTS = [
   'Chaotic Evil', 'Chaotic Good', 'Chaotic Neutral', 'Neutral', 'Neutral Evil',
   'Neutral Good', 'Lawful Evil', 'Lawful Good', 'Lawful Neutral'
 ];
-FiveE.ARMORS = [
+SRD5E.ARMORS = [
   'None:', 'Padded:L', 'Leather:L', 'Studded Leather:L', 'Hide:M',
   'Chain Shirt:L', 'Scale Mail:M', 'Breastplate:M', 'Half Plate:M',
   'Ring Mail:H', 'Chain Mail:H', 'Splint:H', 'Plate:H'
 ];
-FiveE.BACKGROUNDS = [
+SRD5E.BACKGROUNDS = [
   'Acolyte', 'Charlatan', 'Criminal', 'Entertainer', 'Folk Hero',
   'Guild Artisan', 'Hermit', 'Noble', 'Outlander', 'Sage', 'Sailor', 'Soldier',
   'Urchin'
 ];
-FiveE.BARD_COLLEGES = ['Lore'];
+SRD5E.BARD_COLLEGES = ['Lore'];
 // PHB
-FiveE.BARD_COLLEGES.push('Valor');
+SRD5E.BARD_COLLEGES.push('Valor');
 // ENDPHB
-FiveE.BARBARIAN_PATHS = ['Berserker', 'Totem Warrior'];
+SRD5E.BARBARIAN_PATHS = ['Berserker', 'Totem Warrior'];
 // PHB
-FiveE.BARBARIAN_TOTEMS = ['Bear', 'Eagle', 'Wolf'];
+SRD5E.BARBARIAN_TOTEMS = ['Bear', 'Eagle', 'Wolf'];
 // ENDPHB
-FiveE.CLASSES = [
+SRD5E.CLASSES = [
   'Barbarian', 'Bard', 'Cleric', 'Druid', 'Fighter', 'Monk', 'Paladin',
   'Ranger', 'Rogue', 'Sorcerer', 'Warlock', 'Wizard'
 ];
-FiveE.DEITIES = [
+SRD5E.DEITIES = [
   'Auril (NE):Nature/Tempest', 'Azuth (LN):Knowledge', 'Bane (LE):War',
   'Beshaba (CE):Trickery', 'Bhaal:Death (NE)', 'Chauntea (NG):Life',
   'Cyric (CE):Trickery', 'Deneir (NG):Knowledge', 'Eldath (NG):Life/Nature',
@@ -97,13 +97,13 @@ FiveE.DEITIES = [
   'Torm (LG):War', 'Tymora (CG):Trickery', 'Tyr (LG):War',
   'Umberlee (CE):Tempest', 'Waukeen (N):Knowledge/Trickery', 'None:'
 ];
-FiveE.DOMAINS = ['Life'];
+SRD5E.DOMAINS = ['Life'];
 // PHB
-FiveE.DOMAINS = FiveE.DOMAINS.concat([
+SRD5E.DOMAINS = SRD5E.DOMAINS.concat([
   'Knowledge', 'Light', 'Nature', 'Tempest', 'Trickery', 'War'
 ]);
 // ENDPHB
-FiveE.FEATS = [
+SRD5E.FEATS = [
   'Alert', 'Athleete', 'Actor', 'Charger', 'Crossbow Expert',
   'Defensive Duelist', 'Dual Wielder', 'Dungeon Delver', 'Durable',
   'Elemental Adept', 'Grappler', 'Great Weapon Master', 'Healer',
@@ -115,13 +115,13 @@ FiveE.FEATS = [
   'Shield Master', 'Skilled', 'Skulker', 'Spell Sniper', 'Tavern Brawler',
   'Tough', 'War Caster', 'Weapon Master'
 ];
-FiveE.GENDERS = ['Female', 'Male'];
-FiveE.LANGUAGES = [
+SRD5E.GENDERS = ['Female', 'Male'];
+SRD5E.LANGUAGES = [
   'Abyssal', 'Celestial', 'Common', 'Deep Speech', 'Draconic', 'Dwarvish',
   'Elvish', 'Giant', 'Gnomish', 'Goblin', 'Halfling', 'Infernal', 'Orc',
   'Primordial', 'Sylvan', 'Undercommon'
 ];
-FiveE.RACES = [
+SRD5E.RACES = [
   'Black Dragonborn', 'Blue Dragonborn', 'Brass Dragonborn',
   'Bronze Dragonborn', 'Copper Dragonborn', 'Gold Dragonborn',
   'Green Dragonborn', 'Red Dragonborn', 'Silver Dragonborn',
@@ -131,18 +131,18 @@ FiveE.RACES = [
 ];
 // Note: the order here handles dependencies among attributes when generating
 // random characters
-FiveE.RANDOMIZABLE_ATTRIBUTES = [
+SRD5E.RANDOMIZABLE_ATTRIBUTES = [
   'charisma', 'constitution', 'dexterity', 'intelligence', 'strength', 'wisdom',
   'name', 'race', 'gender', 'alignment', 'background', 'deity', 'levels',
   'features', 'feats', 'skills', 'languages', 'hitPoints', 'armor', 'shield',
   'weapons', 'spells', 'tools'
 ];
-FiveE.ROGUISH_ARCHETYPES = ['Arcane Trickster', 'Assassin', 'Thief'];
-FiveE.SCHOOLS = [
+SRD5E.ROGUISH_ARCHETYPES = ['Arcane Trickster', 'Assassin', 'Thief'];
+SRD5E.SCHOOLS = [
   'Abjuration:Abju', 'Conjuration:Conj', 'Divination:Divi', 'Enchantment:Ench',
   'Evocation:Evoc', 'Illusion:Illu', 'Necromancy:Necr', 'Transmutation:Tran'
 ];
-FiveE.SPELLS = {
+SRD5E.SPELLS = {
 
   'Acid Splash':'Conjuration',
   'Aid':'Abjuration',
@@ -520,7 +520,7 @@ FiveE.SPELLS = {
   'Zone Of Truth':'Enchantment'
 
 };
-FiveE.TOOLS = [
+SRD5E.TOOLS = [
   "Alchemist's Supplies:Artisan", "Brewer's Supplies:Artisan",
   "Calligrapher's Supplies:Artisan", "Carpenter's Tools:Artisan",
   "Cobbler's Tools:Artisan", "Cook's Utensils:Artisan",
@@ -539,19 +539,19 @@ FiveE.TOOLS = [
   "Navigator's Tools:", "Poisoner's Kit:", "Theives' Tools:",
   "Vehicle (Land):", "Vehicle (Water):"
 ];
-FiveE.SHIELDS = [
+SRD5E.SHIELDS = [
   'Buckler', 'Heavy Steel', 'Heavy Wooden', 'Light Steel', 'Light Wooden',
   'None'
 ];
-FiveE.SKILLS = [
+SRD5E.SKILLS = [
   'Acrobatics:dex', 'Animal Handling:wis', 'Arcana:int', 'Athletics:str',
   'Deception:cha', 'History:int', 'Insight:wis', 'Intimidation:cha',
   'Investigation:int', 'Medicine:wis', 'Nature:int', 'Perception:wis',
   'Performance:cha', 'Persuasion:cha', 'Religion:int', 'Sleight Of Hand:dex',
   'Stealth:dex', 'Survival:wis'
 ];
-FiveE.VIEWERS = ['Compact', 'Standard', 'Vertical'];
-FiveE.WEAPONS = [
+SRD5E.VIEWERS = ['Compact', 'Standard', 'Vertical'];
+SRD5E.WEAPONS = [
   'Battleaxe:d10M', 'Blowgun:d1r25M', 'Club:d4S', 'Dagger:d4S', 'Dart:d4r20S',
   'Flail:d8M', 'Glaive:d10M', 'Greataxe:d12M', 'Greatclub:d8S',
   'Greatsword:2d6M', 'Halberd:d10M', 'Hand Crossbow:d6r30M', 'Handaxe:d6r20S',
@@ -564,18 +564,18 @@ FiveE.WEAPONS = [
   'Warhammer:d8M', 'Whip:d4M'
 ];
 
-// Related information used internally by FiveE
-FiveE.armorsArmorClassBonuses = {
+// Related information used internally by SRD5E
+SRD5E.armorsArmorClassBonuses = {
   'None': null, 'Padded': 1, 'Leather': 1, 'Studded Leather': 2,
   'Hide': 2, 'Chain Shirt': 3, 'Scale Mail': 4, 'Breastplate': 4,
   'Half Plate': 5, 'Ring Mail': 4, 'Chainmail': 6, 'Splint': 7, 'Plate': 8
 };
-FiveE.armorsMaxDexBonuses = {
+SRD5E.armorsMaxDexBonuses = {
   'None': null, 'Padded': null, 'Leather': null, 'Studded Leather': null,
   'Hide': 2, 'Chain Shirt': 2, 'Scale Mail': 2, 'Breastplate': 2,
   'Half Plate': 2, 'Ring Mail': 0, 'Chainmail': 0, 'Splint': 0, 'Plate': 0
 };
-FiveE.draconicBreathTypes = {
+SRD5E.draconicBreathTypes = {
   'Black Dragonborn': 'acid',
   'Blue Dragonborn': 'lightning',
   'Brass Dragonborn': 'fire',
@@ -587,7 +587,7 @@ FiveE.draconicBreathTypes = {
   'Silver Dragonborn': 'cold',
   'White Dragonborn': 'cold'
 };
-FiveE.spellsAbbreviations = {
+SRD5E.spellsAbbreviations = {
   "BarkskinAC": "2 + (source < 6 ? 0 : Math.min(Math.floor((source - 3)/ 3), 3))",
   "L": "lvl",
   "L2": "lvl * 2",
@@ -615,7 +615,7 @@ FiveE.spellsAbbreviations = {
   "RM": "100 + 10 * source",
   "RS": "25 + 5 * Math.floor(source / 2)"
 };
-FiveE.spellsDescriptions = {
+SRD5E.spellsDescriptions = {
   "Acid Splash": "R60' Ranged touch ${Math.floor((lvl+1)/6) + 1}d6 HP acid (Ref neg)",
   'Aid':"R30' Three targets +5 or more HP for 8 hr",
   'Alarm':"R30' Alert when tiny or larger creature enters 20' cu for 8 hr",
@@ -994,7 +994,7 @@ FiveE.spellsDescriptions = {
 };
 
 /* Defines the rules related to character abilities. */
-FiveE.abilityRules = function(rules) {
+SRD5E.abilityRules = function(rules) {
 
   // Ability modifier computation
   for(var ability in {'charisma':'', 'constitution':'', 'dexterity':'',
@@ -1036,7 +1036,7 @@ FiveE.abilityRules = function(rules) {
 };
 
 /* Defines the rules related to character backgrounds. */
-FiveE.backgroundRules = function(rules, backgrounds) {
+SRD5E.backgroundRules = function(rules, backgrounds) {
 
   for(var i = 0; i < backgrounds.length; i++) {
 
@@ -1243,7 +1243,7 @@ FiveE.backgroundRules = function(rules, backgrounds) {
     } else
       continue;
 
-    FiveE.defineBackground(
+    SRD5E.defineBackground(
       rules, name, features, languages, proficiencyCount, proficienciesGiven,
       proficiencyChoices, notes
     );
@@ -1253,7 +1253,7 @@ FiveE.backgroundRules = function(rules, backgrounds) {
 };
 
 /* Defines the rules related to character classes. */
-FiveE.classRules = function(rules, classes) {
+SRD5E.classRules = function(rules, classes) {
 
   rules.defineNote
     ('validationNotes.levelAllocation:%1 available vs. %2 allocated');
@@ -1369,7 +1369,7 @@ FiveE.classRules = function(rules, classes) {
         'Skill':['Animal Handling', 'Athletics', 'Intimidation', 'Nature',
                  'Perception', 'Survival']
       };
-      selectableFeatures = FiveE.BARBARIAN_PATHS.map(function (path) {return 'Primal Path (' + path + ')';}).concat(FiveE.BARBARIAN_TOTEMS.map(function (totem) {return totem + ' Totem';}));
+      selectableFeatures = SRD5E.BARBARIAN_PATHS.map(function (path) {return 'Primal Path (' + path + ')';}).concat(SRD5E.BARBARIAN_TOTEMS.map(function (totem) {return totem + ' Totem';}));
       spellAbility = null;
       spellsKnown = null;
       spellSlots = null;
@@ -1514,10 +1514,10 @@ FiveE.classRules = function(rules, classes) {
         'Weapon':['Simple','Hand Crossbow','Longsword','Rapier','Shortsword']
       };
       proficiencyChoices = {
-        'Skill': FiveE.SKILLS.map(function(skill){return skill.substring(0, skill.indexOf(':'));}),
+        'Skill': SRD5E.SKILLS.map(function(skill){return skill.substring(0, skill.indexOf(':'));}),
         'Tool':['Music']
       };
-      selectableFeatures = FiveE.BARD_COLLEGES;
+      selectableFeatures = SRD5E.BARD_COLLEGES;
       spellAbility = 'charisma';
       spellsKnown = [
         'B0:1:2/4:3/10:4',
@@ -1619,7 +1619,7 @@ FiveE.classRules = function(rules, classes) {
         'Skill':['History', 'Insight', 'Medicine', 'Persuasion', 'Religion']
       };
       selectableFeatures =
-        FiveE.DOMAINS.map(function(domain){return domain + ' Domain';});
+        SRD5E.DOMAINS.map(function(domain){return domain + ' Domain';});
       spellAbility = 'wisdom';
       spellsKnown = [
         'C0:1:3/4:4/10:5',
@@ -1914,7 +1914,7 @@ FiveE.classRules = function(rules, classes) {
                  'Intimidation', 'Investigation', 'Perception', 'Performance',
                  'Persuasion', 'Sleight Of Hand', 'Stealth']
       };
-      selectableFeatures = FiveE.ROGUE_ARCHETYPES;
+      selectableFeatures = SRD5E.ROGUE_ARCHETYPES;
       spellAbility = null;
       spellsKnown = null;
       spellSlots = null;
@@ -2045,7 +2045,7 @@ FiveE.classRules = function(rules, classes) {
         'Skill': ['Arcana', 'History', 'Insight', 'Investigation', 'Medicine',
                   'Religion']
       };
-      selectableFeatures = FiveE.SCHOOLS.map(function(school){return school.substring(0, school.indexOf(':')) + ' Tradition';}),
+      selectableFeatures = SRD5E.SCHOOLS.map(function(school){return school.substring(0, school.indexOf(':')) + ' Tradition';}),
       spellAbility = 'intelligence';
       spellsKnown = [
         'W0:1:3/4:4/10:5',
@@ -2077,7 +2077,7 @@ FiveE.classRules = function(rules, classes) {
     } else
       continue;
 
-    FiveE.defineClass(
+    SRD5E.defineClass(
       rules, name, hitDie, features, selectableFeatures, proficiencyCount,
       proficienciesGiven, proficiencyChoices, spellAbility, spellsKnown,
       spellSlots, notes
@@ -2088,10 +2088,10 @@ FiveE.classRules = function(rules, classes) {
 };
 
 /* Defines the rules related to combat. */
-FiveE.combatRules = function(rules) {
+SRD5E.combatRules = function(rules) {
   rules.defineRule('armorClass',
     '', '=', '10',
-    'armor', '+', 'FiveE.armorsArmorClassBonuses[source]',
+    'armor', '+', 'SRD5E.armorsArmorClassBonuses[source]',
     'shield', '+', 'source == "None" ? null : 2'
   );
   rules.defineRule('initiative', 'dexterityModifier', '=', null);
@@ -2112,7 +2112,7 @@ FiveE.combatRules = function(rules) {
 };
 
 /* Defines the rules related to companion creatures. */
-FiveE.companionRules = function(rules, companions, familiars) {
+SRD5E.companionRules = function(rules, companions, familiars) {
 
   var features, notes;
 
@@ -2214,14 +2214,14 @@ FiveE.companionRules = function(rules, companions, familiars) {
       'companionStats.Dex', '+', 'Math.floor((source - 10) / 2)'
     );
     rules.defineRule('companionStats.BAB',
-      'companionStats.HD', '=', FiveE.ATTACK_BONUS_AVERAGE
+      'companionStats.HD', '=', SRD5E.ATTACK_BONUS_AVERAGE
     );
     rules.defineRule('companionStats.Dex',
       'animalCompanionLevel', '+', 'source - 1'
     );
     rules.defineRule('animalCompanionFort',
       'features.Animal Companion', '?', null,
-      'companionStats.HD', '=', FiveE.SAVE_BONUS_GOOD,
+      'companionStats.HD', '=', SRD5E.SAVE_BONUS_GOOD,
       'companionStats.Con', '+', 'Math.floor((source - 10)/2)'
     );
     rules.defineRule('companionStats.Fort', 'animalCompanionFort', '=', null);
@@ -2234,7 +2234,7 @@ FiveE.companionRules = function(rules, companions, familiars) {
     rules.defineRule('companionStats.Name', 'animalCompanionName', '=', null);
     rules.defineRule('animalCompanionRef',
       'features.Animal Companion', '?', null,
-      'companionStats.HD', '=', FiveE.SAVE_BONUS_GOOD,
+      'companionStats.HD', '=', SRD5E.SAVE_BONUS_GOOD,
       'companionStats.Dex', '+', 'Math.floor((source - 10) / 2)'
     );
     rules.defineRule('companionStats.Ref', 'animalCompanionRef', '=', null);
@@ -2244,7 +2244,7 @@ FiveE.companionRules = function(rules, companions, familiars) {
       ('companionStats.Tricks', 'animalCompanionLevel', '=', null);
     rules.defineRule('animalCompanionWill',
       'features.Animal Companion', '?', null,
-      'companionStats.HD', '=', FiveE.SAVE_BONUS_POOR,
+      'companionStats.HD', '=', SRD5E.SAVE_BONUS_POOR,
       'companionStats.Wis', '+', 'Math.floor((source - 10)/2)'
     );
     rules.defineRule('companionStats.Will', 'animalCompanionWill', '=', null);
@@ -2472,7 +2472,7 @@ FiveE.companionRules = function(rules, companions, familiars) {
 };
 
 /* Returns an ObjectViewer loaded with the default character sheet format. */
-FiveE.createViewers = function(rules, viewers) {
+SRD5E.createViewers = function(rules, viewers) {
   for(var i = 0; i < viewers.length; i++) {
     var name = viewers[i];
     var viewer = new ObjectViewer();
@@ -2635,14 +2635,14 @@ FiveE.createViewers = function(rules, viewers) {
 };
 
 /* Defines the rules related to character description. */
-FiveE.descriptionRules = function(rules, alignments, deities, genders) {
+SRD5E.descriptionRules = function(rules, alignments, deities, genders) {
   rules.defineChoice('alignments', alignments);
   rules.defineChoice('deities', deities);
   rules.defineChoice('genders', genders);
 };
 
 /* Defines the rules related to equipment. */
-FiveE.equipmentRules = function(rules, armors, shields, weapons) {
+SRD5E.equipmentRules = function(rules, armors, shields, weapons) {
 
   rules.defineChoice('armors', armors);
   rules.defineChoice('shields', shields);
@@ -2715,10 +2715,10 @@ FiveE.equipmentRules = function(rules, armors, shields, weapons) {
   // TODO Strength overcomes this; see PHB 144
   // rules.defineRule('abilityNotes.armorSpeedAdjustment',
   //   'armor', '=',
-  //   'FiveE.armorsCategories[source] == "Heavy" ? -10 : null'
+  //   'SRD5E.armorsCategories[source] == "Heavy" ? -10 : null'
   // );
   rules.defineRule('combatNotes.dexterityArmorClassAdjustment',
-    'armor', 'v', 'FiveE.armorsMaxDexBonuses[source]'
+    'armor', 'v', 'SRD5E.armorsMaxDexBonuses[source]'
   );
   rules.defineRule('speed', 'abilityNotes.armorSpeedAdjustment', '+', null);
 
@@ -2728,7 +2728,7 @@ FiveE.equipmentRules = function(rules, armors, shields, weapons) {
 };
 
 /* Defines the rules related to feats. */
-FiveE.featRules = function(rules, feats) {
+SRD5E.featRules = function(rules, feats) {
 
   for(var i = 0; i < feats.length; i++) {
 
@@ -2840,7 +2840,7 @@ FiveE.featRules = function(rules, feats) {
 };
 
 /* Defines the rules related to spells and domains. */
-FiveE.magicRules = function(rules, classes, domains, schools) {
+SRD5E.magicRules = function(rules, classes, domains, schools) {
 
   rules.defineChoice('schools', schools);
   schools = rules.getChoices('schools');
@@ -3092,7 +3092,7 @@ FiveE.magicRules = function(rules, classes, domains, schools) {
         var pieces = spells[j].split(':');
         for(var k = 1; k < pieces.length; k++) {
           var spell = pieces[k];
-          var school = FiveE.SPELLS[spell];
+          var school = SRD5E.SPELLS[spell];
           if(school == null)
             continue;
           spell += '(' + pieces[0] + ' ' + schools[school] + ')';
@@ -3178,7 +3178,7 @@ FiveE.magicRules = function(rules, classes, domains, schools) {
     if(spells != null) {
       for(var j = 0; j < spells.length; j++) {
         var spell = spells[j];
-        var school = FiveE.SPELLS[spell];
+        var school = SRD5E.SPELLS[spell];
         if(school == null) {
           continue;
         }
@@ -3200,12 +3200,12 @@ FiveE.magicRules = function(rules, classes, domains, schools) {
 };
 
 /* Defines the rules related to character movement. */
-FiveE.movementRules = function(rules) {
+SRD5E.movementRules = function(rules) {
   rules.defineRule('speed', '', '=', '30');
 };
 
 /* Defines the rules related to character races. */
-FiveE.raceRules = function(rules, languages, races) {
+SRD5E.raceRules = function(rules, languages, races) {
 
   rules.defineChoice('languages', languages);
   rules.defineRule('languageCount', 'race', '=', '0');
@@ -3249,7 +3249,7 @@ FiveE.raceRules = function(rules, languages, races) {
       proficiencyCount = {'Skill': 2};
       proficienciesGiven = {};
       proficiencyChoices = {
-        'Skill': FiveE.SKILLS.map(function(skill){return skill.substring(0, skill.indexOf(':'));})
+        'Skill': SRD5E.SKILLS.map(function(skill){return skill.substring(0, skill.indexOf(':'));})
       };
 
     } else if(race == 'Half-Orc') {
@@ -3290,7 +3290,7 @@ FiveE.raceRules = function(rules, languages, races) {
         'race', '=', 'source < "Gold" ? "5\'x30\' line" : "15\' cone"'
       );
       rules.defineRule('combatNotes.draconicBreathFeature.2',
-        'race', '=', 'FiveE.draconicBreathTypes[source]'
+        'race', '=', 'SRD5E.draconicBreathTypes[source]'
       );
       rules.defineRule('combatNotes.draconicBreathFeature.3',
         'constitutionModifier', '=', '8 + source',
@@ -3502,7 +3502,7 @@ FiveE.raceRules = function(rules, languages, races) {
     } else
       continue;
 
-    FiveE.defineRace(
+    SRD5E.defineRace(
       rules, race, adjustment, features, languages, proficiencyCount,
       proficienciesGiven, proficiencyChoices, notes
     );
@@ -3512,7 +3512,7 @@ FiveE.raceRules = function(rules, languages, races) {
 };
 
 /* Defines the rules related to skills. */
-FiveE.skillRules = function(rules, skills, tools) {
+SRD5E.skillRules = function(rules, skills, tools) {
 
   var abilityNames = {
     'cha':'charisma', 'con':'constitution', 'dex':'dexterity',
@@ -3540,13 +3540,13 @@ FiveE.skillRules = function(rules, skills, tools) {
 };
 
 /* Replaces spell names with longer descriptions on the character sheet. */
-FiveE.spellDescriptionRules = function(rules, spells, descriptions) {
+SRD5E.spellDescriptionRules = function(rules, spells, descriptions) {
 
   if(spells == null) {
     spells = QuilvynUtils.getKeys(rules.choices.spells);
   }
   if(descriptions == null) {
-    descriptions = FiveE.spellsDescriptions;
+    descriptions = SRD5E.spellsDescriptions;
   }
 
   rules.defineRule('casterLevels.B', 'levels.Bard', '=', null);
@@ -3587,8 +3587,8 @@ FiveE.spellDescriptionRules = function(rules, spells, descriptions) {
         var insert = inserts[index - 1];
         var expr = insert[1] == "{" ?
             insert.substring(2, insert.length - 1) : insert.substring(1);
-        if(FiveE.spellsAbbreviations[expr] != null) {
-          expr = FiveE.spellsAbbreviations[expr];
+        if(SRD5E.spellsAbbreviations[expr] != null) {
+          expr = SRD5E.spellsAbbreviations[expr];
         }
         expr = expr.replace(/lvl/g, "source");
         rules.defineRule
@@ -3604,7 +3604,7 @@ FiveE.spellDescriptionRules = function(rules, spells, descriptions) {
 };
 
 /* Returns a random name for a character of race #race#. */
-FiveE.randomName = function(race) {
+SRD5E.randomName = function(race) {
 
   /* Return a random character from #string#. */
   function randomChar(string) {
@@ -3685,7 +3685,7 @@ FiveE.randomName = function(race) {
 };
 
 /* Returns the elements in a basic 5E character editor. */
-FiveE.initialEditorElements = function() {
+SRD5E.initialEditorElements = function() {
   var abilityChoices = [
     3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18
   ];
@@ -3707,7 +3707,7 @@ FiveE.initialEditorElements = function() {
     ['deity', 'Deity', 'select-one', 'deities'],
     ['origin', 'Origin', 'text', [20]],
     ['feats', 'Feats', 'set', 'feats'],
-    ['selectableFeatures', 'Selectable Features', 'bag', 'selectableFeatures'],
+    ['selectableFeatures', 'Selectable Features', 'set', 'selectableFeatures'],
     ['skillProficiencies', 'Skills', 'set', 'skills'],
     ['toolProficiencies', 'Tools', 'set', 'tools'],
     ['languages', 'Languages', 'set', 'languages'],
@@ -3716,7 +3716,6 @@ FiveE.initialEditorElements = function() {
     ['shield', 'Shield', 'select-one', 'shields'],
     ['weapons', 'Weapons', 'bag', 'weapons'],
     ['spells', 'Spells', 'fset', 'spells'],
-    ['domains', 'Cleric Domains', 'set', 'domains'],
     ['notes', 'Notes', 'textarea', [40,10]],
     ['hiddenNotes', 'Hidden Notes', 'textarea', [40,10]]
   ];
@@ -3724,7 +3723,7 @@ FiveE.initialEditorElements = function() {
 };
 
 /* Sets #attributes#'s #attribute# attribute to a random value. */
-FiveE.randomizeOneAttribute = function(attributes, attribute) {
+SRD5E.randomizeOneAttribute = function(attributes, attribute) {
 
   /*
    * Randomly selects #howMany# elements of the array #choices#, prepends
@@ -3910,7 +3909,7 @@ FiveE.randomizeOneAttribute = function(attributes, attribute) {
     }
     attributes.level = level;
   } else if(attribute == 'name') {
-    attributes['name'] = FiveE.randomName(attributes['race']);
+    attributes['name'] = SRD5E.randomName(attributes['race']);
   } else if(attribute == 'shield') {
     attrs = this.applyRules(attributes);
     choices = ['None'];
@@ -4020,7 +4019,7 @@ FiveE.randomizeOneAttribute = function(attributes, attribute) {
 };
 
 /* Fixes as many validation errors in #attributes# as possible. */
-FiveE.makeValid = function(attributes) {
+SRD5E.makeValid = function(attributes) {
 
   var attributesChanged = {};
   var debug = [];
@@ -4212,10 +4211,10 @@ FiveE.makeValid = function(attributes) {
 };
 
 /* Returns HTML body content for user notes associated with this rule set. */
-FiveE.ruleNotes = function() {
+SRD5E.ruleNotes = function() {
   return '' +
-    '<h2>FiveE Quilvyn Module Notes</h2>\n' +
-    'FiveE Quilvyn Module Version ' + FiveE_VERSION + '\n' +
+    '<h2>SRD5E Quilvyn Module Notes</h2>\n' +
+    'SRD5E Quilvyn Module Version ' + SRD5E_VERSION + '\n' +
     '\n' +
     '<h3>Usage Notes</h3>\n' +
     '<p>\n' +
@@ -4309,7 +4308,7 @@ FiveE.ruleNotes = function() {
     '</p>\n';
 };
 
-FiveE.defineBackground = function(
+SRD5E.defineBackground = function(
   rules, name, features, languages, proficiencyCount, proficienciesGiven,
   proficiencyChoices, notes
 ) {
@@ -4394,7 +4393,7 @@ FiveE.defineBackground = function(
  * about the type, number, and level of spells castable per day at each class
  * level, and #spellAbility# the ability that pertains to this class' spells.
  */
-FiveE.defineClass = function(
+SRD5E.defineClass = function(
   rules, name, hitDice, features, selectableFeatures, proficiencyCount,
   proficienciesGiven, proficiencyChoices, spellAbility, spellsKnown,
   spellSlots, notes
@@ -4529,7 +4528,7 @@ FiveE.defineClass = function(
  * and the character levels at which they're acquired.  If no level is included
  * with a feature, the feature is acquired at level 1.
  */
-FiveE.defineRace = function(
+SRD5E.defineRace = function(
   rules, name, abilityAdjustment, features, languages, proficiencyCount,
   proficienciesGiven, proficiencyChoices, notes
 ) {
@@ -4614,35 +4613,35 @@ FiveE.defineRace = function(
 
 };
 
-/* Convenience functions that invoke QuilvynRules methods on the FiveE rules. */
-FiveE.applyRules = function() {
-  return FiveE.rules.applyRules.apply(FiveE.rules, arguments);
+/* Convenience functions that invoke QuilvynRules methods on the SRD5E rules. */
+SRD5E.applyRules = function() {
+  return SRD5E.rules.applyRules.apply(SRD5E.rules, arguments);
 };
 
-FiveE.defineChoice = function() {
-  return FiveE.rules.defineChoice.apply(FiveE.rules, arguments);
+SRD5E.defineChoice = function() {
+  return SRD5E.rules.defineChoice.apply(SRD5E.rules, arguments);
 };
 
-FiveE.defineEditorElement = function() {
-  return FiveE.rules.defineEditorElement.apply(FiveE.rules, arguments);
+SRD5E.defineEditorElement = function() {
+  return SRD5E.rules.defineEditorElement.apply(SRD5E.rules, arguments);
 };
 
-FiveE.defineNote = function() {
-  return FiveE.rules.defineNote.apply(FiveE.rules, arguments);
+SRD5E.defineNote = function() {
+  return SRD5E.rules.defineNote.apply(SRD5E.rules, arguments);
 };
 
-FiveE.defineRule = function() {
-  return FiveE.rules.defineRule.apply(FiveE.rules, arguments);
+SRD5E.defineRule = function() {
+  return SRD5E.rules.defineRule.apply(SRD5E.rules, arguments);
 };
 
-FiveE.defineSheetElement = function() {
-  return FiveE.rules.defineSheetElement.apply(FiveE.rules, arguments);
+SRD5E.defineSheetElement = function() {
+  return SRD5E.rules.defineSheetElement.apply(SRD5E.rules, arguments);
 };
 
-FiveE.getChoices = function() {
-  return FiveE.rules.getChoices.apply(FiveE.rules, arguments);
+SRD5E.getChoices = function() {
+  return SRD5E.rules.getChoices.apply(SRD5E.rules, arguments);
 };
 
-FiveE.isSource = function() {
-  return FiveE.rules.isSource.apply(FiveE.rules, arguments);
+SRD5E.isSource = function() {
+  return SRD5E.rules.isSource.apply(SRD5E.rules, arguments);
 };

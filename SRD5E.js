@@ -48,7 +48,7 @@ function SRD5E() {
   SRD5E.equipmentRules(rules, SRD5E.ARMORS, SRD5E.SHIELDS, SRD5E.WEAPONS);
   SRD5E.combatRules(rules);
   SRD5E.movementRules(rules);
-  SRD5E.magicRules(rules, SRD5E.CLASSES, SRD5E.DOMAINS, SRD5E.SCHOOLS);
+  SRD5E.magicRules(rules, SRD5E.CLASSES, SRD5E.CLERIC_DOMAINS, SRD5E.SCHOOLS);
   SRD5E.spellDescriptionRules(rules);
   rules.defineChoice('preset', 'background', 'race', 'level', 'levels');
   rules.defineChoice('random', SRD5E.RANDOMIZABLE_ATTRIBUTES);
@@ -83,6 +83,12 @@ SRD5E.CLASSES = [
   'Barbarian', 'Bard', 'Cleric', 'Druid', 'Fighter', 'Monk', 'Paladin',
   'Ranger', 'Rogue', 'Sorcerer', 'Warlock', 'Wizard'
 ];
+SRD5E.CLERIC_DOMAINS = ['Life'];
+// PHB
+SRD5E.CLERIC_DOMAINS = SRD5E.CLERIC_DOMAINS.concat([
+  'Knowledge', 'Light', 'Nature', 'Tempest', 'Trickery', 'War'
+]);
+// ENDPHB
 SRD5E.DEITIES = [
   'Auril (NE):Nature/Tempest', 'Azuth (LN):Knowledge', 'Bane (LE):War',
   'Beshaba (CE):Trickery', 'Bhaal:Death (NE)', 'Chauntea (NG):Life',
@@ -97,11 +103,15 @@ SRD5E.DEITIES = [
   'Torm (LG):War', 'Tymora (CG):Trickery', 'Tyr (LG):War',
   'Umberlee (CE):Tempest', 'Waukeen (N):Knowledge/Trickery', 'None:'
 ];
-SRD5E.DOMAINS = ['Life'];
+SRD5E.DRUID_CIRCLES = ['Land'];
 // PHB
-SRD5E.DOMAINS = SRD5E.DOMAINS.concat([
-  'Knowledge', 'Light', 'Nature', 'Tempest', 'Trickery', 'War'
-]);
+SRD5E.DRUID_CIRCLES = SRD5E.DRUID_CIRCLES.concat(['Moon']);
+// ENDPHB
+SRD5E.DRUID_LANDS = [
+  'Arctic', 'Coast', 'Desert', 'Forest', 'Grassland', 'Mountain', 'Swamp'
+];
+// PHB
+SRD5E.DRUID_LANDS.push('Underdark');
 // ENDPHB
 SRD5E.FEATS = [
   'Alert', 'Athleete', 'Actor', 'Charger', 'Crossbow Expert',
@@ -175,7 +185,7 @@ SRD5E.SPELLS = {
   'Beacon Of Hope':'Abjuration',
   'Beast Sense':'Divination',
   'Bestow Curse':'Necromancy',
-  'Bigby\'s Hand':'Evocation',
+  "Bigby's Hand":'Evocation',
   'Blade Barrier':'Evocation',
   'Blade Ward':'Abjuration',
   'Bless':'Enchantment',
@@ -228,7 +238,7 @@ SRD5E.SPELLS = {
   'Create Undead':'Necromancy',
   'Creation':'Illusion',
   'Crown Of Madness':'Enchantment',
-  'Crusader\'s Mantle':'Evocation',
+  "Crusader's Mantle":'Evocation',
   'Cure Wounds':'Evocation',
 
   'Dancing Lights':'Evocation',
@@ -255,7 +265,7 @@ SRD5E.SPELLS = {
   'Dominate Beast':'Enchantment',
   'Dominate Monster':'Enchantment',
   'Dominate Person':'Enchantment',
-  'Drawmij\'s Instant Summons':'Conjuration',
+  "Drawmij's Instant Summons":'Conjuration',
   'Dream':'Illusion',
   'Druidcraft':'Transmutation',
 
@@ -268,7 +278,7 @@ SRD5E.SPELLS = {
   'Entangle':'Conjuration',
   'Enthrall':'Enchantment',
   'Etherealness':'Transmutation',
-  'Evard\'s Black Tentacles':'Conjuration',
+  "Evard's Black Tentacles":'Conjuration',
   'Expeditious Retreat':'Transmutation',
   'Eyebite':'Necromancy',
 
@@ -329,14 +339,14 @@ SRD5E.SPELLS = {
   'Healing Word':'Evocation',
   'Heat Metal':'Transmutation',
   'Hellish Rebuke':'Evocation',
-  'Heroes\' Feast':'Conjuration',
+  "Heroes' Feast":'Conjuration',
   'Heroism':'Enchantment',
   'Hex':'Enchantment',
   'Hold Monster':'Enchantment',
   'Hold Person':'Enchantment',
   'Holy Aura':'Abjuration',
   'Hunger Of Hadar':'Conjuration',
-  'Hunter\'s Mark':'Divination',
+  "Hunter's Mark":'Divination',
   'Hypnotic Pattern':'Illusion',
 
   'Ice Storm':'Evocation',
@@ -352,8 +362,8 @@ SRD5E.SPELLS = {
   'Knock':'Transmutation',
 
   'Legend Lore':'Divination',
-  'Leomund\'s Secret Chest':'Conjuraion',
-  'Leomund\'s Tiny Hut':'Evocation',
+  "Leomund's Secret Chest":'Conjuraion',
+  "Leomund's Tiny Hut":'Evocation',
   'Lesser Restoration':'Abjuration',
   'Levitate':'Transmutation',
   'Light':'Evocation',
@@ -378,22 +388,22 @@ SRD5E.SPELLS = {
   'Mass Suggestion':'Enchantment',
   'Maze':'Conjuration',
   'Meld Into Stone':'Transmutation',
-  'Melf\'s Acid Arrow':'Evocation',
+  "Melf's Acid Arrow":'Evocation',
   'Mending':'Transmutation',
   'Message':'Transmutation',
   'Meteor Swarm':'Evocation',
   'Mind Blank':'Abjuration',
   'Mind Fog':'Enchantment',
-  'Mordenkainen\'s Private Sanctum':'Abjuration',
-  'Mordenkainen\'s Sword':'Evocation',
+  "Mordenkainen's Private Sanctum":'Abjuration',
+  "Mordenkainen's Sword":'Evocation',
   'Move Earth':'Transmutation',
 
   'Nondetection':'Abjuration',
-  'Nystul\'s Magic Aura':'Illusion',
+  "Nystul's Magic Aura":'Illusion',
 
-  'Otiluke\'s Freezing Sphere':'Evocation',
-  'Otiluke\'s Resilient Sphere':'Evocation',
-  'Otto\'s Irresistable Dance':'Enchantment',
+  "Otiluke's Freezing Sphere":'Evocation',
+  "Otiluke's Resilient Sphere":'Evocation',
+  "Otto's Irresistable Dance":'Enchantment',
 
   'Pass Without Trace':'Abjuration',
   'Passwall':'Transmutation',
@@ -422,7 +432,7 @@ SRD5E.SPELLS = {
   'Purify Food And Drink':'Transmutation',
 
   'Raise Dead':'Necromancy',
-  'Rary\'s Telepathic Bond':'Divination',
+  "Rary's Telepathic Bond":'Divination',
   'Ray Of Enfeeblement':'Necromancy',
   'Ray Of Frost':'Evocation',
   'Ray Of Sickness':'Necromancy',
@@ -476,12 +486,12 @@ SRD5E.SPELLS = {
   'Swift Quiver':'Transmutation',
   'Symbol':'Abjuration',
 
-  'Tasha\'s Hideous Laughter':'Enchantment',
+  "Tasha's Hideous Laughter":'Enchantment',
   'Telekinesis':'Transmutation',
   'Telepathy':'Evocation',
   'Teleport':'Conjuration',
   'Teleportation Circle':'Conjuration',
-  'Tenser\'s Floating Disk':'Conjuration',
+  "Tenser's Floating Disk":'Conjuration',
   'Thaumaturgy':'Transmutation',
   'Thorn Whip':'Transmutation',
   'Thunderous Smite':'Evocation',
@@ -587,6 +597,42 @@ SRD5E.draconicBreathTypes = {
   'Silver Dragonborn': 'cold',
   'White Dragonborn': 'cold'
 };
+SRD5E.landsSpells = {
+  'Arctic':[
+    '3:Hold Person', '3:Spike Growth', '5:Sleet Storm', '5:Slow',
+    '7:Freedom Of Movement', '7:Ice Storm', '9:Commune With Nature', '9:Cone Of Cold'
+  ],
+  'Coast':[
+    '3:Mirror Image', '3:Misty Step', '5:Water Breathing', '5:Water Walk',
+    '7:Control Weather', '7:Freedom Of Movement', '9:Conjure Elemental', '9:Scrying'
+  ],
+  'Desert':[
+    '3:Blur', '3:Silence', '5:Create Food And Water', '5:Protection From Energy',
+    '7:Blight', '7:Hallucinatory Terrain', '9:Insect Plague', '9:Wall Of Stone'
+  ],
+  'Forest':[
+    '3:Barkskin', '3:Spider Climb', '5:Call Lightning', '5:Plant Growth',
+    '7:Divination', '7:Freedom Of Movement', '9:Commune With Nature', '9:Tree Stride'
+  ],
+  'Grassland':[
+    '3:Invisibility', '3:Pass Without Trace', '5:Daylight', '5:Haste',
+    '7:Divination', '7:Freedom Of Movement', '9:Dream', '9:Insect Plague'
+  ],
+  'Mountain':[
+    '3:Spider Climb', '3:Spike Growth', '5:Lightning Bolt', '5:Meld Into Stone',
+    '7:Stone Shape', '7:Soneskin', '9:Passwall', '9:Wall Of Stone'
+  ],
+  'Swamp':[
+    '3:Acid Arrow', '3:Darkness', '5:Water Walk', '5:Stinking Cloud',
+    '7:Freedom Of Movement', '7:Locate Creature', '9:Insect Plague', '9:Scrying'
+  ]
+};
+// PHB
+SRD5E.landsSpells['Underdark'] = [
+  '3:Spider Climb', '3:Web', '5:Gaseous Form', '5:Stinking Cloud',
+  '7:Greater Invisibility', '7:Stone Shape', '9:Cloudkill', '9:Insect Plague'
+];
+// ENDPHB
 SRD5E.spellsAbbreviations = {
   "BarkskinAC": "2 + (source < 6 ? 0 : Math.min(Math.floor((source - 3)/ 3), 3))",
   "L": "lvl",
@@ -647,7 +693,7 @@ SRD5E.spellsDescriptions = {
   'Beacon Of Hope':"R30' Targets Adv Wis/death saves, max heal for conc/1 min",
   'Beast Sense':"Self use touched beast's senses for conc/1 hr",
   'Bestow Curse':"Touched one of Disadv specified ability rolls, Disadv self attacks, Wis save to take action, take +1d8 HP necrotic from self attacks (Wis neg) for conc/1 min",
-  'Bigby\'s Hand':"R120' AC20, Str 26, Dex 10 hand can punch, push, grasp, block for conc/1 min",
+  "Bigby's Hand":"R120' AC20, Str 26, Dex 10 hand can punch, push, grasp, block for conc/1 min",
   'Blade Barrier':"R90' 100'x20'x5' blade wall passers 6d10 HP slashing (Dex neg) for conc/10 min",
   'Blade Ward':"Self resist bludgeon, pierce, slash damage for 1 rd",
   'Bless':"R30' 3 targets +1d4 to attack/save rolls for conc/1 min",
@@ -700,7 +746,7 @@ SRD5E.spellsDescriptions = {
   'Create Undead':"TODO",
   'Creation':"TODO",
   'Crown Of Madness':"TODO",
-  'Crusader\'s Mantle':"TODO",
+  "Crusader's Mantle":"TODO",
   'Cure Wounds':"TODO",
 
   'Dancing Lights':"TODO",
@@ -727,7 +773,7 @@ SRD5E.spellsDescriptions = {
   'Dominate Beast':"TODO",
   'Dominate Monster':"TODO",
   'Dominate Person':"TODO",
-  'Drawmij\'s Instant Summons':"TODO",
+  "Drawmij's Instant Summons":"TODO",
   'Dream':"TODO",
   'Druidcraft':"TODO",
 
@@ -740,7 +786,7 @@ SRD5E.spellsDescriptions = {
   'Entangle':"TODO",
   'Enthrall':"TODO",
   'Etherealness':"TODO",
-  'Evard\'s Black Tentacles':"TODO",
+  "Evard's Black Tentacles":"TODO",
   'Expeditious Retreat':"TODO",
   'Eyebite':"TODO",
 
@@ -801,14 +847,14 @@ SRD5E.spellsDescriptions = {
   'Healing Word':"TODO",
   'Heat Metal':"TODO",
   'Hellish Rebuke':"TODO",
-  'Heroes\' Feast':"TODO",
+  "Heroes' Feast":"TODO",
   'Heroism':"TODO",
   'Hex':"TODO",
   'Hold Monster':"TODO",
   'Hold Person':"TODO",
   'Holy Aura':"TODO",
   'Hunger Of Hadar':"TODO",
-  'Hunter\'s Mark':"TODO",
+  "Hunter's Mark":"TODO",
   'Hypnotic Pattern':"TODO",
 
   'Ice Storm':"TODO",
@@ -824,8 +870,8 @@ SRD5E.spellsDescriptions = {
   'Knock':"TODO",
 
   'Legend Lore':"TODO",
-  'Leomund\'s Secret Chest':"TODO",
-  'Leomund\'s Tiny Hut':"TODO",
+  "Leomund's Secret Chest":"TODO",
+  "Leomund's Tiny Hut":"TODO",
   'Lesser Restoration':"TODO",
   'Levitate':"TODO",
   'Light':"TODO",
@@ -850,22 +896,22 @@ SRD5E.spellsDescriptions = {
   'Mass Suggestion':"TODO",
   'Maze':"TODO",
   'Meld Into Stone':"TODO",
-  'Melf\'s Acid Arrow':"TODO",
+  "Melf's Acid Arrow":"TODO",
   'Mending':"TODO",
   'Message':"TODO",
   'Meteor Swarm':"TODO",
   'Mind Blank':"TODO",
   'Mind Fog':"TODO",
-  'Mordenkainen\'s Private Sanctum':"TODO",
-  'Mordenkainen\'s Sword':"TODO",
+  "Mordenkainen's Private Sanctum":"TODO",
+  "Mordenkainen's Sword":"TODO",
   'Move Earth':"TODO",
 
   'Nondetection':"TODO",
-  'Nystul\'s Magic Aura':"TODO",
+  "Nystul's Magic Aura":"TODO",
 
-  'Otiluke\'s Freezing Sphere':"TODO",
-  'Otiluke\'s Resilient Sphere':"TODO",
-  'Otto\'s Irresistable Dance':"TODO",
+  "Otiluke's Freezing Sphere":"TODO",
+  "Otiluke's Resilient Sphere":"TODO",
+  "Otto's Irresistable Dance":"TODO",
 
   'Pass Without Trace':"TODO",
   'Passwall':"TODO",
@@ -894,7 +940,7 @@ SRD5E.spellsDescriptions = {
   'Purify Food And Drink':"TODO",
 
   'Raise Dead':"TODO",
-  'Rary\'s Telepathic Bond':"TODO",
+  "Rary's Telepathic Bond":"TODO",
   'Ray Of Enfeeblement':"TODO",
   'Ray Of Frost':"TODO",
   'Ray Of Sickness':"TODO",
@@ -948,12 +994,12 @@ SRD5E.spellsDescriptions = {
   'Swift Quiver':"TODO",
   'Symbol':"TODO",
 
-  'Tasha\'s Hideous Laughter':"TODO",
+  "Tasha's Hideous Laughter":"TODO",
   'Telekinesis':"TODO",
   'Telepathy':"TODO",
   'Teleport':"TODO",
   'Teleportation Circle':"TODO",
-  'Tenser\'s Floating Disk':"TODO",
+  "Tenser's Floating Disk":"TODO",
   'Thaumaturgy':"TODO",
   'Thorn Whip':"TODO",
   'Thunderous Smite':"TODO",
@@ -1319,7 +1365,7 @@ SRD5E.classRules = function(rules, classes) {
       hitDie = 12;
       notes = [
         'abilityNotes.abilityScoreImprovementFeature:+%V distributed',
-        'abilityNotes.fastMovementFeature:+10 speed in light/no armor',
+        'abilityNotes.fastMovementFeature:+10 speed in no/light/medium armor',
         'abilityNotes.indomitableMightFeature:Use strength instead of roll for Str check',
         'abilityNotes.primalChampionFeature:+4 strength/+4 constitution',
         'abilityNotes.rageFeature:Adv Str checks',
@@ -1347,16 +1393,29 @@ SRD5E.classRules = function(rules, classes) {
 // PHB
       notes = notes.concat([
         'abilityNotes.aspectOfTheBearFeature:Double load/lift, Adv Str checks',
-        'abilityNotes.aspectOfTheEagleFeature:See 1 mile clearly, no perception Disadv in dim light',
-        'abilityNotes.aspectOfTheWolfFeature:Track at fast pace, stealth at normal pace',
+        'abilityNotes.aspectOfTheEagleFeature:' +
+          'See 1 mile clearly, no perception Disadv in dim light',
+        'abilityNotes.aspectOfTheWolfFeature:' +
+          'Track at fast pace, stealth at normal pace',
         'abilityNotes.eagleTotemicAttunement:Fly for short bursts when raging',
         'combatNotes.bearTotemSpiritFeature:Resist non-psychic damage',
-        'combatNotes.bearTotemicAttunement:When raging, foes w/in 5\' Disadv attacking others',
-        'combatNotes.eagleTotemSpiritFeature:Foes Disadv opportunity attack, Dash as bonus action',
-        'combatNotes.wolfTotemSpiritFeature:Allies Adv attack vs. foes w/in 5\' of self',
-        'combatNotes.wolfTotemicAttunement:Bonus knock large or smaller foe after successful attack',
-        'magicNotes.spiritSeekerFeature:<i>Beast Sense</i>, <i>Speak With Animals</i> via ritual',
-        'magicNotes.spiritWalkerFeature:<i>Commune With Nature</i> via ritual'
+        'combatNotes.bearTotemicAttunement:' +
+          "When raging, foes w/in 5' Disadv attacking others",
+        'combatNotes.eagleTotemSpiritFeature:' +
+          'Foes Disadv opportunity attack, Dash as bonus action',
+        'combatNotes.wolfTotemSpiritFeature:' +
+          "Allies Adv attack vs. foes w/in 5' of self",
+        'combatNotes.wolfTotemicAttunement:' +
+          'Bonus knock large or smaller foe after successful attack',
+        'magicNotes.spiritSeekerFeature:' +
+          '<i>Beast Sense</i>, <i>Speak With Animals</i> via ritual',
+        'magicNotes.spiritWalkerFeature:<i>Commune With Nature</i> via ritual',
+        'validationNotes.barbarian-BearTotemSelectableFeatureFeatures:' +
+          'Requires Primal Path (Totem Warrior)',
+        'validationNotes.barbarian-EagleTotemSelectableFeatureFeatures:' +
+          'Requires Primal Path (Totem Warrior)',
+        'validationNotes.barbarian-WolfTotemSelectableFeatureFeatures:' +
+          'Requires Primal Path (Totem Warrior)'
       ]);
 // ENDPHB
       proficiencyCount = {'Save':2, 'Skill':2, 'Armor':3, 'Weapon':2};
@@ -1387,15 +1446,6 @@ SRD5E.classRules = function(rules, classes) {
         'barbarianFeatures.Primal Path (Berserker)', '?', null
       );
 // PHB
-      rules.defineRule('barbarianFeatures.Bear Totem Spirit',
-        'barbarianFeatures.Bear Totem', '?', null
-      );
-      rules.defineRule('barbarianFeatures.Eagle Totem Spirit',
-        'barbarianFeatures.Eagle Totem', '?', null
-      );
-      rules.defineRule('barbarianFeatures.Wolf Totem Spirit',
-        'barbarianFeatures.Wolf Totem', '?', null
-      );
       rules.defineRule('barbarianFeatures.Aspect Of The Bear',
         'barbarianFeatures.Bear Totem', '?', null
       );
@@ -1405,14 +1455,26 @@ SRD5E.classRules = function(rules, classes) {
       rules.defineRule('barbarianFeatures.Aspect Of The Wolf',
         'barbarianFeatures.Wolf Totem', '?', null
       );
-      rules.defineRule('barbarianFeatures.Spirit Walker',
-        'barbarianFeatures.Primal Path (Totem Warrior)', '?', null
+      rules.defineRule('barbarianFeatures.Bear Totem Spirit',
+        'barbarianFeatures.Bear Totem', '?', null
       );
       rules.defineRule('barbarianFeatures.Bear Totemic Attunement',
         'barbarianFeatures.Bear Totem', '?', null
       );
+      rules.defineRule('barbarianFeatures.Eagle Totem Spirit',
+        'barbarianFeatures.Eagle Totem', '?', null
+      );
       rules.defineRule('barbarianFeatures.Eagle Totemic Attunement',
         'barbarianFeatures.Eagle Totem', '?', null
+      );
+      rules.defineRule('barbarianFeatures.Wolf Totem Spirit',
+        'barbarianFeatures.Wolf Totem', '?', null
+      );
+      rules.defineRule('barbarianFeatures.Spirit Seeker',
+        'barbarianFeatures.Primal Path (Totem Warrior)', '?', null
+      );
+      rules.defineRule('barbarianFeatures.Spirit Walker',
+        'barbarianFeatures.Primal Path (Totem Warrior)', '?', null
       );
       rules.defineRule('barbarianFeatures.Wolf Totemic Attunement',
         'barbarianFeatures.Wolf Totem', '?', null
@@ -1452,7 +1514,7 @@ SRD5E.classRules = function(rules, classes) {
       rules.defineRule
         ('attacksPerRound', 'combatNotes.extraAttackFeature', '+', '1');
       rules.defineRule('selectableFeatureCount.Barbarian',
-        'levels.Barbarian', '=', 'source < 3 ? null : 1',
+        'barbarianFeatures.Primal Path', '=', '1',
         'barbarianFeatures.Primal Path (Totem Warrior)', '+', '1'
       );
       rules.defineRule('speed', 'abilityNotes.fastMovementFeature', '+', '10');
@@ -1619,7 +1681,7 @@ SRD5E.classRules = function(rules, classes) {
         'Skill':['History', 'Insight', 'Medicine', 'Persuasion', 'Religion']
       };
       selectableFeatures =
-        SRD5E.DOMAINS.map(function(domain){return domain + ' Domain';});
+        SRD5E.CLERIC_DOMAINS.map(function(domain){return domain + ' Domain';});
       spellAbility = 'wisdom';
       spellsKnown = [
         'C0:1:3/4:4/10:5',
@@ -1665,17 +1727,38 @@ SRD5E.classRules = function(rules, classes) {
     } else if(name == 'Druid') {
 
       features = [
-        '1:Amor Proficiency (Light/Medium/Shield)',
+        '1:Armor Proficiency (Light/Medium/Shield)',
         '1:Weapon Proficiency (Club/Dagger/Dart/Javelin/Mace/Quarterstaff/Scimitar/Sickle/Sling/Spear)',
-        '1:Tool Proficiency (Herbalism Kit)',
-        '1:Druidic', '2:Wild Shape', '2:Druid Circle',
-        '4:Ability Score Improvement', '18:Timeless Body', '18:Beast Spells',
-        '20:Archdruid'
+        '1:Tool Proficiency (Herbalism Kit)', '1:Druidic', '1:Spellcasting',
+        '2:Bonus Cantrip', '2:Druid Circle', '2:Natural Recovery',
+        '2:Wild Shape', '3:Circle Spells', '4:Ability Score Improvement',
+        "6:Land's Stride", "10:Nature's Ward", "14:Nature's Sanctuary",
+        '18:Timeless Body', '18:Beast Spells', '20:Archdruid'
       ];
+// PHB
+      features = features.concat([
+        '2:Combat Wild Shape', '2:Circle Forms', '6:Primal Strike',
+        '10:Elemental Wild Shape', '14:Thousand Forms'
+      ]);
+// ENDPHB
       hitDie = 8;
       notes = [
-        'abilityNotes.abilityScoreImprovementFeature:+%V distributed'
-        // TODO
+        'abilityNotes.abilityScoreImprovementFeature:+%V distributed',
+        "abilityNotes.land'sStrideFeature:" +
+          'Normal move through difficult terrain',
+        "combatNotes.nature'sSanctuaryFeature:" +
+          'Beast, plant DC %V Will save to attack',
+        'featureNotes.timelessBodyFeature:Age at 1/10 rate',
+        'magicNotes.archdruidFeature:Unlimited Wild Shape',
+        'magicNotes.beastSpellsFeature:Cast spells during Wild Shape',
+        'magicNotes.circleSpellsFeature:Access to additional spells',
+        'magicNotes.naturalRecoveryFeature:' +
+          'Recover %V spell slots during short rest',
+        'magicNotes.wildShapeFeature:' +
+          'Transform into CR %1 creature for %2 hr 2/short rest',
+        "saveNotes.land'sStrideFeature:Adv vs. impeding plants",
+        "saveNotes.nature'sWardFeature:" +
+          'Immune disease, poison, elemental or fey charm and frighten'
       ];
       proficiencyCount =
        {'Save':2, 'Skill':2, 'Tool':1, 'Armor':3, 'Weapon':10};
@@ -1683,14 +1766,14 @@ SRD5E.classRules = function(rules, classes) {
         'Save':['Intelligence', 'Wisdom'],
         'Armor':['Light', 'Medium', 'Shield'],
         'Tool':['Herbalism Kit'],
-        'Weapon':['Club', 'Dagger', 'Dart', 'Javelin', 'Quarterstaff',
+        'Weapon':['Club', 'Dagger', 'Dart', 'Javelin', 'Mace', 'Quarterstaff',
                   'Scimitar', 'Sickle', 'Sling', 'Spear']
       };
       proficiencyChoices = {
         'Skill':['Arcana', 'Animal Handling', 'Insight', 'Medicine', 'Nature',
                  'Perception', 'Religion', 'Survival']
       };
-      selectableFeatures = null;
+      selectableFeatures = SRD5E.DRUID_CIRCLES.map(function (circle) {return 'Druid Circle (' + circle + ')';}).concat(SRD5E.DRUID_LANDS.map(function (land) {return land + ' Land';}));
       spellAbility = 'wisdom';
       spellsKnown = [
         'D0:1:2/4:3/10:4',
@@ -1709,8 +1792,60 @@ SRD5E.classRules = function(rules, classes) {
         'D9:17:1'
       ];
 
+      rules.defineRule('druidFeatures.Bonus Cantrip',
+        'druidFeatures.Druid Circle (Land)', '?', null
+      );
+      rules.defineRule('druidFeatures.Circle Spells',
+        'druidFeatures.Druid Circle (Land)', '?', null
+      );
+      rules.defineRule("druidFeatures.Land's Stride",
+        'druidFeatures.Druid Circle (Land)', '?', null
+      );
+      rules.defineRule("druidFeatures.Nature's Ward",
+        'druidFeatures.Druid Circle (Land)', '?', null
+      );
+      rules.defineRule("druidFeatures.Nature's Sanctuary",
+        'druidFeatures.Druid Circle (Land)', '?', null
+      );
+// PHB
+      rules.defineRule('druidFeatures.Combat Wild Shape',
+        'druidFeatures.Druid Circle (Moon)', '?', null
+      );
+      rules.defineRule('druidFeatures.Circle Forms',
+        'druidFeatures.Druid Circle (Moon)', '?', null
+      );
+      rules.defineRule('druidFeatures.Primal Strike',
+        'druidFeatures.Druid Circle (Moon)', '?', null
+      );
+      rules.defineRule('druidFeatures.Elemental Wild Shape',
+        'druidFeatures.Druid Circle (Moon)', '?', null
+      );
+      rules.defineRule('druidFeatures.Thousand Forms',
+        'druidFeatures.Druid Circle (Moon)', '?', null
+      );
+// ENDPHB
+
       rules.defineRule('abilityNotes.abilityScoreImprovementFeature',
         'levels.Druid', '+=', 'source >= 19 ? 5 : Math.floor(source / 4)'
+      );
+      rules.defineRule("combatNotes.nature'sSanctuaryFeature:",
+        'wisdomModifier', '=', 'source + 8',
+        'proficiencyBonus', '+', null
+      );
+      rules.defineRule('languageCount', 'features.Druidic', '+', '1');
+      rules.defineRule('languages.Druidic', 'features.Druidic', '=', '1');
+      rules.defineRule('magicNotes.naturalRecoveryFeature',
+        'levels.Druid', '=', 'Math.floor(source / 2)'
+      );
+      rules.defineRule('magicNotes.wildShapeFeature.1',
+        'levels.Druid', '=', 'source < 4 ? "1/4 (land only)" : source < 8 ? "1/2 (non-flying)" : "1"'
+      );
+      rules.defineRule('magicNotes.wildShapeFeature.2',
+        'levels.Druid', '=', 'Math.floor(source /2)'
+      );
+      rules.defineRule('selectableFeatureCount.Druid',
+        'druidFeatures.Druid Circle', '=', '1',
+        'druidFeatures.Druid Circle (Land)', '+', '1'
       );
 
     } else if(name == 'Fighter') {
@@ -2856,7 +2991,7 @@ SRD5E.magicRules = function(rules, classes, domains, schools) {
         'Cure Wounds:Detect Magic:Disguise Self:Dissonant Whispers:' +
         'Faerie Fire:Feather Fall:Healing Word:Heroism:Identify:' +
         'Illusory Script:Longstrider:Silent Image:Sleep:Speak With Animals:' +
-        'Tasha\'s Hideous Laughter:Thunderwave:Unseen Servant',
+        "Tasha's Hideous Laughter:Thunderwave:Unseen Servant",
         'B2:Animal Messenger:Blindness/Deafness:Calm Emotions:' +
         'Cloud Of Daggers:Crown Of Madness:Detect Thoughts:Enhance Ability:' +
         'Enthrall:Heat Metal:Hold Person:Invisibility:Knock:' +
@@ -2864,7 +2999,7 @@ SRD5E.magicRules = function(rules, classes, domains, schools) {
         'Magic Mouth:Phantasmal Force:See Invisibility:Shatter:Silence:' +
         'Suggestion:Zone Of Truth',
         'B3:Bestow Curse:Clairvoyance:Dispel Magic:Fear:Feign Death:' +
-        'Glyph Of Warding:Hypnotic Pattern:Leomund\'s Tiny Hut:Major Image:' +
+        "Glyph Of Warding:Hypnotic Pattern:Leomund's Tiny Hut:Major Image:" +
         'Nondetection:Plant Growth:Sending:Speak With Dead:Speak With Plants:' +
         'Stinking Cloud:Tongues',
         'B4:Compulsion:Confusion:Dimension Door:Freedom Of Movement:' +
@@ -2874,9 +3009,9 @@ SRD5E.magicRules = function(rules, classes, domains, schools) {
         'Mislead:Modify Memory:Planar Binding:Raise Dead:Scrying:Seeming:' +
         'Teleporation Circle',
         'B6:Eyebite:Find The Path:Guards And Wards:Mass Suggestion:' +
-        'Otto\'s Irresistible Dance:Programmed Illusion:True Seeing',
+        "Otto's Irresistible Dance:Programmed Illusion:True Seeing",
         'B7:Etherealness:Forcecage:Mirage Arcane:' +
-        'Mordenkainen\'s Magnificent Mansion:Mordenkainen\'s Sword:' +
+        "Mordenkainen's Magnificent Mansion:Mordenkainen's Sword:" +
         'Project Image:Regenerate:Resurrection:Symbol:Teleport',
         'B8:Dominate Monster:Feeblemind:Glibness:Mind Blank:Power Word Stun',
         'B9:Foresight:Power Word Heal:Power Word Kill:True Polymorph'
@@ -2906,7 +3041,7 @@ SRD5E.magicRules = function(rules, classes, domains, schools) {
         'Greater Restoration:Hallow:Insect Plague:Legend Lore:' +
         'Mass Cure Wounds:Planar Binding:Raise Dead:Scrying',
         'C6:Blade Barrier:Create Undead:Find The Path:Forbiddance:Harm:Heal:' +
-        'Heroes\' Feast:Planar Ally:True Seeing:Word Of Recall',
+        "Heroes' Feast:Planar Ally:True Seeing:Word Of Recall",
         'C7:Conjure Celestial:Divine Word:Etherealness:Fire Storm:' +
         'Plane Shift:Regerate:Resurrection:Symbol',
         'C8:Antimagic Field:Control Weather:Earthquake:Holy Aura',
@@ -2936,7 +3071,7 @@ SRD5E.magicRules = function(rules, classes, domains, schools) {
         'D5:Antilife Shell:Awaken:Commune With Nature:Conjure Elemental:' +
         'Contagion:Geas:Greater Restoration:Insect Plague:Mass Cure Wounds:' +
         'Planar Binding:Reincarnate:Scrying:Tree Stride:Wall Of Stone',
-        'D6:Conjure Fey:Find The Path:Heal:Heroes\' Feast:Move Earth:Sunbeam:' +
+        "D6:Conjure Fey:Find The Path:Heal:Heroes' Feast:Move Earth:Sunbeam:" +
         'Transport Via Plants:Wall Of Thorns:Wind Walk',
         'D7:Fire Storm:Mirage Arcane:Plane Shift:Regenerate:Reverse Gravity',
         'D8:Animal Shapes:Antipathy/Sympathy:Control Weather:Earthquake:' +
@@ -2952,7 +3087,7 @@ SRD5E.magicRules = function(rules, classes, domains, schools) {
         'P2:Aid:Branding Smite:Find Steed:Lesser Restoration:Locate Object:' +
         'Magic Weapon:Protection From Poison:Zone Of Truth',
         'P3:Aura Of Vitality:Blinding Smite:Create Food And Water:' +
-        'Crusader\'s Mantle:Daylight:Dispel Magic:Elemental Weapon:' +
+        "Crusader's Mantle:Daylight:Dispel Magic:Elemental Weapon:" +
         'Magic Circle:Remove Curse:Revivify',
         'P4:Aura Of Life:Aura Of Purity:Banishment:Death Ward:' +
         'Locate Creature:Staggering Smite',
@@ -2963,7 +3098,7 @@ SRD5E.magicRules = function(rules, classes, domains, schools) {
       spells = [
         'R1:Alarm:Animal Friendship:Cure Wounds:Detect Magic:' +
         'Detect Poison And Disease:Ensnaring Strike:Fog Cloud:Goodberry:' +
-        'Hail Of Thorns:Hunter\'s Mark:Jump:Longstrider:Speak With Animals',
+        "Hail Of Thorns:Hunter's Mark:Jump:Longstrider:Speak With Animals",
         'R2:Animal Messenger:Barkskin:Beast Sense:Cordon Of Arrows:' +
         'Darkvision:Find Traps:Lesser Restoration:Locate Animals Or Plants:' +
         'Locate Object:Pass Without Trace:Protection From Poison:Silence:' +
@@ -3040,43 +3175,43 @@ SRD5E.magicRules = function(rules, classes, domains, schools) {
         'False Life:Feather Fall:Find Familiar:Fog Cloud:Grease:Identify:' +
         'Illusory Script:Jump:Longstrider:Mage Armor:Magic Missile:' +
         'Protection From Evil And Good:Ray Of Sickness:Shield:Silent Image:' +
-        'Sleep:Tasha\'s Hideous Laughter:Tenser\'s Floating Disk:Thunderwave:' +
+        "Sleep:Tasha's Hideous Laughter:Tenser's Floating Disk:Thunderwave:" +
         'Unseen Servant:Witch Bolt',
         'W2:Alter Self:Arcane Lock:Blindness/Deafness:Blur:Cloud Of Daggers:' +
         'Continual Flame:Crown Of Madness:Darkness:Darkvision:' +
         'Detect Thoughts:Enlarge/Reduce:Flaming Sphere:Gentle Repose:' +
         'Gust Of Wind:Hold Person:Invisibility:Knock:Levitate:Locate Object:' +
-        'Magic Mouth:Magic Weapon:Melf\'s Acid Arrow:Mirror Image:Misty Step:' +
-        'Nystul\'s Magic Aura:Phantasmal Force:Ray Of Enfeeblement:' +
+        "Magic Mouth:Magic Weapon:Melf's Acid Arrow:Mirror Image:Misty Step:" +
+        "Nystul's Magic Aura:Phantasmal Force:Ray Of Enfeeblement:" +
         'Rope Trick:Scorching Ray:See Invisibility:Shatter:Spider Climb:' +
         'Suggestion:Web',
         'W3:Animate Dead:Bestow Curse:Blink:Clairvoyance:Counterspell:' +
         'Dispel Magic:Fear:Feign Death:Fireball:Fly:Gaseous Form:' +
-        'Glyph Of Warding:Haste:Hypnotic Pattern:Leomund\'s Tiny Hut:' +
+        "Glyph Of Warding:Haste:Hypnotic Pattern:Leomund's Tiny Hut:" +
         'Lightning Bolt:Magic Circle:Major Image:Nondetection:Phantom Steed:' +
         'Protection From Energy:Remove Curse:Sending:Sleet Storm:Slow:' +
         'Stinking Cloud:Tongues:Vampiric Touch:Water Breathing',
         'W4:Arcane Eye:Banishment:Blight:Confusion:Conjure Minor Elementals:' +
-        'Control Water:Dimension Door:Evard\'s Black Tentacles:Fabricate:' +
+        "Control Water:Dimension Door:Evard's Black Tentacles:Fabricate:" +
         'Fire Shield:Greater Invisibility:Hallucinatory Terrain:Ice Storm:' +
-        'Leomund\'s Secret Chest:Locate Creature:' +
-        'Mordenkainen\'s Faithful Hound:Mordenkainen\'s Private Sanctum:' +
-        'Otiluke\'s Resilient Sphere:Phantasmal Killer:Polymorph:Stone Shape:' +
+        "Leomund's Secret Chest:Locate Creature:" +
+        "Mordenkainen's Faithful Hound:Mordenkainen's Private Sanctum:" +
+        "Otiluke's Resilient Sphere:Phantasmal Killer:Polymorph:Stone Shape:" +
         'Stoneskin:Wall Of Fire',
-        'W5:Animate Objects:Bigby\'s Hand:Cloudkill:Cone Of Cold:' +
+        "W5:Animate Objects:Bigby's Hand:Cloudkill:Cone Of Cold:" +
         'Conjure Elemental:Contact Other Plane:Creation:Dominate Person:' +
         'Dream:Geas:Hold Monster:Legend Lore:Mislead:Modify Memory:Passwall:' +
-        'Planar Binding:Rary\'s Telepathic Bond:Scrying:Seeming:Telekinesis:' +
+        "Planar Binding:Rary's Telepathic Bond:Scrying:Seeming:Telekinesis:" +
         'Teleportation Circle:Wall Of Force:Wall Of Stone',
         'W6:Arcane Gate:Chain Lightning:Circle Of Death:Contingency:' +
-        'Create Undead:Disintegrate:Drawmij\'s Instant Summons:Eyebite:' +
+        "Create Undead:Disintegrate:Drawmij's Instant Summons:Eyebite:" +
         'Flesh To Stone:Globe Of Invulnerability:Guards And Wards:Magic Jar:' +
-        'Mass Suggestion:Move Earth:Otiluke\'s Freezing Sphere:' +
-        'Otto\'s Irresistible Dance:Programmed Illusion:Sunbeam:True Seeing:' +
+        "Mass Suggestion:Move Earth:Otiluke's Freezing Sphere:" +
+        "Otto's Irresistible Dance:Programmed Illusion:Sunbeam:True Seeing:" +
         'Wall Of Ice',
         'W7:Delayed Blast Fireball:Etherealness:Finger Of Death:Forcecage:' +
-        'Mirage Arcane:Mordenkainen\'s Magnificent Mansion:' +
-        'Mordenkainen\'s Sword:Plane Shift:Prismatic Spray:Project Image:' +
+        "Mirage Arcane:Mordenkainen's Magnificent Mansion:" +
+        "Mordenkainen's Sword:Plane Shift:Prismatic Spray:Project Image:" +
         'Reverse Gravity:Sequester:Simulacrum:Symbol:Teleport',
         'W8:Antimagic Field:Antipathy/Sympathy:Clone:Control Weather:' +
         'Demiplane:Dominate Monster:Feeblemind:Incendiary Cloud:Maze:' +
@@ -4248,9 +4383,6 @@ SRD5E.ruleNotes = function() {
     '  </li><li>\n' +
     '    Use the animal companion editing fields to enter the creature\n' +
     '    types and names of Paladin mounts and Blackguard fiendish servants.\n'+
-    '  </li><li>\n' +
-    '    The Commoner NPC class is given an extra feat to represent the\n' +
-    '    class\'s single simple weapon proficiency.\n' +
     '  </li>\n' +
     '</ul>\n' +
     '</p>\n' +

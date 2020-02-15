@@ -1961,6 +1961,51 @@ SRD5E.classRules = function(rules, classes) {
           'Add ability modifier to second attack damage',
         'saveNotes.indomitableFeature:Reroll failed save %V/long rest'
       ];
+// PHB
+      notes = notes.concat([
+        "combatNotes.commander'sStrikeFeatue:" +
+          'Delegate one attack to companion, add superiority die to attack',
+        'combatNotes.disarmingAttackFeature:' +
+          'Add superiority die to damage, foe drops item (DC %V Str neg)',
+        'combatNotes.distractingAttackFeature:' +
+          'Add superiority die to damage, companion has Adv on attack same foe',
+        'combatNotes.eldritchStrikeFeature:' +
+          'Foe DisAdv vs. spells for 1 turn after you hit',
+        'combatNotes.evasiveFootworkFeature:' +
+          'Add superiority die to AC during move',
+        'combatNotes.feigntingAttackFeature:' +
+          'Adv next attack, add superiority die to damage',
+        'combatNotes.goadingAttackFeature:' +
+          'Add superiority die to damage, foe DisAdv attack others (DC %V Wis neg)',
+        'combatNotes.knowYourEnemyFeature:' +
+          'Know how foe compares to you after 1 min study',
+        'combatNotes.lungingAttackFeature:' +
+          "+5' melee range, add superiority die to damage",
+        'combatNotes.maneuveringAttackFeature:' +
+          'Add superiority die to damage, companion move half speed w/out AOO',
+        'combatNotes.parryFeature:' +
+          'Reduce damage from foe hit by superiority die + %V',
+        'combatNotes.precisionAttackFeature:Add superiority die to atteck',
+        'combatNotes.pushingFeature:' +
+          "Add superiority die to damage, foe moves away 15' (DC %V Str neg)",
+        'combatNotes.rallyFeature:' +
+          'Chosen companion gains superiority die + %V temp HP',
+        'combatNotes.relentlessFeature:' +
+          'Regain 1 superiority die on init if all used',
+        'combatNotes.riposteFeature:' +
+          'Attack after foe miss, add superiority die to damage',
+        'combatNotes.superiorityDiceFeature:%Vd%1',
+        'combatNotes.sweepingAttackFeature:' +
+          'Do Superiority die damage to second foe w/in reach',
+        'combatNotes.tripAttackFeature:' +
+          'Add superiority die to damage, foe knocked prone (DC %V Str neg)',
+        'combatNotes.warMagicFeature:Bonus attack after %V',
+        'combatNotes.weaponBondFeature:' +
+          'Cannot be disarmed, can summon bonded weapon',
+        "magicNotes.arcaneChargeFeature:Action Surge to Teleport 30'",
+        "skillNotes.studentOfWarFeature:Artisan's Tool prof"
+      ]);
+// ENDPHB
       proficiencyCount = {'Save':2, 'Skill':2, 'Armor':4, 'Weapon':2};
       proficienciesGiven = {
         'Save':['Constitution', 'Strength'],
@@ -1973,7 +2018,7 @@ SRD5E.classRules = function(rules, classes) {
       };
       selectableFeatures = SRD5E.FIGHTER_FIGHTING_STYLES.concat(SRD5E.FIGHTER_MARTIAL_ARCHETYPES);
 // PHB
-      selectableFeatures = selectableFeatures.concat(SRD5E.FIGHER_MANEUVERS);
+      selectableFeatures = selectableFeatures.concat(SRD5E.FIGHTER_MANEUVERS);
 // ENDPHB
       spellAbility = null;
       spellsKnown = null;
@@ -1994,6 +2039,32 @@ SRD5E.classRules = function(rules, classes) {
       rules.defineRule('fighterFeatures.Survivor',
         'fighterFeatures.Champion Archetype', '?', null
       );
+// PHB
+      rules.defineRule('fighterFeatures.Maneuvers',
+        'fighterFeatures.Battle Master Archetype', '?', null
+      );
+      rules.defineRule('fighterFeatures.Know Your Enemy',
+        'fighterFeatures.Battle Master Archetype', '?', null
+      );
+      rules.defineRule('fighterFeatures.Student Of War',
+        'fighterFeatures.Battle Master Archetype', '?', null
+      );
+      rules.defineRule('fighterFeatures.Superiority Dice',
+        'fighterFeatures.Battle Master Archetype', '?', null
+      );
+      rules.defineRule('fighterFeatures.Arcane Charge',
+        'fighterFeatures.Eldritch Knight Archetype', '?', null
+      );
+      rules.defineRule('fighterFeatures.Eldritch Strike',
+        'fighterFeatures.Eldritch Knight Archetype', '?', null
+      );
+      rules.defineRule('fighterFeatures.Spellcasting',
+        'fighterFeatures.Eldritch Knight Archetype', '?', null
+      );
+      rules.defineRule('fighterFeatures.War Magic',
+        'fighterFeatures.Eldritch Knight Archetype', '?', null
+      );
+// ENDPHB
 
       rules.defineRule('abilityNotes.abilityScoreImprovementFeature',
         'levels.Fighter', '+=', '[0,0,0,0,2,2,4,4,6,6,6,6,8,8,10,10,12,12,12,14,14][source]'
@@ -2034,9 +2105,41 @@ SRD5E.classRules = function(rules, classes) {
         'hitPoints', '=', 'Math.floor(source / 2)'
       );
 // PHB
+      rules.defineRule('maxDexOrStrMod',
+        'dexterityModifier', '=', null,
+        'strengthModifier', '^', null
+      );
+      rules.defineRule('maneuverSaveDC',
+        'fighterFeatures.Battle Master', '?', null,
+        'proficiencyBonus', '=', '8 + source',
+        'maxDexOrStrMod', '+', null
+      );
+      rules.defineRule
+        ('combatNotes.disarmingAttackFeature', 'maneuverSaveDC', '=', null);
+      rules.defineRule
+        ('combatNotes.goadingAttackFeature', 'maneuverSaveDC', '=', null);
       rules.defineRule('combatNotes.maneuversFeature',
         'fighterFeatures.Battle Master', '?', null,
-        'level.Fighter', '=', 'source<7 ? 3 : source<10 ? 5 : source<15 ? 7 : 9'
+        'levels.Fighter', '=',
+          'source<7 ? 3 : source<10 ? 5 : source<15 ? 7 : 9'
+      );
+      rules.defineRule
+        ('combatNotes.parryFeature', 'dexterityModifier', '=', null);
+      rules.defineRule('combatNotes.superiorityDiceFeature',
+        'levels.Fighter', '=', 'source < 7 ? 4 : source < 15 ? 5 : 6'
+      );
+      rules.defineRule
+        ('combatNotes.pushingAttackFeature', 'maneuverSaveDC', '=', null);
+      rules.defineRule
+        ('combatNotes.rallyFeature', 'charismaModifier', '=', null);
+      rules.defineRule('combatNotes.superiorityDiceFeature.1',
+        'fighterFeatures.Superiority Dice', '?', null,
+        'levels.Fighter', '=', 'source < 10 ? 8 : source < 18 ? 10 : 12'
+      );
+      rules.defineRule
+        ('combatNotes.tripAttackFeature', 'maneuverSaveDC', '=', null);
+      rules.defineRule('combatNotes.warMagicFeature',
+        'levels.Fighter', '=', 'source < 18 ? "cantrip" : "spell"'
       );
       rules.defineRule('selectableFeatureCount.Fighter',
         'combatNotes.maneuversFeature', '+', null

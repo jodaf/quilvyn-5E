@@ -149,6 +149,20 @@ SRD5E.LANGUAGES = [
   'Elvish', 'Giant', 'Gnomish', 'Goblin', 'Halfling', 'Infernal', 'Orc',
   'Primordial', 'Sylvan', 'Undercommon'
 ];
+SRD5E.MONK_MONASTIC_TRADITIONS = ['Way Of The Open Hand Tradition'];
+// PHB
+SRD5E.MONK_MONASTIC_TRADITIONS = SRD5E.MONK_MONASTIC_TRADITIONS.concat([
+  'Way Of The Four Elements Tradition', 'Way Of The Shadow Tradition'
+]);
+SRD5E.MONK_ELEMENTAL_DISCIPLINES = [
+  'Breath Of Winter', 'Clench Of The North Wind', 'Eternal Mountain Defense',
+  'Fangs Of The Fire Snake', 'Fist Of Four Thunders', 'Fist Of Unbroken Air',
+  'Flames Of The Phoenix', 'Gong Of The Summit', 'Mist Stance', 'Ride The Wind',
+  'River Of Hungry Flame', 'Rush Of The Gale Spirits',
+  'Shape Of The Flowing River', 'Sweeping Cinder Strike', 'Water Whip',
+  'Wave Of The Rolling Earth'
+];
+// ENDPHB
 SRD5E.RACES = [
   'Black Dragonborn', 'Blue Dragonborn', 'Brass Dragonborn',
   'Bronze Dragonborn', 'Copper Dragonborn', 'Gold Dragonborn',
@@ -580,16 +594,18 @@ SRD5E.SKILLS = [
 ];
 SRD5E.VIEWERS = ['Compact', 'Standard', 'Vertical'];
 SRD5E.WEAPONS = [
-  'Battleaxe:d10M', 'Blowgun:d1r25M', 'Club:d4S', 'Dagger:d4S', 'Dart:d4r20S',
-  'Flail:d8M', 'Glaive:d10M', 'Greataxe:d12M', 'Greatclub:d8S',
-  'Greatsword:2d6M', 'Halberd:d10M', 'Hand Crossbow:d6r30M', 'Handaxe:d6r20S',
-  'Heavy Crossbow:d10r100M', 'Javelin:d6r30S', 'Lance:d12M',
-  'Light Crossbow:d8r80S', 'Light Hammer:d4r20S', 'Longbow:d8r150M',
-  'Longsword:d10M', 'Mace:d6S', 'Maul:2d6M', 'Morningstar:d8M', 'Net:d0r5M',
-  'Pike:d10M', 'Quarterstaff:d8S', 'Rapier:d8M', 'Scimitar:d6M',
-  'Shortbow:d6r80S', 'Shortsword:d6M', 'Sickle:d4S', 'Sling:d4r30S',
-  'Spear:d8r20S', 'Trident:d8r20M', 'Unarmed:d1S', 'War Pick:d8',
-  'Warhammer:d8M', 'Whip:d4M'
+  'Battleaxe:d10 Ma Ve', 'Blowgun:d1r25 Ma', 'Club:d4 Si Li',
+  'Dagger:d4 Si Li Fi', 'Dart:d4r20 Si Fi', 'Flail:d8 Ma 1h',
+  'Glaive:d10 Ma 2h', 'Greataxe:d12 Ma 2h', 'Greatclub:d8 Si 2h',
+  'Greatsword:2d6 Ma 2h', 'Halberd:d10 Ma 2h', 'Hand Crossbow:d6r30 Ma',
+  'Handaxe:d6r20 Si Li', 'Heavy Crossbow:d10r100 Ma', 'Javelin:d6r30 Si',
+  'Lance:d12 Ma 1h', 'Light Crossbow:d8r80 Si', 'Light Hammer:d4r20 Si Li',
+  'Longbow:d8r150 Ma', 'Longsword:d10 Ma Ve', 'Mace:d6 Si 1h', 'Maul:2d6 Ma 2h',
+  'Morningstar:d8 Ma 1h', 'Net:d0r5 Ma', 'Pike:d10 Ma 2h',
+  'Quarterstaff:d6 Si Ve', 'Rapier:d8 Ma 1h Fi', 'Scimitar:d6 Ma Li Fi',
+  'Shortbow:d6r80 Si', 'Shortsword:d6 Ma Li Fi', 'Sickle:d4 Si Li',
+  'Sling:d4r30 Si', 'Spear:d8r20 Si Ve', 'Trident:d8r20 Ma Ve', 'Unarmed:d1S',
+  'War Pick:d8 Ma 1h', 'Warhammer:d8 Ma Ve', 'Whip:d4 Ma 1h Fi'
 ];
 
 // Related information used internally by SRD5E
@@ -1364,7 +1380,7 @@ SRD5E.classRules = function(rules, classes) {
       features = [
         '1:Armor Proficiency (Light/Medium/Shield)',
         '1:Weapon Proficiency (Simple/Martial)', '1:Rage',
-        '1:Unarmored Defense', '2:Danger Sense', '2:Reckless Attack',
+        '1:Barbarian Unarmored Defense', '2:Danger Sense', '2:Reckless Attack',
         '3:Frenzy', '3:Primal Path', '4:Ability Score Improvement',
         '5:Extra Attack', '5:Fast Movement', '6:Mindless Rage',
         '7:Feral Instinct', '9:Brutal Critical', '10:Intimidating Presence',
@@ -1406,7 +1422,7 @@ SRD5E.classRules = function(rules, classes) {
           'Melee attack reaction after taking damage',
         'combatNotes.relentlessRageFeature:' +
           'DC 10+ Con to continue fighting w/1 HP when brought to 0 HP',
-        'combatNotes.unarmoredDefenseFeature:+%1 AC in no armor',
+        'combatNotes.barbarianUnarmoredDefenseFeature:+%1 AC in no armor',
         'featureNotes.intimidatingPresenceFeature:' +
           'Target creature frightened (DC %V Will neg)',
         'saveNotes.dangerSenseFeature:Adv vs. visible dangers',
@@ -1516,18 +1532,19 @@ SRD5E.classRules = function(rules, classes) {
       rules.defineRule('combatNotes.rageFeature.1',
         'levels.Barbarian', '+=', 'source < 3 ? 2 : source < 6 ? 3 : source < 12 ? 4 : source < 17 ? 5 : source < 20 ? 6 : "unlimited"'
       );
-      // Inelegant hacks to show unarmoredDefense note properly even when armor
-      // != "None" or constitutionModifier == 0
-      rules.defineRule('combatNotes.unarmoredDefenseFeature.1',
-        'barbarianFeatures.Unarmored Defense', '?', null,
+      // Inelegant hacks to show barbarianUnarmoredDefense note properly even
+      // when armor != "None" or constitutionModifier == 0
+      rules.defineRule('combatNotes.barbarianUnarmoredDefenseFeature.1',
+        'combatNotes.unarmoredDefense', '?', null,
         'constitutionModifier', '=', null
       );
-      rules.defineRule('combatNotes.unarmoredDefenseFeature.2',
+      rules.defineRule('combatNotes.barbarianUnarmoredDefenseFeature.2',
+        'combatNotes.unarmoredDefense', '?', null,
         'armor', '?', 'source == "None"',
-        'combatNotes.unarmoedDefenseFeature.1', '=', null
+        'combatNotes.barbarianUnarmoredDefenseFeature.1', '=', null
       );
       rules.defineRule('armorClass',
-        'combatNotes.unarmoredDefenseFeature.2', '+', null
+        'combatNotes.barbarianUnarmoredDefenseFeature.2', '+', null
       );
       rules.defineRule('featureNotes.intimidatingPresenceFeature',
         'charismaModifier', '=', 'source + 8',
@@ -1752,7 +1769,7 @@ SRD5E.classRules = function(rules, classes) {
         '1:Weapon Proficiency (Club/Dagger/Dart/Javelin/Mace/Quarterstaff/Scimitar/Sickle/Sling/Spear)',
         '1:Tool Proficiency (Herbalism Kit)', '1:Druidic', '1:Spellcasting',
         '2:Druid Circle', '2:Wild Shape', '4:Ability Score Improvement',
-        '18:Timeless Body', '18:Beast Spells', '20:Archdruid',
+        '18:Druid Timeless Body', '18:Beast Spells', '20:Archdruid',
         // Circle Of The Land
         '2:Bonus Cantrip', '2:Natural Recovery', '3:Circle Spells',
         "6:Land's Stride", "10:Nature's Ward", "14:Nature's Sanctuary"
@@ -1771,7 +1788,7 @@ SRD5E.classRules = function(rules, classes) {
           'Normal move through difficult terrain',
         "combatNotes.nature'sSanctuaryFeature:" +
           'Beast, plant DC %V Will save to attack',
-        'featureNotes.timelessBodyFeature:Age at 1/10 rate',
+        'featureNotes.druidTimelessBodyFeature:Age at 1/10 rate',
         'magicNotes.archdruidFeature:Unlimited Wild Shape',
         'magicNotes.beastSpellsFeature:Cast spells during Wild Shape',
         'magicNotes.circleSpellsFeature:%1 1/long rest',
@@ -2151,19 +2168,110 @@ SRD5E.classRules = function(rules, classes) {
       features = [
         '1:Weapon Proficiency (Simple/Shortsword)',
         "1:Tool Proficiency (Artisan's Tools or Musical Instrument)",
-        '1:Unarmored Defense', '1:Martial Arts', '2:Ki', '2:Unarmored Movement',
-        '3:Monastic Tradition', '3:Deflect Missles',
+        '1:Monk Unarmored Defense', '1:Martial Arts', '1:Monk Bonus Attack',
+        '2:Flurry Of Blows', '2:Ki', '2:Patient Defense', '2:Step Of The Wind',
+        '2:Unarmored Movement', '3:Monastic Tradition', '3:Deflect Missiles',
         '4:Ability Score Improvement', '4:Slow Fall', '5:Extra Attack',
         '5:Stunning Strike', '6:Ki-Empowered Strikes', '7:Evasion',
-        '7:Stillness Of Mind', '10:Purity Of Body', '13:Tongue Of Sun And Moon',
-        '14:Diamond Soul', '15:Timeless Body', '18:Empty Body',
-        '20:Perfect Self'
+        '7:Stillness Of Mind', '9:Improved Unarmored Movement',
+        '10:Purity Of Body', '13:Tongue Of Sun And Moon', '14:Diamond Soul',
+        '15:Timeless Body', '18:Empty Body', '20:Perfect Self',
+        // Way Of The Open Hand Tradition
+        '3:Open Hand Technique', '6:Wholeness Of Body', '11:Tranquility',
+        '17:Quivering Palm'
       ];
+// PHB
+      features = features.concat([
+        // Way Of The Four Elements Tradition
+        '3:Disciple Of The Elements', '3:Elemental Attunement',
+        // Way Of The Shadow Tradition
+        '3:Shadow Arts', '6:Shadow Step', '11:Cloak Of Shadows',
+        '17:Opportunist'
+      ]);
+// ENDPHB
       hitDie = 8;
       notes = [
-        'abilityNotes.abilityScoreImprovementFeature:+%V distributed'
-        // TODO
+        'abilityNotes.abilityScoreImprovementFeature:+%V distributed',
+        'abilityNotes.improvedUnarmoredMovementFeature:' +
+          'Move across vertical surfaces and liquids',
+        'abilityNotes.slowFallFeature:React to reduce fall damage by %V',
+        'abilityNotes.unarmoredMovementFeature:+%1 speed in no armor',
+        'combatNotes.deflectMissilesFeature:' +
+          'React to reduce missile damage by 1d10+%V',
+        'combatNotes.extraAttackFeature:+1 attack per Attack action',
+        'combatNotes.flurryOfBlowsFeature:Spend 1 Ki for 2 unarmed strikes',
+        'combatNotes.ki-EmpoweredStrikesFeature:' +
+          'Unarmed attacks count as magical',
+        'combatNotes.martialArtsFeature:' +
+          'In no armor, unarmed and monk weapons use higher of Dex or Str and increase damage to 1d%V',
+        'combatNotes.patientDefenseFeature:' +
+          'Spend 1 Ki to Dodge (foe attack DisAdv)',
+        'combatNotes.monkBonusAttackFeature:' +
+          'Unarmed strike after attack w/monk weapon',
+        'combatNotes.monkUnarmoredDefenseFeature:+%1 AC in no armor',
+        'combatNotes.openHandTechniqueFeature:' +
+          "Choice of knock prone (DC %V Dex neg), push 15' (DC %V Str neg), or no foe react after Flurry Of Blows hit",
+        'combatNotes.perfectSelfFeature:Regain 4 Ki die on init if all used',
+        'combatNotes.quiveringPalmFeature:' +
+          'Spend 3 Ki to use unarmed strike to reduce foe to 0 HP (DC %V Con 10d10 HP)',
+        'combatNotes.stepOfTheWindFeature:' +
+          'Spend 1 Ki to Disengage or Dash, double jump',
+        'combatNotes.stunningStrikeFeature:' +
+          'Spend 1 Ki to stun melee foe (DC %V Con neg)',
+        'featureNotes.kiFeature:%V Ki points refresh after short rest',
+        'featureNotes.monkTimelessBodyFeature:' +
+          'No debility from aging, need no food or water',
+        'featureNotes.tongueOfSunAndMoonFeature:Communicate in any language',
+        'featureNotes.wholenessOfBodyFeature:Recover %V HP 1/long rest',
+        'magicNotes.emptyBodyFeature:' +
+          'Spend 4 Ki for <i>Invisibility</i> 1 min, 8 Ki for <i>Astral Projection</i>',
+        'magicNotes.tranquilityFeature:' +
+          'Self <i>Sanctuary</i> until next long rest (DC %V Wis neg)',
+        'saveNotes.diamondSoulFeature:Prof all saves, spend 1 Ki to reroll',
+        'saveNotes.evasionFeature:Dex save yields no damage instead of 1/2',
+        'saveNotes.purityOfBodyFeature:Immune disease, poison',
+        'saveNotes.stillnessOfMindFeature:End self charmed, frightened at will'
       ];
+// PHB
+      notes = notes.concat([
+        'combatNotes.opportunistFeature:Attack nearby creature when it is hit',
+        'magicNotes.cloakOfShadowsFeature:' +
+          'Invisible in dim/unlit until attack or cast',
+        'magicNotes.breathOfWinterFeature:' +
+          'Spend 6 Ki to cast <i>Cone Of Cold</i>',
+        'magicNotes.clenchOfTheNorthWindFeature:' +
+          'Spend 3 Ki to cast <i>Hold Person</i>',
+        'magicNotes.discipleOfTheElementsFeature:%V',
+        'magicNotes.elementalAttunementFeature:Minor elemental manipulation',
+        'magicNotes.eternalMountainDefenseFeature:' +
+          'Spend 5 Ki to cast <i>Stoneskin</i>',
+        'magicNotes.fistOfUnbrokenAirFeature:' +
+          "R30' Spend 2 Ki to create air blast 3d10 HP, push 20' and knock prone (DC %V Str half)",
+        'magicNotes.flamesOfThePhoenixFeature:' +
+          'Spend 4 Ki to cast <i>Fireball</i>',
+        'magicNotes.GongOfTheSummitFeature:' +
+          'Spend 3 Ki to cast <i>Shatter</i>',
+        'magicNotes.mistStanceFeature:' +
+          'Spend 4 Ki to cast self <i>Gaseous Form</i>',
+        'magicNotes.rideTheWindFeature:Spend 4 Ki to cast self <i>Fly</i>',
+        'magicNotes.riverOfHungryFlameFeature:' +
+          'Spend 5 Ki to cast <i>Wall Of Fire</i>',
+        'magicNotes.rushOfTheGaleSpiritsFeature:' +
+          'Spend 2 Ki to cast <i>Gust Of Wind</i>',
+        'magicNotes.shapeTheFlowingRiverFeature:' +
+          "R120' Freeze, thaw, shape 30'x30' water",
+        'magicNotes.sweepingCinderStrikeFeature:' +
+          'Spend 2 Ki to cast <i>Burning Hands</i>',
+        'magicNotes.shadowArtsFeature:' +
+          '<i>Minor Illusion</i> cantrip, spend 2 Ki to cast <i>Darkness</i>, '+
+          '<i>Darkvision</i>, <i>Pass Without Trace</i>, <i>Silence</i>',
+        "magicNotes.shadowStepFeature:Teleport 60' between dim/unlit areas",
+        'magicNotes.waterWhipFeature:' +
+          "R30' Spend 2 Ki to create water whip 3d10 HP, pull 25' or knock prone (DC %V Str half)",
+        'magicNotes.waveOfRollingEarthFeature:' +
+          'Spend 6 Ki to cast <i>Wall Of Stone</i>',
+      ]);
+// ENDPHB
       proficiencyCount = {'Save':2, 'Skill':2, 'Tool':1, 'Weapon':2};
       proficienciesGiven = {
         'Save':['Dexterity', 'Strength'],
@@ -2174,17 +2282,146 @@ SRD5E.classRules = function(rules, classes) {
                  'Stealth'],
         'Tool':['Artisan', 'Music']
       };
-      selectableFeatures = [
-        'Combat Reflexes', 'Deflect Arrows', 'Improved Disarm',
-        'Improved Grapple', 'Improved Trip', 'Stunning Fist'
-      ];
+      selectableFeatures = SRD5E.MONK_MONASTIC_TRADITIONS;
+// PHB
+      selectableFeatures =
+        selectableFeatures.concat(SRD5E.MONK_ELEMENTAL_DISCIPLINES);
+// ENDPHB
       spellAbility = null;
       spellsKnown = null;
       spellSlots = null;
 
+      rules.defineRule('monkFeatures.Open Hand Technique',
+        'monkFeatures.Way Of The Open Hand Tradition', '?', null
+      );
+      rules.defineRule('monkFeatures.Quivering Palm',
+        'monkFeatures.Way Of The Open Hand Tradition', '?', null
+      );
+      rules.defineRule('monkFeatures.Tranquility',
+        'monkFeatures.Way Of The Open Hand Tradition', '?', null
+      );
+      rules.defineRule('monkFeatures.Wholeness Of Body',
+        'monkFeatures.Way Of The Open Hand Tradition', '?', null
+      );
+// PHB
+      rules.defineRule('monkFeatures.Disciple Of The Elements',
+        'monkFeatures.Way Of The Four Elements Tradition', '?', null
+      );
+      rules.defineRule('monkFeatures.Shadow Arts',
+        'monkFeatures.Way Of The Shadow Tradition', '?', null
+      );
+      rules.defineRule('monkFeatures.Shadow Step',
+        'monkFeatures.Way Of The Shadow Tradition', '?', null
+      );
+      rules.defineRule('monkFeatures.Cloak Of Shadows',
+        'monkFeatures.Way Of The Shadow Tradition', '?', null
+      );
+      rules.defineRule('monkFeatures.Opportunist',
+        'monkFeatures.Way Of The Shadow Tradition', '?', null
+      );
+// ENDPHB
+
       rules.defineRule('abilityNotes.abilityScoreImprovementFeature',
         'levels.Monk', '+=', 'source >= 19 ? 5 : Math.floor(source / 4)'
       );
+      rules.defineRule('abilityNotes.improvedUnarmoredMovementFeature',
+        'armor', '?', 'source == "None"',
+        'shield', '?', 'source == "None"'
+      );
+      rules.defineRule
+        ('abilityNotes.slowFallFeature', 'levels.Monk', '=', 'source * 5');
+      // Inelegant hacks to show unarmoredMovement note properly even
+      // when armor != "None"
+      rules.defineRule('abilityNotes.unarmoredMovementFeature.1',
+        'abilityNotes.unarmoredMovementFeature', '?', null,
+        'levels.Monk', '=', 'Math.floor((source + 8) / 4) * 5'
+      );
+      rules.defineRule('abilityNotes.unarmoredMovementFeature.2',
+        'abilityNotes.unarmoredMovementFeature', '?', null,
+        'armor', '?', 'source == "None"',
+        'shield', '?', 'source == "None"',
+        'abilityNotes.unarmoredMovementFeature.1', '=', null
+      );
+      rules.defineRule('armorClass',
+        'combatNotes.monkUnarmoredDefenseFeature.2', '+', null
+      );
+      rules.defineRule
+        ('attacksPerRound', 'combatNotes.extraAttackFeature', '+', '1');
+      rules.defineRule('combatNotes.deflectMissilesFeature',
+        'levels.Monk', '=', null,
+        'dexterityModifier', '+', null
+      );
+      rules.defineRule('combatNotes.martialArtsFeature',
+        'levels.Monk', '=', 'Math.floor((source + 13)/ 6) * 2'
+      );
+      // Inelegant hacks to show monkUnarmoredDefense note properly even
+      // when armor != "None".
+      rules.defineRule('combatNotes.monkUnarmoredDefenseFeature.1',
+        'combatNotes.monkUnarmoredDefenseFeature', '?', null,
+        'dexterityModifier', '=', null,
+        'wisdomModifier', '+', null
+      );
+      rules.defineRule('combatNotes.monkUnarmoredDefenseFeature.2',
+        'combatNotes.monkUnarmoredDefenseFeature', '?', null,
+        'armor', '?', 'source == "None"',
+        'combatNotes.monkUnarmoredDefenseFeature.1', '=', null
+      );
+      rules.defineRule
+        ('combatNotes.openHandTechniqueFeature', 'kiSaveDC', '=', null);
+      rules.defineRule
+        ('combatNotes.quiveringPalmFeature', 'kiSaveDC', '=', null);
+      rules.defineRule
+        ('combatNotes.stunningStrikeFeature', 'kiSaveDC', '=', null);
+      rules.defineRule('featureNotes.kiFeature',
+        'monkFeatures.Ki', '?', null,
+        'levels.Monk', '=', 'Math.floor((source + 7) / 4)'
+      );
+      rules.defineRule
+        ('featureNotes.wholenessOfBodyFeature', 'levels.Monk', '=', 'source*3');
+      rules.defineRule('kiSaveDC',
+        'monkFeatures.Ki', '?', null,
+        'proficiencyBonus', '=', '8 + source',
+        'wisdomModifier', '+', null
+      );
+      rules.defineRule('magicNotes.tranquilityFeature', 'kiSaveDC', '=', null);
+      rules.defineRule('monkMeleeAttackBonus',
+        'armor', '?', 'source == "None"',
+        'dexterityModifier', '=', null,
+        'strengthModifier', '+', '-source',
+        '', '^', '0'
+      );
+      rules.defineRule('monkMeleeDamageBonus',
+        'armor', '?', 'source == "None"',
+        'dexterityModifier', '=', null,
+        'strengthModifier', '+', '-source',
+        '', '^', '0'
+      );
+      rules.defineRule('monkMeleeDieBonus',
+        'armor', '?', 'source == "None"',
+        'combatNotes.martialArtsFeature', '=', '"1d" + source'
+      );
+      for(var ability in {'Charisma':'', 'Constitution':'', 'Dexterity':'',
+                          'Intelligence':'', 'Strength':'', 'Wisdom':''}) {
+        rules.defineRule('saveProficiencies.' + ability,
+          'saveNotes.diamondSoulFeature', '=', '1'
+        );
+      }
+      rules.defineRule('selectableFeatureCount.Monk',
+        'monkFeatures.Monastic Tradition', '=', '1'
+      );
+      rules.defineRule
+        ('speed', 'abilityNotes.unarmoredMovementFeature.2', '+', null);
+// PHB
+      rules.defineRule('magicNotes.discipleOfTheElementsFeature',
+        'levels.Monk', '=', 'source<6 ? 1 : source<11 ? 2 : source<17 ? 3 : 4'
+      );
+      rules.defineRule
+        ('magicNotes.fistOfUnbrokenAirFeature', 'kiSaveDC', '=', null);
+      rules.defineRule('magicNotes.waterWhipFeature', 'kiSaveDC', '=', null);
+      rules.defineRule('selectableFeatureCount.Monk',
+        'magicNotes.discipleOfTheElementsFeatures', '+', null
+      );
+// ENDPHB
 
     } else if(name == 'Paladin') {
 
@@ -2288,7 +2525,7 @@ SRD5E.classRules = function(rules, classes) {
         'combatNotes.cunningAction:Bonus dash/disengage/hide each turn',
         'combatNotes.sneakAttackFeature:+%Vd6 damage on Adv/flanked attacks',
         'combatNotes.uncannyDodgeFeature:Use reaction for half damage',
-        'saveNotes.evasionFeature:No damage on successful Dex save, half on fail',
+        'saveNotes.evasionFeature:Dex save yields no damage instead of 1/2',
         'skillNotes.expertiseFeature:Double proficiency in %V skills/tools',
         'skillNotes.reliableTalentFeature:Min 10 roll on proficient skills',
         "skillNotes.thieves'CantFeature:Signs and symbols known only by rogues"
@@ -2514,7 +2751,7 @@ SRD5E.companionRules = function(rules, companions, familiars) {
       "Smite Evil (+%V damage) 1/day, 60' darkvision, " +
       "%1 acid/cold/electricity resistance, DR %2/magic",
     'companionNotes.companionEvasionFeature:' +
-      'Reflex save yields no damage instead of 1/2',
+      'Dex save yields no damage instead of 1/2',
     'companionNotes.companionImprovedEvasionFeature:' +
       'Failed save yields 1/2 damage',
     'companionNotes.deliverTouchSpellsFeature:' +
@@ -3044,16 +3281,19 @@ SRD5E.equipmentRules = function(rules, armors, shields, weapons) {
   for(var i = 0; i < weapons.length; i++) {
 
     var pieces = weapons[i].split(':');
-    var matchInfo = pieces[1].match(/(\d?d\d+)(r(\d+))?(M|S)?/);
+    var matchInfo = pieces[1].match(/(\d?d\d+)(r(\d+))?/);
     if(! matchInfo)
       continue;
 
-    var category = !matchInfo[4] || matchInfo[4] == 'S' ? 'Simple' : 'Martial';
+    var category = pieces[1].indexOf('Si') >= 0 ? 'Simple' : 'Martial';
     var damage = matchInfo[1];
     var name = pieces[0];
     var range = matchInfo[3];
     var weaponName = 'weapons.' + name;
     var format = '%V (%1 %2%3' + (range ? " R%4'" : '') + ')';
+
+    if(damage.startsWith('d'))
+      damage = '1' + damage;
 
     rules.defineNote(weaponName + ':' + format);
 
@@ -3075,6 +3315,10 @@ SRD5E.equipmentRules = function(rules, armors, shields, weapons) {
       'weaponBonus.' + name, '+', null,
       'weaponDamageAdjustment.' + name, '+', null
     );
+    if(!range) {
+      rules.defineRule('attackBonus.'+name, 'monkMeleeAttackBonus', '+', null);
+      rules.defineRule('damageBonus.'+name, 'monkMeleeDamageBonus', '+', null);
+    }
 
     rules.defineRule(weaponName + '.1',
       'attackBonus.' + name, '=', 'source < 0 ? source : ("+" + source)'
@@ -3089,6 +3333,9 @@ SRD5E.equipmentRules = function(rules, armors, shields, weapons) {
         'weaponRangeAdjustment.' + name, '+', null
       );
       rules.defineRule(weaponName + '.4', 'range.' + name, '=', null);
+    }
+    if(!range) {
+      rules.defineRule(weaponName + '.2', 'monkMeleeDieBonus', '^', null);
     }
 
   }

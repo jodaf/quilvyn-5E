@@ -194,6 +194,11 @@ SRD5E.RANGER_ARCHETYPES.push('Beast Master');
 SRD5E.RANGER_FIGHTING_STYLES = [
   'Archery Style', 'Defense Style', 'Dueling Style', 'Two-Weapon Fighting Style'
 ];
+SRD5E.RANGER_HUNTER_TECHNIQUES = [
+  'Colossus Slayer', 'Giant Killer', 'Horde Breaker', 'Escape The Horde',
+  'Multiattack Defense', 'Steel Will', 'Volley', 'Whirlwind Attack',
+  'Evasion', 'Stand Against The Tide', 'Uncanny Dodge'
+];
 SRD5E.ROGUISH_ARCHETYPES = ['Arcane Trickster', 'Assassin', 'Thief'];
 SRD5E.SCHOOLS = [
   'Abjuration:Abju', 'Conjuration:Conj', 'Divination:Divi', 'Enchantment:Ench',
@@ -1983,7 +1988,7 @@ SRD5E.classRules = function(rules, classes) {
       };
       selectableFeatures = SRD5E.FIGHTER_FIGHTING_STYLES.concat(SRD5E.FIGHTER_MARTIAL_ARCHETYPES);
 // PHB
-      selectableFeatures.push(SRD5E.FIGHTER_MANEUVERS);
+      selectableFeatures = selectableFeatures.concat(SRD5E.FIGHTER_MANEUVERS);
 // ENDPHB
       spellAbility = null;
       spellsKnown = null;
@@ -2048,7 +2053,7 @@ SRD5E.classRules = function(rules, classes) {
       // Inelegant hacks to show defenseStyle note properly even when armor
       // == "None"
       rules.defineRule('combatNotes.defenseStyleFeature.1',
-        'fighterFeatures.Defense Style', '?', null,
+        'combatNotes.defenseStyle', '?', null,
         'armor', '=', 'source == "None" ? null : 1'
       );
       rules.defineRule
@@ -2217,7 +2222,8 @@ SRD5E.classRules = function(rules, classes) {
       };
       selectableFeatures = SRD5E.MONK_MONASTIC_TRADITIONS;
 // PHB
-      selectableFeatures.push(SRD5E.MONK_ELEMENTAL_DISCIPLINES);
+      selectableFeatures =
+        selectableFeatures.concat(SRD5E.MONK_ELEMENTAL_DISCIPLINES);
 // ENDPHB
       spellAbility = null;
       spellsKnown = null;
@@ -2549,13 +2555,38 @@ SRD5E.classRules = function(rules, classes) {
           "No Disadv vs. invisible foe, 30' awareness of invisible creatures",
         '20:Foe Slayer:combat:+%V attack or damage vs. favored enemy'
       ];
+// PHB
+      features.push(
+        // Beast Master Archetype
+        "3:Ranger's Companion:companion:Companion beast obeys commands",
+        '7:Exceptional Training:companion:' +
+          'Companion can Dash, Disengage, Dodge, Help instead of attack',
+        '11:Bestial Fury:companion:Companion get 2 attacks',
+        "15:Share Spells:companion:Self spell affects companion w/in 30'"
+      );
+// ENDPBH
       hitDie = 10;
       notes = [
         'combatNotes.archeryStyleFeature:+2 ranged attack',
+        'combatNotes.colossusSlayerFeature:+1d8 HP vs. undamaged foe 1/turn',
         'combatNotes.defenseStyleFeature:+1 AC in armor',
         'combatNotes.duelingStyleFeature:+2 HP with single, one-hand weapon',
+        'combatNotes.escapeTheHordeFeature:Foe DisAdv on opportunity attacks',
+        'combatNotes.giantKillerFeature:' +
+          'React to attack nearby large foe after miss',
+        'combatNotes.hordeBreakerFeature:Second attack on different nearby foe',
+        'combatNotes.multiattackDefenseFeature:+4 AC after foe first attack',
+        'combatNotes.standAgainstTheTideFeature:' +
+          'Foe miss attacks another creature',
         'combatNotes.two-weaponFightingStyleFeature:' +
-          'Add ability modifier to second attack damage'
+          'Add ability modifier to second attack damage',
+        'combatNotes.uncannyDodgeFeatureUse reaction for half damage',
+        'combatNotes.whirlwindAttackFeature:' +
+          'Melee attack any number of foes in reach',
+        'combatNotes.volleyFeature:' +
+          "Ranged attack any number of foes in 10' area",
+        'saveNotes.evasionFeature:Dex save yields no damage instead of 1/2',
+        'saveNotes.steelWillFeature:Adv vs. fright'
       ];
       proficiencyCount = {'Save':2, 'Skill':3, 'Armor':3, 'Weapon':2};
       proficienciesGiven = {
@@ -2568,7 +2599,7 @@ SRD5E.classRules = function(rules, classes) {
                  'Nature', 'Perception', 'Stealth', 'Survival']
       };
       selectableFeatures =
-        SRD5E.RANGER_FIGHTING_STYLES.concat(SRD5E.RANGER_ARCHETYPES);
+        SRD5E.RANGER_FIGHTING_STYLES.concat(SRD5E.RANGER_ARCHETYPES).concat(SRD5E.RANGER_HUNTER_TECHNIQUES);
       spellAbility = 'wisdom';
       spellsKnown = [
         'R1:2:"all"', 'R2:5:"all"', 'R3:9:"all"', 'R4:13:"all"', 'R5:17:"all"'
@@ -2581,6 +2612,65 @@ SRD5E.classRules = function(rules, classes) {
         'R5:17:1/19:2'
       ];
 
+      rules.defineRule('rangerFeatures.Colossus Slayer',
+        'rangerFeatures.Hunter', '?', null,
+        'levels.Ranger', '?', 'source >= 3'
+      );
+      rules.defineRule('rangerFeatures.Giant Killer',
+        'rangerFeatures.Hunter', '?', null,
+        'levels.Ranger', '?', 'source >= 3'
+      );
+      rules.defineRule('rangerFeatures.Horde Breaker',
+        'rangerFeatures.Hunter', '?', null,
+        'levels.Ranger', '?', 'source >= 3'
+      );
+      rules.defineRule('rangerFeatures.Escape The Horde',
+        'rangerFeatures.Hunter', '?', null,
+        'levels.Ranger', '?', 'source >= 7'
+      );
+      rules.defineRule('rangerFeatures.Multiattack Defense',
+        'rangerFeatures.Hunter', '?', null,
+        'levels.Ranger', '?', 'source >= 7'
+      );
+      rules.defineRule('rangerFeatures.Steel Will',
+        'rangerFeatures.Hunter', '?', null,
+        'levels.Ranger', '?', 'source >= 7'
+      );
+      rules.defineRule('rangerFeatures.Volley',
+        'rangerFeatures.Hunter', '?', null,
+        'levels.Ranger', '?', 'source >= 11'
+      );
+      rules.defineRule('rangerFeatures.Whirlwind Attack',
+        'rangerFeatures.Hunter', '?', null,
+        'levels.Ranger', '?', 'source >= 11'
+      );
+      rules.defineRule('rangerFeatures.Evasion',
+        'rangerFeatures.Hunter', '?', null,
+        'levels.Ranger', '?', 'source >= 15'
+      );
+      rules.defineRule('rangerFeatures.Stand Against The Tide',
+        'rangerFeatures.Hunter', '?', null,
+        'levels.Ranger', '?', 'source >= 15'
+      );
+      rules.defineRule('rangerFeatures.Uncanny Dodge',
+        'rangerFeatures.Hunter', '?', null,
+        'levels.Ranger', '?', 'source >= 15'
+      );
+// PHB
+      rules.defineRule("rangerFeatures.Ranger's Companion",
+        'rangerFeatures.Beast Master', '?', null
+      );
+      rules.defineRule('rangerFeatures.Exceptional Training',
+        'rangerFeatures.Beast Master', '?', null
+      );
+      rules.defineRule('rangerFeatures.Bestial Fury',
+        'rangerFeatures.Beast Master', '?', null
+      );
+      rules.defineRule('rangerFeatures.Share Spells',
+        'rangerFeatures.Beast Master', '?', null
+      );
+// ENDPHB
+
       rules.defineRule('abilityNotes.abilityScoreImprovementFeature',
         'levels.Ranger', '+=', 'source >= 19 ? 5 : Math.floor(source / 4)'
       );
@@ -2590,7 +2680,7 @@ SRD5E.classRules = function(rules, classes) {
       // Inelegant hacks to show defenseStyle note properly even when armor
       // == "None"
       rules.defineRule('combatNotes.defenseStyleFeature.1',
-        'fighterFeatures.Defense Style', '?', null,
+        'combatNotes.defenseStyle', '?', null,
         'armor', '=', 'source == "None" ? null : 1'
       );
       rules.defineRule('armorClass',
@@ -2603,6 +2693,14 @@ SRD5E.classRules = function(rules, classes) {
       );
       rules.defineRule
         ('combatNotes.foeSlayerFeature', 'wisdomModifier', '=', null);
+      rules.defineRule('hunterSelectableFeatureCount',
+        'rangerFeatures.Hunter', '?', null,
+        'levels.Ranger', '=', 'source<3 ? 0 : source<7 ? 1 : source<11 ? 2 : 3'
+      );
+      rules.defineRule('selectableFeatureCount.Ranger',
+        'levels.Ranger', '=', 'source < 2 ? 0 : source < 3 ? 1 : 2',
+        'hunterSelectableFeatureCount', '+', null
+      );
       rules.defineRule('skillNotes.naturalExplorerFeature',
         'levels.Ranger', '=', 'source < 6 ? 1 : source < 10 ? 2 : 3'
       );

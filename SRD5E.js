@@ -85,10 +85,10 @@ SRD5E.CLASSES = [
 ];
 SRD5E.CLERIC_DOMAINS = ['Life Domain'];
 // PHB
-SRD5E.CLERIC_DOMAINS = SRD5E.CLERIC_DOMAINS.concat([
+SRD5E.CLERIC_DOMAINS.push(
   'Knowledge Domain', 'Light Domain', 'Nature Domain', 'Tempest Domain',
   'Trickery Domain', 'War Domain'
-]);
+);
 // ENDPHB
 SRD5E.DEITIES = [
   'Auril (NE):Nature/Tempest', 'Azuth (LN):Knowledge', 'Bane (LE):War',
@@ -106,7 +106,7 @@ SRD5E.DEITIES = [
 ];
 SRD5E.DRUID_CIRCLES = ['Circle Of The Land'];
 // PHB
-SRD5E.DRUID_CIRCLES = SRD5E.DRUID_CIRCLES.concat(['Circle Of The Moon']);
+SRD5E.DRUID_CIRCLES.push('Circle Of The Moon');
 // ENDPHB
 SRD5E.DRUID_LANDS = [
   'Arctic Land', 'Coast Land', 'Desert Land', 'Forest Land', 'Grassland Land',
@@ -133,9 +133,9 @@ SRD5E.FIGHTER_FIGHTING_STYLES = [
 ];
 SRD5E.FIGHTER_MARTIAL_ARCHETYPES = ['Champion Archetype'];
 // PHB
-SRD5E.FIGHTER_MARTIAL_ARCHETYPES = SRD5E.FIGHTER_MARTIAL_ARCHETYPES.concat([
+SRD5E.FIGHTER_MARTIAL_ARCHETYPES.push(
   'Battle Master Archetype', 'Eldritch Knight Archetype'
-]);
+);
 SRD5E.FIGHTER_MANEUVERS = [
   "Commander's Strike", 'Disarming Attack', 'Distracting Strike',
   'Evasive Footwork', 'Feinting Attack', 'Goading Attack', 'Lunging Attack',
@@ -151,9 +151,9 @@ SRD5E.LANGUAGES = [
 ];
 SRD5E.MONK_MONASTIC_TRADITIONS = ['Way Of The Open Hand Tradition'];
 // PHB
-SRD5E.MONK_MONASTIC_TRADITIONS = SRD5E.MONK_MONASTIC_TRADITIONS.concat([
+SRD5E.MONK_MONASTIC_TRADITIONS.push(
   'Way Of The Four Elements Tradition', 'Way Of The Shadow Tradition'
-]);
+);
 SRD5E.MONK_ELEMENTAL_DISCIPLINES = [
   'Breath Of Winter', 'Clench Of The North Wind', 'Eternal Mountain Defense',
   'Fangs Of The Fire Snake', 'Fist Of Four Thunders', 'Fist Of Unbroken Air',
@@ -169,9 +169,7 @@ SRD5E.PALADIN_FIGHTING_STYLES = [
 ];
 SRD5E.PALADIN_SACRED_OATHS = ['Oath Of Devotion'];
 // PHB
-SRD5E.PALADIN_SACRED_OATHS = SRD5E.PALADIN_SACRED_OATHS.concat([
-  'Oath Of The Ancients', 'Oath Of Vengeance'
-]);
+SRD5E.PALADIN_SACRED_OATHS.push('Oath Of The Ancients', 'Oath Of Vengeance');
 // ENDPHB
 SRD5E.RACES = [
   'Black Dragonborn', 'Blue Dragonborn', 'Brass Dragonborn',
@@ -188,6 +186,13 @@ SRD5E.RANDOMIZABLE_ATTRIBUTES = [
   'name', 'race', 'gender', 'alignment', 'background', 'deity', 'levels',
   'features', 'feats', 'skills', 'languages', 'hitPoints', 'armor', 'shield',
   'weapons', 'spells', 'tools'
+];
+SRD5E.RANGER_ARCHETYPES = ['Hunter'];
+// PHB
+SRD5E.RANGER_ARCHETYPES.push('Beast Master');
+// ENDPHB
+SRD5E.RANGER_FIGHTING_STYLES = [
+  'Archery Style', 'Defense Style', 'Dueling Style', 'Two-Weapon Fighting Style'
 ];
 SRD5E.ROGUISH_ARCHETYPES = ['Arcane Trickster', 'Assassin', 'Thief'];
 SRD5E.SCHOOLS = [
@@ -1294,7 +1299,7 @@ SRD5E.backgroundRules = function(rules, backgrounds) {
         '10 GP'
       ];
       features = [
-        '1:City Secrets:feature:Double speed through hidden urban ways'
+        '1:City Secrets:feature:x2 speed through hidden urban ways'
       ];
       proficiencyCount = {'Skill':2, 'Tool':2};
       proficienciesGiven = {
@@ -1373,23 +1378,22 @@ SRD5E.classRules = function(rules, classes) {
         '5:Fast Movement:ability:+10 speed in no/light/medium armor',
         '7:Feral Instinct:combat:Adv initiative, act when surprised if rage',
         '9:Brutal Critical:combat:+%V critical damage dice',
-        '11:Relentless Rage:combat:' +
-          'DC 10+ Con to continue fighting w/1 HP when brought to 0 HP',
+        '11:Relentless Rage:combat:DC 10+ Con to keep 1 HP when brought to 0',
         '15:Persistent Rage:combat:Rage ends only when unconscious or chosen',
         '18:Indominable Might:ability:' +
           'Use strength instead of roll for Str check',
         '20:Primal Champion:ability:+4 strength/+4 constitution'
       ];
-      features = features.concat([
+      features.push(
         // Path Of The Berserker
         '3:Frenzy:combat:Bonus attack during rage',
         '6:Mindless Rage:save:Immune charmed/frightened during rage',
         '10:Intimidating Presence:feature:' +
           'Target creature frightened (DC %V Will neg)',
         '14:Retaliation:combat:Melee attack reaction after taking damage'
-      ]);
+      );
 // PHB
-      features = features.concat([
+      features.push(
         // Path Of The Totem Warrior
         '3:Spirit Seeker:magic:' +
           '<i>Beast Sense</i>, <i>Speak With Animals</i> via ritual',
@@ -1398,7 +1402,7 @@ SRD5E.classRules = function(rules, classes) {
           'Foes Disadv opportunity attack, Dash as bonus action',
         '3:Wolf Totem Spirit:combat:' +
           "Allies Adv attack vs. foes w/in 5' of self",
-        '6:Aspect Of The Bear:ability:Double load/lift, Adv Str checks',
+        '6:Aspect Of The Bear:ability:x2 load/lift, Adv Str checks',
         '6:Aspect Of The Eagle:ability:' +
           'See 1 mile clearly, no perception Disadv in dim light',
         '6:Aspect Of The Wolf:ability:' +
@@ -1409,7 +1413,7 @@ SRD5E.classRules = function(rules, classes) {
         '14:Eagle Totemic Attunement:ability:Fly for short bursts when raging',
         '14:Wolf Totemic Attunement:combat:' +
           'Bonus knock large or smaller foe after successful attack'
-      ]);
+      );
       notes = null;
 //ENDPHB
       hitDie = 12;
@@ -1536,7 +1540,7 @@ SRD5E.classRules = function(rules, classes) {
         '2:Jack Of All Trades:ability:+%V ability checks',
         '2:Song Of Rest:feature:Listeners regain 1d%V HP after short rest',
         '3:Bard College::',
-        '3:Expertise:feature:Double bonus for %V proficiencies',
+        '3:Expertise:feature:x2 %V profs',
         '3:Extra Skills:skill:Prof in three additional skills',
         '4:Ability Score Improvement:ability:+%V distributed',
         '5:Font Of Inspiration:feature:Refresh Bardic Inspiration after rest',
@@ -1546,21 +1550,21 @@ SRD5E.classRules = function(rules, classes) {
         '20:Superior Inspiration:feature:' +
           'When all Bardic Inspiration used, regain 1 on initiative'
       ];
-      features = features.concat([
+      features.push(
         // College Of Lore
         '3:Cutting Words:feature:' +
           "R60' Subtract Bardic Inspiration from foe roll",
         '6:Additional Magical Secrets:magic:' +
           'Know 2 additional spells from any class',
         '14:Peerless Skill:ability:Add Bardic Inspiration to ability check'
-      ]);
+      );
 // PHB
-      features = features.concat([
+      features.push(
         // College Of Valor
         '3:Combat Inspiration:feature:Ally inspiration die to boost damage/AC',
         '6:Extra Attack:combat:+1 attack per Attack action',
         '14:Battle Magic:combat:Bonus attack after casting Bard spell'
-      ]);
+      );
 // ENDPHB
       hitDie = 8;
       notes = null;
@@ -1731,7 +1735,7 @@ SRD5E.classRules = function(rules, classes) {
         '18:Beast Spells:magic:Cast spells during Wild Shape',
         '20:Archdruid:magic:Unlimited Wild Shape'
       ];
-      features = features.concat([
+      features.push(
         // Circle Of The Land
         '2:Bonus Cantrip::',
         '2:Natural Recovery:magic:Recover %V spell slots during short rest',
@@ -1741,9 +1745,9 @@ SRD5E.classRules = function(rules, classes) {
         "10:Nature's Ward:save:" +
           'Immune disease, poison, elemental or fey charm and frighten',
         "14:Nature's Sanctuary:combat:Beast, plant DC %V Will save to attack"
-      ]);
+      );
 // PHB
-      features = features.concat([
+      features.push(
         // Circle Of The Moon
         '2:Combat Wild Shape:combat:' +
           'Wild Shape as bonus action, use spell slot to regain 1d8 * slot level HP',
@@ -1752,7 +1756,7 @@ SRD5E.classRules = function(rules, classes) {
         '10:Elemental Wild Shape:magic:' +
           'Use 2 Wild Shape uses to become elemental',
         '14:Thousand Forms:magic:<i>Alter Self<i> at will',
-      ]);
+      );
 // ENDPHB
       hitDie = 8;
       notes = [
@@ -1772,10 +1776,10 @@ SRD5E.classRules = function(rules, classes) {
           'Requires Circle Of The Land',
       ];
 //PHB
-      notes = notes.concat([
+      notes.push(
         'validationNotes.druidUnderdarkLandSelectableFeatureFeatures:' +
           'Requires Circle Of The Land',
-      ]);
+      );
 //ENDPHB
       proficiencyCount =
        {'Save':2, 'Skill':2, 'Tool':1, 'Armor':3, 'Weapon':10};
@@ -1896,16 +1900,16 @@ SRD5E.classRules = function(rules, classes) {
         '5:Extra Attack:combat:+1 attack per Attack action',
         '9:Indomitable:save:Reroll failed save %V/long rest'
       ];
-      features = features.concat([
+      features.push(
         // Champion Archetype
         '3:Improved Critical:combat:Crit on natural 19',
         '7:Remarkable Athlete:ability:+%V non-proficient Str/Dex/Con checks',
         '10:Additional Fighting Style::',
         '15:Superior Critical:combat:Crit on natural 18',
         '18:Survivor:combat:Regain %V HP each turn when between 1 and %1'
-      ]);
+      );
 // PHB
-      features = features.concat([
+      features.push(
         // Battle Master Archetype
         '3:Maneuvers::',
         "3:Student Of War:skill:Artisan's Tool prof",
@@ -1920,7 +1924,7 @@ SRD5E.classRules = function(rules, classes) {
         '10:Eldritch Strike:combat:' +
           'Foe DisAdv vs. spells for 1 turn after you hit',
         "15:Arcane Charge:magic:Action Surge to Teleport 30'"
-      ]);
+      );
 // ENDPHB
       hitDie = 10;
       notes = [
@@ -1935,7 +1939,7 @@ SRD5E.classRules = function(rules, classes) {
           'Add ability modifier to second attack damage',
       ];
 // PHB
-      notes = notes.concat([
+      notes.push(
         "combatNotes.commander'sStrikeFeatue:" +
           'Delegate one attack to companion, add superiority die to attack',
         'combatNotes.disarmingAttackFeature:' +
@@ -1965,7 +1969,7 @@ SRD5E.classRules = function(rules, classes) {
           'Do Superiority die damage to second foe w/in reach',
         'combatNotes.tripAttackFeature:' +
           'Add superiority die to damage, foe knocked prone (DC %V Str neg)',
-      ]);
+      );
 // ENDPHB
       proficiencyCount = {'Save':2, 'Skill':2, 'Armor':4, 'Weapon':2};
       proficienciesGiven = {
@@ -1979,7 +1983,7 @@ SRD5E.classRules = function(rules, classes) {
       };
       selectableFeatures = SRD5E.FIGHTER_FIGHTING_STYLES.concat(SRD5E.FIGHTER_MARTIAL_ARCHETYPES);
 // PHB
-      selectableFeatures = selectableFeatures.concat(SRD5E.FIGHTER_MANEUVERS);
+      selectableFeatures.push(SRD5E.FIGHTER_MANEUVERS);
 // ENDPHB
       spellAbility = null;
       spellsKnown = null;
@@ -2033,6 +2037,9 @@ SRD5E.classRules = function(rules, classes) {
       rules.defineRule('abilityNotes.remarkableAthleteFeature',
         'proficiencyBonus', '=', 'Math.ceil(source / 2)'
       );
+      rules.defineRule('armorClass',
+        'combatNotes.defenseStyleFeature.1', '+', null
+      );
       rules.defineRule
         ('attacksPerRound', 'combatNotes.extraAttackFeature', '+', '1');
       rules.defineRule('combatNotes.actionSurgeFeature',
@@ -2043,9 +2050,6 @@ SRD5E.classRules = function(rules, classes) {
       rules.defineRule('combatNotes.defenseStyleFeature.1',
         'fighterFeatures.Defense Style', '?', null,
         'armor', '=', 'source == "None" ? null : 1'
-      );
-      rules.defineRule('armorClass',
-        'combatNotes.defenseStyleFeature.1', '+', null
       );
       rules.defineRule
         ('rangedAttack', 'combatNotes.archeryStyleFeature', '+', '2');
@@ -2120,7 +2124,7 @@ SRD5E.classRules = function(rules, classes) {
         '2:Ki:feature:%V Ki points refresh after short rest',
         '2:Patient Defense:combat:Spend 1 Ki to Dodge (foe attack DisAdv)',
         '2:Step Of The Wind:combat:' +
-          'Spend 1 Ki to Disengage or Dash, double jump',
+          'Spend 1 Ki to Disengage or Dash, x2 jump',
         '2:Unarmored Movement:ability:+%1 speed in no armor',
         '3:Monastic Tradition::',
         '3:Deflect Missiles:combat:React to reduce missile damage by 1d10+%V',
@@ -2142,7 +2146,7 @@ SRD5E.classRules = function(rules, classes) {
           'Spend 4 Ki for <i>Invisibility</i> 1 min, 8 Ki for <i>Astral Projection</i>',
         '20:Perfect Self:combat:Regain 4 Ki die on init if all used'
       ];
-      features = features.concat([
+      features.push(
         // Way Of The Open Hand Tradition
         '3:Open Hand Technique:combat:' +
           "Choice of knock prone (DC %V Dex neg), push 15' (DC %V Str neg), or no foe react after Flurry Of Blows hit",
@@ -2151,9 +2155,9 @@ SRD5E.classRules = function(rules, classes) {
           'Self <i>Sanctuary</i> until next long rest (DC %V Wis neg)',
         '17:Quivering Palm:combat:' +
           'Spend 3 Ki to use unarmed strike to reduce foe to 0 HP (DC %V Con 10d10 HP)'
-      ]);
+      );
 // PHB
-      features = features.concat([
+      features.push(
         // Way Of The Four Elements Tradition
         '3:Disciple Of The Elements:magic:%V',
         '3:Elemental Attunement:magic:Minor elemental manipulation',
@@ -2164,7 +2168,7 @@ SRD5E.classRules = function(rules, classes) {
         "6:Shadow Step:magic:Teleport 60' between dim/unlit areas",
         '11:Cloak Of Shadows:magic:Invisible in dim/unlit until attack or cast',
         '17:Opportunist:combat:Attack nearby creature when it is hit'
-      ]);
+      );
 // ENDPHB
       hitDie = 8;
       notes = null;
@@ -2213,8 +2217,7 @@ SRD5E.classRules = function(rules, classes) {
       };
       selectableFeatures = SRD5E.MONK_MONASTIC_TRADITIONS;
 // PHB
-      selectableFeatures =
-        selectableFeatures.concat(SRD5E.MONK_ELEMENTAL_DISCIPLINES);
+      selectableFeatures.push(SRD5E.MONK_ELEMENTAL_DISCIPLINES);
 // ENDPHB
       spellAbility = null;
       spellsKnown = null;
@@ -2363,7 +2366,7 @@ SRD5E.classRules = function(rules, classes) {
         '2:Fighting Style',
         '2:Divine Smite:combat:Expend spell for +2d8-5d8 damage',
         '3:Divine Health:save:Immune disease',
-        '3:Sacred Oath',
+        '3:Sacred Oath::',
         '4:Ability Score Improvement:ability:+%V distributed',
         '5:Extra Attack:combat:+1 attack per Attack action',
         "6:Aura Of Protection:save:R10' +%V saves self and friendlies",
@@ -2383,20 +2386,23 @@ SRD5E.classRules = function(rules, classes) {
         '20:Holy Nimbus:save:Adv vs. spells by fiends, undead'
       ];
 // PHB
-      features = features.concat([
+      features.push(
         // Oath Of The Ancients
-        "3:Nature's Wrath::TODO",
-        '3:Turn The Faithless::TODO',
-        '7:Aura Of Warding::TODO',
-        '15:Undying Sentinel::TODO',
-        '20:Elder Champion::TODO',
+        "3:Nature's Wrath:magic:Vines ensnare foe (DC %V Dex or Str neg)",
+        '3:Turn The Faithless:magic:' +
+          "R30' Fiends, fey flee for 1 min (DC %V Wis neg)",
+        "7:Aura Of Warding:save:R30' Self, allies resist spell damage",
+        '15:Undying Sentinel:combat:Keep 1 HP when brought to 0 HP 1/long rest',
+        '20:Elder Champion:magic:' +
+          "Transform, regain 10 HP/turn, cast as bonus action, foes w/in 10' save DisAdv 1/long rest",
         // Oath Of Vengeance
-        '3:Abjure Enemy::TODO',
-        '3:Vow Of Enmity::TODO',
-        '7:Relentless Avenger::TODO',
-        '15:Soul Of Vengeance::TODO',
-        '20:Avenging Angel::TODO'
-      ]);
+        "3:Abjure Enemy:magic:R60' Target flees 1 min (DC %V Wis neg)",
+        "3:Vow Of Enmity:combat:R10' Adv attacks against target for 1 min",
+        '7:Relentless Avenger:combat:Move half speed after opportunity hit',
+        '15:Soul Of Vengeance:combat:Attack Vow Of Enmity target as reaction',
+        '20:Avenging Angel:magic:' +
+          "Fly 60', frighten foes in 30' (DC %V Wis neg) 1/long rest"
+      );
 // ENDPHB
       hitDie = 10;
       notes = null;
@@ -2488,12 +2494,12 @@ SRD5E.classRules = function(rules, classes) {
       rules.defineRule
         ('magicNotes.divineSenseFeature', 'charismaModifier', '=', 'source+1');
       rules.defineRule
-        ('magicNotes.layOnHandFeature', 'levels.Paladin', '=', 'source*5');
+        ('magicNotes.layOnHandsFeature', 'levels.Paladin', '=', 'source*5');
       rules.defineRule
         ('magicNotes.turnTheUnholyFeature', 'oathSaveDC', '=', null);
       rules.defineRule('oathSaveDC',
         'proficiencyBonus', '=', '8 + source',
-        'charismaModifier', '=', null
+        'charismaModifier', '+', null
       );
       rules.defineRule('saveNotes.auraOfCourageFeature',
         'levels.Paladin', '=', 'source < 18 ? 10 : 30'
@@ -2509,26 +2515,48 @@ SRD5E.classRules = function(rules, classes) {
         'paladinFeatures.Sacred Oath', '+', '1'
       );
 
+// PHB
+      rules.defineRule
+        ('magicNotes.abjureEnemyFeature', 'oathSaveDC', '=', null);
+      rules.defineRule
+        ('magicNotes.avengingAngelFeature', 'oathSaveDC', '=', null);
+      rules.defineRule
+        ("magicNotes.nature'sWrathFeature", 'oathSaveDC', '=', null);
+      rules.defineRule
+        ('magicNotes.turnTheFaithlessFeature', 'oathSaveDC', '=', null);
+// ENDPHB
+
     } else if(name == 'Ranger') {
 
       features = [
         '1:Armor Proficiency (Light/Medium/Shield)::',
         '1:Weapon Proficiency (Simple/Martial)::',
-        '1:Favored Enemy::TODO',
-        '1:Natural Explorer::TODO',
-        '2:Fighting Style::TODO',
-        '3:Ranger Archetype::TODO',
-        '3:Primeval Awareness::TODO',
+        '1:Favored Enemy:skill:Adv Wis (Survival) to track, Int (Knowledge) about %V creature types, learn enemy language',
+        '1:Natural Explorer:skill:x2 Int/Wis prof, normal move in difficult terrain, always alert, full speed solo stealth, locate x2 food, extra track info for %V terrains',
+        '2:Fighting Style::',
+        '2:Spellcasting::',
+        '3:Ranger Archetype::',
+        '3:Primeval Awareness:magic:' +
+          'Expend spell to sense creatures w/in 1 mi (6 mi favored terrain)',
         '4:Ability Score Improvement:ability:+%V distributed',
         '5:Extra Attack:combat:+1 attack per Attack action',
-        "8:Land's Stride::TODO",
-        '10:Hide In Plain Sight::TODO',
-        '14:Vanish::TODO',
-        '18:Feral Senses::TODO',
-        '20:Foe Slayer::TODO'
+        "8:Land's Stride:ability:Move normally through difficult terrain",
+        "8:Land's Stride:save:Adv vs. impeding plants",
+        '10:Hide In Plain Sight:skill:' +
+          '+10 Dex (Stealth) to hide w/prepared camouflage',
+        '14:Vanish:skill:Hide as bonus action, untrackable',
+        '18:Feral Senses:combat:' +
+          "No Disadv vs. invisible foe, 30' awareness of invisible creatures",
+        '20:Foe Slayer:combat:+%V attack or damage vs. favored enemy'
       ];
       hitDie = 10;
-      notes = null;
+      notes = [
+        'combatNotes.archeryStyleFeature:+2 ranged attack',
+        'combatNotes.defenseStyleFeature:+1 AC in armor',
+        'combatNotes.duelingStyleFeature:+2 HP with single, one-hand weapon',
+        'combatNotes.two-weaponFightingStyleFeature:' +
+          'Add ability modifier to second attack damage'
+      ];
       proficiencyCount = {'Save':2, 'Skill':3, 'Armor':3, 'Weapon':2};
       proficienciesGiven = {
         'Save':['Dexterity', 'Strength'],
@@ -2539,7 +2567,8 @@ SRD5E.classRules = function(rules, classes) {
         'Skill':['Animal Handling', 'Athletics', 'Insight', 'Investigation',
                  'Nature', 'Perception', 'Stealth', 'Survival']
       };
-      selectableFeatures = null;
+      selectableFeatures =
+        SRD5E.RANGER_FIGHTING_STYLES.concat(SRD5E.RANGER_ARCHETYPES);
       spellAbility = 'wisdom';
       spellsKnown = [
         'R1:2:"all"', 'R2:5:"all"', 'R3:9:"all"', 'R4:13:"all"', 'R5:17:"all"'
@@ -2555,6 +2584,28 @@ SRD5E.classRules = function(rules, classes) {
       rules.defineRule('abilityNotes.abilityScoreImprovementFeature',
         'levels.Ranger', '+=', 'source >= 19 ? 5 : Math.floor(source / 4)'
       );
+      rules.defineRule('armorClass',
+        'combatNotes.defenseStyleFeature.1', '+', null
+      );
+      // Inelegant hacks to show defenseStyle note properly even when armor
+      // == "None"
+      rules.defineRule('combatNotes.defenseStyleFeature.1',
+        'fighterFeatures.Defense Style', '?', null,
+        'armor', '=', 'source == "None" ? null : 1'
+      );
+      rules.defineRule('armorClass',
+        'combatNotes.defenseStyleFeature.1', '+', null
+      );
+      rules.defineRule
+        ('rangedAttack', 'combatNotes.archeryStyleFeature', '+', '2');
+      rules.defineRule('skillNotes.favoredEnemyFeature',
+        'levels.Ranger', '=', 'source < 6 ? 1 : source < 14 ? 2 : 3'
+      );
+      rules.defineRule
+        ('combatNotes.foeSlayerFeature', 'wisdomModifier', '=', null);
+      rules.defineRule('skillNotes.naturalExplorerFeature',
+        'levels.Ranger', '=', 'source < 6 ? 1 : source < 10 ? 2 : 3'
+      );
 
     } else if(name == 'Rogue') {
 
@@ -2562,7 +2613,7 @@ SRD5E.classRules = function(rules, classes) {
         '1:Armor Proficiency (Light)::',
         '1:Weapon Proficiency (Simple/Hand Crossbow/Longsword/Rapier/Shortsword)::',
         "1:Tool Proficiency (Thieves' Tools)::",
-        '1:Expertise:skill:Double proficiency in %V skills/tools',
+        '1:Expertise:skill:x2 prof in %V skills/tools',
         '1:Sneak Attack:combat:+%Vd6 damage on Adv/flanked attacks',
         "1:Thieves' Cant:skill:Signs and symbols known only by rogues",
         '2:Cunning Action:combat:Bonus Dash/Disengage/Hide each turn',
@@ -3988,7 +4039,7 @@ SRD5E.raceRules = function(rules, languages, races) {
         '1:Dwarven Armor Speed:ability:No speed penalty in armor',
         '1:Dwarven Resilience:save:Adv vs. poison, resist poison damage',
         '1:Slow:ability:-5 speed',
-        '1:Stonecunning:skill:Double prof on stonework History checks',
+        '1:Stonecunning:skill:x2 prof on stonework History checks',
         "1:Tool Proficiency (Artisan's Tool)::"
       ];
       languages = ['Common', 'Dwarven'];
@@ -4090,7 +4141,7 @@ SRD5E.raceRules = function(rules, languages, races) {
         adjustment += '/+1 constitution';
         features.push(
           "1:Artificier's Lore:skill:" +
-            'Double prof on magic, alchemical, tech objects History checks',
+            'x2 prof on magic, alchemical, tech objects History checks',
           "1:Tinker:feature:Prof w/artisan's tools"
         );
         proficiencyCount['Tool'] = 1;

@@ -199,7 +199,10 @@ SRD5E.RANGER_HUNTER_TECHNIQUES = [
   'Multiattack Defense', 'Steel Will', 'Volley', 'Whirlwind Attack',
   'Evasion', 'Stand Against The Tide', 'Uncanny Dodge'
 ];
-SRD5E.ROGUISH_ARCHETYPES = ['Arcane Trickster', 'Assassin', 'Thief'];
+SRD5E.ROGUISH_ARCHETYPES = ['Thief'];
+// PHB
+SRD5E.ROGUISH_ARCHETYPES.push('Arcane Trickster', 'Assassin');
+// ENDPHB
 SRD5E.SCHOOLS = [
   'Abjuration:Abju', 'Conjuration:Conj', 'Divination:Divi', 'Enchantment:Ench',
   'Evocation:Evoc', 'Illusion:Illu', 'Necromancy:Necr', 'Transmutation:Tran'
@@ -2720,11 +2723,39 @@ SRD5E.classRules = function(rules, classes) {
         '5:Uncanny Dodge:combat:Use reaction for half damage',
         '7:Evasion:save:Dex save yields no damage instead of 1/2',
         '11:Reliable Talent:skill:Min 10 roll on proficient skills',
-        '14:Blindsense::TODO',
-        '15:Slippery Mind::TODO',
-        '18:Elusive::TODO',
-        '20:Stroke Of Luck::TODO'
+        "14:Blindsense:skill:Hear hidden/invisible creatures w/in 10'",
+        '15:Slippery Mind:save:Prof Wis',
+        '18:Elusive:combat:Attacks against self never have Adv',
+        '20:Stroke Of Luck:ability:Automatic 20 ability check 1/long rest',
+        '20:Stroke Of Luck:combat:Turn miss into hit 1/long rest',
+        // Thief Archetype
+        '3:Fast Hands:skill:' +
+          'Dex (Sleight Of Hands), disarm trap, open lock, Use Object as bonus action',
+        '3:Second-Story Work:ability:Normal movement when climbing',
+        "3:Second-Story Work:skill:+%V' Jump",
+        '9:Supreme Sneak:skill:Adv Dex (Stealth) at half speed',
+        '13:Use Magic Device:skill:Ignore restrictions on magic device use',
+        "17:Thief's Reflexes:First round extra turn at init-10"
       ];
+// PHB
+      features.push(
+        // Assassin Archetype
+        "3:Bonus Proficiencies:feature:Prof Disguise Kit/Poisoner's Kit",
+        '3:Assassinate:combat:Adv when foe has not acted, crit on surprise hit',
+        '9:Infiltration Expertise:feature:Forge and adopt different identity',
+        '13:Imposter:feature:Unerring mimicry',
+        '17:Death Strike:combat:x2 damage on surprise hit (DC %V Dex neg)',
+        // Arcane Trickster Archetype
+        '3:Spellcasting::',
+        '3:Mage Hand Legerdemain:magic:' +
+          'Plant, retrieve, pick, disarm via <i>Mage Hand</i>',
+        '9:Magical Ambush:magic:Foe DisAdv spell save when self hidden',
+        '13:Versatile Trickster:magic:' +
+          'Distract foe (self Adv attacks) via <i>Mage Hand</i>',
+        '17:Spell Thief:magic:' +
+          'Foe spell negated, self cast w/in 8 hours (DC %V neg) 1/long rest'
+      );
+// ENDPHB
       hitDie = 8;
       notes = null;
       proficiencyCount =
@@ -2745,17 +2776,74 @@ SRD5E.classRules = function(rules, classes) {
       spellsKnown = null;
       spellSlots = null;
 
+      rules.defineRule
+        ('rogueFeatures.Fast Hands', 'rogueFeatures.Thief', '?', null);
+      rules.defineRule
+        ('rogueFeatures.Second-Story Work', 'rogueFeatures.Thief', '?', null);
+      rules.defineRule
+        ('rogueFeatures.Supreme Sneak', 'rogueFeatures.Thief', '?', null);
+      rules.defineRule
+        ('rogueFeatures.Use Magic Device', 'rogueFeatures.Thief', '?', null);
+      rules.defineRule
+        ("rogueFeatures.Thief's Reflexes", 'rogueFeatures.Thief', '?', null);
+// PHB
+      rules.defineRule('rogueFeatures.Bonus Proficiencies',
+        'rogueFeatures.Assissin', '?', null
+      );
+      rules.defineRule('rogueFeatures.Assassinate',
+        'rogueFeatures.Assissin', '?', null
+      );
+      rules.defineRule('rogueFeatures.Infiltration Expertise',
+        'rogueFeatures.Assissin', '?', null
+      );
+      rules.defineRule('rogueFeatures.Imposter',
+        'rogueFeatures.Assissin', '?', null
+      );
+      rules.defineRule('rogueFeatures.Death Strike',
+        'rogueFeatures.Assissin', '?', null
+      );
+      rules.defineRule('rogueFeatures.Spellcasting',
+        'rogueFeatures.Arcane Trickster', '?', null
+      );
+      rules.defineRule('rogueFeatures.Mage Hand Legerdemain',
+        'rogueFeatures.Arcane Trickster', '?', null
+      );
+      rules.defineRule('rogueFeatures.Magical Ambush',
+        'rogueFeatures.Arcane Trickster', '?', null
+      );
+      rules.defineRule('rogueFeatures.Versatile Trickster',
+        'rogueFeatures.Arcane Trickster', '?', null
+      );
+      rules.defineRule('rogueFeatures.Spell Thief',
+        'rogueFeatures.Arcane Trickster', '?', null
+      );
+// ENDPHB
+
       rules.defineRule('abilityNotes.abilityScoreImprovementFeature',
         'levels.Rogue', '+=', 'source >= 19 ? 5 : Math.floor(source / 4)'
+      );
+      rules.defineRule('combatNotes.deathStrikeFeature',
+        'dexterityModifier', '=', '8 + source',
+        'proficiencyBonus', '+', null
       );
       rules.defineRule('combatNotes.sneakAttackFeature',
         'levels.Rogue', '=', 'Math.floor((source + 1) / 2)'
       );
+      rules.defineRule('magicNotes.spellThiefFeature',
+        'intelligenceModifier', '=', '8 + source',
+        'proficiencyBonus', '+', null
+      );
       rules.defineRule('skillNotes.expertiseFeature',
         'levels.Rogue', '=', 'source >= 6 ? 4 : 2'
       );
+      rules.defineRule('skillProficiencies.Wisdom',
+        'skillNotes.slipperyMindFeature', '=', '1'
+      );
       rules.defineRule('selectableFeatureCount.Rogue',
         'rogueFeatures.Roguish Archetype', '=', '1'
+      );
+      rules.defineRule('skillNotes.second-StoryWorkFeature',
+        'dexterityModifier', '=', null
       );
 
     } else if(name == 'Sorcerer') {

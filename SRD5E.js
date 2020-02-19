@@ -207,6 +207,14 @@ SRD5E.SCHOOLS = [
   'Abjuration:Abju', 'Conjuration:Conj', 'Divination:Divi', 'Enchantment:Ench',
   'Evocation:Evoc', 'Illusion:Illu', 'Necromancy:Necr', 'Transmutation:Tran'
 ];
+SRD5E.SORCERER_METAMAGIC_OPTIONS = [
+  'Careful Spell', 'Distant Spell', 'Empowered Spell', 'Extended Spell',
+  'Heightened Spell', 'Quickened Spell', 'Subtle Spell', 'Twinned Spell'
+];
+SRD5E.SORCEROUS_ORIGINS = ['Draconic Bloodline'];
+// PHB
+SRD5E.SORCEROUS_ORIGINS.push('Wild Magic');
+// ENDPHB
 SRD5E.SPELLS = {
 
   'Acid Splash':'Conjuration',
@@ -2850,14 +2858,47 @@ SRD5E.classRules = function(rules, classes) {
 
       features = [
         '1:Weapon Proficiency (Dagger/Dart/Sling/Quarterstaff/Light Crossbow)::',
-        '1:Sorcerous Origin::TODO',
-        '2:Font Of Magic::TODO',
-        '3:Metamagic::TODO',
+        '1:Sorcerous Origin::',
+        '2:Font Of Magic:magic:%V Sorcery points/long rest',
+        '2:Flexible Casting:magic:Spend sorcery points to gain spell slots',
+        '3:Metamagic::',
         '4:Ability Score Improvement:ability:+%V distributed',
-        '20:Sorcerous Restoration::TODO'
+        '20:Sorcerous Restoration:magic:Short rest recovers 4 sorcery points',
+        // Draconic Bloodline
+        '1:Draconic Resilience:combat:+%V HP, unarmored AC %1',
+        '6:Elemental Affinity:magic:' +
+          '+%V HP damage with ancestry type, spend 1 sorcery point for 1 hr resistance',
+        '14:Dragon Wings:ability:Fly at movement rate',
+        "18:Draconic Presence:feature:Spend 5 sorcery points for 60' awe/fear aura (DC %V Wis neg)"
       ];
+// PHB
+      features.push(
+        // Wild Magic
+        '1:Wild Magic Surge:magic:Chance of random magic effect',
+        '1:Tides Of Chaos:feature:Adv on attack, ability, or save 1/long rest',
+        '6:Bend Luck:magic:' +
+          "Spend 2 sorcery points to add or subtract 1d4 from other's roll",
+        '14:Controlled Chaos:magic:Reroll wild magic surge effect',
+        '18:Spell Bombardment:magic:Add another die to maximum damage 1/turn'
+      );
+// ENDPHB
       hitDie = 8;
-      notes = null;
+      notes = [
+        'magicNotes.carefulSpellFeature:' +
+          'Spend 1 sorcery point to give %V creatures save on your spell',
+        'magicNotes.distantSpellFeature:' +
+          "Spend 1 sorcery point to dbl spell range, touch at 30'",
+        'magicNotes.empoweredSpellFeature:' +
+          'Spend 1 sorcery point to reroll %V spell damage dice',
+        'magicNotes.extendedSpellFeature:' +
+          'Spend 1 sorcery point to dbl spell duration',
+        'magicNotes.heightenedSpellFeature:' +
+          'Spend 3 sorcery points to give target DisAdv on spell save',
+        'magicNotes.subtleSpellFeature:' +
+          'Spend 1 sorcery point to cast w/out somatic/verbal components',
+        'magicNotes.twinnedSpellFeature:' +
+          'Spend spell level sorcery points to affect second target'
+      ];
       proficiencyCount = {'Save':2, 'Skill':2, 'Weapon':5};
       proficienciesGiven = {
         'Save':['Charisma', 'Constitution'],
@@ -2867,7 +2908,8 @@ SRD5E.classRules = function(rules, classes) {
         'Skill':['Arcana', 'Deception', 'Insight', 'Intimidation', 'Persuasion',
                  'Religion']
       };
-      selectableFeatures = null;
+      selectableFeatures =
+        SRD5E.SORCERER_METAMAGIC_OPTIONS.concat(SRD5E.SORCEROUS_ORIGINS);
       spellAbility = 'charisma';
       spellsKnown = [
         'S0:1:4/4:5/10:6',
@@ -2885,10 +2927,68 @@ SRD5E.classRules = function(rules, classes) {
         'S9:17:1'
       ];
 
+      rules.defineRule('sorcererFeatures.Draconic Resilience',
+        'sorcererFeatures.Draconic Bloodline', '?', null
+      );
+      rules.defineRule('sorcererFeatures.Elemental Affinity',
+        'sorcererFeatures.Draconic Bloodline', '?', null
+      );
+      rules.defineRule('sorcererFeatures.Dragon Wings',
+        'sorcererFeatures.Draconic Bloodline', '?', null
+      );
+      rules.defineRule('sorcererFeatures.Draconic Presence',
+        'sorcererFeatures.Draconic Bloodline', '?', null
+      );
+// PHB
+      rules.defineRule('sorcererFeatures.Wild Magic Surge',
+        'sorcererFeatures.Wild Magic', '?', null
+      );
+      rules.defineRule('sorcererFeatures.Tides Of Chaos',
+        'sorcererFeatures.Wild Magic', '?', null
+      );
+      rules.defineRule('sorcererFeatures.Bend Luck',
+        'sorcererFeatures.Wild Magic', '?', null
+      );
+      rules.defineRule('sorcererFeatures.Controlled Chaos',
+        'sorcererFeatures.Wild Magic', '?', null
+      );
+      rules.defineRule('sorcererFeatures.Spell Bombardment',
+        'sorcererFeatures.Wild Magic', '?', null
+      );
+// ENDPHB
+
       rules.defineRule('abilityNotes.abilityScoreImprovementFeature',
         'levels.Sorcerer', '+=', 'source >= 19 ? 5 : Math.floor(source / 4)'
       );
+      rules.defineRule
+        ('armorClass', 'combatNotes.draconicResilienceFeature.1', '^', null);
       rules.defineRule('casterLevelArcane', 'levels.Sorcerer', '+=', null);
+      rules.defineRule
+        ('combatNotes.draconicResilienceFeature', 'levels.Sorcerer', '=', null);
+      rules.defineRule('combatNotes.draconicResilienceFeature.1',
+        'combatNotes.draconicResilienceFeature', '?', null,
+        'dexterityModifier', '=', 'source + 13'
+      );
+      rules.defineRule('featureNotes.draconicPresenceFeature',
+        'charismaModifier', '=', '8 + source',
+        'proficiencyBonus', '+', null
+      );
+      rules.defineRule
+        ('hitPoint', 'combatNotes.draconicResilienceFeature', '+', null);
+      rules.defineRule('magicNotes.carefulSpellFeature',
+        'charismaModifier', '=', 'Math.min(source, 1)'
+      );
+      rules.defineRule('magicNotes.elementalAffinityFeature',
+        'charismaModifier', '=', null
+      );
+      rules.defineRule('magicNotes.empoweredSpellFeature',
+        'charismaModifier', '=', 'Math.min(source, 1)'
+      );
+      rules.defineRule
+        ('magicNotes.fontOfMagicFeature', 'levels.Sorcerer', '=', null);
+      rules.defineRule('selectableFeatureCount.Sorcerer',
+        'levels.Sorcerer', '=', 'source<3?1 : source<10?3 : source<17?4 : 5'
+      );
 
     } else if(name == 'Warlock') {
 

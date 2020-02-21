@@ -48,8 +48,8 @@ function SRD5E() {
   SRD5E.equipmentRules(rules, SRD5E.ARMORS, SRD5E.SHIELDS, SRD5E.WEAPONS);
   SRD5E.combatRules(rules);
   SRD5E.movementRules(rules);
-  SRD5E.magicRules(rules, SRD5E.CLASSES, SRD5E.CLERIC_DOMAINS, SRD5E.SCHOOLS);
-  SRD5E.spellDescriptionRules(rules);
+  SRD5E.magicRules(rules, SRD5E.CLASSES, SRD5E.SCHOOLS);
+  SRD5E.spellRules(rules);
   rules.defineChoice('preset', 'background', 'race', 'level', 'levels');
   rules.defineChoice('random', SRD5E.RANDOMIZABLE_ATTRIBUTES);
   Quilvyn.addRuleSet(rules);
@@ -71,25 +71,10 @@ SRD5E.BACKGROUNDS = [
   'Guild Artisan', 'Hermit', 'Noble', 'Outlander', 'Sage', 'Sailor', 'Soldier',
   'Urchin'
 ];
-SRD5E.BARD_COLLEGES = ['College Of Lore'];
-// PHB
-SRD5E.BARD_COLLEGES.push('College Of Valor');
-// ENDPHB
-SRD5E.BARBARIAN_PATHS = ['Path Of The Berserker', 'Path Of The Totem Warrior'];
-// PHB
-SRD5E.BARBARIAN_TOTEMS = ['Bear Totem', 'Eagle Totem', 'Wolf Totem'];
-// ENDPHB
 SRD5E.CLASSES = [
   'Barbarian', 'Bard', 'Cleric', 'Druid', 'Fighter', 'Monk', 'Paladin',
   'Ranger', 'Rogue', 'Sorcerer', 'Warlock', 'Wizard'
 ];
-SRD5E.CLERIC_DOMAINS = ['Life Domain'];
-// PHB
-SRD5E.CLERIC_DOMAINS.push(
-  'Knowledge Domain', 'Light Domain', 'Nature Domain', 'Tempest Domain',
-  'Trickery Domain', 'War Domain'
-);
-// ENDPHB
 SRD5E.DEITIES = [
   'Auril (NE):Nature/Tempest', 'Azuth (LN):Knowledge', 'Bane (LE):War',
   'Beshaba (CE):Trickery', 'Bhaal:Death (NE)', 'Chauntea (NG):Life',
@@ -104,17 +89,6 @@ SRD5E.DEITIES = [
   'Torm (LG):War', 'Tymora (CG):Trickery', 'Tyr (LG):War',
   'Umberlee (CE):Tempest', 'Waukeen (N):Knowledge/Trickery', 'None:'
 ];
-SRD5E.DRUID_CIRCLES = ['Circle Of The Land'];
-// PHB
-SRD5E.DRUID_CIRCLES.push('Circle Of The Moon');
-// ENDPHB
-SRD5E.DRUID_LANDS = [
-  'Arctic Land', 'Coast Land', 'Desert Land', 'Forest Land', 'Grassland Land',
-  'Mountain Land', 'Swamp Land'
-];
-// PHB
-SRD5E.DRUID_LANDS.push('Underdark Land');
-// ENDPHB
 SRD5E.FEATS = [
   'Alert', 'Athleete', 'Actor', 'Charger', 'Crossbow Expert',
   'Defensive Duelist', 'Dual Wielder', 'Dungeon Delver', 'Durable',
@@ -127,50 +101,12 @@ SRD5E.FEATS = [
   'Shield Master', 'Skilled', 'Skulker', 'Spell Sniper', 'Tavern Brawler',
   'Tough', 'War Caster', 'Weapon Master'
 ];
-SRD5E.FIGHTER_FIGHTING_STYLES = [
-  'Archery Style', 'Defense Style', 'Dueling Style',
-  'Great Weapon Fighting Style', 'Protection Style', 'Two-Weapon Fighting Style'
-];
-SRD5E.FIGHTER_MARTIAL_ARCHETYPES = ['Champion Archetype'];
-// PHB
-SRD5E.FIGHTER_MARTIAL_ARCHETYPES.push(
-  'Battle Master Archetype', 'Eldritch Knight Archetype'
-);
-SRD5E.FIGHTER_MANEUVERS = [
-  "Commander's Strike", 'Disarming Attack', 'Distracting Strike',
-  'Evasive Footwork', 'Feinting Attack', 'Goading Attack', 'Lunging Attack',
-  'Maneuvering Attack', 'Menacing Attack', 'Parry', 'Precision Attack',
-  'Pushing Attack', 'Rally', 'Riposte', 'Sweeping Attack', 'Trip Attack'
-];
-// ENDPHB
 SRD5E.GENDERS = ['Female', 'Male'];
 SRD5E.LANGUAGES = [
   'Abyssal', 'Celestial', 'Common', 'Deep Speech', 'Draconic', 'Dwarvish',
   'Elvish', 'Giant', 'Gnomish', 'Goblin', 'Halfling', 'Infernal', 'Orc',
   'Primordial', 'Sylvan', 'Undercommon'
 ];
-SRD5E.MONK_MONASTIC_TRADITIONS = ['Way Of The Open Hand Tradition'];
-// PHB
-SRD5E.MONK_MONASTIC_TRADITIONS.push(
-  'Way Of The Four Elements Tradition', 'Way Of The Shadow Tradition'
-);
-SRD5E.MONK_ELEMENTAL_DISCIPLINES = [
-  'Breath Of Winter', 'Clench Of The North Wind', 'Eternal Mountain Defense',
-  'Fangs Of The Fire Snake', 'Fist Of Four Thunders', 'Fist Of Unbroken Air',
-  'Flames Of The Phoenix', 'Gong Of The Summit', 'Mist Stance', 'Ride The Wind',
-  'River Of Hungry Flame', 'Rush Of The Gale Spirits',
-  'Shape Of The Flowing River', 'Sweeping Cinder Strike', 'Water Whip',
-  'Wave Of The Rolling Earth'
-];
-// ENDPHB
-SRD5E.PALADIN_FIGHTING_STYLES = [
-  'Defense Style', 'Dueling Style', 'Great Weapon Fighting Style',
-  'Protection Style'
-];
-SRD5E.PALADIN_SACRED_OATHS = ['Oath Of Devotion'];
-// PHB
-SRD5E.PALADIN_SACRED_OATHS.push('Oath Of The Ancients', 'Oath Of Vengeance');
-// ENDPHB
 SRD5E.RACES = [
   'Black Dragonborn', 'Blue Dragonborn', 'Brass Dragonborn',
   'Bronze Dragonborn', 'Copper Dragonborn', 'Gold Dragonborn',
@@ -187,34 +123,10 @@ SRD5E.RANDOMIZABLE_ATTRIBUTES = [
   'features', 'feats', 'skills', 'languages', 'hitPoints', 'armor', 'shield',
   'weapons', 'spells', 'tools'
 ];
-SRD5E.RANGER_ARCHETYPES = ['Hunter'];
-// PHB
-SRD5E.RANGER_ARCHETYPES.push('Beast Master');
-// ENDPHB
-SRD5E.RANGER_FIGHTING_STYLES = [
-  'Archery Style', 'Defense Style', 'Dueling Style', 'Two-Weapon Fighting Style'
-];
-SRD5E.RANGER_HUNTER_TECHNIQUES = [
-  'Colossus Slayer', 'Giant Killer', 'Horde Breaker', 'Escape The Horde',
-  'Multiattack Defense', 'Steel Will', 'Volley', 'Whirlwind Attack',
-  'Evasion', 'Stand Against The Tide', 'Uncanny Dodge'
-];
-SRD5E.ROGUISH_ARCHETYPES = ['Thief'];
-// PHB
-SRD5E.ROGUISH_ARCHETYPES.push('Arcane Trickster', 'Assassin');
-// ENDPHB
 SRD5E.SCHOOLS = [
   'Abjuration:Abju', 'Conjuration:Conj', 'Divination:Divi', 'Enchantment:Ench',
   'Evocation:Evoc', 'Illusion:Illu', 'Necromancy:Necr', 'Transmutation:Tran'
 ];
-SRD5E.SORCERER_METAMAGIC_OPTIONS = [
-  'Careful Spell', 'Distant Spell', 'Empowered Spell', 'Extended Spell',
-  'Heightened Spell', 'Quickened Spell', 'Subtle Spell', 'Twinned Spell'
-];
-SRD5E.SORCEROUS_ORIGINS = ['Draconic Bloodline'];
-// PHB
-SRD5E.SORCEROUS_ORIGINS.push('Wild Magic');
-// ENDPHB
 SRD5E.SPELLS = {
 
   'Acid Splash':'Conjuration',
@@ -762,7 +674,7 @@ SRD5E.spellsDescriptions = {
   'Blade Barrier':"R90' 100'x20'x5' blade wall passers 6d10 HP slashing (Dex neg) for conc/10 min",
   'Blade Ward':"Self resist bludgeon, pierce, slash damage for 1 rd",
   'Bless':"R30' 3 targets +1d4 to attack/save rolls for conc/1 min",
-  'Blight':"R30; target 8d8 HP necrotic (Con half)",
+  'Blight':"R30' target 8d8 HP necrotic (Con half)",
   'Blinding Smite':"Self next attack +3d8 HP radiant and blind (Con neg) for conc/1 min",
   'Blindness/Deafness':"R30' target blind or deaf (Con neg) for 1 min",
   'Blink':"Self 50% chance of ethereal for 1 min",
@@ -1377,6 +1289,7 @@ SRD5E.classRules = function(rules, classes) {
         spellSlots;
     var name = classes[i];
 
+    console.log('Define class ' + name);
     if(name == 'Barbarian') {
 
       features = [
@@ -1430,19 +1343,9 @@ SRD5E.classRules = function(rules, classes) {
         '14:Wolf Totemic Attunement:combat:' +
           'Bonus knock large or smaller foe after successful attack'
       );
-      notes = null;
 //ENDPHB
       hitDie = 12;
-// PHB
-      notes = [
-        'validationNotes.barbarianBearTotemSelectableFeatureFeatures:' +
-          'Requires Path Of The Totem Warrior',
-        'validationNotes.barbarianEagleTotemSelectableFeatureFeatures:' +
-          'Requires Path Of The Totem Warrior',
-        'validationNotes.barbarianWolfTotemSelectableFeatureFeatures:' +
-          'Requires Path Of The Totem Warrior'
-      ];
-// ENDPHB
+      notes = null;
       proficiencyCount = {'Save':2, 'Skill':2, 'Armor':3, 'Weapon':2};
       proficienciesGiven = {
         'Save': ['Constitution', 'Strength'],
@@ -1453,7 +1356,12 @@ SRD5E.classRules = function(rules, classes) {
         'Skill':['Animal Handling', 'Athletics', 'Intimidation', 'Nature',
                  'Perception', 'Survival']
       };
-      selectableFeatures = SRD5E.BARBARIAN_PATHS.concat(SRD5E.BARBARIAN_TOTEMS);
+      selectableFeatures = [
+        '3:Path Of The Berserker::',
+        '3:Path Of The Totem Warrior (Bear)::',
+        '3:Path Of The Totem Warrior (Eagle)::',
+        '3:Path Of The Totem Warrior (Wolf)::'
+      ];
       spellAbility = null;
       spellsKnown = null;
       spellSlots = null;
@@ -1471,38 +1379,41 @@ SRD5E.classRules = function(rules, classes) {
         'barbarianFeatures.Path Of The Berserker', '?', null
       );
 // PHB
+      rules.defineRule('totemicBarbarian',
+        'barbarianFeatures.Aspect Of The Bear', '=', '1',
+        'barbarianFeatures.Aspect Of The Eagle', '=', '1',
+        'barbarianFeatures.Aspect Of The Wolf', '=', '1'
+      );
       rules.defineRule('barbarianFeatures.Aspect Of The Bear',
-        'barbarianFeatures.Bear Totem', '?', null
+        'barbarianFeatures.Path Of The Totem Warrior (Bear)', '?', null
       );
       rules.defineRule('barbarianFeatures.Aspect Of The Eagle',
-        'barbarianFeatures.Eagle Totem', '?', null
+        'barbarianFeatures.Path Of The Totem Warrior (Eagle)', '?', null
       );
       rules.defineRule('barbarianFeatures.Aspect Of The Wolf',
-        'barbarianFeatures.Wolf Totem', '?', null
+        'barbarianFeatures.Path Of The Totem Warrior (Wolf)', '?', null
       );
       rules.defineRule('barbarianFeatures.Bear Totem Spirit',
-        'barbarianFeatures.Bear Totem', '?', null
+        'barbarianFeatures.Path Of The Totem Warrior (Bear)', '?', null
       );
       rules.defineRule('barbarianFeatures.Bear Totemic Attunement',
-        'barbarianFeatures.Bear Totem', '?', null
+        'barbarianFeatures.Path Of The Totem Warrior (Bear)', '?', null
       );
       rules.defineRule('barbarianFeatures.Eagle Totem Spirit',
-        'barbarianFeatures.Eagle Totem', '?', null
+        'barbarianFeatures.Path Of The Totem Warrior (Eagle)', '?', null
       );
       rules.defineRule('barbarianFeatures.Eagle Totemic Attunement',
-        'barbarianFeatures.Eagle Totem', '?', null
+        'barbarianFeatures.Path Of The Totem Warrior (Eagle)', '?', null
       );
       rules.defineRule('barbarianFeatures.Wolf Totem Spirit',
-        'barbarianFeatures.Wolf Totem', '?', null
+        'barbarianFeatures.Path Of The Totem Warrior (Wolf)', '?', null
       );
-      rules.defineRule('barbarianFeatures.Spirit Seeker',
-        'barbarianFeatures.Path Of The Totem Warrior', '?', null
-      );
-      rules.defineRule('barbarianFeatures.Spirit Walker',
-        'barbarianFeatures.Path Of The Totem Warrior', '?', null
-      );
+      rules.defineRule
+        ('barbarianFeatures.Spirit Seeker', 'totemicBarbarian', '?', null);
+      rules.defineRule
+        ('barbarianFeatures.Spirit Walker', 'totemicBarbarian', '?', null);
       rules.defineRule('barbarianFeatures.Wolf Totemic Attunement',
-        'barbarianFeatures.Wolf Totem', '?', null
+        'barbarianFeatures.Path Of The Totem Warrior (Wolf)', '?', null
       );
 // ENDPHB
 
@@ -1519,8 +1430,7 @@ SRD5E.classRules = function(rules, classes) {
       rules.defineRule('combatNotes.rageFeature.1',
         'levels.Barbarian', '+=', 'source < 3 ? 2 : source < 6 ? 3 : source < 12 ? 4 : source < 17 ? 5 : source < 20 ? 6 : "unlimited"'
       );
-      // Inelegant hacks to show barbarianUnarmoredDefense note properly even
-      // when armor != "None" or constitutionModifier == 0
+      // Show Unarmored Defense note even if armor != None or conMod == 0
       rules.defineRule('combatNotes.barbarianUnarmoredDefenseFeature.1',
         'combatNotes.barbarianUnarmoredDefenseFeature', '?', null,
         'constitutionModifier', '=', null
@@ -1540,8 +1450,7 @@ SRD5E.classRules = function(rules, classes) {
       rules.defineRule
         ('attacksPerRound', 'combatNotes.extraAttackFeature', '+', '1');
       rules.defineRule('selectableFeatureCount.Barbarian',
-        'barbarianFeatures.Primal Path', '=', '1',
-        'barbarianFeatures.Path Of The Totem Warrior', '+', '1'
+        'barbarianFeatures.Primal Path', '=', '1'
       );
       rules.defineRule('speed', 'abilityNotes.fastMovementFeature', '+', '10');
 
@@ -1595,7 +1504,10 @@ SRD5E.classRules = function(rules, classes) {
         'Skill': SRD5E.SKILLS.map(function(skill){return skill.substring(0, skill.indexOf(':'));}),
         'Tool':['Music']
       };
-      selectableFeatures = SRD5E.BARD_COLLEGES;
+      selectableFeatures = ['3:College Of Lore::'];
+// PHB
+      selectableFeatures.push('3:College Of Valor::');
+// ENDPHB
       spellAbility = 'charisma';
       spellsKnown = [
         'B0:1:2/4:3/10:4',
@@ -1673,14 +1585,34 @@ SRD5E.classRules = function(rules, classes) {
       features = [
         '1:Armor Proficiency (Light/Medium/Shield)::',
         '1:Weapon Proficiency (Simple)::',
-        '1:Divine Domain:magic:Gain chosen domain benefits',
+        '1:Divine Domain::',
         '1:Spellcasting::',
         '2:Channel Divinity:feature:Turn undead, domain effect %V/short rest',
         "2:Turn Undead:combat:R30' Undead flee for 1 min (%V DC Wis neg)",
         '4:Ability Score Improvement:ability:+%V distributed',
         '5:Destroy Undead:combat:Turn destroys up to CR %V',
-        '10:Divine Intervention:magic:%V% chance of deity help 1/wk'
+        '10:Divine Intervention:magic:%V% chance of deity help 1/wk',
+        // Life Domain
+        '1:Disciple Of Life:magic:' +
+          'Healing spells restore additional 2 * spell level HP',
+        '2:Preserve Life:magic:' +
+          "R30' Channel Energy to divide %V HP among chosen targets",
+        '6:Blessed Healer:magic:' +
+          'Self regain 2 * spell level HP from casting healing spells',
+        '8:Divine Strike:combat:+%Vd8 HP 1/turn',
+        '17:Supreme Healing:magic:Use maximum values on healing spells'
       ];
+// PHB
+      features.push(
+        // TODO
+        // Knowledge Domain
+        // Light Domain
+        // Nature Domain
+        // Tempest Domain
+        // Trickery Domain
+        // War Domain
+      );
+// ENDPHB
       hitDie = 8;
       notes = null;
       proficiencyCount = {'Save':2, 'Skill':2, 'Armor':3, 'Weapon':1};
@@ -1692,7 +1624,17 @@ SRD5E.classRules = function(rules, classes) {
       proficiencyChoices = {
         'Skill':['History', 'Insight', 'Medicine', 'Persuasion', 'Religion']
       };
-      selectableFeatures = SRD5E.CLERIC_DOMAINS;
+      selectableFeatures = ['1:Life Domain::'];
+// PHB
+      selectableFeatures.push(
+        '1:Knowledge Domain::',
+        '1:Light Domain::',
+        '1:Nature Domain::',
+        '1:Tempest Domain::',
+        '1:Trickery Domain::',
+        '1:War Domain::'
+      );
+// ENDPHB
       spellAbility = 'wisdom';
       spellsKnown = [
         'C0:1:3/4:4/10:5',
@@ -1714,6 +1656,23 @@ SRD5E.classRules = function(rules, classes) {
         'C8:15:1',
         'C9:17:1'
       ];
+      // TODO Domain spells
+
+      rules.defineRule('clericFeatures.Disciple Of Life',
+        'clericFeatures.Life Domain', '?', null
+      );
+      rules.defineRule('clericFeatures.Perserve Life',
+        'clericFeatures.Life Domain', '?', null
+      );
+      rules.defineRule('clericFeatures.Blessed Healer',
+        'clericFeatures.Life Domain', '?', null
+      );
+      rules.defineRule('clericFeatures.Divine Strike',
+        'clericFeatures.Life Domain', '?', null
+      );
+      rules.defineRule('clericFeatures.Supreme Healing',
+        'clericFeatures.Life Domain', '?', null
+      );
 
       rules.defineRule('abilityNotes.abilityScoreImprovementFeature',
         'levels.Cleric', '+=', 'source >= 19 ? 5 : Math.floor(source / 4)'
@@ -1721,6 +1680,9 @@ SRD5E.classRules = function(rules, classes) {
       rules.defineRule('casterLevelDivine', 'levels.Cleric', '+=', null);
       rules.defineRule('combatNotes.destroyUndeadFeature',
         'levels.Cleric', '=', 'source < 8 ? 0.5 : Math.floor((source - 5) / 3)'
+      );
+      rules.defineRule('combatNotes.divineStrikeFeature',
+        'levels.cleric', '=', 'source < 8 ? null : source < 14 ? 1 : 2'
       );
       rules.defineRule('combatNotes.turnUndeadFeature',
         'wisdomModifier', '=', 'source + 8',
@@ -1731,6 +1693,12 @@ SRD5E.classRules = function(rules, classes) {
       );
       rules.defineRule
         ('magicNotes.divineInterventionFeature', 'level.Cleric', '=', null);
+      rules.defineRule
+        ('magicNotes.preserveLifeFeature', 'levels.Cleric', '=', '5 * source');
+      rules.defineRule
+        ('proficiencyCount.Armor', 'clericFeatures.Life Domain', '+=', '1');
+      rules.defineRule
+        ('armorProficiencies.Heavy', 'clericFeatures.Life Domain', '=', '1');
       rules.defineRule('selectableFeatureCount.Cleric',
         'clericFeatures.Divine Domain', '=', '1'
       );
@@ -1790,8 +1758,12 @@ SRD5E.classRules = function(rules, classes) {
           'Requires Circle Of The Land',
         'validationNotes.druidSwampLandSelectableFeatureFeatures:' +
           'Requires Circle Of The Land',
+        'validationNotes.druidCircleOfTheLandSelectableFeatureFeatures:' +
+          'Requires Arctic Land || Coast Land || Desert Land || ' +
+            'Forest Land || Grassland Land || Mountain Land || Swamp Land'
       ];
 //PHB
+      notes[notes.length - 1] += ' || Underdark Land';
       notes.push(
         'validationNotes.druidUnderdarkLandSelectableFeatureFeatures:' +
           'Requires Circle Of The Land',
@@ -1810,7 +1782,22 @@ SRD5E.classRules = function(rules, classes) {
         'Skill':['Arcana', 'Animal Handling', 'Insight', 'Medicine', 'Nature',
                  'Perception', 'Religion', 'Survival']
       };
-      selectableFeatures = SRD5E.DRUID_CIRCLES.concat(SRD5E.DRUID_LANDS);
+      selectableFeatures = ['2:Circle Of The Land::'];
+// PHB
+      selectableFeatures.push('2:Circle Of The Moon::');
+// ENDPHB
+      selectableFeatures.push(
+        '2:Arctic Land::',
+        '2:Coast Land::',
+        '2:Desert Land::',
+        '2:Forest Land::',
+        '2:Grassland Land::',
+        '2:Mountain Land::',
+        '2:Swamp Land::'
+      );
+// PHB
+      selectableFeatures.push('2:Underdark Land::');
+// ENDPHB
       spellAbility = 'wisdom';
       spellsKnown = [
         'D0:1:2/4:3/10:4',
@@ -1889,7 +1876,7 @@ SRD5E.classRules = function(rules, classes) {
       );
       rules.defineRule('selectableFeatureCount.Druid',
         'druidFeatures.Druid Circle', '=', '1',
-        'druidFeatures.Circle Of The Land', '+', '1'
+        'druidFeatures.Circle Spells', '+', '1'
       );
       rules.defineRule('magicNotes.circleSpellsFeature.1',
         'features.Circle Spells', '?', 'SRD5E.landsCircleSpells.current = []'
@@ -1943,49 +1930,42 @@ SRD5E.classRules = function(rules, classes) {
       );
 // ENDPHB
       hitDie = 10;
-      notes = [
-        'combatNotes.archeryStyleFeature:+2 ranged attack',
-        'combatNotes.defenseStyleFeature:+1 AC in armor',
-        'combatNotes.duelingStyleFeature:+2 HP with single, one-hand weapon',
-        'combatNotes.greatWeaponFightingStyleFeature:' +
-          'Reroll damage of 1 or 2 with two-handed weapons',
-        'combatNotes.protectionStyleFeature:' +
-          "Use shield to impose attack DisAdv on foe w/in 5'",
-        'combatNotes.two-weaponFightingStyleFeature:' +
-          'Add ability modifier to second attack damage',
-      ];
+      notes = null;
 // PHB
-      notes.push(
-        "combatNotes.commander'sStrikeFeatue:" +
-          'Delegate one attack to companion, add superiority die to attack',
-        'combatNotes.disarmingAttackFeature:' +
-          'Add superiority die to damage, foe drops item (DC %V Str neg)',
-        'combatNotes.distractingAttackFeature:' +
-          'Add superiority die to damage, companion has Adv on attack same foe',
-        'combatNotes.evasiveFootworkFeature:' +
-          'Add superiority die to AC during move',
-        'combatNotes.feigntingAttackFeature:' +
-          'Adv next attack, add superiority die to damage',
-        'combatNotes.goadingAttackFeature:' +
-          'Add superiority die to damage, foe DisAdv attack others (DC %V Wis neg)',
-        'combatNotes.lungingAttackFeature:' +
-          "+5' melee range, add superiority die to damage",
-        'combatNotes.maneuveringAttackFeature:' +
-          'Add superiority die to damage, companion move half speed w/out AOO',
-        'combatNotes.parryFeature:' +
-          'Reduce damage from foe hit by superiority die + %V',
-        'combatNotes.precisionAttackFeature:Add superiority die to atteck',
-        'combatNotes.pushingFeature:' +
-          "Add superiority die to damage, foe moves away 15' (DC %V Str neg)",
-        'combatNotes.rallyFeature:' +
-          'Chosen companion gains superiority die + %V temp HP',
-        'combatNotes.riposteFeature:' +
-          'Attack after foe miss, add superiority die to damage',
-        'combatNotes.sweepingAttackFeature:' +
-          'Do Superiority die damage to second foe w/in reach',
-        'combatNotes.tripAttackFeature:' +
-          'Add superiority die to damage, foe knocked prone (DC %V Str neg)',
-      );
+      notes = [
+        "validationNotes.fighterCommander'sStrikeSelectableFeaturesFeature:" +
+          'Requires Maneuvers',
+        'validationNotes.fighterDisarmingAttackSelectableFeaturesFeature:' +
+          'Requires Maneuvers',
+        'validationNotes.fighterDistractingStrikeSelectableFeaturesFeature:' +
+          'Requires Maneuvers',
+        'validationNotes.fighterEvasiveFootworkSelectableFeaturesFeature:' +
+          'Requires Maneuvers',
+        'validationNotes.fighterFeintingAttackSelectableFeaturesFeature:' +
+          'Requires Maneuvers',
+        'validationNotes.fighterGoadingAttackSelectableFeaturesFeature:' +
+          'Requires Maneuvers',
+        'validationNotes.fighterLungingAttackSelectableFeaturesFeature:' +
+          'Requires Maneuvers',
+        'validationNotes.fighterManeuveringAttackSelectableFeaturesFeature:' +
+          'Requires Maneuvers',
+        'validationNotes.fighterMenacingAttackSelectableFeaturesFeature:' +
+          'Requires Maneuvers',
+        'validationNotes.fighterParrySelectableFeaturesFeature:' +
+          'Requires Maneuvers',
+        'validationNotes.fighterPrecisionAttackSelectableFeaturesFeature:' +
+          'Requires Maneuvers',
+        'validationNotes.fighterPushingAttackSelectableFeaturesFeature:' +
+          'Requires Maneuvers',
+        'validationNotes.fighterRallySelectableFeaturesFeature:' +
+          'Requires Maneuvers',
+        'validationNotes.fighterRiposteSelectableFeaturesFeature:' +
+          'Requires Maneuvers',
+        'validationNotes.fighterSweepingAttackSelectableFeaturesFeature:' +
+          'Requires Maneuvers',
+        'validationNotes.fighterTripAttackSelectableFeaturesFeature:' +
+          'Requires Maneuvers'
+      ];
 // ENDPHB
       proficiencyCount = {'Save':2, 'Skill':2, 'Armor':4, 'Weapon':2};
       proficienciesGiven = {
@@ -1997,9 +1977,51 @@ SRD5E.classRules = function(rules, classes) {
         'Skill': ['Acrobatics', 'Animal Handling', 'Athletics', 'History',
                   'Insight', 'Intimidation', 'Perception', 'Survival']
       };
-      selectableFeatures = SRD5E.FIGHTER_FIGHTING_STYLES.concat(SRD5E.FIGHTER_MARTIAL_ARCHETYPES);
+      selectableFeatures = [
+        '1:Archery Style:combat:+2 ranged attack',
+        '1:Defense Style:combat:+1 AC in armor',
+        '1:Dueling Style:combat:+2 HP with single, one-hand weapon',
+        '1:Great Weapon Fighting Style:combat:' +
+          'Reroll damage of 1 or 2 with two-handed weapons',
+        '1:Protection Style:combat:' +
+          "Use shield to impose attack DisAdv on foe w/in 5'",
+        '1:Two-Weapon Fighting Style:combat:' +
+          'Add ability modifier to second attack damage'
+      ]
+      selectableFeatures.push('3:Champion Archetype::');
 // PHB
-      selectableFeatures = selectableFeatures.concat(SRD5E.FIGHTER_MANEUVERS);
+      selectableFeatures.push(
+        '3:Battle Master Archetype',
+        '3:Eldritch Knight Archetype'
+      );
+      selectableFeatures.push(
+       "3:Commander's Strike:combat:" +
+         'Delegate one attack to companion, add superiority die to attack',
+       '3:Disarming Attack:combat:' +
+         'Add superiority die to damage, foe drops item (DC %V Str neg)',
+       '3:Distracting Strike:combat:' +
+         'Add superiority die to damage, companion has Adv on attack same foe',
+       '3:Evasive Footwork:combat:Add superiority die to AC during move',
+       '3:Feinting Attack:combat:' +
+          'Adv next attack, add superiority die to damage',
+       '3:Goading Attack:combat:' +
+         'Add superiority die to damage, foe DisAdv attack others (DC %V Wis neg)',
+       "3:Lunging Attack:combat:+5' melee range, add superiority die to damage",
+       '3:Maneuvering Attack:combat:' +
+         'Add superiority die to damage, companion move half speed w/out AOO',
+       '3:Menacing Attack:combat:' +
+         'Add superiority die to damage, foe frightened until next turn (DC %V Wis neg)',
+       '3:Parry:combat:Reduce damage from foe hit by superiority die + %V',
+       '3:Precision Attack:combat:Add superiority die to atteck',
+       '3:Pushing Attack:combat:' +
+         "Add superiority die to damage, foe moves away 15' (DC %V Str neg)",
+       '3:Rally:combat:Chosen companion gains superiority die + %V temp HP',
+       '3:Riposte:combat:Attack after foe miss, add superiority die to damage',
+       '3:Sweeping Attack:combat:' +
+         'Do Superiority die damage to second foe w/in reach',
+       '3:Trip Attack:combat:' +
+         'Add superiority die to damage, foe knocked prone (DC %V Str neg)'
+      );
 // ENDPHB
       spellAbility = null;
       spellsKnown = null;
@@ -2061,10 +2083,9 @@ SRD5E.classRules = function(rules, classes) {
       rules.defineRule('combatNotes.actionSurgeFeature',
         'levels.Fighter', '=', 'source < 17 ? 1 : 2'
       );
-      // Inelegant hacks to show defenseStyle note properly even when armor
-      // == "None"
+      // Show Defense Style note even if armor == None
       rules.defineRule('combatNotes.defenseStyleFeature.1',
-        'combatNotes.defenseStyle', '?', null,
+        'combatNotes.defenseStyleFeature', '?', null,
         'armor', '=', 'source == "None" ? null : 1'
       );
       rules.defineRule
@@ -2105,6 +2126,8 @@ SRD5E.classRules = function(rules, classes) {
           'source<7 ? 3 : source<10 ? 5 : source<15 ? 7 : 9'
       );
       rules.defineRule
+        ('combatNotes.menacingAttackFeature', 'maneuverSaveDC', '=', null);
+      rules.defineRule
         ('combatNotes.parryFeature', 'dexterityModifier', '=', null);
       rules.defineRule('combatNotes.superiorityDiceFeature',
         'levels.Fighter', '=', 'source < 7 ? 4 : source < 15 ? 5 : 6'
@@ -2141,7 +2164,7 @@ SRD5E.classRules = function(rules, classes) {
         '2:Patient Defense:combat:Spend 1 Ki to Dodge (foe attack DisAdv)',
         '2:Step Of The Wind:combat:' +
           'Spend 1 Ki to Disengage or Dash, x2 jump',
-        '2:Unarmored Movement:ability:+%1 speed in no armor',
+        '2:Unarmored Movement:ability:+%V speed in no armor',
         '3:Monastic Tradition::',
         '3:Deflect Missiles:combat:React to reduce missile damage by 1d10+%V',
         '4:Ability Score Improvement:ability:+%V distributed',
@@ -2190,35 +2213,38 @@ SRD5E.classRules = function(rules, classes) {
       notes = null;
 // PHB
       notes = [
-        'magicNotes.breathOfWinterFeature:' +
-          'Spend 6 Ki to cast <i>Cone Of Cold</i>',
-        'magicNotes.clenchOfTheNorthWindFeature:' +
-          'Spend 3 Ki to cast <i>Hold Person</i>',
-        'magicNotes.eternalMountainDefenseFeature:' +
-          'Spend 5 Ki to cast <i>Stoneskin</i>',
-        'magicNotes.fistOfFourThundersFeature:' +
-          'Spend 2 Ki to cast <i>Thunderwave</i>',
-        'magicNotes.fistOfUnbrokenAirFeature:' +
-          "R30' Spend 2 Ki to create air blast 3d10 HP, push 20' and knock prone (DC %V Str half)",
-        'magicNotes.flamesOfThePhoenixFeature:' +
-          'Spend 4 Ki to cast <i>Fireball</i>',
-        'magicNotes.GongOfTheSummitFeature:' +
-          'Spend 3 Ki to cast <i>Shatter</i>',
-        'magicNotes.mistStanceFeature:' +
-          'Spend 4 Ki to cast self <i>Gaseous Form</i>',
-        'magicNotes.rideTheWindFeature:Spend 4 Ki to cast self <i>Fly</i>',
-        'magicNotes.riverOfHungryFlameFeature:' +
-          'Spend 5 Ki to cast <i>Wall Of Fire</i>',
-        'magicNotes.rushOfTheGaleSpiritsFeature:' +
-          'Spend 2 Ki to cast <i>Gust Of Wind</i>',
-        'magicNotes.shapeTheFlowingRiverFeature:' +
-          "R120' Freeze, thaw, shape 30'x30' water",
-        'magicNotes.sweepingCinderStrikeFeature:' +
-          'Spend 2 Ki to cast <i>Burning Hands</i>',
-        'magicNotes.waterWhipFeature:' +
-          "R30' Spend 2 Ki to create water whip 3d10 HP, pull 25' or knock prone (DC %V Str half)",
-        'magicNotes.waveOfRollingEarthFeature:' +
-          'Spend 6 Ki to cast <i>Wall Of Stone</i>'
+        'validationNotes.monkBreathOfWinterSelectableFeatureFeatures:' +
+          'Requires Way Of The Four Elements',
+        'validationNotes.monkClenchOfTheNorthWindSelectableFeatureFeatures:' +
+          'Requires Way Of The Four Elements',
+        'validationNotes.monkEternalMountainDefenseSelectableFeatureFeatures:' +
+          'Requires Way Of The Four Elements',
+        'validationNotes.monkFangsOfTheFireSnakeSelectableFeatureFeatures:' +
+          'Requires Way Of The Four Elements',
+        'validationNotes.monkFistOfFourThundersSelectableFeatureFeatures:' +
+          'Requires Way Of The Four Elements',
+        'validationNotes.monkFistOfUnbrokenAirSelectableFeatureFeatures:' +
+          'Requires Way Of The Four Elements',
+        'validationNotes.monkFlamesOfThePhoenixSelectableFeatureFeatures:' +
+          'Requires Way Of The Four Elements',
+        'validationNotes.monkGongOfTheSUmmitSelectableFeatureFeatures:' +
+          'Requires Way Of The Four Elements',
+        'validationNotes.monkMistStanceSelectableFeatureFeatures:' +
+          'Requires Way Of The Four Elements',
+        'validationNotes.monkRideTheWindSelectableFeatureFeatures:' +
+          'Requires Way Of The Four Elements',
+        'validationNotes.monkRiverOfHungryFlameSelectableFeatureFeatures:' +
+          'Requires Way Of The Four Elements',
+        'validationNotes.monkRushOfTheGaleSpiritsSelectableFeatureFeatures:' +
+          'Requires Way Of The Four Elements',
+        'validationNotes.monkShapeTheFlowingRiverSelectableFeatureFeatures:' +
+          'Requires Way Of The Four Elements',
+        'validationNotes.monkSweepingCinderStrikeSelectableFeatureFeatures:' +
+          'Requires Way Of The Four Elements',
+        'validationNotes.monkWaterWhipSelectableFeatureFeatures:' +
+          'Requires Way Of The Four Elements',
+        'validationNotes.monkWaveOfRollingEarthSelectableFeatureFeatures:' +
+          'Requires Way Of The Four Elements',
       ];
 // ENDPHB
       proficiencyCount = {'Save':2, 'Skill':2, 'Tool':1, 'Weapon':2};
@@ -2231,10 +2257,38 @@ SRD5E.classRules = function(rules, classes) {
                  'Stealth'],
         'Tool':['Artisan', 'Music']
       };
-      selectableFeatures = SRD5E.MONK_MONASTIC_TRADITIONS;
+      selectableFeatures = ['3:Way Of The Open Hand Tradition::'];
 // PHB
-      selectableFeatures =
-        selectableFeatures.concat(SRD5E.MONK_ELEMENTAL_DISCIPLINES);
+      selectableFeatures.push(
+        '3:Way Of The Four Elements Tradition::',
+        '3:Way Of The Shadow Tradition::'
+      );
+      selectableFeatures.push(
+        '17:Breath Of Winter:magic:Spend 6 Ki to cast <i>Cone Of Cold</i>',
+        '6:Clench Of The North Wind:magic:' +
+          'Spend 3 Ki to cast <i>Hold Person</i>',
+        '11:Eternal Mountain Defense:magic:Spend 5 Ki to cast <i>Stoneskin</i>',
+        '3:Fangs Of The Fire Snake:magic:' +
+          "Spend 1 Ki to have unarmed attack reach 10', do 1d10 HP fire extra",
+        '3:Fist Of Four Thunders:magic:Spend 2 Ki to cast <i>Thunderwave</i>',
+        '3:Fist Of Unbroken Air:magic:' +
+          "R30' Spend 2 Ki to create air blast 3d10 HP, push 20' and knock prone (DC %V Str half)",
+        '11:Flames Of The Phoenix:magic:Spend 4 Ki to cast <i>Fireball</i>',
+        '6:Gong Of The Summit:magic:Spend 3 Ki to cast <i>Shatter</i>',
+        '11:Mist Stance:magic:Spend 4 Ki to cast self <i>Gaseous Form</i>',
+        '11:Ride The Wind:magic:Spend 4 Ki to cast self <i>Fly</i>',
+        '17:River Of Hungry Flame:magic:Spend 5 Ki to cast <i>Wall Of Fire</i>',
+        '3:Rush Of The Gale Spirits:magic:' +
+          'Spend 2 Ki to cast <i>Gust Of Wind</i>',
+        '3:Shape Of The Flowing River:magic:' +
+          "R120' Freeze, thaw, shape 30'x30' water",
+        '3:Sweeping Cinder Strike:magic:' +
+          'Spend 2 Ki to cast <i>Burning Hands</i>',
+        '3:Water Whip:magic:' +
+          "R30' Spend 2 Ki to create water whip 3d10 HP, pull 25' or knock prone (DC %V Str half)",
+        '17:Wave Of The Rolling Earth:magic:' +
+          'Spend 6 Ki to cast <i>Wall Of Stone</i>'
+      );
 // ENDPHB
       spellAbility = null;
       spellsKnown = null;
@@ -2279,17 +2333,14 @@ SRD5E.classRules = function(rules, classes) {
       );
       rules.defineRule
         ('abilityNotes.slowFallFeature', 'levels.Monk', '=', 'source * 5');
-      // Inelegant hacks to show unarmoredMovement note properly even
-      // when armor != "None"
-      rules.defineRule('abilityNotes.unarmoredMovementFeature.1',
-        'abilityNotes.unarmoredMovementFeature', '?', null,
+      // Show Unarmored Movement note properly even if armor != "None"
+      rules.defineRule('abilityNotes.unarmoredMovementFeature',
         'levels.Monk', '=', 'Math.floor((source + 8) / 4) * 5'
       );
-      rules.defineRule('abilityNotes.unarmoredMovementFeature.2',
-        'abilityNotes.unarmoredMovementFeature', '?', null,
+      rules.defineRule('abilityNotes.unarmoredMovementFeature.1',
+        'abilityNotes.unarmoredMovementFeature', '=', null,
         'armor', '?', 'source == "None"',
-        'shield', '?', 'source == "None"',
-        'abilityNotes.unarmoredMovementFeature.1', '=', null
+        'shield', '?', 'source == "None"'
       );
       rules.defineRule('armorClass',
         'combatNotes.monkUnarmoredDefenseFeature.2', '+', null
@@ -2303,8 +2354,7 @@ SRD5E.classRules = function(rules, classes) {
       rules.defineRule('combatNotes.martialArtsFeature',
         'levels.Monk', '=', 'Math.floor((source + 13)/ 6) * 2'
       );
-      // Inelegant hacks to show monkUnarmoredDefense note properly even
-      // when armor != "None".
+      // Show Unarmored Defense note even if armor != None or dexMod+wisMod = 0
       rules.defineRule('combatNotes.monkUnarmoredDefenseFeature.1',
         'combatNotes.monkUnarmoredDefenseFeature', '?', null,
         'dexterityModifier', '=', null,
@@ -2359,7 +2409,7 @@ SRD5E.classRules = function(rules, classes) {
         'monkFeatures.Monastic Tradition', '=', '1'
       );
       rules.defineRule
-        ('speed', 'abilityNotes.unarmoredMovementFeature.2', '+', null);
+        ('speed', 'abilityNotes.unarmoredMovementFeature.1', '+', null);
 // PHB
       rules.defineRule('magicNotes.discipleOfTheElementsFeature',
         'levels.Monk', '=', 'source<6 ? 1 : source<11 ? 2 : source<17 ? 3 : 4'
@@ -2433,8 +2483,21 @@ SRD5E.classRules = function(rules, classes) {
         'Skill':['Athletics', 'Insight', 'Intimidation', 'Medicine',
                  'Persuasion', 'Religion']
       };
-      selectableFeatures =
-        SRD5E.PALADIN_FIGHTING_STYLES.concat(SRD5E.PALADIN_SACRED_OATHS);
+      selectableFeatures = [
+        '2:Defense Style:combat:+1 AC in armor',
+        '2:Dueling Style:combat:+2 HP with single, one-hand weapon',
+        '2:Great Weapon Fighting Style:combat:' +
+          'Reroll damage of 1 or 2 with two-handed weapons',
+        '2:Protection Style:combat:' +
+          "Use shield to impose attack DisAdv on foe w/in 5'"
+      ];
+      selectableFeatures.push('3:Oath Of Devotion::');
+// PHB
+      selectableFeatures.push(
+        '3:Oath Of The Ancients::',
+        '3:Oath Of Vengeance::'
+      );
+// ENDPHB
       spellAbility = 'wisdom';
       spellsKnown = [
         'P1:2:"all"', 'P2:5:"all"', 'P3:9:"all"', 'P4:13:"all"', 'P5:17:"all"'
@@ -2577,28 +2640,7 @@ SRD5E.classRules = function(rules, classes) {
       );
 // ENDPBH
       hitDie = 10;
-      notes = [
-        'combatNotes.archeryStyleFeature:+2 ranged attack',
-        'combatNotes.colossusSlayerFeature:+1d8 HP vs. undamaged foe 1/turn',
-        'combatNotes.defenseStyleFeature:+1 AC in armor',
-        'combatNotes.duelingStyleFeature:+2 HP with single, one-hand weapon',
-        'combatNotes.escapeTheHordeFeature:Foe DisAdv on opportunity attacks',
-        'combatNotes.giantKillerFeature:' +
-          'React to attack nearby large foe after miss',
-        'combatNotes.hordeBreakerFeature:Second attack on different nearby foe',
-        'combatNotes.multiattackDefenseFeature:+4 AC after foe first attack',
-        'combatNotes.standAgainstTheTideFeature:' +
-          'Foe miss attacks another creature',
-        'combatNotes.two-weaponFightingStyleFeature:' +
-          'Add ability modifier to second attack damage',
-        'combatNotes.uncannyDodgeFeatureUse reaction for half damage',
-        'combatNotes.whirlwindAttackFeature:' +
-          'Melee attack any number of foes in reach',
-        'combatNotes.volleyFeature:' +
-          "Ranged attack any number of foes in 10' area",
-        'saveNotes.evasionFeature:Dex save yields no damage instead of 1/2',
-        'saveNotes.steelWillFeature:Adv vs. fright'
-      ];
+      notes = null;
       proficiencyCount = {'Save':2, 'Skill':3, 'Armor':3, 'Weapon':2};
       proficienciesGiven = {
         'Save':['Dexterity', 'Strength'],
@@ -2609,8 +2651,30 @@ SRD5E.classRules = function(rules, classes) {
         'Skill':['Animal Handling', 'Athletics', 'Insight', 'Investigation',
                  'Nature', 'Perception', 'Stealth', 'Survival']
       };
-      selectableFeatures =
-        SRD5E.RANGER_FIGHTING_STYLES.concat(SRD5E.RANGER_ARCHETYPES).concat(SRD5E.RANGER_HUNTER_TECHNIQUES);
+      selectableFeatures = [
+        '2:Archery Style:combat:+2 ranged attack',
+        '2:Defense Style:combat:+1 AC in armor',
+        '2:Dueling Style:combat:+2 HP with single, one-hand weapon',
+        '2:Two-Weapon Fighting Style:combat:' +
+          'Add ability modifier to second attack damage'
+      ];
+      selectableFeatures.push('3:Hunter::');
+// PHB
+      selectableFeatures.push('3:Beast Master::');
+// ENDPHB
+      selectableFeatures.push(
+        '3:Colossus Slayer:combat:+1d8 HP vs. undamaged foe 1/turn',
+        '3:Giant Killer:combatReact to attack nearby large foe after miss',
+        '3:Horde Breaker:combat:Second attack on different nearby foe',
+        '7:Escape The Horde:combat:Foe DisAdv on opportunity attacks',
+        '7:Multiattack Defense:combat:+4 AC after foe first attack',
+        '7:Steel Will:save:Adv vs. fright',
+        "11:Volley:combat:Ranged attack any number of foes in 10' area",
+        '11:Whirlwind Attack:combat:Melee attack any number of foes in reach',
+        '15:Evasion:save:Dex save yields no damage instead of 1/2',
+        '15:Stand Against The Tide:combat:Foe miss attacks another creature',
+        '15:Uncanny Dodge:combat:Use reaction for half damage',
+      );
       spellAbility = 'wisdom';
       spellsKnown = [
         'R1:2:"all"', 'R2:5:"all"', 'R3:9:"all"', 'R4:13:"all"', 'R5:17:"all"'
@@ -2624,48 +2688,37 @@ SRD5E.classRules = function(rules, classes) {
       ];
 
       rules.defineRule('rangerFeatures.Colossus Slayer',
-        'rangerFeatures.Hunter', '?', null,
-        'levels.Ranger', '?', 'source >= 3'
+        'rangerFeatures.Hunter', '?', null
       );
       rules.defineRule('rangerFeatures.Giant Killer',
-        'rangerFeatures.Hunter', '?', null,
-        'levels.Ranger', '?', 'source >= 3'
+        'rangerFeatures.Hunter', '?', null
       );
       rules.defineRule('rangerFeatures.Horde Breaker',
-        'rangerFeatures.Hunter', '?', null,
-        'levels.Ranger', '?', 'source >= 3'
+        'rangerFeatures.Hunter', '?', null
       );
       rules.defineRule('rangerFeatures.Escape The Horde',
-        'rangerFeatures.Hunter', '?', null,
-        'levels.Ranger', '?', 'source >= 7'
+        'rangerFeatures.Hunter', '?', null
       );
       rules.defineRule('rangerFeatures.Multiattack Defense',
-        'rangerFeatures.Hunter', '?', null,
-        'levels.Ranger', '?', 'source >= 7'
+        'rangerFeatures.Hunter', '?', null
       );
       rules.defineRule('rangerFeatures.Steel Will',
-        'rangerFeatures.Hunter', '?', null,
-        'levels.Ranger', '?', 'source >= 7'
+        'rangerFeatures.Hunter', '?', null
       );
       rules.defineRule('rangerFeatures.Volley',
-        'rangerFeatures.Hunter', '?', null,
-        'levels.Ranger', '?', 'source >= 11'
+        'rangerFeatures.Hunter', '?', null
       );
       rules.defineRule('rangerFeatures.Whirlwind Attack',
-        'rangerFeatures.Hunter', '?', null,
-        'levels.Ranger', '?', 'source >= 11'
+        'rangerFeatures.Hunter', '?', null
       );
       rules.defineRule('rangerFeatures.Evasion',
-        'rangerFeatures.Hunter', '?', null,
-        'levels.Ranger', '?', 'source >= 15'
+        'rangerFeatures.Hunter', '?', null
       );
       rules.defineRule('rangerFeatures.Stand Against The Tide',
-        'rangerFeatures.Hunter', '?', null,
-        'levels.Ranger', '?', 'source >= 15'
+        'rangerFeatures.Hunter', '?', null
       );
       rules.defineRule('rangerFeatures.Uncanny Dodge',
-        'rangerFeatures.Hunter', '?', null,
-        'levels.Ranger', '?', 'source >= 15'
+        'rangerFeatures.Hunter', '?', null
       );
 // PHB
       rules.defineRule("rangerFeatures.Ranger's Companion",
@@ -2688,10 +2741,9 @@ SRD5E.classRules = function(rules, classes) {
       rules.defineRule('armorClass',
         'combatNotes.defenseStyleFeature.1', '+', null
       );
-      // Inelegant hacks to show defenseStyle note properly even when armor
-      // == "None"
+      // Show Defense Style note even if armor == None
       rules.defineRule('combatNotes.defenseStyleFeature.1',
-        'combatNotes.defenseStyle', '?', null,
+        'combatNotes.defenseStyleFeature', '?', null,
         'armor', '=', 'source == "None" ? null : 1'
       );
       rules.defineRule('armorClass',
@@ -2779,7 +2831,10 @@ SRD5E.classRules = function(rules, classes) {
                  'Intimidation', 'Investigation', 'Perception', 'Performance',
                  'Persuasion', 'Sleight Of Hand', 'Stealth']
       };
-      selectableFeatures = SRD5E.ROGUE_ARCHETYPES;
+      selectableFeatures = ['3:Thief::'];
+// PHB
+      selectableFeatures.push('3:Arcane Trickster::', '3:Assassin::');
+// ENDPHB
       spellAbility = null;
       spellsKnown = null;
       spellSlots = null;
@@ -2883,22 +2938,7 @@ SRD5E.classRules = function(rules, classes) {
       );
 // ENDPHB
       hitDie = 8;
-      notes = [
-        'magicNotes.carefulSpellFeature:' +
-          'Spend 1 sorcery point to give %V creatures save on your spell',
-        'magicNotes.distantSpellFeature:' +
-          "Spend 1 sorcery point to dbl spell range, touch at 30'",
-        'magicNotes.empoweredSpellFeature:' +
-          'Spend 1 sorcery point to reroll %V spell damage dice',
-        'magicNotes.extendedSpellFeature:' +
-          'Spend 1 sorcery point to dbl spell duration',
-        'magicNotes.heightenedSpellFeature:' +
-          'Spend 3 sorcery points to give target DisAdv on spell save',
-        'magicNotes.subtleSpellFeature:' +
-          'Spend 1 sorcery point to cast w/out somatic/verbal components',
-        'magicNotes.twinnedSpellFeature:' +
-          'Spend spell level sorcery points to affect second target'
-      ];
+      notes = null;
       proficiencyCount = {'Save':2, 'Skill':2, 'Weapon':5};
       proficienciesGiven = {
         'Save':['Charisma', 'Constitution'],
@@ -2908,8 +2948,28 @@ SRD5E.classRules = function(rules, classes) {
         'Skill':['Arcana', 'Deception', 'Insight', 'Intimidation', 'Persuasion',
                  'Religion']
       };
-      selectableFeatures =
-        SRD5E.SORCERER_METAMAGIC_OPTIONS.concat(SRD5E.SORCEROUS_ORIGINS);
+      selectableFeatures = ['1:Draconic Bloodline::'];
+// PHB
+      selectableFeatures.push('1:Wild Magic::');
+// ENDPHB
+      selectableFeatures.push(
+        '3:Careful Spell:magic:' +
+          'Spend 1 sorcery point to give %V creatures save on your spell',
+        '3:Distant Spell:magic:' +
+          "Spend 1 sorcery point to dbl spell range, touch at 30'",
+        '3:Empowered Spell:magic:' +
+          'Spend 1 sorcery point to reroll %V spell damage dice',
+        '3:Extended Spell:magic:' +
+          'Spend 1 sorcery point to dbl spell duration',
+        '3:Heightened Spell:magic:' +
+          'Spend 3 sorcery points to give target DisAdv on spell save',
+        '3:Quickened Spell:magic:' +
+          'Spend 2 sorcery points to cast spell as bonus action',
+        '3:Subtle Spell:magic:' +
+          'Spend 1 sorcery point to cast w/out somatic/verbal components',
+        '3:Twinned Spell:magic:' +
+          'Spend spell level sorcery points to affect second target'
+      );
       spellAbility = 'charisma';
       spellsKnown = [
         'S0:1:4/4:5/10:6',
@@ -2996,15 +3056,24 @@ SRD5E.classRules = function(rules, classes) {
         '1:Armor Proficiency (Light)::',
         '1:Weapon Proficiency (Simple)::',
         '1:Otherworldly Patron::TODO',
-        '1:Pact Magic::TODO',
-        '2:Eldritch Invocation::TODO',
-        '3:Pact Boon::TODO',
+        '1:Pact Magic::',
+        '2:Eldritch Invocations:magic:%V',
+        '3:Pact Boon::',
         '4:Ability Score Improvement:ability:+%V distributed',
-        '11:Mystic Arcanum::TODO',
-        '20:Eldritch Master::TODO'
+        '11:Mystic Arcanum:magic:Warlock spells %V 1/long rest',
+        '20:Eldritch Master:magic:Regain spells from patron 1/long rest'
       ];
       hitDie = 8;
-      notes = null;
+      notes = [
+        'validationNotes.bookOfAncientsSelectableFeatureFeatures:' +
+          'Requires Pact Of The Tome',
+        'validationNotes.chainsOfCarceriSelectableFeatureFeatures:' +
+          'Requires Pact Of The Chain',
+        'validationNotes.thirstingBladeSelectableFeatureFeatures:' +
+          'Requires Pact Of The Blade',
+        'validationNotes.voiceOfTheChainMasterSelectableFeatureFeatures:' +
+          'Requires Pact Of The Chain'
+      ];
       proficiencyCount = {'Save':2, 'Skill':2, 'Armor':1, 'Weapon':1};
       proficienciesGiven = {
         'Save':['Charisma', 'Wisdom'],
@@ -3015,6 +3084,54 @@ SRD5E.classRules = function(rules, classes) {
         'Skill':['Arcana', 'Deception', 'History', 'Intimidation',
                  'Investigation', 'Nature', 'Religion']
       };
+      selectableFeatures = [
+        '1:Archfey Patron::',
+        '1:Fiend Patron::',
+        '1:Great Old One Patron::',
+        '2:Agonizing Blast:magic:<i>Eldritch Blast</i> +%V HP',
+        '2:Armor Of Shadows:magic:<i>Mage Armor</i> at will',
+        '9:Ascendant Step:magic:<i>Levitate</i> at will',
+        '2:Beast Speech:magic:<i>Speak With Animals</i> at will',
+        '2:Beguiling Influence:skills:Prof Deception, Persuasion',
+        '7:Bewitching Whispers:magic:' +
+          'Use spell slot for <i>Compulsion</i> 1/long rest',
+        '2:Book Of The Ancients:magic:Inscribe rituals in Book Of Shadows',
+        '15:Chains Of Carceri:magic:' +
+          '<i>Hold Monster</i> on celetial/elemental/fiend at will',
+        "2:Devil's Sight:feature:120' darkvision",
+        '7:Dreadful Word:magic:' +
+          'Use spell slot for <i>Confusion</i> 1/long rest',
+        '2:Eldritch Sight:magic:<i>Detect Magic</i> at will',
+        "2:Eldritch Spear:magic:<i>R300' Eldritch Blast</i>",
+        '2:Eyes Of The Rune Keeper:feature:Read all writing',
+        '2:Fiendish Vigor:magic:Self <i>False Life</i> at will',
+        '2:Gaze Of Two Minds:magic:' +
+          "Perceive through willing touched target's senses for 1 turn",
+        '12:Lifedrinker:combat:+%V HP with pact weapon',
+        '2:Mask Of Many Faces:magic:<i>Disguise Self</i> at will',
+        '15:Master Of Myriad Forms:magic:<i>Alter Self</i> at will',
+        '9:Minions Of Chaos:magic:' +
+          'Use spell slot for <i>Conjure Elemental</i> 1/long rest',
+        '2:Misty Visions:magic:<i>Silent Image</i> at will',
+        '5:Mire The Mind:magic:Use spell slot for <i>Slow</i> 1/long rest',
+        '5:One With Shadows:magic:Become invisible in dim light until action',
+        '9:Otherworldly Leap:magic:Self <i>Jump</i> at will',
+        "2:Repelling Blast:magic:<i>Eldritch Blast</i> pushes 10'",
+        '7:Sculptor Of Flesh:magic:' +
+          'Use spell slot for <i>Polymorph</i> 1/long rest',
+        '5:Sign Of Ill Omen:magic:' +
+          'Use spell slot for <i>Bestow Curse</i> 1/long rest',
+        '2:Thief Of Five Fates:magic:' +
+          'Use spell slot for <i>Bane</i> 1/long rest',
+        '5:Thirsting Blade:combat:Attack twice each turn',
+        '15:Visions Of Distant Realms:magic:<i>Arcane Eye</i> at will',
+        '2:Voice Of The Chain Master:companion:Perceive/speak through familiar',
+        '9:Whispers Of The Grave:magic:<i>Speak With Dead</i> at will',
+        "15:Witch Sight:feature:R30' See true forms",
+        '3:Pact Of The Blade:magic:Create magic weapon',
+        '3:Pact Of The Chain:magic:<i>Find Familiar</i>',
+        '3:Pact Of The Tome:magic:Book Of Shadows w/3 cantrips'
+      ];
       spellAbility = 'charisma';
       spellsKnown = [
         'K0:1:2/4:3/10:4',
@@ -3031,7 +3148,25 @@ SRD5E.classRules = function(rules, classes) {
       rules.defineRule('abilityNotes.abilityScoreImprovementFeature',
         'levels.Warlock', '+=', 'source >= 19 ? 5 : Math.floor(source / 4)'
       );
+      rules.defineRule
+        ('attacksPerRound', 'combatNotes.thirstingBladeFeature', '+', '1');
       rules.defineRule('casterLevelArcane', 'levels.Warlock', '+=', null);
+      rules.defineRule('combatNotes.lifedrinkerFeature',
+        'charismaModifier', '=', 'Math.min(source, 1)'
+      );
+      rules.defineRule
+        ('magicNotes.agonizingBlastFeature', 'charismaModifier', '=', null);
+      rules.defineRule('magicNotes.eldritchInvocationsFeature',
+        'levels.Warlock', '=', 'source == 2 ? 2 : source < 9 ? Math.floor((source + 3) / 2) : Math.floor((source + 6) / 3)'
+      );
+      rules.defineRule('magicNotes.mysticArcanumFeature',
+        'levels.Warlock', '=', 'source<13 ? "6" : source<15 ? "6,7" : source<17 ? "6,7,8" : "6,7,8,9"'
+      );
+      rules.defineRule('selectableFeatureCount.Warlock',
+        'warlockFeatures.Otherworldly Patron', '=', '1',
+        'warlockFeatures.Pact Boon', '+', '1',
+        'magicNotes.eldritchInvocationsFeature', '+', null
+      );
 
     } else if(name == 'Wizard') {
 
@@ -3055,7 +3190,7 @@ SRD5E.classRules = function(rules, classes) {
         'Skill': ['Arcana', 'History', 'Insight', 'Investigation', 'Medicine',
                   'Religion']
       };
-      selectableFeatures = SRD5E.SCHOOLS.map(function(school){return school.substring(0, school.indexOf(':')) + ' Tradition';}),
+      selectableFeatures = SRD5E.SCHOOLS.map(function(school){return '1:' + school.substring(0, school.indexOf(':')) + ' Tradition::';}),
       spellAbility = 'intelligence';
       spellsKnown = [
         'W0:1:3/4:4/10:5',
@@ -3859,8 +3994,8 @@ SRD5E.featRules = function(rules, feats) {
 
 };
 
-/* Defines the rules related to spells and domains. */
-SRD5E.magicRules = function(rules, classes, domains, schools) {
+/* Defines the rules related to spells. */
+SRD5E.magicRules = function(rules, classes, schools) {
 
   rules.defineChoice('schools', schools);
   schools = rules.getChoices('schools');
@@ -4120,96 +4255,6 @@ SRD5E.magicRules = function(rules, classes, domains, schools) {
         }
       }
     }
-  }
-
-  rules.defineChoice('domains', domains);
-
-  for(var i = 0; i < domains.length; i++) {
-
-    var domain = domains[i];
-    var features = null;
-    var notes = null;
-    var proficiencyCount = {};
-    var proficienciesGiven = {};
-    var proficiencyChoices = {};
-    var spells = null;
-
-    if(domain == 'Life') {
-      features = [
-        '1:Disciple Of Life', '2:Preserve Life', '6:Blessed Healer',
-        '8:Divine Strike', '17:Supreme Healing'
-      ];
-      notes = [
-        'combatNotes.divineStrikeFeature:+%Vd8 HP 1/turn',
-        'magicNotes.discipleOfLifeFeature:' +
-          'Healing spells restore additional 2 * spell level HP',
-        'magicNotes.preserveLifeFeature:' +
-          "R30' Channel Energy to divide %V HP among chosen targets",
-        'magicNotes.blessedHealerFeature:' +
-          'Self regain 2 * spell level HP from casting healing spells',
-        'magicNotes.supremeHealingFeature:Use maximum values on healing spells'
-      ];
-      proficiencyCount = {'Armor':1};
-      proficienciesGiven = {'Armor':['Heavy']};
-      spells = [
-        'Bless', 'Cure Wounds', 'Lesser Restoration', 'Spiritual Weapon',
-        'Beacon Of Hope', 'Revivify', ,'Death Ward', 'Guardian Of Faith',
-        'Mass Cure Wounds', 'Raise Dead'
-      ];
-      rules.defineRule('combatNotes.divineStrikeFeature',
-        'levels.cleric', '=', 'source < 8 ? null : source < 14 ? 1 : 2'
-      );
-      rules.defineRule
-        ('magicNotes.preserveLifeFeature', 'levels.Cleric', '=', '5 * source');
-// PHB
-    } else if(domain == 'Knowledge') {
-      // TODO
-    } else if(domain == 'Light') {
-      // TODO
-    } else if(domain == 'Nature') {
-      // TODO
-    } else if(domain == 'Tempest') {
-      // TODO
-    } else if(domain == 'Trickery') {
-      // TODO
-    } else if(domain == 'War') {
-      // TODO
-// ENDPHB
-    } else
-      continue;
-
-    if(features != null) {
-      for(var j = 0; j < features.length; j++) {
-        var levelAndFeature = features[j].split(/:/);
-        var feature = levelAndFeature[levelAndFeature.length == 1 ? 0 : 1];
-        var level = levelAndFeature.length == 1 ? 1 : levelAndFeature[0];
-        var matchInfo;
-        var prefix =
-          name.substring(0, 1).toLowerCase() + name.substring(1).replace(/ /g, '');
-        rules.defineRule('clericFeatures.' + feature,
-          'selectableFeatures.' + domain + ' Domain', '?', null,
-          'level', '=', 'source >= ' + level + ' ? 1 : null'
-        );
-        rules.defineRule
-          ('features.' + feature, 'clericFeatures.' + feature, '+=', null);
-      }
-    }
-
-    if(spells != null) {
-      for(var j = 0; j < spells.length; j++) {
-        var spell = spells[j];
-        var school = SRD5E.SPELLS[spell];
-        if(school == null) {
-          continue;
-        }
-        spell += '(' + domain + (j + 1) + ' ' + schools[school] + ')';
-        rules.defineChoice('spells', spell);
-      }
-    }
-
-    if(notes != null)
-      rules.defineNote(notes);
-
   }
 
   rules.defineRule('casterLevel',
@@ -4542,7 +4587,7 @@ SRD5E.skillRules = function(rules, skills, tools) {
 };
 
 /* Replaces spell names with longer descriptions on the character sheet. */
-SRD5E.spellDescriptionRules = function(rules, spells, descriptions) {
+SRD5E.spellRules = function(rules, spells, descriptions) {
 
   if(spells == null) {
     spells = QuilvynUtils.getKeys(rules.choices.spells);
@@ -4554,6 +4599,7 @@ SRD5E.spellDescriptionRules = function(rules, spells, descriptions) {
   rules.defineRule('casterLevels.B', 'levels.Bard', '=', null);
   rules.defineRule('casterLevels.C', 'levels.Cleric', '=', null);
   rules.defineRule('casterLevels.D', 'levels.Druid', '=', null);
+  rules.defineRule('casterLevels.K', 'levels.Warlock', '=', null);
   rules.defineRule('casterLevels.P', 'levels.Paladin', '=', null);
   rules.defineRule('casterLevels.R', 'levels.Ranger', '=', null);
   rules.defineRule('casterLevels.W', 'levels.Sorcerer', '=', null);
@@ -5405,7 +5451,7 @@ SRD5E.defineClass = function(
 ) {
 
   var classLevel = 'levels.' + name;
-  var prefix =
+  var nameNoSpace =
     name.substring(0, 1).toLowerCase() + name.substring(1).replace(/ /g, '');
 
   rules.defineChoice('levels', name + ':' + hitDice);
@@ -5414,20 +5460,20 @@ SRD5E.defineClass = function(
     for(var i = 0; i < features.length; i++) {
       var pieces = features[i].split(/:/);
       var feature = pieces[1];
-      var featurePrefix =
+      var featureNoSpace =
         feature.substring(0, 1).toLowerCase() + feature.substring(1).replace(/ /g, '');
       var level = pieces[0];
       var note = pieces[3];
       var section = pieces[2];
       var matchInfo;
-      rules.defineRule(prefix + 'Features.' + feature,
+      rules.defineRule(nameNoSpace + 'Features.' + feature,
         'levels.' + name, '=', 'source >= ' + level + ' ? 1 : null'
       );
       rules.defineRule
-        ('features.' + feature, prefix + 'Features.' + feature, '+=', null);
+        ('features.' + feature, nameNoSpace + 'Features.' + feature, '+=', null);
       if(section != '')
         rules.defineNote
-          (section + 'Notes.' + featurePrefix + 'Feature:' + note);
+          (section + 'Notes.' + featureNoSpace + 'Feature:' + note);
       if((matchInfo = feature.match(/^Weapon (Familiarity|Proficiency) \((.*\/.*)\)$/)) != null) {
         // Set individual features for each weapon on the list.
         var weapons = matchInfo[2].split('/');
@@ -5439,18 +5485,26 @@ SRD5E.defineClass = function(
     rules.defineSheetElement(name + ' Features', 'Feats+', null, '; ');
   }
   if(selectableFeatures != null) {
-    for(var j = 0; j < selectableFeatures.length; j++) {
-      var selectable = selectableFeatures[j];
-      var choice = name + ' ' + selectable;
-      var nameNoSpace =
-        name.substring(0,1).toLowerCase() + name.substring(1).replace(/ /g, '');
-      rules.defineChoice('selectableFeatures', choice + ':' + name);
-      rules.defineRule(nameNoSpace + 'Features.' + selectable,
+    for(var i = 0; i < selectableFeatures.length; i++) {
+      var pieces = selectableFeatures[i].split(/:/);
+      var feature = pieces[1];
+      var featureNoSpace =
+        feature.substring(0, 1).toLowerCase() + feature.substring(1).replace(/ /g, '');
+      var level = pieces[0];
+      var note = pieces[3];
+      var section = pieces[2];
+      var choice = name + ' - ' + feature;
+      rules.defineChoice('selectableFeatures', choice);
+      rules.defineRule(nameNoSpace + 'Features.' + feature,
         'selectableFeatures.' + choice, '+=', null
       );
-      rules.defineRule('features.' + selectable,
-        'selectableFeatures.' + choice, '+=', null
+      rules.defineRule('features.' + feature,
+        nameNoSpace + 'Features.' + feature, '+=', null
       );
+      rules.defineNote('validationNotes.' + nameNoSpace + feature.replace(/ /g, '') + 'SelectableFeatureLevel:Requires ' + name + ' >= ' + level);
+      if(section != '')
+        rules.defineNote
+          (section + 'Notes.' + featureNoSpace + 'Feature:' + note);
     }
   }
 

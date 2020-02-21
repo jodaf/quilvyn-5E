@@ -66,11 +66,13 @@ SRD5E.ARMORS = [
   'Chain Shirt:L', 'Scale Mail:M', 'Breastplate:M', 'Half Plate:M',
   'Ring Mail:H', 'Chain Mail:H', 'Splint:H', 'Plate:H'
 ];
-SRD5E.BACKGROUNDS = [
-  'Acolyte', 'Charlatan', 'Criminal', 'Entertainer', 'Folk Hero',
-  'Guild Artisan', 'Hermit', 'Noble', 'Outlander', 'Sage', 'Sailor', 'Soldier',
-  'Urchin'
-];
+SRD5E.BACKGROUNDS = ['Acolyte'];
+// PHB
+SRD5E.BACKGROUNDS.push(
+  'Charlatan', 'Criminal', 'Entertainer', 'Folk Hero', 'Guild Artisan',
+  'Hermit', 'Noble', 'Outlander', 'Sage', 'Sailor', 'Soldier', 'Urchin'
+);
+// ENDPHB
 SRD5E.CLASSES = [
   'Barbarian', 'Bard', 'Cleric', 'Druid', 'Fighter', 'Monk', 'Paladin',
   'Ranger', 'Rogue', 'Sorcerer', 'Warlock', 'Wizard'
@@ -89,18 +91,22 @@ SRD5E.DEITIES = [
   'Torm (LG):War', 'Tymora (CG):Trickery', 'Tyr (LG):War',
   'Umberlee (CE):Tempest', 'Waukeen (N):Knowledge/Trickery', 'None:'
 ];
+SRD5E.FEATS = ['Grappler'];
+// PHB
 SRD5E.FEATS = [
   'Alert', 'Athleete', 'Actor', 'Charger', 'Crossbow Expert',
   'Defensive Duelist', 'Dual Wielder', 'Dungeon Delver', 'Durable',
-  'Elemental Adept', 'Grappler', 'Great Weapon Master', 'Healer',
-  'Heavily Armored', 'Heavy Armor Master', 'Inspiring Leader', 'Keen Mind',
-  'Lightly Armorned', 'Linguist', 'Lucky', 'Mage Slayer', 'Magic Initiate',
-  'Martial Adept', 'Medium Armor Master', 'Mobile', 'Moderately Armored',
-  'Mounted Combatant', 'Observant', 'Polearm Master', 'Resilient',
-  'Ritual Caster', 'Savage Attacker', 'Sentinel', 'Sharpshooter',
-  'Shield Master', 'Skilled', 'Skulker', 'Spell Sniper', 'Tavern Brawler',
-  'Tough', 'War Caster', 'Weapon Master'
+  'Elemental Adept (Acid)', 'Elemental Adept (Cold)', 'Elemental Adept (Fire)',
+  'Elemental Adept (Lightning)', 'Elemental Adept (Thunder)',
+  'Great Weapon Master', 'Healer', 'Heavily Armored', 'Heavy Armor Master',
+  'Inspiring Leader', 'Keen Mind', 'Lightly Armorned', 'Linguist', 'Lucky',
+  'Mage Slayer', 'Magic Initiate', 'Martial Adept', 'Medium Armor Master',
+  'Mobile', 'Moderately Armored', 'Mounted Combatant', 'Observant',
+  'Polearm Master', 'Resilient', 'Ritual Caster', 'Savage Attacker',
+  'Sentinel', 'Sharpshooter', 'Shield Master', 'Skilled', 'Skulker',
+  'Spell Sniper', 'Tavern Brawler', 'Tough', 'War Caster', 'Weapon Master'
 ];
+// ENDPHB
 SRD5E.GENDERS = ['Female', 'Male'];
 SRD5E.LANGUAGES = [
   'Abyssal', 'Celestial', 'Common', 'Deep Speech', 'Draconic', 'Dwarvish',
@@ -1087,6 +1093,7 @@ SRD5E.backgroundRules = function(rules, backgrounds) {
       languages = ['', ''];
       proficiencyCount = {'Skill':2};
       proficienciesGiven = {'Skill':['Insight', 'Religion']};
+// PHB
     } else if(name == 'Charlatan') {
       equipment = [
         'Fine Clothes', 'Disguise Kit', 'Con Tools', '15 GP'
@@ -1238,6 +1245,7 @@ SRD5E.backgroundRules = function(rules, backgrounds) {
         'Skill':['Sleight Of Hand', 'Stealth'],
         'Tool':['Diguise Kit', "Thieves' Tools"]
       };
+// ENDPHB
     } else
       continue;
 
@@ -3984,13 +3992,23 @@ SRD5E.featRules = function(rules, feats) {
     var matchInfo;
     var notes = null;
 
-    if(feat == 'Alert') {
+    if(feat == 'Grappler') {
+      notes = [
+        'combatNotes.grapplerFeature:' +
+          'Adv attacks vs. grappled foe, additional grapple to pin',
+        'validationNotes.grapplerFeatAbility:Requires Strength >= 13'
+      ];
+// PHB
+    } else if(feat == 'Alert') {
       notes = [
         'combatNotes.alertFeature:+5 Initiative, foes no surprise or hidden Adv'
       ];
       rules.defineRule('initiative', 'combatNotes.alertFeature', '+', '5');
     } else if(feat == 'Athelete') {
-      // TODO
+      notes = [
+        "abilityNotes.athleteFeature:+1 Dexterity or Strength, climb full speed, stand uses 5' move",
+        "skillNotes.athleteFeature:Long jump, running high jump uses 5' move"
+      ];
     } else if(feat == 'Actor') {
       notes = [
         //'abilityNotes.actorFeature:+1 Charisma',
@@ -3998,83 +4016,197 @@ SRD5E.featRules = function(rules, feats) {
       ];
       //rules.defineRule('charisma', 'abilityNotes.actorFeature', '+', '1');
     } else if(feat == 'Charger') {
-      // TODO
+      notes = [
+        "combatNotes.chargerFeature:Bonus attack +5 HP or 10' push after dash"
+      ];
     } else if(feat == 'Crossbow Expert') {
-      // TODO
+      notes = [
+        'combatNotes.crossbowExpertFeature:' +
+          'Quick load, no DisAdv on close shot, bonus hand crossbow shot after one-handed attack'
+      ];
     } else if(feat == 'Defensive Duelist') {
-      // TODO
+      notes = [
+        'combatNotes.defensiveDuelistFeature:' +
+          'React +%V AC when holding finesse weapon'
+      ];
+      rules.defineRule
+        ('combatNotes.defensiveDuelistFeature', 'proficiencyBonus', '=', null);
     } else if(feat == 'Dual Wielder') {
-      // TODO
+      notes = [
+        'combatNotes.dualWielderFeature:' +
+          '+1 AC w/two weapons, two-weapon fighting w/non-light weapons, draw two weapons at once'
+      ];
     } else if(feat == 'Dungeon Delver') {
-      // TODO
+      notes = [
+        'abilityNotes.dungeonDelverFeature:Search for traps at full speed',
+        'saveNotes.dungeonDelverFeature:Adv vs. traps',
+        'skillNotes.dungeonDelverFeature:Adv detect secret doors'
+      ];
     } else if(feat == 'Durable') {
-      // TODO
-    } else if(feat == 'Elemental Adept') {
-      // TODO
-    } else if(feat == 'Grappler') {
-      // TODO
+      notes = [
+        'abilityNotes.durableFeature:+1 Constitution',
+        'featureNotes.durableFeature:Min %V/die when regaining HP'
+      ];
+      rules.defineRule('featureNotes.durableFeature',
+        'constitutionModifier', '=', 'Math.max(source * 2, 2)'
+      );
+    } else if((matchInfo = feat.match(/^Elemental Adept \((.*)\)$/)) != null){
+      var type = matchInfo[1];
+      notes = [
+        'magicNotes.elementalAdept(' + type + ')Feature:' +
+          'Spells ignore ' + type + ' resistance, treat 1s as 2s on damage die',
+        'validationNotes.elementalAdept(' + type + ')FeatCasterLevel:' +
+          'Requires Caster Level >= 1'
+      ];
     } else if(feat == 'Great Weapon Master') {
-      // TODO
+      notes = [
+        'combatNotes.greatWeaponMasterFeature:' +
+          'Bonus attack after crit or foe to 0 HP, may trade -5 attack for +10 damage'
+      ];
     } else if(feat == 'Healer') {
-      // TODO
+      notes = [
+        'featureNotes.healerFeature:' +
+          "Stabilize w/healer's kit restores 1 HP, healer's kit heals 1d6+4 HP 1/short rest"
+      ];
     } else if(feat == 'Heavily Armored') {
-      // TODO
+      notes = [
+        'abilityNotes.heavilyArmoredFeature:+1 Strength',
+        'skillNotes.heavilyArmoredFeature:Prof Armor (Heavy)',
+        'validationNotes.heaviltyArmoredFeature:' +
+          'Requires medium armor proficiency'
+      ];
+      rules.defineRule('armorProficiencies.Heavy',
+        'skillNotes.heavilyArmoredFeature', '=', '1'
+      );
+      rules.defineRule('validationNotes.heavilyArmoredFeature',
+        'feats.Heavily Armored', '=', '-1',
+        'armorProficiencies.Medium', '+', null
+      );
     } else if(feat == 'Heavy Armor Master') {
-      // TODO
+      notes = [
+        'abilityNotes.heavyArmorMasterFeature:+1 Strength',
+        'combatNotes.heavyArmorMasterFeature:' +
+          'Non-magical bludgeon, pierce, slash DR 3',
+        'validationNotes.heaviltyArmoredFeature:' +
+          'Requires heavy armor proficiency'
+      ];
+      rules.defineRule('validationNotes.heavyArmorMasterFeature',
+        'feats.Heavy Armor Master', '=', '-1',
+        'armorProficiencies.Heavy', '+', null
+      );
     } else if(feat == 'Inspiring Leader') {
-      // TODO
+      notes = [
+        'featureNotes.inspiringLeaderFeature:' +
+          "R30' 10-min speech give 6 allies %V HP",
+        'validationNotes.inspiringLeaderFeatAbility:Requires Charisma >= 13'
+      ];
     } else if(feat == 'Keen Mind') {
-      // TODO
+      notes = [
+        'abilityNotes.keenMindFeature:+1 Intelligence',
+        'featureNotes.keenMindFeature:' +
+          'Know N, hours until sun down/up, things seen/heard prior 30 days'
+      ];
     } else if(feat == 'Lightly Armorned') {
+      notes = [
+      ];
       // TODO
     } else if(feat == 'Linguist') {
+      notes = [
+      ];
       // TODO
     } else if(feat == 'Lucky') {
+      notes = [
+      ];
       // TODO
     } else if(feat == 'Mage Slayer') {
+      notes = [
+      ];
       // TODO
     } else if(feat == 'Magic Initiate') {
+      notes = [
+      ];
       // TODO
     } else if(feat == 'Martial Adept') {
+      notes = [
+      ];
       // TODO
     } else if(feat == 'Medium Armor Master') {
+      notes = [
+      ];
       // TODO
     } else if(feat == 'Mobile') {
+      notes = [
+      ];
       // TODO
     } else if(feat == 'Moderately Armored') {
+      notes = [
+      ];
       // TODO
     } else if(feat == 'Mounted Combatant') {
+      notes = [
+      ];
       // TODO
     } else if(feat == 'Observant') {
+      notes = [
+      ];
       // TODO
     } else if(feat == 'Polearm Master') {
+      notes = [
+      ];
       // TODO
     } else if(feat == 'Resilient') {
+      notes = [
+      ];
       // TODO
     } else if(feat == 'Ritual Caster') {
+      notes = [
+      ];
       // TODO
     } else if(feat == 'Savage Attacker') {
+      notes = [
+      ];
       // TODO
     } else if(feat == 'Sentinel') {
+      notes = [
+      ];
       // TODO
     } else if(feat == 'Sharpshooter') {
+      notes = [
+      ];
       // TODO
     } else if(feat == 'Shield Master') {
+      notes = [
+      ];
       // TODO
     } else if(feat == 'Skilled') {
+      notes = [
+      ];
       // TODO
     } else if(feat == 'Skulker') {
+      notes = [
+      ];
       // TODO
     } else if(feat == 'Spell Sniper') {
+      notes = [
+      ];
       // TODO
     } else if(feat == 'Tavern Brawler') {
+      notes = [
+      ];
       // TODO
     } else if(feat == 'Tough') {
+      notes = [
+      ];
       // TODO
     } else if(feat == 'War Caster') {
+      notes = [
+      ];
       // TODO
     } else if(feat == 'Weapon Master') {
+      notes = [
+      ];
       // TODO
+// ENDPHB
     } else {
       continue;
     }

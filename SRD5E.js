@@ -3070,8 +3070,34 @@ SRD5E.classRules = function(rules, classes) {
         '3:Pact Boon::',
         '4:Ability Score Improvement:ability:+%V distributed',
         '11:Mystic Arcanum:magic:Warlock spells %V 1/long rest',
-        '20:Eldritch Master:magic:Regain spells from patron 1/long rest'
+        '20:Eldritch Master:magic:Regain spells from patron 1/long rest',
+        // Fiend Patron
+        "1:Dark One's Blessing:combat:Gain %V HP when foe drops to 0",
+        "6:Dark One's Own Luck:feature:Add d10 to ability or save 1/short rest",
+        '10:Fiendish Resilience:save:Resist chosen damage type',
+        '14:Hurl Through Hell:combat:' +
+          'Foe moves through hell, taking 10d10 psychic, 1/long rest'
       ];
+// PHB
+      features.push(
+        // Archfey Patron
+        '1:Fey Presence:magic:' +
+          "R10' Creatures charmed or frightened 1 turn (DC %V Wis neg) 1/short rest",
+        '6:Misty Escape:magic:' +
+          "After damage, teleport 60' and become invisible 1 turn 1/short rest",
+        '10:Beguiling Defenses:save:' +
+          'Immune charm, caster become charmed 1 min (DC %V Wis neg)',
+        '14:Dark Delirium:magic:' +
+          "R60' Target charmed or frightened 1 min, then unaware surroundings (DC %V Wis neg) 1/long rest",
+        // Great Old One Patron
+        "1:Awakened Mind:feature:R60' Telepathic communication",
+        '6:Entropic World:combat:' +
+          'Foe DisAdv attack, miss give you attack Adv 1/short rest',
+        '10:Thought Shield:save:' +
+          'Immune telepathy, resist and reflect psycic damage',
+        '14:Create Thrall:magic:Charm incapacitated humanoid'
+      );
+// ENDPHB
       hitDie = 8;
       notes = [
         'validationNotes.bookOfAncientsSelectableFeatureFeatures:' +
@@ -3154,6 +3180,45 @@ SRD5E.classRules = function(rules, classes) {
         'K5:9:2/11:3/17:4'
       ];
 
+      rules.defineRule("warlockFeatures.Dark One's Blessing",
+        'warlockFeatures.Fiend Patron', '?', null
+      );
+      rules.defineRule("warlockFeatures.Dark One's Own Luck",
+        'warlockFeatures.Fiend Patron', '?', null
+      );
+      rules.defineRule('warlockFeatures.Fiendish Resilience',
+        'warlockFeatures.Fiend Patron', '?', null
+      );
+      rules.defineRule('warlockFeatures.Hurl Through Hell',
+        'warlockFeatures.Fiend Patron', '?', null
+      );
+// PHB
+      rules.defineRule('warlockFeatures.Fey Presence',
+        'warlockFeatures.Archfey Patron', '?', null
+      );
+      rules.defineRule('warlockFeatures.Misty Escape',
+        'warlockFeatures.Archfey Patron', '?', null
+      );
+      rules.defineRule('warlockFeatures.Beguiling Defenses',
+        'warlockFeatures.Archfey Patron', '?', null
+      );
+      rules.defineRule('warlockFeatures.Dark Delirium',
+        'warlockFeatures.Archfey Patron', '?', null
+      );
+      rules.defineRule('warlockFeatures.Awakened Mind',
+        'warlockFeatures.Great Old One Patron', '?', null
+      );
+      rules.defineRule('warlockFeatures.Entropic World',
+        'warlockFeatures.Great Old One Patron', '?', null
+      );
+      rules.defineRule('warlockFeatures.Thought Shield',
+        'warlockFeatures.Great Old One Patron', '?', null
+      );
+      rules.defineRule('warlockFeatures.Create Thrall',
+        'warlockFeatures.Great Old One Patron', '?', null
+      );
+// ENDPHB
+
       rules.defineRule('abilityNotes.abilityScoreImprovementFeature',
         'levels.Warlock', '+=', 'source >= 19 ? 5 : Math.floor(source / 4)'
       );
@@ -3161,15 +3226,30 @@ SRD5E.classRules = function(rules, classes) {
         ('attacksPerRound', 'combatNotes.thirstingBladeFeature', '+', '1');
       rules.defineRule('casterLevelArcane', 'levels.Warlock', '+=', null);
       rules.defineRule('combatNotes.lifedrinkerFeature',
-        'charismaModifier', '=', 'Math.min(source, 1)'
+        'charismaModifier', '=', 'Math.max(source, 1)'
+      );
+      rules.defineRule("combatNotes.darkOne'sBlessingFeature",
+        'charismaModifier', '=', 'Math.max(source, 1)'
       );
       rules.defineRule
         ('magicNotes.agonizingBlastFeature', 'charismaModifier', '=', null);
+      rules.defineRule('magicNotes.darkDeliriumFeature',
+        'charismaModifier', '=', '8 + source',
+        'proficiencyBonus', '+', null
+      );
       rules.defineRule('magicNotes.eldritchInvocationsFeature',
         'levels.Warlock', '=', 'source == 2 ? 2 : source < 9 ? Math.floor((source + 3) / 2) : Math.floor((source + 6) / 3)'
       );
+      rules.defineRule('magicNotes.feyPresenceFeature',
+        'charismaModifier', '=', '8 + source',
+        'proficiencyBonus', '+', null
+      );
       rules.defineRule('magicNotes.mysticArcanumFeature',
         'levels.Warlock', '=', 'source<13 ? "6" : source<15 ? "6,7" : source<17 ? "6,7,8" : "6,7,8,9"'
+      );
+      rules.defineRule('saveNotes.beguilingDefensesFeature',
+        'charismaModifier', '=', '8 + source',
+        'proficiencyBonus', '+', null
       );
       rules.defineRule('selectableFeatureCount.Warlock',
         'warlockFeatures.Otherworldly Patron', '=', '1',

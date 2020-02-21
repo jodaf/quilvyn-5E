@@ -610,6 +610,10 @@ SRD5E.landsCircleSpells['Underdark Land'] = [
   '7:Greater Invisibility', '7:Stone Shape', '9:Cloudkill', '9:Insect Plague'
 ];
 // ENDPHB
+SRD5E.levelsExperience = [
+  0, .3, .9, 2.7, 6.5, 14, 23, 34, 48, 64,
+  85, 100, 120, 140, 165, 195, 225, 265, 305, 355
+];
 SRD5E.spellsAbbreviations = {
   "BarkskinAC": "2 + (source < 6 ? 0 : Math.min(Math.floor((source - 3)/ 3), 3))",
   "L": "lvl",
@@ -1249,6 +1253,12 @@ SRD5E.backgroundRules = function(rules, backgrounds) {
 /* Defines the rules related to character classes. */
 SRD5E.classRules = function(rules, classes) {
 
+  rules.defineRule
+    ('experienceNeeded', 'level', '=', 'SRD5E.levelsExperience[source] * 1000');
+  rules.defineRule('level',
+    'experience', '=', 'SRD5E.levelsExperience.findIndex(item => item * 1000 > source)'
+  );
+
   rules.defineNote
     ('validationNotes.levelAllocation:%1 available vs. %2 allocated');
   rules.defineRule('validationNotes.levelAllocation.1',
@@ -1289,7 +1299,6 @@ SRD5E.classRules = function(rules, classes) {
         spellSlots;
     var name = classes[i];
 
-    console.log('Define class ' + name);
     if(name == 'Barbarian') {
 
       features = [
@@ -3694,6 +3703,10 @@ SRD5E.createViewers = function(rules, viewers) {
             {name: 'Gender', within: 'Description'},
             {name: 'Player', within: 'Description'},
           {name: 'AbilityStats', within: 'Attributes', separator: innerSep},
+            {name: 'ExperienceInfo', within: 'AbilityStats', separator: ''},
+              {name: 'Experience', within: 'ExperienceInfo'},
+              {name: 'Experience Needed', within: 'ExperienceInfo',
+               format: '/%V'},
             {name: 'Level', within: 'AbilityStats'},
             {name: 'Speed', within: 'AbilityStats'},
             {name: 'LoadInfo', within: 'AbilityStats', separator: ''},
@@ -4740,6 +4753,7 @@ SRD5E.initialEditorElements = function() {
   var editorElements = [
     ['name', 'Name', 'text', [20]],
     ['race', 'Race', 'select-one', 'races'],
+    ['experience', 'Experience', 'text', [8]],
     ['levels', 'Levels', 'bag', 'levels'],
     ['imageUrl', 'Image URL', 'text', [20]],
     ['background', 'Background', 'select-one', 'backgrounds'],
@@ -4922,40 +4936,48 @@ SRD5E.randomizeOneAttribute = function(attributes, attribute) {
     pickAttrs(attributes, 'languages.', choices,
               howMany - QuilvynUtils.sumMatching(attrs, /^languages\./), 1);
   } else if(attribute == 'levels') {
+    var assignedLevels = QuilvynUtils.sumMatching(attributes, /^levels\./);
+    if(!attributes.level) {
+      if(assignedLevels > 0)
+        attributes.level = assignedLevels
+      else if(attributes.experience)
+        attributes.level =
+          Math.floor((1 + Math.sqrt(1 + attributes.experience/125)) / 2);
+      else
+        // Random 1..8 with each value half as likely as the previous one.
+        attributes.level =
+          9 - Math.floor(Math.log(QuilvynUtils.random(2, 511)) / Math.log(2));
+    }
+    var max = SRD5E.levelsExperience[attributes.level] * 1000 - 1;
+    var min = SRD5E.levelsExperience[attributes.level - 1] * 1000;
+    if(!attributes.experience || attributes.experience < min)
+      attributes.experience = QuilvynUtils.random(min, max);
     choices = QuilvynUtils.getKeys(this.getChoices('levels'));
-    var soFar = QuilvynUtils.sumMatching(attributes, /^levels\./); 
-    var level = attributes.level != null ? attributes.level : soFar;
-    if(level == 0) {
-      level = QuilvynUtils.random(1, 100);
-      level = level<=50 ? 1 : level<=75 ? 2 : level<=87 ? 3 : level<=93 ? 4 :
-              level<=96 ? 5 : level<=98 ? 6 : level<=99 ? 7 : 8;
-    }
-    howMany = level - soFar;
-    var classes = QuilvynUtils.random(1, 100);
-    classes = classes < 60 ? 1 : classes < 90 ? 2 : 3;
-    if(classes > howMany) {
-      classes = QuilvynUtils.random(1, howMany);
-    }
-    for(i = 1; howMany > 0; i++) {
-      var thisLevel = i == classes ? howMany : QuilvynUtils.random(1, howMany);
-      var which = 'levels.' + choices[QuilvynUtils.random(0, choices.length-1)];
-      // Find a choice that is valid or can be made so
-      while(attributes[which] == null) {
+    if(assignedLevels == 0) {
+      var classesToChoose =
+        attributes.level == 1 || QuilvynUtils.random(1,10) < 9 ? 1 : 2;
+      // Find choices that are valid or can be made so
+      while(classesToChoose > 0) {
+        var which = 'levels.' + choices[QuilvynUtils.random(0,choices.length-1)];
         attributes[which] = 1;
         if(QuilvynUtils.sumMatching(this.applyRules(attributes),
              /^validationNotes.*(BaseAttack|CasterLevel|Spells)/) == 0) {
-          // ok
-          attributes[which] = 0;
+          assignedLevels++;
+          classesToChoose--;
         } else {
-          // try another
           delete attributes[which];
-          which = 'levels.'+choices[QuilvynUtils.random(0, choices.length-1)];
         }
       }
-      attributes[which] += thisLevel;
-      howMany -= thisLevel;
     }
-    attributes.level = level;
+    while(assignedLevels < attributes.level) {
+      var which = 'levels.' + choices[QuilvynUtils.random(0,choices.length-1)];
+      while(!attributes[which]) {
+        which = 'levels.' + choices[QuilvynUtils.random(0,choices.length-1)];
+      }
+      attributes[which]++;
+      assignedLevels++;
+    }
+    delete attributes.level;
   } else if(attribute == 'name') {
     attributes['name'] = SRD5E.randomName(attributes['race']);
   } else if(attribute == 'shield') {
@@ -5494,7 +5516,7 @@ SRD5E.defineClass = function(
       var note = pieces[3];
       var section = pieces[2];
       var choice = name + ' - ' + feature;
-      rules.defineChoice('selectableFeatures', choice);
+      rules.defineChoice('selectableFeatures', choice + ':' + name);
       rules.defineRule(nameNoSpace + 'Features.' + feature,
         'selectableFeatures.' + choice, '+=', null
       );

@@ -1347,7 +1347,7 @@ SRD5E.classRules = function(rules, classes) {
         '3:Spirit Seeker:magic:' +
           '<i>Beast Sense</i>, <i>Speak With Animals</i> via ritual',
         '3:Bear Totem Spirit:combat:Resist non-psychic damage',
-        '3:Eagle Totem Spirit:combat:Foes Disadv AOO, Dash as bonus action',
+        '3:Eagle Totem Spirit:combat:Foes Disadv OA, Dash as bonus action',
         '3:Wolf Totem Spirit:combat:' +
           "Allies Adv attack vs. foes w/in 5' of self",
         '6:Aspect Of The Bear:ability:x2 load/lift, Adv Str checks',
@@ -2011,7 +2011,7 @@ SRD5E.classRules = function(rules, classes) {
          'Add superiority die to damage, foe DisAdv attack others (DC %V Wis neg)',
        "3:Lunging Attack:combat:+5' melee range, add superiority die to damage",
        '3:Maneuvering Attack:combat:' +
-         'Add superiority die to damage, companion move half speed w/out AOO',
+         'Add superiority die to damage, companion move half speed w/out OA',
        '3:Menacing Attack:combat:' +
          'Add superiority die to damage, foe frightened until next turn (DC %V Wis neg)',
        '3:Parry:combat:Reduce damage from foe hit by superiority die + %V',
@@ -2464,7 +2464,7 @@ SRD5E.classRules = function(rules, classes) {
         // Oath Of Vengeance
         "3:Abjure Enemy:magic:R60' Target flees 1 min (DC %V Wis neg)",
         "3:Vow Of Enmity:combat:R10' Adv attacks against target for 1 min",
-        '7:Relentless Avenger:combat:Move half speed after AOO hit',
+        '7:Relentless Avenger:combat:Move half speed after OA hit',
         '15:Soul Of Vengeance:combat:Attack Vow Of Enmity target as reaction',
         '20:Avenging Angel:magic:' +
           "Fly 60', frighten foes in 30' (DC %V Wis neg) 1/long rest"
@@ -2661,7 +2661,7 @@ SRD5E.classRules = function(rules, classes) {
         '3:Colossus Slayer:combat:+1d8 HP vs. undamaged foe 1/turn',
         '3:Giant Killer:combatReact to attack nearby large foe after miss',
         '3:Horde Breaker:combat:Second attack on different nearby foe',
-        '7:Escape The Horde:combat:Foe DisAdv on AOO',
+        '7:Escape The Horde:combat:Foe DisAdv on OA',
         '7:Multiattack Defense:combat:+4 AC after foe first attack',
         '7:Steel Will:save:Adv vs. fright',
         "11:Volley:combat:Ranged attack any number of foes in 10' area",
@@ -4130,7 +4130,7 @@ SRD5E.featRules = function(rules, feats) {
     } else if(feat == 'Mobile') {
       notes = [
         "abilityNotes.mobileFeature:+10' speed",
-        'combatNotes.mobileFeature:Dash at full speed, no AOO from targeted foe'
+        'combatNotes.mobileFeature:Dash at full speed, no OA from targeted foe'
       ];
       rules.defineRule('speed', 'abilityNotes.modileFeature', '+', '10');
     } else if(feat == 'Moderately Armored') {
@@ -4154,7 +4154,7 @@ SRD5E.featRules = function(rules, feats) {
     } else if(feat == 'Polearm Master') {
       notes = [
         'combatNotes.polearmMasterFeature:' +
-          'Bonus attack w/polearm but 1d4 HP, AOO when foe enters reach'
+          'Bonus attack w/polearm but 1d4 HP, OA when foe enters reach'
       ];
     } else if(feat == 'Resilient') {
       notes = [
@@ -4171,7 +4171,7 @@ SRD5E.featRules = function(rules, feats) {
     } else if(feat == 'Sentinel') {
       notes = [
         'combatNotes.sentinelFeature:' +
-          'Foe stuck by AOO speed 0, AOO on foe Disengage, react attack when foe targets other'
+          'Foe stuck by OA speed 0, OA on foe Disengage, react attack when foe targets other'
       ];
     } else if(feat == 'Sharpshooter') {
       notes = [
@@ -4196,12 +4196,17 @@ SRD5E.featRules = function(rules, feats) {
       ];
     } else if(feat == 'Spell Sniper') {
       notes = [
+        'magicNotes.spellSniperFeature:' +
+          'x2 attack spell range, ignore 3/4 cover, additional attack cantrip'
       ];
-      // TODO
     } else if(feat == 'Tavern Brawler') {
       notes = [
+        'abilityNotes.tavernBrawlerFeature:+1 Constitution or Strength',
+        'combatNotes.tavernBrawlerFeature:' +
+          'Prof improvised and unarmed, bonus to grapple'
       ];
-      // TODO
+      rules.defineRule
+        ('weapons.Unarmed.2', 'combatNotes.tavernBrawlerFeature', '=', '"1d4"');
     } else if(feat == 'Tough') {
       notes = [
         'combatNotes.toughFeature:+%V HP'
@@ -4210,6 +4215,9 @@ SRD5E.featRules = function(rules, feats) {
       rules.defineRule('hitPoints', 'combatNotes.toughFeature', '+', null);
     } else if(feat == 'War Caster') {
       notes = [
+        'combatNotes.warCasterFeature:' +
+          'Adv concentration, cast when holding shield or weapon, cast as OA',
+        'validationNotes.warCasterFeatCasterLevel:Requires Caster Level >= 1'
       ];
       // TODO
     } else if(feat == 'Weapon Master') {

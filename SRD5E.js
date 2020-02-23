@@ -1307,6 +1307,10 @@ SRD5E.classRules = function(rules, classes) {
         spellSlots;
     var name = classes[i];
 
+    rules.defineRule('featCount.General',
+      'levels.' + name, '+=', 'source >= 19 ? 5 : Math.floor(source / 4)'
+    );
+
     if(name == 'Barbarian') {
 
       features = [
@@ -1319,7 +1323,6 @@ SRD5E.classRules = function(rules, classes) {
         '2:Danger Sense:save:Adv vs. visible dangers',
         '2:Reckless Attack:combat:Adv melee Str attacks, foes Adv all attacks',
         '3:Primal Path::',
-        '4:Ability Score Improvement:ability:+%V distributed',
         '5:Extra Attack:combat:+1 attack per Attack action',
         '5:Fast Movement:ability:+10 speed in no/light/medium armor',
         '7:Feral Instinct:combat:Adv initiative, act when surprised if rage',
@@ -1434,9 +1437,6 @@ SRD5E.classRules = function(rules, classes) {
       );
 // ENDPHB
 
-      rules.defineRule('abilityNotes.abilityScoreImprovementFeature',
-        'levels.Barbarian', '+=', 'source >= 19 ? 5 : Math.floor(source / 4)'
-      );
       rules.defineRule('combatNotes.brutalCriticalFeature',
         'levels.Barbarian', '=',
           'source < 9 ? null : source < 13 ? 1 : source < 17 ? 2 : 3'
@@ -1484,7 +1484,6 @@ SRD5E.classRules = function(rules, classes) {
         '3:Bard College::',
         '3:Expertise:feature:x2 %V profs',
         '3:Extra Skills:skill:Prof in three additional skills',
-        '4:Ability Score Improvement:ability:+%V distributed',
         '5:Font Of Inspiration:feature:Refresh Bardic Inspiration after rest',
         '6:Countercharm:magic:' +
           "R30' Friendly listeners Adv vs. charmed/frightened",
@@ -1567,9 +1566,6 @@ SRD5E.classRules = function(rules, classes) {
       );
 // ENDPHB
 
-      rules.defineRule('abilityNotes.abilityScoreImprovementFeature',
-        'levels.Bard', '+=', 'source >= 19 ? 5 : Math.floor(source / 4)'
-      );
       rules.defineRule('abilityNotes.jackOfAllTradesFeature',
         'proficiencyBonus', '=', 'Math.floor(source / 2)'
       );
@@ -1606,7 +1602,6 @@ SRD5E.classRules = function(rules, classes) {
         '1:Spellcasting::',
         '2:Channel Divinity:feature:Turn undead, domain effect %V/short rest',
         "2:Turn Undead:combat:R30' Undead flee for 1 min (%V DC Wis neg)",
-        '4:Ability Score Improvement:ability:+%V distributed',
         '5:Destroy Undead:combat:Turn destroys up to CR %V',
         '10:Divine Intervention:magic:%V% chance of deity help 1/wk',
         // Life Domain
@@ -1691,9 +1686,6 @@ SRD5E.classRules = function(rules, classes) {
         'clericFeatures.Life Domain', '?', null
       );
 
-      rules.defineRule('abilityNotes.abilityScoreImprovementFeature',
-        'levels.Cleric', '+=', 'source >= 19 ? 5 : Math.floor(source / 4)'
-      );
       rules.defineRule('casterLevelDivine', 'levels.Cleric', '+=', null);
       rules.defineRule('combatNotes.destroyUndeadFeature',
         'levels.Cleric', '=', 'source < 8 ? 0.5 : Math.floor((source - 5) / 3)'
@@ -1731,7 +1723,6 @@ SRD5E.classRules = function(rules, classes) {
         '2:Druid Circle::',
         '2:Wild Shape:magic:' +
           'Transform into CR %1%2 creature for %3 hr 2/short rest',
-        '4:Ability Score Improvement:ability:+%V distributed',
         '18:Druid Timeless Body:feature:Age at 1/10 rate',
         '18:Beast Spells:magic:Cast spells during Wild Shape',
         '20:Archdruid:magic:Unlimited Wild Shape'
@@ -1866,9 +1857,6 @@ SRD5E.classRules = function(rules, classes) {
       );
 // ENDPHB
 
-      rules.defineRule('abilityNotes.abilityScoreImprovementFeature',
-        'levels.Druid', '+=', 'source >= 19 ? 5 : Math.floor(source / 4)'
-      );
       rules.defineRule("combatNotes.nature'sSanctuaryFeature",
         'wisdomModifier', '=', 'source + 8',
         'proficiencyBonus', '+', null
@@ -1916,7 +1904,6 @@ SRD5E.classRules = function(rules, classes) {
         '1:Second Wind:combat:Regain 1d10+%V HP 1/short rest',
         '2:Action Surge:combat:Extra action %V/short rest',
         '3:Martial Archetype::',
-        '4:Ability Score Improvement:ability:+%V distributed',
         '5:Extra Attack:combat:+1 attack per Attack action',
         '9:Indomitable:save:Reroll failed save %V/long rest'
       ];
@@ -2086,9 +2073,6 @@ SRD5E.classRules = function(rules, classes) {
       );
 // ENDPHB
 
-      rules.defineRule('abilityNotes.abilityScoreImprovementFeature',
-        'levels.Fighter', '+=', '[0,0,0,0,2,2,4,4,6,6,6,6,8,8,10,10,12,12,12,14,14][source]'
-      );
       rules.defineRule('abilityNotes.remarkableAthleteFeature',
         'proficiencyBonus', '=', 'Math.ceil(source / 2)'
       );
@@ -2105,6 +2089,10 @@ SRD5E.classRules = function(rules, classes) {
         'combatNotes.defenseStyleFeature', '?', null,
         'armor', '=', 'source == "None" ? null : 1'
       );
+      rules.defineRule('fighterFeatBonus',
+        'levels.Fighter', '=', 'source < 6 ? null : source < 14 ? 1 : 2'
+      );
+      rules.defineRule('featCount.General', 'fighterFeatBonus', '+', null);
       rules.defineRule
         ('rangedAttack', 'combatNotes.archeryStyleFeature', '+', '2');
       rules.defineRule
@@ -2184,7 +2172,6 @@ SRD5E.classRules = function(rules, classes) {
         '2:Unarmored Movement:ability:+%V speed in no armor',
         '3:Monastic Tradition::',
         '3:Deflect Missiles:combat:React to reduce missile damage by 1d10+%V',
-        '4:Ability Score Improvement:ability:+%V distributed',
         '4:Slow Fall:ability:React to reduce fall damage by %V',
         '5:Extra Attack:combat:+1 attack per Attack action',
         '5:Stunning Strike:combat:Spend 1 Ki to stun melee foe (DC %V Con neg)',
@@ -2341,9 +2328,6 @@ SRD5E.classRules = function(rules, classes) {
       );
 // ENDPHB
 
-      rules.defineRule('abilityNotes.abilityScoreImprovementFeature',
-        'levels.Monk', '+=', 'source >= 19 ? 5 : Math.floor(source / 4)'
-      );
       rules.defineRule('abilityNotes.improvedUnarmoredMovementFeature',
         'armor', '?', 'source == "None"',
         'shield', '?', 'source == "None"'
@@ -2451,7 +2435,6 @@ SRD5E.classRules = function(rules, classes) {
         '2:Divine Smite:combat:Expend spell for +2d8-5d8 damage',
         '3:Divine Health:save:Immune disease',
         '3:Sacred Oath::',
-        '4:Ability Score Improvement:ability:+%V distributed',
         '5:Extra Attack:combat:+1 attack per Attack action',
         "6:Aura Of Protection:save:R10' +%V saves self and friendlies",
         "10:Aura Of Courage:save:R%V' Self and friendlies immune fright",
@@ -2577,9 +2560,6 @@ SRD5E.classRules = function(rules, classes) {
       );
 // ENDPHB
 
-      rules.defineRule('abilityNotes.abilityScoreImprovementFeature',
-        'levels.Paladin', '+=', 'source >= 19 ? 5 : Math.floor(source / 4)'
-      );
       rules.defineRule
         ('attacksPerRound', 'combatNotes.extraAttackFeature', '+', '1');
       rules.defineRule('magicNotes.cleansingTouchFeature',
@@ -2635,7 +2615,6 @@ SRD5E.classRules = function(rules, classes) {
         '3:Ranger Archetype::',
         '3:Primeval Awareness:magic:' +
           'Expend spell to sense creatures w/in 1 mi (6 mi favored terrain)',
-        '4:Ability Score Improvement:ability:+%V distributed',
         '5:Extra Attack:combat:+1 attack per Attack action',
         "8:Land's Stride:ability:Move normally through difficult terrain",
         "8:Land's Stride:save:Adv vs. impeding plants",
@@ -2752,9 +2731,6 @@ SRD5E.classRules = function(rules, classes) {
       );
 // ENDPHB
 
-      rules.defineRule('abilityNotes.abilityScoreImprovementFeature',
-        'levels.Ranger', '+=', 'source >= 19 ? 5 : Math.floor(source / 4)'
-      );
       rules.defineRule('armorClass',
         'combatNotes.defenseStyleFeature.1', '+', null
       );
@@ -2796,7 +2772,6 @@ SRD5E.classRules = function(rules, classes) {
         "1:Thieves' Cant:skill:Signs and symbols known only by rogues",
         '2:Cunning Action:combat:Bonus Dash/Disengage/Hide each turn',
         '3:Roguish Archetype::',
-        '4:Ability Score Improvement:ability:+%V distributed',
         '5:Uncanny Dodge:combat:Use reaction for half damage',
         '7:Evasion:save:Dex save yields no damage instead of 1/2',
         '11:Reliable Talent:skill:Min 10 roll on proficient skills',
@@ -2899,9 +2874,6 @@ SRD5E.classRules = function(rules, classes) {
       );
 // ENDPHB
 
-      rules.defineRule('abilityNotes.abilityScoreImprovementFeature',
-        'levels.Rogue', '+=', 'source >= 19 ? 5 : Math.floor(source / 4)'
-      );
       rules.defineRule('combatNotes.deathStrikeFeature',
         'dexterityModifier', '=', '8 + source',
         'proficiencyBonus', '+', null
@@ -2934,7 +2906,6 @@ SRD5E.classRules = function(rules, classes) {
         '2:Font Of Magic:magic:%V Sorcery points/long rest',
         '2:Flexible Casting:magic:Spend sorcery points to gain spell slots',
         '3:Metamagic::',
-        '4:Ability Score Improvement:ability:+%V distributed',
         '20:Sorcerous Restoration:magic:Short rest recovers 4 sorcery points',
         // Draconic Bloodline
         '1:Draconic Resilience:combat:+%V HP, unarmored AC %1',
@@ -3034,9 +3005,6 @@ SRD5E.classRules = function(rules, classes) {
       );
 // ENDPHB
 
-      rules.defineRule('abilityNotes.abilityScoreImprovementFeature',
-        'levels.Sorcerer', '+=', 'source >= 19 ? 5 : Math.floor(source / 4)'
-      );
       rules.defineRule
         ('armorClass', 'combatNotes.draconicResilienceFeature.1', '^', null);
       rules.defineRule('casterLevelArcane', 'levels.Sorcerer', '+=', null);
@@ -3076,7 +3044,6 @@ SRD5E.classRules = function(rules, classes) {
         '1:Pact Magic::',
         '2:Eldritch Invocations:magic:%V',
         '3:Pact Boon::',
-        '4:Ability Score Improvement:ability:+%V distributed',
         '11:Mystic Arcanum:magic:Warlock spells %V 1/long rest',
         '20:Eldritch Master:magic:Regain spells from patron 1/long rest',
         // Fiend Patron
@@ -3227,9 +3194,6 @@ SRD5E.classRules = function(rules, classes) {
       );
 // ENDPHB
 
-      rules.defineRule('abilityNotes.abilityScoreImprovementFeature',
-        'levels.Warlock', '+=', 'source >= 19 ? 5 : Math.floor(source / 4)'
-      );
       rules.defineRule
         ('attacksPerRound', 'combatNotes.thirstingBladeFeature', '+', '1');
       rules.defineRule('casterLevelArcane', 'levels.Warlock', '+=', null);
@@ -3271,7 +3235,6 @@ SRD5E.classRules = function(rules, classes) {
         '1:Weapon Proficiency (Dagger/Dart/Light Crossbow/Quarterstaff/Sling)::',
         '1:Arcane Recovery:magic:Short rest recovers %V spell slots 1/dy',
         '2:Arcane Tradition:magic:Gain chosen school effects',
-        '4:Ability Score Improvement:ability:+%V distributed',
         '18:Spell Mastery:magic:Cast 1 ea 1st/2nd spell w/o using spell slot',
         '20:Signature Spell:magic:' +
           'Cast 2 2nd spells w/o using spell slot 1/short rest'
@@ -3305,9 +3268,6 @@ SRD5E.classRules = function(rules, classes) {
         'W9:17:1'
       ];
 
-      rules.defineRule('abilityNotes.abilityScoreImprovementFeature',
-        'levels.Wizard', '+=', 'source >= 19 ? 5 : Math.floor(source / 4)'
-      );
       rules.defineRule('casterLevelArcane', 'levels.Wizard', '+=', null);
       rules.defineRule('magicNotes.arcaneRecoveryFeature',
         'levels.Wizard', '=', 'Math.floor(source / 2)'
@@ -4970,11 +4930,17 @@ SRD5E.initialEditorElements = function() {
     ['imageUrl', 'Image URL', 'text', [20]],
     ['background', 'Background', 'select-one', 'backgrounds'],
     ['strength', 'Strength', 'select-one', abilityChoices],
+    ['strengthAdjust', '', 'text', [3]],
     ['intelligence', 'Intelligence', 'select-one', abilityChoices],
+    ['intellienceAdjust', '', 'text', [3]],
     ['wisdom', 'Wisdom', 'select-one', abilityChoices],
+    ['wisdomAdjust', '', 'text', [3]],
     ['dexterity', 'Dexterity', 'select-one', abilityChoices],
+    ['dexterityAdjust', '', 'text', [3]],
     ['constitution', 'Constitution', 'select-one', abilityChoices],
+    ['constitutionAdjust', '', 'text', [3]],
     ['charisma', 'Charisma', 'select-one', abilityChoices],
+    ['charismaAdjust', '', 'text', [3]],
     ['player', 'Player', 'text', [20]],
     ['alignment', 'Alignment', 'select-one', 'alignments'],
     ['gender', 'Gender', 'select-one', 'genders'],

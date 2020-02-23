@@ -1347,8 +1347,7 @@ SRD5E.classRules = function(rules, classes) {
         '3:Spirit Seeker:magic:' +
           '<i>Beast Sense</i>, <i>Speak With Animals</i> via ritual',
         '3:Bear Totem Spirit:combat:Resist non-psychic damage',
-        '3:Eagle Totem Spirit:combat:' +
-          'Foes Disadv opportunity attack, Dash as bonus action',
+        '3:Eagle Totem Spirit:combat:Foes Disadv AOO, Dash as bonus action',
         '3:Wolf Totem Spirit:combat:' +
           "Allies Adv attack vs. foes w/in 5' of self",
         '6:Aspect Of The Bear:ability:x2 load/lift, Adv Str checks',
@@ -2465,7 +2464,7 @@ SRD5E.classRules = function(rules, classes) {
         // Oath Of Vengeance
         "3:Abjure Enemy:magic:R60' Target flees 1 min (DC %V Wis neg)",
         "3:Vow Of Enmity:combat:R10' Adv attacks against target for 1 min",
-        '7:Relentless Avenger:combat:Move half speed after opportunity hit',
+        '7:Relentless Avenger:combat:Move half speed after AOO hit',
         '15:Soul Of Vengeance:combat:Attack Vow Of Enmity target as reaction',
         '20:Avenging Angel:magic:' +
           "Fly 60', frighten foes in 30' (DC %V Wis neg) 1/long rest"
@@ -2662,7 +2661,7 @@ SRD5E.classRules = function(rules, classes) {
         '3:Colossus Slayer:combat:+1d8 HP vs. undamaged foe 1/turn',
         '3:Giant Killer:combatReact to attack nearby large foe after miss',
         '3:Horde Breaker:combat:Second attack on different nearby foe',
-        '7:Escape The Horde:combat:Foe DisAdv on opportunity attacks',
+        '7:Escape The Horde:combat:Foe DisAdv on AOO',
         '7:Multiattack Defense:combat:+4 AC after foe first attack',
         '7:Steel Will:save:Adv vs. fright',
         "11:Volley:combat:Ranged attack any number of foes in 10' area",
@@ -4032,7 +4031,7 @@ SRD5E.featRules = function(rules, feats) {
       notes = [
         'abilityNotes.heavilyArmoredFeature:+1 Strength',
         'skillNotes.heavilyArmoredFeature:Prof Armor (Heavy)',
-        'validationNotes.heaviltyArmoredFeature:' +
+        'validationNotes.heavilyArmoredFeature:' +
           'Requires medium armor proficiency'
       ];
       rules.defineRule('armorProficiencies.Heavy',
@@ -4047,7 +4046,7 @@ SRD5E.featRules = function(rules, feats) {
         'abilityNotes.heavyArmorMasterFeature:+1 Strength',
         'combatNotes.heavyArmorMasterFeature:' +
           'Non-magical bludgeon, pierce, slash DR 3',
-        'validationNotes.heaviltyArmoredFeature:' +
+        'validationNotes.heavyArmorMasterFeature:' +
           'Requires heavy armor proficiency'
       ];
       rules.defineRule('validationNotes.heavyArmorMasterFeature',
@@ -4068,84 +4067,133 @@ SRD5E.featRules = function(rules, feats) {
       ];
     } else if(feat == 'Lightly Armorned') {
       notes = [
+        'abilityNotes.lightlyArmoredFeature:+1 Dexterity or Strength',
+        'skillNotes.lightlyArmoredFeature:Prof Armor (Light)'
       ];
-      // TODO
     } else if(feat == 'Linguist') {
       notes = [
+        'abilityNotes.linguistFeature:+1 Intelligence',
+        'featureNotes.linguistFeature:Create ciphers, DC %V Int to decode',
+        'skillNotes.linguistFeature:Learn 3 additional languages'
       ];
-      // TODO
+      rules.defineRule('featureNotes.linguistFeature',
+        'intelligence', '=', null,
+        'proficiencyBonus', '+', null
+      );
+      rules.defineRule('languageCount', 'skillNotes.linguistFeature', '+', '3');
     } else if(feat == 'Lucky') {
       notes = [
+        'featureNotes.luckyFeature:' +
+          'Adv attack/ability/save or foe DisAdv attack 3/long rest'
       ];
-      // TODO
     } else if(feat == 'Mage Slayer') {
       notes = [
+        'combatNotes.mageSlayerFeature:' +
+          'React to attack caster, foe DisAdv concentration',
+        "saveNotes.mageSlayerFeature:Adv vs. spells by foes w/in 5'"
       ];
-      // TODO
     } else if(feat == 'Magic Initiate') {
       notes = [
+        'magicNotes.magicInitiateFeature:2 cantrips, 1 1st-level/long rest'
       ];
-      // TODO
     } else if(feat == 'Martial Adept') {
       notes = [
+        'combatNotes.martialAdeptFeature:' +
+          'Two maneuvers (DC %V), 1 superiority die/long rest'
       ];
-      // TODO
+      rules.defineRule('maxDexOrStrMod',
+        'dexterityModifier', '=', null,
+        'strengthModifier', '^', null
+      );
+      rules.defineRule('combatNotes.martialAdeptFeature',
+        'maxDexOrStrMod', '=', '8 + source',
+        'proficiencyBonus', '+', null
+      );
     } else if(feat == 'Medium Armor Master') {
       notes = [
+        'combatNotes.mediumArmorMasterFeature:+1 AC in medium armor',
+        'validationNotes.mediumArmorMasterFeature:' +
+          'Requires medium armor proficiency'
       ];
-      // TODO
+      var armors = rules.getChoices('armor');
+      var mediumArmors = '';
+      for(var armor in armors) {
+        if(armors[armor].indexOf('M') >= 0)
+          mediumArmors += armor;
+      }
+      rules.defineRule
+        ('armorClass', 'classNotes.mediumArmorMasterFeature.1', '+', null);
+      rules.defineRule('combatNotes.mediumArmorMasterFeature.1',
+        'dexterity', '?', 'source >= 16',
+        'armor', '=', '"' + mediumArmors + '".indexOf(source) >= 0 ? 1 : null'
+      );
     } else if(feat == 'Mobile') {
       notes = [
+        "abilityNotes.mobileFeature:+10' speed",
+        'combatNotes.mobileFeature:Dash at full speed, no AOO from targeted foe'
       ];
-      // TODO
+      rules.defineRule('speed', 'abilityNotes.modileFeature', '+', '10');
     } else if(feat == 'Moderately Armored') {
       notes = [
+        'abilityNotes.moderatelyArmoredFeature:+1 Dexterity or Strength',
+        'skillNotes.moderatelyArmoredFeature:Prof Armor (Heavy)',
+        'validationNotes.moderateltyArmoredFeature:' +
+          'Requires light armor proficiency'
       ];
-      // TODO
     } else if(feat == 'Mounted Combatant') {
       notes = [
+        'combatNotes.mountedCombatantFeature:' +
+          'Adv unmounted foe smaller than mount, redirect attack on mount to sself, mount takes no damage on Dex save, half on fail'
       ];
-      // TODO
     } else if(feat == 'Observant') {
       notes = [
+        'abilityNotes.observantFeature:+1 Intelligence or Wisdom',
+        'featureNotes.observantFeature:Read lips',
+        'skillNotes.observantFeature:+5 passive Investigation, Perception'
       ];
-      // TODO
     } else if(feat == 'Polearm Master') {
       notes = [
+        'combatNotes.polearmMasterFeature:' +
+          'Bonus attack w/polearm but 1d4 HP, AOO when foe enters reach'
       ];
-      // TODO
     } else if(feat == 'Resilient') {
       notes = [
+        'abilityNotes.resilientFeature:+1 and prof saves in chosen ability'
       ];
-      // TODO
     } else if(feat == 'Ritual Caster') {
       notes = [
+        'magicNotes.ritualCasterFeature:Cast spells from ritual book'
       ];
-      // TODO
     } else if(feat == 'Savage Attacker') {
       notes = [
+        'combatNotes.savageAttackerFeature:Reroll damage 1/turn'
       ];
-      // TODO
     } else if(feat == 'Sentinel') {
       notes = [
+        'combatNotes.sentinelFeature:' +
+          'Foe stuck by AOO speed 0, AOO on foe Disengage, react attack when foe targets other'
       ];
-      // TODO
     } else if(feat == 'Sharpshooter') {
       notes = [
+        'combatNotes.sharpshooterFeature:' +
+          'No DisAdv long range, ignore 3/4 cover, take -5 attack for +10 damage'
       ];
-      // TODO
     } else if(feat == 'Shield Master') {
       notes = [
+        "combatNotes.shieldMasterFeature:Bonus 5' Push",
+        'saveNotes.shieldMasterFeature:' +
+          '+2 Dex vs. targeted spell, save for no damage instead of half'
       ];
-      // TODO
     } else if(feat == 'Skilled') {
       notes = [
+        'skillNotes.skilledFeature:Prof 3 skills or tools'
       ];
-      // TODO
     } else if(feat == 'Skulker') {
       notes = [
+        'skillNotes.skulkerFeature:' +
+          'Hide when lightly obscured, no DisAdv on Perception in dim light',
+        'validationNotes.skulkerFeatAbility:Requires Dexterity >= 13'
       ];
-      // TODO
     } else if(feat == 'Spell Sniper') {
       notes = [
       ];
@@ -4156,16 +4204,19 @@ SRD5E.featRules = function(rules, feats) {
       // TODO
     } else if(feat == 'Tough') {
       notes = [
+        'combatNotes.toughFeature:+%V HP'
       ];
-      // TODO
+      rules.defineRule('combatNotes.toughFeature', 'level', '=', '2 * source');
+      rules.defineRule('hitPoints', 'combatNotes.toughFeature', '+', null);
     } else if(feat == 'War Caster') {
       notes = [
       ];
       // TODO
     } else if(feat == 'Weapon Master') {
       notes = [
+        'abilityNotes.weaponMasterFeature:+1 Dexterity or Strength',
+        'skillNotes.weaponMasterFeature:Prof 4 weapons'
       ];
-      // TODO
 // ENDPHB
     } else {
       continue;

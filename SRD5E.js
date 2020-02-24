@@ -3896,19 +3896,23 @@ SRD5E.equipmentRules = function(rules, armors, shields, weapons) {
     rules.defineNote(weaponName + ':' + format);
 
     rules.defineRule('proficient.' + name,
+      weaponName, '?', null,
       'weaponProficiencies.' + name, '=', '1',
       'weaponProficiencies.' + category, '=', '1'
     );
     rules.defineRule('weaponBonus.' + name,
+      weaponName, '?', null,
       'proficient.' + name, '?', null,
       'proficiencyBonus', '=', null
     );
     rules.defineRule('attackBonus.' + name,
+      weaponName, '?', null,
       'combatNotes.' + (range ? 'dexterity' : 'strength') + 'AttackAdjustment', '=', null,
       'weaponBonus.' + name, '+', null,
       'weaponAttackAdjustment.' + name, '+', null
     );
     rules.defineRule('damageBonus.' + name,
+      weaponName, '?', null,
       'combatNotes.' + (range ? 'dexterity' : 'strength') + 'DamageAdjustment', '=', null,
       'weaponBonus.' + name, '+', null,
       'weaponDamageAdjustment.' + name, '+', null
@@ -3919,18 +3923,25 @@ SRD5E.equipmentRules = function(rules, armors, shields, weapons) {
     }
 
     rules.defineRule(weaponName + '.1',
+      weaponName, '?', null,
       'attackBonus.' + name, '=', 'source < 0 ? source : ("+" + source)'
     );
-    rules.defineRule(weaponName + '.2', '', '=', '"' + damage + '"');
+    rules.defineRule(weaponName + '.2',
+      weaponName, '=', '"' + damage + '"'
+    );
     rules.defineRule(weaponName + '.3',
+      weaponName, '?', null,
       'damageBonus.' + name, '=', 'source < 0 ? source : source == 0 ? "" : ("+" + source)'
     );
     if(range) {
       rules.defineRule('range.' + name,
-        '', '=', range,
+        weaponName, '=', range,
         'weaponRangeAdjustment.' + name, '+', null
       );
-      rules.defineRule(weaponName + '.4', 'range.' + name, '=', null);
+      rules.defineRule(weaponName + '.4',
+        weaponName, '?', null,
+        'range.' + name, '=', null
+      );
     }
     if(!range) {
       rules.defineRule(weaponName + '.2', 'monkMeleeDieBonus', '^', null);
@@ -3941,8 +3952,10 @@ SRD5E.equipmentRules = function(rules, armors, shields, weapons) {
   for(var i = 0; i < armors.length; i++) {
     var pieces = armors[i].split(':');
     var name = pieces[0];
-    rules.defineRule
-      ('proficient.' + name, 'armorProficiencies.' + name, '=', '1');
+    rules.defineRule('proficient.' + name,
+      'armor', '?', 'source == "' + name + '"',
+      'armorProficiencies.' + name, '=', '1'
+    );
     if(pieces[1] != '') {
       var category = pieces[1] == 'H' ? 'Heavy' : pieces[1] == 'M' ? 'Medium' : 'Light';
       rules.defineRule

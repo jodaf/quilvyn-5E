@@ -91,9 +91,12 @@ SRD5E.DEITIES = [
   'Torm (LG):War', 'Tymora (CG):Trickery', 'Tyr (LG):War',
   'Umberlee (CE):Tempest', 'Waukeen (N):Knowledge/Trickery', 'None:'
 ];
-SRD5E.FEATS = ['Grappler'];
-// PHB
 SRD5E.FEATS = [
+  'Ability Boost', 'Ability Boost 2', 'Ability Boost 3', 'Ability Boost 4',
+  'Ability Boost 5', 'Ability Boost 6', 'Ability Boost 7', 'Grappler'
+];
+// PHB
+SRD5E.FEATS.push(
   'Alert', 'Athleete', 'Actor', 'Charger', 'Crossbow Expert',
   'Defensive Duelist', 'Dual Wielder', 'Dungeon Delver', 'Durable',
   'Elemental Adept (Acid)', 'Elemental Adept (Cold)', 'Elemental Adept (Fire)',
@@ -105,7 +108,7 @@ SRD5E.FEATS = [
   'Polearm Master', 'Resilient', 'Ritual Caster', 'Savage Attacker',
   'Sentinel', 'Sharpshooter', 'Shield Master', 'Skilled', 'Skulker',
   'Spell Sniper', 'Tavern Brawler', 'Tough', 'War Caster', 'Weapon Master'
-];
+);
 // ENDPHB
 SRD5E.GENDERS = ['Female', 'Male'];
 SRD5E.LANGUAGES = [
@@ -1066,6 +1069,26 @@ SRD5E.abilityRules = function(rules) {
   rules.defineRule
     ('hitPoints', 'combatNotes.constitutionHitPointsAdjustment', '+', null);
 
+  rules.defineNote
+    ('validationNotes.abilityBoostAllocation:%1 available vs. %2 allocated');
+  rules.defineRule('validationNotes.abilityBoostAllocation.1',
+    '', '=', '0',
+    'abilityBoostCount', '=', null
+  );
+  rules.defineRule('validationNotes.abilityBoostAllocation.2', '', '=', '0');
+  rules.defineRule('validationNotes.abilityBoostAllocation',
+    'validationNotes.abilityBoostAllocation.1', '=', '-source',
+    'validationNotes.abilityBoostAllocation.2', '+=', null
+  );
+
+  for(var ability in {'charisma':'', 'constitution':'', 'dexterity':'',
+                      'intelligence':'', 'strength':'', 'wisdom':''}) {
+    rules.defineRule('validationNotes.abilityBoostAllocation.2',
+      ability + 'Adjust', '+=', null
+    );
+    rules.defineRule(ability, '', 'v', '20');
+  }
+
 };
 
 /* Defines the rules related to character backgrounds. */
@@ -1307,7 +1330,7 @@ SRD5E.classRules = function(rules, classes) {
         spellSlots;
     var name = classes[i];
 
-    rules.defineRule('featCount.General',
+    rules.defineRule('featCount',
       'levels.' + name, '+=', 'source >= 19 ? 5 : Math.floor(source / 4)'
     );
 
@@ -2091,7 +2114,7 @@ SRD5E.classRules = function(rules, classes) {
       rules.defineRule('fighterFeatBonus',
         'levels.Fighter', '=', 'source < 6 ? null : source < 14 ? 1 : 2'
       );
-      rules.defineRule('featCount.General', 'fighterFeatBonus', '+', null);
+      rules.defineRule('featCount', 'fighterFeatBonus', '+', null);
       rules.defineRule
         ('rangedAttack', 'combatNotes.archeryStyleFeature', '+', '2');
       rules.defineRule
@@ -3945,13 +3968,37 @@ SRD5E.equipmentRules = function(rules, armors, shields, weapons) {
 /* Defines the rules related to feats. */
 SRD5E.featRules = function(rules, feats) {
 
+  rules.defineNote
+    ('validationNotes.featAllocation:%1 available vs. %2 allocated');
+  rules.defineRule('validationNotes.featAllocation.1',
+    '', '=', '0',
+    'featCount', '=', null
+  );
+  rules.defineRule('validationNotes.featAllocation.2',
+    '', '=', '0',
+    /^feats\./, '+=', null
+  );
+  rules.defineRule('validationNotes.featAllocation',
+    'validationNotes.featAllocation.1', '=', '-source',
+    'validationNotes.featAllocation.2', '+=', null
+  );
+
   for(var i = 0; i < feats.length; i++) {
 
     var feat = feats[i];
     var matchInfo;
     var notes = null;
 
-    if(feat == 'Grappler') {
+    if((matchInfo = feat.match(/^Ability Boost( (\d+))?$/)) != null) {
+      var seq = matchInfo[2];
+      notes = ['abilityNotes.abilityBoosts:+%V to distribute'];
+      rules.defineRule('abilityBoostCount', 'features.' + feat, '+=', '2');
+      rules.defineRule
+        ('abilityNotes.abilityBoosts', 'abilityBoostCount', '=', null);
+      if(seq) {
+        notes.push('validationNotes.abilityBoost ' + seq + 'FeatFeatures:Requires Ability Boost' + (seq == '2' ? '' : (' ' + (seq - 1))));
+      }
+    } else if(feat == 'Grappler') {
       notes = [
         'combatNotes.grapplerFeature:' +
           'Adv attacks vs. grappled foe, additional grapple to pin',
@@ -3963,17 +4010,18 @@ SRD5E.featRules = function(rules, feats) {
         'combatNotes.alertFeature:+5 Initiative, foes no surprise or hidden Adv'
       ];
       rules.defineRule('initiative', 'combatNotes.alertFeature', '+', '5');
-    } else if(feat == 'Athelete') {
+    } else if(feat == 'Athlete') {
       notes = [
         "abilityNotes.athleteFeature:+1 Dexterity or Strength, climb full speed, stand uses 5' move",
         "skillNotes.athleteFeature:Long jump, running high jump uses 5' move"
       ];
+      rules.defineRule
+        ('abilityBoostCount', 'abilityNotes.athleteFeature', '+', '1');
     } else if(feat == 'Actor') {
       notes = [
-        //'abilityNotes.actorFeature:+1 Charisma',
+        'abilityNotes.actorFeature:+1 Charisma',
         "skillNotes.actorFeature:Mimic others' speech/sounds, Adv Charisma(Deception/Performance) when impersonating"
       ];
-      //rules.defineRule('charisma', 'abilityNotes.actorFeature', '+', '1');
     } else if(feat == 'Charger') {
       notes = [
         "combatNotes.chargerFeature:Bonus attack +5 HP or 10' push after dash"
@@ -4070,6 +4118,8 @@ SRD5E.featRules = function(rules, feats) {
         'abilityNotes.lightlyArmoredFeature:+1 Dexterity or Strength',
         'skillNotes.lightlyArmoredFeature:Prof Armor (Light)'
       ];
+      rules.defineRule
+        ('abilityBoostCount', 'abilityNotes.lightlyArmoredFeature', '+=', '1');
     } else if(feat == 'Linguist') {
       notes = [
         'abilityNotes.linguistFeature:+1 Intelligence',
@@ -4140,6 +4190,9 @@ SRD5E.featRules = function(rules, feats) {
         'validationNotes.moderateltyArmoredFeature:' +
           'Requires light armor proficiency'
       ];
+      rules.defineRule('abilityBoostCount',
+        'abilityNotes.moderatelyArmoredFeature', '+=', '1'
+      );
     } else if(feat == 'Mounted Combatant') {
       notes = [
         'combatNotes.mountedCombatantFeature:' +
@@ -4151,6 +4204,8 @@ SRD5E.featRules = function(rules, feats) {
         'featureNotes.observantFeature:Read lips',
         'skillNotes.observantFeature:+5 passive Investigation, Perception'
       ];
+      rules.defineRule
+        ('abilityBoostCount', 'abilityNotes.observantFeature', '+=', '1');
     } else if(feat == 'Polearm Master') {
       notes = [
         'combatNotes.polearmMasterFeature:' +
@@ -4206,6 +4261,8 @@ SRD5E.featRules = function(rules, feats) {
           'Prof improvised and unarmed, bonus to grapple'
       ];
       rules.defineRule
+        ('abilityBoostCount', 'abilityNotes.tavernBrawlerFeature', '+=', '1');
+      rules.defineRule
         ('weapons.Unarmed.2', 'combatNotes.tavernBrawlerFeature', '=', '"1d4"');
     } else if(feat == 'Tough') {
       notes = [
@@ -4225,6 +4282,8 @@ SRD5E.featRules = function(rules, feats) {
         'abilityNotes.weaponMasterFeature:+1 Dexterity or Strength',
         'skillNotes.weaponMasterFeature:Prof 4 weapons'
       ];
+      rules.defineRule
+        ('abilityBoostCount', 'abilityNotes.weaponMasterFeature', '+=', '1');
 // ENDPHB
     } else {
       continue;
@@ -5076,7 +5135,9 @@ SRD5E.randomizeOneAttribute = function(attributes, attribute) {
     }
   } else if(attribute == 'feats' || attribute == 'features') {
     attribute = attribute == 'feats' ? 'feat' : 'selectableFeature';
-    var countPat = new RegExp('^' + attribute + 'Count\\.');
+    var countPat = new RegExp(
+      attribute == 'feat' ? '^featCount$' : '^selectableFeatureCount\\.'
+    );
     var prefix = attribute + 's';
     var suffix =
       attribute.substring(0, 1).toUpperCase() + attribute.substring(1);
@@ -5091,7 +5152,7 @@ SRD5E.randomizeOneAttribute = function(attributes, attribute) {
     var allChoices = this.getChoices(prefix);
     for(attr in allChoices) {
       if(attrs[prefix + '.' + attr] != null) {
-        var type = 'General';
+        var type = '';
         for(var a in toAllocateByType) {
           if(QuilvynUtils.findElement(allChoices[attr].split('/'), a) >= 0 &&
              toAllocateByType[a] > 0) {
@@ -5108,7 +5169,7 @@ SRD5E.randomizeOneAttribute = function(attributes, attribute) {
     for(attr in toAllocateByType) {
       var availableChoicesInType = {};
       for(var a in availableChoices) {
-        if(attr == 'General' ||
+        if(attr == '' ||
            QuilvynUtils.findElement(availableChoices[a].split('/'), attr) >= 0) {
           availableChoicesInType[a] = '';
         }

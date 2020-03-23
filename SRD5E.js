@@ -138,6 +138,7 @@ SRD5E.SCHOOLS = [
 ];
 SRD5E.SPELLS = {
 
+  'Acid Arrow':'Evocation',
   'Acid Splash':'Conjuration',
   'Aid':'Abjuration',
   'Alarm':'Abjuration',
@@ -152,7 +153,9 @@ SRD5E.SPELLS = {
   'Antipathy/Sympathy':'Enchantment',
   'Arcane Eye':'Divination',
   'Arcane Gate':'Conjuration',
+  'Arcane Hand':'Evocation',
   'Arcane Lock':'Abjuration',
+  "Arcanist's Magic Aura":'Illusion',
   'Armor Of Agathys':'Abjuration',
   'Arms Of Hadar':'Conjuaration',
   'Astral Projection':'Necromancy',
@@ -169,7 +172,6 @@ SRD5E.SPELLS = {
   'Beacon Of Hope':'Abjuration',
   'Beast Sense':'Divination',
   'Bestow Curse':'Necromancy',
-  "Bigby's Hand":'Evocation',
   "Black Tentacles":'Conjuration',
   'Blade Barrier':'Evocation',
   'Blade Ward':'Abjuration',
@@ -251,7 +253,6 @@ SRD5E.SPELLS = {
   'Dominate Beast':'Enchantment',
   'Dominate Monster':'Enchantment',
   'Dominate Person':'Enchantment',
-  "Drawmij's Instant Summons":'Conjuration',
   'Dream':'Illusion',
   'Druidcraft':'Transmutation',
 
@@ -288,12 +289,14 @@ SRD5E.SPELLS = {
   'Flame Strike':'Evocation',
   'Flaming Sphere':'Conjuration',
   'Flesh To Stone':'Transmutation',
+  'Floating Disk':'Conjuration',
   'Fly':'Transmutation',
   'Fog Cloud':'Conjuration',
   'Forbiddance':'Abjuration',
   'Forcecage':'Evocation',
   'Foresight':'Divination',
   'Freedom Of Movement':'Abjuration',
+  'Freezing Sphere':'Evocation',
   'Friends':'Enchantment',
 
   'Gaseous Form':'Transmutation',
@@ -328,6 +331,7 @@ SRD5E.SPELLS = {
   "Heroes' Feast":'Conjuration',
   'Heroism':'Enchantment',
   'Hex':'Enchantment',
+  'Hideous Laughter':'Enchantment',
   'Hold Monster':'Enchantment',
   'Hold Person':'Enchantment',
   'Holy Aura':'Abjuration',
@@ -341,6 +345,8 @@ SRD5E.SPELLS = {
   'Incendiary Cloud':'Conjuration',
   'Inflict Wounds':'Necromancy',
   'Insect Plague':'Conjuration',
+  'Instant Summons':'Conjuration',
+  'Irresistable Dance':'Enchantment',
   'Invisibility':'Illusion',
 
   'Jump':'Transmutation',
@@ -348,8 +354,6 @@ SRD5E.SPELLS = {
   'Knock':'Transmutation',
 
   'Legend Lore':'Divination',
-  "Leomund's Secret Chest":'Conjuraion',
-  "Leomund's Tiny Hut":'Evocation',
   'Lesser Restoration':'Abjuration',
   'Levitate':'Transmutation',
   'Light':'Evocation',
@@ -374,22 +378,16 @@ SRD5E.SPELLS = {
   'Mass Suggestion':'Enchantment',
   'Maze':'Conjuration',
   'Meld Into Stone':'Transmutation',
-  "Melf's Acid Arrow":'Evocation',
   'Mending':'Transmutation',
   'Message':'Transmutation',
   'Meteor Swarm':'Evocation',
   'Mind Blank':'Abjuration',
   'Mind Fog':'Enchantment',
-  "Mordenkainen's Private Sanctum":'Abjuration',
   "Mordenkainen's Sword":'Evocation',
   'Move Earth':'Transmutation',
 
   'Nondetection':'Abjuration',
-  "Nystul's Magic Aura":'Illusion',
 
-  "Otiluke's Freezing Sphere":'Evocation',
-  "Otiluke's Resilient Sphere":'Evocation',
-  "Otto's Irresistable Dance":'Enchantment',
 
   'Pass Without Trace':'Abjuration',
   'Passwall':'Transmutation',
@@ -409,6 +407,7 @@ SRD5E.SPELLS = {
   'Prestidigitation':'Transmutation',
   'Prismatic Spray':'Evocation',
   'Prismatic Wall':'Abjuration',
+  "Private Sanctum":'Abjuration',
   'Produce Flame':'Conjuration',
   'Programmed Illusion':'Illusion',
   'Project Image':'Illusion',
@@ -418,13 +417,13 @@ SRD5E.SPELLS = {
   'Purify Food And Drink':'Transmutation',
 
   'Raise Dead':'Necromancy',
-  "Rary's Telepathic Bond":'Divination',
   'Ray Of Enfeeblement':'Necromancy',
   'Ray Of Frost':'Evocation',
   'Ray Of Sickness':'Necromancy',
   'Regenerate':'Transmutation',
   'Reincarnate':'Transmutation',
   'Remove Curse':'Abjuration',
+  'Resilient Sphere':'Evocation',
   'Resistance':'Abjuration',
   'Resurrection':'Necromancy',
   'Reverse Gravity':'Transmutation',
@@ -436,6 +435,7 @@ SRD5E.SPELLS = {
   'Scorching Ray':'Evocation',
   'Scrying':'Divination',
   'Searing Smite':'Evocation',
+  'Secret Chest':'Conjuraion',
   'See Invisibility':'Divination',
   'Seeming':'Illusion',
   'Sending':'Evocation',
@@ -472,17 +472,17 @@ SRD5E.SPELLS = {
   'Swift Quiver':'Transmutation',
   'Symbol':'Abjuration',
 
-  "Tasha's Hideous Laughter":'Enchantment',
   'Telekinesis':'Transmutation',
+  'Telepathic Bond':'Divination',
   'Telepathy':'Evocation',
   'Teleport':'Conjuration',
   'Teleportation Circle':'Conjuration',
-  "Tenser's Floating Disk":'Conjuration',
   'Thaumaturgy':'Transmutation',
   'Thorn Whip':'Transmutation',
   'Thunderous Smite':'Evocation',
   'Thunderwave':'Evocation',
   'Time Stop':'Transmutation',
+  'Tiny Hut':'Evocation',
   'Tongues':'Divination',
   'Transport Via Plants':'Conjuration',
   'Tree Stride':'Conjuration',
@@ -654,6 +654,7 @@ SRD5E.spellsAbbreviations = {
   "RS": "25 + 5 * Math.floor(source / 2)"
 };
 SRD5E.spellsDescriptions = {
+  'Acid Arrow':"R90' Ranged spell attack 4d4 HP (miss half), 2d4 HP next turn",
   "Acid Splash":
     "R60' Ranged touch ${Math.floor((lvl+1)/6) + 1}d6 HP acid (Ref neg)",
   'Aid':"R30' Three targets +5 or more HP for 8 hr",
@@ -676,7 +677,10 @@ SRD5E.spellsDescriptions = {
     "R60' Target object repels/attracts specified creatures for 10 dy",
   'Arcane Eye':"R30' See through invisible eye for conc/1 hr",
   'Arcane Gate':"R10'/500' Connect portal pair for conc/10 min",
+  'Arcane Hand':
+    "R120' AC20, Str 26, Dex 10 hand can punch, push, grasp, block for conc/1 min",
   'Arcane Lock':"Touched barrier passable only by designated until dispelled",
+  "Arcanist's Magic Aura":"Target reports false divinations for 1 dy",
   'Armor Of Agathys':"Self frosted, +5 HP, 5 HP cold to successful attcker",
   'Arms Of Hadar':
     "All in 10' radius take 2d6 HP necrotic (Str half), no reactions until next turn",
@@ -700,8 +704,6 @@ SRD5E.spellsDescriptions = {
   'Beast Sense':"Self use touched beast's senses for conc/1 hr",
   'Bestow Curse':
     "Touched one of Disadv specified ability rolls, Disadv self attacks, Wis save to take action, take +1d8 HP necrotic from self attacks (Wis neg) for conc/1 min",
-  "Bigby's Hand":
-    "R120' AC20, Str 26, Dex 10 hand can punch, push, grasp, block for conc/1 min",
   'Black Tentacles':
     "R90' All in 20' sq 3d6 HP and restrained for conc/1 min (Dex neg)",
   'Blade Barrier':
@@ -805,7 +807,6 @@ SRD5E.spellsDescriptions = {
     "R60' Command target telepathically for conc/1 hr (Wis neg)",
   'Dominate Person':
     "R60' Command target telepathically for conc/1 hr (Wis neg)",
-  "Drawmij's Instant Summons":"TODO",
   'Dream':"Touched communicate in dream with known target",
   'Druidcraft':"R30' Cause minor nature effects",
 
@@ -845,12 +846,14 @@ SRD5E.spellsDescriptions = {
   'Flame Strike':"R60' Objects in 10' radius 2x4d6 HP (Dex half)",
   'Flaming Sphere':"TODO",
   'Flesh To Stone':"TODO",
+  'Floating Disk':"TODO",
   'Fly':"TODO",
   'Fog Cloud':"TODO",
   'Forbiddance':"TODO",
   'Forcecage':"TODO",
   'Foresight':"TODO",
   'Freedom Of Movement':"TODO",
+  'Freezing Sphere':"TODO",
   'Friends':"TODO",
 
   'Gaseous Form':"TODO",
@@ -885,6 +888,7 @@ SRD5E.spellsDescriptions = {
   "Heroes' Feast":"TODO",
   'Heroism':"TODO",
   'Hex':"TODO",
+  'Hideous Laughter':"TODO",
   'Hold Monster':"TODO",
   'Hold Person':"TODO",
   'Holy Aura':"TODO",
@@ -898,15 +902,15 @@ SRD5E.spellsDescriptions = {
   'Incendiary Cloud':"TODO",
   'Inflict Wounds':"TODO",
   'Insect Plague':"TODO",
+  'Instant Summons':"TODO",
   'Invisibility':"TODO",
+  'Irresistable Dance':"TODO",
 
   'Jump':"TODO",
 
   'Knock':"TODO",
 
   'Legend Lore':"TODO",
-  "Leomund's Secret Chest":"TODO",
-  "Leomund's Tiny Hut":"TODO",
   'Lesser Restoration':"TODO",
   'Levitate':"TODO",
   'Light':"TODO",
@@ -931,22 +935,15 @@ SRD5E.spellsDescriptions = {
   'Mass Suggestion':"TODO",
   'Maze':"TODO",
   'Meld Into Stone':"TODO",
-  "Melf's Acid Arrow":"TODO",
   'Mending':"TODO",
   'Message':"TODO",
   'Meteor Swarm':"TODO",
   'Mind Blank':"TODO",
   'Mind Fog':"TODO",
-  "Mordenkainen's Private Sanctum":"TODO",
   "Mordenkainen's Sword":"TODO",
   'Move Earth':"TODO",
 
   'Nondetection':"TODO",
-  "Nystul's Magic Aura":"TODO",
-
-  "Otiluke's Freezing Sphere":"TODO",
-  "Otiluke's Resilient Sphere":"TODO",
-  "Otto's Irresistable Dance":"TODO",
 
   'Pass Without Trace':"TODO",
   'Passwall':"TODO",
@@ -966,6 +963,7 @@ SRD5E.spellsDescriptions = {
   'Prestidigitation':"TODO",
   'Prismatic Spray':"TODO",
   'Prismatic Wall':"TODO",
+  'Private Sanctum':"TODO",
   'Produce Flame':"TODO",
   'Programmed Illusion':"TODO",
   'Project Image':"TODO",
@@ -975,13 +973,13 @@ SRD5E.spellsDescriptions = {
   'Purify Food And Drink':"TODO",
 
   'Raise Dead':"TODO",
-  "Rary's Telepathic Bond":"TODO",
   'Ray Of Enfeeblement':"TODO",
   'Ray Of Frost':"TODO",
   'Ray Of Sickness':"TODO",
   'Regenerate':"TODO",
   'Reincarnate':"TODO",
   'Remove Curse':"TODO",
+  'Resilient Sphere':"TODO",
   'Resistance':"TODO",
   'Resurrection':"TODO",
   'Reverse Gravity':"TODO",
@@ -993,6 +991,7 @@ SRD5E.spellsDescriptions = {
   'Scorching Ray':"TODO",
   'Scrying':"TODO",
   'Searing Smite':"TODO",
+  'Secret Chest':"TODO",
   'See Invisibility':"TODO",
   'Seeming':"TODO",
   'Sending':"TODO",
@@ -1029,17 +1028,17 @@ SRD5E.spellsDescriptions = {
   'Swift Quiver':"TODO",
   'Symbol':"TODO",
 
-  "Tasha's Hideous Laughter":"TODO",
   'Telekinesis':"TODO",
+  'Telepathic Bond':"TODO",
   'Telepathy':"TODO",
   'Teleport':"TODO",
   'Teleportation Circle':"TODO",
-  "Tenser's Floating Disk":"TODO",
   'Thaumaturgy':"TODO",
   'Thorn Whip':"TODO",
   'Thunderous Smite':"TODO",
   'Thunderwave':"TODO",
   'Time Stop':"TODO",
+  'Tiny Hut':"TODO",
   'Tongues':"TODO",
   'Transport Via Plants':"TODO",
   'Tree Stride':"TODO",
@@ -4370,9 +4369,9 @@ SRD5E.magicRules = function(rules, classes, schools) {
         'Message:Minor Illusion:Prestidigitation:True Strike:Vicious Mockery',
         'B1:Animal Friendship:Bane:Charm Person:Comprehend Languages:' +
         'Cure Wounds:Detect Magic:Disguise Self:Dissonant Whispers:' +
-        'Faerie Fire:Feather Fall:Healing Word:Heroism:Identify:' +
-        'Illusory Script:Longstrider:Silent Image:Sleep:Speak With Animals:' +
-        "Tasha's Hideous Laughter:Thunderwave:Unseen Servant",
+        'Faerie Fire:Feather Fall:Healing Word:Heroism:Hideous Laughter:' +
+        'Identify:Illusory Script:Longstrider:Silent Image:Sleep:' +
+        'Speak With Animals:Unseen Servant',
         'B2:Animal Messenger:Blindness/Deafness:Calm Emotions:' +
         'Cloud Of Daggers:Crown Of Madness:Detect Thoughts:Enhance Ability:' +
         'Enthrall:Heat Metal:Hold Person:Invisibility:Knock:' +
@@ -4380,20 +4379,19 @@ SRD5E.magicRules = function(rules, classes, schools) {
         'Magic Mouth:Phantasmal Force:See Invisibility:Shatter:Silence:' +
         'Suggestion:Zone Of Truth',
         'B3:Bestow Curse:Clairvoyance:Dispel Magic:Fear:Feign Death:' +
-        "Glyph Of Warding:Hypnotic Pattern:Leomund's Tiny Hut:Major Image:" +
-        'Nondetection:Plant Growth:Sending:Speak With Dead:Speak With Plants:' +
-        'Stinking Cloud:Tongues',
+        'Glyph Of Warding:Hypnotic Pattern:Major Image:Plant Growth:Sending:' +
+        'Speak With Dead:Speak With Plants:Stinking Cloud:Tiny Hut:Tongues',
         'B4:Compulsion:Confusion:Dimension Door:Freedom Of Movement:' +
         'Greater Invisibility:Hallucinatory Terrain:Locate Creature:Polymorph',
         'B5:Animate Objects:Awaken:Dominate Person:Dream:Geas:' +
         'Greater Restoration:Hold Monster:Legend Lore:Mass Cure Wounds:' +
         'Mislead:Modify Memory:Planar Binding:Raise Dead:Scrying:Seeming:' +
         'Teleporation Circle',
-        'B6:Eyebite:Find The Path:Guards And Wards:Mass Suggestion:' +
-        "Otto's Irresistible Dance:Programmed Illusion:True Seeing",
-        'B7:Etherealness:Forcecage:Mirage Arcane:' +
-        "Mordenkainen's Magnificent Mansion:Mordenkainen's Sword:" +
-        'Project Image:Regenerate:Resurrection:Symbol:Teleport',
+        'B6:Eyebite:Find The Path:Guards And Wards:Irresistible Dance:' +
+        'Mass Suggestion:Programmed Illusion:True Seeing',
+        'B7:Etherealness:Forcecage:Magnificent Mansion:Mirage Arcane:' +
+        "Mordenkainen's Sword:Project Image:Regenerate:Resurrection:Symbol:" +
+        'Teleport',
         'B8:Dominate Monster:Feeblemind:Glibness:Mind Blank:Power Word Stun',
         'B9:Foresight:Power Word Heal:Power Word Kill:True Polymorph'
       ];
@@ -4553,45 +4551,43 @@ SRD5E.magicRules = function(rules, classes, schools) {
         'Prestidigitation:Ray Of Frost:Shocking Grasp:True Strike',
         'W1:Alarm:Burning Hands:Charm Person:Chromatic Orb:Color Spray:' +
         'Comprehend Languages:Detect Magic:Disguise Self:Expeditious Retreat:' +
-        'False Life:Feather Fall:Find Familiar:Fog Cloud:Grease:Identify:' +
-        'Illusory Script:Jump:Longstrider:Mage Armor:Magic Missile:' +
-        'Protection From Evil And Good:Ray Of Sickness:Shield:Silent Image:' +
-        "Sleep:Tasha's Hideous Laughter:Tenser's Floating Disk:Thunderwave:" +
+        'False Life:Feather Fall:Find Familiar:Floating Disk:Fog Cloud:' +
+        'Grease:Hideous Laughter:Identify:Illusory Script:Jump:Longstrider:' +
+        'Mage Armor:Magic Missile:Protection From Evil And Good:' +
+        'Ray Of Sickness:Shield:Silent Image:Sleep:Thunderwave:' +
         'Unseen Servant:Witch Bolt',
-        'W2:Alter Self:Arcane Lock:Blindness/Deafness:Blur:Cloud Of Daggers:' +
-        'Continual Flame:Crown Of Madness:Darkness:Darkvision:' +
-        'Detect Thoughts:Enlarge/Reduce:Flaming Sphere:Gentle Repose:' +
-        'Gust Of Wind:Hold Person:Invisibility:Knock:Levitate:Locate Object:' +
-        "Magic Mouth:Magic Weapon:Melf's Acid Arrow:Mirror Image:Misty Step:" +
-        "Nystul's Magic Aura:Phantasmal Force:Ray Of Enfeeblement:" +
-        'Rope Trick:Scorching Ray:See Invisibility:Shatter:Spider Climb:' +
-        'Suggestion:Web',
+        "W2:Acid Arrow:Alter Self:Arcane Lock:Arcanist's Magic Aura:" +
+        'Blindness/Deafness:Blur:Cloud Of Daggers:Continual Flame:' +
+        'Crown Of Madness:Darkness:Darkvision:Detect Thoughts:Enlarge/Reduce:' +
+        'Flaming Sphere:Gentle Repose:Gust Of Wind:Hold Person:Invisibility:' +
+        'Knock:Levitate:Locate Object:Magic Mouth:Magic Weapon:Mirror Image:' +
+        'Misty Step:Phantasmal Force:Ray Of Enfeeblement:Rope Trick:' +
+        'Scorching Ray:See Invisibility:Shatter:Spider Climb:Suggestion:Web',
         'W3:Animate Dead:Bestow Curse:Blink:Clairvoyance:Counterspell:' +
         'Dispel Magic:Fear:Feign Death:Fireball:Fly:Gaseous Form:' +
-        "Glyph Of Warding:Haste:Hypnotic Pattern:Leomund's Tiny Hut:" +
-        'Lightning Bolt:Magic Circle:Major Image:Nondetection:Phantom Steed:' +
+        'Glyph Of Warding:Haste:Hypnotic Pattern:Lightning Bolt:' +
+        'Magic Circle:Major Image:Nondetection:Phantom Steed:' +
         'Protection From Energy:Remove Curse:Sending:Sleet Storm:Slow:' +
-        'Stinking Cloud:Tongues:Vampiric Touch:Water Breathing',
+        'Stinking Cloud:Tiny Hut:Tongues:Vampiric Touch:Water Breathing',
         'W4:Arcane Eye:Banishment:Black Tentacles:Blight:Confusion:' +
         "Conjure Minor Elementals:Control Water:Dimension Door:Fabricate:" +
         'Faithful Hound:Fire Shield:Greater Invisibility:' +
-        "Hallucinatory Terrain:Ice Storm:Leomund's Secret Chest:Locate Creature:Private Sanctum:" +
-        "Otiluke's Resilient Sphere:Phantasmal Killer:Polymorph:Stone Shape:" +
-        'Stoneskin:Wall Of Fire',
-        "W5:Animate Objects:Bigby's Hand:Cloudkill:Cone Of Cold:" +
+        'Hallucinatory Terrain:Ice Storm:Locate Creature:Private Sanctum:' +
+        'Phantasmal Killer:Polymorph:Resilient Sphere:Secret Chest:' +
+        'Stone Shape:Stoneskin:Wall Of Fire',
+        'W5:Animate Objects:Arcane Hand:Cloudkill:Cone Of Cold:' +
         'Conjure Elemental:Contact Other Plane:Creation:Dominate Person:' +
         'Dream:Geas:Hold Monster:Legend Lore:Mislead:Modify Memory:Passwall:' +
-        "Planar Binding:Rary's Telepathic Bond:Scrying:Seeming:Telekinesis:" +
+        'Planar Binding:Scrying:Seeming:Telekinesis:Telepathic Bond:' +
         'Teleportation Circle:Wall Of Force:Wall Of Stone',
         'W6:Arcane Gate:Chain Lightning:Circle Of Death:Contingency:' +
-        "Create Undead:Disintegrate:Drawmij's Instant Summons:Eyebite:" +
-        'Flesh To Stone:Globe Of Invulnerability:Guards And Wards:Magic Jar:' +
-        "Mass Suggestion:Move Earth:Otiluke's Freezing Sphere:" +
-        "Otto's Irresistible Dance:Programmed Illusion:Sunbeam:True Seeing:" +
-        'Wall Of Ice',
+        'Create Undead:Disintegrate:Eyebite:Flesh To Stone:Freezing Sphere:' +
+        'Globe Of Invulnerability:Guards And Wards:Instant Summons:' +
+        'Irresistible Dance:Magic Jar:Mass Suggestion:Move Earth:' +
+        'Programmed Illusion:Sunbeam:True Seeing:Wall Of Ice',
         'W7:Delayed Blast Fireball:Etherealness:Finger Of Death:Forcecage:' +
-        "Mirage Arcane:Mordenkainen's Magnificent Mansion:" +
-        "Mordenkainen's Sword:Plane Shift:Prismatic Spray:Project Image:" +
+        "Magnificent Mansion:Mirage Arcane:Mordenkainen's Sword:Plane Shift:" +
+        'Prismatic Spray:Project Image:' +
         'Reverse Gravity:Sequester:Simulacrum:Symbol:Teleport',
         'W8:Antimagic Field:Antipathy/Sympathy:Clone:Control Weather:' +
         'Demiplane:Dominate Monster:Feeblemind:Incendiary Cloud:Maze:' +

@@ -170,6 +170,7 @@ SRD5E.SPELLS = {
   'Beast Sense':'Divination',
   'Bestow Curse':'Necromancy',
   "Bigby's Hand":'Evocation',
+  "Black Tentacles":'Conjuration',
   'Blade Barrier':'Evocation',
   'Blade Ward':'Abjuration',
   'Bless':'Enchantment',
@@ -263,12 +264,12 @@ SRD5E.SPELLS = {
   'Entangle':'Conjuration',
   'Enthrall':'Enchantment',
   'Etherealness':'Transmutation',
-  "Evard's Black Tentacles":'Conjuration',
   'Expeditious Retreat':'Transmutation',
   'Eyebite':'Necromancy',
 
   'Fabricate':'Transmutation',
   'Faerie Fire':'Evocation',
+  'Faithful Hound':'Conjuration',
   'False Life':'Necromancy',
   'Fear':'Illusion',
   'Feather Fall':'Transmutation',
@@ -701,6 +702,8 @@ SRD5E.spellsDescriptions = {
     "Touched one of Disadv specified ability rolls, Disadv self attacks, Wis save to take action, take +1d8 HP necrotic from self attacks (Wis neg) for conc/1 min",
   "Bigby's Hand":
     "R120' AC20, Str 26, Dex 10 hand can punch, push, grasp, block for conc/1 min",
+  'Black Tentacles':
+    "R90' All in 20' sq 3d6 HP and restrained for conc/1 min (Dex neg)",
   'Blade Barrier':
     "R90' 100'x20'x5' blade wall passers 6d10 HP slashing (Dex neg) for conc/10 min",
   'Blade Ward':"Self resist bludgeon, pierce, slash damage for 1 rd",
@@ -806,37 +809,40 @@ SRD5E.spellsDescriptions = {
   'Dream':"Touched communicate in dream with known target",
   'Druidcraft':"R30' Cause minor nature effects",
 
-  'Earthquake':"TODO",
-  'Eldritch Blast':"TODO",
+  'Earthquake':
+    "R500' Shaking in 100' radius opens fissures and damages structures",
+  'Eldritch Blast':
+    "R120' Ranged touch ${Math.max(Math.floor((lvl+1)/6),1) rays do 1d10 HP ea",
   'Elemental Weapon':"TODO",
-  'Enhance Ability':"TODO",
-  'Enlarge/Reduce':"TODO",
+  'Enhance Ability':"Touched Adv on chosen ability checks for 1 hr",
+  'Enlarge/Reduce':"R30' Target dbl/half size for conc/1 min",
   'Ensnaring Strike':"TODO",
-  'Entangle':"TODO",
-  'Enthrall':"TODO",
-  'Etherealness':"TODO",
-  "Evard's Black Tentacles":"TODO",
-  'Expeditious Retreat':"TODO",
-  'Eyebite':"TODO",
+  'Entangle':"R90' Growth ensnare those in 20' sq for conc/1 min (Str neg)",
+  'Enthrall':"R60' Target focused on caster for 1 min (Wis neg)",
+  'Etherealness':"Self on Ethereal Plane for up to 8 hrs",
+  'Expeditious Retreat':"Self Dash as bonus action for conc/10 min",
+  'Eyebite':"R60' Target sleep, panic, or sick for conc/1 min",
 
-  'Fabricate':"TODO",
-  'Faerie Fire':"TODO",
-  'False Life':"TODO",
-  'Fear':"TODO",
-  'Feather Fall':"TODO",
-  'Feeblemind':"TODO",
+  'Fabricate':"R120' Create product from raw materials",
+  'Faerie Fire':"R60' Objects in 20' cu lit outline for conc/1 min",
+  'Faithful Hound':"R30' Invisible watchdog warns and attacks for 8 hr",
+  'False Life':"Self 1d4+4 temporary HP for 1 hr",
+  'Fear':"Targets in 30' cone Dash away for conc/1 min (Wis neg)",
+  'Feather Fall':"R60' Five falling targets slow to 60'/rd for 1 min",
+  'Feeblemind':"R150' Target 4d6 HP psychic, Cha and Int drop to 1 (Int neg)",
   'Feign Death':"TODO",
-  'Find Familiar':"TODO",
-  'Find Steed':"TODO",
-  'Find The Path':"TODO",
-  'Find Traps':"TODO",
-  'Finger Of Death':"TODO",
-  'Fire Bolt':"TODO",
-  'Fire Shield':"TODO",
-  'Fire Storm':"TODO",
-  'Fireball':"TODO",
-  'Flame Blade':"TODO",
-  'Flame Strike':"TODO",
+  'Find Familiar':"R10' Telepathic communication w/summoned animal",
+  'Find Steed':"R30' Summon loyal steed",
+  'Find The Path':"Know shortest path to destination for 1 dy",
+  'Find Traps':"R120' Sense presence of traps",
+  'Finger Of Death':
+    "R60' Target 7d8+30 HP (Con half), obedient zombie if killed",
+  'Fire Bolt':"R120' Ranged spell 1d10 HP",
+  'Fire Shield':"Self resist heat or cold, foe hit takes 2d8 HP for 10 min",
+  'Fire Storm':"R150' Objects in 10 10' cu 7d10 HP (Dex half)",
+  'Fireball':"R150' Creatures in 20' radius 8d6 HP (Dex half)",
+  'Flame Blade':"Self flaming blade 3d6 HP, lights 10' radius",
+  'Flame Strike':"R60' Objects in 10' radius 2x4d6 HP (Dex half)",
   'Flaming Sphere':"TODO",
   'Flesh To Stone':"TODO",
   'Fly':"TODO",
@@ -4566,11 +4572,10 @@ SRD5E.magicRules = function(rules, classes, schools) {
         'Lightning Bolt:Magic Circle:Major Image:Nondetection:Phantom Steed:' +
         'Protection From Energy:Remove Curse:Sending:Sleet Storm:Slow:' +
         'Stinking Cloud:Tongues:Vampiric Touch:Water Breathing',
-        'W4:Arcane Eye:Banishment:Blight:Confusion:Conjure Minor Elementals:' +
-        "Control Water:Dimension Door:Evard's Black Tentacles:Fabricate:" +
-        'Fire Shield:Greater Invisibility:Hallucinatory Terrain:Ice Storm:' +
-        "Leomund's Secret Chest:Locate Creature:" +
-        "Mordenkainen's Faithful Hound:Mordenkainen's Private Sanctum:" +
+        'W4:Arcane Eye:Banishment:Black Tentacles:Blight:Confusion:' +
+        "Conjure Minor Elementals:Control Water:Dimension Door:Fabricate:" +
+        'Faithful Hound:Fire Shield:Greater Invisibility:' +
+        "Hallucinatory Terrain:Ice Storm:Leomund's Secret Chest:Locate Creature:Private Sanctum:" +
         "Otiluke's Resilient Sphere:Phantasmal Killer:Polymorph:Stone Shape:" +
         'Stoneskin:Wall Of Fire',
         "W5:Animate Objects:Bigby's Hand:Cloudkill:Cone Of Cold:" +

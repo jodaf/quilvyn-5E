@@ -906,30 +906,37 @@ SRD5E.spellsDescriptions = {
     "R90' Self attacks on target +1d6 HP, Adv Wis(Perception/Survival) to locate for conc/1 hr",
   "Hypnotic Pattern": "R120' creatures in 30' cu charmed for conc/1 min (Wis neg)",
 
-  'Ice Storm':"TODO",
-  'Identify':"TODO",
-  'Imprisonment':"TODO",
-  'Incendiary Cloud':"TODO",
-  'Inflict Wounds':"TODO",
-  'Insect Plague':"TODO",
-  'Instant Summons':"TODO",
-  'Invisibility':"TODO",
-  'Irresistable Dance':"TODO",
+  'Ice Storm':"R300' 20' radius 4d6 HP (Dex half)",
+  'Identify':
+    "Learn magic properties or spells affecting touched object or creature",
+  'Illusory Script':"Writing legible only to specified creatures",
+  'Imprisonment':"R30' Target restrained by choice of prisons (Wis neg)",
+  'Incendiary Cloud':
+    "R150' 20' radius 10d8 HP (Dex half), moves 10'/rd for conc/1 min",
+  'Inflict Wounds':"Touched 3d10 HP",
+  'Insect Plague':"R300' 20' radius 4d10 HP (Con half) for conc/10 min",
+  'Instant Summons':"Prepared 10 lb item appears in hand",
+  'Invisibility':
+    "Touched creature invisible for conc/1 hr or until attacks/casts",
+  "Irresistible Dance":
+    "R30' Target dance (DisAdv Dex, Attack, foes Adv Attack) for conc/1 min (Wis neg)",
 
-  'Jump':"TODO",
+  'Jump':"Touched jump x3 for 1 min",
 
-  'Knock':"TODO",
+  'Knock':"R60' Target unlocked, unstuck, or unbarred",
 
-  'Legend Lore':"TODO",
-  'Lesser Restoration':"TODO",
-  'Levitate':"TODO",
-  'Light':"TODO",
+  'Legend Lore':"Know info about named person, place, or object",
+  'Lesser Restoration':"Touched creature unblinded, unparalyzed, or unpoisoned",
+  'Levitawe':"R60' Target floats 20' for conc/10 min (Con neg)",
+  'Light':"Touched object lights 20' radius for 1 hr (Dex neg)",
   'Lightning Arrow':"TODO",
-  'Lightning Bolt':"TODO",
-  'Locate Animal Or Plant':"TODO",
-  'Locate Creature':"TODO",
-  'Locate Object':"TODO",
-  'Longstrider':"TODO",
+  'Lightning Bolt':"100'x5' 8d6 HP (Dex half)",
+  'Locate Animal Or Plant':"Know location of named beast or plant w/in 5 mi",
+  'Locate Creature':
+    "Know location of named creature or species w/in 1000' for conc/1 hr",
+  'Locate Object':
+    "Know location of named object or type w/in 1000' for conc/10 min",
+  'Longstrider':"Touched +10' speed for 1 hr",
 
   'Mage Armor':"TODO",
   'Mage Hand':"TODO",

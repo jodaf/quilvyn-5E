@@ -633,34 +633,6 @@ SRD5E.levelsExperience = [
   0, .3, .9, 2.7, 6.5, 14, 23, 34, 48, 64,
   85, 100, 120, 140, 165, 195, 225, 265, 305, 355
 ];
-SRD5E.spellsAbbreviations = {
-  "BarkskinAC": "2 + (source < 6 ? 0 : Math.min(Math.floor((source - 3)/ 3), 3))",
-  "L": "lvl",
-  "L2": "lvl * 2",
-  "L3": "lvl * 3",
-  "L4": "lvl * 4",
-  "L5": "lvl * 5",
-  "L10": "lvl * 10",
-  "L15": "lvl * 15",
-  "L20": "lvl * 20",
-  "L40": "lvl * 40",
-  "L100": "lvl * 100",
-  "L200": "lvl * 200",
-  "Ldiv2": "Math.floor(lvl/2)",
-  "Ldiv3": "Math.floor(lvl/3)",
-  "Ldiv4": "Math.floor(lvl/4)",
-  "Lmin5": "Math.min(source, 5)",
-  "Lmin10": "Math.min(source, 10)",
-  "Lmin15": "Math.min(source, 15)",
-  "Lmin20": "Math.min(source, 20)",
-  "Lmin25": "Math.min(source, 25)",
-  "Lmin30": "Math.min(source, 30)",
-  "Lmin35": "Math.min(source, 35)",
-  "Lmin40": "Math.min(source, 40)",
-  "RL": "400 + 40 * source",
-  "RM": "100 + 10 * source",
-  "RS": "25 + 5 * Math.floor(source / 2)"
-};
 SRD5E.spellsDescriptions = {
   'Acid Arrow':"R90' Ranged spell attack 4d4 HP (miss half), 2d4 HP next turn",
   "Acid Splash":
@@ -981,32 +953,41 @@ SRD5E.spellsDescriptions = {
 
   'Nondetection':"Touched immune divination for 8 hr",
 
-  'Pass Without Trace':"TODO",
-  'Passwall':"TODO",
+  'Pass Without Trace':
+    "Allies within 30' self +10 Dexterity (Stealth), untrackable for conc/1 hr",
+  'Passwall':"R30' 5'x8'x20' passage through wood, plaster, or stone",
   'Phantasmal Force':"TODO",
-  'Phantasmal Killer':"TODO",
-  'Phantom Steed':"TODO",
-  'Planar Ally':"TODO",
-  'Planar Binding':"TODO",
-  'Plane Shift':"TODO",
-  'Plant Growth':"TODO",
-  'Poison Spray':"TODO",
-  'Polymorph':"TODO",
+  'Phantasmal Killer':
+    "R120' Target frightened, 4d10 HP/rd for conc/1 min (Wis neg)",
+  'Phantom Steed':"R30' Self ride 100'/rd for 1 hr",
+  'Planar Ally':"R60' Otherworld creature appears, bargain for service",
+  'Planar Binding':
+    "R60; Bind celestial, elemental, fey, or fiend to servicce for 1 dy (Cha neg)",
+  'Plane Shift':"Target or self + 8 willing move to different plane (Cha neg)",
+  'Plant Growth':"R150' Enrich half mi radius for 1 yr or overgrow 100' radius",
+  'Poison Spray':"R10' Target ${Math.floor((lvl+7)/6)}d12 HP (Con neg)",
+  'Polymorph':"R60' Target transformed for conc/1 hr/0 HP (Wis neg)",
   'Power Word Heal':"TODO",
-  'Power Word Kill':"TODO",
-  'Power Word Stun':"TODO",
-  'Prayer Of Healing':"TODO",
-  'Prestidigitation':"TODO",
-  'Prismatic Spray':"TODO",
-  'Prismatic Wall':"TODO",
-  'Private Sanctum':"TODO",
-  'Produce Flame':"TODO",
-  'Programmed Illusion':"TODO",
-  'Project Image':"TODO",
-  'Protection From Energy':"TODO",
-  'Protection From Evil And Good':"TODO",
-  'Protection From Poison':"TODO",
-  'Purify Food And Drink':"TODO",
+  'Power Word Kill':"R60' Slay target with le 100 HP",
+  'Power Word Stun':"R60' Stun target with le 150 HP (Con neg)",
+  'Prayer Of Healing':"R60' Six targets regain 2d8+spell Mod HP",
+  'Prestidigitation':"R10' Minor magic effects for 1 hr",
+  'Prismatic Spray':
+    "R60' Targets in cone 10d6 HP (Dex half), held then stone (Dex neg), or blinded then plane shifted (Dex neg)",
+  'Prismatic Wall':
+    "R60' Transit causes 10d6 HP (Dex half), held then stone (Dex neg), or blinded then plane shifted (Dex neg) for 10 min",
+  'Private Sanctum':
+    "R120' Protect 100' sq from sound, vision, divination, teleport for 1 dy",
+  'Produce Flame':"Hand flame lights 10' radius for 10 min, throw for ${Math.floor((lvl+7)/6)}d8 HP",
+  'Programmed Illusion':"R120' 30' cu illusion on specified trigger",
+  'Project Image':"R500 mi Illusory double mimics self for conc/1 dy",
+  'Protection From Energy':
+    "Resist acid, cold, fire, lightning, or thunder for conc/1 hr",
+  'Protection From Evil And Good':
+    "Touched specified foe type DisAdv attack, immune charm, fright, possession",
+  'Protection From Poison':
+    "Touched poison neutralized, Adv save vs. poision for 1 hr",
+  'Purify Food And Drink':"R10' 5' radius food, drink freed of poison, disease",
 
   'Raise Dead':"TODO",
   'Ray Of Enfeeblement':"TODO",
@@ -5027,9 +5008,6 @@ SRD5E.spellRules = function(rules, spells, descriptions) {
         var insert = inserts[index - 1];
         var expr = insert[1] == "{" ?
             insert.substring(2, insert.length - 1) : insert.substring(1);
-        if(SRD5E.spellsAbbreviations[expr] != null) {
-          expr = SRD5E.spellsAbbreviations[expr];
-        }
         expr = expr.replace(/lvl/g, "source");
         rules.defineRule
           ("spells." + spell + "." + index, "casterLevels." + abbr, "=", expr);

@@ -505,6 +505,7 @@ SRD5E.SPELLS = {
   'Vampiric Touch':'Necromancy',
   'Vicious Mockery':'Enchantment',
 
+  'Wall Of Fire':'Evocation',
   'Wall Of Force':'Evocation',
   'Wall Of Ice':'Evocation',
   'Wall Of Stone':'Evocation',
@@ -907,7 +908,7 @@ SRD5E.spellsDescriptions = {
 
   'Legend Lore':"Know info about named person, place, or object",
   'Lesser Restoration':"Touched creature unblinded, unparalyzed, or unpoisoned",
-  'Levitawe':"R60' Target floats 20' for conc/10 min (Con neg)",
+  'Levitate':"R60' Target floats 20' for conc/10 min (Con neg)",
   'Light':"Touched object lights 20' radius for 1 hr (Dex neg)",
   'Lightning Arrow':"TODO",
   'Lightning Bolt':"100'x5' 8d6 HP (Dex half)",
@@ -989,19 +990,21 @@ SRD5E.spellsDescriptions = {
     "Touched poison neutralized, Adv save vs. poision for 1 hr",
   'Purify Food And Drink':"R10' 5' radius food, drink freed of poison, disease",
 
-  'Raise Dead':"TODO",
-  'Ray Of Enfeeblement':"TODO",
-  'Ray Of Frost':"TODO",
+  'Raise Dead':"Touched 10-day-old corpse restored to life",
+  'Ray Of Enfeeblement':"R60' Target does half Str damage until Con save",
+  'Ray Of Frost':
+    "R60' Target ${Math.floor((lvl+7)/6)}d8 HP, -10 speed for 1 turn",
   'Ray Of Sickness':"TODO",
-  'Regenerate':"TODO",
-  'Reincarnate':"TODO",
-  'Remove Curse':"TODO",
-  'Resilient Sphere':"TODO",
-  'Resistance':"TODO",
-  'Resurrection':"TODO",
-  'Reverse Gravity':"TODO",
-  'Revivify':"TODO",
-  'Rope Trick':"TODO",
+  'Regenerate':
+    "Touched regain 4d8+15 HP, 1 HP/min for 1 hr, restore severed members",
+  'Reincarnate':"Touched resurrected in new body",
+  'Remove Curse':"Touched freed from all curses",
+  'Resilient Sphere':"R30' Target encased in impervious sphere for conc/1 min",
+  'Resistance':"Touched +1d4 on save w/in conc/1 min",
+  'Resurrection':"Touched 100-year-old corpse restored to life",
+  'Reverse Gravity':"R50' Items in 50' radius fall up for conc/1 min",
+  'Revivify':"Touched 1-minute-old corpse returned to life w/1 HP",
+  "Rope Trick": "Rope to extradimensional space for 8 creatures for 1 hr",
 
   'Sacred Flame':"TODO",
   'Sanctuary':"TODO",
@@ -1065,28 +1068,34 @@ SRD5E.spellsDescriptions = {
   'True Strike':"TODO",
   'Tsunami':"TODO",
 
-  'Unseen Servant':"TODO",
+  'Unseen Servant':"R60' Invisible force performs simple tasks for 1 hr",
 
-  'Vampiric Touch':"TODO",
-  'Vicious Mockery':"TODO",
+  'Vampiric Touch':"Touched 3d6 HP, self regain half for conc/1 min",
+  'Vicious Mockery':
+    "R60' Target insults ${Math.floor((lvl+7)/6)} HP, DisAdv attack (Wis neg)",
 
-  'Wall Of Force':"TODO",
-  'Wall Of Ice':"TODO",
-  'Wall Of Stone':"TODO",
-  'Wall Of Thorns':"TODO",
-  'Warding Bond':"TODO",
-  'Water Breathing':"TODO",
-  'Water Walk':"TODO",
-  'Web':"TODO",
-  'Weird':"TODO",
-  'Wind Walk':"TODO",
-  'Wind Wall':"TODO",
-  'Wish':"TODO",
+  'Wall Of Fire':"R120' 60'x20' wall 5d8 HP (Dex half) for conc/1 min",
+  'Wall Of Force':"R120' 10 10'x10' panels immune objects for conc/10 min",
+  'Wall Of Ice':"R120' 10 10'x10' panels for conc/10 min",
+  'Wall Of Stone':"R120' 10 10'x10' panels for conc/10 min",
+  'Wall Of Thorns':"R120' 60'x10' wall 7d8 HP (Dex half) for conc/10 min",
+  'Warding Bond':
+    "Touched +1 AC, saves, resist damage within 60' of self, self share damage for 1 hr",
+  'Water Breathing':"R30' 10 targets breathe underwater for 1 dy",
+  'Water Walk':"R30' 10 targets cross liquid for 1 hr",
+  'Web':"R60' 20' cu restrain creatures for conc/1 hr (Dex neg, Str frees)",
+  'Weird':
+    "R120' Targets in 30' radius frightened, 4d10 HP/turn for conc/1 min (Wis neg)",
+  'Wind Walk':"R30' Self + 10 others gaseous, fly 300'/rd for 8 hr",
+  'Wind Wall':"R120' 50'x15' strong wind does 3d8 HP (Str half) for conc/1 min",
+  "Wish": "Alter reality with few limits",
   'Witch Bolt':"TODO",
-  'Word Of Recall':"TODO",
+  'Word Of Recall':
+    "R5' Self + 5 others instantly teleport to predetermined place",
   'Wrathful Smite':"TODO",
 
-  'Zone Of Truth':"TODO"
+  'Zone Of Truth':
+    "R60' Creatures inside 15' radius cannot lie for 10 min (Cha neg)"
 
 };
 
@@ -1654,7 +1663,11 @@ SRD5E.classRules = function(rules, classes) {
       );
       rules.defineRule
         ('attacksPerRound', 'combatNotes.extraAttackFeature', '+', '1');
-      rules.defineRule('casterLevelArcane', 'levels.Bard', '+=', null);
+      rules.defineRule('casterLevels.B',
+        'levels.Bard', '=', null,
+         'magicNotes.casterLevelBonusFeature', '+', null
+      );
+      rules.defineRule('casterLevelArcane', 'casterLevels.B', '+=', null);
       rules.defineRule('featureNotes.bardicInspirationFeature',
         'levels.Bard', '=', '6 + Math.floor(source / 5) * 2'
       );
@@ -1769,7 +1782,11 @@ SRD5E.classRules = function(rules, classes) {
         'clericFeatures.Life Domain', '?', null
       );
 
-      rules.defineRule('casterLevelDivine', 'levels.Cleric', '+=', null);
+      rules.defineRule('casterLevels.C',
+        'levels.Cleric', '=', null,
+         'magicNotes.casterLevelBonusFeature', '+', null
+      );
+      rules.defineRule('casterLevelDivine', 'casterLevels.C', '+=', null);
       rules.defineRule('combatNotes.destroyUndeadFeature',
         'levels.Cleric', '=', 'source < 8 ? 0.5 : Math.floor((source - 5) / 3)'
       );
@@ -1940,6 +1957,11 @@ SRD5E.classRules = function(rules, classes) {
       );
 // ENDPHB
 
+      rules.defineRule('casterLevels.D',
+        'levels.Druid', '=', null,
+         'magicNotes.casterLevelBonusFeature', '+', null
+      );
+      rules.defineRule('casterLevelDivine', 'casterLevels.D', '+=', null);
       rules.defineRule("combatNotes.nature'sSanctuaryFeature",
         'wisdomModifier', '=', 'source + 8',
         'proficiencyBonus', '+', null
@@ -2645,6 +2667,11 @@ SRD5E.classRules = function(rules, classes) {
 
       rules.defineRule
         ('attacksPerRound', 'combatNotes.extraAttackFeature', '+', '1');
+      rules.defineRule('casterLevels.P',
+        'levels.Paladin', '=', null,
+         'magicNotes.casterLevelBonusFeature', '+', null
+      );
+      rules.defineRule('casterLevelDivine', 'casterLevels.P', '+=', null);
       rules.defineRule('magicNotes.cleansingTouchFeature',
         'charismaModifier', '=', 'Math.min(source, 1)'
       );
@@ -2817,6 +2844,11 @@ SRD5E.classRules = function(rules, classes) {
       rules.defineRule('armorClass',
         'combatNotes.defenseStyleFeature.1', '+', null
       );
+      rules.defineRule('casterLevels.R',
+        'levels.Ranger', '=', null,
+         'magicNotes.casterLevelBonusFeature', '+', null
+      );
+      rules.defineRule('casterLevelDivine', 'casterLevels.R', '+=', null);
       // Show Defense Style note even if armor == None
       rules.defineRule('combatNotes.defenseStyleFeature.1',
         'combatNotes.defenseStyleFeature', '?', null,
@@ -3090,7 +3122,11 @@ SRD5E.classRules = function(rules, classes) {
 
       rules.defineRule
         ('armorClass', 'combatNotes.draconicResilienceFeature.1', '^', null);
-      rules.defineRule('casterLevelArcane', 'levels.Sorcerer', '+=', null);
+      rules.defineRule('casterLevels.S',
+        'levels.Sorcerer', '=', null,
+         'magicNotes.casterLevelBonusFeature', '+', null
+      );
+      rules.defineRule('casterLevelArcane', 'casterLevels.S', '+=', null);
       rules.defineRule
         ('combatNotes.draconicResilienceFeature', 'levels.Sorcerer', '=', null);
       rules.defineRule('combatNotes.draconicResilienceFeature.1',
@@ -3279,7 +3315,11 @@ SRD5E.classRules = function(rules, classes) {
 
       rules.defineRule
         ('attacksPerRound', 'combatNotes.thirstingBladeFeature', '+', '1');
-      rules.defineRule('casterLevelArcane', 'levels.Warlock', '+=', null);
+      rules.defineRule('casterLevels.K',
+        'levels.Warlock', '=', null,
+         'magicNotes.casterLevelBonusFeature', '+', null
+      );
+      rules.defineRule('casterLevelArcane', 'casterLevels.K', '+=', null);
       rules.defineRule('combatNotes.lifedrinkerFeature',
         'charismaModifier', '=', 'Math.max(source, 1)'
       );
@@ -3351,7 +3391,11 @@ SRD5E.classRules = function(rules, classes) {
         'W9:17:1'
       ];
 
-      rules.defineRule('casterLevelArcane', 'levels.Wizard', '+=', null);
+      rules.defineRule('casterLevels.W',
+        'levels.Wizard', '=', null,
+         'magicNotes.casterLevelBonusFeature', '+', null
+      );
+      rules.defineRule('casterLevelArcane', 'casterLevels.W', '+=', null);
       rules.defineRule('magicNotes.arcaneRecoveryFeature',
         'levels.Wizard', '=', 'Math.floor(source / 2)'
       );
@@ -4961,64 +5005,53 @@ SRD5E.skillRules = function(rules, skills, tools) {
 
 /* Replaces spell names with longer descriptions on the character sheet. */
 SRD5E.spellRules = function(rules, spells, descriptions) {
-
   if(spells == null) {
     spells = QuilvynUtils.getKeys(rules.choices.spells);
   }
   if(descriptions == null) {
     descriptions = SRD5E.spellsDescriptions;
   }
-
-  rules.defineRule('casterLevels.B', 'levels.Bard', '=', null);
-  rules.defineRule('casterLevels.C', 'levels.Cleric', '=', null);
-  rules.defineRule('casterLevels.D', 'levels.Druid', '=', null);
-  rules.defineRule('casterLevels.K', 'levels.Warlock', '=', null);
-  rules.defineRule('casterLevels.P', 'levels.Paladin', '=', null);
-  rules.defineRule('casterLevels.R', 'levels.Ranger', '=', null);
-  rules.defineRule('casterLevels.W', 'levels.Sorcerer', '=', null);
-  rules.defineRule('casterLevels.W', 'levels.Wizard', '=', null);
-
+  var targets = rules.allTargets();
   for(var i = 0; i < spells.length; i++) {
-
     var spell = spells[i];
-    var matchInfo = spell.match(/^([^\(]+)\(([A-Za-z]+)(\d+)\s*\w*\)$/);
+    var matchInfo = spell.match(/^([^\(]+)\(([A-Za-z ]+)(\d+)\s*(\w*)\)$/);
     if(matchInfo == null) {
       console.log("Bad format for spell " + spell);
       continue;
     }
-
-    var abbr = matchInfo[2];
+    var classAbbr = matchInfo[2];
     var level = matchInfo[3];
     var name = matchInfo[1];
+    var schoolAbbr = matchInfo[4];
     var description = descriptions[name];
-
     if(description == null) {
       console.log("No description for spell " + name);
       continue;
     }
-
-    if(abbr.length > 2) {
-      abbr = "Dom"; // Assume domain spell
+    if(classAbbr.length > 2) {
+      classAbbr = "Dom"; // Assume domain spell
     }
-
     var inserts = description.match(/\$(\w+|{[^}]+})/g);
-
     if(inserts != null) {
       for(var index = 1; index <= inserts.length; index++) {
         var insert = inserts[index - 1];
         var expr = insert[1] == "{" ?
             insert.substring(2, insert.length - 1) : insert.substring(1);
-        expr = expr.replace(/lvl/g, "source");
-        rules.defineRule
-          ("spells." + spell + "." + index, "casterLevels." + abbr, "=", expr);
+        expr = expr.replace(/lvl|L/g, 'source');
+        rules.defineRule('spells.' + spell + '.' + index,
+          'spells.' + spell, '?', null,
+          'casterLevels.' + classAbbr, '=', expr
+        );
+        if(targets.includes('casterLevels.' + name)) {
+          rules.defineRule('spells.' + spell + '.' + index,
+            'casterLevels.' + name, '^=', expr
+          );
+        }
         description = description.replace(insert, "%" + index);
       }
     }
-
     rules.defineChoice("notes", "spells." + spell + ":" + description);
-
   }
-
 };
 
 /* Returns a random name for a character of race #race#. */

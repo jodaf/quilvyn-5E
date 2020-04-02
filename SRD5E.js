@@ -734,13 +734,11 @@ SRD5E.spellsDescriptions = {
   'Confusion':
     "R90' Targets in 10' radius act randomly (Wis neg) for conc/1 min",
   'Conjure Animals':"R60' Summon obedient fey creatures for conc/1 hr",
-  'Conjure Barrage':"TODO",
   'Conjure Celestial':"R90' Summon obedient celestial for conc/1 hr",
   'Conjure Elemental':
      "R90' Summon obedient elemental in appropriate environment for conc/1 hr",
   'Conjure Fey':"R90' Summon obedient fey for conc/1 hr",
   'Conjure Minor Elementals':"R90' Summon obedient elements for conc/1 hr",
-  'Conjure Volley':"TODO",
   'Conjure Woodland Beings':"R60' Summon obedient fey for conc/1 hr",
   'Contact Other Plane':
     "Contact extraplanar being for five one-word answers (DC 15 Int or take 6d6 HP psychic)",
@@ -750,14 +748,11 @@ SRD5E.spellsDescriptions = {
   'Control Water':
     "R300' Part, redirect, raise, or whirl 100'x100' water for conc/10 min",
   'Control Weather':"Determine weather in 5 mi radius for conc/8 hr",
-  'Cordon Of Arrows':"TODO",
   'Counterspell':"R60' Neg spell le level 3, DC 10+spell level for higher",
   'Create Food And Water':"R30' Create 40 lb food and 30 gal water",
   'Create Or Destroy Water':"R30' Affect 10 gal water",
   'Create Undead':"R10' Create 3 ghouls, obedient for 1 dy, renewable",
   'Creation':"R30' Create 5' cu false matter lasting up to 1 dy",
-  'Crown Of Madness':"TODO",
-  "Crusader's Mantle":"TODO",
   'Cure Wounds':"Touched heals 1d8+spell mod HP",
 
   "Dancing Lights":"R120' 4 torch lights in 20' radius move 60' for conc/1 min",
@@ -767,7 +762,6 @@ SRD5E.spellsDescriptions = {
   'Death Ward':"Touched retains 1 HP when next attack would take to 0",
   'Delayed Blast Fireball':"R150' 20' radius 12d6 HP (Dex half)",
   'Demiplane':"R60' Door leads to extradimensional 30' room for 1 hr",
-  'Destructive Wave':"TODO",
   'Detect Evil And Good':
     "R30' Self sense aligned outsider, consecration/desecration for conc/10 min",
   'Detect Magic':"R30' Self sense magic aura for conc/10 min",
@@ -778,7 +772,6 @@ SRD5E.spellsDescriptions = {
   'Disintegrate':"R60' Target 10d6+40 HP force (Dex neg)",
   'Dispel Evil And Good':"Self aligned foes DisAdv attck for conc/1 min",
   'Dispel Magic':"R120' End target effects le 3 level, higher DC 10+spell level",
-  'Dissonant Whispers':"TODO",
   'Divination':"Receive truthful reply about even w/in 1 wk",
   'Divine Favor':"Self weapon +1d4 radiant HP for conc/1 min",
   'Divine Word':"R30' Targets deaf, blind, stunned or killed (Cha neg)",
@@ -795,10 +788,8 @@ SRD5E.spellsDescriptions = {
     "R500' Shaking in 100' radius opens fissures and damages structures",
   'Eldritch Blast':
     "R120' Ranged touch ${Math.max(Math.floor((lvl+1)/6),1) rays do 1d10 HP ea",
-  'Elemental Weapon':"TODO",
   'Enhance Ability':"Touched Adv on chosen ability checks for 1 hr",
   'Enlarge/Reduce':"R30' Target dbl/half size for conc/1 min",
-  'Ensnaring Strike':"TODO",
   'Entangle':"R90' Growth ensnare those in 20' sq for conc/1 min (Str neg)",
   'Enthrall':"R60' Target focused on caster for 1 min (Wis neg)",
   'Etherealness':"Self on Ethereal Plane for up to 8 hrs",
@@ -812,7 +803,6 @@ SRD5E.spellsDescriptions = {
   'Fear':"Targets in 30' cone Dash away for conc/1 min (Wis neg)",
   'Feather Fall':"R60' Five falling targets slow to 60'/rd for 1 min",
   'Feeblemind':"R150' Target 4d6 HP psychic, Cha and Int drop to 1 (Int neg)",
-  'Feign Death':"TODO",
   'Find Familiar':"R10' Telepathic communication w/summoned animal",
   'Find Steed':"R30' Summon loyal steed",
   'Find The Path':"Know shortest path to destination for 1 dy",
@@ -839,7 +829,6 @@ SRD5E.spellsDescriptions = {
     "Touched immune surprise, Adv attack, ability, save, foes DisAdv attck for 8 hr",
   'Freedom Of Movement':"Touched immune impediments for 1 hr",
   'Freezing Sphere':"R300' Objects in 60' radius 10d6 HP (Con half)",
-  'Friends':"TODO",
 
   'Gaseous Form':"Touched creature gaseous for conc/1 hr",
   'Gate':"R60' Open circular portal to another plane for conc/1 min",
@@ -851,9 +840,7 @@ SRD5E.spellsDescriptions = {
   'Globe Of Invulnerability':"Self 10' radius immune to spells level le 5",
   'Glyph Of Warding':
     "Glyph 20' radius 5d8 HP (Dex half) or spell levl le 3 on named trigger",
-  'Good Hope':"TODO",
   'Goodberry':"10 berries heal 1 HP, provide food for 1 dy",
-  'Grasping Vine':"TODO",
   'Grease':"R60' creatures in 10' sq fall (Dex neg) for 1 min",
   'Greater Invisibility':"Touched creature invisible for conc/1 min",
   'Greater Restoration':
@@ -866,7 +853,6 @@ SRD5E.spellsDescriptions = {
   'Gust Of Wind':
     "60'x10' wind pushes 15' (Str neg), half movement for conc/1 min",
 
-  'Hail Of Thorns':"TODO",
   "Hallow": "60' radius warded against outsiders, evokes boon spell",
   "Hallucinatory Terrain": "R300' 150' cube terrain illusion (Int(Investigation) disbelieve) for 1 dy",
   'Harm':"R60' Target 14d6 HP (Con half)",
@@ -877,12 +863,10 @@ SRD5E.spellsDescriptions = {
   'Hellish Rebuke':"R60' As a reaction, attacker 2d10 HP (Dex half)",
   "Heroes' Feast":"R30' Diners cured, immune poison and fright, Wis Adv, +2d10 HP for 1 dy",
   'Heroism':"Touched immune fright, +modifier HP each rd for conc/1 min",
-  'Hex':"TODO",
   "Hideous Laughter": "R30' Target ROFL for conc/1 min (Wis neg)",
   'Hold Monster':"R90' target frozen for conc/1 min (Wis neg)",
   'Hold Person':"R60' target frozen for conc/1 min (Wis neg)",
   'Holy Aura':"Self 30' radius targets Adv saves, foes DisAdv attack",
-  'Hunger Of Hadar':"TODO",
   "Hunter's Mark":
     "R90' Self attacks on target +1d6 HP, Adv Wis(Perception/Survival) to locate for conc/1 hr",
   "Hypnotic Pattern": "R120' creatures in 30' cu charmed for conc/1 min (Wis neg)",
@@ -910,7 +894,6 @@ SRD5E.spellsDescriptions = {
   'Lesser Restoration':"Touched creature unblinded, unparalyzed, or unpoisoned",
   'Levitate':"R60' Target floats 20' for conc/10 min (Con neg)",
   'Light':"Touched object lights 20' radius for 1 hr (Dex neg)",
-  'Lightning Arrow':"TODO",
   'Lightning Bolt':"100'x5' 8d6 HP (Dex half)",
   'Locate Animal Or Plant':"Know location of named beast or plant w/in 5 mi",
   'Locate Creature':
@@ -926,7 +909,7 @@ SRD5E.spellsDescriptions = {
   'Magic Jar':"R100' Possess creature, trap soul (Cha neg)",
   'Magic Missile':"R120' 3 darts 1d4+1 HP ea",
   'Magic Mouth':"R30' Object speaks 25-word message in response to trigger",
-  'Magic Weapon':"TODO",
+  'Magic Weapon':"Touched weapon +1 for conc/1 hr",
   'Magnificent Mansion':"R300' Comfortable extradimensional dwelling for 1 dy",
   'Major Image':"R120' 20' cu sight, sound, touch illusion for conc/10 min",
   'Mass Cure Wounds':"R60' 6 targets in 30' radius regain 3d8+spell mod HP",
@@ -940,7 +923,6 @@ SRD5E.spellsDescriptions = {
   'Message':"R120 Whispered conversation w/target for 1 rd",
   'Meteor Swarm':"R1 mi 40' radius 20d6 fire + 20d6 bludgeoning (Dex half)",
   'Mind Blank':"Touched immune psychic damage, reading, charm for 1 dy",
-  'Mind Fog':"TODO",
   'Minor Illusion':
     "R30' Sound of 1 creature or 5' cu image (Int (Investigation) disbelieve) for 1 min",
   'Mirage Arcane':"Illusionary terrain for 10 dy",
@@ -949,7 +931,6 @@ SRD5E.spellsDescriptions = {
   'Misty Step':"Self teleport 30'",
   'Modify Memory':"R30' Change target memory of event in prior dy (Wis neg)",
   'Moonbeam':"5' radius 2d10 HP (Con half) for conc/1 min",
-  "Mordenkainen's Sword":"TODO",
   'Move Earth':"R120' Excavate 40' cu for conc/2 hr",
 
   'Nondetection':"Touched immune divination for 8 hr",
@@ -957,7 +938,6 @@ SRD5E.spellsDescriptions = {
   'Pass Without Trace':
     "Allies within 30' self +10 Dexterity (Stealth), untrackable for conc/1 hr",
   'Passwall':"R30' 5'x8'x20' passage through wood, plaster, or stone",
-  'Phantasmal Force':"TODO",
   'Phantasmal Killer':
     "R120' Target frightened, 4d10 HP/rd for conc/1 min (Wis neg)",
   'Phantom Steed':"R30' Self ride 100'/rd for 1 hr",
@@ -967,8 +947,7 @@ SRD5E.spellsDescriptions = {
   'Plane Shift':"Target or self + 8 willing move to different plane (Cha neg)",
   'Plant Growth':"R150' Enrich half mi radius for 1 yr or overgrow 100' radius",
   'Poison Spray':"R10' Target ${Math.floor((lvl+7)/6)}d12 HP (Con neg)",
-  'Polymorph':"R60' Target transformed for conc/1 hr/0 HP (Wis neg)",
-  'Power Word Heal':"TODO",
+  'Polymorph':"R60' Target creature transformed for conc/1 hr/0 HP (Wis neg)",
   'Power Word Kill':"R60' Slay target with le 100 HP",
   'Power Word Stun':"R60' Stun target with le 150 HP (Con neg)",
   'Prayer Of Healing':"R60' Six targets regain 2d8+spell Mod HP",
@@ -994,7 +973,6 @@ SRD5E.spellsDescriptions = {
   'Ray Of Enfeeblement':"R60' Target does half Str damage until Con save",
   'Ray Of Frost':
     "R60' Target ${Math.floor((lvl+7)/6)}d8 HP, -10 speed for 1 turn",
-  'Ray Of Sickness':"TODO",
   'Regenerate':
     "Touched regain 4d8+15 HP, 1 HP/min for 1 hr, restore severed members",
   'Reincarnate':"Touched resurrected in new body",
@@ -1006,17 +984,16 @@ SRD5E.spellsDescriptions = {
   'Revivify':"Touched 1-minute-old corpse returned to life w/1 HP",
   "Rope Trick": "Rope to extradimensional space for 8 creatures for 1 hr",
 
-  'Sacred Flame':"TODO",
-  'Sanctuary':"TODO",
-  'Scorching Ray':"TODO",
-  'Scrying':"TODO",
-  'Searing Smite':"TODO",
-  'Secret Chest':"TODO",
-  'See Invisibility':"TODO",
-  'Seeming':"TODO",
-  'Sending':"TODO",
-  'Sequester':"TODO",
-  'Shapechange':"TODO",
+  'Sacred Flame':"R60' Target ${Math.foor((lvl+7)/6)}d8 (Dex neg)",
+  'Sanctuary':"R30' Target foes attack another for 1 min (Wis neg)",
+  'Scorching Ray':"R120' 3 ranged attacks do 2d6 HP ea",
+  'Scrying':"See, hear chosen target (Wis neg) for conc/10 min",
+  'Secret Chest':"Touched chest moves to Ethereal Plane",
+  'See Invisibility':"Self see invisible and ethereal items for 1 hr",
+  'Seeming':"R30' Targets appearance change for 8 hr (Cha neg)",
+  'Sending':"Exchange 25-word message with known target",
+  'Sequester':"Touched hidden, suspended until trigger",
+  'Shapechange':"Self polymorph for conc/1 hr/0 HP",
   'Shatter':"TODO",
   'Shield':"TODO",
   'Shield Of Faith':"TODO",
@@ -1034,10 +1011,8 @@ SRD5E.spellsDescriptions = {
   'Speak With Plants':"TODO",
   'Spider Climb':"TODO",
   'Spike Growth':"TODO",
-  'Spike Stones':"TODO",
   'Spirit Guardians':"TODO",
   'Spiritual Weapon':"TODO",
-  'Staggering Smite':"TODO",
   'Stinking Cloud':"TODO",
   'Stone Shape':"TODO",
   'Stoneskin':"TODO",
@@ -1045,28 +1020,25 @@ SRD5E.spellsDescriptions = {
   'Suggestion':"TODO",
   'Sunbeam':"TODO",
   'Sunburst':"TODO",
-  'Swift Quiver':"TODO",
   'Symbol':"TODO",
 
-  'Telekinesis':"TODO",
-  'Telepathic Bond':"TODO",
-  'Telepathy':"TODO",
-  'Teleport':"TODO",
-  'Teleportation Circle':"TODO",
-  'Thaumaturgy':"TODO",
-  'Thorn Whip':"TODO",
-  'Thunderous Smite':"TODO",
-  'Thunderwave':"TODO",
-  'Time Stop':"TODO",
-  'Tiny Hut':"TODO",
-  'Tongues':"TODO",
-  'Transport Via Plants':"TODO",
-  'Tree Stride':"TODO",
-  'True Polymorph':"TODO",
-  'True Resurrection':"TODO",
-  'True Seeing':"TODO",
-  'True Strike':"TODO",
-  'Tsunami':"TODO",
+  'Telekinesis':"R60' Move 1000 lb 30'/rd for conc/10 min (Str neg)",
+  'Telepathic Bond':"R30' Eight targets communicate mentally for 1 hr",
+  'Teleport':"R10' One object or self + 8 allies teleport any distance",
+  'Teleportation Circle':"R10' Permanent portal to similar circle",
+  'Thaumaturgy':"R30' Minor magic effects for 1 min",
+  'Thunderwave':"15' cu 2d8 HP, pushed 10' (Con half, no push)",
+  'Time Stop':"Self extra 1d4+1 turns w/in 1000' or until other affected",
+  'Tiny Hut':"10' radius dome immune to objects and spells for 8 hr",
+  'Tongues':"Touched understand and speak any language for 1 hr",
+  'Transport Via Plants':"Teleporation door between two plants for 1 rd",
+  'Tree Stride':"Teleport between like trees 1/rd for conc/1 min",
+  'True Polymorph':
+    "R30' Target creature or object transformed for conc/1 hr/0 HP (Wis neg)",
+  'True Resurrection':"Touched or named 200-year-old corpse restored to life",
+  'True Seeing':
+    "Touched 120' truesight, see magically concealed doors, Ethereal Plane for 1 hr",
+  'True Strike':"R30' Adv next attack on target w/in 1 rd",
 
   'Unseen Servant':"R60' Invisible force performs simple tasks for 1 hr",
 
@@ -1089,15 +1061,50 @@ SRD5E.spellsDescriptions = {
   'Wind Walk':"R30' Self + 10 others gaseous, fly 300'/rd for 8 hr",
   'Wind Wall':"R120' 50'x15' strong wind does 3d8 HP (Str half) for conc/1 min",
   "Wish": "Alter reality with few limits",
-  'Witch Bolt':"TODO",
   'Word Of Recall':
     "R5' Self + 5 others instantly teleport to predetermined place",
-  'Wrathful Smite':"TODO",
 
   'Zone Of Truth':
     "R60' Creatures inside 15' radius cannot lie for 10 min (Cha neg)"
 
 };
+
+// PHB
+Object.assign(SRD5E.spellsDescriptions, {
+  'Cordon Of Arrows':"TODO",
+  'Conjure Barrage':"TODO",
+  'Conjure Volley':"TODO",
+  'Crown Of Madness':"TODO",
+  "Crusader's Mantle":"TODO",
+  'Destructive Wave':"TODO",
+  'Dissonant Whispers':"TODO",
+  'Elemental Weapon':"TODO",
+  'Ensnaring Strike':"TODO",
+  'Feign Death':"TODO",
+  'Friends':"TODO",
+  'Good Hope':"TODO",
+  'Grasping Vine':"TODO",
+  'Hail Of Thorns':"TODO",
+  'Hex':"TODO",
+  'Hunger Of Hadar':"TODO",
+  'Lightning Arrow':"TODO",
+  'Mind Fog':"TODO",
+  "Mordenkainen's Sword":"TODO",
+  'Phantasmal Force':"TODO",
+  'Power Word Heal':"TODO",
+  'Ray Of Sickness':"TODO",
+  'Searing Smite':"TODO",
+  'Spike Stones':"TODO",
+  'Staggering Smite':"TODO",
+  'Swift Quiver':"TODO",
+  'Telepathy':"TODO",
+  'Thorn Whip':"TODO",
+  'Thunderous Smite':"TODO",
+  'Tsunami':"TODO",
+  'Witch Bolt':"TODO",
+  'Wrathful Smite':"TODO"
+});
+// ENDPHB
 
 /* Defines the rules related to character abilities. */
 SRD5E.abilityRules = function(rules) {

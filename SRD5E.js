@@ -365,6 +365,7 @@ SRD5E.SPELLS = {
 
   'Mage Armor':'Conjuration',
   'Mage Hand':'Conjuration',
+  "Mage's Sword":'Evocation',
   'Magic Circle':'Abjuration',
   'Magic Jar':'Necromancy',
   'Magic Missile':'Evocation',
@@ -389,7 +390,6 @@ SRD5E.SPELLS = {
   'Misty Step':'Conjuration',
   'Modify Memory':'Enchantment',
   'Moonbeam':'Evocation',
-  "Mordenkainen's Sword":'Evocation',
   'Move Earth':'Transmutation',
 
   'Nondetection':'Abjuration',
@@ -981,7 +981,7 @@ SRD5E.spellsDescriptions = {
   'Revivify':"Touched 1-minute-old corpse returned to life w/1 HP",
   "Rope Trick": "Rope to extradimensional space for 8 creatures for 1 hr",
 
-  'Sacred Flame':"R60' Target ${Math.foor((lvl+7)/6)}d8 (Dex neg)",
+  'Sacred Flame':"R60' Target ${Math.floor((lvl+7)/6)}d8 (Dex neg)",
   'Sanctuary':"R30' Target foes attack another for 1 min (Wis neg)",
   'Scorching Ray':"R120' 3 ranged attacks do 2d6 HP ea",
   'Scrying':"See, hear chosen target (Wis neg) for conc/10 min",
@@ -1711,6 +1711,7 @@ SRD5E.classRules = function(rules, classes) {
         '5:Destroy Undead:combat:Turn destroys up to CR %V',
         '10:Divine Intervention:magic:%V% chance of deity help 1/wk',
         // Life Domain
+        '1:Armor Proficiency (Heavy)',
         '1:Disciple Of Life:magic:' +
           'Healing spells restore additional 2 * spell level HP',
         '2:Preserve Life:magic:' +
@@ -1722,13 +1723,59 @@ SRD5E.classRules = function(rules, classes) {
       ];
 // PHB
       features.push(
-        // TODO
         // Knowledge Domain
+        '1:Blessings Of Knowledge:skill:+2 languages, +2 skill proficiencies',
+        '2:Knowledge Of The Ages:skill:' +
+          'Channel Divinity for 10 min skill or tool proficiency',
+        '6:Read Thoughts:magic:' +
+          "R60' Channel Divinity to read and command thoughts (Wis neg)",
+        '8:Potent Spellcasting:magic:+%V Cleric cantrip damage',
+        '17:Visions Of The Past:magic:Meditate for visions about held object',
         // Light Domain
+        '1:Light Cantrip:magic:Know <i>Light</i> spell',
+        '1:Warding Flare:magic:' +
+          "R30' Reaction flare foe DisAdv on current attack %V/long rest",
+        '2:Radiance Of The Dawn:magic:' +
+          "R30' Channel Energy to dispel magic darkness, 2d10+%V HP to foes (Con half)",
+        '6:Improved Flare:magic:Warding Flare protects allies',
+        '8:Potent Spellcasting:magic:+%V Cleric cantrip damage',
+        "17:Corona Of Light:magic:60' light foe DisAdv on fire, radiant spells",
         // Nature Domain
+        '1:Armor Proficiency (Heavy)',
+        '1:Acolyte Of Nature:magic:Additional Druid cantrip',
+        '1:Acolyte Of Nature:skill:Additional skill proficiency',
+        '2:Charm Animals And Plants:magic:' +
+          "R30' Channel Divinity charms for 1 min",
+        '6:Dampen Elements:magic:' +
+          "R30' Reaction to grant resistance to acid, cold, fire, lightning or thunder",
+        '8:Divine Strike:combat:+%Vd8 HP 1/turn',
+        '17:Master Of Nature:magic:Command charmed animals, plants',
         // Tempest Domain
+        '1:Armor Proficiency (Heavy)::',
+        '1:Weapon Proficiency (Martial)::',
+        '1:Wrath Of The Storm:combat:Reaction 2d8 HP (Ref half) %V/long rest',
+        '2:Destructive Wrath:magic:' +
+          'Channel Divinity to maximize thunder, lightning damage',
+        "6:Thunderbolt Strike:magic:Lightning damage pushes 10'",
+        '8:Divine Strike:combat:+%Vd8 HP 1/turn',
+        '17:Stormborn:ability:Outdoor flying at full speed',
         // Trickery Domain
+        '1:Blessing Of The Trickster:magic:Touched Adv Dex (Stealth) for 1 hr',
+        "2:Invoke Duplicity:magic:R30' Illusionary dulicate for conc/1 min",
+        '6:Cloak Of The Trickster:magic:' +
+          'Channel Divinity for Invisibility 1 turn',
+        '8:Divine Strike:combat:+%Vd8 HP 1/turn',
+        '17:Improved Duplicity:magic:Four duplicates',
         // War Domain
+        '1:Armor Proficiency (Heavy)::',
+        '1:Weapon Proficiency (Martial)::',
+        '1:War Priest:combat:Bonus attack %V/long rest',
+        '2:Guided Strike:combat:Channel Divinity for +10 attack',
+        "6:War God's Blessing:magic:" +
+          "R30' Channel Divinity reaction for ally +10 attack",
+        '8:Divine Strike:combat:+%Vd8 HP 1/turn',
+        '17:Avatar Of Battle:combat:' +
+          'Resistance nonmagical bludgeon, pierce, slash'
       );
 // ENDPHB
       hitDie = 8;
@@ -1776,6 +1823,14 @@ SRD5E.classRules = function(rules, classes) {
       ];
       // TODO Domain spells
 
+      rules.defineRule
+        ('hasDivineStrikeDomain', 'clericFeatures.Life Domain', '=', '1');
+      rules.defineRule
+        ('hasHeavyArmorDomain', 'clericFeatures.Life Domain', '=', '1');
+
+      rules.defineRule('clericFeatures.Armor Proficiency (Heavy)',
+        'hasHeavyArmorDomain', '?', null
+      )
       rules.defineRule('clericFeatures.Disciple Of Life',
         'clericFeatures.Life Domain', '?', null
       );
@@ -1786,11 +1841,121 @@ SRD5E.classRules = function(rules, classes) {
         'clericFeatures.Life Domain', '?', null
       );
       rules.defineRule('clericFeatures.Divine Strike',
-        'clericFeatures.Life Domain', '?', null
+        'hasDivineStrikeDomain', '?', null
       );
       rules.defineRule('clericFeatures.Supreme Healing',
         'clericFeatures.Life Domain', '?', null
       );
+
+//PHB
+      rules.defineRule('clericFeatures.Blessings Of Knowledge',
+        'clericFeatures.Knowledge Domain', '?', null
+      );
+      rules.defineRule('clericFeatures.Knowledge Of The Ages',
+        'clericFeatures.Knowledge Domain', '?', null
+      );
+      rules.defineRule('clericFeatures.Read Thoughts',
+        'clericFeatures.Knowledge Domain', '?', null
+      );
+      rules.defineRule('clericFeatures.Potent Spellcasting',
+        'clericFeatures.Knowledge Domain', '?', null
+      );
+      rules.defineRule('clericFeatures.Visions Of The Past',
+        'clericFeatures.Knowledge Domain', '?', null
+      );
+
+      rules.defineRule('clericFeatures.Light Cantrip',
+        'clericFeatures.Light Domain', '?', null
+      );
+      rules.defineRule('clericFeatures.Warding Flare',
+        'clericFeatures.Light Domain', '?', null
+      );
+      rules.defineRule('clericFeatures.Radiance Of The Dawn',
+        'clericFeatures.Light Domain', '?', null
+      );
+      rules.defineRule('clericFeatures.Improved Flare',
+        'clericFeatures.Light Domain', '?', null
+      );
+      rules.defineRule('clericFeatures.Potent Spellcasting',
+        'clericFeatures.Light Domain', '?', null
+      );
+      rules.defineRule('clericFeatures.Corona Of Light',
+        'clericFeatures.Light Domain', '?', null
+      );
+
+      rules.defineRule
+        ('hasDivineStrikeDomain', 'clericFeatures.Nature Domain', '=', '1');
+      rules.defineRule
+        ('hasHeavyArmorDomain', 'clericFeatures.Nature Domain', '=', '1');
+      rules.defineRule('clericFeatures.Acolyte Of Nature',
+        'clericFeatures.Nature Domain', '?', null
+      );
+      rules.defineRule('clericFeatures.Charm Animals And Plants',
+        'clericFeatures.Nature Domain', '?', null
+      );
+      rules.defineRule('clericFeatures.Dampen Elements',
+        'clericFeatures.Nature Domain', '?', null
+      );
+      rules.defineRule('clericFeatures.Master Of Nature',
+        'clericFeatures.Nature Domain', '?', null
+      );
+
+      rules.defineRule
+        ('hasDivineStrikeDomain', 'clericFeatures.Tempest Domain', '=', '1');
+      rules.defineRule
+        ('hasHeavyArmorDomain', 'clericFeatures.Tempest Domain', '=', '1');
+      rules.defineRule
+        ('hasMartialWeaponDomain', 'clericFeatures.Tempest Domain', '=', '1');
+      rules.defineRule('clericFeatures.Weapon Proficiency (Martial)',
+        'hasMartialWeaponDomain', '?', null
+      );
+      rules.defineRule('clericFeatures.Wrath Of The Storm',
+        'clericFeatures.Tempest Domain', '?', null
+      );
+      rules.defineRule('clericFeatures.Destructive Wrath',
+        'clericFeatures.Tempest Domain', '?', null
+      );
+      rules.defineRule('clericFeatures.Thunderbolt Strike',
+        'clericFeatures.Tempest Domain', '?', null
+      );
+      rules.defineRule('clericFeatures.Stormborn',
+        'clericFeatures.Tempest Domain', '?', null
+      );
+
+      rules.defineRule
+        ('hasDivineStrikeDomain', 'clericFeatures.Trickery Domain', '=', '1');
+      rules.defineRule('clericFeatures.Blessing Of The Trickster',
+        'clericFeatures.Trickery Domain', '?', null
+      );
+      rules.defineRule('clericFeatures.Invoke Duplicity',
+        'clericFeatures.Trickery Domain', '?', null
+      );
+      rules.defineRule('clericFeatures.Cloak Of The Trickster',
+        'clericFeatures.Trickery Domain', '?', null
+      );
+      rules.defineRule('clericFeatures.Improved Duplicity',
+        'clericFeatures.Trickery Domain', '?', null
+      );
+
+      rules.defineRule
+        ('hasDivineStrikeDomain', 'clericFeatures.War Domain', '=', '1');
+      rules.defineRule
+        ('hasHeavyArmorDomain', 'clericFeatures.War Domain', '=', '1');
+      rules.defineRule
+        ('hasMartialWeaponDomain', 'clericFeatures.War Domain', '=', '1');
+      rules.defineRule('clericFeatures.War Priest',
+        'clericFeatures.War Domain', '?', null
+      );
+      rules.defineRule('clericFeatures.Guided Strike',
+        'clericFeatures.War Domain', '?', null
+      );
+      rules.defineRule("clericFeatures.War God's Blessing",
+        'clericFeatures.War Domain', '?', null
+      );
+      rules.defineRule('clericFeatures.Avatar Of Battle',
+        'clericFeatures.War Domain', '?', null
+      );
+//ENDPHB
 
       rules.defineRule('casterLevels.C',
         'levels.Cleric', '=', null,
@@ -1801,25 +1966,61 @@ SRD5E.classRules = function(rules, classes) {
         'levels.Cleric', '=', 'source < 8 ? 0.5 : Math.floor((source - 5) / 3)'
       );
       rules.defineRule('combatNotes.divineStrikeFeature',
-        'levels.cleric', '=', 'source < 8 ? null : source < 14 ? 1 : 2'
+        'levels.Cleric', '=', 'source < 8 ? null : source < 14 ? 1 : 2'
       );
       rules.defineRule('combatNotes.turnUndeadFeature',
         'wisdomModifier', '=', 'source + 8',
         'proficiencyBonus', '+', null
       );
+      rules.defineRule('combatNotes.wrathOfTheStormFeature',
+        'wisdomModifier', '=', 'Math.floor(source, 1)'
+      );
+      rules.defineRule('combatNotes.warPriestFeature',
+        'wisdomModifier', '=', 'Math.floor(source, 1)'
+      );
       rules.defineRule('featureNotes.channelDivinityFeature',
         'levels.Cleric', '=', 'source < 6 ? 1: source < 18 ? 2 : 3'
       );
       rules.defineRule
-        ('magicNotes.divineInterventionFeature', 'level.Cleric', '=', null);
+        ('languageCount', 'skillNotes.blessingsOfKnowledgeFeature', '+', '2');
+      rules.defineRule
+        ('magicNotes.divineInterventionFeature', 'levels.Cleric', '=', null);
+      rules.defineRule
+        ('magicNotes.potentSpellcastingFeature', 'wisdomModifier', '=', null);
       rules.defineRule
         ('magicNotes.preserveLifeFeature', 'levels.Cleric', '=', '5 * source');
       rules.defineRule
-        ('proficiencyCount.Armor', 'clericFeatures.Life Domain', '+=', '1');
+        ('magicNotes.radianceOfTheDawnFeature', 'levels.Cleric', '=', null);
+      rules.defineRule('magicNotes.wardingFlareFeature',
+        'wisdomModifier', '=', 'Math.max(source, 1)'
+      );
       rules.defineRule
-        ('armorProficiencies.Heavy', 'clericFeatures.Life Domain', '=', '1');
+        ('proficiencyCount.Armor', 'clericFeatures.Life Domain', '+=', '1');
+      rules.defineRule('proficiencyCount.Skill',
+        'skillNotes.acolyteOfNatureFeature', '+', '1',
+        'skillNotes.blessingsOfKnowledgeFeature', '+', '2'
+      );
       rules.defineRule('selectableFeatureCount.Cleric',
         'clericFeatures.Divine Domain', '=', '1'
+      );
+      rules.defineRule('skillChoices.Animal Handling',
+        'skillNotes.acolyteOfNatureFeature', '=', '1'
+      );
+      rules.defineRule('skillChoices.Arcana',
+        'skillNotes.blessingsOfKnowledgeFeature', '=', '1'
+      );
+      rules.defineRule('skillChoices.History',
+        'skillNotes.blessingsOfKnowledgeFeature', '=', '1'
+      );
+      rules.defineRule('skillChoices.Nature',
+        'skillNotes.acolyteOfNatureFeature', '=', '1',
+        'skillNotes.blessingsOfKnowledgeFeature', '=', '1'
+      );
+      rules.defineRule('skillChoices.Religion',
+        'skillNotes.blessingsOfKnowledgeFeature', '=', '1'
+      );
+      rules.defineRule('skillChoices.Survival',
+        'skillNotes.acolyteOfNatureFeature', '=', '1'
       );
 
     } else if(name == 'Druid') {
@@ -2683,10 +2884,10 @@ SRD5E.classRules = function(rules, classes) {
       );
       rules.defineRule('casterLevelDivine', 'casterLevels.P', '+=', null);
       rules.defineRule('magicNotes.cleansingTouchFeature',
-        'charismaModifier', '=', 'Math.min(source, 1)'
+        'charismaModifier', '=', 'Math.max(source, 1)'
       );
       rules.defineRule('combatNotes.sacredWeaponFeature',
-        'charismaModifier', '=', 'Math.min(source, 1)'
+        'charismaModifier', '=', 'Math.max(source, 1)'
       );
       rules.defineRule
         ('magicNotes.divineSenseFeature', 'charismaModifier', '=', 'source+1');
@@ -2705,7 +2906,7 @@ SRD5E.classRules = function(rules, classes) {
         'levels.Paladin', '=', 'source < 18 ? 10 : 30'
       );
       rules.defineRule('saveNotes.auraOfProtectionFeature',
-        'charismaModifier', '=', 'Math.min(source, 1)'
+        'charismaModifier', '=', 'Math.max(source, 1)'
       );
       rules.defineRule('selectableFeatureCount.Paladin',
         'paladinFeatures.Fighting Style', '=', '1',
@@ -3150,13 +3351,13 @@ SRD5E.classRules = function(rules, classes) {
       rules.defineRule
         ('hitPoint', 'combatNotes.draconicResilienceFeature', '+', null);
       rules.defineRule('magicNotes.carefulSpellFeature',
-        'charismaModifier', '=', 'Math.min(source, 1)'
+        'charismaModifier', '=', 'Math.max(source, 1)'
       );
       rules.defineRule('magicNotes.elementalAffinityFeature',
         'charismaModifier', '=', null
       );
       rules.defineRule('magicNotes.empoweredSpellFeature',
-        'charismaModifier', '=', 'Math.min(source, 1)'
+        'charismaModifier', '=', 'Math.max(source, 1)'
       );
       rules.defineRule
         ('magicNotes.fontOfMagicFeature', 'levels.Sorcerer', '=', null);
@@ -4460,9 +4661,8 @@ SRD5E.magicRules = function(rules, classes, schools) {
         'Teleporation Circle',
         'B6:Eyebite:Find The Path:Guards And Wards:Irresistible Dance:' +
         'Mass Suggestion:Programmed Illusion:True Seeing',
-        'B7:Etherealness:Forcecage:Magnificent Mansion:Mirage Arcane:' +
-        "Mordenkainen's Sword:Project Image:Regenerate:Resurrection:Symbol:" +
-        'Teleport',
+        "B7:Etherealness:Forcecage:Mage's Sword:Magnificent Mansion:" +
+        'Mirage Arcane:Project Image:Regenerate:Resurrection:Symbol:Teleport',
         'B8:Dominate Monster:Feeblemind:Glibness:Mind Blank:Power Word Stun',
         'B9:Foresight:Power Word Heal:Power Word Kill:True Polymorph'
       ];
@@ -4657,7 +4857,7 @@ SRD5E.magicRules = function(rules, classes, schools) {
         'Irresistible Dance:Magic Jar:Mass Suggestion:Move Earth:' +
         'Programmed Illusion:Sunbeam:True Seeing:Wall Of Ice',
         'W7:Delayed Blast Fireball:Etherealness:Finger Of Death:Forcecage:' +
-        "Magnificent Mansion:Mirage Arcane:Mordenkainen's Sword:Plane Shift:" +
+        "Mage's Sword:Magnificent Mansion:Mirage Arcane:Plane Shift:" +
         'Prismatic Spray:Project Image:' +
         'Reverse Gravity:Sequester:Simulacrum:Symbol:Teleport',
         'W8:Antimagic Field:Antipathy/Sympathy:Clone:Control Weather:' +

@@ -56,7 +56,6 @@ function SRD5E() {
   SRD5E.rules = rules;
 }
 
-// Arrays of choices
 SRD5E.ALIGNMENTS = [
   'Chaotic Evil', 'Chaotic Good', 'Chaotic Neutral', 'Neutral', 'Neutral Evil',
   'Neutral Good', 'Lawful Evil', 'Lawful Good', 'Lawful Neutral'
@@ -767,7 +766,7 @@ SRD5E.spellsDescriptions = {
   'Dimension Door':"R500' Self + 1 other teleport",
   'Disguise Self':"Self appear different body size for 1 hr",
   'Disintegrate':"R60' Target 10d6+40 HP force (Dex neg)",
-  'Dispel Evil And Good':"Self aligned foes DisAdv attck for conc/1 min",
+  'Dispel Evil And Good':"Self aligned foes Disadv attck for conc/1 min",
   'Dispel Magic':"R120' End target effects le 3 level, higher DC 10+spell level",
   'Divination':"Receive truthful reply about even w/in 1 wk",
   'Divine Favor':"Self weapon +1d4 radiant HP for conc/1 min",
@@ -823,7 +822,7 @@ SRD5E.spellsDescriptions = {
     "Touched 40K' sq bars teleport and portals, 5d10 HP on transit to chosen type for 1 dy",
   'Forcecage':"R100' 20' barred cube or 10' solid box for 1 hr",
   'Foresight':
-    "Touched immune surprise, Adv attack, ability, save, foes DisAdv attck for 8 hr",
+    "Touched immune surprise, Adv attack, ability, save, foes Disadv attck for 8 hr",
   'Freedom Of Movement':"Touched immune impediments for 1 hr",
   'Freezing Sphere':"R300' Objects in 60' radius 10d6 HP (Con half)",
 
@@ -863,7 +862,7 @@ SRD5E.spellsDescriptions = {
   "Hideous Laughter": "R30' Target ROFL for conc/1 min (Wis neg)",
   'Hold Monster':"R90' target frozen for conc/1 min (Wis neg)",
   'Hold Person':"R60' target frozen for conc/1 min (Wis neg)",
-  'Holy Aura':"Self 30' radius targets Adv saves, foes DisAdv attack",
+  'Holy Aura':"Self 30' radius targets Adv saves, foes Disadv attack",
   "Hunter's Mark":
     "R90' Self attacks on target +1d6 HP, Adv Wis(Perception/Survival) to locate for conc/1 hr",
   "Hypnotic Pattern": "R120' creatures in 30' cu charmed for conc/1 min (Wis neg)",
@@ -881,7 +880,7 @@ SRD5E.spellsDescriptions = {
   'Invisibility':
     "Touched creature invisible for conc/1 hr or until attacks/casts",
   "Irresistible Dance":
-    "R30' Target dance (DisAdv Dex, attack, foes Adv attack) for conc/1 min (Wis neg)",
+    "R30' Target dance (Disadv Dex, attack, foes Adv attack) for conc/1 min (Wis neg)",
 
   'Jump':"Touched jump x3 for 1 min",
 
@@ -902,7 +901,7 @@ SRD5E.spellsDescriptions = {
   'Mage Armor':"Touched AC 13+DexMod in no armor for 8 hr",
   'Mage Hand':"R30' Spectral hand performs minor tasks le 10 lb for 1 min",
   'Magic Circle':
-    "R10' 10' circle impassable by specified creature type, DisAdv attacks for 1 hr",
+    "R10' 10' circle impassable by specified creature type, Disadv attacks for 1 hr",
   'Magic Jar':"R100' Possess creature, trap soul (Cha neg)",
   'Magic Missile':"R120' 3 darts 1d4+1 HP ea",
   'Magic Mouth':"R30' Object speaks 25-word message in response to trigger",
@@ -921,7 +920,7 @@ SRD5E.spellsDescriptions = {
   'Meteor Swarm':"R1 mi 40' radius 20d6 fire + 20d6 bludgeoning (Dex half)",
   'Mind Blank':"Touched immune psychic damage, reading, charm for 1 dy",
   'Minor Illusion':
-    "R30' Sound of 1 creature or 5' cu image (Int (Investigation) disbelieve) for 1 min",
+    "R30' Sound of 1 creature or 5' cu image (Investigation disbelieve) for 1 min",
   'Mirage Arcane':"Illusionary terrain for 10 dy",
   'Mirror Image':"3 duplcates draw attacks (AC 10+DexMod)",
   'Mislead':"Self invisible, control illusory duplcate for conc/1 hr",
@@ -961,7 +960,7 @@ SRD5E.spellsDescriptions = {
   'Protection From Energy':
     "Resist acid, cold, fire, lightning, or thunder for conc/1 hr",
   'Protection From Evil And Good':
-    "Touched specified foe type DisAdv attack, immune charm, fright, possession",
+    "Touched specified foe type Disadv attack, immune charm, fright, possession",
   'Protection From Poison':
     "Touched poison neutralized, Adv save vs. poision for 1 hr",
   'Purify Food And Drink':"R10' 5' radius food, drink freed of poison, disease",
@@ -997,8 +996,7 @@ SRD5E.spellsDescriptions = {
   'Shillelagh':"Touched club attack with spell attack, does 1d8 HP for 1 min",
   'Shocking Grasp':"Touched ${Math.floor((lvl+7)/6)}d8 HP",
   'Silence':"R120' 20' radius blocks sound for conc/10 min",
-  'Silent Image':
-    "R60' 15' cu illusion for conc/10 min (Int (Investigation) neg)",
+  'Silent Image':"R60' 15' cu illusion for conc/10 min (Investigation neg)",
   'Simulacrum':"Friendly duplicate creature from snow, half HP of original",
   'Sleep':"R90' 20' radius sleeps up to 5d8 HP creatures, weakest first",
   'Sleet Storm':"R150' 40' radius slick ice causes falls (Dex neg)",
@@ -1045,7 +1043,7 @@ SRD5E.spellsDescriptions = {
 
   'Vampiric Touch':"Touched 3d6 HP, self regain half for conc/1 min",
   'Vicious Mockery':
-    "R60' Target insults ${Math.floor((lvl+7)/6)} HP, DisAdv attack (Wis neg)",
+    "R60' Target insults ${Math.floor((lvl+7)/6)} HP, Disadv attack (Wis neg)",
 
   'Wall Of Fire':"R120' 60'x20' wall 5d8 HP (Dex half) for conc/1 min",
   'Wall Of Force':"R120' 10 10'x10' panels immune objects for conc/10 min",
@@ -1087,7 +1085,7 @@ Object.assign(SRD5E.spellsDescriptions, {
   'Friends':"Self Adv Cha w/target for conc/1 min",
   'Grasping Vine':"R30' Vine pulls target 20' for conc/1 min (Dex neg)",
   'Hail Of Thorns':"Ranged hit followed by 5' thorn rain 1d10 HP (Dex half)",
-  'Hex':"R90' Self hits on target +1d6 HP, DisAdv chosen ability for conc/1 hr",
+  'Hex':"R90' Self hits on target +1d6 HP, Disadv chosen ability for conc/1 hr",
   'Hunger Of Hadar':"R150' 20' void 2d6 HP for conc/1 min",
   'Lightning Arrow':"100' bolt 8d6 HP (Dex half)",
   "Mage's Sword":"Force weapon 3d10, move 20' for conc/1 min",
@@ -1429,7 +1427,7 @@ SRD5E.classRules = function(rules, classes) {
         '5:Extra Attack:combat:+1 attack per Attack action',
         '5:Fast Movement:ability:+10 speed in no/light/medium armor',
         '7:Feral Instinct:combat:Adv initiative, act when surprised if rage',
-        '9:Brutal Critical:combat:+%V critical damage dice',
+        '9:Brutal Critical:combat:+%V crit damage dice',
         '11:Relentless Rage:combat:DC 10+ Con to keep 1 HP when brought to 0',
         '15:Persistent Rage:combat:Rage ends only when unconscious or chosen',
         '18:Indominable Might:ability:' +
@@ -1734,12 +1732,12 @@ SRD5E.classRules = function(rules, classes) {
         // Light Domain
         '1:Light Cantrip:magic:Know <i>Light</i> spell',
         '1:Warding Flare:magic:' +
-          "R30' Reaction flare foe DisAdv on current attack %V/long rest",
+          "R30' Reaction flare foe Disadv on current attack %V/long rest",
         '2:Radiance Of The Dawn:magic:' +
           "R30' Channel Energy to dispel magic darkness, 2d10+%V HP to foes (Con half)",
         '6:Improved Flare:magic:Warding Flare protects allies',
         '8:Potent Spellcasting:magic:+%V Cleric cantrip damage',
-        "17:Corona Of Light:magic:60' light foe DisAdv on fire, radiant spells",
+        "17:Corona Of Light:magic:60' light foe Disadv on fire, radiant spells",
         // Nature Domain
         '1:Armor Proficiency (Heavy)',
         '1:Acolyte Of Nature:magic:Additional Druid cantrip',
@@ -1760,7 +1758,7 @@ SRD5E.classRules = function(rules, classes) {
         '8:Divine Strike:combat:+%Vd8 HP 1/turn',
         '17:Stormborn:ability:Outdoor flying at full speed',
         // Trickery Domain
-        '1:Blessing Of The Trickster:magic:Touched Adv Dex (Stealth) for 1 hr',
+        '1:Blessing Of The Trickster:magic:Touched Adv Stealth for 1 hr',
         "2:Invoke Duplicity:magic:R30' Illusionary dulicate for conc/1 min",
         '6:Cloak Of The Trickster:magic:' +
           'Channel Divinity for Invisibility 1 turn',
@@ -2245,7 +2243,7 @@ SRD5E.classRules = function(rules, classes) {
         '3:Weapon Bond:combat:Cannot be disarmed, can summon bonded weapon',
         '7:War Magic:combat:Bonus attack after %V',
         '10:Eldritch Strike:combat:' +
-          'Foe DisAdv vs. spells for 1 turn after you hit',
+          'Foe Disadv vs. spells for 1 turn after you hit',
         "15:Arcane Charge:magic:Action Surge to Teleport 30'"
       );
 // ENDPHB
@@ -2304,7 +2302,7 @@ SRD5E.classRules = function(rules, classes) {
         '1:Great Weapon Fighting Style:combat:' +
           'Reroll damage of 1 or 2 with two-handed weapons',
         '1:Protection Style:combat:' +
-          "Use shield to impose attack DisAdv on foe w/in 5'",
+          "Use shield to impose attack Disadv on foe w/in 5'",
         '1:Two-Weapon Fighting Style:combat:' +
           'Add ability modifier to second attack damage'
       ]
@@ -2325,7 +2323,7 @@ SRD5E.classRules = function(rules, classes) {
        '3:Feinting Attack:combat:' +
           'Adv next attack, add superiority die to damage',
        '3:Goading Attack:combat:' +
-         'Add superiority die to damage, foe DisAdv attack others (DC %V Wis neg)',
+         'Add superiority die to damage, foe Disadv attack others (DC %V Wis neg)',
        "3:Lunging Attack:combat:+5' melee range, add superiority die to damage",
        '3:Maneuvering Attack:combat:' +
          'Add superiority die to damage, companion move half speed w/out OA',
@@ -2482,7 +2480,7 @@ SRD5E.classRules = function(rules, classes) {
         '1:Monk Unarmored Defense:combat:+%1 AC in no armor',
         '2:Flurry Of Blows:combat:Spend 1 Ki for 2 unarmed strikes',
         '2:Ki:feature:%V Ki points refresh after short rest',
-        '2:Patient Defense:combat:Spend 1 Ki to Dodge (foe attack DisAdv)',
+        '2:Patient Defense:combat:Spend 1 Ki to Dodge (foe attack Disadv)',
         '2:Step Of The Wind:combat:' +
           'Spend 1 Ki to Disengage or Dash, x2 jump',
         '2:Unarmored Movement:ability:+%V speed in no armor',
@@ -2777,7 +2775,7 @@ SRD5E.classRules = function(rules, classes) {
         "7:Aura Of Warding:save:R30' Self, allies resist spell damage",
         '15:Undying Sentinel:combat:Keep 1 HP when brought to 0 HP 1/long rest',
         '20:Elder Champion:magic:' +
-          "Transform, regain 10 HP/turn, cast as bonus action, foes w/in 10' save DisAdv 1/long rest",
+          "Transform, regain 10 HP/turn, cast as bonus action, foes w/in 10' save Disadv 1/long rest",
         // Oath Of Vengeance
         "3:Abjure Enemy:magic:R60' Target flees 1 min (DC %V Wis neg)",
         "3:Vow Of Enmity:combat:R10' Adv attacks against target for 1 min",
@@ -2805,7 +2803,7 @@ SRD5E.classRules = function(rules, classes) {
         '2:Great Weapon Fighting Style:combat:' +
           'Reroll damage of 1 or 2 with two-handed weapons',
         '2:Protection Style:combat:' +
-          "Use shield to impose attack DisAdv on foe w/in 5'"
+          "Use shield to impose attack Disadv on foe w/in 5'"
       ];
       selectableFeatures.push('3:Oath Of Devotion::');
 // PHB
@@ -2929,7 +2927,7 @@ SRD5E.classRules = function(rules, classes) {
       features = [
         '1:Armor Proficiency (Light/Medium/Shield)::',
         '1:Weapon Proficiency (Simple/Martial)::',
-        '1:Favored Enemy:skill:Adv Wis (Survival) to track, Int (Knowledge) about %V creature types, learn enemy language',
+        '1:Favored Enemy:skill:Adv Survival to track, Knowledge about %V creature types, learn enemy language',
         '1:Natural Explorer:skill:x2 Int/Wis prof, normal move in difficult terrain, always alert, full speed solo stealth, locate x2 food, extra track info for %V terrains',
         '2:Fighting Style::',
         '2:Spellcasting::',
@@ -2940,7 +2938,7 @@ SRD5E.classRules = function(rules, classes) {
         "8:Land's Stride:ability:Move normally through difficult terrain",
         "8:Land's Stride:save:Adv vs. impeding plants",
         '10:Hide In Plain Sight:skill:' +
-          '+10 Dex (Stealth) to hide w/prepared camouflage',
+          '+10 Stealth to hide w/prepared camouflage',
         '14:Vanish:skill:Hide as bonus action, untrackable',
         '18:Feral Senses:combat:' +
           "No Disadv vs. invisible foe, 30' awareness of invisible creatures",
@@ -2983,7 +2981,7 @@ SRD5E.classRules = function(rules, classes) {
         '3:Colossus Slayer:combat:+1d8 HP vs. undamaged foe 1/turn',
         '3:Giant Killer:combatReact to attack nearby large foe after miss',
         '3:Horde Breaker:combat:Second attack on different nearby foe',
-        '7:Escape The Horde:combat:Foe DisAdv on OA',
+        '7:Escape The Horde:combat:Foe Disadv on OA',
         '7:Multiattack Defense:combat:+4 AC after foe first attack',
         '7:Steel Will:save:Adv vs. fright',
         "11:Volley:combat:Ranged attack any number of foes in 10' area",
@@ -3108,10 +3106,10 @@ SRD5E.classRules = function(rules, classes) {
         '20:Stroke Of Luck:combat:Turn miss into hit 1/long rest',
         // Thief Archetype
         '3:Fast Hands:skill:' +
-          'Dex (Sleight Of Hands), disarm trap, open lock, Use Object as bonus action',
+          'Sleight Of Hand, disarm trap, open lock, Use Object as bonus action',
         '3:Second-Story Work:ability:Normal movement when climbing',
         "3:Second-Story Work:skill:+%V' Jump",
-        '9:Supreme Sneak:skill:Adv Dex (Stealth) at half speed',
+        '9:Supreme Sneak:skill:Adv Stealth at half speed',
         '13:Use Magic Device:skill:Ignore restrictions on magic device use',
         "17:Thief's Reflexes:First round extra turn at init-10"
       ];
@@ -3127,7 +3125,7 @@ SRD5E.classRules = function(rules, classes) {
         '3:Spellcasting::',
         '3:Mage Hand Legerdemain:magic:' +
           'Plant, retrieve, pick, disarm via <i>Mage Hand</i>',
-        '9:Magical Ambush:magic:Foe DisAdv spell save when self hidden',
+        '9:Magical Ambush:magic:Foe Disadv spell save when self hidden',
         '13:Versatile Trickster:magic:' +
           'Distract foe (self Adv attacks) via <i>Mage Hand</i>',
         '17:Spell Thief:magic:' +
@@ -3276,7 +3274,7 @@ SRD5E.classRules = function(rules, classes) {
         '3:Extended Spell:magic:' +
           'Spend 1 sorcery point to dbl spell duration',
         '3:Heightened Spell:magic:' +
-          'Spend 3 sorcery points to give target DisAdv on spell save',
+          'Spend 3 sorcery points to give target Disadv on spell save',
         '3:Quickened Spell:magic:' +
           'Spend 2 sorcery points to cast spell as bonus action',
         '3:Subtle Spell:magic:' +
@@ -3397,7 +3395,7 @@ SRD5E.classRules = function(rules, classes) {
         // Great Old One Patron
         "1:Awakened Mind:feature:R60' Telepathic communication",
         '6:Entropic World:combat:' +
-          'Foe DisAdv attack, miss give you attack Adv 1/short rest',
+          'Foe Disadv attack, miss give you attack Adv 1/short rest',
         '10:Thought Shield:save:' +
           'Immune telepathy, resist and reflect psycic damage',
         '14:Create Thrall:magic:Charm incapacitated humanoid'
@@ -4358,7 +4356,7 @@ SRD5E.featRules = function(rules, feats) {
     } else if(feat == 'Crossbow Expert') {
       notes = [
         'combatNotes.crossbowExpertFeature:' +
-          'Quick load, no DisAdv on close shot, bonus hand crossbow shot after one-handed attack'
+          'Quick load, no Disadv on close shot, bonus hand crossbow shot after one-handed attack'
       ];
     } else if(feat == 'Defensive Duelist') {
       notes = [
@@ -4463,12 +4461,12 @@ SRD5E.featRules = function(rules, feats) {
     } else if(feat == 'Lucky') {
       notes = [
         'featureNotes.luckyFeature:' +
-          'Adv attack/ability/save or foe DisAdv attack 3/long rest'
+          'Adv attack/ability/save or foe Disadv attack 3/long rest'
       ];
     } else if(feat == 'Mage Slayer') {
       notes = [
         'combatNotes.mageSlayerFeature:' +
-          'React to attack caster, foe DisAdv concentration',
+          'React to attack caster, foe Disadv concentration',
         "saveNotes.mageSlayerFeature:Adv vs. spells by foes w/in 5'"
       ];
     } else if(feat == 'Magic Initiate') {
@@ -4560,7 +4558,7 @@ SRD5E.featRules = function(rules, feats) {
     } else if(feat == 'Sharpshooter') {
       notes = [
         'combatNotes.sharpshooterFeature:' +
-          'No DisAdv long range, ignore 3/4 cover, take -5 attack for +10 damage'
+          'No Disadv long range, ignore 3/4 cover, take -5 attack for +10 damage'
       ];
     } else if(feat == 'Shield Master') {
       notes = [
@@ -4575,7 +4573,7 @@ SRD5E.featRules = function(rules, feats) {
     } else if(feat == 'Skulker') {
       notes = [
         'skillNotes.skulkerFeature:' +
-          'Hide when lightly obscured, no DisAdv on Perception in dim light',
+          'Hide when lightly obscured, no Disadv on Perception in dim light',
         'validationNotes.skulkerFeatAbility:Requires Dexterity >= 13'
       ];
     } else if(feat == 'Spell Sniper') {
@@ -4904,16 +4902,15 @@ SRD5E.raceRules = function(rules, languages, races) {
   rules.defineNote
     ('validationNotes.languageAllocation:%1 available vs. %2 allocated');
   rules.defineRule('validationNotes.languageAllocation.1',
-    '', '=', '0',
     'languageCount', '=', null
   );
   rules.defineRule('validationNotes.languageAllocation.2',
     '', '=', '0',
-    /^languages\./, '+=', null
+    /^languages\./, '+', null
   );
   rules.defineRule('validationNotes.languageAllocation',
     'validationNotes.languageAllocation.1', '=', '-source',
-    'validationNotes.languageAllocation.2', '+=', null
+    'validationNotes.languageAllocation.2', '+', null
   );
 
   for(var i = 0; i < races.length; i++) {
@@ -4930,29 +4927,31 @@ SRD5E.raceRules = function(rules, languages, races) {
 
       adjustment = '+2 charisma/+1 any two';
       features = [
-        "1:Darkvision:feature:See one light level better 60'",
-        '1:Extra Language::',
+        "1:Darkvision:feature:R60' See one light level better",
+        '1:Extra Language:feature:Speak 1 additional language',
         '1:Fey Ancestry:save:Adv vs. charmed, immune sleep',
         '1:Skill Versatility:skill:Prof two additional skills'
       ];
-      languages = ['Common', 'Elvish', ''];
+      languages = ['Common', 'Elvish'];
       notes = null;
       proficiencyCount = {'Skill': 2};
       proficienciesGiven = {};
       proficiencyChoices = {
         'Skill': SRD5E.SKILLS.map(function(skill){return skill.substring(0, skill.indexOf(':'));})
       };
+      rules.defineRule
+        ('languageCount', 'featureNotes.extraLanguageFeature', '+', '1');
 
     } else if(race == 'Half-Orc') {
 
       adjustment = '+2 strength/+1 constitution';
       features = [
-        "1:Darkvision:feature:See one light level better 60'",
+        "1:Darkvision:feature:R60' See one light level better",
         '1:Menacing:skill:Prof Intimidation',
-        '1:Relentless Endurance:combat:Avoid drop below 1 hp 1/long rest',
-        '1:Savage Attacks:combat:Add extra die on critical damage'
+        '1:Relentless Endurance:combat:Avoid drop to 0 HP 1/long rest',
+        '1:Savage Attacks:combat:Extra die on crit damage'
       ];
-      languages = ['Orc'];
+      languages = ['Common', 'Orc'];
       notes = null;
       proficiencyCount = {'Skill': 2};
       proficienciesGiven = {'Skill': ['Intimidation']};
@@ -4962,9 +4961,8 @@ SRD5E.raceRules = function(rules, languages, races) {
 
       adjustment = '+2 strength/+1 charisma';
       features = [
-        '1:Draconic Breath:combat:' +
-          '%1 %Vd6 %2 damage (DC %3 %4 save for half)',
-        '1:Draconic Breath:save:Resistance to breath weapon damage type'
+        '1:Draconic Breath:combat:%1 %Vd6 %2 damage (DC %3 %4 half)',
+        '1:Draconic Breath:save:Resistance %V damage'
       ];
       languages = ['Common', 'Draconic'];
       notes = null;
@@ -4973,7 +4971,7 @@ SRD5E.raceRules = function(rules, languages, races) {
       proficiencyChoices = {};
 
       rules.defineRule('combatNotes.draconicBreathFeature',
-        'level', '=', '2 + Math.floor((source-1) / 5)'
+        'level', '=', 'Math.floor((source + 9) / 5)'
       );
       rules.defineRule('combatNotes.draconicBreathFeature.1',
         'race', '=', 'source < "Gold" ? "5\'x30\' line" : "15\' cone"'
@@ -4988,26 +4986,26 @@ SRD5E.raceRules = function(rules, languages, races) {
       rules.defineRule('combatNotes.draconicBreathFeature.4',
         'combatNotes.draconicBreathFeature.2', '=', 'source.match(/cold|poison/) ? "Con" : "Dex"'
       );
+      rules.defineRule('saveNotes.draconicBreathFeature',
+        'race', '=', 'SRD5E.draconicBreathTypes[source]'
+      );
 
     } else if(race.match(/Dwarf/)) {
 
       adjustment = '+2 constitution';
       features = [
-        "1:Darkvision:feature:See one light level better 60'",
-        '1:Dwarven Armor Speed:ability:No speed penalty in armor',
-        '1:Dwarven Resilience:save:Adv vs. poison, resist poison damage',
+        "1:Darkvision:feature:R60' See one light level better",
+        '1:Dwarven Armor Speed:ability:No speed penalty in heavy armor',
+        '1:Dwarven Resilience:save:Adv vs. poison, resistance poison damage',
         '1:Slow:ability:-5 speed',
         '1:Stonecunning:skill:x2 prof on stonework History checks',
-        "1:Tool Proficiency (Artisan's Tool)::"
+        "1:Tool Proficiency (Artisan's Tool)::",
+        '1:Weapon Proficiency (Battleaxe/Handaxe/Light Hammer/Warhammer)::'
       ];
       languages = ['Common', 'Dwarven'];
       notes = null;
-      proficiencyCount = {
-        'Tool':1, 'Weapon':4
-      };
-      proficienciesGiven = {
-        'Weapon':['Battleaxe', 'Handaxe', 'Light Hammer', 'Warhammer']
-      };
+      proficiencyCount = {'Tool':1};
+      proficienciesGiven = {};
       proficiencyChoices = {
         'Tool':["Brewer's Supplies", "Mason's Tools", "Smith's Tools"]
       };
@@ -5036,10 +5034,10 @@ SRD5E.raceRules = function(rules, languages, races) {
 
       adjustment = '+2 dexterity';
       features = [
-        "1:Darkvision:feature:See one light level better 60'",
+        "1:Darkvision:feature:R60' See one light level better",
         '1:Fey Ancestry:save:Adv vs. charmed, immune sleep',
-        '1:Keen Senses:skill:Proficient Perception',
-        '1:Trance:feature:4 hour meditation gives benefit of 8 hour sleep'
+        '1:Keen Senses:skill:Prof Perception',
+        '1:Trance:feature:4 hr meditation gives benefit of 8 hr sleep'
       ];
       languages = ['Common', 'Elvish'];
       notes = null;
@@ -5049,37 +5047,33 @@ SRD5E.raceRules = function(rules, languages, races) {
 
       if(race == 'High Elf') {
         adjustment += '/+1 intelligence';
-        languages.push('');
-        proficiencyCount['Weapons'] = 4;
-        proficienciesGiven['Weapons'] =
-          ['Longbow', 'Longsword', 'Shortbow', 'Shortsword'];
         features.push(
-          '1:Cantrip::TODO',
-          '1:Extra Language:feature:Speak 1 additional language'
+          '1:Cantrip:magic:Learn 1 additional Wizard cantrip (Int)', // TODO
+          '1:Extra Language:feature:Speak 1 additional language',
+          '1:Weapon Proficiency (Longbow/Longsword/Shortbow/Shortsword)::'
         );
+        rules.defineRule
+          ('languageCount', 'featureNotes.extraLanguageFeature', '+', '1');
 // PHB
       } else if(race == 'Wood Elf') {
         adjustment += '/+1 wisdom';
         features.push(
           '1:Fleet Of Foot:ability:+5 speed',
-          '1:Mask Of The Wild:feature:Hide in minimal natural coverage'
+          '1:Mask Of The Wild:feature:Hide in light natural coverage',
+          '1:Weapon Proficiency (Longbow/Longsword/Shortbow/Shortsword)::'
         );
-        proficiencyCount['Weapons'] = 4;
-        proficienciesGiven['Weapons'] =
-          ['Longbow', 'Longsword', 'Shortbow', 'Shortsword'];
         rules.defineRule('speed', 'abilityNotes.fleetOfFootFeature', '+', '5');
       } else if(race == 'Dark Elf') {
         adjustment += '/+1 charisma';
         features.push(
-          '1:Drow Magic:magic:Cast %V 1/day (cha)',
+          '1:Drow Magic:magic:<i>Dancing Lights</i> cantrip%V (Cha)', // TODO
           '1:Sunlight Sensitivity:combat:Disadv attack in direct sunlight',
-          '1:SunlightSensitivity:skill:' +
+          '1:Sunlight Sensitivity:skill:' +
             'Disadv sight Perception in direct sunlight',
-          "1:Superior Darkvision:feature:See one light level better 120'"
+          "1:Superior Darkvision:feature:R120' See one light level better",
+          '1:Weapon Proficiency (Hand Crossbow/Rapier/Shortsword)::'
         );
-        proficiencyCount['Weapons'] = 3;
-        proficienciesGiven['Weapons'] = ['Hand Crossbow', 'Rapier', 'Shortsword'];
-        rules.defineRule('magicNotes.drowMagicFeature', 'level', '=', '"<i>Dancing Lights</i>" + (source < 3 ? "" : ", <i>Faerie Fire</i>") + (source < 5 ? "" : ", <i>Darkness</i>")');
+        rules.defineRule('magicNotes.drowMagicFeature', 'level', '=', 'source >= 3 ? ", cast <i>Faerie Fire</i>" + (source >= 5 ? ", <i>Darkness</i>" : "") + " 1/dy" : ""');
 // ENDPHB
       }
 
@@ -5087,8 +5081,10 @@ SRD5E.raceRules = function(rules, languages, races) {
 
       adjustment = '+2 intelligence';
       features = [
-        '1:Gnome Cunning:save:Adv cha/int/wis vs magic',
-        '1:Slow:ability:-5 speed'
+        "1:Darkvision:feature:R60' See one light level better",
+        '1:Gnome Cunning:save:Adv Cha/Int/Wis vs magic',
+        '1:Slow:ability:-5 speed',
+        '1:Small:ability:' // TODO
       ];
       languages = ['Common', 'Gnomish'];
       proficiencyCount = {};
@@ -5099,8 +5095,8 @@ SRD5E.raceRules = function(rules, languages, races) {
         adjustment += '/+1 constitution';
         features.push(
           "1:Artificier's Lore:skill:" +
-            'x2 prof on magic, alchemical, tech objects History checks',
-          "1:Tinker:feature:Prof w/artisan's tools"
+            'x2 Prof on magic, alchemical, tech objects History checks',
+          "1:Tinker:feature:Prof artisan's tools"
         );
         proficiencyCount['Tool'] = 1;
         proficienciesGiven['Tool'] = ["Artisan's Tools"];
@@ -5108,9 +5104,9 @@ SRD5E.raceRules = function(rules, languages, races) {
       } else if(race == 'Forest Gnome') {
         adjustment += '/+1 dexterity';
         features.push(
-          '1:Natural Illusionist:magic:Cast <i>Minor Illusion</i> (int)',
+          '1:Natural Illusionist:magic:<i>Minor Illusion</i> cantrip (Int)',
           '1:Speak With Small Beasts:feature:' +
-            'Simple communication with small or smaller animals'
+            'Simple communication with small animals'
         );
 // ENDPHB
       }
@@ -5124,7 +5120,8 @@ SRD5E.raceRules = function(rules, languages, races) {
         '1:Brave:save:Adv vs. frightened',
         '1:Lucky:feature:Reroll 1 on attack/ability/save',
         '1:Nimble:ability:Move through space occupied by larger creature',
-        '1:Slow:ability:-5 speed'
+        '1:Slow:ability:-5 speed',
+        '1:Small:ability:' // TODO
       ];
       languages = ['Common', 'Halfling'];
       proficiencyCount = {};
@@ -5140,7 +5137,7 @@ SRD5E.raceRules = function(rules, languages, races) {
       } else if(race == 'Stout Halfling') {
         adjustment += '/+1 constitution';
         features.push(
-          '1:Stout:save:Adv vs. poison, resist poison damage'
+          '1:Stout:save:Adv vs. poison, resistance poison damage'
         );
 // ENDPHB
       }
@@ -5149,29 +5146,31 @@ SRD5E.raceRules = function(rules, languages, races) {
 
     } else if(race.match(/Human/)) {
 
-      adjustment = '+1 strength/+1 intelligence/+1 wisdom/+1 dexterity/+1 constitution/+1 charisma';
+      adjustment = '+1 charisma/+1 constitution/+1 dexterity/+1 intelligence/+1 strength/+1 wisdom';
       features = [
-        '1:Extra Language;feature:Speak 1 additional language'
+        '1:Extra Language:feature:Speak 1 additional language'
       ];
       languages = ['Common'];
       proficiencyCount = {};
       proficienciesGiven = {};
       proficiencyChoices = {};
 
+      rules.defineRule
+        ('languageCount', 'featureNotes.extraLanguageFeature', '+', '1');
+
     } else if(race.match(/Tiefling/)) {
 
       adjustment = '+1 intelligence/+2 charisma';
       features = [
-        "1:Darkvision:feature:See one light level better 60'",
-        '1:Hellish Resistance:save:Resistance to fire damage',
-        '1:Infernal Legacy:magic:Cast %V 1/day (cha)'
+        "1:Darkvision:feature:R60' See one light level better",
+        '1:Hellish Resistance:save:Resistance fire damage',
+        '1:Infernal Legacy:magic:<i>Thaumaturgy</i> cantrip%V (Cha)' // TODO
       ];
       languages = ['Common', 'Infernal'];
       proficiencyCount = {};
       proficienciesGiven = {};
       proficiencyChoices = {};
-
-      rules.defineRule('magicNotes.infernalLegacyFeature', 'level', '=', '"<i>Thaumaturgy</i>" + (source < 3 ? "" : ", <i>Hellish Rebuke</i>") + (source < 5 ? "" : ", <i>Darkness</i>")');
+      rules.defineRule('magicNotes.infernalLegacyFeature', 'level', '=', 'source >= 3 ? ", cast <i>Hellish Rebuke</i>" + (source >= 5 ? ", <i>Darkness</i>" : "") + " 1/dy" : ""');
 
     } else
       continue;

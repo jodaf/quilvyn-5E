@@ -1487,18 +1487,14 @@ SRD5E.classRules = function(rules, classes) {
       // TODO heavy armor neg (except for dwarves?)
       rules.defineRule('speed', 'abilityNotes.fastMovementFeature', '+', '10');
 
-      rules.defineRule('barbarianFeatures.Frenzy',
-        'barbarianFeatures.Path Of The Berserker', '?', null
-      );
-      rules.defineRule('barbarianFeatures.Mindless Rage',
-        'barbarianFeatures.Path Of The Berserker', '?', null
-      );
-      rules.defineRule('barbarianFeatures.Intimidating Presence',
-        'barbarianFeatures.Path Of The Berserker', '?', null
-      );
-      rules.defineRule('barbarianFeatures.Retaliation',
-        'barbarianFeatures.Path Of The Berserker', '?', null
-      );
+      for(var feature in {
+        'Frenzy':'', 'Mindless Rage':'', 'Intimidating Presence':'',
+        'Retaliation':''
+      }) {
+        rules.defineRule('barbarianFeatures.' + feature,
+          'barbarianFeatures.Path Of The Berserker', '?', null
+        );
+      }
 // PHB
       rules.defineRule('totemicBarbarian',
         'barbarianFeatures.Path Of The Totem Warrior (Bear)', '=', '1',
@@ -1509,33 +1505,15 @@ SRD5E.classRules = function(rules, classes) {
         ('barbarianFeatures.Spirit Seeker', 'totemicBarbarian', '?', null);
       rules.defineRule
         ('barbarianFeatures.Spirit Walker', 'totemicBarbarian', '?', null);
-      rules.defineRule('barbarianFeatures.Aspect Of The Bear',
-        'barbarianFeatures.Path Of The Totem Warrior (Bear)', '?', null
-      );
-      rules.defineRule('barbarianFeatures.Aspect Of The Eagle',
-        'barbarianFeatures.Path Of The Totem Warrior (Eagle)', '?', null
-      );
-      rules.defineRule('barbarianFeatures.Aspect Of The Wolf',
-        'barbarianFeatures.Path Of The Totem Warrior (Wolf)', '?', null
-      );
-      rules.defineRule('barbarianFeatures.Bear Totem Spirit',
-        'barbarianFeatures.Path Of The Totem Warrior (Bear)', '?', null
-      );
-      rules.defineRule('barbarianFeatures.Eagle Totem Spirit',
-        'barbarianFeatures.Path Of The Totem Warrior (Eagle)', '?', null
-      );
-      rules.defineRule('barbarianFeatures.Wolf Totem Spirit',
-        'barbarianFeatures.Path Of The Totem Warrior (Wolf)', '?', null
-      );
-      rules.defineRule('barbarianFeatures.Bear Totemic Attunement',
-        'barbarianFeatures.Path Of The Totem Warrior (Bear)', '?', null
-      );
-      rules.defineRule('barbarianFeatures.Eagle Totemic Attunement',
-        'barbarianFeatures.Path Of The Totem Warrior (Eagle)', '?', null
-      );
-      rules.defineRule('barbarianFeatures.Wolf Totemic Attunement',
-        'barbarianFeatures.Path Of The Totem Warrior (Wolf)', '?', null
-      );
+      for(var feature in {
+        'Aspect Of The $A':'', '$A Totem Spirit':'', '$A Totemic Attunement':''
+      }) {
+        for(var animal in {'Bear':'', 'Eagle':'', 'Wolf':''}) {
+          rules.defineRule('barbarianFeatures.' + feature.replace('$A', animal),
+            'barbarianFeatures.Path Of The Totem Warrior (' + animal + ')', '?', null
+          );
+        }
+      }
 // ENDPHB
 
     } else if(name == 'Bard') {
@@ -1629,24 +1607,20 @@ SRD5E.classRules = function(rules, classes) {
       rules.defineRule('magicNotes.songOfRestFeature',
         'levels.Bard', '=', '6 + 2 * source<9 ? 0 : Math.floor((source-5)/4)'
       );
+      rules.defineRule
+        ('proficiencyCount.Skill', 'skillNotes.bonusSkillsFeature', '+', '3');
       rules.defineRule('selectableFeatureCount.Bard',
         'levels.Bard', '=', 'source < 3 ? null : 1'
       );
 
-      rules.defineRule('bardFeatures.Additional Magical Secrets',
-        'bardFeatures.College Of Lore', '?', null
-      );
-      rules.defineRule('bardFeatures.Cutting Words',
-        'bardFeatures.College Of Lore', '?', null
-      );
-      rules.defineRule('bardFeatures.Extra Skills',
-        'bardFeatures.College Of Lore', '?', null
-      );
-      rules.defineRule('bardFeatures.Peerless Skill',
-        'bardFeatures.College Of Lore', '?', null
-      );
-      rules.defineRule
-        ('proficiencyCount.Skill', 'skillNotes.bonusSkillsFeature', '+', '3');
+      for(var feature in {
+        'Additional Magical Secrets':'', 'Cutting Words':'', 'Extra Skills':'',
+        'Peerless Skill':''
+      }) {
+        rules.defineRule('bardFeatures.' + feature,
+          'bardFeatures.College Of Lore', '?', null
+        );
+      }
 
 // PHB
       rules.defineRule
@@ -1655,19 +1629,18 @@ SRD5E.classRules = function(rules, classes) {
         'bardFeatures.Extra Attack', '?', null,
         'levels.Bard', '=', 'source < 6 ? null : 1'
       );
-      rules.defineRule('bardFeatures.Battle Magic',
-        'bardFeatures.College Of Valor', '?', null
-      );
-      rules.defineRule('bardFeatures.Combat Inspiration',
-        'bardFeatures.College Of Valor', '?', null
-      );
-      rules.defineRule('bardFeatures.Extra Attack',
-        'bardFeatures.College Of Valor', '?', null
-      );
       rules.defineRule
         ('combatNotes.extraAttackFeature', 'bardExtraAttacks', '+=', null);
       rules.defineRule
         ('proficiencyCount.Skill', 'skillNotes.bonusSkillsFeature', '+', '3');
+
+      for(var feature in {
+        'Battle Magic':'', 'Combat Inspiration':'', 'Extra Attack':''
+      }) {
+        rules.defineRule('bardFeatures.' + feature,
+          'bardFeatures.College Of Valor', '?', null
+        );
+      }
 // ENDPHB
 
     } else if(name == 'Cleric') {
@@ -1851,144 +1824,6 @@ SRD5E.classRules = function(rules, classes) {
       }
       rules.defineChoice('spells', domainSpells);
 
-      rules.defineRule('clericFeatures.Armor Proficiency (Heavy)',
-        'hasHeavyArmorDomain', '?', null
-      )
-      rules.defineRule('clericFeatures.Divine Strike',
-        'hasDivineStrikeDomain', '?', null
-      );
-      rules.defineRule('clericFeatures.Potent Spellcasting',
-        'hasPotentSpellcastingDomain', '?', null
-      );
-
-      rules.defineRule
-        ('hasDivineStrikeDomain', 'clericFeatures.Life Domain', '=', '1');
-      rules.defineRule
-        ('hasHeavyArmorDomain', 'clericFeatures.Life Domain', '=', '1');
-
-      rules.defineRule('clericFeatures.Disciple Of Life',
-        'clericFeatures.Life Domain', '?', null
-      );
-      rules.defineRule('clericFeatures.Perserve Life',
-        'clericFeatures.Life Domain', '?', null
-      );
-      rules.defineRule('clericFeatures.Blessed Healer',
-        'clericFeatures.Life Domain', '?', null
-      );
-      rules.defineRule('clericFeatures.Supreme Healing',
-        'clericFeatures.Life Domain', '?', null
-      );
-
-//PHB
-      rules.defineRule('hasPotentSpellcastingDomain',
-        'clericFeatures.Knowledge Domain', '=', '1'
-      );
-      rules.defineRule('clericFeatures.Blessings Of Knowledge',
-        'clericFeatures.Knowledge Domain', '?', null
-      );
-      rules.defineRule('clericFeatures.Knowledge Of The Ages',
-        'clericFeatures.Knowledge Domain', '?', null
-      );
-      rules.defineRule('clericFeatures.Read Thoughts',
-        'clericFeatures.Knowledge Domain', '?', null
-      );
-      rules.defineRule('clericFeatures.Visions Of The Past',
-        'clericFeatures.Knowledge Domain', '?', null
-      );
-
-      rules.defineRule('hasPotentSpellcastingDomain',
-        'clericFeatures.Light Domain', '=', '1'
-      );
-      rules.defineRule('clericFeatures.Light Cantrip',
-        'clericFeatures.Light Domain', '?', null
-      );
-      rules.defineRule('clericFeatures.Warding Flare',
-        'clericFeatures.Light Domain', '?', null
-      );
-      rules.defineRule('clericFeatures.Radiance Of The Dawn',
-        'clericFeatures.Light Domain', '?', null
-      );
-      rules.defineRule('clericFeatures.Improved Flare',
-        'clericFeatures.Light Domain', '?', null
-      );
-      rules.defineRule('clericFeatures.Corona Of Light',
-        'clericFeatures.Light Domain', '?', null
-      );
-
-      rules.defineRule
-        ('hasDivineStrikeDomain', 'clericFeatures.Nature Domain', '=', '1');
-      rules.defineRule
-        ('hasHeavyArmorDomain', 'clericFeatures.Nature Domain', '=', '1');
-      rules.defineRule('clericFeatures.Acolyte Of Nature',
-        'clericFeatures.Nature Domain', '?', null
-      );
-      rules.defineRule('clericFeatures.Charm Animals And Plants',
-        'clericFeatures.Nature Domain', '?', null
-      );
-      rules.defineRule('clericFeatures.Dampen Elements',
-        'clericFeatures.Nature Domain', '?', null
-      );
-      rules.defineRule('clericFeatures.Master Of Nature',
-        'clericFeatures.Nature Domain', '?', null
-      );
-
-      rules.defineRule
-        ('hasDivineStrikeDomain', 'clericFeatures.Tempest Domain', '=', '1');
-      rules.defineRule
-        ('hasHeavyArmorDomain', 'clericFeatures.Tempest Domain', '=', '1');
-      rules.defineRule
-        ('hasMartialWeaponDomain', 'clericFeatures.Tempest Domain', '=', '1');
-      rules.defineRule('clericFeatures.Weapon Proficiency (Martial)',
-        'hasMartialWeaponDomain', '?', null
-      );
-      rules.defineRule('clericFeatures.Wrath Of The Storm',
-        'clericFeatures.Tempest Domain', '?', null
-      );
-      rules.defineRule('clericFeatures.Destructive Wrath',
-        'clericFeatures.Tempest Domain', '?', null
-      );
-      rules.defineRule('clericFeatures.Thunderbolt Strike',
-        'clericFeatures.Tempest Domain', '?', null
-      );
-      rules.defineRule('clericFeatures.Stormborn',
-        'clericFeatures.Tempest Domain', '?', null
-      );
-
-      rules.defineRule
-        ('hasDivineStrikeDomain', 'clericFeatures.Trickery Domain', '=', '1');
-      rules.defineRule('clericFeatures.Blessing Of The Trickster',
-        'clericFeatures.Trickery Domain', '?', null
-      );
-      rules.defineRule('clericFeatures.Invoke Duplicity',
-        'clericFeatures.Trickery Domain', '?', null
-      );
-      rules.defineRule('clericFeatures.Cloak Of The Trickster',
-        'clericFeatures.Trickery Domain', '?', null
-      );
-      rules.defineRule('clericFeatures.Improved Duplicity',
-        'clericFeatures.Trickery Domain', '?', null
-      );
-
-      rules.defineRule
-        ('hasDivineStrikeDomain', 'clericFeatures.War Domain', '=', '1');
-      rules.defineRule
-        ('hasHeavyArmorDomain', 'clericFeatures.War Domain', '=', '1');
-      rules.defineRule
-        ('hasMartialWeaponDomain', 'clericFeatures.War Domain', '=', '1');
-      rules.defineRule('clericFeatures.War Priest',
-        'clericFeatures.War Domain', '?', null
-      );
-      rules.defineRule('clericFeatures.Guided Strike',
-        'clericFeatures.War Domain', '?', null
-      );
-      rules.defineRule("clericFeatures.War God's Blessing",
-        'clericFeatures.War Domain', '?', null
-      );
-      rules.defineRule('clericFeatures.Avatar Of Battle',
-        'clericFeatures.War Domain', '?', null
-      );
-//ENDPHB
-
       rules.defineRule('armorProficiencies.Heavy',
         'clericFeatures.Armor Proficiency (Heavy)', '=', '1'
       );
@@ -2000,31 +1835,61 @@ SRD5E.classRules = function(rules, classes) {
       rules.defineRule('combatNotes.destroyUndeadFeature',
         'levels.Cleric', '=', 'source < 8 ? 0.5 : Math.floor((source - 5) / 3)'
       );
-      rules.defineRule('combatNotes.divineStrikeFeature',
-        'levels.Cleric', '=', 'source < 14 ? 1 : 2'
-      );
       rules.defineRule('combatNotes.turnUndeadFeature',
         'wisdomModifier', '=', 'source + 8',
         'proficiencyBonus', '+', null
       );
+      rules.defineRule('featureNotes.channelDivinityFeature',
+        'levels.Cleric', '=', 'source < 6 ? 1: source < 18 ? 2 : 3'
+      );
+      rules.defineRule('magicNotes.divineInterventionFeature',
+        'levels.Cleric', '=', 'source < 20 ? source : 100'
+      );
+      rules.defineRule('selectableFeatureCount.Cleric',
+        'levels.Cleric', '=', 'source < 3 ? null : 1'
+      );
+      rules.defineRule('weaponProficiencies.Martial',
+        'clericFeatures.Weapon Proficiency (Martial)', '=', '1'
+      );
+
+      rules.defineRule('combatNotes.divineStrikeFeature',
+        'levels.Cleric', '=', 'source < 14 ? 1 : 2'
+      );
+      rules.defineRule
+        ('magicNotes.preserveLifeFeature', 'levels.Cleric', '=', '5 * source');
+
+      for(var feature in {
+        'Blessed Healer':'', 'Disciple Of Life':'', 'Preserve Life':'',
+        'Supreme Healing':''
+      }) {
+        rules.defineRule('clericFeatures.' + feature,
+          'clericFeatures.Life Domain', '?', null
+        );
+      }
+      rules.defineRule('hasDivineStrikeDomain',
+        'clericFeatures.Life Domain', '=', '1'
+      );
+      rules.defineRule('clericFeatures.Divine Strike',
+        'hasDivineStrikeDomain', '?', null
+      );
+      rules.defineRule('hasHeavyArmorDomain',
+        'clericFeatures.Life Domain', '=', '1'
+      );
+      rules.defineRule('clericFeatures.Armor Proficiency (Heavy)',
+        'hasHeavyArmorDomain', '?', null
+      )
+
+//PHB
       rules.defineRule('combatNotes.wrathOfTheStormFeature',
         'wisdomModifier', '=', 'Math.max(source, 1)'
       );
       rules.defineRule('combatNotes.warPriestFeature',
         'wisdomModifier', '=', 'Math.max(source, 1)'
       );
-      rules.defineRule('featureNotes.channelDivinityFeature',
-        'levels.Cleric', '=', 'source < 6 ? 1: source < 18 ? 2 : 3'
-      );
       rules.defineRule
         ('languageCount', 'skillNotes.blessingsOfKnowledgeFeature', '+', '2');
-      rules.defineRule('magicNotes.divineInterventionFeature',
-        'levels.Cleric', '=', 'source < 20 ? source : 100'
-      );
       rules.defineRule
         ('magicNotes.potentSpellcastingFeature', 'wisdomModifier', '=', null);
-      rules.defineRule
-        ('magicNotes.preserveLifeFeature', 'levels.Cleric', '=', '5 * source');
       rules.defineRule
         ('magicNotes.radianceOfTheDawnFeature', 'levels.Cleric', '=', null);
       rules.defineRule('magicNotes.wardingFlareFeature',
@@ -2035,9 +1900,6 @@ SRD5E.classRules = function(rules, classes) {
       rules.defineRule('proficiencyCount.Skill',
         'skillNotes.acolyteOfNatureFeature', '+', '1',
         'skillNotes.blessingsOfKnowledgeFeature', '+', '2'
-      );
-      rules.defineRule('selectableFeatureCount.Cleric',
-        'levels.Cleric', '=', 'source < 3 ? null : 1'
       );
       rules.defineRule('skillChoices.Animal Handling',
         'skillNotes.acolyteOfNatureFeature', '=', '1'
@@ -2058,9 +1920,82 @@ SRD5E.classRules = function(rules, classes) {
       rules.defineRule('skillChoices.Survival',
         'skillNotes.acolyteOfNatureFeature', '=', '1'
       );
-      rules.defineRule('weaponProficiencies.Martial',
-        'clericFeatures.Weapon Proficiency (Martial)', '=', '1'
+
+      for(var feature in {
+        'Blessings Of Knowledge':'', 'Knowledge Of The Ages':'',
+        'Read Thoughts':'', 'Visions Of The Past':''
+      }) {
+        rules.defineRule('clericFeatures.' + feature,
+          'clericFeatures.Knowledge Domain', '?', null
+        );
+      }
+      for(var feature in {
+        'Corona Of Light':'', 'Improved Flare':'', 'Light Cantrip':'',
+        'Radiance Of The Dawn':'', 'Warding Flare':''
+      }) {
+        rules.defineRule('clericFeatures.' + feature,
+          'clericFeatures.Light Domain', '?', null
+        );
+      }
+      for(var feature in {
+        'Acolyte Of Nature':'', 'Charm Animals And Plants':'',
+        'Dampen Elements':'', 'Master Of Nature':''
+      }) {
+        rules.defineRule('clericFeatures.' + feature,
+          'clericFeatures.Nature Domain', '?', null
+        );
+      }
+      for(var feature in {
+        'Destructive Wrath':'', 'Stormborn':'', 'Thunderbolt Strike':'',
+        'Wrath Of The Storm':''
+      }) {
+        rules.defineRule('clericFeatures.' + feature,
+          'clericFeatures.Tempest Domain', '?', null
+        );
+      }
+      for(var feature in {
+        'Blessing Of The Trickster':'', 'Cloak Of The Trickster':'',
+        'Improved Duplicity':'', 'Invoke Duplicity':''
+      }) {
+        rules.defineRule('clericFeatures.' + feature,
+          'clericFeatures.Trickery Domain', '?', null
+        );
+      }
+      for(var feature in {
+        'Avatar Of Battle':'', 'Guided Strike':'', "War God's Blessing":'',
+        'War Priest':''
+      }) {
+        rules.defineRule('clericFeatures.' + feature,
+          'clericFeatures.War Domain', '?', null
+        );
+      }
+
+      rules.defineRule('hasDivineStrikeDomain',
+        'clericFeatures.Nature Domain', '=', '1',
+        'clericFeatures.Tempest Domain', '=', '1',
+        'clericFeatures.Trickery Domain', '=', '1',
+        'clericFeatures.War Domain', '=', '1'
       );
+      rules.defineRule('hasHeavyArmorDomain',
+        'clericFeatures.Nature Domain', '=', '1',
+        'clericFeatures.Tempest Domain', '=', '1',
+        'clericFeatures.War Domain', '=', '1'
+      );
+      rules.defineRule('hasMartialWeaponDomain',
+        'clericFeatures.Tempest Domain', '=', '1',
+        'clericFeatures.War Domain', '=', '1'
+      );
+      rules.defineRule('clericFeatures.Weapon Proficiency (Martial)',
+        'hasMartialWeaponDomain', '?', null
+      );
+      rules.defineRule('hasPotentSpellcastingDomain',
+        'clericFeatures.Knowledge Domain', '=', '1',
+        'clericFeatures.Light Domain', '=', '1'
+      );
+      rules.defineRule('clericFeatures.Potent Spellcasting',
+        'hasPotentSpellcastingDomain', '?', null
+      );
+//ENDPHB
 
     } else if(name == 'Druid') {
 
@@ -2159,7 +2094,10 @@ SRD5E.classRules = function(rules, classes) {
         '2:Circle Of The Land (Swamp)::'
       ];
 // PHB
-      selectableFeatures.push('2:Circle Of The Moon::');
+      selectableFeatures.push(
+        '2:Circle Of The Land (Underdark)::',
+        '2:Circle Of The Moon::'
+      );
       circleSpells.push(
         // Underdark
         'Spider Climb(Underdark1)', 'Web(Underdark1)',
@@ -2217,24 +2155,6 @@ SRD5E.classRules = function(rules, classes) {
         'levels.Druid', '=', 'source < 2 ? null : 1'
       );
 
-      rules.defineRule('hasCircleOfTheLand',
-        /Circle Of The Land/, '=', '1'
-      );
-      rules.defineRule('druidFeatures.Bonus Cantrip',
-        'hasCircleOfTheLand', '?', null
-      );
-      rules.defineRule('druidFeatures.Circle Spells',
-        'hasCircleOfTheLand', '?', null
-      );
-      rules.defineRule("druidFeatures.Land's Stride",
-        'hasCircleOfTheLand', '?', null
-      );
-      rules.defineRule("druidFeatures.Nature's Ward",
-        'hasCircleOfTheLand', '?', null
-      );
-      rules.defineRule("druidFeatures.Nature's Sanctuary",
-        'hasCircleOfTheLand', '?', null
-      );
       rules.defineRule("combatNotes.nature'sSanctuaryFeature",
         'wisdomModifier', '=', 'source + 8',
         'proficiencyBonus', '+', null
@@ -2245,22 +2165,28 @@ SRD5E.classRules = function(rules, classes) {
       rules.defineRule('magicNotes.naturalRecoveryFeature',
         'levels.Druid', '=', 'Math.floor(source / 2)'
       );
+
+      rules.defineRule('hasCircleOfTheLand',
+        /Circle Of The Land/, '=', '1'
+      );
+      for(var feature in {
+        'Bonus Cantrip':'', 'Circle Spells':'', "Land's Stride":'',
+        "Nature's Ward":'', "Nature's Sanctuary":''
+      }) {
+        rules.defineRule('druidFeatures.' + feature,
+          'hasCircleOfTheLand', '?', null
+        );
+      }
+
 // PHB
-      rules.defineRule('druidFeatures.Combat Wild Shape',
-        'druidFeatures.Circle Of The Moon', '?', null
-      );
-      rules.defineRule('druidFeatures.Circle Forms',
-        'druidFeatures.Circle Of The Moon', '?', null
-      );
-      rules.defineRule('druidFeatures.Primal Strike',
-        'druidFeatures.Circle Of The Moon', '?', null
-      );
-      rules.defineRule('druidFeatures.Elemental Wild Shape',
-        'druidFeatures.Circle Of The Moon', '?', null
-      );
-      rules.defineRule('druidFeatures.Thousand Forms',
-        'druidFeatures.Circle Of The Moon', '?', null
-      );
+      for(var feature in {
+        'Circle Forms':'', 'Combat Wild Shape':'', 'Elemental Wild Shape':'',
+        'Primal Strike':'', 'Thousand Forms':''
+      }) {
+        rules.defineRule('druidFeatures.' + feature,
+          'druidFeatures.Circle Of The Moon', '?', null
+        );
+      }
 // ENDPHB
 
     } else if(name == 'Fighter') {
@@ -2417,7 +2343,7 @@ SRD5E.classRules = function(rules, classes) {
         'levels.Fighter', '=', 'source < 3 ? 1 : 2',
         'combatNotes.additionalFightingStyleFeature', '+', '1'
       );
-      rules.defineRule("toolProficiencies.Artisan's Tools",
+      rules.defineRule('toolProficiencies.Artisan',
         'skillNotes.studentOfWarFeature', '=', '1'
       );
 // PHB
@@ -2508,23 +2434,21 @@ SRD5E.classRules = function(rules, classes) {
         '1:Weapon Proficiency (Simple/Shortsword)::',
         "1:Tool Proficiency (Artisan's Tools or Musical Instrument)::",
         '1:Martial Arts:combat:' +
-          'In no armor, unarmed and monk weapons use higher of Dex or Str and increase damage to 1d%V',
-        '1:Monk Bonus Attack:combat:Unarmed strike after attack w/monk weapon',
+          'When unarmored, +%1 monk weapons attack and damage, raise damage die to 1d%V',
+        '1:Monk Bonus Attack:combat:Unarmed strike after monk weapon attack',
         '1:Monk Unarmored Defense:combat:+%1 AC in no armor',
-        '2:Flurry Of Blows:combat:Spend 1 Ki for 2 unarmed strikes',
+        '2:Flurry Of Blows:combat:Spend 1 Ki for 2 additional unarmed strikes',
         '2:Ki:feature:%V Ki points refresh after short rest',
         '2:Patient Defense:combat:Spend 1 Ki to Dodge (foe attack Disadv)',
-        '2:Step Of The Wind:combat:' +
-          'Spend 1 Ki to Disengage or Dash, dbl jump',
+        '2:Step Of The Wind:combat:Spend 1 Ki to Disengage or Dash, dbl jump',
         '2:Unarmored Movement:ability:+%V speed in no armor',
-        '3:Monastic Tradition::',
         '3:Deflect Missiles:combat:React to reduce missile damage by 1d10+%V',
         '4:Slow Fall:ability:React to reduce fall damage by %V',
         '5:Extra Attack:combat:%V additional attack(s) per Attack action',
-        '5:Stunning Strike:combat:Spend 1 Ki to stun melee foe (DC %V Con neg)',
+        '5:Stunning Strike:combat:Spend 1 Ki to stun foe (DC %V Con neg)',
         '6:Ki-Empowered Strikes:combat:Unarmed attacks count as magical',
-        '7:Evasion:save:Dex save yields no damage instead of 1/2',
-        '7:Stillness Of Mind:save:End self charmed, frightened at will',
+        '7:Evasion:save:Dex save yields no damage instead of half',
+        '7:Stillness Of Mind:save:End self charm, fright at will',
         '9:Improved Unarmored Movement:ability:' +
           'Move across vertical surfaces and liquids',
         '10:Purity Of Body:save:Immune disease, poison',
@@ -2534,7 +2458,7 @@ SRD5E.classRules = function(rules, classes) {
           'No debility from aging, need no food or water',
         '18:Empty Body:magic:' +
           'Spend 4 Ki for <i>Invisibility</i> 1 min, 8 Ki for <i>Astral Projection</i>',
-        '20:Perfect Self:combat:Min 4 Ki die'
+        '20:Perfect Self:combat:Min 4 Ki'
       ];
       features.push(
         // Way Of The Open Hand Tradition
@@ -2544,12 +2468,12 @@ SRD5E.classRules = function(rules, classes) {
         '11:Tranquility:magic:' +
           'Self <i>Sanctuary</i> until next long rest (DC %V Wis neg)',
         '17:Quivering Palm:combat:' +
-          'Spend 3 Ki to use unarmed strike to reduce foe to 0 HP (DC %V Con 10d10 HP)'
+          'Spend 3 Ki to reduce foe to 0 HP w/unarmed strike (DC %V Con 10d10 HP)'
       );
 // PHB
       features.push(
         // Way Of The Four Elements Tradition
-        '3:Disciple Of The Elements:magic:%V',
+        '3:Disciple Of The Elements:magic:%V elemental disciplines',
         '3:Elemental Attunement:magic:Minor elemental manipulation',
         // Way Of The Shadow Tradition
         '3:Shadow Arts:magic:' +
@@ -2557,7 +2481,7 @@ SRD5E.classRules = function(rules, classes) {
           '<i>Darkvision</i>, <i>Pass Without Trace</i>, <i>Silence</i>',
         "6:Shadow Step:magic:Teleport 60' between dim/unlit areas",
         '11:Cloak Of Shadows:magic:Invisible in dim/unlit until attack or cast',
-        '17:Opportunist:combat:Attack nearby creature when it is hit'
+        '17:Opportunist:combat:Attack adjacent after hit'
       );
 // ENDPHB
       hitDie = 8;
@@ -2616,15 +2540,15 @@ SRD5E.classRules = function(rules, classes) {
         ('abilityNotes.slowFallFeature', 'levels.Monk', '=', 'source * 5');
       // Show Unarmored Movement note properly even if armor != "None"
       rules.defineRule('abilityNotes.unarmoredMovementFeature',
-        'levels.Monk', '=', 'Math.floor((source + 8) / 4) * 5'
+        'levels.Monk', '=', 'Math.floor((source + 6) / 4) * 5'
       );
       rules.defineRule('abilityNotes.unarmoredMovementFeature.1',
-        'abilityNotes.unarmoredMovementFeature', '=', null,
         'armor', '?', 'source == "None"',
-        'shield', '?', 'source == "None"'
+        'shield', '?', 'source == "None"',
+        'abilityNotes.unarmoredMovementFeature', '=', null
       );
       rules.defineRule('armorClass',
-        'combatNotes.monkUnarmoredDefenseFeature.2', '+', null
+        'combatNotes.monkUnarmoredDefenseFeature.1', '+', null
       );
       rules.defineRule
         ('attacksPerRound', 'combatNotes.extraAttackFeature', '+', null);
@@ -2636,13 +2560,18 @@ SRD5E.classRules = function(rules, classes) {
         'levels.Monk', '+=', 'source < 5 ? null : 1'
       );
       rules.defineRule('combatNotes.martialArtsFeature',
-        'levels.Monk', '=', 'Math.floor((source + 13)/ 6) * 2'
+        'levels.Monk', '=', 'Math.floor((source + 13)/ 3)'
       );
-      // Show Unarmored Defense note even if armor != None or dexMod+wisMod = 0
+      rules.defineRule('combatNotes.martialArtsFeature.1',
+        'monkFeatures.Martial Arts', '?', null,
+        'dexterityModifier', '=', 'source',
+        'strengthModifier', '+', '-source',
+        '', '^', '0'
+      );
+      // Show Unarmored Defense note even if armor != None or wisMod = 0
       rules.defineRule('combatNotes.monkUnarmoredDefenseFeature.1',
         'combatNotes.monkUnarmoredDefenseFeature', '?', null,
-        'dexterityModifier', '=', null,
-        'wisdomModifier', '+', null
+        'wisdomModifier', '=', null
       );
       rules.defineRule('combatNotes.monkUnarmoredDefenseFeature.2',
         'combatNotes.monkUnarmoredDefenseFeature', '?', null,
@@ -2655,10 +2584,7 @@ SRD5E.classRules = function(rules, classes) {
         ('combatNotes.quiveringPalmFeature', 'kiSaveDC', '=', null);
       rules.defineRule
         ('combatNotes.stunningStrikeFeature', 'kiSaveDC', '=', null);
-      rules.defineRule('featureNotes.kiFeature',
-        'monkFeatures.Ki', '?', null,
-        'levels.Monk', '=', 'Math.floor((source + 7) / 4)'
-      );
+      rules.defineRule('featureNotes.kiFeature', 'levels.Monk', '=', null);
       rules.defineRule
         ('featureNotes.wholenessOfBodyFeature', 'levels.Monk', '=', 'source*3');
       rules.defineRule('kiSaveDC',
@@ -2690,7 +2616,7 @@ SRD5E.classRules = function(rules, classes) {
         );
       }
       rules.defineRule('selectableFeatureCount.Monk',
-        'monkFeatures.Monastic Tradition', '=', '1'
+        'levels.Monk', '=', 'source < 3 ? null : 1'
       );
       rules.defineRule
         ('speed', 'abilityNotes.unarmoredMovementFeature.1', '+', null);
@@ -2706,68 +2632,39 @@ SRD5E.classRules = function(rules, classes) {
       );
 // ENDPHB
 
-      rules.defineRule('monkFeatures.Open Hand Technique',
-        'monkFeatures.Way Of The Open Hand Tradition', '?', null
-      );
-      rules.defineRule('monkFeatures.Quivering Palm',
-        'monkFeatures.Way Of The Open Hand Tradition', '?', null
-      );
-      rules.defineRule('monkFeatures.Tranquility',
-        'monkFeatures.Way Of The Open Hand Tradition', '?', null
-      );
-      rules.defineRule('monkFeatures.Wholeness Of Body',
-        'monkFeatures.Way Of The Open Hand Tradition', '?', null
-      );
+      for(var feature in {
+        'Open Hand Technique':'', 'Quivering Palm':'', 'Tranquility':'',
+        'Wholeness Of Body':''
+      }) {
+        rules.defineRule('monkFeatures.' + feature,
+          'monkFeatures.Way Of The Open Hand Tradition', '?', null
+        );
+      }
+
 // PHB
       rules.defineRule('monkFeatures.Disciple Of The Elements',
         'monkFeatures.Way Of The Four Elements Tradition', '?', null
       );
-      rules.defineRule('monkFeatures.Shadow Arts',
-        'monkFeatures.Way Of The Shadow Tradition', '?', null
-      );
-      rules.defineRule('monkFeatures.Shadow Step',
-        'monkFeatures.Way Of The Shadow Tradition', '?', null
-      );
-      rules.defineRule('monkFeatures.Cloak Of Shadows',
-        'monkFeatures.Way Of The Shadow Tradition', '?', null
-      );
-      rules.defineRule('monkFeatures.Opportunist',
-        'monkFeatures.Way Of The Shadow Tradition', '?', null
-      );
-      var notes = [ // TODO
-        'validationNotes.monkBreathOfWinterSelectableFeatureFeatures:' +
-          'Requires Way Of The Four Elements',
-        'validationNotes.monkClenchOfTheNorthWindSelectableFeatureFeatures:' +
-          'Requires Way Of The Four Elements',
-        'validationNotes.monkEternalMountainDefenseSelectableFeatureFeatures:' +
-          'Requires Way Of The Four Elements',
-        'validationNotes.monkFangsOfTheFireSnakeSelectableFeatureFeatures:' +
-          'Requires Way Of The Four Elements',
-        'validationNotes.monkFistOfFourThundersSelectableFeatureFeatures:' +
-          'Requires Way Of The Four Elements',
-        'validationNotes.monkFistOfUnbrokenAirSelectableFeatureFeatures:' +
-          'Requires Way Of The Four Elements',
-        'validationNotes.monkFlamesOfThePhoenixSelectableFeatureFeatures:' +
-          'Requires Way Of The Four Elements',
-        'validationNotes.monkGongOfTheSUmmitSelectableFeatureFeatures:' +
-          'Requires Way Of The Four Elements',
-        'validationNotes.monkMistStanceSelectableFeatureFeatures:' +
-          'Requires Way Of The Four Elements',
-        'validationNotes.monkRideTheWindSelectableFeatureFeatures:' +
-          'Requires Way Of The Four Elements',
-        'validationNotes.monkRiverOfHungryFlameSelectableFeatureFeatures:' +
-          'Requires Way Of The Four Elements',
-        'validationNotes.monkRushOfTheGaleSpiritsSelectableFeatureFeatures:' +
-          'Requires Way Of The Four Elements',
-        'validationNotes.monkShapeTheFlowingRiverSelectableFeatureFeatures:' +
-          'Requires Way Of The Four Elements',
-        'validationNotes.monkSweepingCinderStrikeSelectableFeatureFeatures:' +
-          'Requires Way Of The Four Elements',
-        'validationNotes.monkWaterWhipSelectableFeatureFeatures:' +
-          'Requires Way Of The Four Elements',
-        'validationNotes.monkWaveOfRollingEarthSelectableFeatureFeatures:' +
-          'Requires Way Of The Four Elements',
-      ];
+      for(var feature in {
+        'Cloak Of Shadows':'', 'Opportunist':'', 'Shadow Arts':'',
+        'Shadow Step':''
+      }) {
+        rules.defineRule('monkFeatures.' + feature,
+          'monkFeatures.Way Of The Shadow Tradition', '?', null
+        );
+      }
+      for(var feature in {
+        'Breath Of Winter':'', 'Clench Of The North Wind':'',
+        'Eternal Mountain Defense':'', 'Fangs Of The Fire Snake':'',
+        'Fist Of Four Thunders':'', 'Fist Of Unbroken Air':'',
+        'Flames Of The Phoenix':'', 'Gong Of The Summit':'',
+        'Mist Stance':'', 'Ride The Wind':'', 'River Of Hungry Flame':'',
+        'Rush Of The Gale Spirits':'', 'Shape The Flowing River':'',
+        'Sweeping Cinder Strike':'', 'Water Whip':'', 'Wave Of Rolling Earth':''
+      }) {
+        rules.defineNote
+          ('validationNotes.monk' + feature.replace(/ /g, '') + 'SelectableFeatureFeatures:Requires Way Of The Four Elements Tradition');
+      }
 // ENDPHB
 
 
@@ -5138,7 +5035,7 @@ SRD5E.raceRules = function(rules, languages, races) {
           "1:Tinker:feature:Prof artisan's tools"
         );
         proficiencyCount['Tool'] = 1;
-        proficienciesGiven['Tool'] = ["Artisan's Tools"];
+        proficienciesGiven['Tool'] = ['Artisan'];
 // PHB
       } else if(race == 'Forest Gnome') {
         adjustment += '/+1 dexterity';

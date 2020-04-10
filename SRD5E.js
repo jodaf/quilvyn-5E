@@ -2518,7 +2518,7 @@ SRD5E.classRules = function(rules, classes) {
         '17:River Of Hungry Flame:magic:Spend 5 Ki to cast <i>Wall Of Fire</i>',
         '3:Rush Of The Gale Spirits:magic:' +
           'Spend 2 Ki to cast <i>Gust Of Wind</i>',
-        '3:Shape Of The Flowing River:magic:' +
+        '3:Shape The Flowing River:magic:' +
           "R120' Freeze, thaw, shape 30'x30' water",
         '3:Sweeping Cinder Strike:magic:' +
           'Spend 2 Ki to cast <i>Burning Hands</i>',

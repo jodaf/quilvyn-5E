@@ -61,9 +61,9 @@ SRD5E.ALIGNMENTS = [
   'Neutral Good', 'Lawful Evil', 'Lawful Good', 'Lawful Neutral'
 ];
 SRD5E.ARMORS = [
-  'None:', 'Padded:L', 'Leather:L', 'Studded Leather:L', 'Hide:M',
-  'Chain Shirt:L', 'Scale Mail:M', 'Breastplate:M', 'Half Plate:M',
-  'Ring Mail:H', 'Chain Mail:H', 'Splint:H', 'Plate:H'
+  'None:', 'Padded:Li', 'Leather:Li', 'Studded Leather:Li', 'Hide:Me',
+  'Chain Shirt:Li', 'Scale Mail:Me', 'Breastplate:Me', 'Half Plate:Me',
+  'Ring Mail:He', 'Chain Mail:He', 'Splint:He', 'Plate:He'
 ];
 SRD5E.BACKGROUNDS = ['Acolyte'];
 // PHB
@@ -91,8 +91,8 @@ SRD5E.DEITIES = [
   'Umberlee (CE):Tempest', 'Waukeen (N):Knowledge/Trickery', 'None:'
 ];
 SRD5E.FEATS = [
-  'Ability Boost', 'Ability Boost 2', 'Ability Boost 3', 'Ability Boost 4',
-  'Ability Boost 5', 'Ability Boost 6', 'Ability Boost 7', 'Grappler'
+  'Ability Boost', 'Ability Boost2', 'Ability Boost3', 'Ability Boost4',
+  'Ability Boost5', 'Ability Boost6', 'Ability Boost7', 'Grappler'
 ];
 // PHB
 SRD5E.FEATS.push(
@@ -1141,7 +1141,6 @@ SRD5E.backgroundRules = function(rules, backgrounds) {
     var equipment = [];
     var features = [];
     var languages = [];
-    var notes = null;
     var proficiencyCount = {};
     var proficienciesGiven = {};
     var proficiencyChoices = {};
@@ -1315,7 +1314,7 @@ SRD5E.backgroundRules = function(rules, backgrounds) {
 
     SRD5E.defineBackground(
       rules, name, features, languages, proficiencyCount, proficienciesGiven,
-      proficiencyChoices, notes
+      proficiencyChoices
     );
 
   }
@@ -1365,7 +1364,7 @@ SRD5E.classRules = function(rules, classes) {
 
   for(var i = 0; i < classes.length; i++) {
 
-    var features, hitDie, notes, proficiencyCount, proficiencyChoices,
+    var features, hitDie, proficiencyCount, proficiencyChoices,
         proficienciesGiven, selectableFeatures, spellAbility, spellsKnown,
         spellSlots;
     var name = classes[i];
@@ -1388,7 +1387,7 @@ SRD5E.classRules = function(rules, classes) {
         '1:Barbarian Unarmored Defense:combat:+%1 AC in no armor',
         '2:Danger Sense:save:Adv Dex checks vs. visible dangers',
         '2:Reckless Attack:combat:Adv melee Str attacks, foes Adv all attacks',
-        '5:Extra Attack:combat:+1 attack per Attack action',
+        '5:Extra Attack:combat:%V additional attack(s) per Attack action',
         '5:Fast Movement:ability:+10 speed (heavy armor neg)',
         '7:Feral Instinct:combat:Adv initiative, act when surprised if rage',
         '9:Brutal Critical:combat:+%V crit damage dice',
@@ -1428,7 +1427,6 @@ SRD5E.classRules = function(rules, classes) {
       );
 //ENDPHB
       hitDie = 12;
-      notes = null;
       proficiencyCount = {'Save':2, 'Skill':2, 'Armor':3, 'Weapon':2};
       proficienciesGiven = {
         'Save': ['Constitution', 'Strength'],
@@ -1452,14 +1450,13 @@ SRD5E.classRules = function(rules, classes) {
       rules.defineRule('abilityNotes.rageFeature',
         'levels.Barbarian', '+=', 'source<3 ? 2 : source<6 ? 3 : source<12 ? 4 : source<17 ? 5 : source<20 ? 6 : "unlimited"'
       );
+      rules.defineRule('armorClass',
+        'combatNotes.barbarianUnarmoredDefenseFeature.2', '+', null
+      );
+      rules.defineRule
+        ('attacksPerRound', 'combatNotes.extraAttackFeature', '+', null);
       rules.defineRule('combatNotes.brutalCriticalFeature',
         'levels.Barbarian', '=', 'Math.floor((source - 5) / 4)'
-      );
-      rules.defineRule('combatNotes.rageFeature',
-        'levels.Barbarian', '+=', 'source<3 ? 2 : source<6 ? 3 : source<12 ? 4 : source<17 ? 5 : source<20 ? 6 : "unlimited"'
-      );
-      rules.defineRule('combatNotes.rageFeature.1',
-        'levels.Barbarian', '+=', 'source<9 ? 2 : source<16 ? 3 : 4'
       );
       // Show Unarmored Defense note even if armor != None or conMod == 0
       rules.defineRule('combatNotes.barbarianUnarmoredDefenseFeature.1',
@@ -1471,15 +1468,19 @@ SRD5E.classRules = function(rules, classes) {
         'armor', '?', 'source == "None"',
         'combatNotes.barbarianUnarmoredDefenseFeature.1', '=', null
       );
-      rules.defineRule('armorClass',
-        'combatNotes.barbarianUnarmoredDefenseFeature.2', '+', null
+      rules.defineRule('combatNotes.extraAttackFeature',
+        'levels.Barbarian', '+=', 'source < 5 ? null : 1'
+      );
+      rules.defineRule('combatNotes.rageFeature',
+        'levels.Barbarian', '+=', 'source<3 ? 2 : source<6 ? 3 : source<12 ? 4 : source<17 ? 5 : source<20 ? 6 : "unlimited"'
+      );
+      rules.defineRule('combatNotes.rageFeature.1',
+        'levels.Barbarian', '+=', 'source<9 ? 2 : source<16 ? 3 : 4'
       );
       rules.defineRule('featureNotes.intimidatingPresenceFeature',
         'charismaModifier', '=', 'source + 8',
         'proficiencyBonus', '+', null
       );
-      rules.defineRule
-        ('attacksPerRound', 'combatNotes.extraAttackFeature', '+', '1');
       rules.defineRule('selectableFeatureCount.Barbarian',
         'levels.Barbarian', '=', 'source < 3 ? null : 1'
       );
@@ -1500,9 +1501,9 @@ SRD5E.classRules = function(rules, classes) {
       );
 // PHB
       rules.defineRule('totemicBarbarian',
-        'barbarianFeatures.Aspect Of The Bear', '=', '1',
-        'barbarianFeatures.Aspect Of The Eagle', '=', '1',
-        'barbarianFeatures.Aspect Of The Wolf', '=', '1'
+        'barbarianFeatures.Path Of The Totem Warrior (Bear)', '=', '1',
+        'barbarianFeatures.Path Of The Totem Warrior (Eagle)', '=', '1',
+        'barbarianFeatures.Path Of The Totem Warrior (Wolf)', '=', '1'
       );
       rules.defineRule
         ('barbarianFeatures.Spirit Seeker', 'totemicBarbarian', '?', null);
@@ -1568,12 +1569,11 @@ SRD5E.classRules = function(rules, classes) {
         '3:Bonus Skills:skill:Prof in 3 additional skills',
         '3:Combat Inspiration:feature:' +
           'Ally use Bardic Inspiration to boost damage or AC',
-        '6:Extra Attack:combat:+1 attack per Attack action',
+        '6:Extra Attack:combat:%V additional attack(s) per Attack action',
         '14:Battle Magic:combat:Bonus attack after casting spell'
       );
 // ENDPHB
       hitDie = 8;
-      notes = null;
       proficiencyCount =
         {'Armor':1, 'Save':2, 'Skill':3, 'Tool':3, 'Weapon':5};
       proficienciesGiven = {
@@ -1649,6 +1649,12 @@ SRD5E.classRules = function(rules, classes) {
         ('proficiencyCount.Skill', 'skillNotes.bonusSkillsFeature', '+', '3');
 
 // PHB
+      rules.defineRule
+        ('attacksPerRound', 'combatNotes.extraAttackFeature', '+', null);
+      rules.defineRule('bardExtraAttacks',
+        'bardFeatures.Extra Attack', '?', null,
+        'levels.Bard', '=', 'source < 6 ? null : 1'
+      );
       rules.defineRule('bardFeatures.Battle Magic',
         'bardFeatures.College Of Valor', '?', null
       );
@@ -1659,7 +1665,7 @@ SRD5E.classRules = function(rules, classes) {
         'bardFeatures.College Of Valor', '?', null
       );
       rules.defineRule
-        ('attacksPerRound', 'combatNotes.extraAttackFeature', '+', '1');
+        ('combatNotes.extraAttackFeature', 'bardExtraAttacks', '+=', null);
       rules.defineRule
         ('proficiencyCount.Skill', 'skillNotes.bonusSkillsFeature', '+', '3');
 // ENDPHB
@@ -1793,7 +1799,6 @@ SRD5E.classRules = function(rules, classes) {
       );
 // ENDPHB
       hitDie = 8;
-      notes = null;
       proficiencyCount = {'Save':2, 'Skill':2, 'Armor':3, 'Weapon':1};
       proficienciesGiven = {
         'Save':['Charisma', 'Wisdom'],
@@ -1817,12 +1822,7 @@ SRD5E.classRules = function(rules, classes) {
       spellAbility = 'wisdom';
       spellsKnown = [
         'C0:1:3/4:4/10:5',
-        'C1:1:"all"', 'C2:3:"all"', 'C3:5:"all"', 'C4:7:"all"',
-        'C5:9:"all"', 'C6:11:"all"', 'C7:13:"all"', 'C8:15:"all"',
-        'C9:17:"all"',
-        'Dom1:1:"all"', 'Dom2:3:"all"', 'Dom3:5:"all"', 'Dom4:7:"all"',
-        'Dom5:9:"all"', 'Dom6:11:"all"', 'Dom7:13:"all"', 'Dom8:15:"all"',
-        'Dom9:17:"all"'
+        'C:1:"all"', 'Dom:1:"all"'
       ];
       spellSlots = [
         'C1:1:2/2:3/3:4',
@@ -2103,7 +2103,7 @@ SRD5E.classRules = function(rules, classes) {
         'Hold Person(Arctic1)', 'Spike Growth(Arctic1)',
         'Sleet Storm(Arctic3)', 'Slow(Arctic3)',
         'Freedom Of Movement(Arctic5)', 'Ice Storm(Arctic5)',
-        'Commune With Nature(Arctic5)', 'Cone of Cold(Arctic5)',
+        'Commune With Nature(Arctic5)', 'Cone Of Cold(Arctic5)',
         // Coast
         'Mirror Image(Coast1)', 'Misty Step(Coast1)',
         'Water Breathing(Coast3)', 'Water Walk(Coast3)',
@@ -2136,32 +2136,6 @@ SRD5E.classRules = function(rules, classes) {
         'Insect Plague(Swamp5)', 'Scrying(Swamp5)'
       ];
       hitDie = 8;
-      notes = [
-        'validationNotes.druidArcticLandSelectableFeatureFeatures:' +
-          'Requires Circle Of The Land',
-        'validationNotes.druidCoastLandSelectableFeatureFeatures:' +
-          'Requires Circle Of The Land',
-        'validationNotes.druidDesertLandSelectableFeatureFeatures:' +
-          'Requires Circle Of The Land',
-        'validationNotes.druidForestLandSelectableFeatureFeatures:' +
-          'Requires Circle Of The Land',
-        'validationNotes.druidGrasslandLandSelectableFeatureFeatures:' +
-          'Requires Circle Of The Land',
-        'validationNotes.druidMountainLandSelectableFeatureFeatures:' +
-          'Requires Circle Of The Land',
-        'validationNotes.druidSwampLandSelectableFeatureFeatures:' +
-          'Requires Circle Of The Land',
-        'validationNotes.druidCircleOfTheLandSelectableFeatureFeatures:' +
-          'Requires Arctic Land || Coast Land || Desert Land || ' +
-            'Forest Land || Grassland Land || Mountain Land || Swamp Land'
-      ];
-//PHB
-      notes[notes.length - 1] += ' || Underdark Land';
-      notes.push(
-        'validationNotes.druidUnderdarkLandSelectableFeatureFeatures:' +
-          'Requires Circle Of The Land',
-      );
-//ENDPHB
       proficiencyCount =
        {'Armor':3, 'Save':2, 'Skill':2, 'Tool':1, 'Weapon':10};
       proficienciesGiven = {
@@ -2175,20 +2149,17 @@ SRD5E.classRules = function(rules, classes) {
         'Skill':['Arcana', 'Animal Handling', 'Insight', 'Medicine', 'Nature',
                  'Perception', 'Religion', 'Survival']
       };
-      selectableFeatures = ['2:Circle Of The Land::'];
+      selectableFeatures = [
+        '2:Circle Of The Land (Arctic)::',
+        '2:Circle Of The Land (Coast)::',
+        '2:Circle Of The Land (Desert)::',
+        '2:Circle Of The Land (Forest)::',
+        '2:Circle Of The Land (Grassland)::',
+        '2:Circle Of The Land (Mountain)::',
+        '2:Circle Of The Land (Swamp)::'
+      ];
 // PHB
       selectableFeatures.push('2:Circle Of The Moon::');
-// ENDPHB
-      selectableFeatures.push(
-        '2:Arctic Land::',
-        '2:Coast Land::',
-        '2:Desert Land::',
-        '2:Forest Land::',
-        '2:Grassland Land::',
-        '2:Mountain Land::',
-        '2:Swamp Land::'
-      );
-// PHB
       circleSpells.push(
         // Underdark
         'Spider Climb(Underdark1)', 'Web(Underdark1)',
@@ -2201,8 +2172,7 @@ SRD5E.classRules = function(rules, classes) {
       spellAbility = 'wisdom';
       spellsKnown = [
         'D0:1:2/4:3/10:4',
-        'D1:1:"all"', 'D2:3:"all"', 'D3:5:"all"', 'D4:7:"all"', 'D5:9:"all"',
-        'D6:11:"all"', 'D7:13:"all"', 'D8:15:"all"', 'D9:17:"all"'
+        'D:1:"all"'
       ];
       spellSlots = [
         'D1:1:2/2:3/3:4',
@@ -2244,24 +2214,26 @@ SRD5E.classRules = function(rules, classes) {
         'levels.Druid', '=', 'Math.floor(source /2)'
       );
       rules.defineRule('selectableFeatureCount.Druid',
-        'levels.Druid', '=', 'source < 2 ? null : 1',
-        'druidFeatures.Circle Of The Land', '+', '1'
+        'levels.Druid', '=', 'source < 2 ? null : 1'
       );
 
+      rules.defineRule('hasCircleOfTheLand',
+        /Circle Of The Land/, '=', '1'
+      );
       rules.defineRule('druidFeatures.Bonus Cantrip',
-        'druidFeatures.Circle Of The Land', '?', null
+        'hasCircleOfTheLand', '?', null
       );
       rules.defineRule('druidFeatures.Circle Spells',
-        'druidFeatures.Circle Of The Land', '?', null
+        'hasCircleOfTheLand', '?', null
       );
       rules.defineRule("druidFeatures.Land's Stride",
-        'druidFeatures.Circle Of The Land', '?', null
+        'hasCircleOfTheLand', '?', null
       );
       rules.defineRule("druidFeatures.Nature's Ward",
-        'druidFeatures.Circle Of The Land', '?', null
+        'hasCircleOfTheLand', '?', null
       );
       rules.defineRule("druidFeatures.Nature's Sanctuary",
-        'druidFeatures.Circle Of The Land', '?', null
+        'hasCircleOfTheLand', '?', null
       );
       rules.defineRule("combatNotes.nature'sSanctuaryFeature",
         'wisdomModifier', '=', 'source + 8',
@@ -2296,81 +2268,42 @@ SRD5E.classRules = function(rules, classes) {
       features = [
         '1:Armor Proficiency (Light/Medium/Heavy/Shield)::',
         '1:Weapon Proficiency (Simple/Martial)::',
-        '1:Fighting Style::',
         '1:Second Wind:combat:Regain 1d10+%V HP 1/short rest',
         '2:Action Surge:combat:Extra action %V/short rest',
-        '3:Martial Archetype::',
-        '5:Extra Attack:combat:+1 attack per Attack action',
+        '5:Extra Attack:combat:%V additional attack(s) per Attack action',
         '9:Indomitable:save:Reroll failed save %V/long rest'
       ];
       features.push(
         // Champion Archetype
         '3:Improved Critical:combat:Crit on natural 19',
-        '7:Remarkable Athlete:ability:+%V non-proficient Str/Dex/Con checks',
-        '10:Additional Fighting Style::',
+        '7:Remarkable Athlete:ability:+%V non-proficient Str, Dex, Con checks',
+        '10:Additional Fighting Style:combat:Select second Fighting Style',
         '15:Superior Critical:combat:Crit on natural 18',
         '18:Survivor:combat:Regain %V HP each turn when between 1 and %1'
       );
 // PHB
       features.push(
         // Battle Master Archetype
-        '3:Maneuvers::',
-        "3:Student Of War:skill:Artisan's Tool prof",
+        '3:Maneuvers:combat:Select %V Fighter maneuver features',
+        "3:Student Of War:skill:Artisan's Tools Prof",
         '3:Superiority Dice:combat:%Vd%1',
         '7:Know Your Enemy:combat:' +
           'Know how foe compares to you after 1 min study',
-        '15:Relentless:combat:Regain 1 superiority die on init if all used',
+        '15:Relentless:combat:Min 1 superiority die',
         // Eldritch Knight Archetype
-        '3:Spellcasting::',
-        '3:Weapon Bond:combat:Cannot be disarmed, can summon bonded weapon',
+        '3:Spellcasting::', // TODO Focus?
+        '3:Weapon Bond:combat:Immune disarm, summon weapon',
         '7:War Magic:combat:Bonus attack after %V',
         '10:Eldritch Strike:combat:' +
           'Foe Disadv vs. spells for 1 turn after you hit',
-        "15:Arcane Charge:magic:Action Surge to Teleport 30'"
+        "15:Arcane Charge:magic:Action Surge to teleport 30'"
       );
 // ENDPHB
       hitDie = 10;
-      notes = null;
-// PHB
-      notes = [
-        "validationNotes.fighterCommander'sStrikeSelectableFeaturesFeature:" +
-          'Requires Maneuvers',
-        'validationNotes.fighterDisarmingAttackSelectableFeaturesFeature:' +
-          'Requires Maneuvers',
-        'validationNotes.fighterDistractingStrikeSelectableFeaturesFeature:' +
-          'Requires Maneuvers',
-        'validationNotes.fighterEvasiveFootworkSelectableFeaturesFeature:' +
-          'Requires Maneuvers',
-        'validationNotes.fighterFeintingAttackSelectableFeaturesFeature:' +
-          'Requires Maneuvers',
-        'validationNotes.fighterGoadingAttackSelectableFeaturesFeature:' +
-          'Requires Maneuvers',
-        'validationNotes.fighterLungingAttackSelectableFeaturesFeature:' +
-          'Requires Maneuvers',
-        'validationNotes.fighterManeuveringAttackSelectableFeaturesFeature:' +
-          'Requires Maneuvers',
-        'validationNotes.fighterMenacingAttackSelectableFeaturesFeature:' +
-          'Requires Maneuvers',
-        'validationNotes.fighterParrySelectableFeaturesFeature:' +
-          'Requires Maneuvers',
-        'validationNotes.fighterPrecisionAttackSelectableFeaturesFeature:' +
-          'Requires Maneuvers',
-        'validationNotes.fighterPushingAttackSelectableFeaturesFeature:' +
-          'Requires Maneuvers',
-        'validationNotes.fighterRallySelectableFeaturesFeature:' +
-          'Requires Maneuvers',
-        'validationNotes.fighterRiposteSelectableFeaturesFeature:' +
-          'Requires Maneuvers',
-        'validationNotes.fighterSweepingAttackSelectableFeaturesFeature:' +
-          'Requires Maneuvers',
-        'validationNotes.fighterTripAttackSelectableFeaturesFeature:' +
-          'Requires Maneuvers'
-      ];
-// ENDPHB
-      proficiencyCount = {'Save':2, 'Skill':2, 'Armor':4, 'Weapon':2};
+      proficiencyCount = {'Armor':4, 'Save':2, 'Skill':2, 'Weapon':2};
       proficienciesGiven = {
-        'Save':['Constitution', 'Strength'],
         'Armor':['Light', 'Medium', 'Heavy', 'Shield'],
+        'Save':['Constitution', 'Strength'],
         'Weapon':['Simple', 'Martial']
       };
       proficiencyChoices = {
@@ -2380,91 +2313,64 @@ SRD5E.classRules = function(rules, classes) {
       selectableFeatures = [
         '1:Archery Style:combat:+2 ranged attack',
         '1:Defense Style:combat:+1 AC in armor',
-        '1:Dueling Style:combat:+2 HP with single, one-hand weapon',
+        '1:Dueling Style:combat:+2 damage with single, one-hand weapon',
         '1:Great Weapon Fighting Style:combat:' +
           'Reroll damage of 1 or 2 with two-handed weapons',
         '1:Protection Style:combat:' +
           "Use shield to impose attack Disadv on foe w/in 5'",
         '1:Two-Weapon Fighting Style:combat:' +
-          'Add ability modifier to second attack damage'
+          'Add ability modifier to second attack damage',
+        '3:Champion Archetype::'
       ]
-      selectableFeatures.push('3:Champion Archetype::');
 // PHB
       selectableFeatures.push(
         '3:Battle Master Archetype',
-        '3:Eldritch Knight Archetype'
-      );
-      selectableFeatures.push(
-       "3:Commander's Strike:combat:" +
-         'Delegate one attack to companion, add superiority die to attack',
-       '3:Disarming Attack:combat:' +
-         'Add superiority die to damage, foe drops item (DC %V Str neg)',
-       '3:Distracting Strike:combat:' +
-         'Add superiority die to damage, companion has Adv on attack same foe',
-       '3:Evasive Footwork:combat:Add superiority die to AC during move',
-       '3:Feinting Attack:combat:' +
-          'Adv next attack, add superiority die to damage',
-       '3:Goading Attack:combat:' +
-         'Add superiority die to damage, foe Disadv attack others (DC %V Wis neg)',
-       "3:Lunging Attack:combat:+5' melee range, add superiority die to damage",
-       '3:Maneuvering Attack:combat:' +
-         'Add superiority die to damage, companion move half speed w/out OA',
-       '3:Menacing Attack:combat:' +
-         'Add superiority die to damage, foe frightened until next turn (DC %V Wis neg)',
-       '3:Parry:combat:Reduce damage from foe hit by superiority die + %V',
-       '3:Precision Attack:combat:Add superiority die to atteck',
-       '3:Pushing Attack:combat:' +
-         "Add superiority die to damage, foe moves away 15' (DC %V Str neg)",
-       '3:Rally:combat:Chosen companion gains superiority die + %V temp HP',
-       '3:Riposte:combat:Attack after foe miss, add superiority die to damage',
-       '3:Sweeping Attack:combat:' +
-         'Do Superiority die damage to second foe w/in reach',
-       '3:Trip Attack:combat:' +
-         'Add superiority die to damage, foe knocked prone (DC %V Str neg)'
+        '3:Eldritch Knight Archetype',
+        "3:Commander's Strike:combat:Add sup die to delegated attack",
+        '3:Disarming Attack:combat:' +
+          'Add sup die to damage, foe drops item (DC %V Str neg)',
+        '3:Distracting Strike:combat:' +
+          'Add sup die to damage, ally Adv attack same foe for 1 turn',
+        '3:Evasive Footwork:combat:Add sup die to AC during move',
+        '3:Feinting Attack:combat:' +
+          'Adv next attack adjacent foe, add sup die to damage',
+        '3:Goading Attack:combat:' +
+          'Add sup die to damage, foe Disadv attack others for 1 turn (DC %V Wis neg)',
+        "3:Lunging Attack:combat:+5' melee range, add sup die to damage",
+        '3:Maneuvering Attack:combat:' +
+          'Add sup die to damage, ally move half speed w/no OA',
+        '3:Menacing Attack:combat:' +
+          'Add sup die to damage, foe frightened for 1 turn (DC %V Wis neg)',
+        '3:Parry:combat:Reduce damage from foe hit by sup die + %V',
+        '3:Precision Attack:combat:Add sup die to atteck',
+        '3:Pushing Attack:combat:' +
+          "Add sup die to damage, foe pushed 15' (DC %V Str neg)",
+        '3:Rally:combat:Chosen ally gains sup die + %V temp HP',
+        '3:Riposte:combat:Bonus attack after foe miss, add sup die to damage',
+        '3:Sweeping Attack:combat:After hit, sup die HP to second adjacent foe',
+        '3:Trip Attack:combat:' +
+          'Add sup die to damage, foe knocked prone (DC %V Str neg)'
       );
 // ENDPHB
       spellAbility = null;
       spellsKnown = null;
       spellSlots = null;
-
-      rules.defineRule('fighterFeatures.Improved Critical',
-        'fighterFeatures.Champion Archetype', '?', null
-      );
-      rules.defineRule('fighterFeatures.Remarkable Athlete',
-        'fighterFeatures.Champion Archetype', '?', null
-      );
-      rules.defineRule('fighterFeatures.Additional Fighting Style',
-        'fighterFeatures.Champion Archetype', '?', null
-      );
-      rules.defineRule('fighterFeatures.Superior Critical',
-        'fighterFeatures.Champion Archetype', '?', null
-      );
-      rules.defineRule('fighterFeatures.Survivor',
-        'fighterFeatures.Champion Archetype', '?', null
-      );
 // PHB
-      rules.defineRule('fighterFeatures.Maneuvers',
-        'fighterFeatures.Battle Master Archetype', '?', null
-      );
-      rules.defineRule('fighterFeatures.Know Your Enemy',
-        'fighterFeatures.Battle Master Archetype', '?', null
-      );
-      rules.defineRule('fighterFeatures.Student Of War',
-        'fighterFeatures.Battle Master Archetype', '?', null
-      );
-      rules.defineRule('fighterFeatures.Superiority Dice',
-        'fighterFeatures.Battle Master Archetype', '?', null
-      );
-      rules.defineRule('fighterFeatures.Arcane Charge',
+      spellAbility = 'intelligence';
+      spellsKnown = [
+        'W0:3:2/10:3',
+        'W:3:3/4:4/7:5/8:6/10:7/11:8/13:9/14:10/16:11/19:12/20:13',
+      ];
+      spellSlots = [
+        'W1:3:2/4:3/7:4',
+        'W2:7:2/10:3',
+        'W3:13:2/16:3',
+        'W4:19:1'
+      ];
+      rules.defineRule('spellsKnownLevel.Fighter',
         'fighterFeatures.Eldritch Knight Archetype', '?', null
       );
-      rules.defineRule('fighterFeatures.Eldritch Strike',
-        'fighterFeatures.Eldritch Knight Archetype', '?', null
-      );
-      rules.defineRule('fighterFeatures.Spellcasting',
-        'fighterFeatures.Eldritch Knight Archetype', '?', null
-      );
-      rules.defineRule('fighterFeatures.War Magic',
+      rules.defineRule('spellAttackModifier.Fighter',
         'fighterFeatures.Eldritch Knight Archetype', '?', null
       );
 // ENDPHB
@@ -2476,7 +2382,7 @@ SRD5E.classRules = function(rules, classes) {
         'combatNotes.defenseStyleFeature.1', '+', null
       );
       rules.defineRule
-        ('attacksPerRound', 'combatNotes.extraAttackFeature', '+', '1');
+        ('attacksPerRound', 'combatNotes.extraAttackFeature', '+', null);
       rules.defineRule('combatNotes.actionSurgeFeature',
         'levels.Fighter', '=', 'source < 17 ? 1 : 2'
       );
@@ -2485,27 +2391,34 @@ SRD5E.classRules = function(rules, classes) {
         'combatNotes.defenseStyleFeature', '?', null,
         'armor', '=', 'source == "None" ? null : 1'
       );
-      rules.defineRule('fighterFeatBonus',
-        'levels.Fighter', '=', 'source < 6 ? null : source < 14 ? 1 : 2'
+      rules.defineRule('combatNotes.extraAttackFeature',
+        'levels.Fighter', '+=', 'source < 5 ? null : source < 11 ? 1 : source < 20 ? 2 : 3'
       );
-      rules.defineRule('featCount', 'fighterFeatBonus', '+', null);
-      rules.defineRule
-        ('rangedAttack', 'combatNotes.archeryStyleFeature', '+', '2');
       rules.defineRule
         ('combatNotes.secondWindFeature', 'levels.Fighter', '=', null);
-      rules.defineRule('saveNotes.indomitableFeature',
-        'levels.Fighter', '=', 'source < 13 ? 1 : source < 17 ? 2 : 3'
-      );
-      rules.defineRule('selectableFeatureCount.Fighter',
-        'fighterFeatures.Fighting Style', '=', '1',
-        'fighterFeatures.Additional Fighting Style', '+', '1',
-        'fighterFeatures.Martial Archetype', '+', '1'
-      );
       rules.defineRule('combatNotes.survivorFeature',
         'constitutionModifier', '=', '5 + source'
       );
       rules.defineRule('combatNotes.survivorFeature.1',
         'hitPoints', '=', 'Math.floor(source / 2)'
+      );
+      rules.defineRule('featCount', 'fighterFeatBonus', '+', null);
+      rules.defineRule('fighterFeatBonus',
+        'levels.Fighter', '=', 'source < 6 ? null : source < 14 ? 1 : 2'
+      );
+      rules.defineRule
+        ('proficiencyCount.Tools', 'skillNotes.studentOfWarFeature', '+', '1');
+      rules.defineRule
+        ('rangedAttack', 'combatNotes.archeryStyleFeature', '+', '2');
+      rules.defineRule('saveNotes.indomitableFeature',
+        'levels.Fighter', '=', 'source < 13 ? 1 : source < 17 ? 2 : 3'
+      );
+      rules.defineRule('selectableFeatureCount.Fighter',
+        'levels.Fighter', '=', 'source < 3 ? 1 : 2',
+        'combatNotes.additionalFightingStyleFeature', '+', '1'
+      );
+      rules.defineRule("toolProficiencies.Artisan's Tools",
+        'skillNotes.studentOfWarFeature', '=', '1'
       );
 // PHB
       rules.defineRule('maxDexOrStrMod',
@@ -2513,7 +2426,7 @@ SRD5E.classRules = function(rules, classes) {
         'strengthModifier', '^', null
       );
       rules.defineRule('maneuverSaveDC',
-        'fighterFeatures.Battle Master', '?', null,
+        'fighterFeatures.Battle Master Archetype', '?', null,
         'proficiencyBonus', '=', '8 + source',
         'maxDexOrStrMod', '+', null
       );
@@ -2522,7 +2435,7 @@ SRD5E.classRules = function(rules, classes) {
       rules.defineRule
         ('combatNotes.goadingAttackFeature', 'maneuverSaveDC', '=', null);
       rules.defineRule('combatNotes.maneuversFeature',
-        'fighterFeatures.Battle Master', '?', null,
+        'fighterFeatures.Battle Master Archetype', '?', null,
         'levels.Fighter', '=',
           'source<7 ? 3 : source<10 ? 5 : source<15 ? 7 : 9'
       );
@@ -2530,13 +2443,13 @@ SRD5E.classRules = function(rules, classes) {
         ('combatNotes.menacingAttackFeature', 'maneuverSaveDC', '=', null);
       rules.defineRule
         ('combatNotes.parryFeature', 'dexterityModifier', '=', null);
-      rules.defineRule('combatNotes.superiorityDiceFeature',
-        'levels.Fighter', '=', 'source < 7 ? 4 : source < 15 ? 5 : 6'
-      );
       rules.defineRule
         ('combatNotes.pushingAttackFeature', 'maneuverSaveDC', '=', null);
       rules.defineRule
         ('combatNotes.rallyFeature', 'charismaModifier', '=', null);
+      rules.defineRule('combatNotes.superiorityDiceFeature',
+        'levels.Fighter', '=', 'source < 7 ? 4 : source < 15 ? 5 : 6'
+      );
       rules.defineRule('combatNotes.superiorityDiceFeature.1',
         'fighterFeatures.Superiority Dice', '?', null,
         'levels.Fighter', '=', 'source < 10 ? 8 : source < 18 ? 10 : 12'
@@ -2549,6 +2462,44 @@ SRD5E.classRules = function(rules, classes) {
       rules.defineRule('selectableFeatureCount.Fighter',
         'combatNotes.maneuversFeature', '+', null
       );
+// ENDPHB
+
+      for(var feature in {
+        'Improved Critical':'', 'Remarkable Athlete':'',
+        'Additional Fighting Style':'', 'Superior Critical':'', 'Survivor':''
+      }) {
+        rules.defineRule('fighterFeatures.' + feature,
+          'fighterFeatures.Champion Archetype', '?', null
+        );
+      }
+// PHB
+      for(var feature in {
+        'Maneuvers':'', 'Know Your Enemy':'', 'Student Of War':'',
+        'Superiority Dice':''
+      }) {
+        rules.defineRule('fighterFeatures.' + feature,
+          'fighterFeatures.Battle Master Archetype', '?', null
+        );
+      }
+      for(var feature in {
+        'Arcane Charge':'', 'Eldritch Strike':'', 'Spellcasting':'',
+        'War Magic':'', 'Weapon Bond':''
+      }) {
+        rules.defineRule('fighterFeatures.' + feature,
+          'fighterFeatures.Eldritch Knight Archetype', '?', null
+        );
+      }
+      for(var feature in {
+        "Commander's Strike":'', 'Disarming Attack':'', 'Distracting Strike':'',
+        'Evasive Footwork':'', 'Feinting Attack':'', 'Goading Attack':'',
+        'Lunging Attack':'', 'Maneuvering Attack':'', 'Menacing Attack':'',
+        'Parry':'', 'Precision Attack':'', 'Pushing Attack':'', 'Rally':'',
+        'Riposte':'', 'Sweeping Attack':'', 'Trip Attack':''
+      }) {
+        rules.defineNote(
+          'validationNotes.fighter' + feature.replace(/ /g, '') + 'SelectableFeatureFeatures:Requires Maneuvers'
+        );
+      }
 // ENDPHB
 
     } else if(name == 'Monk') {
@@ -2569,7 +2520,7 @@ SRD5E.classRules = function(rules, classes) {
         '3:Monastic Tradition::',
         '3:Deflect Missiles:combat:React to reduce missile damage by 1d10+%V',
         '4:Slow Fall:ability:React to reduce fall damage by %V',
-        '5:Extra Attack:combat:+1 attack per Attack action',
+        '5:Extra Attack:combat:%V additional attack(s) per Attack action',
         '5:Stunning Strike:combat:Spend 1 Ki to stun melee foe (DC %V Con neg)',
         '6:Ki-Empowered Strikes:combat:Unarmed attacks count as magical',
         '7:Evasion:save:Dex save yields no damage instead of 1/2',
@@ -2583,7 +2534,7 @@ SRD5E.classRules = function(rules, classes) {
           'No debility from aging, need no food or water',
         '18:Empty Body:magic:' +
           'Spend 4 Ki for <i>Invisibility</i> 1 min, 8 Ki for <i>Astral Projection</i>',
-        '20:Perfect Self:combat:Regain 4 Ki die on init if all used'
+        '20:Perfect Self:combat:Min 4 Ki die'
       ];
       features.push(
         // Way Of The Open Hand Tradition
@@ -2610,43 +2561,6 @@ SRD5E.classRules = function(rules, classes) {
       );
 // ENDPHB
       hitDie = 8;
-      notes = null;
-// PHB
-      notes = [
-        'validationNotes.monkBreathOfWinterSelectableFeatureFeatures:' +
-          'Requires Way Of The Four Elements',
-        'validationNotes.monkClenchOfTheNorthWindSelectableFeatureFeatures:' +
-          'Requires Way Of The Four Elements',
-        'validationNotes.monkEternalMountainDefenseSelectableFeatureFeatures:' +
-          'Requires Way Of The Four Elements',
-        'validationNotes.monkFangsOfTheFireSnakeSelectableFeatureFeatures:' +
-          'Requires Way Of The Four Elements',
-        'validationNotes.monkFistOfFourThundersSelectableFeatureFeatures:' +
-          'Requires Way Of The Four Elements',
-        'validationNotes.monkFistOfUnbrokenAirSelectableFeatureFeatures:' +
-          'Requires Way Of The Four Elements',
-        'validationNotes.monkFlamesOfThePhoenixSelectableFeatureFeatures:' +
-          'Requires Way Of The Four Elements',
-        'validationNotes.monkGongOfTheSUmmitSelectableFeatureFeatures:' +
-          'Requires Way Of The Four Elements',
-        'validationNotes.monkMistStanceSelectableFeatureFeatures:' +
-          'Requires Way Of The Four Elements',
-        'validationNotes.monkRideTheWindSelectableFeatureFeatures:' +
-          'Requires Way Of The Four Elements',
-        'validationNotes.monkRiverOfHungryFlameSelectableFeatureFeatures:' +
-          'Requires Way Of The Four Elements',
-        'validationNotes.monkRushOfTheGaleSpiritsSelectableFeatureFeatures:' +
-          'Requires Way Of The Four Elements',
-        'validationNotes.monkShapeTheFlowingRiverSelectableFeatureFeatures:' +
-          'Requires Way Of The Four Elements',
-        'validationNotes.monkSweepingCinderStrikeSelectableFeatureFeatures:' +
-          'Requires Way Of The Four Elements',
-        'validationNotes.monkWaterWhipSelectableFeatureFeatures:' +
-          'Requires Way Of The Four Elements',
-        'validationNotes.monkWaveOfRollingEarthSelectableFeatureFeatures:' +
-          'Requires Way Of The Four Elements',
-      ];
-// ENDPHB
       proficiencyCount = {'Save':2, 'Skill':2, 'Tool':1, 'Weapon':2};
       proficienciesGiven = {
         'Save':['Dexterity', 'Strength'],
@@ -2694,36 +2608,6 @@ SRD5E.classRules = function(rules, classes) {
       spellsKnown = null;
       spellSlots = null;
 
-      rules.defineRule('monkFeatures.Open Hand Technique',
-        'monkFeatures.Way Of The Open Hand Tradition', '?', null
-      );
-      rules.defineRule('monkFeatures.Quivering Palm',
-        'monkFeatures.Way Of The Open Hand Tradition', '?', null
-      );
-      rules.defineRule('monkFeatures.Tranquility',
-        'monkFeatures.Way Of The Open Hand Tradition', '?', null
-      );
-      rules.defineRule('monkFeatures.Wholeness Of Body',
-        'monkFeatures.Way Of The Open Hand Tradition', '?', null
-      );
-// PHB
-      rules.defineRule('monkFeatures.Disciple Of The Elements',
-        'monkFeatures.Way Of The Four Elements Tradition', '?', null
-      );
-      rules.defineRule('monkFeatures.Shadow Arts',
-        'monkFeatures.Way Of The Shadow Tradition', '?', null
-      );
-      rules.defineRule('monkFeatures.Shadow Step',
-        'monkFeatures.Way Of The Shadow Tradition', '?', null
-      );
-      rules.defineRule('monkFeatures.Cloak Of Shadows',
-        'monkFeatures.Way Of The Shadow Tradition', '?', null
-      );
-      rules.defineRule('monkFeatures.Opportunist',
-        'monkFeatures.Way Of The Shadow Tradition', '?', null
-      );
-// ENDPHB
-
       rules.defineRule('abilityNotes.improvedUnarmoredMovementFeature',
         'armor', '?', 'source == "None"',
         'shield', '?', 'source == "None"'
@@ -2743,10 +2627,13 @@ SRD5E.classRules = function(rules, classes) {
         'combatNotes.monkUnarmoredDefenseFeature.2', '+', null
       );
       rules.defineRule
-        ('attacksPerRound', 'combatNotes.extraAttackFeature', '+', '1');
+        ('attacksPerRound', 'combatNotes.extraAttackFeature', '+', null);
       rules.defineRule('combatNotes.deflectMissilesFeature',
         'levels.Monk', '=', null,
         'dexterityModifier', '+', null
+      );
+      rules.defineRule('combatNotes.extraAttackFeature',
+        'levels.Monk', '+=', 'source < 5 ? null : 1'
       );
       rules.defineRule('combatNotes.martialArtsFeature',
         'levels.Monk', '=', 'Math.floor((source + 13)/ 6) * 2'
@@ -2819,6 +2706,71 @@ SRD5E.classRules = function(rules, classes) {
       );
 // ENDPHB
 
+      rules.defineRule('monkFeatures.Open Hand Technique',
+        'monkFeatures.Way Of The Open Hand Tradition', '?', null
+      );
+      rules.defineRule('monkFeatures.Quivering Palm',
+        'monkFeatures.Way Of The Open Hand Tradition', '?', null
+      );
+      rules.defineRule('monkFeatures.Tranquility',
+        'monkFeatures.Way Of The Open Hand Tradition', '?', null
+      );
+      rules.defineRule('monkFeatures.Wholeness Of Body',
+        'monkFeatures.Way Of The Open Hand Tradition', '?', null
+      );
+// PHB
+      rules.defineRule('monkFeatures.Disciple Of The Elements',
+        'monkFeatures.Way Of The Four Elements Tradition', '?', null
+      );
+      rules.defineRule('monkFeatures.Shadow Arts',
+        'monkFeatures.Way Of The Shadow Tradition', '?', null
+      );
+      rules.defineRule('monkFeatures.Shadow Step',
+        'monkFeatures.Way Of The Shadow Tradition', '?', null
+      );
+      rules.defineRule('monkFeatures.Cloak Of Shadows',
+        'monkFeatures.Way Of The Shadow Tradition', '?', null
+      );
+      rules.defineRule('monkFeatures.Opportunist',
+        'monkFeatures.Way Of The Shadow Tradition', '?', null
+      );
+      var notes = [ // TODO
+        'validationNotes.monkBreathOfWinterSelectableFeatureFeatures:' +
+          'Requires Way Of The Four Elements',
+        'validationNotes.monkClenchOfTheNorthWindSelectableFeatureFeatures:' +
+          'Requires Way Of The Four Elements',
+        'validationNotes.monkEternalMountainDefenseSelectableFeatureFeatures:' +
+          'Requires Way Of The Four Elements',
+        'validationNotes.monkFangsOfTheFireSnakeSelectableFeatureFeatures:' +
+          'Requires Way Of The Four Elements',
+        'validationNotes.monkFistOfFourThundersSelectableFeatureFeatures:' +
+          'Requires Way Of The Four Elements',
+        'validationNotes.monkFistOfUnbrokenAirSelectableFeatureFeatures:' +
+          'Requires Way Of The Four Elements',
+        'validationNotes.monkFlamesOfThePhoenixSelectableFeatureFeatures:' +
+          'Requires Way Of The Four Elements',
+        'validationNotes.monkGongOfTheSUmmitSelectableFeatureFeatures:' +
+          'Requires Way Of The Four Elements',
+        'validationNotes.monkMistStanceSelectableFeatureFeatures:' +
+          'Requires Way Of The Four Elements',
+        'validationNotes.monkRideTheWindSelectableFeatureFeatures:' +
+          'Requires Way Of The Four Elements',
+        'validationNotes.monkRiverOfHungryFlameSelectableFeatureFeatures:' +
+          'Requires Way Of The Four Elements',
+        'validationNotes.monkRushOfTheGaleSpiritsSelectableFeatureFeatures:' +
+          'Requires Way Of The Four Elements',
+        'validationNotes.monkShapeTheFlowingRiverSelectableFeatureFeatures:' +
+          'Requires Way Of The Four Elements',
+        'validationNotes.monkSweepingCinderStrikeSelectableFeatureFeatures:' +
+          'Requires Way Of The Four Elements',
+        'validationNotes.monkWaterWhipSelectableFeatureFeatures:' +
+          'Requires Way Of The Four Elements',
+        'validationNotes.monkWaveOfRollingEarthSelectableFeatureFeatures:' +
+          'Requires Way Of The Four Elements',
+      ];
+// ENDPHB
+
+
     } else if(name == 'Paladin') {
 
       features = [
@@ -2831,7 +2783,7 @@ SRD5E.classRules = function(rules, classes) {
         '2:Divine Smite:combat:Expend spell for +2d8-5d8 damage',
         '3:Divine Health:save:Immune disease',
         '3:Sacred Oath::',
-        '5:Extra Attack:combat:+1 attack per Attack action',
+        '5:Extra Attack:combat:%V additional attack(s) per Attack action',
         "6:Aura Of Protection:save:R10' +%V saves self and friendlies",
         "10:Aura Of Courage:save:R%V' Self and friendlies immune fright",
         '11:Improved Divine Smite:combat:+1d8 melee damage',
@@ -2868,7 +2820,6 @@ SRD5E.classRules = function(rules, classes) {
       );
 // ENDPHB
       hitDie = 10;
-      notes = null;
       proficiencyCount = {'Save':2, 'Skill':2, 'Armor':4, 'Weapon':2};
       proficienciesGiven = {
         'Save':['Charisma', 'Wisdom'],
@@ -2957,16 +2908,19 @@ SRD5E.classRules = function(rules, classes) {
 // ENDPHB
 
       rules.defineRule
-        ('attacksPerRound', 'combatNotes.extraAttackFeature', '+', '1');
+        ('attacksPerRound', 'combatNotes.extraAttackFeature', '+', null);
       rules.defineRule('casterLevels.P',
         'levels.Paladin', '=', null,
          'magicNotes.casterLevelBonusFeature', '+', null
       );
       rules.defineRule('casterLevelDivine', 'casterLevels.P', '+=', null);
-      rules.defineRule('magicNotes.cleansingTouchFeature',
-        'charismaModifier', '=', 'Math.max(source, 1)'
+      rules.defineRule('combatNotes.extraAttackFeature',
+        'levels.Paladin', '+=', 'source < 5 ? null : 1'
       );
       rules.defineRule('combatNotes.sacredWeaponFeature',
+        'charismaModifier', '=', 'Math.max(source, 1)'
+      );
+      rules.defineRule('magicNotes.cleansingTouchFeature',
         'charismaModifier', '=', 'Math.max(source, 1)'
       );
       rules.defineRule
@@ -3016,7 +2970,7 @@ SRD5E.classRules = function(rules, classes) {
         '3:Ranger Archetype::',
         '3:Primeval Awareness:magic:' +
           'Expend spell to sense creatures w/in 1 mi (6 mi favored terrain)',
-        '5:Extra Attack:combat:+1 attack per Attack action',
+        '5:Extra Attack:combat:%V additional attack(s) per Attack action',
         "8:Land's Stride:ability:Move normally through difficult terrain",
         "8:Land's Stride:save:Adv vs. impeding plants",
         '10:Hide In Plain Sight:skill:' +
@@ -3037,7 +2991,6 @@ SRD5E.classRules = function(rules, classes) {
       );
 // ENDPBH
       hitDie = 10;
-      notes = null;
       proficiencyCount = {'Save':2, 'Skill':3, 'Armor':3, 'Weapon':2};
       proficienciesGiven = {
         'Save':['Dexterity', 'Strength'],
@@ -3135,6 +3088,8 @@ SRD5E.classRules = function(rules, classes) {
       rules.defineRule('armorClass',
         'combatNotes.defenseStyleFeature.1', '+', null
       );
+      rules.defineRule
+        ('attacksPerRound', 'combatNotes.extraAttackFeature', '+', null);
       rules.defineRule('casterLevels.R',
         'levels.Ranger', '=', null,
          'magicNotes.casterLevelBonusFeature', '+', null
@@ -3145,8 +3100,8 @@ SRD5E.classRules = function(rules, classes) {
         'combatNotes.defenseStyleFeature', '?', null,
         'armor', '=', 'source == "None" ? null : 1'
       );
-      rules.defineRule('armorClass',
-        'combatNotes.defenseStyleFeature.1', '+', null
+      rules.defineRule('combatNotes.extraAttackFeature',
+        'levels.Ranger', '+=', 'source < 5 ? null : 1'
       );
       rules.defineRule
         ('rangedAttack', 'combatNotes.archeryStyleFeature', '+', '2');
@@ -3193,7 +3148,7 @@ SRD5E.classRules = function(rules, classes) {
         "3:Second-Story Work:skill:+%V' Jump",
         '9:Supreme Sneak:skill:Adv Stealth at half speed',
         '13:Use Magic Device:skill:Ignore restrictions on magic device use',
-        "17:Thief's Reflexes:First round extra turn at init-10"
+        "17:Thief's Reflexes:combat:First round extra turn at init-10"
       ];
 // PHB
       features.push(
@@ -3215,7 +3170,6 @@ SRD5E.classRules = function(rules, classes) {
       );
 // ENDPHB
       hitDie = 8;
-      notes = null;
       proficiencyCount =
         {'Save':2, 'Skill':4, 'Tool':1, 'Armor':1, 'Weapon':5};
       proficienciesGiven = {
@@ -3332,7 +3286,6 @@ SRD5E.classRules = function(rules, classes) {
       );
 // ENDPHB
       hitDie = 8;
-      notes = null;
       proficiencyCount = {'Save':2, 'Skill':2, 'Weapon':5};
       proficienciesGiven = {
         'Save':['Charisma', 'Constitution'],
@@ -3484,16 +3437,6 @@ SRD5E.classRules = function(rules, classes) {
       );
 // ENDPHB
       hitDie = 8;
-      notes = [
-        'validationNotes.bookOfAncientsSelectableFeatureFeatures:' +
-          'Requires Pact Of The Tome',
-        'validationNotes.chainsOfCarceriSelectableFeatureFeatures:' +
-          'Requires Pact Of The Chain',
-        'validationNotes.thirstingBladeSelectableFeatureFeatures:' +
-          'Requires Pact Of The Blade',
-        'validationNotes.voiceOfTheChainMasterSelectableFeatureFeatures:' +
-          'Requires Pact Of The Chain'
-      ];
       proficiencyCount = {'Save':2, 'Skill':2, 'Armor':1, 'Weapon':1};
       proficienciesGiven = {
         'Save':['Charisma', 'Wisdom'],
@@ -3565,45 +3508,6 @@ SRD5E.classRules = function(rules, classes) {
         'K5:9:2/11:3/17:4'
       ];
 
-      rules.defineRule("warlockFeatures.Dark One's Blessing",
-        'warlockFeatures.Fiend Patron', '?', null
-      );
-      rules.defineRule("warlockFeatures.Dark One's Own Luck",
-        'warlockFeatures.Fiend Patron', '?', null
-      );
-      rules.defineRule('warlockFeatures.Fiendish Resilience',
-        'warlockFeatures.Fiend Patron', '?', null
-      );
-      rules.defineRule('warlockFeatures.Hurl Through Hell',
-        'warlockFeatures.Fiend Patron', '?', null
-      );
-// PHB
-      rules.defineRule('warlockFeatures.Fey Presence',
-        'warlockFeatures.Archfey Patron', '?', null
-      );
-      rules.defineRule('warlockFeatures.Misty Escape',
-        'warlockFeatures.Archfey Patron', '?', null
-      );
-      rules.defineRule('warlockFeatures.Beguiling Defenses',
-        'warlockFeatures.Archfey Patron', '?', null
-      );
-      rules.defineRule('warlockFeatures.Dark Delirium',
-        'warlockFeatures.Archfey Patron', '?', null
-      );
-      rules.defineRule('warlockFeatures.Awakened Mind',
-        'warlockFeatures.Great Old One Patron', '?', null
-      );
-      rules.defineRule('warlockFeatures.Entropic World',
-        'warlockFeatures.Great Old One Patron', '?', null
-      );
-      rules.defineRule('warlockFeatures.Thought Shield',
-        'warlockFeatures.Great Old One Patron', '?', null
-      );
-      rules.defineRule('warlockFeatures.Create Thrall',
-        'warlockFeatures.Great Old One Patron', '?', null
-      );
-// ENDPHB
-
       rules.defineRule
         ('attacksPerRound', 'combatNotes.thirstingBladeFeature', '+', '1');
       rules.defineRule('casterLevels.K',
@@ -3643,6 +3547,55 @@ SRD5E.classRules = function(rules, classes) {
         'magicNotes.eldritchInvocationsFeature', '+', null
       );
 
+      rules.defineRule("warlockFeatures.Dark One's Blessing",
+        'warlockFeatures.Fiend Patron', '?', null
+      );
+      rules.defineRule("warlockFeatures.Dark One's Own Luck",
+        'warlockFeatures.Fiend Patron', '?', null
+      );
+      rules.defineRule('warlockFeatures.Fiendish Resilience',
+        'warlockFeatures.Fiend Patron', '?', null
+      );
+      rules.defineRule('warlockFeatures.Hurl Through Hell',
+        'warlockFeatures.Fiend Patron', '?', null
+      );
+      var notes = [ // TODO
+        'validationNotes.bookOfAncientsSelectableFeatureFeatures:' +
+          'Requires Pact Of The Tome',
+        'validationNotes.chainsOfCarceriSelectableFeatureFeatures:' +
+          'Requires Pact Of The Chain',
+        'validationNotes.thirstingBladeSelectableFeatureFeatures:' +
+          'Requires Pact Of The Blade',
+        'validationNotes.voiceOfTheChainMasterSelectableFeatureFeatures:' +
+          'Requires Pact Of The Chain'
+      ];
+// PHB
+      rules.defineRule('warlockFeatures.Fey Presence',
+        'warlockFeatures.Archfey Patron', '?', null
+      );
+      rules.defineRule('warlockFeatures.Misty Escape',
+        'warlockFeatures.Archfey Patron', '?', null
+      );
+      rules.defineRule('warlockFeatures.Beguiling Defenses',
+        'warlockFeatures.Archfey Patron', '?', null
+      );
+      rules.defineRule('warlockFeatures.Dark Delirium',
+        'warlockFeatures.Archfey Patron', '?', null
+      );
+      rules.defineRule('warlockFeatures.Awakened Mind',
+        'warlockFeatures.Great Old One Patron', '?', null
+      );
+      rules.defineRule('warlockFeatures.Entropic World',
+        'warlockFeatures.Great Old One Patron', '?', null
+      );
+      rules.defineRule('warlockFeatures.Thought Shield',
+        'warlockFeatures.Great Old One Patron', '?', null
+      );
+      rules.defineRule('warlockFeatures.Create Thrall',
+        'warlockFeatures.Great Old One Patron', '?', null
+      );
+// ENDPHB
+
     } else if(name == 'Wizard') {
 
       features = [
@@ -3654,7 +3607,6 @@ SRD5E.classRules = function(rules, classes) {
           'Cast 2 2nd spells w/o using spell slot 1/short rest'
       ];
       hitDie = 6;
-      notes = null;
       proficiencyCount = {'Save':2, 'Skill':3, 'Weapon':5};
       proficienciesGiven = {
         'Save':['Intelligence', 'Wisdom'],
@@ -3700,7 +3652,7 @@ SRD5E.classRules = function(rules, classes) {
     SRD5E.defineClass(
       rules, name, hitDie, features, selectableFeatures, proficiencyCount,
       proficienciesGiven, proficiencyChoices, spellAbility, spellsKnown,
-      spellSlots, notes
+      spellSlots
     );
 
   }
@@ -4398,14 +4350,14 @@ SRD5E.featRules = function(rules, feats) {
     var matchInfo;
     var notes = null;
 
-    if((matchInfo = feat.match(/^Ability Boost( (\d+))?$/)) != null) {
-      var seq = matchInfo[2];
+    if((matchInfo = feat.match(/^Ability Boost(\d+)?$/)) != null) {
+      var seq = matchInfo[1];
       notes = ['abilityNotes.abilityBoosts:+%V to distribute'];
       rules.defineRule('abilityBoostCount', 'features.' + feat, '+=', '2');
       rules.defineRule
         ('abilityNotes.abilityBoosts', 'abilityBoostCount', '=', null);
       if(seq) {
-        notes.push('validationNotes.abilityBoost ' + seq + 'FeatFeatures:Requires Ability Boost' + (seq == '2' ? '' : (' ' + (seq - 1))));
+        notes.push('validationNotes.abilityBoost' + seq + 'FeatFeatures:Requires Ability Boost' + (seq != '2' ? seq - 1 : ''));
       }
     } else if(feat == 'Grappler') {
       notes = [
@@ -5077,7 +5029,7 @@ SRD5E.raceRules = function(rules, languages, races) {
         '1:Dwarven Resilience:save:Adv vs. poison, resistance poison damage',
         '1:Slow:ability:-5 speed',
         '1:Stonecunning:skill:Dbl Prof on stonework History checks',
-        "1:Tool Proficiency (Artisan's Tool)::",
+        "1:Tool Proficiency (Artisan's Tools)::",
         '1:Weapon Proficiency (Battleaxe/Handaxe/Light Hammer/Warhammer)::'
       ];
       languages = ['Common', 'Dwarven'];
@@ -5495,11 +5447,15 @@ SRD5E.randomizeOneAttribute = function(attributes, attribute) {
   var i;
 
   if(attribute == 'armor') {
+    var armors = this.getChoices('armors');
     attrs = this.applyRules(attributes);
     choices = ['None'];
-    for(attr in this.getChoices('armors')) {
-      if(attrs['proficient.' + attr]) {
-        choices[choices.length] = attr;
+    for(attr in armors) {
+      if(attrs['armorProficiencies.' + attr] ||
+         attrs['armorProficiencies.Light'] && armors[attr].indexOf('Li')>=0 ||
+         attrs['armorProficiencies.Medium'] && armors[attr].indexOf('Me')>=0 ||
+         attrs['armorProficiencies.Heavy'] && armors[attr].indexOf('He')>=0) {
+        choices.push(attr);
       }
     }
     attributes['armor'] = choices[QuilvynUtils.random(0, choices.length - 1)];
@@ -5599,11 +5555,9 @@ SRD5E.randomizeOneAttribute = function(attributes, attribute) {
       }
       debug[debug.length] = 'xxxxxxx';
     }
-    if(window.DEBUG) {
-      var notes = attributes.notes;
+    if(window.DEBUG)
       attributes.notes =
-        (notes != null ? attributes.notes + '\n' : '') + debug.join('\n');
-    }
+        (attributes.notes ? attributes.notes + '\n' : '') + debug.join('\n');
   } else if(attribute == 'hitPoints') {
     attributes.hitPoints = 0;
     for(var klass in this.getChoices('levels')) {
@@ -5754,10 +5708,13 @@ SRD5E.randomizeOneAttribute = function(attributes, attribute) {
     pickAttrs(attributes, 'toolProficiencies.', choices,
               howMany - QuilvynUtils.sumMatching(attrs, /^toolProficiencies\./), 1);
   } else if(attribute == 'weapons') {
+    var weapons = this.getChoices('weapons');
     attrs = this.applyRules(attributes);
     choices = [];
-    for(attr in this.getChoices('weapons')) {
-      if(attrs['proficient.' + attr]) {
+    for(attr in weapons) {
+      if(attrs['weaponProficiencies.' + attr] ||
+         attrs['weaponProficiencies.Simple']&&weapons[attr].indexOf('Si')>=0 ||
+         attrs['weaponProficiencies.Martial']&&weapons[attr].indexOf('Ma')>=0) {
         choices[choices.length] = attr;
       }
     }
@@ -5962,11 +5919,9 @@ SRD5E.makeValid = function(attributes) {
 
   }
 
-  if(window.DEBUG) {
-    var notes = attributes.notes;
+  if(window.DEBUG)
     attributes.notes =
-      (notes != null ? attributes.notes + '\n' : '') + debug.join('\n');
-  }
+      (attributes.notes ? attributes.notes + '\n' : '') + debug.join('\n');
 
 };
 
@@ -6067,7 +6022,7 @@ SRD5E.ruleNotes = function() {
 
 SRD5E.defineBackground = function(
   rules, name, features, languages, proficiencyCount, proficienciesGiven,
-  proficiencyChoices, notes
+  proficiencyChoices
 ) {
 
   var prefix =
@@ -6133,8 +6088,6 @@ SRD5E.defineBackground = function(
     }
   }
 
-  if(notes != null)
-    rules.defineNote(notes);
 }
 
 /*
@@ -6159,64 +6112,56 @@ SRD5E.defineBackground = function(
 SRD5E.defineClass = function(
   rules, name, hitDice, features, selectableFeatures, proficiencyCount,
   proficienciesGiven, proficiencyChoices, spellAbility, spellsKnown,
-  spellSlots, notes
+  spellSlots
 ) {
 
   var classLevel = 'levels.' + name;
-  var nameNoSpace =
-    name.substring(0, 1).toLowerCase() + name.substring(1).replace(/ /g, '');
-
   rules.defineChoice('levels', name + ':' + hitDice);
 
   if(features != null) {
+    var prefix =
+      name.substring(0, 1).toLowerCase() + name.substring(1).replace(/ /g, '');
     for(var i = 0; i < features.length; i++) {
       var pieces = features[i].split(/:/);
       var feature = pieces[1];
-      var featureNoSpace =
+      var featurePrefix =
         feature.substring(0, 1).toLowerCase() + feature.substring(1).replace(/ /g, '');
       var level = pieces[0];
       var note = pieces[3];
       var section = pieces[2];
-      var matchInfo;
-      rules.defineRule(nameNoSpace + 'Features.' + feature,
+      rules.defineRule(prefix + 'Features.' + feature,
         'levels.' + name, '=', 'source >= ' + level + ' ? 1 : null'
       );
       rules.defineRule
-        ('features.' + feature, nameNoSpace + 'Features.' + feature, '+=', null);
+        ('features.' + feature, prefix + 'Features.' + feature, '+=', null);
       if(section != '')
         rules.defineNote
-          (section + 'Notes.' + featureNoSpace + 'Feature:' + note);
-      if((matchInfo = feature.match(/^Weapon (Familiarity|Proficiency) \((.*\/.*)\)$/)) != null) {
-        // Set individual features for each weapon on the list.
-        var weapons = matchInfo[2].split('/');
-        for(var j = 0; j < weapons.length; j++) {
-          rules.defineRule('features.Weapon ' + matchInfo[1] + ' (' + weapons[j] + ')', 'features.' + feature, '=', '1');
-        }
-      }
+          (section + 'Notes.' + featurePrefix + 'Feature:' + note);
     }
     rules.defineSheetElement(name + ' Features', 'Feats+', null, '; ');
   }
   if(selectableFeatures != null) {
+    var prefix =
+      name.substring(0, 1).toLowerCase() + name.substring(1).replace(/ /g, '');
     for(var i = 0; i < selectableFeatures.length; i++) {
       var pieces = selectableFeatures[i].split(/:/);
       var feature = pieces[1];
-      var featureNoSpace =
+      var featurePrefix =
         feature.substring(0, 1).toLowerCase() + feature.substring(1).replace(/ /g, '');
       var level = pieces[0];
       var note = pieces[3];
       var section = pieces[2];
-      var choice = name + ' - ' + feature;
+      var choice = name + ' ' + feature;
       rules.defineChoice('selectableFeatures', choice + ':' + name);
-      rules.defineRule(nameNoSpace + 'Features.' + feature,
+      rules.defineRule(prefix + 'Features.' + feature,
         'selectableFeatures.' + choice, '+=', null
       );
-      rules.defineRule('features.' + feature,
-        nameNoSpace + 'Features.' + feature, '+=', null
-      );
-      rules.defineNote('validationNotes.' + nameNoSpace + feature.replace(/ /g, '') + 'SelectableFeatureLevel:Requires ' + name + ' >= ' + level);
+      rules.defineRule
+        ('features.' + feature, prefix + 'Features.' + feature, '+=', null);
+      rules.defineNote('validationNotes.' + prefix + feature.replace(/ /g, '') + 'SelectableFeatureLevels:Requires ' + name + ' >= ' + level);
       if(section != '')
         rules.defineNote
-          (section + 'Notes.' + featureNoSpace + 'Feature:' + note);
+          (section + 'Notes.' + featurePrefix + 'Feature:' + note);
     }
   }
 
@@ -6243,58 +6188,52 @@ SRD5E.defineClass = function(
     }
   }
 
-  if(spellAbility != null) {
-    rules.defineRule('spellAttackModifier.' + name,
-      'levels.' + name, '?', null,
-      spellAbility + 'Modifier', '=', null,
-      'proficiencyBonus', '+', null
-    );
-    rules.defineRule('spellDifficultyClass.' + name,
-      'levels.' + name, '?', null,
-      spellAbility + 'Modifier', '=', '8 + source',
-      'proficiencyBonus', '+', null
-    );
-  }
-
-  if(spellsKnown != null || spellSlots != null) {
-    rules.defineRule('casterSpellLevel.' + name,
+  if(spellsKnown != null) {
+    var spellModifier = spellAbility + 'Modifier';
+    rules.defineRule('spellsKnownLevel.' + name,
       'levels.' + name, '=', null,
       'magicNotes.casterLevelBonusFeature', '+', null
     );
-  }
-
-  if(spellsKnown != null) {
-    for(var j = 0; j < spellsKnown.length; j++) {
-      var typeAndLevel = spellsKnown[j].split(/:/)[0];
-      var code = spellsKnown[j].substring(typeAndLevel.length + 1).
+    rules.defineRule('spellAttackModifier.' + name,
+      'levels.' + name, '?', null,
+      spellModifier, '=', null,
+      'proficiencyBonus', '+', null
+    );
+    for(var i = 0; i < spellsKnown.length; i++) {
+      var spellTypeAndLevel = spellsKnown[i].split(/:/)[0];
+      var spellType = spellTypeAndLevel.replace(/\d+/, '');
+      var code = spellsKnown[i].substring(spellTypeAndLevel.length + 1).
                  split(/\//).reverse().join('source >= ');
       code = code.replace(/:/g, ' ? ').replace(/source/g, ' : source');
       code = 'source >= ' + code + ' : null';
       if(code.indexOf('source >= 1 ?') >= 0) {
         code = code.replace(/source >= 1 ./, '').replace(/ : null/, '');
       }
-      rules.defineRule
-        ('spellsKnown.' + typeAndLevel, 'casterSpellLevel.' + name, '=', code);
+      rules.defineRule('spellsKnown.' + spellTypeAndLevel,
+        'spellsKnownLevel.' + name, '=', code
+      );
+      rules.defineRule('spellDifficultyClass.' + spellType,
+        'casterLevels.' + spellType, '?', null,
+        spellModifier, '=', '8 + source',
+        'proficiencyBonus', '+', null
+      );
     }
-  }
-
-  if(spellSlots != null) {
-    for(var j = 0; j < spellSlots.length; j++) {
-      var typeAndLevel = spellSlots[j].split(/:/)[0];
-      var code = spellSlots[j].substring(typeAndLevel.length + 1).
+    for(var i = 0; i < spellSlots.length; i++) {
+      var spellTypeAndLevel = spellSlots[i].split(/:/)[0];
+      var spellLevel = spellTypeAndLevel.replace(/[A-Z]*/, '');
+      var code = spellSlots[i].substring(spellTypeAndLevel.length + 1).
                  split(/\//).reverse().join('source >= ');
       code = code.replace(/:/g, ' ? ').replace(/source/g, ' : source');
       code = 'source >= ' + code + ' : null';
       if(code.indexOf('source >= 1 ?') >= 0) {
         code = code.replace(/source >= 1 ./, '').replace(/ : null/, '');
       }
-      rules.defineRule
-        ('spellSlots.' + typeAndLevel, 'casterSpellLevel.' + name, '=', code);
+      rules.defineRule('spellSlots.' + spellTypeAndLevel,
+        'spellsKnownLevel.' + name, '=', code
+      );
     }
-  }
 
-  if(notes != null)
-    rules.defineNote(notes);
+  }
 
 };
 

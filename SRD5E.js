@@ -1706,7 +1706,7 @@ SRD5E.classRules = function(rules, classes) {
           'Channel Divinity max thunder, lightning damage',
         "6:Thunderbolt Strike:magic:Lightning damage pushes lg 10'",
         '8:Divine Strike:combat:+%Vd8 HP 1/turn',
-        '17:Stormborn:ability:Outdoors fly at full speed',
+        '17:Stormborn:ability:Fly at full speed outdoors',
         // Trickery Domain
         '1:Blessing Of The Trickster:magic:Touched Adv Stealth for 1 hr',
         "2:Invoke Duplicity:magic:R30' Illusionary dulicate for conc/1 min",
@@ -3171,30 +3171,29 @@ SRD5E.classRules = function(rules, classes) {
 
       features = [
         '1:Weapon Proficiency (Dagger/Dart/Sling/Quarterstaff/Light Crossbow)::',
-        '1:Sorcerous Origin::',
-        '2:Font Of Magic:magic:%V Sorcery points/long rest',
-        '2:Flexible Casting:magic:Spend sorcery points to gain spell slots',
-        '3:Metamagic::',
-        '20:Sorcerous Restoration:magic:Short rest recovers 4 sorcery points',
+        '1:Spellcasting::', // TODO "Arcane Focus"?
+        '2:Font Of Magic:magic:%V Sorcery pts/long rest',
+        '2:Flexible Casting:magic:Convert sorcery pts to/from spell slots',
+        '20:Sorcerous Restoration:magic:Regain 4 sorcery pts/short rest',
         // Draconic Bloodline
         '1:Draconic Resilience:combat:+%V HP, unarmored AC %1',
         '6:Elemental Affinity:magic:' +
-          '+%V HP damage with ancestry type, spend 1 sorcery point for 1 hr resistance',
-        '14:Dragon Wings:ability:Fly at movement rate',
-        "18:Draconic Presence:feature:Spend 5 sorcery points for 60' awe/fear aura (DC %V Wis neg)"
+          '+%V HP damage with ancestry type, spend 1 sorcery pt for 1 hr resistance',
+        '14:Dragon Wings:ability:Fly at full speed',
+        "18:Draconic Presence:feature:R60' Spend 5 sorcery pts for awe/fear aura for 1 min/conc (DC %V Wis neg)"
       ];
 // PHB
       features.push(
         // Wild Magic
-        '1:Wild Magic Surge:magic:Chance of random magic effect',
-        '1:Tides Of Chaos:feature:Adv on attack, ability, or save 1/long rest',
+        '1:Wild Magic Surge:magic:5% chance of random magic effect',
+        '1:Tides Of Chaos:feature:Adv on attack, ability, or save 1/long rest,may cause surge',
         '6:Bend Luck:magic:' +
-          "Spend 2 sorcery points to add or subtract 1d4 from other's roll",
+          'Spend 2 sorcery pts to add or subtract 1d4 from target roll',
         '14:Controlled Chaos:magic:Reroll wild magic surge effect',
         '18:Spell Bombardment:magic:Add another die to maximum damage 1/turn'
       );
 // ENDPHB
-      hitDie = 8;
+      hitDie = 6;
       proficiencyCount = {'Save':2, 'Skill':2, 'Weapon':5};
       proficienciesGiven = {
         'Save':['Charisma', 'Constitution'],
@@ -3204,28 +3203,27 @@ SRD5E.classRules = function(rules, classes) {
         'Skill':['Arcana', 'Deception', 'Insight', 'Intimidation', 'Persuasion',
                  'Religion']
       };
-      selectableFeatures = ['1:Draconic Bloodline::'];
+      selectableFeatures = [
+        '1:Draconic Bloodline::',
+        '3:Careful Spell:magic:' +
+          'Spend 1 sorcery pt to give %V creatures save on your spell',
+        '3:Distant Spell:magic:' +
+          "Spend 1 sorcery pt to dbl spell range or touch at 30'",
+        '3:Empowered Spell:magic:' +
+          'Spend 1 sorcery pt to reroll %V spell damage dice',
+        '3:Extended Spell:magic:Spend 1 sorcery point to dbl spell duration',
+        '3:Heightened Spell:magic:' +
+          'Spend 3 sorcery pts for target Disadv on spell save',
+        '3:Quickened Spell:magic:' +
+          'Spend 2 sorcery pts to cast spell as bonus action',
+        '3:Subtle Spell:magic:' +
+          'Spend 1 sorcery pt to cast w/out somatic, verbal components',
+        '3:Twinned Spell:magic:' +
+          'Spend spell level sorcery pts to add second target'
+      ];
 // PHB
       selectableFeatures.push('1:Wild Magic::');
 // ENDPHB
-      selectableFeatures.push(
-        '3:Careful Spell:magic:' +
-          'Spend 1 sorcery point to give %V creatures save on your spell',
-        '3:Distant Spell:magic:' +
-          "Spend 1 sorcery point to dbl spell range, touch at 30'",
-        '3:Empowered Spell:magic:' +
-          'Spend 1 sorcery point to reroll %V spell damage dice',
-        '3:Extended Spell:magic:' +
-          'Spend 1 sorcery point to dbl spell duration',
-        '3:Heightened Spell:magic:' +
-          'Spend 3 sorcery points to give target Disadv on spell save',
-        '3:Quickened Spell:magic:' +
-          'Spend 2 sorcery points to cast spell as bonus action',
-        '3:Subtle Spell:magic:' +
-          'Spend 1 sorcery point to cast w/out somatic/verbal components',
-        '3:Twinned Spell:magic:' +
-          'Spend spell level sorcery points to affect second target'
-      );
       spellAbility = 'charisma';
       spellsKnown = [
         'S0:1:4/4:5/10:6',
@@ -3244,60 +3242,13 @@ SRD5E.classRules = function(rules, classes) {
         'S9:17:1'
       ];
 
-      rules.defineRule('sorcererFeatures.Draconic Resilience',
-        'sorcererFeatures.Draconic Bloodline', '?', null
-      );
-      rules.defineRule('sorcererFeatures.Elemental Affinity',
-        'sorcererFeatures.Draconic Bloodline', '?', null
-      );
-      rules.defineRule('sorcererFeatures.Dragon Wings',
-        'sorcererFeatures.Draconic Bloodline', '?', null
-      );
-      rules.defineRule('sorcererFeatures.Draconic Presence',
-        'sorcererFeatures.Draconic Bloodline', '?', null
-      );
-// PHB
-      rules.defineRule('sorcererFeatures.Wild Magic Surge',
-        'sorcererFeatures.Wild Magic', '?', null
-      );
-      rules.defineRule('sorcererFeatures.Tides Of Chaos',
-        'sorcererFeatures.Wild Magic', '?', null
-      );
-      rules.defineRule('sorcererFeatures.Bend Luck',
-        'sorcererFeatures.Wild Magic', '?', null
-      );
-      rules.defineRule('sorcererFeatures.Controlled Chaos',
-        'sorcererFeatures.Wild Magic', '?', null
-      );
-      rules.defineRule('sorcererFeatures.Spell Bombardment',
-        'sorcererFeatures.Wild Magic', '?', null
-      );
-// ENDPHB
-
-      rules.defineRule
-        ('armorClass', 'combatNotes.draconicResilienceFeature.1', '^', null);
       rules.defineRule('casterLevels.S',
         'levels.Sorcerer', '=', null,
          'magicNotes.casterLevelBonusFeature', '+', null
       );
       rules.defineRule('casterLevelArcane', 'casterLevels.S', '+=', null);
-      rules.defineRule
-        ('combatNotes.draconicResilienceFeature', 'levels.Sorcerer', '=', null);
-      rules.defineRule('combatNotes.draconicResilienceFeature.1',
-        'combatNotes.draconicResilienceFeature', '?', null,
-        'dexterityModifier', '=', 'source + 13'
-      );
-      rules.defineRule('featureNotes.draconicPresenceFeature',
-        'charismaModifier', '=', '8 + source',
-        'proficiencyBonus', '+', null
-      );
-      rules.defineRule
-        ('hitPoint', 'combatNotes.draconicResilienceFeature', '+', null);
       rules.defineRule('magicNotes.carefulSpellFeature',
         'charismaModifier', '=', 'Math.max(source, 1)'
-      );
-      rules.defineRule('magicNotes.elementalAffinityFeature',
-        'charismaModifier', '=', null
       );
       rules.defineRule('magicNotes.empoweredSpellFeature',
         'charismaModifier', '=', 'Math.max(source, 1)'
@@ -3308,49 +3259,88 @@ SRD5E.classRules = function(rules, classes) {
         'levels.Sorcerer', '=', 'source<3?1 : source<10?3 : source<17?4 : 5'
       );
 
+      for(var feature in {
+        'Draconic Resilience':'', 'Draconic Presence':'', 'Dragon Wings':'',
+        'Elemental Affinity':''
+      }) {
+        rules.defineRule('sorcererFeatures.' + feature,
+          'sorcererFeatures.Draconic Bloodline', '?', null
+        );
+      }
+      rules.defineRule
+        ('armorClass', 'combatNotes.draconicResilienceFeature.2', '^', null);
+      rules.defineRule
+        ('combatNotes.draconicResilienceFeature', 'levels.Sorcerer', '=', null);
+      rules.defineRule
+        ('hitPoints', 'combatNotes.draconicResilienceFeature', '+', null);
+      rules.defineRule('combatNotes.draconicResilienceFeature.1',
+        'combatNotes.draconicResilienceFeature', '?', null,
+        'dexterityModifier', '=', 'source + 13'
+      );
+      rules.defineRule('combatNotes.draconicResilienceFeature.2',
+        'armor', '?', 'source == "None"',
+        'combatNotes.draconicResilienceFeature.1', '=', null
+      );
+      rules.defineRule('featureNotes.draconicPresenceFeature',
+        'charismaModifier', '=', '8 + source',
+        'proficiencyBonus', '+', null
+      );
+      rules.defineRule('magicNotes.elementalAffinityFeature',
+        'charismaModifier', '=', null
+      );
+// PHB
+      for(var feature in {
+        'Bend Luck':'', 'Controlled Chaos':'', 'Spell Bombardment':'',
+        'Tides Of Chaos':'', 'Wild Magic Surge':''
+      }) {
+        rules.defineRule('sorcererFeatures.' + feature,
+          'sorcererFeatures.Wild Magic', '?', null
+        );
+      }
+// ENDPHB
+
     } else if(name == 'Warlock') {
 
       features = [
         '1:Armor Proficiency (Light)::',
         '1:Weapon Proficiency (Simple)::',
         '1:Otherworldly Patron::TODO',
-        '1:Pact Magic::',
+        '1:Pact Magic::', // TODO "Arcane Focus"?
         '2:Eldritch Invocations:magic:%V',
-        '3:Pact Boon::',
         '11:Mystic Arcanum:magic:Warlock spells %V 1/long rest',
         '20:Eldritch Master:magic:Regain spells from patron 1/long rest',
         // Fiend Patron
-        "1:Dark One's Blessing:combat:Gain %V HP when foe drops to 0",
+        "1:Dark One's Blessing:combat:Gain %1 HP when foe drops to 0",
         "6:Dark One's Own Luck:feature:Add d10 to ability or save 1/short rest",
         '10:Fiendish Resilience:save:Resist chosen damage type',
         '14:Hurl Through Hell:combat:' +
-          'Foe moves through hell, taking 10d10 psychic, 1/long rest'
+          'Foe trip to hell 10d10 psychic HP 1/long rest'
       ];
 // PHB
       features.push(
         // Archfey Patron
         '1:Fey Presence:magic:' +
-          "R10' Creatures charmed or frightened 1 turn (DC %V Wis neg) 1/short rest",
+          "R10' Creatures charm or fright 1 turn (DC %V Wis neg) 1/short rest",
         '6:Misty Escape:magic:' +
           "After damage, teleport 60' and become invisible 1 turn 1/short rest",
         '10:Beguiling Defenses:save:' +
-          'Immune charm, caster become charmed 1 min (DC %V Wis neg)',
+          'Immune charm, reflect 1 min (DC %V Wis neg)',
         '14:Dark Delirium:magic:' +
-          "R60' Target charmed or frightened 1 min, then unaware surroundings (DC %V Wis neg) 1/long rest",
+          "R60' Target charm or fright 1 min, then unaware surroundings (DC %V Wis neg) 1/long rest",
         // Great Old One Patron
-        "1:Awakened Mind:feature:R60' Telepathic communication",
+        "1:Awakened Mind:feature:R30' Telepathic communication",
         '6:Entropic World:combat:' +
-          'Foe Disadv attack, miss give you attack Adv 1/short rest',
+          'Foe Disadv attack, miss gives you attack Adv 1/short rest',
         '10:Thought Shield:save:' +
           'Immune telepathy, resist and reflect psycic damage',
-        '14:Create Thrall:magic:Charm incapacitated humanoid'
+        '14:Create Thrall:magic:Touch charms incapacitated humanoid'
       );
 // ENDPHB
       hitDie = 8;
-      proficiencyCount = {'Save':2, 'Skill':2, 'Armor':1, 'Weapon':1};
+      proficiencyCount = {'Armor':1, 'Save':2, 'Skill':2, 'Weapon':1};
       proficienciesGiven = {
-        'Save':['Charisma', 'Wisdom'],
         'Armor':['Light'],
+        'Save':['Charisma', 'Wisdom'],
         'Weapon':['Simple']
       };
       proficiencyChoices = {
@@ -3358,53 +3348,51 @@ SRD5E.classRules = function(rules, classes) {
                  'Investigation', 'Nature', 'Religion']
       };
       selectableFeatures = [
-        '1:Archfey Patron::',
         '1:Fiend Patron::',
-        '1:Great Old One Patron::',
+        '3:Pact Of The Blade:magic:Create magic weapon',
+        '3:Pact Of The Chain:magic:<i>Find Familiar</i>',
+        '3:Pact Of The Tome:magic:<i>Book Of Shadows</i> w/3 cantrips',
         '2:Agonizing Blast:magic:<i>Eldritch Blast</i> +%V HP',
         '2:Armor Of Shadows:magic:<i>Mage Armor</i> at will',
         '9:Ascendant Step:magic:<i>Levitate</i> at will',
         '2:Beast Speech:magic:<i>Speak With Animals</i> at will',
-        '2:Beguiling Influence:skills:Prof Deception, Persuasion',
-        '7:Bewitching Whispers:magic:' +
-          'Use spell slot for <i>Compulsion</i> 1/long rest',
+        '2:Beguiling Influence:skill:Prof Deception, Persuasion',
+        '7:Bewitching Whispers:magic:<i>Compulsion</i> 1/long rest',
         '2:Book Of The Ancients:magic:Inscribe rituals in Book Of Shadows',
         '15:Chains Of Carceri:magic:' +
-          '<i>Hold Monster</i> on celetial/elemental/fiend at will',
-        "2:Devil's Sight:feature:120' darkvision",
-        '7:Dreadful Word:magic:' +
-          'Use spell slot for <i>Confusion</i> 1/long rest',
+          '<i>Hold Monster</i> on celetial, elemental, fiend 1/long rest',
+        "2:Devil's Sight:feature:R120' See 1 light level better",
+        '7:Dreadful Word:magic:<i>Confusion</i> 1/long rest',
         '2:Eldritch Sight:magic:<i>Detect Magic</i> at will',
         "2:Eldritch Spear:magic:<i>R300' Eldritch Blast</i>",
         '2:Eyes Of The Rune Keeper:feature:Read all writing',
         '2:Fiendish Vigor:magic:Self <i>False Life</i> at will',
         '2:Gaze Of Two Minds:magic:' +
-          "Perceive through willing touched target's senses for 1 turn",
+          "Perceive via willing touched senses for 1 turn",
         '12:Lifedrinker:combat:+%V HP with pact weapon',
         '2:Mask Of Many Faces:magic:<i>Disguise Self</i> at will',
         '15:Master Of Myriad Forms:magic:<i>Alter Self</i> at will',
-        '9:Minions Of Chaos:magic:' +
-          'Use spell slot for <i>Conjure Elemental</i> 1/long rest',
+        '9:Minions Of Chaos:magic:>Conjure Elemental</i> 1/long rest',
         '2:Misty Visions:magic:<i>Silent Image</i> at will',
-        '5:Mire The Mind:magic:Use spell slot for <i>Slow</i> 1/long rest',
-        '5:One With Shadows:magic:Become invisible in dim light until action',
+        '5:Mire The Mind:magic:<i>Slow</i> 1/long rest',
+        '5:One With Shadows:magic:Invisible in dim light until action',
         '9:Otherworldly Leap:magic:Self <i>Jump</i> at will',
         "2:Repelling Blast:magic:<i>Eldritch Blast</i> pushes 10'",
-        '7:Sculptor Of Flesh:magic:' +
-          'Use spell slot for <i>Polymorph</i> 1/long rest',
-        '5:Sign Of Ill Omen:magic:' +
-          'Use spell slot for <i>Bestow Curse</i> 1/long rest',
-        '2:Thief Of Five Fates:magic:' +
-          'Use spell slot for <i>Bane</i> 1/long rest',
+        '7:Sculptor Of Flesh:magic:<i>Polymorph</i> 1/long rest',
+        '5:Sign Of Ill Omen:magic:<i>Bestow Curse</i> 1/long rest',
+        '2:Thief Of Five Fates:magic:<i>Bane</i> 1/long rest',
         '5:Thirsting Blade:combat:Attack twice each turn',
         '15:Visions Of Distant Realms:magic:<i>Arcane Eye</i> at will',
-        '2:Voice Of The Chain Master:companion:Perceive/speak through familiar',
+        '2:Voice Of The Chain Master:companion:Perceive, speak via familiar',
         '9:Whispers Of The Grave:magic:<i>Speak With Dead</i> at will',
-        "15:Witch Sight:feature:R30' See true forms",
-        '3:Pact Of The Blade:magic:Create magic weapon',
-        '3:Pact Of The Chain:magic:<i>Find Familiar</i>',
-        '3:Pact Of The Tome:magic:Book Of Shadows w/3 cantrips'
+        "15:Witch Sight:feature:R30' See true forms"
       ];
+// PHB
+      selectableFeatures.push(
+        '1:Archfey Patron::',
+        '1:Great Old One Patron::'
+      );
+// ENDPHB
       spellAbility = 'charisma';
       spellsKnown = [
         'K0:1:2/4:3/10:4',
@@ -3429,82 +3417,77 @@ SRD5E.classRules = function(rules, classes) {
       rules.defineRule('combatNotes.lifedrinkerFeature',
         'charismaModifier', '=', 'Math.max(source, 1)'
       );
-      rules.defineRule("combatNotes.darkOne'sBlessingFeature",
-        'charismaModifier', '=', 'Math.max(source, 1)'
-      );
       rules.defineRule
         ('magicNotes.agonizingBlastFeature', 'charismaModifier', '=', null);
-      rules.defineRule('magicNotes.darkDeliriumFeature',
-        'charismaModifier', '=', '8 + source',
-        'proficiencyBonus', '+', null
-      );
       rules.defineRule('magicNotes.eldritchInvocationsFeature',
         'levels.Warlock', '=', 'source == 2 ? 2 : source < 9 ? Math.floor((source + 3) / 2) : Math.floor((source + 6) / 3)'
       );
-      rules.defineRule('magicNotes.feyPresenceFeature',
-        'charismaModifier', '=', '8 + source',
-        'proficiencyBonus', '+', null
-      );
       rules.defineRule('magicNotes.mysticArcanumFeature',
         'levels.Warlock', '=', 'source<13 ? "6" : source<15 ? "6,7" : source<17 ? "6,7,8" : "6,7,8,9"'
-      );
-      rules.defineRule('saveNotes.beguilingDefensesFeature',
-        'charismaModifier', '=', '8 + source',
-        'proficiencyBonus', '+', null
       );
       rules.defineRule('selectableFeatureCount.Warlock',
         'warlockFeatures.Otherworldly Patron', '=', '1',
         'warlockFeatures.Pact Boon', '+', '1',
         'magicNotes.eldritchInvocationsFeature', '+', null
       );
+      rules.defineRule('skillProficiencies.Deception',
+        'skillNotes.beguilingInfluenceFeature', '=', '1'
+      );
+      rules.defineRule('skillProficiencies.Persuasion',
+        'skillNotes.beguilingInfluenceFeature', '=', '1'
+      );
+      rules.defineNote(
+        'validationNotes.warlockBookOfAncientSecretsSelectableFeatureFeatures:Requires Pact Of The Tome',
+        'validationNotes.warlockChainsOfCarceriSelectableFeatureFeatures:Requires Pact Of The Chain',
+        'validationNotes.warlockThirstingBladeSelectableFeatureFeatures:Requires Pact Of The Blade',
+        'validationNotes.warlockVoieOfTheChainSelectableFeatureFeatures:Requires Pact Of The Chain'
+      );
 
-      rules.defineRule("warlockFeatures.Dark One's Blessing",
-        'warlockFeatures.Fiend Patron', '?', null
+      for(var feature in {
+        "Dark One's Blessing":'', "Dark One's Own Luck":'',
+        'Fiendish Resilience':'', 'Hurl Through Hell':''
+      }) {
+        rules.defineRule('warlockFeatures.' + feature,
+          'warlockFeatures.Fiend Patron', '?', null
+        );
+      }
+      rules.defineRule("combatNotes.darkOne'sBlessingFeature.1",
+        "warlockFeatures.Dark One's Blessing", '?', null,
+        'charismaModifier', '=', null,
+        'levels.Warlock', '+', null,
+        '', '^', '1'
       );
-      rules.defineRule("warlockFeatures.Dark One's Own Luck",
-        'warlockFeatures.Fiend Patron', '?', null
-      );
-      rules.defineRule('warlockFeatures.Fiendish Resilience',
-        'warlockFeatures.Fiend Patron', '?', null
-      );
-      rules.defineRule('warlockFeatures.Hurl Through Hell',
-        'warlockFeatures.Fiend Patron', '?', null
-      );
-      var notes = [ // TODO
-        'validationNotes.bookOfAncientsSelectableFeatureFeatures:' +
-          'Requires Pact Of The Tome',
-        'validationNotes.chainsOfCarceriSelectableFeatureFeatures:' +
-          'Requires Pact Of The Chain',
-        'validationNotes.thirstingBladeSelectableFeatureFeatures:' +
-          'Requires Pact Of The Blade',
-        'validationNotes.voiceOfTheChainMasterSelectableFeatureFeatures:' +
-          'Requires Pact Of The Chain'
-      ];
+
 // PHB
-      rules.defineRule('warlockFeatures.Fey Presence',
-        'warlockFeatures.Archfey Patron', '?', null
+      for(var feature in {
+        'Beguiling Defenses':'', 'Dark Delirium':'', 'Fey Presence':'',
+        'Misty Escape':''
+      }) {
+        rules.defineRule('warlockFeatures.' + feature,
+          'warlockFeatures.Archfey Patron', '?', null
+        );
+      }
+      rules.defineRule('magicNotes.darkDeliriumFeature',
+        'charismaModifier', '=', '8 + source',
+        'proficiencyBonus', '+', null
       );
-      rules.defineRule('warlockFeatures.Misty Escape',
-        'warlockFeatures.Archfey Patron', '?', null
+      rules.defineRule('magicNotes.feyPresenceFeature',
+        'charismaModifier', '=', '8 + source',
+        'proficiencyBonus', '+', null
       );
-      rules.defineRule('warlockFeatures.Beguiling Defenses',
-        'warlockFeatures.Archfey Patron', '?', null
+      rules.defineRule('saveNotes.beguilingDefensesFeature',
+        'charismaModifier', '=', '8 + source',
+        'proficiencyBonus', '+', null
       );
-      rules.defineRule('warlockFeatures.Dark Delirium',
-        'warlockFeatures.Archfey Patron', '?', null
-      );
-      rules.defineRule('warlockFeatures.Awakened Mind',
-        'warlockFeatures.Great Old One Patron', '?', null
-      );
-      rules.defineRule('warlockFeatures.Entropic World',
-        'warlockFeatures.Great Old One Patron', '?', null
-      );
-      rules.defineRule('warlockFeatures.Thought Shield',
-        'warlockFeatures.Great Old One Patron', '?', null
-      );
-      rules.defineRule('warlockFeatures.Create Thrall',
-        'warlockFeatures.Great Old One Patron', '?', null
-      );
+
+      for(var feature in {
+        'Awakened Mind':'', 'Create Thrall':'', 'Entropic Shield':'',
+        'Thought Shield':''
+      }) {
+        rules.defineRule('warlockFeatures.' + feature,
+          'warlockFeatures.Great Old One Patron', '?', null
+        );
+      }
 // ENDPHB
 
     } else if(name == 'Wizard') {
@@ -4759,6 +4742,30 @@ SRD5E.magicRules = function(rules, classes, schools) {
         'K9:Astral Projection:Foresight:Imprisonment:Power Word Kill:' +
         'True Polymorph'
       ];
+      // Fiend Patron
+      spells.push(
+        'K1:Burning Hands:Command',
+        'K2:Blindness/Deafness:Scorching Ray',
+        'K3:Fireball:Stinking Cloud',
+        'K4:Fire Shield:Wall Of Fire',
+        'K5:Flame Strike:Hallow'
+      );
+// PHB
+      spells.push(
+        // Archfey Patron
+        'K1:Faerie Fire:Sleep',
+        'K2:Calm Emotions:Phantasmal Force',
+        'K3:Blink:Plant Growth',
+        'K4:Dominate Beast:Greater Invisibility',
+        'K5:Dominate Person:Seeming',
+        // Great Old One Patron
+        'K1:Dissonant Whispers:Hideous Laughter',
+        'K2:Detect Thoughts:Phantasmal Force',
+        'K3:Clairvoyance:Sending',
+        'K4:Black Tentacles:Dominate Beast',
+        'K5:Dominate Person:Telekenisis',
+      );
+// ENDPHB
     } else if(klass == 'Wizard') {
       spells = [
         'W0:Acid Splash:Blade Ward:Chill Touch:Dancing Lights:Fire Bolt:' +

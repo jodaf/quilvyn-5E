@@ -1366,7 +1366,7 @@ SRD5E.classRules = function(rules, classes) {
 
     var features, hitDie, proficiencyCount, proficiencyChoices,
         proficienciesGiven, selectableFeatures, spellAbility, spellsKnown,
-        spellSlots;
+        spells, spellSlots;
     var name = classes[i];
 
     rules.defineRule('featCount',
@@ -1445,6 +1445,7 @@ SRD5E.classRules = function(rules, classes) {
       ];
       spellAbility = null;
       spellsKnown = null;
+      spells = null;
       spellSlots = null;
 
       rules.defineRule('abilityNotes.rageFeature',
@@ -1572,6 +1573,7 @@ SRD5E.classRules = function(rules, classes) {
         'B0:1:2/4:3/10:4',
         'B:1:4/2:5/3:6/4:7/5:8/6:9/7:10/8:11/9:12/10:14/11:15/13:16/14:18/15:19/17:20/18:22'
       ];
+      spells = null;
       spellSlots = [
         'B1:1:2/2:3/3:4',
         'B2:3:2/4:3',
@@ -1650,7 +1652,7 @@ SRD5E.classRules = function(rules, classes) {
         '1:Weapon Proficiency (Simple)::',
         '1:Ritual Casting:magic:Cast known spell as ritual',
         '1:Spellcasting::', // TODO - holy symbol is focus
-        '2:Channel Divinity:feature:Turn undead, domain effect %V/short rest',
+        '2:Channel Divinity:feature:Effect %V/short rest',
         "2:Turn Undead:combat:R30' Undead flee for 1 min (%V DC Wis neg)",
         '5:Destroy Undead:combat:Turn destroys up to CR %V',
         '10:Divine Intervention:magic:%V% chance of deity help 1/wk',
@@ -1723,54 +1725,6 @@ SRD5E.classRules = function(rules, classes) {
           'Resistance nonmagical bludgeon, pierce, slash'
       );
 // ENDPHB
-      var domainSpells = [
-        // Life Domain
-        'Bless(Life1)', 'Cure Wounds(Life1)',
-        'Lesser Restoration(Life3)', 'Spiritual Weapon(Life3)',
-        'Beacon Of Hope(Life5)', 'Revivify(Life3)',
-        'Death Ward(Life7)', 'Guardian Of Faith(Life7)',
-        'Mass Cure Wounds(Life9)', 'Raise Dead(Life9)'
-      ];
-// PHB
-      domainSpells.push(
-        // Knowledge Domain
-        'Command(Knowledge1)', 'Identify(Knowledge1)',
-        'Augury(Knowledge3)', 'Suggestion(Knowledge3)',
-        'Nondetection(Knowledge5)', 'Speak With Dead(Knowledge3)',
-        'Arcane Eye(Knowledge7)', 'Confusion(Knowledge7)',
-        'Legend Lore(Knowledge9)', 'Scrying(Knowledge9)',
-        // Light Domain
-        'Burning Hands(Light1)', 'Faerie Fire(Light1)',
-        'Flaming Sphere(Light3)', 'Scorching Ray(Light3)',
-        'Daylight(Light5)', 'Fireball(Light3)',
-        'Guardian Of Faith(Light7)', 'Wall Of Fire(Light7)',
-        'Flame Strike(Light9)', 'Scrying(Light9)',
-        // Nature Domain
-        'Animal Friendship(Nature1)', 'Speak With Animals(Nature1)',
-        'Barkskin(Nature3)', 'Spike Growth(Nature3)',
-        'Plant Growth(Nature5)', 'Wind Wall(Nature3)',
-        'Dominate Beast(Nature7)', 'Grasping Vine(Nature7)',
-        'Insect Plague(Nature9)', 'Tree Stride(Nature9)',
-        // Tempest Domain
-        'Fog Cloud(Tempest1)', 'Thunderwave(Tempest1)',
-        'Gust Of Wind(Tempest3)', 'Shatter(Tempest3)',
-        'Call Lightning(Tempest5)', 'Sleet Storm(Tempest3)',
-        'Control Water(Tempest7)', 'Ice Storm(Tempest7)',
-        'Destructive Wave(Tempest9)', 'Insect Plague(Tempest9)',
-        // Trickery Domain
-        'Charm Person(Trickery1)', 'Disguise Self(Trickery1)',
-        'Mirror Image(Trickery3)', 'Pass Without Trace(Trickery3)',
-        'Blink(Trickery5)', 'Dispel Magic(Trickery3)',
-        'Dimension Door(Trickery7)', 'Polymorph(Trickery7)',
-        'Dominate Person(Trickery9)', 'Modify Memory(Trickery9)',
-        // War Domain
-        'Divine Favor(War1)', 'Shield Of Faith(War1)',
-        'Magic Weapon(War3)', 'Spiritual Weapon(War3)',
-        "Crusader's Mantle(War5)", 'Spirit Guardians(War3)',
-        'Freedom Of Movement(War7)', 'Stoneskin(War7)',
-        'Flame Strike(War9)', 'Hold Monster(War9)'
-      );
-// ENDPHB
       hitDie = 8;
       proficiencyCount = {'Save':2, 'Skill':2, 'Armor':3, 'Weapon':1};
       proficienciesGiven = {
@@ -1797,6 +1751,61 @@ SRD5E.classRules = function(rules, classes) {
         'C0:1:3/4:4/10:5',
         'C:1:"all"', 'Dom:1:"all"'
       ];
+      spells = {
+        'clericFeatures.Life Domain':[
+          '1:Bless:Cure Wounds',
+          '3:Lesser Restoration:Spiritual Weapon',
+          '5:Beacon Of Hope:Revivify',
+          '7:Death Ward:Guardian Of Faith',
+          '9:Mass Cure Wounds:Raise Dead'
+        ]
+      };
+// PHB
+      Object.assign(spells, {
+        'clericFeatures.Knowledge Domain':[
+          '1:Command:Identify',
+          '3:Augury:Suggestion',
+          '5:Nondetection:Speak With Dead',
+          '7:Arcane Eye:Confusion',
+          '9:Legend Lore:Scrying'
+        ],
+        'clericFeatures.Light Domain':[
+          '1:Burning Hands:Faerie Fire',
+          '3:Flaming Sphere:Scorching Ray',
+          '5:Daylight:Fireball',
+          '7:Guardian Of Faith:Wall Of Fire',
+          '9:Flame Strike:Scrying'
+        ],
+        'clericFeatures.Nature Domain':[
+          '1:Animal Friendship:Speak With Animals',
+          '3:Barkskin:Spike Growth',
+          '5:Plant Growth:Wind Wall',
+          '7:Dominate Beast:Grasping Vine',
+          '9:Insect Plague:Tree Stride'
+        ],
+        'clericFeatures.Tempest Domain':[
+          '1:Fog Cloud:Thunderwave',
+          '3:Gust Of Wind:Shatter',
+          '5:Call Lightning:Sleet Storm',
+          '7:Control Water:Ice Storm',
+          '9:Destructive Wave:Insect Plague'
+        ],
+        'clericFeatures.Trickery Domain':[
+          '1:Charm Person:Disguise Self',
+          '3:Mirror Image:Pass Without Trace',
+          '5:Blink:Dispel Magic',
+          '7:Dimension Door:Polymorph',
+          '9:Dominate Person:Modify Memory'
+        ],
+        'clericFeatures.War Domain':[
+          '1:Divine Favor:Shield Of Faith',
+          '3:Magic Weapon:Spiritual Weapon',
+          "5:Crusader's Mantle:Spirit Guardians",
+          '7:Freedom Of Movement:Stoneskin',
+          '9:Flame Strike:Hold Monster'
+        ]
+      });
+// ENDPHB
       spellSlots = [
         'C1:1:2/2:3/3:4',
         'C2:3:2/4:3',
@@ -1806,23 +1815,8 @@ SRD5E.classRules = function(rules, classes) {
         'C6:11:1/19:2',
         'C7:13:1/20:2',
         'C8:15:1',
-        'C9:17:1',
-        'Dom1:1:2',
-        'Dom3:3:2',
-        'Dom5:5:2',
-        'Dom7:7:2',
-        'Dom9:9:2',
+        'C9:17:1'
       ];
-      for(var j = 0; j < domainSpells.length; j++) {
-        var spellName = domainSpells[j].split('(')[0];
-        if(SRD5E.SPELLS[spellName]) {
-          domainSpells[j] =
-            domainSpells[j].replace(')', ' ' + SRD5E.SPELLS[spellName] + ')');
-        } else {
-          console.log('No school for spell "' + spellName + '"');
-        }
-      }
-      rules.defineChoice('spells', domainSpells);
 
       rules.defineRule('armorProficiencies.Heavy',
         'clericFeatures.Armor Proficiency (Heavy)', '=', '1'
@@ -2033,43 +2027,6 @@ SRD5E.classRules = function(rules, classes) {
         '14:Thousand Forms:magic:<i>Alter Self<i> at will',
       );
 // ENDPHB
-      var circleSpells = [
-        // Arctic
-        'Hold Person(Arctic1)', 'Spike Growth(Arctic1)',
-        'Sleet Storm(Arctic3)', 'Slow(Arctic3)',
-        'Freedom Of Movement(Arctic5)', 'Ice Storm(Arctic5)',
-        'Commune With Nature(Arctic5)', 'Cone Of Cold(Arctic5)',
-        // Coast
-        'Mirror Image(Coast1)', 'Misty Step(Coast1)',
-        'Water Breathing(Coast3)', 'Water Walk(Coast3)',
-        'Control Water(Coast5)', 'Freedom Of Movement(Coast5)',
-        'Conjure Elemental(Coast5)', 'Scrying(Coast5)',
-        // Desert
-        'Blur(Desert1)', 'Silence(Desert1)',
-        'Create Food And Water(Desert3)', 'Protection From Energy(Desert3)',
-        'Blight(Desert5)', 'Hallucinatory Terrain(Desert5)',
-        'Insect Plague(Desert5)', 'Wall Of Stone(Desert5)',
-        // Forest
-        'Barkskin(Forest1)', 'Spider Climb(Forest1)',
-        'Call Lightning(Forest3)', 'Plant Growth(Forest3)',
-        'Divination(Forest5)', 'Freedom Of Movement(Forest5)',
-        'Commune With Nature(Forest5)', 'Tree Stride(Forest5)',
-        // Grassland
-        'Invisibility(Grassland1)', 'Pass Without Trace(Grassland1)',
-        'Daylight(Grassland3)', 'Haste(Grassland3)',
-        'Divination(Grassland5)', 'Freedom Of Movement(Grassland5)',
-        'Dream(Grassland5)', 'Insect Plague(Grassland5)',
-        // Mountain
-        'Spider Climb(Mountain1)', 'Plant Growth(Mountain1)',
-        'Lightning Bolt(Mountain3)', 'Meld Into Stone(Mountain3)',
-        'Stone Shape(Mountain5)', 'Stoneskin(Mountain5)',
-        'Passwall(Mountain5)', 'Wall Of Stone(Mountain5)',
-        // Swamp
-        'Acid Arrow(Swamp1)', 'Darkness(Swamp1)',
-        'Water Walk(Swamp3)', 'Stinking Cloud(Swamp3)',
-        'Freedom Of Movement(Swamp5)', 'Locate Creature(Swamp5)',
-        'Insect Plague(Swamp5)', 'Scrying(Swamp5)'
-      ];
       hitDie = 8;
       proficiencyCount =
        {'Armor':3, 'Save':2, 'Skill':2, 'Tool':1, 'Weapon':10};
@@ -2098,16 +2055,63 @@ SRD5E.classRules = function(rules, classes) {
         '2:Circle Of The Land (Underdark)::',
         '2:Circle Of The Moon::'
       );
-      circleSpells.push(
-        // Underdark
-        'Spider Climb(Underdark1)', 'Web(Underdark1)',
-        'Gaseous Form(Underdark3)', 'Stinking Cloud(Underdark3)',
-        'Greater Invisibility(Underdark5)', 'Stone Shape(Underdark5)',
-        'Cloudkill(Underdark5)', 'Insect Plague(Underdark5)'
-      );
       selectableFeatures.push('2:Underdark Land::');
 // ENDPHB
       spellAbility = 'wisdom';
+      spells = {
+        'druidFeatures.Circle Of The Land (Arctic)':[
+          '3:Hold Person:Spike Growth',
+          '5:Sleet Storm:Slow',
+          '7:Freedom Of Movement:Ice Storm',
+          '9:Commune With Nature:Cone Of Cold'
+        ],
+        'druidFeatures.Circle Of The Land (Coast)':[
+          '3:Mirror Image:Misty Step',
+          '5:Water Breathing:Water Walk',
+          '7:Control Water:Freedom Of Movement',
+          '9:Conjure Elemental:Scrying'
+        ],
+        'druidFeatures.Circle Of The Land (Desert)':[
+          '3:Blur:Silence',
+          '5:Create Food And Water:Protection From Energy',
+          '7:Blight:Hallucinatory Terrain',
+          '9:Insect Plague:Wall Of Stone'
+        ],
+        'druidFeatures.Circle Of The Land (Forest)':[
+          '3:Barkskin:Spider Climb',
+          '5:Call Lightning:Plant Growth',
+          '7:Divination:Freedom Of Movement',
+          '9:Commune With Nature:Tree Stride'
+        ],
+        'druidFeatures.Circle Of The Land (Grassland)':[
+          '3:Invisibility:Pass Without Trace',
+          '5:Daylight:Haste',
+          '7:Divination:Freedom Of Movement',
+          '9:Dream:Insect Plague'
+        ],
+        'druidFeatures.Circle Of The Land (Mountain)':[
+          '3:Spider Climb:Plant Growth',
+          '5:Lightning Bolt:Meld Into Stone',
+          '7:Stone Shape:Stoneskin',
+          '9:Passwall:Wall Of Stone'
+        ],
+        'druidFeatures.Circle Of The Land (Swamp)':[
+          '3:Acid Arrow:Darkness',
+          '5:Water Walk:Stinking Cloud',
+          '7:Freedom Of Movement:Locate Creature',
+          '9:Insect Plague:Scrying'
+        ]
+      };
+// PHB
+      Object.assign(spells, {
+        'druidFeatures.Circle Of The Land (Underdark)':[
+          '3:Spider Climb:Web',
+          '5:Gaseous Form:Stinking Cloud',
+          '7:Greater Invisibility:Stone Shape',
+          '9:Cloudkill:Insect Plague'
+        ]
+      });
+// ENDPHB
       spellsKnown = [
         'D0:1:2/4:3/10:4',
         'D:1:"all"'
@@ -2123,16 +2127,6 @@ SRD5E.classRules = function(rules, classes) {
         'D8:15:1',
         'D9:17:1'
       ];
-      for(var j = 0; j < circleSpells.length; j++) {
-        var spellName = circleSpells[j].split('(')[0];
-        if(SRD5E.SPELLS[spellName]) {
-          circleSpells[j] =
-            circleSpells[j].replace(')', ' ' + SRD5E.SPELLS[spellName] + ')');
-        } else {
-          console.log('No school for spell "' + spellName + '"');
-        }
-      }
-      rules.defineChoice('spells', circleSpells);
 
       rules.defineRule('casterLevels.D',
         'levels.Druid', '=', null,
@@ -2243,7 +2237,7 @@ SRD5E.classRules = function(rules, classes) {
         '1:Great Weapon Fighting Style:combat:' +
           'Reroll damage of 1 or 2 with two-handed weapons',
         '1:Protection Style:combat:' +
-          "Use shield to impose attack Disadv on foe w/in 5'",
+          'Use shield to impose attack Disadv on adjacent foe',
         '1:Two-Weapon Fighting Style:combat:' +
           'Add ability modifier to second attack damage',
         '3:Champion Archetype::'
@@ -2280,6 +2274,7 @@ SRD5E.classRules = function(rules, classes) {
 // ENDPHB
       spellAbility = null;
       spellsKnown = null;
+      spells = null;
       spellSlots = null;
 // PHB
       spellAbility = 'intelligence';
@@ -2530,6 +2525,7 @@ SRD5E.classRules = function(rules, classes) {
 // ENDPHB
       spellAbility = null;
       spellsKnown = null;
+      spells = null;
       spellSlots = null;
 
       rules.defineRule('abilityNotes.improvedUnarmoredMovementFeature',
@@ -2675,22 +2671,22 @@ SRD5E.classRules = function(rules, classes) {
         '1:Weapon Proficiency (Simple/Martial)::',
         '1:Divine Sense:magic:' +
           "R60' Know location of celestials, fiends, undead %V/long rest",
-        '1:Lay On Hands:magic:Heal %V HP/long rest',
-        '2:Fighting Style',
-        '2:Divine Smite:combat:Expend spell for +2d8-5d8 damage',
+        '1:Lay On Hands:magic:Heal %V HP, disease, poison 1/long rest',
+        '2:Divine Smite:combat:Expend spell for +2d8 up to +5d8 damage',
+        '2:Spellcasting::', // TODO - holy symbol is focus
+        '3:Channel Divinity:feature:Effect %V/short rest',
         '3:Divine Health:save:Immune disease',
-        '3:Sacred Oath::',
         '5:Extra Attack:combat:%V additional attack(s) per Attack action',
-        "6:Aura Of Protection:save:R10' +%V saves self and friendlies",
-        "10:Aura Of Courage:save:R%V' Self and friendlies immune fright",
+        "6:Aura Of Protection:save:R%V' +%1 saves self and allies",
+        "10:Aura Of Courage:save:R%V' Self and allies immune fright",
         '11:Improved Divine Smite:combat:+1d8 melee damage',
-        '14:Cleansing Touch:magic:Touch dispells %V/long rest',
+        '14:Cleansing Touch:magic:Touch dispels %V/long rest',
         // Oath Of Devotion
         '3:Sacred Weapon:combat:' +
-          'Weapon +%V attack/damage, lit for 1 min 1/short rest',
+          "Channel Divinity for weapon +%V attack, 20' light for 1 min",
         '3:Turn The Unholy:magic:' +
-          "R30' Fiends, undead flee for 1 min (DC %V Wis neg)",
-        "7:Aura Of Devotion:save:R%V' Self and friendlies immune charm",
+          "R30' Channel Divinity for fiends, undead flee for 1 min (DC %V Wis neg)",
+        "7:Aura Of Devotion:save:R%V' Self and allies immune charm",
         '15:Purity Of Spirit:magic:' +
           'Self continuous <i>Protection From Evil And Good</i>',
         '20:Holy Nimbus:magic:' +
@@ -2700,20 +2696,23 @@ SRD5E.classRules = function(rules, classes) {
 // PHB
       features.push(
         // Oath Of The Ancients
-        "3:Nature's Wrath:magic:Vines ensnare foe (DC %V Dex or Str neg)",
+        "3:Nature's Wrath:magic:" +
+         "R10' Channel energy for vines ensnare foe (DC %V Dex or Str neg)",
         '3:Turn The Faithless:magic:' +
-          "R30' Fiends, fey flee for 1 min (DC %V Wis neg)",
-        "7:Aura Of Warding:save:R30' Self, allies resist spell damage",
+          "R30' Channel energy for fiends, fey flee for 1 min (DC %V Wis neg)",
+        "7:Aura Of Warding:save:R%V' Self, allies resist spell damage",
         '15:Undying Sentinel:combat:Keep 1 HP when brought to 0 HP 1/long rest',
         '20:Elder Champion:magic:' +
           "Transform, regain 10 HP/turn, cast as bonus action, foes w/in 10' save Disadv 1/long rest",
         // Oath Of Vengeance
-        "3:Abjure Enemy:magic:R60' Target flees 1 min (DC %V Wis neg)",
-        "3:Vow Of Enmity:combat:R10' Adv attacks against target for 1 min",
+        '3:Abjure Enemy:magic:' +
+          "R60' Channel Divinity for target halted 1 min (DC %V Wis half)",
+        '3:Vow Of Enmity:combat:' +
+          "R10' Channel Divinity for Adv attacks against target for 1 min",
         '7:Relentless Avenger:combat:Move half speed after OA hit',
         '15:Soul Of Vengeance:combat:Attack Vow Of Enmity target as reaction',
         '20:Avenging Angel:magic:' +
-          "Fly 60', frighten foes in 30' (DC %V Wis neg) 1/long rest"
+          "Fly 60', 30' foes fright (DC %V Wis neg) 1 hr/long rest"
       );
 // ENDPHB
       hitDie = 10;
@@ -2729,11 +2728,11 @@ SRD5E.classRules = function(rules, classes) {
       };
       selectableFeatures = [
         '2:Defense Style:combat:+1 AC in armor',
-        '2:Dueling Style:combat:+2 HP with single, one-hand weapon',
+        '2:Dueling Style:combat:+2 damage with single, one-hand weapon',
         '2:Great Weapon Fighting Style:combat:' +
           'Reroll damage of 1 or 2 with two-handed weapons',
         '2:Protection Style:combat:' +
-          "Use shield to impose attack Disadv on foe w/in 5'"
+          'Use shield to impose attack Disadv on adjacent foe'
       ];
       selectableFeatures.push('3:Oath Of Devotion::');
 // PHB
@@ -2746,6 +2745,33 @@ SRD5E.classRules = function(rules, classes) {
       spellsKnown = [
         'P1:2:"all"', 'P2:5:"all"', 'P3:9:"all"', 'P4:13:"all"', 'P5:17:"all"'
       ];
+      spells = {
+        'paladinFeatures.Oath Of Devotion':[
+          '3:Protection From Evil And Good:Sanctuary',
+          '5:Lesser Restoration:Zone Of Truth',
+          '9:Beacon Of Hope:Dispel Magic',
+          '13:Freedom Of Movement:Guardian Of Faith',
+          '17:Commune:Flame Strike'
+        ]
+      };
+// PHB
+      Object.assign(spells, {
+        'paladinFeatures.Oath Of The Ancients':[
+          '3:Ensnaring Strike:Speak With Animals',
+          '5:Moonbeam:Misty Step',
+          '9:Plant Growth:Protection From Energy',
+          '13:Ice Storm:Stoneskin',
+          '17:Commune With Nature:Tree Stride',
+        ],
+        'paladinFeatures.Oath Of Vengeance':[
+          "3:Bane:Hunter's Mark",
+          '5:Hold Person:Misty Step',
+          '9:Haste:Protection From Energy',
+          '13:Banishment:Dimension Door',
+          '17:Hold Monster:Scrying'
+        ]
+      });
+// ENDPHB
       spellSlots = [
         'P1:2:2/3:3/5:4',
         'P2:5:2/7:3',
@@ -2754,69 +2780,25 @@ SRD5E.classRules = function(rules, classes) {
         'P5:17:1/19:2'
       ];
 
-      // TODO Oath spells
-
-      rules.defineRule('paladinFeatures.Aura Of Devotion',
-        'paladinFeatures.Oath Of Devotion', '?', null
-      );
-      rules.defineRule('paladinFeatures.Holy Nimbus',
-        'paladinFeatures.Oath Of Devotion', '?', null
-      );
-      rules.defineRule('paladinFeatures.Purity Of Spirit',
-        'paladinFeatures.Oath Of Devotion', '?', null
-      );
-      rules.defineRule('paladinFeatures.Turn The Unholy',
-        'paladinFeatures.Oath Of Devotion', '?', null
-      );
-      rules.defineRule('paladinFeatures.Sacred Weapon',
-        'paladinFeatures.Oath Of Devotion', '?', null
-      );
-// PHB
-      rules.defineRule("paladinFeatures.Nature's Wrath",
-        'paladinFeatures.Oath Of The Ancients', '?', null
-      );
-      rules.defineRule('paladinFeatures.Turn The Faithless',
-        'paladinFeatures.Oath Of The Ancients', '?', null
-      );
-      rules.defineRule('paladinFeatures.Aura Of Warding',
-        'paladinFeatures.Oath Of The Ancients', '?', null
-      );
-      rules.defineRule('paladinFeatures.Undying Sentinel',
-        'paladinFeatures.Oath Of The Ancients', '?', null
-      );
-      rules.defineRule('paladinFeatures.Elder Champion',
-        'paladinFeatures.Oath Of The Ancients', '?', null
-      );
-      rules.defineRule('paladinFeatures.Abjure Enemy',
-        'paladinFeatures.Oath Of Vengeance', '?', null
-      );
-      rules.defineRule('paladinFeatures.Vow Of Enmity',
-        'paladinFeatures.Oath Of Vengeance', '?', null
-      );
-      rules.defineRule('paladinFeatures.Relentless Avenger',
-        'paladinFeatures.Oath Of Vengeance', '?', null
-      );
-      rules.defineRule('paladinFeatures.Soul Of Vengeance',
-        'paladinFeatures.Oath Of Vengeance', '?', null
-      );
-      rules.defineRule('paladinFeatures.Avenging Angel',
-        'paladinFeatures.Oath Of Vengeance', '?', null
-      );
-// ENDPHB
-
+      rules.defineRule
+        ('armorClass', 'combatNotes.defenseStyleFeature.1', '+', null);
       rules.defineRule
         ('attacksPerRound', 'combatNotes.extraAttackFeature', '+', null);
       rules.defineRule('casterLevels.P',
-        'levels.Paladin', '=', null,
+        'levels.Paladin', '=', 'source < 2 ? null : source',
          'magicNotes.casterLevelBonusFeature', '+', null
       );
       rules.defineRule('casterLevelDivine', 'casterLevels.P', '+=', null);
+      // Show Defense Style note even if armor == None
+      rules.defineRule('combatNotes.defenseStyleFeature.1',
+        'combatNotes.defenseStyleFeature', '?', null,
+        'armor', '=', 'source == "None" ? null : 1'
+      );
       rules.defineRule('combatNotes.extraAttackFeature',
         'levels.Paladin', '+=', 'source < 5 ? null : 1'
       );
-      rules.defineRule('combatNotes.sacredWeaponFeature',
-        'charismaModifier', '=', 'Math.max(source, 1)'
-      );
+      rules.defineRule
+        ('featureNotes.channelDivinityFeature', 'levels.Paladin', '=', '1');
       rules.defineRule('magicNotes.cleansingTouchFeature',
         'charismaModifier', '=', 'Math.max(source, 1)'
       );
@@ -2824,8 +2806,6 @@ SRD5E.classRules = function(rules, classes) {
         ('magicNotes.divineSenseFeature', 'charismaModifier', '=', 'source+1');
       rules.defineRule
         ('magicNotes.layOnHandsFeature', 'levels.Paladin', '=', 'source*5');
-      rules.defineRule
-        ('magicNotes.turnTheUnholyFeature', 'oathSaveDC', '=', null);
       rules.defineRule('oathSaveDC',
         'proficiencyBonus', '=', '8 + source',
         'charismaModifier', '+', null
@@ -2837,22 +2817,58 @@ SRD5E.classRules = function(rules, classes) {
         'levels.Paladin', '=', 'source < 18 ? 10 : 30'
       );
       rules.defineRule('saveNotes.auraOfProtectionFeature',
+        'levels.Paladin', '=', 'source < 18 ? 10 : 30'
+      );
+      rules.defineRule('saveNotes.auraOfProtectionFeature.1',
         'charismaModifier', '=', 'Math.max(source, 1)'
       );
       rules.defineRule('selectableFeatureCount.Paladin',
-        'paladinFeatures.Fighting Style', '=', '1',
-        'paladinFeatures.Sacred Oath', '+', '1'
+        'levels.Paladin', '=', 'source < 2 ? null : source < 3 ? 1 : 2'
       );
 
+      for(var feature in {
+        'Aura Of Devotion':'', 'Holy Nimbus':'', 'Purity Of Spirit':'',
+        'Sacred Weapon':'', 'Turn The Unholy':''
+      }) {
+        rules.defineRule('paladinFeatures.' + feature,
+          'paladinFeatures.Oath Of Devition', '?', null
+        );
+      }
+      rules.defineRule('combatNotes.sacredWeaponFeature',
+        'charismaModifier', '=', 'Math.max(source, 1)'
+      );
+      rules.defineRule
+        ('magicNotes.turnTheUnholyFeature', 'oathSaveDC', '=', null);
+
 // PHB
-      rules.defineRule
-        ('magicNotes.abjureEnemyFeature', 'oathSaveDC', '=', null);
-      rules.defineRule
-        ('magicNotes.avengingAngelFeature', 'oathSaveDC', '=', null);
+      for(var feature in {
+        'Aura Of Warding':'', 'Elder Champion':'', "Nature's Wrath":'',
+        'Turn The Faithless':'', 'Undying Sentinel':''
+      }) {
+        rules.defineRule('paladinFeatures.' + feature,
+          'paladinFeatures.Oath Of The Ancients', '?', null
+        );
+      }
       rules.defineRule
         ("magicNotes.nature'sWrathFeature", 'oathSaveDC', '=', null);
       rules.defineRule
         ('magicNotes.turnTheFaithlessFeature', 'oathSaveDC', '=', null);
+      rules.defineRule('saveNotes.auraOfWardingFeature',
+        'levels.Paladin', '=', 'source < 18 ? 10 : 30'
+      );
+
+      for(var feature in {
+        'Abjure Enemy':'', 'Avenging Angel':'', 'Relentless Avenger':'',
+        'Soul Of Vengeance':'', 'Vow Of Enmity':''
+      }) {
+        rules.defineRule('paladinFeatures.' + feature,
+          'paladinFeatures.Oath Of Vengeance', '?', null
+        );
+      }
+      rules.defineRule
+        ('magicNotes.abjureEnemyFeature', 'oathSaveDC', '=', null);
+      rules.defineRule
+        ('magicNotes.avengingAngelFeature', 'oathSaveDC', '=', null);
 // ENDPHB
 
     } else if(name == 'Ranger') {
@@ -2860,18 +2876,17 @@ SRD5E.classRules = function(rules, classes) {
       features = [
         '1:Armor Proficiency (Light/Medium/Shield)::',
         '1:Weapon Proficiency (Simple/Martial)::',
-        '1:Favored Enemy:skill:Adv Survival to track, Knowledge about %V creature types, learn enemy language',
+        '1:Favored Enemy:skill:' +
+          'Adv Survival to track, Knowledge about %V creature types, learn enemy language',
         '1:Natural Explorer:skill:Dbl Int/Wis Prof, normal move in difficult terrain, always alert, full speed solo stealth, locate dbl food, extra track info for %V terrains',
-        '2:Fighting Style::',
-        '2:Spellcasting::',
-        '3:Ranger Archetype::',
+        '2:Spellcasting::', // TODO Focus?
         '3:Primeval Awareness:magic:' +
-          'Expend spell to sense creatures w/in 1 mi (6 mi favored terrain)',
+          'Expend spell to sense creatures in 1 mi (favored terrain 6 mi)',
         '5:Extra Attack:combat:%V additional attack(s) per Attack action',
         "8:Land's Stride:ability:Move normally through difficult terrain",
         "8:Land's Stride:save:Adv vs. impeding plants",
         '10:Hide In Plain Sight:skill:' +
-          '+10 Stealth to hide w/prepared camouflage',
+          '+10 Dex (Stealth) to hide w/prepared camouflage',
         '14:Vanish:skill:Hide as bonus action, untrackable',
         '18:Feral Senses:combat:' +
           "No Disadv vs. invisible foe, 30' awareness of invisible creatures",
@@ -2883,12 +2898,12 @@ SRD5E.classRules = function(rules, classes) {
         "3:Ranger's Companion:companion:Companion beast obeys commands",
         '7:Exceptional Training:companion:' +
           'Companion can Dash, Disengage, Dodge, Help instead of attack',
-        '11:Bestial Fury:companion:Companion get 2 attacks',
-        "15:Share Spells:companion:Self spell affects companion w/in 30'"
+        '11:Bestial Fury:companion:Companion 2 attacks/rd',
+        "15:Share Spells:companion:R30' Self spell affects companion"
       );
 // ENDPBH
       hitDie = 10;
-      proficiencyCount = {'Save':2, 'Skill':3, 'Armor':3, 'Weapon':2};
+      proficiencyCount = {'Armor':3, 'Save':2, 'Skill':3, 'Weapon':2};
       proficienciesGiven = {
         'Save':['Dexterity', 'Strength'],
         'Armor':['Light', 'Medium', 'Shield'],
@@ -2901,24 +2916,24 @@ SRD5E.classRules = function(rules, classes) {
       selectableFeatures = [
         '2:Archery Style:combat:+2 ranged attack',
         '2:Defense Style:combat:+1 AC in armor',
-        '2:Dueling Style:combat:+2 HP with single, one-hand weapon',
+        '2:Dueling Style:combat:+2 damage with single, one-hand weapon',
         '2:Two-Weapon Fighting Style:combat:' +
           'Add ability modifier to second attack damage'
       ];
-      selectableFeatures.push('3:Hunter::');
+      selectableFeatures.push('3:Hunter Archetype::');
 // PHB
-      selectableFeatures.push('3:Beast Master::');
+      selectableFeatures.push('3:Beast Master Archetype::');
 // ENDPHB
       selectableFeatures.push(
-        '3:Colossus Slayer:combat:+1d8 HP vs. undamaged foe 1/turn',
-        '3:Giant Killer:combatReact to attack nearby large foe after miss',
-        '3:Horde Breaker:combat:Second attack on different nearby foe',
+        '3:Colossus Slayer:combat:+1d8 HP vs. damaged foe 1/turn',
+        '3:Giant Killer:combat:React to attack adjacent lg foe after miss',
+        '3:Horde Breaker:combat:Second attack on different adjacent foe',
         '7:Escape The Horde:combat:Foe Disadv on OA',
-        '7:Multiattack Defense:combat:+4 AC after foe first attack',
+        '7:Multiattack Defense:combat:+4 AC after foe hit',
         '7:Steel Will:save:Adv vs. fright',
-        "11:Volley:combat:Ranged attack any number of foes in 10' area",
-        '11:Whirlwind Attack:combat:Melee attack any number of foes in reach',
-        '15:Evasion:save:Dex save yields no damage instead of 1/2',
+        "11:Volley:combat:Ranged attack any number of foes in 10' radius",
+        '11:Whirlwind Attack:combat:Melee attack any number of adjacent foes',
+        '15:Evasion:save:Dex save yields no damage instead of half',
         '15:Stand Against The Tide:combat:Foe miss attacks another creature',
         '15:Uncanny Dodge:combat:Use reaction for half damage',
       );
@@ -2926,6 +2941,7 @@ SRD5E.classRules = function(rules, classes) {
       spellsKnown = [
         'R1:2:"all"', 'R2:5:"all"', 'R3:9:"all"', 'R4:13:"all"', 'R5:17:"all"'
       ];
+      spells = null;
       spellSlots = [
         'R1:2:2/3:3/5:4',
         'R2:5:2/7:3',
@@ -2934,57 +2950,8 @@ SRD5E.classRules = function(rules, classes) {
         'R5:17:1/19:2'
       ];
 
-      rules.defineRule('rangerFeatures.Colossus Slayer',
-        'rangerFeatures.Hunter', '?', null
-      );
-      rules.defineRule('rangerFeatures.Giant Killer',
-        'rangerFeatures.Hunter', '?', null
-      );
-      rules.defineRule('rangerFeatures.Horde Breaker',
-        'rangerFeatures.Hunter', '?', null
-      );
-      rules.defineRule('rangerFeatures.Escape The Horde',
-        'rangerFeatures.Hunter', '?', null
-      );
-      rules.defineRule('rangerFeatures.Multiattack Defense',
-        'rangerFeatures.Hunter', '?', null
-      );
-      rules.defineRule('rangerFeatures.Steel Will',
-        'rangerFeatures.Hunter', '?', null
-      );
-      rules.defineRule('rangerFeatures.Volley',
-        'rangerFeatures.Hunter', '?', null
-      );
-      rules.defineRule('rangerFeatures.Whirlwind Attack',
-        'rangerFeatures.Hunter', '?', null
-      );
-      rules.defineRule('rangerFeatures.Evasion',
-        'rangerFeatures.Hunter', '?', null
-      );
-      rules.defineRule('rangerFeatures.Stand Against The Tide',
-        'rangerFeatures.Hunter', '?', null
-      );
-      rules.defineRule('rangerFeatures.Uncanny Dodge',
-        'rangerFeatures.Hunter', '?', null
-      );
-// PHB
-      rules.defineRule("rangerFeatures.Ranger's Companion",
-        'rangerFeatures.Beast Master', '?', null
-      );
-      rules.defineRule('rangerFeatures.Exceptional Training',
-        'rangerFeatures.Beast Master', '?', null
-      );
-      rules.defineRule('rangerFeatures.Bestial Fury',
-        'rangerFeatures.Beast Master', '?', null
-      );
-      rules.defineRule('rangerFeatures.Share Spells',
-        'rangerFeatures.Beast Master', '?', null
-      );
-// ENDPHB
-
-      rules.defineRule('armorClass',
-        'combatNotes.defenseStyleFeature.1', '+', null
-      );
+      rules.defineRule
+        ('armorClass', 'combatNotes.defenseStyleFeature.1', '+', null);
       rules.defineRule
         ('attacksPerRound', 'combatNotes.extraAttackFeature', '+', null);
       rules.defineRule('casterLevels.R',
@@ -3019,6 +2986,40 @@ SRD5E.classRules = function(rules, classes) {
         'levels.Ranger', '=', 'source < 6 ? 1 : source < 10 ? 2 : 3'
       );
 
+      for(var feature in {
+        'Colossus Slayer':'', 'Escape The Horde':'', 'Evasion':'',
+        'Giant Killer':'', 'Horde Breaker':'', 'Multiattack Defense':'',
+        'Stand Against The Tide':'', 'Steel Will':'', 'Uncanny Dodge':'',
+        'Volley':'', 'Whirlwind Attack':''
+      }) {
+        rules.defineRule('rangerFeatures.' + feature,
+          'rangerFeatures.Hunter Archetype', '?', null
+        );
+      }
+
+// PHB
+      for(var feature in {
+        'Bestial Fury':'', "Ranger's Companion":'', 'Exceptional Training':'',
+        'Share Spells':''
+      }) {
+        rules.defineRule('rangerFeatures.' + feature,
+          'rangerFeatures.Beast Master Archetype', '?', null
+        );
+      }
+      rules.defineRule('rangerFeatures.Bestial Fury',
+        'rangerFeatures.Beast Master', '?', null
+      );
+      rules.defineRule("rangerFeatures.Ranger's Companion",
+        'rangerFeatures.Beast Master', '?', null
+      );
+      rules.defineRule('rangerFeatures.Exceptional Training',
+        'rangerFeatures.Beast Master', '?', null
+      );
+      rules.defineRule('rangerFeatures.Share Spells',
+        'rangerFeatures.Beast Master', '?', null
+      );
+// ENDPHB
+
     } else if(name == 'Rogue') {
 
       features = [
@@ -3028,19 +3029,18 @@ SRD5E.classRules = function(rules, classes) {
         '1:Expertise:skill:Dbl %V skill/tool Prof',
         '1:Sneak Attack:combat:+%Vd6 damage on Adv/flanked attacks',
         "1:Thieves' Cant:skill:Signs and symbols known only by rogues",
-        '2:Cunning Action:combat:Bonus Dash/Disengage/Hide each turn',
-        '3:Roguish Archetype::',
+        '2:Cunning Action:combat:Bonus Dash, Disengage, or Hide each turn',
         '5:Uncanny Dodge:combat:Use reaction for half damage',
-        '7:Evasion:save:Dex save yields no damage instead of 1/2',
-        '11:Reliable Talent:skill:Min 10 roll on proficient skills',
-        "14:Blindsense:skill:Hear hidden/invisible creatures w/in 10'",
+        '7:Evasion:save:Dex save yields no damage instead of half',
+        '11:Reliable Talent:skill:Min 10 roll on Prof skills',
+        "14:Blindsense:skill:R10' Hear hidden/invisible creatures",
         '15:Slippery Mind:save:Prof Wis',
-        '18:Elusive:combat:Attacks against self never have Adv',
-        '20:Stroke Of Luck:ability:Automatic 20 ability check 1/long rest',
-        '20:Stroke Of Luck:combat:Turn miss into hit 1/long rest',
+        '18:Elusive:combat:Foe attacks never have Adv',
+        '20:Stroke Of Luck:ability:Automatic 20 ability check 1/short rest',
+        '20:Stroke Of Luck:combat:Turn miss into hit 1/short rest',
         // Thief Archetype
         '3:Fast Hands:skill:' +
-          'Sleight Of Hand, disarm trap, open lock, Use Object as bonus action',
+          'Sleight Of Hand, disarm trap, open lock, Use An Object as bonus action',
         '3:Second-Story Work:ability:Normal movement when climbing',
         "3:Second-Story Work:skill:+%V' Jump",
         '9:Supreme Sneak:skill:Adv Stealth at half speed',
@@ -3050,13 +3050,13 @@ SRD5E.classRules = function(rules, classes) {
 // PHB
       features.push(
         // Assassin Archetype
-        "3:Bonus Proficiencies:feature:Prof Disguise Kit/Poisoner's Kit",
+        "3:Assassin Proficiencies:feature:Prof Disguise Kit/Poisoner's Kit",
         '3:Assassinate:combat:Adv when foe has not acted, crit on surprise hit',
         '9:Infiltration Expertise:feature:Forge and adopt different identity',
         '13:Imposter:feature:Unerring mimicry',
         '17:Death Strike:combat:Dbl damage on surprise hit (DC %V Dex neg)',
         // Arcane Trickster Archetype
-        '3:Spellcasting::',
+        '3:Spellcasting::', // TODO Focus?
         '3:Mage Hand Legerdemain:magic:' +
           'Plant, retrieve, pick, disarm via <i>Mage Hand</i>',
         '9:Magical Ambush:magic:Foe Disadv spell save when self hidden',
@@ -3068,11 +3068,11 @@ SRD5E.classRules = function(rules, classes) {
 // ENDPHB
       hitDie = 8;
       proficiencyCount =
-        {'Save':2, 'Skill':4, 'Tool':1, 'Armor':1, 'Weapon':5};
+        {'Armor':1, 'Save':2, 'Skill':4, 'Tool':1, 'Weapon':5};
       proficienciesGiven = {
+        'Armor':['Light'],
         'Save':['Dexterity', 'Intelligence'],
         'Tool':["Thieves' Tools"],
-        'Armor':['Light'],
         'Weapon':['Simple','Hand Crossbow','Longsword','Rapier','Shortsword']
       };
       proficiencyChoices = {
@@ -3086,74 +3086,86 @@ SRD5E.classRules = function(rules, classes) {
 // ENDPHB
       spellAbility = null;
       spellsKnown = null;
+      spells = null;
       spellSlots = null;
-
-      rules.defineRule
-        ('rogueFeatures.Fast Hands', 'rogueFeatures.Thief', '?', null);
-      rules.defineRule
-        ('rogueFeatures.Second-Story Work', 'rogueFeatures.Thief', '?', null);
-      rules.defineRule
-        ('rogueFeatures.Supreme Sneak', 'rogueFeatures.Thief', '?', null);
-      rules.defineRule
-        ('rogueFeatures.Use Magic Device', 'rogueFeatures.Thief', '?', null);
-      rules.defineRule
-        ("rogueFeatures.Thief's Reflexes", 'rogueFeatures.Thief', '?', null);
 // PHB
-      rules.defineRule('rogueFeatures.Bonus Proficiencies',
-        'rogueFeatures.Assissin', '?', null
+      spellAbility = 'intelligence';
+      spellsKnown = [
+        'W0:3:3/10:4',
+        'W:3:3/4:4/7:5/8:6/10:7/11:8/13:9/14:10/16:11/19:12/20:13',
+      ];
+      spellSlots = [
+        'W1:3:2/4:3/7:4',
+        'W2:7:2/10:3',
+        'W3:13:2/16:3',
+        'W4:19:1'
+      ];
+      rules.defineRule('spellsKnownLevel.Rogue',
+        'rogueFeatures.Arcane Trickster Archetype', '?', null
       );
-      rules.defineRule('rogueFeatures.Assassinate',
-        'rogueFeatures.Assissin', '?', null
-      );
-      rules.defineRule('rogueFeatures.Infiltration Expertise',
-        'rogueFeatures.Assissin', '?', null
-      );
-      rules.defineRule('rogueFeatures.Imposter',
-        'rogueFeatures.Assissin', '?', null
-      );
-      rules.defineRule('rogueFeatures.Death Strike',
-        'rogueFeatures.Assissin', '?', null
-      );
-      rules.defineRule('rogueFeatures.Spellcasting',
-        'rogueFeatures.Arcane Trickster', '?', null
-      );
-      rules.defineRule('rogueFeatures.Mage Hand Legerdemain',
-        'rogueFeatures.Arcane Trickster', '?', null
-      );
-      rules.defineRule('rogueFeatures.Magical Ambush',
-        'rogueFeatures.Arcane Trickster', '?', null
-      );
-      rules.defineRule('rogueFeatures.Versatile Trickster',
-        'rogueFeatures.Arcane Trickster', '?', null
-      );
-      rules.defineRule('rogueFeatures.Spell Thief',
-        'rogueFeatures.Arcane Trickster', '?', null
+      rules.defineRule('spellAttackModifier.Rogue',
+        'rogueFeatures.Arcane Trickster Archetype', '?', null
       );
 // ENDPHB
 
-      rules.defineRule('combatNotes.deathStrikeFeature',
-        'dexterityModifier', '=', '8 + source',
-        'proficiencyBonus', '+', null
-      );
       rules.defineRule('combatNotes.sneakAttackFeature',
-        'levels.Rogue', '=', 'Math.floor((source + 1) / 2)'
+        'levels.Rogue', '=', 'Math.floor((source + 7) / 4)'
       );
-      rules.defineRule('magicNotes.spellThiefFeature',
-        'intelligenceModifier', '=', '8 + source',
-        'proficiencyBonus', '+', null
+      rules.defineRule('selectableFeatureCount.Rogue',
+        'levels.Rogue', '=', 'source < 3 ? null : 1'
       );
       rules.defineRule('skillNotes.expertiseFeature',
-        'levels.Rogue', '=', 'source >= 6 ? 4 : 2'
+        'levels.Rogue', '=', 'source < 6 ? 2 : 4'
       );
       rules.defineRule('skillProficiencies.Wisdom',
         'skillNotes.slipperyMindFeature', '=', '1'
       );
-      rules.defineRule('selectableFeatureCount.Rogue',
-        'rogueFeatures.Roguish Archetype', '=', '1'
-      );
+
+      for(var feature in {
+        'Fast Hands':'', 'Second-Story Work':'', 'Supreme Sneak':'',
+        "Thief's Reflexes":'', 'Use Magic Device':''
+      }) {
+        rules.defineRule('rogueFeatures.' + feature,
+          'rogueFeatures.Thief Archetype', '?', null
+        );
+      }
       rules.defineRule('skillNotes.second-StoryWorkFeature',
         'dexterityModifier', '=', null
       );
+
+// PHB
+      for(var feature in {
+        'Assassin Proficiencies':'', 'Assassinate':'', 'Death Strike':'',
+        'Imposter':'', 'Infiltration Expertise':''
+      }) {
+        rules.defineRule('rogueFeatures.' + feature,
+          'rogueFeatures.Assassin Archetype', '?', null
+        );
+      }
+      rules.defineRule('combatNotes.deathStrikeFeature',
+        'dexterityModifier', '=', '8 + source',
+        'proficiencyBonus', '+', null
+      );
+      rules.defineRule('toolProficiencies.Disguise Kit',
+        'skillNotes.slipperyMindFeature', '=', '1'
+      );
+      rules.defineRule("toolProficiencies.Poisoner's Kit",
+        'skillNotes.slipperyMindFeature', '=', '1'
+      );
+
+      for(var feature in {
+        'Mage Hand Legerdemain':'', 'Magical Ambush':'', 'Spell Thief':'',
+        'Spellcasting':'', 'Versatile Trickster':''
+      }) {
+        rules.defineRule('rogueFeatures.' + feature,
+          'rogueFeatures.Arcane Trickster Archetype', '?', null
+        );
+      }
+      rules.defineRule('magicNotes.spellThiefFeature',
+        'intelligenceModifier', '=', '8 + source',
+        'proficiencyBonus', '+', null
+      );
+// ENDPHB
 
     } else if(name == 'Sorcerer') {
 
@@ -3219,6 +3231,7 @@ SRD5E.classRules = function(rules, classes) {
         'S0:1:4/4:5/10:6',
         'S:1:2/2:3/3:4/4:5/5:6/6:7/7:8/8:9/9:10/10:11/11:12/13:13/15:14/17:15'
       ];
+      spells = null;
       spellSlots = [
         'S1:1:2/2:3/3:4',
         'S2:3:2/4:3',
@@ -3397,6 +3410,7 @@ SRD5E.classRules = function(rules, classes) {
         'K0:1:2/4:3/10:4',
         'K:1:1/2:2/11:3/17:4'
       ];
+      spells = null;
       spellSlots = [
         'K1:1:1/2:2/3:0',
         'K2:3:2/5:0',
@@ -3519,6 +3533,7 @@ SRD5E.classRules = function(rules, classes) {
         'W0:1:3/4:4/10:5',
         'W:1:6/2:8/3:10/4:12/5:14/6:16/7:18/8:20/9:22/10:24/11:26/12:28/13:30/14:32/15:34/16:36/17:38/18:40/19:42/20:44'
       ];
+      spells = null;
       spellSlots = [
         'W1:1:2/2:3/3:4',
         'W2:3:2/4:3',
@@ -3549,7 +3564,7 @@ SRD5E.classRules = function(rules, classes) {
     SRD5E.defineClass(
       rules, name, hitDie, features, selectableFeatures, proficiencyCount,
       proficienciesGiven, proficiencyChoices, spellAbility, spellsKnown,
-      spellSlots
+      spellSlots, spells
     );
 
   }
@@ -6009,7 +6024,7 @@ SRD5E.defineBackground = function(
 SRD5E.defineClass = function(
   rules, name, hitDice, features, selectableFeatures, proficiencyCount,
   proficienciesGiven, proficiencyChoices, spellAbility, spellsKnown,
-  spellSlots
+  spellSlots, spells
 ) {
 
   var classLevel = 'levels.' + name;
@@ -6131,6 +6146,8 @@ SRD5E.defineClass = function(
     }
 
   }
+
+  // TODO spells
 
 };
 

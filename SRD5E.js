@@ -3499,56 +3499,69 @@ SRD5E.classRules = function(rules, classes) {
         '18:Spell Mastery:magic:Cast 1 ea 1st, 2nd spell at will',
         '20:Signature Spell:magic:Cast 2 3rd spells 1/short rest',
         // Evocation Tradition
-        '2:Evocation Savant::TODO',
-        '2:Sculpt Spells::TODO',
-        '6:Potent Cantrip::TODO',
-        '10:Empowered Evocation::TODO',
-        '14:Overchannel::TODO'
+        '2:Evocation Savant:magic:Write evocation spells for half cost',
+        '2:Sculpt Spells:magic:' +
+          'Protect spell level + 1 targets from evocation spell effects',
+        '6:Potent Cantrip:magic:Target takes half damage on cantrip save',
+        '10:Empowered Evocation:magic:+%V HP evocation spell damage',
+        '14:Overchannel:magic:' +
+          'Maximize damage from evocation spell le level 5, take damage 2nd+ time/long rest'
       ];
 // PHB
       features.push(
         // Abjuration Tradition
-        '2:Abjuration Savant::TODO',
-        '2:Arcane Ward::TODO',
-        '6:Projected Ward::TODO',
-        '10:Improved Abjuration::TODO',
-        '14:Spell Resistance::TODO',
+        '2:Abjuration Savant:magic:Write abjuration spells for half cost',
+        '2:Arcane Ward:magic:Abjuration casting creates %V HP shield',
+        "6:Projected Ward:magic:R30' Use Arcane Ward to protect others",
+        '10:Improved Abjuration:magic:' +
+          'Add Prof Bonus to abjuration ability checks',
+        '14:Spell Resistance:magic:Adv and resistance to spell damage',
         // Conjuration Tradition
-        '2:Conjuration Savant::TODO',
-        '2:Minor Conjuration::TODO',
-        '6:Benign Transposition::TODO',
-        '10:Focused Conjuration::TODO',
-        '14:Durable Summons::TODO',
+        '2:Conjuration Savant:magic:Write conjuration spells for half cost',
+        "2:Minor Conjuration:magic:R10' Create 3' cu object for 1 hr",
+        '6:Benign Transposition:magic:' +
+          "R30' Teleport or swap willing creature 1/long rest or cast",
+        '10:Focused Conjuration:magic:' +
+          'Damage cannot break conjuration concentration',
+        '14:Durable Summons:magic:Summoned creatures +30 HP',
         // Divination Tradition
-        '2:Divination Savant::TODO',
-        '2:Portent::TODO',
-        '6:Expert Divination::TODO',
-        '10:The Third Eye::TODO',
-        '14:Greater Portent::TODO',
+        '2:Divination Savant:magic:Write divination spells for half cost',
+        '2:Portent:magic:Replace self, other roll %V/long rest',
+        '6:Expert Divination:magic:' +
+          'Regain lower spell slot when cast divination spell',
+        '10:The Third Eye:magic:' +
+          "60' Darkvision, 60' Ethereal Sight, read any language, or 10' see invisibility",
         // Enchantment Tradition
-        '2:Enchantment Savant::TODO',
-        '2:Hypnotic Gaze::TODO',
-        '6:Instinctive Charm::TODO',
-        '10:Split Enchantment::TODO',
-        '14:Alter Memories::TODO',
+        '2:Enchantment Savant:magic:Write enchantment spells for half cost',
+        '2:Hypnotic Gaze:magic:Daze adjacent creature (DC %V Wis neg)',
+        '6:Instinctive Charm:magic:' +
+          'Redirect foe attack to closest creature (DC %V Wis neg)',
+        '10:Split Enchantment:magic:Add second target to charm spell',
+        '14:Alter Memories:magic:' +
+          'Target unaware charmed, forget %V hrs (DC %1 Int neg)',
         // Illusion Tradition
-        '2:Illusion Savant::TODO',
-        '2:Improved Minor Illusion::TODO',
-        '6:Malleable Illusions::TODO',
-        '10:Illusory Self::TODO',
-        '14:Illusory Reality::TODO',
+        '2:Illusion Savant:magic:Write illusion spells for half cost',
+        '2:Improved Minor Illusion:magic:' +
+          '<i>Minor Illusion</i> with sound, image',
+        '6:Malleable Illusions:magic:Transform existing illusions',
+        '10:Illusory Self:magic:React causes foe miss 1/short rest',
+        '14:Illusory Reality:magic:Object in illusion real for 1 min',
         // Necromancy Tradition
-        '2:Necromancy Savant::TODO',
-        '2:Grim Harvest::TODO',
-        '6:Undead Thralls::TODO',
-        '10:Inured To Undeath::TODO',
-        '14:Command Undead::TODO',
+        '2:Necromancy Savant:magic:Write necromancy spells for half cost',
+        '2:Grim Harvest:magic:' +
+          'Regain 2x spell level (3x necromantic) when spell kills',
+        '6:Undead Thralls:magic:' +
+          '<i>Animate Dead</i> +1 corpse, +%V HP, +%1 damage',
+        '10:Inured To Undeath:save:Resist necrotic, immune max HP reduction',
+        "14:Command Undead:magic:R60' Take control of undead target (DC %V Cha neg (Adv intelligent undead))",
         // Transmutation Tradition
-        '2:Transmutation Savant::TODO',
-        '2:Minor Alchemy::TODO',
-        "6:Transmuter's Stone::TODO",
-        '10:Shapechanger::TODO',
-        '14:Master Transmuter::TODO'
+        '2:Transmutation Savant:magic:Write transmutation spells for half cost',
+        "2:Minor Alchemy:magic:Transform 1 cu'/10 min for 1 hr",
+        "6:Transmuter's Stone:magic:" +
+          "Stone gives 60' darkvision, +10 speed, Prof Con, or resist energy",
+        '10:Shapechanger:magic:<i>Polymorph</i> 1/short rest',
+        '14:Master Transmuter:magic:' +
+          "Destroy stone to transmute 5' cu, remove curse, disease, and poision, <i>Raise Dead</i>, or restore youth"
       );
 // ENDPHB
       hitDie = 6;
@@ -3600,6 +3613,9 @@ SRD5E.classRules = function(rules, classes) {
           'wizardFeatures.Evocation Tradition', '?', null
         );
       }
+      rules.defineRule('magicNotes.empoweredEvocationFeature',
+        'intelligenceModifier', '=', null
+      );
 
 // PHB
       for(var feature in {
@@ -3610,6 +3626,10 @@ SRD5E.classRules = function(rules, classes) {
           'wizardFeatures.Abjuration Tradition', '?', null
         );
       }
+      rules.defineRule('magicNotes.arcaneWardFeature',
+        'levels.Wizard', '=', 'source * 2',
+        'intelligenceModifier', '+', null
+      );
 
       for(var feature in {
         'Conjuration Savant':'', 'Minor Conjuration':'',
@@ -3629,6 +3649,8 @@ SRD5E.classRules = function(rules, classes) {
           'wizardFeatures.Divination Tradition', '?', null
         );
       }
+      rules.defineRule
+        ('magicNotes.portentFeature', 'levels.Wizard', 'source < 14 ? 2 : 3');
 
       for(var feature in {
         'Enchantment Savant':'', 'Hypnotic Gaze':'', 'Instinctive Charm':'',
@@ -3638,6 +3660,21 @@ SRD5E.classRules = function(rules, classes) {
           'wizardFeatures.Enchantment Tradition', '?', null
         );
       }
+      rules.defineRule('magicNotes.alterMemoriesFeature',
+        'intelligenceModifier', '=', '8 + source',
+        'proficiencyBonus', '+', null
+      );
+      rules.defineRule('magicNotes.alterMemoriesFeature.1',
+        'charismaModifier', '=', 'Math.max(source + 1, 1)'
+      );
+      rules.defineRule('magicNotes.hypnoticGazeFeature',
+        'intelligenceModifier', '=', '8 + source',
+        'proficiencyBonus', '+', null
+      );
+      rules.defineRule('magicNotes.instinctiveCharmFeature',
+        'intelligenceModifier', '=', '8 + source',
+        'proficiencyBonus', '+', null
+      );
 
       for(var feature in {
         'Illusion Savant':'', 'Improved Minor Illusion':'',
@@ -3656,6 +3693,14 @@ SRD5E.classRules = function(rules, classes) {
           'wizardFeatures.Necromancy Tradition', '?', null
         );
       }
+      rules.defineRule('magicNotes.controlUndeadFeature',
+        'intelligenceModifier', '=', '8 + source',
+        'proficiencyBonus', '+', null
+      );
+      rules.defineRule
+        ('magicNotes.undeadThrallsFeature', 'levels.Wizard', '=', null);
+      rules.defineRule
+        ('magicNotes.undeadThrallsFeature.1', 'proficiencyBonus', '=', null);
 
       for(var feature in {
         'Transmutation Savant':'', 'Minor Alchemy':'', "Transmuter's Stone":'',

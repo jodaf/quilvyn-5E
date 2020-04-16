@@ -39,9 +39,6 @@ function SRD5E() {
   SRD5E.raceRules(rules, SRD5E.LANGUAGES, SRD5E.RACES);
   SRD5E.classRules(rules, SRD5E.CLASSES);
   SRD5E.backgroundRules(rules, SRD5E.BACKGROUNDS);
-/*
-  SRD5E.companionRules(rules, SRD5E.ANIMAL_COMPANIONS, SRD5E.FAMILIARS);
-*/
   SRD5E.skillRules(rules, SRD5E.SKILLS, SRD5E.TOOLS);
   SRD5E.featRules(rules, SRD5E.FEATS);
   SRD5E.descriptionRules(rules, SRD5E.ALIGNMENTS, SRD5E.DEITIES, SRD5E.GENDERS);
@@ -77,19 +74,97 @@ SRD5E.CLASSES = [
   'Ranger', 'Rogue', 'Sorcerer', 'Warlock', 'Wizard'
 ];
 SRD5E.DEITIES = [
-  'Auril (NE):Nature/Tempest', 'Azuth (LN):Knowledge', 'Bane (LE):War',
-  'Beshaba (CE):Trickery', 'Bhaal:Death (NE)', 'Chauntea (NG):Life',
-  'Cyric (CE):Trickery', 'Deneir (NG):Knowledge', 'Eldath (NG):Life/Nature',
-  'Gond (N)::Knowledge', 'Helm (LN):Life/Light', 'Ilmater (LG):Life',
-  'Kelemvor (LN):Death', 'Lathander (NG):Life/Light', 'Leira (CN):Trickery',
-  'Lliira (CG):Life', 'Loviatar (LE):Death', 'Malar (CE):Nature',
-  'Mask (CN):Trickery', 'Milil (NG):Light', 'Myrkul (NE):Death',
-  'Mystra (NG):Knowledge', 'Oghma (N):Knowledge', 'Savras (LN):Knowledge',
-  'Selune (CG):Knowledge/Life', 'Shar (NE):Death/Trickery',
-  'Silvanus (N):Nature', 'Talona (CE):Death', 'Talos (CE):Tempest',
-  'Torm (LG):War', 'Tymora (CG):Trickery', 'Tyr (LG):War',
-  'Umberlee (CE):Tempest', 'Waukeen (N):Knowledge/Trickery', 'None:'
+  'None:',
+  // Celtic
+  'Celtic-The Daghdha (CG):Nature/Trickery', 'Celtic-Arawn (NE):Life/Death',
+  'Celtic-Belenus (NG):Light', 'Celtic-Briantia (NG):Life',
+  'Celtic-Diancecht (LG):Life', 'Celtic-Dunatis (N):Nature',
+  'Celtic-Goibhniu (NG):Knowledge/Life', 'Celtic-Lugh (CN):Knowledge/Life',
+  'Celtic-Manannan Mac Lir (LN):Nature/Tempest',
+  'Celtic-Math Mathonwy (NE):Knowledge', 'Celtic-Morrigan (CE):War',
+  'Celtic-Nuada (N):War', 'Celtic-Oghma (NG):Knowledge',
+  'Celtic-Silvanus (N):Nature',
+  // Greek
+  'Greek-Zeus (N):Tempest', 'Greek-Aphrodite (CG):Light',
+  'Greek-Apollo (CG):Knowledge/Life/Light', 'Greek-Ares (CE):War',
+  'Greek-Artemis (NG):Life/Nature', 'Greek-Athena (LG):Knowledge/War',
+  'Greek-Demeter (NG):Life', 'Greek-Dionysus (CN):Life',
+  'Greek-Hades (LE):Death', 'Greek-Hecate (CE):Knowledge/Trickery',
+  'Greek-Hephaestus (NG):Knowledge', 'Greek-Hera (CN):Trickery',
+  'Greek-Hercules (CG):Tempest/War', 'Greek-Hermes (CG):Trickery',
+  'Greek-Hestia (NG):Life', 'Greek-Nike (LN):War', 'Greek-Pan (CN):Nature',
+  'Greek-Poseidon (CN):Tempest', 'Greek-Tyche (N):Trickery',
+  // Egyptian
+  'Egyptian-Re-Horakhty (LG):Life/Light', 'Egyptian-Anubis (LN):Death',
+  'Egyptian-Apep (NE):Trickery', 'Egyptian-Bast (CG):War',
+  'Egyptian-Bes (CN):Trickery', 'Egyptian-Hathor (NG):Life/Light',
+  'Egyptian-Imhotep (NG):Knowledge', 'Egyptian-Isis (NG):Knowledge/Life',
+  'Egyptian-Nephthys (CG):Death', 'Egyptian-Osiris (LG):Life/Nature',
+  'Egyptian-Ptah (LN):Knowledge', 'Egyptian-Set (CE):Death/Tempest/Trickery',
+  'Egyptian-Sobek (LE):Nature/Tempest', 'Egyptian-Thoth (N):Knowledge',
+  // Norse
+  'Norse-Odin (NG):Knowledge/War', 'Norse-Aegir (NE):Tempest',
+  'Norse-Balder (NG):Life/Light', 'Norse-Forseti (N):Light',
+  'Norse-Frey (NG):Life/Light', 'Norse-Freya (NG):Life',
+  'Norse-Frigga (N):Life/Light', 'Norse-Heimdall (LG):Light/War',
+  'Norse-Hel (NE):Death', 'Norse-Hermod (CN):Trickery',
+  'Norse-Loki (CE):Trickery', 'Norse-Njord (NG):Nature/Tempest',
+  'Norse-Odor (CG):Light', 'Norse-Sif (CG):War', 'Norse-Skadi (N):Nature',
+  'Norse-Surtur (LE):War', 'Norse-Thor (CG):Tempest/War',
+  'Norse-Thrym (CE):War', 'Norse-Tyr (LN):Knowledge/War',
+  'Norse-Uller (CNG):Nature'
 ];
+// PHB
+SRD5E.DEITIES.push(
+  // Forgotten Realms
+  'FR-Auril (NE):Nature/Tempest', 'FR-Azuth (LN):Knowledge', 'FR-Bane (LE):War',
+  'FR-Beshaba (CE):Trickery', 'FR-Bhaal:Death (NE)', 'FR-Chauntea (NG):Life',
+  'FR-Cyric (CE):Trickery', 'FR-Deneir (NG):Knowledge',
+  'FR-Eldath (NG):Life/Nature', 'FR-Gond (N):Knowledge',
+  'FR-Helm (LN):Life/Light', 'FR-Ilmater (LG):Life', 'FR-Kelemvor (LN):Death',
+  'FR-Lathander (NG):Life/Light', 'FR-Leira (CN):Trickery',
+  'FR-Lliira (CG):Life', 'FR-Loviatar (LE):Death', 'FR-Malar (CE):Nature',
+  'FR-Mask (CN):Trickery', 'FR-Mielikki (NG):Nature', 'FR-Milil (NG):Light',
+  'FR-Myrkul (NE):Death', 'FR-Mystra (NG):Knowledge', 'FR-Oghma (N):Knowledge',
+  'FR-Savras (LN):Knowledge', 'FR-Selune (CG):Knowledge/Life',
+  'FR-Shar (NE):Death/Trickery', 'FR-Silvanus (N):Nature',
+  'FR-Sune (CG):Life/Light', 'FR-Talona (CE):Death', 'FR-Talos (CE):Tempest',
+  'FR-Tempus (N):War', 'FR-Torm (LG):War', 'FR-Tymora (CG):Trickery',
+  'FR-Tyr (LG):War', 'FR-Umberlee (CE):Tempest',
+  'FR-Waukeen (N):Knowledge/Trickery',
+  // Greyhawk
+  'Greyhawk-Beory (N):Nature', 'Greyhawk-Boccob (N):Knowledge',
+  'Greyhawk-Celestian (N):Knowledge', 'Greyhawk-Ehlonna (NG):Life/Nature',
+  'Greyhawk-Erythnul (CE):War', 'Greyhawk-Fharlanghn (NG):Knowledge/Trickery',
+  'Greyhawk-Heironeous (LG):War', 'Greyhawk-Hextor (LE) War',
+  'Greyhawk-Kord (CG):Tempest/War', 'Greyhawk-Incabulous (NE):Death',
+  'Greyhawk-Istus (N):Knowledge', 'Greyhawk-Iuz (CE):Death',
+  'Greyhawk-Nerull (NE):Death', 'Greyhawk-Obad-Hai (N):Nature',
+  'Greyhawk-Olidammara (CN):Trickery', 'Greyhawk-Pelor (NG):Life/Light',
+  'Greyhawk-Pholtus (LG):Light', 'Greyhawk-Ralishaz (CN):Trickery',
+  'Greyhawk-Rao (LG):Knowledge', 'Greyhawk-St. Cuthbert (LN):Knowledge',
+  'Greyhawk-Tharizdun (CE):Trickery', 'Greyhawk-Trithereon (CG):War',
+  'Greyhawk-Ulaa (LG):Life/War', 'Greyhawk-Vecna (NE):Knowledge',
+  'Greyhawk-Wee Jas (LN):Death/Knowledge',
+  // Nonhuman
+  'NH-Bahamut (LG Dragon):Life/War', 'NH-Blibdoolpoolp (NE Kuo-Toa):Death',
+  'NH-Corellon Larethian (CG Elf):Light',
+  'NH-Deep Sashelas (CG Elf):Nature/Tempest',
+  'NH-Eadro (N Merfolk):Nature/Tempest',
+  'NH-Garl Glittergold (LG Gnome):Trickery',
+  'NH-Grolantor (CE Hill Giant):War', 'NH-Gruumsh (CE Orc):Tempest/War',
+  'NH-Hruggek (CE Bugbear):War', 'NH-Kurtulmak (LE Kobold):War',
+  'NH-Laogzed (CE Trogolodyte):Death', 'NH-Lolth (CE Drow):Trickery',
+  'NH-Maglubiyet (LE Goblinoid):War', 'NH-Moradin (LG Dwarf):Knowledge',
+  'NH-Rillifane Rallathil (CG Elf):Nature',
+  'NH-Sehanine Moonbow (CG Elf):Knowledge',
+  'NH-Sekolah (LE Sahuagin):Nature/Tempest', 'NH-Semuanya (N Lizardfolk):Life',
+  'NH-Skerrit (N Centaur):Knowledge',
+  'NH-Skoraeus Stonebones (N Stone Giant):Knowledge',
+  'NH-Surtur (LE Fire Giant):Knowledge/War', 'NH-Thryn (CE Frost Giant):War',
+  'NH-Tiamat (LE Dragon):Trickery', 'NH-Yondalla (LG Halfling):Life'
+);
+// ENDPHB
 SRD5E.FEATS = [
   'Ability Boost', 'Ability Boost2', 'Ability Boost3', 'Ability Boost4',
   'Ability Boost5', 'Ability Boost6', 'Ability Boost7', 'Grappler'
@@ -1525,7 +1600,7 @@ SRD5E.classRules = function(rules, classes) {
         '1:Tool Proficiency (3 Musical Instruments)::',
         "1:Bardic Inspiration:magic:R60' Grant 1d%V w/in 10 min %1/long rest",
         '1:Ritual Casting:magic:Cast known spell as ritual',
-        '1:Spellcasting::', // TODO - instrument is focus
+        '1:Spellcasting::',
         '2:Jack Of All Trades:ability:+%V ability checks',
         '2:Song Of Rest:magic:Listeners regain 1d%V HP after short rest',
         '3:Expertise:feature:Dbl %V Profs',
@@ -1651,7 +1726,7 @@ SRD5E.classRules = function(rules, classes) {
         '1:Armor Proficiency (Light/Medium/Shield)::',
         '1:Weapon Proficiency (Simple)::',
         '1:Ritual Casting:magic:Cast known spell as ritual',
-        '1:Spellcasting::', // TODO - holy symbol is focus
+        '1:Spellcasting::',
         '2:Channel Divinity:feature:Effect %V/short rest',
         "2:Turn Undead:combat:R30' Undead flee for 1 min (%V DC Wis neg)",
         '5:Destroy Undead:combat:Turn destroys up to CR %V',
@@ -1999,7 +2074,7 @@ SRD5E.classRules = function(rules, classes) {
         '1:Tool Proficiency (Herbalism Kit)::',
         '1:Druidic::',
         '1:Ritual Casting:magic:Cast known spell as ritual',
-        '1:Spellcasting::', // TODO - "Druidic focus"
+        '1:Spellcasting::',
         '2:Wild Shape:magic:' +
           'Transform into CR %1%2 creature for %3 hr 2/short rest',
         '18:Druid Timeless Body:feature:Age at 1/10 rate',
@@ -2211,7 +2286,7 @@ SRD5E.classRules = function(rules, classes) {
           'Know how foe compares to you after 1 min study',
         '15:Relentless:combat:Min 1 superiority die',
         // Eldritch Knight Archetype
-        '3:Spellcasting::', // TODO Focus?
+        '3:Spellcasting::',
         '3:Weapon Bond:combat:Immune disarm, summon weapon',
         '7:War Magic:combat:Bonus attack after %V',
         '10:Eldritch Strike:combat:' +
@@ -2288,6 +2363,13 @@ SRD5E.classRules = function(rules, classes) {
         'W3:13:2/16:3',
         'W4:19:1'
       ];
+      rules.defineRule('casterLevels.Fi',
+        'fighterFeatures.Eldritch Knight Archetype', '?', null,
+        'levels.Fighter', '=', null,
+         'magicNotes.casterLevelBonusFeature', '+', null
+      );
+      rules.defineRule('casterLevels.W', 'casterLevels.Fi', '^=', null);
+      rules.defineRule('casterLevelArcane', 'casterLevels.W', '+=', null);
       rules.defineRule('spellsKnownLevel.Fighter',
         'fighterFeatures.Eldritch Knight Archetype', '?', null
       );
@@ -2673,7 +2755,7 @@ SRD5E.classRules = function(rules, classes) {
           "R60' Know location of celestials, fiends, undead %V/long rest",
         '1:Lay On Hands:magic:Heal %V HP, disease, poison 1/long rest',
         '2:Divine Smite:combat:Expend spell for +2d8 up to +5d8 damage',
-        '2:Spellcasting::', // TODO - holy symbol is focus
+        '2:Spellcasting::',
         '3:Channel Divinity:feature:Effect %V/short rest',
         '3:Divine Health:save:Immune disease',
         '5:Extra Attack:combat:%V additional attack(s) per Attack action',
@@ -2879,7 +2961,7 @@ SRD5E.classRules = function(rules, classes) {
         '1:Favored Enemy:skill:' +
           'Adv Survival to track, Knowledge about %V creature types, learn enemy language',
         '1:Natural Explorer:skill:Dbl Int/Wis Prof, normal move in difficult terrain, always alert, full speed solo stealth, locate dbl food, extra track info for %V terrains',
-        '2:Spellcasting::', // TODO Focus?
+        '2:Spellcasting::',
         '3:Primeval Awareness:magic:' +
           'Expend spell to sense creatures in 1 mi (favored terrain 6 mi)',
         '5:Extra Attack:combat:%V additional attack(s) per Attack action',
@@ -3056,7 +3138,7 @@ SRD5E.classRules = function(rules, classes) {
         '13:Imposter:feature:Unerring mimicry',
         '17:Death Strike:combat:Dbl damage on surprise hit (DC %V Dex neg)',
         // Arcane Trickster Archetype
-        '3:Spellcasting::', // TODO Focus?
+        '3:Spellcasting::',
         '3:Mage Hand Legerdemain:magic:' +
           'Plant, retrieve, pick, disarm via <i>Mage Hand</i>',
         '9:Magical Ambush:magic:Foe Disadv spell save when self hidden',
@@ -3100,6 +3182,13 @@ SRD5E.classRules = function(rules, classes) {
         'W3:13:2/16:3',
         'W4:19:1'
       ];
+      rules.defineRule('casterLevels.Ro',
+        'rogueFeatures.Arcane Trickster Archetype', '?', null,
+        'levels.Rogue', '=', null,
+         'magicNotes.casterLevelBonusFeature', '+', null
+      );
+      rules.defineRule('casterLevels.W', 'casterLevels.Ro', '^=', null);
+      rules.defineRule('casterLevelArcane', 'casterLevels.W', '+=', null);
       rules.defineRule('spellsKnownLevel.Rogue',
         'rogueFeatures.Arcane Trickster Archetype', '?', null
       );
@@ -3171,7 +3260,7 @@ SRD5E.classRules = function(rules, classes) {
 
       features = [
         '1:Weapon Proficiency (Dagger/Dart/Sling/Quarterstaff/Light Crossbow)::',
-        '1:Spellcasting::', // TODO "Arcane Focus"?
+        '1:Spellcasting::',
         '2:Font Of Magic:magic:%V Sorcery pts/long rest',
         '2:Flexible Casting:magic:Convert sorcery pts to/from spell slots',
         '20:Sorcerous Restoration:magic:Regain 4 sorcery pts/short rest',
@@ -3495,7 +3584,7 @@ SRD5E.classRules = function(rules, classes) {
       features = [
         '1:Weapon Proficiency (Dagger/Dart/Light Crossbow/Quarterstaff/Sling)::',
         '1:Arcane Recovery:magic:Short rest recovers %V spell slots 1/dy',
-        '1:Spellcasting::', // TODO "Arcane focus"?
+        '1:Spellcasting::',
         '18:Spell Mastery:magic:Cast 1 ea 1st, 2nd spell at will',
         '20:Signature Spell:magic:Cast 2 3rd spells 1/short rest',
         // Evocation Tradition
@@ -3693,7 +3782,7 @@ SRD5E.classRules = function(rules, classes) {
           'wizardFeatures.Necromancy Tradition', '?', null
         );
       }
-      rules.defineRule('magicNotes.controlUndeadFeature',
+      rules.defineRule('magicNotes.commandUndeadFeature',
         'intelligenceModifier', '=', '8 + source',
         'proficiencyBonus', '+', null
       );
@@ -3748,366 +3837,6 @@ SRD5E.combatRules = function(rules) {
     );
   }
   rules.defineRule('weapons.Unarmed', '', '=', '1');
-};
-
-/* Defines the rules related to companion creatures. */
-SRD5E.companionRules = function(rules, companions, familiars) {
-
-  var features, notes;
-
-  notes = [
-    "companionNotes.celestialCompanion:" +
-      "Smite Evil (+%V damage) 1/day, 60' darkvision, " +
-      "%1 acid/cold/electricity resistance, DR %2/magic",
-    'companionNotes.companionEvasionFeature:' +
-      'Dex save yields no damage instead of 1/2',
-    'companionNotes.companionImprovedEvasionFeature:' +
-      'Failed save yields 1/2 damage',
-    'companionNotes.deliverTouchSpellsFeature:' +
-      'Deliver touch spells if in contact w/master when cast',
-    'companionNotes.devotionFeature:+4 Will vs. enchantment',
-    'companionNotes.empathicLinkFeature:Share emotions up to 1 mile',
-    "companionNotes.fiendishCompanion:" +
-      "Smite Good (+%V damage) 1/day, 60' darkvision, " +
-      "%1 cold/fire resistance, DR %2/magic",
-    'companionNotes.improvedSpeedFeature:+10 speed',
-    'companionNotes.multiattackFeature:' +
-      'Reduce additional attack penalty to -2 or second attack at -5',
-    'companionNotes.scryFeature:Master views companion 1/day',
-    'companionNotes.shareSpellsFeature:' +
-      'Master share self spell w/companion w/in 5 ft',
-    'companionNotes.speakWithLikeAnimalsFeature:Talk w/similar creatures',
-    'companionNotes.speakWithMasterFeature:Talk w/master in secret language',
-    'skillNotes.companionAlertnessFeature:' +
-      '+2 listen/spot when companion w/in reach',
-    'skillNotes.linkFeature:+4 Handle Animal/Wild Empathy w/companion'
-  ];
-  rules.defineNote(notes);
-
-  rules.defineRule('companionNotes.celestialCompanion',
-    'animalCompanion.Celestial', '=', null,
-    'familiar.Celestial', '=', null,
-    'companionStats.HD', '^', null
-  );
-  rules.defineRule('companionNotes.celestialCompanion.1',
-    'companionStats.HD', '=', 'Math.floor((source + 7) / 8) * 5'
-  );
-  rules.defineRule('companionNotes.celestialCompanion.2',
-    'companionStats.HD', '=', 'source < 4 ? 0 : source < 12 ? 5 : 10'
-  );
-  rules.defineRule('companionNotes.fiendishCompanion',
-    'animalCompanion.Fiendish', '=', null,
-    'familiar.Fiendish', '=', null,
-    'companionStats.HD', '^', null
-  );
-  rules.defineRule('companionNotes.fiendishCompanion.1',
-    'companionStats.HD', '=', 'Math.floor((source + 7) / 8) * 5'
-  );
-  rules.defineRule('companionNotes.fiendishCompanion.2',
-    'companionStats.HD', '=', 'source < 4 ? 0 : source < 12 ? 5 : 10'
-  );
-
-  rules.defineSheetElement('Companion Features', 'Notes', null, '; ');
-  rules.defineSheetElement('Companion Stats', 'Notes', null, '; ');
-  rules.defineSheetElement('Companion Notes', 'Notes', null, '; ');
-
-  if(companions != null) {
-
-    rules.defineChoice('animalCompanions', QuilvynUtils.getKeys(companions));
-    rules.defineEditorElement
-      ('animalCompanion', 'Animal Companion', 'set', 'animalCompanions',
-       'notes');
-    rules.defineEditorElement('animalCompanionName', '', 'text', [20], 'notes');
-    rules.defineSheetElement
-      ('Animal Companion', 'Companion Features', null, ' ');
-
-    features = {
-      'Link': 1, 'Share Spells': 1, 'Companion Evasion': 2, 'Devotion' : 3,
-      'Multiattack': 4, 'Companion Improved Evasion': 6
-    };
-    for(var feature in features) {
-      rules.defineRule('companionFeatures.' + feature,
-        'animalCompanionLevel', '=',
-        'source >= ' + features[feature] + ' ? 1 : null'
-      );
-      rules.defineRule
-        ('features.' + feature, 'companionFeatures.' + feature, '=', '1');
-    }
-
-    notes = [
-      'companionStats.BAB:+%V',
-      'companionStats.Fort:+%V',
-      'companionStats.Init:+%V',
-      'companionStats.Ref:+%V',
-      'companionStats.Tricks:+%V',
-      'companionStats.Will:+%V',
-      'validationNotes.animalCompanionCasterLevel:Requires %1'
-    ];
-    rules.defineNote(notes);
-
-    rules.defineRule('animalCompanionLevel',
-      'animalCompanionMasterLevel', '=', 'Math.floor((source + 3) / 3)'
-    );
-    rules.defineRule('companionStats.AC',
-      'animalCompanionLevel', '+', '(source - 1) * 2',
-      'companionStats.Dex', '+', 'Math.floor((source - 10) / 2)'
-    );
-    rules.defineRule('companionStats.BAB',
-      'companionStats.HD', '=', SRD5E.ATTACK_BONUS_AVERAGE
-    );
-    rules.defineRule('companionStats.Dex',
-      'animalCompanionLevel', '+', 'source - 1'
-    );
-    rules.defineRule('animalCompanionFort',
-      'features.Animal Companion', '?', null,
-      'companionStats.HD', '=', SRD5E.SAVE_BONUS_GOOD,
-      'companionStats.Con', '+', 'Math.floor((source - 10)/2)'
-    );
-    rules.defineRule('companionStats.Fort', 'animalCompanionFort', '=', null);
-    rules.defineRule('companionStats.HD',
-      'animalCompanionLevel', '+', '(source - 1) * 2'
-    );
-    rules.defineRule('companionStats.Init',
-      'companionStats.Dex', '=', 'Math.floor((source - 10) / 2)'
-    );
-    rules.defineRule('companionStats.Name', 'animalCompanionName', '=', null);
-    rules.defineRule('animalCompanionRef',
-      'features.Animal Companion', '?', null,
-      'companionStats.HD', '=', SRD5E.SAVE_BONUS_GOOD,
-      'companionStats.Dex', '+', 'Math.floor((source - 10) / 2)'
-    );
-    rules.defineRule('companionStats.Ref', 'animalCompanionRef', '=', null);
-    rules.defineRule
-      ('companionStats.Str', 'animalCompanionLevel', '+', 'source - 1');
-    rules.defineRule
-      ('companionStats.Tricks', 'animalCompanionLevel', '=', null);
-    rules.defineRule('animalCompanionWill',
-      'features.Animal Companion', '?', null,
-      'companionStats.HD', '=', SRD5E.SAVE_BONUS_POOR,
-      'companionStats.Wis', '+', 'Math.floor((source - 10)/2)'
-    );
-    rules.defineRule('companionStats.Will', 'animalCompanionWill', '=', null);
-    rules.defineRule('validationNotes.animalCompanionCasterLevel',
-      'validationNotes.animalCompanionCasterLevel.1', '=', null,
-      'animalCompanionMasterLevel', '+', '-source',
-      '', '^', '0'
-    );
-    rules.defineRule('validationNotes.animalCompanionCasterLevel.1',
-      'features.Animal Companion', '=', '1'
-    );
-
-    for(var companion in companions) {
-      var matchInfo;
-      var stats = companions[companion].split(/\s+/);
-      for(var i = 0; i < stats.length; i++) {
-        if((matchInfo = stats[i].match(/(.+)=(.+)/)) == null)
-          continue
-        if(matchInfo[1] == 'Level') {
-          rules.defineRule('animalCompanionLevel',
-            'animalCompanion.' + companion, '+',
-            '-Math.floor(' + matchInfo[2] + '/3)'
-          );
-          rules.defineRule('validationNotes.animalCompanionCasterLevel.1',
-            'animalCompanion.' + companion, '^', matchInfo[2]
-          );
-        } else if(matchInfo[2].match(/^\d+$/)) {
-          rules.defineRule('companionStats.' + matchInfo[1],
-            'animalCompanion.' + companion, '=', matchInfo[2]
-          );
-        } else {
-          rules.defineRule('companionStats.' + matchInfo[1],
-            'animalCompanion.' + companion, '=', '"' + matchInfo[2] + '"'
-          );
-        }
-      }
-    }
-
-    // Adapt Paladin mount rules to make it a form of animal companion.
-    var features = {
-      'Companion Evasion': 1, 'Companion Improved Evasion': 1,
-      'Empathic Link': 1, 'Share Saving Rolls': 1, 'Improved Speed': 2,
-      'Command Like Creatures': 3, 'Companion Resist Spells': 4,
-      'Link': 0, 'Devotion' : 0, 'Multiattack': 0
-    };
-    for(var feature in features) {
-      if(features[feature] > 0) {
-        rules.defineRule('companionFeatures.' + feature,
-          'mountLevel', '=', 'source >= ' + features[feature] + ' ? 1 : null'
-        );
-        rules.defineRule
-          ('features.' + feature, 'companionFeatures.' + feature, '=', '1');
-      } else {
-        // Disable N/A companion features
-        rules.defineRule
-          ('companionFeatures.' + feature, 'mountLevel', 'v', '0');
-      }
-    }
-    notes = [
-      'companionNotes.commandLikeCreaturesFeature:' +
-        'DC %V <i>Command</i> vs. similar creatures %1/day',
-    ];
-    rules.defineNote(notes);
-    rules.defineRule('mountLevel',
-      'mountMasterLevel', '=',
-      'source<5 ? null : source<8 ? 1 : source<11 ? 2 : source<15 ? 3 : 4'
-    );
-    rules.defineRule('companionNotes.commandLikeCreaturesFeature',
-      'companionFeatures.Command Like Creatures', '?', null,
-      'mountMasterLevel', '=', '10 + Math.floor(source / 2)',
-      'charismaModifier', '+', null
-    );
-    rules.defineRule('companionNotes.commandLikeCreaturesFeature.1',
-      'mountMasterLevel', '=', 'Math.floor(source / 2)'
-    );
-    rules.defineRule
-      ('companionStats.SR', 'mountMasterLevel', '=', 'source + 5');
-
-  }
-
-  if(familiars != null) {
-
-    rules.defineChoice('familiars', QuilvynUtils.getKeys(familiars));
-    rules.defineEditorElement
-      ('familiar', 'Familiar', 'set', 'familiars', 'notes');
-    rules.defineEditorElement('familiarName', '', 'text', [20], 'notes');
-    rules.defineSheetElement('Familiar', 'Companion Features', null, ' ');
-
-    features = {
-      'Companion Alertness': 1, 'Companion Evasion': 1,
-      'Companion Improved Evasion': 1, 'Empathic Link': 1, 'Share Spells': 1,
-      'Deliver Touch Spells': 2, 'Speak With Master': 3,
-      'Speak With Like Animals': 4, 'Companion Resist Spells': 6, 'Scry': 7
-    };
-    for(var feature in features) {
-      rules.defineRule('companionFeatures.' + feature,
-        'familiarLevel', '=', 'source >= ' + features[feature] + ' ? 1 : null'
-      );
-      rules.defineRule
-        ('features.' + feature, 'companionFeatures.' + feature, '=', '1');
-    }
-
-    notes = [
-      'combatNotes.familiarToad:+3 Hit Points',
-      'saveNotes.familiarRat:+2 Fortitude',
-      'saveNotes.familiarWeasel:+2 Reflex',
-      'skillNotes.familiarBat:+3 Listen',
-      'skillNotes.familiarCat:+3 Move Silently',
-      'skillNotes.familiarHawk:+3 Spot in bright light',
-      'skillNotes.familiarLizard:+3 Climb',
-      'skillNotes.familiarOwl:+3 Spot in shadows/darkness',
-      'skillNotes.familiarRaven:+3 Appraise',
-      'skillNotes.familiarViper:+3 Bluff',
-      'companionStats.BAB:+%V',
-      'companionStats.Fort:+%V',
-      'companionStats.Init:+%V',
-      'companionStats.Ref:+%V',
-      'companionStats.SR:DC %V',
-      'companionStats.Will:+%V',
-      'validationNotes.familiarCasterLevel:Requires %1'
-    ];
-    rules.defineNote(notes);
-
-    rules.defineRule('combatNotes.familiarToad', 'familiar.Toad', '=', '1');
-    rules.defineRule('saveNotes.familiarRat', 'familiar.Rat', '=', '1');
-    rules.defineRule('saveNotes.familiarWeasel', 'familiar.Weasel', '=', '1');
-    rules.defineRule('skillNotes.familiarBat', 'familiar.Bat', '=', '1');
-    rules.defineRule('skillNotes.familiarCat', 'familiar.Cat', '=', '1');
-    rules.defineRule('skillNotes.familiarHawk', 'familiar.Hawk', '=', '1');
-    rules.defineRule('skillNotes.familiarLizard', 'familiar.Lizard', '=', '1');
-    rules.defineRule('skillNotes.familiarOwl', 'familiar.Owl', '=', '1');
-    rules.defineRule('skillNotes.familiarRaven', 'familiar.Raven', '=', '1');
-    rules.defineRule('skillNotes.familiarViper', 'familiar.Viper', '=', '1');
-
-    rules.defineRule('hitPoints', 'combatNotes.familiarToad', '+', '3');
-    rules.defineRule('save.Fortitude', 'saveNotes.familiarRat', '+', '2');
-    rules.defineRule('save.Reflex', 'saveNotes.familiarWeasel', '+', '2');
-
-    rules.defineRule('familiarLevel',
-      'features.Familiar', '?', null,
-      'familiarMasterLevel', '=', 'Math.floor((source + 1) / 2)'
-    );
-    rules.defineRule('companionStats.AC',
-      'familiarLevel', '+', null,
-      'companionStats.Dex', '+', 'Math.floor((source - 10) / 2)'
-    );
-    rules.defineRule('familiarAttackBonus',
-      'companionStats.Dex', '=', 'Math.floor((source - 10) / 2)',
-      'companionStats.Str', '^', 'Math.floor((source - 10) / 2)'
-    );
-    rules.defineRule('familiarBAB',
-      'features.Familiar', '?', null,
-      'baseAttack', '=', null,
-      'familiarAttackBonus', '+', null
-    );
-    rules.defineRule('companionStats.BAB', 'familiarBAB', '=', null);
-    rules.defineRule('familiarHD',
-      'features.Familiar', '?', null,
-      'level', '=', null
-    );
-    rules.defineRule('companionStats.HD', 'familiarHD', '^', null);
-    rules.defineRule('companionStats.HP',
-      'features.Familiar', '?', null,
-      'hitPoints', '=', 'Math.floor(source / 2)'
-    );
-    rules.defineRule('companionStats.Init',
-      'companionStats.Dex', '=', 'Math.floor((source - 10) / 2)'
-    );
-    rules.defineRule('companionStats.Int', 'familiarLevel', '^', 'source + 5');
-    rules.defineRule('companionStats.SR',
-      'features.Companion Resist Spells', '?', null,
-      'familiarMasterLevel', '=', 'source + 5'
-    );
-    rules.defineRule('familiarFort',
-      'familiarLevel', '?', null,
-      'classFortitudeBonus', '=', 'Math.max(source, 2)',
-      'companionStats.Con', '+', 'Math.floor((source - 10) / 2)'
-    );
-    rules.defineRule('companionStats.Fort', 'familiarFort', '=', null);
-    rules.defineRule('companionStats.Name', 'familiarName', '=', null);
-    rules.defineRule('familiarRef',
-      'familiarLevel', '?', null,
-      'classReflexBonus', '=', 'Math.max(source, 2)',
-      'companionStats.Dex', '+', 'Math.floor((source - 10) / 2)'
-    );
-    rules.defineRule('companionStats.Ref', 'familiarRef', '=', null);
-    rules.defineRule('familiarWill',
-      'familiarLevel', '?', null,
-      'classWillBonus', '=', 'Math.max(source, 0)',
-      'companionStats.Wis', '+', 'Math.floor((source - 10) / 2)'
-    );
-    rules.defineRule('companionStats.Will', 'familiarWill', '=', null);
-    rules.defineRule('validationNotes.familiarCasterLevel',
-      'validationNotes.familiarCasterLevel.1', '=', null,
-      'familiarMasterLevel', '+', '-source',
-      '', '^', '0'
-    );
-    rules.defineRule
-      ('validationNotes.familiarCasterLevel.1', 'features.Familiar', '=', '1');
-
-    for(var familiar in familiars) {
-      var matchInfo;
-      var stats = familiars[familiar].split(/\s+/);
-      for(var i = 0; i < stats.length; i++) {
-        if((matchInfo = stats[i].match(/(.+)=(.+)/)) == null)
-          continue
-        if(matchInfo[1] == 'Level') {
-          rules.defineRule('validationNotes.familiarCasterLevel.1',
-            'familiar.' + familiar, '^', matchInfo[2]
-          );
-        } else if(matchInfo[2].match(/^\d+$/)) {
-          rules.defineRule('companionStats.' + matchInfo[1],
-            'familiar.' + familiar, '=', matchInfo[2]
-          );
-        } else {
-          rules.defineRule('companionStats.' + matchInfo[1],
-            'familiar.' + familiar, '=', '"' + matchInfo[2] + '"'
-          );
-        }
-      }
-    }
-
-  }
-
 };
 
 /* Returns an ObjectViewer loaded with the default character sheet format. */

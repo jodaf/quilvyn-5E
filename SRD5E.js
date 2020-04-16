@@ -156,7 +156,7 @@ SRD5E.SPELLS = {
   'Arcane Lock':'Abjuration',
   "Arcanist's Magic Aura":'Illusion',
   'Armor Of Agathys':'Abjuration',
-  'Arms Of Hadar':'Conjuaration',
+  'Arms Of Hadar':'Conjuration',
   'Astral Projection':'Necromancy',
   'Augury':'Divination',
   'Aura Of Life':'Abjuration',
@@ -3495,11 +3495,62 @@ SRD5E.classRules = function(rules, classes) {
       features = [
         '1:Weapon Proficiency (Dagger/Dart/Light Crossbow/Quarterstaff/Sling)::',
         '1:Arcane Recovery:magic:Short rest recovers %V spell slots 1/dy',
-        '2:Arcane Tradition:magic:Gain chosen school effects',
-        '18:Spell Mastery:magic:Cast 1 ea 1st/2nd spell w/o using spell slot',
-        '20:Signature Spell:magic:' +
-          'Cast 2 2nd spells w/o using spell slot 1/short rest'
+        '1:Spellcasting::', // TODO "Arcane focus"?
+        '18:Spell Mastery:magic:Cast 1 ea 1st, 2nd spell at will',
+        '20:Signature Spell:magic:Cast 2 3rd spells 1/short rest',
+        // Evocation Tradition
+        '2:Evocation Savant::TODO',
+        '2:Sculpt Spells::TODO',
+        '6:Potent Cantrip::TODO',
+        '10:Empowered Evocation::TODO',
+        '14:Overchannel::TODO'
       ];
+// PHB
+      features.push(
+        // Abjuration Tradition
+        '2:Abjuration Savant::TODO',
+        '2:Arcane Ward::TODO',
+        '6:Projected Ward::TODO',
+        '10:Improved Abjuration::TODO',
+        '14:Spell Resistance::TODO',
+        // Conjuration Tradition
+        '2:Conjuration Savant::TODO',
+        '2:Minor Conjuration::TODO',
+        '6:Benign Transposition::TODO',
+        '10:Focused Conjuration::TODO',
+        '14:Durable Summons::TODO',
+        // Divination Tradition
+        '2:Divination Savant::TODO',
+        '2:Portent::TODO',
+        '6:Expert Divination::TODO',
+        '10:The Third Eye::TODO',
+        '14:Greater Portent::TODO',
+        // Enchantment Tradition
+        '2:Enchantment Savant::TODO',
+        '2:Hypnotic Gaze::TODO',
+        '6:Instinctive Charm::TODO',
+        '10:Split Enchantment::TODO',
+        '14:Alter Memories::TODO',
+        // Illusion Tradition
+        '2:Illusion Savant::TODO',
+        '2:Improved Minor Illusion::TODO',
+        '6:Malleable Illusions::TODO',
+        '10:Illusory Self::TODO',
+        '14:Illusory Reality::TODO',
+        // Necromancy Tradition
+        '2:Necromancy Savant::TODO',
+        '2:Grim Harvest::TODO',
+        '6:Undead Thralls::TODO',
+        '10:Inured To Undeath::TODO',
+        '14:Command Undead::TODO',
+        // Transmutation Tradition
+        '2:Transmutation Savant::TODO',
+        '2:Minor Alchemy::TODO',
+        "6:Transmuter's Stone::TODO",
+        '10:Shapechanger::TODO',
+        '14:Master Transmuter::TODO'
+      );
+// ENDPHB
       hitDie = 6;
       proficiencyCount = {'Save':2, 'Skill':3, 'Weapon':5};
       proficienciesGiven = {
@@ -3535,11 +3586,87 @@ SRD5E.classRules = function(rules, classes) {
       );
       rules.defineRule('casterLevelArcane', 'casterLevels.W', '+=', null);
       rules.defineRule('magicNotes.arcaneRecoveryFeature',
-        'levels.Wizard', '=', 'Math.floor(source / 2)'
+        'levels.Wizard', '=', 'Math.ceil(source / 2)'
       );
       rules.defineRule('selectableFeatureCount.Wizard',
-        'wizardFeatures.Arcane Tradition', '=', '1'
+        'levels.Wizard', '=', 'source < 2 ? null : 1'
       );
+
+      for(var feature in {
+        'Evocation Savant':'', 'Sculpt Spells':'', 'Potent Cantrip':'',
+        'Empowered Evocation':'', 'Overchannel':''
+      }) {
+        rules.defineRule('wizardFeatures.' + feature,
+          'wizardFeatures.Evocation Tradition', '?', null
+        );
+      }
+
+// PHB
+      for(var feature in {
+        'Abjuration Savant':'', 'Arcane Ward':'', 'Projected Ward':'',
+        'Improved Abjuration':'', 'Spell Resistance':''
+      }) {
+        rules.defineRule('wizardFeatures.' + feature,
+          'wizardFeatures.Abjuration Tradition', '?', null
+        );
+      }
+
+      for(var feature in {
+        'Conjuration Savant':'', 'Minor Conjuration':'',
+        'Benign Transposition':'', 'Focused Conjuration':'',
+        'Durable Summons':''
+      }) {
+        rules.defineRule('wizardFeatures.' + feature,
+          'wizardFeatures.Conjuration Tradition', '?', null
+        );
+      }
+
+      for(var feature in {
+        'Divination Savant':'', 'Portent':'', 'Expert Divination':'',
+        'The Third Eye':'', 'Greater Portent':''
+      }) {
+        rules.defineRule('wizardFeatures.' + feature,
+          'wizardFeatures.Divination Tradition', '?', null
+        );
+      }
+
+      for(var feature in {
+        'Enchantment Savant':'', 'Hypnotic Gaze':'', 'Instinctive Charm':'',
+        'Split Enchantment':'', 'Alter Memories':''
+      }) {
+        rules.defineRule('wizardFeatures.' + feature,
+          'wizardFeatures.Enchantment Tradition', '?', null
+        );
+      }
+
+      for(var feature in {
+        'Illusion Savant':'', 'Improved Minor Illusion':'',
+        'Malleable Illusions':'', 'Illusory Self':'', 'Illusory Reality':''
+      }) {
+        rules.defineRule('wizardFeatures.' + feature,
+          'wizardFeatures.Illusion Tradition', '?', null
+        );
+      }
+
+      for(var feature in {
+        'Necromancy Savant':'', 'Grim Harvest':'', 'Undead Thralls':'',
+        'Inured To Undeath':'', 'Command Undead':''
+      }) {
+        rules.defineRule('wizardFeatures.' + feature,
+          'wizardFeatures.Necromancy Tradition', '?', null
+        );
+      }
+
+      for(var feature in {
+        'Transmutation Savant':'', 'Minor Alchemy':'', "Transmuter's Stone":'',
+        'Shapechanger':'', 'Master Transmuter':''
+      }) {
+        rules.defineRule('wizardFeatures.' + feature,
+          'wizardFeatures.Transmutation Tradition', '?', null
+        );
+      }
+
+// ENDPHB
 
     } else
       continue;

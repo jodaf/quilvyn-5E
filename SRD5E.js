@@ -17,7 +17,7 @@ Place, Suite 330, Boston, MA 02111-1307 USA.
 
 "use strict";
 
-var SRD5E_VERSION = '1.7.0.2alpha';
+var SRD5E_VERSION = '1.7.0.3alpha';
 
 /*
  * This module loads the rules from Fifth Edition.  The SRD5E function
@@ -58,9 +58,9 @@ SRD5E.ALIGNMENTS = [
   'Neutral Good', 'Lawful Evil', 'Lawful Good', 'Lawful Neutral'
 ];
 SRD5E.ARMORS = [
-  'None:', 'Padded:Li', 'Leather:Li', 'Studded Leather:Li', 'Hide:Me',
-  'Chain Shirt:Li', 'Scale Mail:Me', 'Breastplate:Me', 'Half Plate:Me',
-  'Ring Mail:He', 'Chain Mail:He', 'Splint:He', 'Plate:He'
+  'None:', 'Padded:Li Bu', 'Leather:Li', 'Studded Leather:Li', 'Hide:Me',
+  'Chain Shirt:Li', 'Scale Mail:Me Bu', 'Breastplate:Me', 'Half Plate:Me Bu',
+  'Ring Mail:He Bu', 'Chain Mail:He Bu', 'Splint:He Bu', 'Plate:He Bu'
 ];
 SRD5E.BACKGROUNDS = ['Acolyte'];
 // PHB
@@ -637,7 +637,7 @@ SRD5E.WEAPONS = [
   'Morningstar:d8 Ma 1h', 'Net:d0r5 Ma', 'Pike:d10 Ma 2h',
   'Quarterstaff:d6 Si Ve', 'Rapier:d8 Ma 1h Fi', 'Scimitar:d6 Ma Li Fi',
   'Shortbow:d6r80 Si', 'Shortsword:d6 Ma Li Fi', 'Sickle:d4 Si Li',
-  'Sling:d4r30 Si', 'Spear:d8r20 Si Ve', 'Trident:d8r20 Ma Ve', 'Unarmed:d1S',
+  'Sling:d4r30 Si', 'Spear:d8r20 Si Ve', 'Trident:d8r20 Ma Ve', 'Unarmed:d1 Si',
   'War Pick:d8 Ma 1h', 'Warhammer:d8 Ma Ve', 'Whip:d4 Ma 1h Fi'
 ];
 
@@ -1222,7 +1222,7 @@ SRD5E.backgroundRules = function(rules, backgrounds) {
 
     if(name === 'Acolyte') {
       equipment = [
-        'Holy Symbol', 'Prayer Book/Wheel', 'Incense', 'Vestments', 'Clothing',
+        'Holy Symbol', 'Prayer Book', 'Incense', 'Vestments', 'Clothing',
         '15 GP'
       ];
       features = [
@@ -1286,7 +1286,8 @@ SRD5E.backgroundRules = function(rules, backgrounds) {
         "Artisan's Tools", 'Introduction Letter', "Traveler's Clothes",
         '15 GP'
       ];
-      features = ['1:Guild Membership:feature:Aid from guild and members'];
+      features = ['1:Guild Membership:feature:Aid from guild members'];
+      languages = [''];
       proficiencyCount = {'Skill':2, 'Tool':1};
       proficienciesGiven = {
         'Skill':['Insight', 'Persuasion']
@@ -1311,7 +1312,7 @@ SRD5E.backgroundRules = function(rules, backgrounds) {
         'Fine Clothes', 'Signet Ring', 'Pedigree Scroll', '25 GP'
       ];
       features = [
-        '1:Position Of Priviledge:feature:Treated with respect/deference'
+        '1:Position Of Priviledge:feature:Treated with respect, deference'
       ];
       languages = [''];
       proficiencyCount = {'Skill':2, 'Tool':1};
@@ -1326,7 +1327,7 @@ SRD5E.backgroundRules = function(rules, backgrounds) {
         'Staff', 'Hunting Trap', 'Animal Trophy', "Traveler's Clothes", '10 GP'
       ];
       features = [
-        '1:Wanderer:feature:Excellent geography memory, can forage for 6 people'
+        '1:Wanderer:feature:Excellent geography memory, forage for 6 people'
       ];
       languages = [''];
       proficiencyCount = {'Skill':2, 'Tool':1};
@@ -1341,7 +1342,7 @@ SRD5E.backgroundRules = function(rules, backgrounds) {
         'Bottle Ink', 'Quill', 'Small Knife', 'Letter With Unanswered Question',
         'Clothes', '10 GP'
       ];
-      features = ['1:Researcher:feature:Know where to find lore'];
+      features = ['1:Researcher:feature:Know who to ask about lore'];
       languages = ['', ''];
       proficiencyCount = {'Skill':2};
       proficienciesGiven = {
@@ -1361,7 +1362,7 @@ SRD5E.backgroundRules = function(rules, backgrounds) {
       equipment = [
         'Rank Insignia', 'Battle Trophy', 'Gambling Objects', 'Clothes', '10 GP'
       ];
-      features = ['1:Military Rank:feature:Respect/deference from soldiers'];
+      features = ['1:Military Rank:feature:Respect, deference from soldiers'];
       proficiencyCount = {'Skill':2, 'Tool':2};
       proficienciesGiven = {
         'Skill':['Athletics', 'Intimidation'],
@@ -1389,7 +1390,7 @@ SRD5E.backgroundRules = function(rules, backgrounds) {
 
     SRD5E.defineBackground(
       rules, name, features, languages, proficiencyCount, proficienciesGiven,
-      proficiencyChoices
+      proficiencyChoices, equipment
     );
 
   }
@@ -1488,7 +1489,7 @@ SRD5E.classRules = function(rules, classes) {
         '3:Wolf Totem Spirit:combat:' +
           "Allies Adv attack vs. foes w/in 5' of self when raging",
         '6:Aspect Of The Bear:ability:' +
-          'Dbl load/lift, Adv push, pull, lift, break Str checks', // TODO
+          'Dbl load/lift, Adv push, pull, lift, break Str checks',
         '6:Aspect Of The Eagle:ability:' +
           'See 1 mile clearly, no Perception Disadv in dim light',
         '6:Aspect Of The Wolf:ability:' +
@@ -1505,7 +1506,7 @@ SRD5E.classRules = function(rules, classes) {
       proficiencyCount = {'Save':2, 'Skill':2, 'Armor':3, 'Weapon':2};
       proficienciesGiven = {
         'Save': ['Constitution', 'Strength'],
-        'Armor': ['Light', 'Medium', 'Shield'],
+        'Armor': ['Light Armor', 'Medium Armor', 'Shield'],
         'Weapon': ['Simple', 'Martial']
       };
       proficiencyChoices = {
@@ -1523,6 +1524,9 @@ SRD5E.classRules = function(rules, classes) {
       spells = null;
       spellSlots = null;
 
+      rules.defineRule('abilityNotes.fastMovementFeature',
+        'armorWeight', '?', 'source != "Heavy"'
+      );
       rules.defineRule('abilityNotes.rageFeature',
         'levels.Barbarian', '+=', 'source<3 ? 2 : source<6 ? 3 : source<12 ? 4 : source<17 ? 5 : source<20 ? 6 : "unlimited"'
       );
@@ -1560,7 +1564,6 @@ SRD5E.classRules = function(rules, classes) {
       rules.defineRule('selectableFeatureCount.Barbarian',
         'levels.Barbarian', '=', 'source < 3 ? null : 1'
       );
-      // TODO heavy armor neg (except for dwarves?)
       rules.defineRule('speed', 'abilityNotes.fastMovementFeature', '+', '10');
 
       for(var feature in {
@@ -1607,14 +1610,14 @@ SRD5E.classRules = function(rules, classes) {
         '5:Font Of Inspiration:feature:' +
           'Refresh Bardic Inspiration after short rest',
         "6:Countercharm:magic:R30' Friendly listeners Adv vs. charm, fright",
-        '10:Magical Secrets:magic:Learn %V additional spells from any class', // TODO
+        '10:Magical Secrets:magic:Learn %V additional spells from any class',
         '20:Superior Inspiration:feature:Min 1 Bardic Inspiration',
         // College Of Lore
         '3:Bonus Skills:skill:Prof in 3 additional skills',
         '3:Cutting Words:feature:' +
           "R60' Reaction to subtract Bardic Inspiration from foe roll",
         '6:Additional Magical Secrets:magic:' +
-          'Learn 2 additional spells from any class', // TODO
+          'Learn 2 additional spells from any class',
         '14:Peerless Skill:ability:Add Bardic Inspiration to ability check'
       ];
 // PHB
@@ -1631,7 +1634,7 @@ SRD5E.classRules = function(rules, classes) {
       proficiencyCount =
         {'Armor':1, 'Save':2, 'Skill':3, 'Tool':3, 'Weapon':5};
       proficienciesGiven = {
-        'Armor':['Light'],
+        'Armor':['Light Armor'],
         'Save':['Charisma', 'Dexterity'],
         'Weapon':['Simple','Hand Crossbow','Longsword','Rapier','Shortsword']
       };
@@ -1754,7 +1757,7 @@ SRD5E.classRules = function(rules, classes) {
         '17:Visions Of The Past:magic:' +
           'Meditate for visions about surroundings or held object',
         // Light Domain
-        '1:Light Cantrip:magic:Know <i>Light</i> cantrip', // TODO
+        '1:Light Cantrip:magic:Know <i>Light</i> cantrip',
         '1:Warding Flare:magic:' +
           "R30' Reaction flare foe Disadv on current attack %V/long rest",
         '2:Radiance Of The Dawn:magic:' +
@@ -1765,7 +1768,7 @@ SRD5E.classRules = function(rules, classes) {
           "60' light, foe Disadv on fire, radiant spells for 1 min",
         // Nature Domain
         '1:Armor Proficiency (Heavy)',
-        '1:Acolyte Of Nature:magic:Additional Druid cantrip', // TODO
+        '1:Acolyte Of Nature:magic:Additional Druid cantrip',
         '1:Acolyte Of Nature:skill:Additional skill proficiency',
         '2:Charm Animals And Plants:magic:' +
           "R30' Channel Divinity charms for 1 min",
@@ -1804,7 +1807,7 @@ SRD5E.classRules = function(rules, classes) {
       proficiencyCount = {'Save':2, 'Skill':2, 'Armor':3, 'Weapon':1};
       proficienciesGiven = {
         'Save':['Charisma', 'Wisdom'],
-        'Armor':['Light', 'Medium', 'Shield'],
+        'Armor':['Light Armor', 'Medium Armor', 'Shield'],
         'Weapon':['Simple']
       };
       proficiencyChoices = {
@@ -1893,7 +1896,7 @@ SRD5E.classRules = function(rules, classes) {
         'C9:17:1'
       ];
 
-      rules.defineRule('armorProficiencies.Heavy',
+      rules.defineRule('armorProficiencies.Heavy Armor',
         'clericFeatures.Armor Proficiency (Heavy)', '=', '1'
       );
       rules.defineRule('casterLevels.C',
@@ -2081,7 +2084,7 @@ SRD5E.classRules = function(rules, classes) {
         '18:Beast Spells:magic:Cast spells during Wild Shape',
         '20:Archdruid:magic:Unlimited Wild Shape',
         // Circle Of The Land
-        '2:Bonus Cantrip:magic:Additional Druid cantrip', // TODO
+        '2:Bonus Cantrip:magic:Additional Druid cantrip',
         '2:Natural Recovery:magic:Recover %V spell slot levels in short rest',
         '3:Circle Spells:magic:1/long rest',
         "6:Land's Stride:ability:Normal move through difficult terrain",
@@ -2106,7 +2109,7 @@ SRD5E.classRules = function(rules, classes) {
       proficiencyCount =
        {'Armor':3, 'Save':2, 'Skill':2, 'Tool':1, 'Weapon':10};
       proficienciesGiven = {
-        'Armor':['Light', 'Medium', 'Shield'],
+        'Armor':['Light Armor', 'Medium Armor', 'Shield'],
         'Save':['Intelligence', 'Wisdom'],
         'Tool':['Herbalism Kit'],
         'Weapon':['Club', 'Dagger', 'Dart', 'Javelin', 'Mace', 'Quarterstaff',
@@ -2297,7 +2300,7 @@ SRD5E.classRules = function(rules, classes) {
       hitDie = 10;
       proficiencyCount = {'Armor':4, 'Save':2, 'Skill':2, 'Weapon':2};
       proficienciesGiven = {
-        'Armor':['Light', 'Medium', 'Heavy', 'Shield'],
+        'Armor':['Light Armor', 'Medium Armor', 'Heavy Armor', 'Shield'],
         'Save':['Constitution', 'Strength'],
         'Weapon':['Simple', 'Martial']
       };
@@ -2801,7 +2804,7 @@ SRD5E.classRules = function(rules, classes) {
       proficiencyCount = {'Save':2, 'Skill':2, 'Armor':4, 'Weapon':2};
       proficienciesGiven = {
         'Save':['Charisma', 'Wisdom'],
-        'Armor':['Light', 'Medium', 'Heavy', 'Shield'],
+        'Armor':['Light Armor', 'Medium Armor', 'Heavy Armor', 'Shield'],
         'Weapon':['Simple', 'Martial']
       };
       proficiencyChoices = {
@@ -2988,7 +2991,7 @@ SRD5E.classRules = function(rules, classes) {
       proficiencyCount = {'Armor':3, 'Save':2, 'Skill':3, 'Weapon':2};
       proficienciesGiven = {
         'Save':['Dexterity', 'Strength'],
-        'Armor':['Light', 'Medium', 'Shield'],
+        'Armor':['Light Armor', 'Medium Armor', 'Shield'],
         'Weapon':['Simple', 'Martial']
       };
       proficiencyChoices = {
@@ -3152,7 +3155,7 @@ SRD5E.classRules = function(rules, classes) {
       proficiencyCount =
         {'Armor':1, 'Save':2, 'Skill':4, 'Tool':1, 'Weapon':5};
       proficienciesGiven = {
-        'Armor':['Light'],
+        'Armor':['Light Armor'],
         'Save':['Dexterity', 'Intelligence'],
         'Tool':["Thieves' Tools"],
         'Weapon':['Simple','Hand Crossbow','Longsword','Rapier','Shortsword']
@@ -3393,8 +3396,7 @@ SRD5E.classRules = function(rules, classes) {
       features = [
         '1:Armor Proficiency (Light)::',
         '1:Weapon Proficiency (Simple)::',
-        '1:Otherworldly Patron::TODO',
-        '1:Pact Magic::', // TODO "Arcane Focus"?
+        '1:Pact Magic::',
         '2:Eldritch Invocations:magic:%V',
         '11:Mystic Arcanum:magic:Warlock spells %V 1/long rest',
         '20:Eldritch Master:magic:Regain spells from patron 1/long rest',
@@ -3428,7 +3430,7 @@ SRD5E.classRules = function(rules, classes) {
       hitDie = 8;
       proficiencyCount = {'Armor':1, 'Save':2, 'Skill':2, 'Weapon':1};
       proficienciesGiven = {
-        'Armor':['Light'],
+        'Armor':['Light Armor'],
         'Save':['Charisma', 'Wisdom'],
         'Weapon':['Simple']
       };
@@ -4020,6 +4022,8 @@ SRD5E.equipmentRules = function(rules, armors, shields, weapons) {
   rules.defineChoice('shields', shields);
   rules.defineChoice('weapons', weapons);
 
+  rules.defineRule('proficient.Unarmed', '=', '1');
+
   for(var i = 0; i < weapons.length; i++) {
 
     var pieces = weapons[i].split(':');
@@ -4037,7 +4041,16 @@ SRD5E.equipmentRules = function(rules, armors, shields, weapons) {
     if(damage.startsWith('d'))
       damage = '1' + damage;
 
-    rules.defineNote(weaponName + ':' + format);
+    rules.defineNote(
+      weaponName + ':' + format,
+      'sanityNotes.nonproficientWeaponPenalty.' + name + ':%V attack'
+    );
+
+    rules.defineRule('sanityNotes.nonproficientWeaponPenalty.' + name,
+      weaponName, '?', null,
+      'proficiencyBonus', '=', '-source',
+      'proficient.' + name, '=', '0'
+    );
 
     rules.defineRule('proficient.' + name,
       weaponName, '?', null,
@@ -4093,32 +4106,55 @@ SRD5E.equipmentRules = function(rules, armors, shields, weapons) {
 
   }
 
+  var bulkyArmors = [];
+  var heavyArmors = [];
+  var mediumArmors = [];
+  rules.defineRule('nonproficientArmor', '', '=', '1');
   for(var i = 0; i < armors.length; i++) {
     var pieces = armors[i].split(':');
+    var category = pieces[1].indexOf('He')>=0 ? 'Heavy Armor' :
+                   pieces[1].indexOf('Me')>=0 ? 'Medium Armor' : 'Light Armor';
     var name = pieces[0];
     rules.defineRule('proficient.' + name,
       'armor', '?', 'source == "' + name + '"',
-      'armorProficiencies.' + name, '=', '1'
+      'armorProficiencies.' + name, '=', '1',
+      'armorProficiencies.' + category, '=', '1'
     );
-    if(pieces[1] != '') {
-      var category = pieces[1] == 'H' ? 'Heavy' : pieces[1] == 'M' ? 'Medium' : 'Light';
-      rules.defineRule
-        ('proficient.' + name, 'armorProficiencies.' + category, '=', '1');
-    }
+    rules.defineRule('nonproficientArmor', 'proficient.' + name, '=', '0');
+    if(pieces[1].indexOf('Bu') >= 0)
+      bulkyArmors.push(name);
+    if(pieces[1].indexOf('He') >= 0)
+      heavyArmors.push(name);
+    if(pieces[1].indexOf('Me') >= 0)
+      mediumArmors.push(name);
   }
 
-  // TODO Strength overcomes this; see PHB 144
-  // rules.defineRule('abilityNotes.armorSpeedAdjustment',
-  //   'armor', '=',
-  //   'SRD5E.armorsCategories[source] == "Heavy" ? -10 : null'
-  // );
+  rules.defineNote(
+    'sanityNotes.nonproficientArmorPenalty:' +
+      'Disadv Dex, Str rolls, cannot cast spells',
+    'skillNotes.bulkyArmor:Disadv Stealth'
+  );
+  rules.defineRule('armorWeight',
+    'armor', '=', 'source.match(/' + heavyArmors.join('|') + '/) ? "Heavy" : source.match(/' + mediumArmors.join('|') + '/) ? "Medium" : "Light"'
+  );
+  rules.defineRule
+    ('sanityNotes.nonproficientArmorPenalty', 'nonproficientArmor', '=', null);
+  rules.defineRule('skillNotes.bulkyArmor',
+    'armor', '=', 'source.match(/' + bulkyArmors.join('|') + '/) ? 1 : null'
+  );
+
+  rules.defineRule('armorFullSpeedStrShortfall',
+    'armor', '=', 'source == "Chain" ? 13 : "SplintPlate".indexOf(source) >= 0 ? 15 : 3',
+    'strength', '+', '-source',
+    '', '^', '0'
+  );
+  rules.defineRule('abilityNotes.armorSpeedAdjustment',
+    'armorFullSpeedStrShortfall', '=', 'source > 0 ? -10 : null'
+  );
   rules.defineRule('combatNotes.dexterityArmorClassAdjustment',
     'armor', 'v', 'SRD5E.armorsMaxDexBonuses[source]'
   );
   rules.defineRule('speed', 'abilityNotes.armorSpeedAdjustment', '+', null);
-
-  // TODO arcane spells require armor proficiency
-  // TODO armor, weapon proficiency
 
 };
 
@@ -4239,12 +4275,12 @@ SRD5E.featRules = function(rules, feats) {
         'validationNotes.heavilyArmoredFeature:' +
           'Requires medium armor proficiency'
       ];
-      rules.defineRule('armorProficiencies.Heavy',
+      rules.defineRule('armorProficiencies.Heavy Armor',
         'skillNotes.heavilyArmoredFeature', '=', '1'
       );
       rules.defineRule('validationNotes.heavilyArmoredFeature',
         'feats.Heavily Armored', '=', '-1',
-        'armorProficiencies.Medium', '+', null
+        'armorProficiencies.Medium Armor', '+', null
       );
     } else if(feat == 'Heavy Armor Master') {
       notes = [
@@ -4256,7 +4292,7 @@ SRD5E.featRules = function(rules, feats) {
       ];
       rules.defineRule('validationNotes.heavyArmorMasterFeature',
         'feats.Heavy Armor Master', '=', '-1',
-        'armorProficiencies.Heavy', '+', null
+        'armorProficiencies.Heavy Armor', '+', null
       );
     } else if(feat == 'Inspiring Leader') {
       notes = [
@@ -4861,7 +4897,7 @@ SRD5E.raceRules = function(rules, languages, races) {
         'Tool':["Brewer's Supplies", "Mason's Tools", "Smith's Tools"]
       };
       rules.defineRule('abilityNotes.armorSpeedAdjustment',
-        'abilityNotes.dwarvenArmorSpeed', '^', '0'
+        'abilityNotes.dwarvenArmorSpeedFeature', '^', '0'
       );
       rules.defineRule('speed', 'abilityNotes.slowFeature', '+', '-5');
 
@@ -4876,7 +4912,7 @@ SRD5E.raceRules = function(rules, languages, races) {
       } else if(race == 'Mountain Dwarf') {
         adjustment += '/+2 strength';
         proficiencyCount['Armor'] = 2;
-        proficienciesGiven['Armor'] = ['Light', 'Medium'];
+        proficienciesGiven['Armor'] = ['Light Armor', 'Medium Armor'];
 // ENDPHB
       }
 
@@ -4942,7 +4978,7 @@ SRD5E.raceRules = function(rules, languages, races) {
         "1:Darkvision:feature:R60' See one light level better",
         '1:Gnome Cunning:save:Adv Cha/Int/Wis vs magic',
         '1:Slow:ability:-5 speed',
-        '1:Small:ability:' // TODO
+        '1:Small:combat:Disadv heavy weapons'
       ];
       languages = ['Common', 'Gnomish'];
       proficiencyCount = {};
@@ -4978,7 +5014,7 @@ SRD5E.raceRules = function(rules, languages, races) {
         '1:Lucky:feature:Reroll 1 on attack/ability/save',
         '1:Nimble:ability:Move through space occupied by larger creature',
         '1:Slow:ability:-5 speed',
-        '1:Small:ability:' // TODO
+        '1:Small:combat:Disadv heavy weapons'
       ];
       languages = ['Common', 'Halfling'];
       proficiencyCount = {};
@@ -5272,9 +5308,9 @@ SRD5E.randomizeOneAttribute = function(attributes, attribute) {
     choices = ['None'];
     for(attr in armors) {
       if(attrs['armorProficiencies.' + attr] ||
-         attrs['armorProficiencies.Light'] && armors[attr].indexOf('Li')>=0 ||
-         attrs['armorProficiencies.Medium'] && armors[attr].indexOf('Me')>=0 ||
-         attrs['armorProficiencies.Heavy'] && armors[attr].indexOf('He')>=0) {
+         attrs['armorProficiencies.Light Armor'] && armors[attr].indexOf('Li')>=0 ||
+         attrs['armorProficiencies.Medium Armor'] && armors[attr].indexOf('Me')>=0 ||
+         attrs['armorProficiencies.Heavy Armor'] && armors[attr].indexOf('He')>=0) {
         choices.push(attr);
       }
     }
@@ -5842,7 +5878,7 @@ SRD5E.ruleNotes = function() {
 
 SRD5E.defineBackground = function(
   rules, name, features, languages, proficiencyCount, proficienciesGiven,
-  proficiencyChoices
+  proficiencyChoices, equipment
 ) {
 
   var prefix =
@@ -5907,6 +5943,8 @@ SRD5E.defineBackground = function(
       }
     }
   }
+
+  // TODO equipment
 
 }
 

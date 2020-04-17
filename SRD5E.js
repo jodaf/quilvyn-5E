@@ -17,7 +17,7 @@ Place, Suite 330, Boston, MA 02111-1307 USA.
 
 "use strict";
 
-var SRD5E_VERSION = '1.7.0.3alpha';
+var SRD5E_VERSION = '1.7.0.7beta';
 
 /*
  * This module loads the rules from Fifth Edition.  The SRD5E function
@@ -831,7 +831,8 @@ SRD5E.spellsDescriptions = {
   'Eyebite':"R60' Target sleep, panic, or sick for conc/1 min",
 
   'Fabricate':"R120' Create product from raw materials",
-  'Faerie Fire':"R60' Objects in 20' cu lit outline for conc/1 min",
+  'Faerie Fire':
+    "R60' Objects in 20' cu outlined (foe Adv attack) for conc/1 min (Dex neg)",
   'Faithful Hound':"R30' Invisible watchdog warns and attacks for 8 hr",
   'False Life':"Self 1d4+4 temporary HP for 1 hr",
   'Fear':"Targets in 30' cone Dash away for conc/1 min (Wis neg)",
@@ -1482,7 +1483,7 @@ SRD5E.classRules = function(rules, classes) {
       features.push(
         // Path Of The Totem Warrior
         '3:Spirit Seeker:magic:' +
-          'Ritual <i>Beast Sense</i>, <i>Speak With Animals</i>', // TODO
+          'Ritual <i>Beast Sense</i>, <i>Speak With Animals</i>',
         '3:Bear Totem Spirit:combat:Resist non-psychic damage when raging',
         '3:Eagle Totem Spirit:combat:' +
           'Foes Disadv OA, Dash as bonus action when raging (heavy armor neg)',
@@ -1494,7 +1495,7 @@ SRD5E.classRules = function(rules, classes) {
           'See 1 mile clearly, no Perception Disadv in dim light',
         '6:Aspect Of The Wolf:ability:' +
           'Track at fast pace, stealth at normal pace',
-        '10:Spirit Walker:magic:Ritual <i>Commune With Nature</i>', // TODO
+        '10:Spirit Walker:magic:Ritual <i>Commune With Nature</i>',
         '14:Bear Totemic Attunement:combat:' +
           "Foes w/in 5' Disadv attack others when raging",
         '14:Eagle Totemic Attunement:ability:Fly for short bursts when raging',
@@ -1830,7 +1831,7 @@ SRD5E.classRules = function(rules, classes) {
         'C:1:"all"', 'Dom:1:"all"'
       ];
       spells = {
-        'clericFeatures.Life Domain':[
+        'Life Domain':[
           '1:Bless:Cure Wounds',
           '3:Lesser Restoration:Spiritual Weapon',
           '5:Beacon Of Hope:Revivify',
@@ -1840,42 +1841,42 @@ SRD5E.classRules = function(rules, classes) {
       };
 // PHB
       Object.assign(spells, {
-        'clericFeatures.Knowledge Domain':[
+        'Knowledge Domain':[
           '1:Command:Identify',
           '3:Augury:Suggestion',
           '5:Nondetection:Speak With Dead',
           '7:Arcane Eye:Confusion',
           '9:Legend Lore:Scrying'
         ],
-        'clericFeatures.Light Domain':[
+        'Light Domain':[
           '1:Burning Hands:Faerie Fire',
           '3:Flaming Sphere:Scorching Ray',
           '5:Daylight:Fireball',
           '7:Guardian Of Faith:Wall Of Fire',
           '9:Flame Strike:Scrying'
         ],
-        'clericFeatures.Nature Domain':[
+        'Nature Domain':[
           '1:Animal Friendship:Speak With Animals',
           '3:Barkskin:Spike Growth',
           '5:Plant Growth:Wind Wall',
           '7:Dominate Beast:Grasping Vine',
           '9:Insect Plague:Tree Stride'
         ],
-        'clericFeatures.Tempest Domain':[
+        'Tempest Domain':[
           '1:Fog Cloud:Thunderwave',
           '3:Gust Of Wind:Shatter',
           '5:Call Lightning:Sleet Storm',
           '7:Control Water:Ice Storm',
           '9:Destructive Wave:Insect Plague'
         ],
-        'clericFeatures.Trickery Domain':[
+        'Trickery Domain':[
           '1:Charm Person:Disguise Self',
           '3:Mirror Image:Pass Without Trace',
           '5:Blink:Dispel Magic',
           '7:Dimension Door:Polymorph',
           '9:Dominate Person:Modify Memory'
         ],
-        'clericFeatures.War Domain':[
+        'War Domain':[
           '1:Divine Favor:Shield Of Faith',
           '3:Magic Weapon:Spiritual Weapon',
           "5:Crusader's Mantle:Spirit Guardians",
@@ -2086,7 +2087,6 @@ SRD5E.classRules = function(rules, classes) {
         // Circle Of The Land
         '2:Bonus Cantrip:magic:Additional Druid cantrip',
         '2:Natural Recovery:magic:Recover %V spell slot levels in short rest',
-        '3:Circle Spells:magic:1/long rest',
         "6:Land's Stride:ability:Normal move through difficult terrain",
         "6:Land's Stride:save:Adv vs. impeding plants",
         "10:Nature's Ward:save:" +
@@ -2137,43 +2137,43 @@ SRD5E.classRules = function(rules, classes) {
 // ENDPHB
       spellAbility = 'wisdom';
       spells = {
-        'druidFeatures.Circle Of The Land (Arctic)':[
+        'Circle Of The Land (Arctic)':[
           '3:Hold Person:Spike Growth',
           '5:Sleet Storm:Slow',
           '7:Freedom Of Movement:Ice Storm',
           '9:Commune With Nature:Cone Of Cold'
         ],
-        'druidFeatures.Circle Of The Land (Coast)':[
+        'Circle Of The Land (Coast)':[
           '3:Mirror Image:Misty Step',
           '5:Water Breathing:Water Walk',
           '7:Control Water:Freedom Of Movement',
           '9:Conjure Elemental:Scrying'
         ],
-        'druidFeatures.Circle Of The Land (Desert)':[
+        'Circle Of The Land (Desert)':[
           '3:Blur:Silence',
           '5:Create Food And Water:Protection From Energy',
           '7:Blight:Hallucinatory Terrain',
           '9:Insect Plague:Wall Of Stone'
         ],
-        'druidFeatures.Circle Of The Land (Forest)':[
+        'Circle Of The Land (Forest)':[
           '3:Barkskin:Spider Climb',
           '5:Call Lightning:Plant Growth',
           '7:Divination:Freedom Of Movement',
           '9:Commune With Nature:Tree Stride'
         ],
-        'druidFeatures.Circle Of The Land (Grassland)':[
+        'Circle Of The Land (Grassland)':[
           '3:Invisibility:Pass Without Trace',
           '5:Daylight:Haste',
           '7:Divination:Freedom Of Movement',
           '9:Dream:Insect Plague'
         ],
-        'druidFeatures.Circle Of The Land (Mountain)':[
+        'Circle Of The Land (Mountain)':[
           '3:Spider Climb:Plant Growth',
           '5:Lightning Bolt:Meld Into Stone',
           '7:Stone Shape:Stoneskin',
           '9:Passwall:Wall Of Stone'
         ],
-        'druidFeatures.Circle Of The Land (Swamp)':[
+        'Circle Of The Land (Swamp)':[
           '3:Acid Arrow:Darkness',
           '5:Water Walk:Stinking Cloud',
           '7:Freedom Of Movement:Locate Creature',
@@ -2182,7 +2182,7 @@ SRD5E.classRules = function(rules, classes) {
       };
 // PHB
       Object.assign(spells, {
-        'druidFeatures.Circle Of The Land (Underdark)':[
+        'Circle Of The Land (Underdark)':[
           '3:Spider Climb:Web',
           '5:Gaseous Form:Stinking Cloud',
           '7:Greater Invisibility:Stone Shape',
@@ -2242,8 +2242,8 @@ SRD5E.classRules = function(rules, classes) {
         /Circle Of The Land/, '=', '1'
       );
       for(var feature in {
-        'Bonus Cantrip':'', 'Circle Spells':'', "Land's Stride":'',
-        "Nature's Ward":'', "Nature's Sanctuary":''
+        'Bonus Cantrip':'', "Land's Stride":'', "Nature's Ward":'',
+        "Nature's Sanctuary":''
       }) {
         rules.defineRule('druidFeatures.' + feature,
           'hasCircleOfTheLand', '?', null
@@ -2831,7 +2831,7 @@ SRD5E.classRules = function(rules, classes) {
         'P1:2:"all"', 'P2:5:"all"', 'P3:9:"all"', 'P4:13:"all"', 'P5:17:"all"'
       ];
       spells = {
-        'paladinFeatures.Oath Of Devotion':[
+        'Oath Of Devotion':[
           '3:Protection From Evil And Good:Sanctuary',
           '5:Lesser Restoration:Zone Of Truth',
           '9:Beacon Of Hope:Dispel Magic',
@@ -2841,14 +2841,14 @@ SRD5E.classRules = function(rules, classes) {
       };
 // PHB
       Object.assign(spells, {
-        'paladinFeatures.Oath Of The Ancients':[
+        'Oath Of The Ancients':[
           '3:Ensnaring Strike:Speak With Animals',
           '5:Moonbeam:Misty Step',
           '9:Plant Growth:Protection From Energy',
           '13:Ice Storm:Stoneskin',
           '17:Commune With Nature:Tree Stride',
         ],
-        'paladinFeatures.Oath Of Vengeance':[
+        'Oath Of Vengeance':[
           "3:Bane:Hunter's Mark",
           '5:Hold Person:Misty Step',
           '9:Haste:Protection From Energy',
@@ -4469,7 +4469,6 @@ SRD5E.featRules = function(rules, feats) {
           'Adv concentration, cast when holding shield or weapon, cast as OA',
         'validationNotes.warCasterFeatCasterLevel:Requires Caster Level >= 1'
       ];
-      // TODO
     } else if(feat == 'Weapon Master') {
       notes = [
         'abilityNotes.weaponMasterFeature:+1 Dexterity or Strength',
@@ -4933,13 +4932,18 @@ SRD5E.raceRules = function(rules, languages, races) {
       if(race == 'High Elf') {
         adjustment += '/+1 intelligence';
         features.push(
-          '1:Cantrip:magic:Learn 1 additional Wizard cantrip (Int)', // TODO
+          '1:Cantrip:magic:Additional Wizard cantrip',
           '1:Extra Language:feature:Speak 1 additional language',
           '1:Weapon Proficiency (Longbow/Longsword/Shortbow/Shortsword)::'
         );
         proficiencyCount['Weapon'] = 4;
         proficienciesGiven['Weapon'] =
           ['Longbow', 'Longsword', 'Shortbow', 'Shortsword'];
+        rules.defineRule('casterLevels.W', 'highElfCantripLevel', '^=', null);
+        rules.defineRule('highElfCantripLevel',
+          'highElfFeatures.Cantrip', '?', null,
+          'level', '=', null
+        );
         rules.defineRule
           ('languageCount', 'featureNotes.extraLanguageFeature', '+', '1');
 // PHB
@@ -4957,7 +4961,7 @@ SRD5E.raceRules = function(rules, languages, races) {
       } else if(race == 'Dark Elf') {
         adjustment += '/+1 charisma';
         features.push(
-          '1:Drow Magic:magic:<i>Dancing Lights</i> cantrip%V (Cha)', // TODO
+          '1:Drow Magic:magic:<i>Dancing Lights</i> cantrip%V',
           '1:Sunlight Sensitivity:combat:Disadv attack in direct sunlight',
           '1:Sunlight Sensitivity:skill:' +
             'Disadv sight Perception in direct sunlight',
@@ -4967,6 +4971,11 @@ SRD5E.raceRules = function(rules, languages, races) {
         proficiencyCount['Weapon'] = 3;
         proficienciesGiven['Weapon'] =
           ['Hand Crossbow', 'Rapier', 'Shortsword'];
+        rules.defineRule('casterLevels.S', 'drowMagicLevel', '^=', null);
+        rules.defineRule('drowMagicLevel',
+          'darkElfFeatures.Drow Magic', '?', null,
+          'level', '=', null
+        );
         rules.defineRule('magicNotes.drowMagicFeature', 'level', '=', 'source >= 3 ? ", cast <i>Faerie Fire</i>" + (source >= 5 ? ", <i>Darkness</i>" : "") + " 1/dy" : ""');
 // ENDPHB
       }
@@ -5055,12 +5064,17 @@ SRD5E.raceRules = function(rules, languages, races) {
       features = [
         "1:Darkvision:feature:R60' See one light level better",
         '1:Hellish Resistance:save:Resistance fire damage',
-        '1:Infernal Legacy:magic:<i>Thaumaturgy</i> cantrip%V (Cha)' // TODO
+        '1:Infernal Legacy:magic:<i>Thaumaturgy</i> cantrip%V'
       ];
       languages = ['Common', 'Infernal'];
       proficiencyCount = {};
       proficienciesGiven = {};
       proficiencyChoices = {};
+      rules.defineRule('casterLevels.K', 'tieflingLegacyLevel', '^=', null);
+      rules.defineRule('tieflingLegacyLevel',
+        'tieflingFeatures.Infernal Legacy', '?', null,
+        'level', '=', null
+      );
       rules.defineRule('magicNotes.infernalLegacyFeature', 'level', '=', 'source >= 3 ? ", cast <i>Hellish Rebuke</i>" + (source >= 5 ? ", <i>Darkness</i>" : "") + " 1/dy" : ""');
 
     } else
@@ -5944,7 +5958,7 @@ SRD5E.defineBackground = function(
     }
   }
 
-  // TODO equipment
+  // TODO Do anything with equipment?
 
 }
 
@@ -6093,7 +6107,19 @@ SRD5E.defineClass = function(
 
   }
 
-  // TODO spells
+  if(spells != null) {
+    for(var feature in spells) {
+      var note = 'magicNotes.' + feature.substring(0, 1).toLowerCase() + feature.substring(1).replace(/ /g, '') + 'Feature';
+      rules.defineNote(note + ':%V');
+      var code = '"Cast " + []';
+      for(var i = 0; i < spells[feature].length; i++) {
+        var pieces = spells[feature][i].split(':');
+        var level = pieces.shift();
+        code += '.concat(source >= ' + level + ' ? [' + pieces.map(x => '"<i>' + x + '</i>"') + '] : [])';
+      }
+      rules.defineRule(note, 'level', '=', code + '.sort().join(", ")');
+    }
+  }
 
 };
 

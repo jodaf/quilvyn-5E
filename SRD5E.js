@@ -4022,7 +4022,8 @@ SRD5E.equipmentRules = function(rules, armors, shields, weapons) {
   rules.defineChoice('shields', shields);
   rules.defineChoice('weapons', weapons);
 
-  rules.defineRule('proficient.Unarmed', '=', '1');
+  rules.defineRule('proficient.None', '', '=', '1'); // Prof w/no armor
+  rules.defineRule('proficient.Unarmed', '', '=', '1');
 
   for(var i = 0; i < weapons.length; i++) {
 

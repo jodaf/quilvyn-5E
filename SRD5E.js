@@ -63,12 +63,6 @@ SRD5E.ARMORS = [
   'Ring Mail:He Bu', 'Chain Mail:He Bu', 'Splint:He Bu', 'Plate:He Bu'
 ];
 SRD5E.BACKGROUNDS = ['Acolyte'];
-// PHB
-SRD5E.BACKGROUNDS.push(
-  'Charlatan', 'Criminal', 'Entertainer', 'Folk Hero', 'Guild Artisan',
-  'Hermit', 'Noble', 'Outlander', 'Sage', 'Sailor', 'Soldier', 'Urchin'
-);
-// ENDPHB
 SRD5E.CLASSES = [
   'Barbarian', 'Bard', 'Cleric', 'Druid', 'Fighter', 'Monk', 'Paladin',
   'Ranger', 'Rogue', 'Sorcerer', 'Warlock', 'Wizard'
@@ -114,76 +108,10 @@ SRD5E.DEITIES = [
   'Norse-Thrym (CE):War', 'Norse-Tyr (LN):Knowledge/War',
   'Norse-Uller (CNG):Nature'
 ];
-// PHB
-SRD5E.DEITIES.push(
-  // Forgotten Realms
-  'FR-Auril (NE):Nature/Tempest', 'FR-Azuth (LN):Knowledge', 'FR-Bane (LE):War',
-  'FR-Beshaba (CE):Trickery', 'FR-Bhaal:Death (NE)', 'FR-Chauntea (NG):Life',
-  'FR-Cyric (CE):Trickery', 'FR-Deneir (NG):Knowledge',
-  'FR-Eldath (NG):Life/Nature', 'FR-Gond (N):Knowledge',
-  'FR-Helm (LN):Life/Light', 'FR-Ilmater (LG):Life', 'FR-Kelemvor (LN):Death',
-  'FR-Lathander (NG):Life/Light', 'FR-Leira (CN):Trickery',
-  'FR-Lliira (CG):Life', 'FR-Loviatar (LE):Death', 'FR-Malar (CE):Nature',
-  'FR-Mask (CN):Trickery', 'FR-Mielikki (NG):Nature', 'FR-Milil (NG):Light',
-  'FR-Myrkul (NE):Death', 'FR-Mystra (NG):Knowledge', 'FR-Oghma (N):Knowledge',
-  'FR-Savras (LN):Knowledge', 'FR-Selune (CG):Knowledge/Life',
-  'FR-Shar (NE):Death/Trickery', 'FR-Silvanus (N):Nature',
-  'FR-Sune (CG):Life/Light', 'FR-Talona (CE):Death', 'FR-Talos (CE):Tempest',
-  'FR-Tempus (N):War', 'FR-Torm (LG):War', 'FR-Tymora (CG):Trickery',
-  'FR-Tyr (LG):War', 'FR-Umberlee (CE):Tempest',
-  'FR-Waukeen (N):Knowledge/Trickery',
-  // Greyhawk
-  'Greyhawk-Beory (N):Nature', 'Greyhawk-Boccob (N):Knowledge',
-  'Greyhawk-Celestian (N):Knowledge', 'Greyhawk-Ehlonna (NG):Life/Nature',
-  'Greyhawk-Erythnul (CE):War', 'Greyhawk-Fharlanghn (NG):Knowledge/Trickery',
-  'Greyhawk-Heironeous (LG):War', 'Greyhawk-Hextor (LE) War',
-  'Greyhawk-Kord (CG):Tempest/War', 'Greyhawk-Incabulous (NE):Death',
-  'Greyhawk-Istus (N):Knowledge', 'Greyhawk-Iuz (CE):Death',
-  'Greyhawk-Nerull (NE):Death', 'Greyhawk-Obad-Hai (N):Nature',
-  'Greyhawk-Olidammara (CN):Trickery', 'Greyhawk-Pelor (NG):Life/Light',
-  'Greyhawk-Pholtus (LG):Light', 'Greyhawk-Ralishaz (CN):Trickery',
-  'Greyhawk-Rao (LG):Knowledge', 'Greyhawk-St. Cuthbert (LN):Knowledge',
-  'Greyhawk-Tharizdun (CE):Trickery', 'Greyhawk-Trithereon (CG):War',
-  'Greyhawk-Ulaa (LG):Life/War', 'Greyhawk-Vecna (NE):Knowledge',
-  'Greyhawk-Wee Jas (LN):Death/Knowledge',
-  // Nonhuman
-  'NH-Bahamut (LG Dragon):Life/War', 'NH-Blibdoolpoolp (NE Kuo-Toa):Death',
-  'NH-Corellon Larethian (CG Elf):Light',
-  'NH-Deep Sashelas (CG Elf):Nature/Tempest',
-  'NH-Eadro (N Merfolk):Nature/Tempest',
-  'NH-Garl Glittergold (LG Gnome):Trickery',
-  'NH-Grolantor (CE Hill Giant):War', 'NH-Gruumsh (CE Orc):Tempest/War',
-  'NH-Hruggek (CE Bugbear):War', 'NH-Kurtulmak (LE Kobold):War',
-  'NH-Laogzed (CE Trogolodyte):Death', 'NH-Lolth (CE Drow):Trickery',
-  'NH-Maglubiyet (LE Goblinoid):War', 'NH-Moradin (LG Dwarf):Knowledge',
-  'NH-Rillifane Rallathil (CG Elf):Nature',
-  'NH-Sehanine Moonbow (CG Elf):Knowledge',
-  'NH-Sekolah (LE Sahuagin):Nature/Tempest', 'NH-Semuanya (N Lizardfolk):Life',
-  'NH-Skerrit (N Centaur):Knowledge',
-  'NH-Skoraeus Stonebones (N Stone Giant):Knowledge',
-  'NH-Surtur (LE Fire Giant):Knowledge/War', 'NH-Thryn (CE Frost Giant):War',
-  'NH-Tiamat (LE Dragon):Trickery', 'NH-Yondalla (LG Halfling):Life'
-);
-// ENDPHB
 SRD5E.FEATS = [
   'Ability Boost', 'Ability Boost2', 'Ability Boost3', 'Ability Boost4',
   'Ability Boost5', 'Ability Boost6', 'Ability Boost7', 'Grappler'
 ];
-// PHB
-SRD5E.FEATS.push(
-  'Alert', 'Athleete', 'Actor', 'Charger', 'Crossbow Expert',
-  'Defensive Duelist', 'Dual Wielder', 'Dungeon Delver', 'Durable',
-  'Elemental Adept (Acid)', 'Elemental Adept (Cold)', 'Elemental Adept (Fire)',
-  'Elemental Adept (Lightning)', 'Elemental Adept (Thunder)',
-  'Great Weapon Master', 'Healer', 'Heavily Armored', 'Heavy Armor Master',
-  'Inspiring Leader', 'Keen Mind', 'Lightly Armored', 'Linguist', 'Lucky',
-  'Mage Slayer', 'Magic Initiate', 'Martial Adept', 'Medium Armor Master',
-  'Mobile', 'Moderately Armored', 'Mounted Combatant', 'Observant',
-  'Polearm Master', 'Resilient', 'Ritual Caster', 'Savage Attacker',
-  'Sentinel', 'Sharpshooter', 'Shield Master', 'Skilled', 'Skulker',
-  'Spell Sniper', 'Tavern Brawler', 'Tough', 'War Caster', 'Weapon Master'
-);
-// ENDPHB
 SRD5E.GENDERS = ['Female', 'Male'];
 SRD5E.LANGUAGES = [
   'Abyssal', 'Celestial', 'Common', 'Deep Speech', 'Draconic', 'Dwarvish',
@@ -194,9 +122,8 @@ SRD5E.RACES = [
   'Black Dragonborn', 'Blue Dragonborn', 'Brass Dragonborn',
   'Bronze Dragonborn', 'Copper Dragonborn', 'Gold Dragonborn',
   'Green Dragonborn', 'Red Dragonborn', 'Silver Dragonborn',
-  'White Dragonborn', 'Hill Dwarf', 'Mountain Dwarf', 'High Elf', 'Wood Elf',
-  'Dark Elf', 'Forest Gnome', 'Rock Gnome', 'Half-Elf', 'Half-Orc',
-  'Lightfoot Halfling', 'Stout Halfling', 'Human', 'Tiefling'
+  'White Dragonborn', 'Hill Dwarf', 'High Elf', 'Rock Gnome', 'Half-Elf',
+  'Half-Orc', 'Lightfoot Halfling', 'Human', 'Tiefling'
 ];
 // Note: the order here handles dependencies among attributes when generating
 // random characters
@@ -246,7 +173,7 @@ SRD5E.SPELLS = {
   'Beacon Of Hope':'Abjuration',
   'Beast Sense':'Divination',
   'Bestow Curse':'Necromancy',
-  "Black Tentacles":'Conjuration',
+  'Black Tentacles':'Conjuration',
   'Blade Barrier':'Evocation',
   'Blade Ward':'Abjuration',
   'Bless':'Enchantment',
@@ -280,12 +207,10 @@ SRD5E.SPELLS = {
   'Cone Of Cold':'Evocation',
   'Confusion':'Enchantment',
   'Conjure Animals':'Conjuration',
-  'Conjure Barrage':'Conjuration',
   'Conjure Celestial':'Conjuration',
   'Conjure Elemental':'Conjuration',
   'Conjure Fey':'Conjuration',
   'Conjure Minor Elementals':'Conjuration',
-  'Conjure Volley':'Conjuration',
   'Conjure Woodland Beings':'Conjuration',
   'Contact Other Plane':'Divination',
   'Contagion':'Necromancy',
@@ -293,14 +218,11 @@ SRD5E.SPELLS = {
   'Continual Flame':'Evocation',
   'Control Water':'Transmutation',
   'Control Weather':'Transmutation',
-  'Cordon Of Arrows':'Transmutation',
   'Counterspell':'Abjuration',
   'Create Food And Water':'Conjuration',
   'Create Or Destroy Water':'Transmutation',
   'Create Undead':'Necromancy',
   'Creation':'Illusion',
-  'Crown Of Madness':'Enchantment',
-  "Crusader's Mantle":'Evocation',
   'Cure Wounds':'Evocation',
 
   'Dancing Lights':'Evocation',
@@ -310,7 +232,6 @@ SRD5E.SPELLS = {
   'Death Ward':'Abjuration',
   'Delayed Blast Fireball':'Evocation',
   'Demiplane':'Conjuration',
-  'Destructive Wave':'Evocation',
   'Detect Evil And Good':'Divination',
   'Detect Magic':'Divination',
   'Detect Poison And Disease':'Divination',
@@ -320,7 +241,6 @@ SRD5E.SPELLS = {
   'Disintegrate':'Transmutation',
   'Dispel Evil And Good':'Abjuration',
   'Dispel Magic':'Abjuration',
-  'Dissonant Whispers':'Enchantment',
   'Divination':'Divination',
   'Divine Favor':'Evocation',
   'Divine Word':'Evocation',
@@ -332,10 +252,8 @@ SRD5E.SPELLS = {
 
   'Earthquake':'Evocation',
   'Eldritch Blast':'Evocation',
-  'Elemental Weapon':'Transmutation',
   'Enhance Ability':'Transmutation',
   'Enlarge/Reduce':'Transmutation',
-  'Ensnaring Strike':'Conjuration',
   'Entangle':'Conjuration',
   'Enthrall':'Enchantment',
   'Etherealness':'Transmutation',
@@ -349,7 +267,6 @@ SRD5E.SPELLS = {
   'Fear':'Illusion',
   'Feather Fall':'Transmutation',
   'Feeblemind':'Enchantment',
-  'Feign Death':'Necromancy',
   'Find Familiar':'Conjuration',
   'Find Steed':'Conjuration',
   'Find The Path':'Divination',
@@ -371,7 +288,6 @@ SRD5E.SPELLS = {
   'Foresight':'Divination',
   'Freedom Of Movement':'Abjuration',
   'Freezing Sphere':'Evocation',
-  'Friends':'Enchantment',
 
   'Gaseous Form':'Transmutation',
   'Gate':'Conjuration',
@@ -382,7 +298,6 @@ SRD5E.SPELLS = {
   'Globe Of Invulnerability':'Abjuration',
   'Glyph Of Warding':'Abjuration',
   'Goodberry':'Transmutation',
-  'Grasping Vine':'Conjuration',
   'Grease':'Conjuration',
   'Greater Invisibility':'Illusion',
   'Greater Restoration':'Abjuration',
@@ -392,7 +307,6 @@ SRD5E.SPELLS = {
   'Guiding Bolt':'Evocation',
   'Gust Of Wind':'Evocation',
 
-  'Hail Of Thorns':'Conjuration',
   'Hallow':'Evocation',
   'Hallucinatory Terrain':'Illusion',
   'Harm':'Necromancy',
@@ -403,12 +317,10 @@ SRD5E.SPELLS = {
   'Hellish Rebuke':'Evocation',
   "Heroes' Feast":'Conjuration',
   'Heroism':'Enchantment',
-  'Hex':'Enchantment',
   'Hideous Laughter':'Enchantment',
   'Hold Monster':'Enchantment',
   'Hold Person':'Enchantment',
   'Holy Aura':'Abjuration',
-  'Hunger Of Hadar':'Conjuration',
   "Hunter's Mark":'Divination',
   'Hypnotic Pattern':'Illusion',
 
@@ -430,7 +342,6 @@ SRD5E.SPELLS = {
   'Lesser Restoration':'Abjuration',
   'Levitate':'Transmutation',
   'Light':'Evocation',
-  'Lightning Arrow':'Transmutation',
   'Lightning Bolt':'Evocation',
   'Locate Animal Or Plant':'Divination',
   'Locate Creature':'Divination',
@@ -439,7 +350,6 @@ SRD5E.SPELLS = {
 
   'Mage Armor':'Conjuration',
   'Mage Hand':'Conjuration',
-  "Mage's Sword":'Evocation',
   'Magic Circle':'Abjuration',
   'Magic Jar':'Necromancy',
   'Magic Missile':'Evocation',
@@ -470,7 +380,6 @@ SRD5E.SPELLS = {
 
   'Pass Without Trace':'Abjuration',
   'Passwall':'Transmutation',
-  'Phantasmal Force':'Illusion',
   'Phantasmal Killer':'Illusion',
   'Phantom Steed':'Illusion',
   'Planar Ally':'Conjuration',
@@ -479,14 +388,13 @@ SRD5E.SPELLS = {
   'Plant Growth':'Transmutation',
   'Poison Spray':'Conjuration',
   'Polymorph':'Transmutation',
-  'Power Word Heal':'Evocation',
   'Power Word Kill':'Enchantment',
   'Power Word Stun':'Enchantment',
   'Prayer Of Healing':'Evocation',
   'Prestidigitation':'Transmutation',
   'Prismatic Spray':'Evocation',
   'Prismatic Wall':'Abjuration',
-  "Private Sanctum":'Abjuration',
+  'Private Sanctum':'Abjuration',
   'Produce Flame':'Conjuration',
   'Programmed Illusion':'Illusion',
   'Project Image':'Illusion',
@@ -498,7 +406,6 @@ SRD5E.SPELLS = {
   'Raise Dead':'Necromancy',
   'Ray Of Enfeeblement':'Necromancy',
   'Ray Of Frost':'Evocation',
-  'Ray Of Sickness':'Necromancy',
   'Regenerate':'Transmutation',
   'Reincarnate':'Transmutation',
   'Remove Curse':'Abjuration',
@@ -513,7 +420,6 @@ SRD5E.SPELLS = {
   'Sanctuary':'Abjuration',
   'Scorching Ray':'Evocation',
   'Scrying':'Divination',
-  'Searing Smite':'Evocation',
   'Secret Chest':'Conjuraion',
   'See Invisibility':'Divination',
   'Seeming':'Illusion',
@@ -539,7 +445,6 @@ SRD5E.SPELLS = {
   'Spike Growth':'Transmutation',
   'Spirit Guardians':'Conjuration',
   'Spiritual Weapon':'Evocation',
-  'Staggering Smite':'Evocation',
   'Stinking Cloud':'Conjuration',
   'Stone Shape':'Transmutation',
   'Stoneskin':'Abjuration',
@@ -547,17 +452,13 @@ SRD5E.SPELLS = {
   'Suggestion':'Enchantment',
   'Sunbeam':'Evocation',
   'Sunburst':'Evocation',
-  'Swift Quiver':'Transmutation',
   'Symbol':'Abjuration',
 
   'Telekinesis':'Transmutation',
   'Telepathic Bond':'Divination',
-  'Telepathy':'Evocation',
   'Teleport':'Conjuration',
   'Teleportation Circle':'Conjuration',
   'Thaumaturgy':'Transmutation',
-  'Thorn Whip':'Transmutation',
-  'Thunderous Smite':'Evocation',
   'Thunderwave':'Evocation',
   'Time Stop':'Transmutation',
   'Tiny Hut':'Evocation',
@@ -568,7 +469,6 @@ SRD5E.SPELLS = {
   'True Resurrection':'Necromancy',
   'True Seeing':'Divination',
   'True Strike':'Divination',
-  'Tsunami':'Conjuration',
 
   'Unseen Servant':'Conjuration',
 
@@ -588,9 +488,7 @@ SRD5E.SPELLS = {
   'Wind Walk':'Transmutation',
   'Wind Wall':'Evocation',
   'Wish':'Conjuration',
-  'Witch Bolt':'Evocation',
   'Word Of Recall':'Conjuration',
-  'Wrathful Smite':'Evocation',
 
   'Zone Of Truth':'Enchantment'
 
@@ -604,15 +502,15 @@ SRD5E.TOOLS = [
   "Painter's Supplies:Artisan", "Potter's Tools:Artisan",
   "Smith's Tools:Artisan", "Tinker's Tools:Artisan",
   "Weaver's Tools:Artisan", "Woodcarver's Tools:Artisan",
-  "Disguise Kit:", "Forgery Kit:",
-  "Dice Set:Game", "Dragonchess Set:Game", "Playing Card Set:Game",
-  "Three-Dragon Ante Set:Game",
-  "Herbalism Kit:",
-  "Bagpipes:Music", "Drum:Music", "Dulcimer:Music", "Flute:Music",
-  "Lute:Music", "Lyre:Music", "Horn:Music", "Pan Flute:Music", "Shawm:Music",
-  "Viol:Music",
+  'Disguise Kit:', 'Forgery Kit:',
+  'Dice Set:Game', 'Dragonchess Set:Game', 'Playing Card Set:Game',
+  'Three-Dragon Ante Set:Game',
+  'Herbalism Kit:',
+  'Bagpipes:Music', 'Drum:Music', 'Dulcimer:Music', 'Flute:Music',
+  'Lute:Music', 'Lyre:Music', 'Horn:Music', 'Pan Flute:Music', 'Shawm:Music',
+  'Viol:Music',
   "Navigator's Tools:", "Poisoner's Kit:", "Theives' Tools:",
-  "Vehicle (Land):", "Vehicle (Water):"
+  'Vehicle (Land):', 'Vehicle (Water):'
 ];
 SRD5E.SHIELDS = [
   'Buckler', 'Heavy Steel', 'Heavy Wooden', 'Light Steel', 'Light Wooden',
@@ -670,7 +568,7 @@ SRD5E.levelsExperience = [
 ];
 SRD5E.spellsDescriptions = {
   'Acid Arrow':"R90' Ranged spell attack 4d4 HP (miss half), 2d4 HP next turn",
-  "Acid Splash":
+  'Acid Splash':
     "R60' Ranged touch ${Math.floor((lvl+1)/6) + 1}d6 HP acid (Dex neg)",
   'Aid':"R30' Three targets +5 or more HP for 8 hr",
   'Alarm':"R30' Alert when tiny or larger creature enters 20' cu for 8 hr",
@@ -789,7 +687,7 @@ SRD5E.spellsDescriptions = {
   'Creation':"R30' Create 5' cu false matter lasting up to 1 dy",
   'Cure Wounds':"Touched heals 1d8+spell mod HP",
 
-  "Dancing Lights":"R120' 4 torch lights in 20' radius move 60' for conc/1 min",
+  'Dancing Lights':"R120' 4 torch lights in 20' radius move 60' for conc/1 min",
   'Darkness':"R60' Target centers 15' radius lightless area for conc/10 min",
   'Darkvision':"Touched see in dark for 8 hr",
   'Daylight':"R60' Target centers 60' radius bright light for 1 hr",
@@ -850,14 +748,14 @@ SRD5E.spellsDescriptions = {
   'Fireball':"R150' Creatures in 20' radius 8d6 HP (Dex half)",
   'Flame Blade':"Self flaming blade 3d6 HP, lights 10' radius",
   'Flame Strike':"R60' Objects in 10' radius 2x4d6 HP (Dex half)",
-  "Flaming Sphere":"R60' 5' diameter sphere 2d6 HP (Dex half) move 30' for conc/1 min",
+  'Flaming Sphere':"R60' 5' diameter sphere 2d6 HP (Dex half) move 30' for conc/1 min",
   'Flesh To Stone':
      "R60' Target petrified after 3 failed saves for conc/1 min (Con x3 neg)",
-  "Floating Disk":
+  'Floating Disk':
     "R30' 3'-diameter x 1\" force disk follows, holds 500 lbs at 3' for 1 hr",
   'Fly':"Touched fly 60'/rd for conc/10 min",
-  "Fog Cloud":"R120' 20' radius fog obscures vision for conc/1 hr",
-  "Forbiddance":
+  'Fog Cloud':"R120' 20' radius fog obscures vision for conc/1 hr",
+  'Forbiddance':
     "Touched 40K' sq bars teleport and portals, 5d10 HP on transit to chosen type for 1 dy",
   'Forcecage':"R100' 20' barred cube or 10' solid box for 1 hr",
   'Foresight':
@@ -882,14 +780,14 @@ SRD5E.spellsDescriptions = {
     "Touched creature unexhausted, uncharmed, unpetrified, uncursed, or restored ability or HP",
   'Guardian Of Faith':
     "R30' Lg spectral guardian 20 HP to hostile creatures (Dex half) for 8 hr/60 HP",
-  "Guards And Wards": "Multiple magic effects protect 2500' sq area for 1 dy",
+  'Guards And Wards': "Multiple magic effects protect 2500' sq area for 1 dy",
   'Guidance':"Touched +1d4 ability check w/in conc/1 min",
   'Guiding Bolt':"R120' Ranged spell 4d6 HP, next foe attack in rd Adv",
   'Gust Of Wind':
     "60'x10' wind pushes 15' (Str neg), half movement for conc/1 min",
 
-  "Hallow": "60' radius warded against outsiders, evokes boon spell",
-  "Hallucinatory Terrain": "R300' 150' cube terrain illusion (Int(Investigation) disbelieve) for 1 dy",
+  'Hallow': "60' radius warded against outsiders, evokes boon spell",
+  'Hallucinatory Terrain': "R300' 150' cube terrain illusion (Int(Investigation) disbelieve) for 1 dy",
   'Harm':"R60' Target 14d6 HP (Con half)",
   'Haste':"R30' Target dbl speed, +1 AC, bonus action for conc/1 min",
   'Heal':"R60' Target heal 70 HP, unblind, undeaf, undiseased",
@@ -898,13 +796,13 @@ SRD5E.spellsDescriptions = {
   'Hellish Rebuke':"R60' As a reaction, attacker 2d10 HP (Dex half)",
   "Heroes' Feast":"R30' Diners cured, immune poison and fright, Wis Adv, +2d10 HP for 1 dy",
   'Heroism':"Touched immune fright, +modifier HP each rd for conc/1 min",
-  "Hideous Laughter": "R30' Target ROFL for conc/1 min (Wis neg)",
+  'Hideous Laughter': "R30' Target ROFL for conc/1 min (Wis neg)",
   'Hold Monster':"R90' target frozen for conc/1 min (Wis neg)",
   'Hold Person':"R60' target frozen for conc/1 min (Wis neg)",
   'Holy Aura':"Self 30' radius targets Adv saves, foes Disadv attack",
   "Hunter's Mark":
     "R90' Self attacks on target +1d6 HP, Adv Wis(Perception/Survival) to locate for conc/1 hr",
-  "Hypnotic Pattern": "R120' creatures in 30' cu charmed for conc/1 min (Wis neg)",
+  'Hypnotic Pattern': "R120' creatures in 30' cu charmed for conc/1 min (Wis neg)",
 
   'Ice Storm':"R300' 20' radius 4d6 HP (Dex half)",
   'Identify':
@@ -918,7 +816,7 @@ SRD5E.spellsDescriptions = {
   'Instant Summons':"Prepared 10 lb item appears in hand",
   'Invisibility':
     "Touched creature invisible for conc/1 hr or until attacks/casts",
-  "Irresistible Dance":
+  'Irresistible Dance':
     "R30' Target dance (Disadv Dex, attack, foes Adv attack) for conc/1 min (Wis neg)",
 
   'Jump':"Touched jump x3 for 1 min",
@@ -1017,7 +915,7 @@ SRD5E.spellsDescriptions = {
   'Resurrection':"Touched 100-year-old corpse restored to life",
   'Reverse Gravity':"R50' Items in 50' radius fall up for conc/1 min",
   'Revivify':"Touched 1-minute-old corpse returned to life w/1 HP",
-  "Rope Trick": "Rope to extradimensional space for 8 creatures for 1 hr",
+  'Rope Trick': "Rope to extradimensional space for 8 creatures for 1 hr",
 
   'Sacred Flame':"R60' Target ${Math.floor((lvl+7)/6)}d8 (Dex neg)",
   'Sanctuary':"R30' Target foes attack another for 1 min (Wis neg)",
@@ -1054,7 +952,7 @@ SRD5E.spellsDescriptions = {
   'Stoneskin':"Touched resists bludgeoning, piercing, slashing for conc/1 hr",
   'Storm Of Vengeance':
     "RSight 360' radius lightning, thunder, wind for conc/1 min",
-  "Suggestion": "R30' Target follow reasonable suggestion (Wis neg)",
+  'Suggestion': "R30' Target follow reasonable suggestion (Wis neg)",
   'Sunbeam':
     "60' light 6d8 HP (Con half), blind 1 turn (Con neg) for conc/1 min",
   'Sunburst':"60' radius light 12d6 HP (Con half), blind 1 min (Con neg)",
@@ -1098,7 +996,7 @@ SRD5E.spellsDescriptions = {
     "R120' Targets in 30' radius frightened, 4d10 HP/turn for conc/1 min (Wis neg)",
   'Wind Walk':"R30' Self + 10 others gaseous, fly 300'/rd for 8 hr",
   'Wind Wall':"R120' 50'x15' strong wind does 3d8 HP (Str half) for conc/1 min",
-  "Wish": "Alter reality with few limits",
+  'Wish': "Alter reality with few limits",
   'Word Of Recall':
     "R5' Self + 5 others instantly teleport to predetermined place",
 
@@ -1106,45 +1004,6 @@ SRD5E.spellsDescriptions = {
     "R60' Creatures inside 15' radius cannot lie for 10 min (Cha neg)"
 
 };
-
-// PHB
-Object.assign(SRD5E.spellsDescriptions, {
-  'Conjure Barrage':"60' weapon cone 3d8 HP (Dex half)",
-  'Conjure Volley':"R150' 40' radius weapon hail 8d8 HP (Dex half)",
-  'Cordon Of Arrows':"Four pieces of ammo attack 30' 1d6 HP (Dex neg) for 8 hr",
-  'Crown Of Madness':
-    "R120' Direct charmed creature's attacks for conc/1 min (Wis neg)",
-  "Crusader's Mantle":"30' radius allies +1d4 damage for conc/1 min",
-  'Destructive Wave':"Targets in 30' radius 5d6 HP (Con half), prone (Con neg)",
-  'Dissonant Whispers':"R60' Target 3d6 HP (Wis half), flee (Wis neg)",
-  'Elemental Weapon':"Touched weapon +1 attack, +1d4 damage for conc/1 hr",
-  'Ensnaring Strike':
-    "Successful attack restrains foe, 1d6 HP/turn for conc/1 min (Str neg)",
-  'Feign Death':"Touched appears dead for 1 hr",
-  'Friends':"Self Adv Cha w/target for conc/1 min",
-  'Grasping Vine':"R30' Vine pulls target 20' for conc/1 min (Dex neg)",
-  'Hail Of Thorns':"Ranged hit followed by 5' thorn rain 1d10 HP (Dex half)",
-  'Hex':"R90' Self hits on target +1d6 HP, Disadv chosen ability for conc/1 hr",
-  'Hunger Of Hadar':"R150' 20' void 2d6 HP for conc/1 min",
-  'Lightning Arrow':"100' bolt 8d6 HP (Dex half)",
-  "Mage's Sword":"Force weapon 3d10, move 20' for conc/1 min",
-  'Phantasmal Force':"R60' target illusion 1d6 HP/rd (Int neg)",
-  'Power Word Heal':
-    "Touched regains all HP, uncharmed, unfrightened, unparalyzed, unstunned",
-  'Ray Of Sickness':"R60' Target 2d8 HP, poisoned 1 turn (Con not poisoned)",
-  'Searing Smite':
-    "Hit +1d6 HP, 1d6 HP/turn for conc/1 min (Con no per-turn damage)",
-  'Staggering Smite':"Next hit +4d6 HP w/in conc/1 min",
-  'Swift Quiver':"Touched quiver endless ammo, dbl attack for conc/1 min",
-  'Telepathy':"Mental communication with ally for 1 dy",
-  'Thorn Whip':"R30' Vine attacks ${Math.floor((lvl+7)/6)}d6 HP, pulls 10'",
-  'Thunderous Smite':"Next hit 2d6 HP, push 10' (Str no push)",
-  'Tsunami':
-    "RSight 300'x300' wall of water 6d10 HP (Str half), moves away 50'/turn for conc/6 rd",
-  'Witch Bolt':"R30' Target 1d12/turn for conc/1 min",
-  'Wrathful Smite':"Next hit +1d6 HP, frightened (Wis neg) for conc/1 min"
-});
-// ENDPHB
 
 /* Defines the rules related to character abilities. */
 SRD5E.abilityRules = function(rules) {
@@ -1232,160 +1091,6 @@ SRD5E.backgroundRules = function(rules, backgrounds) {
       languages = ['', ''];
       proficiencyCount = {'Skill':2};
       proficienciesGiven = {'Skill':['Insight', 'Religion']};
-// PHB
-    } else if(name == 'Charlatan') {
-      equipment = [
-        'Fine Clothes', 'Disguise Kit', 'Con Tools', '15 GP'
-      ];
-      features = ['1:False Identity:feature:Documented 2nd ID, forgery skills'];
-      proficiencyCount = {'Skill':2, 'Tool':2};
-      proficienciesGiven = {
-        'Skill':['Deception', 'Sleight Of Hand'],
-        'Tool':['Diguise Kit', 'Forgery Kit']
-      };
-    } else if(name == 'Criminal') {
-      equipment = ['Crowbar', 'Dark Clothes w/Hood', '15 GP'];
-      features = ['1:Criminal Contact:feature:Liaison to criminal network'];
-      proficiencyCount = {'Skill':2, 'Tool':2};
-      proficienciesGiven = {
-        'Skill':['Deception', 'Stealth'],
-        'Tool':["Thieves' Tools"]
-      };
-      proficiencyChoices = {
-        'Tool':['Game']
-      };
-    } else if(name == 'Entertainer') {
-      equipment = [
-        'Musical Instrument', "Admirer's Favor", 'Costume', '15 GP'
-      ];
-      features = [
-        '1:By Popular Demand:feature:Welcome, lodging for performing'
-      ];
-      proficiencyCount = {'Skill':2, 'Tool':2};
-      proficienciesGiven = {
-        'Skill':['Acrobatics', 'Performance'],
-        'Tool':['Disguise Kit']
-      };
-      proficiencyChoices == {
-        'Tool':['Music']
-      };
-    } else if(name == 'Folk Hero') {
-      equipment = [
-        "Artisan's Tools", 'Shovel', 'Iron Pot', 'Clothes', '10 GP'
-      ];
-      features = ['1:Rustic Hospitality:feature:Aid from common folk'];
-      proficiencyCount = {'Skill':2, 'Tool':2};
-      proficienciesGiven = {
-        'Skill':['Animal Handling', 'Survival'],
-        'Tool':['Vehicles (Land)']
-      };
-      proficiencyChoices = {
-        'Tool':['Artisan']
-      };
-    } else if(name == 'Guild Artisan') {
-      equipment = [
-        "Artisan's Tools", 'Introduction Letter', "Traveler's Clothes",
-        '15 GP'
-      ];
-      features = ['1:Guild Membership:feature:Aid from guild members'];
-      languages = [''];
-      proficiencyCount = {'Skill':2, 'Tool':1};
-      proficienciesGiven = {
-        'Skill':['Insight', 'Persuasion']
-      };
-      proficiencyChoices = {
-        'Tool':['Artisan']
-      };
-    } else if(name == 'Hermit') {
-      equipment = [
-        'Scroll Case With Notes', 'Winter Blanket', 'Clothes', 'Herbalism Kit',
-        '5 GP'
-      ];
-      features = ['1:Discovery:feature:Knows rare truth'];
-      languages = [''];
-      proficiencyCount = {'Skill':2, 'Tool':1};
-      proficienciesGiven = {
-        'Skill':['Medicine', 'Religion'],
-        'Tool':['Herbalism Kit']
-      };
-    } else if(name == 'Noble') {
-      equipment = [
-        'Fine Clothes', 'Signet Ring', 'Pedigree Scroll', '25 GP'
-      ];
-      features = [
-        '1:Position Of Priviledge:feature:Treated with respect, deference'
-      ];
-      languages = [''];
-      proficiencyCount = {'Skill':2, 'Tool':1};
-      proficienciesGiven = {
-        'Skill':['History', 'Persuasion']
-      };
-      proficiencyChoices = {
-        'Tool':['Game']
-      };
-    } else if(name == 'Outlander') {
-      equipment = [
-        'Staff', 'Hunting Trap', 'Animal Trophy', "Traveler's Clothes", '10 GP'
-      ];
-      features = [
-        '1:Wanderer:feature:Excellent geography memory, forage for 6 people'
-      ];
-      languages = [''];
-      proficiencyCount = {'Skill':2, 'Tool':1};
-      proficienciesGiven = {
-        'Skill':['Athletics', 'Survival']
-      };
-      proficiencyChoices = {
-        'Tool':['Music']
-      };
-    } else if(name == 'Sage') {
-      equipment = [
-        'Bottle Ink', 'Quill', 'Small Knife', 'Letter With Unanswered Question',
-        'Clothes', '10 GP'
-      ];
-      features = ['1:Researcher:feature:Know who to ask about lore'];
-      languages = ['', ''];
-      proficiencyCount = {'Skill':2};
-      proficienciesGiven = {
-        'Skill':['Arcana', 'History']
-      };
-    } else if(name == 'Sailor') {
-      equipment = [
-        'Belaying Pin', "50' Silk Rope", 'Lucky Charm', 'Clothes', '10 GP'
-      ];
-      features = ["1:Ship's Passage:feature:Free passage for self/companions"];
-      proficiencyCount = {'Skill':2, 'Tool':2};
-      proficienciesGiven = {
-        'Skill':['Athletics', 'Perception'],
-        'Tool':["Navigator's Tools", 'Vehicles (Water)']
-      };
-    } else if(name == 'Soldier') {
-      equipment = [
-        'Rank Insignia', 'Battle Trophy', 'Gambling Objects', 'Clothes', '10 GP'
-      ];
-      features = ['1:Military Rank:feature:Respect, deference from soldiers'];
-      proficiencyCount = {'Skill':2, 'Tool':2};
-      proficienciesGiven = {
-        'Skill':['Athletics', 'Intimidation'],
-        'Tool':['Vehicles (Land)']
-      };
-      proficiencyChoices = {
-        'Tool':['Game']
-      };
-    } else if(name == 'Urchin') {
-      equipment = [
-        'Small Knife', 'City Map', 'Pet Mouse', "Parents' Token", 'Clothes',
-        '10 GP'
-      ];
-      features = [
-        '1:City Secrets:feature:Dbl speed through hidden urban ways'
-      ];
-      proficiencyCount = {'Skill':2, 'Tool':2};
-      proficienciesGiven = {
-        'Skill':['Sleight Of Hand', 'Stealth'],
-        'Tool':['Diguise Kit', "Thieves' Tools"]
-      };
-// ENDPHB
     } else
       continue;
 
@@ -1479,30 +1184,6 @@ SRD5E.classRules = function(rules, classes) {
           "R30' Target creature frightened (DC %V Will neg)",
         '14:Retaliation:combat:Melee attack reaction after taking damage'
       ];
-// PHB
-      features.push(
-        // Path Of The Totem Warrior
-        '3:Spirit Seeker:magic:' +
-          'Ritual <i>Beast Sense</i>, <i>Speak With Animals</i>',
-        '3:Bear Totem Spirit:combat:Resist non-psychic damage when raging',
-        '3:Eagle Totem Spirit:combat:' +
-          'Foes Disadv OA, Dash as bonus action when raging (heavy armor neg)',
-        '3:Wolf Totem Spirit:combat:' +
-          "Allies Adv attack vs. foes w/in 5' of self when raging",
-        '6:Aspect Of The Bear:ability:' +
-          'Dbl load/lift, Adv push, pull, lift, break Str checks',
-        '6:Aspect Of The Eagle:ability:' +
-          'See 1 mile clearly, no Perception Disadv in dim light',
-        '6:Aspect Of The Wolf:ability:' +
-          'Track at fast pace, stealth at normal pace',
-        '10:Spirit Walker:magic:Ritual <i>Commune With Nature</i>',
-        '14:Bear Totemic Attunement:combat:' +
-          "Foes w/in 5' Disadv attack others when raging",
-        '14:Eagle Totemic Attunement:ability:Fly for short bursts when raging',
-        '14:Wolf Totemic Attunement:combat:' +
-          'Knock prone lg foe after melee hit when raging'
-      );
-//ENDPHB
       hitDie = 12;
       proficiencyCount = {'Save':2, 'Skill':2, 'Armor':3, 'Weapon':2};
       proficienciesGiven = {
@@ -1575,26 +1256,6 @@ SRD5E.classRules = function(rules, classes) {
           'barbarianFeatures.Path Of The Berserker', '?', null
         );
       }
-// PHB
-      rules.defineRule('totemicBarbarian',
-        'barbarianFeatures.Path Of The Totem Warrior (Bear)', '=', '1',
-        'barbarianFeatures.Path Of The Totem Warrior (Eagle)', '=', '1',
-        'barbarianFeatures.Path Of The Totem Warrior (Wolf)', '=', '1'
-      );
-      rules.defineRule
-        ('barbarianFeatures.Spirit Seeker', 'totemicBarbarian', '?', null);
-      rules.defineRule
-        ('barbarianFeatures.Spirit Walker', 'totemicBarbarian', '?', null);
-      for(var feature in {
-        'Aspect Of The $A':'', '$A Totem Spirit':'', '$A Totemic Attunement':''
-      }) {
-        for(var animal in {'Bear':'', 'Eagle':'', 'Wolf':''}) {
-          rules.defineRule('barbarianFeatures.' + feature.replace('$A', animal),
-            'barbarianFeatures.Path Of The Totem Warrior (' + animal + ')', '?', null
-          );
-        }
-      }
-// ENDPHB
 
     } else if(name == 'Bard') {
 
@@ -1621,16 +1282,6 @@ SRD5E.classRules = function(rules, classes) {
           'Learn 2 additional spells from any class',
         '14:Peerless Skill:ability:Add Bardic Inspiration to ability check'
       ];
-// PHB
-      features.push(
-        // College Of Valor
-        '3:Bonus Skills:skill:Prof in 3 additional skills',
-        '3:Combat Inspiration:feature:' +
-          'Ally use Bardic Inspiration to boost damage or AC',
-        '6:Extra Attack:combat:%V additional attack(s) per Attack action',
-        '14:Battle Magic:combat:Bonus attack after casting spell'
-      );
-// ENDPHB
       hitDie = 8;
       proficiencyCount =
         {'Armor':1, 'Save':2, 'Skill':3, 'Tool':3, 'Weapon':5};
@@ -1644,9 +1295,6 @@ SRD5E.classRules = function(rules, classes) {
         'Tool':['Music']
       };
       selectableFeatures = ['3:College Of Lore::'];
-// PHB
-      selectableFeatures.push('3:College Of Valor::');
-// ENDPHB
       spellAbility = 'charisma';
       spellsKnown = [
         'B0:1:2/4:3/10:4',
@@ -1703,27 +1351,6 @@ SRD5E.classRules = function(rules, classes) {
         );
       }
 
-// PHB
-      rules.defineRule
-        ('attacksPerRound', 'combatNotes.extraAttackFeature', '+', null);
-      rules.defineRule('bardExtraAttacks',
-        'bardFeatures.Extra Attack', '?', null,
-        'levels.Bard', '=', 'source < 6 ? null : 1'
-      );
-      rules.defineRule
-        ('combatNotes.extraAttackFeature', 'bardExtraAttacks', '+=', null);
-      rules.defineRule
-        ('proficiencyCount.Skill', 'skillNotes.bonusSkillsFeature', '+', '3');
-
-      for(var feature in {
-        'Battle Magic':'', 'Combat Inspiration':'', 'Extra Attack':''
-      }) {
-        rules.defineRule('bardFeatures.' + feature,
-          'bardFeatures.College Of Valor', '?', null
-        );
-      }
-// ENDPHB
-
     } else if(name == 'Cleric') {
 
       features = [
@@ -1746,64 +1373,6 @@ SRD5E.classRules = function(rules, classes) {
         '8:Divine Strike:combat:+%Vd8 HP 1/turn',
         '17:Supreme Healing:magic:Use maximum values on healing spells'
       ];
-// PHB
-      features.push(
-        // Knowledge Domain
-        '1:Blessings Of Knowledge:skill:+2 languages, +2 skill proficiencies',
-        '2:Knowledge Of The Ages:skill:' +
-          'Channel Divinity Prof chosen skill or tool for 10 min',
-        '6:Read Thoughts:magic:' +
-          "R60' Channel Divinity read and command thoughts for 1 min (Wis neg)",
-        '8:Potent Spellcasting:magic:+%V Cleric cantrip damage',
-        '17:Visions Of The Past:magic:' +
-          'Meditate for visions about surroundings or held object',
-        // Light Domain
-        '1:Light Cantrip:magic:Know <i>Light</i> cantrip',
-        '1:Warding Flare:magic:' +
-          "R30' Reaction flare foe Disadv on current attack %V/long rest",
-        '2:Radiance Of The Dawn:magic:' +
-          "R30' Channel Divinity dispel magic darkness, 2d10+%V HP to foes (Con half)",
-        '6:Improved Flare:magic:Warding Flare protects allies',
-        '8:Potent Spellcasting:magic:+%V Cleric cantrip damage',
-        "17:Corona Of Light:magic:" +
-          "60' light, foe Disadv on fire, radiant spells for 1 min",
-        // Nature Domain
-        '1:Armor Proficiency (Heavy)',
-        '1:Acolyte Of Nature:magic:Additional Druid cantrip',
-        '1:Acolyte Of Nature:skill:Additional skill proficiency',
-        '2:Charm Animals And Plants:magic:' +
-          "R30' Channel Divinity charms for 1 min",
-        '6:Dampen Elements:magic:' +
-          "R30' Reaction to grant resistance to acid, cold, fire, lightning, or thunder",
-        '8:Divine Strike:combat:+%Vd8 HP 1/turn',
-        '17:Master Of Nature:magic:Command charmed animals, plants',
-        // Tempest Domain
-        '1:Armor Proficiency (Heavy)::',
-        '1:Weapon Proficiency (Martial)::',
-        '1:Wrath Of The Storm:combat:Reaction 2d8 HP (Dex half) %V/long rest',
-        '2:Destructive Wrath:magic:' +
-          'Channel Divinity max thunder, lightning damage',
-        "6:Thunderbolt Strike:magic:Lightning damage pushes lg 10'",
-        '8:Divine Strike:combat:+%Vd8 HP 1/turn',
-        '17:Stormborn:ability:Fly at full speed outdoors',
-        // Trickery Domain
-        '1:Blessing Of The Trickster:magic:Touched Adv Stealth for 1 hr',
-        "2:Invoke Duplicity:magic:R30' Illusionary dulicate for conc/1 min",
-        '6:Cloak Of The Trickster:magic:Channel Divinity invisibile 1 turn',
-        '8:Divine Strike:combat:+%Vd8 HP 1/turn',
-        '17:Improved Duplicity:magic:Four duplicates',
-        // War Domain
-        '1:Armor Proficiency (Heavy)::',
-        '1:Weapon Proficiency (Martial)::',
-        '1:War Priest:combat:Bonus attack %V/long rest',
-        '2:Guided Strike:combat:Channel Divinity +10 attack',
-        "6:War God's Blessing:magic:" +
-          "R30' Channel Divinity reaction ally +10 attack",
-        '8:Divine Strike:combat:+%Vd8 HP 1/turn',
-        '17:Avatar Of Battle:combat:' +
-          'Resistance nonmagical bludgeon, pierce, slash'
-      );
-// ENDPHB
       hitDie = 8;
       proficiencyCount = {'Save':2, 'Skill':2, 'Armor':3, 'Weapon':1};
       proficienciesGiven = {
@@ -1815,16 +1384,6 @@ SRD5E.classRules = function(rules, classes) {
         'Skill':['History', 'Insight', 'Medicine', 'Persuasion', 'Religion']
       };
       selectableFeatures = ['1:Life Domain::'];
-// PHB
-      selectableFeatures.push(
-        '1:Knowledge Domain::',
-        '1:Light Domain::',
-        '1:Nature Domain::',
-        '1:Tempest Domain::',
-        '1:Trickery Domain::',
-        '1:War Domain::'
-      );
-// ENDPHB
       spellAbility = 'wisdom';
       spellsKnown = [
         'C0:1:3/4:4/10:5',
@@ -1839,52 +1398,6 @@ SRD5E.classRules = function(rules, classes) {
           '9:Mass Cure Wounds:Raise Dead'
         ]
       };
-// PHB
-      Object.assign(spells, {
-        'Knowledge Domain':[
-          '1:Command:Identify',
-          '3:Augury:Suggestion',
-          '5:Nondetection:Speak With Dead',
-          '7:Arcane Eye:Confusion',
-          '9:Legend Lore:Scrying'
-        ],
-        'Light Domain':[
-          '1:Burning Hands:Faerie Fire',
-          '3:Flaming Sphere:Scorching Ray',
-          '5:Daylight:Fireball',
-          '7:Guardian Of Faith:Wall Of Fire',
-          '9:Flame Strike:Scrying'
-        ],
-        'Nature Domain':[
-          '1:Animal Friendship:Speak With Animals',
-          '3:Barkskin:Spike Growth',
-          '5:Plant Growth:Wind Wall',
-          '7:Dominate Beast:Grasping Vine',
-          '9:Insect Plague:Tree Stride'
-        ],
-        'Tempest Domain':[
-          '1:Fog Cloud:Thunderwave',
-          '3:Gust Of Wind:Shatter',
-          '5:Call Lightning:Sleet Storm',
-          '7:Control Water:Ice Storm',
-          '9:Destructive Wave:Insect Plague'
-        ],
-        'Trickery Domain':[
-          '1:Charm Person:Disguise Self',
-          '3:Mirror Image:Pass Without Trace',
-          '5:Blink:Dispel Magic',
-          '7:Dimension Door:Polymorph',
-          '9:Dominate Person:Modify Memory'
-        ],
-        'War Domain':[
-          '1:Divine Favor:Shield Of Faith',
-          '3:Magic Weapon:Spiritual Weapon',
-          "5:Crusader's Mantle:Spirit Guardians",
-          '7:Freedom Of Movement:Stoneskin',
-          '9:Flame Strike:Hold Monster'
-        ]
-      });
-// ENDPHB
       spellSlots = [
         'C1:1:2/2:3/3:4',
         'C2:3:2/4:3',
@@ -1952,124 +1465,6 @@ SRD5E.classRules = function(rules, classes) {
         'hasHeavyArmorDomain', '?', null
       )
 
-//PHB
-      rules.defineRule('combatNotes.wrathOfTheStormFeature',
-        'wisdomModifier', '=', 'Math.max(source, 1)'
-      );
-      rules.defineRule('combatNotes.warPriestFeature',
-        'wisdomModifier', '=', 'Math.max(source, 1)'
-      );
-      rules.defineRule
-        ('languageCount', 'skillNotes.blessingsOfKnowledgeFeature', '+', '2');
-      rules.defineRule
-        ('magicNotes.potentSpellcastingFeature', 'wisdomModifier', '=', null);
-      rules.defineRule
-        ('magicNotes.radianceOfTheDawnFeature', 'levels.Cleric', '=', null);
-      rules.defineRule('magicNotes.wardingFlareFeature',
-        'wisdomModifier', '=', 'Math.max(source, 1)'
-      );
-      rules.defineRule
-        ('proficiencyCount.Armor', 'clericFeatures.Life Domain', '+=', '1');
-      rules.defineRule('proficiencyCount.Skill',
-        'skillNotes.acolyteOfNatureFeature', '+', '1',
-        'skillNotes.blessingsOfKnowledgeFeature', '+', '2'
-      );
-      rules.defineRule('skillChoices.Animal Handling',
-        'skillNotes.acolyteOfNatureFeature', '=', '1'
-      );
-      rules.defineRule('skillChoices.Arcana',
-        'skillNotes.blessingsOfKnowledgeFeature', '=', '1'
-      );
-      rules.defineRule('skillChoices.History',
-        'skillNotes.blessingsOfKnowledgeFeature', '=', '1'
-      );
-      rules.defineRule('skillChoices.Nature',
-        'skillNotes.acolyteOfNatureFeature', '=', '1',
-        'skillNotes.blessingsOfKnowledgeFeature', '=', '1'
-      );
-      rules.defineRule('skillChoices.Religion',
-        'skillNotes.blessingsOfKnowledgeFeature', '=', '1'
-      );
-      rules.defineRule('skillChoices.Survival',
-        'skillNotes.acolyteOfNatureFeature', '=', '1'
-      );
-
-      for(var feature in {
-        'Blessings Of Knowledge':'', 'Knowledge Of The Ages':'',
-        'Read Thoughts':'', 'Visions Of The Past':''
-      }) {
-        rules.defineRule('clericFeatures.' + feature,
-          'clericFeatures.Knowledge Domain', '?', null
-        );
-      }
-      for(var feature in {
-        'Corona Of Light':'', 'Improved Flare':'', 'Light Cantrip':'',
-        'Radiance Of The Dawn':'', 'Warding Flare':''
-      }) {
-        rules.defineRule('clericFeatures.' + feature,
-          'clericFeatures.Light Domain', '?', null
-        );
-      }
-      for(var feature in {
-        'Acolyte Of Nature':'', 'Charm Animals And Plants':'',
-        'Dampen Elements':'', 'Master Of Nature':''
-      }) {
-        rules.defineRule('clericFeatures.' + feature,
-          'clericFeatures.Nature Domain', '?', null
-        );
-      }
-      for(var feature in {
-        'Destructive Wrath':'', 'Stormborn':'', 'Thunderbolt Strike':'',
-        'Wrath Of The Storm':''
-      }) {
-        rules.defineRule('clericFeatures.' + feature,
-          'clericFeatures.Tempest Domain', '?', null
-        );
-      }
-      for(var feature in {
-        'Blessing Of The Trickster':'', 'Cloak Of The Trickster':'',
-        'Improved Duplicity':'', 'Invoke Duplicity':''
-      }) {
-        rules.defineRule('clericFeatures.' + feature,
-          'clericFeatures.Trickery Domain', '?', null
-        );
-      }
-      for(var feature in {
-        'Avatar Of Battle':'', 'Guided Strike':'', "War God's Blessing":'',
-        'War Priest':''
-      }) {
-        rules.defineRule('clericFeatures.' + feature,
-          'clericFeatures.War Domain', '?', null
-        );
-      }
-
-      rules.defineRule('hasDivineStrikeDomain',
-        'clericFeatures.Nature Domain', '=', '1',
-        'clericFeatures.Tempest Domain', '=', '1',
-        'clericFeatures.Trickery Domain', '=', '1',
-        'clericFeatures.War Domain', '=', '1'
-      );
-      rules.defineRule('hasHeavyArmorDomain',
-        'clericFeatures.Nature Domain', '=', '1',
-        'clericFeatures.Tempest Domain', '=', '1',
-        'clericFeatures.War Domain', '=', '1'
-      );
-      rules.defineRule('hasMartialWeaponDomain',
-        'clericFeatures.Tempest Domain', '=', '1',
-        'clericFeatures.War Domain', '=', '1'
-      );
-      rules.defineRule('clericFeatures.Weapon Proficiency (Martial)',
-        'hasMartialWeaponDomain', '?', null
-      );
-      rules.defineRule('hasPotentSpellcastingDomain',
-        'clericFeatures.Knowledge Domain', '=', '1',
-        'clericFeatures.Light Domain', '=', '1'
-      );
-      rules.defineRule('clericFeatures.Potent Spellcasting',
-        'hasPotentSpellcastingDomain', '?', null
-      );
-//ENDPHB
-
     } else if(name == 'Druid') {
 
       features = [
@@ -2093,18 +1488,6 @@ SRD5E.classRules = function(rules, classes) {
           'Immune disease, poison, elemental or fey charm and fright',
         "14:Nature's Sanctuary:combat:Beast, plant DC %V Will save to attack"
       ];
-// PHB
-      features.push(
-        // Circle Of The Moon
-        '2:Combat Wild Shape:combat:' +
-          'Wild Shape as bonus action, use spell slot to regain 1d8 * slot level HP',
-        '2:Circle Forms:magic:Increase Wild Shape CR to %V',
-        '6:Primal Strike:combat:Wild Shape attacks count as magical',
-        '10:Elemental Wild Shape:magic:' +
-          'Use 2 Wild Shape uses to become elemental',
-        '14:Thousand Forms:magic:<i>Alter Self<i> at will',
-      );
-// ENDPHB
       hitDie = 8;
       proficiencyCount =
        {'Armor':3, 'Save':2, 'Skill':2, 'Tool':1, 'Weapon':10};
@@ -2128,13 +1511,6 @@ SRD5E.classRules = function(rules, classes) {
         '2:Circle Of The Land (Mountain)::',
         '2:Circle Of The Land (Swamp)::'
       ];
-// PHB
-      selectableFeatures.push(
-        '2:Circle Of The Land (Underdark)::',
-        '2:Circle Of The Moon::'
-      );
-      selectableFeatures.push('2:Underdark Land::');
-// ENDPHB
       spellAbility = 'wisdom';
       spells = {
         'Circle Of The Land (Arctic)':[
@@ -2180,16 +1556,6 @@ SRD5E.classRules = function(rules, classes) {
           '9:Insect Plague:Scrying'
         ]
       };
-// PHB
-      Object.assign(spells, {
-        'Circle Of The Land (Underdark)':[
-          '3:Spider Climb:Web',
-          '5:Gaseous Form:Stinking Cloud',
-          '7:Greater Invisibility:Stone Shape',
-          '9:Cloudkill:Insect Plague'
-        ]
-      });
-// ENDPHB
       spellsKnown = [
         'D0:1:2/4:3/10:4',
         'D:1:"all"'
@@ -2250,17 +1616,6 @@ SRD5E.classRules = function(rules, classes) {
         );
       }
 
-// PHB
-      for(var feature in {
-        'Circle Forms':'', 'Combat Wild Shape':'', 'Elemental Wild Shape':'',
-        'Primal Strike':'', 'Thousand Forms':''
-      }) {
-        rules.defineRule('druidFeatures.' + feature,
-          'druidFeatures.Circle Of The Moon', '?', null
-        );
-      }
-// ENDPHB
-
     } else if(name == 'Fighter') {
 
       features = [
@@ -2269,34 +1624,14 @@ SRD5E.classRules = function(rules, classes) {
         '1:Second Wind:combat:Regain 1d10+%V HP 1/short rest',
         '2:Action Surge:combat:Extra action %V/short rest',
         '5:Extra Attack:combat:%V additional attack(s) per Attack action',
-        '9:Indomitable:save:Reroll failed save %V/long rest'
-      ];
-      features.push(
+        '9:Indomitable:save:Reroll failed save %V/long rest',
         // Champion Archetype
         '3:Improved Critical:combat:Crit on natural 19',
         '7:Remarkable Athlete:ability:+%V non-proficient Str, Dex, Con checks',
         '10:Additional Fighting Style:combat:Select second Fighting Style',
         '15:Superior Critical:combat:Crit on natural 18',
         '18:Survivor:combat:Regain %V HP each turn when between 1 and %1'
-      );
-// PHB
-      features.push(
-        // Battle Master Archetype
-        '3:Maneuvers:combat:Select %V Fighter maneuver features',
-        "3:Student Of War:skill:Artisan's Tools Prof",
-        '3:Superiority Dice:combat:%Vd%1',
-        '7:Know Your Enemy:combat:' +
-          'Know how foe compares to you after 1 min study',
-        '15:Relentless:combat:Min 1 superiority die',
-        // Eldritch Knight Archetype
-        '3:Spellcasting::',
-        '3:Weapon Bond:combat:Immune disarm, summon weapon',
-        '7:War Magic:combat:Bonus attack after %V',
-        '10:Eldritch Strike:combat:' +
-          'Foe Disadv vs. spells for 1 turn after you hit',
-        "15:Arcane Charge:magic:Action Surge to teleport 30'"
-      );
-// ENDPHB
+      ];
       hitDie = 10;
       proficiencyCount = {'Armor':4, 'Save':2, 'Skill':2, 'Weapon':2};
       proficienciesGiven = {
@@ -2320,66 +1655,10 @@ SRD5E.classRules = function(rules, classes) {
           'Add ability modifier to second attack damage',
         '3:Champion Archetype::'
       ]
-// PHB
-      selectableFeatures.push(
-        '3:Battle Master Archetype',
-        '3:Eldritch Knight Archetype',
-        "3:Commander's Strike:combat:Add sup die to delegated attack",
-        '3:Disarming Attack:combat:' +
-          'Add sup die to damage, foe drops item (DC %V Str neg)',
-        '3:Distracting Strike:combat:' +
-          'Add sup die to damage, ally Adv attack same foe for 1 turn',
-        '3:Evasive Footwork:combat:Add sup die to AC during move',
-        '3:Feinting Attack:combat:' +
-          'Adv next attack adjacent foe, add sup die to damage',
-        '3:Goading Attack:combat:' +
-          'Add sup die to damage, foe Disadv attack others for 1 turn (DC %V Wis neg)',
-        "3:Lunging Attack:combat:+5' melee range, add sup die to damage",
-        '3:Maneuvering Attack:combat:' +
-          'Add sup die to damage, ally move half speed w/no OA',
-        '3:Menacing Attack:combat:' +
-          'Add sup die to damage, foe frightened for 1 turn (DC %V Wis neg)',
-        '3:Parry:combat:Reduce damage from foe hit by sup die + %V',
-        '3:Precision Attack:combat:Add sup die to atteck',
-        '3:Pushing Attack:combat:' +
-          "Add sup die to damage, foe pushed 15' (DC %V Str neg)",
-        '3:Rally:combat:Chosen ally gains sup die + %V temp HP',
-        '3:Riposte:combat:Bonus attack after foe miss, add sup die to damage',
-        '3:Sweeping Attack:combat:After hit, sup die HP to second adjacent foe',
-        '3:Trip Attack:combat:' +
-          'Add sup die to damage, foe knocked prone (DC %V Str neg)'
-      );
-// ENDPHB
       spellAbility = null;
       spellsKnown = null;
       spells = null;
       spellSlots = null;
-// PHB
-      spellAbility = 'intelligence';
-      spellsKnown = [
-        'W0:3:2/10:3',
-        'W:3:3/4:4/7:5/8:6/10:7/11:8/13:9/14:10/16:11/19:12/20:13',
-      ];
-      spellSlots = [
-        'W1:3:2/4:3/7:4',
-        'W2:7:2/10:3',
-        'W3:13:2/16:3',
-        'W4:19:1'
-      ];
-      rules.defineRule('casterLevels.Fi',
-        'fighterFeatures.Eldritch Knight Archetype', '?', null,
-        'levels.Fighter', '=', null,
-         'magicNotes.casterLevelBonusFeature', '+', null
-      );
-      rules.defineRule('casterLevels.W', 'casterLevels.Fi', '^=', null);
-      rules.defineRule('casterLevelArcane', 'casterLevels.W', '+=', null);
-      rules.defineRule('spellsKnownLevel.Fighter',
-        'fighterFeatures.Eldritch Knight Archetype', '?', null
-      );
-      rules.defineRule('spellAttackModifier.Fighter',
-        'fighterFeatures.Eldritch Knight Archetype', '?', null
-      );
-// ENDPHB
 
       rules.defineRule('abilityNotes.remarkableAthleteFeature',
         'proficiencyBonus', '=', 'Math.ceil(source / 2)'
@@ -2426,50 +1705,6 @@ SRD5E.classRules = function(rules, classes) {
       rules.defineRule('toolProficiencies.Artisan',
         'skillNotes.studentOfWarFeature', '=', '1'
       );
-// PHB
-      rules.defineRule('maxDexOrStrMod',
-        'dexterityModifier', '=', null,
-        'strengthModifier', '^', null
-      );
-      rules.defineRule('maneuverSaveDC',
-        'fighterFeatures.Battle Master Archetype', '?', null,
-        'proficiencyBonus', '=', '8 + source',
-        'maxDexOrStrMod', '+', null
-      );
-      rules.defineRule
-        ('combatNotes.disarmingAttackFeature', 'maneuverSaveDC', '=', null);
-      rules.defineRule
-        ('combatNotes.goadingAttackFeature', 'maneuverSaveDC', '=', null);
-      rules.defineRule('combatNotes.maneuversFeature',
-        'fighterFeatures.Battle Master Archetype', '?', null,
-        'levels.Fighter', '=',
-          'source<7 ? 3 : source<10 ? 5 : source<15 ? 7 : 9'
-      );
-      rules.defineRule
-        ('combatNotes.menacingAttackFeature', 'maneuverSaveDC', '=', null);
-      rules.defineRule
-        ('combatNotes.parryFeature', 'dexterityModifier', '=', null);
-      rules.defineRule
-        ('combatNotes.pushingAttackFeature', 'maneuverSaveDC', '=', null);
-      rules.defineRule
-        ('combatNotes.rallyFeature', 'charismaModifier', '=', null);
-      rules.defineRule('combatNotes.superiorityDiceFeature',
-        'levels.Fighter', '=', 'source < 7 ? 4 : source < 15 ? 5 : 6'
-      );
-      rules.defineRule('combatNotes.superiorityDiceFeature.1',
-        'fighterFeatures.Superiority Dice', '?', null,
-        'levels.Fighter', '=', 'source < 10 ? 8 : source < 18 ? 10 : 12'
-      );
-      rules.defineRule
-        ('combatNotes.tripAttackFeature', 'maneuverSaveDC', '=', null);
-      rules.defineRule('combatNotes.warMagicFeature',
-        'levels.Fighter', '=', 'source < 18 ? "cantrip" : "spell"'
-      );
-      rules.defineRule('selectableFeatureCount.Fighter',
-        'combatNotes.maneuversFeature', '+', null
-      );
-// ENDPHB
-
       for(var feature in {
         'Improved Critical':'', 'Remarkable Athlete':'',
         'Additional Fighting Style':'', 'Superior Critical':'', 'Survivor':''
@@ -2478,35 +1713,6 @@ SRD5E.classRules = function(rules, classes) {
           'fighterFeatures.Champion Archetype', '?', null
         );
       }
-// PHB
-      for(var feature in {
-        'Maneuvers':'', 'Know Your Enemy':'', 'Student Of War':'',
-        'Superiority Dice':''
-      }) {
-        rules.defineRule('fighterFeatures.' + feature,
-          'fighterFeatures.Battle Master Archetype', '?', null
-        );
-      }
-      for(var feature in {
-        'Arcane Charge':'', 'Eldritch Strike':'', 'Spellcasting':'',
-        'War Magic':'', 'Weapon Bond':''
-      }) {
-        rules.defineRule('fighterFeatures.' + feature,
-          'fighterFeatures.Eldritch Knight Archetype', '?', null
-        );
-      }
-      for(var feature in {
-        "Commander's Strike":'', 'Disarming Attack':'', 'Distracting Strike':'',
-        'Evasive Footwork':'', 'Feinting Attack':'', 'Goading Attack':'',
-        'Lunging Attack':'', 'Maneuvering Attack':'', 'Menacing Attack':'',
-        'Parry':'', 'Precision Attack':'', 'Pushing Attack':'', 'Rally':'',
-        'Riposte':'', 'Sweeping Attack':'', 'Trip Attack':''
-      }) {
-        rules.defineNote(
-          'validationNotes.fighter' + feature.replace(/ /g, '') + 'SelectableFeatureFeatures:Requires Maneuvers'
-        );
-      }
-// ENDPHB
 
     } else if(name == 'Monk') {
 
@@ -2538,9 +1744,7 @@ SRD5E.classRules = function(rules, classes) {
           'No debility from aging, need no food or water',
         '18:Empty Body:magic:' +
           'Spend 4 Ki for <i>Invisibility</i> 1 min, 8 Ki for <i>Astral Projection</i>',
-        '20:Perfect Self:combat:Min 4 Ki'
-      ];
-      features.push(
+        '20:Perfect Self:combat:Min 4 Ki',
         // Way Of The Open Hand Tradition
         '3:Open Hand Technique:combat:' +
           "Choice of knock prone (DC %V Dex neg), push 15' (DC %V Str neg), or no foe react after Flurry Of Blows hit",
@@ -2549,21 +1753,7 @@ SRD5E.classRules = function(rules, classes) {
           'Self <i>Sanctuary</i> until next long rest (DC %V Wis neg)',
         '17:Quivering Palm:combat:' +
           'Spend 3 Ki to reduce foe to 0 HP w/unarmed strike (DC %V Con 10d10 HP)'
-      );
-// PHB
-      features.push(
-        // Way Of The Four Elements Tradition
-        '3:Disciple Of The Elements:magic:%V elemental disciplines',
-        '3:Elemental Attunement:magic:Minor elemental manipulation',
-        // Way Of The Shadow Tradition
-        '3:Shadow Arts:magic:' +
-          '<i>Minor Illusion</i> cantrip, spend 2 Ki to cast <i>Darkness</i>, '+
-          '<i>Darkvision</i>, <i>Pass Without Trace</i>, <i>Silence</i>',
-        "6:Shadow Step:magic:Teleport 60' between dim/unlit areas",
-        '11:Cloak Of Shadows:magic:Invisible in dim/unlit until attack or cast',
-        '17:Opportunist:combat:Attack adjacent after hit'
-      );
-// ENDPHB
+      ];
       hitDie = 8;
       proficiencyCount = {'Save':2, 'Skill':2, 'Tool':1, 'Weapon':2};
       proficienciesGiven = {
@@ -2576,38 +1766,6 @@ SRD5E.classRules = function(rules, classes) {
         'Tool':['Artisan', 'Music']
       };
       selectableFeatures = ['3:Way Of The Open Hand Tradition::'];
-// PHB
-      selectableFeatures.push(
-        '3:Way Of The Four Elements Tradition::',
-        '3:Way Of The Shadow Tradition::'
-      );
-      selectableFeatures.push(
-        '17:Breath Of Winter:magic:Spend 6 Ki to cast <i>Cone Of Cold</i>',
-        '6:Clench Of The North Wind:magic:' +
-          'Spend 3 Ki to cast <i>Hold Person</i>',
-        '11:Eternal Mountain Defense:magic:Spend 5 Ki to cast <i>Stoneskin</i>',
-        '3:Fangs Of The Fire Snake:magic:' +
-          "Spend 1 Ki to have unarmed attack reach 10', do 1d10 HP fire extra",
-        '3:Fist Of Four Thunders:magic:Spend 2 Ki to cast <i>Thunderwave</i>',
-        '3:Fist Of Unbroken Air:magic:' +
-          "R30' Spend 2 Ki to create air blast 3d10 HP, push 20' and knock prone (DC %V Str half)",
-        '11:Flames Of The Phoenix:magic:Spend 4 Ki to cast <i>Fireball</i>',
-        '6:Gong Of The Summit:magic:Spend 3 Ki to cast <i>Shatter</i>',
-        '11:Mist Stance:magic:Spend 4 Ki to cast self <i>Gaseous Form</i>',
-        '11:Ride The Wind:magic:Spend 4 Ki to cast self <i>Fly</i>',
-        '17:River Of Hungry Flame:magic:Spend 5 Ki to cast <i>Wall Of Fire</i>',
-        '3:Rush Of The Gale Spirits:magic:' +
-          'Spend 2 Ki to cast <i>Gust Of Wind</i>',
-        '3:Shape The Flowing River:magic:' +
-          "R120' Freeze, thaw, shape 30'x30' water",
-        '3:Sweeping Cinder Strike:magic:' +
-          'Spend 2 Ki to cast <i>Burning Hands</i>',
-        '3:Water Whip:magic:' +
-          "R30' Spend 2 Ki to create water whip 3d10 HP, pull 25' or knock prone (DC %V Str half)",
-        '17:Wave Of The Rolling Earth:magic:' +
-          'Spend 6 Ki to cast <i>Wall Of Stone</i>'
-      );
-// ENDPHB
       spellAbility = null;
       spellsKnown = null;
       spells = null;
@@ -2701,17 +1859,6 @@ SRD5E.classRules = function(rules, classes) {
       );
       rules.defineRule
         ('speed', 'abilityNotes.unarmoredMovementFeature.1', '+', null);
-// PHB
-      rules.defineRule('magicNotes.discipleOfTheElementsFeature',
-        'levels.Monk', '=', 'source<6 ? 1 : source<11 ? 2 : source<17 ? 3 : 4'
-      );
-      rules.defineRule
-        ('magicNotes.fistOfUnbrokenAirFeature', 'kiSaveDC', '=', null);
-      rules.defineRule('magicNotes.waterWhipFeature', 'kiSaveDC', '=', null);
-      rules.defineRule('selectableFeatureCount.Monk',
-        'magicNotes.discipleOfTheElementsFeatures', '+', null
-      );
-// ENDPHB
 
       for(var feature in {
         'Open Hand Technique':'', 'Quivering Palm':'', 'Tranquility':'',
@@ -2721,33 +1868,6 @@ SRD5E.classRules = function(rules, classes) {
           'monkFeatures.Way Of The Open Hand Tradition', '?', null
         );
       }
-
-// PHB
-      rules.defineRule('monkFeatures.Disciple Of The Elements',
-        'monkFeatures.Way Of The Four Elements Tradition', '?', null
-      );
-      for(var feature in {
-        'Cloak Of Shadows':'', 'Opportunist':'', 'Shadow Arts':'',
-        'Shadow Step':''
-      }) {
-        rules.defineRule('monkFeatures.' + feature,
-          'monkFeatures.Way Of The Shadow Tradition', '?', null
-        );
-      }
-      for(var feature in {
-        'Breath Of Winter':'', 'Clench Of The North Wind':'',
-        'Eternal Mountain Defense':'', 'Fangs Of The Fire Snake':'',
-        'Fist Of Four Thunders':'', 'Fist Of Unbroken Air':'',
-        'Flames Of The Phoenix':'', 'Gong Of The Summit':'',
-        'Mist Stance':'', 'Ride The Wind':'', 'River Of Hungry Flame':'',
-        'Rush Of The Gale Spirits':'', 'Shape The Flowing River':'',
-        'Sweeping Cinder Strike':'', 'Water Whip':'', 'Wave Of Rolling Earth':''
-      }) {
-        rules.defineNote
-          ('validationNotes.monk' + feature.replace(/ /g, '') + 'SelectableFeatureFeatures:Requires Way Of The Four Elements Tradition');
-      }
-// ENDPHB
-
 
     } else if(name == 'Paladin') {
 
@@ -2778,28 +1898,6 @@ SRD5E.classRules = function(rules, classes) {
           "Self 30' bright light does 10 HP to foes 1/long rest",
         '20:Holy Nimbus:save:Adv vs. spells by fiends, undead'
       ];
-// PHB
-      features.push(
-        // Oath Of The Ancients
-        "3:Nature's Wrath:magic:" +
-         "R10' Channel energy for vines ensnare foe (DC %V Dex or Str neg)",
-        '3:Turn The Faithless:magic:' +
-          "R30' Channel energy for fiends, fey flee for 1 min (DC %V Wis neg)",
-        "7:Aura Of Warding:save:R%V' Self, allies resist spell damage",
-        '15:Undying Sentinel:combat:Keep 1 HP when brought to 0 HP 1/long rest',
-        '20:Elder Champion:magic:' +
-          "Transform, regain 10 HP/turn, cast as bonus action, foes w/in 10' save Disadv 1/long rest",
-        // Oath Of Vengeance
-        '3:Abjure Enemy:magic:' +
-          "R60' Channel Divinity for target halted 1 min (DC %V Wis half)",
-        '3:Vow Of Enmity:combat:' +
-          "R10' Channel Divinity for Adv attacks against target for 1 min",
-        '7:Relentless Avenger:combat:Move half speed after OA hit',
-        '15:Soul Of Vengeance:combat:Attack Vow Of Enmity target as reaction',
-        '20:Avenging Angel:magic:' +
-          "Fly 60', 30' foes fright (DC %V Wis neg) 1 hr/long rest"
-      );
-// ENDPHB
       hitDie = 10;
       proficiencyCount = {'Save':2, 'Skill':2, 'Armor':4, 'Weapon':2};
       proficienciesGiven = {
@@ -2820,12 +1918,6 @@ SRD5E.classRules = function(rules, classes) {
           'Use shield to impose attack Disadv on adjacent foe'
       ];
       selectableFeatures.push('3:Oath Of Devotion::');
-// PHB
-      selectableFeatures.push(
-        '3:Oath Of The Ancients::',
-        '3:Oath Of Vengeance::'
-      );
-// ENDPHB
       spellAbility = 'wisdom';
       spellsKnown = [
         'P1:2:"all"', 'P2:5:"all"', 'P3:9:"all"', 'P4:13:"all"', 'P5:17:"all"'
@@ -2839,24 +1931,6 @@ SRD5E.classRules = function(rules, classes) {
           '17:Commune:Flame Strike'
         ]
       };
-// PHB
-      Object.assign(spells, {
-        'Oath Of The Ancients':[
-          '3:Ensnaring Strike:Speak With Animals',
-          '5:Moonbeam:Misty Step',
-          '9:Plant Growth:Protection From Energy',
-          '13:Ice Storm:Stoneskin',
-          '17:Commune With Nature:Tree Stride',
-        ],
-        'Oath Of Vengeance':[
-          "3:Bane:Hunter's Mark",
-          '5:Hold Person:Misty Step',
-          '9:Haste:Protection From Energy',
-          '13:Banishment:Dimension Door',
-          '17:Hold Monster:Scrying'
-        ]
-      });
-// ENDPHB
       spellSlots = [
         'P1:2:2/3:3/5:4',
         'P2:5:2/7:3',
@@ -2925,37 +1999,6 @@ SRD5E.classRules = function(rules, classes) {
       rules.defineRule
         ('magicNotes.turnTheUnholyFeature', 'oathSaveDC', '=', null);
 
-// PHB
-      for(var feature in {
-        'Aura Of Warding':'', 'Elder Champion':'', "Nature's Wrath":'',
-        'Turn The Faithless':'', 'Undying Sentinel':''
-      }) {
-        rules.defineRule('paladinFeatures.' + feature,
-          'paladinFeatures.Oath Of The Ancients', '?', null
-        );
-      }
-      rules.defineRule
-        ("magicNotes.nature'sWrathFeature", 'oathSaveDC', '=', null);
-      rules.defineRule
-        ('magicNotes.turnTheFaithlessFeature', 'oathSaveDC', '=', null);
-      rules.defineRule('saveNotes.auraOfWardingFeature',
-        'levels.Paladin', '=', 'source < 18 ? 10 : 30'
-      );
-
-      for(var feature in {
-        'Abjure Enemy':'', 'Avenging Angel':'', 'Relentless Avenger':'',
-        'Soul Of Vengeance':'', 'Vow Of Enmity':''
-      }) {
-        rules.defineRule('paladinFeatures.' + feature,
-          'paladinFeatures.Oath Of Vengeance', '?', null
-        );
-      }
-      rules.defineRule
-        ('magicNotes.abjureEnemyFeature', 'oathSaveDC', '=', null);
-      rules.defineRule
-        ('magicNotes.avengingAngelFeature', 'oathSaveDC', '=', null);
-// ENDPHB
-
     } else if(name == 'Ranger') {
 
       features = [
@@ -2977,16 +2020,6 @@ SRD5E.classRules = function(rules, classes) {
           "No Disadv vs. invisible foe, 30' awareness of invisible creatures",
         '20:Foe Slayer:combat:+%V attack or damage vs. favored enemy'
       ];
-// PHB
-      features.push(
-        // Beast Master Archetype
-        "3:Ranger's Companion:companion:Companion beast obeys commands",
-        '7:Exceptional Training:companion:' +
-          'Companion can Dash, Disengage, Dodge, Help instead of attack',
-        '11:Bestial Fury:companion:Companion 2 attacks/rd',
-        "15:Share Spells:companion:R30' Self spell affects companion"
-      );
-// ENDPBH
       hitDie = 10;
       proficiencyCount = {'Armor':3, 'Save':2, 'Skill':3, 'Weapon':2};
       proficienciesGiven = {
@@ -3006,9 +2039,6 @@ SRD5E.classRules = function(rules, classes) {
           'Add ability modifier to second attack damage'
       ];
       selectableFeatures.push('3:Hunter Archetype::');
-// PHB
-      selectableFeatures.push('3:Beast Master Archetype::');
-// ENDPHB
       selectableFeatures.push(
         '3:Colossus Slayer:combat:+1d8 HP vs. damaged foe 1/turn',
         '3:Giant Killer:combat:React to attack adjacent lg foe after miss',
@@ -3082,29 +2112,6 @@ SRD5E.classRules = function(rules, classes) {
         );
       }
 
-// PHB
-      for(var feature in {
-        'Bestial Fury':'', "Ranger's Companion":'', 'Exceptional Training':'',
-        'Share Spells':''
-      }) {
-        rules.defineRule('rangerFeatures.' + feature,
-          'rangerFeatures.Beast Master Archetype', '?', null
-        );
-      }
-      rules.defineRule('rangerFeatures.Bestial Fury',
-        'rangerFeatures.Beast Master', '?', null
-      );
-      rules.defineRule("rangerFeatures.Ranger's Companion",
-        'rangerFeatures.Beast Master', '?', null
-      );
-      rules.defineRule('rangerFeatures.Exceptional Training',
-        'rangerFeatures.Beast Master', '?', null
-      );
-      rules.defineRule('rangerFeatures.Share Spells',
-        'rangerFeatures.Beast Master', '?', null
-      );
-// ENDPHB
-
     } else if(name == 'Rogue') {
 
       features = [
@@ -3132,25 +2139,6 @@ SRD5E.classRules = function(rules, classes) {
         '13:Use Magic Device:skill:Ignore restrictions on magic device use',
         "17:Thief's Reflexes:combat:First round extra turn at init-10"
       ];
-// PHB
-      features.push(
-        // Assassin Archetype
-        "3:Assassin Proficiencies:feature:Prof Disguise Kit/Poisoner's Kit",
-        '3:Assassinate:combat:Adv when foe has not acted, crit on surprise hit',
-        '9:Infiltration Expertise:feature:Forge and adopt different identity',
-        '13:Imposter:feature:Unerring mimicry',
-        '17:Death Strike:combat:Dbl damage on surprise hit (DC %V Dex neg)',
-        // Arcane Trickster Archetype
-        '3:Spellcasting::',
-        '3:Mage Hand Legerdemain:magic:' +
-          'Plant, retrieve, pick, disarm via <i>Mage Hand</i>',
-        '9:Magical Ambush:magic:Foe Disadv spell save when self hidden',
-        '13:Versatile Trickster:magic:' +
-          'Distract foe (self Adv attacks) via <i>Mage Hand</i>',
-        '17:Spell Thief:magic:' +
-          'Foe spell negated, self cast w/in 8 hours (DC %V neg) 1/long rest'
-      );
-// ENDPHB
       hitDie = 8;
       proficiencyCount =
         {'Armor':1, 'Save':2, 'Skill':4, 'Tool':1, 'Weapon':5};
@@ -3166,39 +2154,10 @@ SRD5E.classRules = function(rules, classes) {
                  'Persuasion', 'Sleight Of Hand', 'Stealth']
       };
       selectableFeatures = ['3:Thief::'];
-// PHB
-      selectableFeatures.push('3:Arcane Trickster::', '3:Assassin::');
-// ENDPHB
       spellAbility = null;
       spellsKnown = null;
       spells = null;
       spellSlots = null;
-// PHB
-      spellAbility = 'intelligence';
-      spellsKnown = [
-        'W0:3:3/10:4',
-        'W:3:3/4:4/7:5/8:6/10:7/11:8/13:9/14:10/16:11/19:12/20:13',
-      ];
-      spellSlots = [
-        'W1:3:2/4:3/7:4',
-        'W2:7:2/10:3',
-        'W3:13:2/16:3',
-        'W4:19:1'
-      ];
-      rules.defineRule('casterLevels.Ro',
-        'rogueFeatures.Arcane Trickster Archetype', '?', null,
-        'levels.Rogue', '=', null,
-         'magicNotes.casterLevelBonusFeature', '+', null
-      );
-      rules.defineRule('casterLevels.W', 'casterLevels.Ro', '^=', null);
-      rules.defineRule('casterLevelArcane', 'casterLevels.W', '+=', null);
-      rules.defineRule('spellsKnownLevel.Rogue',
-        'rogueFeatures.Arcane Trickster Archetype', '?', null
-      );
-      rules.defineRule('spellAttackModifier.Rogue',
-        'rogueFeatures.Arcane Trickster Archetype', '?', null
-      );
-// ENDPHB
 
       rules.defineRule('combatNotes.sneakAttackFeature',
         'levels.Rogue', '=', 'Math.floor((source + 7) / 4)'
@@ -3225,40 +2184,6 @@ SRD5E.classRules = function(rules, classes) {
         'dexterityModifier', '=', null
       );
 
-// PHB
-      for(var feature in {
-        'Assassin Proficiencies':'', 'Assassinate':'', 'Death Strike':'',
-        'Imposter':'', 'Infiltration Expertise':''
-      }) {
-        rules.defineRule('rogueFeatures.' + feature,
-          'rogueFeatures.Assassin Archetype', '?', null
-        );
-      }
-      rules.defineRule('combatNotes.deathStrikeFeature',
-        'dexterityModifier', '=', '8 + source',
-        'proficiencyBonus', '+', null
-      );
-      rules.defineRule('toolProficiencies.Disguise Kit',
-        'skillNotes.slipperyMindFeature', '=', '1'
-      );
-      rules.defineRule("toolProficiencies.Poisoner's Kit",
-        'skillNotes.slipperyMindFeature', '=', '1'
-      );
-
-      for(var feature in {
-        'Mage Hand Legerdemain':'', 'Magical Ambush':'', 'Spell Thief':'',
-        'Spellcasting':'', 'Versatile Trickster':''
-      }) {
-        rules.defineRule('rogueFeatures.' + feature,
-          'rogueFeatures.Arcane Trickster Archetype', '?', null
-        );
-      }
-      rules.defineRule('magicNotes.spellThiefFeature',
-        'intelligenceModifier', '=', '8 + source',
-        'proficiencyBonus', '+', null
-      );
-// ENDPHB
-
     } else if(name == 'Sorcerer') {
 
       features = [
@@ -3274,17 +2199,6 @@ SRD5E.classRules = function(rules, classes) {
         '14:Dragon Wings:ability:Fly at full speed',
         "18:Draconic Presence:feature:R60' Spend 5 sorcery pts for awe/fear aura for 1 min/conc (DC %V Wis neg)"
       ];
-// PHB
-      features.push(
-        // Wild Magic
-        '1:Wild Magic Surge:magic:5% chance of random magic effect',
-        '1:Tides Of Chaos:feature:Adv on attack, ability, or save 1/long rest,may cause surge',
-        '6:Bend Luck:magic:' +
-          'Spend 2 sorcery pts to add or subtract 1d4 from target roll',
-        '14:Controlled Chaos:magic:Reroll wild magic surge effect',
-        '18:Spell Bombardment:magic:Add another die to maximum damage 1/turn'
-      );
-// ENDPHB
       hitDie = 6;
       proficiencyCount = {'Save':2, 'Skill':2, 'Weapon':5};
       proficienciesGiven = {
@@ -3313,9 +2227,6 @@ SRD5E.classRules = function(rules, classes) {
         '3:Twinned Spell:magic:' +
           'Spend spell level sorcery pts to add second target'
       ];
-// PHB
-      selectableFeatures.push('1:Wild Magic::');
-// ENDPHB
       spellAbility = 'charisma';
       spellsKnown = [
         'S0:1:4/4:5/10:6',
@@ -3380,16 +2291,6 @@ SRD5E.classRules = function(rules, classes) {
       rules.defineRule('magicNotes.elementalAffinityFeature',
         'charismaModifier', '=', null
       );
-// PHB
-      for(var feature in {
-        'Bend Luck':'', 'Controlled Chaos':'', 'Spell Bombardment':'',
-        'Tides Of Chaos':'', 'Wild Magic Surge':''
-      }) {
-        rules.defineRule('sorcererFeatures.' + feature,
-          'sorcererFeatures.Wild Magic', '?', null
-        );
-      }
-// ENDPHB
 
     } else if(name == 'Warlock') {
 
@@ -3407,26 +2308,6 @@ SRD5E.classRules = function(rules, classes) {
         '14:Hurl Through Hell:combat:' +
           'Foe trip to hell 10d10 psychic HP 1/long rest'
       ];
-// PHB
-      features.push(
-        // Archfey Patron
-        '1:Fey Presence:magic:' +
-          "R10' Creatures charm or fright 1 turn (DC %V Wis neg) 1/short rest",
-        '6:Misty Escape:magic:' +
-          "After damage, teleport 60' and become invisible 1 turn 1/short rest",
-        '10:Beguiling Defenses:save:' +
-          'Immune charm, reflect 1 min (DC %V Wis neg)',
-        '14:Dark Delirium:magic:' +
-          "R60' Target charm or fright 1 min, then unaware surroundings (DC %V Wis neg) 1/long rest",
-        // Great Old One Patron
-        "1:Awakened Mind:feature:R30' Telepathic communication",
-        '6:Entropic World:combat:' +
-          'Foe Disadv attack, miss gives you attack Adv 1/short rest',
-        '10:Thought Shield:save:' +
-          'Immune telepathy, resist and reflect psycic damage',
-        '14:Create Thrall:magic:Touch charms incapacitated humanoid'
-      );
-// ENDPHB
       hitDie = 8;
       proficiencyCount = {'Armor':1, 'Save':2, 'Skill':2, 'Weapon':1};
       proficienciesGiven = {
@@ -3459,7 +2340,7 @@ SRD5E.classRules = function(rules, classes) {
         '2:Eyes Of The Rune Keeper:feature:Read all writing',
         '2:Fiendish Vigor:magic:Self <i>False Life</i> at will',
         '2:Gaze Of Two Minds:magic:' +
-          "Perceive via willing touched senses for 1 turn",
+          'Perceive via willing touched senses for 1 turn',
         '12:Lifedrinker:combat:+%V HP with pact weapon',
         '2:Mask Of Many Faces:magic:<i>Disguise Self</i> at will',
         '15:Master Of Myriad Forms:magic:<i>Alter Self</i> at will',
@@ -3478,12 +2359,6 @@ SRD5E.classRules = function(rules, classes) {
         '9:Whispers Of The Grave:magic:<i>Speak With Dead</i> at will',
         "15:Witch Sight:feature:R30' See true forms"
       ];
-// PHB
-      selectableFeatures.push(
-        '1:Archfey Patron::',
-        '1:Great Old One Patron::'
-      );
-// ENDPHB
       spellAbility = 'charisma';
       spellsKnown = [
         'K0:1:2/4:3/10:4',
@@ -3549,38 +2424,6 @@ SRD5E.classRules = function(rules, classes) {
         '', '^', '1'
       );
 
-// PHB
-      for(var feature in {
-        'Beguiling Defenses':'', 'Dark Delirium':'', 'Fey Presence':'',
-        'Misty Escape':''
-      }) {
-        rules.defineRule('warlockFeatures.' + feature,
-          'warlockFeatures.Archfey Patron', '?', null
-        );
-      }
-      rules.defineRule('magicNotes.darkDeliriumFeature',
-        'charismaModifier', '=', '8 + source',
-        'proficiencyBonus', '+', null
-      );
-      rules.defineRule('magicNotes.feyPresenceFeature',
-        'charismaModifier', '=', '8 + source',
-        'proficiencyBonus', '+', null
-      );
-      rules.defineRule('saveNotes.beguilingDefensesFeature',
-        'charismaModifier', '=', '8 + source',
-        'proficiencyBonus', '+', null
-      );
-
-      for(var feature in {
-        'Awakened Mind':'', 'Create Thrall':'', 'Entropic Shield':'',
-        'Thought Shield':''
-      }) {
-        rules.defineRule('warlockFeatures.' + feature,
-          'warlockFeatures.Great Old One Patron', '?', null
-        );
-      }
-// ENDPHB
-
     } else if(name == 'Wizard') {
 
       features = [
@@ -3598,63 +2441,6 @@ SRD5E.classRules = function(rules, classes) {
         '14:Overchannel:magic:' +
           'Maximize damage from evocation spell le level 5, take damage 2nd+ time/long rest'
       ];
-// PHB
-      features.push(
-        // Abjuration Tradition
-        '2:Abjuration Savant:magic:Write abjuration spells for half cost',
-        '2:Arcane Ward:magic:Abjuration casting creates %V HP shield',
-        "6:Projected Ward:magic:R30' Use Arcane Ward to protect others",
-        '10:Improved Abjuration:magic:' +
-          'Add Prof Bonus to abjuration ability checks',
-        '14:Spell Resistance:magic:Adv and resistance to spell damage',
-        // Conjuration Tradition
-        '2:Conjuration Savant:magic:Write conjuration spells for half cost',
-        "2:Minor Conjuration:magic:R10' Create 3' cu object for 1 hr",
-        '6:Benign Transposition:magic:' +
-          "R30' Teleport or swap willing creature 1/long rest or cast",
-        '10:Focused Conjuration:magic:' +
-          'Damage cannot break conjuration concentration',
-        '14:Durable Summons:magic:Summoned creatures +30 HP',
-        // Divination Tradition
-        '2:Divination Savant:magic:Write divination spells for half cost',
-        '2:Portent:magic:Replace self, other roll %V/long rest',
-        '6:Expert Divination:magic:' +
-          'Regain lower spell slot when cast divination spell',
-        '10:The Third Eye:magic:' +
-          "60' Darkvision, 60' Ethereal Sight, read any language, or 10' see invisibility",
-        // Enchantment Tradition
-        '2:Enchantment Savant:magic:Write enchantment spells for half cost',
-        '2:Hypnotic Gaze:magic:Daze adjacent creature (DC %V Wis neg)',
-        '6:Instinctive Charm:magic:' +
-          'Redirect foe attack to closest creature (DC %V Wis neg)',
-        '10:Split Enchantment:magic:Add second target to charm spell',
-        '14:Alter Memories:magic:' +
-          'Target unaware charmed, forget %V hrs (DC %1 Int neg)',
-        // Illusion Tradition
-        '2:Illusion Savant:magic:Write illusion spells for half cost',
-        '2:Improved Minor Illusion:magic:' +
-          '<i>Minor Illusion</i> with sound, image',
-        '6:Malleable Illusions:magic:Transform existing illusions',
-        '10:Illusory Self:magic:React causes foe miss 1/short rest',
-        '14:Illusory Reality:magic:Object in illusion real for 1 min',
-        // Necromancy Tradition
-        '2:Necromancy Savant:magic:Write necromancy spells for half cost',
-        '2:Grim Harvest:magic:' +
-          'Regain 2x spell level (3x necromantic) when spell kills',
-        '6:Undead Thralls:magic:' +
-          '<i>Animate Dead</i> +1 corpse, +%V HP, +%1 damage',
-        '10:Inured To Undeath:save:Resist necrotic, immune max HP reduction',
-        "14:Command Undead:magic:R60' Take control of undead target (DC %V Cha neg (Adv intelligent undead))",
-        // Transmutation Tradition
-        '2:Transmutation Savant:magic:Write transmutation spells for half cost',
-        "2:Minor Alchemy:magic:Transform 1 cu'/10 min for 1 hr",
-        "6:Transmuter's Stone:magic:" +
-          "Stone gives 60' darkvision, +10 speed, Prof Con, or resist energy",
-        '10:Shapechanger:magic:<i>Polymorph</i> 1/short rest',
-        '14:Master Transmuter:magic:' +
-          "Destroy stone to transmute 5' cu, remove curse, disease, and poision, <i>Raise Dead</i>, or restore youth"
-      );
-// ENDPHB
       hitDie = 6;
       proficiencyCount = {'Save':2, 'Skill':3, 'Weapon':5};
       proficienciesGiven = {
@@ -3707,102 +2493,6 @@ SRD5E.classRules = function(rules, classes) {
       rules.defineRule('magicNotes.empoweredEvocationFeature',
         'intelligenceModifier', '=', null
       );
-
-// PHB
-      for(var feature in {
-        'Abjuration Savant':'', 'Arcane Ward':'', 'Projected Ward':'',
-        'Improved Abjuration':'', 'Spell Resistance':''
-      }) {
-        rules.defineRule('wizardFeatures.' + feature,
-          'wizardFeatures.Abjuration Tradition', '?', null
-        );
-      }
-      rules.defineRule('magicNotes.arcaneWardFeature',
-        'levels.Wizard', '=', 'source * 2',
-        'intelligenceModifier', '+', null
-      );
-
-      for(var feature in {
-        'Conjuration Savant':'', 'Minor Conjuration':'',
-        'Benign Transposition':'', 'Focused Conjuration':'',
-        'Durable Summons':''
-      }) {
-        rules.defineRule('wizardFeatures.' + feature,
-          'wizardFeatures.Conjuration Tradition', '?', null
-        );
-      }
-
-      for(var feature in {
-        'Divination Savant':'', 'Portent':'', 'Expert Divination':'',
-        'The Third Eye':'', 'Greater Portent':''
-      }) {
-        rules.defineRule('wizardFeatures.' + feature,
-          'wizardFeatures.Divination Tradition', '?', null
-        );
-      }
-      rules.defineRule
-        ('magicNotes.portentFeature', 'levels.Wizard', 'source < 14 ? 2 : 3');
-
-      for(var feature in {
-        'Enchantment Savant':'', 'Hypnotic Gaze':'', 'Instinctive Charm':'',
-        'Split Enchantment':'', 'Alter Memories':''
-      }) {
-        rules.defineRule('wizardFeatures.' + feature,
-          'wizardFeatures.Enchantment Tradition', '?', null
-        );
-      }
-      rules.defineRule('magicNotes.alterMemoriesFeature',
-        'intelligenceModifier', '=', '8 + source',
-        'proficiencyBonus', '+', null
-      );
-      rules.defineRule('magicNotes.alterMemoriesFeature.1',
-        'charismaModifier', '=', 'Math.max(source + 1, 1)'
-      );
-      rules.defineRule('magicNotes.hypnoticGazeFeature',
-        'intelligenceModifier', '=', '8 + source',
-        'proficiencyBonus', '+', null
-      );
-      rules.defineRule('magicNotes.instinctiveCharmFeature',
-        'intelligenceModifier', '=', '8 + source',
-        'proficiencyBonus', '+', null
-      );
-
-      for(var feature in {
-        'Illusion Savant':'', 'Improved Minor Illusion':'',
-        'Malleable Illusions':'', 'Illusory Self':'', 'Illusory Reality':''
-      }) {
-        rules.defineRule('wizardFeatures.' + feature,
-          'wizardFeatures.Illusion Tradition', '?', null
-        );
-      }
-
-      for(var feature in {
-        'Necromancy Savant':'', 'Grim Harvest':'', 'Undead Thralls':'',
-        'Inured To Undeath':'', 'Command Undead':''
-      }) {
-        rules.defineRule('wizardFeatures.' + feature,
-          'wizardFeatures.Necromancy Tradition', '?', null
-        );
-      }
-      rules.defineRule('magicNotes.commandUndeadFeature',
-        'intelligenceModifier', '=', '8 + source',
-        'proficiencyBonus', '+', null
-      );
-      rules.defineRule
-        ('magicNotes.undeadThrallsFeature', 'levels.Wizard', '=', null);
-      rules.defineRule
-        ('magicNotes.undeadThrallsFeature.1', 'proficiencyBonus', '=', null);
-
-      for(var feature in {
-        'Transmutation Savant':'', 'Minor Alchemy':'', "Transmuter's Stone":'',
-        'Shapechanger':'', 'Master Transmuter':''
-      }) {
-        rules.defineRule('wizardFeatures.' + feature,
-          'wizardFeatures.Transmutation Tradition', '?', null
-        );
-      }
-
-// ENDPHB
 
     } else
       continue;
@@ -4198,289 +2888,9 @@ SRD5E.featRules = function(rules, feats) {
           'Adv attacks vs. grappled foe, additional grapple to pin',
         'validationNotes.grapplerFeatAbility:Requires Strength >= 13'
       ];
-// PHB
-    } else if(feat == 'Alert') {
-      notes = [
-        'combatNotes.alertFeature:+5 Initiative, foes no surprise or hidden Adv'
-      ];
-      rules.defineRule('initiative', 'combatNotes.alertFeature', '+', '5');
-    } else if(feat == 'Athlete') {
-      notes = [
-        "abilityNotes.athleteFeature:+1 Dexterity or Strength, climb full speed, stand uses 5' move",
-        "skillNotes.athleteFeature:Long jump, running high jump uses 5' move"
-      ];
-      rules.defineRule
-        ('abilityBoostCount', 'abilityNotes.athleteFeature', '+', '1');
-    } else if(feat == 'Actor') {
-      notes = [
-        'abilityNotes.actorFeature:+1 Charisma',
-        "skillNotes.actorFeature:Mimic others' speech/sounds, Adv Charisma(Deception/Performance) when impersonating"
-      ];
-    } else if(feat == 'Charger') {
-      notes = [
-        "combatNotes.chargerFeature:Bonus attack +5 HP or 10' push after dash"
-      ];
-    } else if(feat == 'Crossbow Expert') {
-      notes = [
-        'combatNotes.crossbowExpertFeature:' +
-          'Quick load, no Disadv on close shot, bonus hand crossbow shot after one-handed attack'
-      ];
-    } else if(feat == 'Defensive Duelist') {
-      notes = [
-        'combatNotes.defensiveDuelistFeature:' +
-          'React +%V AC when holding finesse weapon'
-      ];
-      rules.defineRule
-        ('combatNotes.defensiveDuelistFeature', 'proficiencyBonus', '=', null);
-    } else if(feat == 'Dual Wielder') {
-      notes = [
-        'combatNotes.dualWielderFeature:' +
-          '+1 AC w/two weapons, two-weapon fighting w/non-light weapons, draw two weapons at once'
-      ];
-    } else if(feat == 'Dungeon Delver') {
-      notes = [
-        'abilityNotes.dungeonDelverFeature:Search for traps at full speed',
-        'saveNotes.dungeonDelverFeature:Adv vs. traps',
-        'skillNotes.dungeonDelverFeature:Adv detect secret doors'
-      ];
-    } else if(feat == 'Durable') {
-      notes = [
-        'abilityNotes.durableFeature:+1 Constitution',
-        'featureNotes.durableFeature:Min %V/die when regaining HP'
-      ];
-      rules.defineRule('featureNotes.durableFeature',
-        'constitutionModifier', '=', 'Math.max(source * 2, 2)'
-      );
-    } else if((matchInfo = feat.match(/^Elemental Adept \((.*)\)$/)) != null){
-      var type = matchInfo[1];
-      notes = [
-        'magicNotes.elementalAdept(' + type + ')Feature:' +
-          'Spells ignore ' + type + ' resistance, treat 1s as 2s on damage die',
-        'validationNotes.elementalAdept(' + type + ')FeatCasterLevel:' +
-          'Requires Caster Level >= 1'
-      ];
-    } else if(feat == 'Great Weapon Master') {
-      notes = [
-        'combatNotes.greatWeaponMasterFeature:' +
-          'Bonus attack after crit or foe to 0 HP, may trade -5 attack for +10 damage'
-      ];
-    } else if(feat == 'Healer') {
-      notes = [
-        'featureNotes.healerFeature:' +
-          "Stabilize w/healer's kit restores 1 HP, healer's kit heals 1d6+4 HP 1/short rest"
-      ];
-    } else if(feat == 'Heavily Armored') {
-      notes = [
-        'abilityNotes.heavilyArmoredFeature:+1 Strength',
-        'skillNotes.heavilyArmoredFeature:Prof Armor (Heavy)',
-        'validationNotes.heavilyArmoredFeature:' +
-          'Requires medium armor proficiency'
-      ];
-      rules.defineRule('armorProficiencies.Heavy Armor',
-        'skillNotes.heavilyArmoredFeature', '=', '1'
-      );
-      rules.defineRule('validationNotes.heavilyArmoredFeature',
-        'feats.Heavily Armored', '=', '-1',
-        'armorProficiencies.Medium Armor', '+', null
-      );
-    } else if(feat == 'Heavy Armor Master') {
-      notes = [
-        'abilityNotes.heavyArmorMasterFeature:+1 Strength',
-        'combatNotes.heavyArmorMasterFeature:' +
-          'Non-magical bludgeon, pierce, slash DR 3',
-        'validationNotes.heavyArmorMasterFeature:' +
-          'Requires heavy armor proficiency'
-      ];
-      rules.defineRule('validationNotes.heavyArmorMasterFeature',
-        'feats.Heavy Armor Master', '=', '-1',
-        'armorProficiencies.Heavy Armor', '+', null
-      );
-    } else if(feat == 'Inspiring Leader') {
-      notes = [
-        'featureNotes.inspiringLeaderFeature:' +
-          "R30' 10-min speech give 6 allies %V HP",
-        'validationNotes.inspiringLeaderFeatAbility:Requires Charisma >= 13'
-      ];
-    } else if(feat == 'Keen Mind') {
-      notes = [
-        'abilityNotes.keenMindFeature:+1 Intelligence',
-        'featureNotes.keenMindFeature:' +
-          'Know N, hours until sun down/up, things seen/heard prior 30 days'
-      ];
-    } else if(feat == 'Lightly Armored') {
-      notes = [
-        'abilityNotes.lightlyArmoredFeature:+1 Dexterity or Strength',
-        'skillNotes.lightlyArmoredFeature:Prof Armor (Light)'
-      ];
-      rules.defineRule
-        ('abilityBoostCount', 'abilityNotes.lightlyArmoredFeature', '+=', '1');
-    } else if(feat == 'Linguist') {
-      notes = [
-        'abilityNotes.linguistFeature:+1 Intelligence',
-        'featureNotes.linguistFeature:Create ciphers, DC %V Int to decode',
-        'skillNotes.linguistFeature:Learn 3 additional languages'
-      ];
-      rules.defineRule('featureNotes.linguistFeature',
-        'intelligence', '=', null,
-        'proficiencyBonus', '+', null
-      );
-      rules.defineRule('languageCount', 'skillNotes.linguistFeature', '+', '3');
-    } else if(feat == 'Lucky') {
-      notes = [
-        'featureNotes.luckyFeature:' +
-          'Adv attack/ability/save or foe Disadv attack 3/long rest'
-      ];
-    } else if(feat == 'Mage Slayer') {
-      notes = [
-        'combatNotes.mageSlayerFeature:' +
-          'React to attack caster, foe Disadv concentration',
-        "saveNotes.mageSlayerFeature:Adv vs. spells by foes w/in 5'"
-      ];
-    } else if(feat == 'Magic Initiate') {
-      notes = [
-        'magicNotes.magicInitiateFeature:2 cantrips, 1 1st-level/long rest'
-      ];
-    } else if(feat == 'Martial Adept') {
-      notes = [
-        'combatNotes.martialAdeptFeature:' +
-          'Two maneuvers (DC %V), 1 superiority die/long rest'
-      ];
-      rules.defineRule('maxDexOrStrMod',
-        'dexterityModifier', '=', null,
-        'strengthModifier', '^', null
-      );
-      rules.defineRule('combatNotes.martialAdeptFeature',
-        'maxDexOrStrMod', '=', '8 + source',
-        'proficiencyBonus', '+', null
-      );
-    } else if(feat == 'Medium Armor Master') {
-      notes = [
-        'combatNotes.mediumArmorMasterFeature:+1 AC in medium armor',
-        'validationNotes.mediumArmorMasterFeature:' +
-          'Requires medium armor proficiency'
-      ];
-      var armors = rules.getChoices('armor');
-      var mediumArmors = '';
-      for(var armor in armors) {
-        if(armors[armor].indexOf('M') >= 0)
-          mediumArmors += armor;
-      }
-      rules.defineRule
-        ('armorClass', 'classNotes.mediumArmorMasterFeature.1', '+', null);
-      rules.defineRule('combatNotes.mediumArmorMasterFeature.1',
-        'dexterity', '?', 'source >= 16',
-        'armor', '=', '"' + mediumArmors + '".indexOf(source) >= 0 ? 1 : null'
-      );
-    } else if(feat == 'Mobile') {
-      notes = [
-        "abilityNotes.mobileFeature:+10' speed",
-        'combatNotes.mobileFeature:Dash at full speed, no OA from targeted foe'
-      ];
-      rules.defineRule('speed', 'abilityNotes.modileFeature', '+', '10');
-    } else if(feat == 'Moderately Armored') {
-      notes = [
-        'abilityNotes.moderatelyArmoredFeature:+1 Dexterity or Strength',
-        'skillNotes.moderatelyArmoredFeature:Prof Armor (Heavy)',
-        'validationNotes.moderateltyArmoredFeature:' +
-          'Requires light armor proficiency'
-      ];
-      rules.defineRule('abilityBoostCount',
-        'abilityNotes.moderatelyArmoredFeature', '+=', '1'
-      );
-    } else if(feat == 'Mounted Combatant') {
-      notes = [
-        'combatNotes.mountedCombatantFeature:' +
-          'Adv unmounted foe smaller than mount, redirect attack on mount to sself, mount takes no damage on Dex save, half on fail'
-      ];
-    } else if(feat == 'Observant') {
-      notes = [
-        'abilityNotes.observantFeature:+1 Intelligence or Wisdom',
-        'featureNotes.observantFeature:Read lips',
-        'skillNotes.observantFeature:+5 passive Investigation, Perception'
-      ];
-      rules.defineRule
-        ('abilityBoostCount', 'abilityNotes.observantFeature', '+=', '1');
-    } else if(feat == 'Polearm Master') {
-      notes = [
-        'combatNotes.polearmMasterFeature:' +
-          'Bonus attack w/polearm but 1d4 HP, OA when foe enters reach'
-      ];
-    } else if(feat == 'Resilient') {
-      notes = [
-        'abilityNotes.resilientFeature:+1 and prof saves in chosen ability'
-      ];
-    } else if(feat == 'Ritual Caster') {
-      notes = [
-        'magicNotes.ritualCasterFeature:Cast spells from ritual book'
-      ];
-    } else if(feat == 'Savage Attacker') {
-      notes = [
-        'combatNotes.savageAttackerFeature:Reroll damage 1/turn'
-      ];
-    } else if(feat == 'Sentinel') {
-      notes = [
-        'combatNotes.sentinelFeature:' +
-          'Foe stuck by OA speed 0, OA on foe Disengage, react attack when foe targets other'
-      ];
-    } else if(feat == 'Sharpshooter') {
-      notes = [
-        'combatNotes.sharpshooterFeature:' +
-          'No Disadv long range, ignore 3/4 cover, take -5 attack for +10 damage'
-      ];
-    } else if(feat == 'Shield Master') {
-      notes = [
-        "combatNotes.shieldMasterFeature:Bonus 5' Push",
-        'saveNotes.shieldMasterFeature:' +
-          '+2 Dex vs. targeted spell, save for no damage instead of half'
-      ];
-    } else if(feat == 'Skilled') {
-      notes = [
-        'skillNotes.skilledFeature:Prof 3 skills or tools'
-      ];
-    } else if(feat == 'Skulker') {
-      notes = [
-        'skillNotes.skulkerFeature:' +
-          'Hide when lightly obscured, no Disadv on Perception in dim light',
-        'validationNotes.skulkerFeatAbility:Requires Dexterity >= 13'
-      ];
-    } else if(feat == 'Spell Sniper') {
-      notes = [
-        'magicNotes.spellSniperFeature:' +
-          'Dbl attack spell range, ignore 3/4 cover, additional attack cantrip'
-      ];
-    } else if(feat == 'Tavern Brawler') {
-      notes = [
-        'abilityNotes.tavernBrawlerFeature:+1 Constitution or Strength',
-        'combatNotes.tavernBrawlerFeature:' +
-          'Prof improvised and unarmed, bonus to grapple'
-      ];
-      rules.defineRule
-        ('abilityBoostCount', 'abilityNotes.tavernBrawlerFeature', '+=', '1');
-      rules.defineRule
-        ('weapons.Unarmed.2', 'combatNotes.tavernBrawlerFeature', '=', '"1d4"');
-    } else if(feat == 'Tough') {
-      notes = [
-        'combatNotes.toughFeature:+%V HP'
-      ];
-      rules.defineRule('combatNotes.toughFeature', 'level', '=', '2 * source');
-      rules.defineRule('hitPoints', 'combatNotes.toughFeature', '+', null);
-    } else if(feat == 'War Caster') {
-      notes = [
-        'combatNotes.warCasterFeature:' +
-          'Adv concentration, cast when holding shield or weapon, cast as OA',
-        'validationNotes.warCasterFeatCasterLevel:Requires Caster Level >= 1'
-      ];
-    } else if(feat == 'Weapon Master') {
-      notes = [
-        'abilityNotes.weaponMasterFeature:+1 Dexterity or Strength',
-        'skillNotes.weaponMasterFeature:Prof 4 weapons'
-      ];
-      rules.defineRule
-        ('abilityBoostCount', 'abilityNotes.weaponMasterFeature', '+=', '1');
-// ENDPHB
-    } else {
+    } else
       continue;
-    }
+
     rules.defineChoice('feats', feat);
     rules.defineRule('features.' + feat, 'feats.' + feat, '=', null);
     if(notes != null)
@@ -4501,22 +2911,20 @@ SRD5E.magicRules = function(rules, classes, schools) {
     var spells;
     if(klass == 'Bard') {
       spells = [
-        'B0:Blade Ward:Dancing Lights:Friends:Light:Mage Hand:Mending:' +
-        'Message:Minor Illusion:Prestidigitation:True Strike:Vicious Mockery',
+        'B0:Blade Ward:Dancing Lights:Light:Mage Hand:Mending:Message:' +
+        'Minor Illusion:Prestidigitation:True Strike:Vicious Mockery',
         'B1:Animal Friendship:Bane:Charm Person:Comprehend Languages:' +
-        'Cure Wounds:Detect Magic:Disguise Self:Dissonant Whispers:' +
-        'Faerie Fire:Feather Fall:Healing Word:Heroism:Hideous Laughter:' +
-        'Identify:Illusory Script:Longstrider:Silent Image:Sleep:' +
-        'Speak With Animals:Unseen Servant',
+        'Cure Wounds:Detect Magic:Disguise Self:Faerie Fire:Feather Fall:' +
+        'Healing Word:Heroism:Hideous Laughter:Identify:Illusory Script:' +
+        'Longstrider:Silent Image:Sleep:Speak With Animals:Unseen Servant',
         'B2:Animal Messenger:Blindness/Deafness:Calm Emotions:' +
-        'Cloud Of Daggers:Crown Of Madness:Detect Thoughts:Enhance Ability:' +
-        'Enthrall:Heat Metal:Hold Person:Invisibility:Knock:' +
-        'Lesser Restoration:Locate Animals Or Plants:Locate Object:' +
-        'Magic Mouth:Phantasmal Force:See Invisibility:Shatter:Silence:' +
-        'Suggestion:Zone Of Truth',
-        'B3:Bestow Curse:Clairvoyance:Dispel Magic:Fear:Feign Death:' +
-        'Glyph Of Warding:Hypnotic Pattern:Major Image:Plant Growth:Sending:' +
-        'Speak With Dead:Speak With Plants:Stinking Cloud:Tiny Hut:Tongues',
+        'Cloud Of Daggers:Detect Thoughts:Enhance Ability:Enthrall:' +
+        'Heat Metal:Hold Person:Invisibility:Knock:Lesser Restoration:' +
+        'Locate Animals Or Plants:Locate Object:Magic Mouth:See Invisibility:' +
+        'Shatter:Silence:Suggestion:Zone Of Truth',
+        'B3:Bestow Curse:Clairvoyance:Dispel Magic:Fear:Glyph Of Warding:' +
+        'Hypnotic Pattern:Major Image:Plant Growth:Sending:Speak With Dead:' +
+        'Speak With Plants:Stinking Cloud:Tiny Hut:Tongues',
         'B4:Compulsion:Confusion:Dimension Door:Freedom Of Movement:' +
         'Greater Invisibility:Hallucinatory Terrain:Locate Creature:Polymorph',
         'B5:Animate Objects:Awaken:Dominate Person:Dream:Geas:' +
@@ -4525,10 +2933,10 @@ SRD5E.magicRules = function(rules, classes, schools) {
         'Teleporation Circle',
         'B6:Eyebite:Find The Path:Guards And Wards:Irresistible Dance:' +
         'Mass Suggestion:Programmed Illusion:True Seeing',
-        "B7:Etherealness:Forcecage:Mage's Sword:Magnificent Mansion:" +
-        'Mirage Arcane:Project Image:Regenerate:Resurrection:Symbol:Teleport',
+        'B7:Etherealness:Forcecage:Magnificent Mansion:Mirage Arcane:' +
+        'Project Image:Regenerate:Resurrection:Symbol:Teleport',
         'B8:Dominate Monster:Feeblemind:Glibness:Mind Blank:Power Word Stun',
-        'B9:Foresight:Power Word Heal:Power Word Kill:True Polymorph'
+        'B9:Foresight:Power Word Kill:True Polymorph'
       ];
     } else if(klass == 'Cleric') {
       spells = [
@@ -4545,8 +2953,8 @@ SRD5E.magicRules = function(rules, classes, schools) {
         'Protection From Poison:Silence:Spiritual Weapon:Warding Bond:' +
         'Zone Of Truth',
         'C3:Animate Dead:Beacon Of Hope:Bestow Curse:Clairvoyance:' +
-        'Create Food And Water:Daylight:Dispel Magic:Feign Death:' +
-        'Glyph Of Warding:Magic Circle:Mass Healing Word:Meld Into Stone:' +
+        'Create Food And Water:Daylight:Dispel Magic:Glyph Of Warding:' +
+        'Magic Circle:Mass Healing Word:Meld Into Stone:' +
         'Protection From Energy:Remove Curse:Revivify:Sending:' +
         'Speak With Dead:Spirit Guardians:Tongues:Water Walk',
         'C4:Banishment:Control Water:Death Ward:Divination:' +
@@ -4564,7 +2972,7 @@ SRD5E.magicRules = function(rules, classes, schools) {
     } else if(klass == 'Druid') {
       spells = [
         'D0:Druidcraft:Guidance:Mending:Poison Spray:Produce Flame:' +
-        'Resistance:Shillelagh:Thorn Whip',
+        'Resistance:Shillelagh',
         'D1:Animal Friendship:Charm Person:Create Or Destroy Water:' +
         'Cure Wounds:Detect Magic:Detect Poison And Disease:Entangle:' +
         'Faerie Fire:Fog Cloud:Goodberry:Healing Word:Jump:Longstrider:' +
@@ -4574,14 +2982,13 @@ SRD5E.magicRules = function(rules, classes, schools) {
         'Hold Person:Lesser Restoration:Locate Animals Or Plants:' +
         'Locate Object:Moonbeam:Pass Without Trace:Protection From Poison:' +
         'Spike Growth',
-        'D3:Call Lightning:Conjure Animals:Daylight:Dispel Magic:Feign Death:' +
+        'D3:Call Lightning:Conjure Animals:Daylight:Dispel Magic:' +
         'Meld Into Stone:Plant Growth:Protection From Energy:Sleet Storm:' +
         'Speak With Plants:Water Breathing:Water Walk:Wind Wall',
         'D4:Blight:Confusion:Conjure Minor Elementals:' +
         'Conjure Woodland Beings:Control Water:Dominate Beast:' +
-        'Freedom Of Movement:Giant Insect:Grasping Vine:' +
-        'Hallucinatory Terrain:Ice Storm:Locate Creature:Polymorph:' +
-        'Stone Shape:Stoneskin:Wall Of Fire',
+        'Freedom Of Movement:Giant Insect:Hallucinatory Terrain:Ice Storm:' +
+        'Locate Creature:Polymorph:Stone Shape:Stoneskin:Wall Of Fire',
         'D5:Antilife Shell:Awaken:Commune With Nature:Conjure Elemental:' +
         'Contagion:Geas:Greater Restoration:Insect Plague:Mass Cure Wounds:' +
         'Planar Binding:Reincarnate:Scrying:Tree Stride:Wall Of Stone',
@@ -4589,56 +2996,51 @@ SRD5E.magicRules = function(rules, classes, schools) {
         'Transport Via Plants:Wall Of Thorns:Wind Walk',
         'D7:Fire Storm:Mirage Arcane:Plane Shift:Regenerate:Reverse Gravity',
         'D8:Animal Shapes:Antipathy/Sympathy:Control Weather:Earthquake:' +
-        'Feeblemind:Sunburst:Tsunami',
+        'Feeblemind:Sunburst',
         'D9:Foresight:Shapechange:Storm Of Vengeance:True Resurrection'
       ];
     } else if(klass == 'Paladin') {
       spells = [
         'P1:Bless:Command:Compelled Duel:Cure Wounds:Detect Evil And Good:' +
         'Detect Magic:Detect Poison And Disease:Divine Favor:Heroism:' +
-        'Protection From Evil And Good:Purify Food And Drink:Searing Smite:' +
-        'Shield Of Faith:Thunderous Smite:Wrathful Smite',
+        'Protection From Evil And Good:Purify Food And Drink:Shield Of Faith',
         'P2:Aid:Branding Smite:Find Steed:Lesser Restoration:Locate Object:' +
         'Magic Weapon:Protection From Poison:Zone Of Truth',
-        'P3:Aura Of Vitality:Blinding Smite:Create Food And Water:' +
-        "Crusader's Mantle:Daylight:Dispel Magic:Elemental Weapon:" +
-        'Magic Circle:Remove Curse:Revivify',
-        'P4:Aura Of Life:Aura Of Purity:Banishment:Death Ward:' +
-        'Locate Creature:Staggering Smite',
+        'P3:Aura Of Vitality:Blinding Smite:Create Food And Water:Daylight:' +
+        'Dispel Magic:Magic Circle:Remove Curse:Revivify',
+        'P4:Aura Of Life:Aura Of Purity:Banishment:Death Ward:Locate Creature',
         'P5:Banishing Smite:Circle Of Power:Destructive Smite:' +
         'Dispel Evil And Good:Geas:Raise Dead'
       ];
     } else if(klass == 'Ranger') {
       spells = [
         'R1:Alarm:Animal Friendship:Cure Wounds:Detect Magic:' +
-        'Detect Poison And Disease:Ensnaring Strike:Fog Cloud:Goodberry:' +
-        "Hail Of Thorns:Hunter's Mark:Jump:Longstrider:Speak With Animals",
-        'R2:Animal Messenger:Barkskin:Beast Sense:Cordon Of Arrows:' +
-        'Darkvision:Find Traps:Lesser Restoration:Locate Animals Or Plants:' +
-        'Locate Object:Pass Without Trace:Protection From Poison:Silence:' +
-        'Spike Growth',
-        'R3:Conjure Animals:Conjure Barrage:Daylight:Lightning Arrow:' +
-        'Nondetection:Plant Growth:Protection From Energy:Speak With Plants:' +
-        'Water Breathing:Water Walk:Wind Wall',
-        'R4:Conjure Woodland Beings:Freedom Of Movement:Grasping Vine:' +
-        'Locate Creature:Stoneskin',
-        'R5:Commune With Nature:Conjure Volley:Swift Quiver:Tree Stride'
+        "Detect Poison And Disease:Fog Cloud:Goodberry:Hunter's Mark:Jump:" +
+        'Longstrider:Speak With Animals',
+        'R2:Animal Messenger:Barkskin:Beast Sense:Darkvision:Find Traps:' +
+        'Lesser Restoration:Locate Animals Or Plants:Locate Object:' +
+        'Pass Without Trace:Protection From Poison:Silence:Spike Growth',
+        'R3:Conjure Animals:Daylight:Nondetection:Plant Growth:' +
+        'Protection From Energy:Speak With Plants:Water Breathing:Water Walk:' +
+        'Wind Wall',
+        'R4:Conjure Woodland Beings:Freedom Of Movement:Locate Creature:' +
+        'Stoneskin',
+        'R5:Commune With Nature:Tree Stride'
       ];
     } else if(klass == 'Sorcerer') {
       spells = [
         'S0:Acid Splash:Blade Ward:Chill Touch:Dancing Lights:Fire Bolt:' +
-        'Friends:Light:Mage Hand:Mending:Message:Minor Illusion:Poison Spray:' +
+        'Light:Mage Hand:Mending:Message:Minor Illusion:Poison Spray:' +
         'Prestidigitation:Ray Of Frost:Shocking Grasp:True Strike',
         'S1:Burning Hands:Charm Person:Chromatic Orb:Color Spray:' +
         'Comprehend Languages:Detect Magic:Disguise Self:Expeditious Retreat:' +
         'False Life:Feather Fall:Fog Cloud:Jump:Mage Armor:Magic Missile:' +
-        'Ray Of Sickness:Shield:Silent Image:Sleep:Thunderwave:Witch Bolt',
-        'S2:Alter Self:Blindness/Deafness:Blur:Cloud Of Daggers:' +
-        'Crown Of Madness:Darkness:Darkvision:Detect Thoughts:' +
-        'Enhance Ability:Enlarge/Reduce:Gust Of Wind:Hold Person:' +
-        'Invisibility:Knock:Levitate:Mirror Image:Misty Step:' +
-        'Phantasmal Force:Scorching Ray:See Invisibility:Shatter:' +
-        'Spider Climb:Suggestion:Web',
+        'Shield:Silent Image:Sleep:Thunderwave',
+        'S2:Alter Self:Blindness/Deafness:Blur:Cloud Of Daggers:Darkness:' +
+        'Darkvision:Detect Thoughts:Enhance Ability:Enlarge/Reduce:' +
+        'Gust Of Wind:Hold Person:Invisibility:Knock:Levitate:Mirror Image:' +
+        'Misty Step:Scorching Ray:See Invisibility:Shatter:Spider Climb:' +
+        'Suggestion:Web',
         'S3:Blink:Clairvoyance:Counterspell:Daylight:Dispel Magic:Fear:' +
         'Fireball:Fly:Gaseous Form:Haste:Hypnotic Pattern:Lightning Bolt:' +
         'Major Image:Protection From Energy:Sleet Storm:Slow:Stinking Cloud:' +
@@ -4659,17 +3061,16 @@ SRD5E.magicRules = function(rules, classes, schools) {
       ];
     } else if(klass == 'Warlock') {
       spells = [
-        'K0:Blade Ward:Chill Touch:Eldritch Blast:Friends:Mage Hand:' +
-        'Minor Illusion:Poison Spray:Prestidigitation:True Strike',
+        'K0:Blade Ward:Chill Touch:Eldritch Blast:Mage Hand:Minor Illusion:' +
+        'Poison Spray:Prestidigitation:True Strike',
         'K1:Armor Of Agathys:Arms Of Hadar:Charm Person:Comprehend Languages:' +
-        'Expeditious Retreat:Hellish Rebuke:Hex:Illusory Script:' +
-        'Protection From Evil And Good:Unseen Servant:Witch Bolt',
-        'K2:Cloud Of Daggers:Crown Of Madness:Darkness:Enthrall:Hold Person:' +
-        'Invisibility:Mirror Image:Misty Step:Ray Of Enfeeblement:Shatter:' +
-        'Spider Climb:Suggestion',
-        'K3:Counterspell:Dispel Magic:Fear:Fly:Gaseous Form:Hunger Of Hadar:' +
-        'Hypnotic Pattern:Magic Circle:Major Image:Remove Curse:Tongues:' +
-        'Vampiric Touch',
+        'Expeditious Retreat:Hellish Rebuke:Illusory Script:' +
+        'Protection From Evil And Good:Unseen Servant',
+        'K2:Cloud Of Daggers:Darkness:Enthrall:Hold Person:Invisibility:' +
+        'Mirror Image:Misty Step:Ray Of Enfeeblement:Shatter:Spider Climb:' +
+        'Suggestion',
+        'K3:Counterspell:Dispel Magic:Fear:Fly:Gaseous Form:Hypnotic Pattern:' +
+        'Magic Circle:Major Image:Remove Curse:Tongues:Vampiric Touch',
         'K4:Banishment:Blight:Dimension Door:Hallucinatory Terrain',
         'K5:Contact Other Plane:Dream:Hold Monster:Scrying',
         'K6:Arcane Gate:Circle Of Death:Conjure Fey:Create Undead:Eyebite:' +
@@ -4677,59 +3078,40 @@ SRD5E.magicRules = function(rules, classes, schools) {
         'K7:Etherealness:Finger Of Death:Forcecage:Plane Shift',
         'K8:Demiplane:Dominate Monster:Feeblemind:Glibness:Power Word Stun',
         'K9:Astral Projection:Foresight:Imprisonment:Power Word Kill:' +
-        'True Polymorph'
-      ];
-      // Fiend Patron
-      spells.push(
+        'True Polymorph',
+        // Fiend Patron
         'K1:Burning Hands:Command',
         'K2:Blindness/Deafness:Scorching Ray',
         'K3:Fireball:Stinking Cloud',
         'K4:Fire Shield:Wall Of Fire',
         'K5:Flame Strike:Hallow'
-      );
-// PHB
-      spells.push(
-        // Archfey Patron
-        'K1:Faerie Fire:Sleep',
-        'K2:Calm Emotions:Phantasmal Force',
-        'K3:Blink:Plant Growth',
-        'K4:Dominate Beast:Greater Invisibility',
-        'K5:Dominate Person:Seeming',
-        // Great Old One Patron
-        'K1:Dissonant Whispers:Hideous Laughter',
-        'K2:Detect Thoughts:Phantasmal Force',
-        'K3:Clairvoyance:Sending',
-        'K4:Black Tentacles:Dominate Beast',
-        'K5:Dominate Person:Telekenisis',
-      );
-// ENDPHB
+      ];
     } else if(klass == 'Wizard') {
       spells = [
         'W0:Acid Splash:Blade Ward:Chill Touch:Dancing Lights:Fire Bolt:' +
-        'Friends:Light:Mage Hand:Mending:Message:Minor Illusion:Poison Spray:' +
+        'Light:Mage Hand:Mending:Message:Minor Illusion:Poison Spray:' +
         'Prestidigitation:Ray Of Frost:Shocking Grasp:True Strike',
         'W1:Alarm:Burning Hands:Charm Person:Chromatic Orb:Color Spray:' +
         'Comprehend Languages:Detect Magic:Disguise Self:Expeditious Retreat:' +
         'False Life:Feather Fall:Find Familiar:Floating Disk:Fog Cloud:' +
         'Grease:Hideous Laughter:Identify:Illusory Script:Jump:Longstrider:' +
-        'Mage Armor:Magic Missile:Protection From Evil And Good:' +
-        'Ray Of Sickness:Shield:Silent Image:Sleep:Thunderwave:' +
-        'Unseen Servant:Witch Bolt',
+        'Mage Armor:Magic Missile:Protection From Evil And Good:Shield:' +
+        'Silent Image:Sleep:Thunderwave:Unseen Servant',
         "W2:Acid Arrow:Alter Self:Arcane Lock:Arcanist's Magic Aura:" +
-        'Blindness/Deafness:Blur:Cloud Of Daggers:Continual Flame:' +
-        'Crown Of Madness:Darkness:Darkvision:Detect Thoughts:Enlarge/Reduce:' +
-        'Flaming Sphere:Gentle Repose:Gust Of Wind:Hold Person:Invisibility:' +
-        'Knock:Levitate:Locate Object:Magic Mouth:Magic Weapon:Mirror Image:' +
-        'Misty Step:Phantasmal Force:Ray Of Enfeeblement:Rope Trick:' +
-        'Scorching Ray:See Invisibility:Shatter:Spider Climb:Suggestion:Web',
+        'Blindness/Deafness:Blur:Cloud Of Daggers:Continual Flame:Darkness:' +
+        'Darkvision:Detect Thoughts:Enlarge/Reduce:Flaming Sphere:' +
+        'Gentle Repose:Gust Of Wind:Hold Person:Invisibility:Knock:Levitate:' +
+        'Locate Object:Magic Mouth:Magic Weapon:Mirror Image:Misty Step:' +
+        'Ray Of Enfeeblement:Rope Trick:Scorching Ray:See Invisibility:' +
+        'Shatter:Spider Climb:Suggestion:Web',
         'W3:Animate Dead:Bestow Curse:Blink:Clairvoyance:Counterspell:' +
-        'Dispel Magic:Fear:Feign Death:Fireball:Fly:Gaseous Form:' +
-        'Glyph Of Warding:Haste:Hypnotic Pattern:Lightning Bolt:' +
-        'Magic Circle:Major Image:Nondetection:Phantom Steed:' +
-        'Protection From Energy:Remove Curse:Sending:Sleet Storm:Slow:' +
-        'Stinking Cloud:Tiny Hut:Tongues:Vampiric Touch:Water Breathing',
+        'Dispel Magic:Fear:Fireball:Fly:Gaseous Form:Glyph Of Warding:Haste:' +
+        'Hypnotic Pattern:Lightning Bolt:Magic Circle:Major Image:' +
+        'Nondetection:Phantom Steed:Protection From Energy:Remove Curse:' +
+        'Sending:Sleet Storm:Slow:Stinking Cloud:Tiny Hut:Tongues:' +
+        'Vampiric Touch:Water Breathing',
         'W4:Arcane Eye:Banishment:Black Tentacles:Blight:Confusion:' +
-        "Conjure Minor Elementals:Control Water:Dimension Door:Fabricate:" +
+        'Conjure Minor Elementals:Control Water:Dimension Door:Fabricate:' +
         'Faithful Hound:Fire Shield:Greater Invisibility:' +
         'Hallucinatory Terrain:Ice Storm:Locate Creature:Private Sanctum:' +
         'Phantasmal Killer:Polymorph:Resilient Sphere:Secret Chest:' +
@@ -4745,12 +3127,11 @@ SRD5E.magicRules = function(rules, classes, schools) {
         'Irresistible Dance:Magic Jar:Mass Suggestion:Move Earth:' +
         'Programmed Illusion:Sunbeam:True Seeing:Wall Of Ice',
         'W7:Delayed Blast Fireball:Etherealness:Finger Of Death:Forcecage:' +
-        "Mage's Sword:Magnificent Mansion:Mirage Arcane:Plane Shift:" +
-        'Prismatic Spray:Project Image:' +
-        'Reverse Gravity:Sequester:Simulacrum:Symbol:Teleport',
+        'Magnificent Mansion:Mirage Arcane:Plane Shift:Prismatic Spray:' +
+        'Project Image:Reverse Gravity:Sequester:Simulacrum:Symbol:Teleport',
         'W8:Antimagic Field:Antipathy/Sympathy:Clone:Control Weather:' +
         'Demiplane:Dominate Monster:Feeblemind:Incendiary Cloud:Maze:' +
-        'Mind Blank:Power Word Stun:Sunburst:Telepathy:Trap The Soul',
+        'Mind Blank:Power Word Stun:Sunburst:Trap The Soul',
         'W9:Astral Projection:Foresight:Gate:Imprisonment:Meteor Swarm:' +
         'Power Word Kill:Prismatic Wall:Shapechange:Time Stop:True Polymorph:' +
         'Weird:Wish'
@@ -4908,12 +3289,6 @@ SRD5E.raceRules = function(rules, languages, races) {
         );
         rules.defineRule
           ('combatNotes.dwarvenToughnessFeature', 'level', '=', null);
-// PHB
-      } else if(race == 'Mountain Dwarf') {
-        adjustment += '/+2 strength';
-        proficiencyCount['Armor'] = 2;
-        proficienciesGiven['Armor'] = ['Light Armor', 'Medium Armor'];
-// ENDPHB
       }
 
     } else if(race.match(/Elf/)) {
@@ -4947,38 +3322,6 @@ SRD5E.raceRules = function(rules, languages, races) {
         );
         rules.defineRule
           ('languageCount', 'featureNotes.extraLanguageFeature', '+', '1');
-// PHB
-      } else if(race == 'Wood Elf') {
-        adjustment += '/+1 wisdom';
-        features.push(
-          '1:Fleet Of Foot:ability:+5 speed',
-          '1:Mask Of The Wild:feature:Hide in light natural coverage',
-          '1:Weapon Proficiency (Longbow/Longsword/Shortbow/Shortsword)::'
-        );
-        proficiencyCount['Weapon'] = 4;
-        proficienciesGiven['Weapon'] =
-          ['Longbow', 'Longsword', 'Shortbow', 'Shortsword'];
-        rules.defineRule('speed', 'abilityNotes.fleetOfFootFeature', '+', '5');
-      } else if(race == 'Dark Elf') {
-        adjustment += '/+1 charisma';
-        features.push(
-          '1:Drow Magic:magic:<i>Dancing Lights</i> cantrip%V',
-          '1:Sunlight Sensitivity:combat:Disadv attack in direct sunlight',
-          '1:Sunlight Sensitivity:skill:' +
-            'Disadv sight Perception in direct sunlight',
-          "1:Superior Darkvision:feature:R120' See one light level better",
-          '1:Weapon Proficiency (Hand Crossbow/Rapier/Shortsword)::'
-        );
-        proficiencyCount['Weapon'] = 3;
-        proficienciesGiven['Weapon'] =
-          ['Hand Crossbow', 'Rapier', 'Shortsword'];
-        rules.defineRule('casterLevels.S', 'drowMagicLevel', '^=', null);
-        rules.defineRule('drowMagicLevel',
-          'darkElfFeatures.Drow Magic', '?', null,
-          'level', '=', null
-        );
-        rules.defineRule('magicNotes.drowMagicFeature', 'level', '=', 'source >= 3 ? ", cast <i>Faerie Fire</i>" + (source >= 5 ? ", <i>Darkness</i>" : "") + " 1/dy" : ""');
-// ENDPHB
       }
 
     } else if(race.match(/Gnome/)) {
@@ -5005,15 +3348,6 @@ SRD5E.raceRules = function(rules, languages, races) {
         );
         proficiencyCount['Tool'] = 1;
         proficienciesGiven['Tool'] = ['Artisan'];
-// PHB
-      } else if(race == 'Forest Gnome') {
-        adjustment += '/+1 dexterity';
-        features.push(
-          '1:Natural Illusionist:magic:<i>Minor Illusion</i> cantrip (Int)',
-          '1:Speak With Small Beasts:feature:' +
-            'Simple communication with small animals'
-        );
-// ENDPHB
       }
 
     } else if(race.match(/Halfling/)) {
@@ -5037,13 +3371,6 @@ SRD5E.raceRules = function(rules, languages, races) {
         features.push(
           '1:Stealthy:feature:Hide behind larger creature'
         );
-// PHB
-      } else if(race == 'Stout Halfling') {
-        adjustment += '/+1 constitution';
-        features.push(
-          '1:Stout:save:Adv vs. poison, resistance poison damage'
-        );
-// ENDPHB
       }
 
     } else if(race.match(/Human/)) {

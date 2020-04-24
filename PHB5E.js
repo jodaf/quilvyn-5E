@@ -36,6 +36,7 @@ function PHB5E() {
   PHB5E.featRules(SRD5E.rules, PHB5E.FEATS);
   PHB5E.descriptionRules(SRD5E.rules, PHB5E.DEITIES);
   PHB5E.magicRules(SRD5E.rules, SRD5E.CLASSES);
+  SRD5E.spellRules(SRD5E.rules, PHB5E.SPELLS, PHB5E.spellsDescriptions);
   PHB5E.rules = SRD5E.rules;
 }
 
@@ -183,9 +184,9 @@ PHB5E.backgroundRules = function(rules, backgrounds) {
   for(var i = 0; i < backgrounds.length; i++) {
 
     var name = backgrounds[i];
-    var equipment = [];
-    var features = [];
-    var languages = [];
+    var equipment = null;
+    var features = null;
+    var languages = null;
     var proficiencyCount = {};
     var proficienciesGiven = {};
     var proficiencyChoices = {};
@@ -1770,13 +1771,16 @@ PHB5E.raceRules = function(rules, races) {
 
     if(race == 'Mountain Dwarf') {
       adjustment = '+2 strength';
+      features = [
+        '1:Armor Proficiency (Light/Medium)'
+      ]
       proficiencyCount['Armor'] = 2;
       proficienciesGiven['Armor'] = ['Light Armor', 'Medium Armor'];
     } else if(race == 'Wood Elf') {
       adjustment = '+1 wisdom';
       features = [
         '1:Fleet Of Foot:ability:+5 speed',
-        '1:Mask Of The Wild:feature:Hide in light natural coverage',
+        '1:Mask Of The Wild:skill:Hide in light natural coverage',
         '1:Weapon Proficiency (Longbow/Longsword/Shortbow/Shortsword)::'
       ];
       proficiencyCount['Weapon'] = 4;
@@ -1806,15 +1810,23 @@ PHB5E.raceRules = function(rules, races) {
     } else if(race == 'Forest Gnome') {
       adjustment = '+1 dexterity';
       features = [
-        '1:Natural Illusionist:magic:<i>Minor Illusion</i> cantrip (Int)',
+        '1:Natural Illusionist:magic:<i>Minor Illusion</i> cantrip',
         '1:Speak With Small Beasts:feature:' +
           'Simple communication with small animals'
       ];
+      rules.defineRule
+        ('casterLevels.W', 'casterLevels.Forest Gnome', '^=', null);
+      rules.defineRule('casterLevels.Forest Gnome',
+        'forestGnomeFeatures.Natural Illusionist', '?', null,
+        'level', '=', null
+      );
+      rules.defineRule
+        ('spellsKnown.W0', 'magicNotes.naturalIllusionisFeature', '+=', '1');
 
     } else if(race == 'Stout Halfling') {
       adjustment = '+1 constitution';
       features = [
-        '1:Stout:save:Adv vs. poison, resistance poison damage'
+        '1:Stout Resilience:save:Adv vs. poison, resistance poison damage'
       ];
 
     } else
@@ -1826,7 +1838,7 @@ PHB5E.raceRules = function(rules, races) {
     rules.defineRule
       (amountAndAbility[1], abilityNote, '+', amountAndAbility[0]);
     SRD5E.defineRace(
-      rules, race, null, features, [], proficiencyCount,
+      rules, race, null, features, null, proficiencyCount,
       proficienciesGiven, proficiencyChoices
     );
 

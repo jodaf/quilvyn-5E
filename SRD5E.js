@@ -872,7 +872,7 @@ SRD5E.spellsDescriptions = {
     "Allies within 30' self +10 Dexterity (Stealth), untrackable for conc/1 hr",
   'Passwall':"R30' 5'x8'x20' passage through wood, plaster, or stone",
   'Phantasmal Killer':
-    "R120' Target frightened, 4d10 HP/rd for conc/1 min (Wis neg)",
+    "R120' Target fright, 4d10 HP/rd for conc/1 min (Wis neg)",
   'Phantom Steed':"R30' Self ride 100'/rd for 1 hr",
   'Planar Ally':"R60' Otherworld creature appears, bargain for service",
   'Planar Binding':
@@ -993,7 +993,7 @@ SRD5E.spellsDescriptions = {
   'Water Walk':"R30' 10 targets cross liquid for 1 hr",
   'Web':"R60' 20' cu restrain creatures for conc/1 hr (Dex neg, Str frees)",
   'Weird':
-    "R120' Targets in 30' radius frightened, 4d10 HP/turn for conc/1 min (Wis neg)",
+    "R120' Targets in 30' radius fright, 4d10 HP/turn for conc/1 min (Wis neg)",
   'Wind Walk':"R30' Self + 10 others gaseous, fly 300'/rd for 8 hr",
   'Wind Wall':"R120' 50'x15' strong wind does 3d8 HP (Str half) for conc/1 min",
   'Wish': "Alter reality with few limits",
@@ -1181,7 +1181,7 @@ SRD5E.classRules = function(rules, classes) {
         '3:Frenzy:combat:Bonus attack during rage, exhausted after',
         '6:Mindless Rage:save:Immune charm, fright during rage',
         '10:Intimidating Presence:feature:' +
-          "R30' Target creature frightened (DC %V Will neg)",
+          "R30' Target creature fright (DC %V Will neg)",
         '14:Retaliation:combat:Melee attack reaction after taking damage'
       ];
       hitDie = 12;
@@ -1268,7 +1268,7 @@ SRD5E.classRules = function(rules, classes) {
         '1:Spellcasting::',
         '2:Jack Of All Trades:ability:+%V ability checks',
         '2:Song Of Rest:magic:Listeners regain 1d%V HP after short rest',
-        '3:Expertise:feature:Dbl %V Profs',
+        '3:Bard Expertise:skill:Dbl Prof %V skills',
         '5:Font Of Inspiration:feature:' +
           'Refresh Bardic Inspiration after short rest',
         "6:Countercharm:magic:R30' Friendly listeners Adv vs. charm, fright",
@@ -1321,9 +1321,6 @@ SRD5E.classRules = function(rules, classes) {
          'magicNotes.casterLevelBonusFeature', '+', null
       );
       rules.defineRule('casterLevelArcane', 'casterLevels.B', '+=', null);
-      rules.defineRule('featureNotes.expertiseFeature',
-        'levels.Bard', '=', 'source < 10 ? 2 : 4'
-      );
       rules.defineRule('magicNotes.bardicInspirationFeature',
         'levels.Bard', '=', '6 + Math.floor(source / 5) * 2'
       );
@@ -1340,6 +1337,9 @@ SRD5E.classRules = function(rules, classes) {
         ('proficiencyCount.Skill', 'skillNotes.bonusSkillsFeature', '+', '3');
       rules.defineRule('selectableFeatureCount.Bard',
         'levels.Bard', '=', 'source < 3 ? null : 1'
+      );
+      rules.defineRule('skillNotes.bardExpertiseFeature',
+        'levels.Bard', '=', 'source < 10 ? 2 : 4'
       );
 
       for(var feature in {
@@ -2118,7 +2118,7 @@ SRD5E.classRules = function(rules, classes) {
         '1:Armor Proficiency (Light)::',
         '1:Weapon Proficiency (Simple/Hand Crossbow/Longsword/Rapier/Shortsword)::',
         "1:Tool Proficiency (Thieves' Tools)::",
-        '1:Expertise:skill:Dbl %V skill/tool Prof',
+        "1:Rogue Expertise:skill:Dbl Prof %V skills or thieves' tools",
         '1:Sneak Attack:combat:+%Vd6 damage on Adv/flanked attacks',
         "1:Thieves' Cant:skill:Signs and symbols known only by rogues",
         '2:Cunning Action:combat:Bonus Dash, Disengage, or Hide each turn',
@@ -2165,7 +2165,7 @@ SRD5E.classRules = function(rules, classes) {
       rules.defineRule('selectableFeatureCount.Rogue',
         'levels.Rogue', '=', 'source < 3 ? null : 1'
       );
-      rules.defineRule('skillNotes.expertiseFeature',
+      rules.defineRule('skillNotes.rogueExpertiseFeature',
         'levels.Rogue', '=', 'source < 6 ? 2 : 4'
       );
       rules.defineRule('skillProficiencies.Wisdom',
@@ -2881,6 +2881,7 @@ SRD5E.featRules = function(rules, feats) {
         ('abilityNotes.abilityBoosts', 'abilityBoostCount', '=', null);
       if(seq) {
         notes.push('validationNotes.abilityBoost' + seq + 'FeatFeatures:Requires Ability Boost' + (seq != '2' ? seq - 1 : ''));
+      } else {
       }
     } else if(feat == 'Grappler') {
       notes = [
@@ -3169,7 +3170,8 @@ SRD5E.movementRules = function(rules) {
 SRD5E.raceRules = function(rules, languages, races) {
 
   rules.defineChoice('languages', languages);
-  rules.defineRule('languageCount', 'race', '=', '0');
+  // Default languageCount for most races, exceptions handled by defineRace
+  rules.defineRule('languageCount', 'race', '=', '2');
   rules.defineNote
     ('validationNotes.languageAllocation:%1 available vs. %2 allocated');
   rules.defineRule('validationNotes.languageAllocation.1',
@@ -3199,18 +3201,18 @@ SRD5E.raceRules = function(rules, languages, races) {
       adjustment = '+2 charisma/+1 any two';
       features = [
         "1:Darkvision:feature:R60' See one light level better",
-        '1:Extra Language:feature:Speak 1 additional language',
         '1:Fey Ancestry:save:Adv vs. charmed, immune sleep',
         '1:Skill Versatility:skill:Prof two additional skills'
       ];
-      languages = ['Common', 'Elvish'];
+      languages = ['Common', 'Elvish', ''];
       proficiencyCount = {'Skill': 2};
       proficienciesGiven = {};
       proficiencyChoices = {
         'Skill': SRD5E.SKILLS.map(function(skill){return skill.substring(0, skill.indexOf(':'));})
       };
-      rules.defineRule
-        ('languageCount', 'featureNotes.extraLanguageFeature', '+', '1');
+      rules.defineRule('abilityBoostCount',
+        'abilityNotes.half-ElfAbilityAdjustment', '+=', '2'
+      );
 
     } else if(race == 'Half-Orc') {
 
@@ -3218,19 +3220,24 @@ SRD5E.raceRules = function(rules, languages, races) {
       features = [
         "1:Darkvision:feature:R60' See one light level better",
         '1:Menacing:skill:Prof Intimidation',
-        '1:Relentless Endurance:combat:Avoid drop to 0 HP 1/long rest',
+        '1:Relentless Endurance:combat:' +
+          'On drop to 0 HP, retain 1 HP 1/long rest',
         '1:Savage Attacks:combat:Extra die on crit damage'
       ];
       languages = ['Common', 'Orc'];
       proficiencyCount = {'Skill': 2};
       proficienciesGiven = {'Skill': ['Intimidation']};
       proficiencyChoices = {};
+      // NOTE: redundant rule to get skill note to appear in italics
+      rules.defineRule('skillProficiencies.Intimidation',
+        'skillNotes.menacingFeature', '=', '1'
+      );
 
     } else if(race.match(/Dragonborn/)) {
 
       adjustment = '+2 strength/+1 charisma';
       features = [
-        '1:Draconic Breath:combat:%1 %Vd6 %2 damage (DC %3 %4 half)',
+        '1:Draconic Breath:combat:%1 %Vd6 HP %2 (DC %3 %4 half)',
         '1:Draconic Breath:save:Resistance %V damage'
       ];
       languages = ['Common', 'Draconic'];
@@ -3269,7 +3276,7 @@ SRD5E.raceRules = function(rules, languages, races) {
         "1:Tool Proficiency (Artisan's Tools)::",
         '1:Weapon Proficiency (Battleaxe/Handaxe/Light Hammer/Warhammer)::'
       ];
-      languages = ['Common', 'Dwarven'];
+      languages = ['Common', 'Dwarvish'];
       proficiencyCount = {'Tool':1, 'Weapon':4};
       proficienciesGiven = {
         'Weapon':['Battleaxe', 'Handaxe', 'Light Hammer', 'Warhammer']
@@ -3289,6 +3296,8 @@ SRD5E.raceRules = function(rules, languages, races) {
         );
         rules.defineRule
           ('combatNotes.dwarvenToughnessFeature', 'level', '=', null);
+        rules.defineRule
+          ('hitPoints', 'combatNotes.dwarvenToughnessFeature', '+', null);
       }
 
     } else if(race.match(/Elf/)) {
@@ -3304,24 +3313,28 @@ SRD5E.raceRules = function(rules, languages, races) {
       proficiencyCount = {'Skill': 1};
       proficienciesGiven = {'Skill': ['Perception']};
       proficiencyChoices = {};
+      // NOTE: redundant rule to get skill note to appear in italics
+      rules.defineRule('skillProficiencies.Perception',
+        'skillNotes.keenSensesFeature', '=', '1'
+      );
 
       if(race == 'High Elf') {
         adjustment += '/+1 intelligence';
         features.push(
           '1:Cantrip:magic:Additional Wizard cantrip',
-          '1:Extra Language:feature:Speak 1 additional language',
           '1:Weapon Proficiency (Longbow/Longsword/Shortbow/Shortsword)::'
         );
+        languages.push('');
         proficiencyCount['Weapon'] = 4;
         proficienciesGiven['Weapon'] =
           ['Longbow', 'Longsword', 'Shortbow', 'Shortsword'];
-        rules.defineRule('casterLevels.W', 'highElfCantripLevel', '^=', null);
-        rules.defineRule('highElfCantripLevel',
+        rules.defineRule('casterLevels.W', 'casterLevels.High Elf', '^=', null);
+        rules.defineRule('casterLevels.High Elf',
           'highElfFeatures.Cantrip', '?', null,
           'level', '=', null
         );
         rules.defineRule
-          ('languageCount', 'featureNotes.extraLanguageFeature', '+', '1');
+          ('spellsKnown.W0', 'magicNotes.cantripFeature', '+=', '1');
       }
 
     } else if(race.match(/Gnome/)) {
@@ -3344,19 +3357,24 @@ SRD5E.raceRules = function(rules, languages, races) {
         features.push(
           "1:Artificier's Lore:skill:" +
             'Dbl Prof on magic, alchemical, tech objects History checks',
-          "1:Tinker:feature:Prof artisan's tools"
+          "1:Tinker:skill:Prof Tinker's Tools"
         );
         proficiencyCount['Tool'] = 1;
-        proficienciesGiven['Tool'] = ['Artisan'];
+        proficienciesGiven['Tool'] = ["Tinker's Tools"];
+        // NOTE: redundant rule to get skill note to appear in italics
+        rules.defineRule("toolProficiencies.Tinker's Tools",
+          'skillNotes.tinkerFeature', '=', '1'
+        );
       }
 
     } else if(race.match(/Halfling/)) {
 
       adjustment = '+2 dexterity';
       features = [
-        '1:Brave:save:Adv vs. frightened',
-        '1:Lucky:feature:Reroll 1 on attack/ability/save',
-        '1:Nimble:ability:Move through space occupied by larger creature',
+        '1:Brave:save:Adv vs. fright',
+        '1:Halfling Luck:feature:Reroll 1 on attack/ability/save',
+        '1:Halfling Nimbleness:ability:' +
+          'Move through space occupied by larger creature',
         '1:Slow:ability:-5 speed',
         '1:Small:combat:Disadv heavy weapons'
       ];
@@ -3369,22 +3387,18 @@ SRD5E.raceRules = function(rules, languages, races) {
       if(race == 'Lightfoot Halfling') {
         adjustment += '/+1 charisma';
         features.push(
-          '1:Stealthy:feature:Hide behind larger creature'
+          '1:Naturally Stealthy:feature:Hide behind larger creature'
         );
       }
 
     } else if(race.match(/Human/)) {
 
       adjustment = '+1 charisma/+1 constitution/+1 dexterity/+1 intelligence/+1 strength/+1 wisdom';
-      features = [
-        '1:Extra Language:feature:Speak 1 additional language'
-      ];
-      languages = ['Common'];
+      features = [];
+      languages = ['Common', ''];
       proficiencyCount = {};
       proficienciesGiven = {};
       proficiencyChoices = {};
-      rules.defineRule
-        ('languageCount', 'featureNotes.extraLanguageFeature', '+', '1');
 
     } else if(race.match(/Tiefling/)) {
 
@@ -3398,8 +3412,8 @@ SRD5E.raceRules = function(rules, languages, races) {
       proficiencyCount = {};
       proficienciesGiven = {};
       proficiencyChoices = {};
-      rules.defineRule('casterLevels.K', 'tieflingLegacyLevel', '^=', null);
-      rules.defineRule('tieflingLegacyLevel',
+      rules.defineRule('casterLevels.K', 'casterLevels.Tiefling', '^=', null);
+      rules.defineRule('casterLevels.Tiefling',
         'tieflingFeatures.Infernal Legacy', '?', null,
         'level', '=', null
       );
@@ -3592,7 +3606,7 @@ SRD5E.initialEditorElements = function() {
     ['strength', 'Strength', 'select-one', abilityChoices],
     ['strengthAdjust', '', 'text', [3]],
     ['intelligence', 'Intelligence', 'select-one', abilityChoices],
-    ['intellienceAdjust', '', 'text', [3]],
+    ['intelligenceAdjust', '', 'text', [3]],
     ['wisdom', 'Wisdom', 'select-one', abilityChoices],
     ['wisdomAdjust', '', 'text', [3]],
     ['dexterity', 'Dexterity', 'select-one', abilityChoices],
@@ -4517,9 +4531,13 @@ SRD5E.defineRace = function(
   }
 
   if(languages != null) {
-    rules.defineRule('languageCount', 'isRace.' + name, '+', languages.length);
+    if(languages.length != 2)
+      rules.defineRule
+        ('languageCount', 'isRace.' + name, '+', languages.length - 2);
     for(var i = 0; i < languages.length; i++) {
-      rules.defineRule('languages.' + languages[i], 'isRace.' + name, '=', '1');
+      if(languages[i] != '')
+        rules.defineRule
+          ('languages.' + languages[i], 'isRace.' + name, '=', '1');
     }
   }
 

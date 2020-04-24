@@ -358,8 +358,8 @@ SRD5E.SPELLS = {
   'Magic Weapon':'Transmutation',
   'Magnificent Mansion':'Conjuration',
   'Major Image':'Illusion',
-  'Mass Cure Wounds':'Conjuration',
-  'Mass Heal':'Conjuration',
+  'Mass Cure Wounds':'Evocation',
+  'Mass Heal':'Evocation',
   'Mass Healing Word':'Evocation',
   'Mass Suggestion':'Enchantment',
   'Maze':'Conjuration',
@@ -414,7 +414,7 @@ SRD5E.SPELLS = {
   'Resistance':'Abjuration',
   'Resurrection':'Necromancy',
   'Reverse Gravity':'Transmutation',
-  'Revivify':'Conjuration',
+  'Revivify':'Necromancy',
   'Rope Trick':'Transmutation',
 
   'Sacred Flame':'Evocation',
@@ -635,7 +635,7 @@ SRD5E.spellsDescriptions = {
   'Burning Hands':"15' cone 3d6 HP fire (Dex half)",
 
   'Call Lightning':
-    "R120' Conjured storm cloud 100' overhead generates bolt for 3d10 HP (Dex half) in 5' radius each rd for conc/10 min",
+    "R120' Conjured storm cloud generates bolt for 3d10 HP (Dex half) in 5' radius each rd for conc/10 min",
   'Calm Emotions':
     "R60' 10' radius suppresses charm/fright or hostility (Cha neg) for conc/1 min",
   'Chain Lightning':
@@ -675,7 +675,7 @@ SRD5E.spellsDescriptions = {
   'Conjure Woodland Beings':"R60' Summon obedient fey for conc/1 hr",
   'Contact Other Plane':
     "Contact extraplanar being for five one-word answers (DC 15 Int or take 6d6 HP psychic)",
-  'Contagion':"Touched diseased after failing 3 Con saves (3 successes neg)",
+  'Contagion':"Touched poisoned, then diseased after failing 3 Con saves (3 successes neg)",
   'Contingency':"Cast spell becomes active on trigger w/in 10 dy",
   'Continual Flame':"Touched emits heatless flame until dispelled",
   'Control Water':
@@ -795,7 +795,7 @@ SRD5E.spellsDescriptions = {
   'Healing Word':"R60' Target 1d4+modifier HP",
   'Heat Metal':"R60' Touching target metal causes 2d8 HP for conc/1 min",
   'Hellish Rebuke':"R60' As a reaction, attacker 2d10 HP (Dex half)",
-  "Heroes' Feast":"R30' Diners cured, immune poison and fright, Wis Adv, +2d10 HP for 1 dy",
+  "Heroes' Feast":"R30' 12 diners cured, immune poison and fright, Wis Adv, +2d10 HP for 1 dy",
   'Heroism':"Touched immune fright, +modifier HP each rd for conc/1 min",
   'Hideous Laughter': "R30' Target ROFL for conc/1 min (Wis neg)",
   'Hold Monster':"R90' target frozen for conc/1 min (Wis neg)",
@@ -1878,7 +1878,7 @@ SRD5E.classRules = function(rules, classes) {
         '1:Divine Sense:magic:' +
           "R60' Know location of celestials, fiends, undead %V/long rest",
         '1:Lay On Hands:magic:Heal %V HP, disease, poison 1/long rest',
-        '2:Divine Smite:combat:Expend spell for +2d8 up to +5d8 damage',
+        '2:Divine Smite:combat:Expend spell for +2d8 up to +6d8 damage',
         '2:Spellcasting::',
         '3:Channel Divinity:feature:Effect %V/short rest',
         '3:Divine Health:save:Immune disease',
@@ -3420,7 +3420,7 @@ SRD5E.raceRules = function(rules, languages, races) {
         'tieflingFeatures.Infernal Legacy', '?', null,
         'level', '=', null
       );
-      rules.defineRule('magicNotes.infernalLegacyFeature', 'level', '=', 'source >= 3 ? ", cast <i>Hellish Rebuke</i>" + (source >= 5 ? ", <i>Darkness</i>" : "") + " 1/dy" : ""');
+      rules.defineRule('magicNotes.infernalLegacyFeature', 'level', '=', 'source >= 3 ? ", cast <i>Hellish Rebuke</i>" + (source >= 5 ? ", <i>Darkness</i>" : "") + " 1/long rest" : ""');
 
     } else
       continue;

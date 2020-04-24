@@ -868,7 +868,7 @@ PHB5E.classRules = function(rules, classes) {
         '17:Breath Of Winter:magic:Spend 6 Ki to cast <i>Cone Of Cold</i>',
         '6:Clench Of The North Wind:magic:' +
           'Spend 3 Ki to cast <i>Hold Person</i>',
-        '11:Eternal Mountain Defense:magic:Spend 5 Ki to cast <i>Stoneskin</i>',
+        '17:Eternal Mountain Defense:magic:Spend 5 Ki to cast <i>Stoneskin</i>',
         '3:Fangs Of The Fire Snake:magic:' +
           "Spend 1 Ki to have unarmed attack reach 10', do 1d10 HP fire extra",
         '3:Fist Of Four Thunders:magic:Spend 2 Ki to cast <i>Thunderwave</i>',
@@ -1005,7 +1005,7 @@ PHB5E.classRules = function(rules, classes) {
         // Beast Master Archetype
         "3:Ranger's Companion:companion:Companion beast obeys commands",
         '7:Exceptional Training:companion:' +
-          'Companion can Dash, Disengage, Dodge, Help instead of attack',
+          'Companion attack magical, can Dash, Disengage, Help instead',
         '11:Bestial Fury:companion:Companion 2 attacks/rd',
         "15:Share Spells:companion:R30' Self spell affects companion"
       ];
@@ -1620,8 +1620,7 @@ PHB5E.featRules = function(rules, feats) {
     } else if(feat == 'Tavern Brawler') {
       notes = [
         'abilityNotes.tavernBrawlerFeature:+1 Constitution or Strength',
-        'combatNotes.tavernBrawlerFeature:' +
-          'Prof improvised and unarmed, bonus to grapple'
+        'combatNotes.tavernBrawlerFeature:Prof improvised, bonus to grapple'
       ];
       rules.defineRule
         ('abilityBoostCount', 'abilityNotes.tavernBrawlerFeature', '+=', '1');
@@ -1811,7 +1810,7 @@ PHB5E.raceRules = function(rules, races) {
         'darkElfFeatures.Drow Magic', '?', null,
         'level', '=', null
       );
-      rules.defineRule('magicNotes.drowMagicFeature', 'level', '=', 'source >= 3 ? ", cast <i>Faerie Fire</i>" + (source >= 5 ? ", <i>Darkness</i>" : "") + " 1/dy" : ""');
+      rules.defineRule('magicNotes.drowMagicFeature', 'level', '=', 'source >= 3 ? ", cast <i>Faerie Fire</i>" + (source >= 5 ? ", <i>Darkness</i>" : "") + " 1/long rest" : ""');
 
     } else if(race == 'Forest Gnome') {
       adjustment = '+1 dexterity';

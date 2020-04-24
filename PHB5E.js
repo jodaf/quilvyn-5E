@@ -36,7 +36,8 @@ function PHB5E() {
   PHB5E.featRules(SRD5E.rules, PHB5E.FEATS);
   PHB5E.descriptionRules(SRD5E.rules, PHB5E.DEITIES);
   PHB5E.magicRules(SRD5E.rules, SRD5E.CLASSES);
-  SRD5E.spellRules(SRD5E.rules, PHB5E.SPELLS, PHB5E.spellsDescriptions);
+  SRD5E.spellRules
+    (SRD5E.rules, null, Object.assign({}, SRD5E.spellsDescriptions, PHB5E.spellsDescriptions));
   PHB5E.rules = SRD5E.rules;
 }
 
@@ -1689,7 +1690,8 @@ PHB5E.magicRules = function(rules, classes) {
       spells = [
         'P1:Searing Smite:Thunderous Smite:Wrathful Smite',
         "P3:Crusader's Mantle:Elemental Weapon",
-        'P4 Staggering Smite'
+        'P4:Staggering Smite',
+        'P5:Destructive Wave'
       ];
     } else if(klass == 'Ranger') {
       spells = [
@@ -1722,7 +1724,7 @@ PHB5E.magicRules = function(rules, classes) {
         'K2:Detect Thoughts:Phantasmal Force',
         'K3:Clairvoyance:Sending',
         'K4:Black Tentacles:Dominate Beast',
-        'K5:Dominate Person:Telekenisis'
+        'K5:Dominate Person:Telekinesis'
       ];
     } else if(klass == 'Wizard') {
       spells = [
@@ -1742,7 +1744,11 @@ PHB5E.magicRules = function(rules, classes) {
           var spell = pieces[k];
           var school = PHB5E.SPELLS[spell];
           if(school == null)
+            school = SRD5E.SPELLS[spell];
+          if(school == null) {
+            console.log('No school for spell "' + spell + '"');
             continue;
+          }
           spell += '(' + pieces[0] + ' ' + schools[school] + ')';
           rules.defineChoice('spells', spell);
         }

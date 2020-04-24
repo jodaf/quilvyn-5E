@@ -326,12 +326,13 @@ SRD5E.SPELLS = {
 
   'Ice Storm':'Evocation',
   'Identify':'Divination',
+  'Illusory Script':'Illusion',
   'Imprisonment':'Abjuration',
   'Incendiary Cloud':'Conjuration',
   'Inflict Wounds':'Necromancy',
   'Insect Plague':'Conjuration',
   'Instant Summons':'Conjuration',
-  'Irresistable Dance':'Enchantment',
+  'Irresistible Dance':'Enchantment',
   'Invisibility':'Illusion',
 
   'Jump':'Transmutation',
@@ -343,7 +344,7 @@ SRD5E.SPELLS = {
   'Levitate':'Transmutation',
   'Light':'Evocation',
   'Lightning Bolt':'Evocation',
-  'Locate Animal Or Plant':'Divination',
+  'Locate Animals Or Plants':'Divination',
   'Locate Creature':'Divination',
   'Locate Object':'Divination',
   'Longstrider':'Transmutation',
@@ -828,7 +829,7 @@ SRD5E.spellsDescriptions = {
   'Levitate':"R60' Target floats 20' for conc/10 min (Con neg)",
   'Light':"Touched object lights 20' radius for 1 hr (Dex neg)",
   'Lightning Bolt':"100'x5' 8d6 HP (Dex half)",
-  'Locate Animal Or Plant':"Know location of named beast or plant w/in 5 mi",
+  'Locate Animals Or Plants':"Know location of named beast or plant w/in 5 mi",
   'Locate Creature':
     "Know location of named creature or species w/in 1000' for conc/1 hr",
   'Locate Object':
@@ -967,7 +968,7 @@ SRD5E.spellsDescriptions = {
   'Time Stop':"Self extra 1d4+1 turns w/in 1000' or until other affected",
   'Tiny Hut':"10' radius dome immune to objects and spells for 8 hr",
   'Tongues':"Touched understand and speak any language for 1 hr",
-  'Transport Via Plants':"Teleporation door between two plants for 1 rd",
+  'Transport Via Plants':"Teleportation door between two plants for 1 rd",
   'Tree Stride':"Teleport between like trees 1/rd for conc/1 min",
   'True Polymorph':
     "R30' Target creature or object transformed for conc/1 hr/0 HP (Wis neg)",
@@ -2931,7 +2932,7 @@ SRD5E.magicRules = function(rules, classes, schools) {
         'B5:Animate Objects:Awaken:Dominate Person:Dream:Geas:' +
         'Greater Restoration:Hold Monster:Legend Lore:Mass Cure Wounds:' +
         'Mislead:Modify Memory:Planar Binding:Raise Dead:Scrying:Seeming:' +
-        'Teleporation Circle',
+        'Teleportation Circle',
         'B6:Eyebite:Find The Path:Guards And Wards:Irresistible Dance:' +
         'Mass Suggestion:Programmed Illusion:True Seeing',
         'B7:Etherealness:Forcecage:Magnificent Mansion:Mirage Arcane:' +
@@ -2966,7 +2967,7 @@ SRD5E.magicRules = function(rules, classes, schools) {
         'C6:Blade Barrier:Create Undead:Find The Path:Forbiddance:Harm:Heal:' +
         "Heroes' Feast:Planar Ally:True Seeing:Word Of Recall",
         'C7:Conjure Celestial:Divine Word:Etherealness:Fire Storm:' +
-        'Plane Shift:Regerate:Resurrection:Symbol',
+        'Plane Shift:Regenerate:Resurrection:Symbol',
         'C8:Antimagic Field:Control Weather:Earthquake:Holy Aura',
         'C9:Astral Projection:Gate:Mass Heal:True Resurrection'
       ];
@@ -3010,8 +3011,8 @@ SRD5E.magicRules = function(rules, classes, schools) {
         'P3:Aura Of Vitality:Blinding Smite:Create Food And Water:Daylight:' +
         'Dispel Magic:Magic Circle:Remove Curse:Revivify',
         'P4:Aura Of Life:Aura Of Purity:Banishment:Death Ward:Locate Creature',
-        'P5:Banishing Smite:Circle Of Power:Destructive Smite:' +
-        'Dispel Evil And Good:Geas:Raise Dead'
+        'P5:Banishing Smite:Circle Of Power:Dispel Evil And Good:Geas:' +
+        'Raise Dead'
       ];
     } else if(klass == 'Ranger') {
       spells = [
@@ -3132,7 +3133,7 @@ SRD5E.magicRules = function(rules, classes, schools) {
         'Project Image:Reverse Gravity:Sequester:Simulacrum:Symbol:Teleport',
         'W8:Antimagic Field:Antipathy/Sympathy:Clone:Control Weather:' +
         'Demiplane:Dominate Monster:Feeblemind:Incendiary Cloud:Maze:' +
-        'Mind Blank:Power Word Stun:Sunburst:Trap The Soul',
+        'Mind Blank:Power Word Stun:Sunburst',
         'W9:Astral Projection:Foresight:Gate:Imprisonment:Meteor Swarm:' +
         'Power Word Kill:Prismatic Wall:Shapechange:Time Stop:True Polymorph:' +
         'Weird:Wish'
@@ -3145,8 +3146,10 @@ SRD5E.magicRules = function(rules, classes, schools) {
         for(var k = 1; k < pieces.length; k++) {
           var spell = pieces[k];
           var school = SRD5E.SPELLS[spell];
-          if(school == null)
+          if(school == null) {
+            console.log('No school for spell "' + spell + '"');
             continue;
+          }
           spell += '(' + pieces[0] + ' ' + schools[school] + ')';
           rules.defineChoice('spells', spell);
         }

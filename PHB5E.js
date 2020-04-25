@@ -692,12 +692,12 @@ PHB5E.classRules = function(rules, classes) {
       features = [
         // Circle Of The Moon
         '2:Combat Wild Shape:combat:' +
-          'Wild Shape as bonus action, use spell slot to regain 1d8 * slot level HP',
+          'Wild Shape as bonus action, use spell slot to regain (slot level)d8 HP',
         '2:Circle Forms:magic:Increase Wild Shape CR to %V',
         '6:Primal Strike:combat:Wild Shape attacks count as magical',
         '10:Elemental Wild Shape:magic:' +
           'Use 2 Wild Shape uses to become elemental',
-        '14:Thousand Forms:magic:<i>Alter Self<i> at will',
+        '14:Thousand Forms:magic:<i>Alter Self</i> at will',
       ];
       hitDie = 8;
       selectableFeatures = [
@@ -721,6 +721,12 @@ PHB5E.classRules = function(rules, classes) {
           'druidFeatures.Circle Of The Moon', '?', null
         );
       }
+      rules.defineRule('magicNotes.wildShapeFeature.1',
+        'magicNotes.circleFormsFeature', '=', null
+      );
+      rules.defineRule('magicNotes.circleFormsFeature',
+        'levels.Druid', '=', 'source < 6 ? 1 : Math.floor(source / 3)'
+      );
 
     } else if(name == 'Fighter') {
 

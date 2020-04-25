@@ -1492,11 +1492,12 @@ SRD5E.classRules = function(rules, classes) {
         // Circle Of The Land
         '2:Bonus Cantrip:magic:Additional Druid cantrip',
         '2:Natural Recovery:magic:Recover %V spell slot levels in short rest',
-        "6:Land's Stride:ability:Normal move through difficult terrain",
+        "6:Land's Stride:ability:Move normally through difficult terrain",
         "6:Land's Stride:save:Adv vs. impeding plants",
         "10:Nature's Ward:save:" +
-          'Immune disease, poison, elemental or fey charm and fright',
-        "14:Nature's Sanctuary:combat:Beast, plant DC %V Will save to attack"
+          'Immune disease, poison, elemental and fey charm and fright',
+        "14:Nature's Sanctuary:combat:" +
+          'Beast, plant DC %V Will save to attack self'
       ];
       hitDie = 8;
       proficiencyCount =
@@ -1554,7 +1555,7 @@ SRD5E.classRules = function(rules, classes) {
           '9:Dream:Insect Plague'
         ],
         'Circle Of The Land (Mountain)':[
-          '3:Spider Climb:Plant Growth',
+          '3:Spider Climb:Spike Growth',
           '5:Lightning Bolt:Meld Into Stone',
           '7:Stone Shape:Stoneskin',
           '9:Passwall:Wall Of Stone'
@@ -1568,7 +1569,7 @@ SRD5E.classRules = function(rules, classes) {
       };
       spellsKnown = [
         'D0:1:2/4:3/10:4',
-        'D:1:"all"'
+        'D:1:2/2:3/3:6/4:7/5:9/6:10/7:11/8:12/9:14/10:15/11:16/13:17/15:18/17:19/18:20/19:21/20:22'
       ];
       spellSlots = [
         'D1:1:2/2:3/3:4',
@@ -1590,8 +1591,7 @@ SRD5E.classRules = function(rules, classes) {
       rules.defineRule('languageCount', 'features.Druidic', '+', '1');
       rules.defineRule('languages.Druidic', 'features.Druidic', '=', '1');
       rules.defineRule('magicNotes.wildShapeFeature.1',
-        'levels.Druid', '=', 'source < 4 ? "1/4" : source < 8 ? "1/2" : "1"',
-        'magicNotes.circleFormsFeature', '=', null
+        'levels.Druid', '=', 'source < 4 ? "1/4" : source < 8 ? "1/2" : "1"'
       );
       rules.defineRule('magicNotes.wildShapeFeature.2',
         'levels.Druid', '=', 'source < 4 ? " (land only)" : source < 8 ? " (non-flying)" : ""'
@@ -1606,9 +1606,6 @@ SRD5E.classRules = function(rules, classes) {
       rules.defineRule("combatNotes.nature'sSanctuaryFeature",
         'wisdomModifier', '=', 'source + 8',
         'proficiencyBonus', '+', null
-      );
-      rules.defineRule('magicNotes.circleFormsFeature',
-        'levels.Druid', '=', 'source < 6 ? 1 : Math.floor(source / 3)'
       );
       rules.defineRule('magicNotes.naturalRecoveryFeature',
         'levels.Druid', '=', 'Math.floor(source / 2)'
@@ -1625,6 +1622,8 @@ SRD5E.classRules = function(rules, classes) {
           'hasCircleOfTheLand', '?', null
         );
       }
+      rules.defineRule
+        ('spellsKnown.D0', 'magicNotes.bonusCantripFeature', '+', '1');
 
     } else if(name == 'Fighter') {
 

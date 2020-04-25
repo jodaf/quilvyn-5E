@@ -565,7 +565,7 @@ SRD5E.draconicBreathTypes = {
 };
 SRD5E.levelsExperience = [
   0, .3, .9, 2.7, 6.5, 14, 23, 34, 48, 64,
-  85, 100, 120, 140, 165, 195, 225, 265, 305, 355
+  85, 100, 120, 140, 165, 195, 225, 265, 305, 355, 1000
 ];
 SRD5E.spellsDescriptions = {
   'Acid Arrow':"R90' Ranged spell attack 4d4 HP (miss half), 2d4 HP next turn",
@@ -1043,8 +1043,10 @@ SRD5E.abilityRules = function(rules) {
   // Effects of the notes computed above
   rules.defineRule
     ('armorClass', 'combatNotes.dexterityArmorClassAdjustment', '+', null);
+  rules.defineRule('carry', 'strength', '=', 'source * 15');
   rules.defineRule
     ('hitPoints', 'combatNotes.constitutionHitPointsAdjustment', '+', null);
+  rules.defineRule('lift', 'strength', '=', 'source * 30');
 
   rules.defineNote
     ('validationNotes.abilityBoostAllocation:%1 available vs. %2 allocated');
@@ -1172,7 +1174,7 @@ SRD5E.classRules = function(rules, classes) {
         '2:Reckless Attack:combat:Adv melee Str attacks, foes Adv all attacks',
         '5:Extra Attack:combat:%V additional attack(s) per Attack action',
         '5:Fast Movement:ability:+10 speed (heavy armor neg)',
-        '7:Feral Instinct:combat:Adv initiative, act when surprised if rage',
+        '7:Feral Instinct:combat:Adv Init, rage and act when surprised',
         '9:Brutal Critical:combat:+%V crit damage dice',
         '11:Relentless Rage:combat:DC 10+ Con to keep 1 HP when brought to 0',
         '15:Persistent Rage:combat:Rage has no time limit',
@@ -1240,6 +1242,8 @@ SRD5E.classRules = function(rules, classes) {
       rules.defineRule('combatNotes.rageFeature.1',
         'levels.Barbarian', '+=', 'source<9 ? 2 : source<16 ? 3 : 4'
       );
+      rules.defineRule
+        ('constitution', 'abilityNotes.primalChampionFeature', '+', '4');
       rules.defineRule('featureNotes.intimidatingPresenceFeature',
         'charismaModifier', '=', 'source + 8',
         'proficiencyBonus', '+', null
@@ -1248,6 +1252,8 @@ SRD5E.classRules = function(rules, classes) {
         'levels.Barbarian', '=', 'source < 3 ? null : 1'
       );
       rules.defineRule('speed', 'abilityNotes.fastMovementFeature', '+', '10');
+      rules.defineRule
+        ('strength', 'abilityNotes.primalChampionFeature', '+', '4');
 
       for(var feature in {
         'Frenzy':'', 'Mindless Rage':'', 'Intimidating Presence':'',
@@ -1267,21 +1273,21 @@ SRD5E.classRules = function(rules, classes) {
         "1:Bardic Inspiration:magic:R60' Grant 1d%V w/in 10 min %1/long rest",
         '1:Ritual Casting:magic:Cast known spell as ritual',
         '1:Spellcasting::',
-        '2:Jack Of All Trades:ability:+%V ability checks',
+        '2:Jack Of All Trades:ability:+%V non-proficient ability checks',
         '2:Song Of Rest:magic:Listeners regain 1d%V HP after short rest',
         '3:Bard Expertise:skill:Dbl Prof %V skills',
         '5:Font Of Inspiration:feature:' +
           'Refresh Bardic Inspiration after short rest',
         "6:Countercharm:magic:R30' Friendly listeners Adv vs. charm, fright",
         '10:Magical Secrets:magic:Learn %V additional spells from any class',
-        '20:Superior Inspiration:feature:Min 1 Bardic Inspiration',
+        '20:Superior Inspiration:feature:Min 1 Bardic Inspiration after Init',
         // College Of Lore
-        '3:Bonus Skills:skill:Prof in 3 additional skills',
-        '3:Cutting Words:feature:' +
-          "R60' Reaction to subtract Bardic Inspiration from foe roll",
+        '3:Bonus Skills:skill:Prof 3 additional skills',
+        '3:Cutting Words:combat:' +
+          "R60' Reaction to subtract Bardic Inspiration die from foe roll",
         '6:Additional Magical Secrets:magic:' +
           'Learn 2 additional spells from any class',
-        '14:Peerless Skill:ability:Add Bardic Inspiration to ability check'
+        '14:Peerless Skill:ability:Add Bardic Inspiration die to ability check'
       ];
       hitDie = 8;
       proficiencyCount =
@@ -1332,7 +1338,7 @@ SRD5E.classRules = function(rules, classes) {
         'levels.Bard', '=', '2 * Math.floor((source - 6) / 4)'
       );
       rules.defineRule('magicNotes.songOfRestFeature',
-        'levels.Bard', '=', '6 + 2 * source<9 ? 0 : Math.floor((source-5)/4)'
+        'levels.Bard', '=', '6 + (source>=9 ? 2 * Math.floor((source-5)/4) : 0)'
       );
       rules.defineRule
         ('proficiencyCount.Skill', 'skillNotes.bonusSkillsFeature', '+', '3');
@@ -1341,6 +1347,10 @@ SRD5E.classRules = function(rules, classes) {
       );
       rules.defineRule('skillNotes.bardExpertiseFeature',
         'levels.Bard', '=', 'source < 10 ? 2 : 4'
+      );
+      rules.defineRule('spellsKnown.B',
+        'magicNotes.additionalMagicalSecretsFeature', '+', '2',
+        'magicNotes.magicalSecretsFeature', '+', null
       );
 
       for(var feature in {
@@ -2617,10 +2627,9 @@ SRD5E.createViewers = function(rules, viewers) {
             {name: 'Level', within: 'AbilityStats'},
             {name: 'Speed', within: 'AbilityStats'},
             {name: 'LoadInfo', within: 'AbilityStats', separator: ''},
-              {name: 'Load Light', within: 'LoadInfo',
-               format: '<b>Light/Med/Max Load:</b> %V'},
-              {name: 'Load Medium', within: 'LoadInfo', format: '/%V'},
-              {name: 'Load Max', within: 'LoadInfo', format: '/%V'},
+              {name: 'Carry', within: 'LoadInfo',
+               format: '<b>Carry/Lift:</b> %V'},
+              {name: 'Lift', within: 'LoadInfo', format: '/%V'},
           {name: 'Ability Notes', within: 'Attributes', separator: noteSep},
         {name: 'FeaturesAndSkills', within: '_top', separator: outerSep,
          format: '<b>Features/Skills</b><br/>%V'},
@@ -3436,6 +3445,33 @@ SRD5E.raceRules = function(rules, languages, races) {
 
 /* Defines the rules related to skills. */
 SRD5E.skillRules = function(rules, skills, tools) {
+
+  rules.defineNote
+    ('validationNotes.skillProficiencyAllocation:%1 available vs. %2 allocated');
+  rules.defineRule('validationNotes.skillProficiencyAllocation.1',
+    'proficiencyCount.Skill', '=', null
+  );
+  rules.defineRule('validationNotes.skillProficiencyAllocation.2',
+    '', '=', '0',
+    /^skillProficiencies\./, '+', null
+  );
+  rules.defineRule('validationNotes.skillProficiencyAllocation',
+    'validationNotes.skillProficiencyAllocation.1', '=', '-source',
+    'validationNotes.skillProficiencyAllocation.2', '+', null
+  );
+  rules.defineNote
+    ('validationNotes.toolProficiencyAllocation:%1 available vs. %2 allocated');
+  rules.defineRule('validationNotes.toolProficiencyAllocation.1',
+    'proficiencyCount.Tool', '=', null
+  );
+  rules.defineRule('validationNotes.toolProficiencyAllocation.2',
+    '', '=', '0',
+    /^toolProficiencies\./, '+', null
+  );
+  rules.defineRule('validationNotes.toolProficiencyAllocation',
+    'validationNotes.toolProficiencyAllocation.1', '=', '-source',
+    'validationNotes.toolProficiencyAllocation.2', '+', null
+  );
 
   var abilityNames = {
     'cha':'charisma', 'con':'constitution', 'dex':'dexterity',

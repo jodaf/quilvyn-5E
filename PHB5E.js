@@ -375,16 +375,16 @@ PHB5E.classRules = function(rules, classes) {
         '3:Eagle Totem Spirit:combat:' +
           'Foes Disadv OA, Dash as bonus action when raging (heavy armor neg)',
         '3:Wolf Totem Spirit:combat:' +
-          "Allies Adv attack vs. foes w/in 5' of self when raging",
+          "Allies Adv attack vs. self adjacent foes when raging",
         '6:Aspect Of The Bear:ability:' +
           'Dbl load/lift, Adv push, pull, lift, break Str checks',
-        '6:Aspect Of The Eagle:ability:' +
-          'See 1 mile clearly, no Perception Disadv in dim light',
+        '6:Aspect Of The Eagle:skill:' +
+          'See clearly 1 mi, no dim light Perception Disadv',
         '6:Aspect Of The Wolf:ability:' +
           'Track at fast pace, stealth at normal pace',
         '10:Spirit Walker:magic:Ritual <i>Commune With Nature</i>',
         '14:Bear Totemic Attunement:combat:' +
-          "Foes w/in 5' Disadv attack others when raging",
+          'Adjacent foes Disadv attack others when self raging',
         '14:Eagle Totemic Attunement:ability:Fly for short bursts when raging',
         '14:Wolf Totemic Attunement:combat:' +
           'Knock prone lg foe after melee hit when raging'
@@ -400,6 +400,9 @@ PHB5E.classRules = function(rules, classes) {
         ('barbarianFeatures.Spirit Seeker', 'totemicBarbarian', '?', null);
       rules.defineRule
         ('barbarianFeatures.Spirit Walker', 'totemicBarbarian', '?', null);
+      rules.defineRule
+        ('carry', 'abilityNotes.aspectOfTheBearFeature', '*', '2');
+      rules.defineRule('lift', 'abilityNotes.aspectOfTheBearFeature', '*', '2');
       for(var feature in {
         'Aspect Of The $A':'', '$A Totem Spirit':'', '$A Totemic Attunement':''
       }) {
@@ -414,14 +417,22 @@ PHB5E.classRules = function(rules, classes) {
 
       features = [
         // College Of Valor
-        '3:Bonus Skills:skill:Prof in 3 additional skills',
-        '3:Combat Inspiration:feature:' +
-          'Ally use Bardic Inspiration to boost damage or AC',
+        '3:Armor Proficiency (Medium/Shield)',
+        '3:Bonus Skills:skill:Prof 3 additional skills',
+        '3:Combat Inspiration:combat:' +
+          'Ally use Bardic Inspiration die to boost damage or AC',
+        '3:Weapon Proficiency (Martial)',
         '6:Extra Attack:combat:%V additional attack(s) per Attack action',
         '14:Battle Magic:combat:Bonus attack after casting spell'
       ];
       hitDie = 8;
       selectableFeatures = ['3:College Of Valor::'];
+      rules.defineRule('armorProficiencies.Medium Armor',
+        'bardFeatures.College Of Valor', '=', '1'
+      );
+      rules.defineRule('armorProficiencies.Shield',
+        'bardFeatures.College Of Valor', '=', '1'
+      );
       rules.defineRule
         ('attacksPerRound', 'combatNotes.extraAttackFeature', '+', null);
       rules.defineRule('bardExtraAttacks',
@@ -431,7 +442,14 @@ PHB5E.classRules = function(rules, classes) {
       rules.defineRule
         ('combatNotes.extraAttackFeature', 'bardExtraAttacks', '+=', null);
       rules.defineRule
+        ('proficiencyCount.Armor', 'bardFeatures.College Of Valor', '+=', '2');
+      rules.defineRule
         ('proficiencyCount.Skill', 'skillNotes.bonusSkillsFeature', '+', '3');
+      rules.defineRule
+        ('proficiencyCount.Weapon', 'bardFeatures.College Of Valor', '+=', '1');
+      rules.defineRule('weaponProficiencies.Martial',
+        'bardFeatures.College Of Valor', '=', '1'
+      );
 
       for(var feature in {
         'Battle Magic':'', 'Combat Inspiration':'', 'Extra Attack':''
@@ -713,7 +731,7 @@ PHB5E.classRules = function(rules, classes) {
         '3:Superiority Dice:combat:%Vd%1',
         '7:Know Your Enemy:combat:' +
           'Know how foe compares to you after 1 min study',
-        '15:Relentless:combat:Min 1 superiority die',
+        '15:Relentless:combat:Min 1 superiority die after Init',
         // Eldritch Knight Archetype
         '3:Spellcasting::',
         '3:Weapon Bond:combat:Immune disarm, summon weapon',

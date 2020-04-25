@@ -361,8 +361,13 @@ PHB5E.classRules = function(rules, classes) {
 
   for(var i = 0; i < classes.length; i++) {
 
-    var features, hitDie, selectableFeatures, spellAbility, spellsKnown, spells,
-        spellSlots;
+    var features = [],
+        hitDie = 8,
+        selectableFeatures = null,
+        spellAbility = null,
+        spellsKnown = null,
+        spells = null,
+        spellSlots = null;
     var name = classes[i];
 
     if(name == 'Barbarian') {
@@ -881,7 +886,7 @@ PHB5E.classRules = function(rules, classes) {
 
     } else if(name == 'Monk') {
 
-      feature = [
+      features = [
         // Way Of The Four Elements Tradition
         '3:Disciple Of The Elements:magic:%V elemental disciplines',
         '3:Elemental Attunement:magic:Minor elemental manipulation',
@@ -891,7 +896,7 @@ PHB5E.classRules = function(rules, classes) {
           '<i>Darkvision</i>, <i>Pass Without Trace</i>, <i>Silence</i>',
         "6:Shadow Step:magic:Teleport 60' between dim/unlit areas",
         '11:Cloak Of Shadows:magic:Invisible in dim/unlit until attack or cast',
-        '17:Opportunist:combat:Attack adjacent after hit'
+        '17:Opportunist:combat:Attack adjacent foe after ally hits it'
       ];
       hitDie = 8;
       selectableFeatures = [
@@ -901,12 +906,13 @@ PHB5E.classRules = function(rules, classes) {
         '17:Breath Of Winter:magic:Spend 6 Ki to cast <i>Cone Of Cold</i>',
         '6:Clench Of The North Wind:magic:' +
           'Spend 3 Ki to cast <i>Hold Person</i>',
-        '17:Eternal Mountain Defense:magic:Spend 5 Ki to cast <i>Stoneskin</i>',
+        '17:Eternal Mountain Defense:magic:' +
+          'Spend 5 Ki to cast self <i>Stoneskin</i>',
         '3:Fangs Of The Fire Snake:magic:' +
-          "Spend 1 Ki to have unarmed attack reach 10', do 1d10 HP fire extra",
+          "Spend 1 Ki to have unarmed attack extend 10', +1d10 HP fire",
         '3:Fist Of Four Thunders:magic:Spend 2 Ki to cast <i>Thunderwave</i>',
         '3:Fist Of Unbroken Air:magic:' +
-          "R30' Spend 2 Ki to create air blast 3d10 HP, push 20' and knock prone (DC %V Str half)",
+          "R30' Spend 2 Ki to create air blast 3d10 HP, push 20' and knock prone (Str half)",
         '11:Flames Of The Phoenix:magic:Spend 4 Ki to cast <i>Fireball</i>',
         '6:Gong Of The Summit:magic:Spend 3 Ki to cast <i>Shatter</i>',
         '11:Mist Stance:magic:Spend 4 Ki to cast self <i>Gaseous Form</i>',
@@ -919,24 +925,39 @@ PHB5E.classRules = function(rules, classes) {
         '3:Sweeping Cinder Strike:magic:' +
           'Spend 2 Ki to cast <i>Burning Hands</i>',
         '3:Water Whip:magic:' +
-          "R30' Spend 2 Ki to create water whip 3d10 HP, pull 25' or knock prone (DC %V Str half)",
+          "R30' Spend 2 Ki to create water whip 3d10 HP, pull 25' or knock prone (Str half)",
         '17:Wave Of The Rolling Earth:magic:' +
           'Spend 6 Ki to cast <i>Wall Of Stone</i>'
       ];
 
-      rules.defineRule('magicNotes.discipleOfTheElementsFeature',
-        'levels.Monk', '=', 'source<6 ? 1 : source<11 ? 2 : source<17 ? 3 : 4'
+      rules.defineRule('magicMonk',
+        'monkFeatures.Way Of The Shadow Tradition', '=', null,
+        'monkFeatures.Way Of The Four Elements Tradition', '=', null
       );
-      rules.defineRule
-        ('magicNotes.fistOfUnbrokenAirFeature', 'kiSaveDC', '=', null);
-      rules.defineRule('magicNotes.waterWhipFeature', 'kiSaveDC', '=', null);
+      rules.defineRule('casterLevels.Mo',
+        'magicMonk', '?', null,
+        'levels.Monk', '=', null,
+        'magicNotes.casterLevelBonusFeature', '+', null
+      );
+      rules.defineRule('spellDifficultyClass.Mo',
+        'casterLevels.Mo', '?', null,
+        'kiSaveDC', '=', null
+      );
+      rules.defineRule('magicNotes.discipleOfTheElementsFeature',
+        'monkFeatures.Way Of The Four Elements Tradition', '?', null,
+        'levels.Monk', '=', 'Math.floor( (source + 4) / 5)'
+      );
       rules.defineRule('selectableFeatureCount.Monk',
-        'magicNotes.discipleOfTheElementsFeatures', '+', null
+        'magicNotes.discipleOfTheElementsFeature', '+', null
       );
 
-      rules.defineRule('monkFeatures.Disciple Of The Elements',
-        'monkFeatures.Way Of The Four Elements Tradition', '?', null
-      );
+      for(var feature in {
+        'Disciple Of The Elements':'', 'Elemental Attunement':''
+      }) {
+        rules.defineRule('monkFeatures.' + feature,
+          'monkFeatures.Way Of The Four Elements Tradition', '?', null
+        );
+      }
       for(var feature in {
         'Cloak Of Shadows':'', 'Opportunist':'', 'Shadow Arts':'',
         'Shadow Step':''

@@ -1280,7 +1280,7 @@ SRD5E.classRules = function(rules, classes) {
           'Refresh Bardic Inspiration after short rest',
         "6:Countercharm:magic:R30' Friendly listeners Adv vs. charm, fright",
         '10:Magical Secrets:magic:Learn %V additional spells from any class',
-        '20:Superior Inspiration:feature:Min 1 Bardic Inspiration after Init',
+        '20:Superior Inspiration:combat:Min 1 Bardic Inspiration after Init',
         // College Of Lore
         '3:Bonus Skills:skill:Prof 3 additional skills',
         '3:Cutting Words:combat:' +
@@ -1731,12 +1731,12 @@ SRD5E.classRules = function(rules, classes) {
         '1:Monk Bonus Attack:combat:Unarmed strike after monk weapon attack',
         '1:Monk Unarmored Defense:combat:+%1 AC in no armor',
         '2:Flurry Of Blows:combat:Spend 1 Ki for 2 additional unarmed strikes',
-        '2:Ki:feature:%V Ki points refresh after short rest',
+        '2:Ki:feature:%V Ki points/short rest',
         '2:Patient Defense:combat:Spend 1 Ki to Dodge (foe attack Disadv)',
         '2:Step Of The Wind:combat:Spend 1 Ki to Disengage or Dash, dbl jump',
         '2:Unarmored Movement:ability:+%V speed in no armor',
         '3:Deflect Missiles:combat:React to reduce missile damage by 1d10+%V',
-        '4:Slow Fall:ability:React to reduce fall damage by %V',
+        '4:Slow Fall:ability:-%V HP fall damage',
         '5:Extra Attack:combat:%V additional attack(s) per Attack action',
         '5:Stunning Strike:combat:Spend 1 Ki to stun foe (DC %V Con neg)',
         '6:Ki-Empowered Strikes:combat:Unarmed attacks count as magical',
@@ -1751,15 +1751,15 @@ SRD5E.classRules = function(rules, classes) {
           'No debility from aging, need no food or water',
         '18:Empty Body:magic:' +
           'Spend 4 Ki for <i>Invisibility</i> 1 min, 8 Ki for <i>Astral Projection</i>',
-        '20:Perfect Self:combat:Min 4 Ki',
+        '20:Perfect Self:combat:Min 4 Ki after Init',
         // Way Of The Open Hand Tradition
         '3:Open Hand Technique:combat:' +
-          "Choice of knock prone (DC %V Dex neg), push 15' (DC %V Str neg), or no foe react after Flurry Of Blows hit",
-        '6:Wholeness Of Body:feature:Recover %V HP 1/long rest',
+          "On Flurry of Blows hit, choice of knock prone (DC %V Dex neg), push 15' (DC %V Str neg), or no foe react 1 turn",
+        '6:Wholeness Of Body:feature:Regain %V HP 1/long rest',
         '11:Tranquility:magic:' +
           'Self <i>Sanctuary</i> until next long rest (DC %V Wis neg)',
         '17:Quivering Palm:combat:' +
-          'Spend 3 Ki to reduce foe to 0 HP w/unarmed strike (DC %V Con 10d10 HP)'
+          'Spend 3 Ki to reduce foe to 0 HP w/in 1 dy after unarmed hit (DC %V Con 10d10 HP)'
       ];
       hitDie = 8;
       proficiencyCount = {'Save':2, 'Skill':2, 'Tool':1, 'Weapon':2};
@@ -3234,6 +3234,10 @@ SRD5E.raceRules = function(rules, languages, races) {
       };
       rules.defineRule('abilityBoostCount',
         'abilityNotes.half-ElfAbilityAdjustment', '+=', '2'
+      );
+      // NOTE: redundant rule to get skill note to appear in italics
+      rules.defineRule('skillChoices.Intimidation',
+        'skillNotes.skillVersatilityFeature', '=', '1'
       );
 
     } else if(race == 'Half-Orc') {

@@ -1376,13 +1376,13 @@ SRD5E.classRules = function(rules, classes) {
         // Life Domain
         '1:Armor Proficiency (Heavy)',
         '1:Disciple Of Life:magic:' +
-          'Healing spells restore additional 2 * spell level HP',
+          'Healing spells restore additional 2 + spell level HP',
         '2:Preserve Life:magic:' +
-          "R30' Channel Divinity restore %V HP among targets, up to half max HP",
+          "R30' Channel Divinity to restore %V HP among targets, up to half max HP ea",
         '6:Blessed Healer:magic:' +
           'Self regain 2 + spell level HP from casting healing spells',
         '8:Divine Strike:combat:+%Vd8 HP 1/turn',
-        '17:Supreme Healing:magic:Use maximum values on healing spells'
+        '17:Supreme Healing:magic:Healing spells yield max HP'
       ];
       hitDie = 8;
       proficiencyCount = {'Save':2, 'Skill':2, 'Armor':3, 'Weapon':1};
@@ -1398,7 +1398,7 @@ SRD5E.classRules = function(rules, classes) {
       spellAbility = 'wisdom';
       spellsKnown = [
         'C0:1:3/4:4/10:5',
-        'C:1:"all"', 'Dom:1:"all"'
+        'C:1:2/2:3/3:6/4:7/5:9/6:10/7:11/8:12/9:14/10:15/11:16/13:17/15:18/17:19/18:20/19:21/20:22'
       ];
       spells = {
         'Life Domain':[
@@ -1442,9 +1442,8 @@ SRD5E.classRules = function(rules, classes) {
       rules.defineRule('magicNotes.divineInterventionFeature',
         'levels.Cleric', '=', 'source < 20 ? source : 100'
       );
-      rules.defineRule('selectableFeatureCount.Cleric',
-        'levels.Cleric', '=', 'source < 3 ? null : 1'
-      );
+      rules.defineRule
+        ('selectableFeatureCount.Cleric', 'levels.Cleric', '=', '1');
       rules.defineRule('weaponProficiencies.Martial',
         'clericFeatures.Weapon Proficiency (Martial)', '=', '1'
       );
@@ -3523,9 +3522,6 @@ SRD5E.spellRules = function(rules, spells, descriptions) {
       console.log("No description for spell " + name);
       continue;
     }
-    if(classAbbr.length > 2) {
-      classAbbr = "Dom"; // Assume domain spell
-    }
     var inserts = description.match(/\$(\w+|{[^}]+})/g);
     if(inserts != null) {
       for(var index = 1; index <= inserts.length; index++) {
@@ -3918,16 +3914,6 @@ SRD5E.randomizeOneAttribute = function(attributes, attribute) {
              !a.endsWith('0') &&
              attrs['spellSlots.' + a]) {
             choices = choices.concat(allSpellsByClassAndLevel[a]);
-          }
-        }
-      } else if(classAndLevel.substring(0, 3) == 'Dom') {
-        choices = [];
-        for(var domain in this.getChoices('domains')) {
-          if(attrs['domains.' + domain]) {
-            var domainAndLevel = domain + classAndLevel.substring(3);
-            if(allSpellsByClassAndLevel[domainAndLevel] != null) {
-              choices=choices.concat(allSpellsByClassANdLevel[domainAndLevel]);
-            }
           }
         }
       } else {

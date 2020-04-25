@@ -465,9 +465,9 @@ PHB5E.classRules = function(rules, classes) {
         // Knowledge Domain
         '1:Blessings Of Knowledge:skill:+2 languages, +2 skill proficiencies',
         '2:Knowledge Of The Ages:skill:' +
-          'Channel Divinity Prof chosen skill or tool for 10 min',
+          'Channel Divinity for Prof chosen skill or tool for 10 min',
         '6:Read Thoughts:magic:' +
-          "R60' Channel Divinity read and command thoughts for 1 min (Wis neg)",
+          "R60' Channel Divinity to read thoughts, <i>Suggestion</i> for 1 min (Wis neg)",
         '8:Potent Spellcasting:magic:+%V Cleric cantrip damage',
         '17:Visions Of The Past:magic:' +
           'Meditate for visions about surroundings or held object',
@@ -476,7 +476,7 @@ PHB5E.classRules = function(rules, classes) {
         '1:Warding Flare:magic:' +
           "R30' Reaction flare foe Disadv on current attack %V/long rest",
         '2:Radiance Of The Dawn:magic:' +
-          "R30' Channel Divinity dispel magic darkness, 2d10+%V HP to foes (Con half)",
+          "R30' Channel Divinity to dispel magic darkness, 2d10+%V HP to foes (Con half)",
         '6:Improved Flare:magic:Warding Flare protects allies',
         '8:Potent Spellcasting:magic:+%V Cleric cantrip damage',
         "17:Corona Of Light:magic:" +
@@ -486,7 +486,7 @@ PHB5E.classRules = function(rules, classes) {
         '1:Acolyte Of Nature:magic:Additional Druid cantrip',
         '1:Acolyte Of Nature:skill:Additional skill proficiency',
         '2:Charm Animals And Plants:magic:' +
-          "R30' Channel Divinity charms for 1 min",
+          "R30' Channel Divinity charms for 1 min (Wis neg)",
         '6:Dampen Elements:magic:' +
           "R30' Reaction to grant resistance to acid, cold, fire, lightning, or thunder",
         '8:Divine Strike:combat:+%Vd8 HP 1/turn',
@@ -496,23 +496,23 @@ PHB5E.classRules = function(rules, classes) {
         '1:Weapon Proficiency (Martial)::',
         '1:Wrath Of The Storm:combat:Reaction 2d8 HP (Dex half) %V/long rest',
         '2:Destructive Wrath:magic:' +
-          'Channel Divinity max thunder, lightning damage',
+          'Channel Divinity for max thunder, lightning damage',
         "6:Thunderbolt Strike:magic:Lightning damage pushes lg 10'",
         '8:Divine Strike:combat:+%Vd8 HP 1/turn',
         '17:Stormborn:ability:Fly at full speed outdoors',
         // Trickery Domain
         '1:Blessing Of The Trickster:magic:Touched Adv Stealth for 1 hr',
-        "2:Invoke Duplicity:magic:R30' Illusionary dulicate for conc/1 min",
-        '6:Cloak Of The Trickster:magic:Channel Divinity invisibile 1 turn',
+        "2:Invoke Duplicity:magic:R30' Illusionary duplicate for conc/1 min",
+        '6:Cloak Of The Trickster:magic:Channel Divinity for invisible 1 turn',
         '8:Divine Strike:combat:+%Vd8 HP 1/turn',
         '17:Improved Duplicity:magic:Four duplicates',
         // War Domain
         '1:Armor Proficiency (Heavy)::',
         '1:Weapon Proficiency (Martial)::',
         '1:War Priest:combat:Bonus attack %V/long rest',
-        '2:Guided Strike:combat:Channel Divinity +10 attack',
+        '2:Guided Strike:combat:Channel Divinity for +10 attack',
         "6:War God's Blessing:magic:" +
-          "R30' Channel Divinity reaction ally +10 attack",
+          "R30' Channel Divinity reaction for ally +10 attack",
         '8:Divine Strike:combat:+%Vd8 HP 1/turn',
         '17:Avatar Of Battle:combat:' +
           'Resistance nonmagical bludgeon, pierce, slash'

@@ -164,7 +164,7 @@ PHB5E.spellsDescriptions = {
   "Mage's Sword":"Force weapon 3d10, move 20' for conc/1 min",
   'Phantasmal Force':"R60' target illusion 1d6 HP/rd (Int neg)",
   'Power Word Heal':
-    "Touched regains all HP, uncharmed, unfrightened, unparalyzed, unstunned",
+    "Touched regains all HP, uncharm, unfright, unparalyze, unstun",
   'Ray Of Sickness':"R60' Target 2d8 HP, poisoned 1 turn (Con not poisoned)",
   'Searing Smite':
     "Hit +1d6 HP, 1d6 HP/turn for conc/1 min (Con no per-turn damage)",
@@ -176,7 +176,7 @@ PHB5E.spellsDescriptions = {
   'Tsunami':
     "RSight 300'x300' wall of water 6d10 HP (Str half), moves away 50'/turn for conc/6 rd",
   'Witch Bolt':"R30' Target 1d12/turn for conc/1 min",
-  'Wrathful Smite':"Next hit +1d6 HP, frightened (Wis neg) for conc/1 min"
+  'Wrathful Smite':"Next hit +1d6 HP, fright (Wis neg) for conc/1 min"
 };
 
 /* Defines the rules related to character backgrounds. */
@@ -734,7 +734,7 @@ PHB5E.classRules = function(rules, classes) {
         // Battle Master Archetype
         '3:Maneuvers:combat:Select %V Fighter maneuver features',
         "3:Student Of War:skill:Artisan's Tools Prof",
-        '3:Superiority Dice:combat:%Vd%1',
+        '3:Superiority Dice:combat:%Vd%1/short rest',
         '7:Know Your Enemy:combat:' +
           'Know how foe compares to you after 1 min study',
         '15:Relentless:combat:Min 1 superiority die after Init',
@@ -743,37 +743,39 @@ PHB5E.classRules = function(rules, classes) {
         '3:Weapon Bond:combat:Immune disarm, summon weapon',
         '7:War Magic:combat:Bonus attack after %V',
         '10:Eldritch Strike:combat:' +
-          'Foe Disadv vs. spells for 1 turn after you hit',
+          'Foe Disadv vs. your spells for 1 turn after you hit',
         "15:Arcane Charge:magic:Action Surge to teleport 30'"
       ];
       hitDie = 10;
       selectableFeatures = [
-        '3:Battle Master Archetype',
-        '3:Eldritch Knight Archetype',
-        "3:Commander's Strike:combat:Add sup die to delegated attack",
+        '3:Battle Master Archetype::',
+        '3:Eldritch Knight Archetype::',
+        "3:Commander's Strike:combat:Add Superiority die to delegated attack",
         '3:Disarming Attack:combat:' +
-          'Add sup die to damage, foe drops item (DC %V Str neg)',
+          'Add Superiority die to damage, foe drops item (DC %V Str neg)',
         '3:Distracting Strike:combat:' +
-          'Add sup die to damage, ally Adv attack same foe for 1 turn',
-        '3:Evasive Footwork:combat:Add sup die to AC during move',
+          'Add Superiority die to damage, ally Adv attack same foe for 1 turn',
+        '3:Evasive Footwork:combat:Add Superiority die to AC during move',
         '3:Feinting Attack:combat:' +
-          'Adv next attack adjacent foe, add sup die to damage',
+          'Adv next attack adjacent foe, add Superiority die to damage',
         '3:Goading Attack:combat:' +
-          'Add sup die to damage, foe Disadv attack others for 1 turn (DC %V Wis neg)',
-        "3:Lunging Attack:combat:+5' melee range, add sup die to damage",
+          'Add Superiority die to damage, foe Disadv attack others for 1 turn (DC %V Wis neg)',
+        "3:Lunging Attack:combat:+5' melee range, add Superiority die to damage",
         '3:Maneuvering Attack:combat:' +
-          'Add sup die to damage, ally move half speed w/no OA',
+          'Add Superiority die to damage, ally move half speed w/no OA',
         '3:Menacing Attack:combat:' +
-          'Add sup die to damage, foe frightened for 1 turn (DC %V Wis neg)',
-        '3:Parry:combat:Reduce damage from foe hit by sup die + %V',
-        '3:Precision Attack:combat:Add sup die to atteck',
+          'Add Superiority die to damage, foe fright for 1 turn (DC %V Wis neg)',
+        '3:Parry:combat:Reduce damage from foe hit by Superiority die + %V',
+        '3:Precision Attack:combat:Add Superiority die to attack',
         '3:Pushing Attack:combat:' +
-          "Add sup die to damage, foe pushed 15' (DC %V Str neg)",
-        '3:Rally:combat:Chosen ally gains sup die + %V temp HP',
-        '3:Riposte:combat:Bonus attack after foe miss, add sup die to damage',
-        '3:Sweeping Attack:combat:After hit, sup die HP to second adjacent foe',
+          "Add Superiority die to damage, foe pushed 15' (DC %V Str neg)",
+        '3:Rally:combat:Chosen ally gains Superiority die + %V temp HP',
+        '3:Riposte:combat:' +
+          'Bonus attack after foe miss, add Superiority die to damage',
+        '3:Sweeping Attack:combat:' +
+          'After hit, Superiority die damage to second adjacent foe',
         '3:Trip Attack:combat:' +
-          'Add sup die to damage, foe knocked prone (DC %V Str neg)'
+          'Add Superiority die to damage, foe knocked prone (DC %V Str neg)'
       ];
       spellAbility = 'intelligence';
       spellsKnown = [
@@ -786,6 +788,13 @@ PHB5E.classRules = function(rules, classes) {
         'W3:13:2/16:3',
         'W4:19:1'
       ];
+
+      rules.defineRule
+        ('proficiencyCount.Tool', 'skillNotes.studentOfWarFeature', '+=', '1');
+      rules.defineRule('toolChoices.Artisan',
+        'skillNotes.studentOfWarFeature', '=', '1'
+      );
+
       rules.defineRule('casterLevels.Fi',
         'fighterFeatures.Eldritch Knight Archetype', '?', null,
         'levels.Fighter', '=', null,

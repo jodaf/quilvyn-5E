@@ -1637,6 +1637,7 @@ SRD5E.classRules = function(rules, classes) {
         // Champion Archetype
         '3:Improved Critical:combat:Crit on natural 19',
         '7:Remarkable Athlete:ability:+%V non-proficient Str, Dex, Con checks',
+        "7:Remarkable Athlete:skill:+%V' running jump",
         '10:Additional Fighting Style:combat:Select second Fighting Style',
         '15:Superior Critical:combat:Crit on natural 18',
         '18:Survivor:combat:Regain %V HP each turn when between 1 and %1'
@@ -1676,6 +1677,8 @@ SRD5E.classRules = function(rules, classes) {
         'combatNotes.defenseStyleFeature.1', '+', null
       );
       rules.defineRule
+        ('attackBonus.Ranged', 'combatNotes.archeryStyleFeature', '+=', '2');
+      rules.defineRule
         ('attacksPerRound', 'combatNotes.extraAttackFeature', '+', null);
       rules.defineRule('combatNotes.actionSurgeFeature',
         'levels.Fighter', '=', 'source < 17 ? 1 : 2'
@@ -1700,10 +1703,6 @@ SRD5E.classRules = function(rules, classes) {
       rules.defineRule('fighterFeatBonus',
         'levels.Fighter', '=', 'source < 6 ? null : source < 14 ? 1 : 2'
       );
-      rules.defineRule
-        ('proficiencyCount.Tools', 'skillNotes.studentOfWarFeature', '+', '1');
-      rules.defineRule
-        ('rangedAttack', 'combatNotes.archeryStyleFeature', '+', '2');
       rules.defineRule('saveNotes.indomitableFeature',
         'levels.Fighter', '=', 'source < 13 ? 1 : source < 17 ? 2 : 3'
       );
@@ -1711,9 +1710,8 @@ SRD5E.classRules = function(rules, classes) {
         'levels.Fighter', '=', 'source < 3 ? 1 : 2',
         'combatNotes.additionalFightingStyleFeature', '+', '1'
       );
-      rules.defineRule('toolProficiencies.Artisan',
-        'skillNotes.studentOfWarFeature', '=', '1'
-      );
+      rules.defineRule
+        ('skillNotes.remarkableAthleteFeature', 'strengthModifier', '=', null);
       for(var feature in {
         'Improved Critical':'', 'Remarkable Athlete':'',
         'Additional Fighting Style':'', 'Superior Critical':'', 'Survivor':''
@@ -2092,7 +2090,7 @@ SRD5E.classRules = function(rules, classes) {
         'levels.Ranger', '+=', 'source < 5 ? null : 1'
       );
       rules.defineRule
-        ('rangedAttack', 'combatNotes.archeryStyleFeature', '+', '2');
+        ('attackBonus.Ranged', 'combatNotes.archeryStyleFeature', '+=', '2');
       rules.defineRule('skillNotes.favoredEnemyFeature',
         'levels.Ranger', '=', 'source < 6 ? 1 : source < 14 ? 2 : 3'
       );
@@ -2524,8 +2522,6 @@ SRD5E.combatRules = function(rules) {
     'shield', '+', 'source == "None" ? null : 2'
   );
   rules.defineRule('initiative', 'dexterityModifier', '=', null);
-  rules.defineRule('meleeAttack', 'proficiencyBonus', '=', null);
-  rules.defineRule('rangedAttack', 'proficiencyBonus', '=', null);
   for(var ability in {'Charisma':'', 'Constitution':'', 'Dexterity':'',
                       'Intelligence':'', 'Strength':'', 'Wisdom':''}) {
     rules.defineRule('saveBonus.' + ability,
@@ -2537,7 +2533,6 @@ SRD5E.combatRules = function(rules) {
       'saveBonus.' + ability, '+', null
     );
   }
-  rules.defineRule('weapons.Unarmed', '', '=', '1');
 };
 
 /* Returns an ObjectViewer loaded with the default character sheet format. */
@@ -2722,6 +2717,15 @@ SRD5E.equipmentRules = function(rules, armors, shields, weapons) {
 
   rules.defineRule('proficient.None', '', '=', '1'); // Prof w/no armor
   rules.defineRule('proficient.Unarmed', '', '=', '1');
+  rules.defineRule('weapons.Unarmed', '', '=', '1');
+
+  rules.defineNote(
+    'validationNotes.two-handedWeaponWithShield:' +
+      'Shields cannot be used with two-handed weapons'
+  );
+  rules.defineRule('validationNotes.two-handedWeaponWithShield',
+    'shield', '?', 'source != "None"'
+  );
 
   for(var i = 0; i < weapons.length; i++) {
 
@@ -2764,12 +2768,14 @@ SRD5E.equipmentRules = function(rules, armors, shields, weapons) {
     rules.defineRule('attackBonus.' + name,
       weaponName, '?', null,
       'combatNotes.' + (range ? 'dexterity' : 'strength') + 'AttackAdjustment', '=', null,
+      'attackBonus.' + (range ? 'Ranged' : 'Melee'), '+', null,
       'weaponBonus.' + name, '+', null,
       'weaponAttackAdjustment.' + name, '+', null
     );
     rules.defineRule('damageBonus.' + name,
       weaponName, '?', null,
       'combatNotes.' + (range ? 'dexterity' : 'strength') + 'DamageAdjustment', '=', null,
+      'damageBonus.' + (range ? 'Ranged' : 'Melee'), '+', null,
       'weaponBonus.' + name, '+', null,
       'weaponDamageAdjustment.' + name, '+', null
     );
@@ -2801,6 +2807,12 @@ SRD5E.equipmentRules = function(rules, armors, shields, weapons) {
     }
     if(!range) {
       rules.defineRule(weaponName + '.2', 'monkMeleeDieBonus', '^', null);
+    }
+
+    if(pieces[1].indexOf('2h') >= 0) {
+      rules.defineRule('validationNotes.two-handedWeaponWithShield',
+        weaponName, '=', '1'
+      );
     }
 
   }

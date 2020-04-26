@@ -985,22 +985,22 @@ PHB5E.classRules = function(rules, classes) {
       features = [
         // Oath Of The Ancients
         "3:Nature's Wrath:magic:" +
-         "R10' Channel energy for vines ensnare foe (DC %V Dex or Str neg)",
+         "R10' Channel Divinity for vines ensnare foe (Dex or Str neg)",
         '3:Turn The Faithless:magic:' +
-          "R30' Channel energy for fiends, fey flee for 1 min (DC %V Wis neg)",
+          "R30' Channel Divinity for fiends, fey flee for 1 min (Wis neg)",
         "7:Aura Of Warding:save:R%V' Self, allies resist spell damage",
-        '15:Undying Sentinel:combat:Keep 1 HP when brought to 0 HP 1/long rest',
+        '15:Undying Sentinel:combat:Keep 1 HP when brought to 0 1/long rest',
         '20:Elder Champion:magic:' +
           "Transform, regain 10 HP/turn, cast as bonus action, foes w/in 10' save Disadv 1/long rest",
         // Oath Of Vengeance
         '3:Abjure Enemy:magic:' +
-          "R60' Channel Divinity for target halted 1 min (DC %V Wis half)",
+          "R60' Channel Divinity for target halted 1 min (Wis half)",
         '3:Vow Of Enmity:combat:' +
           "R10' Channel Divinity for Adv attacks against target for 1 min",
         '7:Relentless Avenger:combat:Move half speed after OA hit',
         '15:Soul Of Vengeance:combat:Attack Vow Of Enmity target as reaction',
         '20:Avenging Angel:magic:' +
-          "Fly 60', 30' foes fright (DC %V Wis neg) 1 hr/long rest"
+          "Fly 60', 30' foes fright (Wis neg) 1 hr/long rest"
       ];
       hitDie = 10;
       selectableFeatures = [
@@ -1032,10 +1032,6 @@ PHB5E.classRules = function(rules, classes) {
           'paladinFeatures.Oath Of The Ancients', '?', null
         );
       }
-      rules.defineRule
-        ("magicNotes.nature'sWrathFeature", 'oathSaveDC', '=', null);
-      rules.defineRule
-        ('magicNotes.turnTheFaithlessFeature', 'oathSaveDC', '=', null);
       rules.defineRule('saveNotes.auraOfWardingFeature',
         'levels.Paladin', '=', 'source < 18 ? 10 : 30'
       );
@@ -1048,10 +1044,6 @@ PHB5E.classRules = function(rules, classes) {
           'paladinFeatures.Oath Of Vengeance', '?', null
         );
       }
-      rules.defineRule
-        ('magicNotes.abjureEnemyFeature', 'oathSaveDC', '=', null);
-      rules.defineRule
-        ('magicNotes.avengingAngelFeature', 'oathSaveDC', '=', null);
 
     } else if(name == 'Ranger') {
 

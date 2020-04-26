@@ -692,7 +692,7 @@ SRD5E.spellsDescriptions = {
   'Darkness':"R60' Target centers 15' radius lightless area for conc/10 min",
   'Darkvision':"Touched see in dark for 8 hr",
   'Daylight':"R60' Target centers 60' radius bright light for 1 hr",
-  'Death Ward':"Touched retains 1 HP when next attack would take to 0",
+  'Death Ward':"Touched keep 1 HP when next brought to 0",
   'Delayed Blast Fireball':"R150' 20' radius 12d6 HP (Dex half)",
   'Demiplane':"R60' Door leads to extradimensional 30' room for 1 hr",
   'Detect Evil And Good':
@@ -1884,7 +1884,8 @@ SRD5E.classRules = function(rules, classes) {
         '1:Divine Sense:magic:' +
           "R60' Know location of celestials, fiends, undead %V/long rest",
         '1:Lay On Hands:magic:Heal %V HP, disease, poison 1/long rest',
-        '2:Divine Smite:combat:Expend spell for +2d8 up to +6d8 damage',
+        '2:Divine Smite:combat:' +
+          'Spend spell slot for +(spell level + 1)d8 damage',
         '2:Spellcasting::',
         '3:Channel Divinity:feature:Effect %V/short rest',
         '3:Divine Health:save:Immune disease',
@@ -1897,7 +1898,7 @@ SRD5E.classRules = function(rules, classes) {
         '3:Sacred Weapon:combat:' +
           "Channel Divinity for weapon +%V attack, 20' light for 1 min",
         '3:Turn The Unholy:magic:' +
-          "R30' Channel Divinity for fiends, undead flee for 1 min (DC %V Wis neg)",
+          "R30' Channel Divinity for fiends, undead flee for 1 min (Wis neg)",
         "7:Aura Of Devotion:save:R%V' Self and allies immune charm",
         '15:Purity Of Spirit:magic:' +
           'Self continuous <i>Protection From Evil And Good</i>',
@@ -1925,9 +1926,9 @@ SRD5E.classRules = function(rules, classes) {
           'Use shield to impose attack Disadv on adjacent foe'
       ];
       selectableFeatures.push('3:Oath Of Devotion::');
-      spellAbility = 'wisdom';
+      spellAbility = 'charisma';
       spellsKnown = [
-        'P1:2:"all"', 'P2:5:"all"', 'P3:9:"all"', 'P4:13:"all"', 'P5:17:"all"'
+        'P:2:2/3:3/5:6/7:7/9:9/11:10/13:11/15:12/17:14/19:15'
       ];
       spells = {
         'Oath Of Devotion':[
@@ -1972,10 +1973,6 @@ SRD5E.classRules = function(rules, classes) {
         ('magicNotes.divineSenseFeature', 'charismaModifier', '=', 'source+1');
       rules.defineRule
         ('magicNotes.layOnHandsFeature', 'levels.Paladin', '=', 'source*5');
-      rules.defineRule('oathSaveDC',
-        'proficiencyBonus', '=', '8 + source',
-        'charismaModifier', '+', null
-      );
       rules.defineRule('saveNotes.auraOfCourageFeature',
         'levels.Paladin', '=', 'source < 18 ? 10 : 30'
       );
@@ -1997,14 +1994,12 @@ SRD5E.classRules = function(rules, classes) {
         'Sacred Weapon':'', 'Turn The Unholy':''
       }) {
         rules.defineRule('paladinFeatures.' + feature,
-          'paladinFeatures.Oath Of Devition', '?', null
+          'paladinFeatures.Oath Of Devotion', '?', null
         );
       }
       rules.defineRule('combatNotes.sacredWeaponFeature',
         'charismaModifier', '=', 'Math.max(source, 1)'
       );
-      rules.defineRule
-        ('magicNotes.turnTheUnholyFeature', 'oathSaveDC', '=', null);
 
     } else if(name == 'Ranger') {
 
@@ -3246,8 +3241,7 @@ SRD5E.raceRules = function(rules, languages, races) {
       features = [
         "1:Darkvision:feature:R60' See one light level better",
         '1:Menacing:skill:Prof Intimidation',
-        '1:Relentless Endurance:combat:' +
-          'On drop to 0 HP, retain 1 HP 1/long rest',
+        '1:Relentless Endurance:combat:Keep 1 HP when brought to 0 1/long rest',
         '1:Savage Attacks:combat:Extra die on crit damage'
       ];
       languages = ['Common', 'Orc'];

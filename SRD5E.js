@@ -2007,7 +2007,7 @@ SRD5E.classRules = function(rules, classes) {
         '1:Armor Proficiency (Light/Medium/Shield)::',
         '1:Weapon Proficiency (Simple/Martial)::',
         '1:Favored Enemy:skill:' +
-          'Adv Survival to track, Knowledge about %V creature types, learn enemy language',
+          'Adv Survival to track, info about %V creature types, learn enemy language',
         '1:Natural Explorer:skill:Dbl Int/Wis Prof, normal move in difficult terrain, always alert, full speed solo stealth, locate dbl food, extra track info for %V terrains',
         '2:Spellcasting::',
         '3:Primeval Awareness:magic:' +
@@ -2017,7 +2017,7 @@ SRD5E.classRules = function(rules, classes) {
         "8:Land's Stride:save:Adv vs. impeding plants",
         '10:Hide In Plain Sight:skill:' +
           '+10 Dex (Stealth) to hide w/prepared camouflage',
-        '14:Vanish:skill:Hide as bonus action, untrackable',
+        '14:Vanish:skill:Hide as bonus action, untrackable non-magically',
         '18:Feral Senses:combat:' +
           "No Disadv vs. invisible foe, 30' awareness of invisible creatures",
         '20:Foe Slayer:combat:+%V attack or damage vs. favored enemy'
@@ -2046,17 +2046,19 @@ SRD5E.classRules = function(rules, classes) {
         '3:Giant Killer:combat:React to attack adjacent lg foe after miss',
         '3:Horde Breaker:combat:Second attack on different adjacent foe',
         '7:Escape The Horde:combat:Foe Disadv on OA',
-        '7:Multiattack Defense:combat:+4 AC after foe hit',
+        '7:Multiattack Defense:combat:' +
+          '+4 AC on additional foe attacks after hit',
         '7:Steel Will:save:Adv vs. fright',
         "11:Volley:combat:Ranged attack any number of foes in 10' radius",
         '11:Whirlwind Attack:combat:Melee attack any number of adjacent foes',
         '15:Evasion:save:Dex save yields no damage instead of half',
-        '15:Stand Against The Tide:combat:Foe miss attacks another creature',
+        '15:Stand Against The Tide:combat:' +
+          'Redirect foe miss to another creature',
         '15:Uncanny Dodge:combat:Use reaction for half damage',
       );
       spellAbility = 'wisdom';
       spellsKnown = [
-        'R1:2:"all"', 'R2:5:"all"', 'R3:9:"all"', 'R4:13:"all"', 'R5:17:"all"'
+        'R:2:2/3:3/5:4/7:5/9:6/11:7/13:8/15:9/17:10/19:11'
       ];
       spells = null;
       spellSlots = [
@@ -2092,8 +2094,8 @@ SRD5E.classRules = function(rules, classes) {
       rules.defineRule
         ('combatNotes.foeSlayerFeature', 'wisdomModifier', '=', null);
       rules.defineRule('hunterSelectableFeatureCount',
-        'rangerFeatures.Hunter', '?', null,
-        'levels.Ranger', '=', 'source<3 ? 0 : source<7 ? 1 : source<11 ? 2 : 3'
+        'rangerFeatures.Hunter Archetype', '?', null,
+        'levels.Ranger', '=', 'source<3 ? 0 : source<7 ? 1 : source<11 ? 2 : source<15 ? 3 : 4'
       );
       rules.defineRule('selectableFeatureCount.Ranger',
         'levels.Ranger', '=', 'source < 2 ? 0 : source < 3 ? 1 : 2',
@@ -2357,7 +2359,7 @@ SRD5E.classRules = function(rules, classes) {
         '2:Thief Of Five Fates:magic:<i>Bane</i> 1/long rest',
         '5:Thirsting Blade:combat:Attack twice each turn',
         '15:Visions Of Distant Realms:magic:<i>Arcane Eye</i> at will',
-        '2:Voice Of The Chain Master:companion:Perceive, speak via familiar',
+        '2:Voice Of The Chain Master:feature:Perceive, speak via familiar',
         '9:Whispers Of The Grave:magic:<i>Speak With Dead</i> at will',
         "15:Witch Sight:feature:R30' See true forms"
       ];

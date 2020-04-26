@@ -1049,11 +1049,11 @@ PHB5E.classRules = function(rules, classes) {
 
       features = [
         // Beast Master Archetype
-        "3:Ranger's Companion:companion:Companion beast obeys commands",
-        '7:Exceptional Training:companion:' +
-          'Companion attack magical, can Dash, Disengage, Help instead',
-        '11:Bestial Fury:companion:Companion 2 attacks/rd',
-        "15:Share Spells:companion:R30' Self spell affects companion"
+        "3:Ranger's Companion:feature:Companion beast obeys commands",
+        '7:Exceptional Training:feature:' +
+          'Companion can Dash, Disengage, Help instead of attack',
+        '11:Bestial Fury:feature:Companion 2 attacks/rd',
+        "15:Share Spells:feature:R30' Self spell affects companion"
       ];
       hitDie = 10;
       selectableFeatures = ['3:Beast Master Archetype::'];
@@ -1066,18 +1066,6 @@ PHB5E.classRules = function(rules, classes) {
           'rangerFeatures.Beast Master Archetype', '?', null
         );
       }
-      rules.defineRule('rangerFeatures.Bestial Fury',
-        'rangerFeatures.Beast Master', '?', null
-      );
-      rules.defineRule("rangerFeatures.Ranger's Companion",
-        'rangerFeatures.Beast Master', '?', null
-      );
-      rules.defineRule('rangerFeatures.Exceptional Training',
-        'rangerFeatures.Beast Master', '?', null
-      );
-      rules.defineRule('rangerFeatures.Share Spells',
-        'rangerFeatures.Beast Master', '?', null
-      );
 
     } else if(name == 'Rogue') {
 

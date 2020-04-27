@@ -153,32 +153,23 @@ SRD5E.SPELLS = {
   'Antimagic Field':'Abjuration',
   'Antipathy/Sympathy':'Enchantment',
   'Arcane Eye':'Divination',
-  'Arcane Gate':'Conjuration',
   'Arcane Hand':'Evocation',
   'Arcane Lock':'Abjuration',
+  'Arcane Sword':'Evocation',
   "Arcanist's Magic Aura":'Illusion',
-  'Armor Of Agathys':'Abjuration',
-  'Arms Of Hadar':'Conjuration',
   'Astral Projection':'Necromancy',
   'Augury':'Divination',
-  'Aura Of Life':'Abjuration',
-  'Aura Of Purity':'Abjuration',
-  'Aura Of Vitality':'Evocation',
   'Awaken':'Transmutation',
 
   'Bane':'Enchantment',
-  'Banishing Smite':'Abjuration',
   'Banishment':'Abjuration',
   'Barkskin':'Transmutation',
   'Beacon Of Hope':'Abjuration',
-  'Beast Sense':'Divination',
   'Bestow Curse':'Necromancy',
   'Black Tentacles':'Conjuration',
   'Blade Barrier':'Evocation',
-  'Blade Ward':'Abjuration',
   'Bless':'Enchantment',
   'Blight':'Necromancy',
-  'Blinding Smite':'Evocation',
   'Blindness/Deafness':'Necromancy',
   'Blink':'Transmutation',
   'Blur':'Illusion',
@@ -190,18 +181,14 @@ SRD5E.SPELLS = {
   'Chain Lightning':'Evocation',
   'Charm Person':'Enchantment',
   'Chill Touch':'Necromancy',
-  'Chromatic Orb':'Evocation',
   'Circle Of Death':'Necromancy',
-  'Circle Of Power':'Abjuration',
   'Clairvoyance':'Divination',
   'Clone':'Necromancy',
-  'Cloud Of Daggers':'Conjuration',
   'Cloudkill':'Conjuration',
   'Color Spray':'Illusion',
   'Command':'Enchantment',
   'Commune':'Divination',
   'Commune With Nature':'Divination',
-  'Compelled Duel':'Enchantment',
   'Comprehend Languages':'Divination',
   'Compulsion':'Enchantment',
   'Cone Of Cold':'Evocation',
@@ -332,8 +319,8 @@ SRD5E.SPELLS = {
   'Inflict Wounds':'Necromancy',
   'Insect Plague':'Conjuration',
   'Instant Summons':'Conjuration',
-  'Irresistible Dance':'Enchantment',
   'Invisibility':'Illusion',
+  'Irresistible Dance':'Enchantment',
 
   'Jump':'Transmutation',
 
@@ -590,43 +577,28 @@ SRD5E.spellsDescriptions = {
   'Antipathy/Sympathy':
     "R60' Target object repels/attracts specified creatures for 10 dy",
   'Arcane Eye':"R30' See through invisible eye for conc/1 hr",
-  'Arcane Gate':"R10'/500' Connect portal pair for conc/10 min",
   'Arcane Hand':
     "R120' AC20, Str 26, Dex 10 hand can punch, push, grasp, block for conc/1 min",
   'Arcane Lock':"Touched barrier passable only by designated until dispelled",
+  'Arcane Sword':"Force weapon 3d10, move 20' for conc/1 min",
   "Arcanist's Magic Aura":"Target reports false divinations for 1 dy",
-  'Armor Of Agathys':"Self frosted, +5 HP, 5 HP cold to successful attcker",
-  'Arms Of Hadar':
-    "All in 10' radius take 2d6 HP necrotic (Str half), no reactions until next turn",
   'Astral Projection':
     "Self + 8 companions w/in 10' project to astral plane until dispelled or 0 HP",
   'Augury':"Discern whether act w/in 30 min will yield weal/woe",
-  'Aura Of Life':
-    "Self 30' radius gives resistance to necrotic damage, raise nonhostile 0 HP to 1 HP for conc/10 min",
-  'Aura Of Purity':
-    "Self 30' radius gives resist poison, no disease, Adv conditions for conc/10 min",
-  'Aura Of Vitality':
-    "Self 30' radius heals 2d6 HP designated target 1/rd for conc/1 min",
   'Awaken':"Touched beast or plant Int 10, friendly for 30 dy",
 
   'Bane':"R30' 3 targets -1d4 from attack/save (Cha neg) for conc/1 min",
-  'Banishing Smite':
-    "Self attacks +5d10 HP force and banish to home/demiplane if lt 50 HP for conc/1 min",
   'Banishment':"R60' target banish to home/demiplane (Cha neg) for conc/1 min",
   'Barkskin':"Touched AC 16 for conc/1 hr",
   'Beacon Of Hope':"R30' Targets Adv Wis/death saves, max heal for conc/1 min",
-  'Beast Sense':"Self use touched beast's senses for conc/1 hr",
   'Bestow Curse':
     "Touched one of Disadv specified ability rolls, Disadv self attacks, Wis save to take action, take +1d8 HP necrotic from self attacks (Wis neg) for conc/1 min",
   'Black Tentacles':
     "R90' All in 20' sq 3d6 HP and restrained for conc/1 min (Dex neg)",
   'Blade Barrier':
     "R90' 100'x20'x5' blade wall passers 6d10 HP slashing (Dex neg) for conc/10 min",
-  'Blade Ward':"Self resist bludgeon, pierce, slash damage for 1 rd",
   'Bless':"R30' 3 targets +1d4 to attack/save rolls for conc/1 min",
   'Blight':"R30' target 8d8 HP necrotic (Con half)",
-  'Blinding Smite':
-    "Self next attack +3d8 HP radiant and blind (Con neg) for conc/1 min",
   'Blindness/Deafness':"R30' target blind or deaf (Con neg) for 1 min",
   'Blink':"Self 50% chance of ethereal for 1 min",
   'Blur':"Self foes Disadv attack for conc/1 min",
@@ -644,23 +616,16 @@ SRD5E.spellsDescriptions = {
     "R30' Target regards you as friend (Wis neg) for 1 hr/until harmed",
   'Chill Touch':
     "R120' Ghost hand ${Math.floor((lvl + 1) / 6) + 1} HP necrotic, undead also Disadv self attack for 1 rd",
-  'Chromatic Orb':"R90' 4\" hurled sphere 3d8 HP acid/poison/energy",
   'Circle Of Death':"R150' 60' radius 8d6 HP necrotic (Con half)",
-  'Circle Of Power':
-    "Allies in 30' radius from self Adv save vs. magic, neg instead of half for conc/10 min",
   'Clairvoyance':
     "R1 mi Invisible sensor allows sight or hearing for conc/10 min",
   'Clone':"Grow backup body for touched target",
-  'Cloud Of Daggers':
-    "R60' Spinning daggers in 5' cu 4d4 HP slashing for conc/1 min",
   'Cloudkill':
     "R120' 20' radius 5d8 HP poison (Con half), moves 10'/rd for conc/10 min",
   'Color Spray':"Self 15' cone 6d10 HP targets blinded for 1 rd",
   'Command':"R60' Target obeys one-word command (Wis neg)",
   'Commune':"Self receive 3 yes/no answers w/in 1 min",
   'Commune With Nature':"Self gain 3 facts about territory w/in 3 miles",
-  'Compelled Duel':
-    "R30' Target attack only self w/Disadv for conc/1 min (Wis neg)",
   'Comprehend Languages':"Self understand all language for 1 hr",
   'Compulsion':"R30' Self control target movement (Wis neg) for conc/1 min",
   'Cone Of Cold':"Self 60' cone 8d8 HP cold (Con half)",
@@ -720,7 +685,7 @@ SRD5E.spellsDescriptions = {
   'Earthquake':
     "R500' Shaking in 100' radius opens fissures and damages structures",
   'Eldritch Blast':
-    "R120' Ranged touch ${Math.max(Math.floor((lvl+1)/6),1) rays do 1d10 HP ea",
+    "R120' Ranged touch ${Math.max(Math.floor((lvl+1)/6),1)} rays do 1d10 HP ea",
   'Enhance Ability':"Touched Adv on chosen ability checks for 1 hr",
   'Enlarge/Reduce':"R30' Target dbl/half size for conc/1 min",
   'Entangle':"R90' Growth ensnare those in 20' sq for conc/1 min (Str neg)",
@@ -2301,7 +2266,7 @@ SRD5E.classRules = function(rules, classes) {
         '1:Weapon Proficiency (Simple)::',
         '1:Pact Magic::',
         '2:Eldritch Invocations:magic:%V',
-        '11:Mystic Arcanum:magic:Warlock spells %V 1/long rest',
+        '11:Mystic Arcanum:magic:%V spells 1/long rest',
         '20:Eldritch Master:magic:Regain spells from patron 1/long rest',
         // Fiend Patron
         "1:Dark One's Blessing:combat:Gain %1 HP when foe drops to 0",
@@ -2332,21 +2297,21 @@ SRD5E.classRules = function(rules, classes) {
         '2:Beast Speech:magic:<i>Speak With Animals</i> at will',
         '2:Beguiling Influence:skill:Prof Deception, Persuasion',
         '7:Bewitching Whispers:magic:<i>Compulsion</i> 1/long rest',
-        '2:Book Of The Ancients:magic:Inscribe rituals in Book Of Shadows',
+        '2:Book Of Ancient Secrets:magic:Inscribe rituals in Book Of Shadows',
         '15:Chains Of Carceri:magic:' +
-          '<i>Hold Monster</i> on celetial, elemental, fiend 1/long rest',
+          '<i>Hold Monster</i> on celestial, elemental, fiend 1/long rest',
         "2:Devil's Sight:feature:R120' See 1 light level better",
         '7:Dreadful Word:magic:<i>Confusion</i> 1/long rest',
         '2:Eldritch Sight:magic:<i>Detect Magic</i> at will',
-        "2:Eldritch Spear:magic:<i>R300' Eldritch Blast</i>",
+        "2:Eldritch Spear:magic:R300' <i>Eldritch Blast</i>",
         '2:Eyes Of The Rune Keeper:feature:Read all writing',
         '2:Fiendish Vigor:magic:Self <i>False Life</i> at will',
         '2:Gaze Of Two Minds:magic:' +
           'Perceive via willing touched senses for 1 turn',
-        '12:Lifedrinker:combat:+%V HP with pact weapon',
+        '12:Lifedrinker:combat:+%V HP w/pact weapon',
         '2:Mask Of Many Faces:magic:<i>Disguise Self</i> at will',
         '15:Master Of Myriad Forms:magic:<i>Alter Self</i> at will',
-        '9:Minions Of Chaos:magic:>Conjure Elemental</i> 1/long rest',
+        '9:Minions Of Chaos:magic:<i>Conjure Elemental</i> 1/long rest',
         '2:Misty Visions:magic:<i>Silent Image</i> at will',
         '5:Mire The Mind:magic:<i>Slow</i> 1/long rest',
         '5:One With Shadows:magic:Invisible in dim light until action',
@@ -2355,7 +2320,7 @@ SRD5E.classRules = function(rules, classes) {
         '7:Sculptor Of Flesh:magic:<i>Polymorph</i> 1/long rest',
         '5:Sign Of Ill Omen:magic:<i>Bestow Curse</i> 1/long rest',
         '2:Thief Of Five Fates:magic:<i>Bane</i> 1/long rest',
-        '5:Thirsting Blade:combat:Attack twice each turn',
+        '5:Thirsting Blade:combat:Attack twice each turn w/pact blade',
         '15:Visions Of Distant Realms:magic:<i>Arcane Eye</i> at will',
         '2:Voice Of The Chain Master:feature:Perceive, speak via familiar',
         '9:Whispers Of The Grave:magic:<i>Speak With Dead</i> at will',
@@ -2364,14 +2329,14 @@ SRD5E.classRules = function(rules, classes) {
       spellAbility = 'charisma';
       spellsKnown = [
         'K0:1:2/4:3/10:4',
-        'K:1:1/2:2/11:3/17:4'
+        'K:1:2/2:3/3:4/4:5/5:6/6:7/7:8/8:9/9:10/11:11/13:12/15:13/17:14/19:15'
       ];
       spells = null;
       spellSlots = [
-        'K1:1:1/2:2/3:0',
-        'K2:3:2/5:0',
-        'K3:5:2/7:0',
-        'K4:7:2/9:0',
+        'K1:1:1/2:2/3:null',
+        'K2:3:2/5:null',
+        'K3:5:2/7:null',
+        'K4:7:2/9:null',
         'K5:9:2/11:3/17:4'
       ];
 
@@ -2388,14 +2353,16 @@ SRD5E.classRules = function(rules, classes) {
       rules.defineRule
         ('magicNotes.agonizingBlastFeature', 'charismaModifier', '=', null);
       rules.defineRule('magicNotes.eldritchInvocationsFeature',
-        'levels.Warlock', '=', 'source == 2 ? 2 : source < 9 ? Math.floor((source + 3) / 2) : Math.floor((source + 6) / 3)'
+        'levels.Warlock', '=', 'source == 2 ? 2 : source < 9 ? Math.floor((source + 1) / 2) : Math.floor((source + 6) / 3)'
       );
       rules.defineRule('magicNotes.mysticArcanumFeature',
-        'levels.Warlock', '=', 'source<13 ? "6" : source<15 ? "6,7" : source<17 ? "6,7,8" : "6,7,8,9"'
+        'levels.Warlock', '=', 'source<13 ? "K6" : source<15 ? "K6, K7" : source<17 ? "K6, K7, K8" : "K6, K7, K8, K9"'
+      );
+      rules.defineRule('proficiencyCount.Skill',
+        'skillNotes.beguilingInfluenceFeature', '+', '2'
       );
       rules.defineRule('selectableFeatureCount.Warlock',
-        'warlockFeatures.Otherworldly Patron', '=', '1',
-        'warlockFeatures.Pact Boon', '+', '1',
+        'levels.Warlock', '=', 'source < 3 ? 1 : 2',
         'magicNotes.eldritchInvocationsFeature', '+', null
       );
       rules.defineRule('skillProficiencies.Deception',
@@ -2407,8 +2374,9 @@ SRD5E.classRules = function(rules, classes) {
       rules.defineNote(
         'validationNotes.warlockBookOfAncientSecretsSelectableFeatureFeatures:Requires Pact Of The Tome',
         'validationNotes.warlockChainsOfCarceriSelectableFeatureFeatures:Requires Pact Of The Chain',
+        'validationNotes.warlockLifedrinkerSelectableFeatureFeatures:Requires Pact Of The Blade',
         'validationNotes.warlockThirstingBladeSelectableFeatureFeatures:Requires Pact Of The Blade',
-        'validationNotes.warlockVoieOfTheChainSelectableFeatureFeatures:Requires Pact Of The Chain'
+        'validationNotes.warlockVoiceOfTheChainMasterSelectableFeatureFeatures:Requires Pact Of The Chain'
       );
 
       for(var feature in {
@@ -2927,17 +2895,17 @@ SRD5E.magicRules = function(rules, classes, schools) {
     var spells;
     if(klass == 'Bard') {
       spells = [
-        'B0:Blade Ward:Dancing Lights:Light:Mage Hand:Mending:Message:' +
-        'Minor Illusion:Prestidigitation:True Strike:Vicious Mockery',
+        'B0:Dancing Lights:Light:Mage Hand:Mending:Message:Minor Illusion:' +
+        'Prestidigitation:True Strike:Vicious Mockery',
         'B1:Animal Friendship:Bane:Charm Person:Comprehend Languages:' +
         'Cure Wounds:Detect Magic:Disguise Self:Faerie Fire:Feather Fall:' +
         'Healing Word:Heroism:Hideous Laughter:Identify:Illusory Script:' +
         'Longstrider:Silent Image:Sleep:Speak With Animals:Unseen Servant',
         'B2:Animal Messenger:Blindness/Deafness:Calm Emotions:' +
-        'Cloud Of Daggers:Detect Thoughts:Enhance Ability:Enthrall:' +
-        'Heat Metal:Hold Person:Invisibility:Knock:Lesser Restoration:' +
-        'Locate Animals Or Plants:Locate Object:Magic Mouth:See Invisibility:' +
-        'Shatter:Silence:Suggestion:Zone Of Truth',
+        'Detect Thoughts:Enhance Ability:Enthrall:Heat Metal:Hold Person:' +
+        'Invisibility:Knock:Lesser Restoration:Locate Animals Or Plants:' +
+        'Locate Object:Magic Mouth:See Invisibility:Shatter:Silence:' +
+        'Suggestion:Zone Of Truth',
         'B3:Bestow Curse:Clairvoyance:Dispel Magic:Fear:Glyph Of Warding:' +
         'Hypnotic Pattern:Major Image:Plant Growth:Sending:Speak With Dead:' +
         'Speak With Plants:Stinking Cloud:Tiny Hut:Tongues',
@@ -2993,7 +2961,7 @@ SRD5E.magicRules = function(rules, classes, schools) {
         'Cure Wounds:Detect Magic:Detect Poison And Disease:Entangle:' +
         'Faerie Fire:Fog Cloud:Goodberry:Healing Word:Jump:Longstrider:' +
         'Purify Food And Drink:Speak With Animals:Thunderwave',
-        'D2:Animal Messenger:Barkskin:Beast Sense:Darkvision:Enhance Ability:' +
+        'D2:Animal Messenger:Barkskin:Darkvision:Enhance Ability:' +
         'Find Traps:Flame Blade:Flaming Sphere:Gust Of Wind:Heat Metal:' +
         'Hold Person:Lesser Restoration:Locate Animals Or Plants:' +
         'Locate Object:Moonbeam:Pass Without Trace:Protection From Poison:' +
@@ -3017,23 +2985,22 @@ SRD5E.magicRules = function(rules, classes, schools) {
       ];
     } else if(klass == 'Paladin') {
       spells = [
-        'P1:Bless:Command:Compelled Duel:Cure Wounds:Detect Evil And Good:' +
-        'Detect Magic:Detect Poison And Disease:Divine Favor:Heroism:' +
+        'P1:Bless:Command:Cure Wounds:Detect Evil And Good:Detect Magic:' +
+        'Detect Poison And Disease:Divine Favor:Heroism:' +
         'Protection From Evil And Good:Purify Food And Drink:Shield Of Faith',
         'P2:Aid:Branding Smite:Find Steed:Lesser Restoration:Locate Object:' +
         'Magic Weapon:Protection From Poison:Zone Of Truth',
-        'P3:Aura Of Vitality:Blinding Smite:Create Food And Water:Daylight:' +
-        'Dispel Magic:Magic Circle:Remove Curse:Revivify',
-        'P4:Aura Of Life:Aura Of Purity:Banishment:Death Ward:Locate Creature',
-        'P5:Banishing Smite:Circle Of Power:Dispel Evil And Good:Geas:' +
-        'Raise Dead'
+        'P3:Create Food And Water:Daylight:Dispel Magic:Magic Circle:' +
+        'Remove Curse:Revivify',
+        'P4:Banishment:Death Ward:Locate Creature',
+        'P5:Dispel Evil And Good:Geas:Raise Dead'
       ];
     } else if(klass == 'Ranger') {
       spells = [
         'R1:Alarm:Animal Friendship:Cure Wounds:Detect Magic:' +
         "Detect Poison And Disease:Fog Cloud:Goodberry:Hunter's Mark:Jump:" +
         'Longstrider:Speak With Animals',
-        'R2:Animal Messenger:Barkskin:Beast Sense:Darkvision:Find Traps:' +
+        'R2:Animal Messenger:Barkskin:Darkvision:Find Traps:' +
         'Lesser Restoration:Locate Animals Or Plants:Locate Object:' +
         'Pass Without Trace:Protection From Poison:Silence:Spike Growth',
         'R3:Conjure Animals:Daylight:Nondetection:Plant Growth:' +
@@ -3045,18 +3012,17 @@ SRD5E.magicRules = function(rules, classes, schools) {
       ];
     } else if(klass == 'Sorcerer') {
       spells = [
-        'S0:Acid Splash:Blade Ward:Chill Touch:Dancing Lights:Fire Bolt:' +
-        'Light:Mage Hand:Mending:Message:Minor Illusion:Poison Spray:' +
-        'Prestidigitation:Ray Of Frost:Shocking Grasp:True Strike',
-        'S1:Burning Hands:Charm Person:Chromatic Orb:Color Spray:' +
-        'Comprehend Languages:Detect Magic:Disguise Self:Expeditious Retreat:' +
-        'False Life:Feather Fall:Fog Cloud:Jump:Mage Armor:Magic Missile:' +
-        'Shield:Silent Image:Sleep:Thunderwave',
-        'S2:Alter Self:Blindness/Deafness:Blur:Cloud Of Daggers:Darkness:' +
-        'Darkvision:Detect Thoughts:Enhance Ability:Enlarge/Reduce:' +
-        'Gust Of Wind:Hold Person:Invisibility:Knock:Levitate:Mirror Image:' +
-        'Misty Step:Scorching Ray:See Invisibility:Shatter:Spider Climb:' +
-        'Suggestion:Web',
+        'S0:Acid Splash:Chill Touch:Dancing Lights:Fire Bolt:Light:Mage Hand:' +
+        'Mending:Message:Minor Illusion:Poison Spray:Prestidigitation:' +
+        'Ray Of Frost:Shocking Grasp:True Strike',
+        'S1:Burning Hands:Charm Person:Color Spray:Comprehend Languages:' +
+        'Detect Magic:Disguise Self:Expeditious Retreat:False Life:' +
+        'Feather Fall:Fog Cloud:Jump:Mage Armor:Magic Missile:Shield:' +
+        'Silent Image:Sleep:Thunderwave',
+        'S2:Alter Self:Blindness/Deafness:Blur:Darkness:Darkvision:' +
+        'Detect Thoughts:Enhance Ability:Enlarge/Reduce:Gust Of Wind:' +
+        'Hold Person:Invisibility:Knock:Levitate:Mirror Image:Misty Step:' +
+        'Scorching Ray:See Invisibility:Shatter:Spider Climb:Suggestion:Web',
         'S3:Blink:Clairvoyance:Counterspell:Daylight:Dispel Magic:Fear:' +
         'Fireball:Fly:Gaseous Form:Haste:Hypnotic Pattern:Lightning Bolt:' +
         'Major Image:Protection From Energy:Sleet Storm:Slow:Stinking Cloud:' +
@@ -3066,7 +3032,7 @@ SRD5E.magicRules = function(rules, classes, schools) {
         'S5:Animate Objects:Cloudkill:Cone Of Cold:Creation:Dominate Person:' +
         'Hold Monster:Insect Plague:Seeming:Telekinesis:Teleportation Circle:' +
         'Wall Of Stone',
-        'S6:Arcane Gate:Chain Lightning:Circle Of Death:Disintegrate:Eyebite:' +
+        'S6:Chain Lightning:Circle Of Death:Disintegrate:Eyebite:' +
         'Globe Of Invulnerability:Mass Suggestion:Move Earth:Sunbeam:' +
         'True Seeing',
         'S7:Delayed Blast Fireball:Etherealness:Finger Of Death:Fire Storm:' +
@@ -3077,20 +3043,19 @@ SRD5E.magicRules = function(rules, classes, schools) {
       ];
     } else if(klass == 'Warlock') {
       spells = [
-        'K0:Blade Ward:Chill Touch:Eldritch Blast:Mage Hand:Minor Illusion:' +
-        'Poison Spray:Prestidigitation:True Strike',
-        'K1:Armor Of Agathys:Arms Of Hadar:Charm Person:Comprehend Languages:' +
-        'Expeditious Retreat:Hellish Rebuke:Illusory Script:' +
-        'Protection From Evil And Good:Unseen Servant',
-        'K2:Cloud Of Daggers:Darkness:Enthrall:Hold Person:Invisibility:' +
-        'Mirror Image:Misty Step:Ray Of Enfeeblement:Shatter:Spider Climb:' +
-        'Suggestion',
+        'K0:Chill Touch:Eldritch Blast:Mage Hand:Minor Illusion:Poison Spray:' +
+        'Prestidigitation:True Strike',
+        'K1:Charm Person:Comprehend Languages:Expeditious Retreat:' +
+        'Hellish Rebuke:Illusory Script:Protection From Evil And Good:' +
+        'Unseen Servant',
+        'K2:Darkness:Enthrall:Hold Person:Invisibility:Mirror Image:' +
+        'Misty Step:Ray Of Enfeeblement:Shatter:Spider Climb:Suggestion',
         'K3:Counterspell:Dispel Magic:Fear:Fly:Gaseous Form:Hypnotic Pattern:' +
         'Magic Circle:Major Image:Remove Curse:Tongues:Vampiric Touch',
         'K4:Banishment:Blight:Dimension Door:Hallucinatory Terrain',
         'K5:Contact Other Plane:Dream:Hold Monster:Scrying',
-        'K6:Arcane Gate:Circle Of Death:Conjure Fey:Create Undead:Eyebite:' +
-        'Flesh To Stone:Mass Suggestion:True Seeing',
+        'K6:Circle Of Death:Conjure Fey:Create Undead:Eyebite:Flesh To Stone:' +
+        'Mass Suggestion:True Seeing',
         'K7:Etherealness:Finger Of Death:Forcecage:Plane Shift',
         'K8:Demiplane:Dominate Monster:Feeblemind:Glibness:Power Word Stun',
         'K9:Astral Projection:Foresight:Imprisonment:Power Word Kill:' +
@@ -3104,20 +3069,20 @@ SRD5E.magicRules = function(rules, classes, schools) {
       ];
     } else if(klass == 'Wizard') {
       spells = [
-        'W0:Acid Splash:Blade Ward:Chill Touch:Dancing Lights:Fire Bolt:' +
-        'Light:Mage Hand:Mending:Message:Minor Illusion:Poison Spray:' +
-        'Prestidigitation:Ray Of Frost:Shocking Grasp:True Strike',
-        'W1:Alarm:Burning Hands:Charm Person:Chromatic Orb:Color Spray:' +
+        'W0:Acid Splash:Chill Touch:Dancing Lights:Fire Bolt:Light:Mage Hand:' +
+        'Mending:Message:Minor Illusion:Poison Spray:Prestidigitation:' +
+        'Ray Of Frost:Shocking Grasp:True Strike',
+        'W1:Alarm:Burning Hands:Charm Person:Color Spray:' +
         'Comprehend Languages:Detect Magic:Disguise Self:Expeditious Retreat:' +
         'False Life:Feather Fall:Find Familiar:Floating Disk:Fog Cloud:' +
         'Grease:Hideous Laughter:Identify:Illusory Script:Jump:Longstrider:' +
         'Mage Armor:Magic Missile:Protection From Evil And Good:Shield:' +
         'Silent Image:Sleep:Thunderwave:Unseen Servant',
         "W2:Acid Arrow:Alter Self:Arcane Lock:Arcanist's Magic Aura:" +
-        'Blindness/Deafness:Blur:Cloud Of Daggers:Continual Flame:Darkness:' +
-        'Darkvision:Detect Thoughts:Enlarge/Reduce:Flaming Sphere:' +
-        'Gentle Repose:Gust Of Wind:Hold Person:Invisibility:Knock:Levitate:' +
-        'Locate Object:Magic Mouth:Magic Weapon:Mirror Image:Misty Step:' +
+        'Blindness/Deafness:Blur:Continual Flame:Darkness:Darkvision:' +
+        'Detect Thoughts:Enlarge/Reduce:Flaming Sphere:Gentle Repose:' +
+        'Gust Of Wind:Hold Person:Invisibility:Knock:Levitate:Locate Object:' +
+        'Magic Mouth:Magic Weapon:Mirror Image:Misty Step:' +
         'Ray Of Enfeeblement:Rope Trick:Scorching Ray:See Invisibility:' +
         'Shatter:Spider Climb:Suggestion:Web',
         'W3:Animate Dead:Bestow Curse:Blink:Clairvoyance:Counterspell:' +
@@ -3137,8 +3102,8 @@ SRD5E.magicRules = function(rules, classes, schools) {
         'Dream:Geas:Hold Monster:Legend Lore:Mislead:Modify Memory:Passwall:' +
         'Planar Binding:Scrying:Seeming:Telekinesis:Telepathic Bond:' +
         'Teleportation Circle:Wall Of Force:Wall Of Stone',
-        'W6:Arcane Gate:Chain Lightning:Circle Of Death:Contingency:' +
-        'Create Undead:Disintegrate:Eyebite:Flesh To Stone:Freezing Sphere:' +
+        'W6:Chain Lightning:Circle Of Death:Contingency:Create Undead:' +
+        'Disintegrate:Eyebite:Flesh To Stone:Freezing Sphere:' +
         'Globe Of Invulnerability:Guards And Wards:Instant Summons:' +
         'Irresistible Dance:Magic Jar:Mass Suggestion:Move Earth:' +
         'Programmed Illusion:Sunbeam:True Seeing:Wall Of Ice',

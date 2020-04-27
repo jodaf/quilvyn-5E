@@ -111,6 +111,20 @@ PHB5E.RACES = [
   'Mountain Dwarf', 'Dark Elf', 'Wood Elf', 'Forest Gnome', 'Stout Halfling'
 ];
 PHB5E.SPELLS = {
+  'Arcane Gate':'Conjuration',
+  'Armor Of Agathys':'Abjuration',
+  'Arms Of Hadar':'Conjuration',
+  'Aura Of Life':'Abjuration',
+  'Aura Of Purity':'Abjuration',
+  'Aura Of Vitality':'Evocation',
+  'Banishing Smite':'Abjuration',
+  'Beast Sense':'Divination',
+  'Blade Ward':'Abjuration',
+  'Blinding Smite':'Evocation',
+  'Chromatic Orb':'Evocation',
+  'Circle Of Power':'Abjuration',
+  'Cloud Of Daggers':'Conjuration',
+  'Compelled Duel':'Enchantment',
   'Conjure Barrage':'Conjuration',
   'Conjure Volley':'Conjuration',
   'Cordon Of Arrows':'Transmutation',
@@ -127,7 +141,6 @@ PHB5E.SPELLS = {
   'Hex':'Enchantment',
   'Hunger Of Hadar':'Conjuration',
   'Lightning Arrow':'Transmutation',
-  "Mage's Sword":'Evocation',
   'Phantasmal Force':'Illusion',
   'Power Word Heal':'Evocation',
   'Ray Of Sickness':'Necromancy',
@@ -143,6 +156,29 @@ PHB5E.SPELLS = {
 };
 
 PHB5E.spellsDescriptions = {
+  'Arcane Gate':"R10'/500' Connect portal pair for conc/10 min",
+  'Armor Of Agathys':"Self frosted, +5 HP, 5 HP cold to successful attcker",
+  'Arms Of Hadar':
+    "All in 10' radius take 2d6 HP necrotic (Str half), no reactions until next turn",
+  'Aura Of Life':
+    "Self 30' radius gives resistance to necrotic damage, raise nonhostile 0 HP to 1 HP for conc/10 min",
+  'Aura Of Purity':
+    "Self 30' radius gives resist poison, no disease, Adv conditions for conc/10 min",
+  'Aura Of Vitality':
+    "Self 30' radius heals 2d6 HP designated target 1/rd for conc/1 min",
+  'Banishing Smite':
+    "Self attacks +5d10 HP force and banish to home/demiplane if lt 50 HP for conc/1 min",
+  'Beast Sense':"Self use touched beast's senses for conc/1 hr",
+  'Blade Ward':"Self resist bludgeon, pierce, slash damage for 1 rd",
+  'Blinding Smite':
+    "Self next attack +3d8 HP radiant and blind (Con neg) for conc/1 min",
+  'Chromatic Orb':"R90' 4\" hurled sphere 3d8 HP acid/poison/energy",
+  'Circle Of Power':
+    "Allies in 30' radius from self Adv save vs. magic, neg instead of half for conc/10 min",
+  'Cloud Of Daggers':
+    "R60' Spinning daggers in 5' cu 4d4 HP slashing for conc/1 min",
+  'Compelled Duel':
+    "R30' Target attack only self w/Disadv for conc/1 min (Wis neg)",
   'Conjure Barrage':"60' weapon cone 3d8 HP (Dex half)",
   'Conjure Volley':"R150' 40' radius weapon hail 8d8 HP (Dex half)",
   'Cordon Of Arrows':"Four pieces of ammo attack 30' 1d6 HP (Dex neg) for 8 hr",
@@ -161,7 +197,6 @@ PHB5E.spellsDescriptions = {
   'Hex':"R90' Self hits on target +1d6 HP, Disadv chosen ability for conc/1 hr",
   'Hunger Of Hadar':"R150' 20' void 2d6 HP for conc/1 min",
   'Lightning Arrow':"100' bolt 8d6 HP (Dex half)",
-  "Mage's Sword":"Force weapon 3d10, move 20' for conc/1 min",
   'Phantasmal Force':"R60' target illusion 1d6 HP/rd (Int neg)",
   'Power Word Heal':
     "Touched regains all HP, uncharm, unfright, unparalyze, unstun",
@@ -1185,19 +1220,18 @@ PHB5E.classRules = function(rules, classes) {
       features = [
         // Archfey Patron
         '1:Fey Presence:magic:' +
-          "R10' Creatures charm or fright 1 turn (DC %V Wis neg) 1/short rest",
+          "R10' All creatures charm or fright 1 turn (Wis neg) 1/short rest",
         '6:Misty Escape:magic:' +
           "After damage, teleport 60' and become invisible 1 turn 1/short rest",
-        '10:Beguiling Defenses:save:' +
-          'Immune charm, reflect 1 min (DC %V Wis neg)',
+        '10:Beguiling Defenses:save:Immune charm, reflect 1 min (Wis neg)',
         '14:Dark Delirium:magic:' +
-          "R60' Target charm or fright 1 min, then unaware surroundings (DC %V Wis neg) 1/long rest",
+          "R60' Target charm or fright 1 min, then unaware surroundings (Wis neg) 1/long rest",
         // Great Old One Patron
         "1:Awakened Mind:feature:R30' Telepathic communication",
         '6:Entropic World:combat:' +
-          'Foe Disadv attack, miss gives you attack Adv 1/short rest',
+          'Foe Disadv attack, miss gives you Adv next attack 1/short rest',
         '10:Thought Shield:save:' +
-          'Immune telepathy, resist and reflect psycic damage',
+          'Immune telepathy, resist and reflect psychic damage',
         '14:Create Thrall:magic:Touch charms incapacitated humanoid'
       ];
       hitDie = 8;
@@ -1214,19 +1248,6 @@ PHB5E.classRules = function(rules, classes) {
           'warlockFeatures.Archfey Patron', '?', null
         );
       }
-      rules.defineRule('magicNotes.darkDeliriumFeature',
-        'charismaModifier', '=', '8 + source',
-        'proficiencyBonus', '+', null
-      );
-      rules.defineRule('magicNotes.feyPresenceFeature',
-        'charismaModifier', '=', '8 + source',
-        'proficiencyBonus', '+', null
-      );
-      rules.defineRule('saveNotes.beguilingDefensesFeature',
-        'charismaModifier', '=', '8 + source',
-        'proficiencyBonus', '+', null
-      );
-
       for(var feature in {
         'Awakened Mind':'', 'Create Thrall':'', 'Entropic Shield':'',
         'Thought Shield':''
@@ -1713,11 +1734,11 @@ PHB5E.magicRules = function(rules, classes) {
     var spells;
     if(klass == 'Bard') {
       spells = [
-        'B0:Friends',
+        'B0:Blade Ward:Friends',
         'B1:Dissonant Whispers',
-        'B2:Crown Of Madness:Phantasmal Force',
+        'B2:Cloud Of Daggers:Crown Of Madness:Phantasmal Force',
         'B3:Feign Death',
-        "B7:Mage's Sword",
+        'B7:Arcane Sword',
         'B9:Power Word Heal'
       ];
     } else if(klass == 'Cleric') {
@@ -1727,37 +1748,40 @@ PHB5E.magicRules = function(rules, classes) {
     } else if(klass == 'Druid') {
       spells = [
         'D0:Thorn Whip',
+        'D2:Beast Sense',
         'D3:Feign Death',
         'D4:Grasping Vine',
         'D8:Tsunami'
       ];
     } else if(klass == 'Paladin') {
       spells = [
-        'P1:Searing Smite:Thunderous Smite:Wrathful Smite',
-        "P3:Crusader's Mantle:Elemental Weapon",
-        'P4:Staggering Smite',
-        'P5:Destructive Wave'
+        'P1:Compelled Duel:Searing Smite:Thunderous Smite:Wrathful Smite',
+        "P3:Aura Of Vitality:Blinding Smite:Crusader's Mantle:Elemental Weapon",
+        'P4:Aura Of Life:Aura Of Purity:Staggering Smite',
+        'P5:Banishing Smite:Circle Of Power:Destructive Wave'
       ];
     } else if(klass == 'Ranger') {
       spells = [
         'R1:Ensnaring Strike:Hail Of Thorns',
-        'R2:Cordon Of Arrows',
+        'R2:Beast Sense:Cordon Of Arrows',
         'R3:Conjure Barrage:Lightning Arrow',
         'R4:Grasping Vine',
         'R5:Conjure Volley:Swift Quiver'
       ];
     } else if(klass == 'Sorcerer') {
       spells = [
-        'S0:Friends',
-        'S1:Ray Of Sickness:Witch Bolt',
-        'S2:Crown Of Madness:Phantasmal Force'
+        'S0:Blade Ward:Friends',
+        'S1:Chromatic Orb:Ray Of Sickness:Witch Bolt',
+        'S2:Cloud Of Daggers:Crown Of Madness:Phantasmal Force',
+        'S6:Arcane Gate'
       ];
     } else if(klass == 'Warlock') {
       spells = [
-        'K0:Friends',
-        'K1:Hex:Witch Bolt',
-        'K2:Crown Of Madness',
+        'K0:Blade Ward:Friends',
+        'K1:Armor Of Agathys:Arms Of Hadar:Hex:Witch Bolt',
+        'K2:Cloud Of Daggers:Crown Of Madness',
         'K3:Hunger Of Hadar',
+        'K6:Arcane Gate',
         // Archfey Patron
         'K1:Faerie Fire:Sleep',
         'K2:Calm Emotions:Phantasmal Force',
@@ -1773,11 +1797,12 @@ PHB5E.magicRules = function(rules, classes) {
       ];
     } else if(klass == 'Wizard') {
       spells = [
-        'W0:Friends',
-        'W2:Crown Of Madness:Phantasmal Force',
-        'W1:Ray Of Sickness:Witch Bolt',
+        'W0:Blade Ward:Friends',
+        'W2:Cloud Of Daggers:Crown Of Madness:Phantasmal Force',
+        'W1:Chromatic Orb:Ray Of Sickness:Witch Bolt',
         'W3:Feign Death',
-        "W7:Mage's Sword",
+        'W6:Arcane Gate',
+        'W7:Arcane Sword',
         'W8:Telepathy'
       ];
     } else

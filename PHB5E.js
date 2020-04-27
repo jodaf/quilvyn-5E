@@ -95,7 +95,7 @@ PHB5E.DEITIES = [
   'NH-Tiamat (LE Dragon):Trickery', 'NH-Yondalla (LG Halfling):Life'
 ];
 PHB5E.FEATS = [
-  'Alert', 'Athleete', 'Actor', 'Charger', 'Crossbow Expert',
+  'Alert', 'Athlete', 'Actor', 'Charger', 'Crossbow Expert',
   'Defensive Duelist', 'Dual Wielder', 'Dungeon Delver', 'Durable',
   'Elemental Adept (Acid)', 'Elemental Adept (Cold)', 'Elemental Adept (Fire)',
   'Elemental Adept (Lightning)', 'Elemental Adept (Thunder)',
@@ -157,7 +157,7 @@ PHB5E.SPELLS = {
 
 PHB5E.spellsDescriptions = {
   'Arcane Gate':"R10'/500' Connect portal pair for conc/10 min",
-  'Armor Of Agathys':"Self frosted, +5 HP, 5 HP cold to successful attcker",
+  'Armor Of Agathys':"Self frosted, +5 HP, 5 HP cold to successful attacker",
   'Arms Of Hadar':
     "All in 10' radius take 2d6 HP necrotic (Str half), no reactions until next turn",
   'Aura Of Life':
@@ -235,7 +235,7 @@ PHB5E.backgroundRules = function(rules, backgrounds) {
       proficiencyCount = {'Skill':2, 'Tool':2};
       proficienciesGiven = {
         'Skill':['Deception', 'Sleight Of Hand'],
-        'Tool':['Diguise Kit', 'Forgery Kit']
+        'Tool':['Disguise Kit', 'Forgery Kit']
       };
     } else if(name == 'Criminal') {
       equipment = ['Crowbar', 'Dark Clothes w/Hood', '15 GP'];
@@ -307,7 +307,7 @@ PHB5E.backgroundRules = function(rules, backgrounds) {
         'Fine Clothes', 'Signet Ring', 'Pedigree Scroll', '25 GP'
       ];
       features = [
-        '1:Position Of Priviledge:feature:Treated with respect, deference'
+        '1:Position Of Privilege:feature:Treated with respect, deference'
       ];
       languages = [''];
       proficiencyCount = {'Skill':2, 'Tool':1};
@@ -377,7 +377,7 @@ PHB5E.backgroundRules = function(rules, backgrounds) {
       proficiencyCount = {'Skill':2, 'Tool':2};
       proficienciesGiven = {
         'Skill':['Sleight Of Hand', 'Stealth'],
-        'Tool':['Diguise Kit', "Thieves' Tools"]
+        'Tool':['Disguise Kit', "Thieves' Tools"]
       };
     } else
       continue;
@@ -1109,7 +1109,7 @@ PHB5E.classRules = function(rules, classes) {
         "3:Assassin Proficiencies:skill:Prof Disguise Kit/Poisoner's Kit",
         '3:Assassinate:combat:Adv when foe has not acted, crit on surprise hit',
         '9:Infiltration Expertise:feature:Forge and adopt different identity',
-        '13:Imposter:feature:Unerring mimicry',
+        '13:Impostor:feature:Unerring mimicry',
         '17:Death Strike:combat:Dbl damage on surprise hit (DC %V Con neg)',
         // Arcane Trickster Archetype
         '3:Spellcasting::',
@@ -1162,7 +1162,7 @@ PHB5E.classRules = function(rules, classes) {
 
       for(var feature in {
         'Assassin Proficiencies':'', 'Assassinate':'', 'Death Strike':'',
-        'Imposter':'', 'Infiltration Expertise':''
+        'Impostor':'', 'Infiltration Expertise':''
       }) {
         rules.defineRule('rogueFeatures.' + feature,
           'rogueFeatures.Assassin Archetype', '?', null
@@ -1200,7 +1200,7 @@ PHB5E.classRules = function(rules, classes) {
         '1:Tides Of Chaos:feature:Adv on attack, ability, or save 1/long rest (may cause surge)',
         '6:Bend Luck:magic:' +
           'Spend 2 Sorcery Points to add or subtract 1d4 from target roll',
-        '14:Controlled Chaos:magic:Reroll wild magic surge effect',
+        '14:Controlled Chaos:magic:Re-roll wild magic surge effect',
         '18:Spell Bombardment:magic:Add another die to max die 1/turn'
       ];
       hitDie = 6;
@@ -1312,7 +1312,7 @@ PHB5E.classRules = function(rules, classes) {
           "Stone gives 60' darkvision, +10 speed, Prof Con, or resist energy",
         '10:Shapechanger:magic:<i>Polymorph</i> 1/short rest',
         '14:Master Transmuter:magic:' +
-          "Destroy stone to transmute 5' cu, remove curse, disease, and poision, <i>Raise Dead</i>, or restore youth"
+          "Destroy stone to transmute 5' cu, remove curse, disease, and poison, <i>Raise Dead</i>, or restore youth"
       ];
       hitDie = 6;
 
@@ -1626,7 +1626,7 @@ PHB5E.featRules = function(rules, feats) {
     } else if(feat == 'Mounted Combatant') {
       notes = [
         'combatNotes.mountedCombatantFeature:' +
-          'Adv unmounted foe smaller than mount, redirect attack on mount to sself, mount takes no damage on Dex save, half on fail'
+          'Adv unmounted foe smaller than mount, redirect attack on mount to self, mount takes no damage on Dex save, half on fail'
       ];
     } else if(feat == 'Observant') {
       notes = [
@@ -1651,7 +1651,7 @@ PHB5E.featRules = function(rules, feats) {
       ];
     } else if(feat == 'Savage Attacker') {
       notes = [
-        'combatNotes.savageAttackerFeature:Reroll damage 1/turn'
+        'combatNotes.savageAttackerFeature:Re-roll damage 1/turn'
       ];
     } else if(feat == 'Sentinel') {
       notes = [

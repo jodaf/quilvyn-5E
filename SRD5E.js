@@ -408,7 +408,7 @@ SRD5E.SPELLS = {
   'Sanctuary':'Abjuration',
   'Scorching Ray':'Evocation',
   'Scrying':'Divination',
-  'Secret Chest':'Conjuraion',
+  'Secret Chest':'Conjuration',
   'See Invisibility':'Divination',
   'Seeming':'Illusion',
   'Sending':'Evocation',
@@ -497,7 +497,7 @@ SRD5E.TOOLS = [
   'Bagpipes:Music', 'Drum:Music', 'Dulcimer:Music', 'Flute:Music',
   'Lute:Music', 'Lyre:Music', 'Horn:Music', 'Pan Flute:Music', 'Shawm:Music',
   'Viol:Music',
-  "Navigator's Tools:", "Poisoner's Kit:", "Theives' Tools:",
+  "Navigator's Tools:", "Poisoner's Kit:", "Thieves' Tools:",
   'Vehicle (Land):', 'Vehicle (Water):'
 ];
 SRD5E.SHIELDS = [
@@ -531,12 +531,12 @@ SRD5E.WEAPONS = [
 SRD5E.armorsArmorClassBonuses = {
   'None': null, 'Padded': 1, 'Leather': 1, 'Studded Leather': 2,
   'Hide': 2, 'Chain Shirt': 3, 'Scale Mail': 4, 'Breastplate': 4,
-  'Half Plate': 5, 'Ring Mail': 4, 'Chainmail': 6, 'Splint': 7, 'Plate': 8
+  'Half Plate': 5, 'Ring Mail': 4, 'Chain Mail': 6, 'Splint': 7, 'Plate': 8
 };
 SRD5E.armorsMaxDexBonuses = {
   'None': null, 'Padded': null, 'Leather': null, 'Studded Leather': null,
   'Hide': 2, 'Chain Shirt': 2, 'Scale Mail': 2, 'Breastplate': 2,
-  'Half Plate': 2, 'Ring Mail': 0, 'Chainmail': 0, 'Splint': 0, 'Plate': 0
+  'Half Plate': 2, 'Ring Mail': 0, 'Chain Mail': 0, 'Splint': 0, 'Plate': 0
 };
 SRD5E.draconicBreathTypes = {
   'Black Dragonborn': 'acid',
@@ -565,7 +565,7 @@ SRD5E.spellsDescriptions = {
   'Animal Friendship':
     "R30' Target beast(s) convinced of good intent for 1 dy (Wis neg)",
   'Animal Messenger':
-    "R30' Tiny beast target move 24+ hr to deliver 25-word messsage to person described",
+    "R30' Tiny beast target move 24+ hr to deliver 25-word message to person described",
   'Animal Shapes':
     "R30' Polymorph all targets in range into max CR 4 max lg creature",
   'Animate Dead':
@@ -573,7 +573,7 @@ SRD5E.spellsDescriptions = {
   'Animate Objects':
     "R120' Animate 10 sm/5 md/2 lg/1 hg objects, command w/in 500' for conc/1 min",
   'Antilife Shell':"Self 10' sphere prevents living passage for conc/1 hr",
-  'Antimagic Field':"Self 10' sphere supresses magic for conc/1 hr",
+  'Antimagic Field':"Self 10' sphere suppresses magic for conc/1 hr",
   'Antipathy/Sympathy':
     "R60' Target object repels/attracts specified creatures for 10 dy",
   'Arcane Eye':"R30' See through invisible eye for conc/1 hr",
@@ -668,7 +668,7 @@ SRD5E.spellsDescriptions = {
   'Dimension Door':"R500' Self + 1 other teleport",
   'Disguise Self':"Self appear different body size for 1 hr",
   'Disintegrate':"R60' Target 10d6+40 HP force (Dex neg)",
-  'Dispel Evil And Good':"Self aligned foes Disadv attck for conc/1 min",
+  'Dispel Evil And Good':"Self aligned foes Disadv attack for conc/1 min",
   'Dispel Magic':"R120' End target effects le 3 level, higher DC 10+spell level",
   'Divination':"Receive truthful reply about even w/in 1 wk",
   'Divine Favor':"Self weapon +1d4 radiant HP for conc/1 min",
@@ -725,7 +725,7 @@ SRD5E.spellsDescriptions = {
     "Touched 40K' sq bars teleport and portals, 5d10 HP on transit to chosen type for 1 dy",
   'Forcecage':"R100' 20' barred cube or 10' solid box for 1 hr",
   'Foresight':
-    "Touched immune surprise, Adv attack, ability, save, foes Disadv attck for 8 hr",
+    "Touched immune surprise, Adv attack, ability, save, foes Disadv attack for 8 hr",
   'Freedom Of Movement':"Touched immune impediments for 1 hr",
   'Freezing Sphere':"R300' Objects in 60' radius 10d6 HP (Con half)",
 
@@ -743,7 +743,7 @@ SRD5E.spellsDescriptions = {
   'Grease':"R60' creatures in 10' sq fall (Dex neg) for 1 min",
   'Greater Invisibility':"Touched creature invisible for conc/1 min",
   'Greater Restoration':
-    "Touched creature unexhausted, uncharmed, unpetrified, uncursed, or restored ability or HP",
+    "Touched creature unexhaust, uncharm, unpetrify, uncurse, or restored ability or HP",
   'Guardian Of Faith':
     "R30' Lg spectral guardian 20 HP to hostile creatures (Dex half) for 8 hr/60 HP",
   'Guards And Wards': "Multiple magic effects protect 2500' sq area for 1 dy",
@@ -756,7 +756,7 @@ SRD5E.spellsDescriptions = {
   'Hallucinatory Terrain': "R300' 150' cube terrain illusion (Int(Investigation) disbelieve) for 1 dy",
   'Harm':"R60' Target 14d6 HP (Con half)",
   'Haste':"R30' Target dbl speed, +1 AC, bonus action for conc/1 min",
-  'Heal':"R60' Target heal 70 HP, unblind, undeaf, undiseased",
+  'Heal':"R60' Target heal 70 HP, unblind, undeaf, undisease",
   'Healing Word':"R60' Target 1d4+modifier HP",
   'Heat Metal':"R60' Touching target metal causes 2d8 HP for conc/1 min",
   'Hellish Rebuke':"R60' As a reaction, attacker 2d10 HP (Dex half)",
@@ -790,7 +790,7 @@ SRD5E.spellsDescriptions = {
   'Knock':"R60' Target unlocked, unstuck, or unbarred",
 
   'Legend Lore':"Know info about named person, place, or object",
-  'Lesser Restoration':"Touched creature unblinded, unparalyzed, or unpoisoned",
+  'Lesser Restoration':"Touched creature unblind, unparalyze, or unpoison",
   'Levitate':"R60' Target floats 20' for conc/10 min (Con neg)",
   'Light':"Touched object lights 20' radius for 1 hr (Dex neg)",
   'Lightning Bolt':"100'x5' 8d6 HP (Dex half)",
@@ -813,7 +813,7 @@ SRD5E.spellsDescriptions = {
   'Major Image':"R120' 20' cu sight, sound, touch illusion for conc/10 min",
   'Mass Cure Wounds':"R60' 6 targets in 30' radius regain 3d8+spell mod HP",
   'Mass Heal':
-    "R60' Targets restore 700 HP total, unblind, undeaf, undiseased",
+    "R60' Targets restore 700 HP total, unblind, undeaf, undisease",
   'Mass Healing Word':"R60' 6 targets regain 1d4+spell mod HP",
   'Mass Suggestion':"R60' 12 targets follow suggestion (Wis neg)",
   'Maze':"R60' Target sent to labyrinth (DC 20 Int escapes)",
@@ -825,8 +825,8 @@ SRD5E.spellsDescriptions = {
   'Minor Illusion':
     "R30' Sound of 1 creature or 5' cu image (Investigation disbelieve) for 1 min",
   'Mirage Arcane':"Illusionary terrain for 10 dy",
-  'Mirror Image':"3 duplcates draw attacks (AC 10+DexMod)",
-  'Mislead':"Self invisible, control illusory duplcate for conc/1 hr",
+  'Mirror Image':"3 duplicates draw attacks (AC 10+DexMod)",
+  'Mislead':"Self invisible, control illusory duplicate for conc/1 hr",
   'Misty Step':"Self teleport 30'",
   'Modify Memory':"R30' Change target memory of event in prior dy (Wis neg)",
   'Moonbeam':"5' radius 2d10 HP (Con half) for conc/1 min",
@@ -842,7 +842,7 @@ SRD5E.spellsDescriptions = {
   'Phantom Steed':"R30' Self ride 100'/rd for 1 hr",
   'Planar Ally':"R60' Otherworld creature appears, bargain for service",
   'Planar Binding':
-    "R60; Bind celestial, elemental, fey, or fiend to servicce for 1 dy (Cha neg)",
+    "R60; Bind celestial, elemental, fey, or fiend to service for 1 dy (Cha neg)",
   'Plane Shift':"Target or self + 8 willing move to different plane (Cha neg)",
   'Plant Growth':"R150' Enrich half mi radius for 1 yr or overgrow 100' radius",
   'Poison Spray':"R10' Target ${Math.floor((lvl+7)/6)}d12 HP (Con neg)",
@@ -865,7 +865,7 @@ SRD5E.spellsDescriptions = {
   'Protection From Evil And Good':
     "Touched specified foe type Disadv attack, immune charm, fright, possession",
   'Protection From Poison':
-    "Touched poison neutralized, Adv save vs. poision for 1 hr",
+    "Touched poison neutralized, Adv save vs. poison for 1 hr",
   'Purify Food And Drink':"R10' 5' radius food, drink freed of poison, disease",
 
   'Raise Dead':"Touched 10-day-old corpse restored to life",
@@ -1143,7 +1143,7 @@ SRD5E.classRules = function(rules, classes) {
         '9:Brutal Critical:combat:+%V crit damage dice',
         '11:Relentless Rage:combat:DC 10+ Con to keep 1 HP when brought to 0',
         '15:Persistent Rage:combat:Rage has no time limit',
-        '18:Indominable Might:ability:Use Str instead of roll for Str check',
+        '18:Indomitable Might:ability:Use Str instead of roll for Str check',
         '20:Primal Champion:ability:+4 strength/+4 constitution',
         // Path Of The Berserker
         '3:Frenzy:combat:Bonus attack during rage, exhausted after',
@@ -1598,7 +1598,7 @@ SRD5E.classRules = function(rules, classes) {
         '1:Second Wind:combat:Regain 1d10+%V HP 1/short rest',
         '2:Action Surge:combat:Extra action %V/short rest',
         '5:Extra Attack:combat:%V additional attack(s) per Attack action',
-        '9:Indomitable:save:Reroll failed save %V/long rest',
+        '9:Indomitable:save:Re-roll failed save %V/long rest',
         // Champion Archetype
         '3:Improved Critical:combat:Crit on natural 19',
         '7:Remarkable Athlete:ability:+%V non-proficient Str, Dex, Con checks',
@@ -1623,7 +1623,7 @@ SRD5E.classRules = function(rules, classes) {
         '1:Defense Style:combat:+1 AC in armor',
         '1:Dueling Style:combat:+2 damage with single, one-hand weapon',
         '1:Great Weapon Fighting Style:combat:' +
-          'Reroll damage of 1 or 2 with two-handed weapons',
+          'Re-roll damage of 1 or 2 with two-handed weapons',
         '1:Protection Style:combat:' +
           'Use shield to impose attack Disadv on adjacent foe',
         '1:Two-Weapon Fighting Style:combat:' +
@@ -1711,7 +1711,7 @@ SRD5E.classRules = function(rules, classes) {
           'Move across vertical surfaces and liquids',
         '10:Purity Of Body:save:Immune disease, poison',
         '13:Tongue Of Sun And Moon:feature:Communicate in any language',
-        '14:Diamond Soul:save:Prof all saves, spend 1 Ki to reroll',
+        '14:Diamond Soul:save:Prof all saves, spend 1 Ki to re-roll',
         '15:Monk Timeless Body:feature:' +
           'No debility from aging, need no food or water',
         '18:Empty Body:magic:' +
@@ -1886,7 +1886,7 @@ SRD5E.classRules = function(rules, classes) {
         '2:Defense Style:combat:+1 AC in armor',
         '2:Dueling Style:combat:+2 damage with single, one-hand weapon',
         '2:Great Weapon Fighting Style:combat:' +
-          'Reroll damage of 1 or 2 with two-handed weapons',
+          'Re-roll damage of 1 or 2 with two-handed weapons',
         '2:Protection Style:combat:' +
           'Use shield to impose attack Disadv on adjacent foe'
       ];
@@ -2187,7 +2187,7 @@ SRD5E.classRules = function(rules, classes) {
         '3:Distant Spell:magic:' +
           "Spend 1 Sorcery Point to dbl spell range or touch at 30'",
         '3:Empowered Spell:magic:' +
-          'Spend 1 Sorcery Point to reroll %V spell damage dice',
+          'Spend 1 Sorcery Point to re-roll %V spell damage dice',
         '3:Extended Spell:magic:Spend 1 sorcery point to dbl spell duration',
         '3:Heightened Spell:magic:' +
           'Spend 3 Sorcery Points for target Disadv on spell save',
@@ -3340,7 +3340,7 @@ SRD5E.raceRules = function(rules, languages, races) {
       if(race == 'Rock Gnome') {
         adjustment += '/+1 constitution';
         features.push(
-          "1:Artificier's Lore:skill:" +
+          "1:Artificer's Lore:skill:" +
             'Dbl Prof on magic, alchemical, tech objects History checks',
           "1:Tinker:skill:Prof Tinker's Tools"
         );
@@ -3357,7 +3357,7 @@ SRD5E.raceRules = function(rules, languages, races) {
       adjustment = '+2 dexterity';
       features = [
         '1:Brave:save:Adv vs. fright',
-        '1:Halfling Luck:feature:Reroll 1 on attack/ability/save',
+        '1:Halfling Luck:feature:Re-roll 1 on attack/ability/save',
         '1:Halfling Nimbleness:ability:' +
           'Move through space occupied by larger creature',
         '1:Slow:ability:-5 speed',

@@ -1071,15 +1071,15 @@ PHB5E.classRules = function(rules, classes) {
 
       features = [
         // Assassin Archetype
-        "3:Assassin Proficiencies:feature:Prof Disguise Kit/Poisoner's Kit",
+        "3:Assassin Proficiencies:skill:Prof Disguise Kit/Poisoner's Kit",
         '3:Assassinate:combat:Adv when foe has not acted, crit on surprise hit',
         '9:Infiltration Expertise:feature:Forge and adopt different identity',
         '13:Imposter:feature:Unerring mimicry',
-        '17:Death Strike:combat:Dbl damage on surprise hit (DC %V Dex neg)',
+        '17:Death Strike:combat:Dbl damage on surprise hit (DC %V Con neg)',
         // Arcane Trickster Archetype
         '3:Spellcasting::',
         '3:Mage Hand Legerdemain:magic:' +
-          'Plant, retrieve, pick, disarm via <i>Mage Hand</i>',
+          'Plant, retrieve, pick, disarm via invisible <i>Mage Hand</i>',
         '9:Magical Ambush:magic:Foe Disadv spell save when self hidden',
         '13:Versatile Trickster:magic:' +
           'Distract foe (self Adv attacks) via <i>Mage Hand</i>',
@@ -1087,7 +1087,10 @@ PHB5E.classRules = function(rules, classes) {
           'Foe spell negated, self cast w/in 8 hours (DC %V neg) 1/long rest'
       ];
       hitDie = 8;
-      selectableFeatures = ['3:Arcane Trickster::', '3:Assassin::'];
+      selectableFeatures = [
+        '3:Arcane Trickster Archetype::',
+        '3:Assassin Archetype::'
+      ];
       spellAbility = 'intelligence';
       spellsKnown = [
         'W0:3:3/10:4',
@@ -1111,6 +1114,15 @@ PHB5E.classRules = function(rules, classes) {
       );
       rules.defineRule('spellAttackModifier.Rogue',
         'rogueFeatures.Arcane Trickster Archetype', '?', null
+      );
+      rules.defineRule('proficiencyCount.Tool',
+        'skillNotes.assassinProficienciesFeature', '+=', '2'
+      );
+      rules.defineRule('toolProficiencies.Disguise Kit',
+        'skillNotes.assassinProficienciesFeature', '=', '1'
+      );
+      rules.defineRule("toolProficiencies.Poisoner's Kit",
+        'skillNotes.assassinProficienciesFeature', '=', '1'
       );
 
       for(var feature in {

@@ -17,7 +17,7 @@ Place, Suite 330, Boston, MA 02111-1307 USA.
 
 "use strict";
 
-var SRD5E_VERSION = '1.7.0.7beta';
+var SRD5E_VERSION = '1.7.0.8beta';
 
 /*
  * This module loads the rules from Fifth Edition.  The SRD5E function
@@ -2018,8 +2018,8 @@ SRD5E.classRules = function(rules, classes) {
         '10:Hide In Plain Sight:skill:' +
           '+10 Dex (Stealth) to hide w/prepared camouflage',
         '14:Vanish:skill:Hide as bonus action, untrackable non-magically',
-        '18:Feral Senses:combat:' +
-          "No Disadv vs. invisible foe, 30' awareness of invisible creatures",
+        "18:Feral Senses:skill:30' awareness of invisible creatures",
+        '18:Feral Senses:combat:No Disadv vs. invisible foe',
         '20:Foe Slayer:combat:+%V attack or damage vs. favored enemy'
       ];
       hitDie = 10;
@@ -2123,25 +2123,25 @@ SRD5E.classRules = function(rules, classes) {
         '1:Weapon Proficiency (Simple/Hand Crossbow/Longsword/Rapier/Shortsword)::',
         "1:Tool Proficiency (Thieves' Tools)::",
         "1:Rogue Expertise:skill:Dbl Prof %V skills or thieves' tools",
-        '1:Sneak Attack:combat:+%Vd6 damage on Adv/flanked attacks',
-        "1:Thieves' Cant:skill:Signs and symbols known only by rogues",
+        '1:Sneak Attack:combat:+%Vd6 damage on Adv/shared threat attacks',
+        "1:Thief's Cant:skill:Signs and symbols known only by rogues",
         '2:Cunning Action:combat:Bonus Dash, Disengage, or Hide each turn',
         '5:Uncanny Dodge:combat:Use reaction for half damage',
         '7:Evasion:save:Dex save yields no damage instead of half',
-        '11:Reliable Talent:skill:Min 10 roll on Prof skills',
+        '11:Reliable Talent:ability:Min 10 on Prof ability rolls',
         "14:Blindsense:skill:R10' Hear hidden/invisible creatures",
         '15:Slippery Mind:save:Prof Wis',
         '18:Elusive:combat:Foe attacks never have Adv',
         '20:Stroke Of Luck:ability:Automatic 20 ability check 1/short rest',
         '20:Stroke Of Luck:combat:Turn miss into hit 1/short rest',
         // Thief Archetype
-        '3:Fast Hands:skill:' +
-          'Sleight Of Hand, disarm trap, open lock, Use An Object as bonus action',
-        '3:Second-Story Work:ability:Normal movement when climbing',
+        '3:Fast Hands:combat:' +
+          'Use Cunning Action for Sleight Of Hand, disarm trap, open lock, Use An Object',
+        '3:Second-Story Work:ability:Full speed climb',
         "3:Second-Story Work:skill:+%V' Jump",
         '9:Supreme Sneak:skill:Adv Stealth at half speed',
         '13:Use Magic Device:skill:Ignore restrictions on magic device use',
-        "17:Thief's Reflexes:combat:First round extra turn at init-10"
+        "17:Thief's Reflexes:combat:First round extra turn at -10 Init"
       ];
       hitDie = 8;
       proficiencyCount =
@@ -2157,24 +2157,26 @@ SRD5E.classRules = function(rules, classes) {
                  'Intimidation', 'Investigation', 'Perception', 'Performance',
                  'Persuasion', 'Sleight Of Hand', 'Stealth']
       };
-      selectableFeatures = ['3:Thief::'];
+      selectableFeatures = ['3:Thief Archetype::'];
       spellAbility = null;
       spellsKnown = null;
       spells = null;
       spellSlots = null;
 
       rules.defineRule('combatNotes.sneakAttackFeature',
-        'levels.Rogue', '=', 'Math.floor((source + 7) / 4)'
+        'levels.Rogue', '=', 'Math.floor((source + 1) / 2)'
       );
+      rules.defineRule('featCount', 'rogueFeatBonus', '+', null);
+      rules.defineRule
+        ('rogueFeatBonus', 'levels.Rogue', '=', 'source < 10 ? null : 1');
       rules.defineRule('selectableFeatureCount.Rogue',
         'levels.Rogue', '=', 'source < 3 ? null : 1'
       );
       rules.defineRule('skillNotes.rogueExpertiseFeature',
         'levels.Rogue', '=', 'source < 6 ? 2 : 4'
       );
-      rules.defineRule('skillProficiencies.Wisdom',
-        'skillNotes.slipperyMindFeature', '=', '1'
-      );
+      rules.defineRule
+        ('saveProficiencies.Wisdom', 'saveNotes.slipperyMindFeature', '=', '1');
 
       for(var feature in {
         'Fast Hands':'', 'Second-Story Work':'', 'Supreme Sneak':'',

@@ -2400,8 +2400,8 @@ SRD5E.classRules = function(rules, classes) {
         '1:Weapon Proficiency (Dagger/Dart/Light Crossbow/Quarterstaff/Sling)::',
         '1:Arcane Recovery:magic:Short rest recovers %V spell slots 1/dy',
         '1:Spellcasting::',
-        '18:Spell Mastery:magic:Cast 1 ea 1st, 2nd spell at will',
-        '20:Signature Spell:magic:Cast 2 3rd spells 1/short rest',
+        '18:Spell Mastery:magic:Cast 1 ea W1, W2 at will',
+        '20:Signature Spell:magic:Cast 2 W3 1/short rest',
         // Evocation Tradition
         '2:Evocation Savant:magic:Write evocation spells for half cost',
         '2:Sculpt Spells:magic:' +
@@ -2409,7 +2409,7 @@ SRD5E.classRules = function(rules, classes) {
         '6:Potent Cantrip:magic:Target takes half damage on cantrip save',
         '10:Empowered Evocation:magic:+%V HP evocation spell damage',
         '14:Overchannel:magic:' +
-          'Maximize damage from evocation spell le level 5, take damage 2nd+ time/long rest'
+          'Max damage from evocation spell le level 5, self take damage 2nd+ time/long rest'
       ];
       hitDie = 6;
       proficiencyCount = {'Save':2, 'Skill':3, 'Weapon':5};
@@ -2421,11 +2421,11 @@ SRD5E.classRules = function(rules, classes) {
         'Skill': ['Arcana', 'History', 'Insight', 'Investigation', 'Medicine',
                   'Religion']
       };
-      selectableFeatures = SRD5E.SCHOOLS.map(function(school){return '1:' + school.substring(0, school.indexOf(':')) + ' Tradition::';}),
+      selectableFeatures = ['2:Evocation Tradition::'];
       spellAbility = 'intelligence';
       spellsKnown = [
         'W0:1:3/4:4/10:5',
-        'W:1:6/2:8/3:10/4:12/5:14/6:16/7:18/8:20/9:22/10:24/11:26/12:28/13:30/14:32/15:34/16:36/17:38/18:40/19:42/20:44'
+        'W:1:2/2:3/3:6/4:7/5:9/6:10/7:11/8:12/9:14/10:15/11:16/13:17/15:18/17:19/18:20/19:21/20:22'
       ];
       spells = null;
       spellSlots = [

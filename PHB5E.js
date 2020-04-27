@@ -1266,7 +1266,7 @@ PHB5E.classRules = function(rules, classes) {
         "6:Projected Ward:magic:R30' Use Arcane Ward to protect others",
         '10:Improved Abjuration:magic:' +
           'Add Prof Bonus to abjuration ability checks',
-        '14:Spell Resistance:magic:Adv and resistance to spell damage',
+        '14:Spell Resistance:save:Adv and resistance to spell damage',
         // Conjuration Tradition
         '2:Conjuration Savant:magic:Write conjuration spells for half cost',
         "2:Minor Conjuration:magic:R10' Create 3' cu object for 1 hr",
@@ -1277,19 +1277,19 @@ PHB5E.classRules = function(rules, classes) {
         '14:Durable Summons:magic:Summoned creatures +30 HP',
         // Divination Tradition
         '2:Divination Savant:magic:Write divination spells for half cost',
-        '2:Portent:magic:Replace self, other roll %V/long rest',
+        '2:Portent:magic:Replace self or other roll %V/long rest',
         '6:Expert Divination:magic:' +
           'Regain lower spell slot when cast divination spell',
         '10:The Third Eye:magic:' +
           "60' Darkvision, 60' Ethereal Sight, read any language, or 10' see invisibility",
         // Enchantment Tradition
         '2:Enchantment Savant:magic:Write enchantment spells for half cost',
-        '2:Hypnotic Gaze:magic:Daze adjacent creature (DC %V Wis neg)',
+        '2:Hypnotic Gaze:magic:Daze adjacent creature 1/long rest (Wis neg)',
         '6:Instinctive Charm:magic:' +
-          'Redirect foe attack to closest creature (DC %V Wis neg)',
+          'Redirect self foe attack to closest creature 1/long rest (Wis neg)',
         '10:Split Enchantment:magic:Add second target to charm spell',
         '14:Alter Memories:magic:' +
-          'Target unaware charmed, forget %V hrs (DC %1 Int neg)',
+          'Target unaware charmed, forget %V hrs (Int neg)',
         // Illusion Tradition
         '2:Illusion Savant:magic:Write illusion spells for half cost',
         '2:Improved Minor Illusion:magic:' +
@@ -1304,17 +1304,20 @@ PHB5E.classRules = function(rules, classes) {
         '6:Undead Thralls:magic:' +
           '<i>Animate Dead</i> +1 corpse, +%V HP, +%1 damage',
         '10:Inured To Undeath:save:Resist necrotic, immune max HP reduction',
-        "14:Command Undead:magic:R60' Take control of undead target (DC %V Cha neg (Adv intelligent undead))",
+        "14:Command Undead:magic:R60' Take control of undead target (Cha neg (Adv intelligent undead))",
         // Transmutation Tradition
         '2:Transmutation Savant:magic:Write transmutation spells for half cost',
         "2:Minor Alchemy:magic:Transform 1 cu'/10 min for 1 hr",
         "6:Transmuter's Stone:magic:" +
           "Stone gives 60' darkvision, +10 speed, Prof Con, or resist energy",
-        '10:Shapechanger:magic:<i>Polymorph</i> 1/short rest',
+        '10:Shapechanger:magic:Self <i>Polymorph</i> 1/short rest',
         '14:Master Transmuter:magic:' +
           "Destroy stone to transmute 5' cu, remove curse, disease, and poison, <i>Raise Dead</i>, or restore youth"
       ];
       hitDie = 6;
+      selectableFeatures =
+        SRD5E.SCHOOLS.map(function(school){return '2:' + school.substring(0, school.indexOf(':')) + ' Tradition::';});
+
 
       for(var feature in {
         'Abjuration Savant':'', 'Arcane Ward':'', 'Projected Ward':'',
@@ -1347,8 +1350,9 @@ PHB5E.classRules = function(rules, classes) {
           'wizardFeatures.Divination Tradition', '?', null
         );
       }
-      rules.defineRule
-        ('magicNotes.portentFeature', 'levels.Wizard', 'source < 14 ? 2 : 3');
+      rules.defineRule('magicNotes.portentFeature',
+        'levels.Wizard', '=', 'source < 14 ? 2 : 3'
+      );
 
       for(var feature in {
         'Enchantment Savant':'', 'Hypnotic Gaze':'', 'Instinctive Charm':'',
@@ -1359,19 +1363,7 @@ PHB5E.classRules = function(rules, classes) {
         );
       }
       rules.defineRule('magicNotes.alterMemoriesFeature',
-        'intelligenceModifier', '=', '8 + source',
-        'proficiencyBonus', '+', null
-      );
-      rules.defineRule('magicNotes.alterMemoriesFeature.1',
         'charismaModifier', '=', 'Math.max(source + 1, 1)'
-      );
-      rules.defineRule('magicNotes.hypnoticGazeFeature',
-        'intelligenceModifier', '=', '8 + source',
-        'proficiencyBonus', '+', null
-      );
-      rules.defineRule('magicNotes.instinctiveCharmFeature',
-        'intelligenceModifier', '=', '8 + source',
-        'proficiencyBonus', '+', null
       );
 
       for(var feature in {
@@ -1391,10 +1383,6 @@ PHB5E.classRules = function(rules, classes) {
           'wizardFeatures.Necromancy Tradition', '?', null
         );
       }
-      rules.defineRule('magicNotes.commandUndeadFeature',
-        'intelligenceModifier', '=', '8 + source',
-        'proficiencyBonus', '+', null
-      );
       rules.defineRule
         ('magicNotes.undeadThrallsFeature', 'levels.Wizard', '=', null);
       rules.defineRule

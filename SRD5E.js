@@ -2195,15 +2195,15 @@ SRD5E.classRules = function(rules, classes) {
       features = [
         '1:Weapon Proficiency (Dagger/Dart/Sling/Quarterstaff/Light Crossbow)::',
         '1:Spellcasting::',
-        '2:Font Of Magic:magic:%V Sorcery pts/long rest',
-        '2:Flexible Casting:magic:Convert sorcery pts to/from spell slots',
-        '20:Sorcerous Restoration:magic:Regain 4 sorcery pts/short rest',
+        '2:Font Of Magic:magic:%V Sorcery Points/long rest',
+        '2:Flexible Casting:magic:Convert Sorcery Points to/from spell slots',
+        '20:Sorcerous Restoration:magic:Regain 4 Sorcery Points/short rest',
         // Draconic Bloodline
         '1:Draconic Resilience:combat:+%V HP, unarmored AC %1',
         '6:Elemental Affinity:magic:' +
-          '+%V HP damage with ancestry type, spend 1 sorcery pt for 1 hr resistance',
+          '+%V HP damage with ancestry type, spend 1 Sorcery Point for 1 hr resistance',
         '14:Dragon Wings:ability:Fly at full speed',
-        "18:Draconic Presence:feature:R60' Spend 5 sorcery pts for awe/fear aura for 1 min/conc (DC %V Wis neg)"
+        "18:Draconic Presence:magic:R60' Spend 5 Sorcery Points for awe/fear aura for 1 min/conc (Wis neg)"
       ];
       hitDie = 6;
       proficiencyCount = {'Save':2, 'Skill':2, 'Weapon':5};
@@ -2218,20 +2218,20 @@ SRD5E.classRules = function(rules, classes) {
       selectableFeatures = [
         '1:Draconic Bloodline::',
         '3:Careful Spell:magic:' +
-          'Spend 1 sorcery pt to give %V creatures save on your spell',
+          'Spend 1 Sorcery Point to protect %V creature(s) from your spell',
         '3:Distant Spell:magic:' +
-          "Spend 1 sorcery pt to dbl spell range or touch at 30'",
+          "Spend 1 Sorcery Point to dbl spell range or touch at 30'",
         '3:Empowered Spell:magic:' +
-          'Spend 1 sorcery pt to reroll %V spell damage dice',
+          'Spend 1 Sorcery Point to reroll %V spell damage dice',
         '3:Extended Spell:magic:Spend 1 sorcery point to dbl spell duration',
         '3:Heightened Spell:magic:' +
-          'Spend 3 sorcery pts for target Disadv on spell save',
+          'Spend 3 Sorcery Points for target Disadv on spell save',
         '3:Quickened Spell:magic:' +
-          'Spend 2 sorcery pts to cast spell as bonus action',
+          'Spend 2 Sorcery Points to cast spell as bonus action',
         '3:Subtle Spell:magic:' +
-          'Spend 1 sorcery pt to cast w/out somatic, verbal components',
+          'Spend 1 Sorcery Point to cast w/out somatic, verbal components',
         '3:Twinned Spell:magic:' +
-          'Spend spell level sorcery pts to add second target'
+          'Spend spell level Sorcery Points to add second target'
       ];
       spellAbility = 'charisma';
       spellsKnown = [
@@ -2289,10 +2289,6 @@ SRD5E.classRules = function(rules, classes) {
       rules.defineRule('combatNotes.draconicResilienceFeature.2',
         'armor', '?', 'source == "None"',
         'combatNotes.draconicResilienceFeature.1', '=', null
-      );
-      rules.defineRule('featureNotes.draconicPresenceFeature',
-        'charismaModifier', '=', '8 + source',
-        'proficiencyBonus', '+', null
       );
       rules.defineRule('magicNotes.elementalAffinityFeature',
         'charismaModifier', '=', null

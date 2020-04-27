@@ -1162,11 +1162,11 @@ PHB5E.classRules = function(rules, classes) {
       features = [
         // Wild Magic
         '1:Wild Magic Surge:magic:5% chance of random magic effect',
-        '1:Tides Of Chaos:feature:Adv on attack, ability, or save 1/long rest,may cause surge',
+        '1:Tides Of Chaos:feature:Adv on attack, ability, or save 1/long rest (may cause surge)',
         '6:Bend Luck:magic:' +
-          'Spend 2 sorcery pts to add or subtract 1d4 from target roll',
+          'Spend 2 Sorcery Points to add or subtract 1d4 from target roll',
         '14:Controlled Chaos:magic:Reroll wild magic surge effect',
-        '18:Spell Bombardment:magic:Add another die to maximum damage 1/turn'
+        '18:Spell Bombardment:magic:Add another die to max die 1/turn'
       ];
       hitDie = 6;
       selectableFeatures = ['1:Wild Magic::'];

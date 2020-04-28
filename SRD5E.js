@@ -17,7 +17,7 @@ Place, Suite 330, Boston, MA 02111-1307 USA.
 
 "use strict";
 
-var SRD5E_VERSION = '1.7.0.8beta';
+var SRD5E_VERSION = '1.7.0.9beta';
 
 /*
  * This module loads the rules from Fifth Edition.  The SRD5E function
@@ -2688,6 +2688,33 @@ SRD5E.equipmentRules = function(rules, armors, shields, weapons) {
   );
   rules.defineRule('validationNotes.two-handedWeaponWithShield',
     'shield', '?', 'source != "None"'
+  );
+
+  rules.defineNote
+    ('validationNotes.armorProficiencyAllocation:%1 available vs. %2 allocated');
+  rules.defineRule('validationNotes.armorProficiencyAllocation.1',
+    'proficiencyCount.Armor', '=', null
+  );
+  rules.defineRule('validationNotes.armorProficiencyAllocation.2',
+    '', '=', '0',
+    /^armorProficiencies\./, '+', null
+  );
+  rules.defineRule('validationNotes.armorProficiencyAllocation',
+    'validationNotes.armorProficiencyAllocation.1', '=', '-source',
+    'validationNotes.armorProficiencyAllocation.2', '+', null
+  );
+  rules.defineNote
+    ('validationNotes.weaponProficiencyAllocation:%1 available vs. %2 allocated');
+  rules.defineRule('validationNotes.weaponProficiencyAllocation.1',
+    'proficiencyCount.Weapon', '=', null
+  );
+  rules.defineRule('validationNotes.weaponProficiencyAllocation.2',
+    '', '=', '0',
+    /^weaponProficiencies\./, '+', null
+  );
+  rules.defineRule('validationNotes.weaponProficiencyAllocation',
+    'validationNotes.weaponProficiencyAllocation.1', '=', '-source',
+    'validationNotes.weaponProficiencyAllocation.2', '+', null
   );
 
   for(var i = 0; i < weapons.length; i++) {

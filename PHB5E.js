@@ -260,7 +260,7 @@ PHB5E.backgroundRules = function(rules, backgrounds) {
         'Skill':['Acrobatics', 'Performance'],
         'Tool':['Disguise Kit']
       };
-      proficiencyChoices == {
+      proficiencyChoices = {
         'Tool':['Music']
       };
     } else if(name == 'Folk Hero') {
@@ -295,7 +295,7 @@ PHB5E.backgroundRules = function(rules, backgrounds) {
         'Scroll Case With Notes', 'Winter Blanket', 'Clothes', 'Herbalism Kit',
         '5 GP'
       ];
-      features = ['1:Discovery:feature:Knows rare truth'];
+      features = ['1:Discovery:feature:Knows unique truth'];
       languages = [''];
       proficiencyCount = {'Skill':2, 'Tool':1};
       proficienciesGiven = {
@@ -347,7 +347,7 @@ PHB5E.backgroundRules = function(rules, backgrounds) {
       equipment = [
         'Belaying Pin', "50' Silk Rope", 'Lucky Charm', 'Clothes', '10 GP'
       ];
-      features = ["1:Ship's Passage:feature:Free passage for self/companions"];
+      features = ["1:Ship's Passage:feature:Free passage for self, companions"];
       proficiencyCount = {'Skill':2, 'Tool':2};
       proficienciesGiven = {
         'Skill':['Athletics', 'Perception'],
@@ -772,7 +772,7 @@ PHB5E.classRules = function(rules, classes) {
 
       features = [
         // Battle Master Archetype
-        '3:Maneuvers:combat:Select %V Fighter maneuver features',
+        '3:Maneuvers:combat:Select %V Fighter maneuvers (DC %1)',
         "3:Student Of War:skill:Artisan's Tools Prof",
         '3:Superiority Dice:combat:%Vd%1/short rest',
         '7:Know Your Enemy:combat:' +
@@ -792,30 +792,30 @@ PHB5E.classRules = function(rules, classes) {
         '3:Eldritch Knight Archetype::',
         "3:Commander's Strike:combat:Add Superiority die to delegated attack",
         '3:Disarming Attack:combat:' +
-          'Add Superiority die to damage, foe drops item (DC %V Str neg)',
+          'Add Superiority die to damage, foe drops item (Str neg)',
         '3:Distracting Strike:combat:' +
           'Add Superiority die to damage, ally Adv attack same foe for 1 turn',
         '3:Evasive Footwork:combat:Add Superiority die to AC during move',
         '3:Feinting Attack:combat:' +
           'Adv next attack adjacent foe, add Superiority die to damage',
         '3:Goading Attack:combat:' +
-          'Add Superiority die to damage, foe Disadv attack others for 1 turn (DC %V Wis neg)',
+          'Add Superiority die to damage, foe Disadv attack others for 1 turn (Wis neg)',
         "3:Lunging Attack:combat:+5' melee range, add Superiority die to damage",
         '3:Maneuvering Attack:combat:' +
           'Add Superiority die to damage, ally move half speed w/no OA',
         '3:Menacing Attack:combat:' +
-          'Add Superiority die to damage, foe fright for 1 turn (DC %V Wis neg)',
+          'Add Superiority die to damage, foe fright for 1 turn (Wis neg)',
         '3:Parry:combat:Reduce damage from foe hit by Superiority die + %V',
         '3:Precision Attack:combat:Add Superiority die to attack',
         '3:Pushing Attack:combat:' +
-          "Add Superiority die to damage, foe pushed 15' (DC %V Str neg)",
+          "Add Superiority die to damage, foe pushed 15' (Str neg)",
         '3:Rally:combat:Chosen ally gains Superiority die + %V temp HP',
         '3:Riposte:combat:' +
           'Bonus attack after foe miss, add Superiority die to damage',
         '3:Sweeping Attack:combat:' +
           'After hit, Superiority die damage to second adjacent foe',
         '3:Trip Attack:combat:' +
-          'Add Superiority die to damage, foe knocked prone (DC %V Str neg)'
+          'Add Superiority die to damage, foe knocked prone (Str neg)'
       ];
       spellAbility = 'intelligence';
       spellsKnown = [
@@ -853,26 +853,18 @@ PHB5E.classRules = function(rules, classes) {
         'dexterityModifier', '=', null,
         'strengthModifier', '^', null
       );
-      rules.defineRule('maneuverSaveDC',
-        'fighterFeatures.Battle Master Archetype', '?', null,
-        'proficiencyBonus', '=', '8 + source',
-        'maxDexOrStrMod', '+', null
-      );
-      rules.defineRule
-        ('combatNotes.disarmingAttackFeature', 'maneuverSaveDC', '=', null);
-      rules.defineRule
-        ('combatNotes.goadingAttackFeature', 'maneuverSaveDC', '=', null);
       rules.defineRule('combatNotes.maneuversFeature',
         'fighterFeatures.Battle Master Archetype', '?', null,
         'levels.Fighter', '=',
           'source<7 ? 3 : source<10 ? 5 : source<15 ? 7 : 9'
       );
-      rules.defineRule
-        ('combatNotes.menacingAttackFeature', 'maneuverSaveDC', '=', null);
+      rules.defineRule('combatNotes.maneuversFeature.1',
+        'fighterFeatures.Battle Master Archetype', '?', null,
+        'proficiencyBonus', '=', '8 + source',
+        'maxDexOrStrMod', '+', null
+      );
       rules.defineRule
         ('combatNotes.parryFeature', 'dexterityModifier', '=', null);
-      rules.defineRule
-        ('combatNotes.pushingAttackFeature', 'maneuverSaveDC', '=', null);
       rules.defineRule
         ('combatNotes.rallyFeature', 'charismaModifier', '=', null);
       rules.defineRule('combatNotes.superiorityDiceFeature',
@@ -882,8 +874,6 @@ PHB5E.classRules = function(rules, classes) {
         'fighterFeatures.Superiority Dice', '?', null,
         'levels.Fighter', '=', 'source < 10 ? 8 : source < 18 ? 10 : 12'
       );
-      rules.defineRule
-        ('combatNotes.tripAttackFeature', 'maneuverSaveDC', '=', null);
       rules.defineRule('combatNotes.warMagicFeature',
         'levels.Fighter', '=', 'source < 18 ? "cantrip" : "spell"'
       );
@@ -1423,7 +1413,13 @@ PHB5E.featRules = function(rules, feats) {
     var matchInfo;
     var notes = null;
 
-    if(feat == 'Alert') {
+    if(feat == 'Actor') {
+      notes = [
+        'abilityNotes.actorFeature:+1 Charisma',
+        "skillNotes.actorFeature:Mimic others' speech/sounds, Adv Charisma(Deception/Performance) when impersonating"
+      ];
+      rules.defineRule('charisma', 'abilityNotes.actorFeature', '+', '1');
+    } else if(feat == 'Alert') {
       notes = [
         'combatNotes.alertFeature:+5 Initiative, foes no surprise or hidden Adv'
       ];
@@ -1434,25 +1430,23 @@ PHB5E.featRules = function(rules, feats) {
         "skillNotes.athleteFeature:Long jump, running high jump uses 5' move"
       ];
       rules.defineRule
-        ('abilityBoostCount', 'abilityNotes.athleteFeature', '+', '1');
-    } else if(feat == 'Actor') {
-      notes = [
-        'abilityNotes.actorFeature:+1 Charisma',
-        "skillNotes.actorFeature:Mimic others' speech/sounds, Adv Charisma(Deception/Performance) when impersonating"
-      ];
+        ('abilityBoostCount', 'abilityNotes.athleteFeature', '+=', '1');
     } else if(feat == 'Charger') {
       notes = [
-        "combatNotes.chargerFeature:Bonus attack +5 HP or 10' push after dash"
+        "combatNotes.chargerFeature:Bonus attack +5 HP or 10' push after Dash"
       ];
     } else if(feat == 'Crossbow Expert') {
       notes = [
         'combatNotes.crossbowExpertFeature:' +
-          'Quick load, no Disadv on close shot, bonus hand crossbow shot after one-handed attack'
+          'Quick load, no Disadv on close shot, bonus hand crossbow shot after one-handed attack',
+        'sanityNotes.crossbowExpertFeatWeapons:' +
+          'Implies Hand Crossbow || Heavy Crossbow || Light Crossbow'
       ];
     } else if(feat == 'Defensive Duelist') {
       notes = [
         'combatNotes.defensiveDuelistFeature:' +
-          'React +%V AC when holding finesse weapon'
+          'React +%V AC when holding finesse weapon',
+        'validationNotes.defensiveDuelistFeatAbility:Requires Dexterity >= 13'
       ];
       rules.defineRule
         ('combatNotes.defensiveDuelistFeature', 'proficiencyBonus', '=', null);
@@ -1463,15 +1457,16 @@ PHB5E.featRules = function(rules, feats) {
       ];
     } else if(feat == 'Dungeon Delver') {
       notes = [
-        'abilityNotes.dungeonDelverFeature:Search for traps at full speed',
-        'saveNotes.dungeonDelverFeature:Adv vs. traps',
-        'skillNotes.dungeonDelverFeature:Adv detect secret doors'
+        'saveNotes.dungeonDelverFeature:Adv vs. traps, resistance trap damage',
+        'skillNotes.dungeonDelverFeature:' +
+          'Adv detect secret doors, search for traps at full speed'
       ];
     } else if(feat == 'Durable') {
       notes = [
         'abilityNotes.durableFeature:+1 Constitution',
-        'featureNotes.durableFeature:Min %V/die when regaining HP'
+        'featureNotes.durableFeature:Min %V when regaining HP'
       ];
+      rules.defineRule('constitution', 'abilityNotes.durableFeature', '+', '1');
       rules.defineRule('featureNotes.durableFeature',
         'constitutionModifier', '=', 'Math.max(source * 2, 2)'
       );
@@ -1491,7 +1486,7 @@ PHB5E.featRules = function(rules, feats) {
     } else if(feat == 'Healer') {
       notes = [
         'featureNotes.healerFeature:' +
-          "Stabilize w/healer's kit restores 1 HP, healer's kit heals 1d6+4 HP 1/short rest"
+          "Stabilize via healer's kit restores 1 HP, healer's kit heals 1d6+4 HP 1/short rest"
       ];
     } else if(feat == 'Heavily Armored') {
       notes = [
@@ -1503,9 +1498,10 @@ PHB5E.featRules = function(rules, feats) {
       rules.defineRule('armorProficiencies.Heavy Armor',
         'skillNotes.heavilyArmoredFeature', '=', '1'
       );
+      rules.defineRule
+        ('strength', 'abilityNotes.heavilyArmoredFeature', '+', '1');
       rules.defineRule('validationNotes.heavilyArmoredFeature',
-        'feats.Heavily Armored', '=', '-1',
-        'armorProficiencies.Medium Armor', '+', null
+        'armorProficiencies.Medium Armor', '+', '-1'
       );
     } else if(feat == 'Heavy Armor Master') {
       notes = [
@@ -1515,9 +1511,10 @@ PHB5E.featRules = function(rules, feats) {
         'validationNotes.heavyArmorMasterFeature:' +
           'Requires heavy armor proficiency'
       ];
+      rules.defineRule
+        ('strength', 'abilityNotes.heavyArmorMasterFeature', '+', '1');
       rules.defineRule('validationNotes.heavyArmorMasterFeature',
-        'feats.Heavy Armor Master', '=', '-1',
-        'armorProficiencies.Heavy Armor', '+', null
+        'armorProficiencies.Heavy Armor', '+', '-1'
       );
     } else if(feat == 'Inspiring Leader') {
       notes = [
@@ -1525,19 +1522,28 @@ PHB5E.featRules = function(rules, feats) {
           "R30' 10-min speech give 6 allies %V HP",
         'validationNotes.inspiringLeaderFeatAbility:Requires Charisma >= 13'
       ];
+      rules.defineRule('featureNotes.inspiringLeaderFeature',
+        'level', '=', null,
+        'charismaModifier', '+', null
+      );
     } else if(feat == 'Keen Mind') {
       notes = [
         'abilityNotes.keenMindFeature:+1 Intelligence',
         'featureNotes.keenMindFeature:' +
-          'Know N, hours until sun down/up, things seen/heard prior 30 days'
+          'Know N, hours until sun rise/set, things seen/heard prior 30 days'
       ];
+      rules.defineRule
+        ('intelligence', 'abilityNotes.keenMindFeature', '+', '1');
     } else if(feat == 'Lightly Armored') {
       notes = [
         'abilityNotes.lightlyArmoredFeature:+1 Dexterity or Strength',
-        'skillNotes.lightlyArmoredFeature:Prof Armor (Light)'
+        'combatNotes.lightlyArmoredFeature:Prof Armor (Light)'
       ];
       rules.defineRule
         ('abilityBoostCount', 'abilityNotes.lightlyArmoredFeature', '+=', '1');
+      rules.defineRule('armorProficiencies.Light Armor',
+        'combatNotes.lightlyArmoredFeature', '=', '1'
+      );
     } else if(feat == 'Linguist') {
       notes = [
         'abilityNotes.linguistFeature:+1 Intelligence',
@@ -1548,6 +1554,8 @@ PHB5E.featRules = function(rules, feats) {
         'intelligence', '=', null,
         'proficiencyBonus', '+', null
       );
+      rules.defineRule
+        ('intelligence', 'abilityNotes.linguistFeature', '+', '1');
       rules.defineRule('languageCount', 'skillNotes.linguistFeature', '+', '3');
     } else if(feat == 'Lucky') {
       notes = [
@@ -1557,8 +1565,8 @@ PHB5E.featRules = function(rules, feats) {
     } else if(feat == 'Mage Slayer') {
       notes = [
         'combatNotes.mageSlayerFeature:' +
-          'React to attack caster, foe Disadv concentration',
-        "saveNotes.mageSlayerFeature:Adv vs. spells by foes w/in 5'"
+          'React to attack adjacent caster, foe Disadv concentration',
+        'saveNotes.mageSlayerFeature:Adv vs. spells by adjacent foes'
       ];
     } else if(feat == 'Magic Initiate') {
       notes = [
@@ -1577,39 +1585,52 @@ PHB5E.featRules = function(rules, feats) {
         'maxDexOrStrMod', '=', '8 + source',
         'proficiencyBonus', '+', null
       );
+      rules.defineRule('selectableFeatureCount.Fighter',
+        'combatNotes.martialAdeptFeature', '+=', '2'
+      );
+      // TODO Validation failures
     } else if(feat == 'Medium Armor Master') {
       notes = [
-        'combatNotes.mediumArmorMasterFeature:+1 AC in medium armor',
+        'combatNotes.mediumArmorMasterFeature:+1 AC',
+        'skillNotes.mediumArmorMasterFeature:' +
+          'No Stealth check penalty in medium armor',
         'validationNotes.mediumArmorMasterFeature:' +
           'Requires medium armor proficiency'
       ];
-      var armors = rules.getChoices('armor');
-      var mediumArmors = '';
-      for(var armor in armors) {
-        if(armors[armor].indexOf('M') >= 0)
-          mediumArmors += armor;
-      }
       rules.defineRule
-        ('armorClass', 'classNotes.mediumArmorMasterFeature.1', '+', null);
-      rules.defineRule('combatNotes.mediumArmorMasterFeature.1',
+        ('armorClass', 'combatNotes.mediumArmorMasterFeature', '+', '1');
+      rules.defineRule('combatNotes.mediumArmorMasterFeature',
         'dexterity', '?', 'source >= 16',
-        'armor', '=', '"' + mediumArmors + '".indexOf(source) >= 0 ? 1 : null'
+        'armor', '?', 'SRD5E.ARMORS.findIndex(x => x.match(new RegExp(source + ":.*Me"))) >= 0 ? 1 : null'
+      );
+      rules.defineRule('validationNotes.mediumArmorMasterFeature',
+        'armorProficiencies.Medium Armor', '+', '-1'
       );
     } else if(feat == 'Mobile') {
       notes = [
         "abilityNotes.mobileFeature:+10' speed",
-        'combatNotes.mobileFeature:Dash at full speed, no OA from targeted foe'
+        'combatNotes.mobileFeature:' +
+          'Dash at full speed in difficult terrain, no OA from targeted foe'
       ];
-      rules.defineRule('speed', 'abilityNotes.modileFeature', '+', '10');
+      rules.defineRule('speed', 'abilityNotes.mobileFeature', '+', '10');
     } else if(feat == 'Moderately Armored') {
       notes = [
         'abilityNotes.moderatelyArmoredFeature:+1 Dexterity or Strength',
-        'skillNotes.moderatelyArmoredFeature:Prof Armor (Heavy)',
-        'validationNotes.moderateltyArmoredFeature:' +
+        'combatNotes.moderatelyArmoredFeature:Prof Armor (Medium/Shield)',
+        'validationNotes.moderatelyArmoredFeature:' +
           'Requires light armor proficiency'
       ];
       rules.defineRule('abilityBoostCount',
         'abilityNotes.moderatelyArmoredFeature', '+=', '1'
+      );
+      rules.defineRule('armorProficiencies.Medium Armor',
+        'combatNotes.moderatelyArmoredFeature', '=', '1'
+      );
+      rules.defineRule('armorProficiencies.Shield',
+        'combatNotes.moderatelyArmoredFeature', '=', '1'
+      );
+      rules.defineRule('validationNotes.moderatelyArmoredFeature',
+        'armorProficiencies.Light Armor', '+', '-1'
       );
     } else if(feat == 'Mounted Combatant') {
       notes = [
@@ -1627,15 +1648,20 @@ PHB5E.featRules = function(rules, feats) {
     } else if(feat == 'Polearm Master') {
       notes = [
         'combatNotes.polearmMasterFeature:' +
-          'Bonus attack w/polearm but 1d4 HP, OA when foe enters reach'
+          'Bonus attack polearm butt (1d4 HP), OA when foe enters reach'
       ];
     } else if(feat == 'Resilient') {
       notes = [
-        'abilityNotes.resilientFeature:+1 and prof saves in chosen ability'
+        'abilityNotes.resilientFeature:+1 chosen ability',
+        'saveNotes.resilientFeature:Prof saves in chosen ability'
       ];
+      rules.defineRule
+        ('abilityBoostCount', 'abilityNotes.resilientFeature', '+=', '1');
     } else if(feat == 'Ritual Caster') {
       notes = [
-        'magicNotes.ritualCasterFeature:Cast spells from ritual book'
+        'magicNotes.ritualCasterFeature:Cast spells from ritual book',
+        'validationNotes.ritualCasterFeatAbility:' +
+          'Requires Intelligence >= 13 || Wisdom >= 13'
       ];
     } else if(feat == 'Savage Attacker') {
       notes = [
@@ -1644,7 +1670,7 @@ PHB5E.featRules = function(rules, feats) {
     } else if(feat == 'Sentinel') {
       notes = [
         'combatNotes.sentinelFeature:' +
-          'Foe stuck by OA speed 0, OA on foe Disengage, react attack when foe targets other'
+          'Foe stuck by OA speed 0, OA on foe Disengage, react attack when adjacent foe targets other'
       ];
     } else if(feat == 'Sharpshooter') {
       notes = [
@@ -1654,6 +1680,7 @@ PHB5E.featRules = function(rules, feats) {
     } else if(feat == 'Shield Master') {
       notes = [
         "combatNotes.shieldMasterFeature:Bonus 5' Push",
+        'sanityNotes.shieldMasterFeatShield:Implies Shield != "None"',
         'saveNotes.shieldMasterFeature:' +
           '+2 Dex vs. targeted spell, save for no damage instead of half'
       ];
@@ -1661,16 +1688,20 @@ PHB5E.featRules = function(rules, feats) {
       notes = [
         'skillNotes.skilledFeature:Prof 3 skills or tools'
       ];
+      // TODO ... or tools
+      rules.defineRule
+        ('proficiencyCount.Skill', 'skillNotes.skilledFeature', '+=', '3');
     } else if(feat == 'Skulker') {
       notes = [
         'skillNotes.skulkerFeature:' +
-          'Hide when lightly obscured, no Disadv on Perception in dim light',
+          'Hide when lightly obscured, ranged miss does not reveal position, no Disadv on Perception in dim light',
         'validationNotes.skulkerFeatAbility:Requires Dexterity >= 13'
       ];
     } else if(feat == 'Spell Sniper') {
       notes = [
         'magicNotes.spellSniperFeature:' +
-          'Dbl attack spell range, ignore 3/4 cover, additional attack cantrip'
+          'Dbl attack spell range, ignore 3/4 cover, additional attack cantrip',
+        'validationNotes.spellSniperFeatCasterLevel:Requires Caster Level >= 1'
       ];
     } else if(feat == 'Tavern Brawler') {
       notes = [
@@ -1696,10 +1727,14 @@ PHB5E.featRules = function(rules, feats) {
     } else if(feat == 'Weapon Master') {
       notes = [
         'abilityNotes.weaponMasterFeature:+1 Dexterity or Strength',
-        'skillNotes.weaponMasterFeature:Prof 4 weapons'
+        'combatNotes.weaponMasterFeature:Prof 4 weapons'
       ];
       rules.defineRule
         ('abilityBoostCount', 'abilityNotes.weaponMasterFeature', '+=', '1');
+      rules.defineRule('proficiencyCount.Weapon',
+        'combatNotes.weaponMasterFeature', '+=', '4'
+      );
+      // TODO How can user specify the choice of prof weapons?
     } else {
       continue;
     }

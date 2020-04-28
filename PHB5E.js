@@ -1588,7 +1588,22 @@ PHB5E.featRules = function(rules, feats) {
       rules.defineRule('selectableFeatureCount.Fighter',
         'combatNotes.martialAdeptFeature', '+=', '2'
       );
-      // TODO Validation failures
+      for(var feature in {
+        "Commander's Strike":'', 'Disarming Attack':'', 'Distracting Strike':'',
+        'Evasive Footwork':'', 'Feinting Attack':'', 'Goading Attack':'',
+        'Lunging Attack':'', 'Maneuvering Attack':'', 'Menacing Attack':'',
+        'Parry':'', 'Precision Attack':'', 'Pushing Attack':'', 'Rally':'',
+        'Riposte':'', 'Sweeping Attack':'', 'Trip Attack':''
+      }) {
+        rules.defineRule(
+          'validationNotes.fighter' + feature.replace(/ /g, '') + 'SelectableFeatureFeatures',
+          'features.Martial Adept', '^', '0'
+        );
+        rules.defineRule(
+          'validationNotes.fighter' + feature.replace(/ /g, '') + 'SelectableFeatureLevels',
+          'features.Martial Adept', '^', '0'
+        );
+      }
     } else if(feat == 'Medium Armor Master') {
       notes = [
         'combatNotes.mediumArmorMasterFeature:+1 AC',

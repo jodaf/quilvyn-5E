@@ -17,7 +17,7 @@ Place, Suite 330, Boston, MA 02111-1307 USA.
 
 "use strict";
 
-var SRD5E_VERSION = '1.7.0.9beta';
+var SRD5E_VERSION = '1.7.0.10beta';
 
 /*
  * This module loads the rules from Fifth Edition.  The SRD5E function
@@ -511,7 +511,7 @@ SRD5E.SKILLS = [
   'Performance:cha', 'Persuasion:cha', 'Religion:int', 'Sleight Of Hand:dex',
   'Stealth:dex', 'Survival:wis'
 ];
-SRD5E.VIEWERS = ['Compact', 'Standard', 'Vertical'];
+SRD5E.VIEWERS = ['Collected Notes', ,'Compact', 'Standard'];
 SRD5E.WEAPONS = [
   'Battleaxe:d10 Ma Ve', 'Blowgun:d1r25 Ma', 'Club:d4 Si Li',
   'Dagger:d4 Si Li Fi', 'Dart:d4r20 Si Fi', 'Flail:d8 Ma 1h',
@@ -2545,18 +2545,19 @@ SRD5E.createViewers = function(rules, viewers) {
             {name: 'Notes', within: 'Section 2'},
             {name: 'Hidden Notes', within: 'Section 2', format: '%V'}
       );
-    } else if(name == 'Standard' || name == 'Vertical') {
-      var innerSep = name == 'Standard' ? null : '\n';
-      var listSep = name == 'Standard' ? '; ' : '\n';
+    } else if(name == 'Collected Notes' || name == 'Standard') {
+      var innerSep = null;
+      var listSep = '; ';
       var noteSep = listSep;
       noteSep = '\n';
-      var outerSep = name == 'Standard' ? '\n' : null;
+      var outerSep = name == '\n';
       viewer.addElements(
         {name: '_top', borders: 1, separator: '\n'},
         {name: 'Header', within: '_top'},
           {name: 'Identity', within: 'Header', separator: ''},
             {name: 'Name', within: 'Identity', format: '<b>%V</b>'},
-            {name: 'Race', within: 'Identity', format: ' -- <b>%V</b>'},
+            {name: 'Gender', within: 'Identity', format: ' -- <b>%V</b>'},
+            {name: 'Race', within: 'Identity', format: ' <b>%V</b>'},
             {name: 'Levels', within: 'Identity', format: ' <b>%V</b>',
              separator: '/'},
           {name: 'Image Url', within: 'Header', format: '<img src="%V"/>'},
@@ -2573,7 +2574,6 @@ SRD5E.createViewers = function(rules, viewers) {
             {name: 'Alignment', within: 'Description'},
             {name: 'Deity', within: 'Description'},
             {name: 'Origin', within: 'Description'},
-            {name: 'Gender', within: 'Description'},
             {name: 'Player', within: 'Description'},
           {name: 'AbilityStats', within: 'Attributes', separator: innerSep},
             {name: 'ExperienceInfo', within: 'AbilityStats', separator: ''},
@@ -2586,7 +2586,13 @@ SRD5E.createViewers = function(rules, viewers) {
               {name: 'Carry', within: 'LoadInfo',
                format: '<b>Carry/Lift:</b> %V'},
               {name: 'Lift', within: 'LoadInfo', format: '/%V'},
-          {name: 'Ability Notes', within: 'Attributes', separator: noteSep},
+      );
+      if(name != 'Collected Notes') {
+        viewer.addElements(
+          {name: 'Ability Notes', within: 'Attributes', separator: noteSep}
+        );
+      }
+      viewer.addElements(
         {name: 'FeaturesAndSkills', within: '_top', separator: outerSep,
          format: '<b>Features/Skills</b><br/>%V'},
           {name: 'Proficiency Bonus', within: 'FeaturesAndSkills'},
@@ -2597,14 +2603,37 @@ SRD5E.createViewers = function(rules, viewers) {
               {name: 'Selectable Feature Count', within: 'FeatStats',
                separator: listSep},
             {name: 'FeatLists', within: 'FeaturePart', separator: innerSep},
-              {name: 'Feats', within: 'FeatLists', separator: listSep},
-            {name: 'Feature Notes', within: 'FeaturePart', separator: noteSep},
+              {name: 'Feats', within: 'FeatLists', separator: listSep}
+      );
+      if(name != 'Collected Notes') {
+        viewer.addElements(
+            {name: 'Feature Notes', within: 'FeaturePart', separator: noteSep}
+        );
+      } else {
+        viewer.addElements(
+          {name: 'AllNotes', within: 'FeaturePart', separator: '\n', columns: "1L"},
+            {name: 'Ability Notes', within: 'AllNotes', separator: null, columns: "1L", format: "%V"},
+            {name: 'Feature Notes', within: 'AllNotes', separator: null, columns: "1L", format: "%V"},
+            {name: 'Skill Notes', within: 'AllNotes', separator: null, columns: "1L", format: "%V"},
+            {name: 'Combat Notes', within: 'AllNotes', separator: null, columns: "1L", format: "%V"},
+            {name: 'Save Notes', within: 'AllNotes', separator: null, columns: "1L", format: "%V"},
+            {name: 'Magic Notes', within: 'AllNotes', separator: null, columns: "1L", format: "%V"}
+        );
+      }
+      viewer.addElements(
           {name: 'SkillPart', within: 'FeaturesAndSkills', separator: '\n'},
             {name: 'Skill Proficiencies', within: 'SkillPart', separator: listSep},
             {name: 'Skills', within: 'SkillPart', columns: '3LE', separator: null},
             {name: 'Skill Notes', within: 'SkillPart', separator: noteSep},
           {name: 'Tool Proficiencies', within: 'FeaturesAndSkills', separator: listSep},
           {name: 'Tools', within: 'FeaturesAndSkills', separator: listSep},
+      );
+      if(name != 'Collected Notes') {
+        viewer.addElements(
+            {name: 'Skill Notes', within: 'SkillPart', separator:noteSep}
+        );
+      }
+      viewer.addElements(
           {name: 'LanguagePart', within: 'FeaturesAndSkills', separator: '\n'},
             {name: 'LanguageStats', within: 'LanguagePart', separator:innerSep},
               {name: 'Language Count', within: 'LanguageStats'},
@@ -2620,13 +2649,28 @@ SRD5E.createViewers = function(rules, viewers) {
             {name: 'Armor Proficiencies', within: 'CombatPart', separator: listSep},
             {name: 'Shield Proficiencies', within: 'CombatPart', separator: listSep},
             {name: 'Weapon Proficiencies', within: 'CombatPart', separator: listSep},
+              {name: 'AttackInfo', within: 'CombatStats', separator: ''},
+                {name: 'Base Attack', within: 'AttackInfo',
+                 format: '<b>Base/Melee/Ranged Attack</b>: %V'},
+                {name: 'Melee Attack', within: 'AttackInfo', format: '/%V'},
+                {name: 'Ranged Attack', within: 'AttackInfo', format: '/%V'},
+            {name: 'Proficiencies', within: 'CombatPart', separator: innerSep},
+              {name: 'Armor Proficiency', within: 'Proficiencies'},
+              {name: 'Shield Proficiency', within: 'Proficiencies'},
+              {name: 'Weapon Proficiency', within: 'Proficiencies'},
             {name: 'Gear', within: 'CombatPart', separator: innerSep},
               {name: 'Armor', within: 'Gear'},
               {name: 'Shield', within: 'Gear'},
               {name: 'Weapons', within: 'Gear', separator: listSep},
             {name: 'Turning', within: 'CombatPart', separator: innerSep},
-              {name: 'Turn Undead', within: 'Turning', separator: listSep},
-            {name: 'Combat Notes', within: 'CombatPart', separator: noteSep},
+              {name: 'Turn Undead', within: 'Turning', separator: listSep}
+      );
+      if(name != 'Collected Notes') {
+        viewer.addElements(
+            {name: 'Combat Notes', within: 'CombatPart', separator: noteSep}
+        );
+      }
+      viewer.addElements(
           {name: 'SavePart', within: 'Combat', separator: '\n'},
             {name: 'Save Proficiencies', within: 'SavePart', separator: listSep},
             {name: 'SaveAndResistance', within: 'SavePart', separator:innerSep},
@@ -2634,8 +2678,14 @@ SRD5E.createViewers = function(rules, viewers) {
                separator: innerSep},
               {name: 'Save', within: 'SaveAndResistance', separator: listSep},
               {name: 'Resistance', within: 'SaveAndResistance',
-               separator: listSep},
-            {name: 'Save Notes', within: 'SavePart', separator: noteSep},
+               separator: listSep}
+      );
+      if(name != 'Collected Notes') {
+        viewer.addElements(
+            {name: 'Save Notes', within: 'SavePart', separator: noteSep}
+        );
+      }
+      viewer.addElements(
         {name: 'Magic', within: '_top', separator: outerSep,
          format: '<b>Magic</b><br/>%V'},
           {name: 'SpellPart', within: 'Magic', separator: '\n'},
@@ -2646,8 +2696,14 @@ SRD5E.createViewers = function(rules, viewers) {
                format: '<b>Attack</b>: %V', separator: listSep},
               {name: 'Spell Difficulty Class', within: 'SpellStats',
                format: '<b>Spell DC</b>: %V', separator: listSep},
-          {name: 'Spells', within: 'Magic', columns: '1L', separator: null},
-          {name: 'Magic Notes', within: 'Magic', separator: noteSep},
+          {name: 'Spells', within: 'Magic', columns: '1L', separator: null}
+      );
+      if(name != 'Collected Notes') {
+        viewer.addElements(
+          {name: 'Magic Notes', within: 'Magic', separator: noteSep}
+        );
+      }
+      viewer.addElements(
         {name: 'Notes Area', within: '_top', separator: outerSep,
          format: '<b>Notes</b><br/>%V'},
           {name: 'NotesPart', within: 'Notes Area', separator: '\n'},
@@ -3556,7 +3612,7 @@ SRD5E.randomName = function(race) {
 
   if(race == null)
     race = 'Human';
-  else if(race == 'Half Elf')
+  else if(race == 'Half-Elf')
     race = QuilvynUtils.random(0, 99) < 50 ? 'Elf' : 'Human';
   else if(race.match(/Dwarf/))
     race = 'Dwarf';
@@ -3639,17 +3695,17 @@ SRD5E.initialEditorElements = function() {
     ['levels', 'Levels', 'bag', 'levels'],
     ['imageUrl', 'Image URL', 'text', [20]],
     ['background', 'Background', 'select-one', 'backgrounds'],
-    ['strength', 'Strength', 'select-one', abilityChoices],
+    ['strength', 'Str/Boost', 'select-one', abilityChoices],
     ['strengthAdjust', '', 'text', [3]],
-    ['intelligence', 'Intelligence', 'select-one', abilityChoices],
+    ['intelligence', 'Int/Boost', 'select-one', abilityChoices],
     ['intelligenceAdjust', '', 'text', [3]],
-    ['wisdom', 'Wisdom', 'select-one', abilityChoices],
+    ['wisdom', 'Wis/Boost', 'select-one', abilityChoices],
     ['wisdomAdjust', '', 'text', [3]],
-    ['dexterity', 'Dexterity', 'select-one', abilityChoices],
+    ['dexterity', 'Dex/Boost', 'select-one', abilityChoices],
     ['dexterityAdjust', '', 'text', [3]],
-    ['constitution', 'Constitution', 'select-one', abilityChoices],
+    ['constitution', 'Con/Boost', 'select-one', abilityChoices],
     ['constitutionAdjust', '', 'text', [3]],
-    ['charisma', 'Charisma', 'select-one', abilityChoices],
+    ['charisma', 'Cha/Boost', 'select-one', abilityChoices],
     ['charismaAdjust', '', 'text', [3]],
     ['player', 'Player', 'text', [20]],
     ['alignment', 'Alignment', 'select-one', 'alignments'],
@@ -4173,34 +4229,20 @@ SRD5E.ruleNotes = function() {
     '<p>\n' +
     '<ul>\n' +
     '  <li>\n' +
-    '    Although they have a range increment, the weapons Club, Dagger,\n' +
-    '    Light Hammer, Shortspear, Spear, and Trident are all considered\n' +
-    '    melee weapons.  Substitute the ranged attack attribute for the\n' +
-    '    melee attack attribute given on the character sheet when any of\n' +
-    '    these is thrown.\n' +
+    '    The Expertise features of bards and rogues are renamed Bard\n' +
+    '    Expertise and Rogue Expertise to distinguish the two.\n' +
     '  </li><li>\n' +
-    '    The armor class of characters with the Dodge feat includes a +1\n' +
-    '    bonus that applies only to one foe at a time.\n' +
+    '    To allow feats to be taken instead of Ability Score Improvements,\n' +
+    '    the latter are presented as feats named Ability Boost, Ability\n' +
+    '    Boost2, Ability Boost3, etc. In the editor, text boxes next to\n' +
+    '    each of the six basic attributes are used to enter the number of\n' +
+    '    improvements to each.\n' +
     '  </li><li>\n' +
-    '    A few feats have been renamed to emphasize the relationship\n' +
-    '    between similar feats: "Shield Proficiency" and "Tower Shield\n' +
-    '    Proficiency" to "Shield Proficiency (Heavy)" and "Shield\n' +
-    '    Proficiency (Tower)"; "Simple Weapon Proficiency" to "Weapon\n' +
-    '    Proficiency (Simple)"; "Exotic Weapon Proficiency" and "Martial\n' +
-    '    Weapon Proficiency" to "Weapon Proficiency" (a base feat that\n' +
-    '    should be used to define weapon-specific subfeats).\n' +
+    '    Quilvyn presents sub-race choices (e.g., Lightfoot vs. Stout\n' +
+    '    Halfling) as separate races in the editor Race menu.\n' +
     '  </li><li>\n' +
-    '    The distinction between feats and selectable features is\n' +
-    '    arbitrary.  Selectable features could be treated as feats\n' +
-    '    restricted to specific classes; however, doing so would\n' +
-    '    significantly clutter up the feat selection list.\n' +
-    '  </li><li>\n' +
-    '    Monk bonus feats are instead treated as selectable features,\n' +
-    '    because the selections are so restricted and because monks do not\n' +
-    '    need to meet the normal requirements for the feats.\n' +
-    '  </li><li>\n' +
-    '    Use the animal companion editing fields to enter the creature\n' +
-    '    types and names of Paladin mounts and Blackguard fiendish servants.\n'+
+    '    Quilvyn includes spells granted by individual warlock patrons in\n' +
+    '    the warlock spell list.\n' +
     '  </li>\n' +
     '</ul>\n' +
     '</p>\n' +
@@ -4209,30 +4251,8 @@ SRD5E.ruleNotes = function() {
     '<p>\n' +
     '<ul>\n' +
     '  <li>\n' +
-    '    Racial favored class is not reported.\n' +
-    '  </li><li>\n' +
-    '    You can only select the feats Extra Turning, Spell Mastery,\n' +
-    '    and Toughness once.  Multiple selections of these feats can be\n' +
-    '    handled by defining custom feats (e.g., Improved Toughness).\n' +
-    '  </li><li>\n' +
-    '    Quilvyn provides no place other than the notes section to enter\n' +
-    '    mundane possessions like lanterns and rope. The same goes for\n' +
-    '    physical description.\n' +
-    '  </li><li>\n' +
-    '    Quilvyn presently defines no way to add additional types of armor\n' +
-    '    because of all the extra information that would need to be\n' +
-    '    specified&#151;arcane spell failure percentage, AC bonus, max\n' +
-    '    dexterity bonus, skill check penalty, etc.\n' +
-    '  </li><li>\n' +
-    '    Quilvyn has problems dealing with attributes containing an\n' +
-    '    uncapitalized word.  This is why, e.g., Quilvyn defines the skills\n' +
-    '    "Sleight Of Hand" and "Knowledge (Arcana)" instead of "Sleight of\n' +
-    '    Hand" and "Knowledge (arcana)".  There are other occasions when\n' +
-    '    Quilvyn is picky about case; when defining your own attributes,\n' +
-    '    it\'s safest to follow the conventions Quilvyn uses.\n' +
-    '  </li><li>\n' +
-    '    The customRule interface is not very intuitive, making it more\n' +
-    '    confusing to add new rules than it should be.\n' +
+    '    Quilvyn does not generate background traits, ideals, bonds, flaws,\n' +
+    '    or equipment. These items can be entered in the Notes section.\n' +
     '  </li>\n' +
     '</ul>\n' +
     '</p>\n' +
@@ -4241,18 +4261,9 @@ SRD5E.ruleNotes = function() {
     '<p>\n' +
     '<ul>\n' +
     '  <li>\n' +
-    '    Quilvyn adds the dexterity modifier to attack throws for all\n' +
-    '    weapons of characters with the Weapon Finesse feat, not just\n' +
-    '    light weapons.\n' +
-    '  </li><li>\n' +
-    '    When an character ability score is modified, Quilvyn recalculates\n' +
-    '    attributes based on that ability from scratch.  For example,\n' +
-    '    bumping intelligence when a character reaches fourth level causes\n' +
-    '    Quilvyn to recompute the number of skill points awarded at first\n' +
-    '    level.\n' +
-    '  </li><li>\n' +
-    '    Multi-class characters get quadruple spell points for the first\n' +
-    '    level in each class, instead of just the first class.\n' +
+    '    Quilvyn does not test multiclass ability prerequisites, and Quilvyn\n'+
+    '    gives multiclass characters the complete set of proficiencies for\n' +
+    '    each class.\n' +
     '  </li>\n' +
     '</ul>\n' +
     '</p>\n';
@@ -4334,20 +4345,15 @@ SRD5E.defineBackground = function(
  * A convenience function that adds #name# to the list of valid classes in
  * #rules#.  Characters of class #name# roll #hitDice# ([Nd]S, where N is the
  * number of dice and S the number of sides) more hit points at each level.
- * All other parameters are optional.  #skillPoints# is the number of skill
- * points a character of the class receives each level; #baseAttackBonus#,
- * #saveFortitudeBonus#, #saveReflexBonus# and #saveWillBonus# are JavaScript
- * expressions that compute the attack and saving throw bonuses the character
- * accumulates each class level; #armorProficiencyLevel#,
- * #shieldProficiencyLevel# and #weaponProficiencyLevel# indicate any
- * proficiency in these categories that characters of the class gain;
- * #classSkills# is an array of skills that are class skills (as opposed to
- * cross-class) for the class, #features# an array of level:feature name pairs
- * indicating features that the class acquires when advancing levels,
- * #spellsKnown# an array of information about the type, number, and level of
- * spells known at each class level, #spellSlots# an array of information
- * about the type, number, and level of spells castable per day at each class
- * level, and #spellAbility# the ability that pertains to this class' spells.
+ * All other parameters are optional. #features# and #selectableFeatures# are
+ * arrays of level:feature:section:note collections indicating features that
+ * the class acquires when advancing levels; #proficiencyCount#,
+ * #proficienciesGiven# and #proficiencyChoices# dictionaries indicating how
+ * many and which proficiencies the class is granted; #spellAbility# the
+ * abiity that pertains to this class' spells; #spellsKnown# and #spellSlots#
+ * arrays of level:count pairs indicating how many spells are acquired at each
+ * level, and #spells# a dictionary of spells that are granted by specified
+ * class features.
  */
 SRD5E.defineClass = function(
   rules, name, hitDice, features, selectableFeatures, proficiencyCount,

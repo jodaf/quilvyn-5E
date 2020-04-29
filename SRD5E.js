@@ -2624,7 +2624,6 @@ SRD5E.createViewers = function(rules, viewers) {
           {name: 'SkillPart', within: 'FeaturesAndSkills', separator: '\n'},
             {name: 'Skill Proficiencies', within: 'SkillPart', separator: listSep},
             {name: 'Skills', within: 'SkillPart', columns: '3LE', separator: null},
-            {name: 'Skill Notes', within: 'SkillPart', separator: noteSep},
           {name: 'Tool Proficiencies', within: 'FeaturesAndSkills', separator: listSep},
           {name: 'Tools', within: 'FeaturesAndSkills', separator: listSep},
       );

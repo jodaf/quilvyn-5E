@@ -2520,10 +2520,7 @@ SRD5E.createViewers = function(rules, viewers) {
             {name: 'Armor Class', within: 'Section 1', format: '<b>AC</b> %V'},
             {name: 'Weapons', within: 'Section 1', format: '<b>%N</b> %V',
              separator: '/'},
-            {name: 'Turn Undead', within: 'Section 1', separator: '/'},
             {name: 'Alignment', within: 'Section 1', format: '<b>Ali</b> %V'},
-            {name: 'Damage Reduction', within: 'Section 1',
-             format: '<b>DR</b> %V', separator: '/'},
             {name: 'Save', within: 'Section 1', separator: '/'},
             {name: 'Resistance', within: 'Section 1', separator: '/'},
             {name: 'Abilities', within: 'Section 1',
@@ -2596,7 +2593,6 @@ SRD5E.createViewers = function(rules, viewers) {
         {name: 'FeaturesAndSkills', within: '_top', separator: outerSep,
          format: '<b>Features/Skills</b><br/>%V'},
           {name: 'Proficiency Bonus', within: 'FeaturesAndSkills'},
-          {name: 'Proficiency Counts', within: 'FeaturesAndSkills', separator: listSep},
           {name: 'FeaturePart', within: 'FeaturesAndSkills', separator: '\n'},
             {name: 'FeatStats', within: 'FeaturePart', separator: innerSep},
               {name: 'Feat Count', within: 'FeatStats', separator: listSep},
@@ -2625,7 +2621,6 @@ SRD5E.createViewers = function(rules, viewers) {
             {name: 'Skill Proficiencies', within: 'SkillPart', separator: listSep},
             {name: 'Skills', within: 'SkillPart', columns: '3LE', separator: null},
           {name: 'Tool Proficiencies', within: 'FeaturesAndSkills', separator: listSep},
-          {name: 'Tools', within: 'FeaturesAndSkills', separator: listSep},
       );
       if(name != 'Collected Notes') {
         viewer.addElements(
@@ -2646,23 +2641,11 @@ SRD5E.createViewers = function(rules, viewers) {
               {name: 'Armor Class', within: 'CombatStats'},
               {name: 'Attacks Per Round', within: 'CombatStats'},
             {name: 'Armor Proficiencies', within: 'CombatPart', separator: listSep},
-            {name: 'Shield Proficiencies', within: 'CombatPart', separator: listSep},
             {name: 'Weapon Proficiencies', within: 'CombatPart', separator: listSep},
-              {name: 'AttackInfo', within: 'CombatStats', separator: ''},
-                {name: 'Base Attack', within: 'AttackInfo',
-                 format: '<b>Base/Melee/Ranged Attack</b>: %V'},
-                {name: 'Melee Attack', within: 'AttackInfo', format: '/%V'},
-                {name: 'Ranged Attack', within: 'AttackInfo', format: '/%V'},
-            {name: 'Proficiencies', within: 'CombatPart', separator: innerSep},
-              {name: 'Armor Proficiency', within: 'Proficiencies'},
-              {name: 'Shield Proficiency', within: 'Proficiencies'},
-              {name: 'Weapon Proficiency', within: 'Proficiencies'},
             {name: 'Gear', within: 'CombatPart', separator: innerSep},
               {name: 'Armor', within: 'Gear'},
               {name: 'Shield', within: 'Gear'},
               {name: 'Weapons', within: 'Gear', separator: listSep},
-            {name: 'Turning', within: 'CombatPart', separator: innerSep},
-              {name: 'Turn Undead', within: 'Turning', separator: listSep}
       );
       if(name != 'Collected Notes') {
         viewer.addElements(
@@ -2673,11 +2656,7 @@ SRD5E.createViewers = function(rules, viewers) {
           {name: 'SavePart', within: 'Combat', separator: '\n'},
             {name: 'Save Proficiencies', within: 'SavePart', separator: listSep},
             {name: 'SaveAndResistance', within: 'SavePart', separator:innerSep},
-              {name: 'Damage Reduction', within: 'SaveAndResistance',
-               separator: innerSep},
-              {name: 'Save', within: 'SaveAndResistance', separator: listSep},
-              {name: 'Resistance', within: 'SaveAndResistance',
-               separator: listSep}
+              {name: 'Save', within: 'SaveAndResistance', separator: listSep}
       );
       if(name != 'Collected Notes') {
         viewer.addElements(

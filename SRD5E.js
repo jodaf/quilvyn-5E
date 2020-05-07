@@ -47,6 +47,7 @@ function SRD5E() {
   SRD5E.movementRules(rules);
   SRD5E.magicRules(rules, SRD5E.CLASSES, SRD5E.SCHOOLS);
   SRD5E.spellRules(rules);
+  rules.defineChoice('extras', 'feats', 'featCount', 'selectableFeatureCount');
   rules.defineChoice('preset', 'background', 'race', 'level', 'levels');
   rules.defineChoice('random', SRD5E.RANDOMIZABLE_ATTRIBUTES);
   Quilvyn.addRuleSet(rules);
@@ -1306,7 +1307,7 @@ SRD5E.classRules = function(rules, classes) {
         'levels.Bard', '=', '6 + (source>=9 ? 2 * Math.floor((source-5)/4) : 0)'
       );
       rules.defineRule
-        ('proficiencyCount.Skill', 'skillNotes.bonusSkillsFeature', '+', '3');
+        ('skillProficiencyCount', 'skillNotes.bonusSkillsFeature', '+', '3');
       rules.defineRule('selectableFeatureCount.Bard',
         'levels.Bard', '=', 'source < 3 ? null : 1'
       );
@@ -2358,7 +2359,7 @@ SRD5E.classRules = function(rules, classes) {
       rules.defineRule('magicNotes.mysticArcanumFeature',
         'levels.Warlock', '=', 'source<13 ? "K6" : source<15 ? "K6, K7" : source<17 ? "K6, K7, K8" : "K6, K7, K8, K9"'
       );
-      rules.defineRule('proficiencyCount.Skill',
+      rules.defineRule('skillProficiencyCount',
         'skillNotes.beguilingInfluenceFeature', '+', '2'
       );
       rules.defineRule('selectableFeatureCount.Warlock',
@@ -2599,7 +2600,8 @@ SRD5E.createViewers = function(rules, viewers) {
               {name: 'Selectable Feature Count', within: 'FeatStats',
                separator: listSep},
             {name: 'FeatLists', within: 'FeaturePart', separator: innerSep},
-              {name: 'Feats', within: 'FeatLists', separator: listSep}
+              {name: 'FeatList', within: 'FeatLists', separator: ''},
+                {name: 'Feats', within: 'FeatLists', separator: listSep}
       );
       if(name != 'Collected Notes') {
         viewer.addElements(
@@ -2617,10 +2619,10 @@ SRD5E.createViewers = function(rules, viewers) {
         );
       }
       viewer.addElements(
-          {name: 'SkillPart', within: 'FeaturesAndSkills', separator: '\n'},
-            {name: 'Skill Proficiencies', within: 'SkillPart', separator: listSep},
-            {name: 'Skills', within: 'SkillPart', columns: '3LE', separator: null},
-          {name: 'Tool Proficiencies', within: 'FeaturesAndSkills', separator: listSep},
+          {name: 'Skill Proficiencies', within: 'FeaturesAndSkill', separator: listSep},
+          {name: 'Skills', within: 'FeaturesAndSkills', columns: '3LE', separator: null},
+          {name: 'Tool Proficiencies', within: 'FeaturesAndSkill', separator: listSep},
+          {name: 'Languages', within: 'FeaturesAndSkills', separator: listSep}
       );
       if(name != 'Collected Notes') {
         viewer.addElements(
@@ -2628,10 +2630,6 @@ SRD5E.createViewers = function(rules, viewers) {
         );
       }
       viewer.addElements(
-          {name: 'LanguagePart', within: 'FeaturesAndSkills', separator: '\n'},
-            {name: 'LanguageStats', within: 'LanguagePart', separator:innerSep},
-              {name: 'Language Count', within: 'LanguageStats'},
-            {name: 'Languages', within: 'LanguagePart', separator: listSep},
         {name: 'Combat', within: '_top', separator: outerSep,
          format: '<b>Combat</b><br/>%V'},
           {name: 'CombatPart', within: 'Combat', separator: '\n'},
@@ -2640,8 +2638,9 @@ SRD5E.createViewers = function(rules, viewers) {
               {name: 'Initiative', within: 'CombatStats'},
               {name: 'Armor Class', within: 'CombatStats'},
               {name: 'Attacks Per Round', within: 'CombatStats'},
-            {name: 'Armor Proficiencies', within: 'CombatPart', separator: listSep},
-            {name: 'Weapon Proficiencies', within: 'CombatPart', separator: listSep},
+            {name: 'CombatProfs', within: 'CombatPart', separator: innerSep},
+              {name: 'Armor Proficiencies', within: 'CombatProfs', separator: listSep},
+              {name: 'Weapon Proficiencies', within: 'CombatProfs', separator: listSep},
             {name: 'Gear', within: 'CombatPart', separator: innerSep},
               {name: 'Armor', within: 'Gear'},
               {name: 'Shield', within: 'Gear'},
@@ -2655,8 +2654,7 @@ SRD5E.createViewers = function(rules, viewers) {
       viewer.addElements(
           {name: 'SavePart', within: 'Combat', separator: '\n'},
             {name: 'Save Proficiencies', within: 'SavePart', separator: listSep},
-            {name: 'SaveAndResistance', within: 'SavePart', separator:innerSep},
-              {name: 'Save', within: 'SaveAndResistance', separator: listSep}
+            {name: 'Save', within: 'SavePart', separator: listSep}
       );
       if(name != 'Collected Notes') {
         viewer.addElements(
@@ -2727,7 +2725,7 @@ SRD5E.equipmentRules = function(rules, armors, shields, weapons) {
   rules.defineNote
     ('validationNotes.armorProficiencyAllocation:%1 available vs. %2 allocated');
   rules.defineRule('validationNotes.armorProficiencyAllocation.1',
-    'proficiencyCount.Armor', '=', null
+    'armorProficiencyCount', '=', null
   );
   rules.defineRule('validationNotes.armorProficiencyAllocation.2',
     '', '=', '0',
@@ -2740,7 +2738,7 @@ SRD5E.equipmentRules = function(rules, armors, shields, weapons) {
   rules.defineNote
     ('validationNotes.weaponProficiencyAllocation:%1 available vs. %2 allocated');
   rules.defineRule('validationNotes.weaponProficiencyAllocation.1',
-    'proficiencyCount.Weapon', '=', null
+    'weaponProficiencyCount', '=', null
   );
   rules.defineRule('validationNotes.weaponProficiencyAllocation.2',
     '', '=', '0',
@@ -3483,7 +3481,7 @@ SRD5E.skillRules = function(rules, skills, tools) {
   rules.defineNote
     ('validationNotes.skillProficiencyAllocation:%1 available vs. %2 allocated');
   rules.defineRule('validationNotes.skillProficiencyAllocation.1',
-    'proficiencyCount.Skill', '=', null
+    'skillProficiencyCount', '=', null
   );
   rules.defineRule('validationNotes.skillProficiencyAllocation.2',
     '', '=', '0',
@@ -3496,7 +3494,7 @@ SRD5E.skillRules = function(rules, skills, tools) {
   rules.defineNote
     ('validationNotes.toolProficiencyAllocation:%1 available vs. %2 allocated');
   rules.defineRule('validationNotes.toolProficiencyAllocation.1',
-    'proficiencyCount.Tool', '=', null
+    'toolProficiencyCount', '=', null
   );
   rules.defineRule('validationNotes.toolProficiencyAllocation.2',
     '', '=', '0',
@@ -3918,7 +3916,7 @@ SRD5E.randomizeOneAttribute = function(attributes, attribute) {
     attributes['shield'] = choices[QuilvynUtils.random(0, choices.length - 1)];
   } else if(attribute == 'skills') {
     attrs = this.applyRules(attributes);
-    howMany = attrs['proficiencyCount.Skill'] || 0;
+    howMany = attrs['skillProficiencyCount'] || 0;
     choices = [];
     for(attr in this.getChoices('skills')) {
       if(attrs['skillChoices.' + attr]) {
@@ -3969,7 +3967,7 @@ SRD5E.randomizeOneAttribute = function(attributes, attribute) {
     }
   } else if(attribute == 'tools') {
     attrs = this.applyRules(attributes);
-    howMany = attrs['proficiencyCount.Tool'] || 0;
+    howMany = attrs['toolProficiencyCount'] || 0;
     choices = [];
     for(attr in this.getChoices('tools')) {
       if(attrs['toolChoices.' + attr] ||
@@ -4279,6 +4277,7 @@ SRD5E.defineBackground = function(
           (section + 'Notes.' + featurePrefix + 'Feature:' + note);
     }
     rules.defineSheetElement(name + ' Features', 'Feats+', null, '; ');
+    rules.defineChoice('extras', prefix + 'Features');
   }
 
   if(languages != null) {
@@ -4293,7 +4292,7 @@ SRD5E.defineBackground = function(
 
   if(proficiencyCount != null) {
     for(var a in proficiencyCount) {
-      rules.defineRule('proficiencyCount.' + a,
+      rules.defineRule(a.toLowerCase() + 'ProficiencyCount',
         'isBackground.' + name, '+=', proficiencyCount[a]
       );
     }
@@ -4363,6 +4362,7 @@ SRD5E.defineClass = function(
           (section + 'Notes.' + featurePrefix + 'Feature:' + note);
     }
     rules.defineSheetElement(name + ' Features', 'Feats+', null, '; ');
+    rules.defineChoice('extras', prefix + 'Features');
   }
   if(selectableFeatures != null) {
     var prefix =
@@ -4391,8 +4391,9 @@ SRD5E.defineClass = function(
 
   if(proficiencyCount != null) {
     for(var a in proficiencyCount) {
-      rules.defineRule
-        ('proficiencyCount.' + a, classLevel, '+=', proficiencyCount[a]);
+      rules.defineRule(a.toLowerCase() + 'ProficiencyCount',
+        classLevel, '+=', proficiencyCount[a]
+      );
     }
   }
 
@@ -4538,6 +4539,7 @@ SRD5E.defineRace = function(
           (section + 'Notes.' + featurePrefix + 'Feature:' + note);
     }
     rules.defineSheetElement(name + ' Features', 'Feats+', null, '; ');
+    rules.defineChoice('extras', prefix + 'Features');
   }
 
   if(languages != null) {
@@ -4553,8 +4555,9 @@ SRD5E.defineRace = function(
 
   if(proficiencyCount != null) {
     for(var a in proficiencyCount) {
-      rules.defineRule
-        ('proficiencyCount.' + a, 'isRace.' + name, '+=', proficiencyCount[a]);
+      rules.defineRule(a.toLowerCase() + 'ProficiencyCount',
+        'isRace.' + name, '+=', proficiencyCount[a]
+      );
     }
   }
 

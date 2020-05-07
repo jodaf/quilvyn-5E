@@ -482,11 +482,11 @@ PHB5E.classRules = function(rules, classes) {
       rules.defineRule
         ('combatNotes.extraAttackFeature', 'bardExtraAttacks', '+=', null);
       rules.defineRule
-        ('proficiencyCount.Armor', 'bardFeatures.College Of Valor', '+=', '2');
+        ('armorProficiencyCount', 'bardFeatures.College Of Valor', '+=', '2');
       rules.defineRule
-        ('proficiencyCount.Skill', 'skillNotes.bonusSkillsFeature', '+', '3');
+        ('skillProficiencyCount', 'skillNotes.bonusSkillsFeature', '+', '3');
       rules.defineRule
-        ('proficiencyCount.Weapon', 'bardFeatures.College Of Valor', '+=', '1');
+        ('weaponProficiencyCount', 'bardFeatures.College Of Valor', '+=', '1');
       rules.defineRule('weaponProficiencies.Martial',
         'bardFeatures.College Of Valor', '=', '1'
       );
@@ -627,8 +627,8 @@ PHB5E.classRules = function(rules, classes) {
         'wisdomModifier', '=', 'Math.max(source, 1)'
       );
       rules.defineRule
-        ('proficiencyCount.Armor', 'clericFeatures.Life Domain', '+=', '1');
-      rules.defineRule('proficiencyCount.Skill',
+        ('armorProficiencyCount', 'clericFeatures.Life Domain', '+=', '1');
+      rules.defineRule('skillProficiencyCount',
         'skillNotes.acolyteOfNatureFeature', '+', '1',
         'skillNotes.blessingsOfKnowledgeFeature', '+', '2'
       );
@@ -830,7 +830,7 @@ PHB5E.classRules = function(rules, classes) {
       ];
 
       rules.defineRule
-        ('proficiencyCount.Tool', 'skillNotes.studentOfWarFeature', '+=', '1');
+        ('toolProficiencyCount', 'skillNotes.studentOfWarFeature', '+=', '1');
       rules.defineRule('toolChoices.Artisan',
         'skillNotes.studentOfWarFeature', '=', '1'
       );
@@ -1140,7 +1140,7 @@ PHB5E.classRules = function(rules, classes) {
       rules.defineRule('spellAttackModifier.Rogue',
         'rogueFeatures.Arcane Trickster Archetype', '?', null
       );
-      rules.defineRule('proficiencyCount.Tool',
+      rules.defineRule('toolProficiencyCount',
         'skillNotes.assassinProficienciesFeature', '+=', '2'
       );
       rules.defineRule('toolProficiencies.Disguise Kit',
@@ -1705,7 +1705,7 @@ PHB5E.featRules = function(rules, feats) {
       ];
       // TODO ... or tools
       rules.defineRule
-        ('proficiencyCount.Skill', 'skillNotes.skilledFeature', '+=', '3');
+        ('skillProficiencyCount', 'skillNotes.skilledFeature', '+=', '3');
     } else if(feat == 'Skulker') {
       notes = [
         'skillNotes.skulkerFeature:' +
@@ -1746,7 +1746,7 @@ PHB5E.featRules = function(rules, feats) {
       ];
       rules.defineRule
         ('abilityBoostCount', 'abilityNotes.weaponMasterFeature', '+=', '1');
-      rules.defineRule('proficiencyCount.Weapon',
+      rules.defineRule('weaponProficiencyCount',
         'combatNotes.weaponMasterFeature', '+=', '4'
       );
       // TODO How can user specify the choice of prof weapons?

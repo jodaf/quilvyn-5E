@@ -17,7 +17,7 @@ Place, Suite 330, Boston, MA 02111-1307 USA.
 
 "use strict";
 
-var SRD5E_VERSION = '1.7.0.10beta';
+var SRD5E_VERSION = '1.8.1.0';
 
 /*
  * This module loads the rules from Fifth Edition.  The SRD5E function

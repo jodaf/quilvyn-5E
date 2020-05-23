@@ -3254,7 +3254,7 @@ SRD5E.raceRules = function(rules, languages, races) {
       rules.defineRule('abilityBoostCount',
         'abilityNotes.half-ElfAbilityAdjustment', '+=', '2'
       );
-      // NOTE: redundant rule to get skill note to appear in italics
+      // Redundant rule to get skill note to appear in italics
       rules.defineRule('skillChoices.Intimidation',
         'skillNotes.skillVersatilityFeature', '=', '1'
       );
@@ -3272,7 +3272,7 @@ SRD5E.raceRules = function(rules, languages, races) {
       proficiencyCount = {'Skill': 2};
       proficienciesGiven = {'Skill': ['Intimidation']};
       proficiencyChoices = {};
-      // NOTE: redundant rule to get skill note to appear in italics
+      // Redundant rule to get skill note to appear in italics
       rules.defineRule('skillProficiencies.Intimidation',
         'skillNotes.menacingFeature', '=', '1'
       );
@@ -3357,7 +3357,7 @@ SRD5E.raceRules = function(rules, languages, races) {
       proficiencyCount = {'Skill': 1};
       proficienciesGiven = {'Skill': ['Perception']};
       proficiencyChoices = {};
-      // NOTE: redundant rule to get skill note to appear in italics
+      // Redundant rule to get skill note to appear in italics
       rules.defineRule('skillProficiencies.Perception',
         'skillNotes.keenSensesFeature', '=', '1'
       );
@@ -3405,7 +3405,7 @@ SRD5E.raceRules = function(rules, languages, races) {
         );
         proficiencyCount['Tool'] = 1;
         proficienciesGiven['Tool'] = ["Tinker's Tools"];
-        // NOTE: redundant rule to get skill note to appear in italics
+        // Redundant rule to get skill note to appear in italics
         rules.defineRule("toolProficiencies.Tinker's Tools",
           'skillNotes.tinkerFeature', '=', '1'
         );

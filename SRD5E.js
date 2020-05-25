@@ -17,7 +17,7 @@ Place, Suite 330, Boston, MA 02111-1307 USA.
 
 "use strict";
 
-var SRD5E_VERSION = '1.8.1.0';
+var SRD5E_VERSION = '1.8.1.1';
 
 /*
  * This module loads the rules from Fifth Edition.  The SRD5E function
@@ -2619,9 +2619,9 @@ SRD5E.createViewers = function(rules, viewers) {
         );
       }
       viewer.addElements(
-          {name: 'Skill Proficiencies', within: 'FeaturesAndSkill', separator: listSep},
+          {name: 'Skill Proficiencies', within: 'FeaturesAndSkills', separator: listSep},
           {name: 'Skills', within: 'FeaturesAndSkills', columns: '3LE', separator: null},
-          {name: 'Tool Proficiencies', within: 'FeaturesAndSkill', separator: listSep},
+          {name: 'Tool Proficiencies', within: 'FeaturesAndSkills', separator: listSep},
           {name: 'Languages', within: 'FeaturesAndSkills', separator: listSep}
       );
       if(name != 'Collected Notes') {

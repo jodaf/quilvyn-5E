@@ -205,12 +205,12 @@ SRD5E.DEITIES = {
 };
 SRD5E.FEATS = {
   'Ability Boost':'',
-  'Ability Boost2':'',
-  'Ability Boost3':'',
-  'Ability Boost4':'',
-  'Ability Boost5':'',
-  'Ability Boost6':'',
-  'Ability Boost7':'',
+  'Ability Boost2':'Require="features.Ability Boost"',
+  'Ability Boost3':'Require="features.Ability Boost2"',
+  'Ability Boost4':'Require="features.Ability Boost3"',
+  'Ability Boost5':'Require="features.Ability Boost4"',
+  'Ability Boost6':'Require="features.Ability Boost5"',
+  'Ability Boost7':'Require="features.Ability Boost6"',
   'Grappler':'Require="Strength >= 13"'
 };
 SRD5E.FEATURES = {
@@ -234,7 +234,7 @@ SRD5E.FEATURES = {
   'Bardic Inspiration':'Section=magic Note="R60\' Grant 1d%V w/in 10 min %1/long rest"',
   'Beast Speech':'Section=magic Note="<i>Speak With Animals</i> at will"',
   'Beast Spells':'Section=magic Note="Cast spells during Wild Shape"',
-  'Beguiling Influence':'Section=skill Note="Prof Deception, Persuasion"',
+  'Beguiling Influence':'Section=skill Note="Prof Deception/Prof Persuasion"',
   'Bewitching Whispers':'Section=magic Note="<i>Compulsion</i> 1/long rest"',
   'Blessed Healer':'Section=magic Note="Self regain 2 + spell level HP from casting healing spells"',
   'Blindsense':'Section=skill Note="R10\' Hear hidden/invisible creatures"',
@@ -368,7 +368,7 @@ SRD5E.FEATURES = {
   'Second-Story Work':'Section=ability,skill Note="Full speed climb","+%V\' Jump"',
   'Sign Of Ill Omen':'Section=magic Note="<i>Bestow Curse</i> 1/long rest"',
   'Signature Spell':'Section=magic Note="Cast 2 W3 1/short rest"',
-  'Slippery Mind':'Section=save Note="Prof Wis"',
+  'Slippery Mind':'Section=save Note="Prof Wisdom"',
   'Slow Fall':'Section=ability Note="-%V HP fall damage"',
   'Sneak Attack':'Section=combat Note="+%Vd6 damage on Adv/shared threat attacks"',
   'Song Of Rest':'Section=magic Note="Listeners regain 1d%V HP after short rest"',
@@ -409,6 +409,7 @@ SRD5E.FEATURES = {
   'Wild Shape':'Section=magic Note="Transform into CR %1%2 creature for %3 hr 2/short rest"',
   'Witch Sight':'Section=feature Note="R30\' See true forms"',
   // Feats
+  'Ability Boost':'Section=ability Note="%V to distribute"',
   'Grappler':'Section=combat Note="Adv attacks vs. grappled foe, additional grapple to pin"',
   // Races
   "Artificer's Lore":'Section=skill Note="Dbl Prof on magic, alchemical, tech objects History checks"',
@@ -426,7 +427,7 @@ SRD5E.FEATURES = {
   'Half-Orc Ability Adjustment':'Section=ability Note="+2 Strength/+1 Constitution"',
   'Halfling Luck':'Section=feature Note="Re-roll 1 on attack/ability/save"',
   'Halfling Nimbleness':'Section=ability Note="Move through space occupied by larger creature"',
-  'Hellish Resistance':'Section=save Note="Resistance fire damage',
+  'Hellish Resistance':'Section=save Note="Resistance fire damage"',
   'High Elf Ability Adjustment':'Section=ability Note="+2 Dexterity/+1 Intelligence"',
   'Hill Dwarf Ability Adjustment':'Section=ability Note="+2 Constitution/+1 Wisdom"',
   'Human Ability Adjustment':'Section=ability Note="+1 charisma/+1 constitution/+1 dexterity/+1 intelligence/+1 strength/+1 wisdom"',
@@ -438,8 +439,8 @@ SRD5E.FEATURES = {
   'Relentless Endurance':'Section=combat Note="Keep 1 HP when brought to 0 1/long rest"',
   'Rock Gnome Ability Adjustment':'Section=ability Note="+2 Intelligene/+1 Constitution"',
   'Savage Attacks':'Section=combat Note="Extra die on crit damage"',
-  'Skill Versatility':'Section=skill Note="Prof two additional skills"',
-  'Slow':'Section=ability Note="-5 speed"',
+  'Skill Versatility':'Section=skill Note="+2 Skill Proficiency Count"',
+  'Slow':'Section=ability Note="-5 Speed"',
   'Small':'Section=combat Note="Disadv heavy weapons"',
   'Stonecunning':'Section=skill Note="Dbl Prof on stonework History checks"',
   'Tiefling Ability Adjustment':'Section=ability Note="+2 charisma/+1 intelligence"',
@@ -1593,7 +1594,7 @@ SRD5E.CLASSES = {
       '"Armor:Light Armor;Medium Armor;Shield",' +
       '"Save:Constitution;Strength",' +
       '"2 Skill:Animal Handling;Athletics;Intimidation;Nature;Perception;Survival",' +
-      '"Weapon:Simple,Martial"',
+      '"Weapon:Simple;Martial"',
   'Bard':
     'HitDie=d8 ' +
     'Features=' +
@@ -1613,7 +1614,7 @@ SRD5E.CLASSES = {
     'Proficiencies=' +
       '"Armor:Light Armor",' +
       '"Save:Charisma;Dexterity",' +
-      '"3 Skill;' + QuilvynUtils.getKeys(SRD5E.SKILLS).join(';') + '",' +
+      '"3 Skill:' + QuilvynUtils.getKeys(SRD5E.SKILLS).join(';') + '",' +
       '"3 Tool:Music",' +
       '"Weapon:Simple;Hand Crossbow;Longsword;Rapier;Shortsword" ' +
     'CasterLevelArcane=levels.Bard ' +
@@ -1672,7 +1673,7 @@ SRD5E.CLASSES = {
       '"1:Life Domain" ' +
     'Proficiencies=' +
       '"Armor:Light Armor;Medium Armor;Shield",' +
-      '"Save:Charisma,Wisdom",' +
+      '"Save:Charisma;Wisdom",' +
       '"2 Skill:History;Insight;Medicine;Persuasion;Religion",' +
       '"Weapon:Simple" ' +
     'CasterLevelDivine=levels.Cleric ' +
@@ -1826,7 +1827,7 @@ SRD5E.CLASSES = {
     'Proficiencies=' +
       '"Save:Dexterity;Strength",' +
       '"2 Skill:Acrobatics;Athletics;History;Insight;Religion;Stealth",' +
-      '"1 Tool:Artisan,Music",' +
+      '"1 Tool:Artisan;Music",' +
       '"Weapon:Simple;Shortsword"',
   'Paladin':
     'HitDie=d10 ' +
@@ -1889,9 +1890,6 @@ SRD5E.CLASSES = {
       '"Save:Dexterity;Strength",' +
       '"3 Skill:Animal Handling;Athletics;Insight;Investigation;Nature;Perception;Stealth;Survival",' +
       '"Weapon:Simple;Martial" ' +
-    'ProfArmor="Light Armor","Medium Armor",Shield ' +
-    'ProfSave=Dexterity,Strength ' +
-    'ProfWeapon=Simple,Martial ' +
     'CasterLevelDivine=levels.Ranger ' +
     'SpellAbility=wisdom ' +
     'SpellSlots=' +
@@ -1934,9 +1932,9 @@ SRD5E.CLASSES = {
       '"Save:Dexterity;Intelligence",' +
       '"4 Skill:Acrobatics;Athletics;Deception;Insight;Intimidation;Investigation;Perception;Performance;Persuasion;Sleight Of Hand;Stealth",' +
       '"Tool:"Thieves\' Tools",' +
-      '"Weapon:Simple;Hand Crossbow,Longsword,Rapier,Shortsword"',
+      '"Weapon:Simple;Hand Crossbow;Longsword;Rapier;Shortsword"',
   'Sorcerer':
-    'HitDie=6 ' +
+    'HitDie=d6 ' +
     'Features=' +
       '"1:Weapon Proficiency (Dagger/Dart/Sling/Quarterstaff/Light Crossbow)",' +
       '1:Spellcasting,"2:Font Of Magic","2:Flexible Casting",' +
@@ -2066,13 +2064,13 @@ SRD5E.CLASSES = {
       '"features.Evocation Tradition ? 2:Sculpt Spells",' +
       '"features.Evocation Tradition ? 6:Potent Cantrip",' +
       '"features.Evocation Tradition ? 10:Empowered Evocation",' +
-      '"features.Evocation Tradition ? 14:Overchannel",' +
+      '"features.Evocation Tradition ? 14:Overchannel" ' +
     'Selectables=' +
       '"2:Evocation Tradition" ' +
     'Proficiencies=' +
-      '"Save=Intelligence;Wisdom",' +
+      '"Save:Intelligence;Wisdom",' +
       '"3 Skill:Arcana;History;Insight;Investigation;Medicine;Religion",' +
-      '"Weapon=Dagger;Dart;Light Crossbow;Sling;Quarterstaff" ' +
+      '"Weapon:Dagger;Dart;Light Crossbow;Sling;Quarterstaff" ' +
     'SpellAbility=intelligence ' +
     'SpellSlots=' +
       'W1:1;2;2;3;3;4,' +
@@ -2187,7 +2185,7 @@ SRD5E.RACES = {
   'High Elf':
     'Features=' +
       '1:Darkvision,"1:Fey Ancestry","1:High Elf Ability Adjustment",' +
-      '1:Keen Senses,"1:Trance,1:Cantrip,' +
+      '"1:Keen Senses",1:Trance,1:Cantrip,' +
       '"1:Weapon Proficiency (Longbow/Longsword/Shortbow/Shortsword)" ' +
     'Languages=Common,Elvish,any ' +
     'Proficiencies=' +
@@ -2266,7 +2264,7 @@ SRD5E.abilityRules = function(rules) {
 
   // TODO
   SRD35.validAllocationRules
-    (rules, 'level', 'abilityNotes.abilityBoosts', 'Sum "Adjust"');
+    (rules, 'abilityBoost', 'abilityNotes.abilityBoosts', 'Sum "^(charisma|constitution|dexterity|intelligence|strength|wisdom)Adjust$"');
 
 };
 
@@ -2311,6 +2309,9 @@ SRD5E.combatRules = function(rules, armors, shields, weapons) {
   rules.defineRule
     ('hitPoints', 'combatNotes.constitutionHitPointsAdjustment', '+', null);
   rules.defineRule('initiative', 'dexterityModifier', '=', null);
+  rules.defineRule('proficient.None', '', '=', '1'); // Prof w/no armor
+  rules.defineRule('proficient.Unarmed', '', '=', '1');
+  rules.defineRule('weapons.Unarmed', '', '=', '1');
 
   for(var ability in SRD5E.ABILITIES) {
     rules.defineRule('saveBonus.' + ability,
@@ -2323,11 +2324,26 @@ SRD5E.combatRules = function(rules, armors, shields, weapons) {
     );
   }
 
+  rules.defineChoice('notes',
+    'validationNotes.two-handedWeaponWithShield:' +
+      'Shields cannot be used with two-handed weapons'
+  );
+  rules.defineRule('validationNotes.two-handedWeaponWithShield',
+    'shield', '?', 'source != "None"'
+  );
+
+  // TODO
+  SRD35.validAllocationRules
+    (rules, 'armorProficiency', 'armorProficiencyCount', 'Sum "^armorProficiencies\\."');
+  SRD35.validAllocationRules
+    (rules, 'weaponProficiency', 'weaponProficiencyCount', 'Sum "^weaponProficiencies\\."');
+
 };
 
 /* Defines the rules related to goodies included in character notes. */
 SRD5E.goodiesRules = function(rules) {
   // TODO
+  SRD35.goodiesRules(rules);
 };
 
 /* Defines rules related to basic character identity. */
@@ -2407,6 +2423,10 @@ SRD5E.talentRules = function(rules, feats, features, languages, skills, tools) {
     (rules, 'language', 'languageCount', 'Sum "^languages\\."');
   SRD35.validAllocationRules
     (rules, 'selectableFeature', 'Sum "^selectableFeatureCount\\."', 'Sum "^selectableFeatures\\."');
+  SRD35.validAllocationRules
+    (rules, 'skillProficiency', 'skillProficiencyCount', 'Sum "^skillProficiencies\\."');
+  SRD35.validAllocationRules
+    (rules, 'toolProficiency', 'toolProficiencyCount', 'Sum "^toolProficiencies\\."');
 
 };
 
@@ -2437,14 +2457,9 @@ SRD5E.choiceRules = function(rules, type, name, attrs) {
     SRD5E.classRules(rules, name,
       QuilvynUtils.getAttrValueArray(attrs, 'Require'),
       QuilvynUtils.getAttrValue(attrs, 'HitDie'),
-      QuilvynUtils.getAttrValue(attrs, 'Attack'),
-      QuilvynUtils.getAttrValue(attrs, 'SkillPoints'),
-      QuilvynUtils.getAttrValue(attrs, 'Fortitude'),
-      QuilvynUtils.getAttrValue(attrs, 'Reflex'),
-      QuilvynUtils.getAttrValue(attrs, 'Will'),
-      QuilvynUtils.getAttrValueArray(attrs, 'Skills'),
       QuilvynUtils.getAttrValueArray(attrs, 'Features'),
       QuilvynUtils.getAttrValueArray(attrs, 'Selectables'),
+      QuilvynUtils.getAttrValueArray(attrs, 'Proficiencies'),
       QuilvynUtils.getAttrValueArray(attrs, 'Languages'),
       QuilvynUtils.getAttrValue(attrs, 'CasterLevelArcane'),
       QuilvynUtils.getAttrValue(attrs, 'CasterLevelDivine'),
@@ -2494,19 +2509,20 @@ SRD5E.choiceRules = function(rules, type, name, attrs) {
     SRD5E.shieldRules(rules, name,
       QuilvynUtils.getAttrValue(attrs, 'AC')
     );
-  else if(type == 'Skill') {
-    var untrained = QuilvynUtils.getAttrValue(attrs, 'Untrained');
+  else if(type == 'Skill')
     SRD5E.skillRules(rules, name,
-      QuilvynUtils.getAttrValue(attrs, 'Ability')
+      QuilvynUtils.getAttrValue(attrs, 'Ability'),
+      QuilvynUtils.getAttrValueArray(attrs, 'Class')
     );
-    SRD5E.skillRulesExtra(rules, name);
-  } else if(type == 'Spell')
+  else if(type == 'Spell')
     SRD5E.spellRules(rules, name,
       QuilvynUtils.getAttrValue(attrs, 'School'),
       QuilvynUtils.getAttrValue(attrs, 'Group'),
       QuilvynUtils.getAttrValue(attrs, 'Level'),
       QuilvynUtils.getAttrValue(attrs, 'Description')
     );
+  else if(type == 'Tool')
+    SRD5E.toolRules(rules, name);
   else if(type == 'Weapon')
     SRD5E.weaponRules(rules, name,
       QuilvynUtils.getAttrValue(attrs, 'Level'),
@@ -2579,6 +2595,7 @@ SRD5E.armorRules = function(rules, name, ac, weight, maxDex, minStr, bulky) {
     weight = 2;
   else if(weight.match(/^heavy$/i))
     weight = 3;
+  var category = ['None', 'Light Armor', 'Medium Armor', 'Heavy Armor'][weight];
 
   if(rules.armorStats == null) {
     rules.armorStats = {
@@ -2611,6 +2628,24 @@ SRD5E.armorRules = function(rules, name, ac, weight, maxDex, minStr, bulky) {
   rules.defineRule('skillNotes.bulkyArmor',
     'armor', '=', QuilvynUtils.dictLit(rules.armorStats.bulky) + '[source]'
   );
+
+  rules.defineRule('proficient.' + name,
+    'armor', '?', 'source == "' + name + '"',
+    'armorProficiencies.' + name, '=', '1',
+    'armorProficiencies.' + category, '=', '1'
+  );
+  rules.defineRule('nonproficientArmor',
+    '', '=', '1',
+    'proficient.' + name, '^', '0'
+  );
+
+  rules.defineChoice('notes',
+    'sanityNotes.nonproficientArmorPenalty:' +
+      'Disadv Dex, Str rolls, cannot cast spells',
+    'skillNotes.bulkyArmor:Disadv Stealth'
+  );
+  rules.defineRule
+    ('sanityNotes.nonproficientArmorPenalty', 'nonproficientArmor', '=', null);
 
 };
 
@@ -2707,7 +2742,7 @@ SRD5E.classRules = function(
     console.log('Empty class name');
     return;
   }
-  if(!hitDie.match(/^(\d+)?d\d+$/)) {
+  if(!(hitDie + '').match(/^(\d+)?d\d+$/)) {
     console.log('Bad hitDie "' + hitDie + '" for class ' + name);
     return;
   }
@@ -2721,12 +2756,18 @@ SRD5E.classRules = function(
     SRD35.prerequisiteRules
       (rules, 'validation', prefix + 'Class', classLevel, requires);
 
+  // TODO
+  SRD35.featureListRules(rules, features, name, classLevel, false);
+  SRD35.featureListRules(rules, selectables, name, classLevel, true);
+  rules.defineSheetElement(name + ' Features', 'Feats+', null, '; ');
+  rules.defineChoice('extras', prefix + 'Features');
+
   for(var i = 0; i < proficiencies.length; i++) {
     var pieces = proficiencies[i].split(':');
     var items = pieces[1].split(';');
     var matchInfo = pieces[0].match(/^((\d+)\s+)?(.*)$/);
-    var count = matchInfo[1] || choices.length;
-    var group = matchInfo[2].toLowerCase();
+    var count = matchInfo[2] || items.length;
+    var group = matchInfo[3].toLowerCase();
     rules.defineRule(group + 'ProficiencyCount', classLevel, '+=', count);
     for(var j = 0; j < items.length; j++) {
       rules.defineRule(group + (matchInfo[1] ? 'Choices' : 'Proficiencies') + '.' + items[j], classLevel, '=', '1');
@@ -2748,37 +2789,40 @@ SRD5E.classRules = function(
  */
 SRD5E.classRulesExtra = function(rules, name) {
 
+  // TODO
+  var spells;
+
   if(name == 'Barbarian') {
 
-    rules.defineRule('abilityNotes.rageFeature',
+    rules.defineRule('abilityNotes.rage',
       'levels.Barbarian', '+=', 'source<3 ? 2 : source<6 ? 3 : source<12 ? 4 : source<17 ? 5 : source<20 ? 6 : "unlimited"'
     );
     rules.defineRule('armorClass',
-      'combatNotes.barbarianUnarmoredDefenseFeature.2', '+', null
+      'combatNotes.barbarianUnarmoredDefense.2', '+', null
     );
-    rules.defineRule('combatNotes.brutalCriticalFeature',
+    rules.defineRule('combatNotes.brutalCritical',
       'levels.Barbarian', '=', 'Math.floor((source - 5) / 4)'
     );
     // Show Unarmored Defense note even if armor != None or conMod == 0
-    rules.defineRule('combatNotes.barbarianUnarmoredDefenseFeature.1',
-      'combatNotes.barbarianUnarmoredDefenseFeature', '?', null,
+    rules.defineRule('combatNotes.barbarianUnarmoredDefense.1',
+      'combatNotes.barbarianUnarmoredDefense', '?', null,
       'constitutionModifier', '=', null
     );
-    rules.defineRule('combatNotes.barbarianUnarmoredDefenseFeature.2',
-      'combatNotes.barbarianUnarmoredDefenseFeature', '?', null,
+    rules.defineRule('combatNotes.barbarianUnarmoredDefense.2',
+      'combatNotes.barbarianUnarmoredDefense', '?', null,
       'armor', '?', 'source == "None"',
-      'combatNotes.barbarianUnarmoredDefenseFeature.1', '=', null
+      'combatNotes.barbarianUnarmoredDefense.1', '=', null
     );
-    rules.defineRule('combatNotes.extraAttackFeature',
+    rules.defineRule('combatNotes.extraAttack',
       'levels.Barbarian', '+=', 'source < 5 ? null : 1'
     );
-    rules.defineRule('combatNotes.rageFeature',
+    rules.defineRule('combatNotes.rage',
       'levels.Barbarian', '+=', 'source<3 ? 2 : source<6 ? 3 : source<12 ? 4 : source<17 ? 5 : source<20 ? 6 : "unlimited"'
     );
-    rules.defineRule('combatNotes.rageFeature.1',
+    rules.defineRule('combatNotes.rage.1',
       'levels.Barbarian', '+=', 'source<9 ? 2 : source<16 ? 3 : 4'
     );
-    rules.defineRule('featureNotes.intimidatingPresenceFeature',
+    rules.defineRule('featureNotes.intimidatingPresence',
       'charismaModifier', '=', 'source + 8',
       'proficiencyBonus', '+', null
     );
@@ -2788,32 +2832,32 @@ SRD5E.classRulesExtra = function(rules, name) {
 
   } else if(name == 'Bard') {
 
-    rules.defineRule('abilityNotes.jackOfAllTradesFeature',
+    rules.defineRule('abilityNotes.jackOfAllTrades',
       'proficiencyBonus', '=', 'Math.floor(source / 2)'
     );
-    rules.defineRule('magicNotes.bardicInspirationFeature',
+    rules.defineRule('magicNotes.bardicInspiration',
       'levels.Bard', '=', '6 + Math.floor(source / 5) * 2'
     );
-    rules.defineRule('magicNotes.bardicInspirationFeature.1',
+    rules.defineRule('magicNotes.bardicInspiration.1',
       'charismaModifier', '=', 'Math.max(source, 1)'
     );
-    rules.defineRule('magicNotes.magicalSecretsFeature',
+    rules.defineRule('magicNotes.magicalSecrets',
       'levels.Bard', '=', '2 * Math.floor((source - 6) / 4)'
     );
-    rules.defineRule('magicNotes.songOfRestFeature',
+    rules.defineRule('magicNotes.songOfRest',
       'levels.Bard', '=', '6 + (source>=9 ? 2 * Math.floor((source-5)/4) : 0)'
     );
     rules.defineRule
-      ('skillProficiencyCount', 'skillNotes.bonusSkillsFeature', '+', '3');
+      ('skillProficiencyCount', 'skillNotes.bonusSkills', '+', '3');
     rules.defineRule('selectableFeatureCount.Bard',
       'levels.Bard', '=', 'source < 3 ? null : 1'
     );
-    rules.defineRule('skillNotes.bardExpertiseFeature',
+    rules.defineRule('skillNotes.bardExpertise',
       'levels.Bard', '=', 'source < 10 ? 2 : 4'
     );
     rules.defineRule('spellsKnown.B',
-      'magicNotes.additionalMagicalSecretsFeature', '+', '2',
-      'magicNotes.magicalSecretsFeature', '+', null
+      'magicNotes.additionalMagicalSecrets', '+', '2',
+      'magicNotes.magicalSecrets', '+', null
     );
 
   } else if(name == 'Cleric') {
@@ -2831,17 +2875,17 @@ SRD5E.classRulesExtra = function(rules, name) {
     rules.defineRule('armorProficiencies.Heavy Armor',
       'clericFeatures.Armor Proficiency (Heavy)', '=', '1'
     );
-    rules.defineRule('combatNotes.destroyUndeadFeature',
+    rules.defineRule('combatNotes.destroyUndead',
       'levels.Cleric', '=', 'source < 8 ? 0.5 : Math.floor((source - 5) / 3)'
     );
-    rules.defineRule('combatNotes.turnUndeadFeature',
+    rules.defineRule('combatNotes.turnUndead',
       'wisdomModifier', '=', 'source + 8',
       'proficiencyBonus', '+', null
     );
-    rules.defineRule('featureNotes.channelDivinityFeature',
+    rules.defineRule('featureNotes.channelDivinity',
       'levels.Cleric', '=', 'source < 6 ? 1: source < 18 ? 2 : 3'
     );
-    rules.defineRule('magicNotes.divineInterventionFeature',
+    rules.defineRule('magicNotes.divineIntervention',
       'levels.Cleric', '=', 'source < 20 ? source : 100'
     );
     rules.defineRule
@@ -2850,11 +2894,11 @@ SRD5E.classRulesExtra = function(rules, name) {
       'clericFeatures.Weapon Proficiency (Martial)', '=', '1'
     );
 
-    rules.defineRule('combatNotes.divineStrikeFeature',
+    rules.defineRule('combatNotes.divineStrike',
       'levels.Cleric', '=', 'source < 14 ? 1 : 2'
     );
     rules.defineRule
-      ('magicNotes.preserveLifeFeature', 'levels.Cleric', '=', '5 * source');
+      ('magicNotes.preserveLife', 'levels.Cleric', '=', '5 * source');
 
     rules.defineRule('hasDivineStrikeDomain',
       'clericFeatures.Life Domain', '=', '1'
@@ -2916,24 +2960,24 @@ SRD5E.classRulesExtra = function(rules, name) {
       ]
     };
 
-    rules.defineRule('magicNotes.wildShapeFeature.1',
+    rules.defineRule('magicNotes.wildShape.1',
       'levels.Druid', '=', 'source < 4 ? "1/4" : source < 8 ? "1/2" : "1"'
     );
-    rules.defineRule('magicNotes.wildShapeFeature.2',
+    rules.defineRule('magicNotes.wildShape.2',
       'levels.Druid', '=', 'source < 4 ? " (land only)" : source < 8 ? " (non-flying)" : ""'
     );
-    rules.defineRule('magicNotes.wildShapeFeature.3',
+    rules.defineRule('magicNotes.wildShape.3',
       'levels.Druid', '=', 'Math.floor(source /2)'
     );
     rules.defineRule('selectableFeatureCount.Druid',
       'levels.Druid', '=', 'source < 2 ? null : 1'
     );
 
-    rules.defineRule("combatNotes.nature'sSanctuaryFeature",
+    rules.defineRule("combatNotes.nature'sSanctuary",
       'wisdomModifier', '=', 'source + 8',
       'proficiencyBonus', '+', null
     );
-    rules.defineRule('magicNotes.naturalRecoveryFeature',
+    rules.defineRule('magicNotes.naturalRecovery',
       'levels.Druid', '=', 'Math.floor(source / 2)'
     );
 
@@ -2941,105 +2985,98 @@ SRD5E.classRulesExtra = function(rules, name) {
       /druidFeatures.Circle Of The Land/, '=', '1'
     );
     rules.defineRule
-      ('spellsKnown.D0', 'magicNotes.bonusCantripFeature', '+', '1');
+      ('spellsKnown.D0', 'magicNotes.bonusCantrip', '+', '1');
 
   } else if(name == 'Fighter') {
 
-    rules.defineRule('abilityNotes.remarkableAthleteFeature',
+    rules.defineRule('abilityNotes.remarkableAthlete',
       'proficiencyBonus', '=', 'Math.ceil(source / 2)'
     );
     rules.defineRule
-      ('attackBonus.Ranged', 'combatNotes.archeryStyleFeature', '+=', '2');
-    rules.defineRule('combatNotes.actionSurgeFeature',
+      ('attackBonus.Ranged', 'combatNotes.archeryStyle', '+=', '2');
+    rules.defineRule('combatNotes.actionSurge',
       'levels.Fighter', '=', 'source < 17 ? 1 : 2'
     );
     // Show Defense Style note even if armor == None
-    rules.defineRule('combatNotes.defenseStyleFeature.1',
-      'combatNotes.defenseStyleFeature', '?', null,
+    rules.defineRule('combatNotes.defenseStyle.1',
+      'combatNotes.defenseStyle', '?', null,
       'armor', '=', 'source == "None" ? null : 1'
     );
-    rules.defineRule('combatNotes.extraAttackFeature',
+    rules.defineRule('combatNotes.extraAttack',
       'levels.Fighter', '+=', 'source < 5 ? null : source < 11 ? 1 : source < 20 ? 2 : 3'
     );
+    rules.defineRule('combatNotes.secondWind', 'levels.Fighter', '=', null);
     rules.defineRule
-      ('combatNotes.secondWindFeature', 'levels.Fighter', '=', null);
-    rules.defineRule('combatNotes.survivorFeature',
-      'constitutionModifier', '=', '5 + source'
-    );
-    rules.defineRule('combatNotes.survivorFeature.1',
-      'hitPoints', '=', 'Math.floor(source / 2)'
-    );
+      ('combatNotes.survivor', 'constitutionModifier', '=', '5 + source');
+    rules.defineRule
+      ('combatNotes.survivor.1', 'hitPoints', '=', 'Math.floor(source / 2)');
     rules.defineRule('fighterFeatBonus',
       'levels.Fighter', '=', 'source < 6 ? null : source < 14 ? 1 : 2'
     );
-    rules.defineRule('saveNotes.indomitableFeature',
+    rules.defineRule('saveNotes.indomitable',
       'levels.Fighter', '=', 'source < 13 ? 1 : source < 17 ? 2 : 3'
     );
     rules.defineRule('selectableFeatureCount.Fighter',
       'levels.Fighter', '=', 'source < 3 ? 1 : 2',
-      'combatNotes.additionalFightingStyleFeature', '+', '1'
+      'combatNotes.additionalFightingStyle', '+', '1'
     );
     rules.defineRule
-      ('skillNotes.remarkableAthleteFeature', 'strengthModifier', '=', null);
+      ('skillNotes.remarkableAthlete', 'strengthModifier', '=', null);
 
   } else if(name == 'Monk') {
 
-    rules.defineRule('abilityNotes.improvedUnarmoredMovementFeature',
+    rules.defineRule('abilityNotes.improvedUnarmoredMovement',
       'armor', '?', 'source == "None"',
       'shield', '?', 'source == "None"'
     );
-    rules.defineRule
-      ('abilityNotes.slowFallFeature', 'levels.Monk', '=', 'source * 5');
+    rules.defineRule('abilityNotes.slowFall', 'levels.Monk', '=', 'source * 5');
     // Show Unarmored Movement note properly even if armor != "None"
-    rules.defineRule('abilityNotes.unarmoredMovementFeature',
+    rules.defineRule('abilityNotes.unarmoredMovement',
       'levels.Monk', '=', 'Math.floor((source + 6) / 4) * 5'
     );
-    rules.defineRule('abilityNotes.unarmoredMovementFeature.1',
+    rules.defineRule('abilityNotes.unarmoredMovement.1',
       'armor', '?', 'source == "None"',
       'shield', '?', 'source == "None"',
-      'abilityNotes.unarmoredMovementFeature', '=', null
+      'abilityNotes.unarmoredMovement', '=', null
     );
-    rules.defineRule('combatNotes.deflectMissilesFeature',
+    rules.defineRule('combatNotes.deflectMissiles',
       'levels.Monk', '=', null,
       'dexterityModifier', '+', null
     );
-    rules.defineRule('combatNotes.extraAttackFeature',
+    rules.defineRule('combatNotes.extraAttack',
       'levels.Monk', '+=', 'source < 5 ? null : 1'
     );
-    rules.defineRule('combatNotes.martialArtsFeature',
+    rules.defineRule('combatNotes.martialArts',
       'levels.Monk', '=', 'Math.floor((source + 13)/ 3)'
     );
-    rules.defineRule('combatNotes.martialArtsFeature.1',
+    rules.defineRule('combatNotes.martialArts.1',
       'monkFeatures.Martial Arts', '?', null,
       'dexterityModifier', '=', 'source',
       'strengthModifier', '+', '-source',
       '', '^', '0'
     );
     // Show Unarmored Defense note even if armor != None or wisMod = 0
-    rules.defineRule('combatNotes.monkUnarmoredDefenseFeature.1',
-      'combatNotes.monkUnarmoredDefenseFeature', '?', null,
+    rules.defineRule('combatNotes.monkUnarmoredDefense.1',
+      'combatNotes.monkUnarmoredDefense', '?', null,
       'wisdomModifier', '=', null
     );
-    rules.defineRule('combatNotes.monkUnarmoredDefenseFeature.2',
-      'combatNotes.monkUnarmoredDefenseFeature', '?', null,
+    rules.defineRule('combatNotes.monkUnarmoredDefense.2',
+      'combatNotes.monkUnarmoredDefense', '?', null,
       'armor', '?', 'source == "None"',
-      'combatNotes.monkUnarmoredDefenseFeature.1', '=', null
+      'combatNotes.monkUnarmoredDefense.1', '=', null
     );
+    rules.defineRule('combatNotes.openHandTechnique', 'kiSaveDC', '=', null);
+    rules.defineRule('combatNotes.quiveringPalm', 'kiSaveDC', '=', null);
+    rules.defineRule('combatNotes.stunningStrike', 'kiSaveDC', '=', null);
+    rules.defineRule('featureNotes.ki', 'levels.Monk', '=', null);
     rules.defineRule
-      ('combatNotes.openHandTechniqueFeature', 'kiSaveDC', '=', null);
-    rules.defineRule
-      ('combatNotes.quiveringPalmFeature', 'kiSaveDC', '=', null);
-    rules.defineRule
-      ('combatNotes.stunningStrikeFeature', 'kiSaveDC', '=', null);
-    rules.defineRule('featureNotes.kiFeature', 'levels.Monk', '=', null);
-    rules.defineRule
-      ('featureNotes.wholenessOfBodyFeature', 'levels.Monk', '=', 'source*3');
+      ('featureNotes.wholenessOfBody', 'levels.Monk', '=', 'source*3');
     rules.defineRule('kiSaveDC',
       'monkFeatures.Ki', '?', null,
       'proficiencyBonus', '=', '8 + source',
       'wisdomModifier', '+', null
     );
-    rules.defineRule('magicNotes.tranquilityFeature', 'kiSaveDC', '=', null);
+    rules.defineRule('magicNotes.tranquility', 'kiSaveDC', '=', null);
     rules.defineRule('monkMeleeAttackBonus',
       'armor', '?', 'source == "None"',
       'dexterityModifier', '=', null,
@@ -3054,19 +3091,16 @@ SRD5E.classRulesExtra = function(rules, name) {
     );
     rules.defineRule('monkMeleeDieBonus',
       'armor', '?', 'source == "None"',
-      'combatNotes.martialArtsFeature', '=', '"1d" + source'
+      'combatNotes.martialArts', '=', '"1d" + source'
     );
-    for(var ability in {'Charisma':'', 'Constitution':'', 'Dexterity':'',
-                        'Intelligence':'', 'Strength':'', 'Wisdom':''}) {
-      rules.defineRule('saveProficiencies.' + ability,
-        'saveNotes.diamondSoulFeature', '=', '1'
-      );
+    for(var ability in SRD35.ABILITIES) {
+      rules.defineRule
+        ('saveProficiencies.' + ability, 'saveNotes.diamondSoul', '=', '1');
     }
     rules.defineRule('selectableFeatureCount.Monk',
       'levels.Monk', '=', 'source < 3 ? null : 1'
     );
-    rules.defineRule
-      ('speed', 'abilityNotes.unarmoredMovementFeature.1', '+', null);
+    rules.defineRule('speed', 'abilityNotes.unarmoredMovement.1', '+', null);
 
 
   } else if(name == 'Paladin') {
@@ -3081,38 +3115,37 @@ SRD5E.classRulesExtra = function(rules, name) {
       ]
     };
 
-    rules.defineRule
-      ('armorClass', 'combatNotes.defenseStyleFeature.1', '+', null);
+    rules.defineRule('armorClass', 'combatNotes.defenseStyle.1', '+', null);
     // Show Defense Style note even if armor == None
-    rules.defineRule('combatNotes.defenseStyleFeature.1',
-      'combatNotes.defenseStyleFeature', '?', null,
+    rules.defineRule('combatNotes.defenseStyle.1',
+      'combatNotes.defenseStyle', '?', null,
       'armor', '=', 'source == "None" ? null : 1'
     );
-    rules.defineRule('combatNotes.extraAttackFeature',
+    rules.defineRule('combatNotes.extraAttack',
       'levels.Paladin', '+=', 'source < 5 ? null : 1'
     );
-    rules.defineRule('combatNotes.sacredWeaponFeature',
+    rules.defineRule('combatNotes.sacredWeapon',
       'charismaModifier', '=', 'Math.max(source, 1)'
     );
     rules.defineRule
-      ('featureNotes.channelDivinityFeature', 'levels.Paladin', '=', '1');
-    rules.defineRule('magicNotes.cleansingTouchFeature',
+      ('featureNotes.channelDivinity', 'levels.Paladin', '=', '1');
+    rules.defineRule('magicNotes.cleansingTouch',
       'charismaModifier', '=', 'Math.max(source, 1)'
     );
     rules.defineRule
-      ('magicNotes.divineSenseFeature', 'charismaModifier', '=', 'source+1');
+      ('magicNotes.divineSense', 'charismaModifier', '=', 'source+1');
     rules.defineRule
-      ('magicNotes.layOnHandsFeature', 'levels.Paladin', '=', 'source*5');
-    rules.defineRule('saveNotes.auraOfCourageFeature',
+      ('magicNotes.layOnHands', 'levels.Paladin', '=', 'source*5');
+    rules.defineRule('saveNotes.auraOfCourage',
       'levels.Paladin', '=', 'source < 18 ? 10 : 30'
     );
-    rules.defineRule('saveNotes.auraOfDevotionFeature',
+    rules.defineRule('saveNotes.auraOfDevotion',
       'levels.Paladin', '=', 'source < 18 ? 10 : 30'
     );
-    rules.defineRule('saveNotes.auraOfProtectionFeature',
+    rules.defineRule('saveNotes.auraOfProtection',
       'levels.Paladin', '=', 'source < 18 ? 10 : 30'
     );
-    rules.defineRule('saveNotes.auraOfProtectionFeature.1',
+    rules.defineRule('saveNotes.auraOfProtection.1',
       'charismaModifier', '=', 'Math.max(source, 1)'
     );
     rules.defineRule('selectableFeatureCount.Paladin',
@@ -3121,23 +3154,21 @@ SRD5E.classRulesExtra = function(rules, name) {
 
   } else if(name == 'Ranger') {
 
-    rules.defineRule
-      ('armorClass', 'combatNotes.defenseStyleFeature.1', '+', null);
+    rules.defineRule('armorClass', 'combatNotes.defenseStyle.1', '+', null);
     // Show Defense Style note even if armor == None
-    rules.defineRule('combatNotes.defenseStyleFeature.1',
-      'combatNotes.defenseStyleFeature', '?', null,
+    rules.defineRule('combatNotes.defenseStyle.1',
+      'combatNotes.defenseStyle', '?', null,
       'armor', '=', 'source == "None" ? null : 1'
     );
-    rules.defineRule('combatNotes.extraAttackFeature',
+    rules.defineRule('combatNotes.extraAttack',
       'levels.Ranger', '+=', 'source < 5 ? null : 1'
     );
     rules.defineRule
-      ('attackBonus.Ranged', 'combatNotes.archeryStyleFeature', '+=', '2');
-    rules.defineRule('skillNotes.favoredEnemyFeature',
+      ('attackBonus.Ranged', 'combatNotes.archeryStyle', '+=', '2');
+    rules.defineRule('skillNotes.favoredEnemy',
       'levels.Ranger', '=', 'source < 6 ? 1 : source < 14 ? 2 : 3'
     );
-    rules.defineRule
-      ('combatNotes.foeSlayerFeature', 'wisdomModifier', '=', null);
+    rules.defineRule('combatNotes.foeSlayer', 'wisdomModifier', '=', null);
     rules.defineRule('hunterSelectableFeatureCount',
       'rangerFeatures.Hunter Archetype', '?', null,
       'levels.Ranger', '=', 'source<3 ? 0 : source<7 ? 1 : source<11 ? 2 : source<15 ? 3 : 4'
@@ -3146,92 +3177,80 @@ SRD5E.classRulesExtra = function(rules, name) {
       'levels.Ranger', '=', 'source < 2 ? 0 : source < 3 ? 1 : 2',
       'hunterSelectableFeatureCount', '+', null
     );
-    rules.defineRule('skillNotes.naturalExplorerFeature',
+    rules.defineRule('skillNotes.naturalExplorer',
       'levels.Ranger', '=', 'source < 6 ? 1 : source < 10 ? 2 : 3'
     );
 
   } else if(name == 'Rogue') {
 
-    rules.defineRule('combatNotes.sneakAttackFeature',
+    rules.defineRule('combatNotes.sneakAttack',
       'levels.Rogue', '=', 'Math.floor((source + 1) / 2)'
     );
     rules.defineRule
       ('rogueFeatBonus', 'levels.Rogue', '=', 'source < 10 ? null : 1');
-    rules.defineRule
-      ('saveProficiencies.Wisdom', 'saveNotes.slipperyMindFeature', '=', '1');
     rules.defineRule('selectableFeatureCount.Rogue',
       'levels.Rogue', '=', 'source < 3 ? null : 1'
     );
-    rules.defineRule('skillNotes.rogueExpertiseFeature',
+    rules.defineRule('skillNotes.rogueExpertise',
       'levels.Rogue', '=', 'source < 6 ? 2 : 4'
     );
-    rules.defineRule('skillNotes.second-StoryWorkFeature',
-      'dexterityModifier', '=', null
-    );
+    rules.defineRule
+      ('skillNotes.second-StoryWork', 'dexterityModifier', '=', null);
 
   } else if(name == 'Sorcerer') {
 
-    rules.defineRule('magicNotes.carefulSpellFeature',
+    rules.defineRule('magicNotes.carefulSpell',
       'charismaModifier', '=', 'Math.max(source, 1)'
     );
-    rules.defineRule('magicNotes.empoweredSpellFeature',
+    rules.defineRule('magicNotes.empoweredSpell',
       'charismaModifier', '=', 'Math.max(source, 1)'
     );
-    rules.defineRule
-      ('magicNotes.fontOfMagicFeature', 'levels.Sorcerer', '=', null);
+    rules.defineRule('magicNotes.fontOfMagic', 'levels.Sorcerer', '=', null);
     rules.defineRule('selectableFeatureCount.Sorcerer',
       'levels.Sorcerer', '=', 'source<3?1 : source<10?3 : source<17?4 : 5'
     );
 
     rules.defineRule
-      ('armorClass', 'combatNotes.draconicResilienceFeature.2', '^', null);
+      ('armorClass', 'combatNotes.draconicResilience.2', '^', null);
     rules.defineRule
-      ('combatNotes.draconicResilienceFeature', 'levels.Sorcerer', '=', null);
-    rules.defineRule('combatNotes.draconicResilienceFeature.1',
-      'combatNotes.draconicResilienceFeature', '?', null,
+      ('combatNotes.draconicResilience', 'levels.Sorcerer', '=', null);
+    rules.defineRule('combatNotes.draconicResilience.1',
+      'combatNotes.draconicResilience', '?', null,
       'dexterityModifier', '=', 'source + 13'
     );
-    rules.defineRule('combatNotes.draconicResilienceFeature.2',
+    rules.defineRule('combatNotes.draconicResilience.2',
       'armor', '?', 'source == "None"',
-      'combatNotes.draconicResilienceFeature.1', '=', null
+      'combatNotes.draconicResilience.1', '=', null
     );
-    rules.defineRule('magicNotes.elementalAffinityFeature',
-      'charismaModifier', '=', null
-    );
+    rules.defineRule
+      ('magicNotes.elementalAffinity', 'charismaModifier', '=', null);
 
   } else if(name == 'Warlock') {
 
-    rules.defineRule("combatNotes.darkOne'sBlessingFeature.1",
+    rules.defineRule("combatNotes.darkOne'sBlessing.1",
       "warlockFeatures.Dark One's Blessing", '?', null,
       'charismaModifier', '=', null,
       'levels.Warlock', '+', null,
       '', '^', '1'
     );
-    rules.defineRule('combatNotes.lifedrinkerFeature',
+    rules.defineRule('combatNotes.lifedrinker',
       'charismaModifier', '=', 'Math.max(source, 1)'
     );
     rules.defineRule
-      ('magicNotes.agonizingBlastFeature', 'charismaModifier', '=', null);
-    rules.defineRule('magicNotes.eldritchInvocationsFeature',
+      ('magicNotes.agonizingBlast', 'charismaModifier', '=', null);
+    rules.defineRule('magicNotes.eldritchInvocations',
       'levels.Warlock', '=', 'source == 2 ? 2 : source < 9 ? Math.floor((source + 1) / 2) : Math.floor((source + 6) / 3)'
     );
-    rules.defineRule('magicNotes.mysticArcanumFeature',
+    rules.defineRule('magicNotes.mysticArcanum',
       'levels.Warlock', '=', 'source<13 ? "K6" : source<15 ? "K6, K7" : source<17 ? "K6, K7, K8" : "K6, K7, K8, K9"'
     );
-    rules.defineRule('skillProficiencyCount',
-      'skillNotes.beguilingInfluenceFeature', '+', '2'
-    );
+    rules.defineRule
+      ('skillProficiencyCount', 'skillNotes.beguilingInfluence', '+', '2');
     rules.defineRule('selectableFeatureCount.Warlock',
       'levels.Warlock', '=', 'source < 3 ? 1 : 2',
-      'magicNotes.eldritchInvocationsFeature', '+', null
+      'magicNotes.eldritchInvocations', '+', null
     );
-    rules.defineRule('skillProficiencies.Deception',
-      'skillNotes.beguilingInfluenceFeature', '=', '1'
-    );
-    rules.defineRule('skillProficiencies.Persuasion',
-      'skillNotes.beguilingInfluenceFeature', '=', '1'
-    );
-    rules.defineNote(
+    rules.defineChoice('notes',
       'validationNotes.warlockBookOfAncientSecretsSelectableFeatureFeatures:Requires Pact Of The Tome',
       'validationNotes.warlockChainsOfCarceriSelectableFeatureFeatures:Requires Pact Of The Chain',
       'validationNotes.warlockLifedrinkerSelectableFeatureFeatures:Requires Pact Of The Blade',
@@ -3241,10 +3260,10 @@ SRD5E.classRulesExtra = function(rules, name) {
 
   } else if(name == 'Wizard') {
 
-    rules.defineRule('magicNotes.arcaneRecoveryFeature',
+    rules.defineRule('magicNotes.arcaneRecovery',
       'levels.Wizard', '=', 'Math.ceil(source / 2)'
     );
-    rules.defineRule('magicNotes.empoweredEvocationFeature',
+    rules.defineRule('magicNotes.empoweredEvocation',
       'intelligenceModifier', '=', null
     );
     rules.defineRule('selectableFeatureCount.Wizard',
@@ -3317,19 +3336,10 @@ SRD5E.featRules = function(rules, name, requires, implies, types) {
  * directly derived from the parmeters passed to featRules.
  */
 SRD5E.featRulesExtra = function(rules, name) {
-
-  var matchInfo;
-
-  if((matchInfo = feat.match(/^Ability Boost(\d+)?$/)) != null) {
-    rules.defineChoice('notes', 'abilityNotes.abilityBoosts:+%V to distribute');
-    var seq = matchInfo[1];
+  if(name.startsWith('Ability Boost')) {
     rules.defineRule
       ('abilityNotes.abilityBoosts', 'features.' + name, '+=', '2');
-    if(seq) {
-      notes.push('validationNotes.abilityBoost' + seq + 'FeatFeatures:Requires Ability Boost' + (seq != '2' ? seq - 1 : ''));
-    }
   }
-
 };
 
 /*
@@ -3340,6 +3350,26 @@ SRD5E.featRulesExtra = function(rules, name) {
 SRD5E.featureRules = function(rules, name, sections, notes) {
   // TODO
   SRD35.featureRules(rules, name, sections, notes);
+  for(var i = 0; i < notes.length; i++) {
+    if(!notes[i].match(/Prof /))
+      continue;
+    var pieces = notes[i].split('/');
+    for(var j = 0; j < pieces.length; j++) {
+      if(!pieces[j].match(/^Prof [A-Z][a-z']*( [A-Z][a-z']*)*$/))
+        continue;
+      var prefix = name.charAt(0).toLowerCase() + name.substring(1).replaceAll(' ', '');
+      var prof = pieces[j].replace('Prof ', '');
+      if(prof.endsWith('Tools'))
+        rules.defineRule
+          ('toolProficiencies.' + prof, 'skillNotes.' + prefix, '=', '1');
+      else if(sections[i] == 'save')
+        rules.defineRule
+          ('saveProficiencies.' + prof, 'saveNotes.' + prefix, '=', '1');
+      else if(sections[i] == 'skill')
+        rules.defineRule
+          ('skillProficiencies.' + prof, 'skillNotes.' + prefix, '=', '1');
+    }
+  }
 };
 
 /* Defines in #rules# the rules associated with gender #name#. */
@@ -3485,14 +3515,8 @@ SRD5E.raceRulesExtra = function(rules, name) {
       'abilityNotes.half-ElfAbilityAdjustment', '+=', '2'
     );
     // Redundant rule to get skill note to appear in italics
-    rules.defineRule('skillChoices.Intimidation',
-      'skillNotes.skillVersatilityFeature', '=', '1'
-    );
-  } else if(name == 'Half-Orc') {
-    // Redundant rule to get skill note to appear in italics
-    rules.defineRule('skillProficiencies.Intimidation',
-      'skillNotes.menacingFeature', '=', '1'
-    );
+    rules.defineRule
+      ('skillChoices.Intimidation', 'skillNotes.skillVersatility', '=', '1');
   } else if(name.match(/Dragonborn/)) {
     var draconicBreathTypes = {
       'Black Dragonborn': 'acid',
@@ -3506,42 +3530,32 @@ SRD5E.raceRulesExtra = function(rules, name) {
       'Silver Dragonborn': 'cold',
       'White Dragonborn': 'cold'
     };
-    rules.defineRule('combatNotes.draconicBreathFeature',
+    rules.defineRule('combatNotes.draconicBreath',
       'level', '=', 'Math.floor((source + 9) / 5)'
     );
-    rules.defineRule('combatNotes.draconicBreathFeature.1',
+    rules.defineRule('combatNotes.draconicBreath.1',
       'race', '=', 'source < "Gold" ? "5\'x30\' line" : "15\' cone"'
     );
-    rules.defineRule('combatNotes.draconicBreathFeature.2',
+    rules.defineRule('combatNotes.draconicBreath.2',
       'race', '=', QuilvynUtils.dictLit(draconicBreathTypes) + '[source]'
     );
-    rules.defineRule('combatNotes.draconicBreathFeature.3',
+    rules.defineRule('combatNotes.draconicBreath.3',
       'constitutionModifier', '=', '8 + source',
       'proficiencyBonus', '+', null
     );
-    rules.defineRule('combatNotes.draconicBreathFeature.4',
-      'combatNotes.draconicBreathFeature.2', '=', 'source.match(/cold|poison/) ? "Con" : "Dex"'
+    rules.defineRule('combatNotes.draconicBreath.4',
+      'combatNotes.draconicBreath.2', '=', 'source.match(/cold|poison/) ? "Con" : "Dex"'
     );
-    rules.defineRule('saveNotes.draconicBreathFeature',
+    rules.defineRule('saveNotes.draconicBreath',
       'race', '=', QuilvynUtils.dictLit(draconicBreathTypes) + '[source]'
     );
-  } else if(race.match(/Dwarf/)) {
+  } else if(name.match(/Dwarf/)) {
     rules.defineRule('abilityNotes.armorSpeedAdjustment',
-      'abilityNotes.dwarvenArmorSpeedFeature', '^', '0'
+      'abilityNotes.dwarvenArmorSpeed', '^', '0'
     );
-    rules.defineRule
-      ('combatNotes.dwarvenToughnessFeature', 'level', '=', null);
+    rules.defineRule('combatNotes.dwarvenToughness', 'level', '=', null);
   } else if(name.match(/Elf/)) {
-    // Redundant rule to get skill note to appear in italics
-    rules.defineRule('skillProficiencies.Perception',
-      'skillNotes.keenSensesFeature', '=', '1'
-    );
-    rules.defineRule('spellsKnown.W0', 'magicNotes.cantripFeature', '+=', '1');
-  } else if(name.match(/Gnome/)) {
-    // Redundant rule to get skill note to appear in italics
-    rules.defineRule("toolProficiencies.Tinker's Tools",
-      'skillNotes.tinkerFeature', '=', '1'
-    );
+    rules.defineRule('spellsKnown.W0', 'magicNotes.cantrip', '+=', '1');
   }
 
 };
@@ -3605,14 +3619,14 @@ SRD5E.skillRules = function(rules, name, ability, classes) {
   for(var i = 0; i < classes.length; i++) {
     rules.defineRule('skillProficiencies.' + name, 'levels.' + classes[i], '=', '1');
   }
-  rules.defineRule('skillBonus.' + skill,
+  rules.defineRule('skillBonus.' + name,
     'skillProficiencies.' + name, '?', null,
     'proficiencyBonus', '=', null
   );
-  rules.defineNote('skills.' + skill + ':(' + pieces[1] + ') %V');
-  rules.defineRule('skills.' + skill,
+  rules.defineChoice('notes', 'skills.' + name + ':(' + ability.substring(0, 3) + ') %V');
+  rules.defineRule('skills.' + name,
     ability + 'Modifier', '=', null,
-    'skillBonus.' + skill, '+', null
+    'skillBonus.' + name, '+', null
   );
 
 };
@@ -3630,15 +3644,24 @@ SRD5E.spellRules = function(
   SRD35.spellRules(rules, name, school, casterGroup, level, description);
 };
 
+/* Defines in #rules# the rules associated with tool #name#. */
+SRD5E.toolRules = function(rules, name) {
+  if(!name) {
+    console.log('Empty tool name');
+    return;
+  }
+  // No rules pertain to tools
+};
+
 /*
  * Defines in #rules# the rules associated with weapon #name#, which requires a
- * #level# proficiency level to use effectively and belongs to weapon category
- * #category# (one of '1h', '2h', 'Li', 'R', 'Un', 'Ve', or their spelled-out
- * equivalents). The weapon does #damage# HP on a successful attack. If
- * specified, the weapon can be used as a ranged weapon with a range increment
- * of #range# feet.
+ * #profLevel# proficiency level to use effectively and belongs to weapon
+ * category #category# (one of '1h', '2h', 'Li', 'R', 'Un', 'Ve', or their
+ * spelled-out equivalents). The weapon does #damage# HP on a successful
+ * attack. If specified, the weapon can be used as a ranged weapon with a range
+ * increment of #range# feet.
  */
-SRD5E.weaponRules = function(rules, name, level, category, damage, range) {
+SRD5E.weaponRules = function(rules, name, profLevel, category, damage, range) {
 
   if(!name) {
     console.log('Bad name for weapon  "' + name + '"');
@@ -3684,109 +3707,80 @@ SRD5E.weaponRules = function(rules, name, level, category, damage, range) {
   else if(category.match(/^versatile$/i))
     category = 'Ve';
 
-  var prefix =
-    name.charAt(0).toLowerCase() + name.substring(1).replace(/ /g, '');
-  var firstDamage = matchInfo[1];
+  var damage = matchInfo[1];
   var weaponName = 'weapons.' + name;
-  var attackBase = category == 'R' ? 'rangedAttack' : 'meleeAttack';
+  var format = '%V (%1 %2%3' + (range ? " R%4'" : '') + ')';
 
-  var rangeVar = !range ? null : 5;
-
-  var format = '%V (%1 %2%3';
-  if(range)
-    format += ' R%' + rangeVar + "'";
-  format += ')';
-
-  rules.defineChoice('notes', weaponName + ':' + format);
-
-  rules.defineRule(prefix + 'AttackModifier',
-    'weapons.' + name, '?', null,
-    attackBase, '=', null
-  );
-  rules.defineRule(weaponName + '.1',
-    prefix + 'AttackModifier', '=', 'source >= 0 ? "+" + source : source'
-  );
-
-  rules.defineRule(prefix + 'DamageModifier', 'weapons.' + name, '?', null);
-  if(name.match(/Blowgun|Crossbow|Dartgun|Gun/))
-    rules.defineRule(prefix + 'DamageModifier', '', '=', '0');
-  else if(name.match(/Longbow|Shortbow/))
-    rules.defineRule(prefix + 'DamageModifier',
-      'combatNotes.strengthDamageAdjustment', '=', 'source < 0 ? source : 0'
-    );
-  else if(category.match(/[12]h/))
-    rules.defineRule(prefix + 'DamageModifier',
-      'combatNotes.strengthDamageAdjustment', '=', null,
-      'combatNotes.two-HandedWieldDamageAdjustment', '+', null
-    );
-  else
-    rules.defineRule(prefix + 'DamageModifier',
-      'combatNotes.strengthDamageAdjustment', '=', null
-    );
-  rules.defineRule(prefix + 'DamageDice',
-    'weapons.' + name, '?', null,
-    '', '=', '"' + firstDamage + '"',
-    'features.Small', '=', '"' + SRD35.SMALL_DAMAGE[firstDamage] + '"',
-    'features.Large', '=', '"' + SRD35.LARGE_DAMAGE[firstDamage] + '"'
-  );
-  rules.defineRule(weaponName + '.2', prefix + 'DamageDice', '=', null);
-  rules.defineRule(weaponName + '.3',
-    prefix + 'DamageModifier', '=', 'source>0 ? "+" + source : source==0 ? "" : source'
-  );
-
-  rules.defineRule(prefix + 'ThreatRange', 'weapons.' + name, '=', 21 - threat);
-  rules.defineRule
-    (weaponName + '.' + threatVar, prefix + 'ThreatRange', '=', '21 - source');
-
-  if(range) {
-    rules.defineRule(prefix + 'Range',
-      'weapons.' + name, '=', range,
-      'features.Far Shot', '*', name.indexOf('bow') < 0 ? '2' : '1.5'
-    );
-    rules.defineRule(weaponName + '.' + rangeVar, prefix + 'Range', '=', null);
-  }
-
-  if(category == 'Li' || name.match(/^(rapier|whip|spiked chain)$/i)) {
-    rules.defineRule
-      (prefix + 'AttackModifier', 'combatNotes.weaponFinesse', '+=', null);
-  }
+  if(damage.startsWith('d'))
+    damage = '1' + damage;
 
   rules.defineChoice('notes',
-    'combatNotes.nonproficientWeaponPenalty.' + name + ':%V attack'
+    weaponName + ':' + format,
+    'sanityNotes.nonproficientWeaponPenalty.' + name + ':%V attack'
   );
-  rules.defineRule(prefix + 'AttackModifier',
-    'weapons.' + name, '?', null,
-    'combatNotes.nonproficientArmorPenalty', '+=', null,
-    'combatNotes.nonproficientShieldPenalty', '+=', null,
-    'combatNotes.nonproficientWeaponPenalty.' + name, '+=', null
+
+  rules.defineRule('sanityNotes.nonproficientWeaponPenalty.' + name,
+    weaponName, '?', null,
+    'proficiencyBonus', '=', '-source',
+    'proficient.' + name, '=', '0'
   );
-  rules.defineRule('weaponProficiencyLevelShortfall.' + name,
-    'weapons.' + name, '=', profLevel,
-    'features.Weapon Familiarity (' + name + ')', '+', '-1',
-    'weaponProficiencyLevel', '+', '-source',
-    'features.Weapon Proficiency (' + name + ')', '*', '0'
+
+  rules.defineRule('proficient.' + name,
+    weaponName, '?', null,
+    'weaponProficiencies.' + name, '=', '1',
+    'weaponProficiencies.' + category, '=', '1'
   );
-  rules.defineRule('combatNotes.nonproficientWeaponPenalty.' + name,
-    'weapons.' + name, '=', '-4',
-    'weaponProficiencyLevelShortfall.' + name, '?', 'source > 0'
+  rules.defineRule('weaponBonus.' + name,
+    weaponName, '?', null,
+    'proficient.' + name, '?', null,
+    'proficiencyBonus', '=', null
   );
+  rules.defineRule('attackBonus.' + name,
+    weaponName, '?', null,
+    'combatNotes.' + (range ? 'dexterity' : 'strength') + 'AttackAdjustment', '=', null,
+    'attackBonus.' + (range ? 'Ranged' : 'Melee'), '+', null,
+    'weaponBonus.' + name, '+', null,
+    'weaponAttackAdjustment.' + name, '+', null
+  );
+  rules.defineRule('damageBonus.' + name,
+    weaponName, '?', null,
+    'combatNotes.' + (range ? 'dexterity' : 'strength') + 'DamageAdjustment', '=', null,
+    'damageBonus.' + (range ? 'Ranged' : 'Melee'), '+', null,
+    'weaponBonus.' + name, '+', null,
+    'weaponDamageAdjustment.' + name, '+', null
+  );
+  if(!range) {
+    rules.defineRule('attackBonus.'+name, 'monkMeleeAttackBonus', '+', null);
+    rules.defineRule('damageBonus.'+name, 'monkMeleeDamageBonus', '+', null);
+  }
+
+  rules.defineRule(weaponName + '.1',
+    weaponName, '?', null,
+    'attackBonus.' + name, '=', 'source < 0 ? source : ("+" + source)'
+  );
+  rules.defineRule(weaponName + '.2',
+    weaponName, '=', '"' + damage + '"'
+  );
+  rules.defineRule(weaponName + '.3',
+    weaponName, '?', null,
+    'damageBonus.' + name, '=', 'source < 0 ? source : source == 0 ? "" : ("+" + source)'
+  );
+  if(range) {
+    rules.defineRule('range.' + name,
+      weaponName, '=', range,
+      'weaponRangeAdjustment.' + name, '+', null
+    );
+    rules.defineRule(weaponName + '.4',
+      weaponName, '?', null,
+      'range.' + name, '=', null
+    );
+  } else {
+    rules.defineRule(weaponName + '.2', 'monkMeleeDieBonus', '^', null);
+  }
+
   if(category == '2h') {
-    rules.defineChoice('notes',
-      'combatNotes.two-handedWeaponWithBucklerPenalty:-1 attack and AC'
-    );
-    rules.defineRule('armorClass',
-      'combatNotes.two-handedWeaponWithBucklerPenalty', '+', '-1'
-    );
-    rules.defineRule('combatNotes.two-handedWeaponWithBucklerPenalty',
-      'shield', '?', 'source == "Buckler"',
-      'weapons.' + name, '=', '-1'
-    );
-    rules.defineRule(prefix + 'AttackModifier',
-      'combatNotes.two-handedWeaponWithBucklerPenalty.' + name, '+', '-1'
-    );
-    SRD35.prerequisiteRules
-      (rules, 'validation', 'two-handedWeapon', 'weapons.' + name,
-       'shield =~ \'Buckler|None\'');
+    rules.defineRule
+      ('validationNotes.two-handedWeaponWithShield', weaponName, '=', '1');
   }
 
 };
@@ -3848,10 +3842,10 @@ SRD5E.createViewers = function(rules, viewers) {
             {name: 'Abilities', within: 'Section 1',
              format: '<b>Str/Int/Wis/Dex/Con/Cha</b> %V', separator: '/'},
               {name: 'Strength', within: 'Abilities', format: '%V'},
-              {name: 'Intelligence', within: 'Abilities', format: '%V'},
-              {name: 'Wisdom', within: 'Abilities', format: '%V'},
               {name: 'Dexterity', within: 'Abilities', format: '%V'},
               {name: 'Constitution', within: 'Abilities', format: '%V'},
+              {name: 'Intelligence', within: 'Abilities', format: '%V'},
+              {name: 'Wisdom', within: 'Abilities', format: '%V'},
               {name: 'Charisma', within: 'Abilities', format: '%V'},
           {name: 'Section 2', within: '_top', separator: '; '},
             {name: 'Skill Modifier', within: 'Section 2', separator: '/'},
@@ -3883,10 +3877,10 @@ SRD5E.createViewers = function(rules, viewers) {
         {name: 'Attributes', within: '_top', separator: outerSep},
           {name: 'Abilities', within: 'Attributes', separator: innerSep},
             {name: 'Strength', within: 'Abilities'},
-            {name: 'Intelligence', within: 'Abilities'},
-            {name: 'Wisdom', within: 'Abilities'},
             {name: 'Dexterity', within: 'Abilities'},
             {name: 'Constitution', within: 'Abilities'},
+            {name: 'Intelligence', within: 'Abilities'},
+            {name: 'Wisdom', within: 'Abilities'},
             {name: 'Charisma', within: 'Abilities'},
           {name: 'Description', within: 'Attributes', separator: innerSep},
             {name: 'Background', within: 'Description'},
@@ -3947,7 +3941,7 @@ SRD5E.createViewers = function(rules, viewers) {
       );
       if(name != 'Collected Notes') {
         viewer.addElements(
-            {name: 'Skill Notes', within: 'SkillPart', separator:noteSep}
+            {name: 'Skill Notes', within: 'FeaturesAndSkills', separator:noteSep}
         );
       }
       viewer.addElements(
@@ -4040,14 +4034,14 @@ SRD5E.initialEditorElements = function() {
     ['background', 'Background', 'select-one', 'backgrounds'],
     ['strength', 'Str/Boost', 'select-one', abilityChoices],
     ['strengthAdjust', '', 'text', [3]],
-    ['intelligence', 'Int/Boost', 'select-one', abilityChoices],
-    ['intelligenceAdjust', '', 'text', [3]],
-    ['wisdom', 'Wis/Boost', 'select-one', abilityChoices],
-    ['wisdomAdjust', '', 'text', [3]],
     ['dexterity', 'Dex/Boost', 'select-one', abilityChoices],
     ['dexterityAdjust', '', 'text', [3]],
     ['constitution', 'Con/Boost', 'select-one', abilityChoices],
     ['constitutionAdjust', '', 'text', [3]],
+    ['intelligence', 'Int/Boost', 'select-one', abilityChoices],
+    ['intelligenceAdjust', '', 'text', [3]],
+    ['wisdom', 'Wis/Boost', 'select-one', abilityChoices],
+    ['wisdomAdjust', '', 'text', [3]],
     ['charisma', 'Cha/Boost', 'select-one', abilityChoices],
     ['charismaAdjust', '', 'text', [3]],
     ['player', 'Player', 'text', [20]],
@@ -4707,10 +4701,6 @@ SRD5E.defineEditorElement = function() {
   return SRD5E.rules.defineEditorElement.apply(SRD5E.rules, arguments);
 };
 
-SRD5E.defineNote = function() {
-  return SRD5E.rules.defineNote.apply(SRD5E.rules, arguments);
-};
-
 SRD5E.defineRule = function() {
   return SRD5E.rules.defineRule.apply(SRD5E.rules, arguments);
 };
@@ -4725,169 +4715,4 @@ SRD5E.getChoices = function() {
 
 SRD5E.isSource = function() {
   return SRD5E.rules.isSource.apply(SRD5E.rules, arguments);
-};
-
-// TODO
-/* Defines the rules related to equipment. */
-SRD5E.equipmentRules = function(rules, armors, shields, weapons) {
-
-  rules.defineChoice('armors', armors);
-  rules.defineChoice('shields', shields);
-  rules.defineChoice('weapons', weapons);
-
-  rules.defineRule('proficient.None', '', '=', '1'); // Prof w/no armor
-  rules.defineRule('proficient.Unarmed', '', '=', '1');
-  rules.defineRule('weapons.Unarmed', '', '=', '1');
-
-  rules.defineNote(
-    'validationNotes.two-handedWeaponWithShield:' +
-      'Shields cannot be used with two-handed weapons'
-  );
-  rules.defineRule('validationNotes.two-handedWeaponWithShield',
-    'shield', '?', 'source != "None"'
-  );
-
-  rules.defineNote
-    ('validationNotes.armorProficiencyAllocation:%1 available vs. %2 allocated');
-  rules.defineRule('validationNotes.armorProficiencyAllocation.1',
-    'armorProficiencyCount', '=', null
-  );
-  rules.defineRule('validationNotes.armorProficiencyAllocation.2',
-    '', '=', '0',
-    /^armorProficiencies\./, '+', null
-  );
-  rules.defineRule('validationNotes.armorProficiencyAllocation',
-    'validationNotes.armorProficiencyAllocation.1', '=', '-source',
-    'validationNotes.armorProficiencyAllocation.2', '+', null
-  );
-  rules.defineNote
-    ('validationNotes.weaponProficiencyAllocation:%1 available vs. %2 allocated');
-  rules.defineRule('validationNotes.weaponProficiencyAllocation.1',
-    'weaponProficiencyCount', '=', null
-  );
-  rules.defineRule('validationNotes.weaponProficiencyAllocation.2',
-    '', '=', '0',
-    /^weaponProficiencies\./, '+', null
-  );
-  rules.defineRule('validationNotes.weaponProficiencyAllocation',
-    'validationNotes.weaponProficiencyAllocation.1', '=', '-source',
-    'validationNotes.weaponProficiencyAllocation.2', '+', null
-  );
-
-  for(var i = 0; i < weapons.length; i++) {
-
-    var pieces = weapons[i].split(':');
-    var matchInfo = pieces[1].match(/(\d?d\d+)(r(\d+))?/);
-    if(! matchInfo)
-      continue;
-
-    var category = pieces[1].indexOf('Si') >= 0 ? 'Simple' : 'Martial';
-    var damage = matchInfo[1];
-    var name = pieces[0];
-    var range = matchInfo[3];
-    var weaponName = 'weapons.' + name;
-    var format = '%V (%1 %2%3' + (range ? " R%4'" : '') + ')';
-
-    if(damage.startsWith('d'))
-      damage = '1' + damage;
-
-    rules.defineNote(
-      weaponName + ':' + format,
-      'sanityNotes.nonproficientWeaponPenalty.' + name + ':%V attack'
-    );
-
-    rules.defineRule('sanityNotes.nonproficientWeaponPenalty.' + name,
-      weaponName, '?', null,
-      'proficiencyBonus', '=', '-source',
-      'proficient.' + name, '=', '0'
-    );
-
-    rules.defineRule('proficient.' + name,
-      weaponName, '?', null,
-      'weaponProficiencies.' + name, '=', '1',
-      'weaponProficiencies.' + category, '=', '1'
-    );
-    rules.defineRule('weaponBonus.' + name,
-      weaponName, '?', null,
-      'proficient.' + name, '?', null,
-      'proficiencyBonus', '=', null
-    );
-    rules.defineRule('attackBonus.' + name,
-      weaponName, '?', null,
-      'combatNotes.' + (range ? 'dexterity' : 'strength') + 'AttackAdjustment', '=', null,
-      'attackBonus.' + (range ? 'Ranged' : 'Melee'), '+', null,
-      'weaponBonus.' + name, '+', null,
-      'weaponAttackAdjustment.' + name, '+', null
-    );
-    rules.defineRule('damageBonus.' + name,
-      weaponName, '?', null,
-      'combatNotes.' + (range ? 'dexterity' : 'strength') + 'DamageAdjustment', '=', null,
-      'damageBonus.' + (range ? 'Ranged' : 'Melee'), '+', null,
-      'weaponBonus.' + name, '+', null,
-      'weaponDamageAdjustment.' + name, '+', null
-    );
-    if(!range) {
-      rules.defineRule('attackBonus.'+name, 'monkMeleeAttackBonus', '+', null);
-      rules.defineRule('damageBonus.'+name, 'monkMeleeDamageBonus', '+', null);
-    }
-
-    rules.defineRule(weaponName + '.1',
-      weaponName, '?', null,
-      'attackBonus.' + name, '=', 'source < 0 ? source : ("+" + source)'
-    );
-    rules.defineRule(weaponName + '.2',
-      weaponName, '=', '"' + damage + '"'
-    );
-    rules.defineRule(weaponName + '.3',
-      weaponName, '?', null,
-      'damageBonus.' + name, '=', 'source < 0 ? source : source == 0 ? "" : ("+" + source)'
-    );
-    if(range) {
-      rules.defineRule('range.' + name,
-        weaponName, '=', range,
-        'weaponRangeAdjustment.' + name, '+', null
-      );
-      rules.defineRule(weaponName + '.4',
-        weaponName, '?', null,
-        'range.' + name, '=', null
-      );
-    }
-    if(!range) {
-      rules.defineRule(weaponName + '.2', 'monkMeleeDieBonus', '^', null);
-    }
-
-    if(pieces[1].indexOf('2h') >= 0) {
-      rules.defineRule('validationNotes.two-handedWeaponWithShield',
-        weaponName, '=', '1'
-      );
-    }
-
-  }
-
-  rules.defineRule('nonproficientArmor', '', '=', '1');
-  for(var i = 0; i < armors.length; i++) {
-    var pieces = armors[i].split(':');
-    var category = pieces[1].indexOf('He')>=0 ? 'Heavy Armor' :
-                   pieces[1].indexOf('Me')>=0 ? 'Medium Armor' : 'Light Armor';
-    var name = pieces[0];
-    rules.defineRule('proficient.' + name,
-      'armor', '?', 'source == "' + name + '"',
-      'armorProficiencies.' + name, '=', '1',
-      'armorProficiencies.' + category, '=', '1'
-    );
-    rules.defineRule('nonproficientArmor', 'proficient.' + name, '=', '0');
-  }
-
-  rules.defineNote(
-    'sanityNotes.nonproficientArmorPenalty:' +
-      'Disadv Dex, Str rolls, cannot cast spells',
-    'skillNotes.bulkyArmor:Disadv Stealth'
-  );
-  rules.defineRule
-    ('sanityNotes.nonproficientArmorPenalty', 'nonproficientArmor', '=', null);
-
-  rules.defineRule('combatNotes.dexterityArmorClassAdjustment',
-    'armor', 'v', 'SRD5E.armorsMaxDexBonuses[source]'
-  );
-
 };

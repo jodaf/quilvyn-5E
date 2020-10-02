@@ -18,7 +18,7 @@ Place, Suite 330, Boston, MA 02111-1307 USA.
 /*jshint esversion: 6 */
 "use strict";
 
-var SRD5E_VERSION = '1.8.2.0';
+var SRD5E_VERSION = '2.0.1.0';
 
 /*
  * This module loads the rules from the System Reference Document v5.  The
@@ -106,28 +106,29 @@ SRD5E.ALIGNMENTS = {
   'Lawful Neutral':''
 };
 SRD5E.ARMORS = {
-  'None':'AC=0 Dex=10 Weight=0',
-  'Padded':'AC=1 Bulky=Y Dex=10 Weight=1',
-  'Leather':'AC=1 Dex=10 Weight=1',
-  'Studded Leather':'AC=2 Dex=10 Weight=1',
-  'Hide':'AC=2 Dex=2 Weight=2',
-  'Chain Shirt':'AC=3 Dex=2 Weight=2',
-  'Scale Mail':'AC=4 Bulky=Y Dex=2 Weight=2',
-  'Breastplate':'AC=4 Dex=2 Weight=2',
-  'Half Plate':'AC=5 Bulky=Y Dex=2 Weight=2',
-  'Ring Mail':'AC=4 Bulky=Y Dex=0 Weight=3',
-  'Chain Mail':'AC=6 Bulky=Y Dex=0 Str=13 Weight=3',
-  'Splint':'AC=7 Bulky=Y Dex=0 Str=15 Weight=3',
-  'Plate':'AC=8 Bulky=Y Dex=0 Str=15 Weight=3'
+  'None':'AC=0 Dex=10 Category=0',
+  'Padded':'AC=1 Bulky=Y Dex=10 Category=1',
+  'Leather':'AC=1 Dex=10 Category=1',
+  'Studded Leather':'AC=2 Dex=10 Category=1',
+  'Hide':'AC=2 Dex=2 Category=2',
+  'Chain Shirt':'AC=3 Dex=2 Category=2',
+  'Scale Mail':'AC=4 Bulky=Y Dex=2 Category=2',
+  'Breastplate':'AC=4 Dex=2 Category=2',
+  'Half Plate':'AC=5 Bulky=Y Dex=2 Category=2',
+  'Ring Mail':'AC=4 Bulky=Y Dex=0 Category=3',
+  'Chain Mail':'AC=6 Bulky=Y Dex=0 Str=13 Category=3',
+  'Splint':'AC=7 Bulky=Y Dex=0 Str=15 Category=3',
+  'Plate':'AC=8 Bulky=Y Dex=0 Str=15 Category=3'
 };
 SRD5E.BACKGROUNDS = {
   'Acolyte':
     'Equipment=' +
       '"Holy Symbol","Prayer Book",Incense,Vestments,Clothing,"15 GP" ' +
     'Features=' +
-      '1:Shelter Of The Faithful ' +
+      '"1:Shelter Of The Faithful" ' +
     'Language=any,any ' +
-    'Skill=Insight,Religion'
+    'Proficiencies=' +
+      '"Skill:Insight;Religion"'
 };
 SRD5E.DEITIES = {
   'None':'',
@@ -211,7 +212,7 @@ SRD5E.FEATS = {
   'Ability Boost5':'Require="features.Ability Boost4"',
   'Ability Boost6':'Require="features.Ability Boost5"',
   'Ability Boost7':'Require="features.Ability Boost6"',
-  'Grappler':'Require="Strength >= 13"'
+  'Grappler':'Require="strength >= 13"'
 };
 SRD5E.FEATURES = {
   // Background
@@ -230,7 +231,7 @@ SRD5E.FEATURES = {
   'Aura Of Devotion':'Section=save Note="R%V\' Self and allies immune charm"',
   'Aura Of Protection':'Section=save Note="R%V\' +%1 saves self and allies"',
   'Barbarian Unarmored Defense':'Section=combat Note="+%1 AC in no armor"',
-  'Bard Expertise':'Section=skill Note="Dbl Prof %V skills"',
+  'Bard Expertise':'Section=skill Note="Dbl Prof %V chosen skills"',
   'Bardic Inspiration':'Section=magic Note="R60\' Grant 1d%V w/in 10 min %1/long rest"',
   'Beast Speech':'Section=magic Note="<i>Speak With Animals</i> at will"',
   'Beast Spells':'Section=magic Note="Cast spells during Wild Shape"',
@@ -239,7 +240,7 @@ SRD5E.FEATURES = {
   'Blessed Healer':'Section=magic Note="Self regain 2 + spell level HP from casting healing spells"',
   'Blindsense':'Section=skill Note="R10\' Hear hidden/invisible creatures"',
   'Bonus Cantrip':'Section=magic Note="Additional Druid cantrip"',
-  'Bonus Skills':'Section=skill Note="Prof 3 additional skills"',
+  'Bonus Skills':'Section=skill Note="3 additional skill proficiencies"',
   'Book Of Ancient Secrets':'Section=magic Note="Inscribe rituals in Book Of Shadows"',
   'Brutal Critical':'Section=combat Note="+%V crit damage dice"',
   'Careful Spell':'Section=magic Note="Spend 1 Sorcery Point to protect %V creature(s) from your spell"',
@@ -283,10 +284,10 @@ SRD5E.FEATURES = {
   'Evasion':'Section=save Note="Dex save yields no damage instead of half"',
   'Evocation Savant':'Section=magic Note="Write evocation spells for half cost"',
   'Extended Spell':'Section=magic Note="Spend 1 sorcery point to dbl spell duration"',
-  'Extra Attack':'Section=combat Note="%V additional attack per Attack action"',
+  'Extra Attack':'Section=combat Note="+%V Attacks Per Round"',
   'Eyes Of The Rune Keeper':'Section=feature Note="Read all writing"',
   'Fast Hands':'Section=combat Note="Use Cunning Action for Sleight Of Hand, disarm trap, open lock, Use An Object"',
-  'Fast Movement':'Section=ability Note="+10 speed (heavy armor neg)"',
+  'Fast Movement':'Section=ability Note="+10 Speed (heavy armor neg)"',
   'Favored Enemy':'Section=skill Note="Adv Survival to track, info about %V creature types, learn enemy language"',
   'Feral Instinct':'Section=combat Note="Adv Init, rage and act when surprised"',
   'Feral Senses':'Section=combat,skill Note="No Disadv vs. invisible foe","30\' awareness of invisible creatures"',
@@ -409,7 +410,6 @@ SRD5E.FEATURES = {
   'Wild Shape':'Section=magic Note="Transform into CR %1%2 creature for %3 hr 2/short rest"',
   'Witch Sight':'Section=feature Note="R30\' See true forms"',
   // Feats
-  'Ability Boost':'Section=ability Note="%V to distribute"',
   'Grappler':'Section=combat Note="Adv attacks vs. grappled foe, additional grapple to pin"',
   // Races
   "Artificer's Lore":'Section=skill Note="Dbl Prof on magic, alchemical, tech objects History checks"',
@@ -430,7 +430,7 @@ SRD5E.FEATURES = {
   'Hellish Resistance':'Section=save Note="Resistance fire damage"',
   'High Elf Ability Adjustment':'Section=ability Note="+2 Dexterity/+1 Intelligence"',
   'Hill Dwarf Ability Adjustment':'Section=ability Note="+2 Constitution/+1 Wisdom"',
-  'Human Ability Adjustment':'Section=ability Note="+1 charisma/+1 constitution/+1 dexterity/+1 intelligence/+1 strength/+1 wisdom"',
+  'Human Ability Adjustment':'Section=ability Note="+1 Charisma/+1 Constitution/+1 Dexterity/+1 Intelligence/+1 Strength/+1 Wisdom"',
   'Infernal Legacy':'Section=magic Note="<i>Thaumaturgy</i> cantrip%V"',
   'Keen Senses':'Section=skill Note="Prof Perception"',
   'Lightfoot Halfling Ability Adjustment':'Section=ability Note="+2 Dexterity/+1 Charisma"',
@@ -439,7 +439,7 @@ SRD5E.FEATURES = {
   'Relentless Endurance':'Section=combat Note="Keep 1 HP when brought to 0 1/long rest"',
   'Rock Gnome Ability Adjustment':'Section=ability Note="+2 Intelligene/+1 Constitution"',
   'Savage Attacks':'Section=combat Note="Extra die on crit damage"',
-  'Skill Versatility':'Section=skill Note="+2 Skill Proficiency Count"',
+  'Skill Versatility':'Section=skill Note="2 additional skill proficiencies"',
   'Slow':'Section=ability Note="-5 Speed"',
   'Small':'Section=combat Note="Disadv heavy weapons"',
   'Stonecunning':'Section=skill Note="Dbl Prof on stonework History checks"',
@@ -1531,50 +1531,51 @@ SRD5E.TOOLS = {
   'Vehicle (Water)':'Type='
 };
 SRD5E.WEAPONS = {
-  'Battleaxe':'Level=2 Category=Ve Damage=d10',
-  'Blowgun':'Level=2 Category=R Damage=d1 Range=25',
-  'Club':'Level=1 Category=Li Damage=d4',
-  'Dagger':'Level=1 Category=Li Damage=d4 Range=20 Fi',
-  'Dart':'Level=1 Category=R Damage=d4 Range=20 Fi',
-  'Flail':'Level=2 Category=1h Damage=d8',
-  'Glaive':'Level=2 Category=2h Damage=d10',
-  'Greataxe':'Level=2 Category=2h Damage=d12',
-  'Greatclub':'Level=1 Category=2h Damage=d8',
-  'Greatsword':'Level=2 Category=2h Damage=2d6',
-  'Halberd':'Level=2 Category=2h Damage=d10',
-  'Hand Crossbow':'Level=2 Category=R Damage=d6 Range=30',
-  'Handaxe':'Level=1 Category=Li Damage=d6 Range=20',
-  'Heavy Crossbow':'Level=2 Category=R Damage=d10 Range=100',
-  'Javelin':'Level=1 Category=R Damage=d6 Range=30',
-  'Lance':'Level=2 Category=1h Damage=d12',
-  'Light Crossbow':'Level=1 Category=R Damage=d8 Range=80',
-  'Light Hammer':'Level=1 Category=Li Damage=d4 Range=20',
-  'Longbow':'Level=2 Category=R Damage=d8 Range=150',
-  'Longsword':'Level=2 Category=Ve Damage=d10',
-  'Mace':'Level=1 Category=1h Damage=d6',
-  'Maul':'Level=2 Category=2h Damage=2d6',
-  'Morningstar':'Level=2 Category=1h Damage=d8',
-  'Net':'Level=2 Category=R Damage=d0 Range=5',
-  'Pike':'Level=2 Category=2h Damage=d10',
-  'Quarterstaff':'Level=1 Category=Ve Damage=d6',
-  'Rapier':'Level=2 Category=1h Damage=d8 Fi',
-  'Scimitar':'Level=2 Category=Li Damage=d6 Fi',
-  'Shortbow':'Level=1 Category=R Damage=d6 Range=80',
-  'Shortsword':'Level=2 Category=Li Damage=d6 Fi',
-  'Sickle':'Level=1 Category=Li Damage=d4',
-  'Sling':'Level=1 Category=R Damage=d4 Range=30',
-  'Spear':'Level=1 Category=R Category=Ve Damage=d8 Range=20',
-  'Trident':'Level=2 Category=Ve Damage=d8 Range=20',
-  'Unarmed':'Level=1 Category=Un Damage=d1',
-  'War Pick':'Level=2 Category=1h Damage=d8',
-  'Warhammer':'Level=2 Category=Ve Damage=d8',
-  'Whip':'Level=2 Category=1h Damage=d4 Fi'
+  'Battleaxe':'Category=2 Property=Ve Damage=d10',
+  'Blowgun':'Category=2 Property=R Damage=d1 Range=25',
+  'Club':'Category=1 Property=Li Damage=d4',
+  'Dagger':'Category=1 Property=Li Damage=d4 Range=20 Fi',
+  'Dart':'Category=1 Property=R Damage=d4 Range=20 Fi',
+  'Flail':'Category=2 Property=1h Damage=d8',
+  'Glaive':'Category=2 Property=2h Damage=d10',
+  'Greataxe':'Category=2 Property=2h Damage=d12',
+  'Greatclub':'Category=1 Property=2h Damage=d8',
+  'Greatsword':'Category=2 Property=2h Damage=2d6',
+  'Halberd':'Category=2 Property=2h Damage=d10',
+  'Hand Crossbow':'Category=2 Property=R Damage=d6 Range=30',
+  'Handaxe':'Category=1 Property=Li Damage=d6 Range=20',
+  'Heavy Crossbow':'Category=2 Property=R Damage=d10 Range=100',
+  'Javelin':'Category=1 Property=R Damage=d6 Range=30',
+  'Lance':'Category=2 Property=1h Damage=d12',
+  'Light Crossbow':'Category=1 Property=R Damage=d8 Range=80',
+  'Light Hammer':'Category=1 Property=Li Damage=d4 Range=20',
+  'Longbow':'Category=2 Property=R Damage=d8 Range=150',
+  'Longsword':'Category=2 Property=Ve Damage=d10',
+  'Mace':'Category=1 Property=1h Damage=d6',
+  'Maul':'Category=2 Property=2h Damage=2d6',
+  'Morningstar':'Category=2 Property=1h Damage=d8',
+  'Net':'Category=2 Property=R Damage=d0 Range=5',
+  'Pike':'Category=2 Property=2h Damage=d10',
+  'Quarterstaff':'Category=1 Property=Ve Damage=d6',
+  'Rapier':'Category=2 Property=1h Damage=d8 Fi',
+  'Scimitar':'Category=2 Property=Li Damage=d6 Fi',
+  'Shortbow':'Category=1 Property=R Damage=d6 Range=80',
+  'Shortsword':'Category=2 Property=Li Damage=d6 Fi',
+  'Sickle':'Category=1 Property=Li Damage=d4',
+  'Sling':'Category=1 Property=R Damage=d4 Range=30',
+  'Spear':'Category=1 Property=Ve Damage=d8 Range=20',
+  'Trident':'Category=2 Property=Ve Damage=d8 Range=20',
+  'Unarmed':'Category=0 Property=Un Damage=d1',
+  'War Pick':'Category=2 Property=1h Damage=d8',
+  'Warhammer':'Category=2 Property=Ve Damage=d8',
+  'Whip':'Category=2 Property=1h Damage=d4 Fi'
 };
 SRD5E.CLASSES = {
   'Barbarian':
     'HitDie=d12 ' +
     'Features=' +
-      '"1:Armor Proficiency (Light/Medium/Shield)",' +
+      '"1:Armor Proficiency (Medium)",' +
+      '"1:Shield Proficiency",' +
       '"1:Weapon Proficiency (Simple/Martial)",' +
       '"1:Barbarian Unarmored Defense",1:Rage,"2:Danger Sense",' +
       '"2:Reckless Attack","5:Extra Attack",' +
@@ -1591,16 +1592,14 @@ SRD5E.CLASSES = {
       '"3:Path Of The Totem Warrior (Eagle)",' +
       '"3:Path Of The Totem Warrior (Wolf)" ' +
     'Proficiencies=' +
-      '"Armor:Light Armor;Medium Armor;Shield",' +
       '"Save:Constitution;Strength",' +
-      '"2 Skill:Animal Handling;Athletics;Intimidation;Nature;Perception;Survival",' +
-      '"Weapon:Simple;Martial"',
+      '"2 Skill:Animal Handling;Athletics;Intimidation;Nature;Perception;Survival"',
   'Bard':
     'HitDie=d8 ' +
     'Features=' +
       '"1:Armor Proficiency (Light)",' +
       '"1:Weapon Proficiency (Simple/Hand Crossbow/Longsword/Rapier/Shortsword)",' +
-      '"1:Tool Proficiency (3 Musical Instruments)",' +
+      '"1:Tool Proficiency (3 musical instruments)",' +
       '"1:Bardic Inspiration","1:Ritual Casting",1:Spellcasting,' +
       '"2:Jack Of All Trades","2:Song Of Rest","3:Bard Expertise",' +
       '"5:Font Of Inspiration",6:Countercharm,"10:Magical Secrets",' +
@@ -1612,11 +1611,9 @@ SRD5E.CLASSES = {
     'Selectables=' +
       '"3:College Of Lore" ' +
     'Proficiencies=' +
-      '"Armor:Light Armor",' +
       '"Save:Charisma;Dexterity",' +
       '"3 Skill:' + QuilvynUtils.getKeys(SRD5E.SKILLS).join(';') + '",' +
-      '"3 Tool:Music",' +
-      '"Weapon:Simple;Hand Crossbow;Longsword;Rapier;Shortsword" ' +
+      '"3 Tool:Music" ' +
     'CasterLevelArcane=levels.Bard ' +
     'SpellAbility=charisma ' +
     'SpellSlots=' +
@@ -1631,35 +1628,36 @@ SRD5E.CLASSES = {
       'B9:17=1 ' +
     'Spells=' +
       '"B0:Dancing Lights;Light;Mage Hand;Mending;Message;Minor Illusion;' +
-      'Prestidigitation:True Strike;Vicious Mockery",' +
+      'Prestidigitation;True Strike;Vicious Mockery",' +
       '"B1:Animal Friendship;Bane;Charm Person;Comprehend Languages;' +
-      'Cure Wounds:Detect Magic;Disguise Self;Faerie Fire;Feather Fall;' +
-      'Healing Word:Heroism;Hideous Laughter;Identify;Illusory Script;' +
-      'Longstrider:Silent Image;Sleep;Speak With Animals;Unseen Servant",' +
+      'Cure Wounds;Detect Magic;Disguise Self;Faerie Fire;Feather Fall;' +
+      'Healing Word;Heroism;Hideous Laughter;Identify;Illusory Script;' +
+      'Longstrider;Silent Image;Sleep;Speak With Animals;Unseen Servant",' +
       '"B2:Animal Messenger;Blindness/Deafness;Calm Emotions;' +
-      'Detect Thoughts:Enhance Ability;Enthrall;Heat Metal;Hold Person;' +
-      'Invisibility:Knock;Lesser Restoration;Locate Animals Or Plants;' +
-      'Locate Object:Magic Mouth;See Invisibility;Shatter;Silence;' +
-      'Suggestion:Zone Of Truth",' +
+      'Detect Thoughts;Enhance Ability;Enthrall;Heat Metal;Hold Person;' +
+      'Invisibility;Knock;Lesser Restoration;Locate Animals Or Plants;' +
+      'Locate Object;Magic Mouth;See Invisibility;Shatter;Silence;' +
+      'Suggestion;Zone Of Truth",' +
       '"B3:Bestow Curse;Clairvoyance;Dispel Magic;Fear;Glyph Of Warding;' +
-      'Hypnotic Pattern:Major Image;Plant Growth;Sending;Speak With Dead;' +
-      'Speak With Plants:Stinking Cloud;Tiny Hut;Tongues",' +
+      'Hypnotic Pattern;Major Image;Plant Growth;Sending;Speak With Dead;' +
+      'Speak With Plants;Stinking Cloud;Tiny Hut;Tongues",' +
       '"B4:Compulsion;Confusion;Dimension Door;Freedom Of Movement;' +
-      'Greater Invisibility:Hallucinatory Terrain;Locate Creature;Polymorph",' +
+      'Greater Invisibility;Hallucinatory Terrain;Locate Creature;Polymorph",' +
       '"B5:Animate Objects;Awaken;Dominate Person;Dream;Geas;' +
-      'Greater Restoration:Hold Monster;Legend Lore;Mass Cure Wounds;' +
-      'Mislead:Modify Memory;Planar Binding;Raise Dead;Scrying;Seeming;' +
+      'Greater Restoration;Hold Monster;Legend Lore;Mass Cure Wounds;' +
+      'Mislead;Modify Memory;Planar Binding;Raise Dead;Scrying;Seeming;' +
       'Teleportation Circle",' +
       '"B6:Eyebite;Find The Path;Guards And Wards;Irresistible Dance;' +
-      'Mass Suggestion:Programmed Illusion;True Seeing",' +
+      'Mass Suggestion;Programmed Illusion;True Seeing",' +
       '"B7:Etherealness;Forcecage;Magnificent Mansion;Mirage Arcane;' +
-      'Project Image:Regenerate;Resurrection;Symbol;Teleport",' +
+      'Project Image;Regenerate;Resurrection;Symbol;Teleport",' +
       '"B8:Dominate Monster;Feeblemind;Glibness;Mind Blank;Power Word Stun",' +
       '"B9:Foresight;Power Word Kill;True Polymorph"',
   'Cleric':
     'HitDie=d8 ' +
     'Features=' +
-      '"1:Armor Proficiency (Light/Medium/Shield)",' +
+      '"1:Armor Proficiency (Medium)",' +
+      '"1:Shield Proficiency",' +
       '"1:Weapon Proficiency (Simple)",' +
       '"1:Ritual Casting",1:Spellcasting,"2:Channel Divinity",' +
       '"2:Turn Undead","5:Destroy Undead","10:Divine Intervention",' +
@@ -1672,10 +1670,8 @@ SRD5E.CLASSES = {
     'Selectables=' +
       '"1:Life Domain" ' +
     'Proficiencies=' +
-      '"Armor:Light Armor;Medium Armor;Shield",' +
       '"Save:Charisma;Wisdom",' +
-      '"2 Skill:History;Insight;Medicine;Persuasion;Religion",' +
-      '"Weapon:Simple" ' +
+      '"2 Skill:History;Insight;Medicine;Persuasion;Religion" ' +
     'CasterLevelDivine=levels.Cleric ' +
     'SpellAbility=wisdom ' +
     'SpellSlots=' +
@@ -1687,40 +1683,46 @@ SRD5E.CLASSES = {
       'C6:11=1;19=2,' +
       'C7:13=1;20=2,' +
       'C8:15=1,' +
-      'C9:17=1 ' +
+      'C9:17=1,' +
+      'Dom1:1=2,' +
+      'Dom2:3=2,' +
+      'Dom3:5=2,' +
+      'Dom4:7=2,' +
+      'Dom5:9=2 ' +
     'Spells=' +
       '"C0:Guidance;Light;Mending;Resistance;Sacred Flame;Spare The Dying;' +
       'Thaumaturgy",' +
       '"C1:Bane;Bless;Command;Create Or Destroy Water;Cure Wounds;' +
-      'Detect Evil And Good:Detect Magic;Detect Poison And Disease;' +
-      'Guiding Bolt:Healing Word;Inflict Wounds;' +
-      'Protection From Evil And Good:Purify Food And Drink;Sanctuary;' +
+      'Detect Evil And Good;Detect Magic;Detect Poison And Disease;' +
+      'Guiding Bolt;Healing Word;Inflict Wounds;' +
+      'Protection From Evil And Good;Purify Food And Drink;Sanctuary;' +
       'Shield Of Faith",' +
       '"C2:Aid;Augury;Blindness/Deafness;Calm Emotions;Continual Flame;' +
-      'Enhance Ability:Find Traps;Gentle Repose;Hold Person;' +
-      'Lesser Restoration:Locate Object;Prayer Of Healing;' +
-      'Protection From Poison:Silence;Spiritual Weapon;Warding Bond;' +
+      'Enhance Ability;Find Traps;Gentle Repose;Hold Person;' +
+      'Lesser Restoration;Locate Object;Prayer Of Healing;' +
+      'Protection From Poison;Silence;Spiritual Weapon;Warding Bond;' +
       'Zone Of Truth",' +
       '"C3:Animate Dead;Beacon Of Hope;Bestow Curse;Clairvoyance;' +
-      'Create Food And Water:Daylight;Dispel Magic;Glyph Of Warding;' +
-      'Magic Circle:Mass Healing Word;Meld Into Stone;' +
-      'Protection From Energy:Remove Curse;Revivify;Sending;' +
-      'Speak With Dead:Spirit Guardians;Tongues;Water Walk",' +
+      'Create Food And Water;Daylight;Dispel Magic;Glyph Of Warding;' +
+      'Magic Circle;Mass Healing Word;Meld Into Stone;' +
+      'Protection From Energy;Remove Curse;Revivify;Sending;' +
+      'Speak With Dead;Spirit Guardians;Tongues;Water Walk",' +
       '"C4:Banishment;Control Water;Death Ward;Divination;' +
-      'Freedom Of Movement:Guardian Of Faith;Locate Creature;Stone Shape",' +
+      'Freedom Of Movement;Guardian Of Faith;Locate Creature;Stone Shape",' +
       '"C5:Commune;Contagion;Dispel Evil And Good;Flame Strike;Geas;' +
-      'Greater Restoration:Hallow;Insect Plague;Legend Lore;' +
-      'Mass Cure Wounds:Planar Binding;Raise Dead;Scrying",' +
+      'Greater Restoration;Hallow;Insect Plague;Legend Lore;' +
+      'Mass Cure Wounds;Planar Binding;Raise Dead;Scrying",' +
       '"C6:Blade Barrier;Create Undead;Find The Path;Forbiddance;Harm;Heal;' +
-      'Heroes\' Feast:Planar Ally;True Seeing;Word Of Recall",' +
+      'Heroes\' Feast;Planar Ally;True Seeing;Word Of Recall",' +
       '"C7:Conjure Celestial;Divine Word;Etherealness;Fire Storm;' +
-      'Plane Shift:Regenerate;Resurrection;Symbol",' +
+      'Plane Shift;Regenerate;Resurrection;Symbol",' +
       '"C8:Antimagic Field;Control Weather;Earthquake;Holy Aura",' +
       '"C9:Astral Projection;Gate;Mass Heal;True Resurrection"',
   'Druid':
     'HitDie=d8 ' +
     'Features=' +
-      '"1:Armor Proficiency (Light/Medium/Shield)",' +
+      '"1:Armor Proficiency (Medium)",' +
+      '"1:Shield Proficiency",' +
       '"1:Weapon Proficiency (Club/Dagger/Dart/Javelin/Mace/Quarterstaff/Scimitar/Sickle/Sling/Spear)",' +
       '"1:Tool Proficiency (Herbalism Kit)",' +
       '"1:Ritual Casting",1:Spellcasting,"2:Wild Shape",' +
@@ -1740,11 +1742,9 @@ SRD5E.CLASSES = {
       '"2:Circle Of The Land (Mountain)",' +
       '"2:Circle Of The Land (Swamp)" ' +
     'Proficiencies=' +
-      '"Armor:Light Armor;Medium Armor;Shield",' +
       '"Save:Intelligence;Wisdom",' +
       '"2 Skill:Arcana;Animal Handling;Insight;Medicine;Nature;Perception;Religion;Survival",' +
-      '"Tool:Herbalism Kit",' +
-      '"Weapon:Club;Dagger;Dart;Javelin;Mace;Quarterstaff;Scimitar;Sickle;Sling;Spear" ' +
+      '"Tool:Herbalism Kit" ' +
     'CasterLevelDivine=levels.Druid ' +
     'SpellAbility=wisdom ' +
     'SpellSlots=' +
@@ -1759,36 +1759,37 @@ SRD5E.CLASSES = {
       'D9:17=1 ' +
     'Spells=' +
       '"D0:Druidcraft;Guidance;Mending;Poison Spray;Produce Flame;' +
-      'Resistance:Shillelagh",' +
+      'Resistance;Shillelagh",' +
       '"D1:Animal Friendship;Charm Person;Create Or Destroy Water;' +
-      'Cure Wounds:Detect Magic;Detect Poison And Disease;Entangle;' +
-      'Faerie Fire:Fog Cloud;Goodberry;Healing Word;Jump;Longstrider;' +
-      'Purify Food And Drink:Speak With Animals;Thunderwave",' +
+      'Cure Wounds;Detect Magic;Detect Poison And Disease;Entangle;' +
+      'Faerie Fire;Fog Cloud;Goodberry;Healing Word;Jump;Longstrider;' +
+      'Purify Food And Drink;Speak With Animals;Thunderwave",' +
       '"D2:Animal Messenger;Barkskin;Darkvision;Enhance Ability;' +
-      'Find Traps:Flame Blade;Flaming Sphere;Gust Of Wind;Heat Metal;' +
-      'Hold Person:Lesser Restoration;Locate Animals Or Plants;' +
-      'Locate Object:Moonbeam;Pass Without Trace;Protection From Poison;' +
+      'Find Traps;Flame Blade;Flaming Sphere;Gust Of Wind;Heat Metal;' +
+      'Hold Person;Lesser Restoration;Locate Animals Or Plants;' +
+      'Locate Object;Moonbeam;Pass Without Trace;Protection From Poison;' +
       'Spike Growth",' +
       '"D3:Call Lightning;Conjure Animals;Daylight;Dispel Magic;' +
-      'Meld Into Stone:Plant Growth;Protection From Energy;Sleet Storm;' +
-      'Speak With Plants:Water Breathing;Water Walk;Wind Wall",' +
+      'Meld Into Stone;Plant Growth;Protection From Energy;Sleet Storm;' +
+      'Speak With Plants;Water Breathing;Water Walk;Wind Wall",' +
       '"D4:Blight;Confusion;Conjure Minor Elementals;' +
-      'Conjure Woodland Beings:Control Water;Dominate Beast;' +
-      'Freedom Of Movement:Giant Insect;Hallucinatory Terrain;Ice Storm;' +
-      'Locate Creature:Polymorph;Stone Shape;Stoneskin;Wall Of Fire",' +
+      'Conjure Woodland Beings;Control Water;Dominate Beast;' +
+      'Freedom Of Movement;Giant Insect;Hallucinatory Terrain;Ice Storm;' +
+      'Locate Creature;Polymorph;Stone Shape;Stoneskin;Wall Of Fire",' +
       '"D5:Antilife Shell;Awaken;Commune With Nature;Conjure Elemental;' +
-      'Contagion:Geas;Greater Restoration;Insect Plague;Mass Cure Wounds;' +
-      'Planar Binding:Reincarnate;Scrying;Tree Stride;Wall Of Stone",' +
+      'Contagion;Geas;Greater Restoration;Insect Plague;Mass Cure Wounds;' +
+      'Planar Binding;Reincarnate;Scrying;Tree Stride;Wall Of Stone",' +
       '"D6:Conjure Fey;Find The Path;Heal;Heroes\' Feast;Move Earth;Sunbeam;' +
-      'Transport Via Plants:Wall Of Thorns;Wind Walk",' +
+      'Transport Via Plants;Wall Of Thorns;Wind Walk",' +
       '"D7:Fire Storm;Mirage Arcane;Plane Shift;Regenerate;Reverse Gravity",' +
       '"D8:Animal Shapes;Antipathy/Sympathy;Control Weather;Earthquake;' +
-      'Feeblemind:Sunburst",' +
+      'Feeblemind;Sunburst",' +
       '"D9:Foresight;Shapechange;Storm Of Vengeance;True Resurrection"',
   'Fighter':
     'HitDie=d10 ' +
     'Features=' +
-      '"1:Armor Proficiency (Light/Medium/Heavy/Shield)",' +
+      '"1:Armor Proficiency (Heavy)",' +
+      '"1:Shield Proficiency",' +
       '"1:Weapon Proficiency (Simple/Martial)",' +
       '"1:Second Wind","2:Action Surge","5:Extra Attack",9:Indomitable' +
       '"features.Champion Archetype ? 3:Improved Critical",' +
@@ -1802,15 +1803,13 @@ SRD5E.CLASSES = {
       '"1:Great Weapon Fighting Style","1:Protection Style",' +
       '"1:Two-Weapon Fighting Style","3:Champion Archetype" ' +
     'Proficiencies=' +
-      '"Armor:Light Armor;Medium Armor;Heavy Armor;Shield",' +
       '"Save:Constitution;Strength",' +
-      '"2 Skill:Acrobatics;Animal Handling;Athletics;History;Insight;Intimidation;Perception;Survival",' +
-      '"Weapon:Simple;Martial"',
+      '"2 Skill:Acrobatics;Animal Handling;Athletics;History;Insight;Intimidation;Perception;Survival"',
   'Monk':
     'HitDie=d8 ' +
     'Features=' +
       '1:Weapon Proficiency (Simple/Shortsword)",' +
-      '"1:Tool Proficiency (Artisan\'s Tools or Musical Instrument)",' +
+      '"1:Tool Proficiency (artisan\'s tools or musical instrument)",' +
       '"1:Martial Arts","1:Monk Bonus Attack","1:Monk Unarmored Defense",' +
       '"2:Flurry Of Blows","2:Ki","2:Patient Defense","2:Step Of The Wind",' +
       '"2:Unarmored Movement","3:Deflect Missiles","4:Slow Fall",' +
@@ -1827,12 +1826,12 @@ SRD5E.CLASSES = {
     'Proficiencies=' +
       '"Save:Dexterity;Strength",' +
       '"2 Skill:Acrobatics;Athletics;History;Insight;Religion;Stealth",' +
-      '"1 Tool:Artisan;Music",' +
-      '"Weapon:Simple;Shortsword"',
+      '"1 Tool:Artisan;Music"',
   'Paladin':
     'HitDie=d10 ' +
     'Features=' +
-      '"1:Armor Proficiency (Light/Medium/Heavy/Shield)",' +
+      '"1:Armor Proficiency (Heavy)",' +
+      '"1:Shield Proficiency",' +
       '"1:Weapon Proficiency (Simple/Martial)",' +
       '"1:Divine Sense","1:Lay On Hands","2:Divine Smite",2:Spellcasting,' +
       '"3:Channel Divinity","3:Divine Health","5:Extra Attack",' +
@@ -1842,16 +1841,13 @@ SRD5E.CLASSES = {
       '"features.Oath Of Devotion ? 3:Turn The Unholy",' +
       '"features.Oath Of Devotion ? 7:Aura Of Devotion",' +
       '"features.Oath Of Devotion ? 15:Purity Of Spirit",' +
-      '"features.Oath Of Devotion ? 20:Holy Nimbus:magic",' +
       '"features.Oath Of Devotion ? 20:Holy Nimbus" ' +
     'Selectables=' +
       '"2:Defense Style","2:Dueling Style","2:Great Weapon Fighting Style",' +
       '"2:Protection Style","3:Oath Of Devotion" ' +
     'Proficiencies=' +
-      '"Armor:Light Armor;Medium Armor;Heavy Armor;Shield",' +
       '"Save:Charisma;Wisdom",' +
-      '"2 Skill:Athletics;Insight;Intimidation;Medicine;Persuasion;Religion",' +
-      '"Weapon:Simple;Martial" ' +
+      '"2 Skill:Athletics;Insight;Intimidation;Medicine;Persuasion;Religion" ' +
     'CasterLevelArcane=levels.Paladin ' +
     'SpellAbility=charisma ' +
     'SpellSlots=' +
@@ -1862,18 +1858,19 @@ SRD5E.CLASSES = {
       'P5:17=1;19=2 ' +
     'Spells=' +
       '"P1:Bless;Command;Cure Wounds;Detect Evil And Good;Detect Magic;' +
-      'Detect Poison And Disease:Divine Favor;Heroism;' +
-      'Protection From Evil And Good:Purify Food And Drink;Shield Of Faith",' +
+      'Detect Poison And Disease;Divine Favor;Heroism;' +
+      'Protection From Evil And Good;Purify Food And Drink;Shield Of Faith",' +
       '"P2:Aid;Branding Smite;Find Steed;Lesser Restoration;Locate Object;' +
-      'Magic Weapon:Protection From Poison;Zone Of Truth",' +
+      'Magic Weapon;Protection From Poison;Zone Of Truth",' +
       '"P3:Create Food And Water;Daylight;Dispel Magic;Magic Circle;' +
-      'Remove Curse:Revivify",' +
+      'Remove Curse;Revivify",' +
       '"P4:Banishment;Death Ward;Locate Creature",' +
       '"P5:Dispel Evil And Good;Geas;Raise Dead"',
   'Ranger':
     'HitDie=d10 ' +
     'Features=' +
-      '"1:Armor Proficiency (Light/Medium/Shield)",' +
+      '"1:Armor Proficiency (Medium)",' +
+      '"1:Shield Proficiency",' +
       '"1:Weapon Proficiency (Simple/Martial)",' +
       '"1:Favored Enemy","1:Natural Explorer",2:Spellcasting,' +
       '"3:Primeval Awareness","5:Extra Attack","8:Land\'s Stride",' +
@@ -1886,10 +1883,8 @@ SRD5E.CLASSES = {
       '"11:Whirlwind Attack",15:Evasion,"15:Stand Against The Tide",' +
       '"15:Uncanny Dodge" ' +
     'Proficiencies=' +
-      '"Armor:Light Armor;Medium Armor;Shield",' +
       '"Save:Dexterity;Strength",' +
-      '"3 Skill:Animal Handling;Athletics;Insight;Investigation;Nature;Perception;Stealth;Survival",' +
-      '"Weapon:Simple;Martial" ' +
+      '"3 Skill:Animal Handling;Athletics;Insight;Investigation;Nature;Perception;Stealth;Survival" ' +
     'CasterLevelDivine=levels.Ranger ' +
     'SpellAbility=wisdom ' +
     'SpellSlots=' +
@@ -1900,13 +1895,13 @@ SRD5E.CLASSES = {
       'R5:17=1;19=2 ' +
     'Spells=' +
       '"R1:Alarm;Animal Friendship;Cure Wounds;Detect Magic;' +
-      'Detect Poison And Disease:Fog Cloud;Goodberry;Hunter\'s Mark;Jump;' +
-      'Longstrider:Speak With Animals",' +
+      'Detect Poison And Disease;Fog Cloud;Goodberry;Hunter\'s Mark;Jump;' +
+      'Longstrider;Speak With Animals",' +
       '"R2:Animal Messenger;Barkskin;Darkvision;Find Traps;' +
-      'Lesser Restoration:Locate Animals Or Plants;Locate Object;' +
-      'Pass Without Trace:Protection From Poison;Silence;Spike Growth",' +
+      'Lesser Restoration;Locate Animals Or Plants;Locate Object;' +
+      'Pass Without Trace;Protection From Poison;Silence;Spike Growth",' +
       '"R3:Conjure Animals;Daylight;Nondetection;Plant Growth;' +
-      'Protection From Energy:Speak With Plants;Water Breathing;Water Walk;' +
+      'Protection From Energy;Speak With Plants;Water Breathing;Water Walk;' +
       'Wind Wall",' +
       '"R4:Conjure Woodland Beings;Freedom Of Movement;Locate Creature;' +
       'Stoneskin",' +
@@ -1928,11 +1923,9 @@ SRD5E.CLASSES = {
     'Selectables=' +
       '"3:Thief Archetype" ' +
     'Proficiencies=' +
-      '"Armor:Light Armor",' +
       '"Save:Dexterity;Intelligence",' +
       '"4 Skill:Acrobatics;Athletics;Deception;Insight;Intimidation;Investigation;Perception;Performance;Persuasion;Sleight Of Hand;Stealth",' +
-      '"Tool:"Thieves\' Tools",' +
-      '"Weapon:Simple;Hand Crossbow;Longsword;Rapier;Shortsword"',
+      '"Tool:"Thieves\' Tools"',
   'Sorcerer':
     'HitDie=d6 ' +
     'Features=' +
@@ -1949,8 +1942,7 @@ SRD5E.CLASSES = {
       '"3:Quickened Spell","3:Subtle Spell","3:Twinned Spell" ' +
     'Proficiencies=' +
       '"Save:Charisma;Constitution ' +
-      '"2 Skill:Arcana;Deception;Insight;Intimidation;Persuasion;Religion",' +
-      '"Weapon:Dagger;Dart;Light Crossbow;Sling;Quarterstaff" ' +
+      '"2 Skill:Arcana;Deception;Insight;Intimidation;Persuasion;Religion" ' +
     'CasterLevelArcane=levels.Sorcerer ' +
     'SpellAbility=charisma ' +
     'SpellSlots' +
@@ -1965,30 +1957,30 @@ SRD5E.CLASSES = {
       'S9:17=1 ' +
     'Spells=' +
       '"S0:Acid Splash;Chill Touch;Dancing Lights;Fire Bolt;Light;Mage Hand;' +
-      'Mending:Message;Minor Illusion;Poison Spray;Prestidigitation;' +
-      'Ray Of Frost:Shocking Grasp;True Strike",' +
+      'Mending;Message;Minor Illusion;Poison Spray;Prestidigitation;' +
+      'Ray Of Frost;Shocking Grasp;True Strike",' +
       '"S1:Burning Hands;Charm Person;Color Spray;Comprehend Languages;' +
-      'Detect Magic:Disguise Self;Expeditious Retreat;False Life;' +
-      'Feather Fall:Fog Cloud;Jump;Mage Armor;Magic Missile;Shield;' +
-      'Silent Image:Sleep;Thunderwave",' +
+      'Detect Magic;Disguise Self;Expeditious Retreat;False Life;' +
+      'Feather Fall;Fog Cloud;Jump;Mage Armor;Magic Missile;Shield;' +
+      'Silent Image;Sleep;Thunderwave",' +
       '"S2:Alter Self;Blindness/Deafness;Blur;Darkness;Darkvision;' +
-      'Detect Thoughts:Enhance Ability;Enlarge/Reduce;Gust Of Wind;' +
-      'Hold Person:Invisibility;Knock;Levitate;Mirror Image;Misty Step;' +
-      'Scorching Ray:See Invisibility;Shatter;Spider Climb;Suggestion;Web",' +
+      'Detect Thoughts;Enhance Ability;Enlarge/Reduce;Gust Of Wind;' +
+      'Hold Person;Invisibility;Knock;Levitate;Mirror Image;Misty Step;' +
+      'Scorching Ray;See Invisibility;Shatter;Spider Climb;Suggestion;Web",' +
       '"S3:Blink;Clairvoyance;Counterspell;Daylight;Dispel Magic;Fear;' +
-      'Fireball:Fly;Gaseous Form;Haste;Hypnotic Pattern;Lightning Bolt;' +
-      'Major Image:Protection From Energy;Sleet Storm;Slow;Stinking Cloud;' +
-      'Tongues:Water Breathing;Water Walk",' +
+      'Fireball;Fly;Gaseous Form;Haste;Hypnotic Pattern;Lightning Bolt;' +
+      'Major Image;Protection From Energy;Sleet Storm;Slow;Stinking Cloud;' +
+      'Tongues;Water Breathing;Water Walk",' +
       '"S4:Banishment;Blight;Confusion;Dimension Door;Dominate Beast;' +
-      'Greater Invisibility:Ice Storm;Polymorph;Stoneskin;Wall Of Fire",' +
+      'Greater Invisibility;Ice Storm;Polymorph;Stoneskin;Wall Of Fire",' +
       '"S5:Animate Objects;Cloudkill;Cone Of Cold;Creation;Dominate Person;' +
-      'Hold Monster:Insect Plague;Seeming;Telekinesis;Teleportation Circle;' +
+      'Hold Monster;Insect Plague;Seeming;Telekinesis;Teleportation Circle;' +
       'Wall Of Stone",' +
       '"S6:Chain Lightning;Circle Of Death;Disintegrate;Eyebite;' +
-      'Globe Of Invulnerability:Mass Suggestion;Move Earth;Sunbeam;' +
+      'Globe Of Invulnerability;Mass Suggestion;Move Earth;Sunbeam;' +
       'True Seeing",' +
       '"S7:Delayed Blast Fireball;Etherealness;Finger Of Death;Fire Storm;' +
-      'Plane Shift:Prismatic Spray;Reverse Gravity;Teleport",' +
+      'Plane Shift;Prismatic Spray;Reverse Gravity;Teleport",' +
       '"S8:Dominate Monster;Earthquake;Incendiary Cloud;Power Word Stun;' +
       'Sunburst",' +
       '"S9:Gate;Meteor Swarm;Power Word Kill;Time Stop;Wish"',
@@ -2019,10 +2011,8 @@ SRD5E.CLASSES = {
       '"2:Voice Of The Chain Master","9:Whispers Of The Grave",' +
       '"15:Witch Sight" ' +
     'Proficiencies=' +
-      '"Armor:"Light Armor",' +
       '"Save:Charisma;Wisdom",' +
-      '"2 Skill:Arcana;Deception;History;Intimidation;Investigation;Nature;Religigion",' +
-      '"Weapon:Simple" ' +
+      '"2 Skill:Arcana;Deception;History;Intimidation;Investigation;Nature;Religigion" ' +
     'SpellAbility=charisma ' +
     'SpellSlots=' +
       'K1:1=1;2=2;3=0,' +
@@ -2032,18 +2022,18 @@ SRD5E.CLASSES = {
       'K5:9=2;11=3;17=4 ' +
     'Spells=' +
       '"K0:Chill Touch;Eldritch Blast;Mage Hand;Minor Illusion;Poison Spray;' +
-      'Prestidigitation:True Strike",' +
+      'Prestidigitation;True Strike",' +
       '"K1:Charm Person;Comprehend Languages;Expeditious Retreat;' +
-      'Hellish Rebuke:Illusory Script;Protection From Evil And Good;' +
+      'Hellish Rebuke;Illusory Script;Protection From Evil And Good;' +
       'Unseen Servant",' +
       '"K2:Darkness;Enthrall;Hold Person;Invisibility;Mirror Image;' +
-      'Misty Step:Ray Of Enfeeblement;Shatter;Spider Climb;Suggestion",' +
+      'Misty Step;Ray Of Enfeeblement;Shatter;Spider Climb;Suggestion",' +
       '"K3:Counterspell;Dispel Magic;Fear;Fly;Gaseous Form;Hypnotic Pattern;' +
-      'Magic Circle:Major Image;Remove Curse;Tongues;Vampiric Touch",' +
+      'Magic Circle;Major Image;Remove Curse;Tongues;Vampiric Touch",' +
       '"K4:Banishment;Blight;Dimension Door;Hallucinatory Terrain",' +
       '"K5:Contact Other Plane;Dream;Hold Monster;Scrying",' +
       '"K6:Circle Of Death;Conjure Fey;Create Undead;Eyebite;Flesh To Stone;' +
-      'Mass Suggestion:True Seeing",' +
+      'Mass Suggestion;True Seeing",' +
       '"K7:Etherealness;Finger Of Death;Forcecage;Plane Shift",' +
       '"K8:Demiplane;Dominate Monster;Feeblemind;Glibness;Power Word Stun",' +
       '"K9:Astral Projection;Foresight;Imprisonment;Power Word Kill;' +
@@ -2069,19 +2059,18 @@ SRD5E.CLASSES = {
       '"2:Evocation Tradition" ' +
     'Proficiencies=' +
       '"Save:Intelligence;Wisdom",' +
-      '"3 Skill:Arcana;History;Insight;Investigation;Medicine;Religion",' +
-      '"Weapon:Dagger;Dart;Light Crossbow;Sling;Quarterstaff" ' +
+      '"3 Skill:Arcana;History;Insight;Investigation;Medicine;Religion" ' +
     'SpellAbility=intelligence ' +
     'SpellSlots=' +
-      'W1:1;2;2;3;3;4,' +
-      'W2:3;2;4;3,' +
-      'W3:5;2;6;3,' +
-      'W4:7;1;8;2;9;3,' +
-      'W5:9;1;10;2;18;3,' +
-      'W6:11;1;19;2,' +
-      'W7:13;1;20;2,' +
-      'W8:15;1,' +
-      'W9:17;1 ' +
+      'W1:1=2;2=3;3=4,' +
+      'W2:3=2;4=3,' +
+      'W3:5=2;6=3,' +
+      'W4:7=1;8=2;9=3,' +
+      'W5:9=1;10=2;18=3,' +
+      'W6:11=1;19=2,' +
+      'W7:13=1;20=2,' +
+      'W8:15=1,' +
+      'W9:17=1 ' +
     'Spells=' +
       '"W0:Acid Splash;Chill Touch;Dancing Lights;Fire Bolt;Light;Mage Hand;' +
       'Mending;Message;Minor Illusion;Poison Spray;Prestidigitation;' +
@@ -2176,7 +2165,7 @@ SRD5E.RACES = {
     'Features=' +
       '1:Darkvision,"1:Hill Dwarf Ability Adjustment",' +
       '"1:Dwarven Armor Speed","1:Dwarven Resilience",1:Slow,1:Stonecunning,' +
-      '"1:Tool Proficiency (Artisan\'s Tools)",' +
+      '"1:Tool Proficiency (artisan\'s tools)",' +
       '"1:Weapon Proficiency (Battleaxe/Handaxe/Light Hammer/Warhammer)" ' +
     'Languages=Common,Dwarvish ' +
     'Proficiencies=' +
@@ -2264,7 +2253,7 @@ SRD5E.abilityRules = function(rules) {
 
   // TODO
   SRD35.validAllocationRules
-    (rules, 'abilityBoost', 'abilityNotes.abilityBoosts', 'Sum "^(charisma|constitution|dexterity|intelligence|strength|wisdom)Adjust$"');
+    (rules, 'abilityBoost', 'abilityBoosts', 'Sum "^(charisma|constitution|dexterity|intelligence|strength|wisdom)Adjust$"');
 
 };
 
@@ -2290,6 +2279,12 @@ SRD5E.combatRules = function(rules, armors, shields, weapons) {
     'armorStrRequirement', '=', null,
     'strength', '+', '-source'
   );
+  rules.defineRule('armorProficiencyCategory',
+    '', '=', '0',
+    'features.Armor Proficiency (Heavy)', '^', '3',
+    'features.Armor Proficiency (Light)', '^', '1',
+    'features.Armor Proficiency (Medium)', '^', '2'
+  );
   rules.defineRule('attacksPerRound', '', '=', '1');
   rules.defineRule('combatNotes.constitutionHitPointsAdjustment',
     'constitutionModifier', '=', null,
@@ -2309,8 +2304,11 @@ SRD5E.combatRules = function(rules, armors, shields, weapons) {
   rules.defineRule
     ('hitPoints', 'combatNotes.constitutionHitPointsAdjustment', '+', null);
   rules.defineRule('initiative', 'dexterityModifier', '=', null);
-  rules.defineRule('proficient.None', '', '=', '1'); // Prof w/no armor
-  rules.defineRule('proficient.Unarmed', '', '=', '1');
+  rules.defineRule('weaponProficiencyCategory',
+    '', '=', '0',
+    'features.Armor Proficiency (Martial)', '^', '2',
+    'features.Weapon Proficiency (Simple)', '^', '1'
+  );
   rules.defineRule('weapons.Unarmed', '', '=', '1');
 
   for(var ability in SRD5E.ABILITIES) {
@@ -2334,9 +2332,9 @@ SRD5E.combatRules = function(rules, armors, shields, weapons) {
 
   // TODO
   SRD35.validAllocationRules
-    (rules, 'armorProficiency', 'armorProficiencyCount', 'Sum "^armorProficiencies\\."');
+    (rules, 'armorProficiency', 'armorChoiceCount', 'Sum "^armorsChosen\\."');
   SRD35.validAllocationRules
-    (rules, 'weaponProficiency', 'weaponProficiencyCount', 'Sum "^weaponProficiencies\\."');
+    (rules, 'weaponProficiency', 'weaponChoiceCount', 'Sum "^weaponsChosen\\."');
 
 };
 
@@ -2415,18 +2413,17 @@ SRD5E.talentRules = function(rules, feats, features, languages, skills, tools) {
     rules.choiceRules(rules, 'Tool', tool, tools[tool]);
   }
 
-  // Default languageCount for most races, exceptions handled by raceRules
-  rules.defineRule('languageCount', 'race', '=', '2');
   // TODO
-  SRD35.validAllocationRules(rules, 'feat', 'featCount', 'Sum "^feats\\."');
+  SRD35.validAllocationRules
+    (rules, 'feat', 'Sum "^featCount\\."', 'Sum "^feats\\."');
   SRD35.validAllocationRules
     (rules, 'language', 'languageCount', 'Sum "^languages\\."');
   SRD35.validAllocationRules
     (rules, 'selectableFeature', 'Sum "^selectableFeatureCount\\."', 'Sum "^selectableFeatures\\."');
   SRD35.validAllocationRules
-    (rules, 'skillProficiency', 'skillProficiencyCount', 'Sum "^skillProficiencies\\."');
+    (rules, 'skillProficiency', 'skillChoiceCount', 'Sum "^skillsChosen\\."');
   SRD35.validAllocationRules
-    (rules, 'toolProficiency', 'toolProficiencyCount', 'Sum "^toolProficiencies\\."');
+    (rules, 'toolProficiency', 'toolChoiceCount', 'Sum "^toolsChosen\\."');
 
 };
 
@@ -2440,15 +2437,15 @@ SRD5E.choiceRules = function(rules, type, name, attrs) {
   else if(type == 'Background')
     SRD5E.backgroundRules(rules, name,
       QuilvynUtils.getAttrValueArray(attrs, 'Equipment'),
-      QuilvynUtils.getAttrValueArray(attrs, 'Feature'),
+      QuilvynUtils.getAttrValueArray(attrs, 'Features'),
       QuilvynUtils.getAttrValueArray(attrs, 'Language'),
-      QuilvynUtils.getAttrValueArray(attrs, 'Skill')
+      QuilvynUtils.getAttrValueArray(attrs, 'Proficiencies')
     );
   else if(type == 'Armor') {
     var bulky = QuilvynUtils.getAttrValue(attrs, 'Bulky');
     SRD5E.armorRules(rules, name,
       QuilvynUtils.getAttrValue(attrs, 'AC'),
-      QuilvynUtils.getAttrValue(attrs, 'Weight'),
+      QuilvynUtils.getAttrValue(attrs, 'Category'),
       QuilvynUtils.getAttrValue(attrs, 'Dex'),
       QuilvynUtils.getAttrValue(attrs, 'Str'),
       bulky == 'y' || bulky == 'Y'
@@ -2464,7 +2461,7 @@ SRD5E.choiceRules = function(rules, type, name, attrs) {
       QuilvynUtils.getAttrValue(attrs, 'CasterLevelArcane'),
       QuilvynUtils.getAttrValue(attrs, 'CasterLevelDivine'),
       QuilvynUtils.getAttrValue(attrs, 'SpellAbility'),
-      QuilvynUtils.getAttrValueArray(attrs, 'SpellsPerDay'),
+      QuilvynUtils.getAttrValueArray(attrs, 'SpellSlots'),
       QuilvynUtils.getAttrValueArray(attrs, 'Spells'),
       SRD5E.SPELLS
     );
@@ -2525,8 +2522,8 @@ SRD5E.choiceRules = function(rules, type, name, attrs) {
     SRD5E.toolRules(rules, name);
   else if(type == 'Weapon')
     SRD5E.weaponRules(rules, name,
-      QuilvynUtils.getAttrValue(attrs, 'Level'),
       QuilvynUtils.getAttrValue(attrs, 'Category'),
+      QuilvynUtils.getAttrValueArray(attrs, 'Property'),
       QuilvynUtils.getAttrValue(attrs, 'Damage'),
       QuilvynUtils.getAttrValue(attrs, 'Range')
     );
@@ -2553,12 +2550,12 @@ SRD5E.alignmentRules = function(rules, name) {
 
 /*
  * Defines in #rules# the rules associated with armor #name#, which adds #ac#
- * to the character's armor class, requires a #weight# proficiency level to
+ * to the character's armor class, requires a #category# proficiency level to
  * use effectively, allows a maximum dex bonus to ac of #maxDex#, requires (if
  * specified) a strength of #minStr# to avoid a speed penalty, and is considered
  * bulky armor if #bulky# is true.
  */
-SRD5E.armorRules = function(rules, name, ac, weight, maxDex, minStr, bulky) {
+SRD5E.armorRules = function(rules, name, ac, category, maxDex, minStr, bulky) {
 
   if(!name) {
     console.log('Empty armor name');
@@ -2568,9 +2565,9 @@ SRD5E.armorRules = function(rules, name, ac, weight, maxDex, minStr, bulky) {
     console.log('Bad ac "' + ac + '" for armor ' + name);
     return;
   }
-  if(weight == null ||
-     !(weight + '').match(/^([0-3]|none|light|medium|heavy)$/i)) {
-    console.log('Bad weight "' + weight + '" for armor ' + name);
+  if(category == null ||
+     !(category + '').match(/^([0-3]|none|light|medium|heavy)$/i)) {
+    console.log('Bad category "' + category + '" for armor ' + name);
     return;
   }
   if(typeof maxDex != 'number') {
@@ -2585,32 +2582,37 @@ SRD5E.armorRules = function(rules, name, ac, weight, maxDex, minStr, bulky) {
     console.log('Bad bulky "' + bulky + '" for skill ' + name);
   }
 
-  if((weight + '').match(/^[0-3]$/))
+  if((category + '').match(/^[0-3]$/))
     ; // empty
-  else if(weight.match(/^none$/i))
-    weight = 0;
-  else if(weight.match(/^light$/i))
-    weight = 1;
-  else if(weight.match(/^medium$/i))
-    weight = 2;
-  else if(weight.match(/^heavy$/i))
-    weight = 3;
-  var category = ['None', 'Light Armor', 'Medium Armor', 'Heavy Armor'][weight];
+  else if(category.match(/^none$/i))
+    category = 0;
+  else if(category.match(/^light$/i))
+    category = 1;
+  else if(category.match(/^medium$/i))
+    category = 2;
+  else if(category.match(/^heavy$/i))
+    category = 3;
 
   if(rules.armorStats == null) {
     rules.armorStats = {
       ac:{},
-      weight:{},
+      category:{},
       dex:{},
       str:{},
       bulky:{}
     };
   }
   rules.armorStats.ac[name] = ac;
-  rules.armorStats.weight[name] = weight;
+  rules.armorStats.category[name] = category;
   rules.armorStats.dex[name] = maxDex;
   rules.armorStats.str[name] = minStr;
   rules.armorStats.bulky[name] = bulky;
+
+  rules.defineChoice('notes',
+    'sanityNotes.nonproficientArmorPenalty.' + name + ':' +
+      'Disadv Dex, Str rolls, cannot cast spells',
+    'skillNotes.bulkyArmor:Disadv Stealth'
+  );
 
   rules.defineRule('armorClass',
     '', '=', '10',
@@ -2620,7 +2622,7 @@ SRD5E.armorRules = function(rules, name, ac, weight, maxDex, minStr, bulky) {
     'armor', '=', QuilvynUtils.dictLit(rules.armorStats.minStr) + '[source]'
   );
   rules.defineRule('armorWeight',
-    'armor', '=', QuilvynUtils.dictLit(rules.armorStats.weight) + '[source]'
+    'armor', '=', QuilvynUtils.dictLit(rules.armorStats.category) + '[source]'
   );
   rules.defineRule('combatNotes.dexterityArmorClassAdjustment',
     'armor', 'v', QuilvynUtils.dictLit(rules.armorStats.dex) + '[source]'
@@ -2629,34 +2631,23 @@ SRD5E.armorRules = function(rules, name, ac, weight, maxDex, minStr, bulky) {
     'armor', '=', QuilvynUtils.dictLit(rules.armorStats.bulky) + '[source]'
   );
 
-  rules.defineRule('proficient.' + name,
-    'armor', '?', 'source == "' + name + '"',
-    'armorProficiencies.' + name, '=', '1',
-    'armorProficiencies.' + category, '=', '1'
+  rules.defineRule('sanityNotes.nonproficientArmorPenalty.' + name,
+    'armor', '=', 'source == "' + name + '" ? ' + category + ' : null',
+    'armorProficiencyCategory', '+', '-source',
+    'armorProficiencies.' + name, 'v', '0',
+    '', '^', '0'
   );
-  rules.defineRule('nonproficientArmor',
-    '', '=', '1',
-    'proficient.' + name, '^', '0'
-  );
-
-  rules.defineChoice('notes',
-    'sanityNotes.nonproficientArmorPenalty:' +
-      'Disadv Dex, Str rolls, cannot cast spells',
-    'skillNotes.bulkyArmor:Disadv Stealth'
-  );
-  rules.defineRule
-    ('sanityNotes.nonproficientArmorPenalty', 'nonproficientArmor', '=', null);
 
 };
 
 /*
  * Defines in #rules# the rules associated with background #name#, which grants
- * the equipment, features, languages, and skills listed in #equipment#,
- * #features#, #languages#, and #skills#.
+ * the equipment, features, languages, and proficiencies listed in #equipment#,
+ * #features#, #languages#, and #proficiencies#.
  */
 
 SRD5E.backgroundRules = function(
-  rules, name, equipment, features, languages, skills
+  rules, name, equipment, features, languages, proficiencies
 ) {
 
   var prefix =
@@ -2674,39 +2665,14 @@ SRD5E.backgroundRules = function(
   rules.defineChoice('extras', prefix + 'Features');
 
   if(languages.length > 0)
-    rules.defineRule
-      ('languageCount', 'isBackground.' + name, '+', languages.length);
+    rules.defineRule('languageCount', backgroundLevel, '+', languages.length);
 
   for(var i = 0; i < languages.length; i++) {
     if(languages[i] != 'any')
       rules.defineRule('languages.' + languages[i], backgroundLevel, '=', '1');
   }
 
-  /* TODO
-  if(proficiencyCount != null) {
-    for(var a in proficiencyCount) {
-      rules.defineRule(a.toLowerCase() + 'ProficiencyCount',
-        'isBackground.' + name, '+=', proficiencyCount[a]
-      );
-    }
-  }
-
-  if(proficienciesGiven != null) {
-    for(var a in proficienciesGiven) {
-      for(var i = 0; i < proficienciesGiven[a].length; i++) {
-        rules.defineRule(a.toLowerCase() + 'Proficiencies.' + proficienciesGiven[a][i], 'isBackground.' + name, '=', '1');
-      }
-    }
-  }
-
-  if(proficiencyChoices != null) {
-    for(var a in proficiencyChoices) {
-      for(var i = 0; i < proficiencyChoices[a].length; i++) {
-        rules.defineRule(a.toLowerCase() + 'Choices.' + proficiencyChoices[a][i], 'isBackground.' + name, '=', '1');
-      }
-    }
-  }
-  */
+  SRD5E.proficiencyRules(rules, backgroundLevel, proficiencies);
 
   // TODO Do anything with equipment?
 
@@ -2727,14 +2693,14 @@ SRD5E.backgroundRules = function(
  * Javascript expression for determining the caster level for the class; these
  * can incorporate a class level attribute (e.g., 'levels.Cleric') or the
  * character level attribute 'level'. #spellAbility#, if specified, names the
- * ability for computing spell difficulty class. #spellsPerDay# lists the
+ * ability for computing spell difficulty class. #spellSlots# lists the
  * number of spells per level per day that the class can cast, and #spells#
  * lists spells defined by the class. #spellDict# is the dictionary of all
  * spells used to look up individual spell attributes.
  */
 SRD5E.classRules = function(
   rules, name, requires, hitDie, features, selectables, proficiencies,
-  languages, casterLevelArcane, casterLevelDivine, spellAbility, spellsPerDay,
+  languages, casterLevelArcane, casterLevelDivine, spellAbility, spellSlots,
   spells, spellDict
 ) {
 
@@ -2762,24 +2728,102 @@ SRD5E.classRules = function(
   rules.defineSheetElement(name + ' Features', 'Feats+', null, '; ');
   rules.defineChoice('extras', prefix + 'Features');
 
-  for(var i = 0; i < proficiencies.length; i++) {
-    var pieces = proficiencies[i].split(':');
-    var items = pieces[1].split(';');
-    var matchInfo = pieces[0].match(/^((\d+)\s+)?(.*)$/);
-    var count = matchInfo[2] || items.length;
-    var group = matchInfo[3].toLowerCase();
-    rules.defineRule(group + 'ProficiencyCount', classLevel, '+=', count);
-    for(var j = 0; j < items.length; j++) {
-      rules.defineRule(group + (matchInfo[1] ? 'Choices' : 'Proficiencies') + '.' + items[j], classLevel, '=', '1');
-    }
-  }
+  SRD5E.proficiencyRules(rules, classLevel, proficiencies);
 
-  rules.defineRule('featCount',
+  rules.defineRule('featCount.General',
     'levels.' + name, '+=', 'source >= 19 ? 5 : Math.floor(source / 4)'
   );
   rules.defineRule('proficiencyBonus',
     'levels.' + name, '=', 'Math.floor((source + 7) / 4)'
   );
+
+  if(spellSlots.length > 0) {
+    var spellModifier = spellAbility.toLowerCase() + 'Modifier';
+    var casterLevelExpr = casterLevelArcane || casterLevelDivine || classLevel;
+    if(casterLevelExpr.match(new RegExp('\\b' + classLevel + '\\b', 'i'))) {
+      rules.defineRule('casterLevels.' + name,
+        classLevel, '=', casterLevelExpr.replace(new RegExp('\\b' + classLevel + '\\b', 'gi'), 'source'),
+        'magicNotes.casterLevelBonus', '+', null
+      );
+    } else {
+      rules.defineRule('casterLevels.' + name,
+        classLevel, '?', null,
+        'level', '=', casterLevelExpr.replace(new RegExp('\\blevel\\b', 'gi'), 'source'),
+        'magicNotes.casterLevelBonus', '+', null
+      );
+    }
+    if(casterLevelArcane) {
+      rules.defineRule
+        ('casterLevelArcane', 'casterLevels.' + name, '+=', null);
+    }
+    if(casterLevelDivine) {
+      rules.defineRule
+        ('casterLevelDivine', 'casterLevels.' + name, '+=', null);
+    }
+    rules.defineRule('spellCountLevel.' + name,
+      'levels.' + name, '=', null,
+      'magicNotes.casterLevelBonus', '+', null
+    );
+    rules.defineRule('spellAttackModifier.' + name,
+      'levels.' + name, '?', null,
+      spellModifier, '=', null,
+      'proficiencyBonus', '+', null
+    );
+    for(var i = 0; i < spellSlots.length; i++) {
+      var spellTypeAndLevel = spellSlots[i].split(/:/)[0];
+      var spellType = spellTypeAndLevel.replace(/\d+/, '');
+      var spellLevel = spellTypeAndLevel.replace(/[A-Z]*/, '');
+      var code = spellSlots[i].substring(spellTypeAndLevel.length + 1).
+                 replace(/=/g, ' ? ').
+                 split(/;/).reverse().join(' : source >= ');
+      code = 'source >= ' + code + ' : null';
+      if(code.indexOf('source >= 1 ?') >= 0) {
+        code = code.replace(/source >= 1 ./, '').replace(/ : null/, '');
+      }
+      rules.defineRule('spellSlots.' + spellTypeAndLevel,
+        'spellCountLevel.' + name, '+=', code
+      );
+      rules.defineRule('spellDifficultyClass.' + spellType,
+        'casterLevels.' + spellType, '?', null,
+        spellModifier, '=', '8 + source',
+        'proficiencyBonus', '+', null
+      );
+      if(spellType != name) {
+        rules.defineRule('casterLevels.' + spellType,
+          'casterLevels.' + name, '=', null
+        );
+      }
+    }
+  }
+
+  for(var i = 0; i < spells.length; i++) {
+    var pieces = spells[i].split(':');
+    var matchInfo = pieces[0].match(/^(\w+)(\d)$/);
+    if(pieces.length != 2 || !matchInfo) {
+      console.log('Bad format for spell list "' + spells[i] + '"');
+      break;
+    }
+    var group = matchInfo[1];
+    var level = matchInfo[2];
+    var spellNames = pieces[1].split(';');
+    for(var j = 0; j < spellNames.length; j++) {
+      var spellName = spellNames[j];
+      if(spellDict[spellName] == null) {
+        console.log('Unknown spell "' + spellName + '"');
+        continue;
+      }
+      var school = QuilvynUtils.getAttrValue(spellDict[spellName], 'School');
+      if(school == null) {
+        console.log('No school given for spell ' + spellName);
+        continue;
+      }
+      var fullSpell =
+        spellName + '(' + group + level + ' ' + school.substring(0, 4) + ')';
+      rules.choiceRules
+        (rules, 'Spell', fullSpell,
+         spellDict[spellName] + ' Group=' + group + ' Level=' + level);
+    }
+  }
 
 };
 
@@ -2829,6 +2873,7 @@ SRD5E.classRulesExtra = function(rules, name) {
     rules.defineRule('selectableFeatureCount.Barbarian',
       'levels.Barbarian', '=', 'source < 3 ? null : 1'
     );
+    rules.defineRule('speed', 'abilityNotes.fastMovement', '+', '10');
 
   } else if(name == 'Bard') {
 
@@ -2847,18 +2892,13 @@ SRD5E.classRulesExtra = function(rules, name) {
     rules.defineRule('magicNotes.songOfRest',
       'levels.Bard', '=', '6 + (source>=9 ? 2 * Math.floor((source-5)/4) : 0)'
     );
-    rules.defineRule
-      ('skillProficiencyCount', 'skillNotes.bonusSkills', '+', '3');
     rules.defineRule('selectableFeatureCount.Bard',
       'levels.Bard', '=', 'source < 3 ? null : 1'
     );
     rules.defineRule('skillNotes.bardExpertise',
       'levels.Bard', '=', 'source < 10 ? 2 : 4'
     );
-    rules.defineRule('spellsKnown.B',
-      'magicNotes.additionalMagicalSecrets', '+', '2',
-      'magicNotes.magicalSecrets', '+', null
-    );
+    rules.defineRule('skillChoiceCount', 'skillNotes.bonusSkills', '+=', '3');
 
   } else if(name == 'Cleric') {
 
@@ -2872,11 +2912,11 @@ SRD5E.classRulesExtra = function(rules, name) {
       ]
     };
 
-    rules.defineRule('armorProficiencies.Heavy Armor',
-      'clericFeatures.Armor Proficiency (Heavy)', '=', '1'
-    );
     rules.defineRule('combatNotes.destroyUndead',
       'levels.Cleric', '=', 'source < 8 ? 0.5 : Math.floor((source - 5) / 3)'
+    );
+    rules.defineRule('combatNotes.divineStrike',
+      'levels.Cleric', '=', 'source < 14 ? 1 : 2'
     );
     rules.defineRule('combatNotes.turnUndead',
       'wisdomModifier', '=', 'source + 8',
@@ -2889,29 +2929,9 @@ SRD5E.classRulesExtra = function(rules, name) {
       'levels.Cleric', '=', 'source < 20 ? source : 100'
     );
     rules.defineRule
-      ('selectableFeatureCount.Cleric', 'levels.Cleric', '=', '1');
-    rules.defineRule('weaponProficiencies.Martial',
-      'clericFeatures.Weapon Proficiency (Martial)', '=', '1'
-    );
-
-    rules.defineRule('combatNotes.divineStrike',
-      'levels.Cleric', '=', 'source < 14 ? 1 : 2'
-    );
-    rules.defineRule
       ('magicNotes.preserveLife', 'levels.Cleric', '=', '5 * source');
-
-    rules.defineRule('hasDivineStrikeDomain',
-      'clericFeatures.Life Domain', '=', '1'
-    );
-    rules.defineRule('clericFeatures.Divine Strike',
-      'hasDivineStrikeDomain', '?', null
-    );
-    rules.defineRule('hasHeavyArmorDomain',
-      'clericFeatures.Life Domain', '=', '1'
-    );
-    rules.defineRule('clericFeatures.Armor Proficiency (Heavy)',
-      'hasHeavyArmorDomain', '?', null
-    )
+    rules.defineRule
+      ('selectableFeatureCount.Cleric', 'levels.Cleric', '=', '1');
 
   } else if(name == 'Druid') {
 
@@ -2985,7 +3005,7 @@ SRD5E.classRulesExtra = function(rules, name) {
       /druidFeatures.Circle Of The Land/, '=', '1'
     );
     rules.defineRule
-      ('spellsKnown.D0', 'magicNotes.bonusCantrip', '+', '1');
+      ('spellSlots.D0', 'magicNotes.bonusCantrip', '+', '1');
 
   } else if(name == 'Fighter') {
 
@@ -3244,8 +3264,6 @@ SRD5E.classRulesExtra = function(rules, name) {
     rules.defineRule('magicNotes.mysticArcanum',
       'levels.Warlock', '=', 'source<13 ? "K6" : source<15 ? "K6, K7" : source<17 ? "K6, K7, K8" : "K6, K7, K8, K9"'
     );
-    rules.defineRule
-      ('skillProficiencyCount', 'skillNotes.beguilingInfluence', '+', '2');
     rules.defineRule('selectableFeatureCount.Warlock',
       'levels.Warlock', '=', 'source < 3 ? 1 : 2',
       'magicNotes.eldritchInvocations', '+', null
@@ -3337,8 +3355,9 @@ SRD5E.featRules = function(rules, name, requires, implies, types) {
  */
 SRD5E.featRulesExtra = function(rules, name) {
   if(name.startsWith('Ability Boost')) {
-    rules.defineRule
-      ('abilityNotes.abilityBoosts', 'features.' + name, '+=', '2');
+    rules.defineChoice('notes', 'abilityNotes.abilityBoosts:%V to distribute');
+    rules.defineRule('abilityBoosts', 'features.' + name, '+=', '2');
+    rules.defineRule('abilityNotes.abilityBoosts', 'abilityBoosts', '=', null);
   }
 };
 
@@ -3511,12 +3530,13 @@ SRD5E.raceRules = function(
 SRD5E.raceRulesExtra = function(rules, name) {
 
   if(name == 'Half-Elf') {
-    rules.defineRule('abilityBoostCount',
-      'abilityNotes.half-ElfAbilityAdjustment', '+=', '2'
-    );
+    rules.defineRule
+      ('abilityBoosts', 'abilityNotes.half-ElfAbilityAdjustment', '+=', '2');
     // Redundant rule to get skill note to appear in italics
     rules.defineRule
       ('skillChoices.Intimidation', 'skillNotes.skillVersatility', '=', '1');
+    rules.defineRule
+      ('skillChoiceCount', 'skillNotes.skillVersatility', '+=', '2');
   } else if(name.match(/Dragonborn/)) {
     var draconicBreathTypes = {
       'Black Dragonborn': 'acid',
@@ -3555,7 +3575,7 @@ SRD5E.raceRulesExtra = function(rules, name) {
     );
     rules.defineRule('combatNotes.dwarvenToughness', 'level', '=', null);
   } else if(name.match(/Elf/)) {
-    rules.defineRule('spellsKnown.W0', 'magicNotes.cantrip', '+=', '1');
+    rules.defineRule('spellSlots.W0', 'magicNotes.cantrip', '+=', '1');
   }
 
 };
@@ -3619,6 +3639,9 @@ SRD5E.skillRules = function(rules, name, ability, classes) {
   for(var i = 0; i < classes.length; i++) {
     rules.defineRule('skillProficiencies.' + name, 'levels.' + classes[i], '=', '1');
   }
+  rules.defineRule('skillProficiencies.' + name,
+    'skillsChosen.' + name, '=', 'source ? 1 : null'
+  );
   rules.defineRule('skillBonus.' + name,
     'skillProficiencies.' + name, '?', null,
     'proficiencyBonus', '=', null
@@ -3650,30 +3673,26 @@ SRD5E.toolRules = function(rules, name) {
     console.log('Empty tool name');
     return;
   }
-  // No rules pertain to tools
+  rules.defineRule('toolProficiencies.' + name,
+    'toolsChosen.' + name, '=', 'source ? 1 : null'
+  );
 };
 
 /*
  * Defines in #rules# the rules associated with weapon #name#, which requires a
- * #profLevel# proficiency level to use effectively and belongs to weapon
- * category #category# (one of '1h', '2h', 'Li', 'R', 'Un', 'Ve', or their
- * spelled-out equivalents). The weapon does #damage# HP on a successful
- * attack. If specified, the weapon can be used as a ranged weapon with a range
- * increment of #range# feet.
+ * #category# proficiency level to use effectively and has weapon properties
+ * #properties#. The weapon does #damage# HP on a successful attack. If
+ * specified, the weapon can be used as a ranged weapon with a range increment
+ * of #range# feet.
  */
-SRD5E.weaponRules = function(rules, name, profLevel, category, damage, range) {
+SRD5E.weaponRules = function(rules, name, category, properties, damage, range) {
 
   if(!name) {
     console.log('Bad name for weapon  "' + name + '"');
     return;
   }
-  if(profLevel == null ||
-     !(profLevel + '').match(/^([0-2]|unarmed|simple|martial)$/i)) {
-    console.log('Bad proficiency level "' + profLevel + '" for weapon ' + name);
-    return;
-  }
   if(category == null ||
-     !(category + '').match(/^(1h|2h|Li|R|Un|Ve|one-handed|two-handed|light|ranged|unarmed|versatile)$/i)) {
+     !(category + '').match(/^([0-2]|unarmed|simple|martial)$/i)) {
     console.log('Bad category "' + category + '" for weapon ' + name);
     return;
   }
@@ -3686,26 +3705,17 @@ SRD5E.weaponRules = function(rules, name, profLevel, category, damage, range) {
     console.log('Bad range "' + range + '" for weapon ' + name);
   }
 
-  if((profLevel + '').match(/^[0-2]$/))
+  if((category + '').match(/^[0-2]$/))
     ; // empty
-  else if(profLevel.match(/^unarmed$/i))
-    profLevel = 0;
-  else if(profLevel.match(/^simple$/i))
-    profLevel = 1;
-  else if(profLevel.match(/^martial$/i))
-    profLevel = 2;
-  if(category.match(/^one-handed$/i))
-    category = '1h';
-  else if(category.match(/^two-handed$/i))
-    category = '2h';
-  else if(category.match(/^light$/i))
-    category = 'Li';
-  else if(category.match(/^ranged$/i))
-    category = 'R';
   else if(category.match(/^unarmed$/i))
-    category = 'Un';
-  else if(category.match(/^versatile$/i))
-    category = 'Ve';
+    category = 0;
+  else if(category.match(/^simple$/i))
+    category = 1;
+  else if(category.match(/^martial$/i))
+    category = 2;
+
+  var isRanged = properties.includes('ranged') || properties.includes('R');
+  var is2h = properties.includes('two-handed') || properties.includes('2h');
 
   var damage = matchInfo[1];
   var weaponName = 'weapons.' + name;
@@ -3722,66 +3732,54 @@ SRD5E.weaponRules = function(rules, name, profLevel, category, damage, range) {
   rules.defineRule('sanityNotes.nonproficientWeaponPenalty.' + name,
     weaponName, '?', null,
     'proficiencyBonus', '=', '-source',
-    'proficient.' + name, '=', '0'
+    'weaponProficiencyCategory', '^', 'source >= ' + category + ' ? 0 : null',
+    'weaponProficiencies.' + name, '^', '0',
+    '', '^', '0'
   );
-
-  rules.defineRule('proficient.' + name,
+  rules.defineRule('weaponProficiencyBonus.' + name,
     weaponName, '?', null,
-    'weaponProficiencies.' + name, '=', '1',
-    'weaponProficiencies.' + category, '=', '1'
-  );
-  rules.defineRule('weaponBonus.' + name,
-    weaponName, '?', null,
-    'proficient.' + name, '?', null,
-    'proficiencyBonus', '=', null
+    'proficiencyBonus', '=', null,
+    'sanityNotes.nonproficientWeaponPenalty.' + name, 'v', 'source == 0 ? null : 0'
   );
   rules.defineRule('attackBonus.' + name,
-    weaponName, '?', null,
-    'combatNotes.' + (range ? 'dexterity' : 'strength') + 'AttackAdjustment', '=', null,
-    'attackBonus.' + (range ? 'Ranged' : 'Melee'), '+', null,
-    'weaponBonus.' + name, '+', null,
+    weaponName, '=', '0',
+    'attackBonus.' + (isRanged ? 'Ranged' : 'Melee'), '+', null,
+    'combatNotes.' + (isRanged ? 'dexterity' : 'strength') + 'AttackAdjustment', '+', null,
+    'weaponProficiencyBonus.' + name, '+', null,
     'weaponAttackAdjustment.' + name, '+', null
   );
   rules.defineRule('damageBonus.' + name,
-    weaponName, '?', null,
-    'combatNotes.' + (range ? 'dexterity' : 'strength') + 'DamageAdjustment', '=', null,
+    weaponName, '=', '0',
     'damageBonus.' + (range ? 'Ranged' : 'Melee'), '+', null,
-    'weaponBonus.' + name, '+', null,
+    'combatNotes.' + (range ? 'dexterity' : 'strength') + 'DamageAdjustment', '+', null,
+    'weaponProficiencyBonus.' + name, '+', null,
     'weaponDamageAdjustment.' + name, '+', null
   );
   if(!range) {
-    rules.defineRule('attackBonus.'+name, 'monkMeleeAttackBonus', '+', null);
-    rules.defineRule('damageBonus.'+name, 'monkMeleeDamageBonus', '+', null);
+    rules.defineRule('attackBonus.' + name, 'monkMeleeAttackBonus', '+', null);
+    rules.defineRule('damageBonus.' + name, 'monkMeleeDamageBonus', '+', null);
   }
 
   rules.defineRule(weaponName + '.1',
-    weaponName, '?', null,
-    'attackBonus.' + name, '=', 'source < 0 ? source : ("+" + source)'
+    'attackBonus.' + name, '=', 'source >= 0 ? "+" + source : source'
   );
-  rules.defineRule(weaponName + '.2',
-    weaponName, '=', '"' + damage + '"'
-  );
+  rules.defineRule(weaponName + '.2', weaponName, '=', '"' + damage + '"');
   rules.defineRule(weaponName + '.3',
-    weaponName, '?', null,
-    'damageBonus.' + name, '=', 'source < 0 ? source : source == 0 ? "" : ("+" + source)'
+    'damageBonus.' + name, '=', 'source > 0 ? "+" + source : source == 0 ? "" : source'
   );
   if(range) {
     rules.defineRule('range.' + name,
       weaponName, '=', range,
       'weaponRangeAdjustment.' + name, '+', null
     );
-    rules.defineRule(weaponName + '.4',
-      weaponName, '?', null,
-      'range.' + name, '=', null
-    );
+    rules.defineRule(weaponName + '.4', 'range.' + name, '=', null);
   } else {
     rules.defineRule(weaponName + '.2', 'monkMeleeDieBonus', '^', null);
   }
 
-  if(category == '2h') {
+  if(is2h)
     rules.defineRule
       ('validationNotes.two-handedWeaponWithShield', weaponName, '=', '1');
-  }
 
 };
 
@@ -3885,7 +3883,9 @@ SRD5E.createViewers = function(rules, viewers) {
           {name: 'Description', within: 'Attributes', separator: innerSep},
             {name: 'Background', within: 'Description'},
             {name: 'Alignment', within: 'Description'},
-            {name: 'Deity', within: 'Description'},
+            {name: 'DeityInfo', within: 'Description', separator: ''},
+              {name: 'Deity', within: 'DeityInfo'},
+              {name: 'Deity Alignment', within: 'DeityInfo', format:' (%V)'},
             {name: 'Origin', within: 'Description'},
             {name: 'Player', within: 'Description'},
           {name: 'AbilityStats', within: 'Attributes', separator: innerSep},
@@ -4020,6 +4020,29 @@ SRD5E.choiceEditorElements = function(rules, type) {
   return SRD35.choiceEditorElements(rules, type);
 };
 
+/* TODO */
+SRD5E.proficiencyRules = function(rules, levelAttr, proficiencies) {
+  for(var i = 0; i < proficiencies.length; i++) {
+    var pieces = proficiencies[i].split(':');
+    if(pieces.length != 2) {
+      console.log('Bad proficiency list "' + proficiencies[i] + '"');
+      continue;
+    }
+    var items = pieces[1].split(';');
+    var matchInfo = pieces[0].match(/^((\d+)\s+)?(.*)$/);
+    var group = matchInfo[3].toLowerCase();
+    if(!group.match(/armor|save|skill|tool|weapon/)) {
+      console.log('Unknown proficiency group "' + group + '"');
+      continue;
+    }
+    if(matchInfo[2])
+      rules.defineRule(group + 'ChoiceCount', levelAttr, '+=', matchInfo[2]);
+    for(var j = 0; j < items.length; j++) {
+      rules.defineRule(group + (matchInfo[2] ? 'Choices' : 'Proficiencies') + '.' + items[j], levelAttr, '=', '1');
+    }
+  }
+};
+
 /* Returns the elements in a basic 5E character editor. */
 SRD5E.initialEditorElements = function() {
   var abilityChoices = [
@@ -4051,8 +4074,8 @@ SRD5E.initialEditorElements = function() {
     ['origin', 'Origin', 'text', [20]],
     ['feats', 'Feats', 'set', 'feats'],
     ['selectableFeatures', 'Selectable Features', 'set', 'selectableFeatures'],
-    ['skillProficiencies', 'Skills', 'set', 'skills'],
-    ['toolProficiencies', 'Tools', 'set', 'tools'],
+    ['skillsChosen', 'Skills', 'set', 'skills'],
+    ['toolsChosen', 'Tools', 'set', 'tools'],
     ['languages', 'Languages', 'set', 'languages'],
     ['hitPoints', 'Hit Points', 'text', [4]],
     ['armor', 'Armor', 'select-one', 'armors'],
@@ -4173,12 +4196,11 @@ SRD5E.randomizeOneAttribute = function(attributes, attribute) {
     attrs = this.applyRules(attributes);
     choices = ['None'];
     for(attr in armors) {
-      if(attrs['armorProficiencies.' + attr] ||
-         attrs['armorProficiencies.Light Armor'] && armors[attr].indexOf('Li')>=0 ||
-         attrs['armorProficiencies.Medium Armor'] && armors[attr].indexOf('Me')>=0 ||
-         attrs['armorProficiencies.Heavy Armor'] && armors[attr].indexOf('He')>=0) {
+      var category = QuilvynUtils.getAttrValue(armors[attr], 'Category');
+      if(category == null ||
+         category <= attrs.armorProficiencyCategory ||
+         attrs['armorProficiencies.' + attr])
         choices.push(attr);
-      }
     }
     attributes['armor'] = choices[QuilvynUtils.random(0, choices.length - 1)];
   } else if(attribute == 'deity') {
@@ -4204,45 +4226,42 @@ SRD5E.randomizeOneAttribute = function(attributes, attribute) {
       attributes['deity'] = 'None';
     }
   } else if(attribute == 'feats' || attribute == 'features') {
+    var debug = [];
     attribute = attribute == 'feats' ? 'feat' : 'selectableFeature';
-    var countPat = new RegExp(
-      attribute == 'feat' ? '^featCount$' : '^selectableFeatureCount\\.'
-    );
+    var countPrefix = attribute + 'Count.';
     var prefix = attribute + 's';
-    var suffix =
-      attribute.substring(0, 1).toUpperCase() + attribute.substring(1);
+    var suffix = attribute.charAt(0).toUpperCase() + attribute.substring(1);
     var toAllocateByType = {};
     attrs = this.applyRules(attributes);
     for(attr in attrs) {
-      if(attr.match(countPat)) {
-        toAllocateByType[attr.replace(countPat, '')] = attrs[attr];
+      if(attr.startsWith(countPrefix)) {
+        toAllocateByType[attr.replace(countPrefix, '')] = attrs[attr];
       }
     }
     var availableChoices = {};
     var allChoices = this.getChoices(prefix);
     for(attr in allChoices) {
+      var types = QuilvynUtils.getAttrValueArray(allChoices[attr], 'Type');
+      if(types.indexOf('General') < 0)
+        types.push('General');
       if(attrs[prefix + '.' + attr] != null) {
-        var type = '';
-        for(var a in toAllocateByType) {
-          if(QuilvynUtils.findElement(allChoices[attr].split('/'), a) >= 0 &&
-             toAllocateByType[a] > 0) {
-            type = a;
+        for(i = 0; i < types.length; i++) {
+          var t = types[i];
+          if(toAllocateByType[t] != null && toAllocateByType[t] > 0) {
+            debug.push(prefix + '.' + attr + ' reduces ' + t + ' feats from ' + toAllocateByType[t]);
+            toAllocateByType[t]--;
             break;
           }
         }
-        toAllocateByType[type]--;
       } else if(attrs['features.' + attr] == null) {
-        availableChoices[attr] = allChoices[attr];
+        availableChoices[attr] = types;
       }
     }
-    var debug = [];
     for(attr in toAllocateByType) {
       var availableChoicesInType = {};
       for(var a in availableChoices) {
-        if(attr == '' ||
-           QuilvynUtils.findElement(availableChoices[a].split('/'), attr) >= 0) {
+        if(attr == 'General' || availableChoices[a].includes(attr))
           availableChoicesInType[a] = '';
-        }
       }
       howMany = toAllocateByType[attr];
       debug[debug.length] = 'Choose ' + howMany + ' ' + attr + ' ' + prefix;
@@ -4251,17 +4270,18 @@ SRD5E.randomizeOneAttribute = function(attributes, attribute) {
         debug[debug.length] =
           'Pick ' + howMany + ' from ' +
           QuilvynUtils.getKeys(availableChoicesInType).length;
+        var pick;
         var picks = {};
         pickAttrs(picks, '', choices, howMany, 1);
         debug[debug.length] =
           'From ' + QuilvynUtils.getKeys(picks).join(", ") + ' reject';
-        for(var pick in picks) {
+        for(pick in picks) {
           attributes[prefix + '.' + pick] = 1;
           delete availableChoicesInType[pick];
         }
         var validate = this.applyRules(attributes);
-        for(var pick in picks) {
-          var name = pick.substring(0, 1).toLowerCase() +
+        for(pick in picks) {
+          var name = pick.charAt(0).toLowerCase() +
                      pick.substring(1).replace(/ /g, '').
                      replace(/\(/g, '\\(').replace(/\)/g, '\\)');
           if(QuilvynUtils.sumMatching
@@ -4277,9 +4297,11 @@ SRD5E.randomizeOneAttribute = function(attributes, attribute) {
       }
       debug[debug.length] = 'xxxxxxx';
     }
-    if(window.DEBUG)
+    if(window.DEBUG) {
+      var notes = attributes.notes;
       attributes.notes =
-        (attributes.notes ? attributes.notes + '\n' : '') + debug.join('\n');
+        (notes != null ? attributes.notes + '\n' : '') + debug.join('\n');
+    }
   } else if(attribute == 'hitPoints') {
     attributes.hitPoints = 0;
     for(var klass in this.getChoices('levels')) {
@@ -4350,54 +4372,40 @@ SRD5E.randomizeOneAttribute = function(attributes, attribute) {
     attrs = this.applyRules(attributes);
     choices = ['None'];
     for(attr in this.getChoices('shields')) {
-      if(attrs['armorProficiencies.' + attr] ||
-         attrs['armorProficiencies.Shield']) {
+      if(attrs['shieldProficiencies.' + attr] ||
+         attrs['features. Shield Proficiency']) {
         choices[choices.length] = attr;
       }
     }
     attributes['shield'] = choices[QuilvynUtils.random(0, choices.length - 1)];
   } else if(attribute == 'skills') {
     attrs = this.applyRules(attributes);
-    howMany = attrs['skillProficiencyCount'] || 0;
+    howMany = attrs['skillChoiceCount'] || 0;
     choices = [];
     for(attr in this.getChoices('skills')) {
       if(attrs['skillChoices.' + attr]) {
         choices[choices.length] = attr;
       }
     }
-    pickAttrs(attributes, 'skillProficiencies.', choices,
-              howMany - QuilvynUtils.sumMatching(attrs, /^skillProficiencies\./), 1);
+    pickAttrs(attributes, 'skillsChosen.', choices,
+              howMany - QuilvynUtils.sumMatching(attrs, /^skillsChosen\./), 1);
   } else if(attribute == 'spells') {
-    var allSpellsByClassAndLevel = {};
-    var classAndLevel;
+    var availableSpellsByLevel = {};
+    var groupAndLevel;
     attrs = this.applyRules(attributes);
     for(attr in this.getChoices('spells')) {
-      classAndLevel = attr.split('(')[1].split(' ')[0];
-      if(allSpellsByClassAndLevel[classAndLevel] == null)
-        allSpellsByClassAndLevel[classAndLevel] = [];
-      allSpellsByClassAndLevel[classAndLevel].push(attr);
+      groupAndLevel = attr.split('(')[1].split(' ')[0];
+      if(availableSpellsByLevel[groupAndLevel] == null)
+        availableSpellsByLevel[groupAndLevel] = [];
+      availableSpellsByLevel[groupAndLevel].push(attr);
     }
     for(attr in attrs) {
-      if(!attr.startsWith('spellsKnown.'))
+      if((matchInfo = attr.match(/^spellSlots\.(.*)/)) == null)
         continue;
-      classAndLevel = attr.split('.')[1];
+      groupAndLevel = matchInfo[1];
       howMany = attrs[attr];
-      if(!classAndLevel.match(/\d$/)) {
-        choices = [];
-        for(var a in allSpellsByClassAndLevel) {
-          if(a.startsWith(classAndLevel) &&
-             !a.endsWith('0') &&
-             attrs['spellSlots.' + a]) {
-            choices = choices.concat(allSpellsByClassAndLevel[a]);
-          }
-        }
-      } else {
-        choices = allSpellsByClassAndLevel[classAndLevel];
-      }
+      choices = availableSpellsByGroupAndLevel[groupAndLevel];
       if(choices != null) {
-        if(howMany == 'all') {
-          howMany = choices.length;
-        }
         var slots = attrs['spellSlots.' + classAndLevel];
         if(slots != null && slots < howMany) {
           howMany = slots;
@@ -4409,7 +4417,7 @@ SRD5E.randomizeOneAttribute = function(attributes, attribute) {
     }
   } else if(attribute == 'tools') {
     attrs = this.applyRules(attributes);
-    howMany = attrs['toolProficiencyCount'] || 0;
+    howMany = attrs['toolChoiceCount'] || 0;
     choices = [];
     for(attr in this.getChoices('tools')) {
       if(attrs['toolChoices.' + attr] ||
@@ -4417,8 +4425,8 @@ SRD5E.randomizeOneAttribute = function(attributes, attribute) {
         choices[choices.length] = attr;
       }
     }
-    pickAttrs(attributes, 'toolProficiencies.', choices,
-              howMany - QuilvynUtils.sumMatching(attrs, /^toolProficiencies\./), 1);
+    pickAttrs(attributes, 'toolsChosen.', choices,
+              howMany - QuilvynUtils.sumMatching(attrs, /^toolsChosen\./), 1);
   } else if(attribute == 'weapons') {
     var weapons = this.getChoices('weapons');
     attrs = this.applyRules(attributes);

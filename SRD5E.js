@@ -1686,8 +1686,8 @@ SRD5E.WEAPONS = {
   'Battleaxe':'Category=2 Property=Ve Damage=d10',
   'Blowgun':'Category=2 Property=R Damage=d1 Range=25',
   'Club':'Category=1 Property=Li Damage=d4',
-  'Dagger':'Category=1 Property=Li Damage=d4 Range=20 Fi',
-  'Dart':'Category=1 Property=R Damage=d4 Range=20 Fi',
+  'Dagger':'Category=1 Property=Li Damage=d4 Range=20',
+  'Dart':'Category=1 Property=R Damage=d4 Range=20',
   'Flail':'Category=2 Property=1h Damage=d8',
   'Glaive':'Category=2 Property=2h Damage=d10',
   'Greataxe':'Category=2 Property=2h Damage=d12',
@@ -1709,10 +1709,10 @@ SRD5E.WEAPONS = {
   'Net':'Category=2 Property=R Damage=d0 Range=5',
   'Pike':'Category=2 Property=2h Damage=d10',
   'Quarterstaff':'Category=1 Property=Ve Damage=d6',
-  'Rapier':'Category=2 Property=1h Damage=d8 Fi',
-  'Scimitar':'Category=2 Property=Li Damage=d6 Fi',
+  'Rapier':'Category=2 Property=1h Damage=d8',
+  'Scimitar':'Category=2 Property=Li Damage=d6',
   'Shortbow':'Category=1 Property=R Damage=d6 Range=80',
-  'Shortsword':'Category=2 Property=Li Damage=d6 Fi',
+  'Shortsword':'Category=2 Property=Li Damage=d6',
   'Sickle':'Category=1 Property=Li Damage=d4',
   'Sling':'Category=1 Property=R Damage=d4 Range=30',
   'Spear':'Category=1 Property=Ve Damage=d8 Range=20',
@@ -1720,7 +1720,7 @@ SRD5E.WEAPONS = {
   'Unarmed':'Category=0 Property=Un Damage=d1',
   'War Pick':'Category=2 Property=1h Damage=d8',
   'Warhammer':'Category=2 Property=Ve Damage=d8',
-  'Whip':'Category=2 Property=1h Damage=d4 Fi'
+  'Whip':'Category=2 Property=1h Damage=d4'
 };
 SRD5E.CLASSES = {
   'Barbarian':
@@ -2219,7 +2219,7 @@ SRD5E.CLASSES = {
       'Mind Blank;Power Word Stun;Sunburst",' +
       '"W9:Astral Projection;Foresight;Gate;Imprisonment;Meteor Swarm;' +
       'Power Word Kill;Prismatic Wall;Shapechange;Time Stop;True Polymorph;' +
-      'Weird;Wish'
+      'Weird;Wish"'
 };
 SRD5E.RACES = {
   'Black Dragonborn':
@@ -2270,37 +2270,28 @@ SRD5E.RACES = {
       '"1:Weapon Proficiency (Battleaxe/Handaxe/Light Hammer/Warhammer)" ' +
     'Languages=Common,Dwarvish ' +
     'Proficiencies=' +
-      '"1 Tool:Brewer\'s Supplies;Mason\'s Tools;Smith\'s Tools",' +
-      '"Weapon:Battleaxe;Handaxe;Light Hammer;Warhammer"',
+      '"1 Tool:Brewer\'s Supplies;Mason\'s Tools;Smith\'s Tools"',
   'High Elf':
     'Features=' +
       '1:Darkvision,"1:Fey Ancestry","1:High Elf Ability Adjustment",' +
       '"1:Keen Senses",1:Trance,1:Cantrip,' +
       '"1:Weapon Proficiency (Longbow/Longsword/Shortbow/Shortsword)" ' +
-    'Languages=Common,Elvish,any ' +
-    'Proficiencies=' +
-      'Skill:Perception',
+    'Languages=Common,Elvish,any',
   'Rock Gnome':
     'Features=' +
       '1:Darkvision,"1:Gnome Cunning","1:Rock Gnome Ability Adjustment",' +
       '1:Slow,1:Small,"1:Artificer\'s Lore",1:Tinker ' +
-    'Languages=Common,Gnomish ' +
-    'Proficiencies=' +
-      '"Tool:Tinker\'s Tools"',
+    'Languages=Common,Gnomish',
   'Half-Elf':
     'Features=' +
       '1:Darkvision,"1:Fey Ancestry","1:Half-Elf Ability Adjustment",' +
       '"1:Skill Versatility" ' +
-    'Languages=Common,Elvish ' +
-    'Proficiencies=' +
-      '"2 Skill:' + QuilvynUtils.getKeys(SRD5E.SKILLS).join(';') + '"',
+    'Languages=Common,Elvish',
   'Half-Orc':
     'Features=' +
       '1:Darkvision,"1:Half-Orc Ability Adjustment",1:Menacing,' +
       '"1:Relentless Endurance","1:Savage Attacks" ' +
-    'Languages=Common,Orc ' +
-    'Proficiencies=' +
-      '"Skill:Intimidation"',
+    'Languages=Common,Orc',
   'Lightfoot Halfling':
     'Features=' +
       '1:Brave,"1:Halfling Luck","1:Halfling Nimbleness",' +
@@ -2355,6 +2346,12 @@ SRD5E.abilityRules = function(rules) {
 
 /* Defines the rules related to combat. */
 SRD5E.combatRules = function(rules, armors, shields, weapons) {
+
+  QuilvynUtils.checkAttrTable
+    (armors, ['AC', 'Bulky', 'Category', 'Dex', 'Str']);
+  QuilvynUtils.checkAttrTable(shields, ['AC']);
+  QuilvynUtils.checkAttrTable
+    (weapons, ['Category', 'Damage', 'Property', 'Range']);
 
   for(var armor in armors) {
     rules.choiceRules(rules, 'Armor', armor, armors[armor]);
@@ -2445,6 +2442,16 @@ SRD5E.identityRules = function(
   rules, alignments, backgrounds, classes, deities, genders, paths, races
 ) {
 
+  QuilvynUtils.checkAttrTable(alignments, []);
+  QuilvynUtils.checkAttrTable
+    (backgrounds, ['Equipment', 'Features', 'Language', 'Proficiencies']);
+  QuilvynUtils.checkAttrTable
+    (classes, ['Require', 'HitDie', 'Features', 'Selectables', 'Proficiencies', 'Languages', 'CasterLevelArcane', 'CasterLevelDivine', 'SpellAbility', 'SpellSlots', 'Spells']);
+  QuilvynUtils.checkAttrTable(deities, ['Alignment', 'Domain']);
+  QuilvynUtils.checkAttrTable(genders, []);
+  QuilvynUtils.checkAttrTable(paths, ['Features', 'Group', 'Level', 'Spells']);
+  QuilvynUtils.checkAttrTable(races, ['Require', 'Features', 'Selectables', 'Languages', 'Proficiencies', 'SpellAbility', 'Spells']);
+
   for(var alignment in alignments) {
     rules.choiceRules(rules, 'Alignment', alignment, alignments[alignment]);
   }
@@ -2484,6 +2491,10 @@ SRD5E.identityRules = function(
 /* Defnes rules related to magic use. */
 SRD5E.magicRules = function(rules, schools, spells) {
 
+  QuilvynUtils.checkAttrTable(schools, ['Features']);
+  QuilvynUtils.checkAttrTable
+    (spells, ['School', 'Group', 'Level', 'Description']);
+
   for(var school in schools) {
     rules.choiceRules(rules, 'School', school, schools[school]);
   }
@@ -2495,6 +2506,12 @@ SRD5E.magicRules = function(rules, schools, spells) {
 
 /* Defines rules related to character feats, languages, skills, and tools. */
 SRD5E.talentRules = function(rules, feats, features, languages, skills, tools) {
+
+  QuilvynUtils.checkAttrTable(feats, ['Require', 'Imply', 'Type']);
+  QuilvynUtils.checkAttrTable(features, ['Section', 'Note']);
+  QuilvynUtils.checkAttrTable(languages, []);
+  QuilvynUtils.checkAttrTable(skills, ['Ability', 'Class']);
+  QuilvynUtils.checkAttrTable(tools, ['Type']);
 
   for(var feat in feats) {
     rules.choiceRules(rules, 'Feat', feat, feats[feat]);
@@ -2600,6 +2617,7 @@ SRD5E.choiceRules = function(rules, type, name, attrs) {
       QuilvynUtils.getAttrValueArray(attrs, 'Features'),
       QuilvynUtils.getAttrValueArray(attrs, 'Selectables'),
       QuilvynUtils.getAttrValueArray(attrs, 'Languages'),
+      QuilvynUtils.getAttrValueArray(attrs, 'Proficiencies'),
       QuilvynUtils.getAttrValue(attrs, 'SpellAbility'),
       QuilvynUtils.getAttrValueArray(attrs, 'Spells'),
       SRD5E.SPELLS
@@ -2626,7 +2644,9 @@ SRD5E.choiceRules = function(rules, type, name, attrs) {
       QuilvynUtils.getAttrValue(attrs, 'Description')
     );
   else if(type == 'Tool')
-    SRD5E.toolRules(rules, name);
+    SRD5E.toolRules(rules, name,
+      QuilvynUtils.getAttrValue(attrs, 'Type')
+    );
   else if(type == 'Weapon')
     SRD5E.weaponRules(rules, name,
       QuilvynUtils.getAttrValue(attrs, 'Category'),
@@ -3530,14 +3550,14 @@ SRD5E.pathRules = function(
 /*
  * Defines in #rules# the rules associated with race #name#, which has the list
  * of hard prerequisites #requires#. #features# and #selectables# list
- * associated features and #languages# the automatic languages. #spells# lists
- * any natural spells, for which #spellAbility# is used to compute the save DC.
- * #spellDict# is the dictionary of all spells used to look up individual spell
- * attributes.
+ * associated features, #languages# the automatic languages, and #proficiencies#
+ * associated proficiencies. #spells# lists any natural spells, for which
+ * #spellAbility# is used to compute the save DC. #spellDict# is the dictionary
+ * of all spells used to look up individual spell attributes.
  */
 SRD5E.raceRules = function(
-  rules, name, requires, features, selectables, languages, spellAbility,
-  spells, spellDict
+  rules, name, requires, features, selectables, languages, proficiencies,
+  spellAbility, spells, spellDict
 ) {
 
   if(!name) {
@@ -3577,6 +3597,8 @@ SRD5E.raceRules = function(
     if(languages[i] != 'any')
       rules.defineRule('languages.' + languages[i], raceLevel, '=', '1');
   }
+
+  SRD5E.proficiencyRules(rules, raceLevel, proficiencies);
 
   if(spellAbility && spells.length > 0) {
     rules.defineRule('casterLevels.' + name, raceLevel, '=', null);
@@ -3786,8 +3808,8 @@ SRD5E.spellRules = function(
   SRD35.spellRules(rules, name, school, casterGroup, level, description);
 };
 
-/* Defines in #rules# the rules associated with tool #name#. */
-SRD5E.toolRules = function(rules, name) {
+/* Defines in #rules# the rules associated with tool #name# of type #type#. */
+SRD5E.toolRules = function(rules, name, type) {
   if(!name) {
     console.log('Empty tool name');
     return;

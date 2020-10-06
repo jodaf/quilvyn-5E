@@ -125,10 +125,9 @@ SRD5E.BACKGROUNDS = {
     'Equipment=' +
       '"Holy Symbol","Prayer Book",Incense,Vestments,Clothing,"15 GP" ' +
     'Features=' +
+      '"1:Skill Proficiency (Insight/Religion)",' +
       '"1:Shelter Of The Faithful" ' +
-    'Language=any,any ' +
-    'Proficiencies=' +
-      '"Skill:Insight;Religion"'
+    'Languages=any,any'
 };
 SRD5E.DEITIES = {
   'None':'',
@@ -1727,7 +1726,9 @@ SRD5E.CLASSES = {
     'HitDie=d12 ' +
     'Features=' +
       '"1:Armor Proficiency (Medium)",' +
+      '"1:Save Proficiency (Constitution/Strength)",' +
       '"1:Shield Proficiency",' +
+      '"1:Skill Proficiency (2 of Animal Handling, Athletics, Intimidation, Nature, Perception, Survival)",' +
       '"1:Weapon Proficiency (Martial)",' +
       '"1:Barbarian Unarmored Defense",1:Rage,"2:Danger Sense",' +
       '"2:Reckless Attack","5:Extra Attack",' +
@@ -1738,14 +1739,14 @@ SRD5E.CLASSES = {
       '"3:Path Of The Berserker",' +
       '"3:Path Of The Totem Warrior (Bear)",' +
       '"3:Path Of The Totem Warrior (Eagle)",' +
-      '"3:Path Of The Totem Warrior (Wolf)" ' +
-    'Proficiencies=' +
-      '"Save:Constitution;Strength",' +
-      '"2 Skill:Animal Handling;Athletics;Intimidation;Nature;Perception;Survival"',
+      '"3:Path Of The Totem Warrior (Wolf)"',
   'Bard':
     'HitDie=d8 ' +
     'Features=' +
       '"1:Armor Proficiency (Light)",' +
+      '"1:Save Proficiency (Charisma/Dexterity)",' +
+      '"1:Skill Proficiency (3 of any)",' +
+      '"1:Tool Proficiency (3 of any Music)",' +
       '"1:Weapon Proficiency (Simple/Hand Crossbow/Longsword/Rapier/Shortsword)",' +
       '"1:Tool Proficiency (3 musical instruments)",' +
       '"1:Bardic Inspiration","1:Ritual Casting",1:Spellcasting,' +
@@ -1754,10 +1755,6 @@ SRD5E.CLASSES = {
       '"20:Superior Inspiration" ' +
     'Selectables=' +
       '"3:College Of Lore" ' +
-    'Proficiencies=' +
-      '"Save:Charisma;Dexterity",' +
-      '"3 Skill:' + QuilvynUtils.getKeys(SRD5E.SKILLS).join(';') + '",' +
-      '"3 Tool:Music" ' +
     'CasterLevelArcane=levels.Bard ' +
     'SpellAbility=charisma ' +
     'SpellSlots=' +
@@ -1802,15 +1799,14 @@ SRD5E.CLASSES = {
     'HitDie=d8 ' +
     'Features=' +
       '"1:Armor Proficiency (Medium)",' +
+      '"1:Save Proficiency (Charisma/Wisdom)",' +
       '"1:Shield Proficiency",' +
+      '"1:Skill Proficiency (2 of History, Insight, Medicine, Persuasion, Religioin)",' +
       '"1:Weapon Proficiency (Simple)",' +
       '"1:Ritual Casting",1:Spellcasting,"2:Channel Divinity",' +
       '"2:Turn Undead","5:Destroy Undead","10:Divine Intervention" ' +
     'Selectables=' +
       '"1:Life Domain" ' +
-    'Proficiencies=' +
-      '"Save:Charisma;Wisdom",' +
-      '"2 Skill:History;Insight;Medicine;Persuasion;Religion" ' +
     'CasterLevelDivine=levels.Cleric ' +
     'SpellAbility=wisdom ' +
     'SpellSlots=' +
@@ -1857,7 +1853,10 @@ SRD5E.CLASSES = {
     'HitDie=d8 ' +
     'Features=' +
       '"1:Armor Proficiency (Medium)",' +
+      '"1:Save Proficiency (Intelligence/Wisdom)",' +
       '"1:Shield Proficiency",' +
+      '"1:Skill Proficiency (2 of Arcana, Animal Handling, Insight, Medicine, Nature, Perception, Religion, Survival)",' +
+      '"1:Tool Proficiency (Herbalism Kit)",' +
       '"1:Weapon Proficiency (Club/Dagger/Dart/Javelin/Mace/Quarterstaff/Scimitar/Sickle/Sling/Spear)",' +
       '"1:Tool Proficiency (Herbalism Kit)",' +
       '"1:Ritual Casting",1:Spellcasting,"2:Wild Shape",' +
@@ -1871,10 +1870,6 @@ SRD5E.CLASSES = {
       '"2:Circle Of The Land (Mountain)",' +
       '"2:Circle Of The Land (Swamp)" ' +
     'Languages=Druidic ' +
-    'Proficiencies=' +
-      '"Save:Intelligence;Wisdom",' +
-      '"2 Skill:Arcana;Animal Handling;Insight;Medicine;Nature;Perception;Religion;Survival",' +
-      '"Tool:Herbalism Kit" ' +
     'CasterLevelDivine=levels.Druid ' +
     'SpellAbility=wisdom ' +
     'SpellSlots=' +
@@ -1920,19 +1915,21 @@ SRD5E.CLASSES = {
     'HitDie=d10 ' +
     'Features=' +
       '"1:Armor Proficiency (Heavy)",' +
+      '"1:Save Proficiency (Constitution/Strength)",' +
       '"1:Shield Proficiency",' +
+      '"1:Skill Proficiency (2 of Acrobatics, Animal Handling, Athletics, History, Insight, Intimidation, Perception, Survival)",' +
       '"1:Weapon Proficiency (Martial)",' +
       '"1:Second Wind","2:Action Surge","5:Extra Attack",9:Indomitable ' +
     'Selectables=' +
       '"1:Archery Style","1:Defense Style","1:Dueling Style",' +
       '"1:Great Weapon Fighting Style","1:Protection Style",' +
-      '"1:Two-Weapon Fighting Style","3:Champion Archetype" ' +
-    'Proficiencies=' +
-      '"Save:Constitution;Strength",' +
-      '"2 Skill:Acrobatics;Animal Handling;Athletics;History;Insight;Intimidation;Perception;Survival"',
+      '"1:Two-Weapon Fighting Style","3:Champion Archetype"',
   'Monk':
     'HitDie=d8 ' +
     'Features=' +
+      '"1:Save Proficiency (Dexterity/Strength)",' +
+      '"1:Skill Proficiency (2 of Acrobatics, Athletics, History, Insight, Religion, Stealth)",' +
+      '"1:Tool Proficiency (1 of any Artisan, any Music)",' +
       '"1:Weapon Proficiency (Simple/Shortsword)",' +
       '"1:Tool Proficiency (artisan\'s tools or musical instrument)",' +
       '"1:Martial Arts","1:Monk Bonus Attack","1:Monk Unarmored Defense",' +
@@ -1943,16 +1940,14 @@ SRD5E.CLASSES = {
       '"10:Purity Of Body","13:Tongue Of Sun And Moon","14:Diamond Soul",' +
       '"15:Monk Timeless Body","18:Empty Body","20:Perfect Self" ' +
     'Selectables=' +
-      '"3:Way Of The Open Hand Tradition" ' +
-    'Proficiencies=' +
-      '"Save:Dexterity;Strength",' +
-      '"2 Skill:Acrobatics;Athletics;History;Insight;Religion;Stealth",' +
-      '"1 Tool:Artisan;Music"',
+      '"3:Way Of The Open Hand Tradition"',
   'Paladin':
     'HitDie=d10 ' +
     'Features=' +
       '"1:Armor Proficiency (Heavy)",' +
+      '"1:Save Proficiency (Charisma/Wisdom)",' +
       '"1:Shield Proficiency",' +
+      '"1:Skill Proficiency (2 of Athletics, Insight, Intimidation, Medicine, Persuasion, Religion)",' +
       '"1:Weapon Proficiency (Martial)",' +
       '"1:Divine Sense","1:Lay On Hands","2:Divine Smite",2:Spellcasting,' +
       '"3:Channel Divinity","3:Divine Health","5:Extra Attack",' +
@@ -1961,9 +1956,6 @@ SRD5E.CLASSES = {
     'Selectables=' +
       '"2:Defense Style","2:Dueling Style","2:Great Weapon Fighting Style",' +
       '"2:Protection Style","3:Oath Of Devotion" ' +
-    'Proficiencies=' +
-      '"Save:Charisma;Wisdom",' +
-      '"2 Skill:Athletics;Insight;Intimidation;Medicine;Persuasion;Religion" ' +
     'CasterLevelArcane=levels.Paladin ' +
     'SpellAbility=charisma ' +
     'SpellSlots=' +
@@ -1986,7 +1978,9 @@ SRD5E.CLASSES = {
     'HitDie=d10 ' +
     'Features=' +
       '"1:Armor Proficiency (Medium)",' +
+      '"1:Save Proficiency (Dexterity/Strength)",' +
       '"1:Shield Proficiency",' +
+      '"1:Skill Proficiency (3 of Animal Handling, Athletics, Insight, Investigation, Nature, Perception, Stealth, Survival)",' +
       '"1:Weapon Proficiency (Martial)",' +
       '"1:Favored Enemy","1:Natural Explorer",2:Spellcasting,' +
       '"3:Primeval Awareness","5:Extra Attack","8:Land\'s Stride",' +
@@ -1998,9 +1992,6 @@ SRD5E.CLASSES = {
       '"7:Escape The Horde","7:Multiattack Defense","7:Steel Will",11:Volley,' +
       '"11:Whirlwind Attack",15:Evasion,"15:Stand Against The Tide",' +
       '"15:Uncanny Dodge" ' +
-    'Proficiencies=' +
-      '"Save:Dexterity;Strength",' +
-      '"3 Skill:Animal Handling;Athletics;Insight;Investigation;Nature;Perception;Stealth;Survival" ' +
     'CasterLevelDivine=levels.Ranger ' +
     'SpellAbility=wisdom ' +
     'SpellSlots=' +
@@ -2026,20 +2017,21 @@ SRD5E.CLASSES = {
     'HitDie=d8 ' +
     'Features=' +
       '"1:Armor Proficiency (Light)",' +
+      '"1:Save Proficiency (Dexterity/Intelligence)",' +
+      '"1:Skill Proficiency (4 of Acrobatics, Athletics, Deception, Insight, Intimidation, Investigation, Perception, Performance, Persuasion, Sleight Of Hand, Stealth)",' +
+      '"1:Tool Proficiency (Thieves\' Tools)",' +
       '"1:Weapon Proficiency (Simple/Hand Crossbow/Longsword/Rapier/Shortsword)",' +
       '"1:Tool Proficiency (Thieves\' Tools)",' +
       '"1:Rogue Expertise","1:Sneak Attack","1:Thief\'s Cant",' +
       '"2:Cunning Action","5:Uncanny Dodge",7:Evasion,"11:Reliable Talent",' +
       '14:Blindsense,"15:Slippery Mind",18:Elusive,"20:Stroke Of Luck" ' +
     'Selectables=' +
-      '"3:Thief Archetype" ' +
-    'Proficiencies=' +
-      '"Save:Dexterity;Intelligence",' +
-      '"4 Skill:Acrobatics;Athletics;Deception;Insight;Intimidation;Investigation;Perception;Performance;Persuasion;Sleight Of Hand;Stealth",' +
-      '"Tool:Thieves\' Tools"',
+      '"3:Thief Archetype"',
   'Sorcerer':
     'HitDie=d6 ' +
     'Features=' +
+      '"1:Save Proficiency (Charisma/Constitution)",' +
+      '"1:Skill Proficiency (2 of Arcana, Deception, Insight, Intimidation, Persuasion, Religion)",' +
       '"1:Weapon Proficiency (Dagger/Dart/Sling/Quarterstaff/Light Crossbow)",' +
       '1:Spellcasting,"2:Font Of Magic","2:Flexible Casting",' +
       '"20:Sorcerous Restoration" ' +
@@ -2047,9 +2039,6 @@ SRD5E.CLASSES = {
       '"1:Draconic Bloodline","3:Careful Spell","3:Distant Spell",' +
       '"3:Empowered Spell","3:Extended Spell","3:Heightened Spell",' +
       '"3:Quickened Spell","3:Subtle Spell","3:Twinned Spell" ' +
-    'Proficiencies=' +
-      '"Save:Charisma;Constitution",' +
-      '"2 Skill:Arcana;Deception;Insight;Intimidation;Persuasion;Religion" ' +
     'CasterLevelArcane=levels.Sorcerer ' +
     'SpellAbility=charisma ' +
     'SpellSlots=' +
@@ -2096,6 +2085,8 @@ SRD5E.CLASSES = {
     'HitDie=d8 ' +
     'Features=' +
       '"1:Armor Proficiency (Light)",' +
+      '"1:Save Proficiency (Charisma/Wisdom)",' +
+      '"1:Skill Proficiency (2 of Arcana, Deception, History, Intimidation, Investigation, Nature, Religion)",' +
       '"1:Weapon Proficiency (Simple)",' +
       '"1:Pact Magic","2:Eldritch Invocations","11:Mystic Arcanum",' +
       '"20:Eldritch Master" ' +
@@ -2114,9 +2105,6 @@ SRD5E.CLASSES = {
       '"5:Thirsting Blade","15:Visions Of Distant Realms",' +
       '"2:Voice Of The Chain Master","9:Whispers Of The Grave",' +
       '"15:Witch Sight" ' +
-    'Proficiencies=' +
-      '"Save:Charisma;Wisdom",' +
-      '"2 Skill:Arcana;Deception;History;Intimidation;Investigation;Nature;Religigion" ' +
     'SpellAbility=charisma ' +
     'SpellSlots=' +
       'K0:1=2;4=3;10=4,' +
@@ -2152,14 +2140,13 @@ SRD5E.CLASSES = {
   'Wizard':
     'HitDie=d6 ' +
     'Features=' +
+      '"1:Save Proficiency (Intelligence/Wisdom)",' +
+      '"1:Skill Proficiency (3 of Arcana, History, Insight, Investigation, Medicine, Religion)",' +
       '"1:Weapon Proficiency (Dagger/Dart/Light Crossbow/Quarterstaff/Sling)",' +
       '"1:Arcane Recovery",1:Spellcasting,"18:Spell Mastery",' +
       '"20:Signature Spell" ' +
     'Selectables=' +
       '"2:Evocation Tradition" ' +
-    'Proficiencies=' +
-      '"Save:Intelligence;Wisdom",' +
-      '"3 Skill:Arcana;History;Insight;Investigation;Medicine;Religion" ' +
     'SpellAbility=intelligence ' +
     'SpellSlots=' +
       'W0:1=3;4=4;10=5,' +
@@ -2264,18 +2251,17 @@ SRD5E.RACES = {
     'Languages=Common,Draconic',
   'Hill Dwarf':
     'Features=' +
+      '"1:Weapon Proficiency (Battleaxe/Handaxe/Light Hammer/Warhammer)",' +
+      '"1:Tool Proficiency (1 of Brewer\'s Tools/Mason\'s Tools/Smith\'s Tools)",' +
       '1:Darkvision,"1:Hill Dwarf Ability Adjustment",' +
       '"1:Dwarven Armor Speed","1:Dwarven Resilience","1:Dwarven Toughness",' +
-      '1:Slow,1:Stonecunning,"1:Tool Proficiency (artisan\'s tools)",' +
-      '"1:Weapon Proficiency (Battleaxe/Handaxe/Light Hammer/Warhammer)" ' +
-    'Languages=Common,Dwarvish ' +
-    'Proficiencies=' +
-      '"1 Tool:Brewer\'s Supplies;Mason\'s Tools;Smith\'s Tools"',
+      '1:Slow,1:Stonecunning ' +
+    'Languages=Common,Dwarvish',
   'High Elf':
     'Features=' +
-      '1:Darkvision,"1:Fey Ancestry","1:High Elf Ability Adjustment",' +
-      '"1:Keen Senses",1:Trance,1:Cantrip,' +
-      '"1:Weapon Proficiency (Longbow/Longsword/Shortbow/Shortsword)" ' +
+      '"1:Weapon Proficiency (Longbow/Longsword/Shortbow/Shortsword)",' +
+      '1:Cantrip,1:Darkvision,"1:Fey Ancestry",' +
+      '"1:High Elf Ability Adjustment","1:Keen Senses",1:Trance ' +
     'Languages=Common,Elvish,any',
   'Rock Gnome':
     'Features=' +
@@ -2444,13 +2430,13 @@ SRD5E.identityRules = function(
 
   QuilvynUtils.checkAttrTable(alignments, []);
   QuilvynUtils.checkAttrTable
-    (backgrounds, ['Equipment', 'Features', 'Language', 'Proficiencies']);
+    (backgrounds, ['Equipment', 'Features', 'Languages']);
   QuilvynUtils.checkAttrTable
-    (classes, ['Require', 'HitDie', 'Features', 'Selectables', 'Proficiencies', 'Languages', 'CasterLevelArcane', 'CasterLevelDivine', 'SpellAbility', 'SpellSlots', 'Spells']);
+    (classes, ['Require', 'HitDie', 'Features', 'Selectables', 'Languages', 'CasterLevelArcane', 'CasterLevelDivine', 'SpellAbility', 'SpellSlots', 'Spells']);
   QuilvynUtils.checkAttrTable(deities, ['Alignment', 'Domain']);
   QuilvynUtils.checkAttrTable(genders, []);
   QuilvynUtils.checkAttrTable(paths, ['Features', 'Group', 'Level', 'Spells']);
-  QuilvynUtils.checkAttrTable(races, ['Require', 'Features', 'Selectables', 'Languages', 'Proficiencies', 'SpellAbility', 'Spells']);
+  QuilvynUtils.checkAttrTable(races, ['Require', 'Features', 'Selectables', 'Languages', 'SpellAbility', 'Spells']);
 
   for(var alignment in alignments) {
     rules.choiceRules(rules, 'Alignment', alignment, alignments[alignment]);
@@ -2554,8 +2540,7 @@ SRD5E.choiceRules = function(rules, type, name, attrs) {
     SRD5E.backgroundRules(rules, name,
       QuilvynUtils.getAttrValueArray(attrs, 'Equipment'),
       QuilvynUtils.getAttrValueArray(attrs, 'Features'),
-      QuilvynUtils.getAttrValueArray(attrs, 'Language'),
-      QuilvynUtils.getAttrValueArray(attrs, 'Proficiencies')
+      QuilvynUtils.getAttrValueArray(attrs, 'Languages')
     );
   else if(type == 'Armor') {
     var bulky = QuilvynUtils.getAttrValue(attrs, 'Bulky');
@@ -2572,7 +2557,6 @@ SRD5E.choiceRules = function(rules, type, name, attrs) {
       QuilvynUtils.getAttrValue(attrs, 'HitDie'),
       QuilvynUtils.getAttrValueArray(attrs, 'Features'),
       QuilvynUtils.getAttrValueArray(attrs, 'Selectables'),
-      QuilvynUtils.getAttrValueArray(attrs, 'Proficiencies'),
       QuilvynUtils.getAttrValueArray(attrs, 'Languages'),
       QuilvynUtils.getAttrValue(attrs, 'CasterLevelArcane'),
       QuilvynUtils.getAttrValue(attrs, 'CasterLevelDivine'),
@@ -2617,7 +2601,6 @@ SRD5E.choiceRules = function(rules, type, name, attrs) {
       QuilvynUtils.getAttrValueArray(attrs, 'Features'),
       QuilvynUtils.getAttrValueArray(attrs, 'Selectables'),
       QuilvynUtils.getAttrValueArray(attrs, 'Languages'),
-      QuilvynUtils.getAttrValueArray(attrs, 'Proficiencies'),
       QuilvynUtils.getAttrValue(attrs, 'SpellAbility'),
       QuilvynUtils.getAttrValueArray(attrs, 'Spells'),
       SRD5E.SPELLS
@@ -2769,13 +2752,11 @@ SRD5E.armorRules = function(rules, name, ac, category, maxDex, minStr, bulky) {
 
 /*
  * Defines in #rules# the rules associated with background #name#, which grants
- * the equipment, features, languages, and proficiencies listed in #equipment#,
- * #features#, #languages#, and #proficiencies#.
+ * the equipment, features, and languages listed in #equipment#, #features#,
+ * and #languages#.
  */
 
-SRD5E.backgroundRules = function(
-  rules, name, equipment, features, languages, proficiencies
-) {
+SRD5E.backgroundRules = function(rules, name, equipment, features, languages) {
 
   var prefix =
     name.substring(0, 1).toLowerCase() + name.substring(1).replace(/ /g, '');
@@ -2786,8 +2767,7 @@ SRD5E.backgroundRules = function(
     'level', '=', null
   );
 
-  // TODO
-  SRD35.featureListRules(rules, features, name, backgroundLevel, false);
+  SRD5E.featureListRules(rules, features, name, backgroundLevel, false);
   rules.defineSheetElement(name + ' Features', 'Feats+', null, '; ');
   rules.defineChoice('extras', prefix + 'Features');
 
@@ -2799,8 +2779,6 @@ SRD5E.backgroundRules = function(
       rules.defineRule('languages.' + languages[i], backgroundLevel, '=', '1');
   }
 
-  SRD5E.proficiencyRules(rules, backgroundLevel, proficiencies);
-
   // TODO Do anything with equipment?
 
 };
@@ -2808,13 +2786,8 @@ SRD5E.backgroundRules = function(
 /*
  * Defines in #rules# the rules associated with class #name#, which has the list
  * of hard prerequisites #requires#. The class grants #hitDie# (format [n]'d'n)
- * additional hit points and #skillPoints# additional skill points with each
- * level advance. #attack# is one of '1', '1/2', or '3/4', indicating the base
- * attack progression for the class; similarly, #saveFort#, #saveRef#, and
- * #saveWill# are each one of '1/2' or '1/3', indicating the saving throw
- * progressions. #skills# indicate class skills for the class; see skillRules
- * for an alternate way these can be defined. #features# and #selectables# list
- * the fixed and selectable features acquired as the character advances in
+ * additional hit points with each level advance. #features# and #selectables#
+ * list the fixed and selectable features acquired as the character advances in
  * class level, and #languages# lists any automatic languages for the class.
  * #casterLevelArcane# and #casterLevelDivine#, if specified, give the
  * Javascript expression for determining the caster level for the class; these
@@ -2826,7 +2799,7 @@ SRD5E.backgroundRules = function(
  * spells used to look up individual spell attributes.
  */
 SRD5E.classRules = function(
-  rules, name, requires, hitDie, features, selectables, proficiencies,
+  rules, name, requires, hitDie, features, selectables,
   languages, casterLevelArcane, casterLevelDivine, spellAbility, spellSlots,
   spells, spellDict
 ) {
@@ -2849,13 +2822,10 @@ SRD5E.classRules = function(
     SRD35.prerequisiteRules
       (rules, 'validation', prefix + 'Class', classLevel, requires);
 
-  // TODO
-  SRD35.featureListRules(rules, features, name, classLevel, false);
-  SRD35.featureListRules(rules, selectables, name, classLevel, true);
+  SRD5E.featureListRules(rules, features, name, classLevel, false);
+  SRD5E.featureListRules(rules, selectables, name, classLevel, true);
   rules.defineSheetElement(name + ' Features', 'Feats+', null, '; ');
   rules.defineChoice('extras', prefix + 'Features');
-
-  SRD5E.proficiencyRules(rules, classLevel, proficiencies);
 
   if(languages.length > 0)
     rules.defineRule('languageCount', classLevel, '+', languages.length);
@@ -3502,7 +3472,7 @@ SRD5E.pathRules = function(
     levelAttr, '=', null
   );
 
-  SRD35.featureListRules(rules, features, group, pathLevel, false);
+  SRD5E.featureListRules(rules, features, group, pathLevel, false);
 
   for(var i = 0; i < spells.length; i++) {
 
@@ -3550,14 +3520,14 @@ SRD5E.pathRules = function(
 /*
  * Defines in #rules# the rules associated with race #name#, which has the list
  * of hard prerequisites #requires#. #features# and #selectables# list
- * associated features, #languages# the automatic languages, and #proficiencies#
- * associated proficiencies. #spells# lists any natural spells, for which
- * #spellAbility# is used to compute the save DC. #spellDict# is the dictionary
- * of all spells used to look up individual spell attributes.
+ * associated features and #languages# the automatic languages. #spells# lists
+ * any natural spells, for which #spellAbility# is used to compute the save DC.
+ * #spellDict# is the dictionary of all spells used to look up individual spell
+ * attributes.
  */
 SRD5E.raceRules = function(
-  rules, name, requires, features, selectables, languages, proficiencies,
-  spellAbility, spells, spellDict
+  rules, name, requires, features, selectables, languages, spellAbility,
+  spells, spellDict
 ) {
 
   if(!name) {
@@ -3585,8 +3555,8 @@ SRD5E.raceRules = function(
       (rules, 'validation', prefix + 'Race', raceLevel, requires);
 
   // TODO
-  SRD35.featureListRules(rules, features, name, raceLevel, false);
-  SRD35.featureListRules(rules, selectables, name, raceLevel, true);
+  SRD5E.featureListRules(rules, features, name, raceLevel, false);
+  SRD5E.featureListRules(rules, selectables, name, raceLevel, true);
   rules.defineSheetElement(name + ' Features', 'Feats+', null, '; ');
   rules.defineChoice('extras', prefix + 'Features');
 
@@ -3597,8 +3567,6 @@ SRD5E.raceRules = function(
     if(languages[i] != 'any')
       rules.defineRule('languages.' + languages[i], raceLevel, '=', '1');
   }
-
-  SRD5E.proficiencyRules(rules, raceLevel, proficiencies);
 
   if(spellAbility && spells.length > 0) {
     rules.defineRule('casterLevels.' + name, raceLevel, '=', null);
@@ -4161,7 +4129,57 @@ SRD5E.choiceEditorElements = function(rules, type) {
   return SRD35.choiceEditorElements(rules, type);
 };
 
-/* TODO */
+/*
+ * Defines in #rules# the rules associated with with the list #features#. Rules
+ * add each feature to #setName# if the value of #levelAttr# is at least equal
+ * to the value required for the feature. If #selectable# is true, the user is
+ * allowed to select these features for the character, rather than having them
+ * assigned automatically.
+ */
+SRD5E.featureListRules = function(
+  rules, features, setName, levelAttr, selectable
+) {
+  // TODO
+  SRD35.featureListRules(rules, features, setName, levelAttr, selectable);
+  for(var i = 0; i < features.length; i++) {
+    var feature = features[i].replace(/^(.*\?\s*)?\d+:/, '');
+    console.log(feature);
+    var matchInfo = feature.match(/^(Save|Skill|Tool) Proficiency \((.*)\)$/);
+    if(!matchInfo)
+      continue;
+    console.log('Parsing ' + setName + ' proficiency feature ' + feature);
+    var choices;
+    var choiceCount = 0;
+    var group = matchInfo[1].toLowerCase();
+    var elements = matchInfo[2].split('/');
+    for(var j = 0; j < elements.length; j++) {
+      matchInfo = elements[j].match(/^(\d+)(\s+of)?\s+(.*)$/);
+      if(matchInfo) {
+        choiceCount += matchInfo[1] * 1;
+        choices = matchInfo[3].split(/,\s*/);
+        for(var k = 0; k < choices.length; k++) {
+          rules.defineRule(group + 'Choices.' + elements[j], 'features.' + feature, '=', '1');
+        }
+      } else if(elements[j].startsWith('any ')) {
+        var property = elements[j].replace(/^any\s+/, '');
+        choiceCount += 1;
+        choices = rules.getChoices(group + 's');
+        for(var choice in choices) {
+          if(choices[choice].indexOf(property) >= 0)
+            rules.defineRule(group + 'Choices.' + choice, 'features.' + feature, '=', '1');
+        }
+      } else {
+        rules.defineRule(group + 'Proficiencies.' + elements[j],
+          'features.' + feature, '=', '1'
+        );
+      }
+    }
+    if(choiceCount > 0)
+      rules.defineRule
+        (group + 'ChoiceCount', 'features.' + feature, '+=', choiceCount);
+  }
+};
+
 SRD5E.proficiencyRules = function(rules, levelAttr, proficiencies) {
   for(var i = 0; i < proficiencies.length; i++) {
     var pieces = proficiencies[i].split(':');
@@ -4560,11 +4578,11 @@ SRD5E.randomizeOneAttribute = function(attributes, attribute) {
     attrs = this.applyRules(attributes);
     howMany = attrs['toolChoiceCount'] || 0;
     choices = [];
-    for(attr in this.getChoices('tools')) {
-      if(attrs['toolChoices.' + attr] ||
-         attrs['toolChoices.' + this.getChoices('tools')[attr]]) {
-        choices[choices.length] = attr;
-      }
+    var tools = this.getChoices('tools');
+    for(attr in tools) {
+      var type = QuilvynUtils.getAttrValue(tools[attr], 'Type') || 'General';
+      if(attrs['toolChoices.' + attr] || attrs['toolChoices.' + type)
+        choices.push(attr);
     }
     pickAttrs(attributes, 'toolsChosen.', choices,
               howMany - QuilvynUtils.sumMatching(attrs, /^toolsChosen\./), 1);

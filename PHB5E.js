@@ -512,7 +512,7 @@ PHB5E.FEATURES = {
   'Blessings Of Knowledge':
     'Section=skill Note="+2 Languages Count/+2 Skill Choice Count"',
   'Knowledge Of The Ages':
-    'Section=skill Note="Channel Divinity for Prof chosen skill or tool for 10 min"',
+    'Section=skill Note="Channel Divinity for proficiency in chosen skill or tool for 10 min"',
   'Read Thoughts':
     'Section=magic Note="R60\' Channel Divinity to read thoughts, <i>Suggestion</i> for 1 min (Wis neg)"',
   'Potent Spellcasting':
@@ -624,7 +624,6 @@ PHB5E.FEATURES = {
   'Exceptional Training':'Section=feature Note="Companion can Dash, Disengage, Help instead of attack"',
   'Bestial Fury':'Section=feature Note="Companion 2 attacks/rd"',
   'Share Spells':'Section=feature Note="R30\' Self spell affects companion"',
-  'Assassin Proficiencies':'Section=skill Note="Prof Disguise Kit/Prof Poisoner\'s Kit"',
   'Assassinate':'Section=combat Note="Adv when foe has not acted, crit on surprise hit"',
   'Infiltration Expertise':'Section=feature Note="Forge and adopt different identity"',
   'Impostor':'Section=feature Note="Unerring mimicry"',
@@ -649,7 +648,7 @@ PHB5E.FEATURES = {
   'Abjuration Savant':'Section=magic Note="Write abjuration spells for half cost"',
   'Arcane Ward':'Section=magic Note="Abjuration casting creates %V HP shield"',
   'Projected Ward':'Section=magic Note="R30\' Use Arcane Ward to protect others"',
-  'Improved Abjuration':'Section=magic Note="Add Prof Bonus to abjuration ability checks"',
+  'Improved Abjuration':'Section=magic Note="Add Proficiency Bonus to abjuration ability checks"',
   'Spell Resistance':'Section=save Note="Adv and resistance to spell damage"',
   'Conjuration Savant':'Section=magic Note="Write conjuration spells for half cost"',
   'Minor Conjuration':'Section=magic Note="R10\' Create 3\' cu object for 1 hr"',
@@ -677,7 +676,7 @@ PHB5E.FEATURES = {
   'Command Undead':'Section=magic Note="R60\' Take control of undead target (Cha neg (Adv intelligent undead))"',
   'Transmutation Savant':'Section=magic Note="Write transmutation spells for half cost"',
   'Minor Alchemy':'Section=magic Note="Transform 1 cu\'/10 min for 1 hr"',
-  "Transmuter's Stone":'Section=magic Note="Stone gives 60\' darkvision, +10 speed, Prof Con, or resist energy"',
+  "Transmuter's Stone":'Section=magic Note="Stone gives 60\' darkvision, +10 speed, proficiency in constitution, or resist energy"',
   'Shapechanger':'Section=magic Note="Self <i>Polymorph</i> 1/short rest"',
   'Master Transmuter':'Section=magic Note="Destroy stone to transmute 5\' cu, remove curse, disease, and poison, <i>Raise Dead</i>, or restore youth"',
   // Feats
@@ -686,7 +685,7 @@ PHB5E.FEATURES = {
   'Athlete':'Section=ability,skill Note="+1 Dexterity or Strength, climb full speed, stand uses 5\' move","Long jump, running high jump uses 5\' move"',
   'Charger':'Section=combat Note="Bonus attack +5 HP or 10\' push after Dash"',
   'Crossbow Expert':'Section=combat Note="Quick load, no Disadv on close shot, bonus hand crossbow shot after one-handed attack"',
-  'Defensive Dualist':'Section=combat Note="React +%V AC when holding finesse weapon"',
+  'Defensive Duelist':'Section=combat Note="React +%V AC when holding finesse weapon"',
   'Dual Wielder':'Section=combat Note="+1 AC w/two weapons, two-weapon fighting w/non-light weapons, draw two weapons at once"',
   'Dungeon Delver':'Section=save,skill Note="Adv vs. traps, resistance trap damage","Adv detect secret doors, search for traps at full speed"',
   'Durable':'Section=ability,combat Note="+1 Constitution","Min %V when regaining HP"',
@@ -713,19 +712,19 @@ PHB5E.FEATURES = {
   'Mounted Combatant':'Section=combat Note="Adv unmounted foe smaller than mount, redirect attack on mount to self, mount takes no damage on Dex save, half on fail"',
   'Observant':'Section=ability,feature,skill Note="+1 Intelligence or Wisdom","Read lips","+5 passive Investigation and Perception"',
   'Polearm Master':'Section=combat Note="Bonus attack polearm butt (1d4 HP), OA when foe enters reach"',
-  'Resilient':'Section=ability,save Note="+1 chosen ability","Prof saves in chosen ability"',
+  'Resilient':'Section=ability,save Note="+1 chosen ability","Proficiency in chosen ability"',
   'Ritual Caster':'Section=magic Note="Cast spells from ritual book"',
   'Savage Attacker':'Section=combat Note="Re-roll damage 1/turn"',
   'Sentinel':'Section=combat Note="Foe stuck by OA speed 0, OA on foe Disengage, react attack when adjacent foe targets other"',
   'Sharpshooter':'Section=combat Note="No Disadv long range, ignore 3/4 cover, take -5 attack for +10 damage"',
   'Shield Master':'Section=combat,save Note="Bonus 5\' Push","+2 Dex vs. targeted spell, save for no damage instead of half"',
-  'Skilled':'Section=skill Note="Prof 3 skills or tools"',
+  'Skilled':'Section=skill Note="Proficiency in 3 skills or tools"',
   'Skulker':'Section=skill Note="Hide when lightly obscured, ranged miss does not reveal position, no Disadv on Perception in dim light"',
   'Spell Sniper':'Section=magic Note="Dbl attack spell range, ignore 3/4 cover, additional attack cantrip"',
-  'Tavern Brawler':'Section=ability,combat Note="+1 Constitution or Strength","Prof improvised, bonus to grapple"',
+  'Tavern Brawler':'Section=ability,combat Note="+1 Constitution or Strength","Proficiency in improvised, bonus to grapple"',
   'Tough':'Section=combat Note="+%V HP"',
   'War Caster':'Section=combat Note=Adv concentration, cast when holding shield or weapon, cast as OA"',
-  'Weapon Master':'Section=ability,combat Note="+1 Dexterity or Strength","Prof 4 weapons"',
+  'Weapon Master':'Section=ability,combat Note="+1 Dexterity or Strength","Proficiency in 4 weapons"',
   // Races
   'Mountain Dwarf Ability Adjustment':'Section=ability Note="+2 Constitution/+2 Strength"',
   'Wood Elf Ability Adjustment':'Section=ability Note="+2 Dexterity/+1 Wisdom"',
@@ -747,6 +746,7 @@ PHB5E.PATHS = {
     'Features=' +
       '"2:Bonus Cantrip","2:Natural Recovery","6:Land\'s Stride",' +
       '"10:Nature\'s Ward","14:Nature\'s Sanctuary" ' +
+    'SpellAbility=wisdom ' +
     'Spells=' +
       '"3:Underdark1:Spider Climb;Web",' +
       '"5:Underdark2:Gaseous Form;Stinking Cloud",' +
@@ -769,6 +769,7 @@ PHB5E.PATHS = {
     'Features=' +
       '"1:Blessings Of Knowledge","2:Knowledge Of The Ages",' +
       '"6:Read Thoughts","8:Potent Spellcasting","17:Visions Of The Past" ' +
+    'SpellAbility=wisdom ' +
     'Spells=' +
       '"1:Knowledge1:Command;Identify",' +
       '"3:Knowledge2:Augury;Suggestion",' +
@@ -780,6 +781,7 @@ PHB5E.PATHS = {
     'Features=' +
       '"1:Light Cantrip","1:Warding Flare","2:Radiance Of The Dawn",' +
       '"6:Improved Flare","8:Potent Spellcasting","17:Corona Of Light" ' +
+    'SpellAbility=wisdom ' +
     'Spells=' +
       '"1:Light1:Burning Hands;Faerie Fire",' +
       '"3:Light2:Flaming Sphere;Scorching Ray",' +
@@ -792,6 +794,7 @@ PHB5E.PATHS = {
       '"1:Armor Proficiency (Heavy)",' +
       '"1:Acolyte Of Nature","2:Charm Animals And Plants","6:Dampen Elements",'+
       '"8:Divine Strike","17:Master Of Nature" ' +
+    'SpellAbility=wisdom ' +
     'Spells=' +
       '"1:Nature1:Animal Friendship;Speak With Animals",' +
       '"3:Nature2:Barkskin;Spike Growth",' +
@@ -805,6 +808,7 @@ PHB5E.PATHS = {
       '"1:Weapon Proficiency (Martial)",' +
       '"1:Wrath Of The Storm","2:Destructive Wrath","6:Thunderbolt Strike",' +
       '"8:Divine Strike",17:Stormborn ' +
+    'SpellAbility=wisdom ' +
     'Spells=' +
       '"1:Tempest1:Fog Cloud;Thunderwave",' +
       '"3:Tempest2:Gust Of Wind;Shatter",' +
@@ -816,6 +820,7 @@ PHB5E.PATHS = {
     'Features=' +
       '"1:Blessing Of The Trickster","2:Invoke Duplicity",' +
       '"6:Cloak Of The Trickster","8:Divine Strike","17:Improved Duplicity" ' +
+    'SpellAbility=wisdom ' +
     'Spells=' +
       '"1:Trickery1:Charm Person;Disguise Self",' +
       '"3:Trickery2:Mirror Image;Pass Without Trace",' +
@@ -829,6 +834,7 @@ PHB5E.PATHS = {
       '"1:Weapon Proficiency (Martial)",' +
       '"1:War Priest","2:Guided Strike","6:War God\'s Blessing",' +
       '"8:Divine Strike","17:Avatar Of Battle" ' +
+    'SpellAbility=wisdom ' +
     'Spells=' +
       '"1:War1:Divine Favor;Shield Of Faith",' +
       '"3:War2:Magic Weapon;Spiritual Weapon",' +
@@ -867,12 +873,17 @@ PHB5E.PATHS = {
     'Group=Monk Level=levels.Monk ' +
     'Features=' +
       '"3:Shadow Arts","6:Shadow Step","11:Cloak Of Shadows",' +
-      '17:Opportunist',
+      '17:Opportunist ' +
+    'SpellAbility=intelligence ' +
+    'Spells=' +
+      '"3:Shadow0:Minor Illusion",' +
+      '"3:Shadow2:Darkness;Darkvision;Pass Without Trace;Silence"',
   'Oath Of The Ancients':
     'Group=Paladin Level=levels.Paladin ' +
     'Features=' +
       '"3:Nature\'s Wrath","3:Turn The Faithless","7:Aura Of Warding",' +
       '"15:Undying Sentinel","20:Elder Champion" ' +
+    'SpellAbility=charisma ' +
     'Spells=' +
       '"3:Ancients1:Ensnaring Strike;Speak With Animals",' +
       '"5:Ancients2:Moonbeam;Misty Step",' +
@@ -884,6 +895,7 @@ PHB5E.PATHS = {
     'Features=' +
       '"3:Abjure Enemy","3:Vow Of Enmity","7:Relentless Avenger",' +
       '"15:Soul Of Vengeance","20:Avenging Angel" ' +
+    'SpellAbility=charisma ' +
     'Spells=' +
       '"3:Vengeance1:Bane;Hunter\'s Mark",' +
       '"5:Vengeance1:Hold Person;Misty Step",' +
@@ -898,8 +910,8 @@ PHB5E.PATHS = {
   'Assassin Archetype':
     'Group=Rogue Level=levels.Rogue ' +
     'Features=' +
-      '"3:Assassin Proficiencies",3:Assassinate,"9:Infiltration Expertise",' +
-      '13:Impostor,"17:Death Strike"',
+      '"3:Tool Proficiency (Disguise Kit/Poisoner\'s Kit)",' +
+      '3:Assassinate,"9:Infiltration Expertise",13:Impostor,"17:Death Strike"',
   'Arcane Trickster Archetype':
     'Group=Rogue Level=levels.Rogue ' +
     'Features=' +
@@ -971,7 +983,12 @@ PHB5E.RACES = {
       '"1:Dark Elf Ability Adjustment","1:Drow Magic","1:Fey Ancestry",' +
       '"1:Keen Senses",' +
       '"1:Superior Darkvision",1:Trance ' +
-    'Languages=Common,Elvish',
+    'Languages=Common,Elvish ' +
+    'SpellAbility=charisma ' +
+    'Spells=' +
+      '"1:Drow0:Dancing Lights",' +
+      '"3:Drow1:Faerie Fire",' +
+      '"5:Drow2:Darkness"',
   'Wood Elf':
     'Features=' +
       '"1:Weapon Proficiency (Longbow/Longsword/Shortbow/Shortsword)",' +
@@ -983,7 +1000,10 @@ PHB5E.RACES = {
       '1:Darkvision,"1:Gnome Cunning","1:Natural Illusionist",' +
       '"1:Rock Gnome Ability Adjustment",1:Slow,1:Small,' +
       '"1:Speak With Small Beasts" ' +
-    'Languages=Common,Gnomish',
+    'Languages=Common,Gnomish ' +
+    'SpellAbility=intelligence ' +
+    'Spells=' +
+      '"1:Gnome0:Minor Illusion"',
   'Stout Halfling':
     'Features=' +
       '1:Brave,"1:Halfling Luck","1:Halfling Nimbleness",1:Slow,1:Small,' +
@@ -1129,8 +1149,10 @@ PHB5E.identityRules = function(
   QuilvynUtils.checkAttrTable
     (classes, ['Require', 'HitDie', 'Features', 'Selectables', 'Proficiencies', 'Languages', 'CasterLevelArcane', 'CasterLevelDivine', 'SpellAbility', 'SpellSlots', 'Spells']);
   QuilvynUtils.checkAttrTable(deities, ['Alignment', 'Domain']);
-  QuilvynUtils.checkAttrTable(paths, ['Features', 'Group', 'Level', 'Spells']);
-  QuilvynUtils.checkAttrTable(races, ['Require', 'Features', 'Selectables', 'Languages', 'Proficiencies', 'SpellAbility', 'Spells']);
+  QuilvynUtils.checkAttrTable
+    (paths, ['Features', 'Group', 'Level', 'SpellAbility', 'Spells']);
+  QuilvynUtils.checkAttrTable
+    (races, ['Require', 'Features', 'Selectables', 'Languages', 'Proficiencies', 'SpellAbility', 'Spells']);
 
   for(var background in backgrounds) {
     rules.choiceRules(rules, 'Background', background, backgrounds[background]);
@@ -1276,10 +1298,6 @@ PHB5E.pathRulesExtra = function(rules, name) {
 
 /* TODO
       spellAbility = 'intelligence';
-      spellsKnown = [
-        'W0:3:2/10:3',
-        'W:3:3/4:4/7:5/8:6/10:7/11:8/13:9/14:10/16:11/19:12/20:13',
-      ];
       spellSlots = [
         'W1:3:2/4:3/7:4',
         'W2:7:2/10:3',
@@ -1311,22 +1329,6 @@ PHB5E.pathRulesExtra = function(rules, name) {
       'magicNotes.discipleOfTheElements', '+', null
     );
 
-/* TODO
-      rules.defineRule('magicMonk',
-        'monkFeatures.Way Of The Shadow Tradition', '=', null,
-        'monkFeatures.Way Of The Four Elements Tradition', '=', null
-      );
-      rules.defineRule('casterLevels.Mo',
-        'magicMonk', '?', null,
-        'levels.Monk', '=', null,
-        'magicNotes.casterLevelBonus', '+', null
-      );
-      rules.defineRule('spellDifficultyClass.Mo',
-        'casterLevels.Mo', '?', null,
-        'kiSaveDC', '=', null
-      );
-*/
-
   } else if(name == 'Oath Of The Ancients') {
 
     rules.defineRule('saveNotes.auraOfWarding',
@@ -1349,10 +1351,6 @@ PHB5E.pathRulesExtra = function(rules, name) {
 
 /* TODO
       spellAbility = 'intelligence';
-      spellsKnown = [
-        'W0:3:3/10:4',
-        'W:3:3/4:4/7:5/8:6/10:7/11:8/13:9/14:10/16:11/19:12/20:13',
-      ];
       spellSlots = [
         'W1:3:2/4:3/7:4',
         'W2:7:2/10:3',
@@ -1409,12 +1407,13 @@ PHB5E.pathRulesExtra = function(rules, name) {
 PHB5E.featRulesExtra = function(rules, name) {
 
   if(name == 'Athlete') {
-    rules.defineRule('abilityBoostCount', 'abilityNotes.athlete', '+=', '1');
+    rules.defineRule
+      ('abilityNotes.abilityBoosts', 'abilityNotes.athlete', '+=', '1');
   } else if(name == 'Defensive Duelist') {
     rules.defineRule
       ('combatNotes.defensiveDuelist', 'proficiencyBonus', '=', null);
   } else if(name == 'Durable') {
-    rules.defineRule('featureNotes.durable',
+    rules.defineRule('combatNotes.durable',
       'constitutionModifier', '=', 'Math.max(source * 2, 2)'
     );
   } else if(name == 'Inspiring Leader') {
@@ -1424,7 +1423,7 @@ PHB5E.featRulesExtra = function(rules, name) {
     );
   } else if(name == 'Lightly Armored') {
     rules.defineRule
-      ('abilityBoostCount', 'abilityNotes.lightlyArmored', '+=', '1');
+      ('abilityNotes.abilityBoosts', 'abilityNotes.lightlyArmored', '+=', '1');
   } else if(name == 'Linguist') {
     rules.defineRule('featureNotes.linguist',
       'intelligence', '=', null,
@@ -1460,61 +1459,34 @@ PHB5E.featRulesExtra = function(rules, name) {
   } else if(name == 'Medium Armor Master') {
     rules.defineRule('combatNotes.mediumArmorMaster',
       'dexterity', '?', 'source >= 16',
-      'armor', '?', 'SRD5E.ARMORS.findIndex(x => x.match(new RegExp(source + ":.*Me"))) >= 0 ? 1 : null'
+      'armorWeight', '?', 'source == 2'
     );
   } else if(name == 'Moderately Armored') {
-    rules.defineRule
-      ('abilityBoostCount', 'abilityNotes.moderatelyArmored', '+=', '1');
+    rules.defineRule('abilityNotes.abilityBoosts',
+      'abilityNotes.moderatelyArmored', '+=', '1'
+    );
   } else if(name == 'Observant') {
-    rules.defineRule('abilityBoostCount', 'abilityNotes.observant', '+=', '1');
+    rules.defineRule
+      ('abilityNotes.abilityBoosts', 'abilityNotes.observant', '+=', '1');
   } else if(name == 'Resilient') {
-    rules.defineRule('abilityBoostCount', 'abilityNotes.resilient', '+=', '1');
+    rules.defineRule
+      ('abilityNotes.abilityBoosts', 'abilityNotes.resilient', '+=', '1');
   } else if(name == 'Skilled') {
-    // TODO ... or tools
     rules.defineRule('skillChoiceCount', 'skillNotes.skilled', '+=', '3');
+    // TODO ... or tools
   } else if(name == 'Tavern Brawler') {
     rules.defineRule
-      ('abilityBoostCount', 'abilityNotes.tavernBrawler', '+=', '1');
+      ('abilityNotes.abilityBoosts', 'abilityNotes.tavernBrawler', '+=', '1');
     rules.defineRule
       ('weapons.Unarmed.2', 'combatNotes.tavernBrawler', '=', '"1d4"');
   } else if(name == 'Tough') {
     rules.defineRule('combatNotes.tough', 'level', '=', '2 * source');
   } else if(name == 'Weapon Master') {
     rules.defineRule
-      ('abilityBoostCount', 'abilityNotes.weaponMaster', '+=', '1');
+      ('abilityNotes.abilityBoosts', 'abilityNotes.weaponMaster', '+=', '1');
     rules.defineRule
       ('weaponChoiceCount', 'combatNotes.weaponMaster', '+=', '4');
     // TODO How can user specify the choice of prof weapons?
-  }
-
-};
-
-/*
- * Defines in #rules# the rules associated with race #name# that are not
- * directly derived from the parmeters passed to raceRules.
- */
-PHB5E.raceRulesExtra = function(rules, name) {
-
-  if(name == 'Dark Elf') {
-    /* TODO
-    rules.defineRule('casterLevels.S', 'drowMagicLevel', '^=', null);
-    rules.defineRule('drowMagicLevel',
-      'darkElfFeatures.Drow Magic', '?', null,
-      'level', '=', null
-    );
-    rules.defineRule('magicNotes.drowMagic', 'level', '=', 'source >= 3 ? ", cast <i>Faerie Fire</i>" + (source >= 5 ? ", <i>Darkness</i>" : "") + " 1/long rest" : ""');
-    */
-  } else if(race == 'Forest Gnome') {
-    /* TODO
-      rules.defineRule
-        ('casterLevels.W', 'casterLevels.Forest Gnome', '^=', null);
-      rules.defineRule('casterLevels.Forest Gnome',
-        'forestGnomeFeatures.Natural Illusionist', '?', null,
-        'level', '=', null
-      );
-      rules.defineRule
-        ('spellsKnown.W0', 'magicNotes.naturalIllusionis', '+=', '1');
-    */
   }
 
 };

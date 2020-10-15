@@ -82,7 +82,7 @@ SRD5E.RANDOMIZABLE_ATTRIBUTES = [
   'charisma', 'constitution', 'dexterity', 'intelligence', 'strength', 'wisdom',
   'name', 'race', 'gender', 'alignment', 'background', 'deity', 'levels',
   'features', 'feats', 'skills', 'languages', 'hitPoints', 'armor', 'shield',
-  'weapons', 'spells', 'tools'
+  'weapons', 'spells', 'tools', 'boosts'
 ];
 SRD5E.VIEWERS = ['Collected Notes', ,'Compact', 'Standard'];
 
@@ -237,9 +237,8 @@ SRD5E.FEATURES = {
   'Beguiling Influence':'Section=skill Note="Skill Proficiency (Deception/Persuasion)"',
   'Bewitching Whispers':'Section=magic Note="<i>Compulsion</i> 1/long rest"',
   'Blessed Healer':'Section=magic Note="Self regain 2 + spell level HP from casting healing spells"',
-  'Blindsense':'Section=skill Note="R10\' Hear hidden/invisible creatures"',
+  'Blindsense':'Section=skill Note="R10\' Hear hidden and invisible creatures"',
   'Bonus Cantrip':'Section=magic Note="Additional Druid cantrip"',
-  'Bonus Skills':'Section=skill Note="3 additional skill proficiencies"',
   'Book Of Ancient Secrets':'Section=magic Note="Inscribe rituals in Book Of Shadows"',
   'Brutal Critical':'Section=combat Note="+%V crit damage dice"',
   'Careful Spell':'Section=magic Note="Spend 1 Sorcery Point to protect %V creature(s) from your spell"',
@@ -264,7 +263,7 @@ SRD5E.FEATURES = {
   'Divine Sense':'Section=magic Note="R60\' Know location of celestials, fiends, undead %V/long rest"',
   'Divine Smite':'Section=combat Note="Spend spell slot for +(spell level + 1)d8 damage"',
   'Divine Strike':'Section=combat Note="+%Vd8 HP 1/turn"',
-  'Draconic Presence':'Section=magic Note="R60\' Spend 5 Sorcery Points for awe/fear aura for 1 min/conc (Wis neg)"',
+  'Draconic Presence':'Section=magic Note="R60\' Spend 5 Sorcery Points for awe/fear aura for conc or 1 min (Wis neg)"',
   'Draconic Resilience':'Section=combat Note="+%V HP, unarmored AC %1"',
   'Dragon Wings':'Section=ability Note="Fly at full speed"',
   'Dreadful Word':'Section=magic Note="<i>Confusion</i> 1/long rest"',
@@ -292,7 +291,7 @@ SRD5E.FEATURES = {
   'Feral Senses':'Section=combat,skill Note="No Disadv vs. invisible foe","30\' awareness of invisible creatures"',
   'Fiendish Resilience':'Section=save Note="Resist chosen damage type"',
   'Fiendish Vigor':'Section=magic Note="Self <i>False Life</i> at will"',
-  'Flexible Casting':'Section=magic Note="Convert Sorcery Points to/from spell slots"',
+  'Flexible Casting':'Section=magic Note="Convert Sorcery Points to and from spell slots"',
   'Flurry Of Blows':'Section=combat Note="Spend 1 Ki for 2 additional unarmed strikes"',
   'Foe Slayer':'Section=combat Note="+%V attack or damage vs. favored enemy"',
   'Font Of Inspiration':'Section=feature Note="Refresh Bardic Inspiration after short rest"',
@@ -330,7 +329,7 @@ SRD5E.FEATURES = {
   'Monk Unarmored Defense':'Section=combat Note="+%1 AC in no armor"',
   'Multiattack Defense':'Section=combat Note="+4 AC on additional foe attacks after hit"',
   'Mystic Arcanum':'Section=magic Note="%V spells 1/long rest"',
-  'Natural Explorer':'Section=skill Note="Dbl Int/Wis Prof, normal move in difficult terrain, always alert, full speed solo stealth, locate dbl food, extra track info for %V terrains"',
+  'Natural Explorer':'Section=skill Note="Dbl Int and Wis Prof, normal move in difficult terrain, always alert, full speed solo stealth, locate dbl food, extra track info for %V terrains"',
   'Natural Recovery':'Section=magic Note="Recover %V spell slot levels in short rest"',
   "Nature's Sanctuary":'Section=combat Note="Beast, plant DC %V Will save to attack self"',
   "Nature's Ward":'Section=save Note="Immune disease, poison, elemental and fey charm and fright"',
@@ -354,7 +353,7 @@ SRD5E.FEATURES = {
   'Purity Of Spirit':'Section=magic Note="Self continuous <i>Protection From Evil And Good</i>"',
   'Quickened Spell':'Section=magic Note="Spend 2 Sorcery Points to cast spell as bonus action"',
   'Quivering Palm':'Section=combat Note="Spend 3 Ki to reduce foe to 0 HP w/in 1 dy after unarmed hit (DC %V Con 10d10 HP)"',
-  'Rage':'Section=ability,combat Note="Adv Str checks %V/long rest (heavy armor neg)","+%1 melee damage, resist bludgeon/pierce/slash damage for 1 min %V/long rest (heavy armor neg)"',
+  'Rage':'Section=ability,combat Note="Adv Str checks %V/long rest (heavy armor neg)","+%1 melee damage, resist bludgeon, pierce, slash damage for 1 min %V/long rest (heavy armor neg)"',
   'Reckless Attack':'Section=combat Note="Adv melee Str attacks, foes Adv all attacks"',
   'Relentless Rage':'Section=combat Note="DC 10+ Con to keep 1 HP when brought to 0"',
   'Reliable Talent':'Section=ability Note="Min 10 on proficient ability rolls"',
@@ -372,7 +371,7 @@ SRD5E.FEATURES = {
   'Signature Spell':'Section=magic Note="Cast 2 W3 1/short rest"',
   'Slippery Mind':'Section=save Note="Save Proficiency (Wisdom)"',
   'Slow Fall':'Section=ability Note="-%V HP fall damage"',
-  'Sneak Attack':'Section=combat Note="+%Vd6 damage on Adv/shared threat attacks"',
+  'Sneak Attack':'Section=combat Note="+%Vd6 damage on Adv, shared threat attacks"',
   'Song Of Rest':'Section=magic Note="Listeners regain 1d%V HP after short rest"',
   'Sorcerous Restoration':'Section=magic Note="Regain 4 Sorcery Points/short rest"',
   'Spell Mastery':'Section=magic Note="Cast 1 ea W1, W2 at will"',
@@ -423,10 +422,10 @@ SRD5E.FEATURES = {
   'Dwarven Resilience':'Section=save Note="Adv vs. poison, resistance poison damage"',
   'Dwarven Toughness':'Section=combat Note="+%V HP"',
   'Fey Ancestry':'Section=save Note="Adv vs. charmed, immune sleep"',
-  'Gnome Cunning':'Section=save Note="Adv Cha/Int/Wis vs magic"',
+  'Gnome Cunning':'Section=save Note="Adv Cha, Int, Wis vs magic"',
   'Half-Elf Ability Adjustment':'Section=ability Note="+2 Charisma/+1 any two"',
   'Half-Orc Ability Adjustment':'Section=ability Note="+2 Strength/+1 Constitution"',
-  'Halfling Luck':'Section=feature Note="Re-roll 1 on attack/ability/save"',
+  'Halfling Luck':'Section=feature Note="Re-roll 1 on attack, ability, save"',
   'Halfling Nimbleness':'Section=ability Note="Move through space occupied by larger creature"',
   'Hellish Resistance':'Section=save Note="Resistance fire damage"',
   'High Elf Ability Adjustment':'Section=ability Note="+2 Dexterity/+1 Intelligence"',
@@ -440,8 +439,6 @@ SRD5E.FEATURES = {
   'Relentless Endurance':'Section=combat Note="Keep 1 HP when brought to 0 1/long rest"',
   'Rock Gnome Ability Adjustment':'Section=ability Note="+2 Intelligence/+1 Constitution"',
   'Savage Attacks':'Section=combat Note="Extra die on crit damage"',
-  'Skill Versatility':'Section=skill Note="2 additional skill proficiencies"',
-  'Slow':'Section=ability Note="-5 Speed"',
   'Small':'Section=combat Note="Disadv heavy weapons"',
   'Stonecunning':'Section=skill Note="Dbl proficiency on stonework History checks"',
   'Tiefling Ability Adjustment':'Section=ability Note="+2 Charisma/+1 Intelligence"',
@@ -569,8 +566,8 @@ SRD5E.PATHS = {
     'Group=Bard ' +
     'Level=levels.Bard ' +
     'Features=' +
-      '"3:Bonus Skills","3:Cutting Words","6:Additional Magical Secrets",' +
-      '"14:Peerless Skill"',
+      '"3:Skill Proficiency (Choose 3 from any)",' +
+      '"3:Cutting Words","6:Additional Magical Secrets","14:Peerless Skill"',
   'Draconic Bloodline':
     'Group=Sorcerer ' +
     'Level=levels.Sorcerer ' +
@@ -1741,7 +1738,7 @@ SRD5E.CLASSES = {
       '"1:Armor Proficiency (Medium)",' +
       '"1:Save Proficiency (Constitution/Strength)",' +
       '"1:Shield Proficiency",' +
-      '"1:Skill Proficiency (2 of Animal Handling, Athletics, Intimidation, Nature, Perception, Survival)",' +
+      '"1:Skill Proficiency (Choose 2 from Animal Handling, Athletics, Intimidation, Nature, Perception, Survival)",' +
       '"1:Weapon Proficiency (Martial)",' +
       '"1:Barbarian Unarmored Defense",1:Rage,"2:Danger Sense",' +
       '"2:Reckless Attack","5:Extra Attack",' +
@@ -1758,8 +1755,8 @@ SRD5E.CLASSES = {
     'Features=' +
       '"1:Armor Proficiency (Light)",' +
       '"1:Save Proficiency (Charisma/Dexterity)",' +
-      '"1:Skill Proficiency (3 of any)",' +
-      '"1:Tool Proficiency (3 of any Music)",' +
+      '"1:Skill Proficiency (Choose 3 from any)",' +
+      '"1:Tool Proficiency (Choose 3 from any Music)",' +
       '"1:Weapon Proficiency (Simple/Hand Crossbow/Longsword/Rapier/Shortsword)",' +
       '"1:Bardic Inspiration","1:Ritual Casting",1:Spellcasting,' +
       '"2:Jack Of All Trades","2:Song Of Rest","3:Bard Expertise",' +
@@ -1813,7 +1810,7 @@ SRD5E.CLASSES = {
       '"1:Armor Proficiency (Medium)",' +
       '"1:Save Proficiency (Charisma/Wisdom)",' +
       '"1:Shield Proficiency",' +
-      '"1:Skill Proficiency (2 of History, Insight, Medicine, Persuasion, Religioin)",' +
+      '"1:Skill Proficiency (Choose 2 from History, Insight, Medicine, Persuasion, Religioin)",' +
       '"1:Weapon Proficiency (Simple)",' +
       '"1:Ritual Casting",1:Spellcasting,"2:Channel Divinity",' +
       '"2:Turn Undead","5:Destroy Undead","10:Divine Intervention" ' +
@@ -1867,7 +1864,7 @@ SRD5E.CLASSES = {
       '"1:Armor Proficiency (Medium)",' +
       '"1:Save Proficiency (Intelligence/Wisdom)",' +
       '"1:Shield Proficiency",' +
-      '"1:Skill Proficiency (2 of Arcana, Animal Handling, Insight, Medicine, Nature, Perception, Religion, Survival)",' +
+      '"1:Skill Proficiency (Choose 2 from Arcana, Animal Handling, Insight, Medicine, Nature, Perception, Religion, Survival)",' +
       '"1:Tool Proficiency (Herbalism Kit)",' +
       '"1:Weapon Proficiency (Club/Dagger/Dart/Javelin/Mace/Quarterstaff/Scimitar/Sickle/Sling/Spear)",' +
       '"1:Tool Proficiency (Herbalism Kit)",' +
@@ -1929,7 +1926,7 @@ SRD5E.CLASSES = {
       '"1:Armor Proficiency (Heavy)",' +
       '"1:Save Proficiency (Constitution/Strength)",' +
       '"1:Shield Proficiency",' +
-      '"1:Skill Proficiency (2 of Acrobatics, Animal Handling, Athletics, History, Insight, Intimidation, Perception, Survival)",' +
+      '"1:Skill Proficiency (Choose 2 from Acrobatics, Animal Handling, Athletics, History, Insight, Intimidation, Perception, Survival)",' +
       '"1:Weapon Proficiency (Martial)",' +
       '"1:Second Wind","2:Action Surge","5:Extra Attack",9:Indomitable ' +
     'Selectables=' +
@@ -1940,8 +1937,8 @@ SRD5E.CLASSES = {
     'HitDie=d8 ' +
     'Features=' +
       '"1:Save Proficiency (Dexterity/Strength)",' +
-      '"1:Skill Proficiency (2 of Acrobatics, Athletics, History, Insight, Religion, Stealth)",' +
-      '"1:Tool Proficiency (1 of any Artisan, any Music)",' +
+      '"1:Skill Proficiency (Choose 2 from Acrobatics, Athletics, History, Insight, Religion, Stealth)",' +
+      '"1:Tool Proficiency (Choose 1 from any Artisan, any Music)",' +
       '"1:Weapon Proficiency (Simple/Shortsword)",' +
       '"1:Martial Arts","1:Monk Bonus Attack","1:Monk Unarmored Defense",' +
       '"2:Flurry Of Blows","2:Ki","2:Patient Defense","2:Step Of The Wind",' +
@@ -1958,7 +1955,7 @@ SRD5E.CLASSES = {
       '"1:Armor Proficiency (Heavy)",' +
       '"1:Save Proficiency (Charisma/Wisdom)",' +
       '"1:Shield Proficiency",' +
-      '"1:Skill Proficiency (2 of Athletics, Insight, Intimidation, Medicine, Persuasion, Religion)",' +
+      '"1:Skill Proficiency (Choose 2 from Athletics, Insight, Intimidation, Medicine, Persuasion, Religion)",' +
       '"1:Weapon Proficiency (Martial)",' +
       '"1:Divine Sense","1:Lay On Hands","2:Divine Smite",2:Spellcasting,' +
       '"3:Channel Divinity","3:Divine Health","5:Extra Attack",' +
@@ -1991,7 +1988,7 @@ SRD5E.CLASSES = {
       '"1:Armor Proficiency (Medium)",' +
       '"1:Save Proficiency (Dexterity/Strength)",' +
       '"1:Shield Proficiency",' +
-      '"1:Skill Proficiency (3 of Animal Handling, Athletics, Insight, Investigation, Nature, Perception, Stealth, Survival)",' +
+      '"1:Skill Proficiency (Choose 3 from Animal Handling, Athletics, Insight, Investigation, Nature, Perception, Stealth, Survival)",' +
       '"1:Weapon Proficiency (Martial)",' +
       '"1:Favored Enemy","1:Natural Explorer",2:Spellcasting,' +
       '"3:Primeval Awareness","5:Extra Attack","8:Land\'s Stride",' +
@@ -2029,7 +2026,7 @@ SRD5E.CLASSES = {
     'Features=' +
       '"1:Armor Proficiency (Light)",' +
       '"1:Save Proficiency (Dexterity/Intelligence)",' +
-      '"1:Skill Proficiency (4 of Acrobatics, Athletics, Deception, Insight, Intimidation, Investigation, Perception, Performance, Persuasion, Sleight Of Hand, Stealth)",' +
+      '"1:Skill Proficiency (Choose 4 from Acrobatics, Athletics, Deception, Insight, Intimidation, Investigation, Perception, Performance, Persuasion, Sleight Of Hand, Stealth)",' +
       '"1:Tool Proficiency (Thieves\' Tools)",' +
       '"1:Weapon Proficiency (Simple/Hand Crossbow/Longsword/Rapier/Shortsword)",' +
       '"1:Tool Proficiency (Thieves\' Tools)",' +
@@ -2042,7 +2039,7 @@ SRD5E.CLASSES = {
     'HitDie=d6 ' +
     'Features=' +
       '"1:Save Proficiency (Charisma/Constitution)",' +
-      '"1:Skill Proficiency (2 of Arcana, Deception, Insight, Intimidation, Persuasion, Religion)",' +
+      '"1:Skill Proficiency (Choose 2 from Arcana, Deception, Insight, Intimidation, Persuasion, Religion)",' +
       '"1:Weapon Proficiency (Dagger/Dart/Sling/Quarterstaff/Light Crossbow)",' +
       '1:Spellcasting,"2:Font Of Magic","2:Flexible Casting",' +
       '"20:Sorcerous Restoration" ' +
@@ -2097,7 +2094,7 @@ SRD5E.CLASSES = {
     'Features=' +
       '"1:Armor Proficiency (Light)",' +
       '"1:Save Proficiency (Charisma/Wisdom)",' +
-      '"1:Skill Proficiency (2 of Arcana, Deception, History, Intimidation, Investigation, Nature, Religion)",' +
+      '"1:Skill Proficiency (Choose 2 from Arcana, Deception, History, Intimidation, Investigation, Nature, Religion)",' +
       '"1:Weapon Proficiency (Simple)",' +
       '"1:Pact Magic","2:Eldritch Invocations","11:Mystic Arcanum",' +
       '"20:Eldritch Master" ' +
@@ -2154,7 +2151,7 @@ SRD5E.CLASSES = {
     'HitDie=d6 ' +
     'Features=' +
       '"1:Save Proficiency (Intelligence/Wisdom)",' +
-      '"1:Skill Proficiency (3 of Arcana, History, Insight, Investigation, Medicine, Religion)",' +
+      '"1:Skill Proficiency (Choose 3 from Arcana, History, Insight, Investigation, Medicine, Religion)",' +
       '"1:Weapon Proficiency (Dagger/Dart/Light Crossbow/Quarterstaff/Sling)",' +
       '"1:Arcane Recovery",1:Spellcasting,"18:Spell Mastery",' +
       '"20:Signature Spell" ' +
@@ -2265,7 +2262,7 @@ SRD5E.RACES = {
   'Hill Dwarf':
     'Features=' +
       '"1:Weapon Proficiency (Battleaxe/Handaxe/Light Hammer/Warhammer)",' +
-      '"1:Tool Proficiency (1 of Brewer\'s Supplies, Mason\'s Tools, Smith\'s Tools)",' +
+      '"1:Tool Proficiency (Choose 1 from Brewer\'s Supplies, Mason\'s Tools, Smith\'s Tools)",' +
       '1:Darkvision,"1:Hill Dwarf Ability Adjustment",' +
       '"1:Dwarven Armor Speed","1:Dwarven Resilience","1:Dwarven Toughness",' +
       '1:Slow,1:Stonecunning ' +
@@ -2288,8 +2285,8 @@ SRD5E.RACES = {
     'Languages=Common,Gnomish',
   'Half-Elf':
     'Features=' +
-      '1:Darkvision,"1:Fey Ancestry","1:Half-Elf Ability Adjustment",' +
-      '"1:Skill Versatility" ' +
+      '"1:Skill Proficiency (Choose 2 from any)",' +
+      '1:Darkvision,"1:Fey Ancestry","1:Half-Elf Ability Adjustment" ' +
     'Languages=Common,Elvish',
   'Half-Orc':
     'Features=' +
@@ -2962,7 +2959,6 @@ SRD5E.classRulesExtra = function(rules, name) {
     rules.defineRule('skillNotes.bardExpertise',
       'levels.Bard', '=', 'source < 10 ? 2 : 4'
     );
-    rules.defineRule('skillChoiceCount', 'skillNotes.bonusSkills', '+=', '3');
 
   } else if(name == 'Cleric') {
 
@@ -3498,8 +3494,6 @@ SRD5E.raceRulesExtra = function(rules, name) {
     rules.defineRule('abilityNotes.abilityBoosts',
       'abilityNotes.half-ElfAbilityAdjustment', '+=', '2'
     );
-    rules.defineRule
-      ('skillChoiceCount', 'skillNotes.skillVersatility', '+=', '2');
   } else if(name.match(/Dragonborn/)) {
     var draconicBreathTypes = {
       'Black Dragonborn': 'acid',
@@ -4120,21 +4114,9 @@ SRD5E.featureListRules = function(
     var group = matchInfo[1].toLowerCase();
     var elements = matchInfo[2].split('/');
     for(var j = 0; j < elements.length; j++) {
-      matchInfo = elements[j].match(/^(\d+)(\s+of)?\s+(.*)$/);
+      matchInfo = elements[j].match(/^Choose\s+(\d+)\s+from/i);
       if(matchInfo) {
         choiceCount += matchInfo[1] * 1;
-        choices = matchInfo[3].split(/,\s*/);
-        for(var k = 0; k < choices.length; k++) {
-          rules.defineRule(group + 'Choices.' + elements[j], 'features.' + feature, '=', '1');
-        }
-      } else if(elements[j].startsWith('any ')) {
-        var property = elements[j].replace(/^any\s+/, '');
-        choiceCount += 1;
-        choices = rules.getChoices(group + 's');
-        for(var choice in choices) {
-          if(choices[choice].indexOf(property) >= 0)
-            rules.defineRule(group + 'Choices.' + choice, 'features.' + feature, '=', '1');
-        }
       } else {
         rules.defineRule(group + 'Proficiencies.' + elements[j],
           'features.' + feature, '=', '1'
@@ -4384,6 +4366,7 @@ SRD5E.randomizeOneAttribute = function(attributes, attribute) {
   var choices;
   var howMany;
   var i;
+  var matchInfo;
 
   if(attribute == 'armor') {
     var armors = this.getChoices('armors');
@@ -4397,6 +4380,17 @@ SRD5E.randomizeOneAttribute = function(attributes, attribute) {
         choices.push(attr);
     }
     attributes['armor'] = choices[QuilvynUtils.random(0, choices.length - 1)];
+  } else if(attribute == 'boosts') {
+    var attrs = this.applyRules(attributes);
+    howMany = (attrs['abilityNotes.abilityBoosts'] || 0) - QuilvynUtils.sumMatching(attributes, /Adjust$/);
+    while(howMany > 0) {
+      attr = QuilvynUtils.randomKey(SRD5E.ABILITIES).toLowerCase();
+      if(attributes[attr + 'Adjust'] == null)
+        attributes[attr + 'Adjust'] = 1;
+      else
+        attributes[attr + 'Adjust'] += 1;
+      howMany--;
+    }
   } else if(attribute == 'deity') {
     /* Pick a deity that's no more than one alignment position removed. */
     var aliInfo = attributes.alignment.match(/^([CLN]).* ([GEN])/);
@@ -4501,8 +4495,7 @@ SRD5E.randomizeOneAttribute = function(attributes, attribute) {
     for(var clas in this.getChoices('levels')) {
       if((attr = attributes['levels.' + clas]) == null)
         continue;
-      var matchInfo =
-        this.getChoices('levels')[clas].match(/^((\d+)?d)?(\d+)$/);
+      matchInfo = this.getChoices('levels')[clas].match(/^((\d+)?d)?(\d+)$/);
       var number = matchInfo == null || matchInfo[2] == null ||
                    matchInfo[2] == '' ? 1 : matchInfo[2];
       var sides = matchInfo == null || matchInfo[3] == null ||
@@ -4513,10 +4506,15 @@ SRD5E.randomizeOneAttribute = function(attributes, attribute) {
     }
   } else if(attribute == 'languages') {
     attrs = this.applyRules(attributes);
-    howMany = attrs['languageCount'] || 0;
-    choices = QuilvynUtils.getKeys(this.getChoices('languages'));
-    pickAttrs(attributes, 'languages.', choices,
-              howMany - QuilvynUtils.sumMatching(attrs, /^languages\./), 1);
+    howMany = attrs.languageCount;
+    choices = [];
+    for(attr in this.getChoices('languages')) {
+      if(!attrs['languages.' + attr])
+        choices.push(attr);
+      else if(attributes['languages.' + attr])
+        howMany--;
+    }
+    pickAttrs(attributes, 'languages.', choices, howMany);
   } else if(attribute == 'levels') {
     var assignedLevels = QuilvynUtils.sumMatching(attributes, /^levels\./);
     if(!attributes.level) {
@@ -4572,17 +4570,56 @@ SRD5E.randomizeOneAttribute = function(attributes, attribute) {
       }
     }
     attributes['shield'] = choices[QuilvynUtils.random(0, choices.length - 1)];
-  } else if(attribute == 'skills') {
+  } else if(attribute == 'skills' || attribute == 'tools') {
     attrs = this.applyRules(attributes);
-    howMany = attrs['skillChoiceCount'] || 0;
-    choices = [];
-    for(attr in this.getChoices('skills')) {
-      if(attrs['skillChoices.' + attr]) {
-        choices.push(attr);
+    var group = this.getChoices(attribute);
+    for(attr in attrs) {
+    var pat = new RegExp('^features.' + attribute.replace(/s$/, '') + ' Proficiency \\((.*)\\)$', 'i');
+      if((matchInfo = attr.match(pat)) == null ||
+         !matchInfo[1].match(/\bChoose\b/i))
+        continue;
+      console.log(attr);
+      var pieces = matchInfo[1].split('/');
+      for(i = 0; i < pieces.length; i++) {
+        matchInfo = pieces[i].match(/^Choose\s+(\d+)\s+from\s+(.*)$/i)
+        if(!matchInfo)
+          continue;
+        var count = matchInfo[1] * 1;
+        if(matchInfo[2].match(/^any$/i)) {
+          choices = QuilvynUtils.getKeys(group);
+        } else {
+          choices = matchInfo[2].split(/\s*,\s*/);
+          for(var j = choices.length - 1; j >= 0; j--) {
+            if(choices[j].match(/^any\s+/i)) {
+              var type = choices[j].replace(/^any\s+/, '');
+              for(var item in group) {
+                if(group[item].includes(type))
+                  choices.push(item);
+              }
+              choices.splice(j, 1);
+            }
+          }
+        }
+        for(var k = choices.length - 1; k >= 0; k--) {
+          if(!attrs[attribute + 'Chosen.' + choices[k]])
+            continue;
+          count--;
+          choices.splice(k, 1);
+        }
       }
+      console.log('Choose ' + count + ' from');
+      console.log(choices);
+      pickAttrs(attributes, attribute + 'Chosen.', choices, count, 1);
     }
-    pickAttrs(attributes, 'skillsChosen.', choices,
-              howMany - QuilvynUtils.sumMatching(attrs, /^skillsChosen\./), 1);
+    console.log('Choose ' +
+      (attrs[attribute.replace(/s$/, '') + 'ChoiceCount'] -
+       QuilvynUtils.sumMatching(attributes, '^' + attribute + 'Chosen')) + ' from');
+    console.log(QuilvynUtils.getKeys(group));
+    pickAttrs(
+      attributes, attribute + 'Chosen.', QuilvynUtils.getKeys(group),
+      attrs[attribute.replace(/s$/, '') + 'ChoiceCount'] -
+      QuilvynUtils.sumMatching(attributes, '^' + attribute + 'Chosen')
+    );
   } else if(attribute == 'spells') {
     var availableSpellsByGroupAndLevel = {};
     var groupAndLevel;
@@ -4609,18 +4646,6 @@ SRD5E.randomizeOneAttribute = function(attributes, attribute) {
            QuilvynUtils.sumMatching(attributes, '^spells\\..*[(]' + groupAndLevel + '[^0]'), 1);
       }
     }
-  } else if(attribute == 'tools') {
-    attrs = this.applyRules(attributes);
-    howMany = attrs['toolChoiceCount'] || 0;
-    choices = [];
-    var tools = this.getChoices('tools');
-    for(attr in tools) {
-      var type = QuilvynUtils.getAttrValue(tools[attr], 'Type') || 'General';
-      if(attrs['toolChoices.' + attr] || attrs['toolChoices.' + type])
-        choices.push(attr);
-    }
-    pickAttrs(attributes, 'toolsChosen.', choices,
-              howMany - QuilvynUtils.sumMatching(attrs, /^toolsChosen\./), 1);
   } else if(attribute == 'weapons') {
     var weapons = this.getChoices('weapons');
     attrs = this.applyRules(attributes);

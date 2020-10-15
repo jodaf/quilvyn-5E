@@ -57,28 +57,28 @@ PHB5E.BACKGROUNDS = {
       'Crowbar,"Dark Clothes W/Hood","15 GP" ' +
     'Features=' +
       '"1:Skill Proficiency (Deception/Stealth)",' +
-      '"1:Tool Proficiency (Theives\' Tools/any Game)",' +
+      '"1:Tool Proficiency (Theives\' Tools/Choose 1 from any Game)",' +
       '"1:Criminal Contact"',
   'Entertainer':
     'Equipment=' +
       '"Admirer\'s Favor",Costume,"Musical Instrument","15 GP" ' +
     'Features=' +
       '"1:Skill Proficiency (Acrobatics/Performance)",' +
-      '"1:Tool Proficiency (Disguise Kit/any Music)",' +
+      '"1:Tool Proficiency (Disguise Kit/Choose 1 from any Music)",' +
       '"1:By Popular Demand"',
   'Folk Hero':
     'Equipment=' +
       '"Artisan\'s Tools",Clothes,"Iron Pot",Shovel,"10 GP" ' +
     'Features=' +
       '"1:Skill Proficiency (Animal Handling/Survival)",' +
-      '"1:Tool Proficiency (Vehicles (Land)/any Artisan)",' +
+      '"1:Tool Proficiency (Vehicles (Land)/Choose 1 from any Artisan)",' +
       '"1:Rustic Hospitality"',
   'Guild Artisan':
     'Equipment=' +
       '"Artisan\'s Tools","Introduction Letter","Traveler\'s Clothes","15 GP" '+
     'Features=' +
       '"1:Skill Proficiency (Insight/Persuasion)",' +
-      '"1:Tool Proficiency (any Artisan)",' +
+      '"1:Tool Proficiency (Choose 1 from any Artisan)",' +
       '"1:Guild Membership" ' +
     'Languages=any',
   'Hermit':
@@ -95,7 +95,7 @@ PHB5E.BACKGROUNDS = {
       '"Fine Clothes","Pedigree Scroll","Signet Ring","25 GP" ' +
     'Features=' +
       '"1:Skill Proficiency (History/Persuasion)",' +
-      '"1:Tool Proficiency (any Game)",' +
+      '"1:Tool Proficiency (Choose 1 from any Game)",' +
       '"1:Position Of Priviledge" ' +
     'Languages=any',
   'Outlander':
@@ -103,7 +103,7 @@ PHB5E.BACKGROUNDS = {
       '"Animal Trophy","Hunting Trap",Staff,"Traveler\'s Clothes","10 GP" ' +
     'Features=' +
       '"1:Skill Proficiency (Athletics/Survival)",' +
-      '"1:Tool Proficiency (any Music)",' +
+      '"1:Tool Proficiency (Choose 1 from any Music)",' +
       '1:Wanderer ' +
     'Languages=any',
   'Sage':
@@ -126,7 +126,7 @@ PHB5E.BACKGROUNDS = {
       '"Battle Trophy","Clothes","Gambling Objects","Rank Insignia","10 GP" ' +
     'Features=' +
       '"1:Skill Proficiency (Athletics/Intimidation)",' +
-      '"1:Tool Proficiency (Vehicles (Land)/any Game)",' +
+      '"1:Tool Proficiency (Vehicles (Land)/Choose 1 from any Game)",' +
       '"1:Military Rank"',
   'Urchin':
     'Equipment=' +
@@ -492,7 +492,7 @@ PHB5E.FEATURES = {
   'Wolf Totem Spirit':
     'Section=combat Note="Allies Adv attack vs. self adjacent foes when raging"',
   'Aspect Of The Bear':
-    'Section=ability Note="Dbl load/lift, Adv push, pull, lift, break Str checks"',
+    'Section=ability Note="Dbl load and lift, Adv push, pull, lift, break Str checks"',
   'Aspect Of The Eagle':
     'Section=skill Note="See clearly 1 mi, no dim light Perception Disadv"',
   'Aspect Of The Wolf':
@@ -510,7 +510,7 @@ PHB5E.FEATURES = {
   'Battle Magic':
     'Section=combat Note="Bonus attack after casting spell"',
   'Blessings Of Knowledge':
-    'Section=skill Note="+2 Languages Count/+2 Skill Choice Count"',
+    'Section=skill Note="+2 Language Count/+2 Skill Choice Count"',
   'Knowledge Of The Ages':
     'Section=skill Note="Channel Divinity for proficiency in chosen skill or tool for 10 min"',
   'Read Thoughts':
@@ -549,7 +549,7 @@ PHB5E.FEATURES = {
   'Divine Strike':'Section=combat Note="+%Vd8 HP 1/turn"',
   'Stormborn':'Section=ability Note="Fly at full speed outdoors"',
   'Blessing Of The Trickster':'Section=magic Note="Touched Adv Stealth for 1 hr"',
-  'Invoke Duplicity':'Section=magic Note="R30\' Illusionary duplicate for conc/1 min"',
+  'Invoke Duplicity':'Section=magic Note="R30\' Illusionary duplicate for conc or 1 min"',
   'Cloak Of The Trickster':'Section=magic Note="Channel Divinity for invisible 1 turn"',
   'Divine Strike':'Section=combat Note="+%Vd8 HP 1/turn"',
   'Improved Duplicity':'Section=magic Note="Four duplicates"',
@@ -608,7 +608,7 @@ PHB5E.FEATURES = {
   'Elemental Attunement':'Section=magic Note="Minor elemental manipulation"',
   'Shadow Arts':'Section=magic Note="<i>Minor Illusion</i> cantrip, spend 2 Ki to cast <i>Darkness</i>, i>Darkvision</i>, <i>Pass Without Trace</i>, <i>Silence</i>"',
   'Shadow Step':'Section=magic Note="Teleport 60\' between dim or unlit areas"',
-  'Cloak Of Shadows':'Section=magic Note="Invisible in dim/unlit until attack or cast"',
+  'Cloak Of Shadows':'Section=magic Note="Invisible in dim and unlit areas until attack or cast"',
   'Opportunist':'Section=combat Note="Attack adjacent foe after ally hits it"',
   "Nature's Wrath":'Section=magic Note="R10\' Channel Divinity for vines ensnare foe (Dex or Str neg)"',
   'Turn The Faithless':'Section=magic Note="R30\' Channel Divinity for fiends, fey flee for 1 min (Wis neg)"',
@@ -681,7 +681,7 @@ PHB5E.FEATURES = {
   'Master Transmuter':'Section=magic Note="Destroy stone to transmute 5\' cu, remove curse, disease, and poison, <i>Raise Dead</i>, or restore youth"',
   // Feats
   'Actor':'Section=ability,skill Note="+1 Charisma","Mimic others\' speech or sounds, Adv Deception (Cha) and Performance (Cha) when impersonating"',
-  'Alert':'Section=combat Note="+5 Initiative/foes no surprise or hidden Adv"',
+  'Alert':'Section=combat Note="+5 Initiative, foes no surprise or hidden Adv"',
   'Athlete':'Section=ability,skill Note="+1 Dexterity or Strength, climb full speed, stand uses 5\' move","Long jump, running high jump uses 5\' move"',
   'Charger':'Section=combat Note="Bonus attack +5 HP or 10\' push after Dash"',
   'Crossbow Expert':'Section=combat Note="Quick load, no Disadv on close shot, bonus hand crossbow shot after one-handed attack"',
@@ -735,7 +735,7 @@ PHB5E.FEATURES = {
   'Sunlight Sensitivity':'Section=combat,skill Note="Disadv attack in direct sunlight","Disadv sight Perception in direct sunlight"',
   'Superior Darkvision':'Section=feature Note="R120\' See one light level better"',
   'Stout Halfling Ability Adjustment':'Section=ability Note="+2 Dexterity/+1 Constitution"',
-  'Stout Resilience':'Section=save Note="Adv vs. poison/Resistance vs. poison"',
+  'Stout Resilience':'Section=save Note="Adv and resistance vs. poison"',
   'Forest Gnome Ability Adjustment':'Section=ability Note="+2 Intelligence/+1 Dexterity"',
   'Natural Illusionist':'Section=magic Note="<i>Minor Illusion</i> cantrip"',
   'Speak With Small Beasts':'Section=feature Note="Simple communication with small animals"'
@@ -1448,11 +1448,7 @@ PHB5E.featRulesExtra = function(rules, name) {
       'Riposte':'', 'Sweeping Attack':'', 'Trip Attack':''
     }) {
       rules.defineRule(
-        'validationNotes.fighter' + feature.replace(/ /g, '') + 'SelectableFeatureFeatures',
-        'features.Martial Adept', '^', '0'
-      );
-      rules.defineRule(
-        'validationNotes.fighter' + feature.replace(/ /g, '') + 'SelectableFeatureLevels',
+        'validationNotes.fighter-' + feature.replace(/ /g, '') + 'SelectableFeature',
         'features.Martial Adept', '^', '0'
       );
     }

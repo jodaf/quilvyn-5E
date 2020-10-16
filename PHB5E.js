@@ -747,11 +747,16 @@ PHB5E.PATHS = {
       '"2:Bonus Cantrip","2:Natural Recovery","6:Land\'s Stride",' +
       '"10:Nature\'s Ward","14:Nature\'s Sanctuary" ' +
     'SpellAbility=wisdom ' +
+    'SpellSlots=' +
+      'Underdark1:3=2,' +
+      'Underdark2:5=2,' +
+      'Underdark3:7=2,' +
+      'Underdark4:9=2 ' +
     'Spells=' +
-      '"3:Underdark1:Spider Climb;Web",' +
-      '"5:Underdark2:Gaseous Form;Stinking Cloud",' +
-      '"7:Underdark3:Greater Invisibility;Stone Shape",' +
-      '"9:Underdark4:Cloudkill;Insect Plague"',
+      '"Underdark1:Spider Climb;Web",' +
+      '"Underdark2:Gaseous Form;Stinking Cloud",' +
+      '"Underdark3:Greater Invisibility;Stone Shape",' +
+      '"Underdark4:Cloudkill;Insect Plague"',
   'Circle Of The Moon':
     'Group=Druid Level=levels.Druid ' +
     'Features=' +
@@ -770,24 +775,36 @@ PHB5E.PATHS = {
       '"1:Blessings Of Knowledge","2:Knowledge Of The Ages",' +
       '"6:Read Thoughts","8:Potent Spellcasting","17:Visions Of The Past" ' +
     'SpellAbility=wisdom ' +
+    'SpellSlots=' +
+      'Knowledge1:1=2,' +
+      'Knowledge2:3=2,' +
+      'Knowledge3:5=2,' +
+      'Knowledge4:7=2,' +
+      'Knowledge5:9=2 ' +
     'Spells=' +
-      '"1:Knowledge1:Command;Identify",' +
-      '"3:Knowledge2:Augury;Suggestion",' +
-      '"5:Knowledge3:Nondetection;Speak With Dead",' +
-      '"7:Knowledge4:Arcane Eye;Confusion",' +
-      '"9:Knowledge5:Legend Lore;Scrying"',
+      '"Knowledge1:Command;Identify",' +
+      '"Knowledge2:Augury;Suggestion",' +
+      '"Knowledge3:Nondetection;Speak With Dead",' +
+      '"Knowledge4:Arcane Eye;Confusion",' +
+      '"Knowledge5:Legend Lore;Scrying"',
   'Light Domain':
     'Group=Cleric Level=levels.Cleric ' +
     'Features=' +
       '"1:Light Cantrip","1:Warding Flare","2:Radiance Of The Dawn",' +
       '"6:Improved Flare","8:Potent Spellcasting","17:Corona Of Light" ' +
     'SpellAbility=wisdom ' +
+    'SpellSlots=' +
+      'Light1:1=2,' +
+      'Light2:3=2,' +
+      'Light3:5=2,' +
+      'Light4:7=2,' +
+      'Light5:9=2 ' +
     'Spells=' +
-      '"1:Light1:Burning Hands;Faerie Fire",' +
-      '"3:Light2:Flaming Sphere;Scorching Ray",' +
-      '"5:Light3:Daylight;Fireball",' +
-      '"7:Light4:Guardian Of Faith;Wall Of Fire",' +
-      '"9:Light5:Flame Strike;Scrying"',
+      '"Light1:Burning Hands;Faerie Fire",' +
+      '"Light2:Flaming Sphere;Scorching Ray",' +
+      '"Light3:Daylight;Fireball",' +
+      '"Light4:Guardian Of Faith;Wall Of Fire",' +
+      '"Light5:Flame Strike;Scrying"',
   'Nature Domain':
     'Group=Cleric Level=levels.Cleric ' +
     'Features=' +
@@ -795,12 +812,18 @@ PHB5E.PATHS = {
       '"1:Acolyte Of Nature","2:Charm Animals And Plants","6:Dampen Elements",'+
       '"8:Divine Strike","17:Master Of Nature" ' +
     'SpellAbility=wisdom ' +
+    'SpellSlots=' +
+      'Nature1:1=2,' +
+      'Nature2:3=2,' +
+      'Nature3:5=2,' +
+      'Nature4:7=2,' +
+      'Nature5:9=2 ' +
     'Spells=' +
-      '"1:Nature1:Animal Friendship;Speak With Animals",' +
-      '"3:Nature2:Barkskin;Spike Growth",' +
-      '"5:Nature3:Plant Growth;Wind Wall",' +
-      '"7:Nature4:Dominate Beast;Grasping Vine",' +
-      '"9:Nature5:Insect Plague;Tree Stride"',
+      '"Nature1:Animal Friendship;Speak With Animals",' +
+      '"Nature2:Barkskin;Spike Growth",' +
+      '"Nature3:Plant Growth;Wind Wall",' +
+      '"Nature4:Dominate Beast;Grasping Vine",' +
+      '"Nature5:Insect Plague;Tree Stride"',
   'Tempest Domain':
     'Group=Cleric Level=levels.Cleric ' +
     'Features=' +
@@ -809,24 +832,36 @@ PHB5E.PATHS = {
       '"1:Wrath Of The Storm","2:Destructive Wrath","6:Thunderbolt Strike",' +
       '"8:Divine Strike",17:Stormborn ' +
     'SpellAbility=wisdom ' +
+    'SpellSlots=' +
+      'Tempest1:1=2,' +
+      'Tempest2:3=2,' +
+      'Tempest3:5=2,' +
+      'Tempest4:7=2,' +
+      'Tempest5:9=2 ' +
     'Spells=' +
-      '"1:Tempest1:Fog Cloud;Thunderwave",' +
-      '"3:Tempest2:Gust Of Wind;Shatter",' +
-      '"5:Tempest3:Call Lightning;Sleet Storm",' +
-      '"7:Tempest4:Control Water;Ice Storm",' +
-      '"9:Tempest5:Destructive Wave;Insect Plague"',
+      '"Tempest1:Fog Cloud;Thunderwave",' +
+      '"Tempest2:Gust Of Wind;Shatter",' +
+      '"Tempest3:Call Lightning;Sleet Storm",' +
+      '"Tempest4:Control Water;Ice Storm",' +
+      '"Tempest5:Destructive Wave;Insect Plague"',
   'Trickery Domain':
     'Group=Cleric Level=levels.Cleric ' +
     'Features=' +
       '"1:Blessing Of The Trickster","2:Invoke Duplicity",' +
       '"6:Cloak Of The Trickster","8:Divine Strike","17:Improved Duplicity" ' +
     'SpellAbility=wisdom ' +
+    'SpellSlots=' +
+      'Trickery1:1=2,' +
+      'Trickery2:3=2,' +
+      'Trickery3:5=2,' +
+      'Trickery4:7=2,' +
+      'Trickery5:9=2 ' +
     'Spells=' +
-      '"1:Trickery1:Charm Person;Disguise Self",' +
-      '"3:Trickery2:Mirror Image;Pass Without Trace",' +
-      '"5:Trickery3:Blink;Dispel Magic",' +
-      '"7:Trickery4:Dimension Door;Polymorph",' +
-      '"9:Trickery5:Dominate Person;Modify Memory"',
+      '"Trickery1:Charm Person;Disguise Self",' +
+      '"Trickery2:Mirror Image;Pass Without Trace",' +
+      '"Trickery3:Blink;Dispel Magic",' +
+      '"Trickery4:Dimension Door;Polymorph",' +
+      '"Trickery5:Dominate Person;Modify Memory"',
   'War Domain':
     'Group=Cleric Level=levels.Cleric ' +
     'Features=' +
@@ -835,12 +870,18 @@ PHB5E.PATHS = {
       '"1:War Priest","2:Guided Strike","6:War God\'s Blessing",' +
       '"8:Divine Strike","17:Avatar Of Battle" ' +
     'SpellAbility=wisdom ' +
+    'SpellSlots=' +
+      'War1:1=2,' +
+      'War2:3=2,' +
+      'War3:5=2,' +
+      'War4:7=2,' +
+      'War5:9=2 ' +
     'Spells=' +
-      '"1:War1:Divine Favor;Shield Of Faith",' +
-      '"3:War2:Magic Weapon;Spiritual Weapon",' +
-      '"5:War3:Crusader\'s Mantle;Spirit Guardians",' +
-      '"7:War4:Freedom Of Movement;Stoneskin",' +
-      '"9:War5:Flame Strike;Hold Monster"',
+      '"War1:Divine Favor;Shield Of Faith",' +
+      '"War2:Magic Weapon;Spiritual Weapon",' +
+      '"War3:Crusader\'s Mantle;Spirit Guardians",' +
+      '"War4:Freedom Of Movement;Stoneskin",' +
+      '"War5:Flame Strike;Hold Monster"',
   'Path Of The Totem Warrior (Bear)':
     'Group=Barbarian Level=levels.Barbarian ' +
     'Features=' +
@@ -864,7 +905,13 @@ PHB5E.PATHS = {
   'Eldritch Knight Archetype':
     'Group=Fighter Level=levels.Fighter ' +
     'Features=' +
-      '"3:Weapon Bond","7:War Magic","10:Eldritch Strike","15:Arcane Charge"',
+      '"3:Weapon Bond","7:War Magic","10:Eldritch Strike","15:Arcane Charge" ' +
+    'SpellAbility=intelligence ' +
+    'SpellSlots=' +
+      'W1:3=2;4=3;7=4,' +
+      'W2:7=2;10=3,' +
+      'W3:13=2;16=3,' +
+      'W4:19=1',
   'Way Of The Four Elements Tradition':
     'Group=Monk Level=levels.Monk ' +
     'Features=' +
@@ -875,33 +922,48 @@ PHB5E.PATHS = {
       '"3:Shadow Arts","6:Shadow Step","11:Cloak Of Shadows",' +
       '17:Opportunist ' +
     'SpellAbility=intelligence ' +
+    'SpellSlots=' +
+      'Shadow0:3=1,' +
+      'Shadow2:3=4 ' +
     'Spells=' +
-      '"3:Shadow0:Minor Illusion",' +
-      '"3:Shadow2:Darkness;Darkvision;Pass Without Trace;Silence"',
+      '"Shadow0:Minor Illusion",' +
+      '"Shadow2:Darkness;Darkvision;Pass Without Trace;Silence"',
   'Oath Of The Ancients':
     'Group=Paladin Level=levels.Paladin ' +
     'Features=' +
       '"3:Nature\'s Wrath","3:Turn The Faithless","7:Aura Of Warding",' +
       '"15:Undying Sentinel","20:Elder Champion" ' +
     'SpellAbility=charisma ' +
+    'SpellSlots=' +
+      'Ancients1:3=2,' +
+      'Ancients2:5=2,' +
+      'Ancients3:9=2,' +
+      'Ancients4:13=2,' +
+      'Ancients5:17=2 ' +
     'Spells=' +
-      '"3:Ancients1:Ensnaring Strike;Speak With Animals",' +
-      '"5:Ancients2:Moonbeam;Misty Step",' +
-      '"9:Ancients3:Plant Growth;Protection From Energy",' +
-      '"13:Ancients4:Ice Storm;Stoneskin",' +
-      '"17:Ancients5:Commune With Nature;Tree Stride"',
+      '"Ancients1:Ensnaring Strike;Speak With Animals",' +
+      '"Ancients2:Moonbeam;Misty Step",' +
+      '"Ancients3:Plant Growth;Protection From Energy",' +
+      '"Ancients4:Ice Storm;Stoneskin",' +
+      '"Ancients5:Commune With Nature;Tree Stride"',
   'Oath Of Vengeance':
     'Group=Paladin Level=levels.Paladin ' +
     'Features=' +
       '"3:Abjure Enemy","3:Vow Of Enmity","7:Relentless Avenger",' +
       '"15:Soul Of Vengeance","20:Avenging Angel" ' +
     'SpellAbility=charisma ' +
+    'SpellSlots=' +
+      'Vengeance1:3=2,' +
+      'Vengeance2:5=2,' +
+      'Vengeance3:9=2,' +
+      'Vengeance4:13=2,' +
+      'Vengeance5:17=2 ' +
     'Spells=' +
-      '"3:Vengeance1:Bane;Hunter\'s Mark",' +
-      '"5:Vengeance1:Hold Person;Misty Step",' +
-      '"9:Vengeance1:Haste;Protection From Energy",' +
-      '"13:Vengeance1:Banishment;Dimension Door",' +
-      '"17:Vengeance1:Hold Monster;Scrying"',
+      '"Vengeance1:Bane;Hunter\'s Mark",' +
+      '"Vengeance1:Hold Person;Misty Step",' +
+      '"Vengeance1:Haste;Protection From Energy",' +
+      '"Vengeance1:Banishment;Dimension Door",' +
+      '"Vengeance1:Hold Monster;Scrying"',
   'Beast Master Archetype':
     'Group=Ranger Level=levels.Ranger ' +
     'Features=' +
@@ -916,7 +978,13 @@ PHB5E.PATHS = {
     'Group=Rogue Level=levels.Rogue ' +
     'Features=' +
       '3:Spellcasting,"3:Mage Hand Legerdemain","9:Magical Ambush",' +
-      '"13:Versatile Trickster","17:Spell Thief"',
+      '"13:Versatile Trickster","17:Spell Thief" ' +
+    'SpellAbility=intelligence ' +
+    'SpellSlots=' +
+      'W1:3=2;4=3;7=4,' +
+      'W2:7=2;10=3,' +
+      'W3:13=2;16=3,' +
+      'W4:19=1',
   'Wild Magic':
     'Group=Sorcerer Level=levels.Sorcerer ' +
     'Features=' +
@@ -985,10 +1053,14 @@ PHB5E.RACES = {
       '"1:Superior Darkvision",1:Trance ' +
     'Languages=Common,Elvish ' +
     'SpellAbility=charisma ' +
+    'SpellSlots=' +
+      'Drow0:1=1,' +
+      'Drow1:3=1,' +
+      'Drow2:5=1 ' +
     'Spells=' +
-      '"1:Drow0:Dancing Lights",' +
-      '"3:Drow1:Faerie Fire",' +
-      '"5:Drow2:Darkness"',
+      '"Drow0:Dancing Lights",' +
+      '"Drow1:Faerie Fire",' +
+      '"Drow2:Darkness"',
   'Wood Elf':
     'Features=' +
       '"1:Weapon Proficiency (Longbow/Longsword/Shortbow/Shortsword)",' +
@@ -1002,8 +1074,10 @@ PHB5E.RACES = {
       '"1:Speak With Small Beasts" ' +
     'Languages=Common,Gnomish ' +
     'SpellAbility=intelligence ' +
+    'SpellSlots=' +
+      'Gnome0:1=1 ' +
     'Spells=' +
-      '"1:Gnome0:Minor Illusion"',
+      '"Gnome0:Minor Illusion"',
   'Stout Halfling':
     'Features=' +
       '1:Brave,"1:Halfling Luck","1:Halfling Nimbleness",1:Slow,1:Small,' +
@@ -1150,7 +1224,7 @@ PHB5E.identityRules = function(
     (classes, ['Require', 'HitDie', 'Features', 'Selectables', 'Proficiencies', 'Languages', 'CasterLevelArcane', 'CasterLevelDivine', 'SpellAbility', 'SpellSlots', 'Spells']);
   QuilvynUtils.checkAttrTable(deities, ['Alignment', 'Domain']);
   QuilvynUtils.checkAttrTable
-    (paths, ['Features', 'Group', 'Level', 'SpellAbility', 'Spells']);
+    (paths, ['Features', 'Group', 'Level', 'SpellAbility', 'SpellSlots', 'Spells']);
   QuilvynUtils.checkAttrTable
     (races, ['Require', 'Features', 'Selectables', 'Languages', 'Proficiencies', 'SpellAbility', 'Spells']);
 
@@ -1296,29 +1370,6 @@ PHB5E.pathRulesExtra = function(rules, name) {
       'levels.Fighter', '=', 'source < 18 ? "cantrip" : "spell"'
     );
 
-/* TODO
-      spellAbility = 'intelligence';
-      spellSlots = [
-        'W1:3:2/4:3/7:4',
-        'W2:7:2/10:3',
-        'W3:13:2/16:3',
-        'W4:19:1'
-      ];
-      rules.defineRule('casterLevels.Fi',
-        'fighterFeatures.Eldritch Knight Archetype', '?', null,
-        'levels.Fighter', '=', null,
-         'magicNotes.casterLevelBonus', '+', null
-      );
-      rules.defineRule('casterLevels.W', 'casterLevels.Fi', '^=', null);
-      rules.defineRule('casterLevelArcane', 'casterLevels.W', '+=', null);
-      rules.defineRule('spellsKnownLevel.Fighter',
-        'fighterFeatures.Eldritch Knight Archetype', '?', null
-      );
-      rules.defineRule('spellAttackModifier.Fighter',
-        'fighterFeatures.Eldritch Knight Archetype', '?', null
-      );
-*/
-
   } else if(name == 'Way Of The Four Elements Tradition') {
 
     rules.defineRule('magicNotes.discipleOfTheElements',
@@ -1348,29 +1399,6 @@ PHB5E.pathRulesExtra = function(rules, name) {
       'intelligenceModifier', '=', '8 + source',
       'proficiencyBonus', '+', null
     );
-
-/* TODO
-      spellAbility = 'intelligence';
-      spellSlots = [
-        'W1:3:2/4:3/7:4',
-        'W2:7:2/10:3',
-        'W3:13:2/16:3',
-        'W4:19:1'
-      ];
-      rules.defineRule('casterLevels.Ro',
-        'rogueFeatures.Arcane Trickster Archetype', '?', null,
-        'levels.Rogue', '=', null,
-         'magicNotes.casterLevelBonus', '+', null
-      );
-      rules.defineRule('casterLevels.W', 'casterLevels.Ro', '^=', null);
-      rules.defineRule('casterLevelArcane', 'casterLevels.W', '+=', null);
-      rules.defineRule('spellsKnownLevel.Rogue',
-        'rogueFeatures.Arcane Trickster Archetype', '?', null
-      );
-      rules.defineRule('spellAttackModifier.Rogue',
-        'rogueFeatures.Arcane Trickster Archetype', '?', null
-      );
-*/
 
   } else if(name == 'Abjuration Tradition') {
 

@@ -414,7 +414,6 @@ SRD5E.FEATURES = {
   // Race
   "Artificer's Lore":'Section=skill Note="Dbl proficiency on magic, alchemical, tech objects History checks"',
   'Brave':'Section=save Note="Adv vs. fright"',
-  'Cantrip':'Section=magic Note="Additional Wizard cantrip"',
   'Darkvision':'Section=feature Note="R60\' See one light level better"',
   'Draconic Breath':'Section=combat,save Note="%1 %Vd6 HP %2 (DC %3 %4 half)","Resistance %V damage"',
   'Dragonborn Ability Adjustment':'Section=ability Note="+2 Strength/+1 Charisma"',
@@ -439,6 +438,7 @@ SRD5E.FEATURES = {
   'Relentless Endurance':'Section=combat Note="Keep 1 HP when brought to 0 1/long rest"',
   'Rock Gnome Ability Adjustment':'Section=ability Note="+2 Intelligence/+1 Constitution"',
   'Savage Attacks':'Section=combat Note="Extra die on crit damage"',
+  'Slow':'Section=ability Note="-5 Speed"',
   'Small':'Section=combat Note="Disadv heavy weapons"',
   'Stonecunning':'Section=skill Note="Dbl proficiency on stonework History checks"',
   'Tiefling Ability Adjustment':'Section=ability Note="+2 Charisma/+1 Intelligence"',
@@ -485,11 +485,16 @@ SRD5E.PATHS = {
       '"2:Bonus Cantrip","2:Natural Recovery","6:Land\'s Stride",' +
       '"10:Nature\'s Ward","14:Nature\'s Sanctuary" ' +
     'SpellAbility=wisdom ' +
+    'SpellSlots=' +
+      'Arctic1:3=2,' +
+      'Arctic2:5=2,' +
+      'Arctic3:7=2,' +
+      'Arctic4:9=2 ' +
     'Spells=' +
-      '"3:Arctic1:Hold Person;Spike Growth",' +
-      '"5:Arctic2:Sleet Storm;Slow",' +
-      '"7:Arctic3:Freedom Of Movement;Ice Storm",' +
-      '"9:Arctic4:Commune With Nature;Cone Of Cold"',
+      '"Arctic1:Hold Person;Spike Growth",' +
+      '"Arctic2:Sleet Storm;Slow",' +
+      '"Arctic3:Freedom Of Movement;Ice Storm",' +
+      '"Arctic4:Commune With Nature;Cone Of Cold"',
   'Circle Of The Land (Coast)':
     'Group=Druid ' +
     'Level=levels.Druid ' +
@@ -497,11 +502,16 @@ SRD5E.PATHS = {
       '"2:Bonus Cantrip","2:Natural Recovery","6:Land\'s Stride",' +
       '"10:Nature\'s Ward","14:Nature\'s Sanctuary" ' +
     'SpellAbility=wisdom ' +
+    'SpellSlots=' +
+      'Coast1:3=2,' +
+      'Coast2:5=2,' +
+      'Coast3:7=2,' +
+      'Coast4:9=2 ' +
     'Spells=' +
-      '"3:Coast1:Mirror Image;Misty Step",' +
-      '"5:Coast2:Water Breathing;Water Walk",' +
-      '"7:Coast3:Control Water;Freedom Of Movement",' +
-      '"9:Coast4:Conjure Elemental;Scrying"',
+      '"Coast1:Mirror Image;Misty Step",' +
+      '"Coast2:Water Breathing;Water Walk",' +
+      '"Coast3:Control Water;Freedom Of Movement",' +
+      '"Coast4:Conjure Elemental;Scrying"',
   'Circle Of The Land (Desert)':
     'Group=Druid ' +
     'Level=levels.Druid ' +
@@ -509,11 +519,16 @@ SRD5E.PATHS = {
       '"2:Bonus Cantrip","2:Natural Recovery","6:Land\'s Stride",' +
       '"10:Nature\'s Ward","14:Nature\'s Sanctuary" ' +
     'SpellAbility=wisdom ' +
+    'SpellSlots=' +
+      'Desert1:3=2,' +
+      'Desert2:5=2,' +
+      'Desert3:7=2,' +
+      'Desert4:9=2 ' +
     'Spells=' +
-      '"3:Desert1:Blur;Silence",' +
-      '"5:Desert2:Create Food And Water;Protection From Energy",' +
-      '"7:Desert3:Blight;Hallucinatory Terrain",' +
-      '"9:Desert4:Insect Plague;Wall Of Stone"',
+      '"Desert1:Blur;Silence",' +
+      '"Desert2:Create Food And Water;Protection From Energy",' +
+      '"Desert3:Blight;Hallucinatory Terrain",' +
+      '"Desert4:Insect Plague;Wall Of Stone"',
   'Circle Of The Land (Forest)':
     'Group=Druid ' +
     'Level=levels.Druid ' +
@@ -521,11 +536,16 @@ SRD5E.PATHS = {
       '"2:Bonus Cantrip","2:Natural Recovery","6:Land\'s Stride",' +
       '"10:Nature\'s Ward","14:Nature\'s Sanctuary" ' +
     'SpellAbility=wisdom ' +
+    'SpellSlots=' +
+      'Forest1:3=2,' +
+      'Forest2:5=2,' +
+      'Forest3:7=2,' +
+      'Forest4:9=2 ' +
     'Spells=' +
-      '"3:Forest1:Barkskin;Spider Climb",' +
-      '"5:Forest2:Call Lightning;Plant Growth",' +
-      '"7:Forest3:Divination;Freedom Of Movement",' +
-      '"9:Forest4:Commune With Nature;Tree Stride"',
+      '"Forest1:Barkskin;Spider Climb",' +
+      '"Forest2:Call Lightning;Plant Growth",' +
+      '"Forest3:Divination;Freedom Of Movement",' +
+      '"Forest4:Commune With Nature;Tree Stride"',
   'Circle Of The Land (Grassland)':
     'Group=Druid ' +
     'Level=levels.Druid ' +
@@ -533,11 +553,16 @@ SRD5E.PATHS = {
       '"2:Bonus Cantrip","2:Natural Recovery","6:Land\'s Stride",' +
       '"10:Nature\'s Ward","14:Nature\'s Sanctuary" ' +
     'SpellAbility=wisdom ' +
+    'SpellSlots=' +
+      'Grassland1:3=2,' +
+      'Grassland2:5=2,' +
+      'Grassland3:7=2,' +
+      'Grassland4:9=2 ' +
     'Spells=' +
-      '"3:Grassland1:Invisibility;Pass Without Trace",' +
-      '"5:Grassland2:Daylight;Haste",' +
-      '"7:Grassland3:Divination;Freedom Of Movement",' +
-      '"9:Grassland4:Dream;Insect Plague"',
+      '"Grassland1:Invisibility;Pass Without Trace",' +
+      '"Grassland2:Daylight;Haste",' +
+      '"Grassland3:Divination;Freedom Of Movement",' +
+      '"Grassland4:Dream;Insect Plague"',
   'Circle Of The Land (Mountain)':
     'Group=Druid ' +
     'Level=levels.Druid ' +
@@ -545,11 +570,16 @@ SRD5E.PATHS = {
       '"2:Bonus Cantrip","2:Natural Recovery","6:Land\'s Stride",' +
       '"10:Nature\'s Ward","14:Nature\'s Sanctuary" ' +
     'SpellAbility=wisdom ' +
+    'SpellSlots=' +
+      'Mountain1:3=2,' +
+      'Mountain2:5=2,' +
+      'Mountain3:7=2,' +
+      'Mountain4:9=2 ' +
     'Spells=' +
-      '"3:Mountain1:Spider Climb;Spike Growth",' +
-      '"5:Mountain2:Lightning Bolt;Meld Into Stone",' +
-      '"7:Mountain3:Stone Shape;Stoneskin",' +
-      '"9:Mountain4:Passwall;Wall Of Stone"',
+      '"Mountain1:Spider Climb;Spike Growth",' +
+      '"Mountain2:Lightning Bolt;Meld Into Stone",' +
+      '"Mountain3:Stone Shape;Stoneskin",' +
+      '"Mountain4:Passwall;Wall Of Stone"',
   'Circle Of The Land (Swamp)':
     'Group=Druid ' +
     'Level=levels.Druid ' +
@@ -557,16 +587,21 @@ SRD5E.PATHS = {
       '"2:Bonus Cantrip","2:Natural Recovery","6:Land\'s Stride",' +
       '"10:Nature\'s Ward","14:Nature\'s Sanctuary" ' +
     'SpellAbility=wisdom ' +
+    'SpellSlots=' +
+      'Swamp1:3=2,' +
+      'Swamp2:5=2,' +
+      'Swamp3:7=2,' +
+      'Swamp4:9=2 ' +
     'Spells=' +
-      '"3:Swamp1:Acid Arrow;Darkness",' +
-      '"5:Swamp2:Water Walk;Stinking Cloud",' +
-      '"7:Swamp3:Freedom Of Movement;Locate Creature",' +
-      '"9:Swamp4:Insect Plague;Scrying"',
+      '"Swamp1:Acid Arrow;Darkness",' +
+      '"Swamp2:Water Walk;Stinking Cloud",' +
+      '"Swamp3:Freedom Of Movement;Locate Creature",' +
+      '"Swamp4:Insect Plague;Scrying"',
   'College Of Lore':
     'Group=Bard ' +
     'Level=levels.Bard ' +
     'Features=' +
-      '"3:Skill Proficiency (Choose 3 from any)",' +
+      '"3:Bonus Skill Proficiency (Choose 3 from any)",' +
       '"3:Cutting Words","6:Additional Magical Secrets","14:Peerless Skill"',
   'Draconic Bloodline':
     'Group=Sorcerer ' +
@@ -593,25 +628,37 @@ SRD5E.PATHS = {
       '"1:Armor Proficiency (Heavy)","1:Disciple Of Life","2:Preserve Life",' +
       '"6:Blessed Healer","8:Divine Strike","17:Supreme Healing" ' +
     'SpellAbility=wisdom ' +
+    'SpellSlots=' +
+      'Life1:1=2,' +
+      'Life2:3=2,' +
+      'Life3:5=2,' +
+      'Life4:7=2,' +
+      'Life5:9=2 ' +
     'Spells=' +
-      '"1:Life1:Bless;Cure Wounds",' +
-      '"3:Life2:Lesser Restoration;Spiritual Weapon",' +
-      '"5:Life3:Beacon Of Hope;Revivify",' +
-      '"7:Life4:Death Ward;Guardian Of Faith",' +
-      '"9:Life5:Mass Cure Wounds;Raise Dead"',
+      '"Life1:Bless;Cure Wounds",' +
+      '"Life2:Lesser Restoration;Spiritual Weapon",' +
+      '"Life3:Beacon Of Hope;Revivify",' +
+      '"Life4:Death Ward;Guardian Of Faith",' +
+      '"Life5:Mass Cure Wounds;Raise Dead"',
   'Oath Of Devotion':
     'Group=Paladin ' +
     'Level=levels.Paladin ' +
     'Features=' +
       '"3:Sacred Weapon","3:Turn The Unholy","7:Aura Of Devotion",' +
       '"15:Purity Of Spirit","20:Holy Nimbus" ' +
-    'SpellAbility=Charisma ' +
+    'SpellAbility=charisma ' +
+    'SpellSlots=' +
+      'Devotion1:3=2,' +
+      'Devotion2:5=2,' +
+      'Devotion3:9=2,' +
+      'Devotion4:13=2,' +
+      'Devotion5:17=2 ' +
     'Spells=' +
-      '"3:Devotion1:Protection From Evil And Good;Sanctuary",' +
-      '"5:Devotion2:Lesser Restoration;Zone Of Truth",' +
-      '"9:Devotion3:Beacon Of Hope;Dispel Magic",' +
-      '"13:Devotion4:Freedom Of Movement;Guardian Of Faith",' +
-      '"17:Devotion5:Commune;Flame Strike"',
+      '"Devotion1:Protection From Evil And Good;Sanctuary",' +
+      '"Devotion2:Lesser Restoration;Zone Of Truth",' +
+      '"Devotion3:Beacon Of Hope;Dispel Magic",' +
+      '"Devotion4:Freedom Of Movement;Guardian Of Faith",' +
+      '"Devotion5:Commune;Flame Strike"',
   'Path Of The Berserker':
     'Group=Barbarian ' +
     'Level=levels.Barbarian ' +
@@ -1964,7 +2011,7 @@ SRD5E.CLASSES = {
     'Selectables=' +
       '"2:Defense Style","2:Dueling Style","2:Great Weapon Fighting Style",' +
       '"2:Protection Style","3:Oath Of Devotion" ' +
-    'CasterLevelArcane=levels.Paladin ' +
+    'CasterLevelDivine=levels.Paladin ' +
     'SpellAbility=charisma ' +
     'SpellSlots=' +
       'P1:2=2;3=3;5=4,' +
@@ -2115,6 +2162,8 @@ SRD5E.CLASSES = {
       '"features.Pact Of The Blade ? 12:Lifedrinker",' +
       '"features.Pact Of The Blade ? 5:Thirsting Blade",' +
       '"features.Pact Of The Chain ? 2:Voice Of The Chain Master" ' +
+    // TODO Is a warlock actually an arcane caster?
+    'CasterLevelArcane=levels.Warlock ' +
     'SpellAbility=charisma ' +
     'SpellSlots=' +
       'K0:1=2;4=3;10=4,' +
@@ -2157,6 +2206,7 @@ SRD5E.CLASSES = {
       '"20:Signature Spell" ' +
     'Selectables=' +
       '"2:Evocation Tradition" ' +
+    'CasterLevelArcane=levels.Wizard ' +
     'SpellAbility=intelligence ' +
     'SpellSlots=' +
       'W0:1=3;4=4;10=5,' +
@@ -2270,10 +2320,12 @@ SRD5E.RACES = {
   'High Elf':
     'Features=' +
       '"1:Weapon Proficiency (Longbow/Longsword/Shortbow/Shortsword)",' +
-      '1:Cantrip,1:Darkvision,"1:Fey Ancestry",' +
-      '"1:High Elf Ability Adjustment","1:Keen Senses",1:Trance ' +
+      '1:Darkvision,"1:Fey Ancestry","1:High Elf Ability Adjustment",' +
+      '"1:Keen Senses",1:Trance ' +
     'Languages=Common,Elvish,any ' +
     'SpellAbility=intelligence ' +
+    'SpellSlots=' +
+      'Elf0:1=1 ' +
     'Spells=' +
       '"Elf0:Acid Splash;Chill Touch;Dancing Lights;Fire Bolt;Light;' +
       'Mage Hand;Mending;Message;Minor Illusion;Poison Spray;' +
@@ -2285,7 +2337,7 @@ SRD5E.RACES = {
     'Languages=Common,Gnomish',
   'Half-Elf':
     'Features=' +
-      '"1:Skill Proficiency (Choose 2 from any)",' +
+      '"1:Versatile Skill Proficiency (Choose 2 from any)",' +
       '1:Darkvision,"1:Fey Ancestry","1:Half-Elf Ability Adjustment" ' +
     'Languages=Common,Elvish',
   'Half-Orc':
@@ -2309,10 +2361,14 @@ SRD5E.RACES = {
       '"1:Tiefling Ability Adjustment" ' +
     'Languages=Common,Infernal ' +
     'SpellAbility=charisma ' +
+    'SpellSlots=' +
+      'Tiefling0:1=1,' +
+      'Tiefling1:3=1,' +
+      'Tiefling2:5=1 ' +
     'Spells=' +
-      '"1:Tiefling0:Thaumaturgy",' +
-      '"3:Tiefling1:Hellish Rebuke",' +
-      '"5:Tiefling2:Darkness"'
+      '"Tiefling0:Thaumaturgy",' +
+      '"Tiefling1:Hellish Rebuke",' +
+      '"Tiefling2:Darkness"'
 };
 
 SRD5E.levelsExperience = [
@@ -2449,9 +2505,9 @@ SRD5E.identityRules = function(
   QuilvynUtils.checkAttrTable(deities, ['Alignment', 'Domain']);
   QuilvynUtils.checkAttrTable(genders, []);
   QuilvynUtils.checkAttrTable
-    (paths, ['Features', 'Group', 'Level', 'SpellAbility', 'Spells']);
+    (paths, ['Features', 'Group', 'Level', 'SpellAbility', 'SpellSlots', 'Spells']);
   QuilvynUtils.checkAttrTable
-    (races, ['Require', 'Features', 'Selectables', 'Languages', 'SpellAbility', 'Spells']);
+    (races, ['Require', 'Features', 'Selectables', 'Languages', 'SpellAbility', 'SpellSlots', 'Spells']);
 
   for(var alignment in alignments) {
     rules.choiceRules(rules, 'Alignment', alignment, alignments[alignment]);
@@ -2606,6 +2662,7 @@ SRD5E.choiceRules = function(rules, type, name, attrs) {
       QuilvynUtils.getAttrValue(attrs, 'Level'),
       QuilvynUtils.getAttrValueArray(attrs, 'Features'),
       QuilvynUtils.getAttrValue(attrs, 'SpellAbility'),
+      QuilvynUtils.getAttrValueArray(attrs, 'SpellSlots'),
       QuilvynUtils.getAttrValueArray(attrs, 'Spells'),
       SRD5E.SPELLS
     );
@@ -2616,6 +2673,7 @@ SRD5E.choiceRules = function(rules, type, name, attrs) {
       QuilvynUtils.getAttrValueArray(attrs, 'Selectables'),
       QuilvynUtils.getAttrValueArray(attrs, 'Languages'),
       QuilvynUtils.getAttrValue(attrs, 'SpellAbility'),
+      QuilvynUtils.getAttrValueArray(attrs, 'SpellSlots'),
       QuilvynUtils.getAttrValueArray(attrs, 'Spells'),
       SRD5E.SPELLS
     );
@@ -2813,6 +2871,13 @@ SRD5E.classRules = function(
     console.log('Bad hitDie "' + hitDie + '" for class ' + name);
     return;
   }
+  if(spellAbility) {
+    spellAbility = spellAbility.toLowerCase();
+    if(!(spellAbility.charAt(0).toUpperCase() + spellAbility.substring(1) in SRD5E.ABILITIES)) {
+      console.log('Bad spell ability "' + spellAbility + '" for class ' + name);
+      return;
+    }
+  }
 
   var classLevel = 'levels.' + name;
   var prefix =
@@ -2827,12 +2892,12 @@ SRD5E.classRules = function(
   rules.defineSheetElement(name + ' Features', 'Feats+', null, '; ');
   rules.defineChoice('extras', prefix + 'Features');
 
-  if(languages.length > 0)
+  if(languages.length > 0) {
     rules.defineRule('languageCount', classLevel, '+', languages.length);
-
-  for(var i = 0; i < languages.length; i++) {
-    if(languages[i] != 'any')
-      rules.defineRule('languages.' + languages[i], classLevel, '=', '1');
+    for(var i = 0; i < languages.length; i++) {
+      if(languages[i] != 'any')
+        rules.defineRule('languages.' + languages[i], classLevel, '=', '1');
+    }
   }
 
   rules.defineRule('featCount.General',
@@ -2842,18 +2907,16 @@ SRD5E.classRules = function(
     'levels.' + name, '=', 'Math.floor((source + 7) / 4)'
   );
 
-  if(spellAbility) {
+  if(spellSlots.length > 0) {
     var casterLevelExpr = casterLevelArcane || casterLevelDivine || classLevel;
     if(casterLevelExpr.match(new RegExp('\\b' + classLevel + '\\b', 'i'))) {
       rules.defineRule('casterLevels.' + name,
-        classLevel, '=', casterLevelExpr.replace(new RegExp('\\b' + classLevel + '\\b', 'gi'), 'source'),
-        'magicNotes.casterLevelBonus', '+', null
+        classLevel, '=', casterLevelExpr.replace(new RegExp('\\b' + classLevel + '\\b', 'gi'), 'source')
       );
     } else {
       rules.defineRule('casterLevels.' + name,
         classLevel, '?', null,
-        'level', '=', casterLevelExpr.replace(new RegExp('\\blevel\\b', 'gi'), 'source'),
-        'magicNotes.casterLevelBonus', '+', null
+        'level', '=', casterLevelExpr.replace(new RegExp('\\blevel\\b', 'gi'), 'source')
       );
     }
     if(casterLevelArcane)
@@ -2862,32 +2925,10 @@ SRD5E.classRules = function(
     if(casterLevelDivine)
       rules.defineRule
         ('casterLevelDivine', 'casterLevels.' + name, '+=', null);
-    rules.defineRule('spellCountLevel.' + name,
-      'levels.' + name, '=', null,
-      'magicNotes.casterLevelBonus', '+', null
-    );
-    for(var i = 0; i < spellSlots.length; i++) {
-      var spellTypeAndLevel = spellSlots[i].split(/:/)[0];
-      var spellType = spellTypeAndLevel.replace(/\d+/, '');
-      var spellLevel = spellTypeAndLevel.replace(/[A-Z]*/, '');
-      var code = spellSlots[i].substring(spellTypeAndLevel.length + 1).
-                 replace(/=/g, ' ? ').
-                 split(/;/).reverse().join(' : source >= ');
-      code = 'source >= ' + code + ' : null';
-      if(code.indexOf('source >= 1 ?') >= 0) {
-        code = code.replace(/source >= 1 ./, '').replace(/ : null/, '');
-      }
-      rules.defineRule('spellSlots.' + spellTypeAndLevel,
-        'spellCountLevel.' + name, '+=', code
-      );
-      if(spellType != name) {
-        rules.defineRule('casterLevels.' + spellType,
-          'casterLevels.' + name, '=', null
-        );
-      }
-    }
-    SRD5E.spellListRules(rules, name, spellAbility, spells, spellDict);
+    SRD5E.spellSlotRules(rules, name, 'casterLevels.' + name, spellSlots);
   }
+  if(spellAbility && spells.length > 0)
+      SRD5E.spellListRules(rules, name, spellAbility, spells, spellDict);
 
 };
 
@@ -3385,7 +3426,6 @@ SRD5E.languageRules = function(rules, name) {
   // No rules pertain to language
 };
 
-/* TODO */
 /*
  * Defines in #rules# the rules associated with path #name#, which is a
  * selection for characters belonging to #group# and tracks path level via
@@ -3395,7 +3435,8 @@ SRD5E.languageRules = function(rules, name) {
  * look up individual spell attributes.
  */
 SRD5E.pathRules = function(
-  rules, name, group, levelAttr, features, spellAbility, spells, spellDict
+  rules, name, group, levelAttr, features, spellAbility, spellSlots, spells,
+  spellDict
 ) {
 
   if(!name) {
@@ -3410,6 +3451,13 @@ SRD5E.pathRules = function(
     console.log('Bad level "' + levelAttr + '" for path ' + name);
     return;
   }
+  if(spellAbility) {
+    spellAbility = spellAbility.toLowerCase();
+    if(!(spellAbility.charAt(0).toUpperCase() + spellAbility.substring(1) in SRD5E.ABILITIES)) {
+      console.log('Bad spell ability "' + spellAbility + '" for class ' + name);
+      return;
+    }
+  }
 
   var pathLevel =
     name.charAt(0).toLowerCase() + name.substring(1).replaceAll(' ', '') + 'Level';
@@ -3420,10 +3468,12 @@ SRD5E.pathRules = function(
   );
 
   SRD5E.featureListRules(rules, features, group, pathLevel, false);
-  if(spellAbility) {
+  if(spellSlots.length > 0) {
     rules.defineRule('casterLevels.' + name, pathLevel, '=', null);
-    SRD5E.spellListRules(rules, name, spellAbility, spells, spellDict);
+    SRD5E.spellSlotRules(rules, name, 'casterLevels.' + name, spellSlots);
   }
+  if(spellAbility && spells.length > 0)
+    SRD5E.spellListRules(rules, name, spellAbility, spells, spellDict);
 
 };
 
@@ -3437,17 +3487,19 @@ SRD5E.pathRules = function(
  */
 SRD5E.raceRules = function(
   rules, name, requires, features, selectables, languages, spellAbility,
-  spells, spellDict
+  spellSlots, spells, spellDict
 ) {
 
   if(!name) {
     console.log('Empty race name');
     return;
   }
-  if(spellAbility &&
-     !spellAbility.match(/^(charisma|constitution|dexterity|intelligence|strength|wisdom)$/i)) {
-    console.log('Bad spellAbility "' + spellAbility + '" for class ' + name);
-    return;
+  if(spellAbility) {
+    spellAbility = spellAbility.toLowerCase();
+    if(!(spellAbility.charAt(0).toUpperCase() + spellAbility.substring(1) in SRD5E.ABILITIES)) {
+      console.log('Bad spell ability "' + spellAbility + '" for class ' + name);
+      return;
+    }
   }
 
   var matchInfo;
@@ -3477,10 +3529,12 @@ SRD5E.raceRules = function(
       rules.defineRule('languages.' + languages[i], raceLevel, '=', '1');
   }
 
-  if(spellAbility) {
+  if(spellSlots.length > 0) {
     rules.defineRule('casterLevels.' + name, raceLevel, '=', null);
-    SRD5E.spellListRules(rules, name, spellAbility, spells, spellDict);
+    SRD5E.spellSlotRules(rules, name, 'casterLevels.' + name, spellSlots);
   }
+  if(spellAbility && spells.length > 0)
+      SRD5E.spellListRules(rules, name, spellAbility, spells, spellDict);
 
 };
 
@@ -3531,8 +3585,6 @@ SRD5E.raceRulesExtra = function(rules, name) {
       'abilityNotes.dwarvenArmorSpeed', '^', '0'
     );
     rules.defineRule('combatNotes.dwarvenToughness', 'level', '=', null);
-  } else if(name == 'High Elf') {
-    rules.defineRule('spellSlots.Elf0', 'magicNotes.cantrip', '+=', '1');
   }
 
 };
@@ -4106,7 +4158,7 @@ SRD5E.featureListRules = function(
   SRD35.featureListRules(rules, features, setName, levelAttr, selectable);
   for(var i = 0; i < features.length; i++) {
     var feature = features[i].replace(/^(.*\?\s*)?\d+:/, '');
-    var matchInfo = feature.match(/^(Save|Skill|Tool) Proficiency \((.*)\)$/);
+    var matchInfo = feature.match(/(Save|Skill|Tool) Proficiency \((.*)\)$/);
     if(!matchInfo)
       continue;
     var choices;
@@ -4139,26 +4191,23 @@ SRD5E.prerequisiteRules = function(rules, section, noteName, attr, tests) {
   SRD35.prerequisiteRules(rules, section, noteName, attr, tests);
 };
 
+/* TODO document name */
 /*
- * TODO
- * Defines in #rules# the rules associated with with the list #spells#. Rules
- * define each spell in the list and add it to a character's attributes if
- * the spell indicates the character level that it is acquired and the value of
- * #levelAttr# for the character is at least that value. #spellDict# is the
+ * Defines in #rules# each spell in the list #spells#. #spellDict# is the
  * dictionary of all spells used to look up individual spell attributes.
+ * #ability# is the basic ability associated with the character's spell use.
  */
 SRD5E.spellListRules = function(rules, name, ability, spells, spellDict) {
 
   for(var i = 0; i < spells.length; i++) {
 
     var pieces = spells[i].split(':');
-    if(pieces.length < 2) {
+    if(pieces.length != 2) {
       console.log('Bad format for spell list "' + spells[i] + '"');
       break;
     }
-    var levelAcquired = pieces.length == 3 ? pieces[0] : null
-    var groupAndLevel = pieces[pieces.length == 3 ? 1 : 0];
-    var spellList = pieces[pieces.length == 3 ? 2 : 1];
+    var groupAndLevel = pieces[0];
+    var spellList = pieces[1];
     var matchInfo = groupAndLevel.match(/^(\w+)(\d)$/);
     if(!matchInfo) {
       console.log('Bad format for spell list "' + spells[i] + '"');
@@ -4183,10 +4232,6 @@ SRD5E.spellListRules = function(rules, name, ability, spells, spellDict) {
       rules.choiceRules
         (rules, 'Spell', fullSpell,
          spellDict[spellName] + ' Group=' + group + ' Level=' + level);
-      if(levelAcquired != null)
-        rules.defineRule('spells.' + fullSpell,
-          'casterLevels.' + name, '=', 'source >= ' + levelAcquired + ' ? 1 : null'
-        );
     }
     rules.defineRule('spellAttackModifier.' + group,
       'casterLevels.' + name, '?', null,
@@ -4200,6 +4245,26 @@ SRD5E.spellListRules = function(rules, name, ability, spells, spellDict) {
     );
   }
 
+};
+
+/* TODO */
+SRD5E.spellSlotRules = function(rules, name, levelAttr, spellSlots) {
+  for(var i = 0; i < spellSlots.length; i++) {
+    var spellTypeAndLevel = spellSlots[i].split(/:/)[0];
+    var spellType = spellTypeAndLevel.replace(/\d+/, '');
+    var spellLevel = spellTypeAndLevel.replace(/[A-Z]*/, '');
+    var code = spellSlots[i].substring(spellTypeAndLevel.length + 1).
+               replace(/=/g, ' ? ').
+               split(/;/).reverse().join(' : source >= ');
+    code = 'source >= ' + code + ' : null';
+    if(code.indexOf('source >= 1 ?') >= 0) {
+      code = code.replace(/source >= 1 ./, '').replace(/ : null/, '');
+    }
+    rules.defineRule('spellSlots.' + spellTypeAndLevel, levelAttr, '+=', code);
+    if(spellType != name) {
+      rules.defineRule('casterLevels.' + spellType, levelAttr, '=', null);
+    }
+  }
 };
 
 /*

@@ -510,7 +510,7 @@ PHB5E.FEATURES = {
   'Battle Magic':
     'Section=combat Note="Bonus attack after casting spell"',
   'Blessings Of Knowledge':
-    'Section=skill Note="+2 Language Count/+2 Skill Choice Count"',
+    'Section=skill Note="+2 Language Count/Skill Proficiency (Choose 2 from any)"',
   'Knowledge Of The Ages':
     'Section=skill Note="Channel Divinity for proficiency in chosen skill or tool for 10 min"',
   'Read Thoughts':
@@ -534,7 +534,7 @@ PHB5E.FEATURES = {
   'Acolyte Of Nature':
     'Section=magic Note="Additional Druid cantrip"',
   'Acolyte Of Nature':
-    'Section=skill Note="+1 Skill Choice Count"',
+    'Section=skill Note="Skill Proficiency (Choose 1 from any)"',
   'Charm Animals And Plants':
     'Section=magic Note="R30\' Channel Divinity charms for 1 min (Wis neg)"',
   'Dampen Elements':
@@ -718,13 +718,13 @@ PHB5E.FEATURES = {
   'Sentinel':'Section=combat Note="Foe stuck by OA speed 0, OA on foe Disengage, react attack when adjacent foe targets other"',
   'Sharpshooter':'Section=combat Note="No Disadv long range, ignore 3/4 cover, take -5 attack for +10 damage"',
   'Shield Master':'Section=combat,save Note="Bonus 5\' Push","+2 Dex vs. targeted spell, save for no damage instead of half"',
-  'Skilled':'Section=skill Note="Proficiency in 3 skills or tools"',
+  'Skilled':'Section=skill Note="Skill Proficiency (Choose 3 from any)"',
   'Skulker':'Section=skill Note="Hide when lightly obscured, ranged miss does not reveal position, no Disadv on Perception in dim light"',
   'Spell Sniper':'Section=magic Note="Dbl attack spell range, ignore 3/4 cover, additional attack cantrip"',
-  'Tavern Brawler':'Section=ability,combat Note="+1 Constitution or Strength","Proficiency in improvised, bonus to grapple"',
+  'Tavern Brawler':'Section=ability,combat Note="+1 Constitution or Strength","Weapon Proficiency (Improvised)/Bonus to grapple"',
   'Tough':'Section=combat Note="+%V HP"',
   'War Caster':'Section=combat Note=Adv concentration, cast when holding shield or weapon, cast as OA"',
-  'Weapon Master':'Section=ability,combat Note="+1 Dexterity or Strength","Proficiency in 4 weapons"',
+  'Weapon Master':'Section=ability,combat Note="+1 Dexterity or Strength","Weapon Proficiency (Choose 4 from any)"',
   // Races
   'Mountain Dwarf Ability Adjustment':'Section=ability Note="+2 Constitution/+2 Strength"',
   'Wood Elf Ability Adjustment':'Section=ability Note="+2 Dexterity/+1 Wisdom"',
@@ -813,12 +813,15 @@ PHB5E.PATHS = {
       '"8:Divine Strike","17:Master Of Nature" ' +
     'SpellAbility=wisdom ' +
     'SpellSlots=' +
+      'Nature0:1=1,' +
       'Nature1:1=2,' +
       'Nature2:3=2,' +
       'Nature3:5=2,' +
       'Nature4:7=2,' +
       'Nature5:9=2 ' +
     'Spells=' +
+      '"Nature0:Druidcraft;Guidance;Mending;Poison Spray;Produce Flame;' +
+      'Resistance;Shillelagh",' +
       '"Nature1:Animal Friendship;Speak With Animals",' +
       '"Nature2:Barkskin;Spike Growth",' +
       '"Nature3:Plant Growth;Wind Wall",' +
@@ -1438,8 +1441,7 @@ PHB5E.featRulesExtra = function(rules, name) {
   if(name == 'Alert') {
     rules.defineRule('initiative', 'combatNotes.alert', '+=', '5');
   } else if(name == 'Athlete') {
-    rules.defineRule
-      ('abilityNotes.abilityBoosts', 'abilityNotes.athlete', '+=', '1');
+    rules.defineRule('abilityBoosts', 'abilityNotes.athlete', '+=', '1');
   } else if(name == 'Defensive Duelist') {
     rules.defineRule
       ('combatNotes.defensiveDuelist', 'proficiencyBonus', '=', null);
@@ -1453,8 +1455,7 @@ PHB5E.featRulesExtra = function(rules, name) {
       'charismaModifier', '+', null
     );
   } else if(name == 'Lightly Armored') {
-    rules.defineRule
-      ('abilityNotes.abilityBoosts', 'abilityNotes.lightlyArmored', '+=', '1');
+    rules.defineRule('abilityBoosts', 'abilityNotes.lightlyArmored', '+=', '1');
   } else if(name == 'Linguist') {
     rules.defineRule('featureNotes.linguist',
       'intelligence', '=', null,
@@ -1489,28 +1490,20 @@ PHB5E.featRulesExtra = function(rules, name) {
       'armorWeight', '?', 'source == 2'
     );
   } else if(name == 'Moderately Armored') {
-    rules.defineRule('abilityNotes.abilityBoosts',
-      'abilityNotes.moderatelyArmored', '+=', '1'
-    );
+    rules.defineRule
+      ('abilityBoosts', 'abilityNotes.moderatelyArmored', '+=', '1');
   } else if(name == 'Observant') {
-    rules.defineRule
-      ('abilityNotes.abilityBoosts', 'abilityNotes.observant', '+=', '1');
+    rules.defineRule('abilityBoosts', 'abilityNotes.observant', '+=', '1');
   } else if(name == 'Resilient') {
-    rules.defineRule
-      ('abilityNotes.abilityBoosts', 'abilityNotes.resilient', '+=', '1');
-  } else if(name == 'Skilled') {
-    rules.defineRule('skillChoiceCount', 'skillNotes.skilled', '+=', '3');
-    // TODO ... or tools
+    rules.defineRule('abilityBoosts', 'abilityNotes.resilient', '+=', '1');
   } else if(name == 'Tavern Brawler') {
-    rules.defineRule
-      ('abilityNotes.abilityBoosts', 'abilityNotes.tavernBrawler', '+=', '1');
+    rules.defineRule('abilityBoosts', 'abilityNotes.tavernBrawler', '+=', '1');
     rules.defineRule
       ('weapons.Unarmed.2', 'combatNotes.tavernBrawler', '=', '"1d4"');
   } else if(name == 'Tough') {
     rules.defineRule('combatNotes.tough', 'level', '=', '2 * source');
   } else if(name == 'Weapon Master') {
-    rules.defineRule
-      ('abilityNotes.abilityBoosts', 'abilityNotes.weaponMaster', '+=', '1');
+    rules.defineRule('abilityBoosts', 'abilityNotes.weaponMaster', '+=', '1');
     rules.defineRule
       ('weaponChoiceCount', 'combatNotes.weaponMaster', '+=', '4');
     // TODO How can user specify the choice of prof weapons?

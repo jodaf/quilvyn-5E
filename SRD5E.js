@@ -346,7 +346,7 @@ SRD5E.FEATURES = {
   'Persistent Rage':'Section=combat Note="Rage has no time limit"',
   'Potent Cantrip':'Section=magic Note="Target takes half damage on cantrip save"',
   'Preserve Life':'Section=magic Note="R30\' Channel Divinity to restore %V HP among targets, up to half max HP ea"',
-  'Primal Champion':'Section=ability Note="+4 strength/+4 constitution"',
+  'Primal Champion':'Section=ability Note="+4 Strength/+4 Constitution"',
   'Primeval Awareness':'Section=magic Note="Expend spell to sense creatures in 1 mi (favored terrain 6 mi)"',
   'Protection Style':'Section=combat Note="Use shield to impose attack Disadv on adjacent foe"',
   'Purity Of Body':'Section=save Note="Immune disease, poison"',
@@ -2396,7 +2396,7 @@ SRD5E.abilityRules = function(rules) {
   );
 
   SRD5E.validAllocationRules
-    (rules, 'abilityBoost', 'abilityNotes.abilityBoosts', 'Sum "^(charisma|constitution|dexterity|intelligence|strength|wisdom)Adjust$"');
+    (rules, 'abilityBoost', 'abilityBoosts', 'Sum "^(charisma|constitution|dexterity|intelligence|strength|wisdom)Adjust$"');
 
 };
 
@@ -3383,8 +3383,8 @@ SRD5E.featRules = function(rules, name, requires, implies, types) {
 SRD5E.featRulesExtra = function(rules, name) {
   if(name.startsWith('Ability Boost')) {
     rules.defineChoice('notes', 'abilityNotes.abilityBoosts:%V to distribute');
-    rules.defineRule
-      ('abilityNotes.abilityBoosts', 'features.' + name, '+=', '2');
+    rules.defineRule('abilityNotes.abilityBoosts', 'abilityBoosts', '=', null);
+    rules.defineRule('abilityBoosts', 'features.' + name, '+=', '2');
   }
 };
 
@@ -3404,7 +3404,11 @@ SRD5E.featureRules = function(rules, name, sections, notes) {
     var note = sections[i] + 'Notes.' + name.charAt(0).toLowerCase() + name.substring(1).replaceAll(' ', '');
     var affected = matchInfo[2].split('/');
     for(var j = 0; j < affected.length; j++) {
-      rules.defineRule(group + 'Proficiencies.' + affected[j], note, '=', '1');
+      matchInfo = affected[j].match(/^Choose (\d+)/);
+      if(matchInfo)
+        rules.defineRule(group + 'ChoiceCount', note, '+=', matchInfo[1]);
+      else
+        rules.defineRule(group + 'Proficiencies.' + affected[j], note, '=', '1');
     }
   }
 };
@@ -3546,9 +3550,8 @@ SRD5E.raceRules = function(
 SRD5E.raceRulesExtra = function(rules, name) {
 
   if(name == 'Half-Elf') {
-    rules.defineRule('abilityNotes.abilityBoosts',
-      'abilityNotes.half-ElfAbilityAdjustment', '+=', '2'
-    );
+    rules.defineRule
+      ('abilityBoosts', 'abilityNotes.half-ElfAbilityAdjustment', '+=', '2');
   } else if(name.match(/Dragonborn/)) {
     var draconicBreathTypes = {
       'Black Dragonborn': 'acid',
@@ -3743,8 +3746,7 @@ SRD5E.weaponRules = function(rules, name, category, properties, damage, range) {
     weaponName, '?', null,
     'proficiencyBonus', '=', '-source',
     'weaponProficiencyCategory', '^', 'source >= ' + category + ' ? 0 : null',
-    'weaponProficiencies.' + name, '^', '0',
-    '', '^', '0'
+    'weaponProficiencies.' + name, '^', '0'
   );
   rules.defineRule('weaponProficiencyBonus.' + name,
     weaponName, '?', null,
@@ -4449,7 +4451,7 @@ SRD5E.randomizeOneAttribute = function(attributes, attribute) {
     attributes['armor'] = choices[QuilvynUtils.random(0, choices.length - 1)];
   } else if(attribute == 'boosts') {
     var attrs = this.applyRules(attributes);
-    howMany = (attrs['abilityNotes.abilityBoosts'] || 0) - QuilvynUtils.sumMatching(attributes, /Adjust$/);
+    howMany = (attrs.abilityBoosts || 0) - QuilvynUtils.sumMatching(attributes, /Adjust$/);
     while(howMany > 0) {
       attr = QuilvynUtils.randomKey(SRD5E.ABILITIES).toLowerCase();
       if(attributes[attr + 'Adjust'] == null)
@@ -4969,6 +4971,9 @@ SRD5E.ruleNotes = function() {
     '  <li>\n' +
     '    Quilvyn does not generate background traits, ideals, bonds, flaws,\n' +
     '    or equipment. These items can be entered in the Notes section.\n' +
+    '  </li><li>\n' +
+    '    Quilvyn allows proficiencies from the PHB Skilled feat to be\n' +
+    '    only to skills, rather than skills or tools.\n' +
     '  </li>\n' +
     '</ul>\n' +
     '</p>\n' +

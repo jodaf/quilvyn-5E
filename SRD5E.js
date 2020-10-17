@@ -431,9 +431,7 @@ SRD5E.FEATURES = {
   'Hill Dwarf Ability Adjustment':'Section=ability Note="+2 Constitution/+1 Wisdom"',
   'Human Ability Adjustment':'Section=ability Note="+1 Charisma/+1 Constitution/+1 Dexterity/+1 Intelligence/+1 Strength/+1 Wisdom"',
   'Infernal Legacy':'Section=magic Note="<i>Thaumaturgy</i> cantrip%V"',
-  'Keen Senses':'Section=skill Note="Skill Proficiency (Perception)"',
   'Lightfoot Halfling Ability Adjustment':'Section=ability Note="+2 Dexterity/+1 Charisma"',
-  'Menacing':'Section=skill Note="Skill Proficiency (Intimidation)"',
   'Naturally Stealthy':'Section=feature Note="Hide behind larger creature"',
   'Relentless Endurance':'Section=combat Note="Keep 1 HP when brought to 0 1/long rest"',
   'Rock Gnome Ability Adjustment':'Section=ability Note="+2 Intelligence/+1 Constitution"',
@@ -442,7 +440,6 @@ SRD5E.FEATURES = {
   'Small':'Section=combat Note="Disadv heavy weapons"',
   'Stonecunning':'Section=skill Note="Dbl proficiency on stonework History checks"',
   'Tiefling Ability Adjustment':'Section=ability Note="+2 Charisma/+1 Intelligence"',
-  'Tinker':'Section=skill Note="Tool Proficiency (Tinker\'s Tools)"',
   'Trance':'Section=feature Note="4 hr meditation gives benefit of 8 hr sleep"',
   // Sanity/Validation and misc
   'Bulky Armor':'Section=skill Note="Disadv Stealth"',
@@ -2319,9 +2316,10 @@ SRD5E.RACES = {
     'Languages=Common,Dwarvish',
   'High Elf':
     'Features=' +
+      '"1:Skill Proficiency (Perception)",' +
       '"1:Weapon Proficiency (Longbow/Longsword/Shortbow/Shortsword)",' +
       '1:Darkvision,"1:Fey Ancestry","1:High Elf Ability Adjustment",' +
-      '"1:Keen Senses",1:Trance ' +
+      '1:Trance ' +
     'Languages=Common,Elvish,any ' +
     'SpellAbility=intelligence ' +
     'SpellSlots=' +
@@ -2332,17 +2330,19 @@ SRD5E.RACES = {
       'Prestidigitation;Ray Of Frost;Shocking Grasp;True Strike"',
   'Rock Gnome':
     'Features=' +
+      '"1:Tool Proficiency (Tinker\'s Tools)",' +
       '1:Darkvision,"1:Gnome Cunning","1:Rock Gnome Ability Adjustment",' +
-      '1:Slow,1:Small,"1:Artificer\'s Lore",1:Tinker ' +
+      '1:Slow,1:Small,"1:Artificer\'s Lore" ' +
     'Languages=Common,Gnomish',
   'Half-Elf':
     'Features=' +
       '"1:Versatile Skill Proficiency (Choose 2 from any)",' +
       '1:Darkvision,"1:Fey Ancestry","1:Half-Elf Ability Adjustment" ' +
-    'Languages=Common,Elvish',
+    'Languages=Common,Elvish,any',
   'Half-Orc':
     'Features=' +
-      '1:Darkvision,"1:Half-Orc Ability Adjustment",1:Menacing,' +
+      '"1:Skill Proficiency (Intimidation)",' +
+      '1:Darkvision,"1:Half-Orc Ability Adjustment",' +
       '"1:Relentless Endurance","1:Savage Attacks" ' +
     'Languages=Common,Orc',
   'Lightfoot Halfling':
@@ -2925,10 +2925,10 @@ SRD5E.classRules = function(
     if(casterLevelDivine)
       rules.defineRule
         ('casterLevelDivine', 'casterLevels.' + name, '+=', null);
-    SRD5E.spellSlotRules(rules, name, 'casterLevels.' + name, spellSlots);
+    SRD5E.spellSlotsRules(rules, name, spellAbility, 'casterLevels.' + name, spellSlots);
   }
-  if(spellAbility && spells.length > 0)
-      SRD5E.spellListRules(rules, name, spellAbility, spells, spellDict);
+  if(spells.length > 0)
+      SRD5E.spellListRules(rules, name, spells, spellDict);
 
 };
 
@@ -3071,6 +3071,7 @@ SRD5E.classRulesExtra = function(rules, name) {
       ('combatNotes.survivor', 'constitutionModifier', '=', '5 + source');
     rules.defineRule
       ('combatNotes.survivor.1', 'hitPoints', '=', 'Math.floor(source / 2)');
+    rules.defineRule('featCount.General', 'fighterFeatBonus', '+', null);
     rules.defineRule('fighterFeatBonus',
       'levels.Fighter', '=', 'source < 6 ? null : source < 14 ? 1 : 2'
     );
@@ -3470,10 +3471,10 @@ SRD5E.pathRules = function(
   SRD5E.featureListRules(rules, features, group, pathLevel, false);
   if(spellSlots.length > 0) {
     rules.defineRule('casterLevels.' + name, pathLevel, '=', null);
-    SRD5E.spellSlotRules(rules, name, 'casterLevels.' + name, spellSlots);
+    SRD5E.spellSlotsRules(rules, name, spellAbility, 'casterLevels.' + name, spellSlots);
   }
-  if(spellAbility && spells.length > 0)
-    SRD5E.spellListRules(rules, name, spellAbility, spells, spellDict);
+  if(spells.length > 0)
+    SRD5E.spellListRules(rules, name, spells, spellDict);
 
 };
 
@@ -3531,10 +3532,10 @@ SRD5E.raceRules = function(
 
   if(spellSlots.length > 0) {
     rules.defineRule('casterLevels.' + name, raceLevel, '=', null);
-    SRD5E.spellSlotRules(rules, name, 'casterLevels.' + name, spellSlots);
+    SRD5E.spellSlotsRules(rules, name, spellAbility, 'casterLevels.' + name, spellSlots);
   }
-  if(spellAbility && spells.length > 0)
-      SRD5E.spellListRules(rules, name, spellAbility, spells, spellDict);
+  if(spells.length > 0)
+      SRD5E.spellListRules(rules, name, spells, spellDict);
 
 };
 
@@ -4195,9 +4196,8 @@ SRD5E.prerequisiteRules = function(rules, section, noteName, attr, tests) {
 /*
  * Defines in #rules# each spell in the list #spells#. #spellDict# is the
  * dictionary of all spells used to look up individual spell attributes.
- * #ability# is the basic ability associated with the character's spell use.
  */
-SRD5E.spellListRules = function(rules, name, ability, spells, spellDict) {
+SRD5E.spellListRules = function(rules, name, spells, spellDict) {
 
   for(var i = 0; i < spells.length; i++) {
 
@@ -4233,22 +4233,14 @@ SRD5E.spellListRules = function(rules, name, ability, spells, spellDict) {
         (rules, 'Spell', fullSpell,
          spellDict[spellName] + ' Group=' + group + ' Level=' + level);
     }
-    rules.defineRule('spellAttackModifier.' + group,
-      'casterLevels.' + name, '?', null,
-      ability.toLowerCase() + 'Modifier', '=', null,
-      'proficiencyBonus', '+', null
-    );
-    rules.defineRule('spellDifficultyClass.' + group,
-      'casterLevels.' + name, '?', null,
-      ability.toLowerCase() + 'Modifier', '=', '8 + source',
-      'proficiencyBonus', '+', null
-    );
+
   }
 
 };
 
 /* TODO */
-SRD5E.spellSlotRules = function(rules, name, levelAttr, spellSlots) {
+/* #ability# is the basic ability associated with the character's spell use. */
+SRD5E.spellSlotsRules = function(rules, name, ability, levelAttr, spellSlots) {
   for(var i = 0; i < spellSlots.length; i++) {
     var spellTypeAndLevel = spellSlots[i].split(/:/)[0];
     var spellType = spellTypeAndLevel.replace(/\d+/, '');
@@ -4261,6 +4253,16 @@ SRD5E.spellSlotRules = function(rules, name, levelAttr, spellSlots) {
       code = code.replace(/source >= 1 ./, '').replace(/ : null/, '');
     }
     rules.defineRule('spellSlots.' + spellTypeAndLevel, levelAttr, '+=', code);
+    rules.defineRule('spellAttackModifier.' + spellType,
+      'casterLevels.' + spellType, '?', null,
+      ability.toLowerCase() + 'Modifier', '=', null,
+      'proficiencyBonus', '+', null
+    );
+    rules.defineRule('spellDifficultyClass.' + spellType,
+      'casterLevels.' + spellType, '?', null,
+      ability.toLowerCase() + 'Modifier', '=', '8 + source',
+      'proficiencyBonus', '+', null
+    );
     if(spellType != name) {
       rules.defineRule('casterLevels.' + spellType, levelAttr, '=', null);
     }

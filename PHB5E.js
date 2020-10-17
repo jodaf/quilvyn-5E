@@ -1041,16 +1041,16 @@ PHB5E.RACES = {
     'Features=' +
       '"1:Armor Proficiency (Medium)",' +
       '"1:Weapon Proficiency (Battleaxe/Handaxe/Light Hammer/Warhammer)",' +
-      '"1:Tool Proficiency (1 of Brewer\'s Tools, Mason\'s Tools, Smith\'s Tools)",' +
-      '1:Darkvision,"1:Hill Dwarf Ability Adjustment",' +
+      '"1:Tool Proficiency (Choose 1 from Brewer\'s Tools, Mason\'s Tools, Smith\'s Tools)",' +
+      '1:Darkvision,"1:Mountain Dwarf Ability Adjustment",' +
       '"1:Dwarven Armor Speed","1:Dwarven Resilience",1:Slow,1:Stonecunning ' +
     'Languages=Common,Dwarvish',
   'Dark Elf':
     'Features=' +
+      '"1:Skill Proficiency (Perception)",' +
       '"1:Weapon Proficiency (Hand Crossbow/Rapier/Shortsword)",' +
       '"1:Dark Elf Ability Adjustment","1:Drow Magic","1:Fey Ancestry",' +
-      '"1:Keen Senses",' +
-      '"1:Superior Darkvision",1:Trance ' +
+      '"1:Sunlight Sensitivity","1:Superior Darkvision",1:Trance ' +
     'Languages=Common,Elvish ' +
     'SpellAbility=charisma ' +
     'SpellSlots=' +
@@ -1063,14 +1063,15 @@ PHB5E.RACES = {
       '"Drow2:Darkness"',
   'Wood Elf':
     'Features=' +
+      '"1:Skill Proficiency (Perception)",' +
       '"1:Weapon Proficiency (Longbow/Longsword/Shortbow/Shortsword)",' +
-      '1:Darkvision,"1:Fey Ancestry","1:Fleet Of Foot","1:Keen Senses",' +
+      '1:Darkvision,"1:Fey Ancestry","1:Fleet Of Foot",' +
       '"1:Mask Of The Wild",1:Trance,"1:Wood Elf Ability Adjustment" ' +
     'Languages=Common,Elvish',
   'Forest Gnome':
     'Features=' +
       '1:Darkvision,"1:Gnome Cunning","1:Natural Illusionist",' +
-      '"1:Rock Gnome Ability Adjustment",1:Slow,1:Small,' +
+      '"1:Forest Gnome Ability Adjustment",1:Slow,1:Small,' +
       '"1:Speak With Small Beasts" ' +
     'Languages=Common,Gnomish ' +
     'SpellAbility=intelligence ' +
@@ -1434,7 +1435,9 @@ PHB5E.pathRulesExtra = function(rules, name) {
  */
 PHB5E.featRulesExtra = function(rules, name) {
 
-  if(name == 'Athlete') {
+  if(name == 'Alert') {
+    rules.defineRule('initiative', 'combatNotes.alert', '+=', '5');
+  } else if(name == 'Athlete') {
     rules.defineRule
       ('abilityNotes.abilityBoosts', 'abilityNotes.athlete', '+=', '1');
   } else if(name == 'Defensive Duelist') {

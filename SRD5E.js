@@ -361,7 +361,7 @@ SRD5E.FEATURES = {
   'Repelling Blast':'Section=magic Note="<i>Eldritch Blast</i> pushes 10\'"',
   'Retaliation':'Section=combat Note="Melee attack reaction after taking damage"',
   'Ritual Casting':'Section=magic Note="Cast known spell as ritual"',
-  'Rogue Expertise':'Section=skill Note="Dbl proficiency %V skills or thieves\' tools"',
+  'Rogue Expertise':'Section=skill Note="Dbl proficiency %V skills or Thieves\' Tools"',
   'Sacred Weapon':'Section=combat Note="Channel Divinity for weapon +%V attack, 20\' light for 1 min"',
   'Sculpt Spells':'Section=magic Note="Protect spell level + 1 targets from evocation spell effects"',
   'Sculptor Of Flesh':'Section=magic Note="<i>Polymorph</i> 1/long rest"',

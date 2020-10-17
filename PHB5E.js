@@ -57,7 +57,7 @@ PHB5E.BACKGROUNDS = {
       'Crowbar,"Dark Clothes W/Hood","15 GP" ' +
     'Features=' +
       '"1:Skill Proficiency (Deception/Stealth)",' +
-      '"1:Tool Proficiency (Theives\' Tools/Choose 1 from any Game)",' +
+      '"1:Tool Proficiency (Thieves\' Tools/Choose 1 from any Game)",' +
       '"1:Criminal Contact"',
   'Entertainer':
     'Equipment=' +
@@ -96,7 +96,7 @@ PHB5E.BACKGROUNDS = {
     'Features=' +
       '"1:Skill Proficiency (History/Persuasion)",' +
       '"1:Tool Proficiency (Choose 1 from any Game)",' +
-      '"1:Position Of Priviledge" ' +
+      '"1:Position Of Privilege" ' +
     'Languages=any',
   'Outlander':
     'Equipment=' +
@@ -111,7 +111,7 @@ PHB5E.BACKGROUNDS = {
       '"Bottle Ink",Clothes,"Letter W/Unanswered Question","Quill",' +
       '"Small Knife","10 GP" ' +
     'Features=' +
-      '"1:Skill Proficiency (Arcane/History)",' +
+      '"1:Skill Proficiency (Arcana/History)",' +
       '1:Researcher ' +
     'Languages=any,any',
   'Sailor':
@@ -133,7 +133,7 @@ PHB5E.BACKGROUNDS = {
       '"City Map",Clothes,"Parent\'s Token","Pet Mouse","Small Knife","10 GP" '+
     'Features=' +
       '"1:Skill Proficiency (Sleight Of Hand/Stealth)",' +
-      '"1:Tool Proficiency (Disguise Kit/Thieves\'s Tools)",' +
+      '"1:Tool Proficiency (Disguise Kit/Thieves\' Tools)",' +
       '"1:City Secrets"'
 };
 PHB5E.CLASSES = {
@@ -418,11 +418,11 @@ PHB5E.FEATS = {
   'Martial Adept':
     '',
   'Medium Armor Master':
-    'Require="Armor Proficiency (Medium)"',
+    'Require="features.Armor Proficiency (Medium)"',
   'Mobile':
     '',
   'Moderately Armored':
-    'Require="Armor Proficiency (Light)"',
+    'Require="features.Armor Proficiency (Light)"',
   'Mounted Combatant':
     '',
   'Observant':
@@ -647,7 +647,7 @@ PHB5E.FEATURES = {
   'Create Thrall':'Section=magic Note="Touch charms incapacitated humanoid"',
   'Abjuration Savant':'Section=magic Note="Write abjuration spells for half cost"',
   'Arcane Ward':'Section=magic Note="Abjuration casting creates %V HP shield"',
-  'Projected Ward':'Section=magic Note="R30\' Use Arcane Ward to protect others"',
+  'Projected Ward':'Section=magic Note="R30\' Use <i>Arcane Ward</i> to protect others"',
   'Improved Abjuration':'Section=magic Note="Add Proficiency Bonus to abjuration ability checks"',
   'Spell Resistance':'Section=save Note="Adv and resistance to spell damage"',
   'Conjuration Savant':'Section=magic Note="Write conjuration spells for half cost"',
@@ -885,17 +885,17 @@ PHB5E.PATHS = {
   'Path Of The Totem Warrior (Bear)':
     'Group=Barbarian Level=levels.Barbarian ' +
     'Features=' +
-      '"3:Spiritual Seeker","3:Bear Totem Spirit","6:Aspect Of The Bear",' +
+      '"3:Spirit Seeker","3:Bear Totem Spirit","6:Aspect Of The Bear",' +
       '"10:Spirit Walker","14:Bear Totemic Attunement"',
   'Path Of The Totem Warrior (Eagle)':
     'Group=Barbarian Level=levels.Barbarian ' +
     'Features=' +
-      '"3:Spiritual Seeker","3:Eagle Totem Spirit","6:Aspect Of The Eagle",' +
+      '"3:Spirit Seeker","3:Eagle Totem Spirit","6:Aspect Of The Eagle",' +
       '"10:Spirit Walker","14:Eagle Totemic Attunement"',
   'Path Of The Totem Warrior (Wolf)':
     'Group=Barbarian Level=levels.Barbarian ' +
     'Features=' +
-      '"3:Spiritual Seeker","3:Wolf Totem Spirit","6:Aspect Of The Wolf",' +
+      '"3:Spirit Seeker","3:Wolf Totem Spirit","6:Aspect Of The Wolf",' +
       '"10:Spirit Walker","14:Wolf Totemic Attunement"',
   'Battle Master Archetype':
     'Group=Fighter Level=levels.Fighter ' +
@@ -1271,7 +1271,7 @@ PHB5E.talentRules = function(rules, feats, features) {
 /* Defines the rules related to character classes. */
 PHB5E.pathRulesExtra = function(rules, name) {
 
-  if(name == 'Totem Warrior (Bear)') {
+  if(name == 'Path Of The Totem Warrior (Bear)') {
 
     rules.defineRule('carry', 'abilityNotes.aspectOfTheBear', '*', '2');
     rules.defineRule('lift', 'abilityNotes.aspectOfTheBear', '*', '2');

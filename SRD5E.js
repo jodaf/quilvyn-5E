@@ -2463,14 +2463,14 @@ SRD5E.combatRules = function(rules, armors, shields, weapons) {
   rules.defineRule('initiative', 'dexterityModifier', '=', null);
   rules.defineRule('weaponProficiencyCategory',
     '', '=', '0',
-    'features.Armor Proficiency (Martial)', '^', '2',
+    'features.Weapon Proficiency (Martial)', '^', '2',
     'features.Weapon Proficiency (Simple)', '^', '1'
   );
   rules.defineRule('weapons.Unarmed', '', '=', '1');
 
   for(var ability in SRD5E.ABILITIES) {
     rules.defineRule('saveBonus.' + ability,
-      'saveProficiencies.' + ability, '?', null,
+      'saveProficiency.' + ability, '?', null,
       'proficiencyBonus', '=', null
     );
     rules.defineRule('save.' + ability,
@@ -3159,7 +3159,7 @@ SRD5E.classRulesExtra = function(rules, name) {
     );
     for(var ability in SRD35.ABILITIES) {
       rules.defineRule
-        ('saveProficiencies.' + ability, 'saveNotes.diamondSoul', '=', '1');
+        ('saveProficiency.' + ability, 'saveNotes.diamondSoul', '=', '1');
     }
     rules.defineRule('selectableFeatureCount.Monk',
       'levels.Monk', '=', 'source < 3 ? null : 1'
@@ -3408,7 +3408,7 @@ SRD5E.featureRules = function(rules, name, sections, notes) {
       if(matchInfo)
         rules.defineRule(group + 'ChoiceCount', note, '+=', matchInfo[1]);
       else
-        rules.defineRule(group + 'Proficiencies.' + affected[j], note, '=', '1');
+        rules.defineRule(group + 'Proficiency.' + affected[j], note, '=', '1');
     }
   }
 };
@@ -3650,13 +3650,13 @@ SRD5E.skillRules = function(rules, name, ability, classes) {
   }
 
   for(var i = 0; i < classes.length; i++) {
-    rules.defineRule('skillProficiencies.' + name, 'levels.' + classes[i], '=', '1');
+    rules.defineRule('skillProficiency.' + name, 'levels.' + classes[i], '=', '1');
   }
-  rules.defineRule('skillProficiencies.' + name,
+  rules.defineRule('skillProficiency.' + name,
     'skillsChosen.' + name, '=', 'source ? 1 : null'
   );
   rules.defineRule('skillBonus.' + name,
-    'skillProficiencies.' + name, '?', null,
+    'skillProficiency.' + name, '?', null,
     'proficiencyBonus', '=', null
   );
   rules.defineChoice('notes', 'skills.' + name + ':(' + ability.substring(0, 3) + ') %V');
@@ -3686,7 +3686,7 @@ SRD5E.toolRules = function(rules, name, type) {
     console.log('Empty tool name');
     return;
   }
-  rules.defineRule('toolProficiencies.' + name,
+  rules.defineRule('toolProficiency.' + name,
     'toolsChosen.' + name, '=', 'source ? 1 : null'
   );
 };
@@ -3746,7 +3746,7 @@ SRD5E.weaponRules = function(rules, name, category, properties, damage, range) {
     weaponName, '?', null,
     'proficiencyBonus', '=', '-source',
     'weaponProficiencyCategory', '^', 'source >= ' + category + ' ? 0 : null',
-    'weaponProficiencies.' + name, '^', '0'
+    'features.Weapon Proficiency (' + name + ')', '^', '0'
   );
   rules.defineRule('weaponProficiencyBonus.' + name,
     weaponName, '?', null,
@@ -3946,9 +3946,9 @@ SRD5E.createViewers = function(rules, viewers) {
         );
       }
       viewer.addElements(
-          {name: 'Skill Proficiencies', within: 'FeaturesAndSkills', separator: listSep},
+          {name: 'Skill Proficiency', within: 'FeaturesAndSkills', separator: listSep},
           {name: 'Skills', within: 'FeaturesAndSkills', columns: '3LE', separator: null},
-          {name: 'Tool Proficiencies', within: 'FeaturesAndSkills', separator: listSep},
+          {name: 'Tool Proficiency', within: 'FeaturesAndSkills', separator: listSep},
           {name: 'Languages', within: 'FeaturesAndSkills', separator: listSep}
       );
       if(name != 'Collected Notes') {
@@ -3966,8 +3966,8 @@ SRD5E.createViewers = function(rules, viewers) {
               {name: 'Armor Class', within: 'CombatStats'},
               {name: 'Attacks Per Round', within: 'CombatStats'},
             {name: 'CombatProfs', within: 'CombatPart', separator: innerSep},
-              {name: 'Armor Proficiencies', within: 'CombatProfs', separator: listSep},
-              {name: 'Weapon Proficiencies', within: 'CombatProfs', separator: listSep},
+              {name: 'Armor Proficiency', within: 'CombatProfs', separator: listSep},
+              {name: 'Weapon Proficiency', within: 'CombatProfs', separator: listSep},
             {name: 'Gear', within: 'CombatPart', separator: innerSep},
               {name: 'Armor', within: 'Gear'},
               {name: 'Shield', within: 'Gear'},
@@ -3980,7 +3980,7 @@ SRD5E.createViewers = function(rules, viewers) {
       }
       viewer.addElements(
           {name: 'SavePart', within: 'Combat', separator: '\n'},
-            {name: 'Save Proficiencies', within: 'SavePart', separator: listSep},
+            {name: 'Save Proficiency', within: 'SavePart', separator: listSep},
             {name: 'Save', within: 'SavePart', separator: listSep}
       );
       if(name != 'Collected Notes') {
@@ -4173,7 +4173,7 @@ SRD5E.featureListRules = function(
       if(matchInfo) {
         choiceCount += matchInfo[1] * 1;
       } else {
-        rules.defineRule(group + 'Proficiencies.' + elements[j],
+        rules.defineRule(group + 'Proficiency.' + elements[j],
           'features.' + feature, '=', '1'
         );
       }
@@ -4445,7 +4445,7 @@ SRD5E.randomizeOneAttribute = function(attributes, attribute) {
       var weight = QuilvynUtils.getAttrValue(armors[attr], 'Weight');
       if(weight == null ||
          weight <= attrs.armorProficiencyWeight ||
-         attrs['armorProficiencies.' + attr])
+         attrs['features.Armor Proficiency (' + attr + ')'])
         choices.push(attr);
     }
     attributes['armor'] = choices[QuilvynUtils.random(0, choices.length - 1)];
@@ -4634,7 +4634,7 @@ SRD5E.randomizeOneAttribute = function(attributes, attribute) {
     choices = ['None'];
     for(attr in this.getChoices('shields')) {
       if(attrs['features.Shield Proficiency'] ||
-         attrs['shieldProficiencies.' + attr]) {
+         attrs['features.ShieldProficiency (' + attr + ')']) {
         choices.push(attr);
       }
     }
@@ -4720,9 +4720,10 @@ SRD5E.randomizeOneAttribute = function(attributes, attribute) {
     attrs = this.applyRules(attributes);
     choices = [];
     for(attr in weapons) {
-      if(attrs['weaponProficiencies.' + attr] ||
-         attrs['weaponProficiencies.Simple']&&weapons[attr].indexOf('Si')>=0 ||
-         attrs['weaponProficiencies.Martial']&&weapons[attr].indexOf('Ma')>=0) {
+      if(attrs['features.WeaponProficiency (Martial)'] ||
+         (attrs['features.Wweapon Proficiency (Simple)'] &&
+          weapons[attr].indexOf('Si') >= 0) ||
+         attrs['features.Weapon Proficiency (' + attr + ')']) {
         choices.push(attr);
       }
     }

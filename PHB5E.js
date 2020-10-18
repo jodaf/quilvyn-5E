@@ -564,7 +564,6 @@ PHB5E.FEATURES = {
   'Elemental Wild Shape':'Section=magic Note="Use 2 Wild Shape uses to become elemental"',
   'Thousand Forms':'Section=magic Note="<i>Alter Self</i> at will"',
   'Maneuvers':'Section=combat Note="Select %V Fighter maneuvers (DC %1)"',
-  'Student Of War':'Section=skill Note="Artisan\'s Tools Prof"',
   'Superiority Dice':'Section=combat Note="%Vd%1/short rest"',
   'Know Your Enemy':'Section=combat Note="Know how foe compares to you after 1 min study"',
   'Relentless':'Section=combat Note="Min 1 superiority die after Init"',
@@ -586,7 +585,7 @@ PHB5E.FEATURES = {
   'Pushing Attack':'Section=combat Note="Add Superiority die to damage, foe pushed 15\' (Str neg)"',
   'Rally':'Section=combat Note="Chosen ally gains Superiority die + %V temp HP"',
   'Riposte':'Section=combat Note="Bonus attack after foe miss, add Superiority die to damage"',
-  'Sweeping Attack:':'Section=ombat Note="After hit, Superiority die damage to second adjacent foe"',
+  'Sweeping Attack':'Section=combat Note="After hit, Superiority die damage to second adjacent foe"',
   'Trip Attack':'Section=combat Note="Add Superiority die to damage, foe knocked prone (Str neg)"',
   'Breath Of Winter':'Section=magic Note="Spend 6 Ki to cast <i>Cone Of Cold</i>"',
   'Clench Of The North Wind':'Section=magic Note="Spend 3 Ki to cast <i>Hold Person</i>"',
@@ -606,7 +605,7 @@ PHB5E.FEATURES = {
   'Wave Of The Rolling Earth':'Section=magic Note="Spend 6 Ki to cast <i>Wall Of Stone</i>"',
   'Disciple Of The Elements':'Section=magic Note="%V elemental disciplines"',
   'Elemental Attunement':'Section=magic Note="Minor elemental manipulation"',
-  'Shadow Arts':'Section=magic Note="<i>Minor Illusion</i> cantrip, spend 2 Ki to cast <i>Darkness</i>, i>Darkvision</i>, <i>Pass Without Trace</i>, <i>Silence</i>"',
+  'Shadow Arts':'Section=magic Note="<i>Minor Illusion</i> cantrip, spend 2 Ki to cast <i>Darkness</i>, <i>Darkvision</i>, <i>Pass Without Trace</i>, <i>Silence</i>"',
   'Shadow Step':'Section=magic Note="Teleport 60\' between dim or unlit areas"',
   'Cloak Of Shadows':'Section=magic Note="Invisible in dim and unlit areas until attack or cast"',
   'Opportunist':'Section=combat Note="Attack adjacent foe after ally hits it"',
@@ -712,7 +711,7 @@ PHB5E.FEATURES = {
   'Mounted Combatant':'Section=combat Note="Adv unmounted foe smaller than mount, redirect attack on mount to self, mount takes no damage on Dex save, half on fail"',
   'Observant':'Section=ability,feature,skill Note="+1 Intelligence or Wisdom","Read lips","+5 passive Investigation and Perception"',
   'Polearm Master':'Section=combat Note="Bonus attack polearm butt (1d4 HP), OA when foe enters reach"',
-  'Resilient':'Section=ability,save Note="+1 chosen ability","Proficiency in chosen ability"',
+  'Resilient':'Section=ability,save Note="+1 Ability Boosts","Save Proficiency (Choose 1 from any)"',
   'Ritual Caster':'Section=magic Note="Cast spells from ritual book"',
   'Savage Attacker':'Section=combat Note="Re-roll damage 1/turn"',
   'Sentinel':'Section=combat Note="Foe stuck by OA speed 0, OA on foe Disengage, react attack when adjacent foe targets other"',
@@ -760,7 +759,7 @@ PHB5E.PATHS = {
   'Circle Of The Moon':
     'Group=Druid Level=levels.Druid ' +
     'Features=' +
-      '"2:Comat Wild Shape","2:Circle Forms","6:Primal Strike",' +
+      '"2:Combat Wild Shape","2:Circle Forms","6:Primal Strike",' +
       '"10:Elemental Wild Shape","14:Thousand Forms"',
   'College Of Valor':
     'Group=Bard Level=levels.Bard ' +
@@ -903,12 +902,14 @@ PHB5E.PATHS = {
   'Battle Master Archetype':
     'Group=Fighter Level=levels.Fighter ' +
     'Features=' +
-      '"3:Maneuvers","3:Student Of War","3:Superiority Dice",' +
-      '"7:Know Your Enemy",15:Relentless',
+      '"3:Tool Proficiency (Choose 1 from any Artisan)",' +
+      '"3:Maneuvers","3:Superiority Dice",' + '"7:Know Your Enemy",' +
+      '15:Relentless',
   'Eldritch Knight Archetype':
     'Group=Fighter Level=levels.Fighter ' +
     'Features=' +
-      '"3:Weapon Bond","7:War Magic","10:Eldritch Strike","15:Arcane Charge" ' +
+      '3:Spellcasting,"3:Weapon Bond","7:War Magic","10:Eldritch Strike",' +
+      '"15:Arcane Charge" ' +
     'SpellAbility=intelligence ' +
     'SpellSlots=' +
       'W1:3=2;4=3;7=4,' +
@@ -1223,14 +1224,14 @@ PHB5E.identityRules = function(
 ) {
 
   QuilvynUtils.checkAttrTable
-    (backgrounds, ['Equipment', 'Features', 'Languages', 'Proficiencies']);
+    (backgrounds, ['Equipment', 'Features', 'Languages']);
   QuilvynUtils.checkAttrTable
-    (classes, ['Require', 'HitDie', 'Features', 'Selectables', 'Proficiencies', 'Languages', 'CasterLevelArcane', 'CasterLevelDivine', 'SpellAbility', 'SpellSlots', 'Spells']);
+    (classes, ['Require', 'HitDie', 'Features', 'Selectables', 'Languages', 'CasterLevelArcane', 'CasterLevelDivine', 'SpellAbility', 'SpellSlots', 'Spells']);
   QuilvynUtils.checkAttrTable(deities, ['Alignment', 'Domain']);
   QuilvynUtils.checkAttrTable
     (paths, ['Features', 'Group', 'Level', 'SpellAbility', 'SpellSlots', 'Spells']);
   QuilvynUtils.checkAttrTable
-    (races, ['Require', 'Features', 'Selectables', 'Languages', 'Proficiencies', 'SpellAbility', 'Spells']);
+    (races, ['Require', 'Features', 'Selectables', 'Languages', 'SpellAbility', 'Spells']);
 
   for(var background in backgrounds) {
     rules.choiceRules(rules, 'Background', background, backgrounds[background]);
@@ -1340,9 +1341,6 @@ PHB5E.pathRulesExtra = function(rules, name) {
 
   } else if(name == 'Battle Master Archetype') {
 
-    rules.defineRule('toolChoiceCount', 'skillNotes.studentOfWar', '+=', '1');
-    rules.defineRule
-      ('toolChoices.Artisan', 'skillNotes.studentOfWar', '=', '1');
     rules.defineRule('combatNotes.superiorityDice',
       'levels.Fighter', '=', 'source < 7 ? 4 : source < 15 ? 5 : 6'
     );
@@ -1494,8 +1492,6 @@ PHB5E.featRulesExtra = function(rules, name) {
       ('abilityBoosts', 'abilityNotes.moderatelyArmored', '+=', '1');
   } else if(name == 'Observant') {
     rules.defineRule('abilityBoosts', 'abilityNotes.observant', '+=', '1');
-  } else if(name == 'Resilient') {
-    rules.defineRule('abilityBoosts', 'abilityNotes.resilient', '+=', '1');
   } else if(name == 'Tavern Brawler') {
     rules.defineRule('abilityBoosts', 'abilityNotes.tavernBrawler', '+=', '1');
     rules.defineRule

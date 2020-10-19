@@ -245,6 +245,7 @@ SRD5E.FEATURES = {
   'Chains Of Carceri':'Section=magic Note="<i>Hold Monster</i> on celestial, elemental, fiend 1/long rest"',
   'Channel Divinity':'Section=feature Note="Effect %V/short rest"',
   'Cleansing Touch':'Section=magic Note="Touch dispels %V/long rest"',
+  'Colossus Slayer':'Section=combat Note="+1d8 HP vs. damaged foe 1/turn"',
   'Countercharm':'Section=magic Note="R30\' Friendly listeners Adv vs. charm, fright"',
   'Cunning Action':'Section=combat Note="Bonus Dash, Disengage, or Hide each turn"',
   'Cutting Words':'Section=combat Note="R60\' Reaction to subtract Bardic Inspiration die from foe roll"',
@@ -264,7 +265,7 @@ SRD5E.FEATURES = {
   'Divine Smite':'Section=combat Note="Spend spell slot for +(spell level + 1)d8 damage"',
   'Divine Strike':'Section=combat Note="+%Vd8 HP 1/turn"',
   'Draconic Presence':'Section=magic Note="R60\' Spend 5 Sorcery Points for awe/fear aura for conc or 1 min (Wis neg)"',
-  'Draconic Resilience':'Section=combat Note="+%V HP, unarmored AC %1"',
+  'Draconic Resilience':'Section=combat Note="+%V HP/unarmored AC %1"',
   'Dragon Wings':'Section=ability Note="Fly at full speed"',
   'Dreadful Word':'Section=magic Note="<i>Confusion</i> 1/long rest"',
   'Druid Timeless Body':'Section=feature Note="Age at 1/10 rate"',
@@ -298,6 +299,7 @@ SRD5E.FEATURES = {
   'Font Of Magic':'Section=magic Note="%V Sorcery Points/long rest"',
   'Frenzy':'Section=combat Note="Bonus attack during rage, exhausted after"',
   'Gaze Of Two Minds':'Section=magic Note="Perceive via willing touched senses for 1 turn"',
+  'Giant Killer':'Section=combat Note="React to attack adjacent lg foe after miss"',
   'Great Weapon Fighting Style':'Section=combat Note="Re-roll damage of 1 or 2 with two-handed weapons"',
   'Heightened Spell':'Section=magic Note="Spend 3 Sorcery Points for target Disadv on spell save"',
   'Hide In Plain Sight':'Section=skill Note="+10 Dex (Stealth) to hide w/prepared camouflage"',
@@ -618,6 +620,14 @@ SRD5E.PATHS = {
     'Features=' +
       '"1:Dark One\'s Blessing","6:Dark One\'s Own Luck",' +
       '"10:Fiendish Resilience","14:Hurl Through Hell"',
+  'Hunter Archetype':
+    'Group=Ranger ' +
+    'Level=levels.Ranger ' +
+    'Selectables=' +
+      '"3:Colossus Slayer","3:Giant Killer","3:Horde Breaker",' +
+      '"7:Escape The Horde","7:Multiattack Defense","7:Steel Will",' +
+      '11:Volley,"11:Whirlwind Attack","15:Evasion",' +
+      '"15:Stand Against The Tide","15:Uncanny Dodge"',
   'Life Domain':
     'Group=Cleric ' +
     'Level=levels.Cleric ' +
@@ -686,11 +696,7 @@ SRD5E.SCHOOLS = {
 };
 SRD5E.SHIELDS = {
   'None':'AC=0',
-  'Buckler':'AC=2',
-  'Heavy Steel':'AC=2',
-  'Heavy Wooden':'AC=2',
-  'Light Steel':'AC=2',
-  'Light Wooden':'AC=2'
+  'Shield':'AC=2'
 };
 SRD5E.SKILLS = {
   'Acrobatics':'Ability=dexterity',
@@ -1779,9 +1785,8 @@ SRD5E.CLASSES = {
   'Barbarian':
     'HitDie=d12 ' +
     'Features=' +
-      '"1:Armor Proficiency (Medium)",' +
+      '"1:Armor Proficiency (Medium/Shield)",' +
       '"1:Save Proficiency (Constitution/Strength)",' +
-      '"1:Shield Proficiency",' +
       '"1:Skill Proficiency (Choose 2 from Animal Handling, Athletics, Intimidation, Nature, Perception, Survival)",' +
       '"1:Weapon Proficiency (Martial)",' +
       '"1:Barbarian Unarmored Defense",1:Rage,"2:Danger Sense",' +
@@ -1851,9 +1856,8 @@ SRD5E.CLASSES = {
   'Cleric':
     'HitDie=d8 ' +
     'Features=' +
-      '"1:Armor Proficiency (Medium)",' +
+      '"1:Armor Proficiency (Medium/Shield)",' +
       '"1:Save Proficiency (Charisma/Wisdom)",' +
-      '"1:Shield Proficiency",' +
       '"1:Skill Proficiency (Choose 2 from History, Insight, Medicine, Persuasion, Religioin)",' +
       '"1:Weapon Proficiency (Simple)",' +
       '"1:Ritual Casting",1:Spellcasting,"2:Channel Divinity",' +
@@ -1905,9 +1909,8 @@ SRD5E.CLASSES = {
   'Druid':
     'HitDie=d8 ' +
     'Features=' +
-      '"1:Armor Proficiency (Medium)",' +
+      '"1:Armor Proficiency (Medium/Shield)",' +
       '"1:Save Proficiency (Intelligence/Wisdom)",' +
-      '"1:Shield Proficiency",' +
       '"1:Skill Proficiency (Choose 2 from Arcana, Animal Handling, Insight, Medicine, Nature, Perception, Religion, Survival)",' +
       '"1:Tool Proficiency (Herbalism Kit)",' +
       '"1:Weapon Proficiency (Club/Dagger/Dart/Javelin/Mace/Quarterstaff/Scimitar/Sickle/Sling/Spear)",' +
@@ -1967,9 +1970,8 @@ SRD5E.CLASSES = {
   'Fighter':
     'HitDie=d10 ' +
     'Features=' +
-      '"1:Armor Proficiency (Heavy)",' +
+      '"1:Armor Proficiency (Heavy/Shield)",' +
       '"1:Save Proficiency (Constitution/Strength)",' +
-      '"1:Shield Proficiency",' +
       '"1:Skill Proficiency (Choose 2 from Acrobatics, Animal Handling, Athletics, History, Insight, Intimidation, Perception, Survival)",' +
       '"1:Weapon Proficiency (Martial)",' +
       '"1:Second Wind","2:Action Surge","5:Extra Attack",9:Indomitable ' +
@@ -1996,9 +1998,8 @@ SRD5E.CLASSES = {
   'Paladin':
     'HitDie=d10 ' +
     'Features=' +
-      '"1:Armor Proficiency (Heavy)",' +
+      '"1:Armor Proficiency (Heavy/Shield)",' +
       '"1:Save Proficiency (Charisma/Wisdom)",' +
-      '"1:Shield Proficiency",' +
       '"1:Skill Proficiency (Choose 2 from Athletics, Insight, Intimidation, Medicine, Persuasion, Religion)",' +
       '"1:Weapon Proficiency (Martial)",' +
       '"1:Divine Sense","1:Lay On Hands","2:Divine Smite",2:Spellcasting,' +
@@ -2029,9 +2030,8 @@ SRD5E.CLASSES = {
   'Ranger':
     'HitDie=d10 ' +
     'Features=' +
-      '"1:Armor Proficiency (Medium)",' +
+      '"1:Armor Proficiency (Medium/Shield)",' +
       '"1:Save Proficiency (Dexterity/Strength)",' +
-      '"1:Shield Proficiency",' +
       '"1:Skill Proficiency (Choose 3 from Animal Handling, Athletics, Insight, Investigation, Nature, Perception, Stealth, Survival)",' +
       '"1:Weapon Proficiency (Martial)",' +
       '"1:Favored Enemy","1:Natural Explorer",2:Spellcasting,' +
@@ -2040,10 +2040,7 @@ SRD5E.CLASSES = {
       '"20:Foe Slayer" ' +
     'Selectables=' +
       '"2:Archery Style","2:Defense Style","2:Dueling Style",' +
-      '"2:Two-Weapon Fighting Style","3:Hunter Archetype","3:Horde Breaker",' +
-      '"7:Escape The Horde","7:Multiattack Defense","7:Steel Will",11:Volley,' +
-      '"11:Whirlwind Attack",15:Evasion,"15:Stand Against The Tide",' +
-      '"15:Uncanny Dodge" ' +
+      '"2:Two-Weapon Fighting Style","3:Hunter Archetype" ' +
     'CasterLevelDivine=levels.Ranger ' +
     'SpellAbility=wisdom ' +
     'SpellSlots=' +
@@ -2147,9 +2144,9 @@ SRD5E.CLASSES = {
       '"2:Beast Speech","2:Beguiling Influence","2:Devil\'s Sight",' +
       '"2:Eldritch Sight","2:Eldritch Spear","2:Eyes Of The Rune Keeper",' +
       '"2:Fiendish Vigor","2:Gaze Of Two Minds","2:Mask Of Many Faces",' +
-      '"2:Misty Visions","5:Mire The Mind","2:Repelling Blast",' +
-      '"2:Thief Of Five Fates","3:Pact Of The Blade","3:Pact Of The Chain",' +
-      '"3:Pact Of The Tome","5:One With Shadows","5:Sign Of Ill Omen:",' +
+      '"2:Misty Visions","2:Repelling Blast","2:Thief Of Five Fates",' +
+      '"3:Pact Of The Blade","3:Pact Of The Chain","3:Pact Of The Tome",' +
+      '"5:Mire The Mind","5:One With Shadows","5:Sign Of Ill Omen",' +
       '"7:Bewitching Whispers","7:Dreadful Word","7:Sculptor Of Flesh",' +
       '"9:Ascendant Step","9:Minions Of Chaos","9:Otherworldly Leap",' +
       '"9:Whispers Of The Grave","15:Master Of Myriad Forms",' +
@@ -2428,12 +2425,6 @@ SRD5E.combatRules = function(rules, armors, shields, weapons) {
     'armorStrRequirement', '=', null,
     'strength', '+', '-source'
   );
-  rules.defineRule('armorProficiencyWeight',
-    '', '=', '0',
-    'features.Armor Proficiency (Heavy)', '^', '3',
-    'features.Armor Proficiency (Light)', '^', '1',
-    'features.Armor Proficiency (Medium)', '^', '2'
-  );
   rules.defineRule('attacksPerRound', '', '=', '1');
   rules.defineRule('combatNotes.constitutionHitPointsAdjustment',
     'constitutionModifier', '=', null,
@@ -2451,8 +2442,11 @@ SRD5E.combatRules = function(rules, armors, shields, weapons) {
   rules.defineRule
     ('combatNotes.strengthDamageAdjustment', 'strengthModifier', '=', null);
   rules.defineRule('features.Nonproficient Armor',
-    'armorWeight', '=', null,
-    'armorProficiencyWeight', '+', '-source',
+    // Modify heavy so that Prof (Light+Medium) doesn't suffice for heavy armor
+    'armorWeight', '=', 'source == 3 ? 4 : source',
+    'armorProficiency.Light', '+', '-1',
+    'armorProficiency.Medium', '+', '-2',
+    'armorProficiency.Heavy', '+', '-4',
     '', '^', '0'
   );
   rules.defineRule('features.Two-Handed Weapon With Shield',
@@ -2461,11 +2455,6 @@ SRD5E.combatRules = function(rules, armors, shields, weapons) {
   rules.defineRule
     ('hitPoints', 'combatNotes.constitutionHitPointsAdjustment', '+', null);
   rules.defineRule('initiative', 'dexterityModifier', '=', null);
-  rules.defineRule('weaponProficiencyCategory',
-    '', '=', '0',
-    'features.Weapon Proficiency (Martial)', '^', '2',
-    'features.Weapon Proficiency (Simple)', '^', '1'
-  );
   rules.defineRule('weapons.Unarmed', '', '=', '1');
 
   for(var ability in SRD5E.ABILITIES) {
@@ -2505,7 +2494,7 @@ SRD5E.identityRules = function(
   QuilvynUtils.checkAttrTable(deities, ['Alignment', 'Domain']);
   QuilvynUtils.checkAttrTable(genders, []);
   QuilvynUtils.checkAttrTable
-    (paths, ['Features', 'Group', 'Level', 'SpellAbility', 'SpellSlots', 'Spells']);
+    (paths, ['Features', 'Selectables', 'Group', 'Level', 'SpellAbility', 'SpellSlots', 'Spells']);
   QuilvynUtils.checkAttrTable
     (races, ['Require', 'Features', 'Selectables', 'Languages', 'SpellAbility', 'SpellSlots', 'Spells']);
 
@@ -2661,6 +2650,7 @@ SRD5E.choiceRules = function(rules, type, name, attrs) {
       QuilvynUtils.getAttrValue(attrs, 'Group'),
       QuilvynUtils.getAttrValue(attrs, 'Level'),
       QuilvynUtils.getAttrValueArray(attrs, 'Features'),
+      QuilvynUtils.getAttrValueArray(attrs, 'Selectables'),
       QuilvynUtils.getAttrValue(attrs, 'SpellAbility'),
       QuilvynUtils.getAttrValueArray(attrs, 'SpellSlots'),
       QuilvynUtils.getAttrValueArray(attrs, 'Spells'),
@@ -3240,6 +3230,7 @@ SRD5E.classRulesExtra = function(rules, name) {
     rules.defineRule('combatNotes.sneakAttack',
       'levels.Rogue', '=', 'Math.floor((source + 1) / 2)'
     );
+    rules.defineRule('featCount.General', 'rogueFeatBonus', '+', null);
     rules.defineRule
       ('rogueFeatBonus', 'levels.Rogue', '=', 'source < 10 ? null : 1');
     rules.defineRule('selectableFeatureCount.Rogue',
@@ -3397,7 +3388,7 @@ SRD5E.featureRules = function(rules, name, sections, notes) {
   // TODO Stop using SRD35
   SRD35.featureRules(rules, name, sections, notes);
   for(var i = 0; i < notes.length; i++) {
-    var matchInfo = notes[i].match(/^(Save|Skill|Tool) Proficiency \((.*)\)$/);
+    var matchInfo = notes[i].match(/^([A-Z]\w*) Proficiency \((.*)\)$/);
     if(!matchInfo)
       continue;
     var group = matchInfo[1].toLowerCase();
@@ -3440,8 +3431,8 @@ SRD5E.languageRules = function(rules, name) {
  * look up individual spell attributes.
  */
 SRD5E.pathRules = function(
-  rules, name, group, levelAttr, features, spellAbility, spellSlots, spells,
-  spellDict
+  rules, name, group, levelAttr, features, selectables, spellAbility,
+  spellSlots, spells, spellDict
 ) {
 
   if(!name) {
@@ -3473,6 +3464,7 @@ SRD5E.pathRules = function(
   );
 
   SRD5E.featureListRules(rules, features, group, pathLevel, false);
+  SRD5E.featureListRules(rules, selectables, group, pathLevel, true);
   if(spellSlots.length > 0) {
     rules.defineRule('casterLevels.' + name, pathLevel, '=', null);
     SRD5E.spellSlotsRules(rules, name, spellAbility, 'casterLevels.' + name, spellSlots);
@@ -3742,12 +3734,19 @@ SRD5E.weaponRules = function(rules, name, category, properties, damage, range) {
     'sanityNotes.nonproficientWeaponPenalty.' + name + ':%V attack'
   );
 
-  rules.defineRule('sanityNotes.nonproficientWeaponPenalty.' + name,
-    weaponName, '?', null,
-    'proficiencyBonus', '=', '-source',
-    'weaponProficiencyCategory', '^', 'source >= ' + category + ' ? 0 : null',
-    'features.Weapon Proficiency (' + name + ')', '^', '0'
-  );
+  if(category > 0) {
+    rules.defineRule('sanityNotes.nonproficientWeaponPenalty.' + name,
+      weaponName, '?', null,
+      'proficiencyBonus', '=', '-source',
+      'weaponProficiency.Martial', '^', '0',
+      'weaponProficiency.' + name, '^', '0'
+    );
+    if(category == 1) {
+      rules.defineRule('sanityNotes.nonproficientWeaponPenalty.' + name,
+        'weaponProficiency.Simple', '^', '0'
+      );
+    }
+  }
   rules.defineRule('weaponProficiencyBonus.' + name,
     weaponName, '?', null,
     'proficiencyBonus', '=', null,
@@ -4161,7 +4160,7 @@ SRD5E.featureListRules = function(
   SRD35.featureListRules(rules, features, setName, levelAttr, selectable);
   for(var i = 0; i < features.length; i++) {
     var feature = features[i].replace(/^(.*\?\s*)?\d+:/, '');
-    var matchInfo = feature.match(/(Save|Skill|Tool) Proficiency \((.*)\)$/);
+    var matchInfo = feature.match(/([A-Z]\w*) Proficiency \((.*)\)$/);
     if(!matchInfo)
       continue;
     var choices;
@@ -4440,12 +4439,22 @@ SRD5E.randomizeOneAttribute = function(attributes, attribute) {
   if(attribute == 'armor') {
     var armors = this.getChoices('armors');
     attrs = this.applyRules(attributes);
-    choices = ['None'];
+    choices = [];
     for(attr in armors) {
       var weight = QuilvynUtils.getAttrValue(armors[attr], 'Weight');
-      if(weight == null ||
-         weight <= attrs.armorProficiencyWeight ||
-         attrs['features.Armor Proficiency (' + attr + ')'])
+      if(weight == null)
+        weight = 0;
+      else if((weight + '').match(/light/i))
+        weight = 1;
+      else if((weight + '').match(/medium/i))
+        weight = 2;
+      else if((weight + '').match(/heavy/i))
+        weight = 3;
+      if(weight == 0 ||
+         attrs['armorProficiency.Heavy'] ||
+         weight <= 2 && attrs['armorProficiency.Medium'] ||
+         weight == 1 && attrs['armorProficiency.Light'] ||
+         attrs['armorProficiency.' + attr])
         choices.push(attr);
     }
     attributes['armor'] = choices[QuilvynUtils.random(0, choices.length - 1)];
@@ -4631,10 +4640,11 @@ SRD5E.randomizeOneAttribute = function(attributes, attribute) {
     attributes['name'] = SRD5E.randomName(attributes['race']);
   } else if(attribute == 'shield') {
     attrs = this.applyRules(attributes);
-    choices = ['None'];
+    choices = [''];
     for(attr in this.getChoices('shields')) {
-      if(attrs['features.Shield Proficiency'] ||
-         attrs['features.ShieldProficiency (' + attr + ')']) {
+      if(attr == 'None' ||
+         attrs['armorProficiency.Shield'] ||
+         attrs['armorProficiency.' + attr]) {
         choices.push(attr);
       }
     }
@@ -4720,10 +4730,17 @@ SRD5E.randomizeOneAttribute = function(attributes, attribute) {
     attrs = this.applyRules(attributes);
     choices = [];
     for(attr in weapons) {
-      if(attrs['features.WeaponProficiency (Martial)'] ||
-         (attrs['features.Wweapon Proficiency (Simple)'] &&
-          weapons[attr].indexOf('Si') >= 0) ||
-         attrs['features.Weapon Proficiency (' + attr + ')']) {
+      var category = QuilvynUtils.getAttrValue(armors[attr], 'Category');
+      if(category == null)
+        category = 0;
+      else if((category + '').match(/simple/i))
+        category = 1;
+      else if((category + '').match(/martial/i))
+        category = 2;
+      if(category == 0 ||
+         attrs['weaponProficiency.Martial'] ||
+         category == 1 && attrs['weaponProficiency.Simple'] ||
+         attrs['weaponProficiency.' + attr]) {
         choices.push(attr);
       }
     }

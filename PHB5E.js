@@ -374,7 +374,7 @@ PHB5E.FEATS = {
   'Charger':
     '',
   'Crossbow Expert':
-      'Implies=weapons.Hand Crossbow || weapons.Heavy Crossbow || weapons.Light Crossbow',
+      'Imply="weapons.Hand Crossbow || weapons.Heavy Crossbow || weapons.Light Crossbow"',
   'Defensive Duelist':
     'Require="dexterity >= 13"',
   'Dual Wielder':
@@ -384,23 +384,23 @@ PHB5E.FEATS = {
   'Durable':
     '',
   'Elemental Adept (Acid)':
-    'Requre="casterLevel >= 1"',
+    'Require="casterLevel >= 1"',
   'Elemental Adept (Cold)':
-    'Requre="casterLevel >= 1"',
+    'Require="casterLevel >= 1"',
   'Elemental Adept (Fire)':
-    'Requre="casterLevel >= 1"',
+    'Require="casterLevel >= 1"',
   'Elemental Adept (Lightning)':
-    'Requre="casterLevel >= 1"',
+    'Require="casterLevel >= 1"',
   'Elemental Adept (Thunder)':
-    'Requre="casterLevel >= 1"',
+    'Require="casterLevel >= 1"',
   'Great Weapon Master':
     '',
   'Healer':
     '',
   'Heavily Armored':
-    'Require="features.Armor Proficiency (Medium)"',
+    'Require="armorProficiency.Medium"',
   'Heavy Armor Master':
-    'Require="features.Armor Proficiency (Heavy)"',
+    'Require="armorProficiency.Heavy"',
   'Inspiring Leader':
     'Require="charisma >= 13"',
   'Keen Mind':
@@ -418,11 +418,11 @@ PHB5E.FEATS = {
   'Martial Adept':
     '',
   'Medium Armor Master':
-    'Require="features.Armor Proficiency (Medium)"',
+    'Require="armorProficiency.Medium || armorProficiency.Heavy"',
   'Mobile':
     '',
   'Moderately Armored':
-    'Require="features.Armor Proficiency (Light)"',
+    'Require="armorProficiency.Light"',
   'Mounted Combatant':
     '',
   'Observant':
@@ -440,7 +440,7 @@ PHB5E.FEATS = {
   'Sharpshooter':
     '',
   'Shield Master':
-    'Implies="shield != \'None\'"',
+    'Imply="shield != \'None\'"',
   'Skilled':
     '',
   'Skulker':
@@ -695,7 +695,7 @@ PHB5E.FEATURES = {
   'Elemental Adept (Thunder)':'Section=magic Note="Spells ignore thunder resistance, treat 1s as 2s on damage die"',
   'Great Weapon Master':'Section=combat Note="Bonus attack after crit or foe to 0 HP, may trade -5 attack for +10 damage"',
   'Healer':'Section=feature Note="Stabilize via healer\'s kit restores 1 HP, healer\'s kit heals 1d6+4 HP 1/short rest"',
-  'Heavily Armored':'Section=ability,skill Note="+1 Strength","Armor Proficiency (Heavy)"',
+  'Heavily Armored':'Section=ability,combat Note="+1 Strength","Armor Proficiency (Heavy)"',
   'Heavy Armor Master':'Section=ability,combat Note="+1 Strength","Non-magical bludgeon, pierce, slash DR 3"',
   'Inspiring Leader':'Section=feature Note="R30\' 10-min speech give 6 allies %V HP"',
   'Keen Mind':'Section=ability,feature Note="+1 Intelligence","Know N, hours until sunrise and sunset, things seen or heard prior 30 days"',
@@ -707,7 +707,7 @@ PHB5E.FEATURES = {
   'Martial Adept':'Section=combat Note="Two maneuvers (DC %V), 1 superiority die/long rest"',
   'Medium Armor Master':'Section=combat,skill Note="+1 AC","No Stealth check penalty in medium armor"',
   'Mobile':'Section=ability,combat Note="+10 Speed","Dash at full speed in difficult terrain, no OA from targeted foe"',
-  'Moderately Armored':'Section=ability,combat Note="+1 Dexterity or Strength","Armor Proficiency (Medium)/Shield Proficiency"',
+  'Moderately Armored':'Section=ability,combat Note="+1 Dexterity or Strength","Armor Proficiency (Medium/Shield)"',
   'Mounted Combatant':'Section=combat Note="Adv unmounted foe smaller than mount, redirect attack on mount to self, mount takes no damage on Dex save, half on fail"',
   'Observant':'Section=ability,feature,skill Note="+1 Intelligence or Wisdom","Read lips","+5 passive Investigation and Perception"',
   'Polearm Master':'Section=combat Note="Bonus attack polearm butt (1d4 HP), OA when foe enters reach"',
@@ -722,7 +722,7 @@ PHB5E.FEATURES = {
   'Spell Sniper':'Section=magic Note="Dbl attack spell range, ignore 3/4 cover, additional attack cantrip"',
   'Tavern Brawler':'Section=ability,combat Note="+1 Constitution or Strength","Weapon Proficiency (Improvised)/Bonus to grapple"',
   'Tough':'Section=combat Note="+%V HP"',
-  'War Caster':'Section=combat Note=Adv concentration, cast when holding shield or weapon, cast as OA"',
+  'War Caster':'Section=combat Note="Adv concentration, cast when holding shield or weapon, cast as OA"',
   'Weapon Master':'Section=ability,combat Note="+1 Dexterity or Strength","Weapon Proficiency (Choose 4 from any)"',
   // Races
   'Mountain Dwarf Ability Adjustment':'Section=ability Note="+2 Constitution/+2 Strength"',
@@ -764,7 +764,7 @@ PHB5E.PATHS = {
   'College Of Valor':
     'Group=Bard Level=levels.Bard ' +
     'Features=' +
-      '"3:Armor Proficiency (Medium)","3:Shield Proficiency",' +
+      '"3:Armor Proficiency (Medium/Shield)",' +
       '"3:Weapon Proficiency (Martial)",' +
       '"3:Bonus Skills","3:Combat Inspiration","6:Extra Attack",' +
       '"14:Battle Magic"',
@@ -1229,14 +1229,15 @@ PHB5E.identityRules = function(
     (classes, ['Require', 'HitDie', 'Features', 'Selectables', 'Languages', 'CasterLevelArcane', 'CasterLevelDivine', 'SpellAbility', 'SpellSlots', 'Spells']);
   QuilvynUtils.checkAttrTable(deities, ['Alignment', 'Domain']);
   QuilvynUtils.checkAttrTable
-    (paths, ['Features', 'Group', 'Level', 'SpellAbility', 'SpellSlots', 'Spells']);
+    (paths, ['Features', 'Selectables', 'Group', 'Level', 'SpellAbility', 'SpellSlots', 'Spells']);
   QuilvynUtils.checkAttrTable
-    (races, ['Require', 'Features', 'Selectables', 'Languages', 'SpellAbility', 'Spells']);
+    (races, ['Require', 'Features', 'Selectables', 'Languages', 'SpellAbility', 'SpellSlots', 'Spells']);
 
   for(var background in backgrounds) {
     rules.choiceRules(rules, 'Background', background, backgrounds[background]);
   }
   for(var clas in classes) {
+    delete rules.choices['levels'][clas];
     rules.choiceRules
       (rules, 'Class', clas, SRD5E.CLASSES[clas] + classes[clas]);
   }
@@ -1256,12 +1257,8 @@ PHB5E.identityRules = function(
 /* Defines rules related to character feats and features. */
 PHB5E.talentRules = function(rules, feats, features) {
 
-  for(var feat in feats) {
-    rules.choiceRules(rules, 'Feat', feat, feats[feat]);
-  }
-  for(var feature in features) {
-    rules.choiceRules(rules, 'Feature', feature, features[feature]);
-  }
+  QuilvynUtils.checkAttrTable(feats, ['Require', 'Imply', 'Type']);
+  QuilvynUtils.checkAttrTable(features, ['Section', 'Note']);
 
   for(var feat in feats) {
     rules.choiceRules(rules, 'Feat', feat, feats[feat]);

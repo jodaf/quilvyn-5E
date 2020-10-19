@@ -81,10 +81,10 @@ SRD5E.CHOICES = [
 SRD5E.RANDOMIZABLE_ATTRIBUTES = [
   'charisma', 'constitution', 'dexterity', 'intelligence', 'strength', 'wisdom',
   'name', 'race', 'gender', 'alignment', 'background', 'deity', 'levels',
-  'features', 'feats', 'skills', 'languages', 'hitPoints', 'armor', 'shield',
-  'weapons', 'spells', 'tools', 'boosts'
+  'features', 'feats', 'skills', 'languages', 'hitPoints', 'armor', 'weapons',
+  'shield', 'spells', 'tools', 'boosts'
 ];
-SRD5E.VIEWERS = ['Collected Notes', ,'Compact', 'Standard'];
+SRD5E.VIEWERS = ['Collected Notes', 'Compact', 'Standard'];
 
 SRD5E.ABILITIES = {
   'Charisma':'',
@@ -269,6 +269,7 @@ SRD5E.FEATURES = {
   'Dragon Wings':'Section=ability Note="Fly at full speed"',
   'Dreadful Word':'Section=magic Note="<i>Confusion</i> 1/long rest"',
   'Druid Timeless Body':'Section=feature Note="Age at 1/10 rate"',
+  'Druidic':'Section=skill Note="Secret language known only by druids"',
   'Dueling Style':'Section=combat Note="+2 damage with single, one-hand weapon"',
   'Eldritch Invocations':'Section=magic Note="%V"',
   'Eldritch Master':'Section=magic Note="Regain spells from patron 1/long rest"',
@@ -1915,7 +1916,7 @@ SRD5E.CLASSES = {
       '"1:Tool Proficiency (Herbalism Kit)",' +
       '"1:Weapon Proficiency (Club/Dagger/Dart/Javelin/Mace/Quarterstaff/Scimitar/Sickle/Sling/Spear)",' +
       '"1:Tool Proficiency (Herbalism Kit)",' +
-      '"1:Ritual Casting",1:Spellcasting,"2:Wild Shape",' +
+      '1:Druidic,"1:Ritual Casting",1:Spellcasting,"2:Wild Shape",' +
       '"18:Druid Timeless Body","18:Beast Spells",20:Archdruid ' +
     'Selectables=' +
       '"2:Circle Of The Land (Arctic)",' +
@@ -1925,7 +1926,6 @@ SRD5E.CLASSES = {
       '"2:Circle Of The Land (Grassland)",' +
       '"2:Circle Of The Land (Mountain)",' +
       '"2:Circle Of The Land (Swamp)" ' +
-    'Languages=Druidic ' +
     'CasterLevelDivine=levels.Druid ' +
     'SpellAbility=wisdom ' +
     'SpellSlots=' +
@@ -2820,12 +2820,12 @@ SRD5E.backgroundRules = function(rules, name, equipment, features, languages) {
   rules.defineSheetElement(name + ' Features', 'Feats+', null, '; ');
   rules.defineChoice('extras', prefix + 'Features');
 
-  if(languages.length > 0)
+  if(languages.length > 0) {
     rules.defineRule('languageCount', backgroundLevel, '+', languages.length);
-
-  for(var i = 0; i < languages.length; i++) {
-    if(languages[i] != 'any')
-      rules.defineRule('languages.' + languages[i], backgroundLevel, '=', '1');
+    for(var i = 0; i < languages.length; i++) {
+      if(languages[i] != 'any')
+        rules.defineRule('languages.' + languages[i], backgroundLevel, '=', '1');
+    }
   }
 
   // TODO Do anything with equipment?
@@ -4587,12 +4587,12 @@ SRD5E.randomizeOneAttribute = function(attributes, attribute) {
     howMany = attrs.languageCount;
     choices = [];
     for(attr in this.getChoices('languages')) {
-      if(!attrs['languages.' + attr])
-        choices.push(attr);
-      else if(attributes['languages.' + attr])
+      if(attrs['languages.' + attr])
         howMany--;
+      else
+        choices.push(attr);
     }
-    pickAttrs(attributes, 'languages.', choices, howMany);
+    pickAttrs(attributes, 'languages.', choices, howMany, 1);
   } else if(attribute == 'levels') {
     var assignedLevels = QuilvynUtils.sumMatching(attributes, /^levels\./);
     if(!attributes.level) {
@@ -4657,7 +4657,6 @@ SRD5E.randomizeOneAttribute = function(attributes, attribute) {
       if((matchInfo = attr.match(pat)) == null ||
          !matchInfo[1].match(/\bChoose\b/i))
         continue;
-      console.log(attr);
       var pieces = matchInfo[1].split('/');
       for(i = 0; i < pieces.length; i++) {
         matchInfo = pieces[i].match(/^Choose\s+(\d+)\s+from\s+(.*)$/i)
@@ -4686,18 +4685,12 @@ SRD5E.randomizeOneAttribute = function(attributes, attribute) {
           choices.splice(k, 1);
         }
       }
-      console.log('Choose ' + count + ' from');
-      console.log(choices);
       pickAttrs(attributes, attribute + 'Chosen.', choices, count, 1);
     }
-    console.log('Choose ' +
-      (attrs[attribute.replace(/s$/, '') + 'ChoiceCount'] -
-       QuilvynUtils.sumMatching(attributes, '^' + attribute + 'Chosen')) + ' from');
-    console.log(QuilvynUtils.getKeys(group));
     pickAttrs(
       attributes, attribute + 'Chosen.', QuilvynUtils.getKeys(group),
       attrs[attribute.replace(/s$/, '') + 'ChoiceCount'] -
-      QuilvynUtils.sumMatching(attributes, '^' + attribute + 'Chosen')
+      QuilvynUtils.sumMatching(attributes, '^' + attribute + 'Chosen'), 1
     );
   } else if(attribute == 'spells') {
     var availableSpellsByGroupAndLevel = {};
@@ -4730,7 +4723,7 @@ SRD5E.randomizeOneAttribute = function(attributes, attribute) {
     attrs = this.applyRules(attributes);
     choices = [];
     for(attr in weapons) {
-      var category = QuilvynUtils.getAttrValue(armors[attr], 'Category');
+      var category = QuilvynUtils.getAttrValue(weapons[attr], 'Category');
       if(category == null)
         category = 0;
       else if((category + '').match(/simple/i))

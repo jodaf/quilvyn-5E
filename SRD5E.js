@@ -34,7 +34,7 @@ function SRD5E() {
   SRD5E.rules = rules;
 
   rules.defineChoice('choices', SRD5E.CHOICES);
-  rules.choiceEditorElements = SRD5E.choiceEditorElements();
+  rules.choiceEditorElements = SRD5E.choiceEditorElements;
   rules.choiceRules = SRD5E.choiceRules;
   rules.editorElements = SRD5E.initialEditorElements();
   rules.getFormats = SRD5E.getFormats;
@@ -4301,7 +4301,8 @@ SRD5E.choiceEditorElements = function(rules, type) {
   } else if(type == 'Deity')
     result.push(
       ['Alignment', 'Alignment', 'select-one', QuilvynUtils.getKeys(rules.getChoices('alignments'))],
-      ['Domain', 'Domains', 'text', [30]]
+      ['Domain', 'Domains', 'text', [30]],
+      ['Sphere', 'Sphere', 'text', [15]]
     );
   else if(type == 'Feat')
     result.push(
@@ -4350,7 +4351,7 @@ SRD5E.choiceEditorElements = function(rules, type) {
     );
   else if(type == 'Shield')
     result.push(
-      ['AC', 'Armor Class', 'select-one', oneToTen]
+      ['AC', 'Armor Class', 'select-one', [1, 2, 3, 4, 5]]
     );
   else if(type == 'Skill')
     result.push(

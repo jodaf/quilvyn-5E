@@ -18,7 +18,7 @@ Place, Suite 330, Boston, MA 02111-1307 USA.
 /*jshint esversion: 6 */
 "use strict";
 
-var SRD5E_VERSION = '2.0.1.0';
+var SRD5E_VERSION = '2.0.1.1';
 
 /*
  * This module loads the rules from the System Reference Document v5.  The
@@ -1568,7 +1568,6 @@ SRD5E.SPELLS = {
   'Message':
     'School=Transmutation ' +
     'Description="R120 Whispered conversation w/target for 1 rd"',
-  'Move Earth':'',
   'Meteor Swarm':
     'School=Evocation ' +
     'Description="R1 mi 40\' radius 20d6 fire + 20d6 bludgeoning (Dex half)"',
@@ -2597,7 +2596,7 @@ SRD5E.RACES = {
 };
 
 SRD5E.levelsExperience = [
-  0, .3, .9, 2.7, 6.5, 14, 23, 34, 48, 64,
+  0, 0.3, 0.9, 2.7, 6.5, 14, 23, 34, 48, 64,
   85, 100, 120, 140, 165, 195, 225, 265, 305, 355, 1000
 ];
 
@@ -2705,7 +2704,7 @@ SRD5E.combatRules = function(rules, armors, shields, weapons) {
 
 /* Defines the rules related to goodies included in character notes. */
 SRD5E.goodiesRules = function(rules) {
-  // TODO Move out of SRD35
+  // TBD Move out of SRD35
   SRD35.goodiesRules(rules);
 };
 
@@ -2935,7 +2934,7 @@ SRD5E.choiceRules = function(rules, type, name, attrs) {
   if(type != 'Feature') {
     type = type == 'Class' ? 'levels' :
     type = type == 'Deity' ? 'deities' :
-    (type.charAt(0).toLowerCase() + type.substring(1).replace(/ /g, '') + 's');
+    (type.charAt(0).toLowerCase() + type.substring(1).replace(/\s/g, '') + 's');
     rules.addChoice(type, name, attrs);
   }
 };
@@ -3037,7 +3036,7 @@ SRD5E.armorRules = function(rules, name, ac, bulky, maxDex, minStr, weight) {
 SRD5E.backgroundRules = function(rules, name, equipment, features, languages) {
 
   var prefix =
-    name.substring(0, 1).toLowerCase() + name.substring(1).replace(/ /g, '');
+    name.substring(0, 1).toLowerCase() + name.substring(1).replace(/\s/g, '');
   var backgroundLevel = prefix + 'Level';
 
   rules.defineRule(backgroundLevel,
@@ -3057,7 +3056,7 @@ SRD5E.backgroundRules = function(rules, name, equipment, features, languages) {
     }
   }
 
-  // TODO Do anything with equipment?
+  // TBD Do anything with equipment?
 
 };
 
@@ -3100,7 +3099,7 @@ SRD5E.classRules = function(
 
   var classLevel = 'levels.' + name;
   var prefix =
-    name.charAt(0).toLowerCase() + name.substring(1).replace(/ /g, '');
+    name.charAt(0).toLowerCase() + name.substring(1).replace(/\s/g, '');
 
   if(requires.length > 0)
     SRD5E.prerequisiteRules
@@ -3588,7 +3587,7 @@ SRD5E.featRules = function(rules, name, requires, implies, types) {
   }
 
   var prefix =
-    name.charAt(0).toLowerCase() + name.substring(1).replace(/ /g, '');
+    name.charAt(0).toLowerCase() + name.substring(1).replace(/\s/g, '');
 
   if(requires.length > 0)
     SRD5E.prerequisiteRules
@@ -3620,17 +3619,17 @@ SRD5E.featRulesExtra = function(rules, name) {
  * the two must have the same number of elements.
  */
 SRD5E.featureRules = function(rules, name, sections, notes) {
-  // TODO Move out of SRD35
+  // TBD Move out of SRD35
   SRD35.featureRules(rules, name, sections, notes);
   for(var i = 0; i < notes.length; i++) {
-    var matchInfo = notes[i].match(/^([A-Z]\w*) Proficiency \((.*)\)$/);
+    var matchInfo = notes[i].match(/^([A-Z]\w*)\sProficiency\s\((.*)\)$/);
     if(!matchInfo)
       continue;
     var group = matchInfo[1].toLowerCase();
     var note = sections[i] + 'Notes.' + name.charAt(0).toLowerCase() + name.substring(1).replaceAll(' ', '');
     var affected = matchInfo[2].split('/');
     for(var j = 0; j < affected.length; j++) {
-      matchInfo = affected[j].match(/^Choose (\d+)/);
+      matchInfo = affected[j].match(/^Choose\s(\d+)/);
       if(matchInfo)
         rules.defineRule(group + 'ChoiceCount', note, '+=', matchInfo[1]);
       else
@@ -3736,7 +3735,7 @@ SRD5E.raceRules = function(
 
   var matchInfo;
   var prefix =
-    name.charAt(0).toLowerCase() + name.substring(1).replace(/ /g, '');
+    name.charAt(0).toLowerCase() + name.substring(1).replace(/\s/g, '');
   var raceLevel = prefix + 'Level';
 
   rules.defineRule(raceLevel,
@@ -3859,12 +3858,12 @@ SRD5E.shieldRules = function(rules, name, ac) {
 
 };
 
-/*  
+/*
  * Defines in #rules# the rules associated with skill #name#, associated with
  * #ability# (one of 'strength', 'intelligence', etc.).
  * #classes# lists any classes that are proficient in this skill.
- */ 
-SRD5E.skillRules = function(rules, name, ability, classes) { 
+ */
+SRD5E.skillRules = function(rules, name, ability, classes) {
 
   if(!name) {
     console.log('Empty skill name');
@@ -3903,7 +3902,7 @@ SRD5E.skillRules = function(rules, name, ability, classes) {
 SRD5E.spellRules = function(
   rules, name, school, casterGroup, level, description
 ) {
-  // TODO Move out of SRD35
+  // TBD Move out of SRD35
   SRD35.spellRules(rules, name, school, casterGroup, level, description);
 };
 
@@ -3936,7 +3935,7 @@ SRD5E.weaponRules = function(rules, name, category, properties, damage, range) {
     console.log('Bad category "' + category + '" for weapon ' + name);
     return;
   }
-  var matchInfo = (damage + '').match(/^(((\d*d)?\d+)([-+]\d+)?)$/);
+  var matchInfo = (damage + '').match(/^(((\d*d)?\d+)([\-+]\d+)?)$/);
   if(!matchInfo) {
     console.log('Bad damage "' + damage + '" for weapon ' + name);
     return;
@@ -4043,7 +4042,7 @@ SRD5E.getFormats = function(rules, viewer) {
       result[format] = formats[format];
       if((matchInfo = format.match(/Notes\.(.*)$/)) != null) {
         var feature = matchInfo[1];
-        feature = feature.charAt(0).toUpperCase() + feature.substring(1).replace(/([A-Z\(])/g, ' $1');
+        feature = feature.charAt(0).toUpperCase() + feature.substring(1).replace(/([A-Z(])/g, ' $1');
         formats['features.' + feature] = formats[format];
       }
     }
@@ -4395,11 +4394,11 @@ SRD5E.choiceEditorElements = function(rules, type) {
 SRD5E.featureListRules = function(
   rules, features, setName, levelAttr, selectable
 ) {
-  // TODO Move out of SRD35
+  // TBD Move out of SRD35
   SRD35.featureListRules(rules, features, setName, levelAttr, selectable);
   for(var i = 0; i < features.length; i++) {
     var feature = features[i].replace(/^(.*\?\s*)?\d+:/, '');
-    var matchInfo = feature.match(/([A-Z]\w*) Proficiency \((.*)\)$/);
+    var matchInfo = feature.match(/([A-Z]\w*)\sProficiency\s\((.*)\)$/);
     if(!matchInfo)
       continue;
     var choices;
@@ -4428,7 +4427,7 @@ SRD5E.featureListRules = function(
  * in the #section# note #noteName#; zero if successful, non-zero otherwise.
  */
 SRD5E.prerequisiteRules = function(rules, section, noteName, attr, tests) {
-  // TODO Move out of SRD35
+  // TBD Move out of SRD35
   SRD35.prerequisiteRules(rules, section, noteName, attr, tests);
 };
 
@@ -4490,11 +4489,11 @@ SRD5E.spellSlotsRules = function(rules, name, ability, levelAttr, spellSlots) {
     var spellType = spellTypeAndLevel.replace(/\d+/, '');
     var spellLevel = spellTypeAndLevel.replace(/[A-Z]*/, '');
     var code = spellSlots[i].substring(spellTypeAndLevel.length + 1).
-               replace(/=/g, ' ? ').
+               replace(/\=/g, ' ? ').
                split(/;/).reverse().join(' : source >= ');
     code = 'source >= ' + code + ' : null';
     if(code.indexOf('source >= 1 ?') >= 0) {
-      code = code.replace(/source >= 1 ./, '').replace(/ : null/, '');
+      code = code.replace(/source\s>=\s1\s./, '').replace(/\s:\snull/, '');
     }
     rules.defineRule('spellSlots.' + spellTypeAndLevel, levelAttr, '+=', code);
     rules.defineRule('spellAttackModifier.' + spellType,
@@ -4519,7 +4518,7 @@ SRD5E.spellSlotsRules = function(rules, name, ability, levelAttr, spellSlots) {
  * the attribute validationNotes.#name#Allocation.
  */
 SRD5E.validAllocationRules = function(rules, name, available, allocated) {
-  // TODO Move out of SRD35
+  // TBD Move out of SRD35
   SRD35.validAllocationRules(rules, name, available, allocated);
 };
 
@@ -4714,7 +4713,7 @@ SRD5E.randomizeOneAttribute = function(attributes, attribute) {
     }
   } else if(attribute == 'deity') {
     /* Pick a deity that's no more than one alignment position removed. */
-    var aliInfo = attributes.alignment.match(/^([CLN]).* ([GEN])/);
+    var aliInfo = attributes.alignment.match(/^([CLN]).*\s([GEN])/);
     var aliPat;
     if(aliInfo == null) /* Neutral character */
       aliPat = '\\((N[ \\)]|N.|.N)';
@@ -4791,7 +4790,7 @@ SRD5E.randomizeOneAttribute = function(attributes, attribute) {
         var validate = this.applyRules(attributes);
         for(pick in picks) {
           var name = pick.charAt(0).toLowerCase() +
-                     pick.substring(1).replace(/ /g, '').
+                     pick.substring(1).replace(/\s/g, '').
                      replace(/\(/g, '\\(').replace(/\)/g, '\\)');
           if(QuilvynUtils.sumMatching
                (validate,
@@ -5023,12 +5022,12 @@ SRD5E.makeValid = function(attributes) {
 
       var problemSource = matchInfo[2];
       var problemCategory = matchInfo[3].substring(0, 1).toLowerCase() +
-                            matchInfo[3].substring(1).replace(/ /g, '');
+                            matchInfo[3].substring(1).replace(/\s/g, '');
       if(problemCategory == 'features') {
         problemCategory = 'selectableFeatures';
       }
       var requirements =
-        notes[attr].replace(/^(Implies|Requires) /, '').split(/\s*\/\s*/);
+        notes[attr].replace(/^(Implies|Requires)\s/, '').split(/\s*\/\s*/);
 
       for(var i = 0; i < requirements.length; i++) {
 
@@ -5056,7 +5055,7 @@ SRD5E.makeValid = function(attributes) {
           toFixName = toFixName.substring(4).replace(/^\s+/, '');
         }
         var toFixAttr = toFixName.substring(0, 1).toLowerCase() +
-                        toFixName.substring(1).replace(/ /g, '');
+                        toFixName.substring(1).replace(/\s/g, '');
 
         // See if this attr has a set of choices (e.g., race) or a category
         // attribute (e.g., a feat)

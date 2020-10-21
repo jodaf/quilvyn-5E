@@ -498,9 +498,7 @@ PHB5E.FEATURES = {
   'Abjure Enemy':
     'Section=magic Note="R60\' Channel Divinity for target halted 1 min (Wis half)"',
   'Acolyte Of Nature':
-    'Section=magic Note="Additional Druid cantrip"',
-  'Acolyte Of Nature':
-    'Section=skill Note="Skill Proficiency (Choose 1 from any)"',
+    'Section=magic,skill Note="Additional Druid cantrip","Skill Proficiency (Choose 1 from any)"',
   'Alter Memories':
     'Section=magic Note="Target unaware charmed, forget %V hrs (Int neg)"',
   'Arcane Charge':
@@ -583,12 +581,6 @@ PHB5E.FEATURES = {
     'Section=combat Note="Add Superiority die to damage, ally Adv attack same foe for 1 turn"',
   'Divination Savant':
     'Section=magic Note="Write divination spells for half cost"',
-  'Divine Strike':
-    'Section=combat Note="+%Vd8 HP 1/turn"',
-  'Divine Strike':
-    'Section=combat Note="+%Vd8 HP 1/turn"',
-  'Divine Strike':
-    'Section=combat Note="+%Vd8 HP 1/turn"',
   'Divine Strike':
     'Section=combat Note="+%Vd8 HP 1/turn"',
   'Durable Summons':
@@ -705,8 +697,6 @@ PHB5E.FEATURES = {
     'Section=combat Note="Reduce damage from foe hit by Superiority die + %V"',
   'Portent':
     'Section=magic Note="Replace self or other roll %V/long rest"',
-  'Potent Spellcasting':
-    'Section=magic Note="+%V Cleric cantrip damage"',
   'Potent Spellcasting':
     'Section=magic Note="+%V Cleric cantrip damage"',
   'Precision Attack':
@@ -1666,7 +1656,7 @@ PHB5E.featRulesExtra = function(rules, name) {
       'Riposte':'', 'Sweeping Attack':'', 'Trip Attack':''
     }) {
       rules.defineRule(
-        'validationNotes.fighter-' + feature.replace(/ /g, '') + 'SelectableFeature',
+        'validationNotes.fighter-' + feature.replace(/\s/g, '') + 'SelectableFeature',
         'features.Martial Adept', '^', '0'
       );
     }
@@ -1690,7 +1680,7 @@ PHB5E.featRulesExtra = function(rules, name) {
     rules.defineRule('abilityBoosts', 'abilityNotes.weaponMaster', '+=', '1');
     rules.defineRule
       ('weaponChoiceCount', 'combatNotes.weaponMaster', '+=', '4');
-    // TODO How can user specify the choice of prof weapons?
+    // TBD How can user specify the choice of prof weapons?
   }
 
 };

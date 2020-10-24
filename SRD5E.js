@@ -18,7 +18,7 @@ Place, Suite 330, Boston, MA 02111-1307 USA.
 /*jshint esversion: 6 */
 "use strict";
 
-var SRD5E_VERSION = '2.0.1.1';
+var SRD5E_VERSION = '2.1.1.0';
 
 /*
  * This module loads the rules from the System Reference Document v5.  The
@@ -1971,7 +1971,7 @@ SRD5E.TOOLS = {
   'Vehicle (Water)':'Type=General'
 };
 SRD5E.WEAPONS = {
-  'Battleaxe':'Category=2 Property=Ve Damage=d10',
+  'Battleaxe':'Category=2 Property=Ve Damage=d8',
   'Blowgun':'Category=2 Property=R Damage=d1 Range=25',
   'Club':'Category=1 Property=Li Damage=d4',
   'Dagger':'Category=1 Property=Li Damage=d4 Range=20',
@@ -1990,7 +1990,7 @@ SRD5E.WEAPONS = {
   'Light Crossbow':'Category=1 Property=R Damage=d8 Range=80',
   'Light Hammer':'Category=1 Property=Li Damage=d4 Range=20',
   'Longbow':'Category=2 Property=R Damage=d8 Range=150',
-  'Longsword':'Category=2 Property=Ve Damage=d10',
+  'Longsword':'Category=2 Property=Ve Damage=d8',
   'Mace':'Category=1 Property=1h Damage=d6',
   'Maul':'Category=2 Property=2h Damage=2d6',
   'Morningstar':'Category=2 Property=1h Damage=d8',
@@ -2003,8 +2003,8 @@ SRD5E.WEAPONS = {
   'Shortsword':'Category=2 Property=Li Damage=d6',
   'Sickle':'Category=1 Property=Li Damage=d4',
   'Sling':'Category=1 Property=R Damage=d4 Range=30',
-  'Spear':'Category=1 Property=Ve Damage=d8 Range=20',
-  'Trident':'Category=2 Property=Ve Damage=d8 Range=20',
+  'Spear':'Category=1 Property=Ve Damage=d6 Range=20',
+  'Trident':'Category=2 Property=Ve Damage=d6 Range=20',
   'Unarmed':'Category=0 Property=Un Damage=d1',
   'War Pick':'Category=2 Property=1h Damage=d8',
   'Warhammer':'Category=2 Property=Ve Damage=d8',
@@ -2595,10 +2595,16 @@ SRD5E.RACES = {
       '"Tiefling2:Darkness"'
 };
 
-SRD5E.levelsExperience = [
+SRD5E.LEVELS_EXPERIENCE = [
   0, 0.3, 0.9, 2.7, 6.5, 14, 23, 34, 48, 64,
   85, 100, 120, 140, 165, 195, 225, 265, 305, 355, 1000
 ];
+// Extended from SRD5E weapons table based on SRD35 damage for large creatures
+SRD5E.VERSATILE_WEAPON_DAMAGE = {
+  '1d0':'1d0', '1d1':'1d1', '1d2':'1d3', '1d3':'1d4', '1d4':'1d6', '1d6':'1d8',
+  '1d8':'1d10', '1d10':'1d12', '1d12':'3d6', '2d4':'2d6', '2d6':'3d6',
+  '2d8':'3d8', '2d10':'4d8'
+};
 
 /* Defines the rules related to character abilities. */
 SRD5E.abilityRules = function(rules) {
@@ -2752,9 +2758,9 @@ SRD5E.identityRules = function(
     'casterLevelDivine', '+=', null
   );
   rules.defineRule
-    ('experienceNeeded', 'level', '=', 'SRD5E.levelsExperience[source] * 1000');
+    ('experienceNeeded', 'level', '=', 'SRD5E.LEVELS_EXPERIENCE[source] * 1000');
   rules.defineRule('level',
-    'experience', '=', 'SRD5E.levelsExperience.findIndex(item => item * 1000 > source)'
+    'experience', '=', 'SRD5E.LEVELS_EXPERIENCE.findIndex(item => item * 1000 > source)'
   );
   SRD5E.validAllocationRules(rules, 'level', 'level', 'Sum "^levels\\."');
 
@@ -3375,7 +3381,7 @@ SRD5E.classRulesExtra = function(rules, name) {
       'armor', '?', 'source == "None"',
       'combatNotes.martialArts', '=', '"1d" + source'
     );
-    for(var ability in SRD35.ABILITIES) {
+    for(var ability in SRD5E.ABILITIES) {
       rules.defineRule
         ('saveProficiency.' + ability, 'saveNotes.diamondSoul', '=', '1');
     }
@@ -3997,7 +4003,6 @@ SRD5E.weaponRules = function(rules, name, category, properties, damage, range) {
     weaponName, '=', '0',
     'damageBonus.' + (isRanged ? 'Ranged' : 'Melee'), '+', null,
     'combatNotes.' + (isRanged ? 'dexterity' : 'strength') + 'DamageAdjustment', '+', null,
-    'weaponProficiencyBonus.' + name, '+', null,
     'weaponDamageAdjustment.' + name, '+', null
   );
   if(!range) {
@@ -4009,6 +4014,10 @@ SRD5E.weaponRules = function(rules, name, category, properties, damage, range) {
     'attackBonus.' + name, '=', 'source >= 0 ? "+" + source : source'
   );
   rules.defineRule(weaponName + '.2', weaponName, '=', '"' + damage + '"');
+  if(properties.includes('Ve') || properties.includes('versatile'))
+    rules.defineRule(weaponName + '.2',
+      'shield', '=', 'source == "None" ? SRD5E.VERSATILE_WEAPON_DAMAGE["' + damage + '"] : null'
+    );
   rules.defineRule(weaponName + '.3',
     'damageBonus.' + name, '=', 'source > 0 ? "+" + source : source == 0 ? "" : source'
   );
@@ -4025,6 +4034,10 @@ SRD5E.weaponRules = function(rules, name, category, properties, damage, range) {
   if(is2h)
     rules.defineRule
       ('features.Two-Handed Weapon With Shield', weaponName, '=', '1');
+
+  rules.defineRule('weaponProficiency.' + name,
+    'weaponsChosen.' + name, '=', 'source ? 1 : null'
+  );
 
 };
 
@@ -4377,7 +4390,7 @@ SRD5E.choiceEditorElements = function(rules, type) {
     result.push(
       ['Category', 'Category', 'select-one', ['Simple', 'Martial']],
       ['Property', 'Property', 'select-one', ['Unarmed', 'Light', 'One-Handed', 'Two-Handed', 'Ranged']],
-      ['Damage', 'Damage', 'select-one', QuilvynUtils.getKeys(SRD35.LARGE_DAMAGE)],
+      ['Damage', 'Damage', 'select-one', QuilvynUtils.getKeys(SRD5E.VERSATILE_WEAPON_DAMAGE)],
       ['Range', 'Range in Feet', 'select-one', zeroToOneFifty]
     );
   }
@@ -4394,30 +4407,27 @@ SRD5E.choiceEditorElements = function(rules, type) {
 SRD5E.featureListRules = function(
   rules, features, setName, levelAttr, selectable
 ) {
-  // TBD Move out of SRD35
-  SRD35.featureListRules(rules, features, setName, levelAttr, selectable);
+  QuilvynRules.featureListRules
+    (rules, features, setName, levelAttr, selectable);
+  setName = setName.toLowerCase() + 'Features';
   for(var i = 0; i < features.length; i++) {
     var feature = features[i].replace(/^(.*\?\s*)?\d+:/, '');
     var matchInfo = feature.match(/([A-Z]\w*)\sProficiency\s\((.*)\)$/);
     if(!matchInfo)
       continue;
-    var choices;
-    var choiceCount = 0;
     var group = matchInfo[1].toLowerCase();
     var elements = matchInfo[2].split('/');
     for(var j = 0; j < elements.length; j++) {
       matchInfo = elements[j].match(/^Choose\s+(\d+)\s+from/i);
       if(matchInfo) {
-        choiceCount += matchInfo[1] * 1;
+        rules.defineRule
+          (group + 'ChoiceCount', setName + '.' + feature, '+=', matchInfo[1]);
       } else {
         rules.defineRule(group + 'Proficiency.' + elements[j],
-          'features.' + feature, '=', '1'
+          setName + '.' + feature, '=', '1'
         );
       }
     }
-    if(choiceCount > 0)
-      rules.defineRule
-        (group + 'ChoiceCount', 'features.' + feature, '+=', choiceCount);
   }
 };
 
@@ -4427,8 +4437,7 @@ SRD5E.featureListRules = function(
  * in the #section# note #noteName#; zero if successful, non-zero otherwise.
  */
 SRD5E.prerequisiteRules = function(rules, section, noteName, attr, tests) {
-  // TBD Move out of SRD35
-  SRD35.prerequisiteRules(rules, section, noteName, attr, tests);
+  QuilvynRules.prerequisiteRules(rules, section, noteName, attr, tests);
 };
 
 /*
@@ -4518,8 +4527,7 @@ SRD5E.spellSlotsRules = function(rules, name, ability, levelAttr, spellSlots) {
  * the attribute validationNotes.#name#Allocation.
  */
 SRD5E.validAllocationRules = function(rules, name, available, allocated) {
-  // TBD Move out of SRD35
-  SRD35.validAllocationRules(rules, name, available, allocated);
+  QuilvynRules.validAllocationRules(rules, name, available, allocated);
 };
 
 /* Returns the elements in a basic 5E character editor. */
@@ -4560,6 +4568,7 @@ SRD5E.initialEditorElements = function() {
     ['armor', 'Armor', 'select-one', 'armors'],
     ['shield', 'Shield', 'select-one', 'shields'],
     ['weapons', 'Weapons', 'bag', 'weapons'],
+    ['weaponsChosen', 'Proficiency', 'set', 'weapons'],
     ['spells', 'Spells', 'fset', 'spells'],
     ['notes', 'Notes', 'textarea', [40,10]],
     ['hiddenNotes', 'Hidden Notes', 'textarea', [40,10]]
@@ -4848,8 +4857,8 @@ SRD5E.randomizeOneAttribute = function(attributes, attribute) {
         attributes.level =
           9 - Math.floor(Math.log(QuilvynUtils.random(2, 511)) / Math.log(2));
     }
-    var max = SRD5E.levelsExperience[attributes.level] * 1000 - 1;
-    var min = SRD5E.levelsExperience[attributes.level - 1] * 1000;
+    var max = SRD5E.LEVELS_EXPERIENCE[attributes.level] * 1000 - 1;
+    var min = SRD5E.LEVELS_EXPERIENCE[attributes.level - 1] * 1000;
     if(!attributes.experience || attributes.experience < min)
       attributes.experience = QuilvynUtils.random(min, max);
     choices = QuilvynUtils.getKeys(this.getChoices('levels'));

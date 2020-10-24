@@ -1005,6 +1005,7 @@ PHB5E.PATHS = {
       '"15:Arcane Charge" ' +
     'SpellAbility=intelligence ' +
     'SpellSlots=' +
+      'W0:3=2;10=3,' +
       'W1:3=2;4=3;7=4,' +
       'W2:7=2;10=3,' +
       'W3:13=2;16=3,' +
@@ -1680,7 +1681,6 @@ PHB5E.featRulesExtra = function(rules, name) {
     rules.defineRule('abilityBoosts', 'abilityNotes.weaponMaster', '+=', '1');
     rules.defineRule
       ('weaponChoiceCount', 'combatNotes.weaponMaster', '+=', '4');
-    // TBD How can user specify the choice of prof weapons?
   }
 
 };

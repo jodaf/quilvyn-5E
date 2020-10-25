@@ -57,7 +57,7 @@ function SRD5E() {
   SRD5E.magicRules(rules, SRD5E.SCHOOLS, {});
   SRD5E.identityRules(
     rules, SRD5E.ALIGNMENTS, SRD5E.BACKGROUNDS, SRD5E.CLASSES, SRD5E.DEITIES,
-    SRD5E.GENDERS, SRD5E.PATHS, SRD5E.RACES
+    SRD5E.PATHS, SRD5E.RACES
   );
   SRD5E.talentRules
     (rules, SRD5E.FEATS, SRD5E.FEATURES, SRD5E.LANGUAGES, SRD5E.SKILLS,
@@ -71,8 +71,8 @@ function SRD5E() {
 /* List of items handled by choiceRules method. */
 SRD5E.CHOICES = [
   'Alignment', 'Armor', 'Background', 'Class', 'Deity', 'Feat', 'Feature',
-  'Gender', 'Language', 'Path', 'Race', 'School', 'Shield', 'Skill', 'Spell',
-  'Tool', 'Weapon'
+  'Language', 'Path', 'Race', 'School', 'Shield', 'Skill', 'Spell', 'Tool',
+  'Weapon'
 ];
 /*
  * List of items handled by randomizeOneAttribute method. The order handles
@@ -677,10 +677,6 @@ SRD5E.FEATURES = {
     'Section=sanity Note="Disadv Dex, Str rolls, cannot cast spells"',
   'Two-Handed Weapon With Shield':
     'Section=validation Note="Shields cannot be used with two-handed weapons"'
-};
-SRD5E.GENDERS = {
-  'Female':'',
-  'Male':''
 };
 SRD5E.LANGUAGES = {
   'Abyssal':'',
@@ -2716,7 +2712,7 @@ SRD5E.goodiesRules = function(rules) {
 
 /* Defines rules related to basic character identity. */
 SRD5E.identityRules = function(
-  rules, alignments, backgrounds, classes, deities, genders, paths, races
+  rules, alignments, backgrounds, classes, deities, paths, races
 ) {
 
   QuilvynUtils.checkAttrTable(alignments, []);
@@ -2725,7 +2721,6 @@ SRD5E.identityRules = function(
   QuilvynUtils.checkAttrTable
     (classes, ['Require', 'HitDie', 'Features', 'Selectables', 'Languages', 'CasterLevelArcane', 'CasterLevelDivine', 'SpellAbility', 'SpellSlots', 'Spells']);
   QuilvynUtils.checkAttrTable(deities, ['Alignment', 'Domain', 'Sphere']);
-  QuilvynUtils.checkAttrTable(genders, []);
   QuilvynUtils.checkAttrTable
     (paths, ['Features', 'Selectables', 'Group', 'Level', 'SpellAbility', 'SpellSlots', 'Spells']);
   QuilvynUtils.checkAttrTable
@@ -2742,9 +2737,6 @@ SRD5E.identityRules = function(
   }
   for(var deity in deities) {
     rules.choiceRules(rules, 'Deity', deity, deities[deity]);
-  }
-  for(var gender in genders) {
-    rules.choiceRules(rules, 'Gender', gender, genders[gender]);
   }
   for(var path in paths) {
     rules.choiceRules(rules, 'Path', path, paths[path]);
@@ -2875,8 +2867,6 @@ SRD5E.choiceRules = function(rules, type, name, attrs) {
       QuilvynUtils.getAttrValueArray(attrs, 'Section'),
       QuilvynUtils.getAttrValueArray(attrs, 'Note')
     );
-  else if(type == 'Gender')
-    SRD5E.genderRules(rules, name);
   else if(type == 'Language')
     SRD5E.languageRules(rules, name);
   else if(type == 'Path')
@@ -3335,7 +3325,7 @@ SRD5E.classRulesExtra = function(rules, name) {
       'levels.Monk', '+=', 'source < 5 ? null : 1'
     );
     rules.defineRule('combatNotes.martialArts',
-      'levels.Monk', '=', 'Math.floor((source + 13)/ 3)'
+      'levels.Monk', '=', '4 + Math.floor(source / 5) * 2'
     );
     rules.defineRule('combatNotes.martialArts.1',
       'monkFeatures.Martial Arts', '?', null,
@@ -3367,15 +3357,11 @@ SRD5E.classRulesExtra = function(rules, name) {
     rules.defineRule('magicNotes.tranquility', 'kiSaveDC', '=', null);
     rules.defineRule('monkMeleeAttackBonus',
       'armor', '?', 'source == "None"',
-      'dexterityModifier', '=', null,
-      'strengthModifier', '+', '-source',
-      '', '^', '0'
+      'combatNotes.martialArts.1', '=', null
     );
     rules.defineRule('monkMeleeDamageBonus',
       'armor', '?', 'source == "None"',
-      'dexterityModifier', '=', null,
-      'strengthModifier', '+', '-source',
-      '', '^', '0'
+      'combatNotes.martialArts.1', '=', null
     );
     rules.defineRule('monkMeleeDieBonus',
       'armor', '?', 'source == "None"',
@@ -3642,15 +3628,6 @@ SRD5E.featureRules = function(rules, name, sections, notes) {
         rules.defineRule(group + 'Proficiency.' + affected[j], note, '=', '1');
     }
   }
-};
-
-/* Defines in #rules# the rules associated with gender #name#. */
-SRD5E.genderRules = function(rules, name) {
-  if(!name) {
-    console.log('Empty gender name');
-    return;
-  }
-  // No rules pertain to gender
 };
 
 /* Defines in #rules# the rules associated with language #name#. */
@@ -4329,11 +4306,7 @@ SRD5E.choiceEditorElements = function(rules, type) {
       ['Section', 'Section', 'select-one', sections],
       ['Note', 'Note', 'text', [60]]
     );
-  } else if(type == 'Gender')
-    result.push(
-      // empty
-    );
-  else if(type == 'Language')
+  } else if(type == 'Language')
     result.push(
       // empty
     );
@@ -4409,7 +4382,7 @@ SRD5E.featureListRules = function(
 ) {
   QuilvynRules.featureListRules
     (rules, features, setName, levelAttr, selectable);
-  setName = setName.toLowerCase() + 'Features';
+  setName = setName.charAt(0).toLowerCase() + setName.substring(1).replace(/\s/g, '') + 'Features';
   for(var i = 0; i < features.length; i++) {
     var feature = features[i].replace(/^(.*\?\s*)?\d+:/, '');
     var matchInfo = feature.match(/([A-Z]\w*)\sProficiency\s\((.*)\)$/);
@@ -4556,7 +4529,7 @@ SRD5E.initialEditorElements = function() {
     ['charismaAdjust', '', 'text', [3]],
     ['player', 'Player', 'text', [20]],
     ['alignment', 'Alignment', 'select-one', 'alignments'],
-    ['gender', 'Gender', 'select-one', 'genders'],
+    ['gender', 'Gender', 'text', [10]],
     ['deity', 'Deity', 'select-one', 'deities'],
     ['origin', 'Origin', 'text', [20]],
     ['feats', 'Feats', 'set', 'feats'],
@@ -4819,6 +4792,8 @@ SRD5E.randomizeOneAttribute = function(attributes, attribute) {
       attributes.notes =
         (notes != null ? attributes.notes + '\n' : '') + debug.join('\n');
     }
+  } else if(attribute == 'gender') {
+    attributes['gender'] = QuilvynUtils.random(0, 99) < 50 ? 'Female' : 'Male';
   } else if(attribute == 'hitPoints') {
     attributes.hitPoints = 0;
     for(var clas in this.getChoices('levels')) {

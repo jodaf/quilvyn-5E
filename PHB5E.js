@@ -38,9 +38,7 @@ function PHB5E() {
     SRD5E.rules, PHB5E.BACKGROUNDS, PHB5E.CLASSES, PHB5E.DEITIES, PHB5E.PATHS,
     PHB5E.RACES
   );
-  PHB5E.talentRules(
-    SRD5E.rules, PHB5E.FEATS, PHB5E.FEATURES
-  );
+  PHB5E.talentRules(SRD5E.rules, PHB5E.FEATS, PHB5E.FEATURES);
 
 }
 
@@ -486,19 +484,24 @@ PHB5E.FEATURES = {
   "Commander's Strike":
     'Section=combat Note="Add Superiority die to delegated attack"',
   "Nature's Wrath":
-    'Section=magic Note="R10\' Channel Divinity for vines ensnare foe (Dex or Str neg)"',
+    'Section=magic ' +
+    'Note="R10\' Channel Divinity for vines ensnare foe (Dex or Str neg)"',
   "Ranger's Companion":
     'Section=feature Note="Companion beast obeys commands"',
   "Transmuter's Stone":
-    'Section=magic Note="Stone gives 60\' darkvision, +10 speed, proficiency in constitution, or resist energy"',
+    'Section=magic ' +
+    'Note="Stone gives 60\' darkvision, +10 speed, proficiency in constitution, or resist energy"',
   "War God's Blessing":
     'Section=magic Note="R30\' Channel Divinity reaction for ally +10 attack"',
   'Abjuration Savant':
     'Section=magic Note="Write abjuration spells for half cost"',
   'Abjure Enemy':
-    'Section=magic Note="R60\' Channel Divinity for target halted 1 min (Wis half)"',
+    'Section=magic ' +
+    'Note="R60\' Channel Divinity for target halted 1 min (Wis half)"',
   'Acolyte Of Nature':
-    'Section=magic,skill Note="Additional Druid cantrip","Skill Proficiency (Choose 1 from any)"',
+    'Section=magic,skill ' +
+    'Note="Additional Druid cantrip",' +
+         '"Skill Proficiency (Choose 1 from any)"',
   'Alter Memories':
     'Section=magic Note="Target unaware charmed, forget %V hrs (Int neg)"',
   'Arcane Charge':
@@ -506,7 +509,8 @@ PHB5E.FEATURES = {
   'Arcane Ward':
     'Section=magic Note="Abjuration casting creates %V HP shield"',
   'Aspect Of The Bear':
-    'Section=ability Note="Dbl load and lift, Adv push, pull, lift, break Str checks"',
+    'Section=ability ' +
+    'Note="Dbl load and lift, Adv push, pull, lift, break Str checks"',
   'Aspect Of The Eagle':
     'Section=skill Note="See clearly 1 mi, no dim light Perception Disadv"',
   'Aspect Of The Wolf':
@@ -530,15 +534,18 @@ PHB5E.FEATURES = {
   'Beguiling Defenses':
     'Section=save Note="Immune charm, reflect 1 min (Wis neg)"',
   'Bend Luck':
-    'Section=magic Note="Spend 2 Sorcery Points to add or subtract 1d4 from target roll"',
+    'Section=magic ' +
+    'Note="Spend 2 Sorcery Points to add or subtract 1d4 from target roll"',
   'Benign Transposition':
-    'Section=magic Note="R30\' Teleport or swap willing creature 1/long rest or cast"',
+    'Section=magic ' +
+    'Note="R30\' Teleport or swap willing creature 1/long rest or cast"',
   'Bestial Fury':
     'Section=feature Note="Companion 2 attacks/rd"',
   'Blessing Of The Trickster':
     'Section=magic Note="Touched Adv Stealth for 1 hr"',
   'Blessings Of Knowledge':
-    'Section=skill Note="+2 Language Count/Skill Proficiency (Choose 2 from any)"',
+    'Section=skill ' +
+    'Note="+2 Language Count/Skill Proficiency (Choose 2 from any)"',
   'Breath Of Winter':
     'Section=magic Note="Spend 6 Ki to cast <i>Cone Of Cold</i>"',
   'Charm Animals And Plants':
@@ -548,37 +555,46 @@ PHB5E.FEATURES = {
   'Clench Of The North Wind':
     'Section=magic Note="Spend 3 Ki to cast <i>Hold Person</i>"',
   'Cloak Of Shadows':
-    'Section=magic Note="Invisible in dim and unlit areas until attack or cast"',
+    'Section=magic ' +
+    'Note="Invisible in dim and unlit areas until attack or cast"',
   'Cloak Of The Trickster':
     'Section=magic Note="Channel Divinity for invisible 1 turn"',
   'Combat Inspiration':
-    'Section=combat Note="Ally use Bardic Inspiration die to boost damage or AC"',
+    'Section=combat ' +
+    'Note="Ally use Bardic Inspiration die to boost damage or AC"',
   'Combat Wild Shape':
-    'Section=combat Note="Wild Shape as bonus action, use spell slot to regain (slot level)d8 HP"',
+    'Section=combat ' +
+    'Note="Wild Shape as bonus action, use spell slot to regain (slot level)d8 HP"',
   'Command Undead':
-    'Section=magic Note="R60\' Take control of undead target (Cha neg (Adv intelligent undead))"',
+    'Section=magic ' +
+    'Note="R60\' Take control of undead target (Cha neg (Adv intelligent undead))"',
   'Conjuration Savant':
     'Section=magic Note="Write conjuration spells for half cost"',
   'Controlled Chaos':
     'Section=magic Note="Re-roll wild magic surge effect"',
   'Corona Of Light':
-    'Section=magic Note="60\' light, foe Disadv on fire, radiant spells for 1 min"',
+    'Section=magic ' +
+    'Note="60\' light, foe Disadv on fire, radiant spells for 1 min"',
   'Create Thrall':
     'Section=magic Note="Touch charms incapacitated humanoid"',
   'Dampen Elements':
-    'Section=magic Note="R30\' Reaction to grant resistance to acid, cold, fire, lightning, or thunder"',
+    'Section=magic ' +
+    'Note="R30\' Reaction to grant resistance to acid, cold, fire, lightning, or thunder"',
   'Dark Delirium':
-    'Section=magic Note="R60\' Target charm or fright 1 min, then unaware surroundings (Wis neg) 1/long rest"',
+    'Section=magic ' +
+    'Note="R60\' Target charm or fright 1 min, then unaware surroundings (Wis neg) 1/long rest"',
   'Death Strike':
     'Section=combat Note="Dbl damage on surprise hit (DC %V Con neg)"',
   'Destructive Wrath':
     'Section=magic Note="Channel Divinity for max thunder, lightning damage"',
   'Disarming Attack':
-    'Section=combat Note="Add Superiority die to damage, foe drops item (Str neg)"',
+    'Section=combat ' +
+    'Note="Add Superiority die to damage, foe drops item (Str neg)"',
   'Disciple Of The Elements':
     'Section=magic Note="%V elemental disciplines"',
   'Distracting Strike':
-    'Section=combat Note="Add Superiority die to damage, ally Adv attack same foe for 1 turn"',
+    'Section=combat ' +
+    'Note="Add Superiority die to damage, ally Adv attack same foe for 1 turn"',
   'Divination Savant':
     'Section=magic Note="Write divination spells for half cost"',
   'Divine Strike':
@@ -586,11 +602,13 @@ PHB5E.FEATURES = {
   'Durable Summons':
     'Section=magic Note="Summoned creatures +30 HP"',
   'Eagle Totem Spirit':
-    'Section=combat Note="Foes Disadv OA, Dash as bonus action when raging (heavy armor neg)"',
+    'Section=combat ' +
+    'Note="Foes Disadv OA, Dash as bonus action when raging (heavy armor neg)"',
   'Eagle Totemic Attunement':
     'Section=ability Note="Fly for short bursts when raging"',
   'Elder Champion':
-    'Section=magic Note="Transform, regain 10 HP/turn, cast as bonus action, foes w/in 10\' save Disadv 1/long rest"',
+    'Section=magic ' +
+    'Note="Transform, regain 10 HP/turn, cast as bonus action, foes w/in 10\' save Disadv 1/long rest"',
   'Eldritch Strike':
     'Section=combat Note="Foe Disadv vs. your spells for 1 turn after you hit"',
   'Elemental Attunement':
@@ -600,35 +618,42 @@ PHB5E.FEATURES = {
   'Enchantment Savant':
     'Section=magic Note="Write enchantment spells for half cost"',
   'Entropic World':
-    'Section=combat Note="Foe Disadv attack, miss gives you Adv next attack 1/short rest"',
+    'Section=combat ' +
+    'Note="Foe Disadv attack, miss gives you Adv next attack 1/short rest"',
   'Eternal Mountain Defense':
     'Section=magic Note="Spend 5 Ki to cast self <i>Stoneskin</i>"',
   'Evasive Footwork':
     'Section=combat Note="Add Superiority die to AC during move"',
   'Exceptional Training':
-    'Section=feature Note="Companion can Dash, Disengage, Help instead of attack"',
+    'Section=feature ' +
+    'Note="Companion can Dash, Disengage, Help instead of attack"',
   'Expert Divination':
     'Section=magic Note="Regain lower spell slot when cast divination spell"',
   'Fangs Of The Fire Snake':
     'Section=magic Note="Spend 1 Ki to have unarmed attack extend 10\', +1d10 HP fire"',
   'Feinting Attack':
-    'Section=combat Note="Adv next attack adjacent foe, add Superiority die to damage"',
+    'Section=combat ' +
+    'Note="Adv next attack adjacent foe, add Superiority die to damage"',
   'Fey Presence':
-    'Section=magic Note="R10\' All creatures charm or fright 1 turn (Wis neg) 1/short rest"',
+    'Section=magic ' +
+    'Note="R10\' All creatures charm or fright 1 turn (Wis neg) 1/short rest"',
   'Fist Of Four Thunders':
     'Section=magic Note="Spend 2 Ki to cast <i>Thunderwave</i>"',
   'Fist Of Unbroken Air':
-    'Section=magic Note="R30\' Spend 2 Ki to create air blast 3d10 HP, push 20\' and knock prone (Str half)"',
+    'Section=magic ' +
+    'Note="R30\' Spend 2 Ki to create air blast 3d10 HP, push 20\' and knock prone (Str half)"',
   'Flames Of The Phoenix':
     'Section=magic Note="Spend 4 Ki to cast <i>Fireball</i>"',
   'Focused Conjuration':
     'Section=magic Note="Damage cannot break conjuration concentration"',
   'Goading Attack':
-    'Section=combat Note="Add Superiority die to damage, foe Disadv attack others for 1 turn (Wis neg)"',
+    'Section=combat ' +
+    'Note="Add Superiority die to damage, foe Disadv attack others for 1 turn (Wis neg)"',
   'Gong Of The Summit':
     'Section=magic Note="Spend 3 Ki to cast <i>Shatter</i>"',
   'Grim Harvest':
-    'Section=magic Note="Regain 2x spell level (3x necromantic) when spell kills"',
+    'Section=magic ' +
+    'Note="Regain 2x spell level (3x necromantic) when spell kills"',
   'Guided Strike':
     'Section=combat Note="Channel Divinity for +10 attack"',
   'Hypnotic Gaze':
@@ -652,7 +677,8 @@ PHB5E.FEATURES = {
   'Infiltration Expertise':
     'Section=feature Note="Forge and adopt different identity"',
   'Instinctive Charm':
-    'Section=magic Note="Redirect self foe attack to closest creature 1/long rest (Wis neg)"',
+    'Section=magic ' +
+    'Note="Redirect self foe attack to closest creature 1/long rest (Wis neg)"',
   'Inured To Undeath':
     'Section=save Note="Resist necrotic, immune max HP reduction"',
   'Invoke Duplicity':
@@ -660,27 +686,32 @@ PHB5E.FEATURES = {
   'Know Your Enemy':
     'Section=combat Note="Know how foe compares to you after 1 min study"',
   'Knowledge Of The Ages':
-    'Section=skill Note="Channel Divinity for proficiency in chosen skill or tool for 10 min"',
+    'Section=skill ' +
+    'Note="Channel Divinity for proficiency in chosen skill or tool for 10 min"',
   'Light Cantrip':
     'Section=magic Note="Know <i>Light</i> cantrip"',
   'Lunging Attack':
     'Section=combat Note="+5\' melee range, add Superiority die to damage"',
   'Mage Hand Legerdemain':
-    'Section=magic Note="Plant, retrieve, pick, disarm via invisible <i>Mage Hand</i>"',
+    'Section=magic ' +
+    'Note="Plant, retrieve, pick, disarm via invisible <i>Mage Hand</i>"',
   'Magical Ambush':
     'Section=magic Note="Foe Disadv spell save when self hidden"',
   'Malleable Illusions':
     'Section=magic Note="Transform existing illusions"',
   'Maneuvering Attack':
-    'Section=combat Note="Add Superiority die to damage, ally move half speed w/no OA"',
+    'Section=combat ' +
+    'Note="Add Superiority die to damage, ally move half speed w/no OA"',
   'Maneuvers':
     'Section=combat Note="Select %V Fighter maneuvers (DC %1)"',
   'Master Of Nature':
     'Section=magic Note="Command charmed animals, plants"',
   'Master Transmuter':
-    'Section=magic Note="Destroy stone to transmute 5\' cu, remove curse, disease, and poison, <i>Raise Dead</i>, or restore youth"',
+    'Section=magic ' +
+    'Note="Destroy stone to transmute 5\' cu, remove curse, disease, and poison, <i>Raise Dead</i>, or restore youth"',
   'Menacing Attack':
-    'Section=combat Note="Add Superiority die to damage, foe fright for 1 turn (Wis neg)"',
+    'Section=combat ' +
+    'Note="Add Superiority die to damage, foe fright for 1 turn (Wis neg)"',
   'Minor Alchemy':
     'Section=magic Note="Transform 1 cu\'/10 min for 1 hr"',
   'Minor Conjuration':
@@ -688,7 +719,8 @@ PHB5E.FEATURES = {
   'Mist Stance':
     'Section=magic Note="Spend 4 Ki to cast self <i>Gaseous Form</i>"',
   'Misty Escape':
-    'Section=magic Note="After damage, teleport 60\' and become invisible 1 turn 1/short rest"',
+    'Section=magic ' +
+    'Note="After damage, teleport 60\' and become invisible 1 turn 1/short rest"',
   'Necromancy Savant':
     'Section=magic Note="Write necromancy spells for half cost"',
   'Opportunist':
@@ -706,13 +738,16 @@ PHB5E.FEATURES = {
   'Projected Ward':
     'Section=magic Note="R30\' Use <i>Arcane Ward</i> to protect others"',
   'Pushing Attack':
-    'Section=combat Note="Add Superiority die to damage, foe pushed 15\' (Str neg)"',
+    'Section=combat ' +
+    'Note="Add Superiority die to damage, foe pushed 15\' (Str neg)"',
   'Radiance Of The Dawn':
-    'Section=magic Note="R30\' Channel Divinity to dispel magic darkness, 2d10+%V HP to foes (Con half)"',
+    'Section=magic ' +
+    'Note="R30\' Channel Divinity to dispel magic darkness, 2d10+%V HP to foes (Con half)"',
   'Rally':
     'Section=combat Note="Chosen ally gains Superiority die + %V temp HP"',
   'Read Thoughts':
-    'Section=magic Note="R60\' Channel Divinity to read thoughts, <i>Suggestion</i> for 1 min (Wis neg)"',
+    'Section=magic ' +
+    'Note="R60\' Channel Divinity to read thoughts, <i>Suggestion</i> for 1 min (Wis neg)"',
   'Relentless Avenger':
     'Section=combat Note="Move half speed after OA hit"',
   'Relentless':
@@ -720,13 +755,15 @@ PHB5E.FEATURES = {
   'Ride The Wind':
     'Section=magic Note="Spend 4 Ki to cast self <i>Fly</i>"',
   'Riposte':
-    'Section=combat Note="Bonus attack after foe miss, add Superiority die to damage"',
+    'Section=combat ' +
+    'Note="Bonus attack after foe miss, add Superiority die to damage"',
   'River Of Hungry Flame':
     'Section=magic Note="Spend 5 Ki to cast <i>Wall Of Fire</i>"',
   'Rush Of The Gale Spirits':
     'Section=magic Note="Spend 2 Ki to cast <i>Gust Of Wind</i>"',
   'Shadow Arts':
-    'Section=magic Note="<i>Minor Illusion</i> cantrip, spend 2 Ki to cast <i>Darkness</i>, <i>Darkvision</i>, <i>Pass Without Trace</i>, <i>Silence</i>"',
+    'Section=magic ' +
+    'Note="<i>Minor Illusion</i> cantrip, spend 2 Ki to cast <i>Darkness</i>, <i>Darkvision</i>, <i>Pass Without Trace</i>, <i>Silence</i>"',
   'Shadow Step':
     'Section=magic Note="Teleport 60\' between dim or unlit areas"',
   'Shape The Flowing River':
@@ -742,7 +779,8 @@ PHB5E.FEATURES = {
   'Spell Resistance':
     'Section=save Note="Adv and resistance to spell damage"',
   'Spell Thief':
-    'Section=magic Note="Foe spell negated, self cast w/in 8 hours (DC %V neg) 1/long rest"',
+    'Section=magic ' +
+    'Note="Foe spell negated, self cast w/in 8 hours (DC %V neg) 1/long rest"',
   'Spirit Seeker':
     'Section=magic Note="Ritual <i>Beast Sense</i>, <i>Speak With Animals</i>"',
   'Spirit Walker':
@@ -754,11 +792,13 @@ PHB5E.FEATURES = {
   'Superiority Dice':
     'Section=combat Note="%Vd%1/short rest"',
   'Sweeping Attack':
-    'Section=combat Note="After hit, Superiority die damage to second adjacent foe"',
+    'Section=combat ' +
+    'Note="After hit, Superiority die damage to second adjacent foe"',
   'Sweeping Cinder Strike':
     'Section=magic Note="Spend 2 Ki to cast <i>Burning Hands</i>"',
   'The Third Eye':
-    'Section=magic Note="60\' Darkvision, 60\' Ethereal Sight, read any language, or 10\' see invisibility"',
+    'Section=magic ' +
+    'Note="60\' Darkvision, 60\' Ethereal Sight, read any language, or 10\' see invisibility"',
   'Thought Shield':
     'Section=save Note="Immune telepathy, resist and reflect psychic damage"',
   'Thousand Forms':
@@ -766,13 +806,16 @@ PHB5E.FEATURES = {
   'Thunderbolt Strike':
     'Section=magic Note="Lightning damage pushes lg 10\'"',
   'Tides Of Chaos':
-    'Section=feature Note="Adv on attack, ability, or save 1/long rest (may cause surge)"',
+    'Section=feature ' +
+    'Note="Adv on attack, ability, or save 1/long rest (may cause surge)"',
   'Transmutation Savant':
     'Section=magic Note="Write transmutation spells for half cost"',
   'Trip Attack':
-    'Section=combat Note="Add Superiority die to damage, foe knocked prone (Str neg)"',
+    'Section=combat ' +
+    'Note="Add Superiority die to damage, foe knocked prone (Str neg)"',
   'Turn The Faithless':
-    'Section=magic Note="R30\' Channel Divinity for fiends, fey flee for 1 min (Wis neg)"',
+    'Section=magic ' +
+    'Note="R30\' Channel Divinity for fiends, fey flee for 1 min (Wis neg)"',
   'Undead Thralls':
     'Section=magic Note="<i>Animate Dead</i> +1 corpse, +%V HP, +%1 damage"',
   'Undying Sentinel':
@@ -780,17 +823,21 @@ PHB5E.FEATURES = {
   'Versatile Trickster':
     'Section=magic Note="Distract foe (self Adv attacks) via <i>Mage Hand</i>"',
   'Visions Of The Past':
-    'Section=magic Note="Meditate for visions about surroundings or held object"',
+    'Section=magic ' +
+    'Note="Meditate for visions about surroundings or held object"',
   'Vow Of Enmity':
-    'Section=combat Note="R10\' Channel Divinity for Adv attacks against target for 1 min"',
+    'Section=combat ' +
+    'Note="R10\' Channel Divinity for Adv attacks against target for 1 min"',
   'War Magic':
     'Section=combat Note="Bonus attack after %V"',
   'War Priest':
     'Section=combat Note="Bonus attack %V/long rest"',
   'Warding Flare':
-    'Section=magic Note="R30\' Reaction flare foe Disadv on current attack %V/long rest"',
+    'Section=magic ' +
+    'Note="R30\' Reaction flare foe Disadv on current attack %V/long rest"',
   'Water Whip':
-    'Section=magic Note="R30\' Spend 2 Ki to create water whip 3d10 HP, pull 25\' or knock prone (Str half)"',
+    'Section=magic ' +
+    'Note="R30\' Spend 2 Ki to create water whip 3d10 HP, pull 25\' or knock prone (Str half)"',
   'Wave Of The Rolling Earth':
     'Section=magic Note="Spend 6 Ki to cast <i>Wall Of Stone</i>"',
   'Weapon Bond':
@@ -798,102 +845,154 @@ PHB5E.FEATURES = {
   'Wild Magic Surge':
     'Section=magic Note="5% chance of random magic effect"',
   'Wolf Totem Spirit':
-    'Section=combat Note="Allies Adv attack vs. self adjacent foes when raging"',
+    'Section=combat ' +
+    'Note="Allies Adv attack vs. self adjacent foes when raging"',
   'Wolf Totemic Attunement':
     'Section=combat Note="Knock prone lg foe after melee hit when raging"',
   'Wrath Of The Storm':
     'Section=combat Note="Reaction 2d8 HP (Dex half) %V/long rest"',
   // Feats
   'Actor':
-    'Section=ability,skill Note="+1 Charisma","Mimic others\' speech or sounds, Adv Deception (Cha) and Performance (Cha) when impersonating"',
+    'Section=ability,skill ' +
+    'Note="+1 Charisma",' +
+         '"Mimic others\' speech or sounds, Adv Deception (Cha) and Performance (Cha) when impersonating"',
   'Alert':
     'Section=combat Note="+5 Initiative/foes no surprise or hidden Adv"',
   'Athlete':
-    'Section=ability,skill Note="+1 Dexterity or Strength, climb full speed, stand uses 5\' move","Long jump, running high jump uses 5\' move"',
+    'Section=ability,skill ' +
+    'Note="+1 Dexterity or Strength, climb full speed, stand uses 5\' move",' +
+         '"Long jump, running high jump uses 5\' move"',
   'Charger':
     'Section=combat Note="Bonus attack +5 HP or 10\' push after Dash"',
   'Crossbow Expert':
-    'Section=combat Note="Quick load, no Disadv on close shot, bonus hand crossbow shot after one-handed attack"',
+    'Section=combat ' +
+    'Note="Quick load, no Disadv on close shot, bonus hand crossbow shot after one-handed attack"',
   'Defensive Duelist':
     'Section=combat Note="React +%V AC when holding finesse weapon"',
   'Dual Wielder':
-    'Section=combat Note="+1 AC w/two weapons, two-weapon fighting w/non-light weapons, draw two weapons at once"',
+    'Section=combat ' +
+    'Note="+1 AC w/two weapons, two-weapon fighting w/non-light weapons, draw two weapons at once"',
   'Dungeon Delver':
-    'Section=save,skill Note="Adv vs. traps, resistance trap damage","Adv detect secret doors, search for traps at full speed"',
+    'Section=save,skill ' +
+    'Note="Adv vs. traps, resistance trap damage",' +
+         '"Adv detect secret doors, search for traps at full speed"',
   'Durable':
     'Section=ability,combat Note="+1 Constitution","Min %V when regaining HP"',
   'Elemental Adept (Acid)':
-    'Section=magic Note="Spells ignore acid resistance, treat 1s as 2s on damage die"',
+    'Section=magic ' +
+    'Note="Spells ignore acid resistance, treat 1s as 2s on damage die"',
   'Elemental Adept (Cold)':
-    'Section=magic Note="Spells ignore cold resistance, treat 1s as 2s on damage die"',
+    'Section=magic ' +
+    'Note="Spells ignore cold resistance, treat 1s as 2s on damage die"',
   'Elemental Adept (Fire)':
-    'Section=magic Note="Spells ignore fire resistance, treat 1s as 2s on damage die"',
+    'Section=magic ' +
+    'Note="Spells ignore fire resistance, treat 1s as 2s on damage die"',
   'Elemental Adept (Lightning)':
-    'Section=magic Note="Spells ignore lightning resistance, treat 1s as 2s on damage die"',
+    'Section=magic ' +
+    'Note="Spells ignore lightning resistance, treat 1s as 2s on damage die"',
   'Elemental Adept (Thunder)':
-    'Section=magic Note="Spells ignore thunder resistance, treat 1s as 2s on damage die"',
+    'Section=magic ' +
+    'Note="Spells ignore thunder resistance, treat 1s as 2s on damage die"',
   'Great Weapon Master':
-    'Section=combat Note="Bonus attack after crit or foe to 0 HP, may trade -5 attack for +10 damage"',
+    'Section=combat ' +
+    'Note="Bonus attack after crit or foe to 0 HP, may trade -5 attack for +10 damage"',
   'Healer':
-    'Section=feature Note="Stabilize via healer\'s kit restores 1 HP, healer\'s kit heals 1d6+4 HP 1/short rest"',
+    'Section=feature ' +
+    'Note="Stabilize via healer\'s kit restores 1 HP, healer\'s kit heals 1d6+4 HP 1/short rest"',
   'Heavily Armored':
     'Section=ability,combat Note="+1 Strength","Armor Proficiency (Heavy)"',
   'Heavy Armor Master':
-    'Section=ability,combat Note="+1 Strength","Non-magical bludgeon, pierce, slash DR 3"',
+    'Section=ability,combat ' +
+    'Note="+1 Strength",' +
+         '"Non-magical bludgeon, pierce, slash DR 3"',
   'Inspiring Leader':
     'Section=feature Note="R30\' 10-min speech give 6 allies %V HP"',
   'Keen Mind':
-    'Section=ability,feature Note="+1 Intelligence","Know N, hours until sunrise and sunset, things seen or heard prior 30 days"',
+    'Section=ability,feature ' +
+    'Note="+1 Intelligence",' +
+         '"Know N, hours until sunrise and sunset, things seen or heard prior 30 days"',
   'Lightly Armored':
-    'Section=ability,combat Note="+1 Dexterity or Strength","Armor Proficiency (Light)"',
+    'Section=ability,combat ' +
+    'Note="+1 Dexterity or Strength",' +
+         '"Armor Proficiency (Light)"',
   'Linguist':
-    'Section=ability,feature,skill Note="+1 Intelligence","Create ciphers, DC %V Int to decode","+3 Language Count"',
+    'Section=ability,feature,skill ' +
+    'Note="+1 Intelligence",' +
+         '"Create ciphers, DC %V Int to decode",' +
+         '"+3 Language Count"',
   'Lucky':
-    'Section=feature Note="Adv attack, ability, and save or foe Disadv attack 3/long rest"',
+    'Section=feature ' +
+    'Note="Adv attack, ability, and save or foe Disadv attack 3/long rest"',
   'Mage Slayer':
-    'Section=combat,save Note="React to attack adjacent caster, foe Disadv concentration","Adv vs. spells by adjacent foes"',
+    'Section=combat,save ' +
+    'Note="React to attack adjacent caster, foe Disadv concentration",' +
+         '"Adv vs. spells by adjacent foes"',
   'Magic Initiate':
     'Section=magic Note="2 cantrips, 1 1st-level/long rest"',
   'Martial Adept':
     'Section=combat Note="Two maneuvers (DC %V), 1 superiority die/long rest"',
   'Medium Armor Master':
-    'Section=combat,skill Note="+1 AC","No Stealth check penalty in medium armor"',
+    'Section=combat,skill ' +
+    'Note="+1 AC",' +
+         '"No Stealth check penalty in medium armor"',
   'Mobile':
-    'Section=ability,combat Note="+10 Speed","Dash at full speed in difficult terrain, no OA from targeted foe"',
+    'Section=ability,combat ' +
+    'Note="+10 Speed",' +
+         '"Dash at full speed in difficult terrain, no OA from targeted foe"',
   'Moderately Armored':
-    'Section=ability,combat Note="+1 Dexterity or Strength","Armor Proficiency (Medium/Shield)"',
+    'Section=ability,combat ' +
+    'Note="+1 Dexterity or Strength",' +
+         '"Armor Proficiency (Medium/Shield)"',
   'Mounted Combatant':
-    'Section=combat Note="Adv unmounted foe smaller than mount, redirect attack on mount to self, mount takes no damage on Dex save, half on fail"',
+    'Section=combat ' +
+    'Note="Adv unmounted foe smaller than mount, redirect attack on mount to self, mount takes no damage on Dex save, half on fail"',
   'Observant':
-    'Section=ability,feature,skill Note="+1 Intelligence or Wisdom","Read lips","+5 passive Investigation and Perception"',
+    'Section=ability,feature,skill ' +
+    'Note="+1 Intelligence or Wisdom",' +
+         '"Read lips",' +
+         '"+5 passive Investigation and Perception"',
   'Polearm Master':
-    'Section=combat Note="Bonus attack polearm butt (1d4 HP), OA when foe enters reach"',
+    'Section=combat ' +
+    'Note="Bonus attack polearm butt (1d4 HP), OA when foe enters reach"',
   'Resilient':
-    'Section=ability,save Note="+1 Ability Boosts","Save Proficiency (Choose 1 from any)"',
+    'Section=ability,save ' +
+    'Note="+1 Ability Boosts",' +
+         '"Save Proficiency (Choose 1 from any)"',
   'Ritual Caster':
     'Section=magic Note="Cast spells from ritual book"',
   'Savage Attacker':
     'Section=combat Note="Re-roll damage 1/turn"',
   'Sentinel':
-    'Section=combat Note="Foe stuck by OA speed 0, OA on foe Disengage, react attack when adjacent foe targets other"',
+    'Section=combat ' +
+    'Note="Foe stuck by OA speed 0, OA on foe Disengage, react attack when adjacent foe targets other"',
   'Sharpshooter':
-    'Section=combat Note="No Disadv long range, ignore 3/4 cover, take -5 attack for +10 damage"',
+    'Section=combat ' +
+    'Note="No Disadv long range, ignore 3/4 cover, take -5 attack for +10 damage"',
   'Shield Master':
-    'Section=combat,save Note="Bonus 5\' Push","+2 Dex vs. targeted spell, save for no damage instead of half"',
+    'Section=combat,save ' +
+    'Note="Bonus 5\' Push",' +
+         '"+2 Dex vs. targeted spell, save for no damage instead of half"',
   'Skilled':
     'Section=skill Note="Skill Proficiency (Choose 3 from any)"',
   'Skulker':
-    'Section=skill Note="Hide when lightly obscured, ranged miss does not reveal position, no Disadv on Perception in dim light"',
+    'Section=skill ' +
+    'Note="Hide when lightly obscured, ranged miss does not reveal position, no Disadv on Perception in dim light"',
   'Spell Sniper':
-    'Section=magic Note="Dbl attack spell range, ignore 3/4 cover, additional attack cantrip"',
+    'Section=magic ' +
+    'Note="Dbl attack spell range, ignore 3/4 cover, additional attack cantrip"',
   'Tavern Brawler':
-    'Section=ability,combat Note="+1 Constitution or Strength","Weapon Proficiency (Improvised)/Bonus to grapple"',
+    'Section=ability,combat ' +
+    'Note="+1 Constitution or Strength",' +
+         '"Weapon Proficiency (Improvised)/Bonus to grapple"',
   'Tough':
     'Section=combat Note="+%V HP"',
   'War Caster':
-    'Section=combat Note="Adv concentration, cast when holding shield or weapon, cast as OA"',
+    'Section=combat ' +
+    'Note="Adv concentration, cast when holding shield or weapon, cast as OA"',
   'Weapon Master':
-    'Section=ability,combat Note="+1 Dexterity or Strength","Weapon Proficiency (Choose 4 from any)"',
+    'Section=ability,combat ' +
+    'Note="+1 Dexterity or Strength",' +
+         '"Weapon Proficiency (Choose 4 from any)"',
   // Races
   'Dark Elf Ability Adjustment':
     'Section=ability Note="+2 Dexterity/+1 Charisma"',
@@ -916,7 +1015,9 @@ PHB5E.FEATURES = {
   'Stout Resilience':
     'Section=save Note="Adv and resistance vs. poison"',
   'Sunlight Sensitivity':
-    'Section=combat,skill Note="Disadv attack in direct sunlight","Disadv sight Perception in direct sunlight"',
+    'Section=combat,skill ' +
+    'Note="Disadv attack in direct sunlight",' +
+         '"Disadv sight Perception in direct sunlight"',
   'Superior Darkvision':
     'Section=feature Note="R120\' See one light level better"',
   'Wood Elf Ability Adjustment':
@@ -1438,7 +1539,7 @@ PHB5E.identityRules = function(
 
 };
 
-/* Defines rules related to character feats and features. */
+/* Defines rules related to character aptitudes. */
 PHB5E.talentRules = function(rules, feats, features) {
 
   QuilvynUtils.checkAttrTable(feats, ['Require', 'Imply', 'Type']);
@@ -1454,7 +1555,10 @@ PHB5E.talentRules = function(rules, feats, features) {
 
 };
 
-/* Defines the rules related to character classes. */
+/*
+ * Defines in #rules# the rules associated with path #name# that cannot be
+ * derived directly from the attributes passed to pathRules.
+ */
 PHB5E.pathRulesExtra = function(rules, name) {
 
   if(name == 'Abjuration Tradition') {
@@ -1612,8 +1716,8 @@ PHB5E.pathRulesExtra = function(rules, name) {
 };
 
 /*
- * Defines in #rules# the rules associated with feat #name# that are not
- * directly derived from the parmeters passed to featRules.
+ * Defines in #rules# the rules associated with feat #name# that cannot be
+ * derived directly from the attributes passed to featRules.
  */
 PHB5E.featRulesExtra = function(rules, name) {
 

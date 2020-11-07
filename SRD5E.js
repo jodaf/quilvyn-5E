@@ -21,12 +21,12 @@ Place, Suite 330, Boston, MA 02111-1307 USA.
 var SRD5E_VERSION = '2.1.1.0';
 
 /*
- * This module loads the rules from the System Reference Document v5.  The
- * SRD5E function contains methods that load rules for particular parts of the
- * SRD: raceRules for character races, magicRules for spells, etc.  These
- * member methods can be called independently in order to use a subset of the
- * SRD v5 rules.  Similarly, the constant fields of SRD5E (ALIGNMENTS, FEATS,
- * etc.) can be manipulated to modify the choices.
+ * This module loads the rules from the System Reference Document v5. The SRD5E
+ * function contains methods that load rules for particular parts of the SRD:
+ * raceRules for character races, magicRules for spells, etc. These member
+ * methods can be called independently in order to use a subset of the SRD v5
+ * rules. Similarly, the constant fields of SRD5E (ALIGNMENTS, FEATS, etc.) can
+ * be manipulated to modify the choices.
  */
 function SRD5E() {
 
@@ -52,8 +52,8 @@ function SRD5E() {
 
   SRD5E.abilityRules(rules);
   SRD5E.combatRules(rules, SRD5E.ARMORS, SRD5E.SHIELDS, SRD5E.WEAPONS);
-  // Spell definition is handled by individual classes, paths, and races.
-  // Schools must be defined beforehand.
+  // Most spell definitions are handled by individual classeses, paths, and
+  // races. Schools must be defined before this can be done.
   SRD5E.magicRules(rules, SRD5E.SCHOOLS, {});
   SRD5E.identityRules(
     rules, SRD5E.ALIGNMENTS, SRD5E.BACKGROUNDS, SRD5E.CLASSES, SRD5E.DEITIES,
@@ -128,6 +128,485 @@ SRD5E.BACKGROUNDS = {
       '"1:Skill Proficiency (Insight/Religion)",' +
       '"1:Shelter Of The Faithful" ' +
     'Languages=any,any'
+};
+SRD5E.CLASSES = {
+  'Barbarian':
+    'HitDie=d12 ' +
+    'Features=' +
+      '"1:Armor Proficiency (Medium/Shield)",' +
+      '"1:Save Proficiency (Constitution/Strength)",' +
+      '"1:Skill Proficiency (Choose 2 from Animal Handling, Athletics, Intimidation, Nature, Perception, Survival)",' +
+      '"1:Weapon Proficiency (Martial)",' +
+      '"1:Barbarian Unarmored Defense",1:Rage,"2:Danger Sense",' +
+      '"2:Reckless Attack","5:Extra Attack",' +
+      '"armorWeight < 3 ? 5:Fast Movement",' +
+      '"7:Feral Instinct","9:Brutal Critical","11:Relentless Rage",' +
+      '"15:Persistent Rage","18:Indomitable Might","20:Primal Champion" ' +
+    'Selectables=' +
+      '"3:Path Of The Berserker",' +
+      '"3:Path Of The Totem Warrior (Bear)",' +
+      '"3:Path Of The Totem Warrior (Eagle)",' +
+      '"3:Path Of The Totem Warrior (Wolf)"',
+  'Bard':
+    'HitDie=d8 ' +
+    'Features=' +
+      '"1:Armor Proficiency (Light)",' +
+      '"1:Save Proficiency (Charisma/Dexterity)",' +
+      '"1:Skill Proficiency (Choose 3 from any)",' +
+      '"1:Tool Proficiency (Choose 3 from any Music)",' +
+      '"1:Weapon Proficiency (Simple/Hand Crossbow/Longsword/Rapier/Shortsword)",' +
+      '"1:Bardic Inspiration","1:Ritual Casting",1:Spellcasting,' +
+      '"2:Jack Of All Trades","2:Song Of Rest","3:Bard Expertise",' +
+      '"5:Font Of Inspiration",6:Countercharm,"10:Magical Secrets",' +
+      '"20:Superior Inspiration" ' +
+    'Selectables=' +
+      '"3:College Of Lore" ' +
+    'CasterLevelArcane=levels.Bard ' +
+    'SpellAbility=charisma ' +
+    'SpellSlots=' +
+      'B0:1=2;4=3;10=4,' +
+      'B1:1=2;2=3;3=4,' +
+      'B2:3=2;4=3,' +
+      'B3:5=2;6=3,' +
+      'B4:7=1;8=2;9=3,' +
+      'B5:9=1;10=2;18=3,' +
+      'B6:11=1;19=2,' +
+      'B7:13=1;20=2,' +
+      'B8:15=1,' +
+      'B9:17=1 ' +
+    'Spells=' +
+      '"B0:Dancing Lights;Light;Mage Hand;Mending;Message;Minor Illusion;' +
+      'Prestidigitation;True Strike;Vicious Mockery",' +
+      '"B1:Animal Friendship;Bane;Charm Person;Comprehend Languages;' +
+      'Cure Wounds;Detect Magic;Disguise Self;Faerie Fire;Feather Fall;' +
+      'Healing Word;Heroism;Hideous Laughter;Identify;Illusory Script;' +
+      'Longstrider;Silent Image;Sleep;Speak With Animals;Unseen Servant",' +
+      '"B2:Animal Messenger;Blindness/Deafness;Calm Emotions;' +
+      'Detect Thoughts;Enhance Ability;Enthrall;Heat Metal;Hold Person;' +
+      'Invisibility;Knock;Lesser Restoration;Locate Animals Or Plants;' +
+      'Locate Object;Magic Mouth;See Invisibility;Shatter;Silence;' +
+      'Suggestion;Zone Of Truth",' +
+      '"B3:Bestow Curse;Clairvoyance;Dispel Magic;Fear;Glyph Of Warding;' +
+      'Hypnotic Pattern;Major Image;Plant Growth;Sending;Speak With Dead;' +
+      'Speak With Plants;Stinking Cloud;Tiny Hut;Tongues",' +
+      '"B4:Compulsion;Confusion;Dimension Door;Freedom Of Movement;' +
+      'Greater Invisibility;Hallucinatory Terrain;Locate Creature;Polymorph",' +
+      '"B5:Animate Objects;Awaken;Dominate Person;Dream;Geas;' +
+      'Greater Restoration;Hold Monster;Legend Lore;Mass Cure Wounds;' +
+      'Mislead;Modify Memory;Planar Binding;Raise Dead;Scrying;Seeming;' +
+      'Teleportation Circle",' +
+      '"B6:Eyebite;Find The Path;Guards And Wards;Irresistible Dance;' +
+      'Mass Suggestion;Programmed Illusion;True Seeing",' +
+      '"B7:Etherealness;Forcecage;Magnificent Mansion;Mirage Arcane;' +
+      'Project Image;Regenerate;Resurrection;Symbol;Teleport",' +
+      '"B8:Dominate Monster;Feeblemind;Glibness;Mind Blank;Power Word Stun",' +
+      '"B9:Foresight;Power Word Kill;True Polymorph"',
+  'Cleric':
+    'HitDie=d8 ' +
+    'Features=' +
+      '"1:Armor Proficiency (Medium/Shield)",' +
+      '"1:Save Proficiency (Charisma/Wisdom)",' +
+      '"1:Skill Proficiency (Choose 2 from History, Insight, Medicine, Persuasion, Religioin)",' +
+      '"1:Weapon Proficiency (Simple)",' +
+      '"1:Ritual Casting",1:Spellcasting,"2:Channel Divinity",' +
+      '"2:Turn Undead","5:Destroy Undead","10:Divine Intervention" ' +
+    'Selectables=' +
+      '"1:Life Domain" ' +
+    'CasterLevelDivine=levels.Cleric ' +
+    'SpellAbility=wisdom ' +
+    'SpellSlots=' +
+      'C0:1=3;4=4;10=5,' +
+      'C1:1=2;2=3;3=4,' +
+      'C2:3=2;4=3,' +
+      'C3:5=2;6=3,' +
+      'C4:7=1;8=2;9=3,' +
+      'C5:9=1;10=2;18=3,' +
+      'C6:11=1;19=2,' +
+      'C7:13=1;20=2,' +
+      'C8:15=1,' +
+      'C9:17=1 ' +
+    'Spells=' +
+      '"C0:Guidance;Light;Mending;Resistance;Sacred Flame;Spare The Dying;' +
+      'Thaumaturgy",' +
+      '"C1:Bane;Bless;Command;Create Or Destroy Water;Cure Wounds;' +
+      'Detect Evil And Good;Detect Magic;Detect Poison And Disease;' +
+      'Guiding Bolt;Healing Word;Inflict Wounds;' +
+      'Protection From Evil And Good;Purify Food And Drink;Sanctuary;' +
+      'Shield Of Faith",' +
+      '"C2:Aid;Augury;Blindness/Deafness;Calm Emotions;Continual Flame;' +
+      'Enhance Ability;Find Traps;Gentle Repose;Hold Person;' +
+      'Lesser Restoration;Locate Object;Prayer Of Healing;' +
+      'Protection From Poison;Silence;Spiritual Weapon;Warding Bond;' +
+      'Zone Of Truth",' +
+      '"C3:Animate Dead;Beacon Of Hope;Bestow Curse;Clairvoyance;' +
+      'Create Food And Water;Daylight;Dispel Magic;Glyph Of Warding;' +
+      'Magic Circle;Mass Healing Word;Meld Into Stone;' +
+      'Protection From Energy;Remove Curse;Revivify;Sending;' +
+      'Speak With Dead;Spirit Guardians;Tongues;Water Walk",' +
+      '"C4:Banishment;Control Water;Death Ward;Divination;' +
+      'Freedom Of Movement;Guardian Of Faith;Locate Creature;Stone Shape",' +
+      '"C5:Commune;Contagion;Dispel Evil And Good;Flame Strike;Geas;' +
+      'Greater Restoration;Hallow;Insect Plague;Legend Lore;' +
+      'Mass Cure Wounds;Planar Binding;Raise Dead;Scrying",' +
+      '"C6:Blade Barrier;Create Undead;Find The Path;Forbiddance;Harm;Heal;' +
+      'Heroes\' Feast;Planar Ally;True Seeing;Word Of Recall",' +
+      '"C7:Conjure Celestial;Divine Word;Etherealness;Fire Storm;' +
+      'Plane Shift;Regenerate;Resurrection;Symbol",' +
+      '"C8:Antimagic Field;Control Weather;Earthquake;Holy Aura",' +
+      '"C9:Astral Projection;Gate;Mass Heal;True Resurrection"',
+  'Druid':
+    'HitDie=d8 ' +
+    'Features=' +
+      '"1:Armor Proficiency (Medium/Shield)",' +
+      '"1:Save Proficiency (Intelligence/Wisdom)",' +
+      '"1:Skill Proficiency (Choose 2 from Arcana, Animal Handling, Insight, Medicine, Nature, Perception, Religion, Survival)",' +
+      '"1:Tool Proficiency (Herbalism Kit)",' +
+      '"1:Weapon Proficiency (Club/Dagger/Dart/Javelin/Mace/Quarterstaff/Scimitar/Sickle/Sling/Spear)",' +
+      '"1:Tool Proficiency (Herbalism Kit)",' +
+      '1:Druidic,"1:Ritual Casting",1:Spellcasting,"2:Wild Shape",' +
+      '"18:Druid Timeless Body","18:Beast Spells",20:Archdruid ' +
+    'Selectables=' +
+      '"2:Circle Of The Land (Arctic)",' +
+      '"2:Circle Of The Land (Coast)",' +
+      '"2:Circle Of The Land (Desert)",' +
+      '"2:Circle Of The Land (Forest)",' +
+      '"2:Circle Of The Land (Grassland)",' +
+      '"2:Circle Of The Land (Mountain)",' +
+      '"2:Circle Of The Land (Swamp)" ' +
+    'CasterLevelDivine=levels.Druid ' +
+    'SpellAbility=wisdom ' +
+    'SpellSlots=' +
+      'D0:1=2;4=3;10=4,' +
+      'D1:1=2;2=3;3=4,' +
+      'D2:3=2;4=3,' +
+      'D3:5=2;6=3,' +
+      'D4:7=1;8=2;9=3,' +
+      'D5:9=1;10=2;18=3,' +
+      'D6:11=1;19=2,' +
+      'D7:13=1;20=2,' +
+      'D8:15=1,' +
+      'D9:17=1 ' +
+    'Spells=' +
+      '"D0:Druidcraft;Guidance;Mending;Poison Spray;Produce Flame;' +
+      'Resistance;Shillelagh",' +
+      '"D1:Animal Friendship;Charm Person;Create Or Destroy Water;' +
+      'Cure Wounds;Detect Magic;Detect Poison And Disease;Entangle;' +
+      'Faerie Fire;Fog Cloud;Goodberry;Healing Word;Jump;Longstrider;' +
+      'Purify Food And Drink;Speak With Animals;Thunderwave",' +
+      '"D2:Animal Messenger;Barkskin;Darkvision;Enhance Ability;' +
+      'Find Traps;Flame Blade;Flaming Sphere;Gust Of Wind;Heat Metal;' +
+      'Hold Person;Lesser Restoration;Locate Animals Or Plants;' +
+      'Locate Object;Moonbeam;Pass Without Trace;Protection From Poison;' +
+      'Spike Growth",' +
+      '"D3:Call Lightning;Conjure Animals;Daylight;Dispel Magic;' +
+      'Meld Into Stone;Plant Growth;Protection From Energy;Sleet Storm;' +
+      'Speak With Plants;Water Breathing;Water Walk;Wind Wall",' +
+      '"D4:Blight;Confusion;Conjure Minor Elementals;' +
+      'Conjure Woodland Beings;Control Water;Dominate Beast;' +
+      'Freedom Of Movement;Giant Insect;Hallucinatory Terrain;Ice Storm;' +
+      'Locate Creature;Polymorph;Stone Shape;Stoneskin;Wall Of Fire",' +
+      '"D5:Antilife Shell;Awaken;Commune With Nature;Conjure Elemental;' +
+      'Contagion;Geas;Greater Restoration;Insect Plague;Mass Cure Wounds;' +
+      'Planar Binding;Reincarnate;Scrying;Tree Stride;Wall Of Stone",' +
+      '"D6:Conjure Fey;Find The Path;Heal;Heroes\' Feast;Move Earth;Sunbeam;' +
+      'Transport Via Plants;Wall Of Thorns;Wind Walk",' +
+      '"D7:Fire Storm;Mirage Arcane;Plane Shift;Regenerate;Reverse Gravity",' +
+      '"D8:Animal Shapes;Antipathy/Sympathy;Control Weather;Earthquake;' +
+      'Feeblemind;Sunburst",' +
+      '"D9:Foresight;Shapechange;Storm Of Vengeance;True Resurrection"',
+  'Fighter':
+    'HitDie=d10 ' +
+    'Features=' +
+      '"1:Armor Proficiency (Heavy/Shield)",' +
+      '"1:Save Proficiency (Constitution/Strength)",' +
+      '"1:Skill Proficiency (Choose 2 from Acrobatics, Animal Handling, Athletics, History, Insight, Intimidation, Perception, Survival)",' +
+      '"1:Weapon Proficiency (Martial)",' +
+      '"1:Second Wind","2:Action Surge","5:Extra Attack",9:Indomitable ' +
+    'Selectables=' +
+      '"1:Archery Style","1:Defense Style","1:Dueling Style",' +
+      '"1:Great Weapon Fighting Style","1:Protection Style",' +
+      '"1:Two-Weapon Fighting Style","3:Champion Archetype"',
+  'Monk':
+    'HitDie=d8 ' +
+    'Features=' +
+      '"1:Save Proficiency (Dexterity/Strength)",' +
+      '"1:Skill Proficiency (Choose 2 from Acrobatics, Athletics, History, Insight, Religion, Stealth)",' +
+      '"1:Tool Proficiency (Choose 1 from any Artisan, any Music)",' +
+      '"1:Weapon Proficiency (Simple/Shortsword)",' +
+      '"1:Martial Arts","1:Monk Bonus Attack","1:Monk Unarmored Defense",' +
+      '"2:Flurry Of Blows","2:Ki","2:Patient Defense","2:Step Of The Wind",' +
+      '"2:Unarmored Movement","3:Deflect Missiles","4:Slow Fall",' +
+      '"5:Extra Attack","5:Stunning Strike","6:Ki-Empowered Strikes",' +
+      '7:Evasion,"7:Stillness Of Mind","9:Improved Unarmored Movement",' +
+      '"10:Purity Of Body","13:Tongue Of Sun And Moon","14:Diamond Soul",' +
+      '"15:Monk Timeless Body","18:Empty Body","20:Perfect Self" ' +
+    'Selectables=' +
+      '"3:Way Of The Open Hand Tradition"',
+  'Paladin':
+    'HitDie=d10 ' +
+    'Features=' +
+      '"1:Armor Proficiency (Heavy/Shield)",' +
+      '"1:Save Proficiency (Charisma/Wisdom)",' +
+      '"1:Skill Proficiency (Choose 2 from Athletics, Insight, Intimidation, Medicine, Persuasion, Religion)",' +
+      '"1:Weapon Proficiency (Martial)",' +
+      '"1:Divine Sense","1:Lay On Hands","2:Divine Smite",2:Spellcasting,' +
+      '"3:Channel Divinity","3:Divine Health","5:Extra Attack",' +
+      '"6:Aura Of Protection","10:Aura Of Courage",' +
+      '"11:Improved Divine Smite","14:Cleansing Touch" ' +
+    'Selectables=' +
+      '"2:Defense Style","2:Dueling Style","2:Great Weapon Fighting Style",' +
+      '"2:Protection Style","3:Oath Of Devotion" ' +
+    'CasterLevelDivine=levels.Paladin ' +
+    'SpellAbility=charisma ' +
+    'SpellSlots=' +
+      'P1:2=2;3=3;5=4,' +
+      'P2:5=2;7=3,' +
+      'P3:9=2;11=3,' +
+      'P4:13=1;15=2;17=3,' +
+      'P5:17=1;19=2 ' +
+    'Spells=' +
+      '"P1:Bless;Command;Cure Wounds;Detect Evil And Good;Detect Magic;' +
+      'Detect Poison And Disease;Divine Favor;Heroism;' +
+      'Protection From Evil And Good;Purify Food And Drink;Shield Of Faith",' +
+      '"P2:Aid;Branding Smite;Find Steed;Lesser Restoration;Locate Object;' +
+      'Magic Weapon;Protection From Poison;Zone Of Truth",' +
+      '"P3:Create Food And Water;Daylight;Dispel Magic;Magic Circle;' +
+      'Remove Curse;Revivify",' +
+      '"P4:Banishment;Death Ward;Locate Creature",' +
+      '"P5:Dispel Evil And Good;Geas;Raise Dead"',
+  'Ranger':
+    'HitDie=d10 ' +
+    'Features=' +
+      '"1:Armor Proficiency (Medium/Shield)",' +
+      '"1:Save Proficiency (Dexterity/Strength)",' +
+      '"1:Skill Proficiency (Choose 3 from Animal Handling, Athletics, Insight, Investigation, Nature, Perception, Stealth, Survival)",' +
+      '"1:Weapon Proficiency (Martial)",' +
+      '"1:Favored Enemy","1:Natural Explorer",2:Spellcasting,' +
+      '"3:Primeval Awareness","5:Extra Attack","8:Land\'s Stride",' +
+      '"10:Hide In Plain Sight","14:Vanish","18:Feral Senses",' +
+      '"20:Foe Slayer" ' +
+    'Selectables=' +
+      '"2:Archery Style","2:Defense Style","2:Dueling Style",' +
+      '"2:Two-Weapon Fighting Style","3:Hunter Archetype" ' +
+    'CasterLevelDivine=levels.Ranger ' +
+    'SpellAbility=wisdom ' +
+    'SpellSlots=' +
+      'R1:2=2;3=3;5=4,' +
+      'R2:5=2;7=3,' +
+      'R3:9=2;11=3,' +
+      'R4:13=1;15=2;17=3,' +
+      'R5:17=1;19=2 ' +
+    'Spells=' +
+      '"R1:Alarm;Animal Friendship;Cure Wounds;Detect Magic;' +
+      'Detect Poison And Disease;Fog Cloud;Goodberry;Hunter\'s Mark;Jump;' +
+      'Longstrider;Speak With Animals",' +
+      '"R2:Animal Messenger;Barkskin;Darkvision;Find Traps;' +
+      'Lesser Restoration;Locate Animals Or Plants;Locate Object;' +
+      'Pass Without Trace;Protection From Poison;Silence;Spike Growth",' +
+      '"R3:Conjure Animals;Daylight;Nondetection;Plant Growth;' +
+      'Protection From Energy;Speak With Plants;Water Breathing;Water Walk;' +
+      'Wind Wall",' +
+      '"R4:Conjure Woodland Beings;Freedom Of Movement;Locate Creature;' +
+      'Stoneskin",' +
+      '"R5:Commune With Nature;Tree Stride"',
+  'Rogue':
+    'HitDie=d8 ' +
+    'Features=' +
+      '"1:Armor Proficiency (Light)",' +
+      '"1:Save Proficiency (Dexterity/Intelligence)",' +
+      '"1:Skill Proficiency (Choose 4 from Acrobatics, Athletics, Deception, Insight, Intimidation, Investigation, Perception, Performance, Persuasion, Sleight Of Hand, Stealth)",' +
+      '"1:Tool Proficiency (Thieves\' Tools)",' +
+      '"1:Weapon Proficiency (Simple/Hand Crossbow/Longsword/Rapier/Shortsword)",' +
+      '"1:Tool Proficiency (Thieves\' Tools)",' +
+      '"1:Rogue Expertise","1:Sneak Attack","1:Thief\'s Cant",' +
+      '"2:Cunning Action","5:Uncanny Dodge",7:Evasion,"11:Reliable Talent",' +
+      '14:Blindsense,"15:Slippery Mind",18:Elusive,"20:Stroke Of Luck" ' +
+    'Selectables=' +
+      '"3:Thief Archetype"',
+  'Sorcerer':
+    'HitDie=d6 ' +
+    'Features=' +
+      '"1:Save Proficiency (Charisma/Constitution)",' +
+      '"1:Skill Proficiency (Choose 2 from Arcana, Deception, Insight, Intimidation, Persuasion, Religion)",' +
+      '"1:Weapon Proficiency (Dagger/Dart/Sling/Quarterstaff/Light Crossbow)",' +
+      '1:Spellcasting,"2:Font Of Magic","2:Flexible Casting",' +
+      '"20:Sorcerous Restoration" ' +
+    'Selectables=' +
+      '"1:Draconic Bloodline","3:Careful Spell","3:Distant Spell",' +
+      '"3:Empowered Spell","3:Extended Spell","3:Heightened Spell",' +
+      '"3:Quickened Spell","3:Subtle Spell","3:Twinned Spell" ' +
+    'CasterLevelArcane=levels.Sorcerer ' +
+    'SpellAbility=charisma ' +
+    'SpellSlots=' +
+      'S0:1=4;4=5;10=6,' +
+      'S1:1=2;2=3;3=4,' +
+      'S2:3=2;4=3,' +
+      'S3:5=2;6=3,' +
+      'S4:7=1;8=2;9=3,' +
+      'S5:9=1;10=2;18=3,' +
+      'S6:11=1;19=2,' +
+      'S7:13=1;20=2,' +
+      'S8:15=1,' +
+      'S9:17=1 ' +
+    'Spells=' +
+      '"S0:Acid Splash;Chill Touch;Dancing Lights;Fire Bolt;Light;Mage Hand;' +
+      'Mending;Message;Minor Illusion;Poison Spray;Prestidigitation;' +
+      'Ray Of Frost;Shocking Grasp;True Strike",' +
+      '"S1:Burning Hands;Charm Person;Color Spray;Comprehend Languages;' +
+      'Detect Magic;Disguise Self;Expeditious Retreat;False Life;' +
+      'Feather Fall;Fog Cloud;Jump;Mage Armor;Magic Missile;Shield;' +
+      'Silent Image;Sleep;Thunderwave",' +
+      '"S2:Alter Self;Blindness/Deafness;Blur;Darkness;Darkvision;' +
+      'Detect Thoughts;Enhance Ability;Enlarge/Reduce;Gust Of Wind;' +
+      'Hold Person;Invisibility;Knock;Levitate;Mirror Image;Misty Step;' +
+      'Scorching Ray;See Invisibility;Shatter;Spider Climb;Suggestion;Web",' +
+      '"S3:Blink;Clairvoyance;Counterspell;Daylight;Dispel Magic;Fear;' +
+      'Fireball;Fly;Gaseous Form;Haste;Hypnotic Pattern;Lightning Bolt;' +
+      'Major Image;Protection From Energy;Sleet Storm;Slow;Stinking Cloud;' +
+      'Tongues;Water Breathing;Water Walk",' +
+      '"S4:Banishment;Blight;Confusion;Dimension Door;Dominate Beast;' +
+      'Greater Invisibility;Ice Storm;Polymorph;Stoneskin;Wall Of Fire",' +
+      '"S5:Animate Objects;Cloudkill;Cone Of Cold;Creation;Dominate Person;' +
+      'Hold Monster;Insect Plague;Seeming;Telekinesis;Teleportation Circle;' +
+      'Wall Of Stone",' +
+      '"S6:Chain Lightning;Circle Of Death;Disintegrate;Eyebite;' +
+      'Globe Of Invulnerability;Mass Suggestion;Move Earth;Sunbeam;' +
+      'True Seeing",' +
+      '"S7:Delayed Blast Fireball;Etherealness;Finger Of Death;Fire Storm;' +
+      'Plane Shift;Prismatic Spray;Reverse Gravity;Teleport",' +
+      '"S8:Dominate Monster;Earthquake;Incendiary Cloud;Power Word Stun;' +
+      'Sunburst",' +
+      '"S9:Gate;Meteor Swarm;Power Word Kill;Time Stop;Wish"',
+  'Warlock':
+    'HitDie=d8 ' +
+    'Features=' +
+      '"1:Armor Proficiency (Light)",' +
+      '"1:Save Proficiency (Charisma/Wisdom)",' +
+      '"1:Skill Proficiency (Choose 2 from Arcana, Deception, History, Intimidation, Investigation, Nature, Religion)",' +
+      '"1:Weapon Proficiency (Simple)",' +
+      '"1:Pact Magic","2:Eldritch Invocations","11:Mystic Arcanum",' +
+      '"20:Eldritch Master" ' +
+    'Selectables=' +
+      '"1:Fiend Patron","2:Agonizing Blast","2:Armor Of Shadows",' +
+      '"2:Beast Speech","2:Beguiling Influence","2:Devil\'s Sight",' +
+      '"2:Eldritch Sight","2:Eldritch Spear","2:Eyes Of The Rune Keeper",' +
+      '"2:Fiendish Vigor","2:Gaze Of Two Minds","2:Mask Of Many Faces",' +
+      '"2:Misty Visions","2:Repelling Blast","2:Thief Of Five Fates",' +
+      '"3:Pact Of The Blade","3:Pact Of The Chain","3:Pact Of The Tome",' +
+      '"5:Mire The Mind","5:One With Shadows","5:Sign Of Ill Omen",' +
+      '"7:Bewitching Whispers","7:Dreadful Word","7:Sculptor Of Flesh",' +
+      '"9:Ascendant Step","9:Minions Of Chaos","9:Otherworldly Leap",' +
+      '"9:Whispers Of The Grave","15:Master Of Myriad Forms",' +
+      '"15:Visions Of Distant Realms","15:Witch Sight",' +
+      '"features.Pact Of The Tome ? 2:Book Of Ancient Secrets",' +
+      '"features.Pact Of The Chain ? 15:Chains Of Carceri",' +
+      '"features.Pact Of The Blade ? 12:Lifedrinker",' +
+      '"features.Pact Of The Blade ? 5:Thirsting Blade",' +
+      '"features.Pact Of The Chain ? 2:Voice Of The Chain Master" ' +
+    'CasterLevelArcane=levels.Warlock ' +
+    'SpellAbility=charisma ' +
+    'SpellSlots=' +
+      'K0:1=2;4=3;10=4,' +
+      'K1:1=1;2=2;3=0,' +
+      'K2:3=2;5=0,' +
+      'K3:5=2;7=0,' +
+      'K4:7=2;9=0,' +
+      'K5:9=2;11=3;17=4 ' +
+    'Spells=' +
+      '"K0:Chill Touch;Eldritch Blast;Mage Hand;Minor Illusion;Poison Spray;' +
+      'Prestidigitation;True Strike",' +
+      '"K1:Charm Person;Comprehend Languages;Expeditious Retreat;' +
+      'Hellish Rebuke;Illusory Script;Protection From Evil And Good;' +
+      'Unseen Servant",' +
+      '"K2:Darkness;Enthrall;Hold Person;Invisibility;Mirror Image;' +
+      'Misty Step;Ray Of Enfeeblement;Shatter;Spider Climb;Suggestion",' +
+      '"K3:Counterspell;Dispel Magic;Fear;Fly;Gaseous Form;Hypnotic Pattern;' +
+      'Magic Circle;Major Image;Remove Curse;Tongues;Vampiric Touch",' +
+      '"K4:Banishment;Blight;Dimension Door;Hallucinatory Terrain",' +
+      '"K5:Contact Other Plane;Dream;Hold Monster;Scrying",' +
+      '"K6:Circle Of Death;Conjure Fey;Create Undead;Eyebite;Flesh To Stone;' +
+      'Mass Suggestion;True Seeing",' +
+      '"K7:Etherealness;Finger Of Death;Forcecage;Plane Shift",' +
+      '"K8:Demiplane;Dominate Monster;Feeblemind;Glibness;Power Word Stun",' +
+      '"K9:Astral Projection;Foresight;Imprisonment;Power Word Kill;' +
+      'True Polymorph",' +
+      // Fiend Patron
+      '"K1:Burning Hands;Command",' +
+      '"K2:Blindness/Deafness;Scorching Ray",' +
+      '"K3:Fireball;Stinking Cloud",' +
+      '"K4:Fire Shield;Wall Of Fire",' +
+      '"K5:Flame Strike;Hallow"',
+  'Wizard':
+    'HitDie=d6 ' +
+    'Features=' +
+      '"1:Save Proficiency (Intelligence/Wisdom)",' +
+      '"1:Skill Proficiency (Choose 3 from Arcana, History, Insight, Investigation, Medicine, Religion)",' +
+      '"1:Weapon Proficiency (Dagger/Dart/Light Crossbow/Quarterstaff/Sling)",' +
+      '"1:Arcane Recovery",1:Spellcasting,"18:Spell Mastery",' +
+      '"20:Signature Spell" ' +
+    'Selectables=' +
+      '"2:Evocation Tradition" ' +
+    'CasterLevelArcane=levels.Wizard ' +
+    'SpellAbility=intelligence ' +
+    'SpellSlots=' +
+      'W0:1=3;4=4;10=5,' +
+      'W1:1=2;2=3;3=4,' +
+      'W2:3=2;4=3,' +
+      'W3:5=2;6=3,' +
+      'W4:7=1;8=2;9=3,' +
+      'W5:9=1;10=2;18=3,' +
+      'W6:11=1;19=2,' +
+      'W7:13=1;20=2,' +
+      'W8:15=1,' +
+      'W9:17=1 ' +
+    'Spells=' +
+      '"W0:Acid Splash;Chill Touch;Dancing Lights;Fire Bolt;Light;Mage Hand;' +
+      'Mending;Message;Minor Illusion;Poison Spray;Prestidigitation;' +
+      'Ray Of Frost;Shocking Grasp;True Strike",' +
+      '"W1:Alarm;Burning Hands;Charm Person;Color Spray;' +
+      'Comprehend Languages;Detect Magic;Disguise Self;Expeditious Retreat;' +
+      'False Life;Feather Fall;Find Familiar;Floating Disk;Fog Cloud;' +
+      'Grease;Hideous Laughter;Identify;Illusory Script;Jump;Longstrider;' +
+      'Mage Armor;Magic Missile;Protection From Evil And Good;Shield;' +
+      'Silent Image;Sleep;Thunderwave;Unseen Servant",' +
+      '"W2:Acid Arrow;Alter Self;Arcane Lock;Arcanist\'s Magic Aura;' +
+      'Blindness/Deafness;Blur;Continual Flame;Darkness;Darkvision;' +
+      'Detect Thoughts;Enlarge/Reduce;Flaming Sphere;Gentle Repose;' +
+      'Gust Of Wind;Hold Person;Invisibility;Knock;Levitate;Locate Object;' +
+      'Magic Mouth;Magic Weapon;Mirror Image;Misty Step;' +
+      'Ray Of Enfeeblement;Rope Trick;Scorching Ray;See Invisibility;' +
+      'Shatter;Spider Climb;Suggestion;Web",' +
+      '"W3:Animate Dead;Bestow Curse;Blink;Clairvoyance;Counterspell;' +
+      'Dispel Magic;Fear;Fireball;Fly;Gaseous Form;Glyph Of Warding;Haste;' +
+      'Hypnotic Pattern;Lightning Bolt;Magic Circle;Major Image;' +
+      'Nondetection;Phantom Steed;Protection From Energy;Remove Curse;' +
+      'Sending;Sleet Storm;Slow;Stinking Cloud;Tiny Hut;Tongues;' +
+      'Vampiric Touch;Water Breathing",' +
+      '"W4:Arcane Eye;Banishment;Black Tentacles;Blight;Confusion;' +
+      'Conjure Minor Elementals;Control Water;Dimension Door;Fabricate;' +
+      'Faithful Hound;Fire Shield;Greater Invisibility;' +
+      'Hallucinatory Terrain;Ice Storm;Locate Creature;Private Sanctum;' +
+      'Phantasmal Killer;Polymorph;Resilient Sphere;Secret Chest;' +
+      'Stone Shape;Stoneskin;Wall Of Fire",' +
+      '"W5:Animate Objects;Arcane Hand;Cloudkill;Cone Of Cold;' +
+      'Conjure Elemental;Contact Other Plane;Creation;Dominate Person;' +
+      'Dream;Geas;Hold Monster;Legend Lore;Mislead;Modify Memory;Passwall;' +
+      'Planar Binding;Scrying;Seeming;Telekinesis;Telepathic Bond;' +
+      'Teleportation Circle;Wall Of Force;Wall Of Stone",' +
+      '"W6:Chain Lightning;Circle Of Death;Contingency;Create Undead;' +
+      'Disintegrate;Eyebite;Flesh To Stone;Freezing Sphere;' +
+      'Globe Of Invulnerability;Guards And Wards;Instant Summons;' +
+      'Irresistible Dance;Magic Jar;Mass Suggestion;Move Earth;' +
+      'Programmed Illusion;Sunbeam;True Seeing;Wall Of Ice",' +
+      '"W7:Delayed Blast Fireball;Etherealness;Finger Of Death;Forcecage;' +
+      'Magnificent Mansion;Mirage Arcane;Plane Shift;Prismatic Spray;' +
+      'Project Image;Reverse Gravity;Sequester;Simulacrum;Symbol;Teleport",' +
+      '"W8:Antimagic Field;Antipathy/Sympathy;Clone;Control Weather;' +
+      'Demiplane;Dominate Monster;Feeblemind;Incendiary Cloud;Maze;' +
+      'Mind Blank;Power Word Stun;Sunburst",' +
+      '"W9:Astral Projection;Foresight;Gate;Imprisonment;Meteor Swarm;' +
+      'Power Word Kill;Prismatic Wall;Shapechange;Time Stop;True Polymorph;' +
+      'Weird;Wish"'
 };
 SRD5E.DEITIES = {
   'None':'',
@@ -257,7 +736,8 @@ SRD5E.FEATURES = {
   'Bewitching Whispers':
     'Section=magic Note="<i>Compulsion</i> 1/long rest"',
   'Blessed Healer':
-    'Section=magic Note="Self regain 2 + spell level HP from casting healing spells"',
+    'Section=magic ' +
+    'Note="Self regain 2 + spell level HP from casting healing spells"',
   'Blindsense':
     'Section=skill Note="R10\' Hear hidden and invisible creatures"',
   'Bonus Cantrip':
@@ -267,9 +747,11 @@ SRD5E.FEATURES = {
   'Brutal Critical':
     'Section=combat Note="+%V crit damage dice"',
   'Careful Spell':
-    'Section=magic Note="Spend 1 Sorcery Point to protect %V creature(s) from your spell"',
+    'Section=magic ' +
+    'Note="Spend 1 Sorcery Point to protect %V creature(s) from your spell"',
   'Chains Of Carceri':
-    'Section=magic Note="<i>Hold Monster</i> on celestial, elemental, fiend 1/long rest"',
+    'Section=magic ' +
+    'Note="<i>Hold Monster</i> on celestial, elemental, fiend 1/long rest"',
   'Channel Divinity':
     'Section=feature Note="Effect %V/short rest"',
   'Cleansing Touch':
@@ -281,7 +763,8 @@ SRD5E.FEATURES = {
   'Cunning Action':
     'Section=combat Note="Bonus Dash, Disengage, or Hide each turn"',
   'Cutting Words':
-    'Section=combat Note="R60\' Reaction to subtract Bardic Inspiration die from foe roll"',
+    'Section=combat ' +
+    'Note="R60\' Reaction to subtract Bardic Inspiration die from foe roll"',
   'Danger Sense':
     'Section=save Note="Adv Dex checks vs. visible dangers"',
   "Dark One's Blessing":
@@ -301,19 +784,22 @@ SRD5E.FEATURES = {
   'Disciple Of Life':
     'Section=magic Note="Healing spells restore additional 2 + spell level HP"',
   'Distant Spell':
-    'Section=magic Note="Spend 1 Sorcery Point to dbl spell range or touch at 30\'"',
+    'Section=magic ' +
+    'Note="Spend 1 Sorcery Point to dbl spell range or touch at 30\'"',
   'Divine Health':
     'Section=save Note="Immune disease"',
   'Divine Intervention':
     'Section=magic Note="%V% chance of deity help 1/wk"',
   'Divine Sense':
-    'Section=magic Note="R60\' Know location of celestials, fiends, undead %V/long rest"',
+    'Section=magic ' +
+    'Note="R60\' Know location of celestials, fiends, undead %V/long rest"',
   'Divine Smite':
     'Section=combat Note="Spend spell slot for +(spell level + 1)d8 damage"',
   'Divine Strike':
     'Section=combat Note="+%Vd8 HP 1/turn"',
   'Draconic Presence':
-    'Section=magic Note="R60\' Spend 5 Sorcery Points for awe/fear aura for conc or 1 min (Wis neg)"',
+    'Section=magic ' +
+    'Note="R60\' Spend 5 Sorcery Points for awe and fear aura for conc or 1 min (Wis neg)"',
   'Draconic Resilience':
     'Section=combat Note="+%V HP/unarmored AC %1"',
   'Dragon Wings':
@@ -335,15 +821,18 @@ SRD5E.FEATURES = {
   'Eldritch Spear':
     'Section=magic Note="R300\' <i>Eldritch Blast</i>"',
   'Elemental Affinity':
-    'Section=magic Note="+%V HP damage with ancestry type, spend 1 Sorcery Point for 1 hr resistance"',
+    'Section=magic ' +
+    'Note="+%V HP damage with ancestry type, spend 1 Sorcery Point for 1 hr resistance"',
   'Elusive':
     'Section=combat Note="Foe attacks never have Adv"',
   'Empowered Evocation':
     'Section=magic Note="+%V HP evocation spell damage"',
   'Empowered Spell':
-    'Section=magic Note="Spend 1 Sorcery Point to re-roll %V spell damage dice"',
+    'Section=magic ' +
+    'Note="Spend 1 Sorcery Point to re-roll %V spell damage dice"',
   'Empty Body':
-    'Section=magic Note="Spend 4 Ki for <i>Invisibility</i> 1 min, 8 Ki for <i>Astral Projection</i>"',
+    'Section=magic ' +
+    'Note="Spend 4 Ki for <i>Invisibility</i> 1 min, 8 Ki for <i>Astral Projection</i>"',
   'Escape The Horde':
     'Section=combat Note="Foe Disadv on OA"',
   'Evasion':
@@ -357,15 +846,19 @@ SRD5E.FEATURES = {
   'Eyes Of The Rune Keeper':
     'Section=feature Note="Read all writing"',
   'Fast Hands':
-    'Section=combat Note="Use Cunning Action for Sleight Of Hand, disarm trap, open lock, Use An Object"',
+    'Section=combat ' +
+    'Note="Use Cunning Action for Sleight Of Hand, disarm trap, open lock, Use An Object"',
   'Fast Movement':
     'Section=ability Note="+10 Speed (heavy armor neg)"',
   'Favored Enemy':
-    'Section=skill Note="Adv Survival to track, info about %V creature types, learn enemy language"',
+    'Section=skill ' +
+    'Note="Adv Survival to track, info about %V creature types, learn enemy language"',
   'Feral Instinct':
     'Section=combat Note="Adv Init, rage and act when surprised"',
   'Feral Senses':
-    'Section=combat,skill Note="No Disadv vs. invisible foe","30\' awareness of invisible creatures"',
+    'Section=combat,skill ' +
+    'Note="No Disadv vs. invisible foe",' +
+         '"30\' awareness of invisible creatures"',
   'Fiendish Resilience':
     'Section=save Note="Resist chosen damage type"',
   'Fiendish Vigor':
@@ -389,11 +882,14 @@ SRD5E.FEATURES = {
   'Great Weapon Fighting Style':
     'Section=combat Note="Re-roll damage of 1 or 2 with two-handed weapons"',
   'Heightened Spell':
-    'Section=magic Note="Spend 3 Sorcery Points for target Disadv on spell save"',
+    'Section=magic ' +
+    'Note="Spend 3 Sorcery Points for target Disadv on spell save"',
   'Hide In Plain Sight':
     'Section=skill Note="+10 Dex (Stealth) to hide w/prepared camouflage"',
   'Holy Nimbus':
-    'Section=magic,save Note="Self 30\' bright light does 10 HP to foes 1/long rest","Adv vs. spells by fiends, undead"',
+    'Section=magic,save ' +
+    'Note="Self 30\' bright light does 10 HP to foes 1/long rest",' +
+         '"Adv vs. spells by fiends, undead"',
   'Horde Breaker':
     'Section=combat Note="Second attack on different adjacent foe"',
   'Hurl Through Hell':
@@ -417,7 +913,9 @@ SRD5E.FEATURES = {
   'Ki-Empowered Strikes':
     'Section=combat Note="Unarmed attacks count as magical"',
   "Land's Stride":
-    'Section=ability,save Note="Move normally through difficult terrain","Adv vs. impeding plants"',
+    'Section=ability,save ' +
+    'Note="Move normally through difficult terrain",' +
+         '"Adv vs. impeding plants"',
   'Lay On Hands':
     'Section=magic Note="Heal %V HP, disease, poison 1/long rest"',
   'Lifedrinker':
@@ -425,7 +923,8 @@ SRD5E.FEATURES = {
   'Magical Secrets':
     'Section=magic Note="Learn %V additional spells from any class"',
   'Martial Arts':
-    'Section=combat Note="When unarmored, +%1 monk weapons attack and damage, raise damage die to 1d%V"',
+    'Section=combat ' +
+    'Note="When unarmored, +%1 monk weapons attack and damage, raise damage die to 1d%V"',
   'Mask Of Many Faces':
     'Section=magic Note="<i>Disguise Self</i> at will"',
   'Master Of Myriad Forms':
@@ -449,21 +948,25 @@ SRD5E.FEATURES = {
   'Mystic Arcanum':
     'Section=magic Note="%V spells 1/long rest"',
   'Natural Explorer':
-    'Section=skill Note="Dbl Int and Wis Prof, normal move in difficult terrain, always alert, full speed solo stealth, locate dbl food, extra track info for %V terrains"',
+    'Section=skill ' +
+    'Note="Dbl Int and Wis Prof, normal move in difficult terrain, always alert, full speed solo stealth, locate dbl food, extra track info for %V terrains"',
   'Natural Recovery':
     'Section=magic Note="Recover %V spell slot levels in short rest"',
   "Nature's Sanctuary":
     'Section=combat Note="Beast, plant DC %V Will save to attack self"',
   "Nature's Ward":
-    'Section=save Note="Immune disease, poison, elemental and fey charm and fright"',
+    'Section=save ' +
+    'Note="Immune disease, poison, elemental and fey charm and fright"',
   'One With Shadows':
     'Section=magic Note="Invisible in dim light until action"',
   'Open Hand Technique':
-    'Section=combat Note="On Flurry of Blows hit, choice of knock prone (DC %V Dex neg), push 15\' (DC %V Str neg), or no foe react 1 turn"',
+    'Section=combat ' +
+    'Note="On Flurry of Blows hit, choice of knock prone (DC %V Dex neg), push 15\' (DC %V Str neg), or no foe react 1 turn"',
   'Otherworldly Leap':
     'Section=magic Note="Self <i>Jump</i> at will"',
   'Overchannel':
-    'Section=magic Note="Max damage from evocation spell le level 5, self take damage 2nd+ time/long rest"',
+    'Section=magic ' +
+    'Note="Max damage from evocation spell le level 5, self take damage 2nd+ time/long rest"',
   'Pact Of The Blade':
     'Section=magic Note="Create magic weapon"',
   'Pact Of The Chain':
@@ -481,11 +984,13 @@ SRD5E.FEATURES = {
   'Potent Cantrip':
     'Section=magic Note="Target takes half damage on cantrip save"',
   'Preserve Life':
-    'Section=magic Note="R30\' Channel Divinity to restore %V HP among targets, up to half max HP ea"',
+    'Section=magic ' +
+    'Note="R30\' Channel Divinity to restore %V HP among targets, up to half max HP ea"',
   'Primal Champion':
     'Section=ability Note="+4 Strength/+4 Constitution"',
   'Primeval Awareness':
-    'Section=magic Note="Expend spell to sense creatures in 1 mi (favored terrain 6 mi)"',
+    'Section=magic ' +
+    'Note="Expend spell to sense creatures in 1 mi (favored terrain 6 mi)"',
   'Protection Style':
     'Section=combat Note="Use shield to impose attack Disadv on adjacent foe"',
   'Purity Of Body':
@@ -495,9 +1000,12 @@ SRD5E.FEATURES = {
   'Quickened Spell':
     'Section=magic Note="Spend 2 Sorcery Points to cast spell as bonus action"',
   'Quivering Palm':
-    'Section=combat Note="Spend 3 Ki to reduce foe to 0 HP w/in 1 dy after unarmed hit (DC %V Con 10d10 HP)"',
+    'Section=combat ' +
+    'Note="Spend 3 Ki to reduce foe to 0 HP w/in 1 dy after unarmed hit (DC %V Con 10d10 HP)"',
   'Rage':
-    'Section=ability,combat Note="Adv Str checks %V/long rest (heavy armor neg)","+%1 melee damage, resist bludgeon, pierce, slash damage for 1 min %V/long rest (heavy armor neg)"',
+    'Section=ability,combat ' +
+    'Note="Adv Str checks %V/long rest (heavy armor neg)",' +
+         '"+%1 melee damage, resist bludgeon, pierce, slash damage for 1 min %V/long rest (heavy armor neg)"',
   'Reckless Attack':
     'Section=combat Note="Adv melee Str attacks, foes Adv all attacks"',
   'Relentless Rage':
@@ -505,7 +1013,9 @@ SRD5E.FEATURES = {
   'Reliable Talent':
     'Section=ability Note="Min 10 on proficient ability rolls"',
   'Remarkable Athlete':
-    'Section=ability,skill Note="+%V non-proficient Str, Dex, Con checks","+%V\' running jump"',
+    'Section=ability,skill ' +
+    'Note="+%V non-proficient Str, Dex, Con checks",' +
+         '"+%V\' running jump"',
   'Repelling Blast':
     'Section=magic Note="<i>Eldritch Blast</i> pushes 10\'"',
   'Retaliation':
@@ -515,9 +1025,11 @@ SRD5E.FEATURES = {
   'Rogue Expertise':
     'Section=skill Note="Dbl proficiency %V skills or Thieves\' Tools"',
   'Sacred Weapon':
-    'Section=combat Note="Channel Divinity for weapon +%V attack, 20\' light for 1 min"',
+    'Section=combat ' +
+    'Note="Channel Divinity for weapon +%V attack, 20\' light for 1 min"',
   'Sculpt Spells':
-    'Section=magic Note="Protect spell level + 1 targets from evocation spell effects"',
+    'Section=magic ' +
+    'Note="Protect spell level + 1 targets from evocation spell effects"',
   'Sculptor Of Flesh':
     'Section=magic Note="<i>Polymorph</i> 1/long rest"',
   'Second Wind':
@@ -549,11 +1061,14 @@ SRD5E.FEATURES = {
   'Stillness Of Mind':
     'Section=save Note="End self charm, fright at will"',
   'Stroke Of Luck':
-    'Section=ability,combat Note="Automatic 20 ability check 1/short rest","Turn miss into hit 1/short rest"',
+    'Section=ability,combat ' +
+    'Note="Automatic 20 ability check 1/short rest",' +
+         '"Turn miss into hit 1/short rest"',
   'Stunning Strike':
     'Section=combat Note="Spend 1 Ki to stun foe (DC %V Con neg)"',
   'Subtle Spell':
-    'Section=magic Note="Spend 1 Sorcery Point to cast w/out somatic, verbal components"',
+    'Section=magic ' +
+    'Note="Spend 1 Sorcery Point to cast w/out somatic, verbal components"',
   'Superior Critical':
     'Section=combat Note="Crit on natural 18"',
   'Superior Inspiration':
@@ -575,13 +1090,16 @@ SRD5E.FEATURES = {
   'Tongue Of Sun And Moon':
     'Section=feature Note="Communicate in any language"',
   'Tranquility':
-    'Section=magic Note="Self <i>Sanctuary</i> until next long rest (DC %V Wis neg)"',
+    'Section=magic ' +
+    'Note="Self <i>Sanctuary</i> until next long rest (DC %V Wis neg)"',
   'Turn The Unholy':
-    'Section=magic Note="R30\' Channel Divinity for fiends, undead flee for 1 min (Wis neg)"',
+    'Section=magic ' +
+    'Note="R30\' Channel Divinity for fiends, undead flee for 1 min (Wis neg)"',
   'Turn Undead':
     'Section=combat Note="R30\' Undead flee for 1 min (%V DC Wis neg)"',
   'Twinned Spell':
-    'Section=magic Note="Spend spell level Sorcery Points to add second target"',
+    'Section=magic ' +
+    'Note="Spend spell level Sorcery Points to add second target"',
   'Two-Weapon Fighting Style':
     'Section=combat Note="Add ability modifier to second attack damage"',
   'Unarmored Movement':
@@ -605,21 +1123,26 @@ SRD5E.FEATURES = {
   'Wholeness Of Body':
     'Section=feature Note="Regain %V HP 1/long rest"',
   'Wild Shape':
-    'Section=magic Note="Transform into CR %1%2 creature for %3 hr 2/short rest"',
+    'Section=magic ' +
+    'Note="Transform into CR %1%2 creature for %3 hr 2/short rest"',
   'Witch Sight':
     'Section=feature Note="R30\' See true forms"',
   // Feat
   'Grappler':
-    'Section=combat Note="Adv attacks vs. grappled foe, additional grapple to pin"',
+    'Section=combat ' +
+    'Note="Adv attacks vs. grappled foe, additional grapple to pin"',
   // Race
   "Artificer's Lore":
-    'Section=skill Note="Dbl proficiency on magic, alchemical, tech objects History checks"',
+    'Section=skill ' +
+    'Note="Dbl proficiency on magic, alchemical, tech objects History checks"',
   'Brave':
     'Section=save Note="Adv vs. fright"',
   'Darkvision':
     'Section=feature Note="R60\' See one light level better"',
   'Draconic Breath':
-    'Section=combat,save Note="%1 %Vd6 HP %2 (DC %3 %4 half)","Resistance %V damage"',
+    'Section=combat,save ' +
+    'Note="%1 %Vd6 HP %2 (DC %3 %4 half)",' +
+         '"Resistance %V damage"',
   'Dragonborn Ability Adjustment':
     'Section=ability Note="+2 Strength/+1 Charisma"',
   'Dwarven Armor Speed':
@@ -647,7 +1170,8 @@ SRD5E.FEATURES = {
   'Hill Dwarf Ability Adjustment':
     'Section=ability Note="+2 Constitution/+1 Wisdom"',
   'Human Ability Adjustment':
-    'Section=ability Note="+1 Charisma/+1 Constitution/+1 Dexterity/+1 Intelligence/+1 Strength/+1 Wisdom"',
+    'Section=ability ' +
+    'Note="+1 Charisma/+1 Constitution/+1 Dexterity/+1 Intelligence/+1 Strength/+1 Wisdom"',
   'Infernal Legacy':
     'Section=magic Note="<i>Thaumaturgy</i> cantrip%V"',
   'Lightfoot Halfling Ability Adjustment':
@@ -909,6 +1433,111 @@ SRD5E.PATHS = {
     'Features=' +
       '"3:Open Hand Technique","6:Wholeness Of Body",11:Tranquility,' +
       '"17:Quivering Palm"'
+};
+SRD5E.RACES = {
+  'Black Dragonborn':
+    'Features=' +
+      '"1:Draconic Breath","1:Dragonborn Ability Adjustment" ' +
+    'Languages=Common,Draconic',
+  'Blue Dragonborn':
+    'Features=' +
+      '"1:Draconic Breath","1:Dragonborn Ability Adjustment" ' +
+    'Languages=Common,Draconic',
+  'Brass Dragonborn':
+    'Features=' +
+      '"1:Draconic Breath","1:Dragonborn Ability Adjustment" ' +
+    'Languages=Common,Draconic',
+  'Bronze Dragonborn':
+    'Features=' +
+      '"1:Draconic Breath","1:Dragonborn Ability Adjustment" ' +
+    'Languages=Common,Draconic',
+  'Copper Dragonborn':
+    'Features=' +
+      '"1:Draconic Breath","1:Dragonborn Ability Adjustment" ' +
+    'Languages=Common,Draconic',
+  'Gold Dragonborn':
+    'Features=' +
+      '"1:Draconic Breath","1:Dragonborn Ability Adjustment" ' +
+    'Languages=Common,Draconic',
+  'Green Dragonborn':
+    'Features=' +
+      '"1:Draconic Breath","1:Dragonborn Ability Adjustment" ' +
+    'Languages=Common,Draconic',
+  'Red Dragonborn':
+    'Features=' +
+      '"1:Draconic Breath","1:Dragonborn Ability Adjustment" ' +
+    'Languages=Common,Draconic',
+  'Silver Dragonborn':
+    'Features=' +
+      '"1:Draconic Breath","1:Dragonborn Ability Adjustment" ' +
+    'Languages=Common,Draconic',
+  'White Dragonborn':
+    'Features=' +
+      '"1:Draconic Breath","1:Dragonborn Ability Adjustment" ' +
+    'Languages=Common,Draconic',
+  'Hill Dwarf':
+    'Features=' +
+      '"1:Weapon Proficiency (Battleaxe/Handaxe/Light Hammer/Warhammer)",' +
+      '"1:Tool Proficiency (Choose 1 from Brewer\'s Supplies, Mason\'s Tools, Smith\'s Tools)",' +
+      '1:Darkvision,"1:Hill Dwarf Ability Adjustment",' +
+      '"1:Dwarven Armor Speed","1:Dwarven Resilience","1:Dwarven Toughness",' +
+      '1:Slow,1:Stonecunning ' +
+    'Languages=Common,Dwarvish',
+  'High Elf':
+    'Features=' +
+      '"1:Skill Proficiency (Perception)",' +
+      '"1:Weapon Proficiency (Longbow/Longsword/Shortbow/Shortsword)",' +
+      '1:Darkvision,"1:Fey Ancestry","1:High Elf Ability Adjustment",' +
+      '1:Trance ' +
+    'Languages=Common,Elvish,any ' +
+    'SpellAbility=intelligence ' +
+    'SpellSlots=' +
+      'Elf0:1=1 ' +
+    'Spells=' +
+      '"Elf0:Acid Splash;Chill Touch;Dancing Lights;Fire Bolt;Light;' +
+      'Mage Hand;Mending;Message;Minor Illusion;Poison Spray;' +
+      'Prestidigitation;Ray Of Frost;Shocking Grasp;True Strike"',
+  'Rock Gnome':
+    'Features=' +
+      '"1:Tool Proficiency (Tinker\'s Tools)",' +
+      '1:Darkvision,"1:Gnome Cunning","1:Rock Gnome Ability Adjustment",' +
+      '1:Slow,1:Small,"1:Artificer\'s Lore" ' +
+    'Languages=Common,Gnomish',
+  'Half-Elf':
+    'Features=' +
+      '"1:Versatile Skill Proficiency (Choose 2 from any)",' +
+      '1:Darkvision,"1:Fey Ancestry","1:Half-Elf Ability Adjustment" ' +
+    'Languages=Common,Elvish,any',
+  'Half-Orc':
+    'Features=' +
+      '"1:Skill Proficiency (Intimidation)",' +
+      '1:Darkvision,"1:Half-Orc Ability Adjustment",' +
+      '"1:Relentless Endurance","1:Savage Attacks" ' +
+    'Languages=Common,Orc',
+  'Lightfoot Halfling':
+    'Features=' +
+      '1:Brave,"1:Halfling Luck","1:Halfling Nimbleness",' +
+      '"1:Lightfoot Halfling Ability Adjustment","1:Naturally Stealthy",' +
+      '1:Slow,1:Small ' +
+    'Languages=Common,Halfling',
+  'Human':
+    'Features=' +
+      '"1:Human Ability Adjustment" ' +
+      'Languages=Common,any',
+  'Tiefling':
+    'Features=' +
+      '1:Darkvision,"1:Hellish Resistance","1:Infernal Legacy",' +
+      '"1:Tiefling Ability Adjustment" ' +
+    'Languages=Common,Infernal ' +
+    'SpellAbility=charisma ' +
+    'SpellSlots=' +
+      'Tiefling0:1=1,' +
+      'Tiefling1:3=1,' +
+      'Tiefling2:5=1 ' +
+    'Spells=' +
+      '"Tiefling0:Thaumaturgy",' +
+      '"Tiefling1:Hellish Rebuke",' +
+      '"Tiefling2:Darkness"'
 };
 SRD5E.SCHOOLS = {
   'Abjuration':'',
@@ -2006,590 +2635,6 @@ SRD5E.WEAPONS = {
   'Warhammer':'Category=2 Property=Ve Damage=d8',
   'Whip':'Category=2 Property=1h Damage=d4'
 };
-SRD5E.CLASSES = {
-  'Barbarian':
-    'HitDie=d12 ' +
-    'Features=' +
-      '"1:Armor Proficiency (Medium/Shield)",' +
-      '"1:Save Proficiency (Constitution/Strength)",' +
-      '"1:Skill Proficiency (Choose 2 from Animal Handling, Athletics, Intimidation, Nature, Perception, Survival)",' +
-      '"1:Weapon Proficiency (Martial)",' +
-      '"1:Barbarian Unarmored Defense",1:Rage,"2:Danger Sense",' +
-      '"2:Reckless Attack","5:Extra Attack",' +
-      '"armorWeight < 3 ? 5:Fast Movement",' +
-      '"7:Feral Instinct","9:Brutal Critical","11:Relentless Rage",' +
-      '"15:Persistent Rage","18:Indomitable Might","20:Primal Champion" ' +
-    'Selectables=' +
-      '"3:Path Of The Berserker",' +
-      '"3:Path Of The Totem Warrior (Bear)",' +
-      '"3:Path Of The Totem Warrior (Eagle)",' +
-      '"3:Path Of The Totem Warrior (Wolf)"',
-  'Bard':
-    'HitDie=d8 ' +
-    'Features=' +
-      '"1:Armor Proficiency (Light)",' +
-      '"1:Save Proficiency (Charisma/Dexterity)",' +
-      '"1:Skill Proficiency (Choose 3 from any)",' +
-      '"1:Tool Proficiency (Choose 3 from any Music)",' +
-      '"1:Weapon Proficiency (Simple/Hand Crossbow/Longsword/Rapier/Shortsword)",' +
-      '"1:Bardic Inspiration","1:Ritual Casting",1:Spellcasting,' +
-      '"2:Jack Of All Trades","2:Song Of Rest","3:Bard Expertise",' +
-      '"5:Font Of Inspiration",6:Countercharm,"10:Magical Secrets",' +
-      '"20:Superior Inspiration" ' +
-    'Selectables=' +
-      '"3:College Of Lore" ' +
-    'CasterLevelArcane=levels.Bard ' +
-    'SpellAbility=charisma ' +
-    'SpellSlots=' +
-      'B0:1=2;4=3;10=4,' +
-      'B1:1=2;2=3;3=4,' +
-      'B2:3=2;4=3,' +
-      'B3:5=2;6=3,' +
-      'B4:7=1;8=2;9=3,' +
-      'B5:9=1;10=2;18=3,' +
-      'B6:11=1;19=2,' +
-      'B7:13=1;20=2,' +
-      'B8:15=1,' +
-      'B9:17=1 ' +
-    'Spells=' +
-      '"B0:Dancing Lights;Light;Mage Hand;Mending;Message;Minor Illusion;' +
-      'Prestidigitation;True Strike;Vicious Mockery",' +
-      '"B1:Animal Friendship;Bane;Charm Person;Comprehend Languages;' +
-      'Cure Wounds;Detect Magic;Disguise Self;Faerie Fire;Feather Fall;' +
-      'Healing Word;Heroism;Hideous Laughter;Identify;Illusory Script;' +
-      'Longstrider;Silent Image;Sleep;Speak With Animals;Unseen Servant",' +
-      '"B2:Animal Messenger;Blindness/Deafness;Calm Emotions;' +
-      'Detect Thoughts;Enhance Ability;Enthrall;Heat Metal;Hold Person;' +
-      'Invisibility;Knock;Lesser Restoration;Locate Animals Or Plants;' +
-      'Locate Object;Magic Mouth;See Invisibility;Shatter;Silence;' +
-      'Suggestion;Zone Of Truth",' +
-      '"B3:Bestow Curse;Clairvoyance;Dispel Magic;Fear;Glyph Of Warding;' +
-      'Hypnotic Pattern;Major Image;Plant Growth;Sending;Speak With Dead;' +
-      'Speak With Plants;Stinking Cloud;Tiny Hut;Tongues",' +
-      '"B4:Compulsion;Confusion;Dimension Door;Freedom Of Movement;' +
-      'Greater Invisibility;Hallucinatory Terrain;Locate Creature;Polymorph",' +
-      '"B5:Animate Objects;Awaken;Dominate Person;Dream;Geas;' +
-      'Greater Restoration;Hold Monster;Legend Lore;Mass Cure Wounds;' +
-      'Mislead;Modify Memory;Planar Binding;Raise Dead;Scrying;Seeming;' +
-      'Teleportation Circle",' +
-      '"B6:Eyebite;Find The Path;Guards And Wards;Irresistible Dance;' +
-      'Mass Suggestion;Programmed Illusion;True Seeing",' +
-      '"B7:Etherealness;Forcecage;Magnificent Mansion;Mirage Arcane;' +
-      'Project Image;Regenerate;Resurrection;Symbol;Teleport",' +
-      '"B8:Dominate Monster;Feeblemind;Glibness;Mind Blank;Power Word Stun",' +
-      '"B9:Foresight;Power Word Kill;True Polymorph"',
-  'Cleric':
-    'HitDie=d8 ' +
-    'Features=' +
-      '"1:Armor Proficiency (Medium/Shield)",' +
-      '"1:Save Proficiency (Charisma/Wisdom)",' +
-      '"1:Skill Proficiency (Choose 2 from History, Insight, Medicine, Persuasion, Religioin)",' +
-      '"1:Weapon Proficiency (Simple)",' +
-      '"1:Ritual Casting",1:Spellcasting,"2:Channel Divinity",' +
-      '"2:Turn Undead","5:Destroy Undead","10:Divine Intervention" ' +
-    'Selectables=' +
-      '"1:Life Domain" ' +
-    'CasterLevelDivine=levels.Cleric ' +
-    'SpellAbility=wisdom ' +
-    'SpellSlots=' +
-      'C0:1=3;4=4;10=5,' +
-      'C1:1=2;2=3;3=4,' +
-      'C2:3=2;4=3,' +
-      'C3:5=2;6=3,' +
-      'C4:7=1;8=2;9=3,' +
-      'C5:9=1;10=2;18=3,' +
-      'C6:11=1;19=2,' +
-      'C7:13=1;20=2,' +
-      'C8:15=1,' +
-      'C9:17=1 ' +
-    'Spells=' +
-      '"C0:Guidance;Light;Mending;Resistance;Sacred Flame;Spare The Dying;' +
-      'Thaumaturgy",' +
-      '"C1:Bane;Bless;Command;Create Or Destroy Water;Cure Wounds;' +
-      'Detect Evil And Good;Detect Magic;Detect Poison And Disease;' +
-      'Guiding Bolt;Healing Word;Inflict Wounds;' +
-      'Protection From Evil And Good;Purify Food And Drink;Sanctuary;' +
-      'Shield Of Faith",' +
-      '"C2:Aid;Augury;Blindness/Deafness;Calm Emotions;Continual Flame;' +
-      'Enhance Ability;Find Traps;Gentle Repose;Hold Person;' +
-      'Lesser Restoration;Locate Object;Prayer Of Healing;' +
-      'Protection From Poison;Silence;Spiritual Weapon;Warding Bond;' +
-      'Zone Of Truth",' +
-      '"C3:Animate Dead;Beacon Of Hope;Bestow Curse;Clairvoyance;' +
-      'Create Food And Water;Daylight;Dispel Magic;Glyph Of Warding;' +
-      'Magic Circle;Mass Healing Word;Meld Into Stone;' +
-      'Protection From Energy;Remove Curse;Revivify;Sending;' +
-      'Speak With Dead;Spirit Guardians;Tongues;Water Walk",' +
-      '"C4:Banishment;Control Water;Death Ward;Divination;' +
-      'Freedom Of Movement;Guardian Of Faith;Locate Creature;Stone Shape",' +
-      '"C5:Commune;Contagion;Dispel Evil And Good;Flame Strike;Geas;' +
-      'Greater Restoration;Hallow;Insect Plague;Legend Lore;' +
-      'Mass Cure Wounds;Planar Binding;Raise Dead;Scrying",' +
-      '"C6:Blade Barrier;Create Undead;Find The Path;Forbiddance;Harm;Heal;' +
-      'Heroes\' Feast;Planar Ally;True Seeing;Word Of Recall",' +
-      '"C7:Conjure Celestial;Divine Word;Etherealness;Fire Storm;' +
-      'Plane Shift;Regenerate;Resurrection;Symbol",' +
-      '"C8:Antimagic Field;Control Weather;Earthquake;Holy Aura",' +
-      '"C9:Astral Projection;Gate;Mass Heal;True Resurrection"',
-  'Druid':
-    'HitDie=d8 ' +
-    'Features=' +
-      '"1:Armor Proficiency (Medium/Shield)",' +
-      '"1:Save Proficiency (Intelligence/Wisdom)",' +
-      '"1:Skill Proficiency (Choose 2 from Arcana, Animal Handling, Insight, Medicine, Nature, Perception, Religion, Survival)",' +
-      '"1:Tool Proficiency (Herbalism Kit)",' +
-      '"1:Weapon Proficiency (Club/Dagger/Dart/Javelin/Mace/Quarterstaff/Scimitar/Sickle/Sling/Spear)",' +
-      '"1:Tool Proficiency (Herbalism Kit)",' +
-      '1:Druidic,"1:Ritual Casting",1:Spellcasting,"2:Wild Shape",' +
-      '"18:Druid Timeless Body","18:Beast Spells",20:Archdruid ' +
-    'Selectables=' +
-      '"2:Circle Of The Land (Arctic)",' +
-      '"2:Circle Of The Land (Coast)",' +
-      '"2:Circle Of The Land (Desert)",' +
-      '"2:Circle Of The Land (Forest)",' +
-      '"2:Circle Of The Land (Grassland)",' +
-      '"2:Circle Of The Land (Mountain)",' +
-      '"2:Circle Of The Land (Swamp)" ' +
-    'CasterLevelDivine=levels.Druid ' +
-    'SpellAbility=wisdom ' +
-    'SpellSlots=' +
-      'D0:1=2;4=3;10=4,' +
-      'D1:1=2;2=3;3=4,' +
-      'D2:3=2;4=3,' +
-      'D3:5=2;6=3,' +
-      'D4:7=1;8=2;9=3,' +
-      'D5:9=1;10=2;18=3,' +
-      'D6:11=1;19=2,' +
-      'D7:13=1;20=2,' +
-      'D8:15=1,' +
-      'D9:17=1 ' +
-    'Spells=' +
-      '"D0:Druidcraft;Guidance;Mending;Poison Spray;Produce Flame;' +
-      'Resistance;Shillelagh",' +
-      '"D1:Animal Friendship;Charm Person;Create Or Destroy Water;' +
-      'Cure Wounds;Detect Magic;Detect Poison And Disease;Entangle;' +
-      'Faerie Fire;Fog Cloud;Goodberry;Healing Word;Jump;Longstrider;' +
-      'Purify Food And Drink;Speak With Animals;Thunderwave",' +
-      '"D2:Animal Messenger;Barkskin;Darkvision;Enhance Ability;' +
-      'Find Traps;Flame Blade;Flaming Sphere;Gust Of Wind;Heat Metal;' +
-      'Hold Person;Lesser Restoration;Locate Animals Or Plants;' +
-      'Locate Object;Moonbeam;Pass Without Trace;Protection From Poison;' +
-      'Spike Growth",' +
-      '"D3:Call Lightning;Conjure Animals;Daylight;Dispel Magic;' +
-      'Meld Into Stone;Plant Growth;Protection From Energy;Sleet Storm;' +
-      'Speak With Plants;Water Breathing;Water Walk;Wind Wall",' +
-      '"D4:Blight;Confusion;Conjure Minor Elementals;' +
-      'Conjure Woodland Beings;Control Water;Dominate Beast;' +
-      'Freedom Of Movement;Giant Insect;Hallucinatory Terrain;Ice Storm;' +
-      'Locate Creature;Polymorph;Stone Shape;Stoneskin;Wall Of Fire",' +
-      '"D5:Antilife Shell;Awaken;Commune With Nature;Conjure Elemental;' +
-      'Contagion;Geas;Greater Restoration;Insect Plague;Mass Cure Wounds;' +
-      'Planar Binding;Reincarnate;Scrying;Tree Stride;Wall Of Stone",' +
-      '"D6:Conjure Fey;Find The Path;Heal;Heroes\' Feast;Move Earth;Sunbeam;' +
-      'Transport Via Plants;Wall Of Thorns;Wind Walk",' +
-      '"D7:Fire Storm;Mirage Arcane;Plane Shift;Regenerate;Reverse Gravity",' +
-      '"D8:Animal Shapes;Antipathy/Sympathy;Control Weather;Earthquake;' +
-      'Feeblemind;Sunburst",' +
-      '"D9:Foresight;Shapechange;Storm Of Vengeance;True Resurrection"',
-  'Fighter':
-    'HitDie=d10 ' +
-    'Features=' +
-      '"1:Armor Proficiency (Heavy/Shield)",' +
-      '"1:Save Proficiency (Constitution/Strength)",' +
-      '"1:Skill Proficiency (Choose 2 from Acrobatics, Animal Handling, Athletics, History, Insight, Intimidation, Perception, Survival)",' +
-      '"1:Weapon Proficiency (Martial)",' +
-      '"1:Second Wind","2:Action Surge","5:Extra Attack",9:Indomitable ' +
-    'Selectables=' +
-      '"1:Archery Style","1:Defense Style","1:Dueling Style",' +
-      '"1:Great Weapon Fighting Style","1:Protection Style",' +
-      '"1:Two-Weapon Fighting Style","3:Champion Archetype"',
-  'Monk':
-    'HitDie=d8 ' +
-    'Features=' +
-      '"1:Save Proficiency (Dexterity/Strength)",' +
-      '"1:Skill Proficiency (Choose 2 from Acrobatics, Athletics, History, Insight, Religion, Stealth)",' +
-      '"1:Tool Proficiency (Choose 1 from any Artisan, any Music)",' +
-      '"1:Weapon Proficiency (Simple/Shortsword)",' +
-      '"1:Martial Arts","1:Monk Bonus Attack","1:Monk Unarmored Defense",' +
-      '"2:Flurry Of Blows","2:Ki","2:Patient Defense","2:Step Of The Wind",' +
-      '"2:Unarmored Movement","3:Deflect Missiles","4:Slow Fall",' +
-      '"5:Extra Attack","5:Stunning Strike","6:Ki-Empowered Strikes",' +
-      '7:Evasion,"7:Stillness Of Mind","9:Improved Unarmored Movement",' +
-      '"10:Purity Of Body","13:Tongue Of Sun And Moon","14:Diamond Soul",' +
-      '"15:Monk Timeless Body","18:Empty Body","20:Perfect Self" ' +
-    'Selectables=' +
-      '"3:Way Of The Open Hand Tradition"',
-  'Paladin':
-    'HitDie=d10 ' +
-    'Features=' +
-      '"1:Armor Proficiency (Heavy/Shield)",' +
-      '"1:Save Proficiency (Charisma/Wisdom)",' +
-      '"1:Skill Proficiency (Choose 2 from Athletics, Insight, Intimidation, Medicine, Persuasion, Religion)",' +
-      '"1:Weapon Proficiency (Martial)",' +
-      '"1:Divine Sense","1:Lay On Hands","2:Divine Smite",2:Spellcasting,' +
-      '"3:Channel Divinity","3:Divine Health","5:Extra Attack",' +
-      '"6:Aura Of Protection","10:Aura Of Courage",' +
-      '"11:Improved Divine Smite","14:Cleansing Touch" ' +
-    'Selectables=' +
-      '"2:Defense Style","2:Dueling Style","2:Great Weapon Fighting Style",' +
-      '"2:Protection Style","3:Oath Of Devotion" ' +
-    'CasterLevelDivine=levels.Paladin ' +
-    'SpellAbility=charisma ' +
-    'SpellSlots=' +
-      'P1:2=2;3=3;5=4,' +
-      'P2:5=2;7=3,' +
-      'P3:9=2;11=3,' +
-      'P4:13=1;15=2;17=3,' +
-      'P5:17=1;19=2 ' +
-    'Spells=' +
-      '"P1:Bless;Command;Cure Wounds;Detect Evil And Good;Detect Magic;' +
-      'Detect Poison And Disease;Divine Favor;Heroism;' +
-      'Protection From Evil And Good;Purify Food And Drink;Shield Of Faith",' +
-      '"P2:Aid;Branding Smite;Find Steed;Lesser Restoration;Locate Object;' +
-      'Magic Weapon;Protection From Poison;Zone Of Truth",' +
-      '"P3:Create Food And Water;Daylight;Dispel Magic;Magic Circle;' +
-      'Remove Curse;Revivify",' +
-      '"P4:Banishment;Death Ward;Locate Creature",' +
-      '"P5:Dispel Evil And Good;Geas;Raise Dead"',
-  'Ranger':
-    'HitDie=d10 ' +
-    'Features=' +
-      '"1:Armor Proficiency (Medium/Shield)",' +
-      '"1:Save Proficiency (Dexterity/Strength)",' +
-      '"1:Skill Proficiency (Choose 3 from Animal Handling, Athletics, Insight, Investigation, Nature, Perception, Stealth, Survival)",' +
-      '"1:Weapon Proficiency (Martial)",' +
-      '"1:Favored Enemy","1:Natural Explorer",2:Spellcasting,' +
-      '"3:Primeval Awareness","5:Extra Attack","8:Land\'s Stride",' +
-      '"10:Hide In Plain Sight","14:Vanish","18:Feral Senses",' +
-      '"20:Foe Slayer" ' +
-    'Selectables=' +
-      '"2:Archery Style","2:Defense Style","2:Dueling Style",' +
-      '"2:Two-Weapon Fighting Style","3:Hunter Archetype" ' +
-    'CasterLevelDivine=levels.Ranger ' +
-    'SpellAbility=wisdom ' +
-    'SpellSlots=' +
-      'R1:2=2;3=3;5=4,' +
-      'R2:5=2;7=3,' +
-      'R3:9=2;11=3,' +
-      'R4:13=1;15=2;17=3,' +
-      'R5:17=1;19=2 ' +
-    'Spells=' +
-      '"R1:Alarm;Animal Friendship;Cure Wounds;Detect Magic;' +
-      'Detect Poison And Disease;Fog Cloud;Goodberry;Hunter\'s Mark;Jump;' +
-      'Longstrider;Speak With Animals",' +
-      '"R2:Animal Messenger;Barkskin;Darkvision;Find Traps;' +
-      'Lesser Restoration;Locate Animals Or Plants;Locate Object;' +
-      'Pass Without Trace;Protection From Poison;Silence;Spike Growth",' +
-      '"R3:Conjure Animals;Daylight;Nondetection;Plant Growth;' +
-      'Protection From Energy;Speak With Plants;Water Breathing;Water Walk;' +
-      'Wind Wall",' +
-      '"R4:Conjure Woodland Beings;Freedom Of Movement;Locate Creature;' +
-      'Stoneskin",' +
-      '"R5:Commune With Nature;Tree Stride"',
-  'Rogue':
-    'HitDie=d8 ' +
-    'Features=' +
-      '"1:Armor Proficiency (Light)",' +
-      '"1:Save Proficiency (Dexterity/Intelligence)",' +
-      '"1:Skill Proficiency (Choose 4 from Acrobatics, Athletics, Deception, Insight, Intimidation, Investigation, Perception, Performance, Persuasion, Sleight Of Hand, Stealth)",' +
-      '"1:Tool Proficiency (Thieves\' Tools)",' +
-      '"1:Weapon Proficiency (Simple/Hand Crossbow/Longsword/Rapier/Shortsword)",' +
-      '"1:Tool Proficiency (Thieves\' Tools)",' +
-      '"1:Rogue Expertise","1:Sneak Attack","1:Thief\'s Cant",' +
-      '"2:Cunning Action","5:Uncanny Dodge",7:Evasion,"11:Reliable Talent",' +
-      '14:Blindsense,"15:Slippery Mind",18:Elusive,"20:Stroke Of Luck" ' +
-    'Selectables=' +
-      '"3:Thief Archetype"',
-  'Sorcerer':
-    'HitDie=d6 ' +
-    'Features=' +
-      '"1:Save Proficiency (Charisma/Constitution)",' +
-      '"1:Skill Proficiency (Choose 2 from Arcana, Deception, Insight, Intimidation, Persuasion, Religion)",' +
-      '"1:Weapon Proficiency (Dagger/Dart/Sling/Quarterstaff/Light Crossbow)",' +
-      '1:Spellcasting,"2:Font Of Magic","2:Flexible Casting",' +
-      '"20:Sorcerous Restoration" ' +
-    'Selectables=' +
-      '"1:Draconic Bloodline","3:Careful Spell","3:Distant Spell",' +
-      '"3:Empowered Spell","3:Extended Spell","3:Heightened Spell",' +
-      '"3:Quickened Spell","3:Subtle Spell","3:Twinned Spell" ' +
-    'CasterLevelArcane=levels.Sorcerer ' +
-    'SpellAbility=charisma ' +
-    'SpellSlots=' +
-      'S0:1=4;4=5;10=6,' +
-      'S1:1=2;2=3;3=4,' +
-      'S2:3=2;4=3,' +
-      'S3:5=2;6=3,' +
-      'S4:7=1;8=2;9=3,' +
-      'S5:9=1;10=2;18=3,' +
-      'S6:11=1;19=2,' +
-      'S7:13=1;20=2,' +
-      'S8:15=1,' +
-      'S9:17=1 ' +
-    'Spells=' +
-      '"S0:Acid Splash;Chill Touch;Dancing Lights;Fire Bolt;Light;Mage Hand;' +
-      'Mending;Message;Minor Illusion;Poison Spray;Prestidigitation;' +
-      'Ray Of Frost;Shocking Grasp;True Strike",' +
-      '"S1:Burning Hands;Charm Person;Color Spray;Comprehend Languages;' +
-      'Detect Magic;Disguise Self;Expeditious Retreat;False Life;' +
-      'Feather Fall;Fog Cloud;Jump;Mage Armor;Magic Missile;Shield;' +
-      'Silent Image;Sleep;Thunderwave",' +
-      '"S2:Alter Self;Blindness/Deafness;Blur;Darkness;Darkvision;' +
-      'Detect Thoughts;Enhance Ability;Enlarge/Reduce;Gust Of Wind;' +
-      'Hold Person;Invisibility;Knock;Levitate;Mirror Image;Misty Step;' +
-      'Scorching Ray;See Invisibility;Shatter;Spider Climb;Suggestion;Web",' +
-      '"S3:Blink;Clairvoyance;Counterspell;Daylight;Dispel Magic;Fear;' +
-      'Fireball;Fly;Gaseous Form;Haste;Hypnotic Pattern;Lightning Bolt;' +
-      'Major Image;Protection From Energy;Sleet Storm;Slow;Stinking Cloud;' +
-      'Tongues;Water Breathing;Water Walk",' +
-      '"S4:Banishment;Blight;Confusion;Dimension Door;Dominate Beast;' +
-      'Greater Invisibility;Ice Storm;Polymorph;Stoneskin;Wall Of Fire",' +
-      '"S5:Animate Objects;Cloudkill;Cone Of Cold;Creation;Dominate Person;' +
-      'Hold Monster;Insect Plague;Seeming;Telekinesis;Teleportation Circle;' +
-      'Wall Of Stone",' +
-      '"S6:Chain Lightning;Circle Of Death;Disintegrate;Eyebite;' +
-      'Globe Of Invulnerability;Mass Suggestion;Move Earth;Sunbeam;' +
-      'True Seeing",' +
-      '"S7:Delayed Blast Fireball;Etherealness;Finger Of Death;Fire Storm;' +
-      'Plane Shift;Prismatic Spray;Reverse Gravity;Teleport",' +
-      '"S8:Dominate Monster;Earthquake;Incendiary Cloud;Power Word Stun;' +
-      'Sunburst",' +
-      '"S9:Gate;Meteor Swarm;Power Word Kill;Time Stop;Wish"',
-  'Warlock':
-    'HitDie=d8 ' +
-    'Features=' +
-      '"1:Armor Proficiency (Light)",' +
-      '"1:Save Proficiency (Charisma/Wisdom)",' +
-      '"1:Skill Proficiency (Choose 2 from Arcana, Deception, History, Intimidation, Investigation, Nature, Religion)",' +
-      '"1:Weapon Proficiency (Simple)",' +
-      '"1:Pact Magic","2:Eldritch Invocations","11:Mystic Arcanum",' +
-      '"20:Eldritch Master" ' +
-    'Selectables=' +
-      '"1:Fiend Patron","2:Agonizing Blast","2:Armor Of Shadows",' +
-      '"2:Beast Speech","2:Beguiling Influence","2:Devil\'s Sight",' +
-      '"2:Eldritch Sight","2:Eldritch Spear","2:Eyes Of The Rune Keeper",' +
-      '"2:Fiendish Vigor","2:Gaze Of Two Minds","2:Mask Of Many Faces",' +
-      '"2:Misty Visions","2:Repelling Blast","2:Thief Of Five Fates",' +
-      '"3:Pact Of The Blade","3:Pact Of The Chain","3:Pact Of The Tome",' +
-      '"5:Mire The Mind","5:One With Shadows","5:Sign Of Ill Omen",' +
-      '"7:Bewitching Whispers","7:Dreadful Word","7:Sculptor Of Flesh",' +
-      '"9:Ascendant Step","9:Minions Of Chaos","9:Otherworldly Leap",' +
-      '"9:Whispers Of The Grave","15:Master Of Myriad Forms",' +
-      '"15:Visions Of Distant Realms","15:Witch Sight",' +
-      '"features.Pact Of The Tome ? 2:Book Of Ancient Secrets",' +
-      '"features.Pact Of The Chain ? 15:Chains Of Carceri",' +
-      '"features.Pact Of The Blade ? 12:Lifedrinker",' +
-      '"features.Pact Of The Blade ? 5:Thirsting Blade",' +
-      '"features.Pact Of The Chain ? 2:Voice Of The Chain Master" ' +
-    'CasterLevelArcane=levels.Warlock ' +
-    'SpellAbility=charisma ' +
-    'SpellSlots=' +
-      'K0:1=2;4=3;10=4,' +
-      'K1:1=1;2=2;3=0,' +
-      'K2:3=2;5=0,' +
-      'K3:5=2;7=0,' +
-      'K4:7=2;9=0,' +
-      'K5:9=2;11=3;17=4 ' +
-    'Spells=' +
-      '"K0:Chill Touch;Eldritch Blast;Mage Hand;Minor Illusion;Poison Spray;' +
-      'Prestidigitation;True Strike",' +
-      '"K1:Charm Person;Comprehend Languages;Expeditious Retreat;' +
-      'Hellish Rebuke;Illusory Script;Protection From Evil And Good;' +
-      'Unseen Servant",' +
-      '"K2:Darkness;Enthrall;Hold Person;Invisibility;Mirror Image;' +
-      'Misty Step;Ray Of Enfeeblement;Shatter;Spider Climb;Suggestion",' +
-      '"K3:Counterspell;Dispel Magic;Fear;Fly;Gaseous Form;Hypnotic Pattern;' +
-      'Magic Circle;Major Image;Remove Curse;Tongues;Vampiric Touch",' +
-      '"K4:Banishment;Blight;Dimension Door;Hallucinatory Terrain",' +
-      '"K5:Contact Other Plane;Dream;Hold Monster;Scrying",' +
-      '"K6:Circle Of Death;Conjure Fey;Create Undead;Eyebite;Flesh To Stone;' +
-      'Mass Suggestion;True Seeing",' +
-      '"K7:Etherealness;Finger Of Death;Forcecage;Plane Shift",' +
-      '"K8:Demiplane;Dominate Monster;Feeblemind;Glibness;Power Word Stun",' +
-      '"K9:Astral Projection;Foresight;Imprisonment;Power Word Kill;' +
-      'True Polymorph",' +
-      // Fiend Patron
-      '"K1:Burning Hands;Command",' +
-      '"K2:Blindness/Deafness;Scorching Ray",' +
-      '"K3:Fireball;Stinking Cloud",' +
-      '"K4:Fire Shield;Wall Of Fire",' +
-      '"K5:Flame Strike;Hallow"',
-  'Wizard':
-    'HitDie=d6 ' +
-    'Features=' +
-      '"1:Save Proficiency (Intelligence/Wisdom)",' +
-      '"1:Skill Proficiency (Choose 3 from Arcana, History, Insight, Investigation, Medicine, Religion)",' +
-      '"1:Weapon Proficiency (Dagger/Dart/Light Crossbow/Quarterstaff/Sling)",' +
-      '"1:Arcane Recovery",1:Spellcasting,"18:Spell Mastery",' +
-      '"20:Signature Spell" ' +
-    'Selectables=' +
-      '"2:Evocation Tradition" ' +
-    'CasterLevelArcane=levels.Wizard ' +
-    'SpellAbility=intelligence ' +
-    'SpellSlots=' +
-      'W0:1=3;4=4;10=5,' +
-      'W1:1=2;2=3;3=4,' +
-      'W2:3=2;4=3,' +
-      'W3:5=2;6=3,' +
-      'W4:7=1;8=2;9=3,' +
-      'W5:9=1;10=2;18=3,' +
-      'W6:11=1;19=2,' +
-      'W7:13=1;20=2,' +
-      'W8:15=1,' +
-      'W9:17=1 ' +
-    'Spells=' +
-      '"W0:Acid Splash;Chill Touch;Dancing Lights;Fire Bolt;Light;Mage Hand;' +
-      'Mending;Message;Minor Illusion;Poison Spray;Prestidigitation;' +
-      'Ray Of Frost;Shocking Grasp;True Strike",' +
-      '"W1:Alarm;Burning Hands;Charm Person;Color Spray;' +
-      'Comprehend Languages;Detect Magic;Disguise Self;Expeditious Retreat;' +
-      'False Life;Feather Fall;Find Familiar;Floating Disk;Fog Cloud;' +
-      'Grease;Hideous Laughter;Identify;Illusory Script;Jump;Longstrider;' +
-      'Mage Armor;Magic Missile;Protection From Evil And Good;Shield;' +
-      'Silent Image;Sleep;Thunderwave;Unseen Servant",' +
-      '"W2:Acid Arrow;Alter Self;Arcane Lock;Arcanist\'s Magic Aura;' +
-      'Blindness/Deafness;Blur;Continual Flame;Darkness;Darkvision;' +
-      'Detect Thoughts;Enlarge/Reduce;Flaming Sphere;Gentle Repose;' +
-      'Gust Of Wind;Hold Person;Invisibility;Knock;Levitate;Locate Object;' +
-      'Magic Mouth;Magic Weapon;Mirror Image;Misty Step;' +
-      'Ray Of Enfeeblement;Rope Trick;Scorching Ray;See Invisibility;' +
-      'Shatter;Spider Climb;Suggestion;Web",' +
-      '"W3:Animate Dead;Bestow Curse;Blink;Clairvoyance;Counterspell;' +
-      'Dispel Magic;Fear;Fireball;Fly;Gaseous Form;Glyph Of Warding;Haste;' +
-      'Hypnotic Pattern;Lightning Bolt;Magic Circle;Major Image;' +
-      'Nondetection;Phantom Steed;Protection From Energy;Remove Curse;' +
-      'Sending;Sleet Storm;Slow;Stinking Cloud;Tiny Hut;Tongues;' +
-      'Vampiric Touch;Water Breathing",' +
-      '"W4:Arcane Eye;Banishment;Black Tentacles;Blight;Confusion;' +
-      'Conjure Minor Elementals;Control Water;Dimension Door;Fabricate;' +
-      'Faithful Hound;Fire Shield;Greater Invisibility;' +
-      'Hallucinatory Terrain;Ice Storm;Locate Creature;Private Sanctum;' +
-      'Phantasmal Killer;Polymorph;Resilient Sphere;Secret Chest;' +
-      'Stone Shape;Stoneskin;Wall Of Fire",' +
-      '"W5:Animate Objects;Arcane Hand;Cloudkill;Cone Of Cold;' +
-      'Conjure Elemental;Contact Other Plane;Creation;Dominate Person;' +
-      'Dream;Geas;Hold Monster;Legend Lore;Mislead;Modify Memory;Passwall;' +
-      'Planar Binding;Scrying;Seeming;Telekinesis;Telepathic Bond;' +
-      'Teleportation Circle;Wall Of Force;Wall Of Stone",' +
-      '"W6:Chain Lightning;Circle Of Death;Contingency;Create Undead;' +
-      'Disintegrate;Eyebite;Flesh To Stone;Freezing Sphere;' +
-      'Globe Of Invulnerability;Guards And Wards;Instant Summons;' +
-      'Irresistible Dance;Magic Jar;Mass Suggestion;Move Earth;' +
-      'Programmed Illusion;Sunbeam;True Seeing;Wall Of Ice",' +
-      '"W7:Delayed Blast Fireball;Etherealness;Finger Of Death;Forcecage;' +
-      'Magnificent Mansion;Mirage Arcane;Plane Shift;Prismatic Spray;' +
-      'Project Image;Reverse Gravity;Sequester;Simulacrum;Symbol;Teleport",' +
-      '"W8:Antimagic Field;Antipathy/Sympathy;Clone;Control Weather;' +
-      'Demiplane;Dominate Monster;Feeblemind;Incendiary Cloud;Maze;' +
-      'Mind Blank;Power Word Stun;Sunburst",' +
-      '"W9:Astral Projection;Foresight;Gate;Imprisonment;Meteor Swarm;' +
-      'Power Word Kill;Prismatic Wall;Shapechange;Time Stop;True Polymorph;' +
-      'Weird;Wish"'
-};
-SRD5E.RACES = {
-  'Black Dragonborn':
-    'Features=' +
-      '"1:Draconic Breath","1:Dragonborn Ability Adjustment" ' +
-    'Languages=Common,Draconic',
-  'Blue Dragonborn':
-    'Features=' +
-      '"1:Draconic Breath","1:Dragonborn Ability Adjustment" ' +
-    'Languages=Common,Draconic',
-  'Brass Dragonborn':
-    'Features=' +
-      '"1:Draconic Breath","1:Dragonborn Ability Adjustment" ' +
-    'Languages=Common,Draconic',
-  'Bronze Dragonborn':
-    'Features=' +
-      '"1:Draconic Breath","1:Dragonborn Ability Adjustment" ' +
-    'Languages=Common,Draconic',
-  'Copper Dragonborn':
-    'Features=' +
-      '"1:Draconic Breath","1:Dragonborn Ability Adjustment" ' +
-    'Languages=Common,Draconic',
-  'Gold Dragonborn':
-    'Features=' +
-      '"1:Draconic Breath","1:Dragonborn Ability Adjustment" ' +
-    'Languages=Common,Draconic',
-  'Green Dragonborn':
-    'Features=' +
-      '"1:Draconic Breath","1:Dragonborn Ability Adjustment" ' +
-    'Languages=Common,Draconic',
-  'Red Dragonborn':
-    'Features=' +
-      '"1:Draconic Breath","1:Dragonborn Ability Adjustment" ' +
-    'Languages=Common,Draconic',
-  'Silver Dragonborn':
-    'Features=' +
-      '"1:Draconic Breath","1:Dragonborn Ability Adjustment" ' +
-    'Languages=Common,Draconic',
-  'White Dragonborn':
-    'Features=' +
-      '"1:Draconic Breath","1:Dragonborn Ability Adjustment" ' +
-    'Languages=Common,Draconic',
-  'Hill Dwarf':
-    'Features=' +
-      '"1:Weapon Proficiency (Battleaxe/Handaxe/Light Hammer/Warhammer)",' +
-      '"1:Tool Proficiency (Choose 1 from Brewer\'s Supplies, Mason\'s Tools, Smith\'s Tools)",' +
-      '1:Darkvision,"1:Hill Dwarf Ability Adjustment",' +
-      '"1:Dwarven Armor Speed","1:Dwarven Resilience","1:Dwarven Toughness",' +
-      '1:Slow,1:Stonecunning ' +
-    'Languages=Common,Dwarvish',
-  'High Elf':
-    'Features=' +
-      '"1:Skill Proficiency (Perception)",' +
-      '"1:Weapon Proficiency (Longbow/Longsword/Shortbow/Shortsword)",' +
-      '1:Darkvision,"1:Fey Ancestry","1:High Elf Ability Adjustment",' +
-      '1:Trance ' +
-    'Languages=Common,Elvish,any ' +
-    'SpellAbility=intelligence ' +
-    'SpellSlots=' +
-      'Elf0:1=1 ' +
-    'Spells=' +
-      '"Elf0:Acid Splash;Chill Touch;Dancing Lights;Fire Bolt;Light;' +
-      'Mage Hand;Mending;Message;Minor Illusion;Poison Spray;' +
-      'Prestidigitation;Ray Of Frost;Shocking Grasp;True Strike"',
-  'Rock Gnome':
-    'Features=' +
-      '"1:Tool Proficiency (Tinker\'s Tools)",' +
-      '1:Darkvision,"1:Gnome Cunning","1:Rock Gnome Ability Adjustment",' +
-      '1:Slow,1:Small,"1:Artificer\'s Lore" ' +
-    'Languages=Common,Gnomish',
-  'Half-Elf':
-    'Features=' +
-      '"1:Versatile Skill Proficiency (Choose 2 from any)",' +
-      '1:Darkvision,"1:Fey Ancestry","1:Half-Elf Ability Adjustment" ' +
-    'Languages=Common,Elvish,any',
-  'Half-Orc':
-    'Features=' +
-      '"1:Skill Proficiency (Intimidation)",' +
-      '1:Darkvision,"1:Half-Orc Ability Adjustment",' +
-      '"1:Relentless Endurance","1:Savage Attacks" ' +
-    'Languages=Common,Orc',
-  'Lightfoot Halfling':
-    'Features=' +
-      '1:Brave,"1:Halfling Luck","1:Halfling Nimbleness",' +
-      '"1:Lightfoot Halfling Ability Adjustment","1:Naturally Stealthy",' +
-      '1:Slow,1:Small ' +
-    'Languages=Common,Halfling',
-  'Human':
-    'Features=' +
-      '"1:Human Ability Adjustment" ' +
-      'Languages=Common,any',
-  'Tiefling':
-    'Features=' +
-      '1:Darkvision,"1:Hellish Resistance","1:Infernal Legacy",' +
-      '"1:Tiefling Ability Adjustment" ' +
-    'Languages=Common,Infernal ' +
-    'SpellAbility=charisma ' +
-    'SpellSlots=' +
-      'Tiefling0:1=1,' +
-      'Tiefling1:3=1,' +
-      'Tiefling2:5=1 ' +
-    'Spells=' +
-      '"Tiefling0:Thaumaturgy",' +
-      '"Tiefling1:Hellish Rebuke",' +
-      '"Tiefling2:Darkness"'
-};
 
 SRD5E.LEVELS_EXPERIENCE = [
   0, 0.3, 0.9, 2.7, 6.5, 14, 23, 34, 48, 64,
@@ -2621,7 +2666,7 @@ SRD5E.abilityRules = function(rules) {
     'abilityNotes.armorSpeedAdjustment', '+', null
   );
 
-  SRD5E.validAllocationRules
+  QuilvynRules.validAllocationRules
     (rules, 'abilityBoost', 'abilityBoosts', 'Sum "^(charisma|constitution|dexterity|intelligence|strength|wisdom)Adjust$"');
 
 };
@@ -2697,9 +2742,9 @@ SRD5E.combatRules = function(rules, armors, shields, weapons) {
     );
   }
 
-  SRD5E.validAllocationRules
+  QuilvynRules.validAllocationRules
     (rules, 'armorProficiency', 'armorChoiceCount', 'Sum "^armorsChosen\\."');
-  SRD5E.validAllocationRules
+  QuilvynRules.validAllocationRules
     (rules, 'weaponProficiency', 'weaponChoiceCount', 'Sum "^weaponsChosen\\."');
 
 };
@@ -2754,11 +2799,12 @@ SRD5E.identityRules = function(
   rules.defineRule('level',
     'experience', '=', 'SRD5E.LEVELS_EXPERIENCE.findIndex(item => item * 1000 > source)'
   );
-  SRD5E.validAllocationRules(rules, 'level', 'level', 'Sum "^levels\\."');
+  QuilvynRules.validAllocationRules
+    (rules, 'level', 'level', 'Sum "^levels\\."');
 
 };
 
-/* Defnes rules related to magic use. */
+/* Defines rules related to magic use. */
 SRD5E.magicRules = function(rules, schools, spells) {
 
   QuilvynUtils.checkAttrTable(schools, ['Features']);
@@ -2774,7 +2820,7 @@ SRD5E.magicRules = function(rules, schools, spells) {
 
 };
 
-/* Defines rules related to character feats, languages, skills, and tools. */
+/* Defines rules related to character aptitudes. */
 SRD5E.talentRules = function(rules, feats, features, languages, skills, tools) {
 
   QuilvynUtils.checkAttrTable(feats, ['Require', 'Imply', 'Type']);
@@ -2799,15 +2845,15 @@ SRD5E.talentRules = function(rules, feats, features, languages, skills, tools) {
     rules.choiceRules(rules, 'Tool', tool, tools[tool]);
   }
 
-  SRD5E.validAllocationRules
+  QuilvynRules.validAllocationRules
     (rules, 'feat', 'Sum "^featCount\\."', 'Sum "^feats\\."');
-  SRD5E.validAllocationRules
+  QuilvynRules.validAllocationRules
     (rules, 'language', 'languageCount', 'Sum "^languages\\."');
-  SRD5E.validAllocationRules
+  QuilvynRules.validAllocationRules
     (rules, 'selectableFeature', 'Sum "^selectableFeatureCount\\."', 'Sum "^selectableFeatures\\."');
-  SRD5E.validAllocationRules
+  QuilvynRules.validAllocationRules
     (rules, 'skillProficiency', 'skillChoiceCount', 'Sum "^skillsChosen\\."');
-  SRD5E.validAllocationRules
+  QuilvynRules.validAllocationRules
     (rules, 'toolProficiency', 'toolChoiceCount', 'Sum "^toolsChosen\\."');
 
 };
@@ -2927,7 +2973,7 @@ SRD5E.choiceRules = function(rules, type, name, attrs) {
     console.log('Unknown choice type "' + type + '"');
     return;
   }
-  if(type != 'Feature') {
+  if(type != 'Feature' && type != 'Path') {
     type = type == 'Class' ? 'levels' :
     type = type == 'Deity' ? 'deities' :
     (type.charAt(0).toLowerCase() + type.substring(1).replace(/\s/g, '') + 's');
@@ -3048,7 +3094,8 @@ SRD5E.backgroundRules = function(rules, name, equipment, features, languages) {
     rules.defineRule('languageCount', backgroundLevel, '+', languages.length);
     for(var i = 0; i < languages.length; i++) {
       if(languages[i] != 'any')
-        rules.defineRule('languages.' + languages[i], backgroundLevel, '=', '1');
+        rules.defineRule
+          ('languages.' + languages[i], backgroundLevel, '=', '1');
     }
   }
 
@@ -3077,12 +3124,31 @@ SRD5E.classRules = function(
   spells, spellDict
 ) {
 
+  rules, name, requires, hitDie, features, selectables,
+  languages, casterLevelArcane, casterLevelDivine, spellAbility, spellSlots,
+  spells, spellDict
   if(!name) {
     console.log('Empty class name');
     return;
   }
+  if(!Array.isArray(requires)) {
+    console.log('Bad requires list "' + requires + '" for class ' + name);
+    return;
+  }
   if(!(hitDie + '').match(/^(\d+)?d\d+$/)) {
     console.log('Bad hitDie "' + hitDie + '" for class ' + name);
+    return;
+  }
+  if(!Array.isArray(features)) {
+    console.log('Bad features list "' + features + '" for class ' + name);
+    return;
+  }
+  if(!Array.isArray(selectables)) {
+    console.log('Bad selectables list "' + selectables + '" for class ' + name);
+    return;
+  }
+  if(!Array.isArray(languages)) {
+    console.log('Bad languages list "' + languages + '" for class ' + name);
     return;
   }
   if(spellAbility) {
@@ -3092,13 +3158,21 @@ SRD5E.classRules = function(
       return;
     }
   }
+  if(!Array.isArray(spellSlots)) {
+    console.log('Bad spellSlots list "' + spellSlots + '" for class ' + name);
+    return;
+  }
+  if(!Array.isArray(spells)) {
+    console.log('Bad spells list "' + spells + '" for class ' + name);
+    return;
+  }
 
   var classLevel = 'levels.' + name;
   var prefix =
     name.charAt(0).toLowerCase() + name.substring(1).replace(/\s/g, '');
 
   if(requires.length > 0)
-    SRD5E.prerequisiteRules
+    QuilvynRules.prerequisiteRules
       (rules, 'validation', prefix + 'Class', classLevel, requires);
 
   SRD5E.featureListRules(rules, features, name, classLevel, false);
@@ -3134,21 +3208,37 @@ SRD5E.classRules = function(
       );
     }
     if(casterLevelArcane)
-      rules.defineRule
-        ('casterLevelArcane', 'casterLevels.' + name, '+=', null);
+      rules.defineRule('casterLevelArcane', 'casterLevels.' + name, '+=', null);
     if(casterLevelDivine)
-      rules.defineRule
-        ('casterLevelDivine', 'casterLevels.' + name, '+=', null);
-    SRD5E.spellSlotsRules(rules, name, spellAbility, 'casterLevels.' + name, spellSlots);
+      rules.defineRule('casterLevelDivine', 'casterLevels.' + name, '+=', null);
+    QuilvynRules.spellSlotRules(rules, 'casterLevels.' + name, spellSlots);
+    for(var j = 0; j < spellSlots.length; j++) {
+      var spellTypeAndLevel = spellSlots[j].replace(/:.*/, '');
+      var spellType = spellTypeAndLevel.replace(/\d+/, '');
+      var spellLevel = spellTypeAndLevel.replace(spellType, '');
+      var spellModifier = spellAbility + 'Modifier';
+      if(spellType != name)
+        rules.defineRule
+          ('casterLevels.' + spellType, 'casterLevels.' + name, '^=', null);
+      rules.defineRule('spellAttackModifier.' + spellType,
+        'casterLevels.' + spellType, '?', null,
+        spellModifier, '=', null,
+        'proficiencyBonus', '+', null
+      );
+      rules.defineRule('spellDifficultyClass.' + spellType,
+        'casterLevels.' + spellType, '?', null,
+        spellModifier, '=', '10 + source',
+      );
+    }
   }
-  if(spells.length > 0)
-    SRD5E.spellListRules(rules, spells, spellDict);
+
+  QuilvynRules.spellListRules(rules, spells, spellDict);
 
 };
 
 /*
- * Defines in #rules# the rules associated with class #name# that are not
- * directly derived from the parmeters passed to classRules.
+ * Defines in #rules# the rules associated with class #name# that cannot be
+ * derived directly from the attributes passed to classRules.
  */
 SRD5E.classRulesExtra = function(rules, name) {
 
@@ -3541,6 +3631,14 @@ SRD5E.deityRules = function(rules, name, alignment, domains, sphere) {
     console.log('Empty deity name');
     return;
   }
+  if(name != 'None' && !(alignment+'').match(/^(N|[LNC]G|[LNC]E|[LC]N)$/i)) {
+    console.log('Bad alignment "' + alignment + '" for deity ' + name);
+    return;
+  }
+  if(!Array.isArray(domains)) {
+    console.log('Bad domains list "' + domains + '" for deity ' + name);
+    return;
+  }
 
   if(rules.deityStats == null) {
     rules.deityStats = {
@@ -3577,25 +3675,39 @@ SRD5E.featRules = function(rules, name, requires, implies, types) {
     console.log('Empty feat name');
     return;
   }
+  if(!Array.isArray(requires)) {
+    console.log('Bad requires list "' + requires + '" for feat ' + name);
+    return;
+  }
+  if(!Array.isArray(implies)) {
+    console.log('Bad implies list "' + implies + '" for feat ' + name);
+    return;
+  }
+  if(!Array.isArray(types)) {
+    console.log('Bad types list "' + types + '" for feat ' + name);
+    return;
+  }
 
   var prefix =
     name.charAt(0).toLowerCase() + name.substring(1).replace(/\s/g, '');
 
   if(requires.length > 0)
-    SRD5E.prerequisiteRules
+    QuilvynRules.prerequisiteRules
       (rules, 'validation', prefix + 'Feat', 'feats.' + name, requires);
-
   if(implies.length > 0)
-    SRD5E.prerequisiteRules
+    QuilvynRules.prerequisiteRules
       (rules, 'sanity', prefix + 'Feat', 'feats.' + name, implies);
-
   rules.defineRule('features.' + name, 'feats.' + name, '=', null);
+  for(var i = 0; i < types.length; i++) {
+    if(types[i] != 'General')
+      rules.defineRule('sum' + types[i] + 'Feats', 'feats.' + name, '+=', null);
+  }
 
 };
 
 /*
- * Defines in #rules# the rules associated with feat #name# that are not
- * directly derived from the parmeters passed to featRules.
+ * Defines in #rules# the rules associated with feat #name# that cannot be
+ * derived directly from the attributes passed to featRules.
  */
 SRD5E.featRulesExtra = function(rules, name) {
   if(name.startsWith('Ability Boost')) {
@@ -3644,8 +3756,10 @@ SRD5E.languageRules = function(rules, name) {
  * selection for characters belonging to #group# and tracks path level via
  * #levelAttr#. The path grants the features and spells listed in #features#
  * and #spells#. #spellAbility#, if specified, names the ability for computing
- * spell difficulty class. #spellDict# is the dictionary of all spells used to
- * look up individual spell attributes.
+ * spell difficulty class. #spellSlots# lists the number of spells per level
+ * per day granted by the path, and #spells# lists spells defined by the path.
+ * #spellDict# is the dictionary of all spells, used to look up individual
+ * spell attributes.
  */
 SRD5E.pathRules = function(
   rules, name, group, levelAttr, features, selectables, spellAbility,
@@ -3662,6 +3776,14 @@ SRD5E.pathRules = function(
   }
   if(!(levelAttr + '').startsWith('level')) {
     console.log('Bad level "' + levelAttr + '" for path ' + name);
+    return;
+  }
+  if(!Array.isArray(features)) {
+    console.log('Bad features list "' + features + '" for path ' + name);
+    return;
+  }
+  if(!Array.isArray(selectables)) {
+    console.log('Bad selectables list "' + selectables + '" for path ' + name);
     return;
   }
   if(spellAbility) {
@@ -3682,22 +3804,39 @@ SRD5E.pathRules = function(
 
   SRD5E.featureListRules(rules, features, group, pathLevel, false);
   SRD5E.featureListRules(rules, selectables, group, pathLevel, true);
+
   if(spellSlots.length > 0) {
     rules.defineRule('casterLevels.' + name, pathLevel, '=', null);
-    SRD5E.spellSlotsRules(rules, name, spellAbility, 'casterLevels.' + name, spellSlots);
+    QuilvynRules.spellSlotRules(rules, 'casterLevels.' + name, spellSlots);
+    for(var j = 0; j < spellSlots.length; j++) {
+      var spellType = spellSlots[j].replace(/\d.*/, '');
+      if(spellType != name)
+        rules.defineRule
+          ('casterLevels.' + spellType, 'casterLevels.' + name, '^=', null);
+      rules.defineRule('spellAttackModifier.' + spellType,
+        'casterLevels.' + spellType, '?', null,
+        spellAbility + 'Modifier', '=', null,
+        'proficiencyBonus', '+', null
+      );
+      rules.defineRule('spellDifficultyClass.' + spellType,
+        'casterLevels.' + spellType, '?', null,
+        spellAbility + 'Modifier', '=', '10 + source',
+      );
+    }
   }
-  if(spells.length > 0)
-    SRD5E.spellListRules(rules, spells, spellDict);
+
+  QuilvynRules.spellListRules(rules, spells, spellDict);
 
 };
 
 /*
  * Defines in #rules# the rules associated with race #name#, which has the list
  * of hard prerequisites #requires#. #features# and #selectables# list
- * associated features and #languages# the automatic languages. #spells# lists
+ * associated features and #languages# any automatic languages. #spells# lists
  * any natural spells, for which #spellAbility# is used to compute the save DC.
- * #spellDict# is the dictionary of all spells used to look up individual spell
- * attributes.
+ * #spellSlots# lists the number of spells per level per day granted by the
+ * race, and #spells# lists spells defined by the race. #spellDict# is the
+ * dictionary of all spells, used to look up individual spell attributes.
  */
 SRD5E.raceRules = function(
   rules, name, requires, features, selectables, languages, spellAbility,
@@ -3708,12 +3847,36 @@ SRD5E.raceRules = function(
     console.log('Empty race name');
     return;
   }
+  if(!Array.isArray(requires)) {
+    console.log('Bad requires list "' + requires + '" for race ' + name);
+    return;
+  }
+  if(!Array.isArray(features)) {
+    console.log('Bad features list "' + features + '" for race ' + name);
+    return;
+  }
+  if(!Array.isArray(selectables)) {
+    console.log('Bad selectables list "' + selectables + '" for race ' + name);
+    return;
+  }
+  if(!Array.isArray(languages)) {
+    console.log('Bad languages list "' + languages + '" for race ' + name);
+    return;
+  }
   if(spellAbility) {
     spellAbility = spellAbility.toLowerCase();
     if(!(spellAbility.charAt(0).toUpperCase() + spellAbility.substring(1) in SRD5E.ABILITIES)) {
       console.log('Bad spell ability "' + spellAbility + '" for class ' + name);
       return;
     }
+  }
+  if(!Array.isArray(spellSlots)) {
+    console.log('Bad spellSlots list "' + spellSlots + '" for race ' + name);
+    return;
+  }
+  if(!Array.isArray(spells)) {
+    console.log('Bad spells list "' + spells + '" for race ' + name);
+    return;
   }
 
   var matchInfo;
@@ -3727,7 +3890,7 @@ SRD5E.raceRules = function(
   );
 
   if(requires.length > 0)
-    SRD5E.prerequisiteRules
+    QuilvynRules.prerequisiteRules
       (rules, 'validation', prefix + 'Race', raceLevel, requires);
 
   SRD5E.featureListRules(rules, features, name, raceLevel, false);
@@ -3745,16 +3908,31 @@ SRD5E.raceRules = function(
 
   if(spellSlots.length > 0) {
     rules.defineRule('casterLevels.' + name, raceLevel, '=', null);
-    SRD5E.spellSlotsRules(rules, name, spellAbility, 'casterLevels.' + name, spellSlots);
+    QuilvynRules.spellSlotRules(rules, 'casterLevels.' + name, spellSlots);
+    for(var j = 0; j < spellSlots.length; j++) {
+      var spellType = spellSlots[j].replace(/\d.*/, '');
+      if(spellType != name)
+        rules.defineRule
+          ('casterLevels.' + spellType, 'casterLevels.' + name, '^=', null);
+      rules.defineRule('spellAttackModifier.' + spellType,
+        'casterLevels.' + spellType, '?', null,
+        spellAbility + 'Modifier', '=', null,
+        'proficiencyBonus', '+', null
+      );
+      rules.defineRule('spellDifficultyClass.' + spellType,
+        'casterLevels.' + spellType, '?', null,
+        spellAbility + 'Modifier', '=', '10 + source',
+      );
+    }
   }
-  if(spells.length > 0)
-      SRD5E.spellListRules(rules, spells, spellDict);
+
+  QuilvynRules.spellListRules(rules, spells, spellDict);
 
 };
 
 /*
- * Defines in #rules# the rules associated with race #name# that are not
- * directly derived from the parmeters passed to raceRules.
+ * Defines in #rules# the rules associated with race #name# that cannot be
+ * derived directly from the attributes passed to raceRules.
  */
 SRD5E.raceRulesExtra = function(rules, name) {
 
@@ -3852,14 +4030,21 @@ SRD5E.skillRules = function(rules, name, ability, classes) {
     console.log('Empty skill name');
     return;
   }
-  if(ability != null &&
-     !ability.match(/^(charisma|constitution|dexterity|intelligence|strength|wisdom)$/i)) {
-    console.log('Bad ability "' + ability + '" for skill ' + name);
+  if(ability) {
+    ability = ability.toLowerCase();
+    if(!(ability.charAt(0).toUpperCase() + ability.substring(1) in SRD35.ABILITIES)) {
+      console.log('Bad ability "' + ability + '" for skill ' + name);
+      return;
+    }
+  }
+  if(!Array.isArray(classes)) {
+    console.log('Bad classes list "' + classes + '" for skill ' + name);
     return;
   }
 
   for(var i = 0; i < classes.length; i++) {
-    rules.defineRule('skillProficiency.' + name, 'levels.' + classes[i], '=', '1');
+    rules.defineRule
+      ('skillProficiency.' + name, 'levels.' + classes[i], '=', '1');
   }
   rules.defineRule('skillProficiency.' + name,
     'skillsChosen.' + name, '=', 'source ? 1 : null'
@@ -3868,7 +4053,8 @@ SRD5E.skillRules = function(rules, name, ability, classes) {
     'skillProficiency.' + name, '?', null,
     'proficiencyBonus', '=', null
   );
-  rules.defineChoice('notes', 'skills.' + name + ':(' + ability.substring(0, 3) + ') %V');
+  rules.defineChoice
+      ('notes', 'skills.' + name + ':(' + ability.substring(0, 3) + ') %V');
   rules.defineRule('skills.' + name,
     ability + 'Modifier', '=', null,
     'skillBonus.' + name, '+', null
@@ -3916,6 +4102,10 @@ SRD5E.weaponRules = function(rules, name, category, properties, damage, range) {
   if(category == null ||
      !(category + '').match(/^([0-2]|unarmed|simple|martial)$/i)) {
     console.log('Bad category "' + category + '" for weapon ' + name);
+    return;
+  }
+  if(!Array.isArray(properties)) {
+    console.log('Bad properties list "' + properties + '" for weapon ' + name);
     return;
   }
   var matchInfo = (damage + '').match(/^(((\d*d)?\d+)([\-+]\d+)?)$/);
@@ -4016,6 +4206,40 @@ SRD5E.weaponRules = function(rules, name, category, properties, damage, range) {
     'weaponsChosen.' + name, '=', 'source ? 1 : null'
   );
 
+};
+
+/*
+ * Defines in #rules# the rules associated with with the list #features#. Rules
+ * add each feature to #setName# if the value of #levelAttr# is at least equal
+ * to the value required for the feature. If #selectable# is true, the user is
+ * allowed to select these features for the character, rather than having them
+ * assigned automatically.
+ */
+SRD5E.featureListRules = function(
+  rules, features, setName, levelAttr, selectable
+) {
+  QuilvynRules.featureListRules
+    (rules, features, setName, levelAttr, selectable);
+  setName = setName.charAt(0).toLowerCase() + setName.substring(1).replace(/\s/g, '') + 'Features';
+  for(var i = 0; i < features.length; i++) {
+    var feature = features[i].replace(/^(.*\?\s*)?\d+:/, '');
+    var matchInfo = feature.match(/([A-Z]\w*)\sProficiency\s\((.*)\)$/);
+    if(!matchInfo)
+      continue;
+    var group = matchInfo[1].toLowerCase();
+    var elements = matchInfo[2].split('/');
+    for(var j = 0; j < elements.length; j++) {
+      matchInfo = elements[j].match(/^Choose\s+(\d+)\s+from/i);
+      if(matchInfo) {
+        rules.defineRule
+          (group + 'ChoiceCount', setName + '.' + feature, '+=', matchInfo[1]);
+      } else {
+        rules.defineRule(group + 'Proficiency.' + elements[j],
+          setName + '.' + feature, '=', '1'
+        );
+      }
+    }
+  }
 };
 
 /*
@@ -4368,139 +4592,6 @@ SRD5E.choiceEditorElements = function(rules, type) {
     );
   }
   return result;
-};
-
-/*
- * Defines in #rules# the rules associated with with the list #features#. Rules
- * add each feature to #setName# if the value of #levelAttr# is at least equal
- * to the value required for the feature. If #selectable# is true, the user is
- * allowed to select these features for the character, rather than having them
- * assigned automatically.
- */
-SRD5E.featureListRules = function(
-  rules, features, setName, levelAttr, selectable
-) {
-  QuilvynRules.featureListRules
-    (rules, features, setName, levelAttr, selectable);
-  setName = setName.charAt(0).toLowerCase() + setName.substring(1).replace(/\s/g, '') + 'Features';
-  for(var i = 0; i < features.length; i++) {
-    var feature = features[i].replace(/^(.*\?\s*)?\d+:/, '');
-    var matchInfo = feature.match(/([A-Z]\w*)\sProficiency\s\((.*)\)$/);
-    if(!matchInfo)
-      continue;
-    var group = matchInfo[1].toLowerCase();
-    var elements = matchInfo[2].split('/');
-    for(var j = 0; j < elements.length; j++) {
-      matchInfo = elements[j].match(/^Choose\s+(\d+)\s+from/i);
-      if(matchInfo) {
-        rules.defineRule
-          (group + 'ChoiceCount', setName + '.' + feature, '+=', matchInfo[1]);
-      } else {
-        rules.defineRule(group + 'Proficiency.' + elements[j],
-          setName + '.' + feature, '=', '1'
-        );
-      }
-    }
-  }
-};
-
-/*
- * Defines in #rules# the rules needed to check, when #attr# is defined, if the
- * list of prerequisites #tests# are met. The results of the tests are computed
- * in the #section# note #noteName#; zero if successful, non-zero otherwise.
- */
-SRD5E.prerequisiteRules = function(rules, section, noteName, attr, tests) {
-  QuilvynRules.prerequisiteRules(rules, section, noteName, attr, tests);
-};
-
-/*
- * Defines in #rules# each spell in the list #spells#. #spellDict# is the
- * dictionary of all spells used to look up individual spell attributes.
- */
-SRD5E.spellListRules = function(rules, spells, spellDict) {
-
-  for(var i = 0; i < spells.length; i++) {
-
-    var pieces = spells[i].split(':');
-    if(pieces.length != 2) {
-      console.log('Bad format for spell list "' + spells[i] + '"');
-      break;
-    }
-    var groupAndLevel = pieces[0];
-    var spellList = pieces[1];
-    var matchInfo = groupAndLevel.match(/^(\w+)(\d)$/);
-    if(!matchInfo) {
-      console.log('Bad format for spell list "' + spells[i] + '"');
-      break;
-    }
-    var group = matchInfo[1];
-    var level = matchInfo[2];
-    var spellNames = spellList.split(';');
-    for(var j = 0; j < spellNames.length; j++) {
-      var spellName = spellNames[j];
-      if(spellDict[spellName] == null) {
-        console.log('Unknown spell "' + spellName + '"');
-        continue;
-      }
-      var school = QuilvynUtils.getAttrValue(spellDict[spellName], 'School');
-      if(school == null) {
-        console.log('No school given for spell ' + spellName);
-        continue;
-      }
-      var fullSpell =
-        spellName + '(' + group + level + ' ' + school.substring(0, 4) + ')';
-      rules.choiceRules
-        (rules, 'Spell', fullSpell,
-         spellDict[spellName] + ' Group=' + group + ' Level=' + level);
-    }
-
-  }
-
-};
-
-/*
- * Defines in #rules# the rules required to allocate the list of spell slots
- * #spellSlots# to the character. #name# is the name of the group that
- * receives these slots, #ability# is the basic ability associated with the
- * use of these spells, and #levelAttr# is the name of the attribute that
- * holds the character's level for this set of spells.
- */
-SRD5E.spellSlotsRules = function(rules, name, ability, levelAttr, spellSlots) {
-  for(var i = 0; i < spellSlots.length; i++) {
-    var spellTypeAndLevel = spellSlots[i].split(/:/)[0];
-    var spellType = spellTypeAndLevel.replace(/\d+/, '');
-    var spellLevel = spellTypeAndLevel.replace(/[A-Z]*/, '');
-    var code = spellSlots[i].substring(spellTypeAndLevel.length + 1).
-               replace(/\=/g, ' ? ').
-               split(/;/).reverse().join(' : source >= ');
-    code = 'source >= ' + code + ' : null';
-    if(code.indexOf('source >= 1 ?') >= 0) {
-      code = code.replace(/source\s>=\s1\s./, '').replace(/\s:\snull/, '');
-    }
-    rules.defineRule('spellSlots.' + spellTypeAndLevel, levelAttr, '+=', code);
-    rules.defineRule('spellAttackModifier.' + spellType,
-      'casterLevels.' + spellType, '?', null,
-      ability.toLowerCase() + 'Modifier', '=', null,
-      'proficiencyBonus', '+', null
-    );
-    rules.defineRule('spellDifficultyClass.' + spellType,
-      'casterLevels.' + spellType, '?', null,
-      ability.toLowerCase() + 'Modifier', '=', '8 + source',
-      'proficiencyBonus', '+', null
-    );
-    if(spellType != name) {
-      rules.defineRule('casterLevels.' + spellType, levelAttr, '=', null);
-    }
-  }
-};
-
-/*
- * Defines in #rules# the rules necessary to check that the values of the
- * attributes #available# and #allocated# are equal. Results are stored in
- * the attribute validationNotes.#name#Allocation.
- */
-SRD5E.validAllocationRules = function(rules, name, available, allocated) {
-  QuilvynRules.validAllocationRules(rules, name, available, allocated);
 };
 
 /* Returns the elements in a basic 5E character editor. */
@@ -5225,34 +5316,4 @@ SRD5E.ruleNotes = function() {
     '  </li>\n' +
     '</ul>\n' +
     '</p>\n';
-};
-
-
-/* Convenience functions that invoke QuilvynRules methods on the SRD5E rules. */
-SRD5E.applyRules = function() {
-  return SRD5E.rules.applyRules.apply(SRD5E.rules, arguments);
-};
-
-SRD5E.defineChoice = function() {
-  return SRD5E.rules.defineChoice.apply(SRD5E.rules, arguments);
-};
-
-SRD5E.defineEditorElement = function() {
-  return SRD5E.rules.defineEditorElement.apply(SRD5E.rules, arguments);
-};
-
-SRD5E.defineRule = function() {
-  return SRD5E.rules.defineRule.apply(SRD5E.rules, arguments);
-};
-
-SRD5E.defineSheetElement = function() {
-  return SRD5E.rules.defineSheetElement.apply(SRD5E.rules, arguments);
-};
-
-SRD5E.getChoices = function() {
-  return SRD5E.rules.getChoices.apply(SRD5E.rules, arguments);
-};
-
-SRD5E.isSource = function() {
-  return SRD5E.rules.isSource.apply(SRD5E.rules, arguments);
 };

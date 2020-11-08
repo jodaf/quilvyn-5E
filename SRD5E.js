@@ -18,7 +18,7 @@ Place, Suite 330, Boston, MA 02111-1307 USA.
 /*jshint esversion: 6 */
 "use strict";
 
-var SRD5E_VERSION = '2.1.1.0';
+var SRD5E_VERSION = '2.1.1.1';
 
 /*
  * This module loads the rules from the System Reference Document v5. The SRD5E
@@ -4161,14 +4161,12 @@ SRD5E.weaponRules = function(rules, name, category, properties, damage, range) {
   );
   rules.defineRule('attackBonus.' + name,
     weaponName, '=', '0',
-    'attackBonus.' + (isRanged ? 'Ranged' : 'Melee'), '+', null,
     'combatNotes.' + (isRanged ? 'dexterity' : 'strength') + 'AttackAdjustment', '+', null,
     'weaponProficiencyBonus.' + name, '+', null,
     'weaponAttackAdjustment.' + name, '+', null
   );
   rules.defineRule('damageBonus.' + name,
     weaponName, '=', '0',
-    'damageBonus.' + (isRanged ? 'Ranged' : 'Melee'), '+', null,
     'combatNotes.' + (isRanged ? 'dexterity' : 'strength') + 'DamageAdjustment', '+', null,
     'weaponDamageAdjustment.' + name, '+', null
   );

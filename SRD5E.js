@@ -4787,23 +4787,21 @@ SRD5E.randomizeOneAttribute = function(attributes, attribute) {
     var aliInfo = attributes.alignment.match(/^([CLN]).*\s([GEN])/);
     var aliPat;
     if(aliInfo == null) /* Neutral character */
-      aliPat = '\\((N[ \\)]|N.|.N)';
-    else if(aliInfo[1] == 'N')
-      aliPat = '\\((N[ \\)]|.' + aliInfo[2] + ')';
-    else if(aliInfo[2] == 'N')
-      aliPat = '\\((N[ \\)]|' + aliInfo[1] + '.)';
-    else
-      aliPat = '\\(([N' + aliInfo[1] + '][N' + aliInfo[2] + '])';
+      aliPat = 'N[EG]?|[CL]N';
+    else if(aliInfo[1] == 'N') /* NG or NE */
+      aliPat = 'N|[CLN]' + aliInfo[2];
+    else if(aliInfo[2] == 'N') /* CN or LN */
+      aliPat = 'N|' + aliInfo[1] + '[GNE]';
+    else /* [LC]G or [LC]E */
+      aliPat = aliInfo[1] + '[N' + aliInfo[2] + ']|N' + aliInfo[2];
     choices = [];
-    for(attr in this.getChoices('deities')) {
-      if(attr.match(aliPat))
+    var deities = this.getChoices('deities');
+    for(attr in deities) {
+      if(deities[attr].match('=' + aliPat + '\\b'))
         choices.push(attr);
     }
-    if(choices.length > 0) {
-      attributes['deity'] = choices[QuilvynUtils.random(0, choices.length - 1)];
-    } else {
-      attributes['deity'] = 'None';
-    }
+    if(choices.length > 0)
+      attributes.deity = choices[QuilvynUtils.random(0, choices.length - 1)];
   } else if(attribute == 'feats' || attribute == 'features') {
     var debug = [];
     attribute = attribute == 'feats' ? 'feat' : 'selectableFeature';

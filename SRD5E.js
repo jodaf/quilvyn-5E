@@ -2704,6 +2704,10 @@ SRD5E.combatRules = function(rules, armors, shields, weapons) {
     'combatNotes.dexterityAttackAdjustment', '=', null,
     'combatNotes.strengthAttackAdjustment', '^', null
   );
+  rules.defineRule('betterDamageAdjustment',
+    'combatNotes.dexterityDamageAdjustment', '=', null,
+    'combatNotes.strengthDamageAdjustment', '^', null
+  );
   rules.defineRule('combatNotes.constitutionHitPointsAdjustment',
     'constitutionModifier', '=', null,
     'level', '*', null
@@ -4174,7 +4178,9 @@ SRD5E.weaponRules = function(rules, name, category, properties, damage, range) {
   );
   rules.defineRule('damageBonus.' + name,
     weaponName, '=', '0',
-    'combatNotes.' + (isRanged ? 'dexterity' : 'strength') + 'DamageAdjustment', '+', null,
+    isFinessed ? 'betterDamageAdjustment' :
+      isRanged ? 'combatNotes.dexterityDamageAdjustment' :
+                 'combatNotes.strengthDamageAdjustment', '+', null,
     'weaponDamageAdjustment.' + name, '+', null
   );
   if(!range) {

@@ -2599,8 +2599,8 @@ SRD5E.WEAPONS = {
   'Battleaxe':'Category=2 Property=Ve Damage=d8',
   'Blowgun':'Category=2 Property=R Damage=d1 Range=25',
   'Club':'Category=1 Property=Li Damage=d4',
-  'Dagger':'Category=1 Property=Li Damage=d4 Range=20',
-  'Dart':'Category=1 Property=R Damage=d4 Range=20',
+  'Dagger':'Category=1 Property=Li,Fi Damage=d4 Range=20',
+  'Dart':'Category=1 Property=R,Fi Damage=d4 Range=20',
   'Flail':'Category=2 Property=1h Damage=d8',
   'Glaive':'Category=2 Property=2h Damage=d10',
   'Greataxe':'Category=2 Property=2h Damage=d12',
@@ -2610,7 +2610,7 @@ SRD5E.WEAPONS = {
   'Hand Crossbow':'Category=2 Property=R Damage=d6 Range=30',
   'Handaxe':'Category=1 Property=Li Damage=d6 Range=20',
   'Heavy Crossbow':'Category=2 Property=R Damage=d10 Range=100',
-  'Javelin':'Category=1 Property=R Damage=d6 Range=30',
+  'Javelin':'Category=1 Property=1h Damage=d6 Range=30',
   'Lance':'Category=2 Property=1h Damage=d12',
   'Light Crossbow':'Category=1 Property=R Damage=d8 Range=80',
   'Light Hammer':'Category=1 Property=Li Damage=d4 Range=20',
@@ -2622,10 +2622,10 @@ SRD5E.WEAPONS = {
   'Net':'Category=2 Property=R Damage=d0 Range=5',
   'Pike':'Category=2 Property=2h Damage=d10',
   'Quarterstaff':'Category=1 Property=Ve Damage=d6',
-  'Rapier':'Category=2 Property=1h Damage=d8',
-  'Scimitar':'Category=2 Property=Li Damage=d6',
+  'Rapier':'Category=2 Property=1h,Fi Damage=d8',
+  'Scimitar':'Category=2 Property=Li,Fi Damage=d6',
   'Shortbow':'Category=1 Property=R Damage=d6 Range=80',
-  'Shortsword':'Category=2 Property=Li Damage=d6',
+  'Shortsword':'Category=2 Property=Li,Fi Damage=d6',
   'Sickle':'Category=1 Property=Li Damage=d4',
   'Sling':'Category=1 Property=R Damage=d4 Range=30',
   'Spear':'Category=1 Property=Ve Damage=d6 Range=20',
@@ -2633,7 +2633,7 @@ SRD5E.WEAPONS = {
   'Unarmed':'Category=0 Property=Un Damage=d1',
   'War Pick':'Category=2 Property=1h Damage=d8',
   'Warhammer':'Category=2 Property=Ve Damage=d8',
-  'Whip':'Category=2 Property=1h Damage=d4'
+  'Whip':'Category=2 Property=1h,Fi Damage=d4'
 };
 
 SRD5E.LEVELS_EXPERIENCE = [
@@ -2700,6 +2700,10 @@ SRD5E.combatRules = function(rules, armors, shields, weapons) {
     'strength', '+', '-source'
   );
   rules.defineRule('attacksPerRound', '', '=', '1');
+  rules.defineRule('betterAttackAdjustment',
+    'combatNotes.dexterityAttackAdjustment', '=', null,
+    'combatNotes.strengthAttackAdjustment', '^', null
+  );
   rules.defineRule('combatNotes.constitutionHitPointsAdjustment',
     'constitutionModifier', '=', null,
     'level', '*', null
@@ -4126,6 +4130,7 @@ SRD5E.weaponRules = function(rules, name, category, properties, damage, range) {
   else if(category.match(/^martial$/i))
     category = 2;
 
+  var isFinessed = properties.includes('finesse') || properties.includes('Fi');
   var isRanged = properties.includes('ranged') || properties.includes('R');
   var is2h = properties.includes('two-handed') || properties.includes('2h');
 
@@ -4161,7 +4166,9 @@ SRD5E.weaponRules = function(rules, name, category, properties, damage, range) {
   );
   rules.defineRule('attackBonus.' + name,
     weaponName, '=', '0',
-    'combatNotes.' + (isRanged ? 'dexterity' : 'strength') + 'AttackAdjustment', '+', null,
+    isFinessed ? 'betterAttackAdjustment' :
+      isRanged ? 'combatNotes.dexterityAttackAdjustment' :
+                 'combatNotes.strengthAttackAdjustment', '+', null,
     'weaponProficiencyBonus.' + name, '+', null,
     'weaponAttackAdjustment.' + name, '+', null
   );

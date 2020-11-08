@@ -1332,7 +1332,7 @@ PHB5E.RACES = {
       '"1:Weapon Proficiency (Hand Crossbow/Rapier/Shortsword)",' +
       '"1:Dark Elf Ability Adjustment","1:Drow Magic","1:Fey Ancestry",' +
       '"1:Sunlight Sensitivity","1:Superior Darkvision",1:Trance ' +
-    'Languages=Common,Elvish ' +
+    'Languages=Common,Elvish,Undercommon ' +
     'SpellAbility=charisma ' +
     'SpellSlots=' +
       'Drow0:1=1,' +

@@ -2702,7 +2702,7 @@ SRD5E.combatRules = function(rules, armors, shields, weapons) {
   rules.defineRule('attacksPerRound', '', '=', '1');
   rules.defineRule('betterAttackAdjustment',
     'combatNotes.dexterityAttackAdjustment', '=', null,
-    'combatNotes.strengthAttackAdjustment', '=', null
+    'combatNotes.strengthAttackAdjustment', '^', null
   );
   rules.defineRule('combatNotes.constitutionHitPointsAdjustment',
     'constitutionModifier', '=', null,

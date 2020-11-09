@@ -3235,7 +3235,8 @@ SRD5E.classRules = function(
       );
       rules.defineRule('spellDifficultyClass.' + spellType,
         'casterLevels.' + spellType, '?', null,
-        spellModifier, '=', '10 + source',
+        spellModifier, '=', '8 + source',
+        'proficiencyBonus', '+', null
       );
     }
   }
@@ -3828,7 +3829,8 @@ SRD5E.pathRules = function(
       );
       rules.defineRule('spellDifficultyClass.' + spellType,
         'casterLevels.' + spellType, '?', null,
-        spellAbility + 'Modifier', '=', '10 + source',
+        spellAbility + 'Modifier', '=', '8 + source',
+        'proficiencyBonus', '+', null
       );
     }
   }
@@ -3929,7 +3931,8 @@ SRD5E.raceRules = function(
       );
       rules.defineRule('spellDifficultyClass.' + spellType,
         'casterLevels.' + spellType, '?', null,
-        spellAbility + 'Modifier', '=', '10 + source',
+        spellAbility + 'Modifier', '=', '8 + source',
+        'proficiencyBonus', '+', null
       );
     }
   }

@@ -917,7 +917,7 @@ SRD5E.FEATURES = {
     'Note="Move normally through difficult terrain",' +
          '"Adv vs. impeding plants"',
   'Lay On Hands':
-    'Section=magic Note="Heal %V HP, disease, poison 1/long rest"',
+    'Section=magic Note="Heal %V HP, disease, or poison 1/long rest"',
   'Lifedrinker':
     'Section=combat Note="+%V HP w/pact weapon"',
   'Magical Secrets':

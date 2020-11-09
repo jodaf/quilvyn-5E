@@ -4065,7 +4065,8 @@ SRD5E.skillRules = function(rules, name, ability, classes) {
       ('notes', 'skills.' + name + ':(' + ability.substring(0, 3) + ') %V');
   rules.defineRule('skills.' + name,
     ability + 'Modifier', '=', null,
-    'skillBonus.' + name, '+', null
+    'skillBonus.' + name, '+', null,
+    'skillNotes.goodies' + name + 'Adjustment', '+', null
   );
 
 };

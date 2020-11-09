@@ -2713,7 +2713,8 @@ SRD5E.combatRules = function(rules, armors, shields, weapons) {
     'level', '*', null
   );
   rules.defineRule('combatNotes.dexterityArmorClassAdjustment',
-    'dexterityModifier', '=', null
+    'dexterityModifier', '=', null,
+    'armorWeight', '*', 'source == 3 ? 0 : null'
   );
   rules.defineRule
     ('combatNotes.dexterityAttackAdjustment', 'dexterityModifier', '=', null);

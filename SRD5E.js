@@ -1866,7 +1866,7 @@ SRD5E.SPELLS = {
     'Description="R500\' Shaking in 100\' radius opens fissures and damages structures"',
   'Eldritch Blast':
     'School=Evocation ' +
-    'Description="R120\' Ranged touch ${Math.max(Math.floor((lvl+1)/6),1)} rays do 1d10 HP ea"',
+    'Description="R120\' Ranged touch $Lplus7div6 rays do 1d10 HP ea"',
   'Enhance Ability':
     'School=Transmutation ' +
     'Description="Touched Adv on chosen ability checks for 1 hr"',

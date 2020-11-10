@@ -206,7 +206,7 @@ SRD5E.CLASSES = {
     'Features=' +
       '"1:Armor Proficiency (Medium/Shield)",' +
       '"1:Save Proficiency (Charisma/Wisdom)",' +
-      '"1:Skill Proficiency (Choose 2 from History, Insight, Medicine, Persuasion, Religioin)",' +
+      '"1:Skill Proficiency (Choose 2 from History, Insight, Medicine, Persuasion, Religion)",' +
       '"1:Weapon Proficiency (Simple)",' +
       '"1:Ritual Casting",1:Spellcasting,"2:Channel Divinity",' +
       '"2:Turn Undead","5:Destroy Undead","10:Divine Intervention" ' +

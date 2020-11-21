@@ -18,7 +18,7 @@ Place, Suite 330, Boston, MA 02111-1307 USA.
 /*jshint esversion: 6 */
 "use strict";
 
-var SRD5E_VERSION = '2.1.1.1';
+var SRD5E_VERSION = '2.1.1.2';
 
 /*
  * This module loads the rules from the System Reference Document v5. The SRD5E
@@ -2985,7 +2985,7 @@ SRD5E.choiceRules = function(rules, type, name, attrs) {
   if(type != 'Feature' && type != 'Path') {
     type = type == 'Class' ? 'levels' :
     type = type == 'Deity' ? 'deities' :
-    (type.charAt(0).toLowerCase() + type.substring(1).replace(/\s/g, '') + 's');
+    (type.charAt(0).toLowerCase() + type.substring(1).replaceAll(' ', '') + 's');
     rules.addChoice(type, name, attrs);
   }
 };
@@ -3087,7 +3087,7 @@ SRD5E.armorRules = function(rules, name, ac, bulky, maxDex, minStr, weight) {
 SRD5E.backgroundRules = function(rules, name, equipment, features, languages) {
 
   var prefix =
-    name.substring(0, 1).toLowerCase() + name.substring(1).replace(/\s/g, '');
+    name.substring(0, 1).toLowerCase() + name.substring(1).replaceAll(' ', '');
   var backgroundLevel = prefix + 'Level';
 
   rules.defineRule(backgroundLevel,
@@ -3178,7 +3178,7 @@ SRD5E.classRules = function(
 
   var classLevel = 'levels.' + name;
   var prefix =
-    name.charAt(0).toLowerCase() + name.substring(1).replace(/\s/g, '');
+    name.charAt(0).toLowerCase() + name.substring(1).replaceAll(' ', '');
 
   if(requires.length > 0)
     QuilvynRules.prerequisiteRules
@@ -3699,7 +3699,7 @@ SRD5E.featRules = function(rules, name, requires, implies, types) {
   }
 
   var prefix =
-    name.charAt(0).toLowerCase() + name.substring(1).replace(/\s/g, '');
+    name.charAt(0).toLowerCase() + name.substring(1).replaceAll(' ', '');
 
   if(requires.length > 0)
     QuilvynRules.prerequisiteRules
@@ -3892,7 +3892,7 @@ SRD5E.raceRules = function(
 
   var matchInfo;
   var prefix =
-    name.charAt(0).toLowerCase() + name.substring(1).replace(/\s/g, '');
+    name.charAt(0).toLowerCase() + name.substring(1).replaceAll(' ', '');
   var raceLevel = prefix + 'Level';
 
   rules.defineRule(raceLevel,
@@ -4236,7 +4236,7 @@ SRD5E.featureListRules = function(
 ) {
   QuilvynRules.featureListRules
     (rules, features, setName, levelAttr, selectable);
-  setName = setName.charAt(0).toLowerCase() + setName.substring(1).replace(/\s/g, '') + 'Features';
+  setName = setName.charAt(0).toLowerCase() + setName.substring(1).replaceAll(' ', '') + 'Features';
   for(var i = 0; i < features.length; i++) {
     var feature = features[i].replace(/^(.*\?\s*)?\d+:/, '');
     var matchInfo = feature.match(/([A-Z]\w*)\sProficiency\s\((.*)\)$/);
@@ -4877,7 +4877,7 @@ SRD5E.randomizeOneAttribute = function(attributes, attribute) {
         var validate = this.applyRules(attributes);
         for(pick in picks) {
           var name = pick.charAt(0).toLowerCase() +
-                     pick.substring(1).replace(/\s/g, '').
+                     pick.substring(1).replaceAll(' ', '').
                      replace(/\(/g, '\\(').replace(/\)/g, '\\)');
           if(QuilvynUtils.sumMatching
                (validate,
@@ -5111,7 +5111,7 @@ SRD5E.makeValid = function(attributes) {
 
       var problemSource = matchInfo[2];
       var problemCategory = matchInfo[3].substring(0, 1).toLowerCase() +
-                            matchInfo[3].substring(1).replace(/\s/g, '');
+                            matchInfo[3].substring(1).replaceAll(' ', '');
       if(problemCategory == 'features') {
         problemCategory = 'selectableFeatures';
       }
@@ -5144,7 +5144,7 @@ SRD5E.makeValid = function(attributes) {
           toFixName = toFixName.substring(4).replace(/^\s+/, '');
         }
         var toFixAttr = toFixName.substring(0, 1).toLowerCase() +
-                        toFixName.substring(1).replace(/\s/g, '');
+                        toFixName.substring(1).replaceAll(' ', '');
 
         // See if this attr has a set of choices (e.g., race) or a category
         // attribute (e.g., a feat)

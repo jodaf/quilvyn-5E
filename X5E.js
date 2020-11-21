@@ -85,27 +85,26 @@ TalDorei.BACKGROUNDS = {
 TalDorei.CLASSES = {
 };
 TalDorei.DEITIES = {
-  'TD-The Archheart':'Alignment=CG Domain=Arcana,Light',
-  'TD-The Allhammer':'Alignment=LG Domain=Knowledge,War',
-  'TD-The Changebringer':'Alignment=CG Domain=Nature,Trickery',
-  'TD-The Dawnfather':'Alignment=NG Domain=Life,Light',
-  'TD-The Everlight':'Alignment=NG Domain=Life,Light',
-  'TD-The Knowing Mistress':'Alignment=N Domain=Arcana,Knowledge',
-  'TD-The Lawbearer':'Alignment=LN Domain=Knowledge',
-  'TD-The Matron Of Ravens':'Alignment=LN Domain=Blood,Death,Life',
-  'TD-The Moonweaver':'Alignment=CG Domain=Trickery',
-  'TD-The Platinum Dragon':'Alignment=LG Domain=Life,War',
-  'TD-The Stormlord':'Alignment=CN Domain=Tempest,War',
-  'TD-The Wildmother':'Alignment=N Domain=Nature,Tempest',
-  'TD-The Chained Oblivion':'Alignment=CE Domain=Death,Trickery',
-  'TD-The Cloaked Serpent':'Alignment=CE Domain=Blood,Trickery',
-  'TD-The Crawling King':'Alignment=NE Domain=Blood,Death',
-  'TD-The Lord Of The Hells':'Alignment=LE Domain=Blood,Trickery',
-  'TD-The Ruiner':'Alignment=CE Domain=Tempest,War',
-  'TD-The Spider Queen':'Alignment=CE Domain=Knowledge,Trickery',
-  'TD-The Strife Emporer':'Alignment=LE Domain=War',
-  'TD-The Scaled Tyrant':'Alignment=LE Domain=Trickery,War',
-  'TD-The Scaled Tyrant':'Alignment=LE Domain=Trickery,War'
+  'TD-Asmodeus':'Alignment=LE Domain=Blood,Trickery',
+  'TD-Avandra':'Alignment=CG Domain=Nature,Trickery',
+  'TD-Bahamut':'Alignment=LG Domain=Life,War',
+  'TD-Bane':'Alignment=LE Domain=War',
+  'TD-Corellon':'Alignment=CG Domain=Arcana,Light',
+  'TD-Erathis':'Alignment=LN Domain=Knowledge',
+  'TD-Gruumsh':'Alignment=CE Domain=Tempest,War',
+  'TD-Ioun':'Alignment=N Domain=Arcana,Knowledge',
+  'TD-Kord':'Alignment=CN Domain=Tempest,War',
+  'TD-Lolth':'Alignment=CE Domain=Knowledge,Trickery',
+  'TD-Melora':'Alignment=N Domain=Nature,Tempest',
+  'TD-Moradin':'Alignment=LG Domain=Knowledge,War',
+  'TD-Pelor':'Alignment=NG Domain=Life,Light',
+  'TD-Sarenrae':'Alignment=NG Domain=Life,Light',
+  'TD-Sehanine':'Alignment=CG Domain=Trickery',
+  'TD-Tharizdun':'Alignment=CE Domain=Death,Trickery',
+  'TD-The Raven Queen':'Alignment=LN Domain=Blood,Death,Life',
+  'TD-Tiamat':'Alignment=LE Domain=Trickery,War',
+  'TD-Torog':'Alignment=NE Domain=Blood,Death',
+  'TD-Zehir':'Alignment=CE Domain=Blood,Trickery'
 };
 TalDorei.FEATS = {
   'Cruel':
@@ -125,7 +124,7 @@ TalDorei.FEATS = {
   'Spelldriver':
     'Type=General Require="level >= 8"',
   'Thrown Arms Master':
-    'Type=General',
+    'Type=General'
 };
 TalDorei.FEATURES = {
   'A Favor In Turn':

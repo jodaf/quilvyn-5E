@@ -1761,7 +1761,7 @@ PHB5E.featRulesExtra = function(rules, name) {
       'Riposte':'', 'Sweeping Attack':'', 'Trip Attack':''
     }) {
       rules.defineRule(
-        'validationNotes.fighter-' + feature.replace(/\s/g, '') + 'SelectableFeature',
+        'validationNotes.fighter-' + feature.replaceAll(' ', '') + 'SelectableFeature',
         'features.Martial Adept', '^', '0'
       );
     }

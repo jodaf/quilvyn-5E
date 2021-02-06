@@ -38,6 +38,7 @@ function PHB5E() {
     SRD5E.rules, PHB5E.BACKGROUNDS, PHB5E.CLASSES, PHB5E.DEITIES, PHB5E.PATHS,
     PHB5E.RACES
   );
+  PHB5E.magicRules(SRD5E.rules, PHB5E.SPELLS);
   PHB5E.talentRules(SRD5E.rules, PHB5E.FEATS, PHB5E.FEATURES);
 
 }
@@ -137,14 +138,7 @@ PHB5E.BACKGROUNDS = {
 PHB5E.CLASSES = {
   'Bard':
     'Selectables=' +
-      '"3:College Of Valor" ' +
-    'Spells=' +
-      '"B0:Blade Ward;Friends",' +
-      '"B1:Dissonant Whispers",' +
-      '"B2:Cloud Of Daggers;Crown Of Madness;Phantasmal Force",' +
-      '"B3:Feign Death",' +
-      '"B7:Arcane Sword",' +
-      '"B9:Power Word Heal"',
+      '"3:College Of Valor"',
   'Cleric':
     'Selectables=' +
       '"1:Knowledge Domain",' +
@@ -152,19 +146,11 @@ PHB5E.CLASSES = {
       '"1:Nature Domain",' +
       '"1:Tempest Domain",' +
       '"1:Trickery Domain",' +
-      '"1:War Domain" ' +
-    'Spells=' +
-      '"C3:Feign Death"',
+      '"1:War Domain"',
   'Druid':
     'Selectables=' +
       '"2:Circle Of The Land (Underdark)",' +
-      '"2:Circle Of The Moon" ' +
-    'Spells=' +
-      '"D0:Thorn Whip",' +
-      '"D2:Beast Sense",' +
-      '"D3:Feign Death",' +
-      '"D4:Grasping Vine",' +
-      '"D8:Tsunami"',
+      '"2:Circle Of The Moon"',
   'Fighter':
     'Selectables=' +
       '"3:Battle Master Archetype","3:Eldritch Knight Archetype",' +
@@ -206,53 +192,19 @@ PHB5E.CLASSES = {
       '"features.Way Of The Four Elements Tradition ? 17:Wave Of The Rolling Earth"',
   'Paladin':
     'Selectables=' +
-      '"3:Oath Of The Ancients","3:Oath Of Vengeance" ' +
-    'Spells=' +
-      '"P1:Compelled Duel;Searing Smite;Thunderous Smite;Wrathful Smite",' +
-      '"P3:Aura Of Vitality;Blinding Smite;Crusader\'s Mantle;Elemental Weapon",' +
-      '"P4:Aura Of Life;Aura Of Purity;Staggering Smite",' +
-      '"P5:Banishing Smite;Circle Of Power;Destructive Wave"',
+      '"3:Oath Of The Ancients","3:Oath Of Vengeance"',
   'Ranger':
     'Selectables=' +
-      '"3:Beast Master Archetype" ' +
-    'Spells=' +
-      '"R1:Ensnaring Strike;Hail Of Thorns",' +
-      '"R2:Beast Sense;Cordon Of Arrows",' +
-      '"R3:Conjure Barrage;Lightning Arrow",' +
-      '"R4:Grasping Vine",' +
-      '"R5:Conjure Volley;Swift Quiver"',
+      '"3:Beast Master Archetype"',
   'Rogue':
     'Selectables=' +
       '"3:Arcane Trickster Archetype","3:Assassin Archetype"',
   'Sorcerer':
     'Selectables=' +
-      '"1:Wild Magic" ' +
-    'Spells=' +
-      '"S0:Blade Ward;Friends",' +
-      '"S1:Chromatic Orb;Ray Of Sickness;Witch Bolt",' +
-      '"S2:Cloud Of Daggers;Crown Of Madness;Phantasmal Force",' +
-      '"S6:Arcane Gate"',
+      '"1:Wild Magic"',
   'Warlock':
     'Selectables=' +
-      '"1:Archfey Patron","1:Great Old One Patron" ' +
-    'Spells=' +
-      '"K0:Blade Ward;Friends",' +
-      '"K1:Armor Of Agathys;Arms Of Hadar;Hex;Witch Bolt",' +
-      '"K2:Cloud Of Daggers;Crown Of Madness",' +
-      '"K3:Hunger Of Hadar",' +
-      '"K6:Arcane Gate",' +
-      // Archfey Patron
-      '"K1:Faerie Fire;Sleep",' +
-      '"K2:Calm Emotions;Phantasmal Force",' +
-      '"K3:Blink;Plant Growth",' +
-      '"K4:Dominate Beast;Greater Invisibility",' +
-      '"K5:Dominate Person;Seeming",' +
-      // Great Old One Patron
-      '"K1:Dissonant Whispers;Hideous Laughter",' +
-      '"K2:Detect Thoughts;Phantasmal Force",' +
-      '"K3:Clairvoyance;Sending",' +
-      '"K4:Black Tentacles;Dominate Beast",' +
-      '"K5:Dominate Person;Telekinesis"',
+      '"1:Archfey Patron","1:Great Old One Patron"',
   'Wizard':
     'Selectables=' +
       '"2:Abjuration Tradition",' +
@@ -261,15 +213,7 @@ PHB5E.CLASSES = {
       '"2:Enchantment Tradition",' +
       '"2:Illusion Tradition",' +
       '"2:Necromancy Tradition",' +
-      '"2:Transmutation Tradition" ' +
-    'Spells=' +
-      '"W0:Blade Ward;Friends",' +
-      '"W2:Cloud Of Daggers;Crown Of Madness;Phantasmal Force",' +
-      '"W1:Chromatic Orb;Ray Of Sickness;Witch Bolt",' +
-      '"W3:Feign Death",' +
-      '"W6:Arcane Gate",' +
-      '"W7:Arcane Sword",' +
-      '"W8:Telepathy"'
+      '"2:Transmutation Tradition"',
 };
 PHB5E.DEITIES = {
   // Forgotten Realms
@@ -1071,12 +1015,7 @@ PHB5E.PATHS = {
       'Underdark1:3=2,' +
       'Underdark2:5=2,' +
       'Underdark3:7=2,' +
-      'Underdark4:9=2 ' +
-    'Spells=' +
-      '"Underdark1:Spider Climb;Web",' +
-      '"Underdark2:Gaseous Form;Stinking Cloud",' +
-      '"Underdark3:Greater Invisibility;Stone Shape",' +
-      '"Underdark4:Cloudkill;Insect Plague"',
+      'Underdark4:9=2',
   'Circle Of The Moon':
     'Group=Druid Level=levels.Druid ' +
     'Features=' +
@@ -1137,13 +1076,7 @@ PHB5E.PATHS = {
       'Knowledge2:3=2,' +
       'Knowledge3:5=2,' +
       'Knowledge4:7=2,' +
-      'Knowledge5:9=2 ' +
-    'Spells=' +
-      '"Knowledge1:Command;Identify",' +
-      '"Knowledge2:Augury;Suggestion",' +
-      '"Knowledge3:Nondetection;Speak With Dead",' +
-      '"Knowledge4:Arcane Eye;Confusion",' +
-      '"Knowledge5:Legend Lore;Scrying"',
+      'Knowledge5:9=2',
   'Light Domain':
     'Group=Cleric Level=levels.Cleric ' +
     'Features=' +
@@ -1155,13 +1088,7 @@ PHB5E.PATHS = {
       'Light2:3=2,' +
       'Light3:5=2,' +
       'Light4:7=2,' +
-      'Light5:9=2 ' +
-    'Spells=' +
-      '"Light1:Burning Hands;Faerie Fire",' +
-      '"Light2:Flaming Sphere;Scorching Ray",' +
-      '"Light3:Daylight;Fireball",' +
-      '"Light4:Guardian Of Faith;Wall Of Fire",' +
-      '"Light5:Flame Strike;Scrying"',
+      'Light5:9=2',
   'Nature Domain':
     'Group=Cleric Level=levels.Cleric ' +
     'Features=' +
@@ -1175,15 +1102,7 @@ PHB5E.PATHS = {
       'Nature2:3=2,' +
       'Nature3:5=2,' +
       'Nature4:7=2,' +
-      'Nature5:9=2 ' +
-    'Spells=' +
-      '"Nature0:Druidcraft;Guidance;Mending;Poison Spray;Produce Flame;' +
-      'Resistance;Shillelagh",' +
-      '"Nature1:Animal Friendship;Speak With Animals",' +
-      '"Nature2:Barkskin;Spike Growth",' +
-      '"Nature3:Plant Growth;Wind Wall",' +
-      '"Nature4:Dominate Beast;Grasping Vine",' +
-      '"Nature5:Insect Plague;Tree Stride"',
+      'Nature5:9=2',
   'Necromancy Tradition':
     'Group=Wizard Level=levels.Wizard ' +
     'Features=' +
@@ -1200,13 +1119,7 @@ PHB5E.PATHS = {
       'Ancients2:5=2,' +
       'Ancients3:9=2,' +
       'Ancients4:13=2,' +
-      'Ancients5:17=2 ' +
-    'Spells=' +
-      '"Ancients1:Ensnaring Strike;Speak With Animals",' +
-      '"Ancients2:Moonbeam;Misty Step",' +
-      '"Ancients3:Plant Growth;Protection From Energy",' +
-      '"Ancients4:Ice Storm;Stoneskin",' +
-      '"Ancients5:Commune With Nature;Tree Stride"',
+      'Ancients5:17=2',
   'Oath Of Vengeance':
     'Group=Paladin Level=levels.Paladin ' +
     'Features=' +
@@ -1218,13 +1131,7 @@ PHB5E.PATHS = {
       'Vengeance2:5=2,' +
       'Vengeance3:9=2,' +
       'Vengeance4:13=2,' +
-      'Vengeance5:17=2 ' +
-    'Spells=' +
-      '"Vengeance1:Bane;Hunter\'s Mark",' +
-      '"Vengeance1:Hold Person;Misty Step",' +
-      '"Vengeance1:Haste;Protection From Energy",' +
-      '"Vengeance1:Banishment;Dimension Door",' +
-      '"Vengeance1:Hold Monster;Scrying"',
+      'Vengeance5:17=2',
   'Path Of The Totem Warrior (Bear)':
     'Group=Barbarian Level=levels.Barbarian ' +
     'Features=' +
@@ -1253,13 +1160,7 @@ PHB5E.PATHS = {
       'Tempest2:3=2,' +
       'Tempest3:5=2,' +
       'Tempest4:7=2,' +
-      'Tempest5:9=2 ' +
-    'Spells=' +
-      '"Tempest1:Fog Cloud;Thunderwave",' +
-      '"Tempest2:Gust Of Wind;Shatter",' +
-      '"Tempest3:Call Lightning;Sleet Storm",' +
-      '"Tempest4:Control Water;Ice Storm",' +
-      '"Tempest5:Destructive Wave;Insect Plague"',
+      'Tempest5:9=2',
   'Transmutation Tradition':
     'Group=Wizard Level=levels.Wizard ' +
     'Features=' +
@@ -1276,13 +1177,7 @@ PHB5E.PATHS = {
       'Trickery2:3=2,' +
       'Trickery3:5=2,' +
       'Trickery4:7=2,' +
-      'Trickery5:9=2 ' +
-    'Spells=' +
-      '"Trickery1:Charm Person;Disguise Self",' +
-      '"Trickery2:Mirror Image;Pass Without Trace",' +
-      '"Trickery3:Blink;Dispel Magic",' +
-      '"Trickery4:Dimension Door;Polymorph",' +
-      '"Trickery5:Dominate Person;Modify Memory"',
+      'Trickery5:9=2',
   'War Domain':
     'Group=Cleric Level=levels.Cleric ' +
     'Features=' +
@@ -1296,13 +1191,7 @@ PHB5E.PATHS = {
       'War2:3=2,' +
       'War3:5=2,' +
       'War4:7=2,' +
-      'War5:9=2 ' +
-    'Spells=' +
-      '"War1:Divine Favor;Shield Of Faith",' +
-      '"War2:Magic Weapon;Spiritual Weapon",' +
-      '"War3:Crusader\'s Mantle;Spirit Guardians",' +
-      '"War4:Freedom Of Movement;Stoneskin",' +
-      '"War5:Flame Strike;Hold Monster"',
+      'War5:9=2',
   'Way Of The Four Elements Tradition':
     'Group=Monk Level=levels.Monk ' +
     'Features=' +
@@ -1315,10 +1204,7 @@ PHB5E.PATHS = {
     'SpellAbility=intelligence ' +
     'SpellSlots=' +
       'Shadow0:3=1,' +
-      'Shadow2:3=4 ' +
-    'Spells=' +
-      '"Shadow0:Minor Illusion",' +
-      '"Shadow2:Darkness;Darkvision;Pass Without Trace;Silence"',
+      'Shadow2:3=4',
   'Wild Magic':
     'Group=Sorcerer Level=levels.Sorcerer ' +
     'Features=' +
@@ -1337,11 +1223,7 @@ PHB5E.RACES = {
     'SpellSlots=' +
       'Drow0:1=1,' +
       'Drow1:3=1,' +
-      'Drow2:5=1 ' +
-    'Spells=' +
-      '"Drow0:Dancing Lights",' +
-      '"Drow1:Faerie Fire",' +
-      '"Drow2:Darkness"',
+      'Drow2:5=1',
   'Forest Gnome':
     'Features=' +
       '1:Darkvision,"1:Gnome Cunning","1:Natural Illusionist",' +
@@ -1350,9 +1232,7 @@ PHB5E.RACES = {
     'Languages=Common,Gnomish ' +
     'SpellAbility=intelligence ' +
     'SpellSlots=' +
-      'Gnome0:1=1 ' +
-    'Spells=' +
-      '"Gnome0:Minor Illusion"',
+      'Gnome0:1=1',
   'Mountain Dwarf':
     'Features=' +
       '"1:Armor Proficiency (Medium)",' +
@@ -1374,133 +1254,272 @@ PHB5E.RACES = {
       '"1:Mask Of The Wild",1:Trance,"1:Wood Elf Ability Adjustment" ' +
     'Languages=Common,Elvish'
 };
-PHB5E.SPELLS_ADDED = {
+PHB5E.SPELLS = {
+
   'Arcane Gate':
     'School=Conjuration ' +
+    'Level=K6,S6,W6 ' +
     'Description="R10\'/500\' Connect portal pair for conc/10 min"',
+  'Arcane Sword':
+    'School=Evocation ' +
+    'Level=B7,W7 ' +
+    'Description="Force weapon 3d10, move 20\' for conc/1 min"',
   'Armor Of Agathys':
     'School=Abjuration ' +
+    'Level=K1 ' +
     'Description="Self frosted, +5 HP, 5 HP cold to successful attacker"',
   'Arms Of Hadar':
     'School=Conjuration ' +
+    'Level=K1 ' +
     'Description="All in 10\' radius take 2d6 HP necrotic (Str half), no reactions until next turn"',
   'Aura Of Life':
     'School=Abjuration ' +
+    'Level=P4 ' +
     'Description="Self 30\' radius gives resistance to necrotic damage, raise nonhostile 0 HP to 1 HP for conc/10 min"',
   'Aura Of Purity':
     'School=Abjuration ' +
+    'Level=P4 ' +
     'Description="Self 30\' radius gives resist poison, no disease, Adv conditions for conc/10 min"',
   'Aura Of Vitality':
     'School=Evocation ' +
+    'Level=P3 ' +
     'Description="Self 30\' radius heals 2d6 HP designated target 1/rd for conc/1 min"',
   'Banishing Smite':
     'School=Abjuration ' +
+    'Level=P5 ' +
     'Description="Self attacks +5d10 HP force and banish to home/demiplane if lt 50 HP for conc/1 min"',
   'Beast Sense':
     'School=Divination ' +
+    'Level=D2,R2 ' +
     'Description="Self use touched beast\'s senses for conc/1 hr"',
   'Blade Ward':
     'School=Abjuration ' +
+    'Level=B0,K0,S0,W0 ' +
     'Description="Self resist bludgeon, pierce, slash damage for 1 rd"',
   'Blinding Smite':
     'School=Evocation ' +
+    'Level=P3 ' +
     'Description="Self next attack +3d8 HP radiant and blind (Con neg) for conc/1 min"',
   'Chromatic Orb':
     'School=Evocation ' +
+    'Level=S1,W1 ' +
     'Description="R90\' 4 in hurled sphere 3d8 HP acid/poison/energy"',
   'Circle Of Power':
     'School=Abjuration ' +
+    'Level=P5 ' +
     'Description="Allies in 30\' radius from self Adv save vs. magic, neg instead of half for conc/10 min"',
   'Cloud Of Daggers':
     'School=Conjuration ' +
+    'Level=B2,K2,S2,W2 ' +
     'Description="R60\' Spinning daggers in 5\' cu 4d4 HP slashing for conc/1 min"',
   'Compelled Duel':
     'School=Enchantment ' +
+    'Level=P1 ' +
     'Description="R30\' Target attack only self w/Disadv for conc/1 min (Wis neg)"',
   'Conjure Barrage':
     'School=Conjuration ' +
+    'Level=R3 ' +
     'Description="60\' weapon cone 3d8 HP (Dex half)"',
   'Conjure Volley':
     'School=Conjuration ' +
+    'Level=R5 ' +
     'Description="R150\' 40\' radius weapon hail 8d8 HP (Dex half)"',
   'Cordon Of Arrows':
     'School=Transmutation ' +
+    'Level=R2 ' +
     'Description="Four pieces of ammo attack 30\' 1d6 HP (Dex neg) for 8 hr"',
   'Crown Of Madness':
     'School=Enchantment ' +
+    'Level=B2,K2,S2,W2 ' +
     'Description="R120\' Direct charmed creature\'s attacks for conc/1 min (Wis neg)"',
   "Crusader's Mantle":
     'School=Evocation ' +
+    'Level=P3,War3 ' +
     'Description="30\' radius allies +1d4 damage for conc/1 min"',
   'Destructive Wave':
     'School=Evocation ' +
+    'Level=P5,Tempest5 ' +
     'Description="Targets in 30\' radius 5d6 HP (Con half), prone (Con neg)"',
   'Dissonant Whispers':
     'School=Enchantment ' +
+    'Level=B1,K1 ' +
     'Description="R60\' Target 3d6 HP (Wis half), flee (Wis neg)"',
   'Elemental Weapon':
     'School=Transmutation ' +
+    'Level=P3 ' +
     'Description="Touched weapon +1 attack, +1d4 damage for conc/1 hr"',
   'Ensnaring Strike':
     'School=Conjuration ' +
+    'Level=Ancients1,R1 ' +
     'Description="Successful attack restrains foe, 1d6 HP/turn for conc/1 min (Str neg)"',
   'Feign Death':
     'School=Necromancy ' +
+    'Level=B3,C3,D3,W3 ' +
     'Description="Touched appears dead for 1 hr"',
   'Friends':
     'School=Enchantment ' +
+    'Level=B0,K0,S0,W0 ' +
     'Description="Self Adv Cha w/target for conc/1 min"',
   'Grasping Vine':
     'School=Conjuration ' +
+    'Level=D4,Nature4,R4 ' +
     'Description="R30\' Vine pulls target 20\' for conc/1 min (Dex neg)"',
   'Hail Of Thorns':
     'School=Conjuration ' +
+    'Level=R1 ' +
     'Description="Ranged hit followed by 5\' thorn rain 1d10 HP (Dex half)"',
   'Hex':
     'School=Enchantment ' +
+    'Level=K1 ' +
     'Description="R90\' Self hits on target +1d6 HP, Disadv chosen ability for conc/1 hr"',
   'Hunger Of Hadar':
     'School=Conjuration ' +
+    'Level=K3 ' +
     'Description="R150\' 20\' void 2d6 HP for conc/1 min"',
   'Lightning Arrow':
     'School=Transmutation ' +
+    'Level=R3 ' +
     'Description="100\' bolt 8d6 HP (Dex half)"',
   'Phantasmal Force':
     'School=Illusion ' +
+    'Level=B2,K2,K2,S2,W2 ' +
     'Description="R60\' target illusion 1d6 HP/rd (Int neg)"',
   'Power Word Heal':
     'School=Evocation ' +
+    'Level=B9 ' +
     'Description="Touched regains all HP, uncharm, unfright, unparalyze, unstun"',
   'Ray Of Sickness':
     'School=Necromancy ' +
+    'Level=S1,W1 ' +
     'Description="R60\' Target 2d8 HP, poisoned 1 turn (Con not poisoned)",',
   'Searing Smite':
     'School=Evocation ' +
+    'Level=P1 ' +
     'Description="Hit +1d6 HP, 1d6 HP/turn for conc/1 min (Con no per-turn damage)"',
   'Staggering Smite':
     'School=Evocation ' +
+    'Level=P4 ' +
     'Description="Next hit +4d6 HP w/in conc/1 min"',
   'Swift Quiver':
     'School=Transmutation ' +
+    'Level=R5 ' +
     'Description="Touched quiver endless ammo, dbl attack for conc/1 min"',
   'Telepathy':
     'School=Evocation ' +
+    'Level=W8 ' +
     'Description="Mental communication with ally for 1 dy"',
   'Thorn Whip':
     'School=Transmutation ' +
+    'Level=D0 ' +
     'Description="R30\' Vine attacks ${Math.floor((lvl+7)/6)}d6 HP, pulls 10\'"',
   'Thunderous Smite':
     'School=Evocation ' +
+    'Level=P1 ' +
     'Description="Next hit 2d6 HP, push 10\' (Str no push)"',
   'Tsunami':
     'School=Conjuration ' +
+    'Level=D8 ' +
     'Description="RSight 300\'x300\' wall of water 6d10 HP (Str half), moves away 50\'/turn for conc/6 rd"',
   'Witch Bolt':
     'School=Evocation ' +
+    'Level=K1,S1,W1 ' +
     'Description="R30\' Target 1d12/turn for conc/1 min"',
   'Wrathful Smite':
     'School=Evocation ' +
-    'Description="Next hit +1d6 HP, fright (Wis neg) for conc/1 min"'
+    'Level=P1 ' +
+    'Description="Next hit +1d6 HP, fright (Wis neg) for conc/1 min"',
+
+  'Animal Friendship':'Level=Nature1',
+  'Arcane Eye':'Level=Knowledge4',
+  'Augury':'Level=Knowledge2',
+  'Bane':'Level=Vengeance1',
+  'Banishment':'Level=Vengeance4',
+  'Barkskin':'Level=Nature2',
+  'Black Tentacles':'Level=K4',
+  'Blink':'Level=K3,Trickery3',
+  'Burning Hands':'Level=Light1',
+  'Call Lightning':'Level=Tempest3',
+  'Calm Emotions':'Level=K2',
+  'Charm Person':'Level=Trickery1',
+  'Clairvoyance':'Level=K3',
+  'Cloudkill':'Level=Underdark4',
+  'Command':'Level=Knowledge1',
+  'Commune With Nature':'Level=Ancients5',
+  'Confusion':'Level=Knowledge4',
+  'Control Water':'Level=Tempest4',
+  'Dancing Lights':'Level=Drow0',
+  'Darkness':'Level=Drow2,Shadow2',
+  'Darkvision':'Level=Shadow2',
+  'Daylight':'Level=Light3',
+  'Detect Thoughts':'Level=K2',
+  'Dimension Door':'Level=Trickery4,Vengeance4',
+  'Disguise Self':'Level=Trickery1',
+  'Dispel Magic':'Level=Trickery3',
+  'Divine Favor':'Level=War1',
+  'Dominate Beast':'Level=K4,K4,Nature4',
+  'Dominate Person':'Level=K5,Trickery5',
+  'Druidcraft':'Level=Nature0',
+  'Faerie Fire':'Level=Drow1,K1,Light1',
+  'Fireball':'Level=Light3',
+  'Flame Strike':'Level=Light5,War5',
+  'Flaming Sphere':'Level=Light2',
+  'Fog Cloud':'Level=Tempest1',
+  'Freedom Of Movement':'Level=War4',
+  'Gaseous Form':'Level=Underdark2',
+  'Greater Invisibility':'Level=K4,Underdark3',
+  'Guardian Of Faith':'Level=Light4',
+  'Guidance':'Level=Nature0',
+  'Gust Of Wind':'Level=Tempest2',
+  'Haste':'Level=Vengeance3',
+  'Hideous Laughter':'Level=K1',
+  'Hold Monster':'Level=Vengeance5,War5',
+  'Hold Person':'Level=Vengeance2',
+  'Hunter\'s Mark':'Level=Vengeance1',
+  'Ice Storm':'Level=Ancients4,Tempest4',
+  'Identify':'Level=Knowledge1',
+  'Insect Plague':'Level=Nature5,Tempest5,Underdark4',
+  'Legend Lore':'Level=Knowledge5',
+  'Magic Weapon':'Level=War2',
+  'Mending':'Level=Nature0',
+  'Minor Illusion':'Level=Gnome0,Shadow0',
+  'Mirror Image':'Level=Trickery2',
+  'Misty Step':'Level=Ancients2,Vengeance2',
+  'Modify Memory':'Level=Trickery5',
+  'Moonbeam':'Level=Ancients2',
+  'Nondetection':'Level=Knowledge3',
+  'Pass Without Trace':'Level=Shadow2,Trickery2',
+  'Plant Growth':'Level=Ancients3,K3,Nature3',
+  'Poison Spray':'Level=Nature0',
+  'Polymorph':'Level=Trickery4',
+  'Produce Flame':'Level=Nature0',
+  'Protection From Energy':'Level=Ancients3,Vengeance3',
+  'Resistance':'Level=Nature0',
+  'Scorching Ray':'Level=Light2',
+  'Scrying':'Level=Knowledge5,Light5,Vengeance5',
+  'Seeming':'Level=K5',
+  'Sending':'Level=K3',
+  'Shatter':'Level=Tempest2',
+  'Shield Of Faith':'Level=War1',
+  'Shillelagh':'Level=Nature0',
+  'Silence':'Level=Shadow2',
+  'Sleep':'Level=K1',
+  'Sleet Storm':'Level=Tempest3',
+  'Speak With Animals':'Level=Ancients1,Nature1',
+  'Speak With Dead':'Level=Knowledge3',
+  'Spider Climb':'Level=Underdark1',
+  'Spike Growth':'Level=Nature2',
+  'Spirit Guardians':'Level=War3',
+  'Spiritual Weapon':'Level=War2',
+  'Stinking Cloud':'Level=Underdark2',
+  'Stone Shape':'Level=Underdark3',
+  'Stoneskin':'Level=Ancients4,War4',
+  'Suggestion':'Level=Knowledge2',
+  'Telekinesis':'Level=K5',
+  'Thunderwave':'Level=Tempest1',
+  'Tree Stride':'Level=Ancients5,Nature5',
+  'Wall Of Fire':'Level=Light4',
+  'Web':'Level=Underdark1',
+  'Wind Wall':'Level=Nature3'
 };
 
 /* Defines rules related to basic character identity. */
@@ -1524,7 +1543,7 @@ PHB5E.identityRules = function(
   for(var clas in classes) {
     delete rules.choices['levels'][clas];
     rules.choiceRules
-      (rules, 'Class', clas, SRD5E.CLASSES[clas] + classes[clas]);
+      (rules, 'Class', clas, SRD5E.CLASSES[clas] + ' ' + classes[clas]);
   }
   for(var deity in deities) {
     rules.choiceRules(rules, 'Deity', deity, deities[deity]);
@@ -1537,6 +1556,15 @@ PHB5E.identityRules = function(
     rules.choiceRules(rules, 'Race', race, races[race]);
   }
 
+};
+
+/* Defines rules related to magic use. */
+PHB5E.magicRules = function(rules, spells) {
+  QuilvynUtils.checkAttrTable(spells, ['School', 'Level', 'Description']);
+  for(var s in spells) {
+    rules.choiceRules
+      (rules, 'Spell', s, (SRD5E.SPELLS[s]||'') + ' ' + spells[s]);
+  }
 };
 
 /* Defines rules related to character aptitudes. */

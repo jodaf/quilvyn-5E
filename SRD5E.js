@@ -1041,6 +1041,11 @@ SRD5E.GOODIES = {
     'Value="$1 || $2" ' +
     'Attribute=featCount.General ' +
     'Section=feature Note="%V General Feat"',
+  'Heavy Armor Proficiency':
+    'Pattern="heavy\\s+armor\\s+proficiency" ' +
+    'Effect=set ' +
+    'Attribute=armorProficiency.Heavy ' +
+    'Section=combat Note="Proficiency in all heavy armor"',
   'Initiative':
     'Pattern="([-+]\\d)\\s+initiative|initiative\\s+([-+]\\d)" ' +
     'Effect=add ' +
@@ -1058,6 +1063,21 @@ SRD5E.GOODIES = {
     'Effect=set ' +
     'Attribute=saveProficiency.Intelligence ' +
     'Section=save Note="Proficiency in Intelligence saves"',
+  'Light Armor Proficiency':
+    'Pattern="light\\s+armor\\s+proficiency" ' +
+    'Effect=set ' +
+    'Attribute=armorProficiency.Light ' +
+    'Section=combat Note="Proficiency in all light armor"',
+  'Martial Weapon Proficiency':
+    'Pattern="martial\\s+weapon\\s+proficiency" ' +
+    'Effect=set ' +
+    'Attribute=weaponProficiency.Martial ' +
+    'Section=combat Note="Proficiency in all martial weapons"',
+  'Medium Armor Proficiency':
+    'Pattern="medium\\s+armor\\s+proficiency" ' +
+    'Effect=set ' +
+    'Attribute=armorProficiency.Medium ' +
+    'Section=combat Note="Proficiency in all medium armor"',
   'Protection':
     'Pattern="([-+]\\d).*protection|protection\\s+([-+]\\d)" ' +
     'Effect=add ' +
@@ -1070,6 +1090,16 @@ SRD5E.GOODIES = {
     'Value="$1 || $2" ' +
     'Attribute=armorClass ' +
     'Section=combat Note="%V Armor Class"',
+  'Shield Proficiency':
+    'Pattern="shield\\s+proficiency" ' +
+    'Effect=set ' +
+    'Attribute=armorProficiency.Shield ' +
+    'Section=combat Note="Proficiency in shield use"',
+  'Simple Weapon Proficiency':
+    'Pattern="simple\\s+weapon\\s+proficiency" ' +
+    'Effect=set ' +
+    'Attribute=weaponProficiency.Simple ' +
+    'Section=combat Note="Proficiency in all simple weapons"',
   'Speed':
     'Pattern="([-+]\\d).*\\s+speed|speed\\s+([-+]\\d)" ' +
     'Effect=add ' +
@@ -2749,8 +2779,8 @@ SRD5E.TOOLS = {
   "Navigator's Tools":'Type=General',
   "Poisoner's Kit":'Type=General',
   "Thieves' Tools":'Type=General',
-  'Vehicle (Land)':'Type=General',
-  'Vehicle (Water)':'Type=General'
+  'Land Vehicles':'Type=General',
+  'Water Vehicles':'Type=General'
 };
 SRD5E.WEAPONS = {
   'Battleaxe':'Category=2 Property=Ve Damage=d8',
@@ -2861,7 +2891,7 @@ SRD5E.combatRules = function(rules, armors, shields, weapons) {
     rules.choiceRules(rules, 'Goody', weapon + ' Proficiency',
       'Pattern="' + pattern + '\\s+proficiency" ' +
       'Effect=set ' +
-      'Attribute=weaponProficiency.' + weapon + ' ' +
+      'Attribute="weaponProficiency.' + weapon + '" ' +
       'Section=combat Note="Proficiency in ' + weapon + '"'
     );
     rules.choiceRules(rules, 'Weapon', weapon, weapons[weapon]);
@@ -3035,7 +3065,7 @@ SRD5E.talentRules = function(
     rules.choiceRules(rules, 'Goody', skill + ' Proficiency',
       'Pattern="' + skill + '\\s+proficiency" ' +
       'Effect=set ' +
-      'Attribute=skillProficiency.' + skill + ' ' +
+      'Attribute="skillProficiency.' + skill + '" ' +
       'Section=skill Note="Proficiency in ' + skill + '"'
     );
   }
@@ -3044,7 +3074,7 @@ SRD5E.talentRules = function(
     rules.choiceRules(rules, 'Goody', tool + ' Proficiency',
       'Pattern="' + tool + '\\s+proficiency" ' +
       'Effect=set ' +
-      'Attribute=toolProficiency.' + tool + ' ' +
+      'Attribute="toolProficiency.' + tool + '" ' +
       'Section=skill Note="Proficiency in ' + tool + '"'
     );
   }

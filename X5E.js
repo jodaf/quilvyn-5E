@@ -44,6 +44,7 @@ function TalDorei() {
     SRD5E.rules, TalDorei.BACKGROUNDS, TalDorei.CLASSES, TalDorei.DEITIES,
     TalDorei.PATHS, TalDorei.RACES
   );
+  TalDorei.magicRules(SRD5E.rules, TalDorei.SPELLS_ADDED);
   TalDorei.talentRules(
     SRD5E.rules, TalDorei.FEATS, TalDorei.FEATURES, TalDorei.LANGUAGES,
     TalDorei.TOOLS
@@ -244,13 +245,7 @@ TalDorei.PATHS = {
       'Blood2:3=2,' +
       'Blood3:5=2,' +
       'Blood4:7=2,' +
-      'Blood5:9=2 ' +
-    'Spells=' +
-      '"Life1:Ray Of Sickness;Sleep",' +
-      '"Life2:Crown Of Madness;Ray Of Enfeeblement",' +
-      '"Life3:Haste;Slow",' +
-      '"Life4:Blight;Stoneskin",' +
-      '"Life5:Dominate Person;Hold Monster"',
+      'Blood5:9=2',
   'Path Of The Juggernaut':
     'Group=Barbarian ' +
     'Level=levels.Barbarian ' +
@@ -270,6 +265,18 @@ TalDorei.PATHS = {
       '"6:Mind Of Mercury","11:Preternatural Counter","17:Debilitating Barrage"'
 };
 TalDorei.RACES = {
+};
+TalDorei.SPELLS_ADDED = {
+  'Crown Of Madness':'Level=Blood2',
+  'Blight':'Level=Blood4',
+  'Dominate Person':'Level=Blood5',
+  'Haste':'Level=Blood3',
+  'Hold Monster':'Level=Blood5',
+  'Ray Of Enfeeblement':'Level=Blood2',
+  'Ray Of Sickness':'Level=Blood1',
+  'Sleep':'Level=Blood1',
+  'Slow':'Level=Blood3',
+  'Stoneskin':'Level=Blood4'
 };
 TalDorei.TOOLS = {
 };
@@ -308,6 +315,15 @@ TalDorei.identityRules = function(
     rules.choiceRules(rules, 'Race', race, races[race]);
   }
 
+};
+
+/* Defines rules related to magic use. */
+TalDorei.magicRules = function(rules, spells) {
+  QuilvynUtils.checkAttrTable(spells, ['School', 'Level', 'Description']);
+  for(var s in spells) {
+    rules.choiceRules
+      (rules, 'Spell', s, (SRD5E.SPELLS[s]||PHB5E.SPELLS[s]) + ' ' + spells[s]);
+  }
 };
 
 /* Defines rules related to character aptitudes. */
@@ -405,6 +421,7 @@ function Volo() {
     SRD5E.rules, Volo.BACKGROUNDS, Volo.CLASSES, Volo.DEITIES, Volo.PATHS,
     Volo.RACES
   );
+  Volo.magicRules(SRD5E.rules, Volo.SPELLS_ADDED);
   Volo.talentRules(
     SRD5E.rules, Volo.FEATS, Volo.FEATURES, Volo.LANGUAGES, Volo.TOOLS
   );
@@ -451,9 +468,7 @@ Volo.RACES = {
     'Languages=Celestial,Common ' +
     'SpellAbility=charisma ' +
     'SpellSlots=' +
-      'Aasimar0:1=1 ' +
-    'Spells=' +
-      'Aasimar0:Light',
+      'Aasimar0:1=1',
   'Protector Aasimar':
     'Features=' +
       '"1:Darkvision","1:Celestial Resistance","1:Healing Hands",' +
@@ -461,9 +476,7 @@ Volo.RACES = {
     'Languages=Celestial,Common ' +
     'SpellAbility=charisma ' +
     'SpellSlots=' +
-      'Aasimar0:1=1 ' +
-    'Spells=' +
-      'Aasimar0:Light',
+      'Aasimar0:1=1',
   'Scourge Aasimar':
     'Features=' +
       '"1:Darkvision","1:Celestial Resistance","1:Healing Hands",' +
@@ -471,9 +484,10 @@ Volo.RACES = {
     'Languages=Celestial,Common ' +
     'SpellAbility=charisma ' +
     'SpellSlots=' +
-      'Aasimar0:1=1 ' +
-    'Spells=' +
-      'Aasimar0:Light'
+      'Aasimar0:1=1'
+};
+Volo.SPELLS_ADDED = {
+  'Light':'Level=Aasimar0'
 };
 Volo.TOOLS = {
 };
@@ -511,6 +525,15 @@ Volo.identityRules = function(
     Volo.raceRulesExtra(rules, race);
   }
 
+};
+
+/* Defines rules related to magic use. */
+Volo.magicRules = function(rules, spells) {
+  QuilvynUtils.checkAttrTable(spells, ['School', 'Level', 'Description']);
+  for(var s in spells) {
+    rules.choiceRules
+      (rules, 'Spell', s, (SRD5E.SPELLS[s]||PHB5E.SPELLS[s]) + ' ' + spells[s]);
+  }
 };
 
 /* Defines rules related to character aptitudes. */
@@ -577,6 +600,7 @@ function Xanathar() {
     SRD5E.rules, Xanathar.BACKGROUNDS, Xanathar.CLASSES, Xanathar.DEITIES,
     Xanathar.PATHS, Xanathar.RACES
   );
+  Xanathar.magicRules(SRD5E.rules, Xanathar.SPELLS_ADDED);
   Xanathar.talentRules(
     SRD5E.rules, Xanathar.FEATS, Xanathar.FEATURES, Xanathar.LANGUAGES,
     Xanathar.TOOLS
@@ -666,13 +690,7 @@ Xanathar.PATHS = {
       'Conquest2:5=2,' +
       'Conquest3:9=2,' +
       'Conquest4:13=2,' +
-      'Conquest5:17=2 ' +
-    'Spells=' +
-      '"Conquest1:Armor Of Agathys;Command",' +
-      '"Conquest2:Hold Person;Spiritual Weapon",' +
-      '"Conquest3:Bestow Curse;Fear",' +
-      '"Conquest4:Dominate Beast;Stoneskin",' +
-      '"Conquest5:Cloudkill;Dominate Person"',
+      'Conquest5:17=2',
   'Way Of The Kensei Tradition':
     'Group=Monk Level=levels.Monk ' +
     'Features=' +
@@ -684,6 +702,16 @@ Xanathar.PATHS = {
 Xanathar.RACES = {
 };
 Xanathar.SPELLS_ADDED = {
+  'Armor Of Agathys':'Level=Conquest1',
+  'Bestow Curse':'Level=Conquest3',
+  'Cloudkill':'Level=Conquest5',
+  'Command':'Level=Conquest1',
+  'Dominate Beast':'Level=Conquest4',
+  'Dominate Person':'Level=Conquest5',
+  'Fear':'Level=Conquest3',
+  'Hold Person':'Level=Conquest2',
+  'Spiritual Weapon':'Level=Conquest2',
+  'Stoneskin':'Level=Conquest4'
 };
 Xanathar.TOOLS = {
   'Harp':'Type=Music',
@@ -723,6 +751,15 @@ Xanathar.identityRules = function(
     rules.choiceRules(rules, 'Race', race, races[race]);
   }
 
+};
+
+/* Defines rules related to magic use. */
+Xanathar.magicRules = function(rules, spells) {
+  QuilvynUtils.checkAttrTable(spells, ['School', 'Level', 'Description']);
+  for(var s in spells) {
+    rules.choiceRules
+      (rules, 'Spell', s, (SRD5E.SPELLS[s]||PHB5E.SPELLS[s]) + ' ' + spells[s]);
+  }
 };
 
 /* Defines rules related to character aptitudes. */
@@ -797,6 +834,7 @@ function Zelda() {
     SRD5E.rules, Zelda.BACKGROUNDS, Zelda.CLASSES, Zelda.DEITIES, Zelda.PATHS,
     Zelda.RACES
   );
+  Zelda.magicRules(SRD5E.rules, Zelda.SPELLS_ADDED);
   Zelda.talentRules(
     SRD5E.rules, Zelda.FEATS, Zelda.FEATURES, Zelda.LANGUAGES, Zelda.TOOLS
   );
@@ -816,9 +854,10 @@ Zelda.RACES = {
     'Languages=Hylian,Zora ' +
     'SpellAbility=charisma ' +
     'SpellSlots=' +
-      'Rito6:1=1 ' +
-    'Spells=' +
-      '"Rito6:Find The Path"'
+      'Rito6:1=1'
+};
+Zelda.SPELLS_ADDED = {
+  'Find The Path':'Level=Rito6'
 };
 
 /* Defines rules related to basic character identity. */
@@ -853,6 +892,15 @@ Zelda.identityRules = function(
     Zelda.raceRulesExtra(rules, race);
   }
 
+};
+
+/* Defines rules related to magic use. */
+Zelda.magicRules = function(rules, spells) {
+  QuilvynUtils.checkAttrTable(spells, ['School', 'Level', 'Description']);
+  for(var s in spells) {
+    rules.choiceRules
+      (rules, 'Spell', s, (SRD5E.SPELLS[s]||PHB5E.SPELLS[s]) + ' ' + spells[s]);
+  }
 };
 
 /* Defines rules related to character aptitudes. */

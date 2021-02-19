@@ -58,9 +58,8 @@ function SRD5E() {
     SRD5E.PATHS, SRD5E.RACES
   );
   SRD5E.talentRules
-    (rules, SRD5E.FEATS, SRD5E.FEATURES, SRD5E.LANGUAGES, SRD5E.SKILLS,
-     SRD5E.TOOLS);
-  SRD5E.goodiesRules(rules);
+    (rules, SRD5E.FEATS, SRD5E.FEATURES, SRD5E.GOODIES, SRD5E.LANGUAGES,
+     SRD5E.SKILLS, SRD5E.TOOLS);
 
   Quilvyn.addRuleSet(rules);
 
@@ -69,8 +68,8 @@ function SRD5E() {
 /* List of items handled by choiceRules method. */
 SRD5E.CHOICES = [
   'Alignment', 'Armor', 'Background', 'Class', 'Deity', 'Feat', 'Feature',
-  'Language', 'Path', 'Race', 'School', 'Shield', 'Skill', 'Spell', 'Tool',
-  'Weapon'
+  'Goody', 'Language', 'Path', 'Race', 'School', 'Shield', 'Skill', 'Spell',
+  'Tool', 'Weapon'
 ];
 /*
  * List of items handled by randomizeOneAttribute method. The order handles
@@ -991,6 +990,114 @@ SRD5E.FEATURES = {
     'Section=sanity Note="Disadv Dex, Str rolls, cannot cast spells"',
   'Two-Handed Weapon With Shield':
     'Section=validation Note="Shields cannot be used with two-handed weapons"'
+};
+/* TODO
+plugins/SRD5E.js:Armor Proficiency
+plugins/SRD5E.js:Tool Proficiency
+*/
+SRD5E.GOODIES = {
+  'Armor':
+    'Pattern="([-+]\\d).*(?:armor(?:\\s+class)?|AC)|(?:armor(?:\\s+class)?|AC)\\s+([-+]\\d)" ' +
+    'Effect=add ' +
+    'Value="$1 || $2" ' +
+    'Attribute=armorClass ' +
+    'Section=combat Note="%V Armor Class"',
+  'Charisma':
+    'Pattern="([-+]\\d)\\s+charisma|charisma\\s+([-+]\\d)" ' +
+    'Effect=add ' +
+    'Value="$1 || $2" ' +
+    'Attribute=charisma ' +
+    'Section=ability Note="%V Charisma"',
+  'Charisma Proficiency':
+    'Pattern="charisma\\s+proficiency" ' +
+    'Effect=set ' +
+    'Attribute=saveProficiency.Charisma ' +
+    'Section=save Note="Proficiency in Charisma saves"',
+  'Constitution':
+    'Pattern="([-+]\\d)\\s+constitution|constitution\\s+([-+]\\d)" ' +
+    'Effect=add ' +
+    'Value="$1 || $2" ' +
+    'Attribute=constitution ' +
+    'Section=ability Note="%V Constitution"',
+  'Constitution Proficiency':
+    'Pattern="constitution\\s+proficiency" ' +
+    'Effect=set ' +
+    'Attribute=saveProficiency.Constitution ' +
+    'Section=save Note="Proficiency in Constitution saves"',
+  'Dexterity':
+    'Pattern="([-+]\\d)\\s+dexterity|dexterity\\s+([-+]\\d)" ' +
+    'Effect=add ' +
+    'Value="$1 || $2" ' +
+    'Attribute=dexterity ' +
+    'Section=ability Note="%V Dexterity"',
+  'Dexterity Proficiency':
+    'Pattern="dexterity\\s+proficiency" ' +
+    'Effect=set ' +
+    'Attribute=saveProficiency.Dexterity ' +
+    'Section=save Note="Proficiency in Dexterity saves"',
+  'Feat Count':
+    'Pattern="([-+]\\d)\\s+feat|feat\\s+([-+]\\d)" ' +
+    'Effect=add ' +
+    'Value="$1 || $2" ' +
+    'Attribute=featCount.General ' +
+    'Section=feature Note="%V General Feat"',
+  'Initiative':
+    'Pattern="([-+]\\d)\\s+initiative|initiative\\s+([-+]\\d)" ' +
+    'Effect=add ' +
+    'Value="$1 || $2" ' +
+    'Attribute=initiative ' +
+    'Section=combat Note="%V Initiative"',
+  'Intelligence':
+    'Pattern="([-+]\\d)\\s+intelligence|intelligence\\s+([-+]\\d)" ' +
+    'Effect=add ' +
+    'Value="$1 || $2" ' +
+    'Attribute=intelligence ' +
+    'Section=ability Note="%V Intelligence"',
+  'Intelligence Proficiency':
+    'Pattern="intelligence\\s+proficiency" ' +
+    'Effect=set ' +
+    'Attribute=saveProficiency.Intelligence ' +
+    'Section=save Note="Proficiency in Intelligence saves"',
+  'Protection':
+    'Pattern="([-+]\\d).*protection|protection\\s+([-+]\\d)" ' +
+    'Effect=add ' +
+    'Value="$1 || $2" ' +
+    'Attribute=armorClass ' +
+    'Section=combat Note="%V Armor Class"',
+  'Shield':
+    'Pattern="([-+]\\d).*\\s+shield|shield\\s+([-+]\\d)" ' +
+    'Effect=add ' +
+    'Value="$1 || $2" ' +
+    'Attribute=armorClass ' +
+    'Section=combat Note="%V Armor Class"',
+  'Speed':
+    'Pattern="([-+]\\d).*\\s+speed|speed\\s+([-+]\\d)" ' +
+    'Effect=add ' +
+    'Value="$1 || $2" ' +
+    'Attribute=speed ' +
+    'Section=ability Note="%V Speed"',
+  'Strength':
+    'Pattern="([-+]\\d)\\s+strength|strength\\s+([-+]\\d)" ' +
+    'Effect=add ' +
+    'Value="$1 || $2" ' +
+    'Attribute=strength ' +
+    'Section=ability Note="%V Strength"',
+  'Strength Proficiency':
+    'Pattern="strength\\s+proficiency" ' +
+    'Effect=set ' +
+    'Attribute=saveProficiency.Strength ' +
+    'Section=save Note="Proficiency in Strength saves"',
+  'Wisdom':
+    'Pattern="([-+]\\d)\\s+wisdom|wisdom\\s+([-+]\\d)" ' +
+    'Effect=add ' +
+    'Value="$1 || $2" ' +
+    'Attribute=wisdom ' +
+    'Section=ability Note="%V Wisdom"',
+  'Wisdom Proficiency':
+    'Pattern="wisdom\\s+proficiency" ' +
+    'Effect=set ' +
+    'Attribute=saveProficiency.Wisdom ' +
+    'Section=save Note="Proficiency in Wisdom saves"'
 };
 SRD5E.LANGUAGES = {
   'Abyssal':'',
@@ -2737,6 +2844,26 @@ SRD5E.combatRules = function(rules, armors, shields, weapons) {
     rules.choiceRules(rules, 'Shield', shield, shields[shield]);
   }
   for(var weapon in weapons) {
+    var pattern = weapon.replace(/  */g, '\\s+');
+    var prefix =
+      weapon.charAt(0).toLowerCase() + weapon.substring(1).replaceAll(' ', '');
+    rules.choiceRules(rules, 'Goody', weapon,
+      // To avoid triggering additional weapons with a common suffix (e.g.,
+      // "* punching dagger +2" also makes regular dagger +2), require that
+      // weapon goodies with a trailing value have no preceding word or be
+      // enclosed in parentheses.
+      'Pattern="([-+]\\d)\\s+' + pattern + '|(?:^\\W*|\\()' + pattern + '\\s+([-+]\\d)" ' +
+      'Effect=add ' +
+      'Attribute=' + prefix + 'AttackModifier,' + prefix + 'DamageModifier ' +
+      'Value="$1 || $2" ' +
+      'Section=combat Note="%V Attack and damage"'
+    );
+    rules.choiceRules(rules, 'Goody', weapon + ' Proficiency',
+      'Pattern="' + pattern + '\\s+proficiency" ' +
+      'Effect=set ' +
+      'Attribute=weaponProficiency.' + weapon + ' ' +
+      'Section=combat Note="Proficiency in ' + weapon + '"'
+    );
     rules.choiceRules(rules, 'Weapon', weapon, weapons[weapon]);
   }
 
@@ -2808,12 +2935,6 @@ SRD5E.combatRules = function(rules, armors, shields, weapons) {
 
 };
 
-/* Defines the rules related to goodies included in character notes. */
-SRD5E.goodiesRules = function(rules) {
-  // TBD Move out of SRD35
-  SRD35.goodiesRules(rules);
-};
-
 /* Defines rules related to basic character identity. */
 SRD5E.identityRules = function(
   rules, alignments, backgrounds, classes, deities, paths, races
@@ -2880,7 +3001,9 @@ SRD5E.magicRules = function(rules, schools, spells) {
 };
 
 /* Defines rules related to character aptitudes. */
-SRD5E.talentRules = function(rules, feats, features, languages, skills, tools) {
+SRD5E.talentRules = function(
+  rules, feats, features, goodies, languages, skills, tools
+) {
 
   QuilvynUtils.checkAttrTable(feats, ['Require', 'Imply', 'Type']);
   QuilvynUtils.checkAttrTable(features, ['Section', 'Note']);
@@ -2894,14 +3017,36 @@ SRD5E.talentRules = function(rules, feats, features, languages, skills, tools) {
   for(var feature in features) {
     rules.choiceRules(rules, 'Feature', feature, features[feature]);
   }
+  for(var goody in goodies) {
+    rules.choiceRules(rules, 'Goody', goody, goodies[goody]);
+  }
   for(var language in languages) {
     rules.choiceRules(rules, 'Language', language, languages[language]);
   }
   for(var skill in skills) {
     rules.choiceRules(rules, 'Skill', skill, skills[skill]);
+    rules.choiceRules(rules, 'Goody', skill,
+      'Pattern="([-+]\\d).*\\s+' + skill + '\\s+Skill|' + skill + '\\s+skill\\s+([-+]\\d)"' +
+      'Effect=add ' +
+      'Value="$1 || $2" ' +
+      'Attribute="skills.' + skill + '" ' +
+      'Section=skill Note="%V ' + skill + '"'
+    );
+    rules.choiceRules(rules, 'Goody', skill + ' Proficiency',
+      'Pattern="' + skill + '\\s+proficiency" ' +
+      'Effect=set ' +
+      'Attribute=skillProficiency.' + skill + ' ' +
+      'Section=skill Note="Proficiency in ' + skill + '"'
+    );
   }
   for(var tool in tools) {
     rules.choiceRules(rules, 'Tool', tool, tools[tool]);
+    rules.choiceRules(rules, 'Goody', tool + ' Proficiency',
+      'Pattern="' + tool + '\\s+proficiency" ' +
+      'Effect=set ' +
+      'Attribute=toolProficiency.' + tool + ' ' +
+      'Section=skill Note="Proficiency in ' + tool + '"'
+    );
   }
 
   QuilvynRules.validAllocationRules
@@ -2970,6 +3115,15 @@ SRD5E.choiceRules = function(rules, type, name, attrs) {
       QuilvynUtils.getAttrValueArray(attrs, 'Section'),
       QuilvynUtils.getAttrValueArray(attrs, 'Note')
     );
+  else if(type == 'Goody')
+    SRD5E.goodyRules(rules, name,
+      QuilvynUtils.getAttrValue(attrs, 'Pattern'),
+      QuilvynUtils.getAttrValue(attrs, 'Effect'),
+      QuilvynUtils.getAttrValue(attrs, 'Value'),
+      QuilvynUtils.getAttrValueArray(attrs, 'Attribute'),
+      QuilvynUtils.getAttrValueArray(attrs, 'Section'),
+      QuilvynUtils.getAttrValueArray(attrs, 'Note')
+    );
   else if(type == 'Language')
     SRD5E.languageRules(rules, name);
   else if(type == 'Path')
@@ -3019,9 +3173,9 @@ SRD5E.choiceRules = function(rules, type, name, attrs) {
       var level = matchInfo[2] * 1;
       var fullName = name + '(' + group + level + ' ' + schoolAbbr + ')';
       // TODO indicate domain spells in attributes?
-      var domainSpell = SRD35.PATHS[group + ' Domain'] != null;
-      SRD35.spellRules
-        (rules, fullName, school, group, level, description);
+      var domainSpell = SRD5E.PATHS[group + ' Domain'] != null;
+      SRD5E.spellRules
+        (rules, fullName, school, group, level, description, domainSpell);
       rules.addChoice('spells', fullName, attrs);
     }
   } else if(type == 'Tool')
@@ -3806,6 +3960,25 @@ SRD5E.featureRules = function(rules, name, sections, notes) {
   }
 };
 
+/*
+ * Defines in #rules# the rules associated with goody #name#, triggered by
+ * a starred line in the character notes that matches #pattern#. #effect#
+ * specifies the effect of the goody on each attribute in list #attributes#.
+ * This is one of "increment" (adds #value# to the attribute), "set" (replaces
+ * the value of the attribute by #value#), "lower" (decreases the value to
+ * #value#), or "raise" (increases the value to #value#). #value#, if null,
+ * defaults to 1; occurrences of $1, $2, ... in #value# reference capture
+ * groups in #pattern#. #sections# and #notes# list the note sections
+ * ("attribute", "combat", "companion", "feature", "magic", "save", or "skill")
+ * and formats that show the effects of the goody on the character sheet.
+ */
+SRD5E.goodyRules = function(
+  rules, name, pattern, effect, value, attributes, sections, notes
+) {
+  QuilvynRules.goodyRules
+    (rules, name, pattern, effect, value, attributes, sections, notes);
+};
+
 /* Defines in #rules# the rules associated with language #name#. */
 SRD5E.languageRules = function(rules, name) {
   if(!name) {
@@ -4127,8 +4300,7 @@ SRD5E.skillRules = function(rules, name, ability, classes) {
       ('notes', 'skills.' + name + ':(' + ability.substring(0, 3) + ') %V');
   rules.defineRule('skills.' + name,
     ability + 'Modifier', '=', null,
-    'skillBonus.' + name, '+', null,
-    'skillNotes.goodies' + name + 'Adjustment', '+', null
+    'skillBonus.' + name, '+', null
   );
 
 };
@@ -4140,10 +4312,11 @@ SRD5E.skillRules = function(rules, name, ability, classes) {
  * description of the spell's effects.
  */
 SRD5E.spellRules = function(
-  rules, name, school, casterGroup, level, description
+  rules, name, school, casterGroup, level, description, domainSpell
 ) {
   // TBD Move out of SRD35
-  SRD35.spellRules(rules, name, school, casterGroup, level, description);
+  SRD35.spellRules
+    (rules, name, school, casterGroup, level, description, domainSpell);
 };
 
 /* Defines in #rules# the rules associated with tool #name# of type #type#. */
@@ -4601,6 +4774,15 @@ SRD5E.choiceEditorElements = function(rules, type) {
     var sections =
       ['ability', 'combat', 'companion', 'feature', 'magic', 'skill'];
     result.push(
+      ['Section', 'Section', 'select-one', sections],
+      ['Note', 'Note', 'text', [60]]
+    );
+  } else if(type == 'Goody') {
+    var effects = ['add', 'lower', 'raise', 'set'];
+    result.push(
+      ['Pattern', 'Pattern', 'text', [40]],
+      ['Effect', 'Effect', 'select-one', effects],
+      ['Value', 'Value', 'text', [20]],
       ['Section', 'Section', 'select-one', sections],
       ['Note', 'Note', 'text', [60]]
     );

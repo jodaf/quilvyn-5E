@@ -991,10 +991,6 @@ SRD5E.FEATURES = {
   'Two-Handed Weapon With Shield':
     'Section=validation Note="Shields cannot be used with two-handed weapons"'
 };
-/* TODO
-plugins/SRD5E.js:Armor Proficiency
-plugins/SRD5E.js:Tool Proficiency
-*/
 SRD5E.GOODIES = {
   'Armor':
     'Pattern="([-+]\\d).*(?:armor(?:\\s+class)?|AC)|(?:armor(?:\\s+class)?|AC)\\s+([-+]\\d)" ' +
@@ -3324,7 +3320,6 @@ SRD5E.armorRules = function(rules, name, ac, bulky, maxDex, minStr, weight) {
  * the equipment, features, and languages listed in #equipment#, #features#,
  * and #languages#.
  */
-
 SRD5E.backgroundRules = function(rules, name, equipment, features, languages) {
 
   var prefix =

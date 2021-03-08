@@ -18,7 +18,7 @@ Place, Suite 330, Boston, MA 02111-1307 USA.
 /*jshint esversion: 6 */
 "use strict";
 
-var SRD5E_VERSION = '2.1.1.3';
+var SRD5E_VERSION = '2.2.1.0';
 
 /*
  * This module loads the rules from the System Reference Document v5. The SRD5E

@@ -18,7 +18,7 @@ Place, Suite 330, Boston, MA 02111-1307 USA.
 /*jshint esversion: 6 */
 "use strict";
 
-var SRD5E_VERSION = '2.2.1.0';
+var SRD5E_VERSION = '2.2.1.1';
 
 /*
  * This module loads the rules from the System Reference Document v5. The SRD5E
@@ -48,7 +48,9 @@ function SRD5E() {
     'feats', 'featCount', 'sanityNotes', 'selectableFeatureCount',
     'validationNotes'
   );
-  rules.defineChoice('preset', 'background', 'race', 'level', 'levels');
+  rules.defineChoice('preset',
+    'background:Background,select-one,backgrounds',
+    'race:Race,select-one,races', 'levels:Class Levels,bag,levels');
 
   SRD5E.abilityRules(rules);
   SRD5E.combatRules(rules, SRD5E.ARMORS, SRD5E.SHIELDS, SRD5E.WEAPONS);
@@ -4884,7 +4886,7 @@ SRD5E.initialEditorElements = function() {
     ['name', 'Name', 'text', [20]],
     ['race', 'Race', 'select-one', 'races'],
     ['experience', 'Experience', 'text', [8]],
-    ['levels', 'Levels', 'bag', 'levels'],
+    ['levels', 'Class Levels', 'bag', 'levels'],
     ['imageUrl', 'Image URL', 'text', [20]],
     ['background', 'Background', 'select-one', 'backgrounds'],
     ['strength', 'Str/Boost', 'select-one', abilityChoices],

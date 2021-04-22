@@ -18,7 +18,7 @@ Place, Suite 330, Boston, MA 02111-1307 USA.
 /*jshint esversion: 6 */
 "use strict";
 
-var SRD5E_VERSION = '2.2.1.1';
+var SRD5E_VERSION = '2.2.1.2';
 
 /*
  * This module loads the rules from the System Reference Document v5. The SRD5E
@@ -1001,35 +1001,35 @@ SRD5E.GOODIES = {
     'Attribute=armorClass ' +
     'Section=combat Note="%V Armor Class"',
   'Charisma':
-    'Pattern="([-+]\\d)\\s+charisma|charisma\\s+([-+]\\d)" ' +
+    'Pattern="([-+]\\d)\\s+cha(?:risma)?|cha(?:risma)?\\s+([-+]\\d)" ' +
     'Effect=add ' +
     'Value="$1 || $2" ' +
     'Attribute=charisma ' +
     'Section=ability Note="%V Charisma"',
   'Charisma Proficiency':
-    'Pattern="charisma\\s+proficiency" ' +
+    'Pattern="cha(?:risma)?\\s+proficiency" ' +
     'Effect=set ' +
     'Attribute=saveProficiency.Charisma ' +
     'Section=save Note="Proficiency in Charisma saves"',
   'Constitution':
-    'Pattern="([-+]\\d)\\s+constitution|constitution\\s+([-+]\\d)" ' +
+    'Pattern="([-+]\\d)\\s+con(?:stitution)?|con(?:stitution)?\\s+([-+]\\d)" ' +
     'Effect=add ' +
     'Value="$1 || $2" ' +
     'Attribute=constitution ' +
     'Section=ability Note="%V Constitution"',
   'Constitution Proficiency':
-    'Pattern="constitution\\s+proficiency" ' +
+    'Pattern="con(?:stitution)?\\s+proficiency" ' +
     'Effect=set ' +
     'Attribute=saveProficiency.Constitution ' +
     'Section=save Note="Proficiency in Constitution saves"',
   'Dexterity':
-    'Pattern="([-+]\\d)\\s+dexterity|dexterity\\s+([-+]\\d)" ' +
+    'Pattern="([-+]\\d)\\s+dex(?:terity)?|dex(?:terity)?\\s+([-+]\\d)" ' +
     'Effect=add ' +
     'Value="$1 || $2" ' +
     'Attribute=dexterity ' +
     'Section=ability Note="%V Dexterity"',
   'Dexterity Proficiency':
-    'Pattern="dexterity\\s+proficiency" ' +
+    'Pattern="dex(?:terity)?\\s+proficiency" ' +
     'Effect=set ' +
     'Attribute=saveProficiency.Dexterity ' +
     'Section=save Note="Proficiency in Dexterity saves"',
@@ -1051,13 +1051,13 @@ SRD5E.GOODIES = {
     'Attribute=initiative ' +
     'Section=combat Note="%V Initiative"',
   'Intelligence':
-    'Pattern="([-+]\\d)\\s+intelligence|intelligence\\s+([-+]\\d)" ' +
+    'Pattern="([-+]\\d)\\s+int(?:elligence)?|int(?:elligence)?\\s+([-+]\\d)" ' +
     'Effect=add ' +
     'Value="$1 || $2" ' +
     'Attribute=intelligence ' +
     'Section=ability Note="%V Intelligence"',
   'Intelligence Proficiency':
-    'Pattern="intelligence\\s+proficiency" ' +
+    'Pattern="int(?:elligence)?\\s+proficiency" ' +
     'Effect=set ' +
     'Attribute=saveProficiency.Intelligence ' +
     'Section=save Note="Proficiency in Intelligence saves"',
@@ -1105,24 +1105,24 @@ SRD5E.GOODIES = {
     'Attribute=speed ' +
     'Section=ability Note="%V Speed"',
   'Strength':
-    'Pattern="([-+]\\d)\\s+strength|strength\\s+([-+]\\d)" ' +
+    'Pattern="([-+]\\d)\\s+str(?:ength)?|str(?:ength)?\\s+([-+]\\d)" ' +
     'Effect=add ' +
     'Value="$1 || $2" ' +
     'Attribute=strength ' +
     'Section=ability Note="%V Strength"',
   'Strength Proficiency':
-    'Pattern="strength\\s+proficiency" ' +
+    'Pattern="str(?:ength)?\\s+proficiency" ' +
     'Effect=set ' +
     'Attribute=saveProficiency.Strength ' +
     'Section=save Note="Proficiency in Strength saves"',
   'Wisdom':
-    'Pattern="([-+]\\d)\\s+wisdom|wisdom\\s+([-+]\\d)" ' +
+    'Pattern="([-+]\\d)\\s+wis(?:dom)?|wis(?:dom)?\\s+([-+]\\d)" ' +
     'Effect=add ' +
     'Value="$1 || $2" ' +
     'Attribute=wisdom ' +
     'Section=ability Note="%V Wisdom"',
   'Wisdom Proficiency':
-    'Pattern="wisdom\\s+proficiency" ' +
+    'Pattern="wis(?:dom)?\\s+proficiency" ' +
     'Effect=set ' +
     'Attribute=saveProficiency.Wisdom ' +
     'Section=save Note="Proficiency in Wisdom saves"'

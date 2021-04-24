@@ -18,7 +18,7 @@ Place, Suite 330, Boston, MA 02111-1307 USA.
 /*jshint esversion: 6 */
 "use strict";
 
-var SRD5E_VERSION = '2.2.1.2';
+var SRD5E_VERSION = '2.2.1.3';
 
 /*
  * This module loads the rules from the System Reference Document v5. The SRD5E
@@ -936,8 +936,6 @@ SRD5E.FEATURES = {
          '"Resistance %V damage"',
   'Dragonborn Ability Adjustment':
     'Section=ability Note="+2 Strength/+1 Charisma"',
-  'Dwarven Armor Speed':
-    'Section=ability Note="No speed penalty in heavy armor"',
   'Dwarven Resilience':
     'Section=save Note="Adv vs. poison, resistance poison damage"',
   'Dwarven Toughness':
@@ -963,12 +961,14 @@ SRD5E.FEATURES = {
   'Human Ability Adjustment':
     'Section=ability ' +
     'Note="+1 Charisma/+1 Constitution/+1 Dexterity/+1 Intelligence/+1 Strength/+1 Wisdom"',
-  'Infernal Legacy':
-    'Section=magic Note="<i>Thaumaturgy</i> cantrip%V"',
+  'Infernal Legacy':'Section=magic Note="Cast %V"',
+  'Keen Senses':'Section=skill Note="Skill Proficiency (Perception)"',
   'Lightfoot Halfling Ability Adjustment':
     'Section=ability Note="+2 Dexterity/+1 Charisma"',
+  'Menacing':
+    'Section=skill Note="Skill Proficiency (Intimidation)"',
   'Naturally Stealthy':
-    'Section=feature Note="Hide behind larger creature"',
+    'Section=skill Note="Hide behind larger creature"',
   'Relentless Endurance':
     'Section=combat Note="Keep 1 HP when brought to 0 1/long rest"',
   'Rock Gnome Ability Adjustment':
@@ -979,10 +979,15 @@ SRD5E.FEATURES = {
     'Section=ability Note="-5 Speed"',
   'Small':
     'Section=combat Note="Disadv heavy weapons"',
+  'Steady':
+    'Section=ability Note="No speed penalty in heavy armor"',
   'Stonecunning':
     'Section=skill Note="Dbl proficiency on stonework History checks"',
   'Tiefling Ability Adjustment':
     'Section=ability Note="+2 Charisma/+1 Intelligence"',
+  'Tinker':
+    'Section=skill ' +
+    'Note="Use Tinker\'s Tools to create tiny clockwork device in 1 hr"',
   'Trance':
     'Section=feature Note="4 hr meditation gives benefit of 8 hr sleep"',
   // Sanity, Validation and Miscellaneous
@@ -1313,60 +1318,29 @@ SRD5E.PATHS = {
       '"17:Quivering Palm"'
 };
 SRD5E.RACES = {
-  'Black Dragonborn':
+  'Dragonborn':
     'Features=' +
       '"1:Draconic Breath","1:Dragonborn Ability Adjustment" ' +
-    'Languages=Common,Draconic',
-  'Blue Dragonborn':
-    'Features=' +
-      '"1:Draconic Breath","1:Dragonborn Ability Adjustment" ' +
-    'Languages=Common,Draconic',
-  'Brass Dragonborn':
-    'Features=' +
-      '"1:Draconic Breath","1:Dragonborn Ability Adjustment" ' +
-    'Languages=Common,Draconic',
-  'Bronze Dragonborn':
-    'Features=' +
-      '"1:Draconic Breath","1:Dragonborn Ability Adjustment" ' +
-    'Languages=Common,Draconic',
-  'Copper Dragonborn':
-    'Features=' +
-      '"1:Draconic Breath","1:Dragonborn Ability Adjustment" ' +
-    'Languages=Common,Draconic',
-  'Gold Dragonborn':
-    'Features=' +
-      '"1:Draconic Breath","1:Dragonborn Ability Adjustment" ' +
-    'Languages=Common,Draconic',
-  'Green Dragonborn':
-    'Features=' +
-      '"1:Draconic Breath","1:Dragonborn Ability Adjustment" ' +
-    'Languages=Common,Draconic',
-  'Red Dragonborn':
-    'Features=' +
-      '"1:Draconic Breath","1:Dragonborn Ability Adjustment" ' +
-    'Languages=Common,Draconic',
-  'Silver Dragonborn':
-    'Features=' +
-      '"1:Draconic Breath","1:Dragonborn Ability Adjustment" ' +
-    'Languages=Common,Draconic',
-  'White Dragonborn':
-    'Features=' +
-      '"1:Draconic Breath","1:Dragonborn Ability Adjustment" ' +
+    'Selectables=' +
+      '"1:Black Draconic Ancestry","1:Blue Draconic Ancestry",' +
+      '"1:Brass Draconic Ancestry","1:Bronze Draconic Ancestry",' +
+      '"1:Copper Draconic Ancestry","1:Gold Draconic Ancestry",' +
+      '"1:Green Draconic Ancestry","1:Red Draconic Ancestry",' +
+      '"1:Silver Draconic Ancestry","1:White Draconic Ancestry" ' +
     'Languages=Common,Draconic',
   'Hill Dwarf':
     'Features=' +
       '"1:Weapon Proficiency (Battleaxe/Handaxe/Light Hammer/Warhammer)",' +
       '"1:Tool Proficiency (Choose 1 from Brewer\'s Supplies, Mason\'s Tools, Smith\'s Tools)",' +
       '1:Darkvision,"1:Hill Dwarf Ability Adjustment",' +
-      '"1:Dwarven Armor Speed","1:Dwarven Resilience","1:Dwarven Toughness",' +
-      '1:Slow,1:Stonecunning ' +
+      '"1:Dwarven Resilience","1:Dwarven Toughness",1:Slow,1:Steady,' +
+      '1:Stonecunning ' +
     'Languages=Common,Dwarvish',
   'High Elf':
     'Features=' +
-      '"1:Skill Proficiency (Perception)",' +
       '"1:Weapon Proficiency (Longbow/Longsword/Shortbow/Shortsword)",' +
       '1:Darkvision,"1:Fey Ancestry","1:High Elf Ability Adjustment",' +
-      '1:Trance ' +
+      '"1:Keen Senses",1:Trance ' +
     'Languages=Common,Elvish,any ' +
     'SpellAbility=intelligence ' +
     'SpellSlots=' +
@@ -1375,7 +1349,7 @@ SRD5E.RACES = {
     'Features=' +
       '"1:Tool Proficiency (Tinker\'s Tools)",' +
       '1:Darkvision,"1:Gnome Cunning","1:Rock Gnome Ability Adjustment",' +
-      '1:Slow,1:Small,"1:Artificer\'s Lore" ' +
+      '1:Slow,1:Small,"1:Artificer\'s Lore",1:Tinker ' +
     'Languages=Common,Gnomish',
   'Half-Elf':
     'Features=' +
@@ -1384,8 +1358,7 @@ SRD5E.RACES = {
     'Languages=Common,Elvish,any',
   'Half-Orc':
     'Features=' +
-      '"1:Skill Proficiency (Intimidation)",' +
-      '1:Darkvision,"1:Half-Orc Ability Adjustment",' +
+      '1:Darkvision,"1:Half-Orc Ability Adjustment",1:Menacing,' +
       '"1:Relentless Endurance","1:Savage Attacks" ' +
     'Languages=Common,Orc',
   'Lightfoot Halfling':
@@ -4209,43 +4182,59 @@ SRD5E.raceRulesExtra = function(rules, name) {
   if(name == 'Half-Elf') {
     rules.defineRule
       ('abilityBoosts', 'abilityNotes.half-ElfAbilityAdjustment', '+=', '2');
-  } else if(name.match(/Dragonborn/)) {
-    var draconicBreathTypes = {
-      'Black Dragonborn': 'acid',
-      'Blue Dragonborn': 'lightning',
-      'Brass Dragonborn': 'fire',
-      'Bronze Dragonborn': 'lightning',
-      'Copper Dragonborn': 'acid',
-      'Gold Dragonborn': 'fire',
-      'Green Dragonborn': 'poison',
-      'Red Dragonborn': 'fire',
-      'Silver Dragonborn': 'cold',
-      'White Dragonborn': 'cold'
-    };
+  } else if(name == 'Half-Elf') {
+    rules.defineRule
+      ('skillProficiency.Intimidation', 'skillNotes.menacing', '=', '1');
+  } else if(name == 'Dragonborn') {
     rules.defineRule('combatNotes.draconicBreath',
       'level', '=', 'Math.floor((source + 9) / 5)'
     );
     rules.defineRule('combatNotes.draconicBreath.1',
-      'race', '=', 'source < "Gold" ? "5\'x30\' line" : "15\' cone"'
+      'race', '=', 'source == "Dragonborn" ? "5\'x30\' line" : null',
+      'dragonbornFeatures.Gold Draconic Ancestry', '=', '"15\' cone"',
+      'dragonbornFeatures.Green Draconic Ancestry', '=', '"15\' cone"',
+      'dragonbornFeatures.Red Draconic Ancestry', '=', '"15\' cone"',
+      'dragonbornFeatures.Silver Draconic Ancestry', '=', '"15\' cone"',
+      'dragonbornFeatures.White Draconic Ancestry', '=', '"15\' cone"'
     );
     rules.defineRule('combatNotes.draconicBreath.2',
-      'race', '=', QuilvynUtils.dictLit(draconicBreathTypes) + '[source]'
+      'race', '=', 'source == "Dragonborn" ? "fire" : null',
+      'dragonbornFeatures.Black Draconic Ancestry', '=', '"acid"',
+      'dragonbornFeatures.Blue Draconic Ancestry', '=', '"lightning"',
+      'dragonbornFeatures.Bronze Draconic Ancestry', '=', '"lightning"',
+      'dragonbornFeatures.Copper Draconic Ancestry', '=', '"acid"',
+      'dragonbornFeatures.Green Draconic Ancestry', '=', '"poison"',
+      'dragonbornFeatures.Silver Draconic Ancestry', '=', '"cold"',
+      'dragonbornFeatures.White Draconic Ancestry', '=', '"cold"'
     );
     rules.defineRule('combatNotes.draconicBreath.3',
+      'race', '?', 'source == "Dragonborn"',
       'constitutionModifier', '=', '8 + source',
       'proficiencyBonus', '+', null
     );
     rules.defineRule('combatNotes.draconicBreath.4',
       'combatNotes.draconicBreath.2', '=', 'source.match(/cold|poison/) ? "Con" : "Dex"'
     );
-    rules.defineRule('saveNotes.draconicBreath',
-      'race', '=', QuilvynUtils.dictLit(draconicBreathTypes) + '[source]'
+    rules.defineRule
+      ('saveNotes.draconicBreath', 'combatNotes.draconicBreath.2', '=', null);
+    rules.defineRule('selectableFeatureCount.Dragonborn',
+      'race', '=', 'source == "Dragonborn" ? 1 : null'
     );
   } else if(name.match(/Dwarf/)) {
-    rules.defineRule('abilityNotes.armorSpeedAdjustment',
-      'abilityNotes.dwarvenArmorSpeed', '^', '0'
-    );
+    rules.defineRule
+      ('abilityNotes.armorSpeedAdjustment', 'abilityNotes.steady', '^', '0');
     rules.defineRule('combatNotes.dwarvenToughness', 'level', '=', null);
+  } else if(name.match(/Elf/)) {
+    rules.defineRule
+      ('skillProficiency.Perception', 'skillNotes.keenSenses', '=', '1');
+  } else if(name == 'Tiefling') {
+    rules.defineRule('magicNotes.infernalLegacy',
+      'race', '?', 'source == "Tiefling"',
+      'level', '=',
+        'source<3 ? "<i>Thaumaturgy</i> cantrip" : ' +
+        'source<5 ? "<i>Thaumagurgy</i> cantrip, <i>Hellish Rebuke</i> 1/dy" : ' +
+        '"<i>Thaumagurgy</i> cantrip, <i>Hellish Rebuke</i> 1/dy, <i>Darkness</i> 1/dy"'
+    );
   }
 
 };

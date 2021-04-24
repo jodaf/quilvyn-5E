@@ -1214,10 +1214,10 @@ PHB5E.PATHS = {
 PHB5E.RACES = {
   'Dark Elf':
     'Features=' +
-      '"1:Skill Proficiency (Perception)",' +
       '"1:Weapon Proficiency (Hand Crossbow/Rapier/Shortsword)",' +
       '"1:Dark Elf Ability Adjustment","1:Drow Magic","1:Fey Ancestry",' +
-      '"1:Sunlight Sensitivity","1:Superior Darkvision",1:Trance ' +
+      '"1:Keen Senses","1:Sunlight Sensitivity","1:Superior Darkvision",' +
+      '1:Trance ' +
     'Languages=Common,Elvish,Undercommon ' +
     'SpellAbility=charisma ' +
     'SpellSlots=' +
@@ -1239,7 +1239,7 @@ PHB5E.RACES = {
       '"1:Weapon Proficiency (Battleaxe/Handaxe/Light Hammer/Warhammer)",' +
       '"1:Tool Proficiency (Choose 1 from Brewer\'s Tools, Mason\'s Tools, Smith\'s Tools)",' +
       '1:Darkvision,"1:Mountain Dwarf Ability Adjustment",' +
-      '"1:Dwarven Armor Speed","1:Dwarven Resilience",1:Slow,1:Stonecunning ' +
+      '"1:Dwarven Resilience",1:Slow,1:Steady,1:Stonecunning ' +
     'Languages=Common,Dwarvish',
   'Stout Halfling':
     'Features=' +
@@ -1248,10 +1248,10 @@ PHB5E.RACES = {
     'Languages=Common,Halfling',
   'Wood Elf':
     'Features=' +
-      '"1:Skill Proficiency (Perception)",' +
       '"1:Weapon Proficiency (Longbow/Longsword/Shortbow/Shortsword)",' +
       '1:Darkvision,"1:Fey Ancestry","1:Fleet Of Foot",' +
-      '"1:Mask Of The Wild",1:Trance,"1:Wood Elf Ability Adjustment" ' +
+      '"1:Keen Senses","1:Mask Of The Wild",1:Trance,' +
+      '"1:Wood Elf Ability Adjustment" ' +
     'Languages=Common,Elvish'
 };
 PHB5E.SPELLS = {

@@ -78,6 +78,7 @@ PHB5E.BACKGROUNDS = {
     'Features=' +
       '"1:Skill Proficiency (Insight/Persuasion)",' +
       '"1:Tool Proficiency (Choose 1 from any Artisan)",' +
+      '"1:Language (Choose 1 from any)",' +
       '"1:Guild Membership" ' +
     'Languages=any',
   'Hermit':
@@ -87,6 +88,7 @@ PHB5E.BACKGROUNDS = {
     'Features=' +
       '"1:Skill Proficiency (Medicine/Religion)",' +
       '"1:Tool Proficiency (Herbalism Kit)",' +
+      '"1:Language (Choose 1 from any)",' +
       '1:Discovery ' +
     'Languages=any',
   'Noble':
@@ -95,6 +97,7 @@ PHB5E.BACKGROUNDS = {
     'Features=' +
       '"1:Skill Proficiency (History/Persuasion)",' +
       '"1:Tool Proficiency (Choose 1 from any Game)",' +
+      '"1:Language (Choose 1 from any)",' +
       '"1:Position Of Privilege" ' +
     'Languages=any',
   'Outlander':
@@ -103,6 +106,7 @@ PHB5E.BACKGROUNDS = {
     'Features=' +
       '"1:Skill Proficiency (Athletics/Survival)",' +
       '"1:Tool Proficiency (Choose 1 from any Music)",' +
+      '"1:Language (Choose 1 from any)",' +
       '1:Wanderer ' +
     'Languages=any',
   'Sage':
@@ -111,6 +115,7 @@ PHB5E.BACKGROUNDS = {
       '"Small Knife","10 GP" ' +
     'Features=' +
       '"1:Skill Proficiency (Arcana/History)",' +
+      '"1:Language (Choose 2 from any)",' +
       '1:Researcher ' +
     'Languages=any,any',
   'Sailor':
@@ -401,29 +406,30 @@ PHB5E.FEATS = {
 PHB5E.FEATURES = {
   // Backgrounds
   'By Popular Demand':
-    'Section=feature Note="Welcome, lodging for performing"',
+    'Section=feature Note="Welcome, lodging in exchange for performing"',
   'City Secrets':
     'Section=feature Note="Dbl speed through hidden urban ways"',
   'Criminal Contact':
-    'Section=feature Note="Liaison to criminal network"',
+    'Section=feature Note="Know liaison to criminal network"',
   'Discovery':
-    'Section=feature Note="Knows unique truth"',
+    'Section=feature Note="Know unique truth"',
   'False Identity':
     'Section=feature Note="Documented 2nd ID, forgery skills"',
   'Guild Membership':
-    'Section=feature Note="Aid from guild members"',
+    'Section=feature Note="Receive assistance from fellow guild members"',
   'Military Rank':
-    'Section=feature Note="Respect, deference from soldiers"',
+    'Section=feature Note="Receive respect, deference from soldiers"',
   'Position Of Privilege':
     'Section=feature Note="Treated with respect, deference"',
   'Researcher':
     'Section=feature Note="Know who to ask about lore"',
   'Rustic Hospitality':
-    'Section=feature Note="Aid from common folk"',
+    'Section=feature Note="Receive shelter from common folk"',
   "Ship's Passage":
-    'Section=feature Note="Free passage for self, companions"',
+    'Section=feature Note="Receive free water passage for self, companions"',
   'Wanderer':
-    'Section=feature Note="Excellent geography memory, forage for 6 people"',
+    'Section=feature ' +
+    'Note="Have excellent geography memory and can forage for 6 people"',
   // Paths
   "Commander's Strike":
     'Section=combat Note="Add Superiority die to delegated attack"',
@@ -940,8 +946,7 @@ PHB5E.FEATURES = {
   // Races
   'Dark Elf Ability Adjustment':
     'Section=ability Note="+2 Dexterity/+1 Charisma"',
-  'Drow Magic':
-    'Section=magic Note="<i>Dancing Lights</i> cantrip%V"',
+  'Drow Magic':'Section=magic Note="Cast %V"',
   'Fleet Of Foot':
     'Section=ability Note="+5 Speed"',
   'Forest Gnome Ability Adjustment':
@@ -1554,6 +1559,7 @@ PHB5E.identityRules = function(
   }
   for(var race in races) {
     rules.choiceRules(rules, 'Race', race, races[race]);
+    PHB5E.raceRulesExtra(rules, race);
   }
 
 };
@@ -1815,4 +1821,20 @@ PHB5E.featRulesExtra = function(rules, name) {
       ('weaponChoiceCount', 'combatNotes.weaponMaster', '+=', '4');
   }
 
+};
+
+/*
+ * Defines in #rules# the rules associated with race #name# that cannot be
+ * derived directly from the attributes passed to raceRules.
+ */
+PHB5E.raceRulesExtra = function(rules, name) {
+  if(name == 'Dark Elf') {
+    rules.defineRule('magicNotes.drowMagic',
+      'race', '?', 'source == "Dark Elf"',
+      'level', '=',
+        'source<3 ? "<i>Dancing Lights</i> cantrip" : ' +
+        'source<5 ? "<i>Dancing Lights</i> cantrip, <i>Faerie Fire</i> 1/long rest" : ' +
+        '"<i>Dancing Lights</i> cantrip, <i>Faerie Fire</i> 1/long rest, <i>Darkness</i> 1/long rest"'
+    );
+  }
 };

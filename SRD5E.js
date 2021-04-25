@@ -125,6 +125,7 @@ SRD5E.BACKGROUNDS = {
       '"Holy Symbol","Prayer Book",Incense,Vestments,Clothing,"15 GP" ' +
     'Features=' +
       '"1:Skill Proficiency (Insight/Religion)",' +
+      '"1:Languages (Choose 2 from any)",' +
       '"1:Shelter Of The Faithful" ' +
     'Languages=any,any'
 };
@@ -486,7 +487,7 @@ SRD5E.FEATS = {
 SRD5E.FEATURES = {
   // Background
   'Shelter Of The Faithful':
-    'Section=feature Note="Aid from associated temple"',
+    'Section=feature Note="Receive aid from associated temple"',
   // Class
   'Action Surge':
     'Section=combat Note="Extra action %V/short rest"',
@@ -4232,8 +4233,8 @@ SRD5E.raceRulesExtra = function(rules, name) {
       'race', '?', 'source == "Tiefling"',
       'level', '=',
         'source<3 ? "<i>Thaumaturgy</i> cantrip" : ' +
-        'source<5 ? "<i>Thaumagurgy</i> cantrip, <i>Hellish Rebuke</i> 1/dy" : ' +
-        '"<i>Thaumagurgy</i> cantrip, <i>Hellish Rebuke</i> 1/dy, <i>Darkness</i> 1/dy"'
+        'source<5 ? "<i>Thaumagurgy</i> cantrip, <i>Hellish Rebuke</i> 1/long rest" : ' +
+        '"<i>Thaumagurgy</i> cantrip, <i>Hellish Rebuke</i> 1/long rest, <i>Darkness</i> 1/long rest"'
     );
   }
 

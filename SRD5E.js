@@ -1976,7 +1976,7 @@ SRD5E.SPELLS = {
   'Glyph Of Warding':
     'School=Abjuration ' +
     'Level=B3,C3,W3 ' +
-    'Description="Glyph 20\' radius 5d8 HP (Dex half) or spell levl le 3 on named trigger"',
+    'Description="Glyph 20\' radius 5d8 HP (Dex half) or spell level le 3 on named trigger"',
   'Goodberry':
     'School=Transmutation ' +
     'Level=D1,R1 ' +
@@ -4233,8 +4233,8 @@ SRD5E.raceRulesExtra = function(rules, name) {
       'race', '?', 'source == "Tiefling"',
       'level', '=',
         'source<3 ? "<i>Thaumaturgy</i> cantrip" : ' +
-        'source<5 ? "<i>Thaumagurgy</i> cantrip, <i>Hellish Rebuke</i> 1/long rest" : ' +
-        '"<i>Thaumagurgy</i> cantrip, <i>Hellish Rebuke</i> 1/long rest, <i>Darkness</i> 1/long rest"'
+        'source<5 ? "<i>Thaumaturgy</i> cantrip, <i>Hellish Rebuke</i> 1/long rest" : ' +
+        '"<i>Thaumaturgy</i> cantrip, <i>Hellish Rebuke</i> 1/long rest, <i>Darkness</i> 1/long rest"'
     );
   }
 

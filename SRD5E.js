@@ -2278,7 +2278,7 @@ SRD5E.SPELLS = {
 
   'Nondetection':
     'School=Abjuration ' +
-    'Level=R3,W3 ' +
+    'Level=B3,R3,W3 ' +
     'Description="Touched immune divination for 8 hr"',
 
   'Pass Without Trace':
@@ -2598,7 +2598,7 @@ SRD5E.SPELLS = {
     'Description="R30\' Minor magic effects for 1 min"',
   'Thunderwave':
     'School=Evocation ' +
-    'Level=D1,S1,W1 ' +
+    'Level=B1,D1,S1,W1 ' +
     'Description="15\' cu 2d8 HP, pushed 10\' (Con half, no push)"',
   'Time Stop':
     'School=Transmutation ' +

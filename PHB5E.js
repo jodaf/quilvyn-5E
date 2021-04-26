@@ -360,7 +360,17 @@ PHB5E.FEATS = {
     '',
   'Mage Slayer':
     '',
-  'Magic Initiate':
+  'Magic Initiate (Bard)':
+    '',
+  'Magic Initiate (Cleric)':
+    '',
+  'Magic Initiate (Druid)':
+    '',
+  'Magic Initiate (Sorcerer)':
+    '',
+  'Magic Initiate (Warlock)':
+    '',
+  'Magic Initiate (Wizard)':
     '',
   'Martial Adept':
     '',
@@ -807,13 +817,13 @@ PHB5E.FEATURES = {
     'Note="+1 Charisma",' +
          '"Mimic others\' speech or sounds, Adv Deception (Cha) and Performance (Cha) when impersonating"',
   'Alert':
-    'Section=combat Note="+5 Initiative/foes no surprise or hidden Adv"',
+    'Section=combat Note="+5 Initiative/foes no surprise or unseen Adv"',
   'Athlete':
     'Section=ability,skill ' +
-    'Note="+1 Dexterity or Strength, climb full speed, stand uses 5\' move",' +
+    'Note="+1 Dexterity or Strength, climb normal move, stand uses 5\' move",' +
          '"Long jump, running high jump uses 5\' move"',
   'Charger':
-    'Section=combat Note="Bonus attack +5 HP or 10\' push after Dash"',
+    'Section=combat Note="Bonus attack +5 damage or 10\' push after Dash"',
   'Crossbow Expert':
     'Section=combat ' +
     'Note="Quick load, no Disadv on close shot, bonus hand crossbow shot after one-handed attack"',
@@ -825,7 +835,7 @@ PHB5E.FEATURES = {
   'Dungeon Delver':
     'Section=save,skill ' +
     'Note="Adv vs. traps, resistance trap damage",' +
-         '"Adv detect secret doors, search for traps at full speed"',
+         '"Adv detect secret doors, normal passive Perception at full speed"',
   'Durable':
     'Section=ability,combat Note="+1 Constitution","Min %V when regaining HP"',
   'Elemental Adept (Acid)':
@@ -845,10 +855,10 @@ PHB5E.FEATURES = {
     'Note="Spells ignore thunder resistance, treat 1s as 2s on damage die"',
   'Great Weapon Master':
     'Section=combat ' +
-    'Note="Bonus attack after crit or foe to 0 HP, may trade -5 attack for +10 damage"',
+    'Note="Bonus attack after crit or foe to 0 HP, trade -5 attack for +10 damage"',
   'Healer':
     'Section=feature ' +
-    'Note="Stabilize via healer\'s kit restores 1 HP, healer\'s kit heals 1d6+4 HP 1/short rest"',
+    'Note="Stabilize via healer\'s kit restores 1 HP, healer\'s kit heals 1d6+4+target HD HP 1/short rest"',
   'Heavily Armored':
     'Section=ability,combat Note="+1 Strength","Armor Proficiency (Heavy)"',
   'Heavy Armor Master':
@@ -860,7 +870,7 @@ PHB5E.FEATURES = {
   'Keen Mind':
     'Section=ability,feature ' +
     'Note="+1 Intelligence",' +
-         '"Know N, hours until sunrise and sunset, things seen or heard prior 30 days"',
+         '"Know N, hours until sunrise and sunset, things seen or heard prior month"',
   'Lightly Armored':
     'Section=ability,combat ' +
     'Note="+1 Dexterity or Strength",' +
@@ -877,10 +887,21 @@ PHB5E.FEATURES = {
     'Section=combat,save ' +
     'Note="React to attack adjacent caster, foe Disadv concentration",' +
          '"Adv vs. spells by adjacent foes"',
-  'Magic Initiate':
+  'Magic Initiate (Bard)':
+    'Section=magic Note="2 cantrips, 1 1st-level/long rest"',
+  'Magic Initiate (Cleric)':
+    'Section=magic Note="2 cantrips, 1 1st-level/long rest"',
+  'Magic Initiate (Druid)':
+    'Section=magic Note="2 cantrips, 1 1st-level/long rest"',
+  'Magic Initiate (Sorcerer)':
+    'Section=magic Note="2 cantrips, 1 1st-level/long rest"',
+  'Magic Initiate (Warlock)':
+    'Section=magic Note="2 cantrips, 1 1st-level/long rest"',
+  'Magic Initiate (Wizard)':
     'Section=magic Note="2 cantrips, 1 1st-level/long rest"',
   'Martial Adept':
-    'Section=combat Note="Two maneuvers (DC %V), 1 superiority die/long rest"',
+    'Section=combat ' +
+    'Note="Two maneuvers (DC %V), 1 d6 superiority die/long rest"',
   'Medium Armor Master':
     'Section=combat,skill ' +
     'Note="+1 AC",' +
@@ -917,7 +938,7 @@ PHB5E.FEATURES = {
     'Note="Foe stuck by OA speed 0, OA on foe Disengage, react attack when adjacent foe targets other"',
   'Sharpshooter':
     'Section=combat ' +
-    'Note="No Disadv long range, ignore 3/4 cover, take -5 attack for +10 damage"',
+    'Note="No Disadv long range, ignore 3/4 cover, trade -5 attack for +10 damage"',
   'Shield Master':
     'Section=combat,save ' +
     'Note="Bonus 5\' Push",' +
@@ -933,11 +954,11 @@ PHB5E.FEATURES = {
   'Tavern Brawler':
     'Section=ability,combat ' +
     'Note="+1 Constitution or Strength",' +
-         '"Weapon Proficiency (Improvised)/Bonus to grapple"',
+         '"Weapon Proficiency (Improvised)/Unarmed d4 damage/Bonus to grapple"',
   'Tough':
     'Section=combat Note="+%V HP"',
   'War Caster':
-    'Section=combat ' +
+    'Section=magic ' +
     'Note="Adv concentration, cast when holding shield or weapon, cast as OA"',
   'Weapon Master':
     'Section=ability,combat ' +
@@ -1755,6 +1776,8 @@ PHB5E.pathRulesExtra = function(rules, name) {
  */
 PHB5E.featRulesExtra = function(rules, name) {
 
+  var matchInfo;
+
   if(name == 'Athlete') {
     rules.defineRule('abilityBoosts', 'abilityNotes.athlete', '+=', '1');
   } else if(name == 'Defensive Duelist') {
@@ -1775,6 +1798,18 @@ PHB5E.featRulesExtra = function(rules, name) {
     rules.defineRule('featureNotes.linguist',
       'intelligence', '=', null,
       'proficiencyBonus', '+', null
+    );
+  } else if((matchInfo = name.match(/Magic\sInitiate\s.(.*)./)) != null) {
+    var clas = matchInfo[1];
+    var spellCode = clas == 'Warlock' ? 'K' : clas.charAt(0);
+    rules.defineRule('casterLevels.' + spellCode,
+      'magicNotes.magicInitiate(' + clas + ')', '^=', '1'
+    );
+    rules.defineRule('spellSlots.' + spellCode + '0',
+      'magicNotes.magicInitiate(' + clas + ')', '+=', '2'
+    );
+    rules.defineRule('spellSlots.' + spellCode + '1',
+      'magicNotes.magicInitiate(' + clas + ')', '+=', '1'
     );
   } else if(name == 'Martial Adept') {
     rules.defineRule('maxDexOrStrMod',

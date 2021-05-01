@@ -461,7 +461,7 @@ PHB5E.FEATURES = {
   'Acolyte Of Nature':
     'Section=magic,skill ' +
     'Note="Additional Druid cantrip",' +
-         '"Skill Proficiency (Choose 1 from any)"',
+         '"Skill Proficiency (Choose 1 from Animal Handling, Nature, Survival)"',
   'Alter Memories':
     'Section=magic Note="Target unaware charmed, forget %V hrs (Int neg)"',
   'Arcane Charge':
@@ -505,7 +505,7 @@ PHB5E.FEATURES = {
     'Section=magic Note="Touched Adv Stealth for 1 hr"',
   'Blessings Of Knowledge':
     'Section=skill ' +
-    'Note="+2 Language Count/Skill Proficiency (Choose 2 from any)"',
+    'Note="+2 Language Count/Skill Proficiency (Choose 2 from Arcana, History, Nature, Religion)"',
   'Breath Of Winter':
     'Section=magic Note="Spend 6 Ki to cast <i>Cone Of Cold</i>"',
   'Charm Animals And Plants':
@@ -517,8 +517,6 @@ PHB5E.FEATURES = {
   'Cloak Of Shadows':
     'Section=magic ' +
     'Note="Invisible in dim and unlit areas until attack or cast"',
-  'Cloak Of The Trickster':
-    'Section=magic Note="Channel Divinity for invisible 1 turn"',
   'Combat Inspiration':
     'Section=combat ' +
     'Note="Ally use Bardic Inspiration die to boost damage or AC"',
@@ -546,7 +544,7 @@ PHB5E.FEATURES = {
   'Death Strike':
     'Section=combat Note="Dbl damage on surprise hit (DC %V Con neg)"',
   'Destructive Wrath':
-    'Section=magic Note="Channel Divinity for max thunder, lightning damage"',
+    'Section=magic Note="Channel Divinity for max lightning or thunder damage"',
   'Disarming Attack':
     'Section=combat ' +
     'Note="Add Superiority die to damage, foe drops item (Str neg)"',
@@ -770,6 +768,8 @@ PHB5E.FEATURES = {
     'Note="Adv on attack, ability, or save 1/long rest (may cause surge)"',
   'Transmutation Savant':
     'Section=magic Note="Write transmutation spells for half cost"',
+  'Trickster Cloak Of Shadows':
+    'Section=magic Note="Channel Divinity for invisible 1 turn"',
   'Trip Attack':
     'Section=combat ' +
     'Note="Add Superiority die to damage, foe knocked prone (Str neg)"',
@@ -810,7 +810,8 @@ PHB5E.FEATURES = {
   'Wolf Totemic Attunement':
     'Section=combat Note="Knock prone lg foe after melee hit when raging"',
   'Wrath Of The Storm':
-    'Section=combat Note="Reaction 2d8 HP (Dex half) %V/long rest"',
+    'Section=combat ' +
+    'Note="Reaction 2d8 HP lightning or thunder (Dex half) %V/long rest"',
   // Feats
   'Actor':
     'Section=ability,skill ' +
@@ -1196,7 +1197,8 @@ PHB5E.PATHS = {
     'Group=Cleric Level=levels.Cleric ' +
     'Features=' +
       '"1:Blessing Of The Trickster","2:Invoke Duplicity",' +
-      '"6:Cloak Of The Trickster","8:Divine Strike","17:Improved Duplicity" ' +
+      '"6:Trickster Cloak Of Shadows","8:Divine Strike",' +
+      '"17:Improved Duplicity" ' +
     'SpellAbility=wisdom ' +
     'SpellSlots=' +
       'Trickery1:1=2,' +

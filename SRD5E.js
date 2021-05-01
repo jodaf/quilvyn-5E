@@ -18,7 +18,7 @@ Place, Suite 330, Boston, MA 02111-1307 USA.
 /*jshint esversion: 6 */
 "use strict";
 
-var SRD5E_VERSION = '2.2.1.4';
+var SRD5E_VERSION = '2.2.1.5';
 
 /*
  * This module loads the rules from the System Reference Document v5. The SRD5E
@@ -646,7 +646,7 @@ SRD5E.FEATURES = {
     'Section=skill ' +
     'Note="Adv Survival to track, info about %V creature types, learn enemy language"',
   'Feral Instinct':
-    'Section=combat Note="Adv Init, rage and act when surprised"',
+    'Section=combat Note="Adv Initiative, rage and act when surprised"',
   'Feral Senses':
     'Section=combat,skill ' +
     'Note="No Disadv vs. invisible foe",' +
@@ -697,7 +697,7 @@ SRD5E.FEATURES = {
   'Indomitable':
     'Section=save Note="Re-roll failed save %V/long rest"',
   'Intimidating Presence':
-    'Section=feature Note="R30\' Target creature fright (DC %V Will neg)"',
+    'Section=feature Note="R30\' Target creature frightened (DC %V Will neg)"',
   'Jack Of All Trades':
     'Section=ability Note="+%V non-proficient ability checks"',
   'Ki':
@@ -770,9 +770,9 @@ SRD5E.FEATURES = {
   'Peerless Skill':
     'Section=ability Note="Add Bardic Inspiration die to ability check"',
   'Perfect Self':
-    'Section=combat Note="Min 4 Ki after Init"',
+    'Section=combat Note="Min 4 Ki after Initiative"',
   'Persistent Rage':
-    'Section=combat Note="Rage has no time limit"',
+    'Section=combat Note="Continue raging when unengaged w/foe"',
   'Potent Cantrip':
     'Section=magic Note="Target takes half damage on cantrip save"',
   'Preserve Life':
@@ -795,9 +795,13 @@ SRD5E.FEATURES = {
     'Section=combat ' +
     'Note="Spend 3 Ki to reduce foe to 0 HP w/in 1 dy after unarmed hit (DC %V Con 10d10 HP)"',
   'Rage':
-    'Section=ability,combat ' +
-    'Note="Adv Str checks %V/long rest (heavy armor neg)",' +
-         '"+%1 melee damage, resist bludgeon, pierce, slash damage for 1 min %V/long rest (heavy armor neg)"',
+    'Section=ability,combat,feature,magic,save ' +
+    'Note=' +
+      '"Adv Str checks",' +
+      '"+%V melee damage, resist bludgeon, pierce, slash damage",' +
+      '"Rage advantages for 1 min %V/long rest (heavy armor neg)",' +
+      '"Cannot cast during rage",' +
+       '"Adv Str"',
   'Reckless Attack':
     'Section=combat Note="Adv melee Str attacks, foes Adv all attacks"',
   'Relentless Rage':
@@ -864,7 +868,7 @@ SRD5E.FEATURES = {
   'Superior Critical':
     'Section=combat Note="Crit on natural 18"',
   'Superior Inspiration':
-    'Section=combat Note="Min 1 Bardic Inspiration after Init"',
+    'Section=combat Note="Min 1 Bardic Inspiration after Initiative"',
   'Supreme Healing':
     'Section=magic Note="Healing spells yield max HP"',
   'Supreme Sneak':
@@ -876,7 +880,7 @@ SRD5E.FEATURES = {
   "Thief's Cant":
     'Section=skill Note="Signs and symbols known only by rogues"',
   "Thief's Reflexes":
-    'Section=combat Note="First round extra turn at -10 Init"',
+    'Section=combat Note="First round extra turn at -10 Initiative"',
   'Thirsting Blade':
     'Section=combat Note="Attack twice each turn w/pact blade"',
   'Tongue Of Sun And Moon':
@@ -3463,9 +3467,6 @@ SRD5E.classRulesExtra = function(rules, name) {
 
   if(name == 'Barbarian') {
 
-    rules.defineRule('abilityNotes.rage',
-      'levels.Barbarian', '+=', 'source<3 ? 2 : source<6 ? 3 : source<12 ? 4 : source<17 ? 5 : source<20 ? 6 : "unlimited"'
-    );
     rules.defineRule('armorClass',
       'combatNotes.barbarianUnarmoredDefense.2', '+', null
     );
@@ -3486,14 +3487,14 @@ SRD5E.classRulesExtra = function(rules, name) {
       'levels.Barbarian', '+=', 'source < 5 ? null : 1'
     );
     rules.defineRule('combatNotes.rage',
-      'levels.Barbarian', '+=', 'source<3 ? 2 : source<6 ? 3 : source<12 ? 4 : source<17 ? 5 : source<20 ? 6 : "unlimited"'
-    );
-    rules.defineRule('combatNotes.rage.1',
       'levels.Barbarian', '+=', 'source<9 ? 2 : source<16 ? 3 : 4'
     );
     rules.defineRule('featureNotes.intimidatingPresence',
       'charismaModifier', '=', 'source + 8',
       'proficiencyBonus', '+', null
+    );
+    rules.defineRule('featureNotes.rage',
+      'levels.Barbarian', '+=', 'source<3 ? 2 : source<6 ? 3 : source<12 ? 4 : source<17 ? 5 : source<20 ? 6 : "unlimited"'
     );
     rules.defineRule('selectableFeatureCount.Barbarian',
       'levels.Barbarian', '=', 'source < 3 ? null : 1'
@@ -3506,7 +3507,7 @@ SRD5E.classRulesExtra = function(rules, name) {
       'proficiencyBonus', '=', 'Math.floor(source / 2)'
     );
     rules.defineRule('magicNotes.bardicInspiration',
-      'levels.Bard', '=', '6 + Math.floor(source / 5) * 2'
+      'levels.Bard', '=', 'source<20 ? 6 + Math.floor(source / 5) * 2 : 12'
     );
     rules.defineRule('magicNotes.bardicInspiration.1',
       'charismaModifier', '=', 'Math.max(source, 1)'
@@ -4552,7 +4553,7 @@ SRD5E.createViewers = function(rules, viewers) {
               {name: 'Levels', within: 'Identity', format: ' <b>%V</b>',
                separator: '/'},
             {name: 'Hit Points', within: 'Section 1', format: '<b>HP</b> %V'},
-            {name: 'Initiative', within: 'Section 1', format: '<b>Init</b> %V'},
+            {name: 'Initiative', within: 'Section 1', format: '<b>Initiative</b> %V'},
             {name: 'Speed', within: 'Section 1', format: '<b>Speed</b> %V'},
             {name: 'Armor Class', within: 'Section 1', format: '<b>AC</b> %V'},
             {name: 'Weapons', within: 'Section 1', format: '<b>%N</b> %V',

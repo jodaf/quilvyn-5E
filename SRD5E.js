@@ -716,7 +716,7 @@ SRD5E.FEATURES = {
     'Section=magic Note="Learn %V additional spells from any class"',
   'Martial Arts':
     'Section=combat ' +
-    'Note="When unarmored, +%1 monk weapons attack and damage, raise damage die to 1d%V"',
+    'Note="When unarmored, +%1 attack and damage with monk weapons and raise damage die to 1d%V"',
   'Mask Of Many Faces':
     'Section=magic Note="<i>Disguise Self</i> at will"',
   'Master Of Myriad Forms':
@@ -784,9 +784,10 @@ SRD5E.FEATURES = {
     'Section=magic ' +
     'Note="Expend spell to sense creatures in 1 mi (favored terrain 6 mi)"',
   'Protection Style':
-    'Section=combat Note="Use shield to impose attack Disadv on adjacent foe"',
+    'Section=combat ' +
+    'Note="Use shield to impose attack Disadv on adjacent foe atacking ally"',
   'Purity Of Body':
-    'Section=save Note="Immune disease, poison"',
+    'Section=save Note="Immune to disease and poison"',
   'Purity Of Spirit':
     'Section=magic Note="Self continuous <i>Protection From Evil And Good</i>"',
   'Quickened Spell':
@@ -853,7 +854,7 @@ SRD5E.FEATURES = {
   'Steel Will':
     'Section=save Note="Adv vs. fright"',
   'Step Of The Wind':
-    'Section=combat Note="Spend 1 Ki to Disengage or Dash, dbl jump"',
+    'Section=combat Note="Spend 1 Ki for bonus Disengage or Dash and dbl jump"',
   'Stillness Of Mind':
     'Section=save Note="End self charm, fright at will"',
   'Stroke Of Luck':
@@ -861,7 +862,7 @@ SRD5E.FEATURES = {
     'Note="Automatic 20 ability check 1/short rest",' +
          '"Turn miss into hit 1/short rest"',
   'Stunning Strike':
-    'Section=combat Note="Spend 1 Ki to stun foe (DC %V Con neg)"',
+    'Section=combat Note="Spend 1 Ki to stun foe after hit (DC %V Con neg)"',
   'Subtle Spell':
     'Section=magic ' +
     'Note="Spend 1 Sorcery Point to cast w/out somatic, verbal components"',
@@ -3635,7 +3636,7 @@ SRD5E.classRulesExtra = function(rules, name) {
       'levels.Monk', '+=', 'source < 5 ? null : 1'
     );
     rules.defineRule('combatNotes.martialArts',
-      'levels.Monk', '=', '4 + Math.floor(source / 5) * 2'
+      'levels.Monk', '=', '4 + Math.floor((source + 1)/ 6) * 2'
     );
     rules.defineRule('combatNotes.martialArts.1',
       'monkFeatures.Martial Arts', '?', null,
@@ -4427,6 +4428,7 @@ SRD5E.weaponRules = function(rules, name, category, properties, damage, range) {
     isFinessed ? 'betterAttackAdjustment' :
       isRanged ? 'combatNotes.dexterityAttackAdjustment' :
                  'combatNotes.strengthAttackAdjustment', '+', null,
+    isRanged ? 'attackBonus.Ranged' : 'attackBonus.Melee', '+', null,
     'weaponProficiencyBonus.' + name, '+', null,
     'weaponAttackAdjustment.' + name, '+', null
   );

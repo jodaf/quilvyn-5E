@@ -194,7 +194,7 @@ PHB5E.CLASSES = {
       '"features.Way Of The Four Elements Tradition ? 3:Shape The Flowing River",' +
       '"features.Way Of The Four Elements Tradition ? 3:Sweeping Cinder Strike",' +
       '"features.Way Of The Four Elements Tradition ? 3:Water Whip",' +
-      '"features.Way Of The Four Elements Tradition ? 17:Wave Of The Rolling Earth"',
+      '"features.Way Of The Four Elements Tradition ? 17:Wave Of Rolling Earth"',
   'Paladin':
     'Selectables=' +
       '"3:Oath Of The Ancients","3:Oath Of Vengeance"',
@@ -442,12 +442,14 @@ PHB5E.FEATURES = {
     'Note="Have excellent geography memory and can forage for 6 people"',
   // Paths
   "Commander's Strike":
-    'Section=combat Note="Add Superiority die to delegated attack"',
+    'Section=combat Note="Add Superiority die to ally attack"',
   "Nature's Wrath":
     'Section=magic ' +
     'Note="R10\' Channel Divinity for vines ensnare foe (Dex or Str neg)"',
   "Ranger's Companion":
     'Section=feature Note="Companion beast obeys commands"',
+  'Student Of War':
+    'Section=feature Note="Tool Proficiency (Choose 1 from any Artisan)"',
   "Transmuter's Stone":
     'Section=magic ' +
     'Note="Stone gives 60\' darkvision, +10 speed, proficiency in constitution, or resist energy"',
@@ -552,7 +554,7 @@ PHB5E.FEATURES = {
     'Section=magic Note="%V elemental disciplines"',
   'Distracting Strike':
     'Section=combat ' +
-    'Note="Add Superiority die to damage, ally Adv attack same foe for 1 turn"',
+    'Note="Add Superiority die to damage, Adv next ally attack same foe in same turn"',
   'Divination Savant':
     'Section=magic Note="Write divination spells for half cost"',
   'Divine Strike':
@@ -588,7 +590,8 @@ PHB5E.FEATURES = {
   'Expert Divination':
     'Section=magic Note="Regain lower spell slot when cast divination spell"',
   'Fangs Of The Fire Snake':
-    'Section=magic Note="Spend 1 Ki to have unarmed attack extend 10\', +1d10 HP fire"',
+    'Section=magic ' +
+    'Note="Spend 1 Ki for +10\' unarmed reach, 2nd Ki for +1d10 HP fire"',
   'Feinting Attack':
     'Section=combat ' +
     'Note="Adv next attack adjacent foe, add Superiority die to damage"',
@@ -599,7 +602,7 @@ PHB5E.FEATURES = {
     'Section=magic Note="Spend 2 Ki to cast <i>Thunderwave</i>"',
   'Fist Of Unbroken Air':
     'Section=magic ' +
-    'Note="R30\' Spend 2 Ki to create air blast 3d10 HP, push 20\' and knock prone (Str half)"',
+    'Note="R30\' Spend 2+ Ki for air blast 3d10+ HP, push 20\' and knock prone (Str half)"',
   'Flames Of The Phoenix':
     'Section=magic Note="Spend 4 Ki to cast <i>Fireball</i>"',
   'Focused Conjuration':
@@ -659,7 +662,7 @@ PHB5E.FEATURES = {
     'Section=magic Note="Transform existing illusions"',
   'Maneuvering Attack':
     'Section=combat ' +
-    'Note="Add Superiority die to damage, ally move half speed w/no OA"',
+    'Note="Add Superiority die to damage, ally move half speed w/no OA from target"',
   'Maneuvers':
     'Section=combat Note="Select %V Fighter maneuvers (DC %1)"',
   'Master Of Nature':
@@ -681,8 +684,7 @@ PHB5E.FEATURES = {
     'Note="After damage, teleport 60\' and become invisible 1 turn 1/short rest"',
   'Necromancy Savant':
     'Section=magic Note="Write necromancy spells for half cost"',
-  'Opportunist':
-    'Section=combat Note="Attack adjacent foe after ally hits it"',
+  'Opportunist':'Section=combat Note="Attack adjacent foe after ally hit"',
   'Parry':
     'Section=combat Note="Reduce damage from foe hit by Superiority die + %V"',
   'Portent':
@@ -721,11 +723,13 @@ PHB5E.FEATURES = {
     'Section=magic Note="Spend 2 Ki to cast <i>Gust Of Wind</i>"',
   'Shadow Arts':
     'Section=magic ' +
-    'Note="<i>Minor Illusion</i> cantrip, spend 2 Ki to cast <i>Darkness</i>, <i>Darkvision</i>, <i>Pass Without Trace</i>, <i>Silence</i>"',
+    'Note="<i>Minor Illusion</i> cantrip, spend 2 Ki to cast <i>Darkness</i>, <i>Darkvision</i>, <i>Pass Without Trace</i>, or <i>Silence</i>"',
   'Shadow Step':
-    'Section=magic Note="Teleport 60\' between dim or unlit areas"',
+    'Section=magic ' +
+    'Note="Teleport 60\' between dim or unlit areas, then Adv first melee attack"',
   'Shape The Flowing River':
-    'Section=magic Note="R120\' Freeze, thaw, shape 30\'x30\' water"',
+    'Section=magic ' +
+    'Note="R120\' Spend 1 Ki to freeze, thaw, and shape 30\'x30\' water"',
   'Shapechanger':
     'Section=magic Note="Self <i>Polymorph</i> 1/short rest"',
   'Share Spells':
@@ -797,8 +801,8 @@ PHB5E.FEATURES = {
     'Note="R30\' Reaction flare foe Disadv on current attack %V/long rest"',
   'Water Whip':
     'Section=magic ' +
-    'Note="R30\' Spend 2 Ki to create water whip 3d10 HP, pull 25\' or knock prone (Str half)"',
-  'Wave Of The Rolling Earth':
+    'Note="R30\' Spend 2+ Ki for water whip 3d10+ HP, pull 25\' or knock prone (Str half)"',
+  'Wave Of Rolling Earth':
     'Section=magic Note="Spend 6 Ki to cast <i>Wall Of Stone</i>"',
   'Weapon Bond':
     'Section=combat Note="Immune disarm, summon weapon"',
@@ -1024,9 +1028,8 @@ PHB5E.PATHS = {
   'Battle Master Archetype':
     'Group=Fighter Level=levels.Fighter ' +
     'Features=' +
-      '"3:Tool Proficiency (Choose 1 from any Artisan)",' +
-      '"3:Maneuvers","3:Superiority Dice",' + '"7:Know Your Enemy",' +
-      '15:Relentless',
+      '"3:Student Of War",3:Maneuvers,"3:Superiority Dice",' +
+      '"7:Know Your Enemy",15:Relentless',
   'Beast Master Archetype':
     'Group=Ranger Level=levels.Ranger ' +
     'Features=' +
@@ -1690,7 +1693,7 @@ PHB5E.pathRulesExtra = function(rules, name) {
   } else if(name == 'Eldritch Knight Archetype') {
 
     rules.defineRule('combatNotes.warMagic',
-      'levels.Fighter', '=', 'source < 18 ? "cantrip" : "spell"'
+      'levels.Fighter', '=', 'source < 18 ? "cantrip" : "any spell"'
     );
 
   } else if(name == 'Enchantment Tradition') {

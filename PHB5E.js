@@ -445,7 +445,7 @@ PHB5E.FEATURES = {
     'Section=combat Note="Add Superiority die to ally attack"',
   "Nature's Wrath":
     'Section=magic ' +
-    'Note="R10\' Channel Divinity for vines ensnare foe (Dex or Str neg)"',
+    'Note="R10\' Channel Divinity makes vines ensnare foe (Dex or Str neg)"',
   "Ranger's Companion":
     'Section=feature Note="Companion beast obeys commands"',
   'Student Of War':
@@ -459,17 +459,18 @@ PHB5E.FEATURES = {
     'Section=magic Note="Write abjuration spells for half cost"',
   'Abjure Enemy':
     'Section=magic ' +
-    'Note="R60\' Channel Divinity for target halted 1 min (Wis half)"',
+    'Note="R60\' Channel Divinity halts target for 1 min (Wis half)"',
   'Acolyte Of Nature':
     'Section=magic,skill ' +
     'Note="Additional Druid cantrip",' +
          '"Skill Proficiency (Choose 1 from Animal Handling, Nature, Survival)"',
   'Alter Memories':
-    'Section=magic Note="Target unaware charmed, forget %V hrs (Int neg)"',
+    'Section=magic Note="Target unaware charmed, forgets %V hrs (Int neg)"',
   'Arcane Charge':
     'Section=magic Note="Action Surge to teleport 30\'"',
   'Arcane Ward':
-    'Section=magic Note="Abjuration casting creates %V HP shield"',
+    'Section=magic ' +
+    'Note="Abjuration casting creates %V HP shield until long rest"',
   'Aspect Of The Bear':
     'Section=ability ' +
     'Note="Dbl load and lift, Adv push, pull, lift, break Str checks"',
@@ -480,11 +481,12 @@ PHB5E.FEATURES = {
   'Assassinate':
     'Section=combat Note="Adv when foe has not acted, crit on surprise hit"',
   'Aura Of Warding':
-    'Section=save Note="R%V\' Self, allies resist spell damage"',
+    'Section=save Note="R%V\' Self and allies resist spell damage"',
   'Avatar Of Battle':
     'Section=combat Note="Resistance nonmagical bludgeon, pierce, slash"',
   'Avenging Angel':
-    'Section=magic Note="Fly 60\', 30\' foes fright (Wis neg) 1 hr/long rest"',
+    'Section=magic ' +
+    'Note="Fly 60\' and 30\' foe fright aura (Wis neg) 1 hr/long rest"',
   'Awakened Mind':
     'Section=feature Note="R30\' Telepathic communication"',
   'Battle Magic':
@@ -542,11 +544,12 @@ PHB5E.FEATURES = {
     'Note="R30\' Reaction to grant resistance to acid, cold, fire, lightning, or thunder"',
   'Dark Delirium':
     'Section=magic ' +
-    'Note="R60\' Target charm or fright 1 min, then unaware surroundings (Wis neg) 1/long rest"',
+    'Note="R60\' Target charmed or frightened 1 min, then unaware surroundings (Wis neg) 1/long rest"',
   'Death Strike':
     'Section=combat Note="Dbl damage on surprise hit (DC %V Con neg)"',
   'Destructive Wrath':
-    'Section=magic Note="Channel Divinity for max lightning or thunder damage"',
+    'Section=magic ' +
+    'Note="Channel Divinity gives max lightning or thunder damage"',
   'Disarming Attack':
     'Section=combat ' +
     'Note="Add Superiority die to damage, foe drops item (Str neg)"',
@@ -568,7 +571,7 @@ PHB5E.FEATURES = {
     'Section=ability Note="Fly for short bursts when raging"',
   'Elder Champion':
     'Section=magic ' +
-    'Note="Transform, regain 10 HP/turn, cast as bonus action, foes w/in 10\' save Disadv 1/long rest"',
+    'Note="Transform, regain 10 HP/turn, cast as bonus action, and foes w/in 10\' Disadv vs. your spells for 1 min 1/long rest"',
   'Eldritch Strike':
     'Section=combat Note="Foe Disadv vs. your spells for 1 turn after you hit"',
   'Elemental Attunement':
@@ -577,7 +580,7 @@ PHB5E.FEATURES = {
     'Section=magic Note="Use 2 Wild Shape uses to become elemental"',
   'Enchantment Savant':
     'Section=magic Note="Write enchantment spells for half cost"',
-  'Entropic World':
+  'Entropic Ward':
     'Section=combat ' +
     'Note="Foe Disadv attack, miss gives you Adv next attack 1/short rest"',
   'Eternal Mountain Defense':
@@ -597,7 +600,7 @@ PHB5E.FEATURES = {
     'Note="Adv next attack adjacent foe, add Superiority die to damage"',
   'Fey Presence':
     'Section=magic ' +
-    'Note="R10\' All creatures charm or fright 1 turn (Wis neg) 1/short rest"',
+    'Note="R10\' All creatures charmed or frightened 1 turn (Wis neg) 1/short rest"',
   'Fist Of Four Thunders':
     'Section=magic Note="Spend 2 Ki to cast <i>Thunderwave</i>"',
   'Fist Of Unbroken Air':
@@ -616,7 +619,7 @@ PHB5E.FEATURES = {
     'Section=magic ' +
     'Note="Regain 2x spell level (3x necromantic) when spell kills"',
   'Guided Strike':
-    'Section=combat Note="Channel Divinity for +10 attack"',
+    'Section=combat Note="Channel Divinity gives +10 attack"',
   'Hypnotic Gaze':
     'Section=magic Note="Daze adjacent creature 1/long rest (Wis neg)"',
   'Illusion Savant':
@@ -648,7 +651,7 @@ PHB5E.FEATURES = {
     'Section=combat Note="Know how foe compares to you after 1 min study"',
   'Knowledge Of The Ages':
     'Section=skill ' +
-    'Note="Channel Divinity for proficiency in chosen skill or tool for 10 min"',
+    'Note="Channel Divinity gives proficiency in chosen skill or tool for 10 min"',
   'Light Cantrip':
     'Section=magic Note="Know <i>Light</i> cantrip"',
   'Lunging Attack':
@@ -672,11 +675,11 @@ PHB5E.FEATURES = {
     'Note="Destroy stone to transmute 5\' cu, remove curse, disease, and poison, <i>Raise Dead</i>, or restore youth"',
   'Menacing Attack':
     'Section=combat ' +
-    'Note="Add Superiority die to damage, foe fright for 1 turn (Wis neg)"',
+    'Note="Add Superiority die to damage, foe frightened for 1 turn (Wis neg)"',
   'Minor Alchemy':
     'Section=magic Note="Transform 1 cu\'/10 min for 1 hr"',
   'Minor Conjuration':
-    'Section=magic Note="R10\' Create 3\' cu object for 1 hr"',
+    'Section=magic Note="R10\' Create 3\' cu 10 lb object for 1 hr"',
   'Mist Stance':
     'Section=magic Note="Spend 4 Ki to cast self <i>Gaseous Form</i>"',
   'Misty Escape':
@@ -696,7 +699,7 @@ PHB5E.FEATURES = {
   'Primal Strike':
     'Section=combat Note="Wild Shape attacks count as magical"',
   'Projected Ward':
-    'Section=magic Note="R30\' Use <i>Arcane Ward</i> to protect others"',
+    'Section=magic Note="R30\' Use Arcane Ward to protect others"',
   'Pushing Attack':
     'Section=combat ' +
     'Note="Add Superiority die to damage, foe pushed 15\' (Str neg)"',
@@ -731,13 +734,13 @@ PHB5E.FEATURES = {
     'Section=magic ' +
     'Note="R120\' Spend 1 Ki to freeze, thaw, and shape 30\'x30\' water"',
   'Shapechanger':
-    'Section=magic Note="Self <i>Polymorph</i> 1/short rest"',
+    'Section=magic Note="Self <i>Polymorph</i> to CR 1 creature 1/short rest"',
   'Share Spells':
     'Section=feature Note="R30\' Self spell affects companion"',
   'Soul Of Vengeance':
-    'Section=combat Note="Attack Vow Of Enmity target as reaction"',
+    'Section=combat Note="Melee attack Vow Of Enmity target as reaction"',
   'Spell Bombardment':
-    'Section=magic Note="Add another die to max die 1/turn"',
+    'Section=magic Note="Add another die when max rolled 1/turn"',
   'Spell Resistance':
     'Section=save Note="Adv and resistance to spell damage"',
   'Spell Thief':
@@ -773,13 +776,13 @@ PHB5E.FEATURES = {
   'Transmutation Savant':
     'Section=magic Note="Write transmutation spells for half cost"',
   'Trickster Cloak Of Shadows':
-    'Section=magic Note="Channel Divinity for invisible 1 turn"',
+    'Section=magic Note="Channel Divinity makes self invisible 1 turn"',
   'Trip Attack':
     'Section=combat ' +
     'Note="Add Superiority die to damage, foe knocked prone (Str neg)"',
   'Turn The Faithless':
     'Section=magic ' +
-    'Note="R30\' Channel Divinity for fiends, fey flee for 1 min (Wis neg)"',
+    'Note="R30\' Channel Divinity makes fiends and fey flee for 1 min (Wis neg)"',
   'Undead Thralls':
     'Section=magic Note="<i>Animate Dead</i> +1 corpse, +%V HP, +%1 damage"',
   'Undying Sentinel':
@@ -791,7 +794,7 @@ PHB5E.FEATURES = {
     'Note="Meditate for visions about surroundings or held object"',
   'Vow Of Enmity':
     'Section=combat ' +
-    'Note="R10\' Channel Divinity for Adv attacks against target for 1 min"',
+    'Note="R10\' Channel Divinity gives self Adv attacks against target for 1 min"',
   'War Magic':
     'Section=combat Note="Bonus attack after %V"',
   'War Priest':
@@ -825,7 +828,7 @@ PHB5E.FEATURES = {
     'Section=combat Note="+5 Initiative/foes no surprise or unseen Adv"',
   'Athlete':
     'Section=ability,skill ' +
-    'Note="+1 Dexterity or Strength, climb normal move, stand uses 5\' move",' +
+    'Note="+1 Dexterity or Strength, climb as normal move, stand uses 5\' move",' +
          '"Long jump, running high jump uses 5\' move"',
   'Charger':
     'Section=combat Note="Bonus attack +5 damage or 10\' push after Dash"',
@@ -1088,7 +1091,7 @@ PHB5E.PATHS = {
   'Great Old One Patron':
     'Group=Warlock Level=levels.Warlock ' +
     'Features=' +
-        '"1:Awakened Mind","6:Entropic World","10:Thought Shield",' +
+        '"1:Awakened Mind","6:Entropic Ward","10:Thought Shield",' +
         '"14:Create Thrall"',
   'Illusion Tradition':
     'Group=Wizard Level=levels.Wizard ' +
@@ -1418,7 +1421,7 @@ PHB5E.SPELLS = {
   'Power Word Heal':
     'School=Evocation ' +
     'Level=B9 ' +
-    'Description="Touched regains all HP, uncharm, unfright, unparalyze, unstun"',
+    'Description="Touched regains all HP, uncharmed, unfrightened, unparalyzed, unstunned"',
   'Ray Of Sickness':
     'School=Necromancy ' +
     'Level=S1,W1 ' +
@@ -1458,7 +1461,7 @@ PHB5E.SPELLS = {
   'Wrathful Smite':
     'School=Evocation ' +
     'Level=P1 ' +
-    'Description="Next hit +1d6 HP, fright (Wis neg) for conc/1 min"',
+    'Description="Next hit +1d6 HP and frightens (Wis neg) for conc/1 min"',
 
   'Animal Friendship':'Level=Nature1',
   'Arcane Eye':'Level=Knowledge4',

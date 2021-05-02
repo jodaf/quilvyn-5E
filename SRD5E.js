@@ -311,7 +311,7 @@ SRD5E.CLASSES = {
       '"1:Tool Proficiency (Thieves\' Tools)",' +
       '"1:Weapon Proficiency (Simple/Hand Crossbow/Longsword/Rapier/Shortsword)",' +
       '"1:Tool Proficiency (Thieves\' Tools)",' +
-      '"1:Rogue Expertise","1:Sneak Attack","1:Thief\'s Cant",' +
+      '"1:Rogue Expertise","1:Sneak Attack","1:Thieves\' Cant",' +
       '"2:Cunning Action","5:Uncanny Dodge",7:Evasion,"11:Reliable Talent",' +
       '14:Blindsense,"15:Slippery Mind",18:Elusive,"20:Stroke Of Luck" ' +
     'Selectables=' +
@@ -371,16 +371,16 @@ SRD5E.CLASSES = {
     'SpellAbility=charisma ' +
     'SpellSlots=' +
       'K0:1=2;4=3;10=4,' +
-      'K1:1=1;2=2;3=0,' +
-      'K2:3=2;5=0,' +
-      'K3:5=2;7=0,' +
-      'K4:7=2;9=0,' +
+      'K1:1=1;2=2;3=null,' +
+      'K2:3=2;5=null,' +
+      'K3:5=2;7=null,' +
+      'K4:7=2;9=null,' +
       'K5:9=2;11=3;17=4',
   'Wizard':
     'HitDie=d6 ' +
     'Features=' +
       '"1:Save Proficiency (Intelligence/Wisdom)",' +
-      '"1:Skill Proficiency (Choose 3 from Arcana, History, Insight, Investigation, Medicine, Religion)",' +
+      '"1:Skill Proficiency (Choose 2 from Arcana, History, Insight, Investigation, Medicine, Religion)",' +
       '"1:Weapon Proficiency (Dagger/Dart/Light Crossbow/Quarterstaff/Sling)",' +
       '"1:Arcane Recovery",1:Spellcasting,"18:Spell Mastery",' +
       '"20:Signature Spell" ' +
@@ -535,7 +535,7 @@ SRD5E.FEATURES = {
   'Bonus Cantrip':
     'Section=magic Note="Additional Druid cantrip"',
   'Book Of Ancient Secrets':
-    'Section=magic Note="Inscribe rituals in Book Of Shadows"',
+    'Section=magic Note="Inscribe rituals in <i>Book Of Shadows</i>"',
   'Brutal Critical':
     'Section=combat Note="+%V crit damage dice"',
   'Careful Spell':
@@ -547,7 +547,8 @@ SRD5E.FEATURES = {
   'Channel Divinity':
     'Section=feature Note="Effect %V/short rest"',
   'Cleansing Touch':
-    'Section=magic Note="Touch dispels %V/long rest"',
+    'Section=magic ' +
+    'Note="Touch dispels spell effect on willing creature %V/long rest"',
   'Colossus Slayer':
     'Section=combat Note="+1d8 HP vs. damaged foe 1/turn"',
   'Countercharm':
@@ -564,7 +565,7 @@ SRD5E.FEATURES = {
   "Dark One's Own Luck":
     'Section=feature Note="Add d10 to ability or save 1/short rest"',
   "Devil's Sight":
-    'Section=feature Note="R120\' See 1 light level better"',
+    'Section=feature Note="R120\' See normally in darkness"',
   'Defense Style':
     'Section=combat Note="+1 AC in armor"',
   'Deflect Missiles':
@@ -594,6 +595,8 @@ SRD5E.FEATURES = {
     'Note="R60\' Spend 5 Sorcery Points for awe and fear aura for conc or 1 min (Wis neg)"',
   'Draconic Resilience':
     'Section=combat Note="+%V HP/unarmored AC %1"',
+  'Dragon Ancestor':
+    'Section=skill Note="Fluent in Draconic, dbl Cha Prof w/dragons"',
   'Dragon Wings':
     'Section=ability Note="Fly at full speed"',
   'Dreadful Word':
@@ -644,7 +647,7 @@ SRD5E.FEATURES = {
     'Section=ability Note="+10 Speed (heavy armor neg)"',
   'Favored Enemy':
     'Section=skill ' +
-    'Note="Adv Survival to track, info about %V creature types, learn enemy language"',
+    'Note="Adv Survival to track and info about %V creature types, learn enemy language"',
   'Feral Instinct':
     'Section=combat Note="Adv Initiative, rage and act when surprised"',
   'Feral Senses':
@@ -652,7 +655,7 @@ SRD5E.FEATURES = {
     'Note="No Disadv vs. invisible foe",' +
          '"30\' awareness of invisible creatures"',
   'Fiendish Resilience':
-    'Section=save Note="Resist chosen damage type"',
+    'Section=save Note="Resist chosen damage type until next short rest"',
   'Fiendish Vigor':
     'Section=magic Note="Self <i>False Life</i> at will"',
   'Flexible Casting':
@@ -681,11 +684,12 @@ SRD5E.FEATURES = {
   'Holy Nimbus':
     'Section=magic,save ' +
     'Note="Self 30\' bright light does 10 HP to foes 1/long rest",' +
-         '"Adv vs. spells by fiends, undead"',
+         '"Adv vs. spells by fiends and undead 1/long rest"',
   'Horde Breaker':
     'Section=combat Note="Second attack on different adjacent foe"',
   'Hurl Through Hell':
-    'Section=combat Note="Foe trip to hell 10d10 psychic HP 1/long rest"',
+    'Section=combat ' +
+    'Note="Struck foe trip to hell 10d10 psychic HP 1/long rest"',
   'Improved Critical':
     'Section=combat Note="Crit on natural 19"',
   'Improved Divine Smite':
@@ -709,7 +713,8 @@ SRD5E.FEATURES = {
     'Note="Move normally through difficult terrain",' +
          '"Adv vs. impeding plants"',
   'Lay On Hands':
-    'Section=magic Note="Heal %V HP, disease, or poison 1/long rest"',
+    'Section=magic ' +
+    'Note="Heal %V HP/long rest, use 5 HP worth to cure disease or poison"',
   'Lifedrinker':
     'Section=combat Note="+%V HP w/pact weapon"',
   'Magical Secrets':
@@ -722,7 +727,7 @@ SRD5E.FEATURES = {
   'Master Of Myriad Forms':
     'Section=magic Note="<i>Alter Self</i> at will"',
   'Mindless Rage':
-    'Section=save Note="Immune charm, fright during rage"',
+    'Section=save Note="Immune charm and fright during rage"',
   'Minions Of Chaos':
     'Section=magic Note="<i>Conjure Elemental</i> 1/long rest"',
   'Mire The Mind':
@@ -759,10 +764,10 @@ SRD5E.FEATURES = {
   'Overchannel':
     'Section=magic ' +
     'Note="Max damage from evocation spell le level 5, self take damage 2nd+ time/long rest"',
-  'Pact Of The Blade':
-    'Section=magic Note="Create magic weapon"',
+  'Pact Of The Blade':'Section=magic Note="Create magic weapon"',
   'Pact Of The Chain':
-    'Section=magic Note="<i>Find Familiar</i>"',
+    'Section=magic ' +
+    'Note="<i>Find Familiar</i>, trade one attack for familiar\'s"',
   'Pact Of The Tome':
     'Section=magic Note="<i>Book Of Shadows</i> w/3 cantrips"',
   'Patient Defense':
@@ -782,7 +787,7 @@ SRD5E.FEATURES = {
     'Section=ability Note="+4 Strength/+4 Constitution"',
   'Primeval Awareness':
     'Section=magic ' +
-    'Note="Expend spell to sense creatures in 1 mi (favored terrain 6 mi)"',
+    'Note="Expend spell to sense creatures in 1 mi (favored terrain 6 mi) for 1 min/spell level"',
   'Protection Style':
     'Section=combat ' +
     'Note="Use shield to impose attack Disadv on adjacent foe atacking ally"',
@@ -823,7 +828,7 @@ SRD5E.FEATURES = {
     'Section=skill Note="Dbl proficiency %V skills or Thieves\' Tools"',
   'Sacred Weapon':
     'Section=combat ' +
-    'Note="Channel Divinity for weapon +%V attack, 20\' light for 1 min"',
+    'Note="Channel Divinity makes weapon +%V attack and shine 20\' light for 1 min"',
   'Sculpt Spells':
     'Section=magic ' +
     'Note="Protect spell level + 1 targets from evocation spell effects"',
@@ -832,7 +837,7 @@ SRD5E.FEATURES = {
   'Second Wind':
     'Section=combat Note="Regain 1d10+%V HP 1/short rest"',
   'Second-Story Work':
-    'Section=ability,skill Note="Full speed climb","+%V\' Jump"',
+    'Section=ability,skill Note="Climb as normal move","+%V\' Jump"',
   'Sign Of Ill Omen':
     'Section=magic Note="<i>Bestow Curse</i> 1/long rest"',
   'Signature Spell':
@@ -842,7 +847,7 @@ SRD5E.FEATURES = {
   'Slow Fall':
     'Section=ability Note="-%V HP fall damage"',
   'Sneak Attack':
-    'Section=combat Note="+%Vd6 damage on Adv, shared threat attacks"',
+    'Section=combat Note="+%Vd6 damage on Adv and shared threat attacks"',
   'Song Of Rest':
     'Section=magic Note="Listeners regain 1d%V HP after short rest"',
   'Sorcerous Restoration':
@@ -856,7 +861,7 @@ SRD5E.FEATURES = {
   'Step Of The Wind':
     'Section=combat Note="Spend 1 Ki for bonus Disengage or Dash and dbl jump"',
   'Stillness Of Mind':
-    'Section=save Note="End self charm, fright at will"',
+    'Section=save Note="End self charm and fright at will"',
   'Stroke Of Luck':
     'Section=ability,combat ' +
     'Note="Automatic 20 ability check 1/short rest",' +
@@ -865,7 +870,7 @@ SRD5E.FEATURES = {
     'Section=combat Note="Spend 1 Ki to stun foe after hit (DC %V Con neg)"',
   'Subtle Spell':
     'Section=magic ' +
-    'Note="Spend 1 Sorcery Point to cast w/out somatic, verbal components"',
+    'Note="Spend 1 Sorcery Point to cast w/out somatic or verbal components"',
   'Superior Critical':
     'Section=combat Note="Crit on natural 18"',
   'Superior Inspiration':
@@ -878,7 +883,7 @@ SRD5E.FEATURES = {
     'Section=combat Note="Regain %V HP each turn when between 1 and %1"',
   'Thief Of Five Fates':
     'Section=magic Note="<i>Bane</i> 1/long rest"',
-  "Thief's Cant":
+  "Thieves' Cant":
     'Section=skill Note="Signs and symbols known only by rogues"',
   "Thief's Reflexes":
     'Section=combat Note="First round extra turn at -10 Initiative"',
@@ -891,7 +896,7 @@ SRD5E.FEATURES = {
     'Note="Self <i>Sanctuary</i> until next long rest (DC %V Wis neg)"',
   'Turn The Unholy':
     'Section=magic ' +
-    'Note="R30\' Channel Divinity for fiends, undead flee for 1 min (Wis neg)"',
+    'Note="R30\' Channel Divinity makes fiends and undead flee for 1 min (Wis neg)"',
   'Turn Undead':
     'Section=combat Note="R30\' Undead flee for 1 min (%V DC Wis neg)"',
   'Twinned Spell':
@@ -910,7 +915,7 @@ SRD5E.FEATURES = {
   'Visions Of Distant Realms':
     'Section=magic Note="<i>Arcane Eye</i> at will"',
   'Voice Of The Chain Master':
-    'Section=feature Note="Perceive, speak via familiar"',
+    'Section=feature Note="Perceive and speak via familiar"',
   'Volley':
     'Section=combat Note="Ranged attack any number of foes in 10\' radius"',
   'Whirlwind Attack':
@@ -1257,8 +1262,8 @@ SRD5E.PATHS = {
     'Group=Sorcerer ' +
     'Level=levels.Sorcerer ' +
     'Features=' +
-      '"1:Draconic Resilience","6:Elemental Affinity","14:Dragon Wings",' +
-      '"18:Draconic Presence"',
+      '"1:Draconic Resilience","1:Dragon Ancestor","6:Elemental Affinity",' +
+      '"14:Dragon Wings","18:Draconic Presence"',
   'Evocation Tradition':
     'Group=Wizard ' +
     'Level=levels.Wizard ' +
@@ -1569,7 +1574,7 @@ SRD5E.SPELLS = {
   'Calm Emotions':
     'School=Enchantment ' +
     'Level=B2,C2 ' +
-    'Description="R60\' 10\' radius suppresses charm/fright or hostility (Cha neg) for conc/1 min"',
+    'Description="R60\' 10\' radius suppresses charm and fright or hostility (Cha neg) for conc/1 min"',
   'Chain Lightning':
     'School=Evocation ' +
     'Level=S6,W6 ' +
@@ -2297,7 +2302,7 @@ SRD5E.SPELLS = {
   'Phantasmal Killer':
     'School=Illusion ' +
     'Level=W4 ' +
-    'Description="R120\' Target fright, 4d10 HP/rd for conc/1 min (Wis neg)"',
+    'Description="R120\' Target frightened, 4d10 HP/rd for conc/1 min (Wis neg)"',
   'Phantom Steed':
     'School=Illusion ' +
     'Level=W3 ' +
@@ -2695,7 +2700,7 @@ SRD5E.SPELLS = {
   'Weird':
     'School=Illusion ' +
     'Level=W9 ' +
-    'Description="R120\' Targets in 30\' radius fright, 4d10 HP/turn for conc/1 min (Wis neg)"',
+    'Description="R120\' Targets in 30\' radius frightened, 4d10 HP/turn for conc/1 min (Wis neg)"',
   'Wind Walk':
     'School=Transmutation ' +
     'Level=D6 ' +
@@ -3798,6 +3803,8 @@ SRD5E.classRulesExtra = function(rules, name) {
       'armor', '?', 'source == "None"',
       'combatNotes.draconicResilience.1', '=', null
     );
+    rules.defineRule('languageCount', 'skillNotes.dragonAncestor', '+', '1');
+    rules.defineRule('languages.Draconic', 'skillNotes.dragonAncestor', '=', '1');
     rules.defineRule
       ('magicNotes.elementalAffinity', 'charismaModifier', '=', null);
 

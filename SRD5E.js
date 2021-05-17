@@ -18,7 +18,7 @@ Place, Suite 330, Boston, MA 02111-1307 USA.
 /*jshint esversion: 6 */
 "use strict";
 
-var SRD5E_VERSION = '2.2.1.5';
+var SRD5E_VERSION = '2.2.1.6';
 
 /*
  * This module loads the rules from the System Reference Document v5. The SRD5E
@@ -4884,11 +4884,6 @@ SRD5E.initialEditorElements = function() {
   ];
   var editorElements = [
     ['name', 'Name', 'text', [20]],
-    ['race', 'Race', 'select-one', 'races'],
-    ['experience', 'Experience', 'text', [8]],
-    ['levels', 'Class Levels', 'bag', 'levels'],
-    ['imageUrl', 'Image URL', 'text', [20]],
-    ['background', 'Background', 'select-one', 'backgrounds'],
     ['strength', 'Str/Boost', 'select-one', abilityChoices],
     ['strengthAdjust', '', 'text', [3]],
     ['dexterity', 'Dex/Boost', 'select-one', abilityChoices],
@@ -4901,11 +4896,16 @@ SRD5E.initialEditorElements = function() {
     ['wisdomAdjust', '', 'text', [3]],
     ['charisma', 'Cha/Boost', 'select-one', abilityChoices],
     ['charismaAdjust', '', 'text', [3]],
-    ['player', 'Player', 'text', [20]],
-    ['alignment', 'Alignment', 'select-one', 'alignments'],
     ['gender', 'Gender', 'text', [10]],
+    ['race', 'Race', 'select-one', 'races'],
+    ['levels', 'Class Levels', 'bag', 'levels'],
+    ['imageUrl', 'Image URL', 'text', [20]],
+    ['background', 'Background', 'select-one', 'backgrounds'],
+    ['alignment', 'Alignment', 'select-one', 'alignments'],
     ['deity', 'Deity', 'select-one', 'deities'],
     ['origin', 'Origin', 'text', [20]],
+    ['player', 'Player', 'text', [20]],
+    ['experience', 'Experience', 'text', [8]],
     ['feats', 'Feats', 'set', 'feats'],
     ['selectableFeatures', 'Selectable Features', 'set', 'selectableFeatures'],
     ['skillsChosen', 'Skills', 'set', 'skills'],

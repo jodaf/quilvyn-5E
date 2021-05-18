@@ -4885,6 +4885,7 @@ SRD5E.initialEditorElements = function() {
   ];
   var editorElements = [
     ['name', 'Name', 'text', [20]],
+    ['imageUrl', 'Image URL', 'text', [20]],
     ['strength', 'Str/Boost', 'select-one', abilityChoices],
     ['strengthAdjust', '', 'text', [3]],
     ['dexterity', 'Dex/Boost', 'select-one', abilityChoices],
@@ -4900,7 +4901,6 @@ SRD5E.initialEditorElements = function() {
     ['gender', 'Gender', 'text', [10]],
     ['race', 'Race', 'select-one', 'races'],
     ['levels', 'Class Levels', 'bag', 'levels'],
-    ['imageUrl', 'Image URL', 'text', [20]],
     ['background', 'Background', 'select-one', 'backgrounds'],
     ['alignment', 'Alignment', 'select-one', 'alignments'],
     ['deity', 'Deity', 'select-one', 'deities'],

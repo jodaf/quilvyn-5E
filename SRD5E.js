@@ -18,8 +18,6 @@ Place, Suite 330, Boston, MA 02111-1307 USA.
 /*jshint esversion: 6 */
 "use strict";
 
-var SRD5E_VERSION = '2.2.1.7';
-
 /*
  * This module loads the rules from the System Reference Document v5. The SRD5E
  * function contains methods that load rules for particular parts of the SRD:
@@ -30,7 +28,7 @@ var SRD5E_VERSION = '2.2.1.7';
  */
 function SRD5E() {
 
-  var rules = new QuilvynRules('5E', SRD5E_VERSION);
+  var rules = new QuilvynRules('5E', SRD5E.VERSION);
   SRD5E.rules = rules;
 
   rules.defineChoice('choices', SRD5E.CHOICES);
@@ -66,6 +64,8 @@ function SRD5E() {
   Quilvyn.addRuleSet(rules);
 
 }
+
+SRD5E.VERSION = '2.2.1.7';
 
 /* List of items handled by choiceRules method. */
 SRD5E.CHOICES = [
@@ -5555,7 +5555,7 @@ SRD5E.makeValid = function(attributes) {
 SRD5E.ruleNotes = function() {
   return '' +
     '<h2>SRD5E Quilvyn Module Notes</h2>\n' +
-    'SRD5E Quilvyn Module Version ' + SRD5E_VERSION + '\n' +
+    'SRD5E Quilvyn Module Version ' + SRD5E.VERSION + '\n' +
     '\n' +
     '<h3>Usage Notes</h3>\n' +
     '<p>\n' +

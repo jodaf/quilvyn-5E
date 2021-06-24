@@ -764,7 +764,7 @@ SRD5E.FEATURES = {
     'Section=magic Note="Self <i>Jump</i> at will"',
   'Overchannel':
     'Section=magic ' +
-    'Note="Max damage from evocation spell le level 5, self take damage 2nd+ time/long rest"',
+    'Note="Max damage from evocation spell up to level 5, self take damage 2nd+ time/long rest"',
   'Pact Of The Blade':'Section=magic Note="Create magic weapon"',
   'Pact Of The Chain':
     'Section=magic ' +
@@ -1687,7 +1687,7 @@ SRD5E.SPELLS = {
   'Counterspell':
     'School=Abjuration ' +
     'Level=K3,S3,W3 ' +
-    'Description="R60\' Neg spell le level 3, DC 10+spell level for higher"',
+    'Description="R60\' Neg spell up to level 3, DC 10+spell level for higher"',
   'Create Food And Water':
     'School=Conjuration ' +
     'Level=C3,Desert2,P3 ' +
@@ -1772,7 +1772,7 @@ SRD5E.SPELLS = {
   'Dispel Magic':
     'School=Abjuration ' +
     'Level=B3,C3,D3,Devotion3,K3,P3,S3,W3 ' +
-    'Description="R120\' End target effects le 3 level, higher DC 10+spell level"',
+    'Description="R120\' End target spell effects up to 3 level, higher DC 10+spell level"',
   'Divination':
     'School=Divination ' +
     'Level=C4,Forest3,Grassland3 ' +
@@ -1983,11 +1983,11 @@ SRD5E.SPELLS = {
   'Globe Of Invulnerability':
     'School=Abjuration ' +
     'Level=S6,W6 ' +
-    'Description="Self 10\' radius immune to spells level le 5"',
+    'Description="Self 10\' radius immune to spells up to level 5"',
   'Glyph Of Warding':
     'School=Abjuration ' +
     'Level=B3,C3,W3 ' +
-    'Description="Glyph 20\' radius 5d8 HP (Dex half) or spell level le 3 on named trigger"',
+    'Description="Glyph 20\' radius 5d8 HP (Dex half) or spell up to level 3 on named trigger"',
   'Goodberry':
     'School=Transmutation ' +
     'Level=D1,R1 ' +
@@ -2185,7 +2185,7 @@ SRD5E.SPELLS = {
   'Mage Hand':
     'School=Conjuration ' +
     'Level=B0,Elf0,K0,S0,W0 ' +
-    'Description="R30\' Spectral hand performs minor tasks le 10 lb for 1 min"',
+    'Description="R30\' Spectral hand performs minor tasks moving up to 10 lb for 1 min"',
   'Magic Circle':
     'School=Abjuration ' +
     'Level=C3,K3,P3,W3 ' +
@@ -2335,11 +2335,11 @@ SRD5E.SPELLS = {
   'Power Word Kill':
     'School=Enchantment ' +
     'Level=B9,K9,S9,W9 ' +
-    'Description="R60\' Slay target with le 100 HP"',
+    'Description="R60\' Slay target with at most 100 HP"',
   'Power Word Stun':
     'School=Enchantment ' +
     'Level=B8,K8,S8,W8 ' +
-    'Description="R60\' Stun target with le 150 HP (Con neg)"',
+    'Description="R60\' Stun target with at most 150 HP (Con neg)"',
   'Prayer Of Healing':
     'School=Evocation ' +
     'Level=C2 ' +

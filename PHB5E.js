@@ -1321,7 +1321,7 @@ PHB5E.SPELLS = {
   'Banishing Smite':
     'School=Abjuration ' +
     'Level=P5 ' +
-    'Description="Self attacks +5d10 HP force and banish to home/demiplane if lt 50 HP for conc/1 min"',
+    'Description="Self attacks +5d10 HP force and banish to home/demiplane if target has less than 50 HP for conc/1 min"',
   'Beast Sense':
     'School=Divination ' +
     'Level=D2,R2 ' +

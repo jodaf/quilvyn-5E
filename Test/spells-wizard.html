@@ -11,12 +11,13 @@ var attributes = {
   "deity":"FR-Helm", "dexterity":15, "experience":76797, "feats.Martial Adept":1, 
   "feats.Savage Attacker":1, "gender":"Female", "hitPoints":31, "intelligence":9, 
   "languages.Deep Speech":1, "levels.Wizard":10, "name":"Spells-Wizard", "race":"Human", 
+  "selectableFeatures.Fighter - Feinting Attack":1, "selectableFeatures.Fighter - Lunging Attack":1, 
   "selectableFeatures.Wizard - Illusion Tradition":1, "shield":"None", "skillsChosen.Arcana":1, "skillsChosen.Investigation":1, 
-  "skillsChosen.Medicine":1, "spells.Acid Arrow(W2 Evoc)":1, "spells.Acid Splash(W0 Conj)":1, 
-  "spells.Alarm(W1 Abju)":1, "spells.Alter Self(W2 Tran)":1, "spells.Animate Dead(W3 Necr)":1, 
-  "spells.Animate Objects(W5 Tran)":1, "spells.Antimagic Field(W8 Abju)":1, "spells.Antipathy/Sympathy(W8 Ench)":1, 
-  "spells.Arcane Eye(W4 Divi)":1, "spells.Arcane Gate(W6 Conj)":1, "spells.Arcane Hand(W5 Evoc)":1, 
-  "spells.Arcane Lock(W2 Abju)":1, "spells.Arcane Sword(W7 Evoc)":1, "spells.Arcanist's Magic Aura(W2 Illu)":1, 
+  "spells.Acid Arrow(W2 Evoc)":1, "spells.Acid Splash(W0 Conj)":1, "spells.Alarm(W1 Abju)":1, 
+  "spells.Alter Self(W2 Tran)":1, "spells.Animate Dead(W3 Necr)":1, "spells.Animate Objects(W5 Tran)":1, 
+  "spells.Antimagic Field(W8 Abju)":1, "spells.Antipathy/Sympathy(W8 Ench)":1, "spells.Arcane Eye(W4 Divi)":1, 
+  "spells.Arcane Gate(W6 Conj)":1, "spells.Arcane Hand(W5 Evoc)":1, "spells.Arcane Lock(W2 Abju)":1, 
+  "spells.Arcane Sword(W7 Evoc)":1, "spells.Arcanist's Magic Aura(W2 Illu)":1, 
   "spells.Astral Projection(W9 Necr)":1, "spells.Banishment(W4 Abju)":1, "spells.Bestow Curse(W3 Necr)":1, 
   "spells.Black Tentacles(W4 Conj)":1, "spells.Blade Ward(W0 Abju)":1, "spells.Blight(W4 Necr)":1, 
   "spells.Blindness/Deafness(W2 Necr)":1, "spells.Blink(W3 Tran)":1, "spells.Blur(W2 Illu)":1, 
@@ -85,8 +86,8 @@ var attributes = {
   "spells.Wall Of Fire(W4 Evoc)":1, "spells.Wall Of Force(W5 Evoc)":1, "spells.Wall Of Ice(W6 Evoc)":1, 
   "spells.Wall Of Stone(W5 Evoc)":1, "spells.Water Breathing(W3 Tran)":1, "spells.Web(W2 Conj)":1, 
   "spells.Weird(W9 Illu)":1, "spells.Wish(W9 Conj)":1, "spells.Witch Bolt(W1 Evoc)":1, "strength":13, 
-  "toolsChosen.Dragonchess Set":1, "toolsChosen.Three-Dragon Ante Set":1, "weapons.Dagger":1, 
-  "weapons.Light Crossbow":1, "weapons.Sling":1, "wisdom":10
+  "toolsChosen.Three-Dragon Ante Set":1, "weapons.Dagger":1, "weapons.Light Crossbow":1, "weapons.Sling":1, 
+  "wisdom":10
 };
   </script>
 </head>
@@ -150,6 +151,7 @@ var attributes = {
       <tr align="center">
         <td><b>Feats</b>: Martial Adept; Savage Attacker</td>
         <td><b>Wizard Features</b>: Arcane Recovery; Illusion Savant; Illusion Tradition; Illusory Self; Improved Minor Illusion; Malleable Illusions; Save Proficiency (Intelligence/Wisdom); Skill Proficiency (Choose 2 from Arcana, History, Insight, Investigation, Medicine, Religion); Spellcasting; Weapon Proficiency (Dagger/Dart/Light Crossbow/Quarterstaff/Sling)</td>
+        <td><b>Fighter Features</b>: Feinting Attack; Lunging Attack</td>
         <td><b>Criminal Features</b>: Criminal Contact; Skill Proficiency (Deception/Stealth); Tool Proficiency (Thieves' Tools/Choose 1 from any Game)</td>
         <td><b>Human Features</b>: Human Ability Adjustment</td>
       </tr></table>
@@ -159,7 +161,7 @@ var attributes = {
     </tr></table>
 </td>
   </tr><tr align="center">
-    <td><b>Skill Proficiency</b>: Arcana; Deception; Investigation; Medicine; Stealth</td>
+    <td><b>Skill Proficiency</b>: Arcana; Deception; Investigation; Stealth</td>
   </tr><tr align="center">
     <td><b>Skills</b>:     <table id="Skills" width="100%">
     <col width="33%"/>
@@ -179,7 +181,7 @@ var attributes = {
       <td>Religion: (int) 0</td>
     </tr><tr align="left">
       <td>Athletics: (str) 2</td>
-      <td>Medicine: (wis) 4</td>
+      <td>Medicine: (wis) 0</td>
       <td>Sleight Of Hand: (dex) 3</td>
     </tr><tr align="left">
       <td>Deception: (cha) 6</td>
@@ -192,7 +194,7 @@ var attributes = {
     </tr></table>
 </td>
   </tr><tr align="center">
-    <td><b>Tool Proficiency</b>: Dragonchess Set; Thieves' Tools; Three-Dragon Ante Set</td>
+    <td><b>Tool Proficiency</b>: Thieves' Tools; Three-Dragon Ante Set</td>
   </tr><tr align="center">
     <td><b>Languages</b>: Common; Deep Speech</td>
   </tr></table>
@@ -240,6 +242,10 @@ var attributes = {
         <td><i>Strength Attack Adjustment: +2</i></td>
       </tr><tr align="center">
         <td><i>Strength Damage Adjustment: +2</i></td>
+      </tr><tr align="center">
+        <td>Feinting Attack: Adv next attack adjacent foe, add Superiority die to damage</td>
+      </tr><tr align="center">
+        <td>Lunging Attack: +5' melee range, add Superiority die to damage</td>
       </tr><tr align="center">
         <td>Savage Attacker: Re-roll damage 1/turn</td>
       </tr></table>
@@ -716,24 +722,6 @@ var attributes = {
       <td>Improved Minor Illusion: <i>Minor Illusion</i> with sound, image</td>
     </tr><tr align="center">
       <td>Malleable Illusions: Transform existing illusions</td>
-    </tr></table>
-</td>
-  </tr></table>
-</td>
-</tr><tr align="center">
-  <td><b>Notes</b><br/>  <table id="Notes Area" width="100%">
-  <tr align="center">
-    <td>    <table id="ValidationPart" width="100%">
-    <tr align="center">
-      <td><b>Validation Notes</b>:       <table id="Validation Notes" width="100%">
-      <tr align="center">
-        <td>Selectable Feature Allocation: 3 available vs. 1 allocated</td>
-      </tr><tr align="center">
-        <td>Skill Proficiency Allocation: 2 available vs. 3 allocated</td>
-      </tr><tr align="center">
-        <td>Tool Proficiency Allocation: 1 available vs. 2 allocated</td>
-      </tr></table>
-</td>
     </tr></table>
 </td>
   </tr></table>

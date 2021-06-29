@@ -20,8 +20,8 @@ Place, Suite 330, Boston, MA 02111-1307 USA.
 
 function X5E() {
   TalDorei();
+  Tasha();
   Volo();
-  Xanathar();
   Zelda();
 }
 
@@ -403,6 +403,187 @@ TalDorei.pathRulesExtra = function(rules, name) {
 };
 
 /*
+ * This module loads the rules from Fifth Edition Tasha's Cauldron of
+ * Everything. The Tasha function contains methods that load rules for
+ * particular parts of the rules; raceRules for character races, magicRules for
+ * spells, etc. These member methods can be called independently in order to use
+ * a subset of XGTE. Similarly, the constant fields of Tasha (FEATS,
+ * BACKGROUNDS, etc.) can be manipulated to modify the choices.
+ */
+function Tasha() {
+
+  if(window.SRD5E == null) {
+    alert('The Tasha module requires use of the SRD5E module');
+    return;
+  }
+
+  Tasha.identityRules(
+    SRD5E.rules, Tasha.BACKGROUNDS, Tasha.CLASS_SELECTABLES, Tasha.DEITIES,
+    Tasha.PATHS, Tasha.RACES
+  );
+  Tasha.magicRules(SRD5E.rules, Tasha.SPELLS_ADDED);
+  Tasha.talentRules(
+    SRD5E.rules, Tasha.FEATS, Tasha.FEATURES, Tasha.LANGUAGES, Tasha.TOOLS
+  );
+
+}
+
+Tasha.CLASS_SELECTABLES = {
+  'Barbarian':
+    ['3:Path Of The Beast', '3:Path Of Wild Magic'],
+  'Bard':
+    ['3:College Of Creation', '3:College Of Eloquence'],
+  'Cleric':
+    ['1:Order Domain', '1:Peace Domain', '1:Twilight Domain'],
+  'Druid':
+    ['2:Circle Of Spores', '2:Circle Of Stars', '2:Circle Of Wildfire'],
+  'Fighter':
+    ['3:Psi Warrior Archetype', '3:Rune Knight Archetype'],
+  'Monk':
+    ['3:Way Of The Astral Self', '3:Way Of Mercy'],
+  'Paladin':
+    ['3:Oath Of Glory', '3:Oath Of The Watchers'],
+  'Ranger':
+    ['3:Fey Wanderer Archetype', '3:Swarmkeeper Archetype'],
+  'Rogue':
+    ['3:Phantom Archetype', '3:Soul Knife Archetype'],
+  'Sorcerer':
+    ['1:Aberrant Mind Origin', '1:Clockwork Soul Origin'],
+  'Warlock':
+    ['1:Fathomless Patron', '1:The Genie Patron'],
+  'Wizard':
+    ['2:Bladesinger Tradition', '2:Order Of Scribes Tradition']
+};
+Tasha.DEITIES = {
+};
+Tasha.FEATS = {
+};
+Tasha.FEATURES = {
+  'Infectious Inspiration':
+    'Section=magic ' +
+    'Note="R60\' Reaction to grant extra bardic inspiration after successful use %V/long rest"',
+  'Silver Tongue':
+    'Section=skill Note="Min 10 roll on Deception and Persuasion"',
+  'Unfailing Inspiration':
+    'Section=magic Note="Inspiration die kept after failed use"',
+  'Universal Speech':
+    'Section=magic Note="R60\' %V targets understand self for 1 hr 1/long rest"',
+  'Unsettling Words':
+    'Section=magic ' +
+    'Note="R60\' Target subtract Bardic Inspiration roll from next save"'
+};
+Tasha.LANGUAGES = {
+};
+Tasha.PATHS = {
+  'College Of Eloquence':
+    'Group=Bard Level=levels.Bard ' +
+    'Features=' +
+      '"3:Silver Tongue","3:Unsettling Words","6:Unfailing Inspiration",' +
+      '"6:Universal Speech","14:Infectious Inspiration"'
+};
+Tasha.RACES = {
+};
+Tasha.SPELLS_ADDED = {
+};
+Tasha.TOOLS = {
+};
+
+/* Defines rules related to basic character identity. */
+Tasha.identityRules = function(
+  rules, backgrounds, classSelectables, deities, paths, races
+) {
+
+  QuilvynUtils.checkAttrTable
+    (backgrounds, ['Equipment', 'Features', 'Languages']);
+  QuilvynUtils.checkAttrTable(deities, ['Alignment', 'Domain', 'Sphere']);
+  QuilvynUtils.checkAttrTable
+    (paths, ['Features', 'Selectables', 'Group', 'Level', 'SpellAbility', 'SpellSlots', 'Spells']);
+  QuilvynUtils.checkAttrTable
+    (races, ['Require', 'Features', 'Selectables', 'Languages', 'SpellAbility', 'SpellSlots', 'Spells']);
+
+  for(var background in backgrounds) {
+    rules.choiceRules(rules, 'Background', background, backgrounds[background]);
+  }
+  for(var clas in classSelectables) {
+    SRD5E.featureListRules
+      (rules, classSelectables[clas], clas, 'levels.' + clas, true);
+  }
+  for(var deity in deities) {
+    rules.choiceRules(rules, 'Deity', deity, deities[deity]);
+  }
+  for(var path in paths) {
+    rules.choiceRules(rules, 'Path', path, paths[path]);
+  }
+  for(var race in races) {
+    rules.choiceRules(rules, 'Race', race, races[race]);
+    Tasha.raceRulesExtra(rules, race);
+  }
+
+};
+
+/* Defines rules related to magic use. */
+Tasha.magicRules = function(rules, spells) {
+  QuilvynUtils.checkAttrTable(spells, ['School', 'Level', 'Description']);
+  for(var s in spells) {
+    rules.choiceRules
+      (rules, 'Spell', s, (SRD5E.SPELLS[s]||PHB5E.SPELLS[s]) + ' ' + spells[s]);
+  }
+};
+
+/* Defines the rules related to character classes. */
+Tasha.pathRulesExtra = function(rules, name) {
+
+  if(name == 'College Of Eloquence') {
+    rules.defineRule('magicNotes.infectiousInspiration',
+      'charismaModifier', '=', 'Math.max(source, 1)'
+    );
+    rules.defineRule('magicNotes.universalSpeech',
+      'charismaModifier', '=', 'Math.max(source, 1)'
+    );
+    QuilvynRules.featureListRules(
+      rules, ['3:College Of Eloquence'], 'Bard', 'levels.Bard', true
+    );
+  }
+
+};
+
+/* Defines rules related to character aptitudes. */
+Tasha.talentRules = function(rules, feats, features, languages, tools) {
+
+  QuilvynUtils.checkAttrTable(feats, ['Require', 'Imply', 'Type']);
+  QuilvynUtils.checkAttrTable(features, ['Section', 'Note']);
+
+  for(var feat in feats) {
+    rules.choiceRules(rules, 'Feat', feat, feats[feat]);
+  }
+  for(var feature in features) {
+    rules.choiceRules(rules, 'Feature', feature, features[feature]);
+  }
+  for(var language in languages) {
+    rules.choiceRules(rules, 'Language', language, languages[language]);
+  }
+  for(var tool in tools) {
+    rules.choiceRules(rules, 'Tool', tool, tools[tool]);
+  }
+
+};
+
+/*
+ * Defines in #rules# the rules associated with race #name# that cannot be
+ * derived directly from the attributes passed to raceRules.
+ */
+Tasha.raceRulesExtra = function(rules, name) {
+  if(name == 'Rito Zora') {
+    rules.defineRule('abilityNotes.ritoWings',
+      'level', '=', 'source < 3 ? null : source < 5 ? (source + " rd") : source < 7 ? (source + " min") : ""'
+    );
+    rules.defineRule('featureNotes.holdBreath',
+      'constitutionModifier', '=', 'Math.max(10 * source, 5)'
+    );
+  }
+};
+
+/*
  * This module loads the rules from Fifth Edition Volo's Guide to Monsters. The
  * Volo function contains methods that load rules for particular parts of the
  * rules; raceRules for character races, magicRules for spells, etc. These
@@ -582,240 +763,6 @@ Volo.raceRulesExtra = function(rules, name) {
 };
 
 /*
- * This module loads the rules from Fifth Edition Xanathar's Guide to
- * Everything. The Xanathar function contains methods that load rules for
- * particular parts of the rules; raceRules for character races, magicRules for
- * spells, etc. These member methods can be called independently in order to use
- * a subset of XGTE. Similarly, the constant fields of Xanathar (FEATS,
- * BACKGROUNDS, etc.) can be manipulated to modify the choices.
- */
-function Xanathar() {
-
-  if(window.SRD5E == null) {
-    alert('The Xanathar module requires use of the SRD5E module');
-    return;
-  }
-
-  Xanathar.identityRules(
-    SRD5E.rules, Xanathar.BACKGROUNDS, Xanathar.CLASSES, Xanathar.DEITIES,
-    Xanathar.PATHS, Xanathar.RACES
-  );
-  Xanathar.magicRules(SRD5E.rules, Xanathar.SPELLS_ADDED);
-  Xanathar.talentRules(
-    SRD5E.rules, Xanathar.FEATS, Xanathar.FEATURES, Xanathar.LANGUAGES,
-    Xanathar.TOOLS
-  );
-
-}
-
-Xanathar.BACKGROUNDS = {
-};
-Xanathar.CLASSES = {
-};
-Xanathar.DEITIES = {
-};
-Xanathar.FEATS = {
-};
-Xanathar.FEATURES = {
-  'Agile Parry':
-    'Section=combat Note="+2 AC w/Kensei melee weapon after unarmed attack"',
-  'Aura Of Conquest':
-    'Section=combat Note="R%V\' Frightened foes unable to move"',
-  'Celestial Radiance':
-    'Section=save Note="Resistant necrotic, radiant damage"',
-  'Conquering Presence':
-    'Section=magic ' +
-    'Note="R30\' Channel Divinity to frighten for 1 min (Wis neg)"',
-  'Deft Strike':
-    'Section=combat Note="Spend 1 Ki for +%V damage with Kensei weapon"',
-  'Guided Strike':
-    'Section=combat Note="Channel Divinity for +10 attack"',
-  'Hold Breath':
-    'Section=feature Note="Hold breath underwater %V min"',
-  'Infectious Inspiration':
-    'Section=magic ' +
-    'Note="R60\' Reaction to grant extra bardic inspiration after successful use %V/long rest"',
-  'Invincible Conqueror':
-    'Section=combat ' +
-    'Note="Damage resistance, extra attack, crit on 19 1/long rest"',
-  "Kensei's Shot":
-    'Section=combat Note="+1d4 damage with ranged Kensei weapon"',
-  'Know Direction':
-    'Section=feature,magic ' +
-    'Note="Always know north",' +
-         '"<i>Find The Path</i> 1/long rest"',
-  'Magic Kensei Weapons':
-    'Section=combat Note="Kensei attacks are magical"',
-  'Rito Wings':
-    'Section=ability,skill ' +
-    'Note="Fly 60\' %V",' +
-         '"+20\' long jumps, +10\' high jumps"',
-  'Rito Zora Ability Adjustment':
-    'Section=ability Note="+2 Constitution/+1 Dexterity"',
-  'Scornful Rebuke':
-    'Section=combat Note="Foes striking self take %V HP psychic damage"',
-  'Sharpen The Blade':
-    'Section=combat ' +
-    'Note="Spend 1-3 Ki to gain equal bonus to Kensei weapon attack and damage"',
-  'Silver Tongue':
-    'Section=skill Note="Min 10 roll on Deception and Persuasion"',
-  'Unerring Accuracy':
-    'Section=combat Note="Reroll monk weapon miss 1/turn"',
-  'Unfailing Inspiration':
-    'Section=magic Note="Inspiration die kept after failed use"',
-  'Universal Speech':
-    'Section=magic Note="R60\' %V targets understand self for 1 hr 1/long rest"',
-  'Unsettling Words':
-    'Section=magic ' +
-    'Note="R60\' Target subtract Bardic Inspiration roll from next save"',
-  'Water Adaptation':
-    'Section=skill Note="Adv Survival in aquatic environments"'
-};
-Xanathar.LANGUAGES = {
-};
-Xanathar.PATHS = {
-  'College Of Eloquence':
-    'Group=Bard Level=levels.Bard ' +
-    'Features=' +
-      '"3:Silver Tongue","3:Unsettling Words","6:Unfailing Inspiration",' +
-      '"6:Universal Speech","14:Infectious Inspiration"',
-  'Oath Of Conquest':
-    'Group=Paladin Level=levels.Paladin ' +
-    'Features=' +
-      '"3:Conquering Presence","3:Guided Strike","7:Aura Of Conquest",' +
-      '"15:Scornful Rebuke","20:Invincible Conqueror" ' +
-    'SpellAbility=charisma ' +
-    'SpellSlots=' +
-      'Conquest1:3=2,' +
-      'Conquest2:5=2,' +
-      'Conquest3:9=2,' +
-      'Conquest4:13=2,' +
-      'Conquest5:17=2',
-  'Way Of The Kensei Tradition':
-    'Group=Monk Level=levels.Monk ' +
-    'Features=' +
-      '"3:Tool Proficiency (Choose 1 from Calligrapher\'s Supplies, Painter\'s Supplies)",' +
-      '"3:Weapon Proficiency (Choose 2 from any)",' +
-      '"3:Agile Parry","3:Kensei\'s Shot","6:Magic Kensei Weapons",' +
-      '"6:Deft Strike","11:Sharpen The Blade","17:Unerring Accuracy"'
-};
-Xanathar.RACES = {
-};
-Xanathar.SPELLS_ADDED = {
-  'Armor Of Agathys':'Level=Conquest1',
-  'Bestow Curse':'Level=Conquest3',
-  'Cloudkill':'Level=Conquest5',
-  'Command':'Level=Conquest1',
-  'Dominate Beast':'Level=Conquest4',
-  'Dominate Person':'Level=Conquest5',
-  'Fear':'Level=Conquest3',
-  'Hold Person':'Level=Conquest2',
-  'Spiritual Weapon':'Level=Conquest2',
-  'Stoneskin':'Level=Conquest4'
-};
-Xanathar.TOOLS = {
-  'Harp':'Type=Music',
-  'Rito Game Set':'Type=Game',
-  'Voice':'Type=Music'
-};
-
-/* Defines rules related to basic character identity. */
-Xanathar.identityRules = function(
-  rules, backgrounds, classes, deities, paths, races
-) {
-
-  QuilvynUtils.checkAttrTable
-    (backgrounds, ['Equipment', 'Features', 'Languages']);
-  QuilvynUtils.checkAttrTable
-    (classes, ['Require', 'HitDie', 'Features', 'Selectables', 'Languages', 'CasterLevelArcane', 'CasterLevelDivine', 'SpellAbility', 'SpellSlots', 'Spells']);
-  QuilvynUtils.checkAttrTable(deities, ['Alignment', 'Domain', 'Sphere']);
-  QuilvynUtils.checkAttrTable
-    (paths, ['Features', 'Selectables', 'Group', 'Level', 'SpellAbility', 'SpellSlots', 'Spells']);
-  QuilvynUtils.checkAttrTable
-    (races, ['Require', 'Features', 'Selectables', 'Languages', 'SpellAbility', 'SpellSlots', 'Spells']);
-
-  for(var background in backgrounds) {
-    rules.choiceRules(rules, 'Background', background, backgrounds[background]);
-  }
-  for(var clas in classes) {
-    rules.choiceRules(rules, 'Class', clas, classes[clas]);
-  }
-  for(var deity in deities) {
-    rules.choiceRules(rules, 'Deity', deity, deities[deity]);
-  }
-  for(var path in paths) {
-    rules.choiceRules(rules, 'Path', path, paths[path]);
-    Xanathar.pathRulesExtra(rules, path);
-  }
-  for(var race in races) {
-    rules.choiceRules(rules, 'Race', race, races[race]);
-  }
-
-};
-
-/* Defines rules related to magic use. */
-Xanathar.magicRules = function(rules, spells) {
-  QuilvynUtils.checkAttrTable(spells, ['School', 'Level', 'Description']);
-  for(var s in spells) {
-    rules.choiceRules
-      (rules, 'Spell', s, (SRD5E.SPELLS[s]||PHB5E.SPELLS[s]) + ' ' + spells[s]);
-  }
-};
-
-/* Defines rules related to character aptitudes. */
-Xanathar.talentRules = function(rules, feats, features, languages, tools) {
-
-  QuilvynUtils.checkAttrTable(feats, ['Require', 'Imply', 'Type']);
-  QuilvynUtils.checkAttrTable(features, ['Section', 'Note']);
-
-  for(var feat in feats) {
-    rules.choiceRules(rules, 'Feat', feat, feats[feat]);
-  }
-  for(var feature in features) {
-    rules.choiceRules(rules, 'Feature', feature, features[feature]);
-  }
-  for(var language in languages) {
-    rules.choiceRules(rules, 'Language', language, languages[language]);
-  }
-  for(var tool in tools) {
-    rules.choiceRules(rules, 'Tool', tool, tools[tool]);
-  }
-
-};
-
-/* Defines the rules related to character classes. */
-Xanathar.pathRulesExtra = function(rules, name) {
-
-  if(name == 'College Of Eloquence') {
-    rules.defineRule('magicNotes.infectiousInspiration',
-      'charismaModifier', '=', 'Math.max(source, 1)'
-    );
-    rules.defineRule('magicNotes.universalSpeech',
-      'charismaModifier', '=', 'Math.max(source, 1)'
-    );
-    QuilvynRules.featureListRules(
-      rules, ['3:College Of Eloquence'], 'Bard', 'levels.Bard', true
-    );
-  } else if(name == 'Oath Of Conquest') {
-    rules.defineRule('combatNotes.auraOfConquest',
-      'conquestLevel', '=', 'source >= 18 ? 30 : 10'
-    );
-    rules.defineRule('combatNotes.scornfulRebuke',
-      'charismaModifier', '=', 'Math.max(source, 1)'
-    );
-    QuilvynRules.featureListRules(
-      rules, ['3:Oath Of Conquest'], 'Paladin', 'levels.Paladin', true
-    );
-  } else if(name == 'Way Of The Kensei Tradition') {
-    rules.defineRule('combatNotes.deftStrike', 'monkMeleeDieBonus', '=', null);
-    QuilvynRules.featureListRules(
-      rules, ['3:Way Of The Kensei Tradition'], 'Monk', 'levels.Monk', true
-    );
-  }
-
-};
-
-/*
  * This module loads the rules for the Prisoner of Zelda adaptation for 5E.
  * The Zelda function contains methods that load rules for particular parts of
  * the rules; raceRules for character races, magicRules for spells, etc. These
@@ -841,6 +788,22 @@ function Zelda() {
 
 }
 
+Zelda.FEATURES = {
+  'Hold Breath':
+    'Section=feature Note="Hold breath underwater %V min"',
+  'Know Direction':
+    'Section=feature,magic ' +
+    'Note="Always know north",' +
+         '"<i>Find The Path</i> 1/long rest"',
+  'Rito Wings':
+    'Section=ability,skill ' +
+    'Note="Fly 60\' %V",' +
+         '"+20\' long jumps, +10\' high jumps"',
+  'Rito Zora Ability Adjustment':
+    'Section=ability Note="+2 Constitution/+1 Dexterity"',
+  'Water Adaptation':
+    'Section=skill Note="Adv Survival in aquatic environments"'
+};
 Zelda.LANGUAGES = {
   'Hylian':'',
   'Rito':'',
@@ -852,12 +815,7 @@ Zelda.RACES = {
       '"1:Rito Zora Ability Adjustment","1:Hold Breath","1:Know Direction",' +
       '"1:Water Adaptation","3:Rito Wings" ' +
     'Languages=Hylian,Zora ' +
-    'SpellAbility=charisma ' +
-    'SpellSlots=' +
-      'Rito6:1=1'
-};
-Zelda.SPELLS_ADDED = {
-  'Find The Path':'Level=Rito6'
+    'SpellAbility=charisma'
 };
 
 /* Defines rules related to basic character identity. */

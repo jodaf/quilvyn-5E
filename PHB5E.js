@@ -35,8 +35,8 @@ function PHB5E() {
 
   Object.assign(SRD5E.SPELLS, PHB5E.SPELLS_ADDED);
   PHB5E.identityRules(
-    SRD5E.rules, PHB5E.BACKGROUNDS, PHB5E.CLASSES, PHB5E.DEITIES, PHB5E.PATHS,
-    PHB5E.RACES
+    SRD5E.rules, PHB5E.BACKGROUNDS, PHB5E.CLASS_SELECTABLES, PHB5E.DEITIES,
+    PHB5E.PATHS, PHB5E.RACES
   );
   PHB5E.magicRules(SRD5E.rules, PHB5E.SPELLS);
   PHB5E.talentRules(SRD5E.rules, PHB5E.FEATS, PHB5E.FEATURES);
@@ -140,85 +140,65 @@ PHB5E.BACKGROUNDS = {
       '"1:Tool Proficiency (Disguise Kit/Thieves\' Tools)",' +
       '"1:City Secrets"'
 };
-PHB5E.CLASSES = {
+PHB5E.CLASS_SELECTABLES = {
   'Bard':
-    'Selectables=' +
-      '"3:College Of Valor"',
+    ['3:College Of Valor'],
   'Cleric':
-    'Selectables=' +
-      '"1:Knowledge Domain",' +
-      '"1:Light Domain",' +
-      '"1:Nature Domain",' +
-      '"1:Tempest Domain",' +
-      '"1:Trickery Domain",' +
-      '"1:War Domain"',
+    ['1:Knowledge Domain', '1:Light Domain', '1:Nature Domain',
+     '1:Tempest Domain', '1:Trickery Domain', '1:War Domain'],
   'Druid':
-    'Selectables=' +
-      '"2:Circle Of The Land (Underdark)",' +
-      '"2:Circle Of The Moon"',
+    ['2:Circle Of The Land (Underdark)', '2:Circle Of The Moon'],
   'Fighter':
-    'Selectables=' +
-      '"3:Battle Master Archetype","3:Eldritch Knight Archetype",' +
-      '"features.Maneuvers ? 3:Commander\'s Strike",' +
-      '"features.Maneuvers ? 3:Disarming Attack",' +
-      '"features.Maneuvers ? 3:Distracting Strike",' +
-      '"features.Maneuvers ? 3:Evasive Footwork",' +
-      '"features.Maneuvers ? 3:Feinting Attack",' +
-      '"features.Maneuvers ? 3:Goading Attack",' +
-      '"features.Maneuvers ? 3:Lunging Attack",' +
-      '"features.Maneuvers ? 3:Maneuvering Attack",' +
-      '"features.Maneuvers ? 3:Menacing Attack",' +
-      '"features.Maneuvers ? 3:Parry",' +
-      '"features.Maneuvers ? 3:Precision Attack",' +
-      '"features.Maneuvers ? 3:Pushing Attack",' +
-      '"features.Maneuvers ? 3:Rally",' +
-      '"features.Maneuvers ? 3:Riposte",' +
-      '"features.Maneuvers ? 3:Sweeping Attack",' +
-      '"features.Maneuvers ? 3:Trip Attack"',
+    ['3:Battle Master Archetype', '3:Eldritch Knight Archetype',
+     'features.Maneuvers ? 3:Commander\'s Strike',
+     'features.Maneuvers ? 3:Disarming Attack',
+     'features.Maneuvers ? 3:Distracting Strike',
+     'features.Maneuvers ? 3:Evasive Footwork',
+     'features.Maneuvers ? 3:Feinting Attack',
+     'features.Maneuvers ? 3:Goading Attack',
+     'features.Maneuvers ? 3:Lunging Attack',
+     'features.Maneuvers ? 3:Maneuvering Attack',
+     'features.Maneuvers ? 3:Menacing Attack',
+     'features.Maneuvers ? 3:Parry',
+     'features.Maneuvers ? 3:Precision Attack',
+     'features.Maneuvers ? 3:Pushing Attack',
+     'features.Maneuvers ? 3:Rally',
+     'features.Maneuvers ? 3:Riposte',
+     'features.Maneuvers ? 3:Sweeping Attack',
+     'features.Maneuvers ? 3:Trip Attack'],
   'Monk':
-    'Selectables=' +
-      '"3:Way Of The Four Elements Tradition",' +
-      '"3:Way Of The Shadow Tradition",'+
-      '"features.Way Of The Four Elements Tradition ? 17:Breath Of Winter",' +
-      '"features.Way Of The Four Elements Tradition ? 6:Clench Of The North Wind",' +
-      '"features.Way Of The Four Elements Tradition ? 17:Eternal Mountain Defense",' +
-      '"features.Way Of The Four Elements Tradition ? 3:Fangs Of The Fire Snake",' +
-      '"features.Way Of The Four Elements Tradition ? 3:Fist Of Four Thunders",' +
-      '"features.Way Of The Four Elements Tradition ? 3:Fist Of Unbroken Air",' +
-      '"features.Way Of The Four Elements Tradition ? 11:Flames Of The Phoenix",' +
-      '"features.Way Of The Four Elements Tradition ? 6:Gong Of The Summit",' +
-      '"features.Way Of The Four Elements Tradition ? 11:Mist Stance",' +
-      '"features.Way Of The Four Elements Tradition ? 11:Ride The Wind",' +
-      '"features.Way Of The Four Elements Tradition ? 17:River Of Hungry Flame",' +
-      '"features.Way Of The Four Elements Tradition ? 3:Rush Of The Gale Spirits",' +
-      '"features.Way Of The Four Elements Tradition ? 3:Shape The Flowing River",' +
-      '"features.Way Of The Four Elements Tradition ? 3:Sweeping Cinder Strike",' +
-      '"features.Way Of The Four Elements Tradition ? 3:Water Whip",' +
-      '"features.Way Of The Four Elements Tradition ? 17:Wave Of Rolling Earth"',
+    ['3:Way Of The Four Elements', '3:Way Of The Shadow',
+     'features.Way Of The Four Elements ? 17:Breath Of Winter',
+     'features.Way Of The Four Elements ? 6:Clench Of The North Wind',
+     'features.Way Of The Four Elements ? 17:Eternal Mountain Defense',
+     'features.Way Of The Four Elements ? 3:Fangs Of The Fire Snake',
+     'features.Way Of The Four Elements ? 3:Fist Of Four Thunders',
+     'features.Way Of The Four Elements ? 3:Fist Of Unbroken Air',
+     'features.Way Of The Four Elements ? 11:Flames Of The Phoenix',
+     'features.Way Of The Four Elements ? 6:Gong Of The Summit',
+     'features.Way Of The Four Elements ? 11:Mist Stance',
+     'features.Way Of The Four Elements ? 11:Ride The Wind',
+     'features.Way Of The Four Elements ? 17:River Of Hungry Flame',
+     'features.Way Of The Four Elements ? 3:Rush Of The Gale Spirits',
+     'features.Way Of The Four Elements ? 3:Shape The Flowing River',
+     'features.Way Of The Four Elements ? 3:Sweeping Cinder Strike',
+     'features.Way Of The Four Elements ? 3:Water Whip',
+     'features.Way Of The Four Elements ? 17:Wave Of Rolling Earth'],
   'Paladin':
-    'Selectables=' +
-      '"3:Oath Of The Ancients","3:Oath Of Vengeance"',
+    ['3:Oath Of The Ancients', '3:Oath Of Vengeance'],
   'Ranger':
-    'Selectables=' +
-      '"3:Beast Master Archetype"',
+    ['3:Beast Master Archetype'],
   'Rogue':
-    'Selectables=' +
-      '"3:Arcane Trickster Archetype","3:Assassin Archetype"',
+    ['3:Arcane Trickster Archetype', '3:Assassin Archetype'],
   'Sorcerer':
-    'Selectables=' +
-      '"1:Wild Magic"',
+    ['1:Wild Magic Origin'],
   'Warlock':
-    'Selectables=' +
-      '"1:Archfey Patron","1:Great Old One Patron"',
+    ['1:Archfey Patron', '1:Great Old One Patron'],
   'Wizard':
-    'Selectables=' +
-      '"2:Abjuration Tradition",' +
-      '"2:Conjuration Tradition",' +
-      '"2:Divination Tradition",' +
-      '"2:Enchantment Tradition",' +
-      '"2:Illusion Tradition",' +
-      '"2:Necromancy Tradition",' +
-      '"2:Transmutation Tradition"',
+    ['2:Abjuration Tradition', '2:Conjuration Tradition',
+     '2:Divination Tradition', '2:Enchantment Tradition',
+     '2:Illusion Tradition', '2:Necromancy Tradition',
+     '2:Transmutation Tradition']
 };
 PHB5E.DEITIES = {
   // Forgotten Realms
@@ -1226,11 +1206,11 @@ PHB5E.PATHS = {
       'War3:5=2,' +
       'War4:7=2,' +
       'War5:9=2',
-  'Way Of The Four Elements Tradition':
+  'Way Of The Four Elements':
     'Group=Monk Level=levels.Monk ' +
     'Features=' +
       '"3:Disciple Of The Elements","3:Elemental Attunement"',
-  'Way Of The Shadow Tradition':
+  'Way Of The Shadow':
     'Group=Monk Level=levels.Monk ' +
     'Features=' +
       '"3:Shadow Arts","6:Shadow Step","11:Cloak Of Shadows",' +
@@ -1239,7 +1219,7 @@ PHB5E.PATHS = {
     'SpellSlots=' +
       'Shadow0:3=1,' +
       'Shadow2:3=4',
-  'Wild Magic':
+  'Wild Magic Origin':
     'Group=Sorcerer Level=levels.Sorcerer ' +
     'Features=' +
       '"1:Wild Magic Surge","1:Tides Of Chaos","6:Bend Luck",' +
@@ -1416,7 +1396,7 @@ PHB5E.SPELLS = {
     'Description="100\' bolt 8d6 HP (Dex half)"',
   'Phantasmal Force':
     'School=Illusion ' +
-    'Level=B2,K2,K2,S2,W2 ' +
+    'Level=B2,K2,S2,W2 ' +
     'Description="R60\' target illusion 1d6 HP/rd (Int neg)"',
   'Power Word Heal':
     'School=Evocation ' +
@@ -1558,13 +1538,11 @@ PHB5E.SPELLS = {
 
 /* Defines rules related to basic character identity. */
 PHB5E.identityRules = function(
-  rules, backgrounds, classes, deities, paths, races
+  rules, backgrounds, classSelectables, deities, paths, races
 ) {
 
   QuilvynUtils.checkAttrTable
     (backgrounds, ['Equipment', 'Features', 'Languages']);
-  QuilvynUtils.checkAttrTable
-    (classes, ['Require', 'HitDie', 'Features', 'Selectables', 'Languages', 'CasterLevelArcane', 'CasterLevelDivine', 'SpellAbility', 'SpellSlots', 'Spells']);
   QuilvynUtils.checkAttrTable(deities, ['Alignment', 'Domain', 'Sphere']);
   QuilvynUtils.checkAttrTable
     (paths, ['Features', 'Selectables', 'Group', 'Level', 'SpellAbility', 'SpellSlots', 'Spells']);
@@ -1574,10 +1552,9 @@ PHB5E.identityRules = function(
   for(var background in backgrounds) {
     rules.choiceRules(rules, 'Background', background, backgrounds[background]);
   }
-  for(var clas in classes) {
-    delete rules.choices['levels'][clas];
-    rules.choiceRules
-      (rules, 'Class', clas, SRD5E.CLASSES[clas] + ' ' + classes[clas]);
+  for(var clas in classSelectables) {
+    SRD5E.featureListRules
+      (rules, classSelectables[clas], clas, 'levels.' + clas, true);
   }
   for(var deity in deities) {
     rules.choiceRules(rules, 'Deity', deity, deities[deity]);
@@ -1764,10 +1741,10 @@ PHB5E.pathRulesExtra = function(rules, name) {
     rules.defineRule
       ('combatNotes.warPriest', 'wisdomModifier', '=', 'Math.max(source, 1)');
 
-  } else if(name == 'Way Of The Four Elements Tradition') {
+  } else if(name == 'Way Of The Four Elements') {
 
     rules.defineRule('magicNotes.discipleOfTheElements',
-      'monkFeatures.Way Of The Four Elements Tradition', '?', null,
+      'monkFeatures.Way Of The Four Elements', '?', null,
       'levels.Monk', '=', 'Math.floor( (source + 4) / 5)'
     );
     rules.defineRule('selectableFeatureCount.Monk',

@@ -258,7 +258,7 @@ SRD5E.CLASSES = {
       '"10:Purity Of Body","13:Tongue Of Sun And Moon","14:Diamond Soul",' +
       '"15:Monk Timeless Body","18:Empty Body","20:Perfect Self" ' +
     'Selectables=' +
-      '"3:Way Of The Open Hand Tradition"',
+      '"3:Way Of The Open Hand"',
   'Paladin':
     'HitDie=d10 ' +
     'Features=' +
@@ -326,7 +326,7 @@ SRD5E.CLASSES = {
       '1:Spellcasting,"2:Font Of Magic","2:Flexible Casting",' +
       '"20:Sorcerous Restoration" ' +
     'Selectables=' +
-      '"1:Draconic Bloodline","3:Careful Spell","3:Distant Spell",' +
+      '"1:Draconic Bloodline Origin","3:Careful Spell","3:Distant Spell",' +
       '"3:Empowered Spell","3:Extended Spell","3:Heightened Spell",' +
       '"3:Quickened Spell","3:Subtle Spell","3:Twinned Spell" ' +
     'CasterLevelArcane=levels.Sorcerer ' +
@@ -1259,7 +1259,7 @@ SRD5E.PATHS = {
     'Features=' +
       '"3:Bonus Skill Proficiency (Choose 3 from any)",' +
       '"3:Cutting Words","6:Additional Magical Secrets","14:Peerless Skill"',
-  'Draconic Bloodline':
+  'Draconic Bloodline Origin':
     'Group=Sorcerer ' +
     'Level=levels.Sorcerer ' +
     'Features=' +
@@ -1322,7 +1322,7 @@ SRD5E.PATHS = {
     'Features=' +
       '"3:Fast Hands","3:Second-Story Work","9:Supreme Sneak",' +
       '"13:Use Magic Device","17:Thief\'s Reflexes"',
-  'Way Of The Open Hand Tradition':
+  'Way Of The Open Hand':
     'Group=Monk ' +
     'Level=levels.Monk ' +
     'Features=' +
@@ -5339,8 +5339,8 @@ SRD5E.randomizeOneAttribute = function(attributes, attribute) {
     pickAttrs(attributes, 'weapons.', choices,
               3 - QuilvynUtils.sumMatching(attributes, /^weapons\./), 1);
   } else if(attribute == 'abilities' ||
-            attribute.charAt(0).toUpperCase() + attribute.substring(1) in OldSchool.ABILITIES) {
-    for(attr in OldSchool.ABILITIES) {
+            attribute.charAt(0).toUpperCase() + attribute.substring(1) in SRD5E.ABILITIES) {
+    for(attr in SRD5E.ABILITIES) {
       attr = attr.toLowerCase();
       if(attr != attribute && attribute != 'abilities')
         continue;

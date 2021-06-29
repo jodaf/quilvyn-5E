@@ -1,0 +1,474 @@
+/*
+Copyright 2021, James J. Hayes
+
+This program is free software; you can redistribute it and/or modify it under
+the terms of the GNU General Public License as published by the Free Software
+Foundation; either version 2 of the License, or (at your option) any later
+version.
+
+This program is distributed in the hope that it will be useful, but WITHOUT ANY
+WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
+PARTICULAR PURPOSE. See the GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License along with
+this program; if not, write to the Free Software Foundation, Inc., 59 Temple
+Place, Suite 330, Boston, MA 02111-1307 USA.
+*/
+
+/*jshint esversion: 6 */
+"use strict";
+
+/*
+ * This module loads the rules from Fifth Edition Xanathar's Guide to
+ * Everything. The Xanathar function contains methods that load rules for
+ * particular parts of the rules; raceRules for character races, magicRules for
+ * spells, etc. These member methods can be called independently in order to use
+ * a subset of XGTE. Similarly, the constant fields of Xanathar (FEATS,
+ * BACKGROUNDS, etc.) can be manipulated to modify the choices.
+ */
+function Xanathar() {
+
+  if(window.SRD5E == null) {
+    alert('The Xanathar module requires use of the SRD5E module');
+    return;
+  }
+
+  Xanathar.identityRules(
+    SRD5E.rules, Xanathar.BACKGROUNDS, Xanathar.CLASS_SELECTABLES,
+    Xanathar.DEITIES, Xanathar.PATHS, Xanathar.RACES
+  );
+  Xanathar.magicRules(SRD5E.rules, Xanathar.SPELLS_ADDED);
+  Xanathar.talentRules(
+    SRD5E.rules, Xanathar.FEATS, Xanathar.FEATURES, Xanathar.LANGUAGES,
+    Xanathar.TOOLS
+  );
+
+}
+
+Xanathar.BACKGROUNDS = {
+};
+Xanathar.CLASS_SELECTABLES = {
+  'Barbarian':
+    ['3:Path Of The Ancestral Guardian', '3:Path Of The Storm Herald',
+     '3:Path Of The Zealot'],
+  'Bard':
+    ['3:College Of Glamour', '3:College Of Swords', '3:College Of Whispers'],
+  'Cleric':
+    ['1:Forge Domain', '1:Grave Domain'],
+  'Druid':
+    ['2:Circle Of Dreams', '2:Circle Of The Shepherd'],
+  'Fighter':
+    ['3:Arcane Archer Archetype', '3:Cavalier Archetype',
+     '3:Samurai Archetype '],
+  'Monk':
+    ['3:Way Of The Drunken Master', '3:Way Of The Kensai',
+     '3:Way Of The Sun Soul'],
+  'Paladin':
+    ['3:Oath Of Conquest', '3:Oath Of Redemption'],
+  'Ranger':
+    ['3:Gloom Stalker Archetype', '3:Horizon Walker Archetype',
+     '3:Monster Slayer Archetype'],
+  'Rogue':
+    ['3:Inquisitive Archetype', '3:Mastermind Archetype', '3:Scout Archetype',
+     '3:Swashbuckler Archetype'],
+  'Sorcerer':
+    ['1:Divine Soul Origin', '1:Shadow Magic Origin', '1:Storm Sorcery Origin'],
+  'Warlock':
+    ['1:The Celestial Patron', '1:The Hexblade Patron'],
+  'Wizard':
+    ['2:War Magic Tradition']
+};
+Xanathar.DEITIES = {
+};
+Xanathar.FEATS = {
+};
+Xanathar.FEATURES = {
+  'Agile Parry':
+    'Section=combat Note="+2 AC w/Kensei melee weapon after unarmed attack"',
+  'Aura Of Conquest':
+    'Section=combat Note="R%V\' Frightened foes unable to move"',
+  'Celestial Radiance':
+    'Section=save Note="Resistant necrotic, radiant damage"',
+  'Conquering Presence':
+    'Section=magic ' +
+    'Note="R30\' Channel Divinity to frighten for 1 min (Wis neg)"',
+  'Deft Strike':
+    'Section=combat Note="Spend 1 Ki for +%V damage with Kensei weapon"',
+  'Guided Strike':
+    'Section=combat Note="Channel Divinity gives +10 attack"',
+  'Invincible Conqueror':
+    'Section=combat ' +
+    'Note="Damage resistance, extra attack, crit on 19 1/long rest"',
+  "Kensei's Shot":
+    'Section=combat Note="+1d4 damage with ranged Kensei weapon"',
+  'Magic Kensei Weapons':
+    'Section=combat Note="Kensei attacks are magical"',
+  'Scornful Rebuke':
+    'Section=combat Note="Foes striking self take %V HP psychic damage"',
+  'Sharpen The Blade':
+    'Section=combat ' +
+    'Note="Spend 1-3 Ki to gain equal bonus to Kensei weapon attack and damage"',
+  'Unerring Accuracy':
+    'Section=combat Note="Reroll monk weapon miss 1/turn"'
+};
+Xanathar.LANGUAGES = {
+};
+Xanathar.PATHS = {
+  'Arcane Archer Archetype':
+    'Group=Fighter ' +
+    'Level=levels.Fighter ' +
+    'Features=' +
+      '"3:Arcane Archer Lore","3:Arcane Shot","7:Curving Shot",' +
+      '"7:Magic Arrow","15:Every-Ready Shot","18:Improved Shots"',
+  'Cavalier Archetype':
+    'Group=Fighter ' +
+    'Level=levels.Fighter ' +
+    'Features=' +
+      '"3:Skill Proficiency (Choose 1 from Animal Handling/History/Insight/Performance/Persuasion",' +
+      '"3:Born To The Saddle","3:Unwavering Mark","7:Warding Maneuver",' +
+      '"7:Warding Maneuver","10:Hold The Line","15:Ferocious Charger",' +
+      '"18:Vigilant Defender"',
+  'Circle Of Dreams':
+    'Group=Druid ' +
+    'Level=levels.Druid ' +
+    'Features=' +
+      '"2:Balm Of The Summer Court","6:Hearth Of Moonight And Shadow",' +
+      '"10:Hidden Paths","14:Walker In Dreams"',
+  'Circle Of The Shepherd':
+    'Group=Druid ' +
+    'Level=levels.Druid ' +
+    'Features=' +
+      '"2:Speech Of The Woods","2:Spirit Totem","6:Mighty Summoner",' +
+      '"10:Guardian Spirit","14:Faithful Summons"',
+  'College Of Glamour':
+    'Group=Bard Level=levels.Bard ' +
+    'Features=' +
+      '"3:Enthralling Performance","3:Mantle Off Inspiration",' +
+      '"6:Mantle Of Majesty","14:Unbreakable Majesty"',
+  'College Of Swords':
+    'Group=Bard Level=levels.Bard ' +
+    'Features=' +
+      '"3:Armor Proficiency (Medium)",' +
+      '"3:Weapon Proficiency (Scimtar)",' +
+      '"3:Defensive Flourish","3:Mobile Flourish","3:Slashing Flourish",' +
+      '"6:Extra Attack","14:Master\'s Flourish" ' +
+    'Selectables=' +
+      '"3:Dueling Style","3:Two-Weapon Fighting Style"',
+  'College Of Whispers':
+    'Group=Bard Level=levels.Bard ' +
+    'Features=' +
+      '"3:Psychic Blades","3:Words Of Terror","6:Mantle Of Whispers",' +
+      '"14:Shadow Lore"',
+  'Divine Soul Origin':
+    'Group=Sorcerer Level=levels.Sorcerer ' +
+    'Features=' +
+      '"1:Divine Magic","1:Favored By The Gods",' +
+      '"6:Empowered Healing","14:Otherwordly Wings","18:Unearthly Discovery"',
+  'Forge Domain':
+    'Group=Cleric Level=levels.Cleric ' +
+    'Features=' +
+      '"1:Armor Proficiency (Heavy)",' +
+      '"1:Tool Proficiency (Smith\'s Tools)",' +
+      '"1:Blessing Of The Forge","2:Artisan\'s Blessing",' +
+      '"6:Soul Of The Forge","8:Divine Strike","17:Saint Of Forge And Fire" ' +
+    'SpellAbility=wisdom ' +
+    'SpellSlots=' +
+      'Forge1:1=2,' +
+      'Forge2:3=2,' +
+      'Forge3:5=2,' +
+      'Forge4:7=2,' +
+      'Forge5:9=2',
+  'Gloom Stalker Archetype':
+    'Group=Ranger ' +
+    'Level=levels.Ranger ' +
+    'Features=' +
+      '"3:Dread Ambusher","3:Umbral Sight","7:Iron Mind",' +
+      '"11:Stalker\'s Fury","15:Shadow Dodge" ' +
+    'SpellAbility=wisdom ' +
+    'SpellSlots=' +
+      'Gloom1:3=1,' +
+      'Gloom2:5=1,' +
+      'Gloom3:9=1,' +
+      'Gloom4:13=1,' +
+      'Gloom5:17=1',
+  'Grave Domain':
+    'Group=Cleric Level=levels.Cleric ' +
+    'Features=' +
+      '"1:Circle Of Mortality","1:Eyes Of The Grave","2:Path To The Grave",' +
+      '"6:Sentinel At Death\'s Door","8:Potent Spellcasting",' +
+      '"17:Keeper Of Souls" ' +
+    'SpellAbility=wisdom ' +
+    'SpellSlots=' +
+      'Grave1:1=2,' +
+      'Grave2:3=2,' +
+      'Grave3:5=2,' +
+      'Grave4:7=2,' +
+      'Grave5:9=2',
+  'Horizon Walker Archetype':
+    'Group=Ranger ' +
+    'Level=levels.Ranger ' +
+    'Features=' +
+      '"3:Detect Portal","3:Planar Warrior","7:Ethereal Step",' +
+      '"11:Distant Strike","15:Spectral Defense" ' +
+    'SpellAbility=wisdom ' +
+    'SpellSlots=' +
+      'Horizon1:3=1,' +
+      'Horizon2:5=1,' +
+      'Horizon3:9=1,' +
+      'Horizon4:13=1,' +
+      'Horizon5:17=1',
+  'Inquisitive Archetype':
+    'Group=Rogue Level=levels.Rogue ' +
+    'Features=' +
+      '"3:Ear For Deceiit","3:Eye For Detail","3:Insightful Fighting",' +
+      '"9:Steady Eye","13:Unerring Eye","17:Eye For Weakness"',
+  'Mastermind Archetype':
+    'Group=Rogue Level=levels.Rogue ' +
+    'Features=' +
+      '"3:Master Of Intrigue","3:Master Of Tactics",' +
+      '"9:Insightful Manipulator","13:Misdirection","17:Soul Of Deceit"',
+  'Monster Slayer Archetype':
+    'Group=Ranger ' +
+    'Level=levels.Ranger ' +
+    'Features=' +
+      '"3:Hunter\'s Sense","3:Slayer\'s Prey","7:Supernatural Defense",' +
+      '"11:Magic User\'s Nemesis","15:Slayer\'s Counter" ' +
+    'SpellAbility=wisdom ' +
+    'SpellSlots=' +
+      'Slayer1:3=1,' +
+      'Slayer2:5=1,' +
+      'Slayer3:9=1,' +
+      'Slayer4:13=1,' +
+      'Slayer5:17=1',
+  'Oath Of Conquest':
+    'Group=Paladin Level=levels.Paladin ' +
+    'Features=' +
+      '"3:Conquering Presence","3:Guided Strike","7:Aura Of Conquest",' +
+      '"15:Scornful Rebuke","20:Invincible Conqueror" ' +
+    'SpellAbility=charisma ' +
+    'SpellSlots=' +
+      'Conquest1:3=2,' +
+      'Conquest2:5=2,' +
+      'Conquest3:9=2,' +
+      'Conquest4:13=2,' +
+      'Conquest5:17=2',
+  'Oath Of Redemption':
+    'Group=Paladin Level=levels.Paladin ' +
+    'Features=' +
+      '"3:Emmisary Of Peace","3:Rebuke The Violent","7:Aura Of The Guardian",' +
+      '"15:Protective Spirit","20:Emissary Of Redemption" ' +
+    'SpellAbility=charisma ' +
+    'SpellSlots=' +
+      'Redemption1:3=2,' +
+      'Redemption2:5=2,' +
+      'Redemption3:9=2,' +
+      'Redemption4:13=2,' +
+      'Redemption5:17=2',
+  'Path Of The Ancestral Guardian':
+    'Group=Barbarian Level=levels.Barbarian ' +
+    'Features=' +
+      '"3:Ancestral Protectors","6:Spirit Shield","10:Consult The Spirits",' +
+      '"14:Vengeful Ancestors"',
+  'Path Of The Storm Herald':
+    'Group=Barbarian Level=levels.Barbarian ' +
+    'Features=' +
+      '"3:Storm Aura","6:Storm Soul","10:Shielding Storm","14:Raging Storm"',
+  'Path Of The Zealot':
+    'Group=Barbarian Level=levels.Barbarian ' +
+    'Features=' +
+      '"3:Divine Fury","3:Warrior Of The Gods","6:Fanatical Focus",' +
+      '"10:Zealous Presence","14:Rage Beyond Death"',
+  'Samurai Archetype':
+    'Group=Fighter ' +
+    'Level=levels.Fighter ' +
+    'Features=' +
+      '"3:Skill Proficiency (Choose 1 from History/Insight/Performance/Persuasion",' +
+      '"3:Fighting Spirit","7:Elegant Courtier","10:Tireless Spirit",' +
+      '"15:Rapid Strike","18:Strength Before Death"',
+  'Shadow Magic Origin':
+    'Group=Sorcerer Level=levels.Sorcerer ' +
+    'Features=' +
+      '"1:Eyes Of The Dark","1:Strength Of The Grave",' +
+      '"6:Hound Of Ill Omen","14:Shadow Walk","18:Umbral Form"',
+  'Storm Sorcery Origin':
+    'Group=Sorcerer Level=levels.Sorcerer ' +
+    'Features=' +
+      '"1:Wind Speaker","1:Tempestuous Magic","6:Heart Of The Storm",' +
+      '"6:Storm Guide","14:Storm\'s Fury","18:Wind Soul"',
+  'Way Of The Drunken Master':
+    'Group=Monk Level=levels.Monk ' +
+    'Features=' +
+      '"3:Skill Proficiency (Performance)",' +
+      '"3:Tool Proficiency (Brewer\'s Supplies)",' +
+      '"3:Drunken Technique","6:Tipsy Sway","11:Drunkard\'s Luck",' +
+      '"17:Intoxicated Frenzy"',
+  'Swashbuckler Archetype':
+    'Group=Rogue Level=levels.Rogue ' +
+    'Features=' +
+      '"3:Fancy Footwork","3:Rakish Audacity","9:Panache",' +
+      '"13:Elegant Maneuver","17:Master Duelist"',
+  'The Celestial Patron':
+    'Group=Warlock Level=levels.Warlock ' +
+    'Features=' +
+      '"1:Bonus Cantrips","1:Healing Light","6:Radiant Soul",' +
+      '"10:Celestial Resilience","14:Searing Vengeance"',
+  'The Hexblade':
+    'Group=Warlock Level=levels.Warlock ' +
+    'Features=' +
+      '"1:Hexblade\'s Curse","1:Hex Warrior","6:Accursed Specter",' +
+      '"10:Armor Of Hexes","14:Master Of Hexes"',
+  'War Magic Tradition':
+    'Group=Wizard Level=levels.Wizard ' +
+    'Features=' +
+      '"2:Arcane Deflection","2:Tactical Wit","6:Power Surge",' +
+      '"10:Durable Magic","14:Deflecting Shroud"',
+  'Way Of The Kensei':
+    'Group=Monk Level=levels.Monk ' +
+    'Features=' +
+      '"3:Tool Proficiency (Choose 1 from Calligrapher\'s Supplies, Painter\'s Supplies)",' +
+      '"3:Weapon Proficiency (Choose 2 from any)",' +
+      '"3:Agile Parry","3:Kensei\'s Shot","6:Magic Kensei Weapons",' +
+      '"6:Deft Strike","11:Sharpen The Blade","17:Unerring Accuracy"',
+  'Way Of The Sun Soul':
+    'Group=Monk Level=levels.Monk ' +
+    'Features=' +
+      '"3:Radiant Sun Bolt","6:Searing Arc Strike","11:Searing Sunburst",' +
+      '"17:Sun Shield"'
+};
+Xanathar.RACES = {
+};
+Xanathar.SPELLS_ADDED = {
+  'Animate Objects':'Level=Forge5',
+  'Antilife Shell':'Level=Grave5',
+  'Armor Of Agathys':'Level=Conquest1',
+  'Bane':'Level=Grave1',
+  'Banishment':'Level=Horizon4,Slayer4',
+  'Bestow Curse':'Level=Conquest3',
+  'Blight':'Level=Grave4',
+  'Calm Emotions':'Level=Redemption2',
+  'Cloudkill':'Level=Conquest5',
+  'Command':'Level=Conquest1',
+  'Counterspell':'Level=Redemption3',
+  'Creation':'Level=Forge5',
+  'Death Ward':'Level=Grave4',
+  'Disguise Self':'Level=Gloom1',
+  'Dominate Beast':'Level=Conquest4',
+  'Dominate Person':'Level=Conquest5',
+  'Elemental Weapon':'Level=Forge3',
+  'Fabricate':'Level=Forge4',
+  'False Life':'Level=Grave1',
+  'Fear':'Level=Conquest3,Gloom3',
+  'Gentle Repose':'Level=Grave2',
+  'Greater Invisibility':'Level=Gloom4',
+  'Haste':'Level=Horizon3',
+  'Heat Metal':'Level=Forge2',
+  'Hold Monster':'Level=Redemption5,Slayer5',
+  'Hold Person':'Level=Conquest2,Redemption2',
+  'Hypnotic Pattern':'Level=Redemption3',
+  'Identify':'Level=Forge1',
+  'Magic Circle':'Level=Slayer3',
+  'Magic Weapon':'Level=Forge2',
+  'Misty Step':'Level=Horizon2',
+  'Protection From Energy':'Level=Forge3',
+  'Protection From Evil And Good':'Level=Horizon1,Slayer1',
+  'Raise Dead':'Level=Grave5',
+  'Ray Of Enfeeblement':'Level=Grave2',
+  'Resilient Sphere':'Level=Redemption4',
+  'Revivify':'Level=Grave3',
+  'Rope Trick':'Level=Gloom2',
+  'Sanctuary':'Level=Redemption1',
+  'Sleep':'Level=Redemption1',
+  'Searing Smite':'Level=Forge1',
+  'Seeming':'Level=Gloom5',
+  'Spiritual Weapon':'Level=Conquest2',
+  'Stoneskin':'Level=Conquest4,Redemption4',
+  'Teleportation Circle':'Level=Horizon5',
+  'Vampiric Touch':'Level=Grave3',
+  'Wall Of Fire':'Level=Forge4',
+  'Wall Of Force':'Level=Redemption5',
+  'Zone Of Truth':'Level=Slayer2'
+};
+Xanathar.TOOLS = {
+  'Harp':'Type=Music',
+  'Rito Game Set':'Type=Game',
+  'Voice':'Type=Music'
+};
+
+/* Defines rules related to basic character identity. */
+Xanathar.identityRules = function(
+  rules, backgrounds, classSelectables, deities, paths, races
+) {
+
+  QuilvynUtils.checkAttrTable
+    (backgrounds, ['Equipment', 'Features', 'Languages']);
+  QuilvynUtils.checkAttrTable(deities, ['Alignment', 'Domain', 'Sphere']);
+  QuilvynUtils.checkAttrTable
+    (paths, ['Features', 'Selectables', 'Group', 'Level', 'SpellAbility', 'SpellSlots', 'Spells']);
+  QuilvynUtils.checkAttrTable
+    (races, ['Require', 'Features', 'Selectables', 'Languages', 'SpellAbility', 'SpellSlots', 'Spells']);
+
+  for(var background in backgrounds) {
+    rules.choiceRules(rules, 'Background', background, backgrounds[background]);
+  }
+  for(var clas in classSelectables) {
+    SRD5E.featureListRules
+      (rules, classSelectables[clas], clas, 'levels.' + clas, true);
+  }
+  for(var deity in deities) {
+    rules.choiceRules(rules, 'Deity', deity, deities[deity]);
+  }
+  for(var path in paths) {
+    rules.choiceRules(rules, 'Path', path, paths[path]);
+    Xanathar.pathRulesExtra(rules, path);
+  }
+  for(var race in races) {
+    rules.choiceRules(rules, 'Race', race, races[race]);
+  }
+
+};
+
+/* Defines rules related to magic use. */
+Xanathar.magicRules = function(rules, spells) {
+  QuilvynUtils.checkAttrTable(spells, ['School', 'Level', 'Description']);
+  for(var s in spells) {
+    rules.choiceRules
+      (rules, 'Spell', s, (SRD5E.SPELLS[s]||PHB5E.SPELLS[s]) + ' ' + spells[s]);
+  }
+};
+
+/* Defines rules related to character aptitudes. */
+Xanathar.talentRules = function(rules, feats, features, languages, tools) {
+
+  QuilvynUtils.checkAttrTable(feats, ['Require', 'Imply', 'Type']);
+  QuilvynUtils.checkAttrTable(features, ['Section', 'Note']);
+
+  for(var feat in feats) {
+    rules.choiceRules(rules, 'Feat', feat, feats[feat]);
+  }
+  for(var feature in features) {
+    rules.choiceRules(rules, 'Feature', feature, features[feature]);
+  }
+  for(var language in languages) {
+    rules.choiceRules(rules, 'Language', language, languages[language]);
+  }
+  for(var tool in tools) {
+    rules.choiceRules(rules, 'Tool', tool, tools[tool]);
+  }
+
+};
+
+/* Defines the rules related to character classes. */
+Xanathar.pathRulesExtra = function(rules, name) {
+
+  if(name == 'Oath Of Conquest') {
+    rules.defineRule('combatNotes.auraOfConquest',
+      'conquestLevel', '=', 'source >= 18 ? 30 : 10'
+    );
+    rules.defineRule('combatNotes.scornfulRebuke',
+      'charismaModifier', '=', 'Math.max(source, 1)'
+    );
+  } else if(name == 'Way Of The Kensei') {
+    rules.defineRule('combatNotes.deftStrike', 'monkMeleeDieBonus', '=', null);
+  }
+
+};

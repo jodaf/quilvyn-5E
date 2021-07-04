@@ -240,9 +240,11 @@ SRD5E.CLASSES = {
       '"1:Weapon Proficiency (Martial)",' +
       '"1:Second Wind","2:Action Surge","5:Extra Attack",9:Indomitable ' +
     'Selectables=' +
-      '"1:Archery Style","1:Defense Style","1:Dueling Style",' +
-      '"1:Great Weapon Fighting Style","1:Protection Style",' +
-      '"1:Two-Weapon Fighting Style","3:Champion Archetype"',
+      '"1:Fighting Style (Archery)","1:Fighting Style (Defense)",' +
+      '"1:Fighting Style (Dueling)",' +
+      '"1:Fighting Style (Great Weapon Fighting)",' +
+      '"1:Fighting Style (Protection)",' +
+      '"1:Fighting Style (Two-Weapon Fighting)","3:Champion Archetype"',
   'Monk':
     'HitDie=d8 ' +
     'Features=' +
@@ -271,8 +273,9 @@ SRD5E.CLASSES = {
       '"6:Aura Of Protection","10:Aura Of Courage",' +
       '"11:Improved Divine Smite","14:Cleansing Touch" ' +
     'Selectables=' +
-      '"2:Defense Style","2:Dueling Style","2:Great Weapon Fighting Style",' +
-      '"2:Protection Style","3:Oath Of Devotion" ' +
+      '"2:Fighting Style (Defense)","2:Fighting Style (Dueling)",' +
+      '"2:Fighting Style (Great Weapon Fighting)",' +
+      '"2:Fighting Style (Protection)","3:Oath Of Devotion" ' +
     'CasterLevelDivine=levels.Paladin ' +
     'SpellAbility=charisma ' +
     'SpellSlots=' +
@@ -293,8 +296,9 @@ SRD5E.CLASSES = {
       '"10:Hide In Plain Sight","14:Vanish","18:Feral Senses",' +
       '"20:Foe Slayer" ' +
     'Selectables=' +
-      '"2:Archery Style","2:Defense Style","2:Dueling Style",' +
-      '"2:Two-Weapon Fighting Style","3:Hunter Archetype" ' +
+      '"2:Fighting Style (Archery)","2:Fighting Style (Defense)",' +
+      '"2:Fighting Style (Dueling)","2:Fighting Style (Two-Weapon Fighting)",' +
+      '"3:Hunter Archetype" ' +
     'CasterLevelDivine=levels.Ranger ' +
     'SpellAbility=wisdom ' +
     'SpellSlots=' +
@@ -502,8 +506,6 @@ SRD5E.FEATURES = {
     'Section=magic Note="Short rest recovers %V spell slots 1/dy"',
   'Archdruid':
     'Section=magic Note="Unlimited Wild Shape"',
-  'Archery Style':
-    'Section=combat Note="+2 ranged attack"',
   'Armor Of Shadows':
     'Section=magic Note="<i>Mage Armor</i> at will"',
   'Ascendant Step':
@@ -567,8 +569,6 @@ SRD5E.FEATURES = {
     'Section=feature Note="Add d10 to ability or save 1/short rest"',
   "Devil's Sight":
     'Section=feature Note="R120\' See normally in darkness"',
-  'Defense Style':
-    'Section=combat Note="+1 AC in armor"',
   'Deflect Missiles':
     'Section=combat Note="React to reduce missile damage by 1d10+%V"',
   'Destroy Undead':
@@ -606,8 +606,6 @@ SRD5E.FEATURES = {
     'Section=feature Note="Age at 1/10 rate"',
   'Druidic':
     'Section=skill Note="Secret language known only by druids"',
-  'Dueling Style':
-    'Section=combat Note="+2 damage with single, one-hand weapon"',
   'Eldritch Invocations':
     'Section=magic Note="%V"',
   'Eldritch Master':
@@ -659,6 +657,19 @@ SRD5E.FEATURES = {
     'Section=save Note="Resist chosen damage type until next short rest"',
   'Fiendish Vigor':
     'Section=magic Note="Self <i>False Life</i> at will"',
+  'Fighting Style (Archery)':
+    'Section=combat Note="+2 ranged attack"',
+  'Fighting Style (Defense)':
+    'Section=combat Note="+1 AC in armor"',
+  'Fighting Style (Dueling)':
+    'Section=combat Note="+2 damage with single, one-hand weapon"',
+  'Fighting Style (Great Weapon Fighting)':
+    'Section=combat Note="Re-roll damage of 1 or 2 with two-handed weapons"',
+  'Fighting Style (Protection)':
+    'Section=combat ' +
+    'Note="Use shield to impose attack Disadv on adjacent foe atacking ally"',
+  'Fighting Style (Two-Weapon Fighting)':
+    'Section=combat Note="Add ability modifier to second attack damage"',
   'Flexible Casting':
     'Section=magic Note="Convert Sorcery Points to and from spell slots"',
   'Flurry Of Blows':
@@ -675,8 +686,6 @@ SRD5E.FEATURES = {
     'Section=magic Note="Perceive via willing touched senses for 1 turn"',
   'Giant Killer':
     'Section=combat Note="React to attack adjacent lg foe after miss"',
-  'Great Weapon Fighting Style':
-    'Section=combat Note="Re-roll damage of 1 or 2 with two-handed weapons"',
   'Heightened Spell':
     'Section=magic ' +
     'Note="Spend 3 Sorcery Points for target Disadv on spell save"',
@@ -789,9 +798,6 @@ SRD5E.FEATURES = {
   'Primeval Awareness':
     'Section=magic ' +
     'Note="Expend spell to sense creatures in 1 mi (favored terrain 6 mi) for 1 min/spell level"',
-  'Protection Style':
-    'Section=combat ' +
-    'Note="Use shield to impose attack Disadv on adjacent foe atacking ally"',
   'Purity Of Body':
     'Section=save Note="Immune to disease and poison"',
   'Purity Of Spirit':
@@ -903,8 +909,6 @@ SRD5E.FEATURES = {
   'Twinned Spell':
     'Section=magic ' +
     'Note="Spend spell level Sorcery Points to add second target"',
-  'Two-Weapon Fighting Style':
-    'Section=combat Note="Add ability modifier to second attack damage"',
   'Unarmored Movement':
     'Section=ability Note="+%V speed in no armor"',
   'Uncanny Dodge':
@@ -3513,9 +3517,11 @@ SRD5E.classRulesExtra = function(rules, name) {
     rules.defineRule('abilityNotes.jackOfAllTrades',
       'proficiencyBonus', '=', 'Math.floor(source / 2)'
     );
-    rules.defineRule('magicNotes.bardicInspiration',
+    rules.defineRule('bardicInspirationDie',
       'levels.Bard', '=', 'source<20 ? 6 + Math.floor(source / 5) * 2 : 12'
     );
+    rules.defineRule
+      ('magicNotes.bardicInspiration', 'bardicInspirationDie', '=', null);
     rules.defineRule('magicNotes.bardicInspiration.1',
       'charismaModifier', '=', 'Math.max(source, 1)'
     );
@@ -3585,13 +3591,13 @@ SRD5E.classRulesExtra = function(rules, name) {
       'proficiencyBonus', '=', 'Math.ceil(source / 2)'
     );
     rules.defineRule
-      ('attackBonus.Ranged', 'combatNotes.archeryStyle', '+=', '2');
+      ('attackBonus.Ranged', 'combatNotes.fightingStyle(Archery)', '+=', '2');
     rules.defineRule('combatNotes.actionSurge',
       'levels.Fighter', '=', 'source < 17 ? 1 : 2'
     );
-    // Show Defense Style note even if armor == None
-    rules.defineRule('combatNotes.defenseStyle.1',
-      'combatNotes.defenseStyle', '?', null,
+    // Show Fighting Style (Defense) note even if armor == None
+    rules.defineRule('combatNotes.fightingStyle(Defense).1',
+      'combatNotes.fightingStyle(Defense)', '?', null,
       'armor', '=', 'source == "None" ? null : 1'
     );
     rules.defineRule('combatNotes.extraAttack',
@@ -3696,10 +3702,11 @@ SRD5E.classRulesExtra = function(rules, name) {
 
   } else if(name == 'Paladin') {
 
-    rules.defineRule('armorClass', 'combatNotes.defenseStyle.1', '+', null);
-    // Show Defense Style note even if armor == None
-    rules.defineRule('combatNotes.defenseStyle.1',
-      'combatNotes.defenseStyle', '?', null,
+    rules.defineRule
+      ('armorClass', 'combatNotes.fightingStyle(Defense).1', '+', null);
+    // Show Fighting Style (Defense) note even if armor == None
+    rules.defineRule('combatNotes.fightingStyle(Defense).1',
+      'combatNotes.fightingStyle(Defense)', '?', null,
       'armor', '=', 'source == "None" ? null : 1'
     );
     rules.defineRule('combatNotes.extraAttack',
@@ -3735,17 +3742,18 @@ SRD5E.classRulesExtra = function(rules, name) {
 
   } else if(name == 'Ranger') {
 
-    rules.defineRule('armorClass', 'combatNotes.defenseStyle.1', '+', null);
-    // Show Defense Style note even if armor == None
-    rules.defineRule('combatNotes.defenseStyle.1',
-      'combatNotes.defenseStyle', '?', null,
+    rules.defineRule
+      ('armorClass', 'combatNotes.fightingStyle(Defense).1', '+', null);
+    // Show Fighting Style (Defense) note even if armor == None
+    rules.defineRule('combatNotes.fightingStyle(Defense).1',
+      'combatNotes.fightingStyle(Defense)', '?', null,
       'armor', '=', 'source == "None" ? null : 1'
     );
     rules.defineRule('combatNotes.extraAttack',
       'levels.Ranger', '+=', 'source < 5 ? null : 1'
     );
     rules.defineRule
-      ('attackBonus.Ranged', 'combatNotes.archeryStyle', '+=', '2');
+      ('attackBonus.Ranged', 'combatNotes.fightingStyle(Archery)', '+=', '2');
     rules.defineRule('skillNotes.favoredEnemy',
       'levels.Ranger', '=', 'source < 6 ? 1 : source < 14 ? 2 : 3'
     );

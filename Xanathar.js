@@ -85,15 +85,36 @@ Xanathar.FEATS = {
 Xanathar.FEATURES = {
   'Agile Parry':
     'Section=combat Note="+2 AC w/Kensei melee weapon after unarmed attack"',
+  'Ancestral Protectors':
+    'Section=combat ' +
+    'Note="First target in rage hindered fighting others (Disadv attack, damage resistance)"',
+  "Artisan's Blessing":
+    'Section=magic Note="Craft up to 100 GP metal item in 1 hr"',
   'Aura Of Conquest':
     'Section=combat Note="R%V\' Frightened foes unable to move"',
+  'Blessing Of The Forge':
+    'Section=magic ' +
+    'Note="Touched weapon or armor +1 until long rest 1/long rest"',
   'Celestial Radiance':
     'Section=save Note="Resistant necrotic, radiant damage"',
   'Conquering Presence':
     'Section=magic ' +
     'Note="R30\' Channel Divinity to frighten for 1 min (Wis neg)"',
+  'Consult The Spirits':
+    'Section=magic ' +
+    'Note="<i>Augury</i> or <i>Clairvoyance</i> via spirits 1/long rest"',
+  'Defensive Flourish':
+    'Section=combat ' +
+    'Note="Spend 1 Bardic Inspiration for +%V HP damage and +%V AC for 1 tn"',
   'Deft Strike':
     'Section=combat Note="Spend 1 Ki for +%V damage with Kensei weapon"',
+  'Divine Fury':
+    'Section=combat ' +
+    'Note="First hit during range +1d6+%V HP necrotic or radiant"',
+  'Enthralling Performance':
+    'Section=magic ' +
+    'Note="1 min performance charms %V listeners for 1 hr (DC %1 Will neg) 1/long rest"',
+  'Fanatical Focus':'Section=save Note="Reroll failed save 1/rage"',
   'Guided Strike':
     'Section=combat Note="Channel Divinity gives +10 attack"',
   'Invincible Conqueror':
@@ -103,13 +124,89 @@ Xanathar.FEATURES = {
     'Section=combat Note="+1d4 damage with ranged Kensei weapon"',
   'Magic Kensei Weapons':
     'Section=combat Note="Kensei attacks are magical"',
+  'Mantle Of Inspiriation':
+    'Section=magic ' +
+    'Note="R60\' Bardic inspiration gives %1 targets %V temporary HP and immediate move w/out AOO"',
+  'Mantle Of Majesty':
+    'Section=magic Note="Cast <i>Command</i> 1/tn for 1 min 1/long rest"',
+  'Mantle Of Whispers':
+    'Section=magic ' +
+    'Note="R30\' Capture dying person\'s shadow to use as disguise, Insight vs. +5 Deception to see through"',
+  "Master's Flourish":
+    'Section=combat Note="Use d6 instead of Bardic Inspiration for flourish"',
+  'Mobile Flourish':
+    'Section=combat ' +
+    'Note="Use 1 Bardic Inspiration for +%V HP damage and 5\'+d%V\' push"',
+  'Psychic Blades':
+    'Section=combat ' +
+    'Note="Use 1 Bardic Inspiration for +%Vd6 HP psychic damage 1/tn"',
+  'Rage Beyond Death':
+    'Section=combat Note="Remain conscious at 0 HP until rage ends"',
+  'Raging Storm (Desert)':
+    'Section=combat ' +
+    'Note="Foe takes %V HP fire after melee hit (DC %1 Dex neg)"',
+  'Raging Storm (Sea)':
+    'Section=combat ' +
+    'Note="Your hit knocks foe prone (DC %V Str neg)"',
+  'Raging Storm (Tundra)':
+    'Section=magic ' +
+    'Note="Storm Aura prevents target movement for 1 tn (DC %V Str neg)"',
+  'Saint Of Forge And Fire':
+    'Section=combat,save ' +
+    'Note="Resistance non-magical bludgeoning, piercing, slashing in heavy armor",' +
+         '"Immunity fire"',
   'Scornful Rebuke':
     'Section=combat Note="Foes striking self take %V HP psychic damage"',
+  'Shadow Lore':
+    'Section=magic Note="R30\' Target obeys commands for 8 hr (DC %V Wis neg)"',
   'Sharpen The Blade':
     'Section=combat ' +
     'Note="Spend 1-3 Ki to gain equal bonus to Kensei weapon attack and damage"',
+  'Shielding Storm':
+    'Section=magic Note="R10\' Targets gain Storm Soul resistance"',
+  'Slashing Flourish':
+    'Section=combat ' +
+    'Note="Use 1 Bardic Inspiration for +%V HP damage to target and adjacent foe"',
+  'Soul Of The Forge':
+    'Section=combat,save ' +
+    'Note="+1 AC in heavy armor","Resistance fire damage"',
+  'Spirit Shield':
+    'Section=combat Note="R30\' Reduce damage to ally by %Vd6"',
+  'Storm Aura (Desert)':
+    'Section=magic Note="R10\' %V HP fire damage during rage"',
+  'Storm Aura (Sea)':
+    'Section=magic Note="R10\' Lightning %Vd6 HP (DC %1 Dex half)"',
+  'Storm Aura (Tundra)':
+    'Section=magic Note="R10\' Chosen targets %V tempoary HP"',
+  'Storm Soul (Desert)':
+    'Section=magic,save ' +
+    'Note="Touch lights unpossessed flammable object",' +
+         '"Resist fire, unaffected by extreme heat"',
+  'Storm Soul (Sea)':
+    'Section=ability,feature,save ' +
+    'Note="30\' Swim",' +
+         '"Breathe underwater",' +
+         '"Resist lightning"',
+  'Storm Soul (Tundra)':
+    'Section=magic,save ' +
+    'Note="Touch freezes unoccupied 5\' cu water",' +
+         '"Resist cold, unaffected by extreme cold"',
+  'Unbreakable Majesty':
+    'Section=magic Note="Foe cannot attack you (DC %V Cha neg)"',
   'Unerring Accuracy':
-    'Section=combat Note="Reroll monk weapon miss 1/turn"'
+    'Section=combat Note="Reroll monk weapon miss 1/turn"',
+  'Vengeful Ancestors':
+    'Section=combat ' +
+    'Note="Damage prevented by Spirit Shield turned back on attacker"',
+  'Warrior Of The Gods':
+    'Section=feature ' +
+    'Note="Life-restoring spell to self needs no material component"',
+  'Words Of Terror':
+    'Section=magic ' +
+    'Note="1 min conversation frightens for 1 hr (DC %V Wisdom neg)"',
+  'Zealous Presence':
+    'Section=combat ' +
+    'Note="R60\' Battle cry gives 10 targets Adv attack and save 1/long rest"'
 };
 Xanathar.LANGUAGES = {
 };
@@ -153,7 +250,7 @@ Xanathar.PATHS = {
       '"3:Defensive Flourish","3:Mobile Flourish","3:Slashing Flourish",' +
       '"6:Extra Attack","14:Master\'s Flourish" ' +
     'Selectables=' +
-      '"3:Dueling Style","3:Two-Weapon Fighting Style"',
+      '"3:Fighting Style (Dueling)","3:Fighting Style (Two-Weapon Fighting)"',
   'College Of Whispers':
     'Group=Bard Level=levels.Bard ' +
     'Features=' +
@@ -272,7 +369,15 @@ Xanathar.PATHS = {
   'Path Of The Storm Herald':
     'Group=Barbarian Level=levels.Barbarian ' +
     'Features=' +
-      '"3:Storm Aura","6:Storm Soul","10:Shielding Storm","14:Raging Storm"',
+      '"features.Storm Aura (Desert) ? 6:Storm Soul (Desert)",' +
+      '"features.Storm Aura (Sea) ? 6:Storm Soul (Sea)",' +
+      '"features.Storm Aura (Tundra) ? 6:Storm Soul (Tundra)",' +
+      '"10:Shielding Storm",' +
+      '"features.Storm Aura (Desert) ? 14:Raging Storm (Desert)",' +
+      '"features.Storm Aura (Sea) ? 14:Raging Storm (Sea)",' +
+      '"features.Storm Aura (Tundra) ? 14:Raging Storm (Tundra)" ' +
+    'Selectables=' +
+      '"3:Storm Aura (Desert)","3:Storm Aura (Sea)","3:Storm Aura (Tundra)"',
   'Path Of The Zealot':
     'Group=Barbarian Level=levels.Barbarian ' +
     'Features=' +
@@ -460,13 +565,82 @@ Xanathar.talentRules = function(rules, feats, features, languages, tools) {
 /* Defines the rules related to character classes. */
 Xanathar.pathRulesExtra = function(rules, name) {
 
-  if(name == 'Oath Of Conquest') {
-    rules.defineRule('combatNotes.auraOfConquest',
-      'conquestLevel', '=', 'source >= 18 ? 30 : 10'
+  var pathLevel =
+    name.charAt(0).toLowerCase() + name.substring(1).replaceAll(' ', '') +
+    'Level';
+
+  if(name == 'College Of Glamour') {
+    rules.defineRule('magicNotes.enthrallingPerformance',
+      'charismaModifier', '=', 'Math.max(source, 1)'
     );
+    rules.defineRule('magicNotes.mantleOfInspiration',
+      pathLevel, '=', 'Math.min(Math.floor(source / 5) * 3 + 5, 14)'
+    );
+    rules.defineRule
+      ('magicNotes.unbreakableMajesty', 'spellDifficultyClass.B', '=', null);
+  } else if(name == 'College Of Swords') {
+    rules.defineRule
+      ('combatNotes.defensiveFlourish', 'bardicInspirationDie', '=', null);
+    rules.defineRule
+      ('combatNotes.extraAttack', pathLevel, '+=', 'source>=6 ? 1 : null');
+    rules.defineRule
+      ('combatNotes.mobileFlourish', 'bardicInspirationDie', '=', null);
+    rules.defineRule
+      ('combatNotes.slashingFlourish', 'bardicInspirationDie', '=', null);
+  } else if(name == 'College Of Whispers') {
+    rules.defineRule('combatNotes.psychicBlades',
+      pathLevel, '=', 'source>=15 ? 8 : source>=10 ? 5 : source>=5 ? 3 : 2'
+    );
+    rules.defineRule
+      ('magicNotes.shadowLore', 'spellDifficultyClass.B', '=', null);
+    rules.defineRule
+      ('magicNotes.wordsOfTerror', 'spellDifficultyClass.B', '=', null);
+  } else if(name == 'Forge Domain') {
+    rules.defineRule('armorClass', 'combatNotes.soulOfTheForge.1', '+', null);
+    // Show Soul Of The Forge note even when not in heavy harmor
+    rules.defineRule('combatNotes.soulOfTheForge.1',
+      'combatNotes.soulOfTheForge', '?', null,
+      'armorWeight', '=', 'source == 3 ? 1 : null'
+    );
+  } else if(name == 'Oath Of Conquest') {
+    rules.defineRule
+      ('combatNotes.auraOfConquest', pathLevel, '=', 'source>=18 ? 30 : 10');
     rules.defineRule('combatNotes.scornfulRebuke',
       'charismaModifier', '=', 'Math.max(source, 1)'
     );
+  } else if(name == 'Path Of The Ancestral Guardian') {
+    rules.defineRule('combatNotes.spiritShield',
+      pathLevel, '=', 'source>=14 ? 4 : source>=10 ? 3 : 2'
+    );
+  } else if(name == 'Path Of The Storm Herald') {
+    rules.defineRule('combatNotes.ragingStorm(Desert)',
+      pathLevel, '=', 'Math.floor(source / 2)'
+    );
+    rules.defineRule('combatNotes.ragingStorm(Desert).1',
+      'proficiencyBonus', '=', '8 + source',
+      'constitutionModifier', '+', null
+    );
+    rules.defineRule('combatNotes.ragingStorm(Sea)',
+      'proficiencyBonus', '=', '8 + source',
+      'constitutionModifier', '+', null
+    );
+    rules.defineRule('combatNotes.ragingStorm(Tundra)',
+      'proficiencyBonus', '=', '8 + source',
+      'constitutionModifier', '+', null
+    );
+    rules.defineRule('selectableFeatureCount.Barbarian', pathLevel, '+', '1');
+    rules.defineRule('magicNotes.stormAura(Desert)',
+      pathLevel, '=', 'Math.floor(source / 5) + 2'
+    );
+    rules.defineRule('magicNotes.stormAura(Sea)',
+      pathLevel, '=', 'Math.floor(source / 5) + 1'
+    );
+    rules.defineRule('magicNotes.stormAura(Tundra)',
+      pathLevel, '=', 'Math.floor(source / 5) + 2'
+    );
+  } else if(name == 'Path Of The Zealot') {
+    rules.defineRule
+      ('combatNotes.divineFury', pathLevel, '=', 'Math.floor(source / 2)');
   } else if(name == 'Way Of The Kensei') {
     rules.defineRule('combatNotes.deftStrike', 'monkMeleeDieBonus', '=', null);
   }

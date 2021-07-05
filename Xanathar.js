@@ -92,11 +92,19 @@ Xanathar.FEATURES = {
     'Section=magic Note="Craft up to 100 GP metal item in 1 hr"',
   'Aura Of Conquest':
     'Section=combat Note="R%V\' Frightened foes unable to move"',
+  'Balm Of The Summer Court':
+    'Section=magic ' +
+    'Note="Distribute %Vd6 HP healing and %V temporary HP to targets 1/long rest"',
+  'Blade Flourish':
+    'Section=combat Note="+10\' move and flourish during attack 1/tn"',
   'Blessing Of The Forge':
     'Section=magic ' +
     'Note="Touched weapon or armor +1 until long rest 1/long rest"',
   'Celestial Radiance':
     'Section=save Note="Resistant necrotic, radiant damage"',
+  'Circle Of Mortality':
+    'Section=magic ' +
+    'Note="Cure spells maximized for unconscious targets, <i>Spare the Dying</i> cantrip"',
   'Conquering Presence':
     'Section=magic ' +
     'Note="R30\' Channel Divinity to frighten for 1 min (Wis neg)"',
@@ -114,17 +122,32 @@ Xanathar.FEATURES = {
   'Enthralling Performance':
     'Section=magic ' +
     'Note="1 min performance charms %V listeners for 1 hr (DC %1 Will neg) 1/long rest"',
+  'Eyes Of The Grave':
+    'Section=magic Note="R60\' Detect undead for 1 tn %V/long rest"',
+  'Faithful Summons':
+    'Section=magic ' +
+    'Note="4 creatures summoned when self incapacitated for 1 hr 1/long rest"',
   'Fanatical Focus':'Section=save Note="Reroll failed save 1/rage"',
+  'Guardian Spirit':
+    'Section=magic Note="Summoned creatures w/in Spirit Totam aura heal %V HP"',
   'Guided Strike':
     'Section=combat Note="Channel Divinity gives +10 attack"',
+  'Hearth Of Moonlight And Shadow':
+    'Section=magic ' +
+    'Note="30\' radius total cover, +5 Dex (Stealth) and Wis (Perception) during rest"',
+  'Hidden Paths':
+    'Section=magic ' +
+    'Note="Teleport self 60\', willing touched 30\' %V/long rest"',
   'Invincible Conqueror':
     'Section=combat ' +
     'Note="Damage resistance, extra attack, crit on 19 1/long rest"',
+  'Keeper Of Souls':
+    'Section=magic Note="R60\' Dying target yields HD HP to another 1/tn"',
   "Kensei's Shot":
     'Section=combat Note="+1d4 damage with ranged Kensei weapon"',
   'Magic Kensei Weapons':
     'Section=combat Note="Kensei attacks are magical"',
-  'Mantle Of Inspiriation':
+  'Mantle Of Inspiration':
     'Section=magic ' +
     'Note="R60\' Bardic inspiration gives %1 targets %V temporary HP and immediate move w/out AOO"',
   'Mantle Of Majesty':
@@ -134,9 +157,13 @@ Xanathar.FEATURES = {
     'Note="R30\' Capture dying person\'s shadow to use as disguise, Insight vs. +5 Deception to see through"',
   "Master's Flourish":
     'Section=combat Note="Use d6 instead of Bardic Inspiration for flourish"',
+  'Mighty Summoner':
+    'Section=magic Note="Summoned creatures +2 HP/HD and magical attacks"',
   'Mobile Flourish':
     'Section=combat ' +
     'Note="Use 1 Bardic Inspiration for +%V HP damage and 5\'+d%V\' push"',
+  'Path To The Grave':
+    'Section=magic Note="R30\' Target vulnerable to all attacks for 1 tn"',
   'Psychic Blades':
     'Section=combat ' +
     'Note="Use 1 Bardic Inspiration for +%Vd6 HP psychic damage 1/tn"',
@@ -157,6 +184,8 @@ Xanathar.FEATURES = {
          '"Immunity fire"',
   'Scornful Rebuke':
     'Section=combat Note="Foes striking self take %V HP psychic damage"',
+  "Sentinel At Death's Door":
+    'Section=magic Note="R30\' Negate critical %V/long rest"',
   'Shadow Lore':
     'Section=magic Note="R30\' Target obeys commands for 8 hr (DC %V Wis neg)"',
   'Sharpen The Blade':
@@ -170,8 +199,18 @@ Xanathar.FEATURES = {
   'Soul Of The Forge':
     'Section=combat,save ' +
     'Note="+1 AC in heavy armor","Resistance fire damage"',
+  'Speech Of The Woods':'Section=skill Note="Learn sylvan, speak w/beasts"',
   'Spirit Shield':
     'Section=combat Note="R30\' Reduce damage to ally by %Vd6"',
+  'Spirit Totem (Bear)':
+    'Section=magic ' +
+    'Note="R60\' Targets in 30\' radius %V temporary HP, Adv Str for 1/min 1/short rest"',
+  'Spirit Totem (Hawk)':
+    'Section=magic ' +
+    'Note="R60\' Targets in 30\' radius Adv attack and Wis (Perception) for 1/min 1/short rest"',
+  'Spirit Totem (Unicorn)':
+    'Section=magic ' +
+    'Note="R60\' Allies Adv to detect creatures in 30\' for 1/min, targets heal %V HP 1/short rest"',
   'Storm Aura (Desert)':
     'Section=magic Note="R10\' %V HP fire damage during rage"',
   'Storm Aura (Sea)':
@@ -198,6 +237,8 @@ Xanathar.FEATURES = {
   'Vengeful Ancestors':
     'Section=combat ' +
     'Note="Damage prevented by Spirit Shield turned back on attacker"',
+  'Walker In Dreams':
+    'Section=magic Note="After short rest, cast <i>Dream</i>, <i>Scrying</i>, or <i>Teleportation Circle</i> connected to last long rest place 1/long rest"',
   'Warrior Of The Gods':
     'Section=feature ' +
     'Note="Life-restoring spell to self needs no material component"',
@@ -229,26 +270,27 @@ Xanathar.PATHS = {
     'Group=Druid ' +
     'Level=levels.Druid ' +
     'Features=' +
-      '"2:Balm Of The Summer Court","6:Hearth Of Moonight And Shadow",' +
+      '"2:Balm Of The Summer Court","6:Hearth Of Moonlight And Shadow",' +
       '"10:Hidden Paths","14:Walker In Dreams"',
   'Circle Of The Shepherd':
     'Group=Druid ' +
     'Level=levels.Druid ' +
     'Features=' +
-      '"2:Speech Of The Woods","2:Spirit Totem","6:Mighty Summoner",' +
-      '"10:Guardian Spirit","14:Faithful Summons"',
+      '"2:Speech Of The Woods","2:Spirit Totem (Bear)",' +
+      '"2:Spirit Totem (Hawk)","2:Spirit Totem (Unicorn)",' +
+      '"6:Mighty Summoner","10:Guardian Spirit","14:Faithful Summons"',
   'College Of Glamour':
     'Group=Bard Level=levels.Bard ' +
     'Features=' +
-      '"3:Enthralling Performance","3:Mantle Off Inspiration",' +
+      '"3:Enthralling Performance","3:Mantle Of Inspiration",' +
       '"6:Mantle Of Majesty","14:Unbreakable Majesty"',
   'College Of Swords':
     'Group=Bard Level=levels.Bard ' +
     'Features=' +
       '"3:Armor Proficiency (Medium)",' +
       '"3:Weapon Proficiency (Scimtar)",' +
-      '"3:Defensive Flourish","3:Mobile Flourish","3:Slashing Flourish",' +
-      '"6:Extra Attack","14:Master\'s Flourish" ' +
+      '"3:Blade Flourish","3:Defensive Flourish","3:Mobile Flourish",' +
+      '"3:Slashing Flourish","6:Extra Attack","14:Master\'s Flourish" ' +
     'Selectables=' +
       '"3:Fighting Style (Dueling)","3:Fighting Style (Two-Weapon Fighting)"',
   'College Of Whispers':
@@ -569,12 +611,32 @@ Xanathar.pathRulesExtra = function(rules, name) {
     name.charAt(0).toLowerCase() + name.substring(1).replaceAll(' ', '') +
     'Level';
 
-  if(name == 'College Of Glamour') {
+  if(name == 'Circle Of Dreams') {
+    rules.defineRule('magicNotes.balmOfTheSummerCourt', pathLevel, '=', null);
+    rules.defineRule
+      ('magicNotes.hiddenPaths', 'wisdomModifier', '=', 'Math.max(source, 1)');
+  } else if(name == 'Circle Of The Shepherd') {
+    rules.defineRule
+      ('languages.Sylvan', pathLevel, '=', 'source>=2 ? 1 : null');
+    rules.defineRule
+      ('magicNotes.spiritTotem(Bear)', pathLevel, '=', '5 + source');
+    rules.defineRule('magicNotes.spiritTotem(Unicorn)', pathLevel, '=', null);
+    rules.defineRule
+      ('magicNotes.guardianSpirit', pathLevel, '=', 'Math.floor(source / 2)');
+  } else if(name == 'College Of Glamour') {
     rules.defineRule('magicNotes.enthrallingPerformance',
       'charismaModifier', '=', 'Math.max(source, 1)'
     );
+    rules.defineRule('magicNotes.enthrallingPerformance.1',
+      'features.Enthralling Performance', '?', null,
+      'spellDifficultyClass.B', '=', null
+    );
     rules.defineRule('magicNotes.mantleOfInspiration',
       pathLevel, '=', 'Math.min(Math.floor(source / 5) * 3 + 5, 14)'
+    );
+    rules.defineRule('magicNotes.mantleOfInspiration.1',
+      'features.Mantle Of Inspiration', '?', null,
+      'charismaModifier', '=', 'Math.max(source, 1)'
     );
     rules.defineRule
       ('magicNotes.unbreakableMajesty', 'spellDifficultyClass.B', '=', null);
@@ -587,6 +649,7 @@ Xanathar.pathRulesExtra = function(rules, name) {
       ('combatNotes.mobileFlourish', 'bardicInspirationDie', '=', null);
     rules.defineRule
       ('combatNotes.slashingFlourish', 'bardicInspirationDie', '=', null);
+    rules.defineRule('selectableFeatureCount.Bard', pathLevel, '+', '1');
   } else if(name == 'College Of Whispers') {
     rules.defineRule('combatNotes.psychicBlades',
       pathLevel, '=', 'source>=15 ? 8 : source>=10 ? 5 : source>=5 ? 3 : 2'
@@ -601,6 +664,15 @@ Xanathar.pathRulesExtra = function(rules, name) {
     rules.defineRule('combatNotes.soulOfTheForge.1',
       'combatNotes.soulOfTheForge', '?', null,
       'armorWeight', '=', 'source == 3 ? 1 : null'
+    );
+  } else if(name == 'Grave Domain') {
+    rules.defineRule('magicNotes.eyesOfTheGrave',
+      'wisdomModifier', '=', 'Math.max(source, 1)'
+    );
+    rules.defineRule
+      ('magicNotes.potentSpellcasting', 'wisdomModifier', '=', null);
+    rules.defineRule("magicNotes.sentinelAtDeath'sDoor",
+      'wisdomModifier', '=', 'Math.max(source, 1)'
     );
   } else if(name == 'Oath Of Conquest') {
     rules.defineRule
@@ -624,7 +696,7 @@ Xanathar.pathRulesExtra = function(rules, name) {
       'proficiencyBonus', '=', '8 + source',
       'constitutionModifier', '+', null
     );
-    rules.defineRule('combatNotes.ragingStorm(Tundra)',
+    rules.defineRule('magicNotes.ragingStorm(Tundra)',
       'proficiencyBonus', '=', '8 + source',
       'constitutionModifier', '+', null
     );
@@ -634,6 +706,11 @@ Xanathar.pathRulesExtra = function(rules, name) {
     );
     rules.defineRule('magicNotes.stormAura(Sea)',
       pathLevel, '=', 'Math.floor(source / 5) + 1'
+    );
+    rules.defineRule('magicNotes.stormAura(Sea).1',
+      'features.Storm Aura (Sea)', '?', null,
+      'proficiencyBonus', '=', '8 + source',
+      'constitutionModifier', '+', null
     );
     rules.defineRule('magicNotes.stormAura(Tundra)',
       pathLevel, '=', 'Math.floor(source / 5) + 2'

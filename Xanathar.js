@@ -48,37 +48,51 @@ function Xanathar() {
 Xanathar.BACKGROUNDS = {
 };
 Xanathar.CLASS_SELECTABLES = {
-  'Barbarian':
-    ['3:Path Of The Ancestral Guardian', '3:Path Of The Storm Herald',
-     '3:Path Of The Zealot'],
-  'Bard':
-    ['3:College Of Glamour', '3:College Of Swords', '3:College Of Whispers'],
-  'Cleric':
-    ['1:Forge Domain', '1:Grave Domain'],
-  'Druid':
-    ['2:Circle Of Dreams', '2:Circle Of The Shepherd'],
-  'Fighter':
-    ['3:Arcane Archer Archetype', '3:Cavalier Archetype',
-     '3:Samurai Archetype '],
-  'Monk':
-    ['3:Way Of The Drunken Master', '3:Way Of The Kensai',
-     '3:Way Of The Sun Soul'],
-  'Paladin':
-    ['3:Oath Of Conquest', '3:Oath Of Redemption'],
-  'Ranger':
-    ['3:Gloom Stalker Archetype', '3:Horizon Walker Archetype',
-     '3:Monster Slayer Archetype'],
-  'Rogue':
-    ['3:Inquisitive Archetype', '3:Mastermind Archetype', '3:Scout Archetype',
-     '3:Swashbuckler Archetype'],
-  'Sorcerer':
-    ['1:Divine Soul Origin', '1:Shadow Magic Origin', '1:Storm Sorcery Origin'],
-  'Warlock':
-    ['1:The Celestial Patron', '1:The Hexblade Patron'],
-  'Wizard':
-    ['2:War Magic Tradition']
+  'Barbarian':[
+    '3:Path Of The Ancestral Guardian', '3:Path Of The Storm Herald',
+    '3:Path Of The Zealot'
+  ],
+  'Bard':[
+    '3:College Of Glamour', '3:College Of Swords', '3:College Of Whispers'
+  ],
+  'Cleric':['1:Forge Domain', '1:Grave Domain'],
+  'Druid':['2:Circle Of Dreams', '2:Circle Of The Shepherd'],
+  'Fighter':[
+    '3:Arcane Archer:Archetype', '3:Cavalier:Archetype', '3:Samurai:Archetype',
+    '3:Banishing Arrow:Arcane Shot', '3:Beguiling Arrow:Arcane Shot',
+    '3:Bursting Arrow:Arcane Shot', '3:Enfeebling Arrow:Arcane Shot',
+    '3:Grasping Arrow:Arcane Shot', '3:Piercing Arrow:Arcane Shot',
+    '3:Seeking Arrow:Arcane Shot', '3:Shadow Arrow:Arcane Shot'
+  ],
+  'Monk':[
+    '3:Way Of The Drunken Master:Tradition', '3:Way Of The Kensai:Tradition',
+    '3:Way Of The Sun Soul:Tradition'
+  ],
+  'Paladin':['3:Oath Of Conquest:Oath', '3:Oath Of Redemption:Oath'],
+  'Ranger':[
+    '3:Gloom Stalker:Archetype', '3:Horizon Walker:Archetype',
+    '3:Monster Slayer:Archetype'
+  ],
+  'Rogue':['3:Inquisitive', '3:Mastermind', '3:Scout', '3:Swashbuckler'],
+  'Sorcerer':[
+    '1:Divine Soul:Origin', '1:Shadow Magic:Origin', '1:Storm Sorcery:Origin'
+  ],
+  'Warlock':['1:The Celestial:Patron', '1:The Hexblade:Patron'],
+  'Wizard':['2:War Magic']
 };
 Xanathar.DEITIES = {
+  'Celtic-Goibhniu':'Domain=Forge',
+  //'Dragonlance-Reorx':'Domain=Forge',
+  //'Eberron-Onatar':'Domain=Forge',
+  //'Eberron-The Undying Court':'Domain=Grave',
+  'Egyptian-Anubis':'Domain=Grave',
+  'Egyptian-Osiris':'Domain=Grave',
+  'FR-Gond':'Domain=Forge',
+  'FR-Kelemvor':'Domain=Grave',
+  'Greek-Hades':'Domain=Grave',
+  'Greek-Hephaestus':'Domain=Forge',
+  'Greyhawk-Wee Jas':'Domain=Grave',
+  'NH-Moradin':'Domain=Forge'
 };
 Xanathar.FEATS = {
 };
@@ -88,6 +102,10 @@ Xanathar.FEATURES = {
   'Ancestral Protectors':
     'Section=combat ' +
     'Note="First target in rage hindered fighting others (Disadv attack, damage resistance)"',
+  'Arcane Archer Lore':
+    'Section=magic ' +
+    'Note="Know <i>Druidcraft</i> or <i>Prestidigitation</i> cantrip"',
+  'Arcane Shot':'Section=combat Note="Use 1 of %V effects 1/tn 2/short rest"',
   "Artisan's Blessing":
     'Section=magic Note="Craft up to 100 GP metal item in 1 hr"',
   'Aura Of Conquest':
@@ -95,11 +113,21 @@ Xanathar.FEATURES = {
   'Balm Of The Summer Court':
     'Section=magic ' +
     'Note="Distribute %Vd6 HP healing and %V temporary HP to targets 1/long rest"',
+  'Banishing Arrow':
+    'Section=combat ' +
+    'Note="+%Vd6 HP force damage, send target to Feywild until next turn (DC %1 neg)"',
+  'Beguiling Arrow':
+    'Section=combat ' +
+    'Note="+%Vd6 HP psychic damage, target charmed by R30\' ally (DC %V Wis neg)"',
   'Blade Flourish':
     'Section=combat Note="+10\' move and flourish during attack 1/tn"',
   'Blessing Of The Forge':
     'Section=magic ' +
     'Note="Touched weapon or armor +1 until long rest 1/long rest"',
+  'Born To The Saddle':
+    'Section=skill ' +
+    'Note="Adv falling off mount, no damage 10\' fall, dis/mount costs 5\' move"',
+  'Bursting Arrow':'Section=combat Note="10\' diameter %Vd6 HP force damage"',
   'Celestial Radiance':
     'Section=save Note="Resistant necrotic, radiant damage"',
   'Circle Of Mortality':
@@ -119,15 +147,31 @@ Xanathar.FEATURES = {
   'Divine Fury':
     'Section=combat ' +
     'Note="First hit during range +1d6+%V HP necrotic or radiant"',
+  'Elegant Courtier':
+    'Section=save,skill ' +
+    // TODO Choice of Int, Cha if already has Wis
+    'Note="Save Proficiency (Wisdom)","+%V Persuasion"',
+  'Enfeebling Arrow':
+    'Section=combat ' +
+    'Note="+%Vd6 HP necrotic damage, damage by target halved 1 tn (DC %V Con neg)"',
   'Enthralling Performance':
     'Section=magic ' +
     'Note="1 min performance charms %V listeners for 1 hr (DC %1 Will neg) 1/long rest"',
+  'Ever-Ready Shot':'Section=combat Note="Min 1 Arcane Shot after Initiative"',
   'Eyes Of The Grave':
     'Section=magic Note="R60\' Detect undead for 1 tn %V/long rest"',
   'Faithful Summons':
     'Section=magic ' +
     'Note="4 creatures summoned when self incapacitated for 1 hr 1/long rest"',
   'Fanatical Focus':'Section=save Note="Reroll failed save 1/rage"',
+  'Ferocious Charger':
+    'Section=combat ' +
+    'Note="Hit after 10\' move knocks prone 1/tn (DC %V Str neg)"',
+  'Fighting Spirit':
+    'Section=combat Note="Adv attack, %V temporary HP for 1 tn 3/long rest"',
+  'Grasping Arrow':
+    'Section=combat ' +
+    'Note="+%V6 HP poison damage, target move -10\' + %Vd6 HP slashing damage for 1 min or successful DC %V Athletics check"',
   'Guardian Spirit':
     'Section=magic Note="Summoned creatures w/in Spirit Totam aura heal %V HP"',
   'Guided Strike':
@@ -138,6 +182,9 @@ Xanathar.FEATURES = {
   'Hidden Paths':
     'Section=magic ' +
     'Note="Teleport self 60\', willing touched 30\' %V/long rest"',
+  'Hold The Line':
+    'Section=combat ' +
+    'Note="R5\' Move provokes opportunity attack, hit negates move"',
   'Invincible Conqueror':
     'Section=combat ' +
     'Note="Damage resistance, extra attack, crit on 19 1/long rest"',
@@ -145,6 +192,7 @@ Xanathar.FEATURES = {
     'Section=magic Note="R60\' Dying target yields HD HP to another 1/tn"',
   "Kensei's Shot":
     'Section=combat Note="+1d4 damage with ranged Kensei weapon"',
+  'Magic Arrow':'Section=combat Note="Arrows count as magic weapons"',
   'Magic Kensei Weapons':
     'Section=combat Note="Kensei attacks are magical"',
   'Mantle Of Inspiration':
@@ -164,6 +212,9 @@ Xanathar.FEATURES = {
     'Note="Use 1 Bardic Inspiration for +%V HP damage and 5\'+d%V\' push"',
   'Path To The Grave':
     'Section=magic Note="R30\' Target vulnerable to all attacks for 1 tn"',
+  'Piercing Arrow':
+    'Section=combat ' +
+    'Note="+%Vd6 HP damage to targets in 30\'x1\' line (DC %V Dex half)"',
   'Psychic Blades':
     'Section=combat ' +
     'Note="Use 1 Bardic Inspiration for +%Vd6 HP psychic damage 1/tn"',
@@ -178,14 +229,21 @@ Xanathar.FEATURES = {
   'Raging Storm (Tundra)':
     'Section=magic ' +
     'Note="Storm Aura prevents target movement for 1 tn (DC %V Str neg)"',
+  'Rapid Strike':'Section=combat Note="Trade Attack Adv for extra attack 1/tn"',
   'Saint Of Forge And Fire':
     'Section=combat,save ' +
     'Note="Resistance non-magical bludgeoning, piercing, slashing in heavy armor",' +
          '"Immunity fire"',
   'Scornful Rebuke':
     'Section=combat Note="Foes striking self take %V HP psychic damage"',
+  'Seeking Arrow':
+    'Section=combat ' +
+    'Note="+%Vd6 HP force damage, ignore 3/4 cover and reveal target (DC %V Dex half and no reveal)"',
   "Sentinel At Death's Door":
     'Section=magic Note="R30\' Negate critical %V/long rest"',
+  'Shadow Arrow':
+    'Section=combat ' +
+    'Note="+%Vd6 HP psychic damage, target vision impaired (DC %V Wis neg)"',
   'Shadow Lore':
     'Section=magic Note="R30\' Target obeys commands for 8 hr (DC %V Wis neg)"',
   'Sharpen The Blade':
@@ -211,6 +269,9 @@ Xanathar.FEATURES = {
   'Spirit Totem (Unicorn)':
     'Section=magic ' +
     'Note="R60\' Allies Adv to detect creatures in 30\' for 1/min, targets heal %V HP 1/short rest"',
+  'Strength Before Death':
+    'Section=combat ' +
+    'Note="At 0 HP delay unconsciousness and take extra turn 1/long rest"',
   'Storm Aura (Desert)':
     'Section=magic Note="R10\' %V HP fire damage during rage"',
   'Storm Aura (Sea)':
@@ -230,10 +291,20 @@ Xanathar.FEATURES = {
     'Section=magic,save ' +
     'Note="Touch freezes unoccupied 5\' cu water",' +
          '"Resist cold, unaffected by extreme cold"',
+  'Tireless Spirit':
+    'Section=combat Note="Min 1 Fighting Spirit after Initiative"',
   'Unbreakable Majesty':
     'Section=magic Note="Foe cannot attack you (DC %V Cha neg)"',
   'Unerring Accuracy':
     'Section=combat Note="Reroll monk weapon miss 1/turn"',
+  'Unwavering Mark':
+    'Section=combat ' +
+    'Note="After melee hit, marked target Disadv attack other and provoke self bonus attack +%V HP damage for 1 tn %1/long rest"',
+  'Vigilant Defender':
+    'Section=combat Note="Opportunity attack on every other creature\'s turn"',
+  'Warding Maneuver':
+    'Section=combat ' +
+    'Note="R5\' Add 1d8 to ally AC, fail gives damage resistance %V/long rest"',
   'Vengeful Ancestors':
     'Section=combat ' +
     'Note="Damage prevented by Spirit Shield turned back on attacker"',
@@ -252,20 +323,21 @@ Xanathar.FEATURES = {
 Xanathar.LANGUAGES = {
 };
 Xanathar.PATHS = {
-  'Arcane Archer Archetype':
+  'Arcane Archer':
     'Group=Fighter ' +
     'Level=levels.Fighter ' +
     'Features=' +
+      '"3:Skill Proficiency (Choose 1 from Arcana, Nature)",' +
       '"3:Arcane Archer Lore","3:Arcane Shot","7:Curving Shot",' +
       '"7:Magic Arrow","15:Every-Ready Shot","18:Improved Shots"',
-  'Cavalier Archetype':
+  'Cavalier':
     'Group=Fighter ' +
     'Level=levels.Fighter ' +
     'Features=' +
+      // TODO choice of skill proficiency or language
       '"3:Skill Proficiency (Choose 1 from Animal Handling/History/Insight/Performance/Persuasion",' +
       '"3:Born To The Saddle","3:Unwavering Mark","7:Warding Maneuver",' +
-      '"7:Warding Maneuver","10:Hold The Line","15:Ferocious Charger",' +
-      '"18:Vigilant Defender"',
+      '"10:Hold The Line","15:Ferocious Charger","18:Vigilant Defender"',
   'Circle Of Dreams':
     'Group=Druid ' +
     'Level=levels.Druid ' +
@@ -298,7 +370,7 @@ Xanathar.PATHS = {
     'Features=' +
       '"3:Psychic Blades","3:Words Of Terror","6:Mantle Of Whispers",' +
       '"14:Shadow Lore"',
-  'Divine Soul Origin':
+  'Divine Soul':
     'Group=Sorcerer Level=levels.Sorcerer ' +
     'Features=' +
       '"1:Divine Magic","1:Favored By The Gods",' +
@@ -317,7 +389,7 @@ Xanathar.PATHS = {
       'Forge3:5=2,' +
       'Forge4:7=2,' +
       'Forge5:9=2',
-  'Gloom Stalker Archetype':
+  'Gloom Stalker':
     'Group=Ranger ' +
     'Level=levels.Ranger ' +
     'Features=' +
@@ -343,7 +415,7 @@ Xanathar.PATHS = {
       'Grave3:5=2,' +
       'Grave4:7=2,' +
       'Grave5:9=2',
-  'Horizon Walker Archetype':
+  'Horizon Walker':
     'Group=Ranger ' +
     'Level=levels.Ranger ' +
     'Features=' +
@@ -356,17 +428,17 @@ Xanathar.PATHS = {
       'Horizon3:9=1,' +
       'Horizon4:13=1,' +
       'Horizon5:17=1',
-  'Inquisitive Archetype':
+  'Inquisitive':
     'Group=Rogue Level=levels.Rogue ' +
     'Features=' +
       '"3:Ear For Deceiit","3:Eye For Detail","3:Insightful Fighting",' +
       '"9:Steady Eye","13:Unerring Eye","17:Eye For Weakness"',
-  'Mastermind Archetype':
+  'Mastermind':
     'Group=Rogue Level=levels.Rogue ' +
     'Features=' +
       '"3:Master Of Intrigue","3:Master Of Tactics",' +
       '"9:Insightful Manipulator","13:Misdirection","17:Soul Of Deceit"',
-  'Monster Slayer Archetype':
+  'Monster Slayer':
     'Group=Ranger ' +
     'Level=levels.Ranger ' +
     'Features=' +
@@ -425,19 +497,20 @@ Xanathar.PATHS = {
     'Features=' +
       '"3:Divine Fury","3:Warrior Of The Gods","6:Fanatical Focus",' +
       '"10:Zealous Presence","14:Rage Beyond Death"',
-  'Samurai Archetype':
+  'Samurai':
     'Group=Fighter ' +
     'Level=levels.Fighter ' +
     'Features=' +
+      // TODO choice of skill proficiency or language
       '"3:Skill Proficiency (Choose 1 from History/Insight/Performance/Persuasion",' +
       '"3:Fighting Spirit","7:Elegant Courtier","10:Tireless Spirit",' +
       '"15:Rapid Strike","18:Strength Before Death"',
-  'Shadow Magic Origin':
+  'Shadow Magic':
     'Group=Sorcerer Level=levels.Sorcerer ' +
     'Features=' +
       '"1:Eyes Of The Dark","1:Strength Of The Grave",' +
       '"6:Hound Of Ill Omen","14:Shadow Walk","18:Umbral Form"',
-  'Storm Sorcery Origin':
+  'Storm Sorcery':
     'Group=Sorcerer Level=levels.Sorcerer ' +
     'Features=' +
       '"1:Wind Speaker","1:Tempestuous Magic","6:Heart Of The Storm",' +
@@ -449,12 +522,12 @@ Xanathar.PATHS = {
       '"3:Tool Proficiency (Brewer\'s Supplies)",' +
       '"3:Drunken Technique","6:Tipsy Sway","11:Drunkard\'s Luck",' +
       '"17:Intoxicated Frenzy"',
-  'Swashbuckler Archetype':
+  'Swashbuckler':
     'Group=Rogue Level=levels.Rogue ' +
     'Features=' +
       '"3:Fancy Footwork","3:Rakish Audacity","9:Panache",' +
       '"13:Elegant Maneuver","17:Master Duelist"',
-  'The Celestial Patron':
+  'The Celestial':
     'Group=Warlock Level=levels.Warlock ' +
     'Features=' +
       '"1:Bonus Cantrips","1:Healing Light","6:Radiant Soul",' +
@@ -464,7 +537,7 @@ Xanathar.PATHS = {
     'Features=' +
       '"1:Hexblade\'s Curse","1:Hex Warrior","6:Accursed Specter",' +
       '"10:Armor Of Hexes","14:Master Of Hexes"',
-  'War Magic Tradition':
+  'War Magic':
     'Group=Wizard Level=levels.Wizard ' +
     'Features=' +
       '"2:Arcane Deflection","2:Tactical Wit","6:Power Surge",' +
@@ -561,8 +634,10 @@ Xanathar.identityRules = function(
     SRD5E.featureListRules
       (rules, classSelectables[clas], clas, 'levels.' + clas, true);
   }
+  var allDeities = rules.getChoices('deities');
   for(var deity in deities) {
-    rules.choiceRules(rules, 'Deity', deity, deities[deity]);
+    if(deity in allDeities)
+      allDeities[deity] = allDeities[deity].replace('Domain=', 'Domain="' + QuilvynUtils.getAttrValue(deities[deity], 'Domain') + '",');
   }
   for(var path in paths) {
     rules.choiceRules(rules, 'Path', path, paths[path]);
@@ -611,7 +686,71 @@ Xanathar.pathRulesExtra = function(rules, name) {
     name.charAt(0).toLowerCase() + name.substring(1).replaceAll(' ', '') +
     'Level';
 
-  if(name == 'Circle Of Dreams') {
+  if(name == 'Arcane Archer') {
+    rules.defineRule
+      ('combatNotes.banishingArrow', pathLevel, '=', 'source>=18 ? "2" : "0"');
+    rules.defineRule('combatNotes.banishingArrow.1',
+      'proficiencyBonus', '=', '8 + source',
+      'intelligenceModifier', '+', null
+    );
+    rules.defineRule
+      ('combatNotes.beguilingArrow', pathLevel, '=', 'source>= 18 ? "4" : "2"');
+    rules.defineRule('combatNotes.beguilingArrow.1',
+      'proficiencyBonus', '=', '8 + source',
+      'intelligenceModifier', '+', null
+    );
+    rules.defineRule
+      ('combatNotes.burstingArrow', pathLevel, '=', 'source>= 18 ? "4" : "2"');
+    rules.defineRule
+      ('combatNotes.enfeeblingArrow', pathLevel, '=', 'source>=18 ? "4" : "2"');
+    rules.defineRule('combatNotes.enfeeblingArrow.1',
+      'proficiencyBonus', '=', '8 + source',
+      'intelligenceModifier', '+', null
+    );
+    rules.defineRule
+      ('combatNotes.graspingArrow', pathLevel, '=', 'source>=18 ? "4" : "2"');
+    rules.defineRule('combatNotes.graspingArrow.1',
+      'proficiencyBonus', '=', '8 + source',
+      'intelligenceModifier', '+', null
+    );
+    rules.defineRule
+      ('combatNotes.piercingArrow', pathLevel, '=', 'source>=18 ? "2" : "1"');
+    rules.defineRule('combatNotes.piercingArrow.1',
+      'proficiencyBonus', '=', '8 + source',
+      'intelligenceModifier', '+', null
+    );
+    rules.defineRule
+      ('combatNotes.seekingArrow', pathLevel, '=', 'source>=18 ? "2" : "1"');
+    rules.defineRule('combatNotes.seekingArrow.1',
+      'proficiencyBonus', '=', '8 + source',
+      'intelligenceModifier', '+', null
+    );
+    rules.defineRule
+      ('combatNotes.shadowArrow', pathLevel, '=', 'source>=18 ? "4" : "2"');
+    rules.defineRule('combatNotes.shadowArrow.1',
+      'proficiencyBonus', '=', '8 + source',
+      'intelligenceModifier', '+', null
+    );
+    rules.defineRule('selectableFeatureCount.Fighter (Arcane Shot)',
+      pathLevel, '=',
+        'source>=18 ? 6 : source>=15 ? 5 : source>=10 ? 4 : source>=7 ? 3 : 2'
+    );
+  } else if(name == 'Cavalier') {
+    rules.defineRule('combatNotes.ferociousCharger',
+      'proficiencyBonus', '=', '8 + source',
+      'strengthModifier', '+', null
+    );
+    rules.defineRule('combatNotes.unwaveringMark',
+      pathLevel, '=', 'Math.floor(source / 2)'
+    );
+    rules.defineRule('combatNotes.unwaveringMark.1',
+      'features.Unwavering Mark', '?', null,
+      'strengthModifier', '=', 'Math.max(source, 1)'
+    );
+    rules.defineRule('combatNotes.wardingManeuver',
+      'constitutionModifier', '=', 'Math.max(source, 1)'
+    );
+  } else if(name == 'Circle Of Dreams') {
     rules.defineRule('magicNotes.balmOfTheSummerCourt', pathLevel, '=', null);
     rules.defineRule
       ('magicNotes.hiddenPaths', 'wisdomModifier', '=', 'Math.max(source, 1)');
@@ -718,6 +857,11 @@ Xanathar.pathRulesExtra = function(rules, name) {
   } else if(name == 'Path Of The Zealot') {
     rules.defineRule
       ('combatNotes.divineFury', pathLevel, '=', 'Math.floor(source / 2)');
+  } else if(name == 'Samurai') {
+    rules.defineRule('combatNotes.fightingSpirit',
+      pathLevel, '=', 'source>=15 ? 15 : source>=10 ? 10 : 5'
+    );
+    rules.defineRule('skillNotes.elegantCourtier', 'wisdomModifier', '=', null);
   } else if(name == 'Way Of The Kensei') {
     rules.defineRule('combatNotes.deftStrike', 'monkMeleeDieBonus', '=', null);
   }

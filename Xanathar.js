@@ -96,9 +96,9 @@ Xanathar.CLASS_SELECTABLES = {
 };
 Xanathar.DEITIES = {
   'Celtic-Goibhniu':'Domain=Forge',
-  //'Dragonlance-Reorx':'Domain=Forge',
-  //'Eberron-Onatar':'Domain=Forge',
-  //'Eberron-The Undying Court':'Domain=Grave',
+  'Dragonlance-Reorx':'Domain=Forge',
+  'Eberron-Onatar':'Domain=Forge',
+  'Eberron-The Undying Court':'Domain=Grave',
   'Egyptian-Anubis':'Domain=Grave',
   'Egyptian-Osiris':'Domain=Grave',
   'FR-Gond':'Domain=Forge',
@@ -124,6 +124,8 @@ Xanathar.FEATURES = {
     'Section=magic Note="Craft up to 100 GP metal item in 1 hr"',
   'Aura Of Conquest':
     'Section=combat Note="R%V\' Frightened foes unable to move"',
+  'Aura Of The Guardian':
+    'Section=magic Note="R%V\' Transfer damage from another to self"',
   'Balm Of The Summer Court':
     'Section=magic ' +
     'Note="Distribute %Vd6 HP healing and %V temporary HP to targets 1/long rest"',
@@ -158,19 +160,33 @@ Xanathar.FEATURES = {
     'Note="Spend 1 Bardic Inspiration for +%V HP damage and +%V AC for 1 tn"',
   'Deft Strike':
     'Section=combat Note="Spend 1 Ki for +%V damage with Kensei weapon"',
+  'Detect Portal':'Section=magic Note="R1 mi Sense planar portal 1/long rest"',
+  'Distant Strike':
+    'Section=combat Note="Teleport 10\' beore attack, attack 3rd creature"',
   'Divine Fury':
     'Section=combat ' +
     'Note="First hit during range +1d6+%V HP necrotic or radiant"',
+  'Dread Ambusher':
+    'Section=combat Note="+%V Initiative/+10\' speed, additional weapon attack w/+1d8 damage"',
+  "Drunkard's Luck":'Section=feature Note="Spend 2 Ki to cancel Disadv"',
+  'Drunken Technique':
+    'Section=combat Note="Disengage and +10\' move during Flurry Of Blows"',
   'Elegant Courtier':
     'Section=save,skill ' +
     // TODO Choice of Int, Cha if already has Wis
     'Note="Save Proficiency (Wisdom)","+%V Persuasion"',
+  'Emissary Of Peace':
+    'Section=skill Note="Channel Energy for +5 Persuasion for 10 min"',
+  'Emissary Of Redemption':
+    'Section=combat ' +
+    'Note="When not attacking, resistance to all damage, attacker takes half self damage"',
   'Enfeebling Arrow':
     'Section=combat ' +
     'Note="+%Vd6 HP necrotic damage, damage by target halved 1 tn (DC %V Con neg)"',
   'Enthralling Performance':
     'Section=magic ' +
     'Note="1 min performance charms %V listeners for 1 hr (DC %1 Will neg) 1/long rest"',
+  'Ethereal Step':'Section=magic Note="Ethereal for 1 tn 1/short rest"',
   'Ever-Ready Shot':'Section=combat Note="Min 1 Arcane Shot after Initiative"',
   'Eyes Of The Grave':
     'Section=magic Note="R60\' Detect undead for 1 tn %V/long rest"',
@@ -188,8 +204,7 @@ Xanathar.FEATURES = {
     'Note="+%V6 HP poison damage, target move -10\' + %Vd6 HP slashing damage for 1 min or successful DC %V Athletics check"',
   'Guardian Spirit':
     'Section=magic Note="Summoned creatures w/in Spirit Totam aura heal %V HP"',
-  'Guided Strike':
-    'Section=combat Note="Channel Divinity gives +10 attack"',
+  'Guided Strike':'Section=combat Note="Channel Divinity gives +10 attack"',
   'Hearth Of Moonlight And Shadow':
     'Section=magic ' +
     'Note="30\' radius total cover, +5 Dex (Stealth) and Wis (Perception) during rest"',
@@ -199,16 +214,29 @@ Xanathar.FEATURES = {
   'Hold The Line':
     'Section=combat ' +
     'Note="R5\' Move provokes opportunity attack, hit negates move"',
+  "Hunter's Sense":
+    'Section=combat ' +
+    'Note="R60\' Sense target immunities, resistances, and vulnerabilities %V/long rest"',
+  'Intoxicated Frenzy':
+    'Section=combat ' +
+    'Note="3 extra Flurry Of Blows attacks if each attacks a different creature"',
   'Invincible Conqueror':
     'Section=combat ' +
     'Note="Damage resistance, extra attack, crit on 19 1/long rest"',
+  // TODO Choice of Int, Cha if already has Wis
+  'Iron Mind':'Section=save Note="Save Proficiency (Wisdom)"',
   'Keeper Of Souls':
     'Section=magic Note="R60\' Dying target yields HD HP to another 1/tn"',
+  'Kensei Weapons':
+    'Section=combat ' +
+    'Note="Proficiency in chosen non-heavy melee and ranged weapons"',
   "Kensei's Shot":
     'Section=combat Note="+1d4 damage with ranged Kensei weapon"',
   'Magic Arrow':'Section=combat Note="Arrows count as magic weapons"',
-  'Magic Kensei Weapons':
-    'Section=combat Note="Kensei attacks are magical"',
+  'Magic Kensei Weapons':'Section=combat Note="Kensei attacks are magical"',
+  "Magic User's Nemesis":
+    'Section=combat ' +
+    'Note="R60\' Foil target teleport (DC %V Wis neg) 1/short rest"',
   'Mantle Of Inspiration':
     'Section=magic ' +
     'Note="R60\' Bardic inspiration gives %1 targets %V temporary HP and immediate move w/out AOO"',
@@ -229,9 +257,17 @@ Xanathar.FEATURES = {
   'Piercing Arrow':
     'Section=combat ' +
     'Note="+%Vd6 HP damage to targets in 30\'x1\' line (DC %V Dex half)"',
+  'Planar Warror':
+    'Section=combat ' +
+    'Note="R30\' As bonus action, self damage to target become force damage, +%Vd6 HP damage"',
+  'Protective Spirit':
+    'Section=combat Note="Regain 1d6+%V HP at end of turn if below %1 HP"',
   'Psychic Blades':
     'Section=combat ' +
     'Note="Use 1 Bardic Inspiration for +%Vd6 HP psychic damage 1/tn"',
+  'Radiant Sun Bolt':
+    'Section=combat ' +
+    'Note="R30\' Ranged touch +%V 1d%1+%2 HP radiant damage 1/tn, spend 1 Ki for 2/tn"',
   'Rage Beyond Death':
     'Section=combat Note="Remain conscious at 0 HP until rage ends"',
   'Raging Storm (Desert)':
@@ -250,6 +286,12 @@ Xanathar.FEATURES = {
          '"Immunity fire"',
   'Scornful Rebuke':
     'Section=combat Note="Foes striking self take %V HP psychic damage"',
+  'Searing Arc Strike':
+    'Section=magic ' +
+    'Note="Spend 2-%V Ki to cast <i>Burning Hands</i> after attack"',
+  'Searing Sunburst':
+    'Section=magic ' +
+    'Note="R150\' 20\' burst 2d6 HP radiant damage (DC %V Con neg), spend 1-3 Ki for +2d6 HP ea"',
   'Seeking Arrow':
     'Section=combat ' +
     'Note="+%Vd6 HP force damage, ignore 3/4 cover and reveal target (DC %V Dex half and no reveal)"',
@@ -260,6 +302,7 @@ Xanathar.FEATURES = {
     'Note="+%Vd6 HP psychic damage, target vision impaired (DC %V Wis neg)"',
   'Shadow Lore':
     'Section=magic Note="R30\' Target obeys commands for 8 hr (DC %V Wis neg)"',
+  'Shadowy Dodge':'Section=combat Note="Reaction to impose Disadv on attacker"',
   'Sharpen The Blade':
     'Section=combat ' +
     'Note="Spend 1-3 Ki to gain equal bonus to Kensei weapon attack and damage"',
@@ -268,9 +311,17 @@ Xanathar.FEATURES = {
   'Slashing Flourish':
     'Section=combat ' +
     'Note="Use 1 Bardic Inspiration for +%V HP damage to target and adjacent foe"',
+  "Slayer's Counter":
+    'Section=combat ' +
+    'Note="Successful reaction attack on Slayer\'s Prey target yields self save"',
+  "Slayer's Prey":
+    'Section=combat ' +
+    'Note="R60\' +1d6 HP damage to target w/1st attack each turn until short rest"',
   'Soul Of The Forge':
     'Section=combat,save ' +
     'Note="+1 AC in heavy armor","Resistance fire damage"',
+  'Spectral Defense':
+    'Section=combat Note="Reaction upon damage for resistance"',
   'Speech Of The Woods':'Section=skill Note="Learn sylvan, speak w/beasts"',
   'Spirit Shield':
     'Section=combat Note="R30\' Reduce damage to ally by %Vd6"',
@@ -283,6 +334,7 @@ Xanathar.FEATURES = {
   'Spirit Totem (Unicorn)':
     'Section=magic ' +
     'Note="R60\' Allies Adv to detect creatures in 30\' for 1/min, targets heal %V HP 1/short rest"',
+  "Stalker's Fury":'Section=combat Note="Reroll weapon miss 1/tn"',
   'Strength Before Death':
     'Section=combat ' +
     'Note="At 0 HP delay unconsciousness and take extra turn 1/long rest"',
@@ -305,12 +357,24 @@ Xanathar.FEATURES = {
     'Section=magic,save ' +
     'Note="Touch freezes unoccupied 5\' cu water",' +
          '"Resist cold, unaffected by extreme cold"',
+  'Sun Shield':
+    'Section=combat,magic ' +
+    'Note="%V HP radiant damage when hit w/melee attack",' +
+         '"30\' bright light, 30\' dim at will"',
+  'Supernatural Defense':
+    'Section=save Note="+1d6 saves vs. Slayer\'s Prey target"',
+  'Tipsy Sway (Leap To Your Feat':
+    'Section=ability Note="Stand from prone costs 5\' movement"',
+  'Tipsy Sway (Redirect Attack)':
+    'Section=combat ' +
+    'Note="Spend 1 Ki to redirect foe miss to adjacent creature"',
   'Tireless Spirit':
     'Section=combat Note="Min 1 Fighting Spirit after Initiative"',
+  'Umbral Sight':
+    'Section=feature Note="60\' Darkvision, invisible to darkvision"',
   'Unbreakable Majesty':
     'Section=magic Note="Foe cannot attack you (DC %V Cha neg)"',
-  'Unerring Accuracy':
-    'Section=combat Note="Reroll monk weapon miss 1/turn"',
+  'Unerring Accuracy':'Section=combat Note="Reroll monk weapon miss 1/tn"',
   'Unwavering Mark':
     'Section=combat ' +
     'Note="After melee hit, marked target Disadv attack other and provoke self bonus attack +%V HP damage for 1 tn %1/long rest"',
@@ -327,6 +391,9 @@ Xanathar.FEATURES = {
   'Warrior Of The Gods':
     'Section=feature ' +
     'Note="Life-restoring spell to self needs no material component"',
+  'Way Of The Brush':
+    'Section=skill ' +
+    'Note="Proficiency in Calligrapher\'s or Painter\'s Supplies"',
   'Words Of Terror':
     'Section=magic ' +
     'Note="1 min conversation frightens for 1 hr (DC %V Wisdom neg)"',
@@ -529,13 +596,6 @@ Xanathar.PATHS = {
     'Features=' +
       '"1:Wind Speaker","1:Tempestuous Magic","6:Heart Of The Storm",' +
       '"6:Storm Guide","14:Storm\'s Fury","18:Wind Soul"',
-  'Way Of The Drunken Master':
-    'Group=Monk Level=levels.Monk ' +
-    'Features=' +
-      '"3:Skill Proficiency (Performance)",' +
-      '"3:Tool Proficiency (Brewer\'s Supplies)",' +
-      '"3:Drunken Technique","6:Tipsy Sway","11:Drunkard\'s Luck",' +
-      '"17:Intoxicated Frenzy"',
   'Swashbuckler':
     'Group=Rogue Level=levels.Rogue ' +
     'Features=' +
@@ -556,13 +616,20 @@ Xanathar.PATHS = {
     'Features=' +
       '"2:Arcane Deflection","2:Tactical Wit","6:Power Surge",' +
       '"10:Durable Magic","14:Deflecting Shroud"',
+  'Way Of The Drunken Master':
+    'Group=Monk Level=levels.Monk ' +
+    'Features=' +
+      '"3:Skill Proficiency (Performance)",' +
+      '"3:Tool Proficiency (Brewer\'s Supplies)",' +
+      '"3:Drunken Technique","6:Tipsy Sway (Leap To Your Feet)",' +
+      '"6:Tipsy Sway (Redirect Attack)","11:Drunkard\'s Luck",' +
+      '"17:Intoxicated Frenzy"',
   'Way Of The Kensei':
     'Group=Monk Level=levels.Monk ' +
     'Features=' +
-      '"3:Tool Proficiency (Choose 1 from Calligrapher\'s Supplies, Painter\'s Supplies)",' +
-      '"3:Weapon Proficiency (Choose 2 from any)",' +
-      '"3:Agile Parry","3:Kensei\'s Shot","6:Magic Kensei Weapons",' +
-      '"6:Deft Strike","11:Sharpen The Blade","17:Unerring Accuracy"',
+      '"3:Agile Parry","3:Kensei Weapons","3:Kensei\'s Shot",' +
+      '"3:Way Of The Brush","6:Deft Strike","6:Magic Kensei Weapons",' +
+      '"11:Sharpen The Blade","17:Unerring Accuracy"',
   'Way Of The Sun Soul':
     'Group=Monk Level=levels.Monk ' +
     'Features=' +
@@ -818,6 +885,9 @@ Xanathar.pathRulesExtra = function(rules, name) {
       'combatNotes.soulOfTheForge', '?', null,
       'armorWeight', '=', 'source == 3 ? 1 : null'
     );
+  } else if(name == 'Gloom Stalker') {
+    rules.defineRule('combatNotes.dreadAmbusher', 'wisdomModifier', '=', null);
+    rules.defineRule('saveProficiency.Wisdom', 'saveNotes.ironMind', '=', '1');
   } else if(name == 'Grave Domain') {
     rules.defineRule('magicNotes.eyesOfTheGrave',
       'wisdomModifier', '=', 'Math.max(source, 1)'
@@ -827,11 +897,26 @@ Xanathar.pathRulesExtra = function(rules, name) {
     rules.defineRule("magicNotes.sentinelAtDeath'sDoor",
       'wisdomModifier', '=', 'Math.max(source, 1)'
     );
+  } else if(name == 'Horizon Walker') {
+    rules.defineRule
+      ('combatNotes.planarWarrior', pathLevel, '=', 'source>=11 ? 2 : 1');
+  } else if(name == 'Monster Slayer') {
+    rules.defineRule("combatNotes.hunter'sSense", 'wisdomModifier', '=', null);
+    rules.defineRule
+      ("combatNotes.magicUser'sNemesis", 'spellDifficultyClass.R', '=', null);
   } else if(name == 'Oath Of Conquest') {
     rules.defineRule
       ('combatNotes.auraOfConquest', pathLevel, '=', 'source>=18 ? 30 : 10');
     rules.defineRule('combatNotes.scornfulRebuke',
       'charismaModifier', '=', 'Math.max(source, 1)'
+    );
+  } else if(name == 'Oath Of Redemption') {
+    rules.defineRule('combatNotes.protectiveSpirit',
+      pathLevel, '=', 'Math.floor(source / 2)'
+    );
+    rules.defineRule('combatNotes.protectiveSpirit.1',
+      'features.Protective Spirit', '?', null,
+      'hitPoints', '=', 'Math.floor(source / 2)'
     );
   } else if(name == 'Path Of The Ancestral Guardian') {
     rules.defineRule('combatNotes.spiritShield',
@@ -875,9 +960,31 @@ Xanathar.pathRulesExtra = function(rules, name) {
     rules.defineRule('combatNotes.fightingSpirit',
       pathLevel, '=', 'source>=15 ? 15 : source>=10 ? 10 : 5'
     );
+    rules.defineRule
+      ('saveProficiency.Wisdom', 'saveNotes.elegantCourtier', '=', '1');
     rules.defineRule('skillNotes.elegantCourtier', 'wisdomModifier', '=', null);
   } else if(name == 'Way Of The Kensei') {
     rules.defineRule('combatNotes.deftStrike', 'monkMeleeDieBonus', '=', null);
+    rules.defineRule('toolChoiceCount', 'skillNotes.wayOfTheBrush', '+=', '1');
+    rules.defineRule
+      ('weaponChoiceCount', 'combatNote.kenseiWeapons', '+=', '2');
+  } else if(name == 'Way Of Sun Soul') {
+    rules.defineRule('combatNotes.radiantSunBolt',
+      'attackBonus.Ranged', '=', null,
+      'proficiencyBonus', '+', null
+    );
+    rules.defineRule
+      ('combatNotes.radiantSunBolt.1', 'combatNotes.martialArts', '=', null);
+    rules.defineRule('combatNotes.radiantSunBolt.2',
+      'features.Radiant Sun Bolt', '?', null,
+      'dexterityModifier', '=', null
+    );
+    rules.defineRule
+      ('combatNotes.sunShield', 'wisdomModifier', '=', 'source + 5');
+    rules.defineRule('combatNotes.searingArcStrike',
+      pathLevel, '=', 'Math.floor(source / 2)'
+    );
+    rules.defineRule('combatNotes.searingSunburst', 'kiSaveDC', '=', null);
   }
 
 };

@@ -141,14 +141,18 @@ PHB5E.BACKGROUNDS = {
       '"1:City Secrets"'
 };
 PHB5E.CLASS_SELECTABLES = {
-  'Bard':['3:College Of Valor'],
+  'Bard':['3:College Of Valor:Bard College'],
   'Cleric':[
-    '1:Knowledge Domain', '1:Light Domain', '1:Nature Domain',
-    '1:Tempest Domain', '1:Trickery Domain', '1:War Domain'
+    '1:Knowledge Domain:Divine Domain', '1:Light Domain:Divine Domain',
+    '1:Nature Domain:Divine Domain', '1:Tempest Domain:Divine Domain',
+    '1:Trickery Domain:Divine Domain', '1:War Domain:Divine Domain'
   ],
-  'Druid':['2:Circle Of The Land (Underdark)', '2:Circle Of The Moon'],
+  'Druid':[
+    '2:Circle Of The Land (Underdark):Druid Circle',
+    '2:Circle Of The Moon:Druid Circle'
+  ],
   'Fighter':[
-    '3:Battle Master:Archetype', '3:Eldritch Knight:Archetype',
+    '3:Battle Master:Martial Archetype', '3:Eldritch Knight:Martial Archetype',
     '3:Commander\'s Strike:Maneuver', '3:Disarming Attack:Maneuver',
     '3:Distracting Strike:Maneuver', '3:Evasive Footwork:Maneuver',
     '3:Feinting Attack:Maneuver', '3:Goading Attack:Maneuver',
@@ -159,34 +163,45 @@ PHB5E.CLASS_SELECTABLES = {
     '3:Sweeping Attack:Maneuver', '3:Trip Attack:Maneuver'
   ],
   'Monk':[
-    '3:Way Of The Four Elements:Tradition', '3:Way Of The Shadow:Tradition',
-    '17:Breath Of Winter:Discipline',
-    '6:Clench Of The North Wind:Discipline',
-    '17:Eternal Mountain Defense:Discipline',
-    '3:Fangs Of The Fire Snake:Discipline',
-    '3:Fist Of Four Thunders:Discipline',
-    '3:Fist Of Unbroken Air:Discipline',
-    '11:Flames Of The Phoenix:Discipline',
-    '6:Gong Of The Summit:Discipline',
-    '11:Mist Stance:Discipline',
-    '11:Ride The Wind:Discipline',
-    '17:River Of Hungry Flame:Discipline',
-    '3:Rush Of The Gale Spirits:Discipline',
-    '3:Shape The Flowing River:Discipline',
-    '3:Sweeping Cinder Strike:Discipline',
-    '3:Water Whip:Discipline',
-    '17:Wave Of Rolling Earth:Discipline'
+    '3:Way Of The Four Elements:Monastic Tradition',
+    '3:Way Of The Shadow:Monastic Tradition',
+    '17:Breath Of Winter:Elemental Discipline',
+    '6:Clench Of The North Wind:Elemental Discipline',
+    '17:Eternal Mountain Defense:Elemental Discipline',
+    '3:Fangs Of The Fire Snake:Elemental Discipline',
+    '3:Fist Of Four Thunders:Elemental Discipline',
+    '3:Fist Of Unbroken Air:Elemental Discipline',
+    '11:Flames Of The Phoenix:Elemental Discipline',
+    '6:Gong Of The Summit:Elemental Discipline',
+    '11:Mist Stance:Elemental Discipline',
+    '11:Ride The Wind:Elemental Discipline',
+    '17:River Of Hungry Flame:Elemental Discipline',
+    '3:Rush Of The Gale Spirits:Elemental Discipline',
+    '3:Shape The Flowing River:Elemental Discipline',
+    '3:Sweeping Cinder Strike:Elemental Discipline',
+    '3:Water Whip:Elemental Discipline',
+    '17:Wave Of Rolling Earth:Elemental Discipline'
   ],
-  'Paladin':['3:Oath Of The Ancients:Oath', '3:Oath Of Vengeance:Oath'],
-  'Ranger':['3:Beast Master:Archetype'],
-  'Rogue':['3:Arcane Trickster', '3:Assassin'],
-  'Sorcerer':['1:Wild Magic:Origin'],
-  'Warlock':['1:The Archfey:Patron', '1:The Great Old One:Patron'],
+  'Paladin':[
+    '3:Oath Of The Ancients:Sacred Oath', '3:Oath Of Vengeance:Sacred Oath'
+  ],
+  'Ranger':['3:Beast Master:Ranger Archetype'],
+  'Rogue':[
+    '3:Arcane Trickster:Roguish Archetype', '3:Assassin:Roguish Archetype'
+  ],
+  'Sorcerer':['1:Wild Magic:Sorcerous Origin'],
+  'Warlock':[
+    '1:The Archfey:Otherworldly Patron',
+    '1:The Great Old One:Otherworldly Patron'
+  ],
   'Wizard':[
-    '2:School Of Abjuration', '2:School Of Conjuration',
-    '2:School Of Divination', '2:School Of Enchantment',
-    '2:School Of Illusion', '2:School Of Necromancy',
-    '2:School Of Transmutation'
+    '2:School Of Abjuration:Arcane Tradition',
+    '2:School Of Conjuration:Arcane Tradition',
+    '2:School Of Divination:Arcane Tradition',
+    '2:School Of Enchantment:Arcane Tradition',
+    '2:School Of Illusion:Arcane Tradition',
+    '2:School Of Necromancy:Arcane Tradition',
+    '2:School Of Transmutation:Arcane Tradition'
   ]
 };
 PHB5E.DEITIES = {
@@ -1737,7 +1752,7 @@ PHB5E.pathRulesExtra = function(rules, name) {
       'monkFeatures.Way Of The Four Elements', '?', null,
       pathLevel, '=', 'Math.floor( (source + 4) / 5)'
     );
-    rules.defineRule('selectableFeatureCount.Monk (Discipline)',
+    rules.defineRule('selectableFeatureCount.Monk (Elemental Discipline)',
       'magicNotes.discipleOfTheElements', '=', null
     );
 

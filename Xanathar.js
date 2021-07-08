@@ -49,36 +49,50 @@ Xanathar.BACKGROUNDS = {
 };
 Xanathar.CLASS_SELECTABLES = {
   'Barbarian':[
-    '3:Path Of The Ancestral Guardian', '3:Path Of The Storm Herald',
-    '3:Path Of The Zealot'
+    '3:Path Of The Ancestral Guardian:Primal Path',
+    '3:Path Of The Storm Herald:Primal Path',
+    '3:Path Of The Zealot:Primal Path'
   ],
   'Bard':[
-    '3:College Of Glamour', '3:College Of Swords', '3:College Of Whispers'
+    '3:College Of Glamour:Bard College', '3:College Of Swords:Bard College',
+    '3:College Of Whispers:Bard College'
   ],
-  'Cleric':['1:Forge Domain', '1:Grave Domain'],
-  'Druid':['2:Circle Of Dreams', '2:Circle Of The Shepherd'],
+  'Cleric':['1:Forge Domain:Divine Domain', '1:Grave Domain:Divine Domain'],
+  'Druid':[
+    '2:Circle Of Dreams:Druid Circle', '2:Circle Of The Shepherd:Druid Circle'
+  ],
   'Fighter':[
-    '3:Arcane Archer:Archetype', '3:Cavalier:Archetype', '3:Samurai:Archetype',
+    '3:Arcane Archer:Martial Archetype', '3:Cavalier:Martial Archetype',
+    '3:Samurai:Martial Archetype',
     '3:Banishing Arrow:Arcane Shot', '3:Beguiling Arrow:Arcane Shot',
     '3:Bursting Arrow:Arcane Shot', '3:Enfeebling Arrow:Arcane Shot',
     '3:Grasping Arrow:Arcane Shot', '3:Piercing Arrow:Arcane Shot',
     '3:Seeking Arrow:Arcane Shot', '3:Shadow Arrow:Arcane Shot'
   ],
   'Monk':[
-    '3:Way Of The Drunken Master:Tradition', '3:Way Of The Kensai:Tradition',
-    '3:Way Of The Sun Soul:Tradition'
+    '3:Way Of The Drunken Master:Monastic Tradition',
+    '3:Way Of The Kensai:Monastic Tradition',
+    '3:Way Of The Sun Soul:Monastic Tradition'
   ],
-  'Paladin':['3:Oath Of Conquest:Oath', '3:Oath Of Redemption:Oath'],
+  'Paladin':[
+    '3:Oath Of Conquest:Sacred Oath', '3:Oath Of Redemption:Sacred Oath'
+  ],
   'Ranger':[
-    '3:Gloom Stalker:Archetype', '3:Horizon Walker:Archetype',
-    '3:Monster Slayer:Archetype'
+    '3:Gloom Stalker:Ranger Archetype', '3:Horizon Walker:Ranger Archetype',
+    '3:Monster Slayer:Ranger Archetype'
   ],
-  'Rogue':['3:Inquisitive', '3:Mastermind', '3:Scout', '3:Swashbuckler'],
+  'Rogue':[
+    '3:Inquisitive:Roguish Archetype', '3:Mastermind:Roguish Archetype',
+    '3:Scout:Roguish Archetype', '3:Swashbuckler:Roguish Archetype'
+  ],
   'Sorcerer':[
-    '1:Divine Soul:Origin', '1:Shadow Magic:Origin', '1:Storm Sorcery:Origin'
+    '1:Divine Soul:Sorcerous Origin', '1:Shadow Magic:Sorcerous Origin',
+    '1:Storm Sorcery:Sorcerous Origin'
   ],
-  'Warlock':['1:The Celestial:Patron', '1:The Hexblade:Patron'],
-  'Wizard':['2:War Magic']
+  'Warlock':[
+    '1:The Celestial:Otherworldly Patron', '1:The Hexblade:Otherworldly Patron'
+  ],
+  'Wizard':['2:War Magic:Arcane Tradition']
 };
 Xanathar.DEITIES = {
   'Celtic-Goibhniu':'Domain=Forge',

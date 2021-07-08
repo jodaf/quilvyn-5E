@@ -144,10 +144,10 @@ SRD5E.CLASSES = {
       '"7:Feral Instinct","9:Brutal Critical","11:Relentless Rage",' +
       '"15:Persistent Rage","18:Indomitable Might","20:Primal Champion" ' +
     'Selectables=' +
-      '"3:Path Of The Berserker",' +
-      '"3:Path Of The Totem Warrior (Bear)",' +
-      '"3:Path Of The Totem Warrior (Eagle)",' +
-      '"3:Path Of The Totem Warrior (Wolf)"',
+      '"3:Path Of The Berserker:Primal Path",' +
+      '"3:Path Of The Totem Warrior (Bear):Primal Path",' +
+      '"3:Path Of The Totem Warrior (Eagle):Primal Path",' +
+      '"3:Path Of The Totem Warrior (Wolf):Primal Path"',
   'Bard':
     'HitDie=d8 ' +
     'Features=' +
@@ -161,7 +161,7 @@ SRD5E.CLASSES = {
       '"5:Font Of Inspiration",6:Countercharm,"10:Magical Secrets",' +
       '"20:Superior Inspiration" ' +
     'Selectables=' +
-      '"3:College Of Lore" ' +
+      '"3:College Of Lore:Bard College" ' +
     'CasterLevelArcane=levels.Bard ' +
     'SpellAbility=charisma ' +
     'SpellSlots=' +
@@ -185,7 +185,7 @@ SRD5E.CLASSES = {
       '"1:Ritual Casting",1:Spellcasting,"2:Channel Divinity",' +
       '"2:Turn Undead","5:Destroy Undead","10:Divine Intervention" ' +
     'Selectables=' +
-      '"1:Life Domain" ' +
+      '"1:Life Domain:Divine Domain" ' +
     'CasterLevelDivine=levels.Cleric ' +
     'SpellAbility=wisdom ' +
     'SpellSlots=' +
@@ -211,13 +211,13 @@ SRD5E.CLASSES = {
       '1:Druidic,"1:Ritual Casting",1:Spellcasting,"2:Wild Shape",' +
       '"18:Druid Timeless Body","18:Beast Spells",20:Archdruid ' +
     'Selectables=' +
-      '"2:Circle Of The Land (Arctic)",' +
-      '"2:Circle Of The Land (Coast)",' +
-      '"2:Circle Of The Land (Desert)",' +
-      '"2:Circle Of The Land (Forest)",' +
-      '"2:Circle Of The Land (Grassland)",' +
-      '"2:Circle Of The Land (Mountain)",' +
-      '"2:Circle Of The Land (Swamp)" ' +
+      '"2:Circle Of The Land (Arctic):Druid Circle",' +
+      '"2:Circle Of The Land (Coast):Druid Circle",' +
+      '"2:Circle Of The Land (Desert):Druid Circle",' +
+      '"2:Circle Of The Land (Forest):Druid Circle",' +
+      '"2:Circle Of The Land (Grassland):Druid Circle",' +
+      '"2:Circle Of The Land (Mountain):Druid Circle",' +
+      '"2:Circle Of The Land (Swamp):Druid Circle" ' +
     'CasterLevelDivine=levels.Druid ' +
     'SpellAbility=wisdom ' +
     'SpellSlots=' +
@@ -240,13 +240,13 @@ SRD5E.CLASSES = {
       '"1:Weapon Proficiency (Martial)",' +
       '"1:Second Wind","2:Action Surge","5:Extra Attack",9:Indomitable ' +
     'Selectables=' +
-      '"1:Fighting Style (Archery):Style",' +
-      '"1:Fighting Style (Defense):Style",' +
-      '"1:Fighting Style (Dueling):Style",' +
-      '"1:Fighting Style (Great Weapon Fighting):Style",' +
-      '"1:Fighting Style (Protection):Style",' +
-      '"1:Fighting Style (Two-Weapon Fighting):Style",' +
-      '"3:Champion:Archetype"',
+      '"1:Fighting Style (Archery):Fighting Style",' +
+      '"1:Fighting Style (Defense):Fighting Style",' +
+      '"1:Fighting Style (Dueling):Fighting Style",' +
+      '"1:Fighting Style (Great Weapon Fighting):Fighting Style",' +
+      '"1:Fighting Style (Protection):Fighting Style",' +
+      '"1:Fighting Style (Two-Weapon Fighting):Fighting Style",' +
+      '"3:Champion:Martial Archetype"',
   'Monk':
     'HitDie=d8 ' +
     'Features=' +
@@ -262,7 +262,7 @@ SRD5E.CLASSES = {
       '"10:Purity Of Body","13:Tongue Of Sun And Moon","14:Diamond Soul",' +
       '"15:Monk Timeless Body","18:Empty Body","20:Perfect Self" ' +
     'Selectables=' +
-      '"3:Way Of The Open Hand:Tradition"',
+      '"3:Way Of The Open Hand:Monastic Tradition"',
   'Paladin':
     'HitDie=d10 ' +
     'Features=' +
@@ -275,11 +275,11 @@ SRD5E.CLASSES = {
       '"6:Aura Of Protection","10:Aura Of Courage",' +
       '"11:Improved Divine Smite","14:Cleansing Touch" ' +
     'Selectables=' +
-      '"2:Fighting Style (Defense):Style",' +
-      '"2:Fighting Style (Dueling):Style",' +
-      '"2:Fighting Style (Great Weapon Fighting):Style",' +
-      '"2:Fighting Style (Protection):Style",' +
-      '"3:Oath Of Devotion:Oath" ' +
+      '"2:Fighting Style (Defense):Fighting Style",' +
+      '"2:Fighting Style (Dueling):Fighting Style",' +
+      '"2:Fighting Style (Great Weapon Fighting):Fighting Style",' +
+      '"2:Fighting Style (Protection):Fighting Style",' +
+      '"3:Oath Of Devotion:Sacred Oath" ' +
     'CasterLevelDivine=levels.Paladin ' +
     'SpellAbility=charisma ' +
     'SpellSlots=' +
@@ -300,22 +300,22 @@ SRD5E.CLASSES = {
       '"10:Hide In Plain Sight","14:Vanish","18:Feral Senses",' +
       '"20:Foe Slayer" ' +
     'Selectables=' +
-      '"2:Fighting Style (Archery):Style",' +
-      '"2:Fighting Style (Defense):Style",' +
-      '"2:Fighting Style (Dueling):Style",' +
-      '"2:Fighting Style (Two-Weapon Fighting):Style",' +
-      '"3:Hunter:Archetype",' +
-      '"3:Colossus Slayer:Hunter",' +
-      '"3:Giant Killer:Hunter",' +
-      '"3:Horde Breaker:Hunter",' +
-      '"7:Escape The Horde:Hunter",' +
-      '"7:Multiattack Defense:Hunter",' +
-      '"7:Steel Will:Hunter",' +
-      '"11:Volley:Hunter",' +
-      '"11:Whirlwind Attack:Hunter",' +
-      '"15:Evasion:Hunter",' +
-      '"15:Stand Against The Tide:Hunter",' +
-      '"15:Uncanny Dodge:Hunter" ' +
+      '"2:Fighting Style (Archery):Fighting Style",' +
+      '"2:Fighting Style (Defense):Fighting Style",' +
+      '"2:Fighting Style (Dueling):Fighting Style",' +
+      '"2:Fighting Style (Two-Weapon Fighting):Fighting Style",' +
+      '"3:Hunter:Ranger Archetype",' +
+      '"3:Colossus Slayer:Hunter Technique",' +
+      '"3:Giant Killer:Hunter Technique",' +
+      '"3:Horde Breaker:Hunter Technique",' +
+      '"7:Escape The Horde:Hunter Technique",' +
+      '"7:Multiattack Defense:Hunter Technique",' +
+      '"7:Steel Will:Hunter Technique",' +
+      '"11:Volley:Hunter Technique",' +
+      '"11:Whirlwind Attack:Hunter Technique",' +
+      '"15:Evasion:Hunter Technique",' +
+      '"15:Stand Against The Tide:Hunter Technique",' +
+      '"15:Uncanny Dodge:Hunter Technique" ' +
     'CasterLevelDivine=levels.Ranger ' +
     'SpellAbility=wisdom ' +
     'SpellSlots=' +
@@ -337,7 +337,7 @@ SRD5E.CLASSES = {
       '"2:Cunning Action","5:Uncanny Dodge",7:Evasion,"11:Reliable Talent",' +
       '14:Blindsense,"15:Slippery Mind",18:Elusive,"20:Stroke Of Luck" ' +
     'Selectables=' +
-      '"3:Thief"',
+      '"3:Thief:Roguish Archetype"',
   'Sorcerer':
     'HitDie=d6 ' +
     'Features=' +
@@ -347,7 +347,7 @@ SRD5E.CLASSES = {
       '1:Spellcasting,"2:Font Of Magic","2:Flexible Casting",' +
       '"20:Sorcerous Restoration" ' +
     'Selectables=' +
-      '"1:Draconic Bloodline:Origin",' +
+      '"1:Draconic Bloodline:Sorcerous Origin",' +
       '"3:Careful Spell:Metamagic","3:Distant Spell:Metamagic",' +
       '"3:Empowered Spell:Metamagic","3:Extended Spell:Metamagic",' +
       '"3:Heightened Spell:Metamagic","3:Quickened Spell:Metamagic",' +
@@ -375,23 +375,36 @@ SRD5E.CLASSES = {
       '"1:Pact Magic","2:Eldritch Invocations","11:Mystic Arcanum",' +
       '"20:Eldritch Master" ' +
     'Selectables=' +
-      '"1:The Fiend:Patron",' +
-      '"3:Pact Of The Blade:Pact","3:Pact Of The Chain:Pact",' +
-      '"3:Pact Of The Tome:Pact",' +
-      '"2:Agonizing Blast:Invocation","2:Armor Of Shadows:Invocation",' +
-      '"2:Beast Speech:Invocation","2:Beguiling Influence:Invocation",' +
-      '"2:Devil\'s Sight:Invocation","2:Eldritch Sight:Invocation",' +
-      '"2:Eldritch Spear:Invocation","2:Eyes Of The Rune Keeper:Invocation",' +
-      '"2:Fiendish Vigor:Invocation","2:Gaze Of Two Minds:Invocation",' +
-      '"2:Mask Of Many Faces:Invocation","2:Misty Visions:Invocation",' +
-      '"2:Repelling Blast:Invocation","2:Thief Of Five Fates:Invocation",' +
-      '"5:Mire The Mind:Invocation","5:One With Shadows:Invocation",' +
-      '"5:Sign Of Ill Omen:Invocation","7:Bewitching Whispers:Invocation",' +
-      '"7:Dreadful Word:Invocation","7:Sculptor Of Flesh:Invocation",' +
-      '"9:Ascendant Step:Invocation","9:Minions Of Chaos:Invocation",' +
-      '"9:Otherworldly Leap:Invocation","9:Whispers Of The Grave:Invocation",' +
-      '"15:Master Of Myriad Forms:Invocation",' +
-      '"15:Visions Of Distant Realms:Invocation","15:Witch Sight:Invocation",' +
+      '"1:The Fiend:Otherwordly Patron",' +
+      '"3:Pact Of The Blade:Pact Boon","3:Pact Of The Chain:Pact Boon",' +
+      '"3:Pact Of The Tome:Pact Boon",' +
+      '"2:Agonizing Blast:Eldritch Invocation",' +
+      '"2:Armor Of Shadows:Eldritch Invocation",' +
+      '"2:Beast Speech:Eldritch Invocation",' +
+      '"2:Beguiling Influence:Eldritch Invocation",' +
+      '"2:Devil\'s Sight:Eldritch Invocation",' +
+      '"2:Eldritch Sight:Eldritch Invocation",' +
+      '"2:Eldritch Spear:Eldritch Invocation",' +
+      '"2:Eyes Of The Rune Keeper:Eldritch Invocation",' +
+      '"2:Fiendish Vigor:Eldritch Invocation",' +
+      '"2:Gaze Of Two Minds:Eldritch Invocation",' +
+      '"2:Mask Of Many Faces:Eldritch Invocation",' +
+      '"2:Misty Visions:Eldritch Invocation",' +
+      '"2:Repelling Blast:Eldritch Invocation",' +
+      '"2:Thief Of Five Fates:Eldritch Invocation",' +
+      '"5:Mire The Mind:Eldritch Invocation",' +
+      '"5:One With Shadows:Eldritch Invocation",' +
+      '"5:Sign Of Ill Omen:Eldritch Invocation",' +
+      '"7:Bewitching Whispers:Eldritch Invocation",' +
+      '"7:Dreadful Word:Eldritch Invocation",' +
+      '"7:Sculptor Of Flesh:Eldritch Invocation",' +
+      '"9:Ascendant Step:Eldritch Invocation",' +
+      '"9:Minions Of Chaos:Eldritch Invocation",' +
+      '"9:Otherworldly Leap:Eldritch Invocation",' +
+      '"9:Whispers Of The Grave:Eldritch Invocation",' +
+      '"15:Master Of Myriad Forms:Eldritch Invocation",' +
+      '"15:Visions Of Distant Realms:Eldritch Invocation",' +
+      '"15:Witch Sight:Eldritch Invocation",' +
       '"features.Pact Of The Tome ? 2:Book Of Ancient Secrets",' +
       '"features.Pact Of The Chain ? 15:Chains Of Carceri",' +
       '"features.Pact Of The Blade ? 12:Lifedrinker",' +
@@ -415,7 +428,7 @@ SRD5E.CLASSES = {
       '"1:Arcane Recovery",1:Spellcasting,"18:Spell Mastery",' +
       '"20:Signature Spell" ' +
     'Selectables=' +
-      '"2:School Of Evocation" ' +
+      '"2:School Of Evocation:Arcane Tradition" ' +
     'CasterLevelArcane=levels.Wizard ' +
     'SpellAbility=intelligence ' +
     'SpellSlots=' +
@@ -3525,7 +3538,7 @@ SRD5E.classRulesExtra = function(rules, name) {
     rules.defineRule('featureNotes.rage',
       classLevel, '+=', 'source<3 ? 2 : source<6 ? 3 : source<12 ? 4 : source<17 ? 5 : source<20 ? 6 : "unlimited"'
     );
-    rules.defineRule('selectableFeatureCount.Barbarian',
+    rules.defineRule('selectableFeatureCount.Barbarian (Primal Path)',
       classLevel, '=', 'source<3 ? null : 1'
     );
     rules.defineRule('speed', 'abilityNotes.fastMovement', '+', '10');
@@ -3549,8 +3562,9 @@ SRD5E.classRulesExtra = function(rules, name) {
     rules.defineRule('magicNotes.songOfRest',
       classLevel, '=', '6 + (source>=9 ? 2 * Math.floor((source-5)/4) : 0)'
     );
-    rules.defineRule
-      ('selectableFeatureCount.Bard', classLevel, '=', 'source<3 ? null : 1');
+    rules.defineRule('selectableFeatureCount.Bard (Bard College)',
+      classLevel, '=', 'source<3 ? null : 1'
+    );
     rules.defineRule
       ('skillNotes.bardExpertise', classLevel, '=', 'source<10 ? 2 : 4');
 
@@ -3572,10 +3586,17 @@ SRD5E.classRulesExtra = function(rules, name) {
       classLevel, '=', 'source<20 ? source : 100'
     );
     rules.defineRule('magicNotes.preserveLife', classLevel, '=', '5 * source');
-    rules.defineRule('selectableFeatureCount.Cleric', classLevel, '=', '1');
+    rules.defineRule
+      ('selectableFeatureCount.Cleric (Divine Domain)', classLevel, '=', '1');
 
   } else if(name == 'Druid') {
 
+    rules.defineRule("combatNotes.nature'sSanctuary",
+      'wisdomModifier', '=', 'source + 8',
+      'proficiencyBonus', '+', null
+    );
+    rules.defineRule
+      ('magicNotes.naturalRecovery', classLevel, '=', 'Math.floor(source / 2)');
     rules.defineRule('magicNotes.wildShape.1',
       classLevel, '=', 'source<4 ? "1/4" : source<8 ? "1/2" : "1"'
     );
@@ -3584,15 +3605,9 @@ SRD5E.classRulesExtra = function(rules, name) {
     );
     rules.defineRule
       ('magicNotes.wildShape.3', classLevel, '=', 'Math.floor(source /2)');
-    rules.defineRule
-      ('selectableFeatureCount.Druid', classLevel, '=', 'source<2 ? null : 1');
-
-    rules.defineRule("combatNotes.nature'sSanctuary",
-      'wisdomModifier', '=', 'source + 8',
-      'proficiencyBonus', '+', null
+    rules.defineRule('selectableFeatureCount.Druid (Druid Circle)',
+      classLevel, '=', 'source<2 ? null : 1'
     );
-    rules.defineRule
-      ('magicNotes.naturalRecovery', classLevel, '=', 'Math.floor(source / 2)');
     rules.defineRule('spellSlots.D0', 'magicNotes.bonusCantrip', '+=', '1');
 
   } else if(name == 'Fighter') {
@@ -3624,12 +3639,12 @@ SRD5E.classRulesExtra = function(rules, name) {
     rules.defineRule('saveNotes.indomitable',
       classLevel, '=', 'source<13 ? 1 : source<17 ? 2 : 3'
     );
-    rules.defineRule('selectableFeatureCount.Fighter (Archetype)',
-      classLevel, '=', 'source<3 ? null : 1'
-    );
-    rules.defineRule('selectableFeatureCount.Fighter (Style)',
+    rules.defineRule('selectableFeatureCount.Fighter (Fighting Style)',
       classLevel, '=', '1',
       'combatNotes.additionalFightingStyle', '+', '1'
+    );
+    rules.defineRule('selectableFeatureCount.Fighter (Martial Archetype)',
+      classLevel, '=', 'source<3 ? null : 1'
     );
     rules.defineRule
       ('skillNotes.remarkableAthlete', 'strengthModifier', '=', null);
@@ -3705,7 +3720,7 @@ SRD5E.classRulesExtra = function(rules, name) {
       rules.defineRule
         ('saveProficiency.' + ability, 'saveNotes.diamondSoul', '=', '1');
     }
-    rules.defineRule('selectableFeatureCount.Monk (Tradition)',
+    rules.defineRule('selectableFeatureCount.Monk (Monastic Tradition)',
       classLevel, '=', 'source<3 ? null : 1'
     );
     rules.defineRule('speed', 'abilityNotes.unarmoredMovement.1', '+', null);
@@ -3741,11 +3756,11 @@ SRD5E.classRulesExtra = function(rules, name) {
     rules.defineRule('saveNotes.auraOfProtection.1',
       'charismaModifier', '=', 'Math.max(source, 1)'
     );
-    rules.defineRule('selectableFeatureCount.Paladin (Oath)',
-      classLevel, '=', 'source<3 ? null : 1'
-    );
-    rules.defineRule('selectableFeatureCount.Paladin (Style)',
+    rules.defineRule('selectableFeatureCount.Paladin (Fighting Style)',
       classLevel, '=', 'source<2 ? null : 1'
+    );
+    rules.defineRule('selectableFeatureCount.Paladin (Sacred Oath)',
+      classLevel, '=', 'source<3 ? null : 1'
     );
 
   } else if(name == 'Ranger') {
@@ -3765,15 +3780,15 @@ SRD5E.classRulesExtra = function(rules, name) {
       classLevel, '=', 'source<6 ? 1 : source<14 ? 2 : 3'
     );
     rules.defineRule('combatNotes.foeSlayer', 'wisdomModifier', '=', null);
-    rules.defineRule('selectableFeatureCount.Ranger (Archetype)',
-      classLevel, '=', 'source<3 ? null : 1'
+    rules.defineRule('selectableFeatureCount.Ranger (Fighting Style)',
+      classLevel, '=', 'source<2 ? null : 1'
     );
-    rules.defineRule('selectableFeatureCount.Ranger (Hunter)',
+    rules.defineRule('selectableFeatureCount.Ranger (Hunter Technique)',
       'rangerFeatures.Hunter', '?', null,
       classLevel, '=', 'source<7 ? 1 : source<11 ? 2 : source<15 ? 3 : 4'
     );
-    rules.defineRule('selectableFeatureCount.Ranger (Style)',
-      classLevel, '=', 'source<2 ? null : 1'
+    rules.defineRule('selectableFeatureCount.Ranger (Ranger Archetype)',
+      classLevel, '=', 'source<3 ? null : 1'
     );
     rules.defineRule('skillNotes.naturalExplorer',
       classLevel, '=', 'source<6 ? 1 : source<10 ? 2 : 3'
@@ -3786,8 +3801,9 @@ SRD5E.classRulesExtra = function(rules, name) {
     );
     rules.defineRule('featCount.General', 'rogueFeatBonus', '+', null);
     rules.defineRule('rogueFeatBonus', classLevel, '=', 'source<10 ? null : 1');
-    rules.defineRule
-      ('selectableFeatureCount.Rogue', classLevel, '=', 'source<3 ? null : 1');
+    rules.defineRule('selectableFeatureCount.Rogue (Roguish Archetype)',
+      classLevel, '=', 'source<3 ? null : 1'
+    );
     rules.defineRule
       ('skillNotes.rogueExpertise', classLevel, '=', 'source<6 ? 2 : 4');
     rules.defineRule
@@ -3805,7 +3821,7 @@ SRD5E.classRulesExtra = function(rules, name) {
     rules.defineRule('selectableFeatureCount.Sorcerer (Metamagic)',
       classLevel, '=', 'source<3 ? null : source<10 ? 2 : source<17 ? 3 : 4'
     );
-    rules.defineRule('selectableFeatureCount.Sorcerer (Origin)',
+    rules.defineRule('selectableFeatureCount.Sorcerer (Sorcerous Origin)',
       classLevel, '=', 'source<3 ? null : 1'
     );
 
@@ -3844,14 +3860,15 @@ SRD5E.classRulesExtra = function(rules, name) {
     rules.defineRule('magicNotes.mysticArcanum',
       classLevel, '=', 'source<13 ? "K6" : source<15 ? "K6, K7" : source<17 ? "K6, K7, K8" : "K6, K7, K8, K9"'
     );
-    rules.defineRule('selectableFeatureCount.Warlock (Invocation)',
+    rules.defineRule('selectableFeatureCount.Warlock (Eldritch Invocation)',
       'magicNotes.eldritchInvocations', '=', null
     );
-    rules.defineRule('selectableFeatureCount.Warlock (Pact)',
+    rules.defineRule('selectableFeatureCount.Warlock (Otherworldly Patron)',
+      classLevel, '=', '1'
+    );
+    rules.defineRule('selectableFeatureCount.Warlock (Pact Boon)',
       classLevel, '=', 'source<3 ? null : 1'
     );
-    rules.defineRule
-      ('selectableFeatureCount.Warlock (Patron)', classLevel, '=', '1');
 
   } else if(name == 'Wizard') {
 
@@ -3860,8 +3877,9 @@ SRD5E.classRulesExtra = function(rules, name) {
     rules.defineRule('magicNotes.empoweredEvocation',
       'intelligenceModifier', '=', null
     );
-    rules.defineRule
-      ('selectableFeatureCount.Wizard', classLevel, '=', 'source<2 ? null : 1');
+    rules.defineRule('selectableFeatureCount.Wizard (Arcane Tradition)',
+      classLevel, '=', 'source<2 ? null : 1'
+    );
 
   }
 

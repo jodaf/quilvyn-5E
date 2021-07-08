@@ -141,64 +141,53 @@ PHB5E.BACKGROUNDS = {
       '"1:City Secrets"'
 };
 PHB5E.CLASS_SELECTABLES = {
-  'Bard':
-    ['3:College Of Valor'],
-  'Cleric':
-    ['1:Knowledge Domain', '1:Light Domain', '1:Nature Domain',
-     '1:Tempest Domain', '1:Trickery Domain', '1:War Domain'],
-  'Druid':
-    ['2:Circle Of The Land (Underdark)', '2:Circle Of The Moon'],
-  'Fighter':
-    ['3:Battle Master Archetype', '3:Eldritch Knight Archetype',
-     'features.Maneuvers ? 3:Commander\'s Strike',
-     'features.Maneuvers ? 3:Disarming Attack',
-     'features.Maneuvers ? 3:Distracting Strike',
-     'features.Maneuvers ? 3:Evasive Footwork',
-     'features.Maneuvers ? 3:Feinting Attack',
-     'features.Maneuvers ? 3:Goading Attack',
-     'features.Maneuvers ? 3:Lunging Attack',
-     'features.Maneuvers ? 3:Maneuvering Attack',
-     'features.Maneuvers ? 3:Menacing Attack',
-     'features.Maneuvers ? 3:Parry',
-     'features.Maneuvers ? 3:Precision Attack',
-     'features.Maneuvers ? 3:Pushing Attack',
-     'features.Maneuvers ? 3:Rally',
-     'features.Maneuvers ? 3:Riposte',
-     'features.Maneuvers ? 3:Sweeping Attack',
-     'features.Maneuvers ? 3:Trip Attack'],
-  'Monk':
-    ['3:Way Of The Four Elements', '3:Way Of The Shadow',
-     'features.Way Of The Four Elements ? 17:Breath Of Winter',
-     'features.Way Of The Four Elements ? 6:Clench Of The North Wind',
-     'features.Way Of The Four Elements ? 17:Eternal Mountain Defense',
-     'features.Way Of The Four Elements ? 3:Fangs Of The Fire Snake',
-     'features.Way Of The Four Elements ? 3:Fist Of Four Thunders',
-     'features.Way Of The Four Elements ? 3:Fist Of Unbroken Air',
-     'features.Way Of The Four Elements ? 11:Flames Of The Phoenix',
-     'features.Way Of The Four Elements ? 6:Gong Of The Summit',
-     'features.Way Of The Four Elements ? 11:Mist Stance',
-     'features.Way Of The Four Elements ? 11:Ride The Wind',
-     'features.Way Of The Four Elements ? 17:River Of Hungry Flame',
-     'features.Way Of The Four Elements ? 3:Rush Of The Gale Spirits',
-     'features.Way Of The Four Elements ? 3:Shape The Flowing River',
-     'features.Way Of The Four Elements ? 3:Sweeping Cinder Strike',
-     'features.Way Of The Four Elements ? 3:Water Whip',
-     'features.Way Of The Four Elements ? 17:Wave Of Rolling Earth'],
-  'Paladin':
-    ['3:Oath Of The Ancients', '3:Oath Of Vengeance'],
-  'Ranger':
-    ['3:Beast Master Archetype'],
-  'Rogue':
-    ['3:Arcane Trickster Archetype', '3:Assassin Archetype'],
-  'Sorcerer':
-    ['1:Wild Magic Origin'],
-  'Warlock':
-    ['1:Archfey Patron', '1:Great Old One Patron'],
-  'Wizard':
-    ['2:Abjuration Tradition', '2:Conjuration Tradition',
-     '2:Divination Tradition', '2:Enchantment Tradition',
-     '2:Illusion Tradition', '2:Necromancy Tradition',
-     '2:Transmutation Tradition']
+  'Bard':['3:College Of Valor'],
+  'Cleric':[
+    '1:Knowledge Domain', '1:Light Domain', '1:Nature Domain',
+    '1:Tempest Domain', '1:Trickery Domain', '1:War Domain'
+  ],
+  'Druid':['2:Circle Of The Land (Underdark)', '2:Circle Of The Moon'],
+  'Fighter':[
+    '3:Battle Master:Archetype', '3:Eldritch Knight:Archetype',
+    '3:Commander\'s Strike:Maneuver', '3:Disarming Attack:Maneuver',
+    '3:Distracting Strike:Maneuver', '3:Evasive Footwork:Maneuver',
+    '3:Feinting Attack:Maneuver', '3:Goading Attack:Maneuver',
+    '3:Lunging Attack:Maneuver', '3:Maneuvering Attack:Maneuver',
+    '3:Menacing Attack:Maneuver', '3:Parry:Maneuver',
+    '3:Precision Attack:Maneuver', '3:Pushing Attack:Maneuver',
+    '3:Rally:Maneuver', '3:Riposte:Maneuver',
+    '3:Sweeping Attack:Maneuver', '3:Trip Attack:Maneuver'
+  ],
+  'Monk':[
+    '3:Way Of The Four Elements:Tradition', '3:Way Of The Shadow:Tradition',
+    '17:Breath Of Winter:Discipline',
+    '6:Clench Of The North Wind:Discipline',
+    '17:Eternal Mountain Defense:Discipline',
+    '3:Fangs Of The Fire Snake:Discipline',
+    '3:Fist Of Four Thunders:Discipline',
+    '3:Fist Of Unbroken Air:Discipline',
+    '11:Flames Of The Phoenix:Discipline',
+    '6:Gong Of The Summit:Discipline',
+    '11:Mist Stance:Discipline',
+    '11:Ride The Wind:Discipline',
+    '17:River Of Hungry Flame:Discipline',
+    '3:Rush Of The Gale Spirits:Discipline',
+    '3:Shape The Flowing River:Discipline',
+    '3:Sweeping Cinder Strike:Discipline',
+    '3:Water Whip:Discipline',
+    '17:Wave Of Rolling Earth:Discipline'
+  ],
+  'Paladin':['3:Oath Of The Ancients:Oath', '3:Oath Of Vengeance:Oath'],
+  'Ranger':['3:Beast Master:Archetype'],
+  'Rogue':['3:Arcane Trickster', '3:Assassin'],
+  'Sorcerer':['1:Wild Magic:Origin'],
+  'Warlock':['1:The Archfey:Patron', '1:The Great Old One:Patron'],
+  'Wizard':[
+    '2:School Of Abjuration', '2:School Of Conjuration',
+    '2:School Of Divination', '2:School Of Enchantment',
+    '2:School Of Illusion', '2:School Of Necromancy',
+    '2:School Of Transmutation'
+  ]
 };
 PHB5E.DEITIES = {
   // Forgotten Realms
@@ -982,12 +971,7 @@ PHB5E.FEATURES = {
     'Section=ability Note="+2 Dexterity/+1 Wisdom"'
 };
 PHB5E.PATHS = {
-  'Abjuration Tradition':
-    'Group=Wizard Level=levels.Wizard ' +
-    'Features=' +
-      '"2:Abjuration Savant","2:Arcane Ward","6:Projected Ward",' +
-      '"10:Improved Abjuration","14:Spell Resistance"',
-  'Arcane Trickster Archetype':
+  'Arcane Trickster':
     'Group=Rogue Level=levels.Rogue ' +
     'Features=' +
       '3:Spellcasting,"3:Mage Hand Legerdemain","9:Magical Ambush",' +
@@ -998,22 +982,17 @@ PHB5E.PATHS = {
       'W2:7=2;10=3,' +
       'W3:13=2;16=3,' +
       'W4:19=1',
-  'Archfey Patron':
-    'Group=Warlock Level=levels.Warlock ' +
-    'Features=' +
-      '"1:Fey Presence","6:Misty Escape","10:Beguiling Defenses",' +
-      '"14:Dark Delirium"',
-  'Assassin Archetype':
+  'Assassin':
     'Group=Rogue Level=levels.Rogue ' +
     'Features=' +
       '"3:Tool Proficiency (Disguise Kit/Poisoner\'s Kit)",' +
       '3:Assassinate,"9:Infiltration Expertise",13:Impostor,"17:Death Strike"',
-  'Battle Master Archetype':
+  'Battle Master':
     'Group=Fighter Level=levels.Fighter ' +
     'Features=' +
       '"3:Student Of War",3:Maneuvers,"3:Superiority Dice",' +
       '"7:Know Your Enemy",15:Relentless',
-  'Beast Master Archetype':
+  'Beast Master':
     'Group=Ranger Level=levels.Ranger ' +
     'Features=' +
       '"3:Ranger\'s Companion","7:Exceptional Training","11:Bestial Fury",' +
@@ -1041,17 +1020,7 @@ PHB5E.PATHS = {
       '"3:Weapon Proficiency (Martial)",' +
       '"3:Bonus Skills","3:Combat Inspiration","6:Extra Attack",' +
       '"14:Battle Magic"',
-  'Conjuration Tradition':
-    'Group=Wizard Level=levels.Wizard ' +
-    'Features=' +
-      '"2:Conjuration Savant","2:Minor Conjuration","6:Benign Transposition",' +
-      '"10:Focused Conjuration","14:Durable Summons"',
-  'Divination Tradition':
-    'Group=Wizard Level=levels.Wizard ' +
-    'Features=' +
-      '"2:Divination Savant",2:Portent,"6:Expert Divination",' +
-      '"10:The Third Eye"',
-  'Eldritch Knight Archetype':
+  'Eldritch Knight':
     'Group=Fighter Level=levels.Fighter ' +
     'Features=' +
       '3:Spellcasting,"3:Weapon Bond","7:War Magic","10:Eldritch Strike",' +
@@ -1063,21 +1032,6 @@ PHB5E.PATHS = {
       'W2:7=2;10=3,' +
       'W3:13=2;16=3,' +
       'W4:19=1',
-  'Enchantment Tradition':
-    'Group=Wizard Level=levels.Wizard ' +
-    'Features=' +
-      '"2:Enchantment Savant","2:Hypnotic Gaze","6:Instinctive Charm",' +
-      '"10:Split Enchantment","14:Alter Memories"',
-  'Great Old One Patron':
-    'Group=Warlock Level=levels.Warlock ' +
-    'Features=' +
-        '"1:Awakened Mind","6:Entropic Ward","10:Thought Shield",' +
-        '"14:Create Thrall"',
-  'Illusion Tradition':
-    'Group=Wizard Level=levels.Wizard ' +
-    'Features=' +
-      '"2:Illusion Savant","2:Improved Minor Illusion",' +
-      '"6:Malleable Illusions","10:Illusory Self","14:Illusory Reality"',
   'Knowledge Domain':
     'Group=Cleric Level=levels.Cleric ' +
     'Features=' +
@@ -1116,11 +1070,6 @@ PHB5E.PATHS = {
       'Nature3:5=2,' +
       'Nature4:7=2,' +
       'Nature5:9=2',
-  'Necromancy Tradition':
-    'Group=Wizard Level=levels.Wizard ' +
-    'Features=' +
-      '"2:Necromancy Savant","2:Grim Harvest","6:Undead Thralls",' +
-      '"10:Inured To Undeath","14:Command Undead"',
   'Oath Of The Ancients':
     'Group=Paladin Level=levels.Paladin ' +
     'Features=' +
@@ -1160,6 +1109,41 @@ PHB5E.PATHS = {
     'Features=' +
       '"3:Spirit Seeker","3:Wolf Totem Spirit","6:Aspect Of The Wolf",' +
       '"10:Spirit Walker","14:Wolf Totemic Attunement"',
+  'School Of Abjuration':
+    'Group=Wizard Level=levels.Wizard ' +
+    'Features=' +
+      '"2:Abjuration Savant","2:Arcane Ward","6:Projected Ward",' +
+      '"10:Improved Abjuration","14:Spell Resistance"',
+  'School Of Conjuration':
+    'Group=Wizard Level=levels.Wizard ' +
+    'Features=' +
+      '"2:Conjuration Savant","2:Minor Conjuration","6:Benign Transposition",' +
+      '"10:Focused Conjuration","14:Durable Summons"',
+  'School Of Divination':
+    'Group=Wizard Level=levels.Wizard ' +
+    'Features=' +
+      '"2:Divination Savant",2:Portent,"6:Expert Divination",' +
+      '"10:The Third Eye"',
+  'School Of Enchantment':
+    'Group=Wizard Level=levels.Wizard ' +
+    'Features=' +
+      '"2:Enchantment Savant","2:Hypnotic Gaze","6:Instinctive Charm",' +
+      '"10:Split Enchantment","14:Alter Memories"',
+  'School Of Illusion':
+    'Group=Wizard Level=levels.Wizard ' +
+    'Features=' +
+      '"2:Illusion Savant","2:Improved Minor Illusion",' +
+      '"6:Malleable Illusions","10:Illusory Self","14:Illusory Reality"',
+  'School Of Necromancy':
+    'Group=Wizard Level=levels.Wizard ' +
+    'Features=' +
+      '"2:Necromancy Savant","2:Grim Harvest","6:Undead Thralls",' +
+      '"10:Inured To Undeath","14:Command Undead"',
+  'School Of Transmutation':
+    'Group=Wizard Level=levels.Wizard ' +
+    'Features=' +
+      '"2:Transmutation Savant","2:Minor Alchemy","6:Transmuter\'s Stone",' +
+      '10:Shapechanger,"14:Master Transmuter"',
   'Tempest Domain':
     'Group=Cleric Level=levels.Cleric ' +
     'Features=' +
@@ -1174,11 +1158,16 @@ PHB5E.PATHS = {
       'Tempest3:5=2,' +
       'Tempest4:7=2,' +
       'Tempest5:9=2',
-  'Transmutation Tradition':
-    'Group=Wizard Level=levels.Wizard ' +
+  'The Archfey':
+    'Group=Warlock Level=levels.Warlock ' +
     'Features=' +
-      '"2:Transmutation Savant","2:Minor Alchemy","6:Transmuter\'s Stone",' +
-      '10:Shapechanger,"14:Master Transmuter"',
+      '"1:Fey Presence","6:Misty Escape","10:Beguiling Defenses",' +
+      '"14:Dark Delirium"',
+  'The Great Old One':
+    'Group=Warlock Level=levels.Warlock ' +
+    'Features=' +
+        '"1:Awakened Mind","6:Entropic Ward","10:Thought Shield",' +
+        '"14:Create Thrall"',
   'Trickery Domain':
     'Group=Cleric Level=levels.Cleric ' +
     'Features=' +
@@ -1219,7 +1208,7 @@ PHB5E.PATHS = {
     'SpellSlots=' +
       'Shadow0:3=1,' +
       'Shadow2:3=4',
-  'Wild Magic Origin':
+  'Wild Magic':
     'Group=Sorcerer Level=levels.Sorcerer ' +
     'Features=' +
       '"1:Wild Magic Surge","1:Tides Of Chaos","6:Bend Luck",' +
@@ -1601,85 +1590,71 @@ PHB5E.talentRules = function(rules, feats, features) {
  */
 PHB5E.pathRulesExtra = function(rules, name) {
 
-  if(name == 'Abjuration Tradition') {
+  var pathLevel =
+    name.charAt(0).toLowerCase() + name.substring(1).replaceAll(' ', '') +
+    'Level';
 
-    rules.defineRule('magicNotes.arcaneWard',
-      'levels.Wizard', '=', 'source * 2',
-      'intelligenceModifier', '+', null
-    );
-
-  } else if(name == 'Arcane Trickster Archetype') {
+  if(name == 'Arcane Trickster') {
 
     rules.defineRule('magicNotes.spellThief',
       'intelligenceModifier', '=', '8 + source',
       'proficiencyBonus', '+', null
     );
 
-  } else if(name == 'Assassin Archetype') {
+  } else if(name == 'Assassin') {
 
     rules.defineRule('combatNotes.deathStrike',
       'dexterityModifier', '=', '8 + source',
       'proficiencyBonus', '+', null
     );
 
-  } else if(name == 'Battle Master Archetype') {
+  } else if(name == 'Battle Master') {
 
     rules.defineRule('combatNotes.superiorityDice',
-      'levels.Fighter', '=', 'source < 7 ? 4 : source < 15 ? 5 : 6'
+      pathLevel, '=', 'source<7 ? 4 : source<15 ? 5 : 6'
     );
     rules.defineRule('combatNotes.superiorityDice.1',
       'fighterFeatures.Superiority Dice', '?', null,
-      'levels.Fighter', '=', 'source < 10 ? 8 : source < 18 ? 10 : 12'
+      pathLevel, '=', 'source<10 ? 8 : source<18 ? 10 : 12'
     );
     rules.defineRule('maxDexOrStrMod',
       'dexterityModifier', '=', null,
       'strengthModifier', '^', null
     );
     rules.defineRule('combatNotes.maneuvers',
-      'fighterFeatures.Battle Master Archetype', '?', null,
-      'levels.Fighter', '=', 'source<7 ? 3 : source<10 ? 5 : source<15 ? 7 : 9'
+      pathLevel, '=', 'source<7 ? 3 : source<10 ? 5 : source<15 ? 7 : 9'
     );
     rules.defineRule('combatNotes.maneuvers.1',
-      'fighterFeatures.Battle Master Archetype', '?', null,
+      'fighterFeatures.Battle Master', '?', null,
       'proficiencyBonus', '=', '8 + source',
       'maxDexOrStrMod', '+', null
     );
     rules.defineRule('combatNotes.parry', 'dexterityModifier', '=', null);
     rules.defineRule('combatNotes.rally', 'charismaModifier', '=', null);
-    rules.defineRule
-      ('selectableFeatureCount.Fighter', 'combatNotes.maneuvers', '+', null);
+    rules.defineRule('selectableFeatureCount.Fighter (Maneuver)',
+      'combatNotes.maneuvers', '=', null
+    );
 
   } else if(name == 'Circle Of The Moon') {
 
     rules.defineRule
       ('magicNotes.wildShape.1', 'magicNotes.circleForms', '=', null);
     rules.defineRule('magicNotes.circleForms',
-      'levels.Druid', '=', 'source < 6 ? 1 : Math.floor(source / 3)'
+      pathLevel, '=', 'source < 6 ? 1 : Math.floor(source / 3)'
     );
 
   } else if(name == 'College Of Valor') {
 
     rules.defineRule('bardExtraAttacks',
       'bardFeatures.Extra Attack', '?', null,
-      'levels.Bard', '=', 'source < 6 ? null : 1'
+      pathLevel, '=', 'source<6 ? null : 1'
     );
     rules.defineRule('combatNotes.extraAttack', 'bardExtraAttacks', '+=', null);
 
-  } else if(name == 'Divination Tradition') {
-
-    rules.defineRule
-      ('magicNotes.portent', 'levels.Wizard', '=', 'source < 14 ? 2 : 3');
-
-  } else if(name == 'Eldritch Knight Archetype') {
+  } else if(name == 'Eldritch Knight') {
 
     rules.defineRule('combatNotes.warMagic',
-      'levels.Fighter', '=', 'source < 18 ? "cantrip" : "any spell"'
-    );
-
-  } else if(name == 'Enchantment Tradition') {
-
-    rules.defineRule('magicNotes.alterMemories',
-      'charismaModifier', '=', 'Math.max(source + 1, 1)'
+      pathLevel, '=', 'source<18 ? "cantrip" : "any spell"'
     );
 
   } else if(name == 'Knowledge Domain') {
@@ -1699,8 +1674,7 @@ PHB5E.pathRulesExtra = function(rules, name) {
 
     rules.defineRule
       ('magicNotes.potentSpellcasting', 'wisdomModifier', '=', null);
-    rules.defineRule
-      ('magicNotes.radianceOfTheDawn', 'levels.Cleric', '=', null);
+    rules.defineRule('magicNotes.radianceOfTheDawn', pathLevel, '=', null);
     rules.defineRule
       ('magicNotes.wardingFlare', 'wisdomModifier', '=', 'Math.max(source, 1)');
 
@@ -1713,22 +1687,38 @@ PHB5E.pathRulesExtra = function(rules, name) {
     rules.defineRule
       ('skillChoices.Survival', 'skillNotes.acolyteOfNature', '=', '1');
 
-  } else if(name == 'Necromancy Tradition') {
-
-    rules.defineRule('magicNotes.undeadThralls', 'levels.Wizard', '=', null);
-    rules.defineRule
-      ('magicNotes.undeadThralls.1', 'proficiencyBonus', '=', null);
-
   } else if(name == 'Oath Of The Ancients') {
 
-    rules.defineRule('saveNotes.auraOfWarding',
-      'levels.Paladin', '=', 'source < 18 ? 10 : 30'
-    );
+    rules.defineRule
+      ('saveNotes.auraOfWarding', pathLevel, '=', 'source<18 ? 10 : 30');
 
   } else if(name == 'Path Of The Totem Warrior (Bear)') {
 
     rules.defineRule('carry', 'abilityNotes.aspectOfTheBear', '*', '2');
     rules.defineRule('lift', 'abilityNotes.aspectOfTheBear', '*', '2');
+
+  } else if(name == 'School Of Abjuration') {
+
+    rules.defineRule('magicNotes.arcaneWard',
+      pathLevel, '=', 'source * 2',
+      'intelligenceModifier', '+', null
+    );
+
+  } else if(name == 'School Of Divination') {
+
+    rules.defineRule('magicNotes.portent', pathLevel, '=', 'source<14 ? 2 : 3');
+
+  } else if(name == 'School Of Enchantment') {
+
+    rules.defineRule('magicNotes.alterMemories',
+      'charismaModifier', '=', 'Math.max(source + 1, 1)'
+    );
+
+  } else if(name == 'School Of Necromancy') {
+
+    rules.defineRule('magicNotes.undeadThralls', pathLevel, '=', null);
+    rules.defineRule
+      ('magicNotes.undeadThralls.1', 'proficiencyBonus', '=', null);
 
   } else if(name == 'Tempest Domain') {
 
@@ -1745,10 +1735,10 @@ PHB5E.pathRulesExtra = function(rules, name) {
 
     rules.defineRule('magicNotes.discipleOfTheElements',
       'monkFeatures.Way Of The Four Elements', '?', null,
-      'levels.Monk', '=', 'Math.floor( (source + 4) / 5)'
+      pathLevel, '=', 'Math.floor( (source + 4) / 5)'
     );
-    rules.defineRule('selectableFeatureCount.Monk',
-      'magicNotes.discipleOfTheElements', '+', null
+    rules.defineRule('selectableFeatureCount.Monk (Discipline)',
+      'magicNotes.discipleOfTheElements', '=', null
     );
 
   }
@@ -1806,7 +1796,7 @@ PHB5E.featRulesExtra = function(rules, name) {
       'proficiencyBonus', '+', null
     );
     rules.defineRule
-      ('selectableFeatureCount.Fighter', 'combatNotes.martialAdept', '+=', '2');
+      ('selectableFeatureCount.Fighter (Maneuver)', 'combatNotes.martialAdept', '+=', '2');
     for(var feature in {
       "Commander's Strike":'', 'Disarming Attack':'', 'Distracting Strike':'',
       'Evasive Footwork':'', 'Feinting Attack':'', 'Goading Attack':'',

@@ -81,8 +81,8 @@ SRD5E.RANDOMIZABLE_ATTRIBUTES = [
   'abilities',
   'charisma', 'constitution', 'dexterity', 'intelligence', 'strength', 'wisdom',
   'name', 'race', 'gender', 'alignment', 'background', 'deity', 'levels',
-  'features', 'feats', 'skills', 'languages', 'hitPoints', 'armor', 'weapons',
-  'shield', 'spells', 'tools', 'boosts'
+  'selectableFeatures', 'feats', 'skills', 'languages', 'hitPoints', 'armor',
+  'weapons', 'shield', 'spells', 'tools', 'boosts'
 ];
 SRD5E.VIEWERS = ['Collected Notes', 'Compact', 'Standard'];
 
@@ -240,11 +240,13 @@ SRD5E.CLASSES = {
       '"1:Weapon Proficiency (Martial)",' +
       '"1:Second Wind","2:Action Surge","5:Extra Attack",9:Indomitable ' +
     'Selectables=' +
-      '"1:Fighting Style (Archery)","1:Fighting Style (Defense)",' +
-      '"1:Fighting Style (Dueling)",' +
-      '"1:Fighting Style (Great Weapon Fighting)",' +
-      '"1:Fighting Style (Protection)",' +
-      '"1:Fighting Style (Two-Weapon Fighting)","3:Champion Archetype"',
+      '"1:Fighting Style (Archery):Style",' +
+      '"1:Fighting Style (Defense):Style",' +
+      '"1:Fighting Style (Dueling):Style",' +
+      '"1:Fighting Style (Great Weapon Fighting):Style",' +
+      '"1:Fighting Style (Protection):Style",' +
+      '"1:Fighting Style (Two-Weapon Fighting):Style",' +
+      '"3:Champion:Archetype"',
   'Monk':
     'HitDie=d8 ' +
     'Features=' +
@@ -260,7 +262,7 @@ SRD5E.CLASSES = {
       '"10:Purity Of Body","13:Tongue Of Sun And Moon","14:Diamond Soul",' +
       '"15:Monk Timeless Body","18:Empty Body","20:Perfect Self" ' +
     'Selectables=' +
-      '"3:Way Of The Open Hand"',
+      '"3:Way Of The Open Hand:Tradition"',
   'Paladin':
     'HitDie=d10 ' +
     'Features=' +
@@ -273,9 +275,11 @@ SRD5E.CLASSES = {
       '"6:Aura Of Protection","10:Aura Of Courage",' +
       '"11:Improved Divine Smite","14:Cleansing Touch" ' +
     'Selectables=' +
-      '"2:Fighting Style (Defense)","2:Fighting Style (Dueling)",' +
-      '"2:Fighting Style (Great Weapon Fighting)",' +
-      '"2:Fighting Style (Protection)","3:Oath Of Devotion" ' +
+      '"2:Fighting Style (Defense):Style",' +
+      '"2:Fighting Style (Dueling):Style",' +
+      '"2:Fighting Style (Great Weapon Fighting):Style",' +
+      '"2:Fighting Style (Protection):Style",' +
+      '"3:Oath Of Devotion:Oath" ' +
     'CasterLevelDivine=levels.Paladin ' +
     'SpellAbility=charisma ' +
     'SpellSlots=' +
@@ -296,9 +300,22 @@ SRD5E.CLASSES = {
       '"10:Hide In Plain Sight","14:Vanish","18:Feral Senses",' +
       '"20:Foe Slayer" ' +
     'Selectables=' +
-      '"2:Fighting Style (Archery)","2:Fighting Style (Defense)",' +
-      '"2:Fighting Style (Dueling)","2:Fighting Style (Two-Weapon Fighting)",' +
-      '"3:Hunter Archetype" ' +
+      '"2:Fighting Style (Archery):Style",' +
+      '"2:Fighting Style (Defense):Style",' +
+      '"2:Fighting Style (Dueling):Style",' +
+      '"2:Fighting Style (Two-Weapon Fighting):Style",' +
+      '"3:Hunter:Archetype",' +
+      '"3:Colossus Slayer:Hunter",' +
+      '"3:Giant Killer:Hunter",' +
+      '"3:Horde Breaker:Hunter",' +
+      '"7:Escape The Horde:Hunter",' +
+      '"7:Multiattack Defense:Hunter",' +
+      '"7:Steel Will:Hunter",' +
+      '"11:Volley:Hunter",' +
+      '"11:Whirlwind Attack:Hunter",' +
+      '"15:Evasion:Hunter",' +
+      '"15:Stand Against The Tide:Hunter",' +
+      '"15:Uncanny Dodge:Hunter" ' +
     'CasterLevelDivine=levels.Ranger ' +
     'SpellAbility=wisdom ' +
     'SpellSlots=' +
@@ -320,7 +337,7 @@ SRD5E.CLASSES = {
       '"2:Cunning Action","5:Uncanny Dodge",7:Evasion,"11:Reliable Talent",' +
       '14:Blindsense,"15:Slippery Mind",18:Elusive,"20:Stroke Of Luck" ' +
     'Selectables=' +
-      '"3:Thief Archetype"',
+      '"3:Thief"',
   'Sorcerer':
     'HitDie=d6 ' +
     'Features=' +
@@ -330,9 +347,11 @@ SRD5E.CLASSES = {
       '1:Spellcasting,"2:Font Of Magic","2:Flexible Casting",' +
       '"20:Sorcerous Restoration" ' +
     'Selectables=' +
-      '"1:Draconic Bloodline Origin","3:Careful Spell","3:Distant Spell",' +
-      '"3:Empowered Spell","3:Extended Spell","3:Heightened Spell",' +
-      '"3:Quickened Spell","3:Subtle Spell","3:Twinned Spell" ' +
+      '"1:Draconic Bloodline:Origin",' +
+      '"3:Careful Spell:Metamagic","3:Distant Spell:Metamagic",' +
+      '"3:Empowered Spell:Metamagic","3:Extended Spell:Metamagic",' +
+      '"3:Heightened Spell:Metamagic","3:Quickened Spell:Metamagic",' +
+      '"3:Subtle Spell:Metamagic","3:Twinned Spell:Metamagic" ' +
     'CasterLevelArcane=levels.Sorcerer ' +
     'SpellAbility=charisma ' +
     'SpellSlots=' +
@@ -356,17 +375,23 @@ SRD5E.CLASSES = {
       '"1:Pact Magic","2:Eldritch Invocations","11:Mystic Arcanum",' +
       '"20:Eldritch Master" ' +
     'Selectables=' +
-      '"1:Fiend Patron","2:Agonizing Blast","2:Armor Of Shadows",' +
-      '"2:Beast Speech","2:Beguiling Influence","2:Devil\'s Sight",' +
-      '"2:Eldritch Sight","2:Eldritch Spear","2:Eyes Of The Rune Keeper",' +
-      '"2:Fiendish Vigor","2:Gaze Of Two Minds","2:Mask Of Many Faces",' +
-      '"2:Misty Visions","2:Repelling Blast","2:Thief Of Five Fates",' +
-      '"3:Pact Of The Blade","3:Pact Of The Chain","3:Pact Of The Tome",' +
-      '"5:Mire The Mind","5:One With Shadows","5:Sign Of Ill Omen",' +
-      '"7:Bewitching Whispers","7:Dreadful Word","7:Sculptor Of Flesh",' +
-      '"9:Ascendant Step","9:Minions Of Chaos","9:Otherworldly Leap",' +
-      '"9:Whispers Of The Grave","15:Master Of Myriad Forms",' +
-      '"15:Visions Of Distant Realms","15:Witch Sight",' +
+      '"1:The Fiend:Patron",' +
+      '"3:Pact Of The Blade:Pact","3:Pact Of The Chain:Pact",' +
+      '"3:Pact Of The Tome:Pact",' +
+      '"2:Agonizing Blast:Invocation","2:Armor Of Shadows:Invocation",' +
+      '"2:Beast Speech:Invocation","2:Beguiling Influence:Invocation",' +
+      '"2:Devil\'s Sight:Invocation","2:Eldritch Sight:Invocation",' +
+      '"2:Eldritch Spear:Invocation","2:Eyes Of The Rune Keeper:Invocation",' +
+      '"2:Fiendish Vigor:Invocation","2:Gaze Of Two Minds:Invocation",' +
+      '"2:Mask Of Many Faces:Invocation","2:Misty Visions:Invocation",' +
+      '"2:Repelling Blast:Invocation","2:Thief Of Five Fates:Invocation",' +
+      '"5:Mire The Mind:Invocation","5:One With Shadows:Invocation",' +
+      '"5:Sign Of Ill Omen:Invocation","7:Bewitching Whispers:Invocation",' +
+      '"7:Dreadful Word:Invocation","7:Sculptor Of Flesh:Invocation",' +
+      '"9:Ascendant Step:Invocation","9:Minions Of Chaos:Invocation",' +
+      '"9:Otherworldly Leap:Invocation","9:Whispers Of The Grave:Invocation",' +
+      '"15:Master Of Myriad Forms:Invocation",' +
+      '"15:Visions Of Distant Realms:Invocation","15:Witch Sight:Invocation",' +
       '"features.Pact Of The Tome ? 2:Book Of Ancient Secrets",' +
       '"features.Pact Of The Chain ? 15:Chains Of Carceri",' +
       '"features.Pact Of The Blade ? 12:Lifedrinker",' +
@@ -390,7 +415,7 @@ SRD5E.CLASSES = {
       '"1:Arcane Recovery",1:Spellcasting,"18:Spell Mastery",' +
       '"20:Signature Spell" ' +
     'Selectables=' +
-      '"2:Evocation Tradition" ' +
+      '"2:School Of Evocation" ' +
     'CasterLevelArcane=levels.Wizard ' +
     'SpellAbility=intelligence ' +
     'SpellSlots=' +
@@ -1167,7 +1192,7 @@ SRD5E.LANGUAGES = {
   'Undercommon':''
 };
 SRD5E.PATHS = {
-  'Champion Archetype':
+  'Champion':
     'Group=Fighter ' +
     'Level=levels.Fighter ' +
     'Features=' +
@@ -1263,32 +1288,12 @@ SRD5E.PATHS = {
     'Features=' +
       '"3:Bonus Skill Proficiency (Choose 3 from any)",' +
       '"3:Cutting Words","6:Additional Magical Secrets","14:Peerless Skill"',
-  'Draconic Bloodline Origin':
+  'Draconic Bloodline':
     'Group=Sorcerer ' +
     'Level=levels.Sorcerer ' +
     'Features=' +
       '"1:Draconic Resilience","1:Dragon Ancestor","6:Elemental Affinity",' +
       '"14:Dragon Wings","18:Draconic Presence"',
-  'Evocation Tradition':
-    'Group=Wizard ' +
-    'Level=levels.Wizard ' +
-    'Features=' +
-      '"2:Evocation Savant","2:Sculpt Spells","6:Potent Cantrip",' +
-      '"10:Empowered Evocation","14:Overchannel"',
-  'Fiend Patron':
-    'Group=Warlock ' +
-    'Level=levels.Warlock ' +
-    'Features=' +
-      '"1:Dark One\'s Blessing","6:Dark One\'s Own Luck",' +
-      '"10:Fiendish Resilience","14:Hurl Through Hell"',
-  'Hunter Archetype':
-    'Group=Ranger ' +
-    'Level=levels.Ranger ' +
-    'Selectables=' +
-      '"3:Colossus Slayer","3:Giant Killer","3:Horde Breaker",' +
-      '"7:Escape The Horde","7:Multiattack Defense","7:Steel Will",' +
-      '11:Volley,"11:Whirlwind Attack","15:Evasion",' +
-      '"15:Stand Against The Tide","15:Uncanny Dodge"',
   'Life Domain':
     'Group=Cleric ' +
     'Level=levels.Cleric ' +
@@ -1320,7 +1325,19 @@ SRD5E.PATHS = {
     'Level=levels.Barbarian ' +
     'Features=' +
       '3:Frenzy,"6:Mindless Rage","10:Intimidating Presence",14:Retaliation',
-  'Thief Archetype':
+  'School Of Evocation':
+    'Group=Wizard ' +
+    'Level=levels.Wizard ' +
+    'Features=' +
+      '"2:Evocation Savant","2:Sculpt Spells","6:Potent Cantrip",' +
+      '"10:Empowered Evocation","14:Overchannel"',
+  'The Fiend':
+    'Group=Warlock ' +
+    'Level=levels.Warlock ' +
+    'Features=' +
+      '"1:Dark One\'s Blessing","6:Dark One\'s Own Luck",' +
+      '"10:Fiendish Resilience","14:Hurl Through Hell"',
+  'Thief':
     'Group=Rogue ' +
     'Level=levels.Rogue ' +
     'Features=' +
@@ -3476,13 +3493,15 @@ SRD5E.classRules = function(
  */
 SRD5E.classRulesExtra = function(rules, name) {
 
+  var classLevel = 'levels.' + name;
+
   if(name == 'Barbarian') {
 
     rules.defineRule('armorClass',
       'combatNotes.barbarianUnarmoredDefense.2', '+', null
     );
     rules.defineRule('combatNotes.brutalCritical',
-      'levels.Barbarian', '=', 'Math.floor((source - 5) / 4)'
+      classLevel, '=', 'Math.floor((source - 5) / 4)'
     );
     // Show Unarmored Defense note even if armor != None or conMod == 0
     rules.defineRule('combatNotes.barbarianUnarmoredDefense.1',
@@ -3494,21 +3513,20 @@ SRD5E.classRulesExtra = function(rules, name) {
       'armor', '?', 'source == "None"',
       'combatNotes.barbarianUnarmoredDefense.1', '=', null
     );
-    rules.defineRule('combatNotes.extraAttack',
-      'levels.Barbarian', '+=', 'source < 5 ? null : 1'
-    );
+    rules.defineRule
+      ('combatNotes.extraAttack', classLevel, '+=', 'source<5 ? null : 1');
     rules.defineRule('combatNotes.rage',
-      'levels.Barbarian', '+=', 'source<9 ? 2 : source<16 ? 3 : 4'
+      classLevel, '+=', 'source<9 ? 2 : source<16 ? 3 : 4'
     );
     rules.defineRule('featureNotes.intimidatingPresence',
       'charismaModifier', '=', 'source + 8',
       'proficiencyBonus', '+', null
     );
     rules.defineRule('featureNotes.rage',
-      'levels.Barbarian', '+=', 'source<3 ? 2 : source<6 ? 3 : source<12 ? 4 : source<17 ? 5 : source<20 ? 6 : "unlimited"'
+      classLevel, '+=', 'source<3 ? 2 : source<6 ? 3 : source<12 ? 4 : source<17 ? 5 : source<20 ? 6 : "unlimited"'
     );
     rules.defineRule('selectableFeatureCount.Barbarian',
-      'levels.Barbarian', '=', 'source < 3 ? null : 1'
+      classLevel, '=', 'source<3 ? null : 1'
     );
     rules.defineRule('speed', 'abilityNotes.fastMovement', '+', '10');
 
@@ -3518,7 +3536,7 @@ SRD5E.classRulesExtra = function(rules, name) {
       'proficiencyBonus', '=', 'Math.floor(source / 2)'
     );
     rules.defineRule('bardicInspirationDie',
-      'levels.Bard', '=', 'source<20 ? 6 + Math.floor(source / 5) * 2 : 12'
+      classLevel, '=', 'source<20 ? 6 + Math.floor(source / 5) * 2 : 12'
     );
     rules.defineRule
       ('magicNotes.bardicInspiration', 'bardicInspirationDie', '=', null);
@@ -3526,63 +3544,55 @@ SRD5E.classRulesExtra = function(rules, name) {
       'charismaModifier', '=', 'Math.max(source, 1)'
     );
     rules.defineRule('magicNotes.magicalSecrets',
-      'levels.Bard', '=', '2 * Math.floor((source - 6) / 4)'
+      classLevel, '=', '2 * Math.floor((source - 6) / 4)'
     );
     rules.defineRule('magicNotes.songOfRest',
-      'levels.Bard', '=', '6 + (source>=9 ? 2 * Math.floor((source-5)/4) : 0)'
+      classLevel, '=', '6 + (source>=9 ? 2 * Math.floor((source-5)/4) : 0)'
     );
-    rules.defineRule('selectableFeatureCount.Bard',
-      'levels.Bard', '=', 'source < 3 ? null : 1'
-    );
-    rules.defineRule('skillNotes.bardExpertise',
-      'levels.Bard', '=', 'source < 10 ? 2 : 4'
-    );
+    rules.defineRule
+      ('selectableFeatureCount.Bard', classLevel, '=', 'source<3 ? null : 1');
+    rules.defineRule
+      ('skillNotes.bardExpertise', classLevel, '=', 'source<10 ? 2 : 4');
 
   } else if(name == 'Cleric') {
 
     rules.defineRule('combatNotes.destroyUndead',
-      'levels.Cleric', '=', 'source < 8 ? 0.5 : Math.floor((source - 5) / 3)'
+      classLevel, '=', 'source < 8 ? 0.5 : Math.floor((source - 5) / 3)'
     );
-    rules.defineRule('combatNotes.divineStrike',
-      'levels.Cleric', '=', 'source < 14 ? 1 : 2'
-    );
+    rules.defineRule
+      ('combatNotes.divineStrike', classLevel, '=', 'source<14 ? 1 : 2');
     rules.defineRule('combatNotes.turnUndead',
       'wisdomModifier', '=', 'source + 8',
       'proficiencyBonus', '+', null
     );
     rules.defineRule('featureNotes.channelDivinity',
-      'levels.Cleric', '=', 'source < 6 ? 1: source < 18 ? 2 : 3'
+      classLevel, '=', 'source<6 ? 1: source<18 ? 2 : 3'
     );
     rules.defineRule('magicNotes.divineIntervention',
-      'levels.Cleric', '=', 'source < 20 ? source : 100'
+      classLevel, '=', 'source<20 ? source : 100'
     );
-    rules.defineRule
-      ('magicNotes.preserveLife', 'levels.Cleric', '=', '5 * source');
-    rules.defineRule
-      ('selectableFeatureCount.Cleric', 'levels.Cleric', '=', '1');
+    rules.defineRule('magicNotes.preserveLife', classLevel, '=', '5 * source');
+    rules.defineRule('selectableFeatureCount.Cleric', classLevel, '=', '1');
 
   } else if(name == 'Druid') {
 
     rules.defineRule('magicNotes.wildShape.1',
-      'levels.Druid', '=', 'source < 4 ? "1/4" : source < 8 ? "1/2" : "1"'
+      classLevel, '=', 'source<4 ? "1/4" : source<8 ? "1/2" : "1"'
     );
     rules.defineRule('magicNotes.wildShape.2',
-      'levels.Druid', '=', 'source < 4 ? " (land only)" : source < 8 ? " (non-flying)" : ""'
+      classLevel, '=', 'source<4 ? " (land only)" : source<8 ? " (non-flying)" : ""'
     );
-    rules.defineRule('magicNotes.wildShape.3',
-      'levels.Druid', '=', 'Math.floor(source /2)'
-    );
-    rules.defineRule('selectableFeatureCount.Druid',
-      'levels.Druid', '=', 'source < 2 ? null : 1'
-    );
+    rules.defineRule
+      ('magicNotes.wildShape.3', classLevel, '=', 'Math.floor(source /2)');
+    rules.defineRule
+      ('selectableFeatureCount.Druid', classLevel, '=', 'source<2 ? null : 1');
 
     rules.defineRule("combatNotes.nature'sSanctuary",
       'wisdomModifier', '=', 'source + 8',
       'proficiencyBonus', '+', null
     );
-    rules.defineRule('magicNotes.naturalRecovery',
-      'levels.Druid', '=', 'Math.floor(source / 2)'
-    );
+    rules.defineRule
+      ('magicNotes.naturalRecovery', classLevel, '=', 'Math.floor(source / 2)');
     rules.defineRule('spellSlots.D0', 'magicNotes.bonusCantrip', '+=', '1');
 
   } else if(name == 'Fighter') {
@@ -3592,31 +3602,33 @@ SRD5E.classRulesExtra = function(rules, name) {
     );
     rules.defineRule
       ('attackBonus.Ranged', 'combatNotes.fightingStyle(Archery)', '+=', '2');
-    rules.defineRule('combatNotes.actionSurge',
-      'levels.Fighter', '=', 'source < 17 ? 1 : 2'
-    );
+    rules.defineRule
+      ('combatNotes.actionSurge', classLevel, '=', 'source<17 ? 1 : 2');
     // Show Fighting Style (Defense) note even if armor == None
     rules.defineRule('combatNotes.fightingStyle(Defense).1',
       'combatNotes.fightingStyle(Defense)', '?', null,
       'armor', '=', 'source == "None" ? null : 1'
     );
     rules.defineRule('combatNotes.extraAttack',
-      'levels.Fighter', '+=', 'source < 5 ? null : source < 11 ? 1 : source < 20 ? 2 : 3'
+      classLevel, '+=', 'source<5 ? null : source<11 ? 1 : source<20 ? 2 : 3'
     );
-    rules.defineRule('combatNotes.secondWind', 'levels.Fighter', '=', null);
+    rules.defineRule('combatNotes.secondWind', classLevel, '=', null);
     rules.defineRule
       ('combatNotes.survivor', 'constitutionModifier', '=', '5 + source');
     rules.defineRule
       ('combatNotes.survivor.1', 'hitPoints', '=', 'Math.floor(source / 2)');
     rules.defineRule('featCount.General', 'fighterFeatBonus', '+', null);
     rules.defineRule('fighterFeatBonus',
-      'levels.Fighter', '=', 'source < 6 ? null : source < 14 ? 1 : 2'
+      classLevel, '=', 'source<6 ? null : source<14 ? 1 : 2'
     );
     rules.defineRule('saveNotes.indomitable',
-      'levels.Fighter', '=', 'source < 13 ? 1 : source < 17 ? 2 : 3'
+      classLevel, '=', 'source<13 ? 1 : source<17 ? 2 : 3'
     );
-    rules.defineRule('selectableFeatureCount.Fighter',
-      'levels.Fighter', '=', 'source < 3 ? 1 : 2',
+    rules.defineRule('selectableFeatureCount.Fighter (Archetype)',
+      classLevel, '=', 'source<3 ? null : 1'
+    );
+    rules.defineRule('selectableFeatureCount.Fighter (Style)',
+      classLevel, '=', '1',
       'combatNotes.additionalFightingStyle', '+', '1'
     );
     rules.defineRule
@@ -3628,10 +3640,10 @@ SRD5E.classRulesExtra = function(rules, name) {
       'armor', '?', 'source == "None"',
       'shield', '?', 'source == "None"'
     );
-    rules.defineRule('abilityNotes.slowFall', 'levels.Monk', '=', 'source * 5');
+    rules.defineRule('abilityNotes.slowFall', classLevel, '=', 'source * 5');
     // Show Unarmored Movement note properly even if armor != "None"
     rules.defineRule('abilityNotes.unarmoredMovement',
-      'levels.Monk', '=', 'Math.floor((source + 6) / 4) * 5'
+      classLevel, '=', 'Math.floor((source + 6) / 4) * 5'
     );
     rules.defineRule('abilityNotes.unarmoredMovement.1',
       'armor', '?', 'source == "None"',
@@ -3641,14 +3653,13 @@ SRD5E.classRulesExtra = function(rules, name) {
     rules.defineRule
       ('armorClass', 'combatNotes.monkUnarmoredDefense.2', '+', null);
     rules.defineRule('combatNotes.deflectMissiles',
-      'levels.Monk', '=', null,
+      classLevel, '=', null,
       'dexterityModifier', '+', null
     );
-    rules.defineRule('combatNotes.extraAttack',
-      'levels.Monk', '+=', 'source < 5 ? null : 1'
-    );
+    rules.defineRule
+      ('combatNotes.extraAttack', classLevel, '+=', 'source<5 ? null : 1');
     rules.defineRule('combatNotes.martialArts',
-      'levels.Monk', '=', '4 + Math.floor((source + 1)/ 6) * 2'
+      classLevel, '=', '4 + Math.floor((source + 1)/ 6) * 2'
     );
     rules.defineRule('combatNotes.martialArts.1',
       'monkFeatures.Martial Arts', '?', null,
@@ -3669,9 +3680,9 @@ SRD5E.classRulesExtra = function(rules, name) {
     rules.defineRule('combatNotes.openHandTechnique', 'kiSaveDC', '=', null);
     rules.defineRule('combatNotes.quiveringPalm', 'kiSaveDC', '=', null);
     rules.defineRule('combatNotes.stunningStrike', 'kiSaveDC', '=', null);
-    rules.defineRule('featureNotes.ki', 'levels.Monk', '=', null);
+    rules.defineRule('featureNotes.ki', classLevel, '=', null);
     rules.defineRule
-      ('featureNotes.wholenessOfBody', 'levels.Monk', '=', 'source*3');
+      ('featureNotes.wholenessOfBody', classLevel, '=', 'source*3');
     rules.defineRule('kiSaveDC',
       'monkFeatures.Ki', '?', null,
       'proficiencyBonus', '=', '8 + source',
@@ -3694,8 +3705,8 @@ SRD5E.classRulesExtra = function(rules, name) {
       rules.defineRule
         ('saveProficiency.' + ability, 'saveNotes.diamondSoul', '=', '1');
     }
-    rules.defineRule('selectableFeatureCount.Monk',
-      'levels.Monk', '=', 'source < 3 ? null : 1'
+    rules.defineRule('selectableFeatureCount.Monk (Tradition)',
+      classLevel, '=', 'source<3 ? null : 1'
     );
     rules.defineRule('speed', 'abilityNotes.unarmoredMovement.1', '+', null);
 
@@ -3709,35 +3720,32 @@ SRD5E.classRulesExtra = function(rules, name) {
       'combatNotes.fightingStyle(Defense)', '?', null,
       'armor', '=', 'source == "None" ? null : 1'
     );
-    rules.defineRule('combatNotes.extraAttack',
-      'levels.Paladin', '+=', 'source < 5 ? null : 1'
-    );
+    rules.defineRule
+      ('combatNotes.extraAttack', classLevel, '+=', 'source<5 ? null : 1');
     rules.defineRule('combatNotes.sacredWeapon',
       'charismaModifier', '=', 'Math.max(source, 1)'
     );
-    rules.defineRule
-      ('featureNotes.channelDivinity', 'levels.Paladin', '=', '1');
+    rules.defineRule('featureNotes.channelDivinity', classLevel, '=', '1');
     rules.defineRule('magicNotes.cleansingTouch',
       'charismaModifier', '=', 'Math.max(source, 1)'
     );
     rules.defineRule
       ('magicNotes.divineSense', 'charismaModifier', '=', 'source+1');
+    rules.defineRule('magicNotes.layOnHands', classLevel, '=', 'source*5');
     rules.defineRule
-      ('magicNotes.layOnHands', 'levels.Paladin', '=', 'source*5');
-    rules.defineRule('saveNotes.auraOfCourage',
-      'levels.Paladin', '=', 'source < 18 ? 10 : 30'
-    );
-    rules.defineRule('saveNotes.auraOfDevotion',
-      'levels.Paladin', '=', 'source < 18 ? 10 : 30'
-    );
-    rules.defineRule('saveNotes.auraOfProtection',
-      'levels.Paladin', '=', 'source < 18 ? 10 : 30'
-    );
+      ('saveNotes.auraOfCourage', classLevel, '=', 'source<18 ? 10 : 30');
+    rules.defineRule
+      ('saveNotes.auraOfDevotion', classLevel, '=', 'source<18 ? 10 : 30');
+    rules.defineRule
+      ('saveNotes.auraOfProtection', classLevel, '=', 'source<18 ? 10 : 30');
     rules.defineRule('saveNotes.auraOfProtection.1',
       'charismaModifier', '=', 'Math.max(source, 1)'
     );
-    rules.defineRule('selectableFeatureCount.Paladin',
-      'levels.Paladin', '=', 'source < 2 ? null : source < 3 ? 1 : 2'
+    rules.defineRule('selectableFeatureCount.Paladin (Oath)',
+      classLevel, '=', 'source<3 ? null : 1'
+    );
+    rules.defineRule('selectableFeatureCount.Paladin (Style)',
+      classLevel, '=', 'source<2 ? null : 1'
     );
 
   } else if(name == 'Ranger') {
@@ -3749,41 +3757,39 @@ SRD5E.classRulesExtra = function(rules, name) {
       'combatNotes.fightingStyle(Defense)', '?', null,
       'armor', '=', 'source == "None" ? null : 1'
     );
-    rules.defineRule('combatNotes.extraAttack',
-      'levels.Ranger', '+=', 'source < 5 ? null : 1'
-    );
+    rules.defineRule
+      ('combatNotes.extraAttack', classLevel, '+=', 'source<5 ? null : 1');
     rules.defineRule
       ('attackBonus.Ranged', 'combatNotes.fightingStyle(Archery)', '+=', '2');
     rules.defineRule('skillNotes.favoredEnemy',
-      'levels.Ranger', '=', 'source < 6 ? 1 : source < 14 ? 2 : 3'
+      classLevel, '=', 'source<6 ? 1 : source<14 ? 2 : 3'
     );
     rules.defineRule('combatNotes.foeSlayer', 'wisdomModifier', '=', null);
-    rules.defineRule('hunterSelectableFeatureCount',
-      'rangerFeatures.Hunter Archetype', '?', null,
-      'levels.Ranger', '=', 'source<3 ? 0 : source<7 ? 1 : source<11 ? 2 : source<15 ? 3 : 4'
+    rules.defineRule('selectableFeatureCount.Ranger (Archetype)',
+      classLevel, '=', 'source<3 ? null : 1'
     );
-    rules.defineRule('selectableFeatureCount.Ranger',
-      'levels.Ranger', '=', 'source < 2 ? 0 : source < 3 ? 1 : 2',
-      'hunterSelectableFeatureCount', '+', null
+    rules.defineRule('selectableFeatureCount.Ranger (Hunter)',
+      'rangerFeatures.Hunter', '?', null,
+      classLevel, '=', 'source<7 ? 1 : source<11 ? 2 : source<15 ? 3 : 4'
+    );
+    rules.defineRule('selectableFeatureCount.Ranger (Style)',
+      classLevel, '=', 'source<2 ? null : 1'
     );
     rules.defineRule('skillNotes.naturalExplorer',
-      'levels.Ranger', '=', 'source < 6 ? 1 : source < 10 ? 2 : 3'
+      classLevel, '=', 'source<6 ? 1 : source<10 ? 2 : 3'
     );
 
   } else if(name == 'Rogue') {
 
     rules.defineRule('combatNotes.sneakAttack',
-      'levels.Rogue', '=', 'Math.floor((source + 1) / 2)'
+      classLevel, '=', 'Math.floor((source + 1) / 2)'
     );
     rules.defineRule('featCount.General', 'rogueFeatBonus', '+', null);
+    rules.defineRule('rogueFeatBonus', classLevel, '=', 'source<10 ? null : 1');
     rules.defineRule
-      ('rogueFeatBonus', 'levels.Rogue', '=', 'source < 10 ? null : 1');
-    rules.defineRule('selectableFeatureCount.Rogue',
-      'levels.Rogue', '=', 'source < 3 ? null : 1'
-    );
-    rules.defineRule('skillNotes.rogueExpertise',
-      'levels.Rogue', '=', 'source < 6 ? 2 : 4'
-    );
+      ('selectableFeatureCount.Rogue', classLevel, '=', 'source<3 ? null : 1');
+    rules.defineRule
+      ('skillNotes.rogueExpertise', classLevel, '=', 'source<6 ? 2 : 4');
     rules.defineRule
       ('skillNotes.second-StoryWork', 'dexterityModifier', '=', null);
 
@@ -3795,15 +3801,17 @@ SRD5E.classRulesExtra = function(rules, name) {
     rules.defineRule('magicNotes.empoweredSpell',
       'charismaModifier', '=', 'Math.max(source, 1)'
     );
-    rules.defineRule('magicNotes.fontOfMagic', 'levels.Sorcerer', '=', null);
-    rules.defineRule('selectableFeatureCount.Sorcerer',
-      'levels.Sorcerer', '=', 'source<3?1 : source<10?3 : source<17?4 : 5'
+    rules.defineRule('magicNotes.fontOfMagic', classLevel, '=', null);
+    rules.defineRule('selectableFeatureCount.Sorcerer (Metamagic)',
+      classLevel, '=', 'source<3 ? null : source<10 ? 2 : source<17 ? 3 : 4'
+    );
+    rules.defineRule('selectableFeatureCount.Sorcerer (Origin)',
+      classLevel, '=', 'source<3 ? null : 1'
     );
 
     rules.defineRule
       ('armorClass', 'combatNotes.draconicResilience.2', '^', null);
-    rules.defineRule
-      ('combatNotes.draconicResilience', 'levels.Sorcerer', '=', null);
+    rules.defineRule('combatNotes.draconicResilience', classLevel, '=', null);
     rules.defineRule('combatNotes.draconicResilience.1',
       'combatNotes.draconicResilience', '?', null,
       'dexterityModifier', '=', 'source + 13'
@@ -3822,7 +3830,7 @@ SRD5E.classRulesExtra = function(rules, name) {
     rules.defineRule("combatNotes.darkOne'sBlessing.1",
       "warlockFeatures.Dark One's Blessing", '?', null,
       'charismaModifier', '=', null,
-      'levels.Warlock', '+', null,
+      classLevel, '+', null,
       '', '^', '1'
     );
     rules.defineRule('combatNotes.lifedrinker',
@@ -3831,27 +3839,29 @@ SRD5E.classRulesExtra = function(rules, name) {
     rules.defineRule
       ('magicNotes.agonizingBlast', 'charismaModifier', '=', null);
     rules.defineRule('magicNotes.eldritchInvocations',
-      'levels.Warlock', '=', 'source == 2 ? 2 : source < 9 ? Math.floor((source + 1) / 2) : Math.floor((source + 6) / 3)'
+      classLevel, '=', 'source==2 ? 2 : source<9 ? Math.floor((source + 1) / 2) : Math.floor((source + 6) / 3)'
     );
     rules.defineRule('magicNotes.mysticArcanum',
-      'levels.Warlock', '=', 'source<13 ? "K6" : source<15 ? "K6, K7" : source<17 ? "K6, K7, K8" : "K6, K7, K8, K9"'
+      classLevel, '=', 'source<13 ? "K6" : source<15 ? "K6, K7" : source<17 ? "K6, K7, K8" : "K6, K7, K8, K9"'
     );
-    rules.defineRule('selectableFeatureCount.Warlock',
-      'levels.Warlock', '=', 'source < 3 ? 1 : 2',
-      'magicNotes.eldritchInvocations', '+', null
+    rules.defineRule('selectableFeatureCount.Warlock (Invocation)',
+      'magicNotes.eldritchInvocations', '=', null
     );
+    rules.defineRule('selectableFeatureCount.Warlock (Pact)',
+      classLevel, '=', 'source<3 ? null : 1'
+    );
+    rules.defineRule
+      ('selectableFeatureCount.Warlock (Patron)', classLevel, '=', '1');
 
   } else if(name == 'Wizard') {
 
-    rules.defineRule('magicNotes.arcaneRecovery',
-      'levels.Wizard', '=', 'Math.ceil(source / 2)'
-    );
+    rules.defineRule
+      ('magicNotes.arcaneRecovery', classLevel, '=', 'Math.ceil(source / 2)');
     rules.defineRule('magicNotes.empoweredEvocation',
       'intelligenceModifier', '=', null
     );
-    rules.defineRule('selectableFeatureCount.Wizard',
-      'levels.Wizard', '=', 'source < 2 ? null : 1'
-    );
+    rules.defineRule
+      ('selectableFeatureCount.Wizard', classLevel, '=', 'source<2 ? null : 1');
 
   }
 
@@ -5096,7 +5106,7 @@ SRD5E.randomizeOneAttribute = function(attributes, attribute) {
     }
     if(choices.length > 0)
       attributes.deity = choices[QuilvynUtils.random(0, choices.length - 1)];
-  } else if(attribute == 'feats' || attribute == 'features') {
+  } else if(attribute == 'feats' || attribute == 'selectableFeatures') {
     var debug = [];
     attribute = attribute == 'feats' ? 'feat' : 'selectableFeature';
     var countPrefix = attribute + 'Count.';
@@ -5392,9 +5402,6 @@ SRD5E.makeValid = function(attributes) {
       var problemSource = matchInfo[2];
       var problemCategory = matchInfo[3].substring(0, 1).toLowerCase() +
                             matchInfo[3].substring(1).replaceAll(' ', '');
-      if(problemCategory == 'features') {
-        problemCategory = 'selectableFeatures';
-      }
       var requirements =
         notes[attr].replace(/^(Implies|Requires)\s/, '').split(/\s*\/\s*/);
 
@@ -5505,9 +5512,7 @@ SRD5E.makeValid = function(attributes) {
         } else if(problemCategory == 'total' && attrValue < 0 &&
                   (choices = this.getChoices(problemSource)) != null) {
           // Too few items allocated in a category
-          this.randomizeOneAttribute(attributes,
-            problemSource == 'selectableFeatures' ? 'features' : problemSource
-          );
+          this.randomizeOneAttribute(attributes, problemSource);
           debug.push(attr + ' Allocate additional ' + problemSource);
           fixedThisPass++;
         } else if(attr.match(/validationNotes.abilityModifier(Sum|Minimum)/)) {

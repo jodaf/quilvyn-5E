@@ -824,7 +824,7 @@ SRD5E.FEATURES = {
   'Peerless Skill':
     'Section=ability Note="Add Bardic Inspiration die to ability check"',
   'Perfect Self':
-    'Section=combat Note="Min 4 Ki after Initiative"',
+    'Section=combat Note="Min 4 Ki after initiative"',
   'Persistent Rage':
     'Section=combat Note="Continue raging when unengaged w/foe"',
   'Potent Cantrip':
@@ -920,7 +920,7 @@ SRD5E.FEATURES = {
   'Superior Critical':
     'Section=combat Note="Crit on natural 18"',
   'Superior Inspiration':
-    'Section=combat Note="Min 1 Bardic Inspiration after Initiative"',
+    'Section=combat Note="Min 1 Bardic Inspiration after initiative"',
   'Supreme Healing':
     'Section=magic Note="Healing spells yield max HP"',
   'Supreme Sneak':

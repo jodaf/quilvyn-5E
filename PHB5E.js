@@ -701,7 +701,7 @@ PHB5E.FEATURES = {
   'Relentless Avenger':
     'Section=combat Note="Move half speed after OA hit"',
   'Relentless':
-    'Section=combat Note="Min 1 superiority die after Init"',
+    'Section=combat Note="Min 1 superiority die after initiative"',
   'Ride The Wind':
     'Section=magic Note="Spend 4 Ki to cast self <i>Fly</i>"',
   'Riposte':

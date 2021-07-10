@@ -185,7 +185,7 @@ SRD5E.CLASSES = {
       '"1:Ritual Casting",1:Spellcasting,"2:Channel Divinity",' +
       '"2:Turn Undead","5:Destroy Undead","10:Divine Intervention" ' +
     'Selectables=' +
-      '"1:Life Domain:Divine Domain" ' +
+      '"deityDomains =~ \'Life\' ? 1:Life Domain:Divine Domain" ' +
     'CasterLevelDivine=levels.Cleric ' +
     'SpellAbility=wisdom ' +
     'SpellSlots=' +
@@ -549,9 +549,9 @@ SRD5E.FEATURES = {
   'Ascendant Step':
     'Section=magic Note="<i>Levitate</i> at will"',
   'Aura Of Courage':
-    'Section=save Note="R%V\' Self and allies immune fright"',
+    'Section=save Note="R%V\' Self and allies immunity to fright"',
   'Aura Of Devotion':
-    'Section=save Note="R%V\' Self and allies immune charm"',
+    'Section=save Note="R%V\' Self and allies immunity to charm"',
   'Aura Of Protection':
     'Section=save Note="R%V\' +%1 saves self and allies"',
   'Barbarian Unarmored Defense':
@@ -591,11 +591,11 @@ SRD5E.FEATURES = {
     'Section=magic ' +
     'Note="Touch dispels spell effect on willing creature %V/long rest"',
   'Colossus Slayer':
-    'Section=combat Note="+1d8 HP vs. damaged foe 1/turn"',
+    'Section=combat Note="+1d8 HP vs. damaged foe 1/tn"',
   'Countercharm':
     'Section=magic Note="R30\' Friendly listeners Adv vs. charm, fright"',
   'Cunning Action':
-    'Section=combat Note="Bonus Dash, Disengage, or Hide each turn"',
+    'Section=combat Note="Bonus Dash, Disengage, or Hide each tn"',
   'Cutting Words':
     'Section=combat ' +
     'Note="R60\' Reaction to subtract Bardic Inspiration die from foe roll"',
@@ -619,7 +619,7 @@ SRD5E.FEATURES = {
     'Section=magic ' +
     'Note="Spend 1 Sorcery Point to dbl spell range or touch at 30\'"',
   'Divine Health':
-    'Section=save Note="Immune disease"',
+    'Section=save Note="Immunity to disease"',
   'Divine Intervention':
     'Section=magic Note="%V% chance of deity help 1/wk"',
   'Divine Sense':
@@ -628,7 +628,7 @@ SRD5E.FEATURES = {
   'Divine Smite':
     'Section=combat Note="Spend spell slot for +(spell level + 1)d8 damage"',
   'Divine Strike':
-    'Section=combat Note="+%Vd8 HP 1/turn"',
+    'Section=combat Note="+%Vd8 HP 1/tn"',
   'Draconic Presence':
     'Section=magic ' +
     'Note="R60\' Spend 5 Sorcery Points for awe and fear aura for conc or 1 min (Wis neg)"',
@@ -692,7 +692,8 @@ SRD5E.FEATURES = {
     'Note="No Disadv vs. invisible foe",' +
          '"30\' awareness of invisible creatures"',
   'Fiendish Resilience':
-    'Section=save Note="Resist chosen damage type until next short rest"',
+    'Section=save ' +
+    'Note="Resistance to chosen damage type until next short rest"',
   'Fiendish Vigor':
     'Section=magic Note="Self <i>False Life</i> at will"',
   'Fighting Style (Archery)':
@@ -721,7 +722,7 @@ SRD5E.FEATURES = {
   'Frenzy':
     'Section=combat Note="Bonus attack during rage, exhausted after"',
   'Gaze Of Two Minds':
-    'Section=magic Note="Perceive via willing touched senses for 1 turn"',
+    'Section=magic Note="Perceive via willing touched senses for 1 tn"',
   'Giant Killer':
     'Section=combat Note="React to attack adjacent lg foe after miss"',
   'Heightened Spell':
@@ -775,7 +776,7 @@ SRD5E.FEATURES = {
   'Master Of Myriad Forms':
     'Section=magic Note="<i>Alter Self</i> at will"',
   'Mindless Rage':
-    'Section=save Note="Immune charm and fright during rage"',
+    'Section=save Note="Immunity to charm and fright during rage"',
   'Minions Of Chaos':
     'Section=magic Note="<i>Conjure Elemental</i> 1/long rest"',
   'Mire The Mind':
@@ -801,12 +802,12 @@ SRD5E.FEATURES = {
     'Section=combat Note="Beast, plant DC %V Will save to attack self"',
   "Nature's Ward":
     'Section=save ' +
-    'Note="Immune disease, poison, elemental and fey charm and fright"',
+    'Note="Immunity to disease, poison, elemental and fey charm, and fright"',
   'One With Shadows':
     'Section=magic Note="Invisible in dim light until action"',
   'Open Hand Technique':
     'Section=combat ' +
-    'Note="On Flurry of Blows hit, choice of knock prone (DC %V Dex neg), push 15\' (DC %V Str neg), or no foe react 1 turn"',
+    'Note="On Flurry of Blows hit, choice of knock prone (DC %V Dex neg), push 15\' (DC %V Str neg), or no foe react 1 tn"',
   'Otherworldly Leap':
     'Section=magic Note="Self <i>Jump</i> at will"',
   'Overchannel':
@@ -837,7 +838,7 @@ SRD5E.FEATURES = {
     'Section=magic ' +
     'Note="Expend spell to sense creatures in 1 mi (favored terrain 6 mi) for 1 min/spell level"',
   'Purity Of Body':
-    'Section=save Note="Immune to disease and poison"',
+    'Section=save Note="Immunity to disease and poison"',
   'Purity Of Spirit':
     'Section=magic Note="Self continuous <i>Protection From Evil And Good</i>"',
   'Quickened Spell':
@@ -849,7 +850,7 @@ SRD5E.FEATURES = {
     'Section=ability,combat,feature,magic,save ' +
     'Note=' +
       '"Adv Str checks",' +
-      '"+%V melee damage, resist bludgeon, pierce, slash damage",' +
+      '"+%V melee damage, resistance to bludgeon, pierce, slash damage",' +
       '"Rage advantages for 1 min %V/long rest (heavy armor neg)",' +
       '"Cannot cast during rage",' +
        '"Adv Str"',
@@ -910,7 +911,7 @@ SRD5E.FEATURES = {
   'Stroke Of Luck':
     'Section=ability,combat ' +
     'Note="Automatic 20 ability check 1/short rest",' +
-         '"Turn miss into hit 1/short rest"',
+         '"Change miss into hit 1/short rest"',
   'Stunning Strike':
     'Section=combat Note="Spend 1 Ki to stun foe after hit (DC %V Con neg)"',
   'Subtle Spell':
@@ -925,15 +926,15 @@ SRD5E.FEATURES = {
   'Supreme Sneak':
     'Section=skill Note="Adv Stealth at half speed"',
   'Survivor':
-    'Section=combat Note="Regain %V HP each turn when between 1 and %1"',
+    'Section=combat Note="Regain %V HP each tn when between 1 and %1"',
   'Thief Of Five Fates':
     'Section=magic Note="<i>Bane</i> 1/long rest"',
   "Thieves' Cant":
     'Section=skill Note="Signs and symbols known only by rogues"',
   "Thief's Reflexes":
-    'Section=combat Note="First round extra turn at -10 Initiative"',
+    'Section=combat Note="First round extra tn at -10 Initiative"',
   'Thirsting Blade':
-    'Section=combat Note="Attack twice each turn w/pact blade"',
+    'Section=combat Note="Attack twice each tn w/pact blade"',
   'Tongue Of Sun And Moon':
     'Section=feature Note="Communicate in any language"',
   'Tranquility':
@@ -987,15 +988,15 @@ SRD5E.FEATURES = {
   'Draconic Breath':
     'Section=combat,save ' +
     'Note="%1 %Vd6 HP %2 (DC %3 %4 half)",' +
-         '"Resistance %V damage"',
+         '"Resistance to %V damage"',
   'Dragonborn Ability Adjustment':
     'Section=ability Note="+2 Strength/+1 Charisma"',
   'Dwarven Resilience':
-    'Section=save Note="Adv vs. poison, resistance poison damage"',
+    'Section=save Note="Adv vs. poison, resistance to poison damage"',
   'Dwarven Toughness':
     'Section=combat Note="+%V HP"',
   'Fey Ancestry':
-    'Section=save Note="Adv vs. charmed, immune sleep"',
+    'Section=save Note="Adv vs. charmed, immunity to sleep"',
   'Gnome Cunning':
     'Section=save Note="Adv Cha, Int, Wis vs magic"',
   'Half-Elf Ability Adjustment':
@@ -1007,7 +1008,7 @@ SRD5E.FEATURES = {
   'Halfling Nimbleness':
     'Section=ability Note="Move through space occupied by larger creature"',
   'Hellish Resistance':
-    'Section=save Note="Resistance fire damage"',
+    'Section=save Note="Resistance to fire damage"',
   'High Elf Ability Adjustment':
     'Section=ability Note="+2 Dexterity/+1 Intelligence"',
   'Hill Dwarf Ability Adjustment':
@@ -1467,7 +1468,7 @@ SRD5E.SPELLS = {
   'Acid Arrow':
     'School=Evocation ' +
     'Level=Swamp1,W2 ' +
-    'Description="R90\' Ranged spell attack 4d4 HP (miss half), 2d4 HP next turn"',
+    'Description="R90\' Ranged spell attack 4d4 HP (miss half), 2d4 HP next tn"',
   'Acid Splash':
     'School=Conjuration ' +
     'Level=Elf0,S0,W0 ' +
@@ -1932,7 +1933,7 @@ SRD5E.SPELLS = {
   'Fire Shield':
     'School=Evocation ' +
     'Level=K4,W4 ' +
-    'Description="Self resist heat or cold, foe hit takes 2d8 HP for 10 min"',
+    'Description="Self resistance to heat or cold damage, foe hit takes 2d8 HP for 10 min"',
   'Fire Storm':
     'School=Evocation ' +
     'Level=C7,D7,S7 ' +
@@ -1980,11 +1981,11 @@ SRD5E.SPELLS = {
   'Foresight':
     'School=Divination ' +
     'Level=B9,D9,K9,W9 ' +
-    'Description="Touched immune surprise, Adv attack, ability, save, foes Disadv attack for 8 hr"',
+    'Description="Touched immunity to surprise, Adv attack, ability, save, foes Disadv attack for 8 hr"',
   'Freedom Of Movement':
     'School=Abjuration ' +
     'Level=Arctic3,B4,C4,Coast3,D4,Devotion4,Forest3,Grassland3,R4,Swamp3 ' +
-    'Description="Touched immune impediments for 1 hr"',
+    'Description="Touched immunity to impediments for 1 hr"',
   'Freezing Sphere':
     'School=Evocation ' +
     'Level=W6 ' +
@@ -2017,7 +2018,7 @@ SRD5E.SPELLS = {
   'Globe Of Invulnerability':
     'School=Abjuration ' +
     'Level=S6,W6 ' +
-    'Description="Self 10\' radius immune to spells up to level 5"',
+    'Description="Self 10\' radius immunity to spells up to level 5"',
   'Glyph Of Warding':
     'School=Abjuration ' +
     'Level=B3,C3,W3 ' +
@@ -2094,11 +2095,11 @@ SRD5E.SPELLS = {
   "Heroes' Feast":
     'School=Conjuration ' +
     'Level=C6,D6 ' +
-    'Description="R30\' 12 diners cured, immune poison and fright, Wis Adv, +2d10 HP for 1 dy"',
+    'Description="R30\' 12 diners cured, immunity to poison and fright, Wis Adv, +2d10 HP for 1 dy"',
   'Heroism':
     'School=Enchantment ' +
     'Level=B1,P1 ' +
-    'Description="Touched immune fright, +modifier HP each rd for conc/1 min"',
+    'Description="Touched immunity to fright, +modifier HP each rd for conc/1 min"',
   'Hideous Laughter':
     'School=Enchantment ' +
     'Level=B1,W1 ' +
@@ -2287,7 +2288,7 @@ SRD5E.SPELLS = {
   'Mind Blank':
     'School=Abjuration ' +
     'Level=B8,W8 ' +
-    'Description="Touched immune psychic damage, reading, charm for 1 dy"',
+    'Description="Touched immunity to psychic damage, reading, charm for 1 dy"',
   'Minor Illusion':
     'School=Illusion ' +
     'Level=B0,Elf0,K0,S0,W0 ' +
@@ -2324,7 +2325,7 @@ SRD5E.SPELLS = {
   'Nondetection':
     'School=Abjuration ' +
     'Level=B3,R3,W3 ' +
-    'Description="Touched immune divination for 8 hr"',
+    'Description="Touched immunity to divination for 8 hr"',
 
   'Pass Without Trace':
     'School=Abjuration ' +
@@ -2409,11 +2410,11 @@ SRD5E.SPELLS = {
   'Protection From Energy':
     'School=Abjuration ' +
     'Level=C3,D3,Desert2,R3,S3,W3 ' +
-    'Description="Resist acid, cold, fire, lightning, or thunder for conc/1 hr"',
+    'Description="Resistance to acid, cold, fire, lightning, or thunder damage for conc/1 hr"',
   'Protection From Evil And Good':
     'School=Abjuration ' +
     'Level=C1,Devotion1,K1,P1,W1 ' +
-    'Description="Touched specified foe type Disadv attack, immune charm, fright, possession"',
+    'Description="Touched specified foe type Disadv attack, immunity to charm, fright, and possession"',
   'Protection From Poison':
     'School=Abjuration ' +
     'Level=C2,D2,P2,R2 ' +
@@ -2434,7 +2435,7 @@ SRD5E.SPELLS = {
   'Ray Of Frost':
     'School=Evocation ' +
     'Level=Elf0,S0,W0 ' +
-    'Description="R60\' Target ${Math.floor((lvl+7)/6)}d8 HP, -10 speed for 1 turn"',
+    'Description="R60\' Target ${Math.floor((lvl+7)/6)}d8 HP, -10 speed for 1 tn"',
   'Regenerate':
     'School=Transmutation ' +
     'Level=B7,C7,D7 ' +
@@ -2519,7 +2520,7 @@ SRD5E.SPELLS = {
   'Shield':
     'School=Abjuration ' +
     'Level=S1,W1 ' +
-    'Description="Reaction self +5 AC, immune <i>Magic Missile</i> for 1 rd"',
+    'Description="Reaction self +5 AC, immunity to <i>Magic Missile</i> for 1 rd"',
   'Shield Of Faith':
     'School=Abjuration ' +
     'Level=C1,P1 ' +
@@ -2599,7 +2600,7 @@ SRD5E.SPELLS = {
   'Stoneskin':
     'School=Abjuration ' +
     'Level=D4,Mountain3,R4,S4,W4 ' +
-    'Description="Touched resists bludgeoning, piercing, slashing for conc/1 hr"',
+    'Description="Touched resistant to bludgeoning, piercing, and slashing damage for conc/1 hr"',
   'Storm Of Vengeance':
     'School=Conjuration ' +
     'Level=D9 ' +
@@ -2611,7 +2612,7 @@ SRD5E.SPELLS = {
   'Sunbeam':
     'School=Evocation ' +
     'Level=D6,S6,W6 ' +
-    'Description="60\' light 6d8 HP (Con half), blind 1 turn (Con neg) for conc/1 min"',
+    'Description="60\' light 6d8 HP (Con half), blind 1 tn (Con neg) for conc/1 min"',
   'Sunburst':
     'School=Evocation ' +
     'Level=D8,S8,W8 ' +
@@ -2652,7 +2653,7 @@ SRD5E.SPELLS = {
   'Tiny Hut':
     'School=Evocation ' +
     'Level=B3,W3 ' +
-    'Description="10\' radius dome immune to objects and spells for 8 hr"',
+    'Description="10\' radius dome impassable by objects and spells for 8 hr"',
   'Tongues':
     'School=Divination ' +
     'Level=B3,C3,K3,S3,W3 ' +
@@ -2703,7 +2704,7 @@ SRD5E.SPELLS = {
   'Wall Of Force':
     'School=Evocation ' +
     'Level=W5 ' +
-    'Description="R120\' 10 10\'x10\' panels immune objects for conc/10 min"',
+    'Description="R120\' 10 10\'x10\' panels impassable by objects for conc/10 min"',
   'Wall Of Ice':
     'School=Evocation ' +
     'Level=W6 ' +
@@ -2719,7 +2720,7 @@ SRD5E.SPELLS = {
   'Warding Bond':
     'School=Abjuration ' +
     'Level=C2 ' +
-    'Description="Touched +1 AC, saves, resist damage within 60\' of self, self share damage for 1 hr"',
+    'Description="Touched +1 AC and saves, resistance to all damage within 60\' of self, self share damage for 1 hr"',
   'Water Breathing':
     'School=Transmutation ' +
     'Level=Coast2,D3,R3,S3,W3 ' +
@@ -2735,7 +2736,7 @@ SRD5E.SPELLS = {
   'Weird':
     'School=Illusion ' +
     'Level=W9 ' +
-    'Description="R120\' Targets in 30\' radius frightened, 4d10 HP/turn for conc/1 min (Wis neg)"',
+    'Description="R120\' Targets in 30\' radius frightened, 4d10 HP/tn for conc/1 min (Wis neg)"',
   'Wind Walk':
     'School=Transmutation ' +
     'Level=D6 ' +

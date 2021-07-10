@@ -143,9 +143,12 @@ PHB5E.BACKGROUNDS = {
 PHB5E.CLASS_SELECTABLES = {
   'Bard':['3:College Of Valor:Bard College'],
   'Cleric':[
-    '1:Knowledge Domain:Divine Domain', '1:Light Domain:Divine Domain',
-    '1:Nature Domain:Divine Domain', '1:Tempest Domain:Divine Domain',
-    '1:Trickery Domain:Divine Domain', '1:War Domain:Divine Domain'
+    'deityDomains =~ \'Knowledge\' ? 1:Knowledge Domain:Divine Domain',
+    'deityDomains =~ \'Light\' ? 1:Light Domain:Divine Domain',
+    'deityDomains =~ \'Nature\' ? 1:Nature Domain:Divine Domain',
+    'deityDomains =~ \'Tempest\' ? 1:Tempest Domain:Divine Domain',
+    'deityDomains =~ \'Trickery\' ? 1:Trickery Domain:Divine Domain',
+    'deityDomains =~ \'War\' ? 1:War Domain:Divine Domain'
   ],
   'Druid':[
     '2:Circle Of The Land (Underdark):Druid Circle',
@@ -436,7 +439,7 @@ PHB5E.FEATURES = {
     'Section=feature Note="Tool Proficiency (Choose 1 from any Artisan)"',
   "Transmuter's Stone":
     'Section=magic ' +
-    'Note="Stone gives 60\' darkvision, +10 speed, proficiency in constitution, or resist energy"',
+    'Note="Stone gives 60\' darkvision, +10 speed, proficiency in constitution, or resistance to chosen energy damage"',
   "War God's Blessing":
     'Section=magic Note="R30\' Channel Divinity reaction for ally +10 attack"',
   'Abjuration Savant':
@@ -465,9 +468,10 @@ PHB5E.FEATURES = {
   'Assassinate':
     'Section=combat Note="Adv when foe has not acted, crit on surprise hit"',
   'Aura Of Warding':
-    'Section=save Note="R%V\' Self and allies resist spell damage"',
+    'Section=save Note="R%V\' Self and allies resistance to spell damage"',
   'Avatar Of Battle':
-    'Section=combat Note="Resistance nonmagical bludgeon, pierce, slash"',
+    'Section=combat ' +
+    'Note="Resistance to nonmagical bludgeoning, piercing and slashing damage"',
   'Avenging Angel':
     'Section=magic ' +
     'Note="Fly 60\' and 30\' foe fright aura (Wis neg) 1 hr/long rest"',
@@ -476,11 +480,11 @@ PHB5E.FEATURES = {
   'Battle Magic':
     'Section=combat Note="Bonus attack after casting spell"',
   'Bear Totem Spirit':
-    'Section=combat Note="Resist non-psychic damage when raging"',
+    'Section=combat Note="Resistance to non-psychic damage during rage"',
   'Bear Totemic Attunement':
-    'Section=combat Note="Adjacent foes Disadv attack others when self raging"',
+    'Section=combat Note="Adjacent foes Disadv attack others during rage"',
   'Beguiling Defenses':
-    'Section=save Note="Immune charm, reflect 1 min (Wis neg)"',
+    'Section=save Note="Immunity to charm, reflect 1 min (Wis neg)"',
   'Bend Luck':
     'Section=magic ' +
     'Note="Spend 2 Sorcery Points to add or subtract 1d4 from target roll"',
@@ -525,7 +529,7 @@ PHB5E.FEATURES = {
     'Section=magic Note="Touch charms incapacitated humanoid"',
   'Dampen Elements':
     'Section=magic ' +
-    'Note="R30\' Reaction to grant resistance to acid, cold, fire, lightning, or thunder"',
+    'Note="R30\' Reaction to grant resistance to acid, cold, fire, lightning, or thunder damage"',
   'Dark Delirium':
     'Section=magic ' +
     'Note="R60\' Target charmed or frightened 1 min, then unaware surroundings (Wis neg) 1/long rest"',
@@ -541,11 +545,9 @@ PHB5E.FEATURES = {
     'Section=magic Note="%V elemental disciplines"',
   'Distracting Strike':
     'Section=combat ' +
-    'Note="Add Superiority die to damage, Adv next ally attack same foe in same turn"',
+    'Note="Add Superiority die to damage, Adv next ally attack same foe in same tn"',
   'Divination Savant':
     'Section=magic Note="Write divination spells for half cost"',
-  'Divine Strike':
-    'Section=combat Note="+%Vd8 HP 1/turn"',
   'Durable Summons':
     'Section=magic Note="Summoned creatures +30 HP"',
   'Eagle Totem Spirit':
@@ -555,9 +557,9 @@ PHB5E.FEATURES = {
     'Section=ability Note="Fly for short bursts when raging"',
   'Elder Champion':
     'Section=magic ' +
-    'Note="Transform, regain 10 HP/turn, cast as bonus action, and foes w/in 10\' Disadv vs. your spells for 1 min 1/long rest"',
+    'Note="Transform, regain 10 HP/tn, cast as bonus action, and foes w/in 10\' Disadv vs. your spells for 1 min 1/long rest"',
   'Eldritch Strike':
-    'Section=combat Note="Foe Disadv vs. your spells for 1 turn after you hit"',
+    'Section=combat Note="Foe Disadv vs. your spells for 1 tn after you hit"',
   'Elemental Attunement':
     'Section=magic Note="Minor elemental manipulation"',
   'Elemental Wild Shape':
@@ -584,7 +586,7 @@ PHB5E.FEATURES = {
     'Note="Adv next attack adjacent foe, add Superiority die to damage"',
   'Fey Presence':
     'Section=magic ' +
-    'Note="R10\' All creatures charmed or frightened 1 turn (Wis neg) 1/short rest"',
+    'Note="R10\' All creatures charmed or frightened 1 tn (Wis neg) 1/short rest"',
   'Fist Of Four Thunders':
     'Section=magic Note="Spend 2 Ki to cast <i>Thunderwave</i>"',
   'Fist Of Unbroken Air':
@@ -596,7 +598,7 @@ PHB5E.FEATURES = {
     'Section=magic Note="Damage cannot break conjuration concentration"',
   'Goading Attack':
     'Section=combat ' +
-    'Note="Add Superiority die to damage, foe Disadv attack others for 1 turn (Wis neg)"',
+    'Note="Add Superiority die to damage, foe Disadv attack others for 1 tn (Wis neg)"',
   'Gong Of The Summit':
     'Section=magic Note="Spend 3 Ki to cast <i>Shatter</i>"',
   'Grim Harvest':
@@ -628,7 +630,8 @@ PHB5E.FEATURES = {
     'Section=magic ' +
     'Note="Redirect self foe attack to closest creature 1/long rest (Wis neg)"',
   'Inured To Undeath':
-    'Section=save Note="Resist necrotic, immune max HP reduction"',
+    'Section=save ' +
+    'Note="Resistance to necrotic damage, immunity to max HP reduction"',
   'Invoke Duplicity':
     'Section=magic Note="R30\' Illusionary duplicate for conc or 1 min"',
   'Know Your Enemy':
@@ -659,7 +662,7 @@ PHB5E.FEATURES = {
     'Note="Destroy stone to transmute 5\' cu, remove curse, disease, and poison, <i>Raise Dead</i>, or restore youth"',
   'Menacing Attack':
     'Section=combat ' +
-    'Note="Add Superiority die to damage, foe frightened for 1 turn (Wis neg)"',
+    'Note="Add Superiority die to damage, foe frightened for 1 tn (Wis neg)"',
   'Minor Alchemy':
     'Section=magic Note="Transform 1 cu\'/10 min for 1 hr"',
   'Minor Conjuration':
@@ -668,7 +671,7 @@ PHB5E.FEATURES = {
     'Section=magic Note="Spend 4 Ki to cast self <i>Gaseous Form</i>"',
   'Misty Escape':
     'Section=magic ' +
-    'Note="After damage, teleport 60\' and become invisible 1 turn 1/short rest"',
+    'Note="After damage, teleport 60\' and become invisible 1 tn 1/short rest"',
   'Necromancy Savant':
     'Section=magic Note="Write necromancy spells for half cost"',
   'Opportunist':'Section=combat Note="Attack adjacent foe after ally hit"',
@@ -724,7 +727,7 @@ PHB5E.FEATURES = {
   'Soul Of Vengeance':
     'Section=combat Note="Melee attack Vow Of Enmity target as reaction"',
   'Spell Bombardment':
-    'Section=magic Note="Add another die when max rolled 1/turn"',
+    'Section=magic Note="Add another die when max rolled 1/tn"',
   'Spell Resistance':
     'Section=save Note="Adv and resistance to spell damage"',
   'Spell Thief':
@@ -749,7 +752,8 @@ PHB5E.FEATURES = {
     'Section=magic ' +
     'Note="60\' Darkvision, 60\' Ethereal Sight, read any language, or 10\' see invisibility"',
   'Thought Shield':
-    'Section=save Note="Immune telepathy, resist and reflect psychic damage"',
+    'Section=save ' +
+    'Note="Immunity to telepathy, resistance to and reflect psychic damage"',
   'Thousand Forms':
     'Section=magic Note="<i>Alter Self</i> at will"',
   'Thunderbolt Strike':
@@ -760,7 +764,7 @@ PHB5E.FEATURES = {
   'Transmutation Savant':
     'Section=magic Note="Write transmutation spells for half cost"',
   'Trickster Cloak Of Shadows':
-    'Section=magic Note="Channel Divinity makes self invisible 1 turn"',
+    'Section=magic Note="Channel Divinity makes self invisible 1 tn"',
   'Trip Attack':
     'Section=combat ' +
     'Note="Add Superiority die to damage, foe knocked prone (Str neg)"',
@@ -792,7 +796,7 @@ PHB5E.FEATURES = {
   'Wave Of Rolling Earth':
     'Section=magic Note="Spend 6 Ki to cast <i>Wall Of Stone</i>"',
   'Weapon Bond':
-    'Section=combat Note="Immune disarm, summon weapon"',
+    'Section=combat Note="Cannot be disarmed, summon weapon"',
   'Wild Magic Surge':
     'Section=magic Note="5% chance of random magic effect"',
   'Wolf Totem Spirit':
@@ -924,7 +928,7 @@ PHB5E.FEATURES = {
   'Ritual Caster':
     'Section=magic Note="Cast spells from ritual book"',
   'Savage Attacker':
-    'Section=combat Note="Re-roll damage 1/turn"',
+    'Section=combat Note="Re-roll damage 1/tn"',
   'Sentinel':
     'Section=combat ' +
     'Note="Foe stuck by OA speed 0, OA on foe Disengage, react attack when adjacent foe targets other"',
@@ -975,7 +979,7 @@ PHB5E.FEATURES = {
   'Stout Halfling Ability Adjustment':
     'Section=ability Note="+2 Dexterity/+1 Constitution"',
   'Stout Resilience':
-    'Section=save Note="Adv and resistance vs. poison"',
+    'Section=save Note="Adv and resistance to poison damage"',
   'Sunlight Sensitivity':
     'Section=combat,skill ' +
     'Note="Disadv attack in direct sunlight",' +
@@ -1289,7 +1293,7 @@ PHB5E.SPELLS = {
   'Arms Of Hadar':
     'School=Conjuration ' +
     'Level=K1 ' +
-    'Description="All in 10\' radius take 2d6 HP necrotic (Str half), no reactions until next turn"',
+    'Description="All in 10\' radius take 2d6 HP necrotic (Str half), no reactions until next tn"',
   'Aura Of Life':
     'School=Abjuration ' +
     'Level=P4 ' +
@@ -1297,7 +1301,7 @@ PHB5E.SPELLS = {
   'Aura Of Purity':
     'School=Abjuration ' +
     'Level=P4 ' +
-    'Description="Self 30\' radius gives resist poison, no disease, Adv conditions for conc/10 min"',
+    'Description="Self 30\' radius gives resistance to poison damage, no disease, Adv conditions for conc/10 min"',
   'Aura Of Vitality':
     'School=Evocation ' +
     'Level=P3 ' +
@@ -1313,7 +1317,7 @@ PHB5E.SPELLS = {
   'Blade Ward':
     'School=Abjuration ' +
     'Level=B0,K0,S0,W0 ' +
-    'Description="Self resist bludgeon, pierce, slash damage for 1 rd"',
+    'Description="Self resistance to bludgeoning, piercing, and slashing damage for 1 rd"',
   'Blinding Smite':
     'School=Evocation ' +
     'Level=P3 ' +
@@ -1369,7 +1373,7 @@ PHB5E.SPELLS = {
   'Ensnaring Strike':
     'School=Conjuration ' +
     'Level=Ancients1,R1 ' +
-    'Description="Successful attack restrains foe, 1d6 HP/turn for conc/1 min (Str neg)"',
+    'Description="Successful attack restrains foe, 1d6 HP/tn for conc/1 min (Str neg)"',
   'Feign Death':
     'School=Necromancy ' +
     'Level=B3,C3,D3,W3 ' +
@@ -1409,11 +1413,11 @@ PHB5E.SPELLS = {
   'Ray Of Sickness':
     'School=Necromancy ' +
     'Level=S1,W1 ' +
-    'Description="R60\' Target 2d8 HP, poisoned 1 turn (Con not poisoned)",',
+    'Description="R60\' Target 2d8 HP, poisoned 1 tn (Con not poisoned)",',
   'Searing Smite':
     'School=Evocation ' +
     'Level=P1 ' +
-    'Description="Hit +1d6 HP, 1d6 HP/turn for conc/1 min (Con no per-turn damage)"',
+    'Description="Hit +1d6 HP, 1d6 HP/tn for conc/1 min (Con no per-tn damage)"',
   'Staggering Smite':
     'School=Evocation ' +
     'Level=P4 ' +
@@ -1437,11 +1441,11 @@ PHB5E.SPELLS = {
   'Tsunami':
     'School=Conjuration ' +
     'Level=D8 ' +
-    'Description="RSight 300\'x300\' wall of water 6d10 HP (Str half), moves away 50\'/turn for conc/6 rd"',
+    'Description="RSight 300\'x300\' wall of water 6d10 HP (Str half), moves away 50\'/tn for conc/6 rd"',
   'Witch Bolt':
     'School=Evocation ' +
     'Level=K1,S1,W1 ' +
-    'Description="R30\' Target 1d12/turn for conc/1 min"',
+    'Description="R30\' Target 1d12/tn for conc/1 min"',
   'Wrathful Smite':
     'School=Evocation ' +
     'Level=P1 ' +

@@ -57,7 +57,10 @@ Xanathar.CLASS_SELECTABLES = {
     '3:College Of Glamour:Bard College', '3:College Of Swords:Bard College',
     '3:College Of Whispers:Bard College'
   ],
-  'Cleric':['1:Forge Domain:Divine Domain', '1:Grave Domain:Divine Domain'],
+  'Cleric':[
+    'deityDomains =~ \'Forge\' ? 1:Forge Domain:Divine Domain',
+    'deityDomains =~ \'Grave\' ? 1:Grave Domain:Divine Domain'
+  ],
   'Druid':[
     '2:Circle Of Dreams:Druid Circle', '2:Circle Of The Shepherd:Druid Circle'
   ],
@@ -146,17 +149,18 @@ Xanathar.FEATURES = {
   'Armor Of Hexes':
     'Section=combat Note="Self hits from Hexblade\'s Curse target miss 4/6"',
   "Artisan's Blessing":
-    'Section=magic Note="Craft up to 100 GP metal item in 1 hr"',
+    'Section=magic ' +
+    'Note="Use Channel Divinity to craft up to 100 GP metal item in 1 hr"',
   'Aura Of Conquest':
     'Section=combat Note="R%V\' Frightened foes unable to move"',
   'Aura Of The Guardian':
     'Section=magic Note="R%V\' Transfer damage from another to self"',
   'Balm Of The Summer Court':
     'Section=magic ' +
-    'Note="Distribute %Vd6 HP healing and %V temporary HP to targets 1/long rest"',
+    'Note="R120\' Distribute %Vd6 HP healing and %V temporary HP to targets 1/long rest"',
   'Banishing Arrow':
     'Section=combat ' +
-    'Note="+%Vd6 HP force damage, send target to Feywild until next turn (DC %1 neg)"',
+    'Note="+%Vd6 HP force damage, send target to Feywild until next tn (DC %1 neg)"',
   'Beguiling Arrow':
     'Section=combat ' +
     'Note="+%Vd6 HP psychic damage, target charmed by R30\' ally (DC %V Wis neg)"',
@@ -172,13 +176,13 @@ Xanathar.FEATURES = {
     'Note="Adv falling off mount, no damage 10\' fall, dis/mount costs 5\' move"',
   'Bursting Arrow':'Section=combat Note="10\' diameter %Vd6 HP force damage"',
   'Celestial Radiance':
-    'Section=save Note="Resistant necrotic, radiant damage"',
+    'Section=save Note="Resistant to necrotic, radiant damage"',
   'Celestial Resilience':
     'Section=combat ' +
     'Note="Self %V temporary HP, 5 others %1 temporary HP/short rest"',
   'Circle Of Mortality':
     'Section=magic ' +
-    'Note="Cure spells maximized for unconscious targets, <i>Spare the Dying</i> cantrip"',
+    'Note="Cure spells maximized for unconscious targets, R30\' <i>Spare The Dying</i> cantrip"',
   'Conquering Presence':
     'Section=magic ' +
     'Note="R30\' Channel Divinity to frighten for 1 min (Wis neg)"',
@@ -243,7 +247,7 @@ Xanathar.FEATURES = {
     'Section=magic Note="R60\' Detect undead for 1 tn %V/long rest"',
   'Faithful Summons':
     'Section=magic ' +
-    'Note="4 creatures summoned when self incapacitated for 1 hr 1/long rest"',
+    'Note="4 creatures summoned for 1 hr when self incapacitated 1/long rest"',
   'Fanatical Focus':'Section=save Note="Reroll failed save 1/rage"',
   'Fancy Footwork':
     'Section=combat Note="Struck foe cannot make opportunity attacks for 1 tn"',
@@ -258,12 +262,12 @@ Xanathar.FEATURES = {
     'Section=combat ' +
     'Note="+%V6 HP poison damage, target move -10\' + %Vd6 HP slashing damage for 1 min or successful DC %V Athletics check"',
   'Guardian Spirit':
-    'Section=magic Note="Summoned creatures w/in Spirit Totam aura heal %V HP"',
+    'Section=magic Note="Summoned creatures w/in Spirit Totem aura heal %V HP"',
   'Guided Strike':'Section=combat Note="Channel Divinity gives +10 attack"',
   'Heart Of The Storm':
     'Section=magic,save ' +
     'Note="R10\' Lightning/thunder damage when casting lightning/thunder spell",' +
-         '"Resistance lightning and thunder"',
+         '"Resistance to lightning and thunder damage"',
   'Hearth Of Moonlight And Shadow':
     'Section=magic ' +
     'Note="30\' radius total cover, +5 Dex (Stealth) and Wis (Perception) during rest"',
@@ -296,7 +300,7 @@ Xanathar.FEATURES = {
     'Note="3 extra Flurry Of Blows attacks if each attacks a different creature"',
   'Invincible Conqueror':
     'Section=combat ' +
-    'Note="Damage resistance, extra attack, crit on 19 1/long rest"',
+    'Note="Resistance to all damage, extra attack, crit on 19 1/long rest"',
   // TODO Choice of Int, Cha if already has Wis
   'Iron Mind':'Section=save Note="Save Proficiency (Wisdom)"',
   'Keeper Of Souls':
@@ -329,7 +333,7 @@ Xanathar.FEATURES = {
   "Master's Flourish":
     'Section=combat Note="Use d6 instead of Bardic Inspiration for flourish"',
   'Mighty Summoner':
-    'Section=magic Note="Summoned creatures +2 HP/HD and magical attacks"',
+    'Section=magic Note="Summoned creatures +2 HP/HD, attacks are magical"',
   'Misdirection':
     'Section=combat ' +
     'Note="Redirect attack on self to creature providing self cover"',
@@ -341,7 +345,8 @@ Xanathar.FEATURES = {
     'Section=skill ' +
     'Note="Persuasion vs. Insight gives hostile target Disadv attacks on others, charms non-hostile for 1 min"',
   'Path To The Grave':
-    'Section=magic Note="R30\' Target vulnerable to all attacks for 1 tn"',
+    'Section=magic ' +
+    'Note="R30\' Use Channel Divinity to make target vulnerable to all attacks for 1 tn"',
   'Piercing Arrow':
     'Section=combat ' +
     'Note="+%Vd6 HP damage to targets in 30\'x1\' line (DC %V Dex half)"',
@@ -352,13 +357,13 @@ Xanathar.FEATURES = {
     'Section=magic ' +
     'Note="Store magic from %V <i>Dispel Magic</i> and <i>Counterspell</i>, use for +%1 spell damage 1/tn"',
   'Protective Spirit':
-    'Section=combat Note="Regain 1d6+%V HP at end of turn if below %1 HP"',
+    'Section=combat Note="Regain 1d6+%V HP at end of tn if below %1 HP"',
   'Psychic Blades':
     'Section=combat ' +
     'Note="Use 1 Bardic Inspiration for +%Vd6 HP psychic damage 1/tn"',
   'Radiant Soul':
     'Section=magic,save ' +
-    'Note="+%V radiant and fire spell damage","Resistant radiant"',
+    'Note="+%V radiant and fire spell damage","Resistance to radiant damage"',
   'Radiant Sun Bolt':
     'Section=combat ' +
     'Note="R30\' Ranged touch +%V 1d%1+%2 HP radiant damage 1/tn, spend 1 Ki for 2/tn"',
@@ -379,8 +384,8 @@ Xanathar.FEATURES = {
   'Rapid Strike':'Section=combat Note="Trade Attack Adv for extra attack 1/tn"',
   'Saint Of Forge And Fire':
     'Section=combat,save ' +
-    'Note="Resistance non-magical bludgeoning, piercing, slashing in heavy armor",' +
-         '"Immunity fire"',
+    'Note="Resistance to non-magical bludgeoning, piercing, and slashing damage in heavy armor",' +
+         '"Immunity to fire damage"',
   'Scornful Rebuke':
     'Section=combat Note="Foes striking self take %V HP psychic damage"',
   'Searing Arc Strike':
@@ -421,13 +426,13 @@ Xanathar.FEATURES = {
     'Note="Successful reaction attack on Slayer\'s Prey target yields self save"',
   "Slayer's Prey":
     'Section=combat ' +
-    'Note="R60\' +1d6 HP damage to target w/1st attack each turn until short rest"',
+    'Note="R60\' +1d6 HP damage to target w/1st attack each tn until short rest"',
   'Soul Of Deceit':
     'Section=save ' +
-    'Note="Immune telepathy, Deception vs. Insight to present false thoughts, immune truth compulsion"',
+    'Note="Immunity to telepathy, Deception vs. Insight to present false thoughts, immunity to truth compulsion"',
   'Soul Of The Forge':
     'Section=combat,save ' +
-    'Note="+1 AC in heavy armor","Resistance fire damage"',
+    'Note="+1 AC in heavy armor","Resistance to fire damage"',
   'Spectral Defense':
     'Section=combat Note="Reaction upon damage for resistance"',
   'Speech Of The Woods':'Section=skill Note="Learn sylvan, speak w/beasts"',
@@ -435,13 +440,13 @@ Xanathar.FEATURES = {
     'Section=combat Note="R30\' Reduce damage to ally by %Vd6"',
   'Spirit Totem (Bear)':
     'Section=magic ' +
-    'Note="R60\' Targets in 30\' radius %V temporary HP, Adv Str for 1/min 1/short rest"',
+    'Note="R60\' Targets in 30\' radius %V temporary HP, Adv Str for 1 min 1/short rest"',
   'Spirit Totem (Hawk)':
     'Section=magic ' +
-    'Note="R60\' Targets in 30\' radius Adv attack and Wis (Perception) for 1/min 1/short rest"',
+    'Note="R60\' Targets in 30\' radius Adv attack and Wis (Perception) for 1 min 1/short rest"',
   'Spirit Totem (Unicorn)':
     'Section=magic ' +
-    'Note="R60\' Allies Adv to detect creatures in 30\' for 1/min, targets heal %V HP 1/short rest"',
+    'Note="R60\' Allies Adv to detect creatures in 30\' for 1 min, targets heal %V HP 1/short rest"',
   "Stalker's Fury":'Section=combat Note="Reroll weapon miss 1/tn"',
   'Steady Eye':
     'Section=skill ' +
@@ -454,7 +459,7 @@ Xanathar.FEATURES = {
     'Note="Successful attacker takes %V HP lightning damage and pushed 20\' (DC %V Str neg push)"',
   'Strength Before Death':
     'Section=combat ' +
-    'Note="At 0 HP delay unconsciousness and take extra turn 1/long rest"',
+    'Note="At 0 HP delay unconsciousness and take extra tn 1/long rest"',
   'Strength Of The Grave':
     'Section=combat ' +
     'Note="DC 5+damage Cha to retain 1 HP when reduced to 0 by non-crit, non-radiant damage 1/long rest"',
@@ -467,16 +472,16 @@ Xanathar.FEATURES = {
   'Storm Soul (Desert)':
     'Section=magic,save ' +
     'Note="Touch lights unpossessed flammable object",' +
-         '"Resist fire, unaffected by extreme heat"',
+         '"Resistance to fire damage, unaffected by extreme heat"',
   'Storm Soul (Sea)':
     'Section=ability,feature,save ' +
     'Note="30\' Swim",' +
          '"Breathe underwater",' +
-         '"Resist lightning"',
+         '"Resistance to lightning damage"',
   'Storm Soul (Tundra)':
     'Section=magic,save ' +
     'Note="Touch freezes unoccupied 5\' cu water for 1 min",' +
-         '"Resist cold, unaffected by extreme cold"',
+         '"Resistance to cold damage, unaffected by extreme cold"',
   'Sudden Strike':'Section=combat Note="Bonus action for extra attack"',
   'Sun Shield':
     'Section=combat,magic ' +
@@ -497,7 +502,7 @@ Xanathar.FEATURES = {
     'Section=combat Note="Min 1 Fighting Spirit after Initiative"',
   'Umbral Form':
     'Section=magic ' +
-    'Note="Spend 6 Sorcery Points to become shadow (move through objects, immune non-force, non-radiant damage) for 1 min"',
+    'Note="Spend 6 Sorcery Points to become shadow (move through objects, immunity to non-force, non-radiant damage) for 1 min"',
   'Umbral Sight':
     'Section=feature Note="60\' Darkvision, invisible to darkvision"',
   'Unbreakable Majesty':
@@ -512,7 +517,7 @@ Xanathar.FEATURES = {
     'Section=combat ' +
     'Note="After melee hit, marked target Disadv attack other and provoke self bonus attack +%V HP damage for 1 tn %1/long rest"',
   'Vigilant Defender':
-    'Section=combat Note="Opportunity attack on every other creature\'s turn"',
+    'Section=combat Note="Opportunity attack on every other creature\'s tn"',
   'Warding Maneuver':
     'Section=combat ' +
     'Note="R5\' Add 1d8 to ally AC, fail gives damage resistance %V/long rest"',
@@ -532,7 +537,7 @@ Xanathar.FEATURES = {
     'Section=ability,magic,save ' +
     'Note="Fly 60\'",' +
          '"R30\' Self and %V others fly 30\' for 1 hr 1/long rest",' +
-         '"Immune lightning and thunder"',
+         '"Immunity to lightning and thunder damage"',
   'Words Of Terror':
     'Section=magic ' +
     'Note="1 min conversation frightens for 1 hr (DC %V Wisdom neg) 1/short rest"',
@@ -883,8 +888,11 @@ Xanathar.identityRules = function(
   }
   var allDeities = rules.getChoices('deities');
   for(var deity in deities) {
-    if(deity in allDeities)
-      allDeities[deity] = allDeities[deity].replace('Domain=', 'Domain="' + QuilvynUtils.getAttrValue(deities[deity], 'Domain') + '",');
+    if(deity in allDeities) {
+      var attrs = allDeities[deity].replace('Domain=', 'Domain="' + QuilvynUtils.getAttrValue(deities[deity], 'Domain') + '",');
+      delete allDeities[deity];
+      rules.choiceRules(rules, 'Deity', deity, attrs);
+    }
   }
   for(var path in paths) {
     rules.choiceRules(rules, 'Path', path, paths[path]);

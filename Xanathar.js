@@ -74,7 +74,7 @@ Xanathar.CLASS_SELECTABLES = {
   ],
   'Monk':[
     '3:Way Of The Drunken Master:Monastic Tradition',
-    '3:Way Of The Kensai:Monastic Tradition',
+    '3:Way Of The Kensei:Monastic Tradition',
     '3:Way Of The Sun Soul:Monastic Tradition'
   ],
   'Paladin':[
@@ -160,10 +160,10 @@ Xanathar.FEATURES = {
     'Note="R120\' Distribute %Vd6 HP healing and %V temporary HP to targets 1/long rest"',
   'Banishing Arrow':
     'Section=combat ' +
-    'Note="+%Vd6 HP force damage, send target to Feywild until next tn (DC %1 neg)"',
+    'Note="+%Vd6 HP force damage, send target to Feywild until next tn (DC %1 Cha neg)"',
   'Beguiling Arrow':
     'Section=combat ' +
-    'Note="+%Vd6 HP psychic damage, target charmed by R30\' ally (DC %V Wis neg)"',
+    'Note="+%Vd6 HP psychic damage, target charmed by R30\' ally (DC %1 Wis neg)"',
   'Blade Flourish':
     'Section=combat Note="+10\' move and flourish during attack 1/tn"',
   'Blessing Of The Forge':
@@ -173,7 +173,7 @@ Xanathar.FEATURES = {
     'Section=magic Note="<i>Light</> and <i>Sacred Flame</i>"',
   'Born To The Saddle':
     'Section=skill ' +
-    'Note="Adv falling off mount, no damage 10\' fall, dis/mount costs 5\' move"',
+    'Note="Adv falling off mount, land on feet after falling 10\' from mount, dis/mount costs 5\' move"',
   'Bursting Arrow':'Section=combat Note="10\' diameter %Vd6 HP force damage"',
   'Celestial Radiance':
     'Section=save Note="Resistant to necrotic, radiant damage"',
@@ -189,6 +189,9 @@ Xanathar.FEATURES = {
   'Consult The Spirits':
     'Section=magic ' +
     'Note="<i>Augury</i> or <i>Clairvoyance</i> via spirits 1/short rest"',
+  'Curving Shot':
+    'Section=combat ' +
+    'Note="Redirect magic arrow miss to another target w/in 60\'"',
   'Defensive Flourish':
     'Section=combat ' +
     'Note="Spend 1 Bardic Inspiration for +d%V damage and AC for 1 tn"',
@@ -196,7 +199,7 @@ Xanathar.FEATURES = {
     'Section=magic ' +
     'Note="R60\' Arcane Deflection strikes 3 targets with %V HP force damage"',
   'Deft Strike':
-    'Section=combat Note="Spend 1 Ki for +%V damage with Kensei weapon"',
+    'Section=combat Note="Spend 1 Ki for +%V damage with Kensei weapon 1/tn"',
   'Detect Portal':'Section=magic Note="R1 mi Sense planar portal 1/long rest"',
   'Distant Strike':
     'Section=combat Note="Teleport 10\' beore attack, attack 3rd creature"',
@@ -227,12 +230,12 @@ Xanathar.FEATURES = {
     'Section=magic Note="R5\' Spend 1 Sorcery Point to reroll self or ally healing dice 1/tn"',
   'Enfeebling Arrow':
     'Section=combat ' +
-    'Note="+%Vd6 HP necrotic damage, damage by target halved 1 tn (DC %V Con neg)"',
+    'Note="+%Vd6 HP necrotic damage, damage by target halved 1 tn (DC %1 Con neg)"',
   'Enthralling Performance':
     'Section=magic ' +
     'Note="R60\' 1 min performance charms %V listeners for 1 hr (DC %1 Will neg) 1/short rest"',
   'Ethereal Step':'Section=magic Note="Ethereal for 1 tn 1/short rest"',
-  'Ever-Ready Shot':'Section=combat Note="Min 1 Arcane Shot after Initiative"',
+  'Ever-Ready Shot':'Section=combat Note="Min 1 Arcane Shot after initiative"',
   'Eye For Detail':
     'Section=skill ' +
     'Note="Bonus Perception action to spot hidden item or Investigation to uncover clue"',
@@ -260,7 +263,7 @@ Xanathar.FEATURES = {
     'Section=combat Note="Adv attack, %V temporary HP for 1 tn 3/long rest"',
   'Grasping Arrow':
     'Section=combat ' +
-    'Note="+%V6 HP poison damage, target move -10\' + %Vd6 HP slashing damage for 1 min or successful DC %V Athletics check"',
+    'Note="+%Vd6 HP poison damage, target move -10\' + %Vd6 HP slashing damage for 1 min or successful DC %1 Athletics check"',
   'Guardian Spirit':
     'Section=magic Note="Summoned creatures w/in Spirit Totem aura heal %V HP"',
   'Guided Strike':'Section=combat Note="Channel Divinity gives +10 attack"',
@@ -307,9 +310,10 @@ Xanathar.FEATURES = {
     'Section=magic Note="R60\' Dying target yields HD HP to another 1/tn"',
   'Kensei Weapons':
     'Section=combat ' +
-    'Note="Proficiency in chosen non-heavy melee and ranged weapons"',
+    'Note="Proficiency in choice of %V non-heavy melee or ranged weapons"',
   "Kensei's Shot":
-    'Section=combat Note="+1d4 damage with ranged Kensei weapon"',
+    'Section=combat ' +
+    'Note="Bonus action for +1d4 HP damage with ranged Kensei weapon"',
   'Magic Arrow':'Section=combat Note="Arrows count as magic weapons"',
   'Magic Kensei Weapons':'Section=combat Note="Kensei attacks are magical"',
   "Magic User's Nemesis":
@@ -349,7 +353,7 @@ Xanathar.FEATURES = {
     'Note="R30\' Use Channel Divinity to make target vulnerable to all attacks for 1 tn"',
   'Piercing Arrow':
     'Section=combat ' +
-    'Note="+%Vd6 HP damage to targets in 30\'x1\' line (DC %V Dex half)"',
+    'Note="+%Vd6 HP damage to targets in 30\'x1\' line, passes through cover harmlessly (DC %1 Dex half)"',
   'Planar Warror':
     'Section=combat ' +
     'Note="R30\' As bonus action, self damage to target become force damage, +%Vd6 HP damage"',
@@ -399,12 +403,12 @@ Xanathar.FEATURES = {
     'Note="Recover %V HP and stand, R30\' 2d8+%1 radiant damage upon death saving throw 1/long rest"',
   'Seeking Arrow':
     'Section=combat ' +
-    'Note="+%Vd6 HP force damage, ignore 3/4 cover and reveal target (DC %V Dex half and no reveal)"',
+    'Note="+%Vd6 HP force damage, ignore 3/4 cover and reveal target (DC %1 Dex half and no reveal)"',
   "Sentinel At Death's Door":
     'Section=magic Note="R30\' Negate critical %V/long rest"',
   'Shadow Arrow':
     'Section=combat ' +
-    'Note="+%Vd6 HP psychic damage, target vision impaired (DC %V Wis neg)"',
+    'Note="+%Vd6 HP psychic damage, target vision impaired (DC %1 Wis neg)"',
   'Shadow Lore':
     'Section=magic Note="R30\' Target obeys commands for 8 hr (DC %V Wis neg)"',
   'Shadow Walk':
@@ -413,7 +417,7 @@ Xanathar.FEATURES = {
   'Shadowy Dodge':'Section=combat Note="Reaction to impose Disadv on attacker"',
   'Sharpen The Blade':
     'Section=combat ' +
-    'Note="Spend 1-3 Ki to gain equal bonus to Kensei weapon attack and damage"',
+    'Note="Spend 1-3 Ki to gain equal bonus to Kensei weapon attack and damage for 1 min"',
   'Shielding Storm':
     'Section=magic Note="R10\' Targets gain Storm Soul resistance"',
   'Skirmisher':
@@ -493,13 +497,13 @@ Xanathar.FEATURES = {
   'Survivalist':'Section=skill Note="Dbl prof in Nature and Survival"',
   'Tempestuous Magic':'Section=magic Note="Fly 10\' before casting spell"',
   'Tactical Wit':'Section=combat Note="+%V Initiative"',
-  'Tipsy Sway (Leap To Your Feat':
+  'Tipsy Sway (Leap To Your Feet)':
     'Section=ability Note="Stand from prone costs 5\' movement"',
   'Tipsy Sway (Redirect Attack)':
     'Section=combat ' +
     'Note="Spend 1 Ki to redirect foe miss to adjacent creature"',
   'Tireless Spirit':
-    'Section=combat Note="Min 1 Fighting Spirit after Initiative"',
+    'Section=combat Note="Min 1 Fighting Spirit after initiative"',
   'Umbral Form':
     'Section=magic ' +
     'Note="Spend 6 Sorcery Points to become shadow (move through objects, immunity to non-force, non-radiant damage) for 1 min"',
@@ -515,12 +519,13 @@ Xanathar.FEATURES = {
     'Note="R30\' Sense illusions and other deceptions %V/long rest"',
   'Unwavering Mark':
     'Section=combat ' +
-    'Note="After melee hit, marked target Disadv attack other and provoke self bonus attack +%V HP damage for 1 tn %1/long rest"',
+    'Note="After melee hit, adjacent target Disadv attack other, provokes self bonus attack w/Adv +%V HP damage for 1 tn %1/long rest"',
   'Vigilant Defender':
-    'Section=combat Note="Opportunity attack on every other creature\'s tn"',
+    'Section=combat ' +
+    'Note="Reaction for opportunity attack on every other creature\'s tn"',
   'Warding Maneuver':
     'Section=combat ' +
-    'Note="R5\' Add 1d8 to ally AC, fail gives damage resistance %V/long rest"',
+    'Note="R5\' When ally struck, give +1d8 AC and damage resistance to ally %V/long rest"',
   'Wind Speaker':'Section=skill Note="Speak Primordial and dialects"',
   'Vengeful Ancestors':
     'Section=combat ' +
@@ -554,13 +559,13 @@ Xanathar.PATHS = {
     'Features=' +
       '"3:Skill Proficiency (Choose 1 from Arcana, Nature)",' +
       '"3:Arcane Archer Lore","3:Arcane Shot","7:Curving Shot",' +
-      '"7:Magic Arrow","15:Every-Ready Shot","18:Improved Shots"',
+      '"7:Magic Arrow","15:Ever-Ready Shot","18:Improved Shots"',
   'Cavalier':
     'Group=Fighter ' +
     'Level=levels.Fighter ' +
     'Features=' +
       // TODO choice of skill proficiency or language
-      '"3:Skill Proficiency (Choose 1 from Animal Handling/History/Insight/Performance/Persuasion",' +
+      '"3:Skill Proficiency (Choose 1 from Animal Handling, History, Insight, Performance, Persuasion)",' +
       '"3:Born To The Saddle","3:Unwavering Mark","7:Warding Maneuver",' +
       '"10:Hold The Line","15:Ferocious Charger","18:Vigilant Defender"',
   'Circle Of Dreams':
@@ -729,7 +734,7 @@ Xanathar.PATHS = {
     'Level=levels.Fighter ' +
     'Features=' +
       // TODO choice of skill proficiency or language
-      '"3:Skill Proficiency (Choose 1 from History/Insight/Performance/Persuasion",' +
+      '"3:Skill Proficiency (Choose 1 from History, Insight, Performance, Persuasion)",' +
       '"3:Fighting Spirit","7:Elegant Courtier","10:Tireless Spirit",' +
       '"15:Rapid Strike","18:Strength Before Death"',
   'Scout':
@@ -946,50 +951,35 @@ Xanathar.pathRulesExtra = function(rules, name) {
     'Level';
 
   if(name == 'Arcane Archer') {
+    rules.defineRule('arcaneShotDC',
+      'features.Arcane Shot', '?', null,
+      'proficiencyBonus', '=', '8 + source',
+      'intelligenceModifier', '+', null
+    );
     rules.defineRule
       ('combatNotes.banishingArrow', pathLevel, '=', 'source>=18 ? "2" : "0"');
-    rules.defineRule('combatNotes.banishingArrow.1',
-      'proficiencyBonus', '=', '8 + source',
-      'intelligenceModifier', '+', null
-    );
+    rules.defineRule('combatNotes.banishingArrow.1', 'arcaneShotDC', '=', null);
     rules.defineRule
       ('combatNotes.beguilingArrow', pathLevel, '=', 'source>= 18 ? "4" : "2"');
-    rules.defineRule('combatNotes.beguilingArrow.1',
-      'proficiencyBonus', '=', '8 + source',
-      'intelligenceModifier', '+', null
-    );
+    rules.defineRule('combatNotes.beguilingArrow.1', 'arcaneShotDC', '=', null);
     rules.defineRule
       ('combatNotes.burstingArrow', pathLevel, '=', 'source>= 18 ? "4" : "2"');
     rules.defineRule
       ('combatNotes.enfeeblingArrow', pathLevel, '=', 'source>=18 ? "4" : "2"');
-    rules.defineRule('combatNotes.enfeeblingArrow.1',
-      'proficiencyBonus', '=', '8 + source',
-      'intelligenceModifier', '+', null
-    );
+    rules.defineRule
+      ('combatNotes.enfeeblingArrow.1', 'arcaneShotDC', '=', null);
     rules.defineRule
       ('combatNotes.graspingArrow', pathLevel, '=', 'source>=18 ? "4" : "2"');
-    rules.defineRule('combatNotes.graspingArrow.1',
-      'proficiencyBonus', '=', '8 + source',
-      'intelligenceModifier', '+', null
-    );
+    rules.defineRule('combatNotes.graspingArrow.1', 'arcaneShotDC', '=', null);
     rules.defineRule
       ('combatNotes.piercingArrow', pathLevel, '=', 'source>=18 ? "2" : "1"');
-    rules.defineRule('combatNotes.piercingArrow.1',
-      'proficiencyBonus', '=', '8 + source',
-      'intelligenceModifier', '+', null
-    );
+    rules.defineRule('combatNotes.piercingArrow.1', 'arcaneShotDC', '=', null);
     rules.defineRule
       ('combatNotes.seekingArrow', pathLevel, '=', 'source>=18 ? "2" : "1"');
-    rules.defineRule('combatNotes.seekingArrow.1',
-      'proficiencyBonus', '=', '8 + source',
-      'intelligenceModifier', '+', null
-    );
+    rules.defineRule('combatNotes.seekingArrow.1', 'arcaneShotDC', '=', null);
     rules.defineRule
       ('combatNotes.shadowArrow', pathLevel, '=', 'source>=18 ? "4" : "2"');
-    rules.defineRule('combatNotes.shadowArrow.1',
-      'proficiencyBonus', '=', '8 + source',
-      'intelligenceModifier', '+', null
-    );
+    rules.defineRule('combatNotes.shadowArrow.1', 'arcaneShotDC', '=', null);
     rules.defineRule('selectableFeatureCount.Fighter (Arcane Shot)',
       pathLevel, '=',
         'source>=18 ? 6 : source>=15 ? 5 : source>=10 ? 4 : source>=7 ? 3 : 2'
@@ -1207,26 +1197,30 @@ Xanathar.pathRulesExtra = function(rules, name) {
     );
   } else if(name == 'Way Of The Kensei') {
     rules.defineRule('combatNotes.deftStrike', 'monkMeleeDieBonus', '=', null);
+    rules.defineRule('combatNotes.kenseiWeapons',
+      pathLevel, '=', 'source>=17 ? 5 : source>=11 ? 4 : source>=6 ? 3 : 2'
+    );
     rules.defineRule('toolChoiceCount', 'skillNotes.wayOfTheBrush', '+=', '1');
     rules.defineRule
-      ('weaponChoiceCount', 'combatNote.kenseiWeapons', '+=', '2');
-  } else if(name == 'Way Of Sun Soul') {
+      ('weaponChoiceCount', 'combatNotes.kenseiWeapons', '+=', null);
+  } else if(name == 'Way Of The Sun Soul') {
     rules.defineRule('combatNotes.radiantSunBolt',
-      'attackBonus.Ranged', '=', null,
-      'proficiencyBonus', '+', null
+      'proficiencyBonus', '=', null,
+      'dexterityModifier', '+', null
     );
-    rules.defineRule
-      ('combatNotes.radiantSunBolt.1', 'combatNotes.martialArts', '=', null);
+    rules.defineRule('combatNotes.radiantSunBolt.1',
+      'features.Radiant Sun Bolt', '?', null,
+      'combatNotes.martialArts', '=', null
+    );
     rules.defineRule('combatNotes.radiantSunBolt.2',
       'features.Radiant Sun Bolt', '?', null,
       'dexterityModifier', '=', null
     );
     rules.defineRule
       ('combatNotes.sunShield', 'wisdomModifier', '=', 'source + 5');
-    rules.defineRule('combatNotes.searingArcStrike',
-      pathLevel, '=', 'Math.floor(source / 2)'
-    );
-    rules.defineRule('combatNotes.searingSunburst', 'kiSaveDC', '=', null);
+    rules.defineRule
+      ('magicNotes.searingArcStrike', pathLevel, '=', 'Math.floor(source / 2)');
+    rules.defineRule('magicNotes.searingSunburst', 'kiSaveDC', '=', null);
   }
 
 };

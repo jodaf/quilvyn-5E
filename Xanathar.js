@@ -135,7 +135,7 @@ Xanathar.FEATURES = {
     'Note="Adv Initiative, allies Adv vs. foe struck first rd for 1 tn"',
   'Ancestral Protectors':
     'Section=combat ' +
-    'Note="First target in rage hindered fighting others (Disadv attack, damage resistance)"',
+    'Note="First target in rage hindered fighting others (Disadv attack, damage resistance) 1 tn"',
   'Arcane Archer Lore':
     'Section=magic ' +
     'Note="Know <i>Druidcraft</i> or <i>Prestidigitation</i> cantrip"',
@@ -184,10 +184,10 @@ Xanathar.FEATURES = {
     'Note="R30\' Channel Divinity to frighten for 1 min (Wis neg)"',
   'Consult The Spirits':
     'Section=magic ' +
-    'Note="<i>Augury</i> or <i>Clairvoyance</i> via spirits 1/long rest"',
+    'Note="<i>Augury</i> or <i>Clairvoyance</i> via spirits 1/short rest"',
   'Defensive Flourish':
     'Section=combat ' +
-    'Note="Spend 1 Bardic Inspiration for +%V HP damage and +%V AC for 1 tn"',
+    'Note="Spend 1 Bardic Inspiration for +d%V damage and AC for 1 tn"',
   'Deflecting Shroud':
     'Section=magic ' +
     'Note="R60\' Arcane Deflection strikes 3 targets with %V HP force damage"',
@@ -198,7 +198,7 @@ Xanathar.FEATURES = {
     'Section=combat Note="Teleport 10\' beore attack, attack 3rd creature"',
   'Divine Fury':
     'Section=combat ' +
-    'Note="First hit during range +1d6+%V HP necrotic or radiant"',
+    'Note="First hit during each tn rage +1d6+%V HP necrotic or radiant"',
   'Divine Magic':'Section=magic Note="Access to Cleric spells"',
   'Dread Ambusher':
     'Section=combat Note="+%V Initiative/+10\' speed, additional weapon attack w/+1d8 damage"',
@@ -226,7 +226,7 @@ Xanathar.FEATURES = {
     'Note="+%Vd6 HP necrotic damage, damage by target halved 1 tn (DC %V Con neg)"',
   'Enthralling Performance':
     'Section=magic ' +
-    'Note="1 min performance charms %V listeners for 1 hr (DC %1 Will neg) 1/long rest"',
+    'Note="R60\' 1 min performance charms %V listeners for 1 hr (DC %1 Will neg) 1/short rest"',
   'Ethereal Step':'Section=magic Note="Ethereal for 1 tn 1/short rest"',
   'Ever-Ready Shot':'Section=combat Note="Min 1 Arcane Shot after Initiative"',
   'Eye For Detail':
@@ -313,12 +313,12 @@ Xanathar.FEATURES = {
     'Note="R60\' Foil target teleport (DC %V Wis neg) 1/short rest"',
   'Mantle Of Inspiration':
     'Section=magic ' +
-    'Note="R60\' Bardic inspiration gives %1 targets %V temporary HP and immediate move w/out AOO"',
+    'Note="R60\' Bardic Inspiration gives %1 targets %V temporary HP and immediate move w/out AOO"',
   'Mantle Of Majesty':
     'Section=magic Note="Cast <i>Command</i> 1/tn for 1 min 1/long rest"',
   'Mantle Of Whispers':
     'Section=magic ' +
-    'Note="R30\' Capture dying person\'s shadow to use as disguise, Insight vs. +5 Deception to see through"',
+    'Note="R30\' Capture dying person\'s shadow to use as disguise, Insight vs. +5 Deception to see through 1/short rest"',
   'Master Duelist':'Section=combat Note="Reroll miss with Adv 1/short rest"',
   'Master Of Hexes':
     'Section=magic Note="R30\' Redirect Hexblade\'s Curse when target dies"',
@@ -335,7 +335,7 @@ Xanathar.FEATURES = {
     'Note="Redirect attack on self to creature providing self cover"',
   'Mobile Flourish':
     'Section=combat ' +
-    'Note="Use 1 Bardic Inspiration for +%V HP damage and 5\'+d%V\' push"',
+    'Note="Use 1 Bardic Inspiration for +d%V damage and 5\'+d%V\' push"',
   'Otherworldly Wing':'Section=ability Note="30\' Fly"',
   'Panache':
     'Section=skill ' +
@@ -415,7 +415,7 @@ Xanathar.FEATURES = {
     'Section=combat Note="Reaction to move half speed when foe w/in 5\'"',
   'Slashing Flourish':
     'Section=combat ' +
-    'Note="Use 1 Bardic Inspiration for +%V HP damage to target and adjacent foe"',
+    'Note="Use 1 Bardic Inspiration for +d%V HP damage to target and adjacent foe"',
   "Slayer's Counter":
     'Section=combat ' +
     'Note="Successful reaction attack on Slayer\'s Prey target yields self save"',
@@ -463,7 +463,7 @@ Xanathar.FEATURES = {
   'Storm Aura (Sea)':
     'Section=magic Note="R10\' Lightning %Vd6 HP (DC %1 Dex half)"',
   'Storm Aura (Tundra)':
-    'Section=magic Note="R10\' Chosen targets %V tempoary HP"',
+    'Section=magic Note="R10\' Chosen targets %V temporary HP"',
   'Storm Soul (Desert)':
     'Section=magic,save ' +
     'Note="Touch lights unpossessed flammable object",' +
@@ -475,7 +475,7 @@ Xanathar.FEATURES = {
          '"Resist lightning"',
   'Storm Soul (Tundra)':
     'Section=magic,save ' +
-    'Note="Touch freezes unoccupied 5\' cu water",' +
+    'Note="Touch freezes unoccupied 5\' cu water for 1 min",' +
          '"Resist cold, unaffected by extreme cold"',
   'Sudden Strike':'Section=combat Note="Bonus action for extra attack"',
   'Sun Shield':
@@ -535,10 +535,10 @@ Xanathar.FEATURES = {
          '"Immune lightning and thunder"',
   'Words Of Terror':
     'Section=magic ' +
-    'Note="1 min conversation frightens for 1 hr (DC %V Wisdom neg)"',
+    'Note="1 min conversation frightens for 1 hr (DC %V Wisdom neg) 1/short rest"',
   'Zealous Presence':
     'Section=combat ' +
-    'Note="R60\' Battle cry gives 10 targets Adv attack and save 1/long rest"'
+    'Note="R60\' Battle cry gives 10 targets Adv attack and save for 1 tn 1/long rest"'
 };
 Xanathar.LANGUAGES = {
 };
@@ -712,7 +712,8 @@ Xanathar.PATHS = {
       '"features.Storm Aura (Sea) ? 14:Raging Storm (Sea)",' +
       '"features.Storm Aura (Tundra) ? 14:Raging Storm (Tundra)" ' +
     'Selectables=' +
-      '"3:Storm Aura (Desert)","3:Storm Aura (Sea)","3:Storm Aura (Tundra)"',
+      '"3:Storm Aura (Desert):Storm Aura","3:Storm Aura (Sea):Storm Aura",' +
+      '"3:Storm Aura (Tundra):Storm Aura"',
   'Path Of The Zealot':
     'Group=Barbarian Level=levels.Barbarian ' +
     'Features=' +
@@ -1038,7 +1039,8 @@ Xanathar.pathRulesExtra = function(rules, name) {
       ('combatNotes.mobileFlourish', 'bardicInspirationDie', '=', null);
     rules.defineRule
       ('combatNotes.slashingFlourish', 'bardicInspirationDie', '=', null);
-    rules.defineRule('selectableFeatureCount.Bard', pathLevel, '+', '1');
+    rules.defineRule
+      ('selectableFeatureCount.Bard (Fighting Style)', pathLevel, '=', '1');
   } else if(name == 'College Of Whispers') {
     rules.defineRule('combatNotes.psychicBlades',
       pathLevel, '=', 'source>=15 ? 8 : source>=10 ? 5 : source>=5 ? 3 : 2'
@@ -1119,12 +1121,13 @@ Xanathar.pathRulesExtra = function(rules, name) {
       'proficiencyBonus', '=', '8 + source',
       'constitutionModifier', '+', null
     );
-    rules.defineRule('selectableFeatureCount.Barbarian', pathLevel, '+', '1');
+    rules.defineRule
+      ('selectableFeatureCount.Barbarian (Storm Aura)', pathLevel, '=', '1');
     rules.defineRule('magicNotes.stormAura(Desert)',
       pathLevel, '=', 'Math.floor(source / 5) + 2'
     );
     rules.defineRule('magicNotes.stormAura(Sea)',
-      pathLevel, '=', 'Math.floor(source / 5) + 1'
+      pathLevel, '=', 'Math.max(Math.floor(source / 5), 1)'
     );
     rules.defineRule('magicNotes.stormAura(Sea).1',
       'features.Storm Aura (Sea)', '?', null,

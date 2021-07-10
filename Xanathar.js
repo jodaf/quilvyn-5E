@@ -152,7 +152,7 @@ Xanathar.FEATURES = {
     'Section=magic ' +
     'Note="Use Channel Divinity to craft up to 100 GP metal item in 1 hr"',
   'Aura Of Conquest':
-    'Section=combat Note="R%V\' Frightened foes unable to move"',
+    'Section=magic Note="R%V\' Frightened foes unable to move"',
   'Aura Of The Guardian':
     'Section=magic Note="R%V\' Transfer damage from another to self"',
   'Balm Of The Summer Court':
@@ -185,7 +185,7 @@ Xanathar.FEATURES = {
     'Note="Cure spells maximized for unconscious targets, R30\' <i>Spare The Dying</i> cantrip"',
   'Conquering Presence':
     'Section=magic ' +
-    'Note="R30\' Channel Divinity to frighten for 1 min (Wis neg)"',
+    'Note="R30\' Channel Divinity to frighten for 1 min (DC %V Wis neg)"',
   'Consult The Spirits':
     'Section=magic ' +
     'Note="<i>Augury</i> or <i>Clairvoyance</i> via spirits 1/short rest"',
@@ -200,7 +200,7 @@ Xanathar.FEATURES = {
     'Note="R60\' Arcane Deflection strikes 3 targets with %V HP force damage"',
   'Deft Strike':
     'Section=combat Note="Spend 1 Ki for +%V damage with Kensei weapon 1/tn"',
-  'Detect Portal':'Section=magic Note="R1 mi Sense planar portal 1/long rest"',
+  'Detect Portal':'Section=magic Note="R1 mi Sense planar portal 1/short rest"',
   'Distant Strike':
     'Section=combat Note="Teleport 10\' beore attack, attack 3rd creature"',
   'Divine Fury':
@@ -208,7 +208,7 @@ Xanathar.FEATURES = {
     'Note="First hit during each tn rage +1d6+%V HP necrotic or radiant"',
   'Divine Magic':'Section=magic Note="Access to Cleric spells"',
   'Dread Ambusher':
-    'Section=combat Note="+%V Initiative/+10\' speed, additional weapon attack w/+1d8 damage"',
+    'Section=combat Note="+%V Initiative/+10\' speed, additional weapon attack w/+1d8 HP damage"',
   "Drunkard's Luck":'Section=feature Note="Spend 2 Ki to cancel Disadv"',
   'Drunken Technique':
     'Section=combat Note="Disengage and +10\' move during Flurry Of Blows"',
@@ -225,7 +225,7 @@ Xanathar.FEATURES = {
     'Section=skill Note="Channel Energy for +5 Persuasion for 10 min"',
   'Emissary Of Redemption':
     'Section=combat ' +
-    'Note="When not attacking, resistance to all damage, attacker takes half self damage"',
+    'Note="When not attacking, resistance to all damage and attacker takes half self damage"',
   'Empowered Healing':
     'Section=magic Note="R5\' Spend 1 Sorcery Point to reroll self or ally healing dice 1/tn"',
   'Enfeebling Arrow':
@@ -303,7 +303,7 @@ Xanathar.FEATURES = {
     'Note="3 extra Flurry Of Blows attacks if each attacks a different creature"',
   'Invincible Conqueror':
     'Section=combat ' +
-    'Note="Resistance to all damage, extra attack, crit on 19 1/long rest"',
+    'Note="Resistance to all damage, extra attack, crit on 19 for 1 min 1/long rest"',
   // TODO Choice of Int, Cha if already has Wis
   'Iron Mind':'Section=save Note="Save Proficiency (Wisdom)"',
   'Keeper Of Souls':
@@ -316,9 +316,9 @@ Xanathar.FEATURES = {
     'Note="Bonus action for +1d4 HP damage with ranged Kensei weapon"',
   'Magic Arrow':'Section=combat Note="Arrows count as magic weapons"',
   'Magic Kensei Weapons':'Section=combat Note="Kensei attacks are magical"',
-  "Magic User's Nemesis":
+  "Magic-User's Nemesis":
     'Section=combat ' +
-    'Note="R60\' Foil target teleport (DC %V Wis neg) 1/short rest"',
+    'Note="R60\' Foil target spell or teleport (DC %V Wis neg) 1/short rest"',
   'Mantle Of Inspiration':
     'Section=magic ' +
     'Note="R60\' Bardic Inspiration gives %1 targets %V temporary HP and immediate move w/out AOO"',
@@ -354,9 +354,9 @@ Xanathar.FEATURES = {
   'Piercing Arrow':
     'Section=combat ' +
     'Note="+%Vd6 HP damage to targets in 30\'x1\' line, passes through cover harmlessly (DC %1 Dex half)"',
-  'Planar Warror':
+  'Planar Warrior':
     'Section=combat ' +
-    'Note="R30\' As bonus action, self damage to target become force damage, +%Vd6 HP damage"',
+    'Note="R30\' As bonus action, self damage to target is force damage, +%Vd6 HP damage"',
   'Power Surge':
     'Section=magic ' +
     'Note="Store magic from %V <i>Dispel Magic</i> and <i>Counterspell</i>, use for +%1 spell damage 1/tn"',
@@ -386,6 +386,9 @@ Xanathar.FEATURES = {
     'Section=combat ' +
     'Note="+%V Initiative/Use Sneak Attack w/out Adv vs. solo foe"',
   'Rapid Strike':'Section=combat Note="Trade Attack Adv for extra attack 1/tn"',
+  'Rebuke The Violent':
+    'Section=magic ' +
+    'Note="R30\' Channel Divinity to cause attacker of other equal damage (DC %V Wis half)"',
   'Saint Of Forge And Fire':
     'Section=combat,save ' +
     'Note="Resistance to non-magical bludgeoning, piercing, and slashing damage in heavy armor",' +
@@ -624,7 +627,7 @@ Xanathar.PATHS = {
     'Level=levels.Ranger ' +
     'Features=' +
       '"3:Dread Ambusher","3:Umbral Sight","7:Iron Mind",' +
-      '"11:Stalker\'s Fury","15:Shadow Dodge" ' +
+      '"11:Stalker\'s Fury","15:Shadowy Dodge" ' +
     'SpellAbility=wisdom ' +
     'SpellSlots=' +
       'Gloom1:3=1,' +
@@ -674,7 +677,7 @@ Xanathar.PATHS = {
     'Level=levels.Ranger ' +
     'Features=' +
       '"3:Hunter\'s Sense","3:Slayer\'s Prey","7:Supernatural Defense",' +
-      '"11:Magic User\'s Nemesis","15:Slayer\'s Counter" ' +
+      '"11:Magic-User\'s Nemesis","15:Slayer\'s Counter" ' +
     'SpellAbility=wisdom ' +
     'SpellSlots=' +
       'Slayer1:3=1,' +
@@ -697,7 +700,7 @@ Xanathar.PATHS = {
   'Oath Of Redemption':
     'Group=Paladin Level=levels.Paladin ' +
     'Features=' +
-      '"3:Emmisary Of Peace","3:Rebuke The Violent","7:Aura Of The Guardian",' +
+      '"3:Emissary Of Peace","3:Rebuke The Violent","7:Aura Of The Guardian",' +
       '"15:Protective Spirit","20:Emissary Of Redemption" ' +
     'SpellAbility=charisma ' +
     'SpellSlots=' +
@@ -1080,10 +1083,13 @@ Xanathar.pathRulesExtra = function(rules, name) {
   } else if(name == 'Mastermind') {
     rules.defineRule('languageCount', 'features.Master Of Intrigue', '+', '2');
   } else if(name == 'Oath Of Conquest') {
-    rules.defineRule
-      ('combatNotes.auraOfConquest', pathLevel, '=', 'source>=18 ? 30 : 10');
     rules.defineRule('combatNotes.scornfulRebuke',
       'charismaModifier', '=', 'Math.max(source, 1)'
+    );
+    rules.defineRule
+      ('magicNotes.auraOfConquest', pathLevel, '=', 'source>=18 ? 30 : 10');
+    rules.defineRule('magicNotes.conqueringPresence',
+      'spellDifficultyClass.Conquest', '=', null
     );
   } else if(name == 'Oath Of Redemption') {
     rules.defineRule('combatNotes.protectiveSpirit',
@@ -1092,6 +1098,11 @@ Xanathar.pathRulesExtra = function(rules, name) {
     rules.defineRule('combatNotes.protectiveSpirit.1',
       'features.Protective Spirit', '?', null,
       'hitPoints', '=', 'Math.floor(source / 2)'
+    );
+    rules.defineRule
+      ('magicNotes.auraOfTheGuardian', pathLevel, '=', 'source>=18 ? 30 : 10');
+    rules.defineRule('magicNotes.rebukeTheViolent',
+      'spellDifficultyClass.Redemption', '=', null
     );
   } else if(name == 'Otherworldly Patron') {
     rules.defineRule('magicNotes.healingLight', pathLevel, '=', 'source + 1');

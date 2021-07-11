@@ -2600,7 +2600,7 @@ SRD5E.SPELLS = {
   'Stoneskin':
     'School=Abjuration ' +
     'Level=D4,Mountain3,R4,S4,W4 ' +
-    'Description="Touched resistant to bludgeoning, piercing, and slashing damage for conc/1 hr"',
+    'Description="Touched resistance to bludgeoning, piercing, and slashing damage for conc/1 hr"',
   'Storm Of Vengeance':
     'School=Conjuration ' +
     'Level=D9 ' +

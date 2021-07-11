@@ -178,7 +178,7 @@ Xanathar.FEATURES = {
     'Note="Adv falling off mount, land on feet after falling 10\' from mount, dis/mount costs 5\' move"',
   'Bursting Arrow':'Section=combat Note="10\' diameter %Vd6 HP force damage"',
   'Celestial Radiance':
-    'Section=save Note="Resistant to necrotic, radiant damage"',
+    'Section=save Note="Resistance to necrotic, radiant damage"',
   'Celestial Resilience':
     'Section=magic ' +
     'Note="Self %V temporary HP, 5 others %1 temporary HP/short rest"',

@@ -1117,7 +1117,7 @@ Xanathar.pathRulesExtra = function(rules, name) {
   } else if(name == 'Monster Slayer') {
     rules.defineRule("combatNotes.hunter'sSense", 'wisdomModifier', '=', null);
     rules.defineRule
-      ("combatNotes.magicUser'sNemesis", 'spellDifficultyClass.R', '=', null);
+      ("combatNotes.magic-User'sNemesis", 'spellDifficultyClass.R', '=', null);
   } else if(name == 'Inquisitive') {
     rules.defineRule('featureNotes.unerringEye',
       'wisdomModifier', '=', 'Math.max(source, 1)'

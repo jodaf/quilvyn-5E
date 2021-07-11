@@ -208,7 +208,7 @@ Xanathar.FEATURES = {
     'Section=combat Note="Spend 1 Ki for +%V damage with Kensei weapon 1/tn"',
   'Detect Portal':'Section=magic Note="R1 mi Sense planar portal 1/short rest"',
   'Distant Strike':
-    'Section=combat Note="Teleport 10\' beore attack, attack 3rd creature"',
+    'Section=combat Note="Teleport 10\' before attack, attack 3rd creature"',
   'Divine Fury':
     'Section=combat ' +
     'Note="First hit during each tn rage +1d6+%V HP necrotic or radiant"',
@@ -1094,7 +1094,7 @@ Xanathar.pathRulesExtra = function(rules, name) {
     );
   } else if(name == 'Forge Domain') {
     rules.defineRule('armorClass', 'combatNotes.soulOfTheForge.1', '+', null);
-    // Show Soul Of The Forge note even when not in heavy harmor
+    // Show Soul Of The Forge note even when not in heavy armor
     rules.defineRule('combatNotes.soulOfTheForge.1',
       'combatNotes.soulOfTheForge', '?', null,
       'armorWeight', '=', 'source == 3 ? 1 : null'

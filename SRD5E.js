@@ -65,7 +65,7 @@ function SRD5E() {
 
 }
 
-SRD5E.VERSION = '2.2.2.0';
+SRD5E.VERSION = '2.2.2.1';
 
 /* List of items handled by choiceRules method. */
 SRD5E.CHOICES = [
@@ -2858,7 +2858,6 @@ SRD5E.abilityRules = function(rules) {
   for(var ability in SRD5E.ABILITIES) {
     ability = ability.toLowerCase();
     rules.defineChoice('notes', ability + ':%V (%1)');
-    rules.defineRule(ability, ability + 'Adjust', '+', null);
     rules.defineRule
       (ability + 'Modifier', ability, '=', 'Math.floor((source - 10) / 2)');
     rules.defineRule(ability + '.1', ability + 'Modifier', '=', null);
@@ -2870,9 +2869,6 @@ SRD5E.abilityRules = function(rules) {
     '', '=', '30',
     'abilityNotes.armorSpeedAdjustment', '+', null
   );
-
-  QuilvynRules.validAllocationRules
-    (rules, 'abilityBoost', 'abilityBoosts', 'Sum "^(charisma|constitution|dexterity|intelligence|strength|wisdom)Adjust$"');
 
 };
 
@@ -4923,18 +4919,12 @@ SRD5E.initialEditorElements = function() {
   var editorElements = [
     ['name', 'Name', 'text', [20]],
     ['imageUrl', 'Image URL', 'text', [20]],
-    ['strength', 'Str/Boost', 'select-one', abilityChoices],
-    ['strengthAdjust', '', 'text', [3]],
-    ['dexterity', 'Dex/Boost', 'select-one', abilityChoices],
-    ['dexterityAdjust', '', 'text', [3]],
-    ['constitution', 'Con/Boost', 'select-one', abilityChoices],
-    ['constitutionAdjust', '', 'text', [3]],
-    ['intelligence', 'Int/Boost', 'select-one', abilityChoices],
-    ['intelligenceAdjust', '', 'text', [3]],
-    ['wisdom', 'Wis/Boost', 'select-one', abilityChoices],
-    ['wisdomAdjust', '', 'text', [3]],
-    ['charisma', 'Cha/Boost', 'select-one', abilityChoices],
-    ['charismaAdjust', '', 'text', [3]],
+    ['strength', 'Strength', 'select-one', abilityChoices],
+    ['dexterity', 'Dexterity', 'select-one', abilityChoices],
+    ['constitution', 'Constitution', 'select-one', abilityChoices],
+    ['intelligence', 'Intelligence', 'select-one', abilityChoices],
+    ['wisdom', 'Wisdom', 'select-one', abilityChoices],
+    ['charisma', 'Charisma', 'select-one', abilityChoices],
     ['gender', 'Gender', 'text', [10]],
     ['race', 'Race', 'select-one', 'races'],
     ['levels', 'Class Levels', 'bag', 'levels'],
@@ -5096,14 +5086,22 @@ SRD5E.randomizeOneAttribute = function(attributes, attribute) {
     attributes['armor'] = choices[QuilvynUtils.random(0, choices.length - 1)];
   } else if(attribute == 'boosts') {
     var attrs = this.applyRules(attributes);
-    howMany = (attrs.abilityBoosts || 0) - QuilvynUtils.sumMatching(attributes, /Adjust$/);
-    while(howMany > 0) {
+    var notes = attributes.notes;
+    howMany = attrs.abilityBoosts || 0;
+    matchInfo =
+      (attributes.notes || '').match(/ability\s+boost[:\s]+\+\d+\s+\w+(\s*;\s*\+\d+\s+\w+)*/gi);
+    if(matchInfo) {
+      for(i = 0; i < matchInfo.length; i++) {
+        var m = matchInfo[i].match(/\d+/g);
+        for(var j = 0; j < m.length; j++)
+          howMany -= m[j] * 1;
+      }
+    }
+    if(howMany > 0)
+      attributes.notes = (attributes.notes ? attributes.notes + '\n' : '') + '* Ability Boost:';
+    for( ; howMany > 0; howMany--) {
       attr = QuilvynUtils.randomKey(SRD5E.ABILITIES).toLowerCase();
-      if(attributes[attr + 'Adjust'] == null)
-        attributes[attr + 'Adjust'] = 1;
-      else
-        attributes[attr + 'Adjust'] += 1;
-      howMany--;
+      attributes.notes += ' +1 ' + attr + ';';
     }
   } else if(attribute == 'deity') {
     /* Pick a deity that's no more than one alignment position removed. */

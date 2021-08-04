@@ -33,17 +33,47 @@ function PHB5E() {
     return;
   }
 
-  Object.assign(SRD5E.SPELLS, PHB5E.SPELLS_ADDED);
-  PHB5E.identityRules(
-    SRD5E.rules, PHB5E.BACKGROUNDS, PHB5E.CLASS_SELECTABLES, PHB5E.DEITIES,
+  var rules = new QuilvynRules('D&D 5E', PHB5E.VERSION);
+  PHB5E.rules = rules;
+
+  rules.defineChoice('choices', SRD5E.CHOICES);
+  rules.choiceEditorElements = SRD5E.choiceEditorElements;
+  rules.choiceRules = PHB5E.choiceRules;
+  rules.editorElements = SRD5E.initialEditorElements();
+  rules.getFormats = SRD5E.getFormats;
+  rules.getPlugins = PHB5E.getPlugins;
+  rules.makeValid = SRD5E.makeValid;
+  rules.randomizeOneAttribute = SRD5E.randomizeOneAttribute;
+  rules.defineChoice('random', SRD5E.RANDOMIZABLE_ATTRIBUTES);
+  rules.ruleNotes = PHB5E.ruleNotes;
+
+  SRD5E.createViewers(rules, SRD5E.VIEWERS);
+  rules.defineChoice('extras',
+    'feats', 'featCount', 'sanityNotes', 'selectableFeatureCount',
+    'validationNotes'
+  );
+  rules.defineChoice('preset',
+    'background:Background,select-one,backgrounds',
+    'race:Race,select-one,races', 'levels:Class Levels,bag,levels');
+
+  SRD5E.abilityRules(rules);
+  SRD5E.combatRules(rules, SRD5E.ARMORS, SRD5E.SHIELDS, SRD5E.WEAPONS);
+  SRD5E.magicRules(rules, SRD5E.SCHOOLS, PHB5E.SPELLS);
+  SRD5E.identityRules(
+    rules, SRD5E.ALIGNMENTS, PHB5E.BACKGROUNDS, PHB5E.CLASSES, PHB5E.DEITIES,
     PHB5E.PATHS, PHB5E.RACES
   );
-  PHB5E.magicRules(SRD5E.rules, PHB5E.SPELLS);
-  PHB5E.talentRules(SRD5E.rules, PHB5E.FEATS, PHB5E.FEATURES);
+  SRD5E.talentRules
+    (rules, PHB5E.FEATS, PHB5E.FEATURES, SRD5E.GOODIES, SRD5E.LANGUAGES,
+     SRD5E.SKILLS, SRD5E.TOOLS);
+
+  Quilvyn.addRuleSet(rules);
 
 }
 
-PHB5E.BACKGROUNDS = {
+PHB5E.VERSION = '2.2.1.1';
+
+PHB5E.BACKGROUNDS_ADDED = {
   'Charlatan':
     'Equipment=' +
       '"Fine Clothes","Con Tools","Disguise Kit","15 GP" ' +
@@ -140,74 +170,74 @@ PHB5E.BACKGROUNDS = {
       '"1:Tool Proficiency (Disguise Kit/Thieves\' Tools)",' +
       '"1:City Secrets"'
 };
-PHB5E.CLASS_SELECTABLES = {
-  'Bard':['3:College Of Valor:Bard College'],
-  'Cleric':[
-    'deityDomains =~ \'Knowledge\' ? 1:Knowledge Domain:Divine Domain',
-    'deityDomains =~ \'Light\' ? 1:Light Domain:Divine Domain',
-    'deityDomains =~ \'Nature\' ? 1:Nature Domain:Divine Domain',
-    'deityDomains =~ \'Tempest\' ? 1:Tempest Domain:Divine Domain',
-    'deityDomains =~ \'Trickery\' ? 1:Trickery Domain:Divine Domain',
-    'deityDomains =~ \'War\' ? 1:War Domain:Divine Domain'
-  ],
-  'Druid':[
-    '2:Circle Of The Land (Underdark):Druid Circle',
-    '2:Circle Of The Moon:Druid Circle'
-  ],
-  'Fighter':[
-    '3:Battle Master:Martial Archetype', '3:Eldritch Knight:Martial Archetype',
-    '3:Commander\'s Strike:Maneuver', '3:Disarming Attack:Maneuver',
-    '3:Distracting Strike:Maneuver', '3:Evasive Footwork:Maneuver',
-    '3:Feinting Attack:Maneuver', '3:Goading Attack:Maneuver',
-    '3:Lunging Attack:Maneuver', '3:Maneuvering Attack:Maneuver',
-    '3:Menacing Attack:Maneuver', '3:Parry:Maneuver',
-    '3:Precision Attack:Maneuver', '3:Pushing Attack:Maneuver',
-    '3:Rally:Maneuver', '3:Riposte:Maneuver',
-    '3:Sweeping Attack:Maneuver', '3:Trip Attack:Maneuver'
-  ],
-  'Monk':[
-    '3:Way Of The Four Elements:Monastic Tradition',
-    '3:Way Of The Shadow:Monastic Tradition',
-    '17:Breath Of Winter:Elemental Discipline',
-    '6:Clench Of The North Wind:Elemental Discipline',
-    '17:Eternal Mountain Defense:Elemental Discipline',
-    '3:Fangs Of The Fire Snake:Elemental Discipline',
-    '3:Fist Of Four Thunders:Elemental Discipline',
-    '3:Fist Of Unbroken Air:Elemental Discipline',
-    '11:Flames Of The Phoenix:Elemental Discipline',
-    '6:Gong Of The Summit:Elemental Discipline',
-    '11:Mist Stance:Elemental Discipline',
-    '11:Ride The Wind:Elemental Discipline',
-    '17:River Of Hungry Flame:Elemental Discipline',
-    '3:Rush Of The Gale Spirits:Elemental Discipline',
-    '3:Shape The Flowing River:Elemental Discipline',
-    '3:Sweeping Cinder Strike:Elemental Discipline',
-    '3:Water Whip:Elemental Discipline',
-    '17:Wave Of Rolling Earth:Elemental Discipline'
-  ],
-  'Paladin':[
-    '3:Oath Of The Ancients:Sacred Oath', '3:Oath Of Vengeance:Sacred Oath'
-  ],
-  'Ranger':['3:Beast Master:Ranger Archetype'],
-  'Rogue':[
-    '3:Arcane Trickster:Roguish Archetype', '3:Assassin:Roguish Archetype'
-  ],
-  'Sorcerer':['1:Wild Magic:Sorcerous Origin'],
-  'Warlock':[
-    '1:The Archfey:Otherworldly Patron',
-    '1:The Great Old One:Otherworldly Patron'
-  ],
-  'Wizard':[
-    '2:School Of Abjuration:Arcane Tradition',
-    '2:School Of Conjuration:Arcane Tradition',
-    '2:School Of Divination:Arcane Tradition',
-    '2:School Of Enchantment:Arcane Tradition',
-    '2:School Of Illusion:Arcane Tradition',
-    '2:School Of Necromancy:Arcane Tradition',
-    '2:School Of Transmutation:Arcane Tradition'
-  ]
+PHB5E.BACKGROUNDS =
+  Object.assign({}, SRD5E.BACKGROUNDS, PHB5E.BACKGROUNDS_ADDED);
+PHB5E.CLASSES_SELECTABLES_ADDED = {
+  'Bard':'"3:College Of Valor:Bard College"',
+  'Cleric':
+    '"deityDomains =~ \'Knowledge\' ? 1:Knowledge Domain:Divine Domain",' +
+    '"deityDomains =~ \'Light\' ? 1:Light Domain:Divine Domain",' +
+    '"deityDomains =~ \'Nature\' ? 1:Nature Domain:Divine Domain",' +
+    '"deityDomains =~ \'Tempest\' ? 1:Tempest Domain:Divine Domain",' +
+    '"deityDomains =~ \'Trickery\' ? 1:Trickery Domain:Divine Domain",' +
+    '"deityDomains =~ \'War\' ? 1:War Domain:Divine Domain"',
+  'Druid':
+    '"2:Circle Of The Land (Underdark):Druid Circle",' +
+    '"2:Circle Of The Moon:Druid Circle"',
+  'Fighter':
+    '"3:Battle Master:Martial Archetype",' +
+    '"3:Eldritch Knight:Martial Archetype",' +
+    '"3:Commander\'s Strike:Maneuver","3:Disarming Attack:Maneuver",' +
+    '"3:Distracting Strike:Maneuver","3:Evasive Footwork:Maneuver",' +
+    '"3:Feinting Attack:Maneuver","3:Goading Attack:Maneuver",' +
+    '"3:Lunging Attack:Maneuver","3:Maneuvering Attack:Maneuver",' +
+    '"3:Menacing Attack:Maneuver","3:Parry:Maneuver",' +
+    '"3:Precision Attack:Maneuver","3:Pushing Attack:Maneuver",' +
+    '"3:Rally:Maneuver","3:Riposte:Maneuver",' +
+    '"3:Sweeping Attack:Maneuver","3:Trip Attack:Maneuver"',
+  'Monk':
+    '"3:Way Of The Four Elements:Monastic Tradition",' +
+    '"3:Way Of The Shadow:Monastic Tradition",' +
+    '"17:Breath Of Winter:Elemental Discipline",' +
+    '"6:Clench Of The North Wind:Elemental Discipline",' +
+    '"17:Eternal Mountain Defense:Elemental Discipline",' +
+    '"3:Fangs Of The Fire Snake:Elemental Discipline",' +
+    '"3:Fist Of Four Thunders:Elemental Discipline",' +
+    '"3:Fist Of Unbroken Air:Elemental Discipline",' +
+    '"11:Flames Of The Phoenix:Elemental Discipline",' +
+    '"6:Gong Of The Summit:Elemental Discipline",' +
+    '"11:Mist Stance:Elemental Discipline",' +
+    '"11:Ride The Wind:Elemental Discipline",' +
+    '"17:River Of Hungry Flame:Elemental Discipline",' +
+    '"3:Rush Of The Gale Spirits:Elemental Discipline",' +
+    '"3:Shape The Flowing River:Elemental Discipline",' +
+    '"3:Sweeping Cinder Strike:Elemental Discipline",' +
+    '"3:Water Whip:Elemental Discipline",' +
+    '"17:Wave Of Rolling Earth:Elemental Discipline"',
+  'Paladin':
+    '"3:Oath Of The Ancients:Sacred Oath","3:Oath Of Vengeance:Sacred Oath"',
+  'Ranger':'"3:Beast Master:Ranger Archetype"',
+  'Rogue':
+    '"3:Arcane Trickster:Roguish Archetype","3:Assassin:Roguish Archetype"',
+  'Sorcerer':'"1:Wild Magic:Sorcerous Origin"',
+  'Warlock':
+    '"1:The Archfey:Otherworldly Patron",' +
+    '"1:The Great Old One:Otherworldly Patron"',
+  'Wizard':
+    '"2:School Of Abjuration:Arcane Tradition",' +
+    '"2:School Of Conjuration:Arcane Tradition",' +
+    '"2:School Of Divination:Arcane Tradition",' +
+    '"2:School Of Enchantment:Arcane Tradition",' +
+    '"2:School Of Illusion:Arcane Tradition",' +
+    '"2:School Of Necromancy:Arcane Tradition",' +
+    '"2:School Of Transmutation:Arcane Tradition"'
 };
-PHB5E.DEITIES = {
+PHB5E.CLASSES = Object.assign({}, SRD5E.CLASSES);
+for(var c in PHB5E.CLASSES_SELECTABLES_ADDED) {
+  PHB5E.CLASSES[c] =
+    PHB5E.CLASSES[c].replace('Selectables=', 'Selectables=' + PHB5E.CLASSES_SELECTABLES_ADDED[c] + ',');
+}
+PHB5E.DEITIES_ADDED = {
   // Forgotten Realms
   'FR-Auril':'Alignment=NE Domain=Nature,Tempest',
   'FR-Azuth':'Alignment=LN Domain=Knowledge',
@@ -298,7 +328,8 @@ PHB5E.DEITIES = {
   'NH-Tiamat':'Alignment=LE Domain=Trickery Sphere=Dragon',
   'NH-Yondalla':'Alignment=LG Domain=Life Sphere=Halfling'
 };
-PHB5E.FEATS = {
+PHB5E.DEITIES = Object.assign({}, SRD5E.DEITIES, PHB5E.DEITIES_ADDED);
+PHB5E.FEATS_ADDED = {
   'Alert':
     '',
   'Athlete':
@@ -400,7 +431,8 @@ PHB5E.FEATS = {
   'Weapon Master':
     ''
 };
-PHB5E.FEATURES = {
+PHB5E.FEATS = Object.assign({}, SRD5E.FEATS, PHB5E.FEATS_ADDED);
+PHB5E.FEATURES_ADDED = {
   // Backgrounds
   'By Popular Demand':
     'Section=feature Note="Welcome, lodging in exchange for performing"',
@@ -989,7 +1021,8 @@ PHB5E.FEATURES = {
   'Wood Elf Ability Adjustment':
     'Section=ability Note="+2 Dexterity/+1 Wisdom"'
 };
-PHB5E.PATHS = {
+PHB5E.FEATURES = Object.assign({}, SRD5E.FEATURES, PHB5E.FEATURES_ADDED);
+PHB5E.PATHS_ADDED = {
   'Arcane Trickster':
     'Group=Rogue Level=levels.Rogue ' +
     'Features=' +
@@ -1233,7 +1266,8 @@ PHB5E.PATHS = {
       '"1:Wild Magic Surge","1:Tides Of Chaos","6:Bend Luck",' +
       '"14:Controlled Chaos","18:Spell Bombardment"'
 };
-PHB5E.RACES = {
+PHB5E.PATHS = Object.assign({}, SRD5E.PATHS, PHB5E.PATHS_ADDED);
+PHB5E.RACES_ADDED = {
   'Dark Elf':
     'Features=' +
       '"1:Weapon Proficiency (Hand Crossbow/Rapier/Shortsword)",' +
@@ -1276,7 +1310,8 @@ PHB5E.RACES = {
       '"1:Wood Elf Ability Adjustment" ' +
     'Languages=Common,Elvish'
 };
-PHB5E.SPELLS = {
+PHB5E.RACES = Object.assign({}, SRD5E.RACES, PHB5E.RACES_ADDED);
+PHB5E.SPELLS_ADDED = {
 
   'Arcane Gate':
     'School=Conjuration ' +
@@ -1449,156 +1484,206 @@ PHB5E.SPELLS = {
   'Wrathful Smite':
     'School=Evocation ' +
     'Level=P1 ' +
-    'Description="Next hit +1d6 HP and frightens (Wis neg) for conc/1 min"',
-
-  'Animal Friendship':'Level=Nature1',
-  'Arcane Eye':'Level=Knowledge4',
-  'Augury':'Level=Knowledge2',
-  'Bane':'Level=Vengeance1',
-  'Banishment':'Level=Vengeance4',
-  'Barkskin':'Level=Nature2',
-  'Black Tentacles':'Level=K4',
-  'Blink':'Level=K3,Trickery3',
-  'Burning Hands':'Level=Light1',
-  'Call Lightning':'Level=Tempest3',
-  'Calm Emotions':'Level=K2',
-  'Charm Person':'Level=Trickery1',
-  'Clairvoyance':'Level=K3',
-  'Cloudkill':'Level=Underdark4',
-  'Command':'Level=Knowledge1',
-  'Commune With Nature':'Level=Ancients5',
-  'Confusion':'Level=Knowledge4',
-  'Control Water':'Level=Tempest4',
-  'Dancing Lights':'Level=Drow0',
-  'Darkness':'Level=Drow2,Shadow2',
-  'Darkvision':'Level=Shadow2',
-  'Daylight':'Level=Light3',
-  'Detect Thoughts':'Level=K2',
-  'Dimension Door':'Level=Trickery4,Vengeance4',
-  'Disguise Self':'Level=Trickery1',
-  'Dispel Magic':'Level=Trickery3',
-  'Divine Favor':'Level=War1',
-  'Dominate Beast':'Level=K4,K4,Nature4',
-  'Dominate Person':'Level=K5,Trickery5',
-  'Druidcraft':'Level=Nature0',
-  'Faerie Fire':'Level=Drow1,K1,Light1',
-  'Fireball':'Level=Light3',
-  'Flame Strike':'Level=Light5,War5',
-  'Flaming Sphere':'Level=Light2',
-  'Fog Cloud':'Level=Tempest1',
-  'Freedom Of Movement':'Level=War4',
-  'Gaseous Form':'Level=Underdark2',
-  'Greater Invisibility':'Level=K4,Underdark3',
-  'Guardian Of Faith':'Level=Light4',
-  'Guidance':'Level=Nature0',
-  'Gust Of Wind':'Level=Tempest2',
-  'Haste':'Level=Vengeance3',
-  'Hideous Laughter':'Level=K1',
-  'Hold Monster':'Level=Vengeance5,War5',
-  'Hold Person':'Level=Vengeance2',
-  'Hunter\'s Mark':'Level=Vengeance1',
-  'Ice Storm':'Level=Ancients4,Tempest4',
-  'Identify':'Level=Knowledge1',
-  'Insect Plague':'Level=Nature5,Tempest5,Underdark4',
-  'Legend Lore':'Level=Knowledge5',
-  'Magic Weapon':'Level=War2',
-  'Mending':'Level=Nature0',
-  'Minor Illusion':'Level=Gnome0,Shadow0',
-  'Mirror Image':'Level=Trickery2',
-  'Misty Step':'Level=Ancients2,Vengeance2',
-  'Modify Memory':'Level=Trickery5',
-  'Moonbeam':'Level=Ancients2',
-  'Nondetection':'Level=Knowledge3',
-  'Pass Without Trace':'Level=Shadow2,Trickery2',
-  'Plant Growth':'Level=Ancients3,K3,Nature3',
-  'Poison Spray':'Level=Nature0',
-  'Polymorph':'Level=Trickery4',
-  'Produce Flame':'Level=Nature0',
-  'Protection From Energy':'Level=Ancients3,Vengeance3',
-  'Resistance':'Level=Nature0',
-  'Scorching Ray':'Level=Light2',
-  'Scrying':'Level=Knowledge5,Light5,Vengeance5',
-  'Seeming':'Level=K5',
-  'Sending':'Level=K3',
-  'Shatter':'Level=Tempest2',
-  'Shield Of Faith':'Level=War1',
-  'Shillelagh':'Level=Nature0',
-  'Silence':'Level=Shadow2',
-  'Sleep':'Level=K1',
-  'Sleet Storm':'Level=Tempest3',
-  'Speak With Animals':'Level=Ancients1,Nature1',
-  'Speak With Dead':'Level=Knowledge3',
-  'Spider Climb':'Level=Underdark1',
-  'Spike Growth':'Level=Nature2',
-  'Spirit Guardians':'Level=War3',
-  'Spiritual Weapon':'Level=War2',
-  'Stinking Cloud':'Level=Underdark2',
-  'Stone Shape':'Level=Underdark3',
-  'Stoneskin':'Level=Ancients4,War4',
-  'Suggestion':'Level=Knowledge2',
-  'Telekinesis':'Level=K5',
-  'Thunderwave':'Level=Tempest1',
-  'Tree Stride':'Level=Ancients5,Nature5',
-  'Wall Of Fire':'Level=Light4',
-  'Web':'Level=Underdark1',
-  'Wind Wall':'Level=Nature3'
-};
-
-/* Defines rules related to basic character identity. */
-PHB5E.identityRules = function(
-  rules, backgrounds, classSelectables, deities, paths, races
-) {
-
-  QuilvynUtils.checkAttrTable
-    (backgrounds, ['Equipment', 'Features', 'Languages']);
-  QuilvynUtils.checkAttrTable(deities, ['Alignment', 'Domain', 'Sphere']);
-  QuilvynUtils.checkAttrTable
-    (paths, ['Features', 'Selectables', 'Group', 'Level', 'SpellAbility', 'SpellSlots', 'Spells']);
-  QuilvynUtils.checkAttrTable
-    (races, ['Require', 'Features', 'Selectables', 'Languages', 'SpellAbility', 'SpellSlots', 'Spells']);
-
-  for(var background in backgrounds) {
-    rules.choiceRules(rules, 'Background', background, backgrounds[background]);
-  }
-  for(var clas in classSelectables) {
-    SRD5E.featureListRules
-      (rules, classSelectables[clas], clas, 'levels.' + clas, true);
-  }
-  for(var deity in deities) {
-    rules.choiceRules(rules, 'Deity', deity, deities[deity]);
-  }
-  for(var path in paths) {
-    rules.choiceRules(rules, 'Path', path, paths[path]);
-    PHB5E.pathRulesExtra(rules, path);
-  }
-  for(var race in races) {
-    rules.choiceRules(rules, 'Race', race, races[race]);
-    PHB5E.raceRulesExtra(rules, race);
-  }
+    'Description="Next hit +1d6 HP and frightens (Wis neg) for conc/1 min"'
 
 };
+PHB5E.SPELLS_LEVELS_ADDED = {
+  'Animal Friendship':'Nature1',
+  'Arcane Eye':'Knowledge4',
+  'Augury':'Knowledge2',
+  'Bane':'Vengeance1',
+  'Banishment':'Vengeance4',
+  'Barkskin':'Nature2',
+  'Black Tentacles':'K4',
+  'Blink':'K3,Trickery3',
+  'Burning Hands':'Light1',
+  'Call Lightning':'Tempest3',
+  'Calm Emotions':'K2',
+  'Charm Person':'Trickery1',
+  'Clairvoyance':'K3',
+  'Cloudkill':'Underdark4',
+  'Command':'Knowledge1',
+  'Commune With Nature':'Ancients5',
+  'Confusion':'Knowledge4',
+  'Control Water':'Tempest4',
+  'Dancing Lights':'Drow0',
+  'Darkness':'Drow2,Shadow2',
+  'Darkvision':'Shadow2',
+  'Daylight':'Light3',
+  'Detect Thoughts':'K2',
+  'Dimension Door':'Trickery4,Vengeance4',
+  'Disguise Self':'Trickery1',
+  'Dispel Magic':'Trickery3',
+  'Divine Favor':'War1',
+  'Dominate Beast':'K4,K4,Nature4',
+  'Dominate Person':'K5,Trickery5',
+  'Druidcraft':'Nature0',
+  'Faerie Fire':'Drow1,K1,Light1',
+  'Fireball':'Light3',
+  'Flame Strike':'Light5,War5',
+  'Flaming Sphere':'Light2',
+  'Fog Cloud':'Tempest1',
+  'Freedom Of Movement':'War4',
+  'Gaseous Form':'Underdark2',
+  'Greater Invisibility':'K4,Underdark3',
+  'Guardian Of Faith':'Light4',
+  'Guidance':'Nature0',
+  'Gust Of Wind':'Tempest2',
+  'Haste':'Vengeance3',
+  'Hideous Laughter':'K1',
+  'Hold Monster':'Vengeance5,War5',
+  'Hold Person':'Vengeance2',
+  'Hunter\'s Mark':'Vengeance1',
+  'Ice Storm':'Ancients4,Tempest4',
+  'Identify':'Knowledge1',
+  'Insect Plague':'Nature5,Tempest5,Underdark4',
+  'Legend Lore':'Knowledge5',
+  'Magic Weapon':'War2',
+  'Mending':'Nature0',
+  'Minor Illusion':'Gnome0,Shadow0',
+  'Mirror Image':'Trickery2',
+  'Misty Step':'Ancients2,Vengeance2',
+  'Modify Memory':'Trickery5',
+  'Moonbeam':'Ancients2',
+  'Nondetection':'Knowledge3',
+  'Pass Without Trace':'Shadow2,Trickery2',
+  'Plant Growth':'Ancients3,K3,Nature3',
+  'Poison Spray':'Nature0',
+  'Polymorph':'Trickery4',
+  'Produce Flame':'Nature0',
+  'Protection From Energy':'Ancients3,Vengeance3',
+  'Resistance':'Nature0',
+  'Scorching Ray':'Light2',
+  'Scrying':'Knowledge5,Light5,Vengeance5',
+  'Seeming':'K5',
+  'Sending':'K3',
+  'Shatter':'Tempest2',
+  'Shield Of Faith':'War1',
+  'Shillelagh':'Nature0',
+  'Silence':'Shadow2',
+  'Sleep':'K1',
+  'Sleet Storm':'Tempest3',
+  'Speak With Animals':'Ancients1,Nature1',
+  'Speak With Dead':'Knowledge3',
+  'Spider Climb':'Underdark1',
+  'Spike Growth':'Nature2',
+  'Spirit Guardians':'War3',
+  'Spiritual Weapon':'War2',
+  'Stinking Cloud':'Underdark2',
+  'Stone Shape':'Underdark3',
+  'Stoneskin':'Ancients4,War4',
+  'Suggestion':'Knowledge2',
+  'Telekinesis':'K5',
+  'Thunderwave':'Tempest1',
+  'Tree Stride':'Ancients5,Nature5',
+  'Wall Of Fire':'Light4',
+  'Web':'Underdark1',
+  'Wind Wall':'Nature3'
+};
+PHB5E.SPELLS = Object.assign({}, SRD5E.SPELLS, PHB5E.SPELLS_ADDED);
+for(var s in PHB5E.SPELLS_LEVELS_ADDED) {
+  PHB5E.SPELLS[s] =
+    PHB5E.SPELLS[s].replace('Level=', 'Level=' + PHB5E.SPELLS_LEVELS_ADDED[s] + ',');
+}
 
-/* Defines rules related to magic use. */
-PHB5E.magicRules = function(rules, spells) {
-  QuilvynUtils.checkAttrTable(spells, ['School', 'Level', 'Description']);
-  for(var s in spells) {
-    rules.choiceRules
-      (rules, 'Spell', s, (SRD5E.SPELLS[s]||'') + ' ' + spells[s]);
-  }
+/*
+ * Adds #name# as a possible user #type# choice and parses #attrs# to add rules
+ * related to selecting that choice.
+ */
+PHB5E.choiceRules = function(rules, type, name, attrs) {
+  SRD5E.choiceRules(rules, type, name, attrs);
+  if(type == 'Feat')
+    PHB5E.featRulesExtra(rules, name);
+  else if(type == 'Path')
+    PHB5E.pathRulesExtra(rules, name);
+  else if(type == 'Race')
+    PHB5E.raceRulesExtra(rules, name);
 };
 
-/* Defines rules related to character aptitudes. */
-PHB5E.talentRules = function(rules, feats, features) {
+/*
+ * Defines in #rules# the rules associated with feat #name# that cannot be
+ * derived directly from the attributes passed to featRules.
+ */
+PHB5E.featRulesExtra = function(rules, name) {
 
-  QuilvynUtils.checkAttrTable(feats, ['Require', 'Imply', 'Type']);
-  QuilvynUtils.checkAttrTable(features, ['Section', 'Note']);
+  var matchInfo;
 
-  for(var feat in feats) {
-    rules.choiceRules(rules, 'Feat', feat, feats[feat]);
-    PHB5E.featRulesExtra(rules, feat);
-  }
-  for(var feature in features) {
-    rules.choiceRules(rules, 'Feature', feature, features[feature]);
+  if(name == 'Athlete') {
+    rules.defineRule('abilityBoosts', 'abilityNotes.athlete', '+=', '1');
+  } else if(name == 'Defensive Duelist') {
+    rules.defineRule
+      ('combatNotes.defensiveDuelist', 'proficiencyBonus', '=', null);
+  } else if(name == 'Durable') {
+    rules.defineRule('combatNotes.durable',
+      'constitutionModifier', '=', 'Math.max(source * 2, 2)'
+    );
+  } else if(name == 'Inspiring Leader') {
+    rules.defineRule('featureNotes.inspiringLeader',
+      'level', '=', null,
+      'charismaModifier', '+', null
+    );
+  } else if(name == 'Lightly Armored') {
+    rules.defineRule('abilityBoosts', 'abilityNotes.lightlyArmored', '+=', '1');
+  } else if(name == 'Linguist') {
+    rules.defineRule('featureNotes.linguist',
+      'intelligence', '=', null,
+      'proficiencyBonus', '+', null
+    );
+  } else if((matchInfo = name.match(/Magic\sInitiate\s.(.*)./)) != null) {
+    var clas = matchInfo[1];
+    var spellCode = clas == 'Warlock' ? 'K' : clas.charAt(0);
+    rules.defineRule('casterLevels.' + spellCode,
+      'magicNotes.magicInitiate(' + clas + ')', '^=', '1'
+    );
+    rules.defineRule('spellSlots.' + spellCode + '0',
+      'magicNotes.magicInitiate(' + clas + ')', '+=', '2'
+    );
+    rules.defineRule('spellSlots.' + spellCode + '1',
+      'magicNotes.magicInitiate(' + clas + ')', '+=', '1'
+    );
+  } else if(name == 'Martial Adept') {
+    rules.defineRule('maxDexOrStrMod',
+      'dexterityModifier', '=', null,
+      'strengthModifier', '^', null
+    );
+    rules.defineRule('combatNotes.martialAdept',
+      'maxDexOrStrMod', '=', '8 + source',
+      'proficiencyBonus', '+', null
+    );
+    rules.defineRule
+      ('selectableFeatureCount.Fighter (Maneuver)', 'combatNotes.martialAdept', '+=', '2');
+    for(var feature in {
+      "Commander's Strike":'', 'Disarming Attack':'', 'Distracting Strike':'',
+      'Evasive Footwork':'', 'Feinting Attack':'', 'Goading Attack':'',
+      'Lunging Attack':'', 'Maneuvering Attack':'', 'Menacing Attack':'',
+      'Parry':'', 'Precision Attack':'', 'Pushing Attack':'', 'Rally':'',
+      'Riposte':'', 'Sweeping Attack':'', 'Trip Attack':''
+    }) {
+      rules.defineRule(
+        'validationNotes.fighter-' + feature.replaceAll(' ', '') + 'SelectableFeature',
+        'features.Martial Adept', '^', '0'
+      );
+    }
+  } else if(name == 'Medium Armor Master') {
+    rules.defineRule('combatNotes.mediumArmorMaster',
+      'dexterity', '?', 'source >= 16',
+      'armorWeight', '?', 'source == 2'
+    );
+  } else if(name == 'Moderately Armored') {
+    rules.defineRule
+      ('abilityBoosts', 'abilityNotes.moderatelyArmored', '+=', '1');
+  } else if(name == 'Observant') {
+    rules.defineRule('abilityBoosts', 'abilityNotes.observant', '+=', '1');
+  } else if(name == 'Tavern Brawler') {
+    rules.defineRule('abilityBoosts', 'abilityNotes.tavernBrawler', '+=', '1');
+    rules.defineRule
+      ('weapons.Unarmed.2', 'combatNotes.tavernBrawler', '=', '"1d4"');
+  } else if(name == 'Tough') {
+    rules.defineRule('combatNotes.tough', 'level', '=', '2 * source');
+  } else if(name == 'Weapon Master') {
+    rules.defineRule('abilityBoosts', 'abilityNotes.weaponMaster', '+=', '1');
+    rules.defineRule
+      ('weaponChoiceCount', 'combatNotes.weaponMaster', '+=', '4');
   }
 
 };
@@ -1765,94 +1850,6 @@ PHB5E.pathRulesExtra = function(rules, name) {
 };
 
 /*
- * Defines in #rules# the rules associated with feat #name# that cannot be
- * derived directly from the attributes passed to featRules.
- */
-PHB5E.featRulesExtra = function(rules, name) {
-
-  var matchInfo;
-
-  if(name == 'Athlete') {
-    rules.defineRule('abilityBoosts', 'abilityNotes.athlete', '+=', '1');
-  } else if(name == 'Defensive Duelist') {
-    rules.defineRule
-      ('combatNotes.defensiveDuelist', 'proficiencyBonus', '=', null);
-  } else if(name == 'Durable') {
-    rules.defineRule('combatNotes.durable',
-      'constitutionModifier', '=', 'Math.max(source * 2, 2)'
-    );
-  } else if(name == 'Inspiring Leader') {
-    rules.defineRule('featureNotes.inspiringLeader',
-      'level', '=', null,
-      'charismaModifier', '+', null
-    );
-  } else if(name == 'Lightly Armored') {
-    rules.defineRule('abilityBoosts', 'abilityNotes.lightlyArmored', '+=', '1');
-  } else if(name == 'Linguist') {
-    rules.defineRule('featureNotes.linguist',
-      'intelligence', '=', null,
-      'proficiencyBonus', '+', null
-    );
-  } else if((matchInfo = name.match(/Magic\sInitiate\s.(.*)./)) != null) {
-    var clas = matchInfo[1];
-    var spellCode = clas == 'Warlock' ? 'K' : clas.charAt(0);
-    rules.defineRule('casterLevels.' + spellCode,
-      'magicNotes.magicInitiate(' + clas + ')', '^=', '1'
-    );
-    rules.defineRule('spellSlots.' + spellCode + '0',
-      'magicNotes.magicInitiate(' + clas + ')', '+=', '2'
-    );
-    rules.defineRule('spellSlots.' + spellCode + '1',
-      'magicNotes.magicInitiate(' + clas + ')', '+=', '1'
-    );
-  } else if(name == 'Martial Adept') {
-    rules.defineRule('maxDexOrStrMod',
-      'dexterityModifier', '=', null,
-      'strengthModifier', '^', null
-    );
-    rules.defineRule('combatNotes.martialAdept',
-      'maxDexOrStrMod', '=', '8 + source',
-      'proficiencyBonus', '+', null
-    );
-    rules.defineRule
-      ('selectableFeatureCount.Fighter (Maneuver)', 'combatNotes.martialAdept', '+=', '2');
-    for(var feature in {
-      "Commander's Strike":'', 'Disarming Attack':'', 'Distracting Strike':'',
-      'Evasive Footwork':'', 'Feinting Attack':'', 'Goading Attack':'',
-      'Lunging Attack':'', 'Maneuvering Attack':'', 'Menacing Attack':'',
-      'Parry':'', 'Precision Attack':'', 'Pushing Attack':'', 'Rally':'',
-      'Riposte':'', 'Sweeping Attack':'', 'Trip Attack':''
-    }) {
-      rules.defineRule(
-        'validationNotes.fighter-' + feature.replaceAll(' ', '') + 'SelectableFeature',
-        'features.Martial Adept', '^', '0'
-      );
-    }
-  } else if(name == 'Medium Armor Master') {
-    rules.defineRule('combatNotes.mediumArmorMaster',
-      'dexterity', '?', 'source >= 16',
-      'armorWeight', '?', 'source == 2'
-    );
-  } else if(name == 'Moderately Armored') {
-    rules.defineRule
-      ('abilityBoosts', 'abilityNotes.moderatelyArmored', '+=', '1');
-  } else if(name == 'Observant') {
-    rules.defineRule('abilityBoosts', 'abilityNotes.observant', '+=', '1');
-  } else if(name == 'Tavern Brawler') {
-    rules.defineRule('abilityBoosts', 'abilityNotes.tavernBrawler', '+=', '1');
-    rules.defineRule
-      ('weapons.Unarmed.2', 'combatNotes.tavernBrawler', '=', '"1d4"');
-  } else if(name == 'Tough') {
-    rules.defineRule('combatNotes.tough', 'level', '=', '2 * source');
-  } else if(name == 'Weapon Master') {
-    rules.defineRule('abilityBoosts', 'abilityNotes.weaponMaster', '+=', '1');
-    rules.defineRule
-      ('weaponChoiceCount', 'combatNotes.weaponMaster', '+=', '4');
-  }
-
-};
-
-/*
  * Defines in #rules# the rules associated with race #name# that cannot be
  * derived directly from the attributes passed to raceRules.
  */
@@ -1866,4 +1863,28 @@ PHB5E.raceRulesExtra = function(rules, name) {
         '"<i>Dancing Lights</i> cantrip, <i>Faerie Fire</i> 1/long rest, <i>Darkness</i> 1/long rest"'
     );
   }
+};
+
+/* Returns an array of plugins upon which this one depends. */
+PHB5E.getPlugins = function() {
+  return [SRD5E];
+};
+
+/* Returns HTML body content for user notes associated with this rule set. */
+PHB5E.ruleNotes = function() {
+  return '' +
+    '<h2>D&D 5E Quilvyn Plugin Notes</h2>\n' +
+    'D&D 5E Quilvyn Plugin Version ' + PHB5E.VERSION + '\n' +
+    '\n' +
+    '<h3>Limitations</h3>\n' +
+    '<p>\n' +
+    '<ul>\n' +
+    '  <li>\n' +
+    '    Quilvyn allows proficiencies from the PHB Skilled feat to be\n' +
+    '    applied only to skills, rather than skills or tools.\n' +
+    '  </li>\n' +
+    '</ul>\n' +
+    '</p>\n' +
+    '\n' +
+    '</p>\n';
 };

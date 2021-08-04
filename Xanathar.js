@@ -28,106 +28,100 @@ Place, Suite 330, Boston, MA 02111-1307 USA.
  */
 function Xanathar() {
 
-  if(window.SRD5E == null) {
-    alert('The Xanathar module requires use of the SRD5E module');
+  if(window.PHB5E == null) {
+    alert('The Xanathar module requires use of the PHB5E module');
     return;
   }
 
   Xanathar.identityRules(
-    SRD5E.rules, Xanathar.BACKGROUNDS, Xanathar.CLASS_SELECTABLES,
-    Xanathar.DEITIES, Xanathar.PATHS, Xanathar.RACES
+    PHB5E.rules, Xanathar.CLASSES_SELECTABLES_ADDED,
+    Xanathar.DEITIES_DOMAINS_ADDED, Xanathar.PATHS_ADDED
   );
-  Xanathar.magicRules(SRD5E.rules, Xanathar.SPELLS_ADDED);
-  Xanathar.talentRules(
-    SRD5E.rules, Xanathar.FEATS, Xanathar.FEATURES, Xanathar.LANGUAGES,
-    Xanathar.TOOLS
+  Xanathar.magicRules(PHB5E.rules, Xanathar.SPELLS_LEVELS_ADDED);
+  SRD35.talentRules(
+    PHB5E.rules, {}, Xanathar.FEATURES_ADDED, {}, {}, {}, Xanathar.TOOLS_ADDED
   );
 
 }
 
-Xanathar.BACKGROUNDS = {
+Xanathar.VERSION = '2.2.1.1';
+
+Xanathar.CLASSES_SELECTABLES_ADDED = {
+  'Barbarian':
+    '"3:Path Of The Ancestral Guardian:Primal Path",' +
+    '"3:Path Of The Storm Herald:Primal Path",' +
+    '"3:Path Of The Zealot:Primal Path"',
+  'Bard':
+    '"3:College Of Glamour:Bard College",' +
+    '"3:College Of Swords:Bard College",' +
+    '"3:College Of Whispers:Bard College"',
+  'Cleric':
+    '"deityDomains =~ \'Forge\' ? 1:Forge Domain:Divine Domain",' +
+    '"deityDomains =~ \'Grave\' ? 1:Grave Domain:Divine Domain"',
+  'Druid':
+    '"2:Circle Of Dreams:Druid Circle",' +
+    '"2:Circle Of The Shepherd:Druid Circle"',
+  'Fighter':
+    '"3:Arcane Archer:Martial Archetype","3:Cavalier:Martial Archetype",' +
+    '"3:Samurai:Martial Archetype",' +
+    '"3:Banishing Arrow:Arcane Shot","3:Beguiling Arrow:Arcane Shot",' +
+    '"3:Bursting Arrow:Arcane Shot","3:Enfeebling Arrow:Arcane Shot",' +
+    '"3:Grasping Arrow:Arcane Shot","3:Piercing Arrow:Arcane Shot",' +
+    '"3:Seeking Arrow:Arcane Shot","3:Shadow Arrow:Arcane Shot"',
+  'Monk':
+    '"3:Way Of The Drunken Master:Monastic Tradition",' +
+    '"3:Way Of The Kensei:Monastic Tradition",' +
+    '"3:Way Of The Sun Soul:Monastic Tradition"',
+  'Paladin':
+    '"3:Oath Of Conquest:Sacred Oath","3:Oath Of Redemption:Sacred Oath"',
+  'Ranger':
+    '"3:Gloom Stalker:Ranger Archetype",' +
+    '"3:Horizon Walker:Ranger Archetype",' +
+    '"3:Monster Slayer:Ranger Archetype"',
+  'Rogue':
+    '"3:Inquisitive:Roguish Archetype",' +
+    '"3:Mastermind:Roguish Archetype",' +
+    '"3:Scout:Roguish Archetype",' +
+    '"3:Swashbuckler:Roguish Archetype"',
+  'Sorcerer':
+    '"1:Divine Soul:Sorcerous Origin",' +
+    '"1:Shadow Magic:Sorcerous Origin",' +
+    '"1:Storm Sorcery:Sorcerous Origin"',
+  'Warlock':
+    '"1:The Celestial:Otherworldly Patron",' +
+    '"1:The Hexblade:Otherworldly Patron",' +
+    '"features.Pact Of The Tome ? 1:Aspect Of The Moon:Eldritch Invocation",' +
+    '"5:Cloak Of Flies:Eldritch Invocation",' +
+    '"features.Pact Of The Blade ? 5:Eldritch Smite:Eldritch Invocation",' +
+    '"7:Ghostly Gaze:Eldritch Invocation",' +
+    '"5:Gift Of The Depths:Eldritch Invocation",' +
+    '"features.Pact Of The Chain ? 1:Gift Of The Ever-Living Ones:Eldritch Invocation",' +
+    '"1:Grasp Of Hadar:Eldritch Invocation",' +
+    '"features.Pact Of The Blade ? 1:Improved Pact Weapon:Eldritch Invocation",' +
+    '"1:Lance Of Lethargy:Eldritch Invocation",' +
+    '"5:Maddening Hex:Eldritch Invocation",' +
+    '"7:Relentless Hex:Eldritch Invocation",' +
+    '"15:Shroud Of Shadow:Eldritch Invocation",' +
+    '"5:Tomb Of Levistus:Eldritch Invocation",' +
+    '"7:Trickster\'s Escape:Eldritch Invocation"',
+  'Wizard':
+    '"2:War Magic:Arcane Tradition"'
 };
-Xanathar.CLASS_SELECTABLES = {
-  'Barbarian':[
-    '3:Path Of The Ancestral Guardian:Primal Path',
-    '3:Path Of The Storm Herald:Primal Path',
-    '3:Path Of The Zealot:Primal Path'
-  ],
-  'Bard':[
-    '3:College Of Glamour:Bard College', '3:College Of Swords:Bard College',
-    '3:College Of Whispers:Bard College'
-  ],
-  'Cleric':[
-    'deityDomains =~ \'Forge\' ? 1:Forge Domain:Divine Domain',
-    'deityDomains =~ \'Grave\' ? 1:Grave Domain:Divine Domain'
-  ],
-  'Druid':[
-    '2:Circle Of Dreams:Druid Circle', '2:Circle Of The Shepherd:Druid Circle'
-  ],
-  'Fighter':[
-    '3:Arcane Archer:Martial Archetype', '3:Cavalier:Martial Archetype',
-    '3:Samurai:Martial Archetype',
-    '3:Banishing Arrow:Arcane Shot', '3:Beguiling Arrow:Arcane Shot',
-    '3:Bursting Arrow:Arcane Shot', '3:Enfeebling Arrow:Arcane Shot',
-    '3:Grasping Arrow:Arcane Shot', '3:Piercing Arrow:Arcane Shot',
-    '3:Seeking Arrow:Arcane Shot', '3:Shadow Arrow:Arcane Shot'
-  ],
-  'Monk':[
-    '3:Way Of The Drunken Master:Monastic Tradition',
-    '3:Way Of The Kensei:Monastic Tradition',
-    '3:Way Of The Sun Soul:Monastic Tradition'
-  ],
-  'Paladin':[
-    '3:Oath Of Conquest:Sacred Oath', '3:Oath Of Redemption:Sacred Oath'
-  ],
-  'Ranger':[
-    '3:Gloom Stalker:Ranger Archetype', '3:Horizon Walker:Ranger Archetype',
-    '3:Monster Slayer:Ranger Archetype'
-  ],
-  'Rogue':[
-    '3:Inquisitive:Roguish Archetype', '3:Mastermind:Roguish Archetype',
-    '3:Scout:Roguish Archetype', '3:Swashbuckler:Roguish Archetype'
-  ],
-  'Sorcerer':[
-    '1:Divine Soul:Sorcerous Origin', '1:Shadow Magic:Sorcerous Origin',
-    '1:Storm Sorcery:Sorcerous Origin'
-  ],
-  'Warlock':[
-    '1:The Celestial:Otherworldly Patron', '1:The Hexblade:Otherworldly Patron',
-    'features.Pact Of The Tome ? 1:Aspect Of The Moon:Eldritch Invocation',
-    '5:Cloak Of Flies:Eldritch Invocation',
-    'features.Pact Of The Blade ? 5:Eldritch Smite:Eldritch Invocation',
-    '7:Ghostly Gaze:Eldritch Invocation',
-    '5:Gift Of The Depths:Eldritch Invocation',
-    'features.Pact Of The Chain ? 1:Gift Of The Ever-Living Ones:Eldritch Invocation',
-    '1:Grasp Of Hadar:Eldritch Invocation',
-    'features.Pact Of The Blade ? 1:Improved Pact Weapon:Eldritch Invocation',
-    '1:Lance Of Lethargy:Eldritch Invocation',
-    '5:Maddening Hex:Eldritch Invocation',
-    '7:Relentless Hex:Eldritch Invocation',
-    '15:Shroud Of Shadow:Eldritch Invocation',
-    '5:Tomb Of Levistus:Eldritch Invocation',
-    "7:Trickster's Escape:Eldritch Invocation"
-  ],
-  'Wizard':['2:War Magic:Arcane Tradition']
+Xanathar.DEITIES_DOMAINS_ADDED = {
+  'Celtic-Goibhniu':'Forge',
+  'Dragonlance-Reorx':'Forge',
+  'Eberron-Onatar':'Forge',
+  'Eberron-The Undying Court':'Grave',
+  'Egyptian-Anubis':'Grave',
+  'Egyptian-Osiris':'Grave',
+  'FR-Gond':'Forge',
+  'FR-Kelemvor':'Grave',
+  'Greek-Hades':'Grave',
+  'Greek-Hephaestus':'Forge',
+  'Greyhawk-Wee Jas':'Grave',
+  'NH-Moradin':'Forge'
 };
-Xanathar.DEITIES = {
-  'Celtic-Goibhniu':'Domain=Forge',
-  'Dragonlance-Reorx':'Domain=Forge',
-  'Eberron-Onatar':'Domain=Forge',
-  'Eberron-The Undying Court':'Domain=Grave',
-  'Egyptian-Anubis':'Domain=Grave',
-  'Egyptian-Osiris':'Domain=Grave',
-  'FR-Gond':'Domain=Forge',
-  'FR-Kelemvor':'Domain=Grave',
-  'Greek-Hades':'Domain=Grave',
-  'Greek-Hephaestus':'Domain=Forge',
-  'Greyhawk-Wee Jas':'Domain=Grave',
-  'NH-Moradin':'Domain=Forge'
-};
-Xanathar.FEATS = {
-};
-Xanathar.FEATURES = {
+Xanathar.FEATURES_ADDED = {
   'Accursed Specter':
     'Section=combat ' +
     'Note="Raise slain humanoid as specter w/%V temporary HP, +%1 attack until long rest 1/long rest"',
@@ -591,9 +585,7 @@ Xanathar.FEATURES = {
     'Section=combat ' +
     'Note="R60\' Battle cry gives 10 targets Adv attack and save for 1 tn 1/long rest"'
 };
-Xanathar.LANGUAGES = {
-};
-Xanathar.PATHS = {
+Xanathar.PATHS_ADDED = {
   'Arcane Archer':
     'Group=Fighter ' +
     'Level=levels.Fighter ' +
@@ -836,77 +828,75 @@ Xanathar.PATHS = {
       '"3:Radiant Sun Bolt","6:Searing Arc Strike","11:Searing Sunburst",' +
       '"17:Sun Shield"'
 };
-Xanathar.RACES = {
+Xanathar.SPELLS_LEVELS_ADDED = {
+  'Animate Objects':'Forge5',
+  'Antilife Shell':'Grave5',
+  'Armor Of Agathys':'Conquest1',
+  'Bane':'Grave1',
+  'Banishing Smite':'K5',
+  'Banishment':'Horizon4,Slayer4',
+  'Bestow Curse':'Conquest3',
+  'Blight':'Grave4',
+  // Already a K3 spell 'Blink':'K3',
+  'Blur':'K2',
+  'Branding Smite':'K2',
+  'Calm Emotions':'Redemption2',
+  'Cloudkill':'Conquest5',
+  'Command':'Conquest1',
+  'Cone Of Cold':'K5',
+  'Counterspell':'Redemption3',
+  'Creation':'Forge5',
+  'Cure Wounds':'K1',
+  'Daylight':'K3',
+  'Death Ward':'Grave4',
+  'Disguise Self':'Gloom1',
+  'Dominate Beast':'Conquest4',
+  'Dominate Person':'Conquest5',
+  'Elemental Weapon':'Forge3,K3',
+  'Fabricate':'Forge4',
+  'False Life':'Grave1',
+  'Fear':'Conquest3,Gloom3',
+  // Already a K5 spell 'Flame Strike':'K5',
+  'Flaming Sphere':'K2',
+  'Gentle Repose':'Grave2',
+  'Greater Invisibility':'Gloom4',
+  'Greater Restoration':'K5',
+  'Guardian Of Faith':'K4',
+  'Guiding Bolt':'K1',
+  'Haste':'Horizon3',
+  'Heat Metal':'Forge2',
+  'Hold Monster':'Redemption5,Slayer5',
+  'Hold Person':'Conquest2,Redemption2',
+  'Hypnotic Pattern':'Redemption3',
+  'Identify':'Forge1',
+  'Lesser Restoration':'K2',
+  'Magic Circle':'Slayer3',
+  'Magic Weapon':'Forge2',
+  'Misty Step':'Horizon2',
+  'Phantasmal Killer':'K4',
+  'Protection From Energy':'Forge3',
+  'Protection From Evil And Good':'Horizon1,Slayer1',
+  'Raise Dead':'Grave5',
+  'Ray Of Enfeeblement':'Grave2',
+  'Resilient Sphere':'Redemption4',
+  'Revivify':'K3,Grave3',
+  'Rope Trick':'Gloom2',
+  'Sanctuary':'Redemption1',
+  'Shield':'K1',
+  'Sleep':'Redemption1',
+  'Searing Smite':'Forge1',
+  'Seeming':'Gloom5',
+  'Spiritual Weapon':'Conquest2',
+  'Staggering Smite':'K4',
+  'Stoneskin':'Conquest4,Redemption4',
+  'Teleportation Circle':'Horizon5',
+  'Vampiric Touch':'Grave3',
+  'Wall Of Fire':'Forge4', // Already a K4 spell
+  'Wall Of Force':'Redemption5',
+  'Wrathful Smite':'K1',
+  'Zone Of Truth':'Slayer2'
 };
-Xanathar.SPELLS_ADDED = {
-  'Animate Objects':'Level=Forge5',
-  'Antilife Shell':'Level=Grave5',
-  'Armor Of Agathys':'Level=Conquest1',
-  'Bane':'Level=Grave1',
-  'Banishing Smite':'Level=K5',
-  'Banishment':'Level=Horizon4,Slayer4',
-  'Bestow Curse':'Level=Conquest3',
-  'Blight':'Level=Grave4',
-  // Already a K3 spell 'Blink':'Level=K3',
-  'Blur':'Level=K2',
-  'Branding Smite':'Level=K2',
-  'Calm Emotions':'Level=Redemption2',
-  'Cloudkill':'Level=Conquest5',
-  'Command':'Level=Conquest1',
-  'Cone Of Cold':'Level=K5',
-  'Counterspell':'Level=Redemption3',
-  'Creation':'Level=Forge5',
-  'Cure Wounds':'Level=K1',
-  'Daylight':'Level=K3',
-  'Death Ward':'Level=Grave4',
-  'Disguise Self':'Level=Gloom1',
-  'Dominate Beast':'Level=Conquest4',
-  'Dominate Person':'Level=Conquest5',
-  'Elemental Weapon':'Level=Forge3,K3',
-  'Fabricate':'Level=Forge4',
-  'False Life':'Level=Grave1',
-  'Fear':'Level=Conquest3,Gloom3',
-  // Already a K5 spell 'Flame Strike':'Level=K5',
-  'Flaming Sphere':'Level=K2',
-  'Gentle Repose':'Level=Grave2',
-  'Greater Invisibility':'Level=Gloom4',
-  'Greater Restoration':'Level=K5',
-  'Guardian Of Faith':'Level=K4',
-  'Guiding Bolt':'Level=K1',
-  'Haste':'Level=Horizon3',
-  'Heat Metal':'Level=Forge2',
-  'Hold Monster':'Level=Redemption5,Slayer5',
-  'Hold Person':'Level=Conquest2,Redemption2',
-  'Hypnotic Pattern':'Level=Redemption3',
-  'Identify':'Level=Forge1',
-  'Lesser Restoration':'Level=K2',
-  'Magic Circle':'Level=Slayer3',
-  'Magic Weapon':'Level=Forge2',
-  'Misty Step':'Level=Horizon2',
-  'Phantasmal Killer':'Level=K4',
-  'Protection From Energy':'Level=Forge3',
-  'Protection From Evil And Good':'Level=Horizon1,Slayer1',
-  'Raise Dead':'Level=Grave5',
-  'Ray Of Enfeeblement':'Level=Grave2',
-  'Resilient Sphere':'Level=Redemption4',
-  'Revivify':'Level=K3,Grave3',
-  'Rope Trick':'Level=Gloom2',
-  'Sanctuary':'Level=Redemption1',
-  'Shield':'Level=K1',
-  'Sleep':'Level=Redemption1',
-  'Searing Smite':'Level=Forge1',
-  'Seeming':'Level=Gloom5',
-  'Spiritual Weapon':'Level=Conquest2',
-  'Staggering Smite':'Level=K4',
-  'Stoneskin':'Level=Conquest4,Redemption4',
-  'Teleportation Circle':'Level=Horizon5',
-  'Vampiric Touch':'Level=Grave3',
-  'Wall Of Fire':'Level=Forge4', // Already a K4 spell
-  'Wall Of Force':'Level=Redemption5',
-  'Wrathful Smite':'Level=K1',
-  'Zone Of Truth':'Level=Slayer2'
-};
-Xanathar.TOOLS = {
+Xanathar.TOOLS_ADDED = {
   'Harp':'Type=Music',
   'Rito Game Set':'Type=Game',
   'Voice':'Type=Music'
@@ -914,28 +904,20 @@ Xanathar.TOOLS = {
 
 /* Defines rules related to basic character identity. */
 Xanathar.identityRules = function(
-  rules, backgrounds, classSelectables, deities, paths, races
+  rules, classSelectables, deitiesDomains, paths
 ) {
 
   QuilvynUtils.checkAttrTable
-    (backgrounds, ['Equipment', 'Features', 'Languages']);
-  QuilvynUtils.checkAttrTable(deities, ['Alignment', 'Domain', 'Sphere']);
-  QuilvynUtils.checkAttrTable
     (paths, ['Features', 'Selectables', 'Group', 'Level', 'SpellAbility', 'SpellSlots', 'Spells']);
-  QuilvynUtils.checkAttrTable
-    (races, ['Require', 'Features', 'Selectables', 'Languages', 'SpellAbility', 'SpellSlots', 'Spells']);
 
-  for(var background in backgrounds) {
-    rules.choiceRules(rules, 'Background', background, backgrounds[background]);
-  }
   for(var clas in classSelectables) {
     SRD5E.featureListRules
-      (rules, classSelectables[clas], clas, 'levels.' + clas, true);
+      (rules, QuilvynUtils.getAttrValueArray('Selectables=' + classSelectables[clas], 'Selectables'), clas, 'levels.' + clas, true);
   }
   var allDeities = rules.getChoices('deities');
-  for(var deity in deities) {
+  for(var deity in deitiesDomains) {
     if(deity in allDeities) {
-      var attrs = allDeities[deity].replace('Domain=', 'Domain="' + QuilvynUtils.getAttrValue(deities[deity], 'Domain') + '",');
+      var attrs = allDeities[deity].replace('Domain=', 'Domain="' + deitiesDomains[deity] + '",');
       delete allDeities[deity];
       rules.choiceRules(rules, 'Deity', deity, attrs);
     }
@@ -944,44 +926,19 @@ Xanathar.identityRules = function(
     rules.choiceRules(rules, 'Path', path, paths[path]);
     Xanathar.pathRulesExtra(rules, path);
   }
-  for(var race in races) {
-    rules.choiceRules(rules, 'Race', race, races[race]);
-  }
 
 };
 
 /* Defines rules related to magic use. */
-Xanathar.magicRules = function(rules, spells) {
-  QuilvynUtils.checkAttrTable(spells, ['School', 'Level', 'Description']);
-  for(var s in spells) {
-    if(!SRD5E.SPELLS[s] && !PHB5E.SPELLS[s]) {
+Xanathar.magicRules = function(rules, spellsLevels) {
+  for(var s in spellsLevels) {
+    if(!PHB5E.SPELLS[s]) {
       console.log('Unknown spell "' + s + '"');
       continue;
     }
     rules.choiceRules
-      (rules, 'Spell', s, (SRD5E.SPELLS[s]||PHB5E.SPELLS[s]) + ' ' + spells[s]);
+      (rules, 'Spell', s, PHB5E.SPELLS[s] + ' Level=' + spellsLevels[s]);
   }
-};
-
-/* Defines rules related to character aptitudes. */
-Xanathar.talentRules = function(rules, feats, features, languages, tools) {
-
-  QuilvynUtils.checkAttrTable(feats, ['Require', 'Imply', 'Type']);
-  QuilvynUtils.checkAttrTable(features, ['Section', 'Note']);
-
-  for(var feat in feats) {
-    rules.choiceRules(rules, 'Feat', feat, feats[feat]);
-  }
-  for(var feature in features) {
-    rules.choiceRules(rules, 'Feature', feature, features[feature]);
-  }
-  for(var language in languages) {
-    rules.choiceRules(rules, 'Language', language, languages[language]);
-  }
-  for(var tool in tools) {
-    rules.choiceRules(rules, 'Tool', tool, tools[tool]);
-  }
-
 };
 
 /* Defines the rules related to character classes. */

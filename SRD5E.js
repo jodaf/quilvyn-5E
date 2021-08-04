@@ -28,7 +28,7 @@ Place, Suite 330, Boston, MA 02111-1307 USA.
  */
 function SRD5E() {
 
-  var rules = new QuilvynRules('5E', SRD5E.VERSION);
+  var rules = new QuilvynRules('D&D 5E (SRD only)', SRD5E.VERSION);
   SRD5E.rules = rules;
 
   rules.defineChoice('choices', SRD5E.CHOICES);
@@ -5595,9 +5595,7 @@ SRD5E.ruleNotes = function() {
     '  </li><li>\n' +
     '    To allow feats to be taken instead of Ability Score Improvements,\n' +
     '    the latter are presented as feats named Ability Boost, Ability\n' +
-    '    Boost2, Ability Boost3, etc. In the editor, text boxes next to\n' +
-    '    each of the six basic attributes are used to enter the number of\n' +
-    '    improvements to each.\n' +
+    '    Boost2, Ability Boost3, etc.\n' +
     '  </li><li>\n' +
     '    Quilvyn presents sub-race choices (e.g., Lightfoot vs. Stout\n' +
     '    Halfling) as separate races in the editor Race menu.\n' +
@@ -5614,9 +5612,6 @@ SRD5E.ruleNotes = function() {
     '  <li>\n' +
     '    Quilvyn does not generate background traits, ideals, bonds, flaws,\n' +
     '    or equipment. These items can be entered in the Notes section.\n' +
-    '  </li><li>\n' +
-    '    Quilvyn allows proficiencies from the PHB Skilled feat to be\n' +
-    '    applied only to skills, rather than skills or tools.\n' +
     '  </li>\n' +
     '</ul>\n' +
     '</p>\n' +

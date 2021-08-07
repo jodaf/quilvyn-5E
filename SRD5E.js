@@ -4688,16 +4688,6 @@ SRD5E.createViewers = function(rules, viewers) {
         viewer.addElements(
             {name: 'Feature Notes', within: 'FeaturePart', separator: noteSep}
         );
-      } else {
-        viewer.addElements(
-          {name: 'AllNotes', within: 'FeaturePart', separator: '\n', columns: "1L"},
-            {name: 'Ability Notes', within: 'AllNotes', separator: null, columns: "1L", format: "%V"},
-            {name: 'Feature Notes', within: 'AllNotes', separator: null, columns: "1L", format: "%V"},
-            {name: 'Skill Notes', within: 'AllNotes', separator: null, columns: "1L", format: "%V"},
-            {name: 'Combat Notes', within: 'AllNotes', separator: null, columns: "1L", format: "%V"},
-            {name: 'Save Notes', within: 'AllNotes', separator: null, columns: "1L", format: "%V"},
-            {name: 'Magic Notes', within: 'AllNotes', separator: null, columns: "1L", format: "%V"}
-        );
       }
       viewer.addElements(
           {name: 'Skill Proficiency', within: 'FeaturesAndSkills', separator: listSep},
@@ -4763,7 +4753,20 @@ SRD5E.createViewers = function(rules, viewers) {
       viewer.addElements(
         {name: 'Notes Area', within: '_top', separator: outerSep,
          format: '<b>Notes</b><br/>%V'},
-          {name: 'NotesPart', within: 'Notes Area', separator: '\n'},
+          {name: 'NotesPart', within: 'Notes Area', separator: '\n'}
+      );
+      if(name == 'Collected Notes') {
+        viewer.addElements(
+          {name: 'AllNotes', within: 'NotesPart', separator: '\n', columns: "1L"},
+            {name: 'Ability Notes', within: 'AllNotes', separator: null, columns: "1L", format: "%V"},
+            {name: 'Feature Notes', within: 'AllNotes', separator: null, columns: "1L", format: "%V"},
+            {name: 'Skill Notes', within: 'AllNotes', separator: null, columns: "1L", format: "%V"},
+            {name: 'Combat Notes', within: 'AllNotes', separator: null, columns: "1L", format: "%V"},
+            {name: 'Save Notes', within: 'AllNotes', separator: null, columns: "1L", format: "%V"},
+            {name: 'Magic Notes', within: 'AllNotes', separator: null, columns: "1L", format: "%V"}
+        );
+      }
+      viewer.addElements(
             {name: 'Notes', within: 'NotesPart', format: '%V'},
             {name: 'Hidden Notes', within: 'NotesPart', format: '%V'},
           {name: 'ValidationPart', within: 'Notes Area', separator: '\n'},

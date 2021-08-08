@@ -71,7 +71,7 @@ function PHB5E() {
 
 }
 
-PHB5E.VERSION = '2.2.1.1';
+PHB5E.VERSION = '2.2.1.2';
 
 PHB5E.BACKGROUNDS_ADDED = {
   'Charlatan':
@@ -1317,10 +1317,6 @@ PHB5E.SPELLS_ADDED = {
     'School=Conjuration ' +
     'Level=K6,S6,W6 ' +
     'Description="R10\'/500\' Connect portal pair for conc/10 min"',
-  'Arcane Sword':
-    'School=Evocation ' +
-    'Level=B7,W7 ' +
-    'Description="Force weapon 3d10, move 20\' for conc/1 min"',
   'Armor Of Agathys':
     'School=Abjuration ' +
     'Level=K1 ' +
@@ -1437,6 +1433,10 @@ PHB5E.SPELLS_ADDED = {
     'School=Transmutation ' +
     'Level=R3 ' +
     'Description="100\' bolt 8d6 HP (Dex half)"',
+  "Mordenkainen's Sword":
+    'School=Evocation ' +
+    'Level=B7,W7 ' +
+    'Description="Force weapon 3d10, move 20\' for conc/1 min"',
   'Phantasmal Force':
     'School=Illusion ' +
     'Level=B2,K2,S2,W2 ' +
@@ -1580,10 +1580,32 @@ PHB5E.SPELLS_LEVELS_ADDED = {
   'Web':'Underdark1',
   'Wind Wall':'Nature3'
 };
+PHB5E.SPELLS_RENAMED = {
+  'Acid Arrow':"Melf's Acid Arrow",
+  'Arcane Hand':"Bigby's Hand",
+  "Arcanist's Magic Aura":"Nystul's Magic Aura",
+  'Black Tentacles':"Evard's Black Tentacles",
+  'Faithful Hound':"Mordenkainen's Faithful Hound",
+  'Floating Disk':"Tenser's Floating Disk",
+  'Freezing Sphere':"Otiluke's Freezing Sphere",
+  'Hideous Laughter':"Tasha's Hideous Laughter",
+  'Instant Summons':"Drawmij's Instant Summons",
+  'Irresistible Dance':"Otto's Irresistible Dance",
+  'Magnificent Mansion':"Mordenkainen's Magnificent Mansion",
+  'Private Sanctum':"Mordenkainen's Private Sanctum",
+  'Resilient Sphere':"Otiluke's Resilient Sphere",
+  'Secret Chest':"Leomund's Secret Chest",
+  'Telepathic Bond':"Rary's Telepathic Bond",
+  'Tiny Hut':"Leomund's Tiny Hut"
+};
 PHB5E.SPELLS = Object.assign({}, SRD5E.SPELLS, PHB5E.SPELLS_ADDED);
 for(var s in PHB5E.SPELLS_LEVELS_ADDED) {
   PHB5E.SPELLS[s] =
     PHB5E.SPELLS[s].replace('Level=', 'Level=' + PHB5E.SPELLS_LEVELS_ADDED[s] + ',');
+}
+for(var s in PHB5E.SPELLS_RENAMED) {
+  PHB5E.SPELLS[PHB5E.SPELLS_RENAMED[s]] = PHB5E.SPELLS[s];
+  delete PHB5E.SPELLS[s];
 }
 
 /*

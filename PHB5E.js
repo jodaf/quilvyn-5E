@@ -1899,14 +1899,10 @@ PHB5E.ruleNotes = function() {
     'D&D 5E Quilvyn Plugin Version ' + PHB5E.VERSION + '\n' +
     '\n' +
     '<h3>Limitations</h3>\n' +
-    '<p>\n' +
     '<ul>\n' +
     '  <li>\n' +
     '    Quilvyn allows proficiencies from the PHB Skilled feat to be\n' +
     '    applied only to skills, rather than skills or tools.\n' +
     '  </li>\n' +
-    '</ul>\n' +
-    '</p>\n' +
-    '\n' +
-    '</p>\n';
+    '</ul>\n';
 };

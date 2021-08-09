@@ -5590,7 +5590,6 @@ SRD5E.ruleNotes = function() {
     'SRD5E Quilvyn Module Version ' + SRD5E.VERSION + '\n' +
     '\n' +
     '<h3>Usage Notes</h3>\n' +
-    '<p>\n' +
     '<ul>\n' +
     '  <li>\n' +
     '    The Expertise features of bards and rogues are renamed Bard\n' +
@@ -5607,26 +5606,21 @@ SRD5E.ruleNotes = function() {
     '    the warlock spell list.\n' +
     '  </li>\n' +
     '</ul>\n' +
-    '</p>\n' +
     '\n' +
     '<h3>Limitations</h3>\n' +
-    '<p>\n' +
     '<ul>\n' +
     '  <li>\n' +
     '    Quilvyn does not generate background traits, ideals, bonds, flaws,\n' +
     '    or equipment. These items can be entered in the Notes section.\n' +
     '  </li>\n' +
     '</ul>\n' +
-    '</p>\n' +
     '\n' +
     '<h3>Known Bugs</h3>\n' +
-    '<p>\n' +
     '<ul>\n' +
     '  <li>\n' +
     '    Quilvyn does not test multiclass ability prerequisites, and Quilvyn\n'+
     '    gives multiclass characters the complete set of proficiencies for\n' +
     '    each class.\n' +
     '  </li>\n' +
-    '</ul>\n' +
-    '</p>\n';
+    '</ul>\n';
 };

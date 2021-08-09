@@ -19,12 +19,12 @@ Place, Suite 330, Boston, MA 02111-1307 USA.
 "use strict";
 
 /*
- * This module loads the rules from Fifth Edition Sword Coast Adventurer's
- * Guide.  The SwordCoast function contains methods that load rules
- * for particular parts of the rules; raceRules for character races, magicRules
- * for spells, etc.  These member methods can be called independently in order
- * to use a subset of the 5E PHB.  Similarly, the constant fields of SwordCoast
- * (FEATS, BACKGROUNDS, etc.) can be manipulated to modify the choices.
+ * This module loads the rules from the Fifth Edition Sword Coast Adventurer's
+ * Guide. The SwordCoast function contains methods that load rules for
+ * particular parts of the rules; raceRules for character races, magicRules
+ * for spells, etc. These member methods can be called independently in order
+ * to use a subset of the rules.  Similarly, the constant fields of SwordCoast
+ * (BACKGROUNDS, PATHS, etc.) can be manipulated to modify the choices.
  */
 function SwordCoast() {
 
@@ -65,11 +65,14 @@ function SwordCoast() {
   }
   SwordCoast.FEATURES =
     Object.assign({}, PHB5E.FEATURES, SwordCoast.FEATURES_ADDED);
+  SwordCoast.RACES = Object.assign({}, PHB5E.RACES);
+  // TODO Modify race names?
   SwordCoast.SPELLS = Object.assign({}, PHB5E.SPELLS, SwordCoast.SPELLS_ADDED);
   for(var s in SwordCoast.SPELLS_LEVELS_ADDED) {
     SwordCoast.SPELLS[s] =
       SwordCoast.SPELLS[s].replace('Level=', 'Level=' + SwordCoast.SPELLS_LEVELS_ADDED[s] + ',');
   }
+  SwordCoast.TOOLS = Object.assign({}, PHB5E.TOOLS, SwordCoast.TOOLS_ADDED);
 
   SRD5E.abilityRules(rules);
   SRD5E.combatRules(rules, SRD5E.ARMORS, SRD5E.SHIELDS, SRD5E.WEAPONS);
@@ -93,7 +96,7 @@ SwordCoast.BACKGROUNDS_ADDED = {
     'Equipment=' +
       '"Uniform",Horn,"Manacles","10 GP" ' +
     'Features=' +
-      '"1:Skill Proficiency (Athletics/Insight)",' +
+      '"1:Skill Proficiency (Choose 1 from Athletics, Investigation/Insight)",'+
       '"1:Language (Choose 2 from any)",' +
       '"1:Watcher\'s Eye" ' +
     'Languages=any,any',
@@ -266,52 +269,58 @@ SwordCoast.DEITIES = {
 };
 SwordCoast.FEATURES_ADDED = {
   // Backgrounds
-  'All Eyes On You':
-    'Section=feature Note="TODO"',
+  'All Eyes On You':'Section=feature Note="Curiosity and interest from locals"',
   'Court Functionary':
-    'Section=feature Note="TODO"',
+    'Section=feature ' +
+    'Note="Knowledge of government beauracracy, access to records"',
   'Ear To The Ground':
-    'Section=feature Note="TODO"',
-  'Inheritance':
-    'Section=feature Note="TODO"',
-  'Kept In Style':
-    'Section=feature Note="TODO"',
+    'Section=feature Note="Information contacts in every city"',
+  'Inheritance':'Section=feature Note="Special item or knowledge from family"',
+  'Kept In Style':'Section=feature Note="-2 GP/day expenses"',
   'Knightly Regard':
-    'Section=feature Note="TODO"',
+    'Section=feature Note="Assistance from fellows and supporters"',
   'Library Access':
-    'Section=feature Note="TODO"',
+    'Section=feature ' +
+    'Note="Knowledge of cloister beauracracy, broad access to libraries"',
   'Mercenary Life':
-    'Section=feature Note="TODO"',
+    'Section=feature Note="Knowledge of mercenary companies and customs"',
   'Respect Of The Stout Folk':
-    'Section=feature Note="TODO"',
-  'Safe Haven':
-    'Section=feature Note="TODO"',
+    'Section=feature Note="Free accommodations from Dwarves"',
+  'Safe Haven':'Section=feature Note="Contacts w/access to safe house"',
   'Uthgardt Heritage':
-    'Section=feature Note="TODO"',
+    'Section=feature Note="Dbl food from foraging, assistance from tribes"',
   "Watcher's Eye":
-    'Section=feature Note="TODO"',
+    'Section=feature Note="Easily find local watch and criminal dens"',
   // Paths
   'Among The Dead':
     'Section=feature Note="TODO"',
   'Arcane Abjuration':
-    'Section=feature Note="TODO"',
+    'Section=combat Note="R30\' Action to turn celestial, elemental, fey, or fiend for 1 min"',
+  'Arcane Abjuration (Banishment)':
+    'Section=combat Note="Turned creature up to CR %V banished for 1 min"',
   'Arcane Initiate':
-    'Section=feature Note="TODO"',
+    'Section=magic,skill ' +
+    'Note="Learn two W0 spells","Skill Proficiency (Arcana)"',
   'Arcane Mastery':
-    'Section=feature Note="TODO"',
+    'Section=magic Note="Add W6, W7, W8, and W9 as domain spells"',
   'Aspect Of The Elk':
     'Section=ability Note="R60\' Self and 10 allies dbl speed"',
   'Aspect Of The Tiger':
     'Section=skill ' +
     'Note="Skill Proficiency (Choose 2 from Athletics, Acrobatics, Sstealth, Survival)"',
   'Battlerager Armor':
-    'Section=feature Note="TODO"',
-  'Battlerger Charge':
-    'Section=feature Note="TODO"',
+    'Section=combat ' +
+    'Note="Bonus spike attack 1d4+%1 HP piercing damage during rage, 3 HP from grapple"',
+  'Battlerger Charge':'Section=combat Note="Bonus dash during rage"',
   'Bladesong':
-    'Section=feature Note="TODO"',
+    'Section=ability,combat,magic,skill ' +
+    'Note=' +
+      '"+10 Speed for 1 min 2/short rest",' +
+      '"+%V AC for 1 min 2/short rest",' +
+      '"+%V Concentration to retain spell for 1 min 2/short rest",' +
+      '"Adv Acrobatics for 1 min 2/short rest"',
   'Bulkwark':
-    'Section=feature Note="TODO"',
+    'Section=combat Note="R60\' Indomitable use provides ally w/reroll"',
   'Champion Challenge':
     'Section=feature Note="TODO"',
   'Defy Death':
@@ -329,7 +338,7 @@ SwordCoast.FEATURES_ADDED = {
   'Exalted Champion':
     'Section=feature Note="TODO"',
   'Extra Attack':
-    'Section=feature Note="TODO"',
+    'Section=combat Note="+%V Attacks Per Round"',
   'Fancy Footwork':
     'Section=combat ' +
     'Note="Struck foe cannot make opportunity attacks against you for 1 tn"',
@@ -345,7 +354,7 @@ SwordCoast.FEATURES_ADDED = {
     'Section=feature ' +
     'Note="Learn 2 of relative Cha, Int, Wis, and levels of target after 1 min study"',
   'Inspiring Surge':
-    'Section=feature Note="TODO"',
+    'Section=combat Note="R60\' Action Surge gives bonus attack to %V ally"',
   'Master Duelist':'Section=combat Note="Reroll miss with Adv 1/short rest"',
   'Master Of Intrigue':
     'Section=skill ' +
@@ -367,11 +376,10 @@ SwordCoast.FEATURES_ADDED = {
     'Section=combat ' +
     'Note="+%1 Initiative/Use Sneak Attack w/out Adv vs. solo foe"',
   'Rallying Cry':
-    'Section=feature Note="TODO"',
+    'Section=combat Note="R60\' Second Wind restores %V HP to 3 allies"',
   'Reckless Abandon':
-    'Section=feature Note="TODO"',
-  'Royal Envoy':
-    'Section=feature Note="TODO"',
+    'Section=combat Note="%V temporary HP from Reckless Attack during rage"',
+  'Royal Envoy':'Section=feature Note="Dbl Prof on Persuasion"',
   'Searing Arc Strike':
     'Section=magic ' +
     'Note="Spend 2-%V Ki to cast <i>Burning Hands</i> after attack"',
@@ -379,16 +387,17 @@ SwordCoast.FEATURES_ADDED = {
     'Section=magic ' +
     'Note="R150\' 20\' burst 2d6 HP radiant damage (DC %V Con neg), spend 1-3 Ki for +2d6 HP ea"',
   'Song Of Defense':
-    'Section=feature Note="TODO"',
+    'Section=magic Note="Expend spell slot to reduce damage by 5x slot level"',
   'Song Of Victory':
-    'Section=feature Note="TODO"',
+    'Section=combat Note="+%V HP damage for 1 min 2/short rest"',
   'Soul Of Deceit':
     'Section=save ' +
     'Note="Immunity to telepathy, Deception vs. Insight to present false thoughts, immunity to truth compulsion"',
   'Spell Breaker':
-    'Section=feature Note="TODO"',
-  'Spiked Distribution':
-    'Section=feature Note="TODO"',
+    'Section=magic Note="Healing spell ends spell of equal or lesser level"',
+  'Spiked Retribution':
+    'Section=combat ' +
+    'Note="Successful attacker takes 3 HP piercing damage during rage"',
   'Spirit Seeker':
     'Section=feature Note="TODO"',
   'Spirit Seeker':
@@ -417,8 +426,11 @@ SwordCoast.FEATURES_ADDED = {
     'Section=feature Note="TODO"',
   'Touch Of The Long Death':
     'Section=feature Note="TODO"',
-  'Trainging In War And Song':
-    'Section=feature Note="TODO"',
+  'Training In War And Song':
+    'Section=combat,skill ' +
+    'Note=' +
+      '"Armor Proficiency (Light)/Weapon Proficiency (Choose 1 from any)",' +
+      '"Skill Proficiency (Performance)"',
   'Turn The Tide':
     'Section=feature Note="TODO"',
   'Undying Nature':
@@ -437,7 +449,8 @@ SwordCoast.PATHS_ADDED = {
     'Group=Cleric Level=levels.Cleric ' +
     'Features=' +
       '"1:Skill Proficiency (Arcana)",' +
-      '"1:Arcane Initiate","2:Arcane Abjuration","6:Spell Breaker",' +
+      '"1:Arcane Initiate","2:Arcane Abjuration",' +
+      '"5:Arcane Abjuration (Banishment)","6:Spell Breaker",' +
       '"8:Potent Spellcasting","17:Arcane Mastery" ' +
     'SpellAbility=wisdom ' +
     'SpellSlots=' +
@@ -449,7 +462,7 @@ SwordCoast.PATHS_ADDED = {
   'Bladesinging':
     'Group=Wizard Level=levels.Wizard ' +
     'Features=' +
-      '"2:Trainging In War And Song","2:Bladesong","6:Extra Attack",' +
+      '"2:Training In War And Song","2:Bladesong","6:Extra Attack",' +
       '"10:Song Of Defense","14:Song Of Victory"',
   'Mastermind':
     'Group=Rogue Level=levels.Rogue ' +
@@ -473,7 +486,7 @@ SwordCoast.PATHS_ADDED = {
     'Group=Barbarian Level=levels.Barbarian ' +
     'Features=' +
       '"3:Battlerager Armor","6:Reckless Abandon","10:Battlerger Charge",' +
-      '"14:Spiked Distribution"',
+      '"14:Spiked Retribution"',
   'Path Of The Totem Warrior (Elk)':
     'Group=Barbarian Level=levels.Barbarian ' +
     'Features=' +
@@ -487,6 +500,7 @@ SwordCoast.PATHS_ADDED = {
   'Purple Dragon Knight':
     'Group=Fighter Level=levels.Fighter ' +
     'Features=' +
+      '"7:Skill Proficiency (Choose 1 from Persuasion, Animal Handling, Insight, Intimidation, Performance)",' +
       '"3:Rallying Cry","7:Royal Envoy","10:Inspiring Surge","15:Bulkwark"',
   'Storm Sorcery':
     'Group=Sorcerer Level=levels.Sorcerer ' +
@@ -555,6 +569,20 @@ SwordCoast.SPELLS_LEVELS_ADDED = {
   'Warding Bond':'Crown2',
   'Zone Of Truth':'Crown2'
 };
+SwordCoast.TOOLS_ADDED = {
+  'Bird Pipes':'Type=Music',
+  'Glaur':'Type=Music',
+  'Hand Drum':'Type=Music',
+  'Longhorn':'Type=Music',
+  // In SRD5E 'Shawm':'Type=Music',
+  'Songhorn':'Type=Music',
+  'Tantan':'Type=Music',
+  'Thelarr':'Type=Music',
+  'Tocken':'Type=Music',
+  'Wargong':'Type=Music',
+  'Yarting':'Type=Music',
+  'Zulkoon':'Type=Music'
+};
 
 /*
  * Adds #name# as a possible user #type# choice and parses #attrs# to add rules
@@ -564,8 +592,6 @@ SwordCoast.choiceRules = function(rules, type, name, attrs) {
   SRD5E.choiceRules(rules, type, name, attrs);
   if(type == 'Path')
     SwordCoast.pathRulesExtra(rules, name);
-  else if(type == 'Race')
-    SwordCoast.raceRulesExtra(rules, name);
 };
 
 /*
@@ -578,171 +604,81 @@ SwordCoast.pathRulesExtra = function(rules, name) {
     name.charAt(0).toLowerCase() + name.substring(1).replaceAll(' ', '') +
     'Level';
 
-  if(name == 'Arcane Trickster') {
-
-    rules.defineRule('magicNotes.spellThief',
-      'intelligenceModifier', '=', '8 + source',
-      'proficiencyBonus', '+', null
+  if(name == 'Arcana Domain') {
+    rules.defineRule('magicNotes.arcaneAbjuration(Banishment)',
+      pathLevel, '=', 'source<8 ? "1/2" : Math.floor((source - 5) / 3)'
     );
-
-  } else if(name == 'Assassin') {
-
-    rules.defineRule('combatNotes.deathStrike',
-      'dexterityModifier', '=', '8 + source',
-      'proficiencyBonus', '+', null
+  } else if(name == 'Bladesinging') {
+    rules.defineRule('combatNotes.bladesong',
+      'intelligenceModifier', '=', 'Math.max(source, 1)'
     );
-
-  } else if(name == 'Battle Master') {
-
-    rules.defineRule('combatNotes.superiorityDice',
-      pathLevel, '=', 'source<7 ? 4 : source<15 ? 5 : 6'
+    rules.defineRule('combatNotes.songOfVictory',
+      'intelligenceModifier', '=', 'Math.max(source, 1)'
     );
-    rules.defineRule('combatNotes.superiorityDice.1',
-      'fighterFeatures.Superiority Dice', '?', null,
-      pathLevel, '=', 'source<10 ? 8 : source<18 ? 10 : 12'
+    rules.defineRule('combatNotes.extraAttack', pathLevel, '+=', '1');
+    rules.defineRule('magicNotes.bladesong',
+      'intelligenceModifier', '=', 'Math.max(source, 1)'
     );
-    rules.defineRule('maxDexOrStrMod',
-      'dexterityModifier', '=', null,
-      'strengthModifier', '^', null
+  } else if(name == 'Mastermind') {
+    // Copied from Xanathar
+    rules.defineRule('languageCount', 'features.Master Of Intrigue', '+', '2');
+  } else if(name == 'Path Of The Battlerager') {
+    rules.defineRule('combatNotes.battleragerArmor.1',
+      'features.Battlerager Armor', '?', null,
+      'strengthModifier', '=', null
     );
-    rules.defineRule('combatNotes.maneuvers',
-      pathLevel, '=', 'source<7 ? 3 : source<10 ? 5 : source<15 ? 7 : 9'
+    rules.defineRule('combatNotes.recklessAbandon',
+      'constitutionModifier', '=', 'Math.max(source, 1)'
     );
-    rules.defineRule('combatNotes.maneuvers.1',
-      'fighterFeatures.Battle Master', '?', null,
-      'proficiencyBonus', '=', '8 + source',
-      'maxDexOrStrMod', '+', null
-    );
-    rules.defineRule('combatNotes.parry', 'dexterityModifier', '=', null);
-    rules.defineRule('combatNotes.rally', 'charismaModifier', '=', null);
-    rules.defineRule('selectableFeatureCount.Fighter (Maneuver)',
-      'combatNotes.maneuvers', '=', null
-    );
-
-  } else if(name == 'Circle Of The Moon') {
-
+  } else if(name == 'Purple Dragon Knight') {
     rules.defineRule
-      ('magicNotes.wildShape.1', 'magicNotes.circleForms', '=', null);
-    rules.defineRule('magicNotes.circleForms',
-      pathLevel, '=', 'source < 6 ? 1 : Math.floor(source / 3)'
+      ('combatNotes.inspiringSurge', pathLevel, '=', 'source>=18 ? 2 : 1');
+    rules.defineRule('combatNotes.rallyingCry', pathLevel, '=', null);
+  } else if(name == 'Storm Sorcery') {
+    // Copied from Xanathar
+    rules.defineRule("combatNotes.storm'sFury", pathLevel, '=', null);
+    rules.defineRule("combatNotes.storm'sFury.1",
+      "features.Storm's Fury", '?', null,
+      'spellDifficultyClass.S', '=', null
     );
-
-  } else if(name == 'College Of Valor') {
-
-    rules.defineRule('bardExtraAttacks',
-      'bardFeatures.Extra Attack', '?', null,
-      pathLevel, '=', 'source<6 ? null : 1'
+    rules.defineRule('languageCount', 'skillNotes.windSpeaker', '+=', '5');
+    rules.defineRule('languages.Aquan', 'skillNotes.windSpeaker', '=', '1');
+    rules.defineRule('languages.Auran', 'skillNotes.windSpeaker', '=', '1');
+    rules.defineRule('languages.Ignan', 'skillNotes.windSpeaker', '=', '1');
+    rules.defineRule
+      ('languages.Primordial', 'skillNotes.windSpeaker', '=', '1');
+    rules.defineRule('languages.Terran', 'skillNotes.windSpeaker', '=', '1');
+    rules.defineRule
+      ('magicNotes.heartOfTheStorm', pathLevel, '=', 'Math.floor(source / 2)');
+    rules.defineRule
+      ('magicNotes.windSoul', 'charismaModifier', '=', '3 + source');
+  } else if(name == 'Swashbuckler') {
+    // Copied from Xanathar
+    rules.defineRule('combatNotes.rakishAudacity.1',
+      'features.Rakish Audacity', '?', null,
+      'wisdomModifier', '=', null
     );
-    rules.defineRule('combatNotes.extraAttack', 'bardExtraAttacks', '+=', null);
-
-  } else if(name == 'Eldritch Knight') {
-
-    rules.defineRule('combatNotes.warMagic',
-      pathLevel, '=', 'source<18 ? "cantrip" : "any spell"'
+  } else if(name == 'Way Of The Sun Soul') {
+    // Copied from Xanathar
+    rules.defineRule('combatNotes.radiantSunBolt',
+      'proficiencyBonus', '=', null,
+      'dexterityModifier', '+', null
     );
-
-  } else if(name == 'Knowledge Domain') {
-
-    rules.defineRule
-      ('magicNotes.potentSpellcasting', 'wisdomModifier', '=', null);
-    rules.defineRule
-      ('skillChoices.Arcana', 'skillNotes.blessingsOfKnowledge', '=', '1');
-    rules.defineRule
-      ('skillChoices.History', 'skillNotes.blessingsOfKnowledge', '=', '1');
-    rules.defineRule
-      ('skillChoices.Nature', 'skillNotes.blessingsOfKnowledge', '=', '1');
-    rules.defineRule
-      ('skillChoices.Religion', 'skillNotes.blessingsOfKnowledge', '=', '1');
-
-  } else if(name == 'Light Domain') {
-
-    rules.defineRule
-      ('magicNotes.potentSpellcasting', 'wisdomModifier', '=', null);
-    rules.defineRule('magicNotes.radianceOfTheDawn', pathLevel, '=', null);
-    rules.defineRule
-      ('magicNotes.wardingFlare', 'wisdomModifier', '=', 'Math.max(source, 1)');
-
-  } else if(name == 'Nature Domain') {
-
-    rules.defineRule
-      ('skillChoices.Animal Handling', 'skillNotes.acolyteOfNature', '=', '1');
-    rules.defineRule
-      ('skillChoices.Nature', 'skillNotes.acolyteOfNature', '=', '1');
-    rules.defineRule
-      ('skillChoices.Survival', 'skillNotes.acolyteOfNature', '=', '1');
-
-  } else if(name == 'Oath Of The Ancients') {
-
-    rules.defineRule
-      ('saveNotes.auraOfWarding', pathLevel, '=', 'source<18 ? 10 : 30');
-
-  } else if(name == 'Path Of The Totem Warrior (Bear)') {
-
-    rules.defineRule('carry', 'abilityNotes.aspectOfTheBear', '*', '2');
-    rules.defineRule('lift', 'abilityNotes.aspectOfTheBear', '*', '2');
-
-  } else if(name == 'School Of Abjuration') {
-
-    rules.defineRule('magicNotes.arcaneWard',
-      pathLevel, '=', 'source * 2',
-      'intelligenceModifier', '+', null
+    rules.defineRule('combatNotes.radiantSunBolt.1',
+      'features.Radiant Sun Bolt', '?', null,
+      'combatNotes.martialArts', '=', null
     );
-
-  } else if(name == 'School Of Divination') {
-
-    rules.defineRule('magicNotes.portent', pathLevel, '=', 'source<14 ? 2 : 3');
-
-  } else if(name == 'School Of Enchantment') {
-
-    rules.defineRule('magicNotes.alterMemories',
-      'charismaModifier', '=', 'Math.max(source + 1, 1)'
+    rules.defineRule('combatNotes.radiantSunBolt.2',
+      'features.Radiant Sun Bolt', '?', null,
+      'dexterityModifier', '=', null
     );
-
-  } else if(name == 'School Of Necromancy') {
-
-    rules.defineRule('magicNotes.undeadThralls', pathLevel, '=', null);
     rules.defineRule
-      ('magicNotes.undeadThralls.1', 'proficiencyBonus', '=', null);
-
-  } else if(name == 'Tempest Domain') {
-
-    rules.defineRule('combatNotes.wrathOfTheStorm',
-      'wisdomModifier', '=', 'Math.max(source, 1)'
-    );
-
-  } else if(name == 'War Domain') {
-
+      ('combatNotes.sunShield', 'wisdomModifier', '=', 'source + 5');
     rules.defineRule
-      ('combatNotes.warPriest', 'wisdomModifier', '=', 'Math.max(source, 1)');
-
-  } else if(name == 'Way Of The Four Elements') {
-
-    rules.defineRule('magicNotes.discipleOfTheElements',
-      'monkFeatures.Way Of The Four Elements', '?', null,
-      pathLevel, '=', 'Math.floor( (source + 4) / 5)'
-    );
-    rules.defineRule('selectableFeatureCount.Monk (Elemental Discipline)',
-      'magicNotes.discipleOfTheElements', '=', null
-    );
-
+      ('magicNotes.searingArcStrike', pathLevel, '=', 'Math.floor(source / 2)');
+    rules.defineRule('magicNotes.searingSunburst', 'kiSaveDC', '=', null);
   }
 
-};
-
-/*
- * Defines in #rules# the rules associated with race #name# that cannot be
- * derived directly from the attributes passed to raceRules.
- */
-SwordCoast.raceRulesExtra = function(rules, name) {
-  if(name == 'Dark Elf') {
-    rules.defineRule('magicNotes.drowMagic',
-      'race', '?', 'source == "Dark Elf"',
-      'level', '=',
-        'source<3 ? "<i>Dancing Lights</i> cantrip" : ' +
-        'source<5 ? "<i>Dancing Lights</i> cantrip, <i>Faerie Fire</i> 1/long rest" : ' +
-        '"<i>Dancing Lights</i> cantrip, <i>Faerie Fire</i> 1/long rest, <i>Darkness</i> 1/long rest"'
-    );
-  }
 };
 
 /* Returns an array of plugins upon which this one depends. */

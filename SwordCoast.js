@@ -304,7 +304,11 @@ SwordCoast.FEATURES_ADDED = {
     'Section=feature Note="Easily find local watch and criminal dens"',
   // Paths
   'Among The Dead':
-    'Section=feature Note="TODO"',
+    'Section=combat,magic,save ' +
+    'Note=' +
+      '"Undead attacks diverted to others (DC %V Wis neg)",' +
+      '"Learn <i>Spare The Dying</i>",' +
+      '"Adv vs. disease"',
   'Arcane Abjuration':
     'Section=combat Note="R30\' Action to turn celestial, elemental, fey, or fiend for 1 min"',
   'Arcane Abjuration (Banishment)':
@@ -333,11 +337,14 @@ SwordCoast.FEATURES_ADDED = {
   'Bulkwark':
     'Section=combat Note="R60\' Indomitable use provides ally w/reroll"',
   'Champion Challenge':
-    'Section=feature Note="TODO"',
+    'Section=combat ' +
+    'Note="R30\' Channel Divinity forces targets to stay w/in 30\' of self (Wis neg)"',
   'Defy Death':
-    'Section=feature Note="TODO"',
-  'Divine Allegiance':
-    'Section=feature Note="TODO"',
+    'Section=combat,magic ' +
+    'Note=' +
+      '"Successful death saving throw restores 1d8+%V HP",' +
+      '"<i>Spare The Dying</i> restores 1d8+%V HP"',
+  'Divine Allegiance':'Section=combat Note="R5\' Shift ally\'s damage to self"',
   'Elegant Maneuver':
     'Section=skill Note="Bonus action for Adv next Acrobatics or Athletics"',
   'Elk Totem Spirit':
@@ -347,7 +354,10 @@ SwordCoast.FEATURES_ADDED = {
     'Section=combat ' +
     'Note="Charge knocks down foe for 1d12+%V HP damage (DC %1 Str neg)"',
   'Exalted Champion':
-    'Section=feature Note="TODO"',
+    'Section=combat,save ' +
+    'Note=' +
+      '"Resistance non-magical bludgeoning, piercing, and slashing",' +
+      '"R30\' Self and allies Adv Death, Wisdom"',
   'Extra Attack':
     'Section=combat Note="+%V Attacks Per Round"',
   'Fancy Footwork':
@@ -358,9 +368,10 @@ SwordCoast.FEATURES_ADDED = {
     'Note="R10\' %V HP lightning/thunder damage when casting lightning/thunder spell",' +
          '"Resistance to lightning and thunder damage"',
   'Hour Of Reaping':
-    'Section=feature Note="TODO"',
+    'Section=combat Note="R30\' All who can see self frightened (Wis neg)"',
   'Indestructible Life':
-    'Section=feature Note="TODO"',
+    'Section=combat ' +
+    'Note="Bonus action to regain 1d8+%V HP, reattach severed parts 1/short rest"',
   'Insightful Manipulator':
     'Section=feature ' +
     'Note="Learn 2 of relative Cha, Int, Wis, and levels of target after 1 min study"',
@@ -372,14 +383,11 @@ SwordCoast.FEATURES_ADDED = {
     'Note="Mimic accent and speech patters after listening 1 min"',
   'Master Of Tactics':'Section=combat Note="R30\' Help as bonus action"',
   'Mastery Of Death':
-    'Section=feature Note="TODO"',
-  'Misdirection':
-    'Section=feature Note="TODO"',
+    'Section=combat ' +
+    'Note="Spend 1 Ki Point to remain at 1 HP when brought to 0 HP"',
   'Panache':
     'Section=skill ' +
     'Note="Persuasion vs. Insight gives hostile target Disadv attacks on others, charms non-hostile for 1 min"',
-  'Potent Spellcasting':
-    'Section=feature Note="TODO"',
   'Radiant Sun Bolt':
     'Section=combat ' +
     'Note="R30\' Ranged touch +%V 1d%1+%2 HP radiant damage 1/tn, spend 1 Ki for 2/tn"',
@@ -409,14 +417,6 @@ SwordCoast.FEATURES_ADDED = {
   'Spiked Retribution':
     'Section=combat ' +
     'Note="Successful attacker takes 3 HP piercing damage during rage"',
-  'Spirit Seeker':
-    'Section=feature Note="TODO"',
-  'Spirit Seeker':
-    'Section=feature Note="TODO"',
-  'Spirit Walker':
-    'Section=feature Note="TODO"',
-  'Spirit Walker':
-    'Section=feature Note="TODO"',
   'Storm Guide':
     'Section=magic ' +
     'Note="Stop rain in 20\' radius or direct winds in 100\' radius for 1 tn"',
@@ -434,20 +434,22 @@ SwordCoast.FEATURES_ADDED = {
   'Tiger Totemic Attunement':
     'Section=combat Note="Bonus melee attack after 20\' charge"',
   'Touch Of Death':
-    'Section=feature Note="TODO"',
+    'Section=combat Note="R5\' Bring foe to 0 HP give self %V temporary HP"',
   'Touch Of The Long Death':
-    'Section=feature Note="TODO"',
+    'Section=combat ' +
+    'Note="R5\' Spend 1-10 Ki Points to touch for 2d10 HP necrotic damage per (Con half)"',
   'Training In War And Song':
     'Section=combat,skill ' +
     'Note=' +
       '"Armor Proficiency (Light)/Weapon Proficiency (Choose 1 from any)",' +
       '"Skill Proficiency (Performance)"',
   'Turn The Tide':
-    'Section=feature Note="TODO"',
+    'Section=magic ' +
+    'Note="R30\' Channel Divinity restores 1d6+%V HP to creatures w/less than half HP"',
   'Undying Nature':
-    'Section=feature Note="TODO"',
-  'Unyielding Spirit':
-    'Section=feature Note="TODO"',
+    'Section=feature ' +
+    'Note="Require no breath, food, water, or sleep, age at 1/10 rate"',
+  'Unyielding Spirit':'Section=save Note="Adv vs. paralysis and stunning"',
   'Wind Soul':
     'Section=ability,magic,save ' +
     'Note="60\' Fly",' +
@@ -609,21 +611,31 @@ SwordCoast.SPELLS_ADDED = {
 };
 SwordCoast.SPELLS_LEVELS_ADDED = {
   'Arcane Eye':'Arcana4',
+  'Aura Of Life':'K4',
   'Aura Of Vitality':'Crown3',
   'Banishment':'Crown4',
+  'Blindness/Deafness':'K2',
   'Circle Of Power':'Crown5',
   'Command':'Crown1',
   'Compelled Duel':'Crown1',
+  'Contagion':'K5',
+  'Death Ward':'K4',
   'Detect Magic':'Arcana1',
   'Dispel Magic':'Arcana3',
+  'False Life':'K1',
+  'Feign Death':'K3',
   'Geas':'Crown5',
   'Guardian Of Faith':'Crown4',
+  'Legend Lore':'K5',
   "Leomund's Secret Chest":'Arcana4',
   'Magic Circle':'Arcana3',
   'Magic Missile':'Arcana1',
   'Magic Weapon':'Arcana2',
   "Nystul's Magic Aura":'Arcana2',
   'Planar Binding':'Arcana5',
+  'Ray Of Sickness':'K1',
+  'Silence':'K2',
+  'Speak With Dead':'K3',
   'Spirit Guardians':'Crown3',
   'Teleportation Circle':'Arcana5',
   'Warding Bond':'Crown2',
@@ -684,6 +696,10 @@ SwordCoast.pathRulesExtra = function(rules, name) {
   } else if(name == 'Mastermind') {
     // Copied from Xanathar
     rules.defineRule('languageCount', 'features.Master Of Intrigue', '+', '2');
+  } else if(name == 'Oath Of The Crown') {
+    rules.defineRule('magicNotes.turnTheTide',
+      'charismaModifier', '=', 'Math.max(source, 1)'
+    );
   } else if(name == 'Path Of The Battlerager') {
     rules.defineRule('combatNotes.battleragerArmor.1',
       'features.Battlerager Armor', '?', null,
@@ -719,6 +735,22 @@ SwordCoast.pathRulesExtra = function(rules, name) {
     rules.defineRule('combatNotes.rakishAudacity.1',
       'features.Rakish Audacity', '?', null,
       'wisdomModifier', '=', null
+    );
+  } else if(name == 'The Undying') {
+    rules.defineRule
+      ('combatNotes.amongTheDead', 'spellDifficultyClass.K', '=', null);
+    rules.defineRule('combatNotes.defyDeath',
+      'constitutionModifier', '=', 'Math.max(source, 1)'
+    );
+    rules.defineRule('combatNotes.indestructableLife', pathLevel, '=', null);
+    rules.defineRule('magicNotes.defyDeath',
+      'constitutionModifier', '=', 'Math.max(source, 1)'
+    );
+  } else if(name == 'Way Of The Long Death') {
+    rules.defineRule('combatNotes.touchOfDeath',
+      pathLevel, '=', null,
+      'wisdomModifier', '+', null,
+      '', '^', '1'
     );
   } else if(name == 'Way Of The Sun Soul') {
     // Copied from Xanathar

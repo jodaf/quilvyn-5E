@@ -1010,7 +1010,7 @@ PHB5E.FEATURES_ADDED = {
     'Section=feature Note="Simple communication with small animals"',
   'Stout Halfling Ability Adjustment':
     'Section=ability Note="+2 Dexterity/+1 Constitution"',
-  'Stout Resilience':
+  'Stout Halfling Resilience':
     'Section=save Note="Adv and resistance to poison damage"',
   'Sunlight Sensitivity':
     'Section=combat,skill ' +
@@ -1300,7 +1300,7 @@ PHB5E.RACES_ADDED = {
   'Stout Halfling':
     'Features=' +
       '1:Brave,"1:Halfling Luck","1:Halfling Nimbleness",1:Slow,1:Small,' +
-      '"1:Stout Halfling Ability Adjustment","1:Stout Resilience" ' +
+      '"1:Stout Halfling Ability Adjustment","1:Stout Halfling Resilience" ' +
     'Languages=Common,Halfling',
   'Wood Elf':
     'Features=' +

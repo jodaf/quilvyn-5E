@@ -302,6 +302,12 @@ SwordCoast.FEATURES_ADDED = {
     'Section=feature Note="Dbl food from foraging, assistance from tribes"',
   "Watcher's Eye":
     'Section=feature Note="Easily find local watch and criminal dens"',
+
+  // Feats
+  'Svirfneblin Magic':
+    'Section=magic ' +
+    'Note="Self <i>Nondetection</i> at will, <i>Blindness/Deafness</i>, <i>Blur</i>, and <i>Disguise Self</i> 1/long rest"',
+
   // Paths
   'Among The Dead':
     'Section=combat,magic,save ' +
@@ -457,11 +463,6 @@ SwordCoast.FEATURES_ADDED = {
          '"Immunity to lightning and thunder damage"',
   'Wind Speaker':'Section=skill Note="Speak Primordial and dialects"',
 
-  // Feats
-  'Svirfneblin Magic':
-    'Section=magic ' +
-    'Note="Self <i>Nondetection</i> at will, <i>Blindness/Deafness</i>, <i>Blur</i>, and <i>Disguise Self</i> 1/long rest"',
-
   // Races
   'Deep Gnome Ability Adjustment':
     'Section=ability Note="+1 Dexterity/+2 Intelligence"',
@@ -481,6 +482,8 @@ SwordCoast.FEATURES_ADDED = {
     'Section=Skill Note="Adv Stealth (rocky terrain)"',
   'Strongheart Halfling Ability Adjustment':
     'Section=ability Note="+2 Dexterity/+1 Constitution"',
+  'Strongheart Halfling Resilience':
+    'Section=save Note="Adv and resistance to poison damage"',
   'Sun Elf Ability Adjustment':
     'Section=ability Note="+2 Dexterity/+1 Intelligence"'
 
@@ -575,14 +578,14 @@ SwordCoast.RACES_ADDED = {
     'Features=' +
       '"1:Gnome Cunning","1:Deep Gnome Ability Adjustment",1:Slow,1:Small,' +
       '"1:Stone Camouflage","1:Superior Darkvision" ' +
-    'Languages=Common,Gnomish',
+    'Languages=Common,Gnomish,Undercommon',
   'Gray Dwarf':
     'Features=' +
       '"1:Weapon Proficiency (Battleaxe/Handaxe/Light Hammer/Warhammer)",' +
       '"1:Tool Proficiency (Choose 1 from Brewer\'s Supplies, Mason\'s Tools, Smith\'s Tools)",' +
-      '"1:Duergar Magic","1:Duergar Resilience","1:Dwarven Resilience",' +
+      '"1:Duergar Resilience","1:Dwarven Resilience",' +
       '"1:Gray Dwarf Ability Adjustment",1:Slow,1:Steady,1:Stonecunning,' +
-      '"1:Sunlight Sensitivity","1:Superior Darkvision" ' +
+      '"1:Sunlight Sensitivity","1:Superior Darkvision","3:Duergar Magic" ' +
     'Languages=Common,Dwarvish,Undercommon'
 };
 SwordCoast.RACES_RENAMED = {

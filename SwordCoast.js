@@ -63,10 +63,17 @@ function SwordCoast() {
     SwordCoast.CLASSES[c] =
       SwordCoast.CLASSES[c].replace('Selectables=', 'Selectables=' + SwordCoast.CLASSES_SELECTABLES_ADDED[c] + ',');
   }
+  SwordCoast.FEATS = Object.assign({}, PHB5E.FEATS, SwordCoast.FEATS_ADDED);
   SwordCoast.FEATURES =
     Object.assign({}, PHB5E.FEATURES, SwordCoast.FEATURES_ADDED);
-  SwordCoast.RACES = Object.assign({}, PHB5E.RACES);
-  // TODO Modify race names?
+  SwordCoast.RACES = Object.assign({}, PHB5E.RACES, SwordCoast.RACES_ADDED);
+  for(var r in SwordCoast.RACES_RENAMED) {
+    for(var i = 0; i < SwordCoast.RACES_RENAMED[r].length; i++) {
+      var newName = SwordCoast.RACES_RENAMED[r][i];
+      SwordCoast.RACES[newName] = PHB5E.RACES[r].replaceAll(r, newName);
+    }
+    delete SwordCoast.RACES[r];
+  }
   SwordCoast.SPELLS = Object.assign({}, PHB5E.SPELLS, SwordCoast.SPELLS_ADDED);
   for(var s in SwordCoast.SPELLS_LEVELS_ADDED) {
     SwordCoast.SPELLS[s] =
@@ -79,10 +86,10 @@ function SwordCoast() {
   SRD5E.magicRules(rules, SRD5E.SCHOOLS, SwordCoast.SPELLS);
   SRD5E.identityRules(
     rules, SRD5E.ALIGNMENTS, SwordCoast.BACKGROUNDS, SwordCoast.CLASSES,
-    SwordCoast.DEITIES, SwordCoast.PATHS, PHB5E.RACES
+    SwordCoast.DEITIES, SwordCoast.PATHS, SwordCoast.RACES
   );
   SRD5E.talentRules
-    (rules, PHB5E.FEATS, SwordCoast.FEATURES, SRD5E.GOODIES,
+    (rules, SwordCoast.FEATS, SwordCoast.FEATURES, SRD5E.GOODIES,
      SRD5E.LANGUAGES, SRD5E.SKILLS, SRD5E.TOOLS);
 
   Quilvyn.addRuleSet(rules);
@@ -267,7 +274,11 @@ SwordCoast.DEITIES = {
   'Valkur':'Alignment=CG Domain=Tempest,War',
   'Waukeen':'Alignment=N Domain=Knowledge,Trickery'
 };
+SwordCoast.FEATS_ADDED = {
+  'Svirfneblin Magic':'Require="race == \'Deep Gnome\'" Type=General'
+};
 SwordCoast.FEATURES_ADDED = {
+
   // Backgrounds
   'All Eyes On You':'Section=feature Note="Curiosity and interest from locals"',
   'Court Functionary':
@@ -442,7 +453,35 @@ SwordCoast.FEATURES_ADDED = {
     'Note="60\' Fly",' +
          '"R30\' Self and %V others fly 30\' for 1 hr 1/long rest",' +
          '"Immunity to lightning and thunder damage"',
-  'Wind Speaker':'Section=skill Note="Speak Primordial and dialects"'
+  'Wind Speaker':'Section=skill Note="Speak Primordial and dialects"',
+
+  // Feats
+  'Svirfneblin Magic':
+    'Section=magic ' +
+    'Note="Self <i>Nondetection</i> at will, <i>Blindness/Deafness</i>, <i>Blur</i>, and <i>Disguise Self</i> 1/long rest"',
+
+  // Races
+  'Deep Gnome Ability Adjustment':
+    'Section=ability Note="+1 Dexterity/+2 Intelligence"',
+  'Duergar Magic':
+    'Section=magic Note="<i>Enlarge/Reduce</i>%1 on self 1/long rest"',
+  'Duergar Resilience':
+    'Section=save Note="Adv vs. illusions, charm, and paralysis"',
+  'Gold Dwarf Ability Adjustment':
+    'Section=ability Note="+2 Constitution/+1 Wisdom"',
+  'Gray Dwarf Ability Adjustment':
+    'Section=ability Note="+2 Constitution/+1 Strength"',
+  'Moon Elf Ability Adjustment':
+    'Section=ability Note="+2 Dexterity/+1 Intelligence"',
+  'Shield Dwarf Ability Adjustment':
+    'Section=ability Note="+2 Constitution/+2 Strength"',
+  'Stone Camouflage':
+    'Section=Skill Note="Adv Stealth (rocky terrain)"',
+  'Strongheart Halfling Ability Adjustment':
+    'Section=ability Note="+2 Dexterity/+1 Constitution"',
+  'Sun Elf Ability Adjustment':
+    'Section=ability Note="+2 Dexterity/+1 Intelligence"'
+
 };
 SwordCoast.PATHS_ADDED = {
   'Arcana Domain':
@@ -529,6 +568,27 @@ SwordCoast.PATHS_ADDED = {
       '"17:Sun Shield"'
 };
 SwordCoast.PATHS = Object.assign({}, SRD5E.PATHS, SwordCoast.PATHS_ADDED);
+SwordCoast.RACES_ADDED = {
+  'Deep Gnome':
+    'Features=' +
+      '"1:Gnome Cunning","1:Deep Gnome Ability Adjustment",1:Slow,1:Small,' +
+      '"1:Stone Camouflage","1:Superior Darkvision" ' +
+    'Languages=Common,Gnomish',
+  'Gray Dwarf':
+    'Features=' +
+      '"1:Weapon Proficiency (Battleaxe/Handaxe/Light Hammer/Warhammer)",' +
+      '"1:Tool Proficiency (Choose 1 from Brewer\'s Supplies, Mason\'s Tools, Smith\'s Tools)",' +
+      '"1:Duergar Magic","1:Duergar Resilience","1:Dwarven Resilience",' +
+      '"1:Gray Dwarf Ability Adjustment",1:Slow,1:Steady,1:Stonecunning,' +
+      '"1:Sunlight Sensitivity","1:Superior Darkvision" ' +
+    'Languages=Common,Dwarvish,Undercommon'
+};
+SwordCoast.RACES_RENAMED = {
+  'Hill Dwarf':['Gold Dwarf'],
+  'High Elf':['Moon Elf', 'Sun Elf'],
+  'Mountain Dwarf':['Shield Dwarf'],
+  'Stout Halfling':['Strongheart Halfling']
+};
 SwordCoast.SPELLS_ADDED = {
   'Booming Blade':
     'School=Evocation ' +
@@ -592,6 +652,8 @@ SwordCoast.choiceRules = function(rules, type, name, attrs) {
   SRD5E.choiceRules(rules, type, name, attrs);
   if(type == 'Path')
     SwordCoast.pathRulesExtra(rules, name);
+  else if(type == 'Race')
+    SwordCoast.raceRulesExtra(rules, name);
 };
 
 /*
@@ -681,6 +743,26 @@ SwordCoast.pathRulesExtra = function(rules, name) {
 
 };
 
+/*
+ * Defines in #rules# the rules associated with path #name# that cannot be
+ * derived directly from the attributes passed to raceRules.
+ */
+SwordCoast.raceRulesExtra = function(rules, name) {
+
+  var raceLevel =
+    name.charAt(0).toLowerCase() + name.substring(1).replaceAll(' ', '') +
+    'Level';
+
+  if(name == 'Gray Dwarf') {
+    rules.defineRule('magicNotes.duergarMagic.1',
+      'features.Duergar Magic', '?', null,
+      raceLevel, '=', 'source>=5 ? ", <i>Invisibility</i>" : ""'
+    );
+
+  }
+
+};
+
 /* Returns an array of plugins upon which this one depends. */
 SwordCoast.getPlugins = function() {
   return [SRD5E];
@@ -689,14 +771,10 @@ SwordCoast.getPlugins = function() {
 /* Returns HTML body content for user notes associated with this rule set. */
 SwordCoast.ruleNotes = function() {
   return '' +
-    '<h2>D&D 5E Quilvyn Plugin Notes</h2>\n' +
-    'D&D 5E Quilvyn Plugin Version ' + SwordCoast.VERSION + '\n' +
+    '<h2>Sword Coast Quilvyn Plugin Notes</h2>\n' +
+    'Sword Coast Quilvyn Plugin Version ' + SwordCoast.VERSION + '\n' +
     '\n' +
-    '<h3>Limitations</h3>\n' +
-    '<ul>\n' +
-    '  <li>\n' +
-    '    Quilvyn allows proficiencies from the PHB Skilled feat to be\n' +
-    '    applied only to skills, rather than skills or tools.\n' +
-    '  </li>\n' +
-    '</ul>\n';
+    '<p>\n' +
+    'There are no known bugs, limitations, or usage notes specific to the Sword Coast plugin\n' +
+    '</p>\n';
 };

@@ -826,7 +826,11 @@ SwordCoast.raceRulesExtra = function(rules, name) {
 
 /* Returns an array of plugins upon which this one depends. */
 SwordCoast.getPlugins = function() {
-  return [SRD5E];
+  var result = [PHB5E, SRD5E];
+  if(window.Xanathar != null &&
+     QuilvynUtils.getKeys(PHB5E.rules.getChoices('selectableFeatures'), /Forge Domain/).length > 0)
+    result.unshift(Xanathar);
+  return result;
 };
 
 /* Returns HTML body content for user notes associated with this rule set. */

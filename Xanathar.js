@@ -40,7 +40,7 @@ function Xanathar(edition, rules) {
     Xanathar.PATHS_ADDED
   );
   Xanathar.magicRules(rules, Xanathar.SPELLS_LEVELS_ADDED);
-  SRD35.talentRules
+  SRD5E.talentRules
     (rules, {}, Xanathar.FEATURES_ADDED, {}, {}, {}, Xanathar.TOOLS_ADDED);
 
 }

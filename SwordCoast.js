@@ -93,6 +93,9 @@ function SwordCoast() {
     (rules, SwordCoast.FEATS, SwordCoast.FEATURES, SRD5E.GOODIES,
      SRD5E.LANGUAGES, SRD5E.SKILLS, SwordCoast.TOOLS);
 
+  if(window.Xanathar != null)
+    Xanathar('Xanathar', rules);
+
   Quilvyn.addRuleSet(rules);
 
 }
@@ -148,6 +151,7 @@ SwordCoast.BACKGROUNDS_ADDED = {
       'Maps,"15 GP" ' +
     'Features=' +
       '"1:Skill Proficiency (Insight/Perception)",' +
+      '"1:Tool Proficiency (Choose 1 from any Game, any Music)",' +
       '"1:Language (Choose 1 from any)",' +
       '"1:All Eyes On You" ' +
     'Languages=any',
@@ -156,6 +160,7 @@ SwordCoast.BACKGROUNDS_ADDED = {
       '"Inheritance","Traveler\'s Clothes",Tool,"15 GP" ' +
     'Features=' +
       '"1:Skill Proficiency (Survival/Choose 1 from Arcana, History, Religion)",' +
+      '"1:Tool Proficiency (Choose 1 from any Game, any Music)",' +
       '"1:Language (Choose 1 from any)",' +
       '"1:Inheritance" ' +
     'Languages=any',
@@ -164,6 +169,7 @@ SwordCoast.BACKGROUNDS_ADDED = {
       '"Traveler\'s Clothes",Signet,"10 GP" ' +
     'Features=' +
       '"1:Skill Proficiency (Persuasion/Choose 1 from Arcana, History, Nature, Religion)",' +
+      '"1:Tool Proficiency (Choose 1 from any Game, any Music)",' +
       '"1:Language (Choose 1 from any)",' +
       '"1:Knightly Regard" ' +
     'Languages=any',

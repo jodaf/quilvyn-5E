@@ -26,21 +26,22 @@ Place, Suite 330, Boston, MA 02111-1307 USA.
  * a subset of XGTE. Similarly, the constant fields of Xanathar (FEATS,
  * BACKGROUNDS, etc.) can be manipulated to modify the choices.
  */
-function Xanathar() {
+function Xanathar(edition, rules) {
 
   if(window.PHB5E == null) {
     alert('The Xanathar module requires use of the PHB5E module');
     return;
   }
 
+  if(rules == null)
+    rules = PHB5E.rules
   Xanathar.identityRules(
-    PHB5E.rules, Xanathar.CLASSES_SELECTABLES_ADDED,
-    Xanathar.DEITIES_DOMAINS_ADDED, Xanathar.PATHS_ADDED
+    rules, Xanathar.CLASSES_SELECTABLES_ADDED, Xanathar.DEITIES_DOMAINS_ADDED,
+    Xanathar.PATHS_ADDED
   );
-  Xanathar.magicRules(PHB5E.rules, Xanathar.SPELLS_LEVELS_ADDED);
-  SRD35.talentRules(
-    PHB5E.rules, {}, Xanathar.FEATURES_ADDED, {}, {}, {}, Xanathar.TOOLS_ADDED
-  );
+  Xanathar.magicRules(rules, Xanathar.SPELLS_LEVELS_ADDED);
+  SRD35.talentRules
+    (rules, {}, Xanathar.FEATURES_ADDED, {}, {}, {}, Xanathar.TOOLS_ADDED);
 
 }
 
@@ -407,7 +408,7 @@ Xanathar.FEATURES_ADDED = {
     'Note="Storm Aura prevents target movement for 1 tn (DC %V Str neg)"',
   'Rakish Audacity':
     'Section=combat ' +
-    'Note="+%1 Initiative/Use Sneak Attack w/out Adv vs. solo foe"',
+    'Note="+%1 Initiative, use Sneak Attack w/out Adv vs. solo foe"',
   'Rapid Strike':'Section=combat Note="Trade Attack Adv for extra attack 1/tn"',
   'Rebuke The Violent':
     'Section=magic ' +
@@ -518,7 +519,7 @@ Xanathar.FEATURES_ADDED = {
   'Sudden Strike':'Section=combat Note="Bonus action for extra attack"',
   'Sun Shield':
     'Section=combat,magic ' +
-    'Note="%V HP radiant damage when hit w/melee attack",' +
+    'Note="%V HP radiant damage to foe when hit w/melee attack",' +
          '"30\' bright light, 30\' dim at will"',
   'Superior Mobility':'Section=ability Note="+10 Speed"',
   'Supernatural Defense':
@@ -1064,7 +1065,7 @@ Xanathar.pathRulesExtra = function(rules, name) {
       'wisdomModifier', '=', 'Math.max(source, 1)'
     );
     rules.defineRule
-      ('magicNotes.potentSpellcasting', 'wisdomModifier', '=', null);
+      ('magicNotes.potentSpellcasting.1', 'wisdomModifier', '=', null);
     rules.defineRule("magicNotes.sentinelAtDeath'sDoor",
       'wisdomModifier', '=', 'Math.max(source, 1)'
     );
@@ -1176,7 +1177,7 @@ Xanathar.pathRulesExtra = function(rules, name) {
   } else if(name == 'Swashbuckler') {
     rules.defineRule('combatNotes.rakishAudacity.1',
       'features.Rakish Audacity', '?', null,
-      'wisdomModifier', '=', null
+      'charismaModifier', '=', null
     );
   } else if(name == 'The Celestial') {
     rules.defineRule('combatNotes.searingVengeance',

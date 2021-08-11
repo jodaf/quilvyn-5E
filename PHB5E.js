@@ -712,7 +712,7 @@ PHB5E.FEATURES_ADDED = {
   'Portent':
     'Section=magic Note="Replace self or other roll %V/long rest"',
   'Potent Spellcasting':
-    'Section=magic Note="+%V Cleric cantrip damage"',
+    'Section=magic Note="+%1 Cleric cantrip damage"',
   'Precision Attack':
     'Section=combat Note="Add Superiority die to attack"',
   'Primal Strike':
@@ -1786,7 +1786,7 @@ PHB5E.pathRulesExtra = function(rules, name) {
   } else if(name == 'Knowledge Domain') {
 
     rules.defineRule
-      ('magicNotes.potentSpellcasting', 'wisdomModifier', '=', null);
+      ('magicNotes.potentSpellcasting.1', 'wisdomModifier', '=', null);
     rules.defineRule
       ('skillChoices.Arcana', 'skillNotes.blessingsOfKnowledge', '=', '1');
     rules.defineRule
@@ -1799,7 +1799,7 @@ PHB5E.pathRulesExtra = function(rules, name) {
   } else if(name == 'Light Domain') {
 
     rules.defineRule
-      ('magicNotes.potentSpellcasting', 'wisdomModifier', '=', null);
+      ('magicNotes.potentSpellcasting.1', 'wisdomModifier', '=', null);
     rules.defineRule('magicNotes.radianceOfTheDawn', pathLevel, '=', null);
     rules.defineRule
       ('magicNotes.wardingFlare', 'wisdomModifier', '=', 'Math.max(source, 1)');

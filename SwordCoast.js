@@ -66,6 +66,7 @@ function SwordCoast() {
   SwordCoast.FEATS = Object.assign({}, PHB5E.FEATS, SwordCoast.FEATS_ADDED);
   SwordCoast.FEATURES =
     Object.assign({}, PHB5E.FEATURES, SwordCoast.FEATURES_ADDED);
+  SwordCoast.PATHS = Object.assign({}, PHB5E.PATHS, SwordCoast.PATHS_ADDED);
   SwordCoast.RACES = Object.assign({}, PHB5E.RACES, SwordCoast.RACES_ADDED);
   for(var r in SwordCoast.RACES_RENAMED) {
     for(var i = 0; i < SwordCoast.RACES_RENAMED[r].length; i++) {
@@ -79,7 +80,7 @@ function SwordCoast() {
     SwordCoast.SPELLS[s] =
       SwordCoast.SPELLS[s].replace('Level=', 'Level=' + SwordCoast.SPELLS_LEVELS_ADDED[s] + ',');
   }
-  SwordCoast.TOOLS = Object.assign({}, PHB5E.TOOLS, SwordCoast.TOOLS_ADDED);
+  SwordCoast.TOOLS = Object.assign({}, SRD5E.TOOLS, SwordCoast.TOOLS_ADDED);
 
   SRD5E.abilityRules(rules);
   SRD5E.combatRules(rules, SRD5E.ARMORS, SRD5E.SHIELDS, SRD5E.WEAPONS);
@@ -90,7 +91,7 @@ function SwordCoast() {
   );
   SRD5E.talentRules
     (rules, SwordCoast.FEATS, SwordCoast.FEATURES, SRD5E.GOODIES,
-     SRD5E.LANGUAGES, SRD5E.SKILLS, SRD5E.TOOLS);
+     SRD5E.LANGUAGES, SRD5E.SKILLS, SwordCoast.TOOLS);
 
   Quilvyn.addRuleSet(rules);
 
@@ -323,28 +324,29 @@ SwordCoast.FEATURES_ADDED = {
     'Section=magic,skill ' +
     'Note="Learn two W0 spells","Skill Proficiency (Arcana)"',
   'Arcane Mastery':
-    'Section=magic Note="Add W6, W7, W8, and W9 as domain spells"',
+    'Section=magic Note="Add 1 each W6, W7, W8, and W9 as domain spells"',
   'Aspect Of The Elk':
     'Section=ability Note="R60\' Self and 10 allies dbl speed"',
   'Aspect Of The Tiger':
     'Section=skill ' +
-    'Note="Skill Proficiency (Choose 2 from Athletics, Acrobatics, Sstealth, Survival)"',
+    'Note="Skill Proficiency (Choose 2 from Athletics, Acrobatics, Stealth, Survival)"',
   'Battlerager Armor':
     'Section=combat ' +
     'Note="Bonus spike attack 1d4+%1 HP piercing damage during rage, 3 HP from grapple"',
-  'Battlerger Charge':'Section=combat Note="Bonus dash during rage"',
+  'Battlerager Charge':'Section=combat Note="Bonus dash during rage"',
   'Bladesong':
     'Section=ability,combat,magic,skill ' +
     'Note=' +
-      '"+10 Speed for 1 min 2/short rest",' +
-      '"+%V AC for 1 min 2/short rest",' +
-      '"+%V Concentration to retain spell for 1 min 2/short rest",' +
-      '"Adv Acrobatics for 1 min 2/short rest"',
+      '"+10 Speed in light or no armor for 1 min 2/short rest",' +
+      '"+%V AC in light or no armor for 1 min 2/short rest",' +
+      '"+%V Concentration in light or no armor to retain spell for 1 min 2/short rest",' +
+      '"Adv Acrobatics in light or no armor for 1 min 2/short rest"',
   'Bulkwark':
-    'Section=combat Note="R60\' Indomitable use provides ally w/reroll"',
+    'Section=combat ' +
+    'Note="R60\' Indomitable use on Int, Wis, or Cha roll provides ally w/reroll"',
   'Champion Challenge':
     'Section=combat ' +
-    'Note="R30\' Channel Divinity forces targets to stay w/in 30\' of self (Wis neg)"',
+    'Note="R30\' Channel Divinity forces targets to stay w/in 30\' of self (DC %V Wis neg)"',
   'Defy Death':
     'Section=combat,magic ' +
     'Note=' +
@@ -355,10 +357,10 @@ SwordCoast.FEATURES_ADDED = {
     'Section=skill Note="Bonus action for Adv next Acrobatics or Athletics"',
   'Elk Totem Spirit':
     'Section=ability ' +
-    'Note="+15\' Speed during rage when not wearing heavy armor"',
+    'Note="+15 Speed during rage when not wearing heavy armor"',
   'Elk Totemic Attunement':
     'Section=combat ' +
-    'Note="Charge knocks down foe for 1d12+%V HP damage (DC %1 Str neg)"',
+    'Note="Charge knocks down foe for 1d12+%V HP bludgeoning damage (DC %1 Str neg)"',
   'Exalted Champion':
     'Section=combat,save ' +
     'Note=' +
@@ -374,7 +376,8 @@ SwordCoast.FEATURES_ADDED = {
     'Note="R10\' %V HP lightning/thunder damage when casting lightning/thunder spell",' +
          '"Resistance to lightning and thunder damage"',
   'Hour Of Reaping':
-    'Section=combat Note="R30\' All who can see self frightened (Wis neg)"',
+    'Section=combat ' +
+    'Note="R30\' All who can see self frightened (DC %V Wis neg)"',
   'Indestructible Life':
     'Section=combat ' +
     'Note="Bonus action to regain 1d8+%V HP, reattach severed parts 1/short rest"',
@@ -391,6 +394,9 @@ SwordCoast.FEATURES_ADDED = {
   'Mastery Of Death':
     'Section=combat ' +
     'Note="Spend 1 Ki Point to remain at 1 HP when brought to 0 HP"',
+  'Misdirection':
+    'Section=combat ' +
+    'Note="Redirect attack on self to creature providing self cover"',
   'Panache':
     'Section=skill ' +
     'Note="Persuasion vs. Insight gives hostile target Disadv attacks on others, charms non-hostile for 1 min"',
@@ -399,12 +405,16 @@ SwordCoast.FEATURES_ADDED = {
     'Note="R30\' Ranged touch +%V 1d%1+%2 HP radiant damage 1/tn, spend 1 Ki for 2/tn"',
   'Rakish Audacity':
     'Section=combat ' +
-    'Note="+%1 Initiative/Use Sneak Attack w/out Adv vs. solo foe"',
+    'Note="+%1 Initiative, use Sneak Attack w/out Adv vs. solo foe"',
   'Rallying Cry':
     'Section=combat Note="R60\' Second Wind restores %V HP to 3 allies"',
   'Reckless Abandon':
     'Section=combat Note="%V temporary HP from Reckless Attack during rage"',
-  'Royal Envoy':'Section=feature Note="Dbl Prof on Persuasion"',
+  'Royal Envoy':
+    'Section=feature,skill ' +
+    'Note=' +
+      '"Dbl Prof on Persuasion",' +
+      '"Skill Proficiency (Choose 1 from Animal Handling, Insight, Intimidation, Persuasion)"',
   'Searing Arc Strike':
     'Section=magic ' +
     'Note="Spend 2-%V Ki to cast <i>Burning Hands</i> after attack"',
@@ -413,8 +423,7 @@ SwordCoast.FEATURES_ADDED = {
     'Note="R150\' 20\' burst 2d6 HP radiant damage (DC %V Con neg), spend 1-3 Ki for +2d6 HP ea"',
   'Song Of Defense':
     'Section=magic Note="Expend spell slot to reduce damage by 5x slot level"',
-  'Song Of Victory':
-    'Section=combat Note="+%V HP damage for 1 min 2/short rest"',
+  'Song Of Victory':'Section=combat Note="+%V damage for 1 min 2/short rest"',
   'Soul Of Deceit':
     'Section=save ' +
     'Note="Immunity to telepathy, Deception vs. Insight to present false thoughts, immunity to truth compulsion"',
@@ -422,7 +431,7 @@ SwordCoast.FEATURES_ADDED = {
     'Section=magic Note="Healing spell ends spell of equal or lesser level"',
   'Spiked Retribution':
     'Section=combat ' +
-    'Note="Successful attacker takes 3 HP piercing damage during rage"',
+    'Note="Successful melee attacker takes 3 HP piercing damage during rage"',
   'Storm Guide':
     'Section=magic ' +
     'Note="Stop rain in 20\' radius or direct winds in 100\' radius for 1 tn"',
@@ -431,7 +440,7 @@ SwordCoast.FEATURES_ADDED = {
     'Note="Successful attacker takes %V HP lightning damage and pushed 20\' (DC %1 Str neg push)"',
   'Sun Shield':
     'Section=combat,magic ' +
-    'Note="%V HP radiant damage when hit w/melee attack",' +
+    'Note="%V HP radiant damage to foe when hit w/melee attack",' +
          '"30\' bright light, 30\' dim at will"',
   'Tempestuous Magic':
     'Section=magic Note="Fly 10\' before or after casting spell level 1+"',
@@ -440,10 +449,10 @@ SwordCoast.FEATURES_ADDED = {
   'Tiger Totemic Attunement':
     'Section=combat Note="Bonus melee attack after 20\' charge"',
   'Touch Of Death':
-    'Section=combat Note="R5\' Bring foe to 0 HP give self %V temporary HP"',
+    'Section=combat Note="R5\' Taking foe to 0 HP gives self %V temporary HP"',
   'Touch Of The Long Death':
     'Section=combat ' +
-    'Note="R5\' Spend 1-10 Ki Points to touch for 2d10 HP necrotic damage per (Con half)"',
+    'Note="R5\' Spend 1-10 Ki Points to touch for 2d10 HP necrotic damage per (DC %V Con half)"',
   'Training In War And Song':
     'Section=combat,skill ' +
     'Note=' +
@@ -451,7 +460,7 @@ SwordCoast.FEATURES_ADDED = {
       '"Skill Proficiency (Performance)"',
   'Turn The Tide':
     'Section=magic ' +
-    'Note="R30\' Channel Divinity restores 1d6+%V HP to creatures w/less than half HP"',
+    'Note="R30\' Channel Divinity restores 1d6+%V HP to targets w/fewer than half HP"',
   'Undying Nature':
     'Section=feature ' +
     'Note="Require no breath, food, water, or sleep, age at 1/10 rate"',
@@ -498,11 +507,11 @@ SwordCoast.PATHS_ADDED = {
       '"8:Potent Spellcasting","17:Arcane Mastery" ' +
     'SpellAbility=wisdom ' +
     'SpellSlots=' +
-      'Arcane1:1=2,' +
-      'Arcane2:3=2,' +
-      'Arcane3:5=2,' +
-      'Arcane4:7=2,' +
-      'Arcane5:9=2',
+      'Arcana1:1=2,' +
+      'Arcana2:3=2,' +
+      'Arcana3:5=2,' +
+      'Arcana4:7=2,' +
+      'Arcana5:9=2',
   'Bladesinging':
     'Group=Wizard Level=levels.Wizard ' +
     'Features=' +
@@ -529,7 +538,7 @@ SwordCoast.PATHS_ADDED = {
   'Path Of The Battlerager':
     'Group=Barbarian Level=levels.Barbarian ' +
     'Features=' +
-      '"3:Battlerager Armor","6:Reckless Abandon","10:Battlerger Charge",' +
+      '"3:Battlerager Armor","6:Reckless Abandon","10:Battlerager Charge",' +
       '"14:Spiked Retribution"',
   'Path Of The Totem Warrior (Elk)':
     'Group=Barbarian Level=levels.Barbarian ' +
@@ -544,7 +553,6 @@ SwordCoast.PATHS_ADDED = {
   'Purple Dragon Knight':
     'Group=Fighter Level=levels.Fighter ' +
     'Features=' +
-      '"7:Skill Proficiency (Choose 1 from Persuasion, Animal Handling, Insight, Intimidation, Performance)",' +
       '"3:Rallying Cry","7:Royal Envoy","10:Inspiring Surge","15:Bulkwark"',
   'Storm Sorcery':
     'Group=Sorcerer Level=levels.Sorcerer ' +
@@ -569,10 +577,9 @@ SwordCoast.PATHS_ADDED = {
   'Way Of The Sun Soul':
     'Group=Monk Level=levels.Monk ' +
     'Features=' +
-      '"3:Radiant Sun Bolt","6:Searing Arc Strike","11:Seearing Sunburst",' +
+      '"3:Radiant Sun Bolt","6:Searing Arc Strike","11:Searing Sunburst",' +
       '"17:Sun Shield"'
 };
-SwordCoast.PATHS = Object.assign({}, SRD5E.PATHS, SwordCoast.PATHS_ADDED);
 SwordCoast.RACES_ADDED = {
   'Deep Gnome':
     'Features=' +
@@ -598,19 +605,19 @@ SwordCoast.SPELLS_ADDED = {
   'Booming Blade':
     'School=Evocation ' +
     'Level=K0,S0,W0 ' +
-    'Description="Struck foe +%Vd8 HP damage and takes %1d8 HP thunder damage on move for 1 tn"',
+    'Description="Struck foe +${Math.floor((lvl+1)/6)}d8 HP damage and takes ${Math.floor((lvl+1)/6)+1}d8 HP thunder damage on move for 1 tn"',
   'Green-Flame Blade':
     'School=Evocation ' +
     'Level=K0,S0,W0 ' +
-    'Description="Struck foe +%Vd8 HP damage, R5\' foe takes %1d8+%2 HP fire damage"',
+    'Description="Struck foe +%Vd8 HP damage, R5\' foe takes ${Math.floor((lvl+1)/6)}d8+%{charismaModifier>?intelligenceModifier} HP fire damage"',
   'Lightning Lure':
     'School=Evocation ' +
     'Level=K0,S0,W0 ' +
-    'Description="R15\' Target pulled 10\', takes %Vd8 HP lightning damage (Str neg)"',
-  'Sword BUrst':
+    'Description="R15\' Target pulled 10\', takes ${Math.floor((lvl+5)/6)}d8 HP lightning damage (Str neg)"',
+  'Sword Burst':
     'School=Conjuration ' +
     'Level=K0,S0,W0 ' +
-    'Description="R5\' Spectral blades %Vd6 HP force damage (Dex neg)"'
+    'Description="R5\' Spectral blades ${Math.floor((lvl+5)/6)}d6 HP force damage (Dex neg)"'
 };
 SwordCoast.SPELLS_LEVELS_ADDED = {
   'Arcane Eye':'Arcana4',
@@ -645,7 +652,7 @@ SwordCoast.SPELLS_LEVELS_ADDED = {
   'Zone Of Truth':'Crown2'
 };
 SwordCoast.TOOLS_ADDED = {
-  'Bird Pipes':'Type=Music',
+  'Birdpipes':'Type=Music',
   'Glaur':'Type=Music',
   'Hand Drum':'Type=Music',
   'Longhorn':'Type=Music',
@@ -664,7 +671,7 @@ SwordCoast.TOOLS_ADDED = {
  * related to selecting that choice.
  */
 SwordCoast.choiceRules = function(rules, type, name, attrs) {
-  SRD5E.choiceRules(rules, type, name, attrs);
+  PHB5E.choiceRules(rules, type, name, attrs);
   if(type == 'Path')
     SwordCoast.pathRulesExtra(rules, name);
   else if(type == 'Race')
@@ -682,7 +689,7 @@ SwordCoast.pathRulesExtra = function(rules, name) {
     'Level';
 
   if(name == 'Arcana Domain') {
-    rules.defineRule('magicNotes.arcaneAbjuration(Banishment)',
+    rules.defineRule('combatNotes.arcaneAbjuration(Banishment)',
       pathLevel, '=', 'source<8 ? "1/2" : Math.floor((source - 5) / 3)'
     );
   } else if(name == 'Bladesinging') {
@@ -700,6 +707,9 @@ SwordCoast.pathRulesExtra = function(rules, name) {
     // Copied from Xanathar
     rules.defineRule('languageCount', 'features.Master Of Intrigue', '+', '2');
   } else if(name == 'Oath Of The Crown') {
+    rules.defineRule('combatNotes.championChallenge',
+      'spellDifficultyClass.Crown', '=', null
+    );
     rules.defineRule('magicNotes.turnTheTide',
       'charismaModifier', '=', 'Math.max(source, 1)'
     );
@@ -710,6 +720,14 @@ SwordCoast.pathRulesExtra = function(rules, name) {
     );
     rules.defineRule('combatNotes.recklessAbandon',
       'constitutionModifier', '=', 'Math.max(source, 1)'
+    );
+  } else if(name == 'Path Of The Totem Warrior (Elk)') {
+    rules.defineRule
+      ('combatNotes.elkTotemicAttunement', 'strengthModifier', '=', null);
+    rules.defineRule('combatNotes.elkTotemicAttunement.1',
+      'features.Elk Totemic Attunement', '?', null,
+      'strengthModifier', '=', '8 + source',
+      'proficiencyBonus', '+', null
     );
   } else if(name == 'Purple Dragon Knight') {
     rules.defineRule
@@ -737,7 +755,7 @@ SwordCoast.pathRulesExtra = function(rules, name) {
     // Copied from Xanathar
     rules.defineRule('combatNotes.rakishAudacity.1',
       'features.Rakish Audacity', '?', null,
-      'wisdomModifier', '=', null
+      'charismaModifier', '=', null
     );
   } else if(name == 'The Undying') {
     rules.defineRule
@@ -745,16 +763,18 @@ SwordCoast.pathRulesExtra = function(rules, name) {
     rules.defineRule('combatNotes.defyDeath',
       'constitutionModifier', '=', 'Math.max(source, 1)'
     );
-    rules.defineRule('combatNotes.indestructableLife', pathLevel, '=', null);
+    rules.defineRule('combatNotes.indestructibleLife', pathLevel, '=', null);
     rules.defineRule('magicNotes.defyDeath',
       'constitutionModifier', '=', 'Math.max(source, 1)'
     );
   } else if(name == 'Way Of The Long Death') {
+    rules.defineRule('combatNotes.hourOfReaping', 'kiSaveDC', '=', null);
     rules.defineRule('combatNotes.touchOfDeath',
       pathLevel, '=', null,
       'wisdomModifier', '+', null,
       '', '^', '1'
     );
+    rules.defineRule('combatNotes.touchOfTheLongDeath', 'kiSaveDC', '=', null);
   } else if(name == 'Way Of The Sun Soul') {
     // Copied from Xanathar
     rules.defineRule('combatNotes.radiantSunBolt',

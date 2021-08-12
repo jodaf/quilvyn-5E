@@ -28,7 +28,7 @@ Place, Suite 330, Boston, MA 02111-1307 USA.
  */
 function SRD5E() {
 
-  var rules = new QuilvynRules('D&D 5E (SRD only)', SRD5E.VERSION);
+  var rules = new QuilvynRules('SRD 5E', SRD5E.VERSION);
   SRD5E.rules = rules;
 
   rules.defineChoice('choices', SRD5E.CHOICES);
@@ -5599,8 +5599,8 @@ SRD5E.ruleNotes = function() {
     '    the latter are presented as feats named Ability Boost, Ability\n' +
     '    Boost2, Ability Boost3, etc.\n' +
     '  </li><li>\n' +
-    '    Quilvyn presents sub-race choices (e.g., Lightfoot vs. Stout\n' +
-    '    Halfling) as separate races in the editor Race menu.\n' +
+    '    Quilvyn presents sub-race choices (e.g., Lightfoot Halfling)\n' +
+    '    as separate races in the editor Race menu.\n' +
     '  </li><li>\n' +
     '    Quilvyn includes spells granted by individual warlock patrons in\n' +
     '    the warlock spell list.\n' +

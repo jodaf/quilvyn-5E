@@ -39,6 +39,8 @@ function Volo(edition, rules) {
 
 }
 
+Volo.VERSION = '2.2.1.0';
+
 Volo.FEATURES = {
   'Amphibious':'Section=feature Note="Breath air or water"',
   'Bite':
@@ -210,4 +212,15 @@ Volo.raceRulesExtra = function(rules, name) {
       'tritonLevel', '=', 'source<3 ? "" : source<5 ? " w/<i>Gust Of Wind</i>" : " w/<i>Gust Of Wind</i> and <i>Wall Of Water</i>"'
     );
   }
+};
+
+/* Returns HTML body content for user notes associated with this rule set. */
+Volo.ruleNotes = function() {
+  return '' +
+    '<h2>Volo Quilvyn Plugin Notes</h2>\n' +
+    'Volo Quilvyn Plugin Version ' + Volo.VERSION + '\n' +
+    '\n' +
+    '<p>\n' +
+    'There are no known bugs, limitations, or usage notes specific to the Volo plugin\n' +
+    '</p>\n';
 };

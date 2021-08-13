@@ -95,6 +95,8 @@ function SwordCoast() {
 
   if(window.Xanathar != null)
     Xanathar('Xanathar', rules);
+  if(window.Volo != null)
+    Volo('Volo', rules);
 
   Quilvyn.addRuleSet(rules);
 

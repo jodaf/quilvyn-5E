@@ -1275,7 +1275,7 @@ Xanathar.pathRulesExtra = function(rules, name) {
 Xanathar.ruleNotes = function() {
   return '' +
     '<h2>Xanathar Quilvyn Plugin Notes</h2>\n' +
-    'Xanathar Quilvyn Plugin Version ' + SwordCoast.VERSION + '\n' +
+    'Xanathar Quilvyn Plugin Version ' + Xanathar.VERSION + '\n' +
     '\n' +
     '<p>\n' +
     'There are no known bugs, limitations, or usage notes specific to the Xanathar plugin\n' +

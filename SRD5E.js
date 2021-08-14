@@ -3444,7 +3444,7 @@ SRD5E.classRules = function(
   }
 
   rules.defineRule('featCount.General',
-    'levels.' + name, '+=', 'source >= 19 ? 5 : Math.floor(source / 4)'
+    'levels.' + name, '=', 'source>=19 ? 5 : source>=4 ? Math.floor(source / 4) : null'
   );
   rules.defineRule('proficiencyBonus',
     'levels.' + name, '=', 'Math.floor((source + 7) / 4)'

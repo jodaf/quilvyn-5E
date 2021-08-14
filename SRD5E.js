@@ -706,7 +706,7 @@ SRD5E.FEATURES = {
     'Section=combat Note="Re-roll damage of 1 or 2 with two-handed weapons"',
   'Fighting Style (Protection)':
     'Section=combat ' +
-    'Note="Use shield to impose attack Disadv on adjacent foe atacking ally"',
+    'Note="Use shield to impose attack Disadv on adjacent foe attacking ally"',
   'Fighting Style (Two-Weapon Fighting)':
     'Section=combat Note="Add ability modifier to second attack damage"',
   'Flexible Casting':

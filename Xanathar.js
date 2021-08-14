@@ -624,7 +624,7 @@ Xanathar.PATHS_ADDED = {
     'Group=Bard Level=levels.Bard ' +
     'Features=' +
       '"3:Armor Proficiency (Medium)",' +
-      '"3:Weapon Proficiency (Scimtar)",' +
+      '"3:Weapon Proficiency (Scimitar)",' +
       '"3:Blade Flourish","3:Defensive Flourish","3:Mobile Flourish",' +
       '"3:Slashing Flourish","6:Extra Attack","14:Master\'s Flourish" ' +
     'Selectables=' +

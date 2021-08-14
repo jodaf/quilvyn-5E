@@ -296,7 +296,7 @@ SwordCoast.FEATURES_ADDED = {
   'All Eyes On You':'Section=feature Note="Curiosity and interest from locals"',
   'Court Functionary':
     'Section=feature ' +
-    'Note="Knowledge of government beauracracy, access to records"',
+    'Note="Knowledge of government bureaucracy, access to records"',
   'Ear To The Ground':
     'Section=feature Note="Information contacts in every city"',
   'Inheritance':'Section=feature Note="Special item or knowledge from family"',
@@ -305,7 +305,7 @@ SwordCoast.FEATURES_ADDED = {
     'Section=feature Note="Assistance from fellows and supporters"',
   'Library Access':
     'Section=feature ' +
-    'Note="Knowledge of cloister beauracracy, broad access to libraries"',
+    'Note="Knowledge of cloister bureaucracy, broad access to libraries"',
   'Mercenary Life':
     'Section=feature Note="Knowledge of mercenary companies and customs"',
   'Respect Of The Stout Folk':
@@ -353,7 +353,7 @@ SwordCoast.FEATURES_ADDED = {
       '"+%V AC in light or no armor for 1 min 2/short rest",' +
       '"+%V Concentration in light or no armor to retain spell for 1 min 2/short rest",' +
       '"Adv Acrobatics in light or no armor for 1 min 2/short rest"',
-  'Bulkwark':
+  'Bulwark':
     'Section=combat ' +
     'Note="R60\' Indomitable use on Int, Wis, or Cha roll provides ally w/reroll"',
   'Champion Challenge':
@@ -565,7 +565,7 @@ SwordCoast.PATHS_ADDED = {
   'Purple Dragon Knight':
     'Group=Fighter Level=levels.Fighter ' +
     'Features=' +
-      '"3:Rallying Cry","7:Royal Envoy","10:Inspiring Surge","15:Bulkwark"',
+      '"3:Rallying Cry","7:Royal Envoy","10:Inspiring Surge","15:Bulwark"',
   'Storm Sorcery':
     'Group=Sorcerer Level=levels.Sorcerer ' +
     'Features=' +

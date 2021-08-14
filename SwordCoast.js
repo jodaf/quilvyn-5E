@@ -95,8 +95,12 @@ function SwordCoast() {
 
   if(window.Xanathar != null)
     Xanathar('Xanathar', rules);
-  if(window.Volo != null)
-    Volo('Volo', rules);
+  if(window.Volo != null) {
+    if(Volo.CHARACTER_RACES_IN_PLAY)
+      Volo('Character', rules);
+    if(Volo.MONSTROUS_RACES_IN_PLAY)
+      Volo('Monstrous', rules);
+  }
 
   Quilvyn.addRuleSet(rules);
 

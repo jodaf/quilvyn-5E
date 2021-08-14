@@ -32,16 +32,22 @@ function Volo(edition, rules) {
     return;
   }
 
+  var monstrous = (edition + '').match(/monster|monstrous/i);
+  var features = monstrous ? Volo.MONSTROUS_FEATURES : Volo.CHARACTER_FEATURES;
+  var races = monstrous ? Volo.MONSTROUS_RACES : Volo.CHARACTER_RACES;
   if(rules == null)
     rules = PHB5E.rules
-  Volo.identityRules(rules, Volo.RACES);
-  Volo.talentRules(rules, Volo.FEATURES);
-
+  Volo.identityRules(rules, races);
+  Volo.talentRules(rules, features);
+  if(monstrous)
+    Volo.MONSTROUS_RACES_IN_PLAY = true;
+  else
+    Volo.CHARACTER_RACES_IN_PLAY = true;
 }
 
 Volo.VERSION = '2.2.1.0';
 
-Volo.FEATURES = {
+Volo.CHARACTER_FEATURES = {
   'Amphibious':'Section=feature Note="Breath air or water"',
   'Bite':
     'Section=combat ' +
@@ -52,8 +58,12 @@ Volo.FEATURES = {
       '"20\' climb",' +
       '"Claw attack for 1d4+%{strengthModifier} HP slashing damage"',
   "Cat's Talent":'Section=skill Note="Skill Proficiency (Perception/Stealth)"',
+  'Celestial Resistance':
+    'Section=save Note="Resistance to necrotic and radiant damage"',
   'Control Air And Water':'Section=magic Note="<i>Fog Cloud</i>%1 1/long rest"',
-  'Cunning Artisan':'Section=skill Note="Craft shield or weapon from carcass"',
+  'Cunning Artisan':
+    'Section=skill ' +
+    'Note="Craft shield or weapon from carcass during short rest"',
   'Emissary Of The Sea':
     'Section=skill Note="Speak to water-breathing creatures"',
   'Expert Forgery':'Section=skill Note="Adv forgery and duplication checks"',
@@ -91,18 +101,18 @@ Volo.FEATURES = {
   'Natural Athlete':'Section=skill Note="Skill Proficiency (Athletics)"',
   'Necrotic Shroud':
     'Section=combat ' +
-    'Note="R10\' Dark eyes and bony wings frighten (DC %1 neg), +%V HP necrotic 1/turn for 1 min"',
+    'Note="R10\' Dark eyes and bony wings frighten (DC %1 neg), +%V HP necrotic 1/tn for 1 min 1/long rest"',
   'Natural Armor':'Section=combat Note="Minimum AC %V"',
   'Powerful Build':'Section=ability Note="x2 Carry/x2 Lift"',
   'Protector Aasimar Ability Adjustment':
     'Section=ability Note="+2 Charisma/+1 Wisdom"',
   'Radiant Consumption':
     'Section=combat ' +
-    'Note="R10\' Light %1 damage, +%V HP radiant 1/turn for 1 min"',
+    'Note="R10\' Light causes %1 HP radiant damage, +%V HP radiant 1/tn for 1 min"',
   'Radiant Soul':
     'Section=ability,combat ' +
     'Note="30\' Fly for 1 min 1/long rest",' +
-         '"+%V radiant damage 1/turn for 1 min 1/long rest"',
+         '"+%V radiant damage 1/tn for 1 min 1/long rest"',
   'Scourge Aasimar Ability Adjustment':
     'Section=ability Note="+2 Charisma/+1 Constitution"',
   'Speech Of Beast And Leaf':
@@ -115,56 +125,120 @@ Volo.FEATURES = {
   'Triton Ability Adjustment':
     'Section=ability Note="+1 Charisma/+1 Constitution/+1 Strength"'
 };
-Volo.RACES = {
+Volo.CHARACTER_RACES = {
   'Fallen Aasimar':
     'Features=' +
-      '"1:Celestial Resistance","1:Darkvision","1:Healing Hands",' +
-      '"1:Fallen Aasimar Ability Adjustment","1:Light Bearer",' +
+      '"Celestial Resistance",Darkvision,"Healing Hands",' +
+      '"Fallen Aasimar Ability Adjustment","Light Bearer",' +
       '"3:Necrotic Shroud" ' +
     'Languages=Celestial,Common',
   'Firlbog':
     'Features=' +
-      '"1:Firlbog Ability Adjustment","1:Firlbog Magic","1:Hidden Step",' +
-      '"1:Powerful Build","Speech Of Beast And Leaf" ' +
+      '"Firlbog Ability Adjustment","Firlbog Magic","Hidden Step",' +
+      '"Powerful Build","Speech Of Beast And Leaf" ' +
     'Languages=Common,Elvish,Giant',
   'Lizardfolk':
     'Features=' +
-      '"1:Bite","1:Cunning Artisan","1:Lizardfolk Ability Adjustment",' +
-      '"1:Hold Breath","1:Hungry Jaws","1:Hunter\'s Lore","1:Natural Armor",' +
-      '"1:Swimmer" ' +
+      'Bite,"Cunning Artisan","Lizardfolk Ability Adjustment","Hold Breath",' +
+      '"Hungry Jaws","Hunter\'s Lore","Natural Armor",Swimmer ' +
     'Languages=Common,Draconic',
   'Goliath':
     'Features=' +
-      '"1:Goliath Ability Adjustment","1:Mountain Born","1:Natural Athlete",' +
-      '"1:Powerful Build","1:Stone\'s Endurance" ' +
+      '"Goliath Ability Adjustment","Mountain Born","Natural Athlete",' +
+      '"Powerful Build","Stone\'s Endurance" ' +
     'Languages=Common,Giant',
   'Kenku':
     'Features=' +
-      '"1:Expert Forgery","1:Kenku Ability Adjustment","1:Kenku Training",' +
-      '"1:Mimicry" ' +
+      '"Expert Forgery","Kenku Ability Adjustment","Kenku Training",Mimicry ' +
     'Languages=Auran,Common',
   'Protector Aasimar':
     'Features=' +
-      '"1:Darkvision","1:Celestial Resistance","1:Healing Hands",' +
-      '"1:Light Bearer","1:Protector Aasimar Ability Adjustment",' +
-      '"3:Radiant Soul" ' +
+      'Darkvision,"Celestial Resistance","Healing Hands","Light Bearer",' +
+      '"Protector Aasimar Ability Adjustment","3:Radiant Soul" ' +
     'Languages=Celestial,Common',
   'Scourge Aasimar':
     'Features=' +
-      '"1:Darkvision","1:Celestial Resistance","1:Healing Hands",' +
-      '"1:Light Bearer","1:Scourge Aasimar Ability Adjustment",' +
+      'Darkvision,"Celestial Resistance","Healing Hands","Light Bearer",' +
+      '"Scourge Aasimar Ability Adjustment",' +
       '"3:Radiant Consumption" ' +
     'Languages=Celestial,Common',
   'Tabaxi':
     'Features=' +
-      '"1:Cat\'s Claws","1:Cat\'s Talent","1:Darkvision","1:Feline Agility",' +
-      '"1:Tabaxi Ability Adjustment" ' +
+      '"Cat\'s Claws","Cat\'s Talent",Darkvision,"Feline Agility",' +
+      '"Tabaxi Ability Adjustment" ' +
     'Languages=Common,any',
   'Triton':
     'Features=' +
-      '"1:Amphibious","1:Control Air And Water","1:Emissary Of The Sea",' +
-      '"1:Guardians Of The Depths","1:Swimmer","1:Triton Ability Adjustment" ' +
+      'Amphibious,"Control Air And Water","Emissary Of The Sea",' +
+      '"Guardians Of The Depths",Swimmer,"Triton Ability Adjustment" ' +
     'Languages=Common,Primordial'
+};
+Volo.MONSTROUS_FEATURES = {
+  'Aggressive':'Section=combat Note="Bonus action to move toward foe"',
+  'Bugbear Ability Adjustment':
+    'Section=ability Note="+2 Strength/+1 Dexterity"',
+  'Fury Of The Small':
+    'Section=combat Note="+%{level} HP damage to larger creature 1/short rest"',
+  'Goblin Ability Adjustment':
+    'Section=ability Note="+2 Dexterity/+1 Constitution"',
+  'Grovel, Cower, and Beg':
+    'Section=feature ' +
+    'Note="R10\' Distract foes (allies Adv attack) for 1 tn 1/short rest"',
+  'Hobgoblin Ability Adjustment':
+    'Section=ability Note="+2 Constitution/+1 Intelligence"',
+  'Kobold Ability Adjustment':
+    'Section=ability Note="+2 Dexterity/-2 Strength"',
+  'Long-Limbed':'Section=combat Note="+5\' melee reach"',
+  'Nimble Escape':'Section=combat Note="Bonus action to Disengage or Hide"',
+  'Martial Training':
+    'Section=combat ' +
+    'Note="Armor Proficiency (Light)/Weapon Proficiency (Choose 2 from any)"',
+  'Magic Resistance':
+    'Section=save Note="Adv vs. spells and other magic effects"',
+  'Orc Ability Adjustment':
+    'Section=ability Note="+2 Strength/+1 Constitution/-2 Intelligence"',
+  'Pack Tactics':'Section=combat Note="Adv attack when ally w/in 5\' of foe"',
+  'Poison Immunity':'Section=save Note="Cannot be poisoned"',
+  'Powerful Build':'Section=ability Note="x2 Carry/x2 Lift"',
+  'Saving Face':
+    'Section=feature Note="+1/ally w/in 30\' on failed roll 1/short rest"',
+  'Sneaky':'Section=skill Note="Skill Proficiency (Stealth)"',
+  'Surprise Attack':
+    'Section=combat Note="+2d6 HP damage on first surprise hit"',
+  'Yuan-Ti Ability Adjustment':
+    'Section=ability Note="+2 Charisma/+1 Intelligence"'
+};
+Volo.MONSTROUS_RACES = {
+  'Bugbear':
+    'Features=' +
+      '"Bugbear Ability Adjustment",Darkvision,Long-Limbed,"Powerful Build",' +
+      'Sneaky,"Surprise Attack" ' +
+    'Languages=Common,Goblin',
+  'Goblin':
+    'Features=' +
+      'Darkvision,"Fury Of The Small","Goblin Ability Adjustment",' +
+      '"Nimble Escape",Small ' +
+    'Languages=Common,Goblin',
+  'Hobgoblin':
+    'Features=' +
+      'Darkvision,"Hobgoblin Ability Adjustment","Martial Training",' +
+      '"Saving Face" ' +
+    'Languages=Common,Goblin',
+  'Kobold':
+    'Features=' +
+      'Darkvision,"Grovel, Cower, and Beg","Kobold Ability Adjustment",' +
+      '"Pack Tactics",Small,"Sunlight Sensitivity" ' +
+    'Languages=Common,Draconic',
+  'Orc':
+    'Features=' +
+      'Aggressive,Darkvision,Menacing,"Orc Ability Adjustment",' +
+      '"Powerful Build" ' +
+    'Languages=Common,Orc',
+  'Yuan-Ti':
+    'Features=' +
+      'Darkvision,"Magic Resistance","Poison Immunity",' +
+      '"Yuan-Ti Ability Adjustment" ' +
+    'Languages=Common,Abyssal,Draconic',
 };
 
 /* Defines rules related to basic character identity. */
@@ -190,7 +264,7 @@ Volo.raceRulesExtra = function(rules, name) {
   }
   if(name == 'Fallen Aasimar') {
     rules.defineRule('combatNotes.necroticShroud', 'level', '=', null);
-    rules.defineRule('combatNotes.necroticShround.1',
+    rules.defineRule('combatNotes.necroticShroud.1',
       'charismaModifier', '=', '8 + source',
       'proficiencyBonus', '+', null
     );

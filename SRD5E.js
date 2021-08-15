@@ -3893,10 +3893,14 @@ SRD5E.deityRules = function(rules, name, alignment, domains, sphere) {
     console.log('Empty deity name');
     return;
   }
-  if(name != 'None' && !(alignment+'').match(/^(N|[LNC]G|[LNC]E|[LC]N)$/i)) {
+  if(name != 'None' &&
+     !((alignment + '') in SRD5E.ALIGNMENTS) &&
+     !(alignment+'').match(/^(N|[LNC]G|[LNC]E|[LC]N)$/i)) {
     console.log('Bad alignment "' + alignment + '" for deity ' + name);
     return;
   }
+  if(alignment && alignment.length > 2)
+    alignment = alignment.split(' ').map(x => x.charAt(0)).join('');
   if(!Array.isArray(domains)) {
     console.log('Bad domains list "' + domains + '" for deity ' + name);
     return;

@@ -1890,6 +1890,9 @@ PHB5E.raceRulesExtra = function(rules, name) {
 /* Returns an array of plugins upon which this one depends. */
 PHB5E.getPlugins = function() {
   var result = [SRD5E];
+  if(window.Volo != null &&
+     (Volo.CHARACTER_RACES_IN_PLAY || Volo.MONSTROUS_RACES_IN_PLAY))
+    result.unshift(Volo);
   if(window.Xanathar != null &&
      QuilvynUtils.getKeys(PHB5E.rules.getChoices('selectableFeatures'), /Forge Domain/).length > 0)
     result.unshift(Xanathar);
@@ -1901,7 +1904,17 @@ PHB5E.ruleNotes = function() {
   return '' +
     '<h2>D&D 5E Quilvyn Plugin Notes</h2>\n' +
     'D&D 5E Quilvyn Plugin Version ' + PHB5E.VERSION + '\n' +
-    '\n' +
+    '<p>\n' +
+    'Quilvyn\'s D&D 5E rule set is unofficial Fan Content permitted under ' +
+    'Wizards of the Coast\'s ' +
+    '<a href="https://company.wizards.com/en/legal/fancontentpolicy">Fan Content Policy</a>.\n' +
+    '</p><p>\n' +
+    'Quilvyn is not approved or endorsed by Wizards of the Coast. Portions ' +
+    'of the materials used are property of Wizards of the Coast. ©Wizards of ' +
+    'the Coast LLC.\n' +
+    '</p><p>\n' +
+    'Dungeons & Dragons Player\'s Handbook © 2014 Wizards of the Coast LLC.\n' +
+    '</p>\n' +
     '<h3>Limitations</h3>\n' +
     '<ul>\n' +
     '  <li>\n' +

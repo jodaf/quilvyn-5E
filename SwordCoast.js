@@ -833,6 +833,9 @@ SwordCoast.raceRulesExtra = function(rules, name) {
 /* Returns an array of plugins upon which this one depends. */
 SwordCoast.getPlugins = function() {
   var result = [PHB5E, SRD5E];
+  if(window.Volo != null &&
+     (Volo.CHARACTER_RACES_IN_PLAY || Volo.MONSTROUS_RACES_IN_PLAY))
+    result.unshift(Volo);
   if(window.Xanathar != null &&
      QuilvynUtils.getKeys(PHB5E.rules.getChoices('selectableFeatures'), /Forge Domain/).length > 0)
     result.unshift(Xanathar);
@@ -844,7 +847,18 @@ SwordCoast.ruleNotes = function() {
   return '' +
     '<h2>Sword Coast Quilvyn Plugin Notes</h2>\n' +
     'Sword Coast Quilvyn Plugin Version ' + SwordCoast.VERSION + '\n' +
-    '\n' +
+    '<p>\n' +
+    'Quilvyn\'s Sword Coast rule set is unofficial Fan Content permitted ' +
+    'under Wizards of the Coast\'s ' +
+    '<a href="https://company.wizards.com/en/legal/fancontentpolicy">Fan Content Policy</a>.\n' +
+    '</p><p>\n' +
+    'Quilvyn is not approved or endorsed by Wizards of the Coast. Portions ' +
+    'of the materials used are property of Wizards of the Coast. ©Wizards of ' +
+    'the Coast LLC.\n' +
+    '</p><p>\n' +
+    'Sword Coast Adventurer\'s Guide © 2015 Wizards of the Coast LLC.\n' +
+    '</p><p>\n' +
+    'Dungeons & Dragons Player\'s Handbook © 2014 Wizards of the Coast LLC.\n' +
     '<p>\n' +
     'There are no known bugs, limitations, or usage notes specific to the Sword Coast plugin\n' +
     '</p>\n';

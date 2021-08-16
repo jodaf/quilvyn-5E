@@ -5592,7 +5592,25 @@ SRD5E.ruleNotes = function() {
   return '' +
     '<h2>SRD5E Quilvyn Module Notes</h2>\n' +
     'SRD5E Quilvyn Module Version ' + SRD5E.VERSION + '\n' +
-    '\n' +
+    '<p>\n' +
+    'System Reference Document material is Open Game Content released by ' +
+    'Wizards of the Coast under the Open Game License. ' +
+    'System Reference Document 5.1 Copyright 2016, Wizards of the Coast, ' +
+    'Inc.; Authors Mike Mearls, Jeremy Crawford, Chris Perkins, Rodney ' +
+    'Thompson, Peter Lee, James Wyatt, Robert J. Schwalb, Bruce R. Cordell, ' +
+    'Chris Sims, and Steve Townshend, based on original material by E. Gary ' +
+    'Gygax and Dave Arneson.\n' +
+    '</p><p>\n' +
+    'Open Game License v 1.0a Copyright 2000, Wizards of the Coast, LLC. You ' +
+    'should have received a copy of the Open Game License with this program; ' +
+    'if not, you can obtain one from ' +
+    'https://media.wizards.com/2016/downloads/SRD-OGL_V1.1.pdf. ' +
+    '<a href="plugins/ogl-srd5e.txt">Click here</a> to see the license.<br/>\n'+
+    '</p><p>\n' +
+    'Quilvyn is not approved or endorsed by Wizards of the Coast. Portions ' +
+    'of the materials used are property of Wizards of the Coast. ©Wizards of ' +
+    'the Coast LLC.\n' +
+    '</p>\n' +
     '<h3>Usage Notes</h3>\n' +
     '<ul>\n' +
     '  <li>\n' +

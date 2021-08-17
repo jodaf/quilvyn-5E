@@ -109,7 +109,7 @@ Volo.CHARACTER_FEATURES = {
   'Radiant Consumption':
     'Section=combat ' +
     'Note="R10\' Light causes %1 HP radiant damage, +%V HP radiant 1/tn for 1 min"',
-  'Radiant Soul':
+  'Radiant Soul (Aasimar)':
     'Section=ability,combat ' +
     'Note="30\' Fly for 1 min 1/long rest",' +
          '"+%V radiant damage 1/tn for 1 min 1/long rest"',
@@ -154,7 +154,7 @@ Volo.CHARACTER_RACES = {
   'Protector Aasimar':
     'Features=' +
       'Darkvision,"Celestial Resistance","Healing Hands","Light Bearer",' +
-      '"Protector Aasimar Ability Adjustment","3:Radiant Soul" ' +
+      '"Protector Aasimar Ability Adjustment","3:Radiant Soul (Aasimar)" ' +
     'Languages=Celestial,Common',
   'Scourge Aasimar':
     'Features=' +
@@ -275,7 +275,7 @@ Volo.raceRulesExtra = function(rules, name) {
       'shield', '+', 'source=="None" ? 0 : 2'
     );
   } else if(name == 'Protector Aasimar') {
-    rules.defineRule('combatNotes.radiantSoul', 'level', '=', null);
+    rules.defineRule('combatNotes.radiantSoul(Aasimar)', 'level', '=', null);
   } else if(name == 'Scourge Aasimar') {
     rules.defineRule('combatNotes.radiantConsumption', 'level', '=', null);
     rules.defineRule('combatNotes.radiantConsumption.1',

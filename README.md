@@ -17,11 +17,10 @@ following lines to the file plugins/plugins.js:
     RULESETS['5E (SRD only)'] = {
       url:'SRD5E.js',
       group:'5E',
-      autoload:true,
-      require:'v3.5 (SRD only)'
+      autoload:true
     };
 
 ### Usage
 
-Once the SRD5E plugin is installed as described above, start Quilvyn and choose
-5E from the Rules menu in the editor window.
+Once the SRD5E plugin is installed as described above, start Quilvyn and check
+the box next to "5E (SRD only)" from the rule sets menu in the initial window.

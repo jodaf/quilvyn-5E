@@ -15,7 +15,7 @@ subdirectory within the Quilvyn installation directory, then append the
 following lines to the file plugins/plugins.js:
 
     RULESETS['5E (SRD only)'] = {
-      url:'SRD5E.js',
+      url:'plugins/SRD5E.js',
       group:'5E',
       autoload:true
     };

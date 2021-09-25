@@ -1618,7 +1618,7 @@ SRD5E.SPELLS = {
   'Charm Person':
     'School=Enchantment ' +
     'Level=B1,D1,K1,S1,W1 ' +
-    'Description="R30\' Target regards you as friend (Wis neg) for 1 hr/until harmed"',
+    'Description="R30\' Target regards you as a friend (Wis neg) for 1 hr/until harmed"',
   'Chill Touch':
     'School=Necromancy ' +
     'Level=Elf0,K0,S0,W0 ' +

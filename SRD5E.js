@@ -559,7 +559,8 @@ SRD5E.FEATURES = {
   'Bard Expertise':
     'Section=skill Note="Dbl proficiency on %V chosen skills"',
   'Bardic Inspiration':
-    'Section=magic Note="R60\' Grant 1d%V w/in 10 min %1/long rest"',
+    'Section=magic ' +
+    'Note="R60\' Give +1d%V bonus to ability, attack, or saving throw w/in 10 min %1/%2 rest"',
   'Beast Speech':
     'Section=magic Note="<i>Speak With Animals</i> at will"',
   'Beast Spells':
@@ -570,7 +571,7 @@ SRD5E.FEATURES = {
     'Section=magic Note="<i>Compulsion</i> 1/long rest"',
   'Blessed Healer':
     'Section=magic ' +
-    'Note="Self regain 2 + spell level HP from casting healing spells"',
+    'Note="Self regains 2 + spell level HP from casting healing spells"',
   'Blindsense':
     'Section=skill Note="R10\' Hear hidden and invisible creatures"',
   'Bonus Cantrip':
@@ -586,14 +587,15 @@ SRD5E.FEATURES = {
     'Section=magic ' +
     'Note="<i>Hold Monster</i> on celestial, elemental, fiend 1/long rest"',
   'Channel Divinity':
-    'Section=feature Note="Effect %V/short rest"',
+    'Section=feature Note="Use effect %V/short rest"',
   'Cleansing Touch':
     'Section=magic ' +
     'Note="Touch dispels spell effect on willing creature %V/long rest"',
   'Colossus Slayer':
     'Section=combat Note="+1d8 HP vs. damaged foe 1/tn"',
   'Countercharm':
-    'Section=magic Note="R30\' Friendly listeners Adv vs. charm, fright"',
+    'Section=magic ' +
+    'Note="R30\' Performance gives friendly listeners Adv vs. charm and fright for 1 tn"',
   'Cunning Action':
     'Section=combat Note="Bonus Dash, Disengage, or Hide each tn"',
   'Cutting Words':
@@ -610,7 +612,7 @@ SRD5E.FEATURES = {
   'Deflect Missiles':
     'Section=combat Note="React to reduce missile damage by 1d10+%V"',
   'Destroy Undead':
-    'Section=combat Note="Turn destroys up to CR %V"',
+    'Section=combat Note="Turning destroys undead up to CR %V"',
   'Diamond Soul':
     'Section=save Note="Proficient all saves, spend 1 Ki to re-roll"',
   'Disciple Of Life':
@@ -628,7 +630,7 @@ SRD5E.FEATURES = {
   'Divine Smite':
     'Section=combat Note="Spend spell slot for +(spell level + 1)d8 damage"',
   'Divine Strike':
-    'Section=combat Note="+%Vd8 HP 1/tn"',
+    'Section=combat Note="Weapon inflicts +%Vd8 HP %1 1/tn"',
   'Draconic Presence':
     'Section=magic ' +
     'Note="R60\' Spend 5 Sorcery Points for awe and fear aura for conc or 1 min (Wis neg)"',
@@ -637,7 +639,7 @@ SRD5E.FEATURES = {
   'Dragon Ancestor':
     'Section=skill Note="Fluent in Draconic, dbl Cha Prof w/dragons"',
   'Dragon Wings':
-    'Section=ability Note="Fly at full speed"',
+    'Section=ability Note="%{speed}\' fly speed"',
   'Dreadful Word':
     'Section=magic Note="<i>Confusion</i> 1/long rest"',
   'Druid Timeless Body':
@@ -716,7 +718,7 @@ SRD5E.FEATURES = {
   'Foe Slayer':
     'Section=combat Note="+%V attack or damage vs. favored enemy"',
   'Font Of Inspiration':
-    'Section=feature Note="Refresh Bardic Inspiration after short rest"',
+    'Section=magic Note="Refresh Bardic Inspiration after short rest"',
   'Font Of Magic':
     'Section=magic Note="%V Sorcery Points/long rest"',
   'Frenzy':
@@ -766,8 +768,11 @@ SRD5E.FEATURES = {
   'Lay On Hands':
     'Section=magic ' +
     'Note="Heal %V HP/long rest, use 5 HP worth to cure disease or poison"',
+  'Life Bonus Proficiency':'Section=combat Note="Armor Proficiency (Heavy)"',
   'Lifedrinker':
     'Section=combat Note="+%V HP w/pact weapon"',
+  'Lore Bonus Proficiencies':
+    'Section=skill Note="Skill Proficiency (Choose 3 from any)"',
   'Magical Secrets':
     'Section=magic Note="Learn %V additional spells from any class"',
   'Martial Arts':
@@ -833,7 +838,7 @@ SRD5E.FEATURES = {
     'Section=magic Note="Target takes half damage on cantrip save"',
   'Preserve Life':
     'Section=magic ' +
-    'Note="R30\' Channel Divinity to restore %V HP among targets, up to half max HP ea"',
+    'Note="R30\' Channel Divinity restores %V HP among targets, up to half max HP each"',
   'Primal Champion':
     'Section=ability Note="+4 Strength/+4 Constitution"',
   'Primeval Awareness':
@@ -852,17 +857,17 @@ SRD5E.FEATURES = {
     'Section=ability,combat,feature,magic,save ' +
     'Note=' +
       '"Adv Str checks",' +
-      '"+%V melee damage, resistance to bludgeoning, piercing, and slashing damage",' +
+      '"+%V melee damage",' +
       '"Rage advantages for 1 min %V/long rest (heavy armor neg)",' +
       '"Cannot cast or concentrate during rage",' +
-       '"Adv Str"',
+       '"Adv Str, resistance to bludgeoning, piercing, and slashing damage"',
   'Reckless Attack':
     'Section=combat ' +
     'Note="Gain Adv on melee Str attacks; gives foes Adv on all attacks"',
   'Relentless Rage':
     'Section=combat Note="DC 10+ Con to keep 1 HP when brought to 0 HP"',
   'Reliable Talent':
-    'Section=ability Note="Min 10 on proficient ability rolls"',
+    'Section=ability Note="Minimum 10 on proficient ability rolls"',
   'Remarkable Athlete':
     'Section=ability,skill ' +
     'Note="+%V non-proficient Str, Dex, Con checks",' +
@@ -898,7 +903,7 @@ SRD5E.FEATURES = {
   'Sneak Attack':
     'Section=combat Note="+%Vd6 damage on Adv and shared threat attacks"',
   'Song Of Rest':
-    'Section=magic Note="Listeners regain 1d%V HP after short rest"',
+    'Section=magic Note="Friendly listeners regain 1d%V HP after short rest"',
   'Sorcerous Restoration':
     'Section=magic Note="Regain 4 Sorcery Points/short rest"',
   'Spell Mastery':
@@ -923,7 +928,7 @@ SRD5E.FEATURES = {
   'Superior Critical':
     'Section=combat Note="Crit on natural 18"',
   'Superior Inspiration':
-    'Section=combat Note="Min 1 Bardic Inspiration after initiative"',
+    'Section=combat Note="Minimum 1 Bardic Inspiration after initiative"',
   'Supreme Healing':
     'Section=magic Note="Healing spells yield max HP"',
   'Supreme Sneak':
@@ -947,7 +952,8 @@ SRD5E.FEATURES = {
     'Section=magic ' +
     'Note="R30\' Channel Divinity makes fiends and undead flee for 1 min (Wis neg)"',
   'Turn Undead':
-    'Section=combat Note="R30\' Undead flee for 1 min (%V DC Wis neg)"',
+    'Section=combat ' +
+    'Note="R30\' Channel Divinity makes undead flee for 1 min (%V DC Wis neg)"',
   'Twinned Spell':
     'Section=magic ' +
     'Note="Spend spell level Sorcery Points to add second target"',
@@ -1312,8 +1318,8 @@ SRD5E.PATHS = {
     'Group=Bard ' +
     'Level=levels.Bard ' +
     'Features=' +
-      '"3:Bonus Skill Proficiency (Choose 3 from any)",' +
-      '"3:Cutting Words","6:Additional Magical Secrets","14:Peerless Skill"',
+      '"3:Cutting Words","3:Lore Bonus Proficiencies",' +
+      '"6:Additional Magical Secrets","14:Peerless Skill"',
   'Draconic Bloodline':
     'Group=Sorcerer ' +
     'Level=levels.Sorcerer ' +
@@ -1324,7 +1330,7 @@ SRD5E.PATHS = {
     'Group=Cleric ' +
     'Level=levels.Cleric ' +
     'Features=' +
-      '"1:Armor Proficiency (Heavy)","1:Disciple Of Life","2:Preserve Life",' +
+      '"1:Disciple Of Life","1:Life Bonus Proficiency","2:Preserve Life",' +
       '"6:Blessed Healer","8:Divine Strike","17:Supreme Healing" ' +
     'SpellAbility=wisdom ' +
     'SpellSlots=' +
@@ -3180,7 +3186,7 @@ SRD5E.choiceRules = function(rules, type, name, attrs) {
     );
   else if(type == 'Language')
     SRD5E.languageRules(rules, name);
-  else if(type == 'Path')
+  else if(type == 'Path') {
     SRD5E.pathRules(rules, name,
       QuilvynUtils.getAttrValue(attrs, 'Group'),
       QuilvynUtils.getAttrValue(attrs, 'Level'),
@@ -3189,7 +3195,8 @@ SRD5E.choiceRules = function(rules, type, name, attrs) {
       QuilvynUtils.getAttrValue(attrs, 'SpellAbility'),
       QuilvynUtils.getAttrValueArray(attrs, 'SpellSlots')
     );
-  else if(type == 'Race') {
+    SRD5E.pathRulesExtra(rules, name);
+  } else if(type == 'Race') {
     SRD5E.raceRules(rules, name,
       QuilvynUtils.getAttrValueArray(attrs, 'Require'),
       QuilvynUtils.getAttrValueArray(attrs, 'Features'),
@@ -3563,6 +3570,10 @@ SRD5E.classRulesExtra = function(rules, name) {
     rules.defineRule('magicNotes.bardicInspiration.1',
       'charismaModifier', '=', 'Math.max(source, 1)'
     );
+    rules.defineRule('magicNotes.bardicInspiration.2',
+      classLevel, '=', '"long"',
+      'magicNotes.fontOfInspiration', '=', '"short"'
+    );
     rules.defineRule('magicNotes.magicalSecrets',
       classLevel, '=', '2 * Math.floor((source - 6) / 4)'
     );
@@ -3578,10 +3589,8 @@ SRD5E.classRulesExtra = function(rules, name) {
   } else if(name == 'Cleric') {
 
     rules.defineRule('combatNotes.destroyUndead',
-      classLevel, '=', 'source < 8 ? 0.5 : Math.floor((source - 5) / 3)'
+      classLevel, '=', 'source < 8 ? 0.5 : Math.min(Math.floor((source-5)/3),4)'
     );
-    rules.defineRule
-      ('combatNotes.divineStrike', classLevel, '=', 'source<14 ? 1 : 2');
     rules.defineRule('combatNotes.turnUndead',
       'wisdomModifier', '=', 'source + 8',
       'proficiencyBonus', '+', null
@@ -4002,7 +4011,7 @@ SRD5E.featureRules = function(rules, name, sections, notes) {
   // TBD Move out of SRD35
   SRD35.featureRules(rules, name, sections, notes);
   for(var i = 0; i < notes.length; i++) {
-    var matchInfo = notes[i].match(/^([A-Z]\w*)\sProficiency\s\((.*)\)$/);
+    var matchInfo = notes[i].match(/^([A-Z]\w*)\sProficiency\s\(([^\)]*)\)$/);
     if(!matchInfo)
       continue;
     var group = matchInfo[1].toLowerCase();
@@ -4124,6 +4133,24 @@ SRD5E.pathRules = function(
         'proficiencyBonus', '+', null
       );
     }
+  }
+
+};
+
+/*
+ * Defines in #rules# the rules associated with path #name# that cannot be
+ * derived directly from the attributes passed to pathRules.
+ */
+SRD5E.pathRulesExtra = function(rules, name) {
+
+  var pathLevel =
+    name.charAt(0).toLowerCase() + name.substring(1).replaceAll(' ', '') +
+    'Level';
+
+  if(name == 'Life Domain') {
+    rules.defineRule
+      ('combatNotes.divineStrike', pathLevel, '=', 'source<14 ? 1 : 2');
+    rules.defineRule('combatNotes.divineStrike.1', pathLevel, '=', '"radiant"');
   }
 
 };

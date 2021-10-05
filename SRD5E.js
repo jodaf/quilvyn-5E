@@ -998,13 +998,14 @@ SRD5E.FEATURES = {
     'Section=save Note="Adv vs. poison, resistance to poison damage"',
   'Dwarven Toughness':
     'Section=combat Note="+%V HP"',
+  'Elf Cantrip':'Section=magic Note="Learn 1 Wizard cantrip"',
   'Elf Weapon Training':
     'Section=combat ' +
     'Note="Weapon Proficiency (Longbow/Longsword/Shortbow/Shortsword)"',
   'Fey Ancestry':
     'Section=save Note="Adv vs. charm, immunity to sleep"',
   'Gnome Cunning':
-    'Section=save Note="Adv on Cha, Int, Wis saves vs. magic"',
+    'Section=save Note="Adv on Cha, Int, and Wis saves vs. magic"',
   'Half-Elf Ability Adjustment':
     'Section=ability Note="+2 Charisma/+1 any two"',
   'Half-Orc Ability Adjustment':
@@ -1393,7 +1394,7 @@ SRD5E.RACES = {
     'Languages=Common,Dwarvish',
   'High Elf':
     'Features=' +
-      '1:Darkvision,"1:Elf Weapon Training","1:Fey Ancestry",' +
+      '1:Darkvision,"1:Elf Weapon Training","1:Elf Cantrip","1:Fey Ancestry",' +
       '"1:High Elf Ability Adjustment","1:Keen Senses",1:Trance ' +
     'Languages=Common,Elvish,any ' +
     'SpellAbility=intelligence ' +
@@ -4279,9 +4280,8 @@ SRD5E.raceRulesExtra = function(rules, name) {
     rules.defineRule
       ('abilityNotes.armorSpeedAdjustment', 'abilityNotes.steady', '^', '0');
     rules.defineRule('combatNotes.dwarvenToughness', 'level', '=', null);
-  } else if(name.match(/Elf/)) {
-    rules.defineRule
-      ('skillProficiency.Perception', 'skillNotes.keenSenses', '=', '1');
+  } else if(name == 'High Elf') {
+    rules.defineRule('spellSlots.Elf0', 'magicNotes.elfCantrip', '?', null);
   } else if(name == 'Tiefling') {
     rules.defineRule('magicNotes.infernalLegacy',
       'race', '?', 'source == "Tiefling"',

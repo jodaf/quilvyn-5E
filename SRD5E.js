@@ -578,7 +578,7 @@ SRD5E.FEATURES = {
   'Book Of Ancient Secrets':
     'Section=magic Note="Inscribe rituals in <i>Book Of Shadows</i>"',
   'Brutal Critical':
-    'Section=combat Note="+%V crit damage dice"',
+    'Section=combat Note="Add %V dice to crit damage"',
   'Careful Spell':
     'Section=magic ' +
     'Note="Spend 1 Sorcery Point to protect %V creature(s) from your spell"',
@@ -600,7 +600,7 @@ SRD5E.FEATURES = {
     'Section=combat ' +
     'Note="R60\' Reaction to subtract Bardic Inspiration die from foe roll"',
   'Danger Sense':
-    'Section=save Note="Adv Dex checks vs. visible dangers"',
+    'Section=save Note="Adv on Dex checks vs. visible dangers"',
   "Dark One's Blessing":
     'Section=combat Note="Gain %1 HP when foe drops to 0"',
   "Dark One's Own Luck":
@@ -686,7 +686,7 @@ SRD5E.FEATURES = {
     'Section=skill ' +
     'Note="Adv Survival to track and info about %V creature types, learn enemy language"',
   'Feral Instinct':
-    'Section=combat Note="Adv Initiative, rage and act when surprised"',
+    'Section=combat Note="Adv on Initiative, rage and then act when surprised"',
   'Feral Senses':
     'Section=combat,skill ' +
     'Note="No Disadv vs. invisible foe",' +
@@ -720,7 +720,8 @@ SRD5E.FEATURES = {
   'Font Of Magic':
     'Section=magic Note="%V Sorcery Points/long rest"',
   'Frenzy':
-    'Section=combat Note="Bonus attack during rage, exhausted after"',
+    'Section=combat ' +
+    'Note="Bonus attack each tn during rage, exhausted afterwards"',
   'Gaze Of Two Minds':
     'Section=magic Note="Perceive via willing touched senses for 1 tn"',
   'Giant Killer':
@@ -750,7 +751,8 @@ SRD5E.FEATURES = {
   'Indomitable':
     'Section=save Note="Re-roll failed save %V/long rest"',
   'Intimidating Presence':
-    'Section=feature Note="R30\' Target creature frightened (DC %V Will neg)"',
+    'Section=feature ' +
+    'Note="R30\' Target creature frightened for 1 tn (DC %V Will neg)"',
   'Jack Of All Trades':
     'Section=ability Note="+%V non-proficient ability checks"',
   'Ki':
@@ -850,14 +852,15 @@ SRD5E.FEATURES = {
     'Section=ability,combat,feature,magic,save ' +
     'Note=' +
       '"Adv Str checks",' +
-      '"+%V melee damage, resistance to bludgeon, pierce, slash damage",' +
+      '"+%V melee damage, resistance to bludgeoning, piercing, and slashing damage",' +
       '"Rage advantages for 1 min %V/long rest (heavy armor neg)",' +
-      '"Cannot cast during rage",' +
+      '"Cannot cast or concentrate during rage",' +
        '"Adv Str"',
   'Reckless Attack':
-    'Section=combat Note="Adv melee Str attacks, foes Adv all attacks"',
+    'Section=combat ' +
+    'Note="Gain Adv on melee Str attacks; gives foes Adv on all attacks"',
   'Relentless Rage':
-    'Section=combat Note="DC 10+ Con to keep 1 HP when brought to 0"',
+    'Section=combat Note="DC 10+ Con to keep 1 HP when brought to 0 HP"',
   'Reliable Talent':
     'Section=ability Note="Min 10 on proficient ability rolls"',
   'Remarkable Athlete':
@@ -1036,7 +1039,7 @@ SRD5E.FEATURES = {
   'Rock Gnome Ability Adjustment':
     'Section=ability Note="+2 Intelligence/+1 Constitution"',
   'Savage Attacks':
-    'Section=combat Note="Add extra die to crit damage"',
+    'Section=combat Note="Add 1 die to crit damage"',
   'Skill Versatility':
     'Section=skill Note="Skill Proficiency (Choose 2 from any)"',
   'Slow':

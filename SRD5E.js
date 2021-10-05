@@ -980,31 +980,35 @@ SRD5E.FEATURES = {
   // Race
   "Artificer's Lore":
     'Section=skill ' +
-    'Note="Dbl proficiency on magic, alchemical, tech objects History checks"',
+    'Note="Dbl History proficiency regarding magic, alchemical, and tech objects"',
   'Brave':
     'Section=save Note="Adv vs. fright"',
   'Darkvision':
     'Section=feature Note="R60\' See one light level better"',
-  'Draconic Breath':
-    'Section=combat,save ' +
-    'Note="%1 %Vd6 HP %2 (DC %3 %4 half)",' +
-         '"Resistance to %V damage"',
   'Dragonborn Ability Adjustment':
     'Section=ability Note="+2 Strength/+1 Charisma"',
+  'Dragonborn Breath Weapon':
+    'Section=combat Note="%1 inflicts %Vd6 HP %2 (DC %3 %4 half)"',
+  'Dragonborn Damage Resistance':
+    'Section=save Note="Resistance to %V damage"',
+  'Dwarven Combat Training':
+    'Section=combat ' +
+    'Note="Weapon Proficiency (Battleaxe/Handaxe/Light Hammer/Warhammer)"',
   'Dwarven Resilience':
     'Section=save Note="Adv vs. poison, resistance to poison damage"',
   'Dwarven Toughness':
     'Section=combat Note="+%V HP"',
+  'Elf Weapon Training':
+    'Section=combat ' +
+    'Note="Weapon Proficiency (Longbow/Longsword/Shortbow/Shortsword)"',
   'Fey Ancestry':
-    'Section=save Note="Adv vs. charmed, immunity to sleep"',
+    'Section=save Note="Adv vs. charm, immunity to sleep"',
   'Gnome Cunning':
-    'Section=save Note="Adv Cha, Int, Wis vs magic"',
+    'Section=save Note="Adv on Cha, Int, Wis saves vs. magic"',
   'Half-Elf Ability Adjustment':
     'Section=ability Note="+2 Charisma/+1 any two"',
   'Half-Orc Ability Adjustment':
     'Section=ability Note="+2 Strength/+1 Constitution"',
-  'Halfling Luck':
-    'Section=feature Note="Re-roll 1 on attack, ability, save"',
   'Halfling Nimbleness':
     'Section=ability Note="Move through space occupied by larger creature"',
   'Hellish Resistance':
@@ -1020,20 +1024,24 @@ SRD5E.FEATURES = {
   'Keen Senses':'Section=skill Note="Skill Proficiency (Perception)"',
   'Lightfoot Halfling Ability Adjustment':
     'Section=ability Note="+2 Dexterity/+1 Charisma"',
+  'Lucky Halfling':
+    'Section=feature Note="Re-roll 1s on attack, ability, and saving throws"',
   'Menacing':
     'Section=skill Note="Skill Proficiency (Intimidation)"',
   'Naturally Stealthy':
-    'Section=skill Note="Hide behind larger creature"',
+    'Section=skill Note="Hide behind a larger creature"',
   'Relentless Endurance':
-    'Section=combat Note="Keep 1 HP when brought to 0 1/long rest"',
+    'Section=combat Note="Keep 1 HP when brought to 0 HP 1/long rest"',
   'Rock Gnome Ability Adjustment':
     'Section=ability Note="+2 Intelligence/+1 Constitution"',
   'Savage Attacks':
-    'Section=combat Note="Extra die on crit damage"',
+    'Section=combat Note="Add extra die to crit damage"',
+  'Skill Versatility':
+    'Section=skill Note="Skill Proficiency (Choose 2 from any)"',
   'Slow':
     'Section=ability Note="-5 Speed"',
   'Small':
-    'Section=combat Note="Disadv heavy weapons"',
+    'Section=combat Note="Disadv on attacks w/heavy weapons"',
   'Steady':
     'Section=ability Note="No speed penalty in heavy armor"',
   'Stonecunning':
@@ -1041,8 +1049,8 @@ SRD5E.FEATURES = {
   'Tiefling Ability Adjustment':
     'Section=ability Note="+2 Charisma/+1 Intelligence"',
   'Tinker':
-    'Section=skill ' +
-    'Note="Use Tinker\'s Tools to create tiny clockwork device in 1 hr"',
+    'Section=feature,skill ' +
+    'Note="Tool Proficiency (Tinker\'s Tools)","Use Tinker\'s Tools to create tiny clockwork device in 1 hr"',
   'Trance':
     'Section=feature Note="4 hr meditation gives benefit of 8 hr sleep"',
   // Sanity, Validation and Miscellaneous
@@ -1367,7 +1375,8 @@ SRD5E.PATHS = {
 SRD5E.RACES = {
   'Dragonborn':
     'Features=' +
-      '"1:Draconic Breath","1:Dragonborn Ability Adjustment" ' +
+      '"1:Dragonborn Ability Adjustment","1:Dragonborn Breath Weapon",' +
+      '"1:Dragonborn Damage Resistance" ' +
     'Selectables=' +
       '"1:Black Draconic Ancestry","1:Blue Draconic Ancestry",' +
       '"1:Brass Draconic Ancestry","1:Bronze Draconic Ancestry",' +
@@ -1377,31 +1386,28 @@ SRD5E.RACES = {
     'Languages=Common,Draconic',
   'Hill Dwarf':
     'Features=' +
-      '"1:Weapon Proficiency (Battleaxe/Handaxe/Light Hammer/Warhammer)",' +
       '"1:Tool Proficiency (Choose 1 from Brewer\'s Supplies, Mason\'s Tools, Smith\'s Tools)",' +
-      '1:Darkvision,"1:Hill Dwarf Ability Adjustment",' +
-      '"1:Dwarven Resilience","1:Dwarven Toughness",1:Slow,1:Steady,' +
-      '1:Stonecunning ' +
+      '1:Darkvision,"1:Dwarven Combat Training","1:Dwarven Resilience",' +
+      '"1:Dwarven Toughness","1:Hill Dwarf Ability Adjustment",1:Slow,' +
+      '1:Steady,1:Stonecunning ' +
     'Languages=Common,Dwarvish',
   'High Elf':
     'Features=' +
-      '"1:Weapon Proficiency (Longbow/Longsword/Shortbow/Shortsword)",' +
-      '1:Darkvision,"1:Fey Ancestry","1:High Elf Ability Adjustment",' +
-      '"1:Keen Senses",1:Trance ' +
+      '1:Darkvision,"1:Elf Weapon Training","1:Fey Ancestry",' +
+      '"1:High Elf Ability Adjustment","1:Keen Senses",1:Trance ' +
     'Languages=Common,Elvish,any ' +
     'SpellAbility=intelligence ' +
     'SpellSlots=' +
       'Elf0:1=1',
   'Rock Gnome':
     'Features=' +
-      '"1:Tool Proficiency (Tinker\'s Tools)",' +
-      '1:Darkvision,"1:Gnome Cunning","1:Rock Gnome Ability Adjustment",' +
-      '1:Slow,1:Small,"1:Artificer\'s Lore",1:Tinker ' +
+      '"1:Artificer\'s Lore",1:Darkvision,"1:Gnome Cunning",' +
+      '"1:Rock Gnome Ability Adjustment",1:Slow,1:Small,1:Tinker ' +
     'Languages=Common,Gnomish',
   'Half-Elf':
     'Features=' +
-      '"1:Versatile Skill Proficiency (Choose 2 from any)",' +
-      '1:Darkvision,"1:Fey Ancestry","1:Half-Elf Ability Adjustment" ' +
+      '1:Darkvision,"1:Fey Ancestry","1:Half-Elf Ability Adjustment",' +
+      '"1:Skill Versatility" ' +
     'Languages=Common,Elvish,any',
   'Half-Orc':
     'Features=' +
@@ -1410,9 +1416,9 @@ SRD5E.RACES = {
     'Languages=Common,Orc',
   'Lightfoot Halfling':
     'Features=' +
-      '1:Brave,"1:Halfling Luck","1:Halfling Nimbleness",' +
-      '"1:Lightfoot Halfling Ability Adjustment","1:Naturally Stealthy",' +
-      '1:Slow,1:Small ' +
+      '1:Brave,"1:Halfling Nimbleness",' +
+      '"1:Lightfoot Halfling Ability Adjustment","1:Lucky Halfling",' +
+      '"1:Naturally Stealthy",1:Slow,1:Small ' +
     'Languages=Common,Halfling',
   'Human':
     'Features=' +
@@ -4234,10 +4240,10 @@ SRD5E.raceRulesExtra = function(rules, name) {
     rules.defineRule
       ('skillProficiency.Intimidation', 'skillNotes.menacing', '=', '1');
   } else if(name == 'Dragonborn') {
-    rules.defineRule('combatNotes.draconicBreath',
+    rules.defineRule('combatNotes.dragonbornBreathWeapon',
       'level', '=', 'Math.floor((source + 9) / 5)'
     );
-    rules.defineRule('combatNotes.draconicBreath.1',
+    rules.defineRule('combatNotes.dragonbornBreathWeapon.1',
       'race', '=', 'source == "Dragonborn" ? "5\'x30\' line" : null',
       'dragonbornFeatures.Gold Draconic Ancestry', '=', '"15\' cone"',
       'dragonbornFeatures.Green Draconic Ancestry', '=', '"15\' cone"',
@@ -4245,7 +4251,7 @@ SRD5E.raceRulesExtra = function(rules, name) {
       'dragonbornFeatures.Silver Draconic Ancestry', '=', '"15\' cone"',
       'dragonbornFeatures.White Draconic Ancestry', '=', '"15\' cone"'
     );
-    rules.defineRule('combatNotes.draconicBreath.2',
+    rules.defineRule('combatNotes.dragonbornBreathWeapon.2',
       'race', '=', 'source == "Dragonborn" ? "fire" : null',
       'dragonbornFeatures.Black Draconic Ancestry', '=', '"acid"',
       'dragonbornFeatures.Blue Draconic Ancestry', '=', '"lightning"',
@@ -4255,16 +4261,17 @@ SRD5E.raceRulesExtra = function(rules, name) {
       'dragonbornFeatures.Silver Draconic Ancestry', '=', '"cold"',
       'dragonbornFeatures.White Draconic Ancestry', '=', '"cold"'
     );
-    rules.defineRule('combatNotes.draconicBreath.3',
+    rules.defineRule('combatNotes.dragonbornBreathWeapon.3',
       'race', '?', 'source == "Dragonborn"',
       'constitutionModifier', '=', '8 + source',
       'proficiencyBonus', '+', null
     );
-    rules.defineRule('combatNotes.draconicBreath.4',
-      'combatNotes.draconicBreath.2', '=', 'source.match(/cold|poison/) ? "Con" : "Dex"'
+    rules.defineRule('combatNotes.dragonbornBreathWeapon.4',
+      'combatNotes.dragonbornBreathWeapon.2', '=', 'source.match(/cold|poison/) ? "Con" : "Dex"'
     );
-    rules.defineRule
-      ('saveNotes.draconicBreath', 'combatNotes.draconicBreath.2', '=', null);
+    rules.defineRule('saveNotes.dragonbornDamageResistance',
+      'combatNotes.dragonbornBreathWeapon.2', '=', null
+    );
     rules.defineRule('selectableFeatureCount.Dragonborn',
       'race', '=', 'source == "Dragonborn" ? 1 : null'
     );

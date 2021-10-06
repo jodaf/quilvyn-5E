@@ -443,80 +443,6 @@ SRD5E.CLASSES = {
       'W8:15=1,' +
       'W9:17=1',
 };
-SRD5E.DEITIES = {
-  'None':'',
-  // Celtic
-  'Celtic-The Daghdha':'Alignment=CG Domain=Nature,Trickery',
-  'Celtic-Arawn':'Alignment=NE Domain=Life,Death',
-  'Celtic-Belenus':'Alignment=NG Domain=Light',
-  'Celtic-Briantia':'Alignment=NG Domain=Life',
-  'Celtic-Diancecht':'Alignment=LG Domain=Life',
-  'Celtic-Dunatis':'Alignment=N Domain=Nature',
-  'Celtic-Goibhniu':'Alignment=NG Domain=Knowledge,Life',
-  'Celtic-Lugh':'Alignment=CN Domain=Knowledge,Life',
-  'Celtic-Manannan Mac Lir':'Alignment=LN Domain=Nature,Tempest',
-  'Celtic-Math Mathonwy':'Alignment=NE Domain=Knowledge',
-  'Celtic-Morrigan':'Alignment=CE Domain=War',
-  'Celtic-Nuada':'Alignment=N Domain=War',
-  'Celtic-Oghma':'Alignment=NG Domain=Knowledge',
-  'Celtic-Silvanus':'Alignment=N Domain=Nature',
-  // Greek
-  'Greek-Zeus':'Alignment=N Domain=Tempest',
-  'Greek-Aphrodite':'Alignment=CG Domain=Light',
-  'Greek-Apollo':'Alignment=CG Domain=Knowledge,Life,Light',
-  'Greek-Ares':'Alignment=CE Domain=War',
-  'Greek-Artemis':'Alignment=NG Domain=Life,Nature',
-  'Greek-Athena':'Alignment=LG Domain=Knowledge,War',
-  'Greek-Demeter':'Alignment=NG Domain=Life',
-  'Greek-Dionysus':'Alignment=CN Domain=Life',
-  'Greek-Hades':'Alignment=LE Domain=Death',
-  'Greek-Hecate':'Alignment=CE Domain=Knowledge,Trickery',
-  'Greek-Hephaestus':'Alignment=NG Domain=Knowledge',
-  'Greek-Hera':'Alignment=CN Domain=Trickery',
-  'Greek-Hercules':'Alignment=CG Domain=Tempest,War',
-  'Greek-Hermes':'Alignment=CG Domain=Trickery',
-  'Greek-Hestia':'Alignment=NG Domain=Life',
-  'Greek-Nike':'Alignment=LN Domain=War',
-  'Greek-Pan':'Alignment=CN Domain=Nature',
-  'Greek-Poseidon':'Alignment=CN Domain=Tempest',
-  'Greek-Tyche':'Alignment=N Domain=Trickery',
-  // Egyptian
-  'Egyptian-Re-Horakhty':'Alignment=LG Domain=Life,Light',
-  'Egyptian-Anubis':'Alignment=LN Domain=Death',
-  'Egyptian-Apep':'Alignment=NE Domain=Trickery',
-  'Egyptian-Bast':'Alignment=CG Domain=War',
-  'Egyptian-Bes':'Alignment=CN Domain=Trickery',
-  'Egyptian-Hathor':'Alignment=NG Domain=Life,Light',
-  'Egyptian-Imhotep':'Alignment=NG Domain=Knowledge',
-  'Egyptian-Isis':'Alignment=NG Domain=Knowledge,Life',
-  'Egyptian-Nephthys':'Alignment=CG Domain=Death',
-  'Egyptian-Osiris':'Alignment=LG Domain=Life,Nature',
-  'Egyptian-Ptah':'Alignment=LN Domain=Knowledge',
-  'Egyptian-Set':'Alignment=CE Domain=Death,Tempest,Trickery',
-  'Egyptian-Sobek':'Alignment=LE Domain=Nature,Tempest',
-  'Egyptian-Thoth':'Alignment=N Domain=Knowledge',
-  // Norse
-  'Norse-Odin':'Alignment=NG Domain=Knowledge,War',
-  'Norse-Aegir':'Alignment=NE Domain=Tempest',
-  'Norse-Balder':'Alignment=NG Domain=Life,Light',
-  'Norse-Forseti':'Alignment=N Domain=Light',
-  'Norse-Frey':'Alignment=NG Domain=Life,Light',
-  'Norse-Freya':'Alignment=NG Domain=Life',
-  'Norse-Frigga':'Alignment=N Domain=Life,Light',
-  'Norse-Heimdall':'Alignment=LG Domain=Light,War',
-  'Norse-Hel':'Alignment=NE Domain=Death',
-  'Norse-Hermod':'Alignment=CN Domain=Trickery',
-  'Norse-Loki':'Alignment=CE Domain=Trickery',
-  'Norse-Njord':'Alignment=NG Domain=Nature,Tempest',
-  'Norse-Odor':'Alignment=CG Domain=Light',
-  'Norse-Sif':'Alignment=CG Domain=War',
-  'Norse-Skadi':'Alignment=N Domain=Nature',
-  'Norse-Surtur':'Alignment=LE Domain=War',
-  'Norse-Thor':'Alignment=CG Domain=Tempest,War',
-  'Norse-Thrym':'Alignment=CE Domain=War',
-  'Norse-Tyr':'Alignment=LN Domain=Knowledge,War',
-  'Norse-Uller':'Alignment=CN Domain=Nature'
-};
 SRD5E.FEATS = {
   'Ability Boost':'',
   'Ability Boost2':'Require="features.Ability Boost"',
@@ -574,8 +500,6 @@ SRD5E.FEATURES = {
     'Note="Self regains 2 + spell level HP from casting healing spells"',
   'Blindsense':
     'Section=skill Note="R10\' Hear hidden and invisible creatures"',
-  'Bonus Cantrip':
-    'Section=magic Note="Additional Druid cantrip"',
   'Book Of Ancient Secrets':
     'Section=magic Note="Inscribe rituals in <i>Book Of Shadows</i>"',
   'Brutal Critical':
@@ -642,10 +566,12 @@ SRD5E.FEATURES = {
     'Section=ability Note="%{speed}\' fly speed"',
   'Dreadful Word':
     'Section=magic Note="<i>Confusion</i> 1/long rest"',
+  'Druid Bonus Cantrip':
+    'Section=magic Note="Additional Druid cantrip"',
   'Druid Timeless Body':
     'Section=feature Note="Age at 1/10 rate"',
   'Druidic':
-    'Section=skill Note="Secret language known only by druids"',
+    'Section=skill Note="Speak secret language known only by druids"',
   'Eldritch Invocations':
     'Section=magic Note="%V"',
   'Eldritch Master':
@@ -804,12 +730,14 @@ SRD5E.FEATURES = {
     'Section=skill ' +
     'Note="Dbl Int and Wis Prof, normal move in difficult terrain, always alert, full speed solo stealth, locate dbl food, extra track info for %V terrains"',
   'Natural Recovery':
-    'Section=magic Note="Recover %V spell slot levels in short rest"',
+    'Section=magic ' +
+    'Note="Recover %V spell slot levels during short rest 1/long rest"',
   "Nature's Sanctuary":
-    'Section=combat Note="Beast, plant DC %V Will save to attack self"',
+    'Section=combat ' +
+    'Note="Beasts and plants cannot attack self (DC %V Will neg)"',
   "Nature's Ward":
     'Section=save ' +
-    'Note="Immunity to disease, poison, elemental and fey charm, and fright"',
+    'Note="Immunity to disease, poison, and elemental and fey charm and fright"',
   'One With Shadows':
     'Section=magic Note="Invisible in dim light until action"',
   'Open Hand Technique':
@@ -979,7 +907,7 @@ SRD5E.FEATURES = {
     'Section=feature Note="Regain %V HP 1/long rest"',
   'Wild Shape':
     'Section=magic ' +
-    'Note="Transform into CR %1%2 creature for %3 hr 2/short rest"',
+    'Note="Transform into CR %1%2 creature for %3 hr %4/short rest"',
   'Witch Sight':
     'Section=feature Note="R30\' See true forms"',
   // Feat
@@ -1234,7 +1162,7 @@ SRD5E.PATHS = {
     'Group=Druid ' +
     'Level=levels.Druid ' +
     'Features=' +
-      '"2:Bonus Cantrip","2:Natural Recovery","6:Land\'s Stride",' +
+      '"2:Druid Bonus Cantrip","2:Natural Recovery","6:Land\'s Stride",' +
       '"10:Nature\'s Ward","14:Nature\'s Sanctuary" ' +
     'SpellAbility=wisdom ' +
     'SpellSlots=' +
@@ -1246,7 +1174,7 @@ SRD5E.PATHS = {
     'Group=Druid ' +
     'Level=levels.Druid ' +
     'Features=' +
-      '"2:Bonus Cantrip","2:Natural Recovery","6:Land\'s Stride",' +
+      '"2:Druid Bonus Cantrip","2:Natural Recovery","6:Land\'s Stride",' +
       '"10:Nature\'s Ward","14:Nature\'s Sanctuary" ' +
     'SpellAbility=wisdom ' +
     'SpellSlots=' +
@@ -1258,7 +1186,7 @@ SRD5E.PATHS = {
     'Group=Druid ' +
     'Level=levels.Druid ' +
     'Features=' +
-      '"2:Bonus Cantrip","2:Natural Recovery","6:Land\'s Stride",' +
+      '"2:Druid Bonus Cantrip","2:Natural Recovery","6:Land\'s Stride",' +
       '"10:Nature\'s Ward","14:Nature\'s Sanctuary" ' +
     'SpellAbility=wisdom ' +
     'SpellSlots=' +
@@ -1270,7 +1198,7 @@ SRD5E.PATHS = {
     'Group=Druid ' +
     'Level=levels.Druid ' +
     'Features=' +
-      '"2:Bonus Cantrip","2:Natural Recovery","6:Land\'s Stride",' +
+      '"2:Druid Bonus Cantrip","2:Natural Recovery","6:Land\'s Stride",' +
       '"10:Nature\'s Ward","14:Nature\'s Sanctuary" ' +
     'SpellAbility=wisdom ' +
     'SpellSlots=' +
@@ -1282,7 +1210,7 @@ SRD5E.PATHS = {
     'Group=Druid ' +
     'Level=levels.Druid ' +
     'Features=' +
-      '"2:Bonus Cantrip","2:Natural Recovery","6:Land\'s Stride",' +
+      '"2:Druid Bonus Cantrip","2:Natural Recovery","6:Land\'s Stride",' +
       '"10:Nature\'s Ward","14:Nature\'s Sanctuary" ' +
     'SpellAbility=wisdom ' +
     'SpellSlots=' +
@@ -1294,7 +1222,7 @@ SRD5E.PATHS = {
     'Group=Druid ' +
     'Level=levels.Druid ' +
     'Features=' +
-      '"2:Bonus Cantrip","2:Natural Recovery","6:Land\'s Stride",' +
+      '"2:Druid Bonus Cantrip","2:Natural Recovery","6:Land\'s Stride",' +
       '"10:Nature\'s Ward","14:Nature\'s Sanctuary" ' +
     'SpellAbility=wisdom ' +
     'SpellSlots=' +
@@ -1306,7 +1234,7 @@ SRD5E.PATHS = {
     'Group=Druid ' +
     'Level=levels.Druid ' +
     'Features=' +
-      '"2:Bonus Cantrip","2:Natural Recovery","6:Land\'s Stride",' +
+      '"2:Druid Bonus Cantrip","2:Natural Recovery","6:Land\'s Stride",' +
       '"10:Nature\'s Ward","14:Nature\'s Sanctuary" ' +
     'SpellAbility=wisdom ' +
     'SpellSlots=' +
@@ -2856,6 +2784,81 @@ SRD5E.WEAPONS = {
   'Warhammer':'Category=2 Property=Ve Damage=d8',
   'Whip':'Category=2 Property=1h,Fi Damage=d4'
 };
+SRD5E.DEITIES = {
+  // Allow clerics w/no deity to have a domain
+  'None':'Domain=' + QuilvynUtils.getKeys(SRD5E.PATHS).filter(x => x.match(/Domain$/)).map(x => x.replace(' Domain', '')).join(','),
+  // Celtic
+  'Celtic-The Daghdha':'Alignment=CG Domain=Nature,Trickery',
+  'Celtic-Arawn':'Alignment=NE Domain=Life,Death',
+  'Celtic-Belenus':'Alignment=NG Domain=Light',
+  'Celtic-Briantia':'Alignment=NG Domain=Life',
+  'Celtic-Diancecht':'Alignment=LG Domain=Life',
+  'Celtic-Dunatis':'Alignment=N Domain=Nature',
+  'Celtic-Goibhniu':'Alignment=NG Domain=Knowledge,Life',
+  'Celtic-Lugh':'Alignment=CN Domain=Knowledge,Life',
+  'Celtic-Manannan Mac Lir':'Alignment=LN Domain=Nature,Tempest',
+  'Celtic-Math Mathonwy':'Alignment=NE Domain=Knowledge',
+  'Celtic-Morrigan':'Alignment=CE Domain=War',
+  'Celtic-Nuada':'Alignment=N Domain=War',
+  'Celtic-Oghma':'Alignment=NG Domain=Knowledge',
+  'Celtic-Silvanus':'Alignment=N Domain=Nature',
+  // Greek
+  'Greek-Zeus':'Alignment=N Domain=Tempest',
+  'Greek-Aphrodite':'Alignment=CG Domain=Light',
+  'Greek-Apollo':'Alignment=CG Domain=Knowledge,Life,Light',
+  'Greek-Ares':'Alignment=CE Domain=War',
+  'Greek-Artemis':'Alignment=NG Domain=Life,Nature',
+  'Greek-Athena':'Alignment=LG Domain=Knowledge,War',
+  'Greek-Demeter':'Alignment=NG Domain=Life',
+  'Greek-Dionysus':'Alignment=CN Domain=Life',
+  'Greek-Hades':'Alignment=LE Domain=Death',
+  'Greek-Hecate':'Alignment=CE Domain=Knowledge,Trickery',
+  'Greek-Hephaestus':'Alignment=NG Domain=Knowledge',
+  'Greek-Hera':'Alignment=CN Domain=Trickery',
+  'Greek-Hercules':'Alignment=CG Domain=Tempest,War',
+  'Greek-Hermes':'Alignment=CG Domain=Trickery',
+  'Greek-Hestia':'Alignment=NG Domain=Life',
+  'Greek-Nike':'Alignment=LN Domain=War',
+  'Greek-Pan':'Alignment=CN Domain=Nature',
+  'Greek-Poseidon':'Alignment=CN Domain=Tempest',
+  'Greek-Tyche':'Alignment=N Domain=Trickery',
+  // Egyptian
+  'Egyptian-Re-Horakhty':'Alignment=LG Domain=Life,Light',
+  'Egyptian-Anubis':'Alignment=LN Domain=Death',
+  'Egyptian-Apep':'Alignment=NE Domain=Trickery',
+  'Egyptian-Bast':'Alignment=CG Domain=War',
+  'Egyptian-Bes':'Alignment=CN Domain=Trickery',
+  'Egyptian-Hathor':'Alignment=NG Domain=Life,Light',
+  'Egyptian-Imhotep':'Alignment=NG Domain=Knowledge',
+  'Egyptian-Isis':'Alignment=NG Domain=Knowledge,Life',
+  'Egyptian-Nephthys':'Alignment=CG Domain=Death',
+  'Egyptian-Osiris':'Alignment=LG Domain=Life,Nature',
+  'Egyptian-Ptah':'Alignment=LN Domain=Knowledge',
+  'Egyptian-Set':'Alignment=CE Domain=Death,Tempest,Trickery',
+  'Egyptian-Sobek':'Alignment=LE Domain=Nature,Tempest',
+  'Egyptian-Thoth':'Alignment=N Domain=Knowledge',
+  // Norse
+  'Norse-Odin':'Alignment=NG Domain=Knowledge,War',
+  'Norse-Aegir':'Alignment=NE Domain=Tempest',
+  'Norse-Balder':'Alignment=NG Domain=Life,Light',
+  'Norse-Forseti':'Alignment=N Domain=Light',
+  'Norse-Frey':'Alignment=NG Domain=Life,Light',
+  'Norse-Freya':'Alignment=NG Domain=Life',
+  'Norse-Frigga':'Alignment=N Domain=Life,Light',
+  'Norse-Heimdall':'Alignment=LG Domain=Light,War',
+  'Norse-Hel':'Alignment=NE Domain=Death',
+  'Norse-Hermod':'Alignment=CN Domain=Trickery',
+  'Norse-Loki':'Alignment=CE Domain=Trickery',
+  'Norse-Njord':'Alignment=NG Domain=Nature,Tempest',
+  'Norse-Odor':'Alignment=CG Domain=Light',
+  'Norse-Sif':'Alignment=CG Domain=War',
+  'Norse-Skadi':'Alignment=N Domain=Nature',
+  'Norse-Surtur':'Alignment=LE Domain=War',
+  'Norse-Thor':'Alignment=CG Domain=Tempest,War',
+  'Norse-Thrym':'Alignment=CE Domain=War',
+  'Norse-Tyr':'Alignment=LN Domain=Knowledge,War',
+  'Norse-Uller':'Alignment=CN Domain=Nature'
+};
 
 SRD5E.LEVELS_EXPERIENCE = [
   0, 0.3, 0.9, 2.7, 6.5, 14, 23, 34, 48, 64,
@@ -3621,10 +3624,15 @@ SRD5E.classRulesExtra = function(rules, name) {
     );
     rules.defineRule
       ('magicNotes.wildShape.3', classLevel, '=', 'Math.floor(source /2)');
+    rules.defineRule('magicNotes.wildShape.4',
+      classLevel, '=', '2',
+      'magicNotes.archdruid', '=', '"unlimited"'
+    );
     rules.defineRule('selectableFeatureCount.Druid (Druid Circle)',
       classLevel, '=', 'source<2 ? null : 1'
     );
-    rules.defineRule('spellSlots.D0', 'magicNotes.bonusCantrip', '+=', '1');
+    rules.defineRule
+      ('spellSlots.D0', 'magicNotes.druidBonusCantrip', '+=', '1');
 
   } else if(name == 'Fighter') {
 

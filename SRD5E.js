@@ -259,7 +259,7 @@ SRD5E.CLASSES = {
       '"2:Unarmored Movement","3:Deflect Missiles","4:Slow Fall",' +
       '"5:Extra Attack","5:Stunning Strike","6:Ki-Empowered Strikes",' +
       '7:Evasion,"7:Stillness Of Mind","9:Improved Unarmored Movement",' +
-      '"10:Purity Of Body","13:Tongue Of Sun And Moon","14:Diamond Soul",' +
+      '"10:Purity Of Body","13:Tongue Of The Sun And Moon","14:Diamond Soul",' +
       '"15:Monk Timeless Body","18:Empty Body","20:Perfect Self" ' +
     'Selectables=' +
       '"3:Way Of The Open Hand:Monastic Tradition"',
@@ -459,7 +459,7 @@ SRD5E.FEATURES = {
     'Section=feature Note="Receive aid from associated temple"',
   // Class
   'Action Surge':
-    'Section=combat Note="Extra action %V/short rest"',
+    'Section=combat Note="Take an extra action %V/short rest"',
   'Additional Fighting Style':
     'Section=combat Note="Select second Fighting Style"',
   'Additional Magical Secrets':
@@ -534,11 +534,11 @@ SRD5E.FEATURES = {
   "Devil's Sight":
     'Section=feature Note="R120\' See normally in darkness"',
   'Deflect Missiles':
-    'Section=combat Note="React to reduce missile damage by 1d10+%V"',
+    'Section=combat Note="Use reaction to reduce missile damage by 1d10+%V"',
   'Destroy Undead':
     'Section=combat Note="Turning destroys undead up to CR %V"',
   'Diamond Soul':
-    'Section=save Note="Proficient all saves, spend 1 Ki to re-roll"',
+    'Section=save Note="Proficient all saves, spend 1 Ki Point to re-roll"',
   'Disciple Of Life':
     'Section=magic Note="Healing spells restore additional 2 + spell level HP"',
   'Distant Spell':
@@ -592,7 +592,7 @@ SRD5E.FEATURES = {
     'Note="Spend 1 Sorcery Point to re-roll %V spell damage dice"',
   'Empty Body':
     'Section=magic ' +
-    'Note="Spend 4 Ki for <i>Invisibility</i> 1 min, 8 Ki for <i>Astral Projection</i>"',
+    'Note="Spend 4 Ki Points for 1 min invisibility w/resistance to all damage but force, 8 Ki Points for <i>Astral Projection</i>"',
   'Escape The Horde':
     'Section=combat Note="Foe Disadv on OA"',
   'Evasion':
@@ -625,22 +625,22 @@ SRD5E.FEATURES = {
   'Fiendish Vigor':
     'Section=magic Note="Self <i>False Life</i> at will"',
   'Fighting Style (Archery)':
-    'Section=combat Note="+2 ranged attack"',
+    'Section=combat Note="+2 ranged attacks"',
   'Fighting Style (Defense)':
     'Section=combat Note="+1 AC in armor"',
   'Fighting Style (Dueling)':
-    'Section=combat Note="+2 damage with single, one-hand weapon"',
+    'Section=combat Note="+2 damage with single, one-handed weapon"',
   'Fighting Style (Great Weapon Fighting)':
-    'Section=combat Note="Re-roll damage of 1 or 2 with two-handed weapons"',
+    'Section=combat Note="May re-roll 1s and 2s on two-handed weapon damage"',
   'Fighting Style (Protection)':
     'Section=combat ' +
-    'Note="Use shield to impose attack Disadv on adjacent foe attacking ally"',
+    'Note="Use reaction to impose attack Disadv on adjacent foe attacking ally"',
   'Fighting Style (Two-Weapon Fighting)':
     'Section=combat Note="Add ability modifier to second attack damage"',
   'Flexible Casting':
     'Section=magic Note="Convert Sorcery Points to and from spell slots"',
   'Flurry Of Blows':
-    'Section=combat Note="Spend 1 Ki for 2 additional unarmed strikes"',
+    'Section=combat Note="Spend 1 Ki Point for 2 additional unarmed strikes"',
   'Foe Slayer':
     'Section=combat Note="+%V attack or damage vs. favored enemy"',
   'Font Of Inspiration':
@@ -677,14 +677,14 @@ SRD5E.FEATURES = {
   'Indomitable Might':
     'Section=ability Note="Use Str instead of roll for Str check"',
   'Indomitable':
-    'Section=save Note="Re-roll failed save %V/long rest"',
+    'Section=save Note="May re-roll failed save %V/long rest"',
   'Intimidating Presence':
     'Section=feature ' +
     'Note="R30\' Target creature frightened for 1 tn (DC %V Will neg)"',
   'Jack Of All Trades':
     'Section=ability Note="+%V non-proficient ability checks"',
   'Ki':
-    'Section=feature Note="%V Ki points/short rest"',
+    'Section=feature Note="Use %V Ki Points/short rest"',
   'Ki-Empowered Strikes':
     'Section=combat Note="Unarmed attacks count as magical"',
   "Land's Stride":
@@ -703,7 +703,7 @@ SRD5E.FEATURES = {
     'Section=magic Note="Learn %V additional spells from any class"',
   'Martial Arts':
     'Section=combat ' +
-    'Note="When unarmored, +%1 attack and damage with monk weapons and raise damage die to 1d%V"',
+    'Note="When unarmored, gain +%1 attack and damage with monk weapons, raise damage die to 1d%V, and gain Monk Bonus Attack"',
   'Mask Of Many Faces':
     'Section=magic Note="<i>Disguise Self</i> at will"',
   'Master Of Myriad Forms':
@@ -717,7 +717,7 @@ SRD5E.FEATURES = {
   'Misty Visions':
     'Section=magic Note="<i>Silent Image</i> at will"',
   'Monk Bonus Attack':
-    'Section=combat Note="Unarmed strike after monk weapon attack"',
+    'Section=combat Note="Bonus unarmed strike after monk weapon attack"',
   'Monk Timeless Body':
     'Section=feature Note="No debility from aging, need no food or water"',
   'Monk Unarmored Defense':
@@ -742,7 +742,7 @@ SRD5E.FEATURES = {
     'Section=magic Note="Invisible in dim light until action"',
   'Open Hand Technique':
     'Section=combat ' +
-    'Note="On Flurry of Blows hit, choice of knock prone (DC %V Dex neg), push 15\' (DC %V Str neg), or no foe react 1 tn"',
+    'Note="On Flurry of Blows hit, choice of knock prone (DC %V Dex neg), push 15\' (DC %V Str neg), or deny foe reactions for 1 rd"',
   'Otherworldly Leap':
     'Section=magic Note="Self <i>Jump</i> at will"',
   'Overchannel':
@@ -754,12 +754,10 @@ SRD5E.FEATURES = {
     'Note="<i>Find Familiar</i>, trade one attack for familiar\'s"',
   'Pact Of The Tome':
     'Section=magic Note="<i>Book Of Shadows</i> w/3 cantrips"',
-  'Patient Defense':
-    'Section=combat Note="Spend 1 Ki to Dodge (foe attack Disadv)"',
+  'Patient Defense':'Section=combat Note="Spend 1 Ki Point for bonus Dodge"',
   'Peerless Skill':
     'Section=ability Note="Add Bardic Inspiration die to ability check"',
-  'Perfect Self':
-    'Section=combat Note="Min 4 Ki after initiative"',
+  'Perfect Self':'Section=combat Note="Minimum 4 Ki Points after initiative"',
   'Persistent Rage':
     'Section=combat Note="Continue raging when unengaged w/foe"',
   'Potent Cantrip':
@@ -772,15 +770,14 @@ SRD5E.FEATURES = {
   'Primeval Awareness':
     'Section=magic ' +
     'Note="Expend spell to sense creatures in 1 mi (favored terrain 6 mi) for 1 min/spell level"',
-  'Purity Of Body':
-    'Section=save Note="Immunity to disease and poison"',
+  'Purity Of Body':'Section=save Note="Immune to disease and poison"',
   'Purity Of Spirit':
     'Section=magic Note="Self continuous <i>Protection From Evil And Good</i>"',
   'Quickened Spell':
     'Section=magic Note="Spend 2 Sorcery Points to cast spell as bonus action"',
   'Quivering Palm':
     'Section=combat ' +
-    'Note="Spend 3 Ki to reduce foe to 0 HP w/in 1 dy after unarmed hit (DC %V Con 10d10 HP)"',
+    'Note="Spend 3 Ki Points to reduce foe to 0 HP w/in %1 dy after unarmed hit (DC %V Con 10d10 HP)"',
   'Rage':
     'Section=ability,combat,feature,magic,save ' +
     'Note=' +
@@ -798,7 +795,7 @@ SRD5E.FEATURES = {
     'Section=ability Note="Minimum 10 on proficient ability rolls"',
   'Remarkable Athlete':
     'Section=ability,skill ' +
-    'Note="+%V non-proficient Str, Dex, Con checks",' +
+    'Note="+%V non-proficient Str, Dex, and Con checks",' +
          '"+%V\' running jump"',
   'Repelling Blast':
     'Section=magic Note="<i>Eldritch Blast</i> pushes 10\'"',
@@ -827,7 +824,7 @@ SRD5E.FEATURES = {
   'Slippery Mind':
     'Section=save Note="Save Proficiency (Wisdom)"',
   'Slow Fall':
-    'Section=ability Note="-%V HP fall damage"',
+    'Section=ability Note="Use reaction for -%V HP falling damage"',
   'Sneak Attack':
     'Section=combat Note="+%Vd6 damage on Adv and shared threat attacks"',
   'Song Of Rest':
@@ -841,7 +838,8 @@ SRD5E.FEATURES = {
   'Steel Will':
     'Section=save Note="Adv vs. fright"',
   'Step Of The Wind':
-    'Section=combat Note="Spend 1 Ki for bonus Disengage or Dash and dbl jump"',
+    'Section=combat ' +
+    'Note="Spend 1 Ki Point for bonus Disengage or Dash and dbl jump"',
   'Stillness Of Mind':
     'Section=save Note="End self charm and fright at will"',
   'Stroke Of Luck':
@@ -849,7 +847,8 @@ SRD5E.FEATURES = {
     'Note="Automatic 20 ability check 1/short rest",' +
          '"Change miss into hit 1/short rest"',
   'Stunning Strike':
-    'Section=combat Note="Spend 1 Ki to stun foe after hit (DC %V Con neg)"',
+    'Section=combat ' +
+    'Note="Spend 1 Ki Point to stun foe for 1 rd after hit (DC %V Con neg)"',
   'Subtle Spell':
     'Section=magic ' +
     'Note="Spend 1 Sorcery Point to cast w/out somatic or verbal components"',
@@ -862,7 +861,7 @@ SRD5E.FEATURES = {
   'Supreme Sneak':
     'Section=skill Note="Adv Stealth at half speed"',
   'Survivor':
-    'Section=combat Note="Regain %V HP each tn when between 1 and %1"',
+    'Section=combat Note="Regain %V HP each tn when between 1 and %1 HP"',
   'Thief Of Five Fates':
     'Section=magic Note="<i>Bane</i> 1/long rest"',
   "Thieves' Cant":
@@ -871,7 +870,7 @@ SRD5E.FEATURES = {
     'Section=combat Note="First round extra tn at -10 Initiative"',
   'Thirsting Blade':
     'Section=combat Note="Attack twice each tn w/pact blade"',
-  'Tongue Of Sun And Moon':
+  'Tongue Of The Sun And Moon':
     'Section=feature Note="Communicate in any language"',
   'Tranquility':
     'Section=magic ' +
@@ -963,7 +962,8 @@ SRD5E.FEATURES = {
   'Lightfoot Halfling Ability Adjustment':
     'Section=ability Note="+2 Dexterity/+1 Charisma"',
   'Lucky Halfling':
-    'Section=feature Note="Re-roll 1s on attack, ability, and saving throws"',
+    'Section=feature ' +
+    'Note="May re-roll 1s on attack, ability, and saving throws"',
   'Menacing':
     'Section=skill Note="Skill Proficiency (Intimidation)"',
   'Naturally Stealthy':
@@ -2751,11 +2751,11 @@ SRD5E.WEAPONS = {
   'Dagger':'Category=1 Property=Li,Fi Damage=d4 Range=20',
   'Dart':'Category=1 Property=R,Fi Damage=d4 Range=20',
   'Flail':'Category=2 Property=1h Damage=d8',
-  'Glaive':'Category=2 Property=2h Damage=d10',
-  'Greataxe':'Category=2 Property=2h Damage=d12',
+  'Glaive':'Category=2 Property=2h,He Damage=d10',
+  'Greataxe':'Category=2 Property=2h,He Damage=d12',
   'Greatclub':'Category=1 Property=2h Damage=d8',
-  'Greatsword':'Category=2 Property=2h Damage=2d6',
-  'Halberd':'Category=2 Property=2h Damage=d10',
+  'Greatsword':'Category=2 Property=2h,He Damage=2d6',
+  'Halberd':'Category=2 Property=2h,He Damage=d10',
   'Hand Crossbow':'Category=2 Property=R Damage=d6 Range=30',
   'Handaxe':'Category=1 Property=Li Damage=d6 Range=20',
   'Heavy Crossbow':'Category=2 Property=R Damage=d10 Range=100',
@@ -2767,7 +2767,7 @@ SRD5E.WEAPONS = {
   'Longsword':'Category=2 Property=Ve Damage=d8',
   'Mace':'Category=1 Property=1h Damage=d6',
   'Maul':'Category=2 Property=2h Damage=2d6',
-  'Morningstar':'Category=2 Property=1h Damage=d8',
+  'Morningstar':'Category=2 Property=1h,He Damage=d8',
   'Net':'Category=2 Property=R Damage=d0 Range=5',
   'Pike':'Category=2 Property=2h Damage=d10',
   'Quarterstaff':'Category=1 Property=Ve Damage=d6',
@@ -3718,6 +3718,10 @@ SRD5E.classRulesExtra = function(rules, name) {
     );
     rules.defineRule('combatNotes.openHandTechnique', 'kiSaveDC', '=', null);
     rules.defineRule('combatNotes.quiveringPalm', 'kiSaveDC', '=', null);
+    rules.defineRule('combatNotes.quiveringPalm.1',
+      'features.Quivering Palm', '?', null,
+      classLevel, '=', null
+    );
     rules.defineRule('combatNotes.stunningStrike', 'kiSaveDC', '=', null);
     rules.defineRule('featureNotes.ki', classLevel, '=', null);
     rules.defineRule
@@ -4482,6 +4486,9 @@ SRD5E.weaponRules = function(rules, name, category, properties, damage, range) {
   var isFinessed = properties.includes('finesse') || properties.includes('Fi');
   var isRanged = properties.includes('ranged') || properties.includes('R');
   var is2h = properties.includes('two-handed') || properties.includes('2h');
+  var isMonk = name == 'Shortsword' || 
+               (category <= 1 && !is2h &&
+                !(properties.includes('heavy') || properties.includes('He')));
 
   var damage = matchInfo[1];
   var weaponName = 'weapons.' + name;
@@ -4551,10 +4558,7 @@ SRD5E.weaponRules = function(rules, name, category, properties, damage, range) {
       'weaponRangeAdjustment.' + name, '+', null
     );
     rules.defineRule(weaponName + '.4', 'range.' + name, '=', null);
-  } else {
-    rules.defineRule(weaponName + '.2', 'monkMeleeDieBonus', '^', null);
   }
-
   if(is2h)
     rules.defineRule
       ('features.Two-Handed Weapon With Shield', weaponName, '=', '1');
@@ -4562,6 +4566,8 @@ SRD5E.weaponRules = function(rules, name, category, properties, damage, range) {
   rules.defineRule('weaponProficiency.' + name,
     'weaponsChosen.' + name, '=', 'source ? 1 : null'
   );
+  if(isMonk)
+    rules.defineRule(weaponName + '.2', 'monkMeleeDieBonus', '^', null);
 
 };
 

@@ -2698,39 +2698,39 @@ SRD5E.TOOLS = {
 };
 SRD5E.WEAPONS = {
   'Battleaxe':'Category=2 Property=Ve Damage=d8',
-  'Blowgun':'Category=2 Property=R Damage=d1 Range=25',
+  'Blowgun':'Category=2 Property=R Damage=d1 Range=25/100',
   'Club':'Category=1 Property=Li Damage=d4',
-  'Dagger':'Category=1 Property=Li,Fi Damage=d4 Range=20',
-  'Dart':'Category=1 Property=R,Fi Damage=d4 Range=20',
+  'Dagger':'Category=1 Property=Li,Fi Damage=d4 Range=20/60',
+  'Dart':'Category=1 Property=R,Fi Damage=d4 Range=20/60',
   'Flail':'Category=2 Property=1h Damage=d8',
   'Glaive':'Category=2 Property=2h,He Damage=d10',
   'Greataxe':'Category=2 Property=2h,He Damage=d12',
   'Greatclub':'Category=1 Property=2h Damage=d8',
   'Greatsword':'Category=2 Property=2h,He Damage=2d6',
   'Halberd':'Category=2 Property=2h,He Damage=d10',
-  'Hand Crossbow':'Category=2 Property=R Damage=d6 Range=30',
-  'Handaxe':'Category=1 Property=Li Damage=d6 Range=20',
-  'Heavy Crossbow':'Category=2 Property=R Damage=d10 Range=100',
-  'Javelin':'Category=1 Property=1h Damage=d6 Range=30',
+  'Hand Crossbow':'Category=2 Property=R Damage=d6 Range=30/120',
+  'Handaxe':'Category=1 Property=Li Damage=d6 Range=20/60',
+  'Heavy Crossbow':'Category=2 Property=R Damage=d10 Range=100/400',
+  'Javelin':'Category=1 Property=1h Damage=d6 Range=30/120',
   'Lance':'Category=2 Property=1h Damage=d12',
-  'Light Crossbow':'Category=1 Property=R Damage=d8 Range=80',
-  'Light Hammer':'Category=1 Property=Li Damage=d4 Range=20',
-  'Longbow':'Category=2 Property=R Damage=d8 Range=150',
+  'Light Crossbow':'Category=1 Property=R Damage=d8 Range=80/320',
+  'Light Hammer':'Category=1 Property=Li Damage=d4 Range=20/60',
+  'Longbow':'Category=2 Property=R Damage=d8 Range=150/600',
   'Longsword':'Category=2 Property=Ve Damage=d8',
   'Mace':'Category=1 Property=1h Damage=d6',
   'Maul':'Category=2 Property=2h Damage=2d6',
   'Morningstar':'Category=2 Property=1h,He Damage=d8',
-  'Net':'Category=2 Property=R Damage=d0 Range=5',
+  'Net':'Category=2 Property=R Damage=d0 Range=5/15',
   'Pike':'Category=2 Property=2h Damage=d10',
   'Quarterstaff':'Category=1 Property=Ve Damage=d6',
   'Rapier':'Category=2 Property=1h,Fi Damage=d8',
   'Scimitar':'Category=2 Property=Li,Fi Damage=d6',
-  'Shortbow':'Category=1 Property=R Damage=d6 Range=80',
+  'Shortbow':'Category=1 Property=R Damage=d6 Range=80/320',
   'Shortsword':'Category=2 Property=Li,Fi Damage=d6',
   'Sickle':'Category=1 Property=Li Damage=d4',
-  'Sling':'Category=1 Property=R Damage=d4 Range=30',
-  'Spear':'Category=1 Property=Ve Damage=d6 Range=20',
-  'Trident':'Category=2 Property=Ve Damage=d6 Range=20',
+  'Sling':'Category=1 Property=R Damage=d4 Range=30/120',
+  'Spear':'Category=1 Property=Ve Damage=d6 Range=20/60',
+  'Trident':'Category=2 Property=Ve Damage=d6 Range=20/60',
   'Unarmed':'Category=0 Property=Un Damage=d1',
   'War Pick':'Category=2 Property=1h Damage=d8',
   'Warhammer':'Category=2 Property=Ve Damage=d8',
@@ -4426,7 +4426,7 @@ SRD5E.weaponRules = function(rules, name, category, properties, damage, range) {
     console.log('Bad damage "' + damage + '" for weapon ' + name);
     return;
   }
-  if(range && typeof range != 'number') {
+  if(range && !(range + '').match(/^\d+\/\d+$/)) {
     console.log('Bad range "' + range + '" for weapon ' + name);
   }
 
@@ -4448,7 +4448,7 @@ SRD5E.weaponRules = function(rules, name, category, properties, damage, range) {
 
   var damage = matchInfo[1];
   var weaponName = 'weapons.' + name;
-  var format = '%V (%1 %2%3' + (range ? " R%4'" : '') + ')';
+  var format = '%V (%1 %2%3' + (range ? " R%4" : '') + ')';
 
   if(damage.startsWith('d'))
     damage = '1' + damage;
@@ -4509,10 +4509,8 @@ SRD5E.weaponRules = function(rules, name, category, properties, damage, range) {
     'damageBonus.' + name, '=', 'source > 0 ? "+" + source : source == 0 ? "" : source'
   );
   if(range) {
-    rules.defineRule('range.' + name,
-      weaponName, '=', range,
-      'weaponRangeAdjustment.' + name, '+', null
-    );
+    rules.defineRule('range.' + name, weaponName, '=', '"' + range + '"');
+    // TODO Any need for weaponRangeAdjustment.name?
     rules.defineRule(weaponName + '.4', 'range.' + name, '=', null);
   }
   if(is2h)

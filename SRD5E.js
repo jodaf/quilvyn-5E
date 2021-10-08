@@ -475,11 +475,11 @@ SRD5E.FEATURES = {
   'Ascendant Step':
     'Section=magic Note="<i>Levitate</i> at will"',
   'Aura Of Courage':
-    'Section=save Note="R%V\' Self and allies immunity to fright"',
+    'Section=save Note="R%V\' Gives self and allies immunity to fright"',
   'Aura Of Devotion':
-    'Section=save Note="R%V\' Self and allies immunity to charm"',
+    'Section=save Note="R%V\' Gives self and allies immunity to charm"',
   'Aura Of Protection':
-    'Section=save Note="R%V\' +%1 saves self and allies"',
+    'Section=save Note="R%V\' Gives self and allies +%1 saves"',
   'Barbarian Unarmored Defense':
     'Section=combat Note="+%1 AC in no armor"',
   'Bard Expertise':
@@ -499,7 +499,8 @@ SRD5E.FEATURES = {
     'Section=magic ' +
     'Note="Self regains 2 + spell level HP from casting healing spells"',
   'Blindsense':
-    'Section=skill Note="R10\' Hear hidden and invisible creatures"',
+    'Section=skill ' +
+    'Note="R10\' Know location of hidden and invisible creatures"',
   'Book Of Ancient Secrets':
     'Section=magic Note="Inscribe rituals in <i>Book Of Shadows</i>"',
   'Brutal Critical':
@@ -520,8 +521,7 @@ SRD5E.FEATURES = {
   'Countercharm':
     'Section=magic ' +
     'Note="R30\' Performance gives friendly listeners Adv vs. charm and fright for 1 tn"',
-  'Cunning Action':
-    'Section=combat Note="Bonus Dash, Disengage, or Hide each tn"',
+  'Cunning Action':'Section=combat Note="Bonus Dash, Disengage, or Hide 1/tn"',
   'Cutting Words':
     'Section=combat ' +
     'Note="R60\' Reaction to subtract Bardic Inspiration die from foe roll"',
@@ -534,7 +534,7 @@ SRD5E.FEATURES = {
   "Devil's Sight":
     'Section=feature Note="R120\' See normally in darkness"',
   'Deflect Missiles':
-    'Section=combat Note="Use reaction to reduce missile damage by 1d10+%V"',
+    'Section=combat Note="Use Reaction to reduce missile damage by 1d10+%V"',
   'Destroy Undead':
     'Section=combat Note="Turning destroys undead up to CR %V"',
   'Diamond Soul':
@@ -544,15 +544,14 @@ SRD5E.FEATURES = {
   'Distant Spell':
     'Section=magic ' +
     'Note="Spend 1 Sorcery Point to dbl spell range or touch at 30\'"',
-  'Divine Health':
-    'Section=save Note="Immunity to disease"',
-  'Divine Intervention':
-    'Section=magic Note="%V% chance of deity help 1/wk"',
+  'Divine Health':'Section=save Note="Immune to disease"',
+  'Divine Intervention':'Section=magic Note="%V% chance of deity help 1/wk"',
   'Divine Sense':
     'Section=magic ' +
-    'Note="R60\' Know location of celestials, fiends, undead %V/long rest"',
+    'Note="R60\' Know location of celestials, fiends, and undead for 1 rd %V/long rest"',
   'Divine Smite':
-    'Section=combat Note="Spend spell slot for +(spell level + 1)d8 damage"',
+    'Section=combat ' +
+    'Note="Spend spell slot for +(spell level + 1)d8 HP radiant melee weapon damage"',
   'Divine Strike':
     'Section=combat Note="Weapon inflicts +%Vd8 HP %1 1/tn"',
   'Draconic Presence':
@@ -607,18 +606,17 @@ SRD5E.FEATURES = {
     'Section=feature Note="Read all writing"',
   'Fast Hands':
     'Section=combat ' +
-    'Note="Use Cunning Action for Sleight Of Hand, disarm trap, open lock, Use An Object"',
+    'Note="Use Cunning Action for Sleight Of Hand check, to disarm a trap, open a lock, or Use An Object"',
   'Fast Movement':
     'Section=ability Note="+10 Speed (heavy armor neg)"',
   'Favored Enemy':
     'Section=skill ' +
-    'Note="Adv Survival to track and info about %V creature types, learn enemy language"',
+    'Note="Adv on Survival to track, Adv on Intelligence to recall info about, and learn the language of %V chosen creature types"',
   'Feral Instinct':
     'Section=combat Note="Adv on Initiative, rage and then act when surprised"',
   'Feral Senses':
     'Section=combat,skill ' +
-    'Note="No Disadv vs. invisible foe",' +
-         '"30\' awareness of invisible creatures"',
+    'Note="No Disadv vs. invisible foe","R30\' Aware of invisible creatures"',
   'Fiendish Resilience':
     'Section=save ' +
     'Note="Resistance to chosen damage type until next short rest"',
@@ -634,7 +632,7 @@ SRD5E.FEATURES = {
     'Section=combat Note="May re-roll 1s and 2s on two-handed weapon damage"',
   'Fighting Style (Protection)':
     'Section=combat ' +
-    'Note="Use reaction to impose attack Disadv on adjacent foe attacking ally"',
+    'Note="Use Reaction to impose attack Disadv on adjacent foe attacking ally"',
   'Fighting Style (Two-Weapon Fighting)':
     'Section=combat Note="Add ability modifier to second attack damage"',
   'Flexible Casting':
@@ -653,16 +651,17 @@ SRD5E.FEATURES = {
   'Gaze Of Two Minds':
     'Section=magic Note="Perceive via willing touched senses for 1 tn"',
   'Giant Killer':
-    'Section=combat Note="React to attack adjacent lg foe after miss"',
+    'Section=combat ' +
+    'Note="Use Reaction to attack adjacent Large or larger foe after miss"',
   'Heightened Spell':
     'Section=magic ' +
     'Note="Spend 3 Sorcery Points for target Disadv on spell save"',
   'Hide In Plain Sight':
-    'Section=skill Note="+10 Dex (Stealth) to hide w/prepared camouflage"',
+    'Section=skill Note="+10 Stealth to hide using prepared camouflage"',
   'Holy Nimbus':
     'Section=magic,save ' +
-    'Note="Self 30\' bright light does 10 HP to foes 1/long rest",' +
-         '"Adv vs. spells by fiends and undead 1/long rest"',
+    'Note="Emit 30\' bright light that inflicts 10 HP radiant to foes for 1 min 1/long rest",' +
+         '"Adv vs. spells by fiends and undead for 1 min 1/long rest"',
   'Horde Breaker':
     'Section=combat Note="Second attack on different adjacent foe"',
   'Hurl Through Hell':
@@ -670,8 +669,7 @@ SRD5E.FEATURES = {
     'Note="Struck foe trip to hell 10d10 psychic HP 1/long rest"',
   'Improved Critical':
     'Section=combat Note="Crit on natural 19"',
-  'Improved Divine Smite':
-    'Section=combat Note="+1d8 melee damage"',
+  'Improved Divine Smite':'Section=combat Note="+1d8 HP radiant melee damage"',
   'Improved Unarmored Movement':
     'Section=ability Note="Move across vertical surfaces and liquids"',
   'Indomitable Might':
@@ -689,7 +687,7 @@ SRD5E.FEATURES = {
     'Section=combat Note="Unarmed attacks count as magical"',
   "Land's Stride":
     'Section=ability,save ' +
-    'Note="Move normally through difficult terrain",' +
+    'Note="Move normally through difficult terrain and nonmagical plants",' +
          '"Adv vs. impeding plants"',
   'Lay On Hands':
     'Section=magic ' +
@@ -728,7 +726,7 @@ SRD5E.FEATURES = {
     'Section=magic Note="%V spells 1/long rest"',
   'Natural Explorer':
     'Section=skill ' +
-    'Note="Dbl Int and Wis Prof, normal move in difficult terrain, always alert, full speed solo stealth, locate dbl food, extra track info for %V terrains"',
+    'Note="Gain dbl Int and Wis Proficiency, move normally through difficult terrain, never become lost, remain always alert, stealth alone at full speed, locate dbl food, and gain extra info from tracking in %V chosen terrain types"',
   'Natural Recovery':
     'Section=magic ' +
     'Note="Recover %V spell slot levels during short rest 1/long rest"',
@@ -742,7 +740,7 @@ SRD5E.FEATURES = {
     'Section=magic Note="Invisible in dim light until action"',
   'Open Hand Technique':
     'Section=combat ' +
-    'Note="On Flurry of Blows hit, choice of knock prone (DC %V Dex neg), push 15\' (DC %V Str neg), or deny foe reactions for 1 rd"',
+    'Note="On Flurry of Blows hit, choice of knock prone (DC %V Dex neg), push 15\' (DC %V Str neg), or deny foe Reaction for 1 rd"',
   'Otherworldly Leap':
     'Section=magic Note="Self <i>Jump</i> at will"',
   'Overchannel':
@@ -769,10 +767,11 @@ SRD5E.FEATURES = {
     'Section=ability Note="+4 Strength/+4 Constitution"',
   'Primeval Awareness':
     'Section=magic ' +
-    'Note="Expend spell to sense creatures in 1 mi (favored terrain 6 mi) for 1 min/spell level"',
+    'Note="Use spell slot to sense creatures in 1 mile (favored terrain 6 miles) for 1 min/spell level"',
   'Purity Of Body':'Section=save Note="Immune to disease and poison"',
   'Purity Of Spirit':
-    'Section=magic Note="Self continuous <i>Protection From Evil And Good</i>"',
+    'Section=magic ' +
+    'Note="Continuous <i>Protection From Evil And Good</i> on self"',
   'Quickened Spell':
     'Section=magic Note="Spend 2 Sorcery Points to cast spell as bonus action"',
   'Quivering Palm':
@@ -800,14 +799,14 @@ SRD5E.FEATURES = {
   'Repelling Blast':
     'Section=magic Note="<i>Eldritch Blast</i> pushes 10\'"',
   'Retaliation':
-    'Section=combat Note="Melee attack reaction after taking damage"',
+    'Section=combat Note="Melee attack Reaction after taking damage"',
   'Ritual Casting':
     'Section=magic Note="Cast known spell as ritual"',
   'Rogue Expertise':
-    'Section=skill Note="Dbl proficiency %V skills or Thieves\' Tools"',
+    'Section=skill Note="Dbl proficiency on %V skills or Thieves\' Tools"',
   'Sacred Weapon':
     'Section=combat ' +
-    'Note="Channel Divinity makes weapon +%V attack and shine 20\' light for 1 min"',
+    'Note="Channel Divinity gives weapon +%V attack and 20\' light for 1 min"',
   'Sculpt Spells':
     'Section=magic ' +
     'Note="Protect spell level + 1 targets from evocation spell effects"',
@@ -816,7 +815,7 @@ SRD5E.FEATURES = {
   'Second Wind':
     'Section=combat Note="Regain 1d10+%V HP 1/short rest"',
   'Second-Story Work':
-    'Section=ability,skill Note="Climb as normal move","+%V\' Jump"',
+    'Section=ability,skill Note="Climb at full speed","+%V\' running jump"',
   'Sign Of Ill Omen':
     'Section=magic Note="<i>Bestow Curse</i> 1/long rest"',
   'Signature Spell':
@@ -824,7 +823,7 @@ SRD5E.FEATURES = {
   'Slippery Mind':
     'Section=save Note="Save Proficiency (Wisdom)"',
   'Slow Fall':
-    'Section=ability Note="Use reaction for -%V HP falling damage"',
+    'Section=ability Note="Use Reaction for -%V HP falling damage"',
   'Sneak Attack':
     'Section=combat Note="+%Vd6 damage on Adv and shared threat attacks"',
   'Song Of Rest':
@@ -834,7 +833,8 @@ SRD5E.FEATURES = {
   'Spell Mastery':
     'Section=magic Note="Cast 1 ea W1, W2 at will"',
   'Stand Against The Tide':
-    'Section=combat Note="Redirect foe miss to another creature"',
+    'Section=combat ' +
+    'Note="Use Reaction to redirect foe melee miss to another creature"',
   'Steel Will':
     'Section=save Note="Adv vs. fright"',
   'Step Of The Wind':
@@ -859,7 +859,7 @@ SRD5E.FEATURES = {
   'Supreme Healing':
     'Section=magic Note="Healing spells yield max HP"',
   'Supreme Sneak':
-    'Section=skill Note="Adv Stealth at half speed"',
+    'Section=skill Note="Adv on Stealth when moving at half speed"',
   'Survivor':
     'Section=combat Note="Regain %V HP each tn when between 1 and %1 HP"',
   'Thief Of Five Fates':
@@ -877,21 +877,21 @@ SRD5E.FEATURES = {
     'Note="Self <i>Sanctuary</i> until next long rest (DC %V Wis neg)"',
   'Turn The Unholy':
     'Section=magic ' +
-    'Note="R30\' Channel Divinity makes fiends and undead flee for 1 min (Wis neg)"',
+    'Note="R30\' Channel Divinity makes fiends and undead flee for 1 min (DC %V Wis neg)"',
   'Turn Undead':
     'Section=combat ' +
-    'Note="R30\' Channel Divinity makes undead flee for 1 min (%V DC Wis neg)"',
+    'Note="R30\' Channel Divinity makes undead flee for 1 min (DC %V Wis neg)"',
   'Twinned Spell':
     'Section=magic ' +
     'Note="Spend spell level Sorcery Points to add second target"',
   'Unarmored Movement':
     'Section=ability Note="+%V speed in no armor"',
   'Uncanny Dodge':
-    'Section=combat Note="Use reaction for half damage"',
+    'Section=combat Note="Use Reaction for half damage"',
   'Use Magic Device':
-    'Section=skill Note="Ignore restrictions on magic device use"',
+    'Section=skill Note="Use otherwise restricted magic devices"',
   'Vanish':
-    'Section=skill Note="Hide as bonus action, untrackable non-magically"',
+    'Section=skill Note="Hide as bonus action, untrackable nonmagically"',
   'Visions Of Distant Realms':
     'Section=magic Note="<i>Arcane Eye</i> at will"',
   'Voice Of The Chain Master':
@@ -1574,7 +1574,7 @@ SRD5E.SPELLS = {
   'Clairvoyance':
     'School=Divination ' +
     'Level=B3,C3,S3,W3 ' +
-    'Description="R1 mi Invisible sensor allows sight or hearing for conc/10 min"',
+    'Description="R1 mile Invisible sensor allows sight or hearing for conc/10 min"',
   'Clone':
     'School=Necromancy ' +
     'Level=W8 ' +
@@ -1662,7 +1662,7 @@ SRD5E.SPELLS = {
   'Control Weather':
     'School=Transmutation ' +
     'Level=C8,D8,W8 ' +
-    'Description="Determine weather in 5 mi radius for conc/8 hr"',
+    'Description="Determine weather in 5 mile radius for conc/8 hr"',
   'Counterspell':
     'School=Abjuration ' +
     'Level=K3,S3,W3 ' +
@@ -2035,7 +2035,7 @@ SRD5E.SPELLS = {
   'Hellish Rebuke':
     'School=Evocation ' +
     'Level=K1,Tiefling1 ' +
-    'Description="R60\' As a reaction, attacker 2d10 HP (Dex half)"',
+    'Description="R60\' As a Reaction, attacker 2d10 HP (Dex half)"',
   "Heroes' Feast":
     'School=Conjuration ' +
     'Level=C6,D6 ' +
@@ -2143,7 +2143,7 @@ SRD5E.SPELLS = {
   'Locate Animals Or Plants':
     'School=Divination ' +
     'Level=B2,D2,R2 ' +
-    'Description="Know location of named beast or plant w/in 5 mi"',
+    'Description="Know location of named beast or plant w/in 5 mile"',
   'Locate Creature':
     'School=Divination ' +
     'Level=B4,C4,D4,P4,R4,Swamp3,W4 ' +
@@ -2228,7 +2228,7 @@ SRD5E.SPELLS = {
   'Meteor Swarm':
     'School=Evocation ' +
     'Level=S9,W9 ' +
-    'Description="R1 mi 40\' radius 20d6 fire + 20d6 bludgeoning (Dex half)"',
+    'Description="R1 mile 40\' radius 20d6 fire + 20d6 bludgeoning (Dex half)"',
   'Mind Blank':
     'School=Abjuration ' +
     'Level=B8,W8 ' +
@@ -2302,7 +2302,7 @@ SRD5E.SPELLS = {
   'Plant Growth':
     'School=Transmutation ' +
     'Level=B3,D3,Forest2,R3 ' +
-    'Description="R150\' Enrich half mi radius for 1 yr or overgrow 100\' radius"',
+    'Description="R150\' Enrich half mile radius for 1 yr or overgrow 100\' radius"',
   'Poison Spray':
     'School=Conjuration ' +
     'Level=D0,Elf0,K0,S0,W0 ' +
@@ -2350,7 +2350,7 @@ SRD5E.SPELLS = {
   'Project Image':
     'School=Illusion ' +
     'Level=B7,W7 ' +
-    'Description="R500 mi Illusory double mimics self for conc/1 dy"',
+    'Description="R500 mile Illusory double mimics self for conc/1 dy"',
   'Protection From Energy':
     'School=Abjuration ' +
     'Level=C3,D3,Desert2,R3,S3,W3 ' +
@@ -3774,6 +3774,8 @@ SRD5E.classRulesExtra = function(rules, name) {
     );
     rules.defineRule
       ('magicNotes.divineSense', 'charismaModifier', '=', 'source+1');
+    rules.defineRule
+      ('magicNotes.turnTheUnholy', 'spellDifficultyClass.P', '=', null);
     rules.defineRule('magicNotes.layOnHands', classLevel, '=', 'source*5');
     rules.defineRule
       ('saveNotes.auraOfCourage', classLevel, '=', 'source<18 ? 10 : 30');
@@ -5665,9 +5667,6 @@ SRD5E.ruleNotes = function() {
     '<h3>Usage Notes</h3>\n' +
     '<ul>\n' +
     '  <li>\n' +
-    '    The Expertise features of bards and rogues are renamed Bard\n' +
-    '    Expertise and Rogue Expertise to distinguish the two.\n' +
-    '  </li><li>\n' +
     '    To allow feats to be taken instead of Ability Score Improvements,\n' +
     '    the latter are presented as feats named Ability Boost, Ability\n' +
     '    Boost2, Ability Boost3, etc.\n' +

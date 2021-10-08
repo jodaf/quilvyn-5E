@@ -425,8 +425,8 @@ SRD5E.CLASSES = {
       '"1:Save Proficiency (Intelligence/Wisdom)",' +
       '"1:Skill Proficiency (Choose 2 from Arcana, History, Insight, Investigation, Medicine, Religion)",' +
       '"1:Weapon Proficiency (Dagger/Dart/Light Crossbow/Quarterstaff/Sling)",' +
-      '"1:Arcane Recovery",1:Spellcasting,"18:Spell Mastery",' +
-      '"20:Signature Spell" ' +
+      '"1:Arcane Recovery","1:Ritual Casting",1:Spellcasting,' +
+      '"18:Spell Mastery","20:Signature Spells" ' +
     'Selectables=' +
       '"2:School Of Evocation:Arcane Tradition" ' +
     'CasterLevelArcane=levels.Wizard ' +
@@ -575,7 +575,7 @@ SRD5E.FEATURES = {
   'Escape The Horde':'Section=combat Note="Foe Disadv on OA"',
   'Evasion':'Section=save Note="Dex save yields no damage instead of half"',
   'Evocation Savant':
-    'Section=magic Note="Write evocation spells for half cost"',
+    'Section=magic Note="Copy evocation spells into spellbook for half cost"',
   'Extended Spell':
     'Section=magic Note="Spend 1 sorcery point to dbl spell duration"',
   'Extra Attack':'Section=combat Note="+%V Attacks Per Round"',
@@ -709,7 +709,7 @@ SRD5E.FEATURES = {
   'Otherworldly Leap':'Section=magic Note="Cast <i>Jump</i> on self at will"',
   'Overchannel':
     'Section=magic ' +
-    'Note="Max damage from evocation spell up to level 5, self take damage 2nd+ time/long rest"',
+    'Note="Evocation spell up to level 5 inflicts maximum damage, self takes 2+d12 HP necrotic damage after first time/long rest"',
   'Pact Of The Blade':'Section=magic Note="Create magic weapon"',
   'Pact Of The Chain':
     'Section=magic ' +
@@ -771,7 +771,7 @@ SRD5E.FEATURES = {
     'Note="Channel Divinity gives weapon +%V attack and 20\' light for 1 min"',
   'Sculpt Spells':
     'Section=magic ' +
-    'Note="Protect spell level + 1 targets from evocation spell effects"',
+    'Note="Protect spell level + 1 targets from self evocation spell effects"',
   'Sculptor Of Flesh':
     'Section=magic ' +
     'Note="Use Warlock spell slot to cast <i>Polymorph</i> 1/long rest"',
@@ -781,7 +781,8 @@ SRD5E.FEATURES = {
   'Sign Of Ill Omen':
     'Section=magic ' +
     'Note="Use Warlock spell slot to cast <i>Bestow Curse</i> 1/long rest"',
-  'Signature Spell':'Section=magic Note="Cast 2 W3 1/short rest"',
+  'Signature Spells':
+    'Section=magic Note="Cast 2 chosen W3 spells 1/short rest"',
   'Slippery Mind':'Section=save Note="Save Proficiency (Wisdom)"',
   'Slow Fall':'Section=ability Note="Use Reaction for -%V HP falling damage"',
   'Sneak Attack':
@@ -790,7 +791,7 @@ SRD5E.FEATURES = {
     'Section=magic Note="Friendly listeners regain 1d%V HP after short rest"',
   'Sorcerous Restoration':
     'Section=magic Note="Regain 4 Sorcery Points/short rest"',
-  'Spell Mastery':'Section=magic Note="Cast 1 ea W1, W2 at will"',
+  'Spell Mastery':'Section=magic Note="Cast chosen W1 spell W2 spell at will"',
   'Stand Against The Tide':
     'Section=combat ' +
     'Note="Use Reaction to redirect foe melee miss to another creature"',

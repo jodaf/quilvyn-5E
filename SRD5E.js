@@ -2693,8 +2693,8 @@ SRD5E.TOOLS = {
   "Navigator's Tools":'Type=General',
   "Poisoner's Kit":'Type=General',
   "Thieves' Tools":'Type=General',
-  'Land Vehicles':'Type=General',
-  'Water Vehicles':'Type=General'
+  'Vehicles (Land)':'Type=General',
+  'Vehicles (Water)':'Type=General'
 };
 SRD5E.WEAPONS = {
   'Battleaxe':'Category=2 Property=Ve Damage=d8',

@@ -375,7 +375,7 @@ SRD5E.CLASSES = {
       '"1:Pact Magic","2:Eldritch Invocations","11:Mystic Arcanum",' +
       '"20:Eldritch Master" ' +
     'Selectables=' +
-      '"1:The Fiend:Otherwordly Patron",' +
+      '"1:The Fiend:Otherworldly Patron",' +
       '"3:Pact Of The Blade:Pact Boon","3:Pact Of The Chain:Pact Boon",' +
       '"3:Pact Of The Tome:Pact Boon",' +
       '"2:Agonizing Blast:Eldritch Invocation",' +
@@ -750,7 +750,7 @@ SRD5E.FEATURES = {
        '"Adv Str, resistance to bludgeoning, piercing, and slashing damage"',
   'Reckless Attack':
     'Section=combat ' +
-    'Note="Gain Adv on melee Str attacks; gives foes Adv on all attacks"',
+    'Note="Trade Adv on melee Str attacks for foe Adv on all attacks"',
   'Relentless Rage':
     'Section=combat Note="DC 10+ Con to keep 1 HP when brought to 0 HP"',
   'Reliable Talent':
@@ -864,7 +864,7 @@ SRD5E.FEATURES = {
   // Feat
   'Grappler':
     'Section=combat ' +
-    'Note="Adv attacks vs. grappled foe, additional grapple to pin"',
+    'Note="Adv on attacks on grappled foe; additional grapple to pin; grapple larger foes"',
   // Race
   "Artificer's Lore":
     'Section=skill ' +
@@ -1934,7 +1934,7 @@ SRD5E.SPELLS = {
   'Greater Restoration':
     'School=Abjuration ' +
     'Level=B5,C5,D5 ' +
-    'Description="Touched creature unexhaust, uncharm, unpetrify, uncurse, or restored ability or HP"',
+    'Description="Touched creature unexhausted, uncharmed, unpetrified, uncursed, or restored ability or HP"',
   'Guardian Of Faith':
     'School=Conjuration ' +
     'Level=C4,Devotion4,Life4 ' +
@@ -1975,7 +1975,7 @@ SRD5E.SPELLS = {
   'Heal':
     'School=Evocation ' +
     'Level=C6,D6 ' +
-    'Description="R60\' Target heal 70 HP, unblind, undeaf, undisease"',
+    'Description="R60\' Target heal 70 HP, unblinded, undeafened, undiseased"',
   'Healing Word':
     'School=Evocation ' +
     'Level=B1,C1,D1 ' +
@@ -5597,25 +5597,6 @@ SRD5E.ruleNotes = function() {
   return '' +
     '<h2>SRD5E Quilvyn Module Notes</h2>\n' +
     'SRD5E Quilvyn Module Version ' + SRD5E.VERSION + '\n' +
-    '<p>\n' +
-    'System Reference Document material is Open Game Content released by ' +
-    'Wizards of the Coast under the Open Game License. ' +
-    'System Reference Document 5.1 Copyright 2016, Wizards of the Coast, ' +
-    'Inc.; Authors Mike Mearls, Jeremy Crawford, Chris Perkins, Rodney ' +
-    'Thompson, Peter Lee, James Wyatt, Robert J. Schwalb, Bruce R. Cordell, ' +
-    'Chris Sims, and Steve Townshend, based on original material by E. Gary ' +
-    'Gygax and Dave Arneson.\n' +
-    '</p><p>\n' +
-    'Open Game License v 1.0a Copyright 2000, Wizards of the Coast, LLC. You ' +
-    'should have received a copy of the Open Game License with this program; ' +
-    'if not, you can obtain one from ' +
-    'https://media.wizards.com/2016/downloads/SRD-OGL_V1.1.pdf. ' +
-    '<a href="plugins/ogl-srd5e.txt">Click here</a> to see the license.<br/>\n'+
-    '</p><p>\n' +
-    'Quilvyn is not approved or endorsed by Wizards of the Coast. Portions ' +
-    'of the materials used are property of Wizards of the Coast. ©Wizards of ' +
-    'the Coast LLC.\n' +
-    '</p>\n' +
     '<h3>Usage Notes</h3>\n' +
     '<ul>\n' +
     '  <li>\n' +
@@ -5646,5 +5627,25 @@ SRD5E.ruleNotes = function() {
     '    gives multiclass characters the complete set of proficiencies for\n' +
     '    each class.\n' +
     '  </li>\n' +
-    '</ul>\n';
+    '</ul>\n' +
+    '<h3>Copyrights and Licensing</h3>\n' +
+    '<p>\n' +
+    'System Reference Document material is Open Game Content released by ' +
+    'Wizards of the Coast under the Open Game License. ' +
+    'System Reference Document 5.1 Copyright 2016, Wizards of the Coast, ' +
+    'Inc.; Authors Mike Mearls, Jeremy Crawford, Chris Perkins, Rodney ' +
+    'Thompson, Peter Lee, James Wyatt, Robert J. Schwalb, Bruce R. Cordell, ' +
+    'Chris Sims, and Steve Townshend, based on original material by E. Gary ' +
+    'Gygax and Dave Arneson.\n' +
+    '</p><p>\n' +
+    'Open Game License v 1.0a Copyright 2000, Wizards of the Coast, LLC. You ' +
+    'should have received a copy of the Open Game License with this program; ' +
+    'if not, you can obtain one from ' +
+    'https://media.wizards.com/2016/downloads/SRD-OGL_V1.1.pdf. ' +
+    '<a href="plugins/ogl-srd5e.txt">Click here</a> to see the license.<br/>\n'+
+    '</p><p>\n' +
+    'Quilvyn is not approved or endorsed by Wizards of the Coast. Portions ' +
+    'of the materials used are property of Wizards of the Coast. ©Wizards of ' +
+    'the Coast LLC.\n' +
+    '</p>\n';
 };

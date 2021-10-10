@@ -1421,7 +1421,7 @@ SRD5E.SPELLS = {
   'Arcane Hand':
     'School=Evocation ' +
     'Level=W5 ' +
-    'Description="R120\' Large hand (AC 20, Str 26, Dex 10) can punch (inflicts 4d8 HP force), push 5\', grapple (inflicts 2d6+mod bludgeoning), and block for conc or 1 min"',
+    'Description="R120\' Large hand (AC 20, Str 26, Dex 10) can punch (inflicts 4d8 HP force), push 5\', grapple (inflicts 2d6+$M bludgeoning), and block for conc or 1 min"',
   'Arcane Lock':
     'School=Abjuration ' +
     'Level=W2 ' +
@@ -1639,7 +1639,7 @@ SRD5E.SPELLS = {
   'Cure Wounds':
     'School=Evocation ' +
     'Level=B1,C1,D1,Life1,P1,R1 ' +
-    'Description="Touched regains 1d8+mod HP"',
+    'Description="Touched regains 1d8+$M HP"',
 
   'Dancing Lights':
     'School=Evocation ' +
@@ -1960,43 +1960,43 @@ SRD5E.SPELLS = {
   'Hallow':
     'School=Evocation ' +
     'Level=C5,K5 ' +
-    'Description="60\' radius warded against outsiders, evokes boon spell"',
+    'Description="60\' radius becomes warded against outsiders and evokes boon effect"',
   'Hallucinatory Terrain':
     'School=Illusion ' +
     'Level=B4,D4,Desert3,K4,W4 ' +
-    'Description="R300\' 150\' cube terrain illusion (Int(Investigation) disbelieve) for 1 dy"',
+    'Description="R300\' 150\' cu terrain illusion (Investigation disbelieve) for 1 dy"',
   'Harm':
     'School=Necromancy ' +
     'Level=C6 ' +
-    'Description="R60\' Target 14d6 HP (Con half)"',
+    'Description="R60\' suffers Target 14d6 HP necrotic (Con half) and equal maximum HP reduction for 1 hr"',
   'Haste':
     'School=Transmutation ' +
     'Level=Grassland2,S3,W3 ' +
-    'Description="R30\' Target dbl speed, +1 AC, bonus action for conc or 1 min"',
+    'Description="R30\' Willing target gains dbl speed, +2 AC, Adv Dex, and bonus action for conc or 1 min"',
   'Heal':
     'School=Evocation ' +
     'Level=C6,D6 ' +
-    'Description="R60\' Target heal 70 HP, unblinded, undeafened, undiseased"',
+    'Description="R60\' Target regains 70 HP and becomes unblinded, undeafened, and undiseased"',
   'Healing Word':
     'School=Evocation ' +
     'Level=B1,C1,D1 ' +
-    'Description="R60\' Target 1d4+modifier HP"',
+    'Description="R60\' Target regains 1d4+$M HP"',
   'Heat Metal':
     'School=Transmutation ' +
     'Level=B2,D2 ' +
-    'Description="R60\' Touching target metal causes 2d8 HP for conc or 1 min"',
+    'Description="R60\' Touching target metal causes 2d8 HP fire for conc or 1 min"',
   'Hellish Rebuke':
     'School=Evocation ' +
     'Level=K1,Tiefling1 ' +
-    'Description="R60\' As a Reaction, attacker 2d10 HP (Dex half)"',
+    'Description="R60\' Use Reaction to inflict 2d10 HP fire on successful attacker (Dex half)"',
   "Heroes' Feast":
     'School=Conjuration ' +
     'Level=C6,D6 ' +
-    'Description="R30\' 12 diners cured, immunity to poison and fright, Wis Adv, +2d10 HP for 1 dy"',
+    'Description="R30\' 12 diners undiseased and unpoisoned and gain immunity to poison and fright, Adv on Wis checks, and +2d10 HP for 1 dy"',
   'Heroism':
     'School=Enchantment ' +
     'Level=B1,P1 ' +
-    'Description="Touched immunity to fright, +modifier HP each rd for conc or 1 min"',
+    'Description="Touched gains immunity to fright and +$M temporary HP each rd for conc or 1 min"',
   'Hideous Laughter':
     'School=Enchantment ' +
     'Level=B1,W1 ' +
@@ -2004,19 +2004,19 @@ SRD5E.SPELLS = {
   'Hold Monster':
     'School=Enchantment ' +
     'Level=B5,K5,S5,W5 ' +
-    'Description="R90\' target frozen for conc or 1 min (Wis neg)"',
+    'Description="R90\' Target immobile for conc or 1 min (Wis neg)"',
   'Hold Person':
     'School=Enchantment ' +
     'Level=Arctic1,B2,C2,D2,K2,S2,W2 ' +
-    'Description="R60\' target frozen for conc or 1 min (Wis neg)"',
+    'Description="R60\' Target immobile for conc or 1 min (Wis neg)"',
   'Holy Aura':
     'School=Abjuration ' +
     'Level=C8 ' +
-    'Description="Self 30\' radius targets Adv saves, foes Disadv attack"',
+    'Description="30\' radius targets gain Adv on saves and blind fiends and undead with melee hit (Con neg); foes suffer Disadv on attacks"',
   "Hunter's Mark":
     'School=Divination ' +
     'Level=R1 ' +
-    'Description="R90\' Self attacks on target +1d6 HP, Adv Wis (Perception/Survival) to locate for conc or 1 hr"',
+    'Description="R90\' Self gains Adv Perception and Wisdom to locate target and +1d6 HP damage on weapon attacks for conc or 1 hr"',
   'Hypnotic Pattern':
     'School=Illusion ' +
     'Level=B3,K3,S3,W3 ' +
@@ -2025,31 +2025,31 @@ SRD5E.SPELLS = {
   'Ice Storm':
     'School=Evocation ' +
     'Level=Arctic3,D4,S4,W4 ' +
-    'Description="R300\' 20\' radius 4d6 HP (Dex half)"',
+    'Description="R300\' 20\' radius inflicts 2d8 bludgeoning and 4d6 HP cold (Dex half)"',
   'Identify':
     'School=Divination ' +
     'Level=B1,W1 ' +
-    'Description="Learn magic properties or spells affecting touched object or creature"',
+    'Description="Self determine magic properties or spells affecting touched"',
   'Illusory Script':
     'School=Illusion ' +
     'Level=B1,K1,W1 ' +
-    'Description="Writing legible only to specified creatures"',
+    'Description="Self writing legible only to specified creatures for 10 dy"',
   'Imprisonment':
     'School=Abjuration ' +
     'Level=K9,W9 ' +
-    'Description="R30\' Target restrained by choice of prisons (Wis neg)"',
+    'Description="R30\' Target restrained by chosen prison (Wis neg)"',
   'Incendiary Cloud':
     'School=Conjuration ' +
     'Level=S8,W8 ' +
-    'Description="R150\' 20\' radius 10d8 HP (Dex half), moves 10\'/rd for conc or 1 min"',
+    'Description="R150\' 20\' radius inflicts 10d8 HP fire (Dex half), moves away 10\'/rd for conc or 1 min"',
   'Inflict Wounds':
     'School=Necromancy ' +
     'Level=C1 ' +
-    'Description="Touched 3d10 HP"',
+    'Description="Touched suffers 3d10 HP necrotic"',
   'Insect Plague':
     'School=Conjuration ' +
     'Level=C5,D5,Desert4,Grassland4,S5,Swamp4 ' +
-    'Description="R300\' 20\' radius 4d10 HP (Con half) for conc or 10 min"',
+    'Description="R300\' 20\' radius inflict 4d10 HP piercing (Con half) for conc or 10 min"',
   'Instant Summons':
     'School=Conjuration ' +
     'Level=W6 ' +
@@ -2057,7 +2057,7 @@ SRD5E.SPELLS = {
   'Invisibility':
     'School=Illusion ' +
     'Level=B2,Grassland1,K2,S2,W2 ' +
-    'Description="Touched creature invisible for conc or 1 hr or until attacks/casts"',
+    'Description="Touched invisible for conc or 1 hr or until attacks or casts"',
   'Irresistible Dance':
     'School=Enchantment ' +
     'Level=B6,W6 ' +
@@ -2066,7 +2066,7 @@ SRD5E.SPELLS = {
   'Jump':
     'School=Transmutation ' +
     'Level=D1,R1,S1,W1 ' +
-    'Description="Touched jump x3 for 1 min"',
+    'Description="Touched triple jump distance for 1 min"',
 
   'Knock':
     'School=Transmutation ' +
@@ -2076,15 +2076,15 @@ SRD5E.SPELLS = {
   'Legend Lore':
     'School=Divination ' +
     'Level=B5,C5,W5 ' +
-    'Description="Know info about named person, place, or object"',
+    'Description="Self learns info about named person, place, or object"',
   'Lesser Restoration':
     'School=Abjuration ' +
     'Level=B2,C2,D2,Devotion2,Life2,P2,R2 ' +
-    'Description="Touched creature unblind, unparalyze, or unpoison"',
+    'Description="Touched unblinded, undeafened, undiseased, unparalyzed, or unpoisoned"',
   'Levitate':
     'School=Transmutation ' +
     'Level=S2,W2 ' +
-    'Description="R60\' Target floats 20\' for conc or 10 min (Con neg)"',
+    'Description="R60\' Target floats for conc or 10 min (Con neg)"',
   'Light':
     'School=Evocation ' +
     'Level=B0,C0,Elf0,S0,W0 ' +
@@ -2092,23 +2092,23 @@ SRD5E.SPELLS = {
   'Lightning Bolt':
     'School=Evocation ' +
     'Level=S3,Mountain2,W3 ' +
-    'Description="100\'x5\' 8d6 HP (Dex half)"',
+    'Description="100\'x5\' line inflicts 8d6 HP lightning (Dex half)"',
   'Locate Animals Or Plants':
     'School=Divination ' +
     'Level=B2,D2,R2 ' +
-    'Description="Know location of named beast or plant w/in 5 mile"',
+    'Description="Self learns location of named beast or plant w/in 5 mile"',
   'Locate Creature':
     'School=Divination ' +
     'Level=B4,C4,D4,P4,R4,Swamp3,W4 ' +
-    'Description="Know location of named creature or species w/in 1000\' for conc or 1 hr"',
+    'Description="Self learns location of named creature or species w/in 1000\' for conc or 1 hr"',
   'Locate Object':
     'School=Divination ' +
     'Level=B2,C2,D2,P2,R2,W2 ' +
-    'Description="Know location of named object or type w/in 1000\' for conc or 10 min"',
+    'Description="Self learns location of named object or type w/in 1000\' for conc or 10 min"',
   'Longstrider':
     'School=Transmutation ' +
     'Level=B1,D1,R1,W1 ' +
-    'Description="Touched +10\' speed for 1 hr"',
+    'Description="Touched gains +10\' speed for 1 hr"',
 
   'Mage Armor':
     'School=Conjuration ' +
@@ -2389,7 +2389,7 @@ SRD5E.SPELLS = {
   'Secret Chest':
     'School=Conjuration ' +
     'Level=W4 ' +
-    'Description="Touched chest moves to Ethereal Plane"',
+    'Description="Touched chest moves to and from Ethereal Plane for 60+ days"',
   'See Invisibility':
     'School=Divination ' +
     'Level=B2,S2,W2 ' +
@@ -2550,7 +2550,7 @@ SRD5E.SPELLS = {
   'Tiny Hut':
     'School=Evocation ' +
     'Level=B3,W3 ' +
-    'Description="10\' radius dome impassable by objects and spells for 8 hr"',
+    'Description="Creates 10\' radius dome impassable by objects and spells for 8 hr"',
   'Tongues':
     'School=Divination ' +
     'Level=B3,C3,K3,S3,W3 ' +
@@ -4384,6 +4384,12 @@ SRD5E.skillRules = function(rules, name, ability, classes) {
 SRD5E.spellRules = function(
   rules, name, school, casterGroup, level, description, domainSpell
 ) {
+  // TODO Remove this hard-coding of associated spell modifier
+  var ability = domainSpell ? 'wisdom' :
+                'BPSK'.includes(casterGroup) ? 'charisma' :
+                casterGroup == 'W' ? 'intelligence' :
+                'wisdom'; // CDR and Druid Circle spells. How about race spells?
+  description = description.replaceAll('$M', '%{' + ability + 'Modifier}');
   // TBD Move out of SRD35
   SRD35.spellRules
     (rules, name, school, casterGroup, level, description, domainSpell);

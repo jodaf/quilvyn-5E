@@ -1708,7 +1708,7 @@ SRD5E.SPELLS = {
   'Divination':
     'School=Divination ' +
     'Level=C4,Forest3,Grassland3 ' +
-    'Description="Self gains truthful answer about event up to 7 dy in the fuure"',
+    'Description="Self gains truthful answer about event up to 7 dy in the future"',
   'Divine Favor':
     'School=Evocation ' +
     'Level=P1 ' +
@@ -1736,7 +1736,7 @@ SRD5E.SPELLS = {
   'Druidcraft':
     'School=Transmutation ' +
     'Level=D0 ' +
-    'Description="R30\' Self predicts 1 dy weather, blooms plant, creates minor sensoy effect, or lights or snuffs small fire"',
+    'Description="R30\' Self predicts 1 dy weather, blooms plant, creates minor sensory effect, or lights or snuffs small fire"',
 
   'Earthquake':
     'School=Evocation ' +
@@ -2153,7 +2153,7 @@ SRD5E.SPELLS = {
   'Mass Heal':
     'School=Evocation ' + // from errata
     'Level=C9 ' +
-    'Description="R60\' Targets regain 700 HP total and unblinded, undeafed, and undiseased"',
+    'Description="R60\' Targets regain 700 HP total and unblinded, undeafened, and undiseased"',
   'Mass Healing Word':
     'School=Evocation ' +
     'Level=C3 ' +

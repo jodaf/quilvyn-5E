@@ -2147,11 +2147,11 @@ SRD5E.SPELLS = {
     'Level=B3,K3,S3,W3 ' +
     'Description="R120\' Creates 20\' cu sight, sound, and touch illusion for conc or 10 min"',
   'Mass Cure Wounds':
-    'School=Conjuration ' +
+    'School=Evocation ' + // from errata
     'Level=B5,C5,D5,Life5 ' +
     'Description="R60\' 6 targets in 30\' radius regain 3d8 + $M HP"',
   'Mass Heal':
-    'School=Conjuration ' +
+    'School=Evocation ' + // from errata
     'Level=C9 ' +
     'Description="R60\' Targets regain 700 HP total and unblinded, undeafed, and undiseased"',
   'Mass Healing Word':
@@ -2362,7 +2362,7 @@ SRD5E.SPELLS = {
     'Level=D7,S7,W7 ' +
     'Description="R50\' Items in 50\' radius fall up for conc or 1 min"',
   'Revivify':
-    'School=Conjuration ' +
+    'School=Necromancy ' + // from errata
     'Level=C3,Life3,P3 ' +
     'Description="Touched 1-minute-old corpse returned to life w/1 HP"',
   'Rope Trick':

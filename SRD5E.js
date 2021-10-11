@@ -1365,7 +1365,7 @@ SRD5E.SPELLS = {
   'Acid Arrow':
     'School=Evocation ' +
     'Level=Swamp1,W2 ' +
-    'Description="R90\' Ranged spell inflicts 4d4 HP acid (miss half), 2d4 HP next tn"',
+    'Description="R90\' Ranged spell inflicts 4d4 HP acid, 2d4 HP next tn (miss half 1st tn, 0 HP 2nd)"',
   'Acid Splash':
     'School=Conjuration ' +
     'Level=Elf0,S0,W0 ' +
@@ -1786,7 +1786,7 @@ SRD5E.SPELLS = {
   'Faithful Hound':
     'School=Conjuration ' +
     'Level=W4 ' +
-    'Description="R30\' Invisible watchdog warns and attacks for 8 hr"',
+    'Description="R30\' Invisible watchdog barks at intruders in 30\', attacks (+%{intelligenceModifier+proficiencyBonus} 4d8 HP piercing) in 5\' for 8 hr"',
   'False Life':
     'School=Necromancy ' +
     'Level=S1,W1 ' +
@@ -1886,7 +1886,7 @@ SRD5E.SPELLS = {
   'Freezing Sphere':
     'School=Evocation ' +
     'Level=W6 ' +
-    'Description="R300\' Objects in 60\' radius 10d6 HP (Con half)"',
+    'Description="R300\' 60\' radius inflicts 10d6 HP cold (Con half), freezes water"',
 
   'Gaseous Form':
     'School=Transmutation ' +
@@ -2061,7 +2061,7 @@ SRD5E.SPELLS = {
   'Irresistible Dance':
     'School=Enchantment ' +
     'Level=B6,W6 ' +
-    'Description="R30\' Target dance (Disadv Dex, attack, foes Adv attack) for conc or 1 min (Wis neg)"',
+    'Description="R30\' Target dances (Disadv on Dex and attack, foes Adv on attacks) for conc or 1 min (Wis neg)"',
 
   'Jump':
     'School=Transmutation ' +
@@ -2111,9 +2111,9 @@ SRD5E.SPELLS = {
     'Description="Touched gains +10\' speed for 1 hr"',
 
   'Mage Armor':
-    'School=Conjuration ' +
+    'School=Abjuration ' +
     'Level=S1,W1 ' +
-    'Description="Touched AC 13+DexMod in no armor for 8 hr"',
+    'Description="Touched AC 13 + DexMod in no armor for 8 hr"',
   'Mage Hand':
     'School=Conjuration ' +
     'Level=B0,Elf0,K0,S0,W0 ' +
@@ -2121,205 +2121,205 @@ SRD5E.SPELLS = {
   'Magic Circle':
     'School=Abjuration ' +
     'Level=C3,K3,P3,W3 ' +
-    'Description="R10\' 10\' circle impassable by specified creature type, Disadv attacks for 1 hr"',
+    'Description="R10\' 10\' circle impassable and inflicts DisAdv on attacks by specified creature type for 1 hr"',
   'Magic Jar':
     'School=Necromancy ' +
     'Level=W6 ' +
-    'Description="R100\' Possess creature, trap soul (Cha neg)"',
+    'Description="R100\' Self possesses creature body trapping soul (Cha neg)"',
   'Magic Missile':
     'School=Evocation ' +
     'Level=S1,W1 ' +
-    'Description="R120\' 3 darts 1d4+1 HP ea"',
+    'Description="R120\' 3 darts inflict 1d4+1 HP force each"',
   'Magic Mouth':
     'School=Illusion ' +
     'Level=B2,W2 ' +
-    'Description="R30\' Object speaks 25-word message in response to trigger"',
+    'Description="R30\' Object speaks 25-word message when triggered"',
   'Magic Weapon':
     'School=Transmutation ' +
     'Level=P2,W2 ' +
-    'Description="Touched weapon +1 for conc or 1 hr"',
+    'Description="Touched weapon gains +1 magic bonus for conc or 1 hr"',
   'Magnificent Mansion':
     'School=Conjuration ' +
     'Level=B7,W7 ' +
-    'Description="R300\' Comfortable extradimensional dwelling for 1 dy"',
+    'Description="R300\' Creates extradimensional dwelling for 1 dy"',
   'Major Image':
     'School=Illusion ' +
     'Level=B3,K3,S3,W3 ' +
-    'Description="R120\' 20\' cu sight, sound, touch illusion for conc or 10 min"',
+    'Description="R120\' Creates 20\' cu sight, sound, and touch illusion for conc or 10 min"',
   'Mass Cure Wounds':
-    'School=Evocation ' +
+    'School=Conjuration ' +
     'Level=B5,C5,D5,Life5 ' +
-    'Description="R60\' 6 targets in 30\' radius regain 3d8+spell mod HP"',
+    'Description="R60\' 6 targets in 30\' radius regain 3d8 + $M HP"',
   'Mass Heal':
-    'School=Evocation ' +
+    'School=Conjuration ' +
     'Level=C9 ' +
-    'Description="R60\' Targets restore 700 HP total, unblind, undeaf, undisease"',
+    'Description="R60\' Targets regain 700 HP total and unblinded, undeafed, and undiseased"',
   'Mass Healing Word':
     'School=Evocation ' +
     'Level=C3 ' +
-    'Description="R60\' 6 targets regain 1d4+spell mod HP"',
+    'Description="R60\' 6 targets regain 1d4 + $M HP"',
   'Mass Suggestion':
     'School=Enchantment ' +
     'Level=B6,K6,S6,W6 ' +
-    'Description="R60\' 12 targets follow suggestion (Wis neg)"',
+    'Description="R60\' 12 targets follow self suggestion (Wis neg)"',
   'Maze':
     'School=Conjuration ' +
     'Level=W8 ' +
-    'Description="R60\' Target sent to labyrinth (DC 20 Int escapes)"',
+    'Description="R60\' Target sent to labyrinthine demiplane for conc or 10 min (DC 20 Int escapes)"',
   'Meld Into Stone':
     'School=Transmutation ' +
     'Level=C3,D3,Mountain2 ' +
-    'Description="Step into rock for 8 hr"',
+    'Description="Self step into rock for 8 hr"',
   'Mending':
     'School=Transmutation ' +
     'Level=B0,C0,D0,Elf0,S0,W0 ' +
-    'Description="Repair small tears"',
+    'Description="Touch repairs small tear"',
   'Message':
     'School=Transmutation ' +
     'Level=B0,Elf0,S0,W0 ' +
-    'Description="R120 Whispered conversation w/target for 1 rd"',
+    'Description="R120\' Self have whispered conversation w/target for 1 rd"',
   'Meteor Swarm':
     'School=Evocation ' +
     'Level=S9,W9 ' +
-    'Description="R1 mile 40\' radius 20d6 fire + 20d6 bludgeoning (Dex half)"',
+    'Description="R1 mile 40\' radius inflicts 20d6 HP fire and 20d6 HP bludgeoning (Dex half)"',
   'Mind Blank':
     'School=Abjuration ' +
     'Level=B8,W8 ' +
-    'Description="Touched immunity to psychic damage, reading, charm for 1 dy"',
+    'Description="Touched gains immunity to psychic damage, thought reading, and charm for 1 dy"',
   'Minor Illusion':
     'School=Illusion ' +
     'Level=B0,Elf0,K0,S0,W0 ' +
-    'Description="R30\' Sound of 1 creature or 5\' cu image (Investigation disbelieve) for 1 min"',
+    'Description="R30\' Creates sound of 1 creature or 5\' cu image (Investigation disbelieve) for 1 min"',
   'Mirage Arcane':
     'School=Illusion ' +
     'Level=B7,D7,W7 ' +
-    'Description="Illusionary terrain for 10 dy"',
+    'Description="Creates 1 mile sq illusionary terrain for 10 dy"',
   'Mirror Image':
     'School=Illusion ' +
     'Level=Coast1,K2,S2,W2 ' +
-    'Description="3 duplicates draw attacks (AC 10+DexMod)"',
+    'Description="3 self duplicates draw attacks (AC %{10+dexterityModifier}) for 1 min"',
   'Mislead':
     'School=Illusion ' +
     'Level=B5,W5 ' +
-    'Description="Self invisible, control illusory duplicate for conc or 1 hr"',
+    'Description="Makes self invisible and creates illusory duplicate for conc or 1 hr"',
   'Misty Step':
     'School=Conjuration ' +
     'Level=Coast1,K2,S2,W2 ' +
-    'Description="Self teleport 30\'"',
+    'Description="Self teleports 30\'"',
   'Modify Memory':
     'School=Enchantment ' +
     'Level=B5,W5 ' +
-    'Description="R30\' Change target memory of event in prior dy (Wis neg)"',
+    'Description="R30\' Changes target memory of event in past dy (Wis neg)"',
   'Moonbeam':
     'School=Evocation ' +
     'Level=D2 ' +
-    'Description="5\' radius 2d10 HP (Con half) for conc or 1 min"',
+    'Description="R120\' 5\' radius inflicts 2d10 HP radiant (Con half) for conc or 1 min"',
   'Move Earth':
     'School=Transmutation ' +
     'Level=D6,S6,W6 ' +
-    'Description="R120\' Excavate 40\' cu for conc or 2 hr"',
+    'Description="R120\' Reshape 40\' cu of earth for conc or 2 hr"',
 
   'Nondetection':
     'School=Abjuration ' +
     'Level=B3,R3,W3 ' +
-    'Description="Touched immunity to divination for 8 hr"',
+    'Description="Touched gains immunity to divination for 8 hr"',
 
   'Pass Without Trace':
     'School=Abjuration ' +
     'Level=D2,Grassland1,R2 ' +
-    'Description="Allies within 30\' self +10 Dexterity (Stealth), untrackable for conc or 1 hr"',
+    'Description="Targets in 30\' radius gain +10 Stealth and become untrackable for conc or 1 hr"',
   'Passwall':
     'School=Transmutation ' +
     'Level=Mountain4,W5 ' +
-    'Description="R30\' 5\'x8\'x20\' passage through wood, plaster, or stone"',
+    'Description="R30\' Creates 5\'x8\'x20\' passage through wood, plaster, or stone for 1 hr"',
   'Phantasmal Killer':
     'School=Illusion ' +
     'Level=W4 ' +
-    'Description="R120\' Target frightened, 4d10 HP/rd for conc or 1 min (Wis neg)"',
+    'Description="R120\' Target perceives personal horror that frightens and inflicts 4d10 HP psychic/rd for conc or 1 min (Wis neg)"',
   'Phantom Steed':
     'School=Illusion ' +
     'Level=W3 ' +
-    'Description="R30\' Self ride 100\'/rd for 1 hr"',
+    'Description="R30\' Self or target rides 100\'/rd (13 MPH) for 1 hr"',
   'Planar Ally':
     'School=Conjuration ' +
     'Level=C6 ' +
-    'Description="R60\' Otherworld creature appears, bargain for service"',
+    'Description="R60\' Self bargain for service from outsider"',
   'Planar Binding':
     'School=Abjuration ' +
     'Level=B5,C5,D5,W5 ' +
-    'Description="R60; Bind celestial, elemental, fey, or fiend to service for 1 dy (Cha neg)"',
+    'Description="R60\' Bind outsider to service for 1 dy (Cha neg)"',
   'Plane Shift':
     'School=Conjuration ' +
     'Level=C7,D7,K7,S7,W7 ' +
-    'Description="Target or self + 8 willing move to different plane (Cha neg)"',
+    'Description="Target or self and 8 willing others move to another plane (Cha neg)"',
   'Plant Growth':
     'School=Transmutation ' +
     'Level=B3,D3,Forest2,R3 ' +
-    'Description="R150\' Enrich half mile radius for 1 yr or overgrow 100\' radius"',
+    'Description="R150\' Overgrow 100\' radius or enrich 1/2 mile radius for 1 yr"',
   'Poison Spray':
     'School=Conjuration ' +
     'Level=D0,Elf0,K0,S0,W0 ' +
-    'Description="R10\' Target ${Math.floor((lvl+7)/6)}d12 HP (Con neg)"',
+    'Description="R10\' Target suffers ${Math.floor((lvl+7)/6)}d12 HP poison (Con neg)"',
   'Polymorph':
     'School=Transmutation ' +
     'Level=B4,D4,S4,W4 ' +
-    'Description="R60\' Target creature transformed for conc or 1 hr/0 HP (Wis neg)"',
+    'Description="R60\' Target creature transformed for conc or 1 hr or until reduced to 0 HP (Wis neg)"',
   'Power Word Kill':
     'School=Enchantment ' +
     'Level=B9,K9,S9,W9 ' +
-    'Description="R60\' Slay target with at most 100 HP"',
+    'Description="R60\' Slays target with at most 100 HP"',
   'Power Word Stun':
     'School=Enchantment ' +
     'Level=B8,K8,S8,W8 ' +
-    'Description="R60\' Stun target with at most 150 HP (Con neg)"',
+    'Description="R60\' Stuns target with at most 150 HP (Con neg)"',
   'Prayer Of Healing':
     'School=Evocation ' +
     'Level=C2 ' +
-    'Description="R60\' Six targets regain 2d8+spell Mod HP"',
+    'Description="R60\' 6 targets regain 2d8 + $M HP"',
   'Prestidigitation':
     'School=Transmutation ' +
     'Level=B0,Elf0,K0,S0,W0 ' +
-    'Description="R10\' Minor magic effects for 1 hr"',
+    'Description="R10\' Self performs minor magic effects for 1 hr"',
   'Prismatic Spray':
     'School=Evocation ' +
     'Level=S7,W7 ' +
-    'Description="R60\' Targets in cone 10d6 HP (Dex half), held then stone (Dex neg), or blinded then plane shifted (Dex neg)"',
+    'Description="R60\' cone inflicts 10d6 HP fire, acid, lightning, poison, or cold (Dex half), restrains (Dex neg) and then turns to stone (3 Con before 3 fails neg), or blinds (Dex neg) followed by banishing to another plane (Wis neg)"',
   'Prismatic Wall':
     'School=Abjuration ' +
     'Level=W9 ' +
-    'Description="R60\' Transit causes 10d6 HP (Dex half), held then stone (Dex neg), or blinded then plane shifted (Dex neg) for 10 min"',
+    'Description="R60\' 90\'x30\' area blinds w/in 20\'for 1 min (Con neg); passers suffer 10d6 HP each fire, acid, lightning, poison, and cold (Dex half), restraint (Dex neg) and then turning to stone (3 Con before 3 fails neg), and blindness (Dex neg) followed by banishment to another plane (Wis neg)"',
   'Private Sanctum':
     'School=Abjuration ' +
     'Level=W4 ' +
-    'Description="R120\' Protect 100\' sq from sound, vision, divination, teleport for 1 dy"',
+    'Description="R120\' Protects 100\' sq from sound, vision, divination, teleportation, and planar travel for 1 dy"',
   'Produce Flame':
     'School=Conjuration ' +
     'Level=D0 ' +
-    'Description="Hand flame lights 10\' radius for 10 min, throw for ${Math.floor((lvl+7)/6)}d8 HP"',
+    'Description="Lights 10\' radius for 10 min, make ranged spell attack inflicting ${Math.floor((lvl+7)/6)}d8 HP"',
   'Programmed Illusion':
     'School=Illusion ' +
     'Level=B6,W6 ' +
-    'Description="R120\' 30\' cu illusion on specified trigger"',
+    'Description="R120\' Creates 30\' cu illusion when triggered (Investigation disbelieve)"',
   'Project Image':
     'School=Illusion ' +
     'Level=B7,W7 ' +
-    'Description="R500 mile Illusory double mimics self for conc or 1 dy"',
+    'Description="R500 miles Self see and hear through illusory double for conc or 1 dy"',
   'Protection From Energy':
     'School=Abjuration ' +
     'Level=C3,D3,Desert2,R3,S3,W3 ' +
-    'Description="Resistance to acid, cold, fire, lightning, or thunder damage for conc or 1 hr"',
+    'Description="Touched gains resistance to acid, cold, fire, lightning, or thunder damage for conc or 1 hr"',
   'Protection From Evil And Good':
     'School=Abjuration ' +
     'Level=C1,Devotion1,K1,P1,W1 ' +
-    'Description="Touched specified foe type Disadv attack, immunity to charm, fright, and possession"',
+    'Description="Willing touched gains immunity to charm, fright, and possession from aberrations, celestials, elementals, fey, fiends, and undead, and those creatures suffer Disadv attack on touched"',
   'Protection From Poison':
     'School=Abjuration ' +
     'Level=C2,D2,P2,R2 ' +
-    'Description="Touched poison neutralized, Adv save vs. poison for 1 hr"',
+    'Description="Touched unpoisoned and gains Adv on saves vs. poison and resistance to poison damage for 1 hr"',
   'Purify Food And Drink':
     'School=Transmutation ' +
     'Level=C1,D1,P1 ' +
-    'Description="R10\' 5\' radius food, drink freed of poison, disease"',
+    'Description="R10\' Food and drink in 5\' radius freed of poison and disease"',
 
   'Raise Dead':
     'School=Necromancy ' +
@@ -2348,7 +2348,7 @@ SRD5E.SPELLS = {
   'Resilient Sphere':
     'School=Evocation ' +
     'Level=W4 ' +
-    'Description="R30\' Target encased in impervious sphere for conc or 1 min"',
+    'Description="R30\' Traps target in impervious sphere for conc or 1 min (Dex neg)"',
   'Resistance':
     'School=Abjuration ' +
     'Level=C0,D0 ' +
@@ -2362,7 +2362,7 @@ SRD5E.SPELLS = {
     'Level=D7,S7,W7 ' +
     'Description="R50\' Items in 50\' radius fall up for conc or 1 min"',
   'Revivify':
-    'School=Necromancy ' +
+    'School=Conjuration ' +
     'Level=C3,Life3,P3 ' +
     'Description="Touched 1-minute-old corpse returned to life w/1 HP"',
   'Rope Trick':

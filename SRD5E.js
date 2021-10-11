@@ -1596,7 +1596,7 @@ SRD5E.SPELLS = {
   'Contagion':
     'School=Necromancy ' +
     'Level=C5,D5 ' +
-    'Description="Touched diseased for 7 dy after failing 3 Con saves (3 successes neg)"',
+    'Description="Touched poisoned, diseased for 7 dy after failing 3 Con saves (3 successes neg)"',
   'Contingency':
     'School=Evocation ' +
     'Level=W6 ' +

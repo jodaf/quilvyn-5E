@@ -1286,10 +1286,7 @@ SRD5E.RACES = {
     'Features=' +
       '1:Darkvision,"1:Elf Weapon Training","1:Elf Cantrip","1:Fey Ancestry",' +
       '"1:High Elf Ability Adjustment","1:Keen Senses",1:Trance ' +
-    'Languages=Common,Elvish,any ' +
-    'SpellAbility=intelligence ' +
-    'SpellSlots=' +
-      'Elf0:1=1',
+    'Languages=Common,Elvish,any',
   'Rock Gnome':
     'Features=' +
       '"1:Artificer\'s Lore",1:Darkvision,"1:Gnome Cunning",' +
@@ -1368,7 +1365,7 @@ SRD5E.SPELLS = {
     'Description="R90\' Ranged spell inflicts 4d4 HP acid, 2d4 HP next tn (miss half 1st tn, 0 HP 2nd)"',
   'Acid Splash':
     'School=Conjuration ' +
-    'Level=Elf0,S0,W0 ' +
+    'Level=S0,W0 ' +
     'Description="R60\' Ranged touch inflicts ${Math.floor((lvl+7)/6)}d6 HP acid (Dex neg)"',
   'Aid':
     'School=Abjuration ' +
@@ -1518,7 +1515,7 @@ SRD5E.SPELLS = {
     'Description="R30\' Target regards you as a friend (Wis neg) for 1 hr or until harmed"',
   'Chill Touch':
     'School=Necromancy ' +
-    'Level=Elf0,K0,S0,W0 ' +
+    'Level=K0,S0,W0 ' +
     'Description="R120\' Ranged spell inflicts ${Math.floor((lvl+7)/6)}d8 HP necrotic, undead also suffer Disadv on self attack for 1 rd"',
   'Circle Of Death':
     'School=Necromancy ' +
@@ -1643,7 +1640,7 @@ SRD5E.SPELLS = {
 
   'Dancing Lights':
     'School=Evocation ' +
-    'Level=B0,Elf0,S0,W0 ' +
+    'Level=B0,S0,W0 ' +
     'Description="R120\' 4 torch lights move 60\' for conc or 1 min"',
   'Darkness':
     'School=Evocation ' +
@@ -1825,7 +1822,7 @@ SRD5E.SPELLS = {
     'Description="R60\' Target suffers 7d8+30 HP necrotic (Con half), becomes obedient zombie if killed"',
   'Fire Bolt':
     'School=Evocation ' +
-    'Level=Elf0,S0,W0 ' +
+    'Level=S0,W0 ' +
     'Description="R120\' Ranged spell inflicts 1d10 HP fire"',
   'Fire Shield':
     'School=Evocation ' +
@@ -2087,7 +2084,7 @@ SRD5E.SPELLS = {
     'Description="R60\' Target floats (Con neg) for conc or 10 min"',
   'Light':
     'School=Evocation ' +
-    'Level=B0,C0,Elf0,S0,W0 ' +
+    'Level=B0,C0,S0,W0 ' +
     'Description="Touched object lights 20\' radius (Dex neg) for 1 hr"',
   'Lightning Bolt':
     'School=Evocation ' +
@@ -2116,7 +2113,7 @@ SRD5E.SPELLS = {
     'Description="Touched gains AC 13 + DexMod in no armor for 8 hr"',
   'Mage Hand':
     'School=Conjuration ' +
-    'Level=B0,Elf0,K0,S0,W0 ' +
+    'Level=B0,K0,S0,W0 ' +
     'Description="R30\' Spectral hand performs minor tasks moving up to 10 lb for 1 min"',
   'Magic Circle':
     'School=Abjuration ' +
@@ -2172,11 +2169,11 @@ SRD5E.SPELLS = {
     'Description="Self step into rock for 8 hr"',
   'Mending':
     'School=Transmutation ' +
-    'Level=B0,C0,D0,Elf0,S0,W0 ' +
+    'Level=B0,C0,D0,S0,W0 ' +
     'Description="Touch repairs small tear"',
   'Message':
     'School=Transmutation ' +
-    'Level=B0,Elf0,S0,W0 ' +
+    'Level=B0,S0,W0 ' +
     'Description="R120\' Self and target have whispered conversation for 1 rd"',
   'Meteor Swarm':
     'School=Evocation ' +
@@ -2188,7 +2185,7 @@ SRD5E.SPELLS = {
     'Description="Touched gains immunity to psychic damage, thought reading, and charm for 1 dy"',
   'Minor Illusion':
     'School=Illusion ' +
-    'Level=B0,Elf0,K0,S0,W0 ' +
+    'Level=B0,K0,S0,W0 ' +
     'Description="R30\' Creates sound of 1 creature or 5\' cu image (Investigation disbelieve) for 1 min"',
   'Mirage Arcane':
     'School=Illusion ' +
@@ -2258,7 +2255,7 @@ SRD5E.SPELLS = {
     'Description="R150\' Overgrows 100\' radius or enriches 1/2 mile radius for 1 yr"',
   'Poison Spray':
     'School=Conjuration ' +
-    'Level=D0,Elf0,K0,S0,W0 ' +
+    'Level=D0,K0,S0,W0 ' +
     'Description="R10\' Target suffers ${Math.floor((lvl+7)/6)}d12 HP poison (Con neg)"',
   'Polymorph':
     'School=Transmutation ' +
@@ -2278,7 +2275,7 @@ SRD5E.SPELLS = {
     'Description="R60\' 6 targets regain 2d8 + $M HP"',
   'Prestidigitation':
     'School=Transmutation ' +
-    'Level=B0,Elf0,K0,S0,W0 ' +
+    'Level=B0,K0,S0,W0 ' +
     'Description="R10\' Self performs minor magic effects for 1 hr"',
   'Prismatic Spray':
     'School=Evocation ' +
@@ -2331,7 +2328,7 @@ SRD5E.SPELLS = {
     'Description="R60\' Ranged spell inflicts half damage on Str weapons (Con neg) for conc or 1 min"',
   'Ray Of Frost':
     'School=Evocation ' +
-    'Level=Elf0,S0,W0 ' +
+    'Level=S0,W0 ' +
     'Description="R60\' Ranged spell inflicts ${Math.floor((lvl+7)/6)}d8 HP cold and -10\' Speed for 1 rd"',
   'Regenerate':
     'School=Transmutation ' +
@@ -2428,7 +2425,7 @@ SRD5E.SPELLS = {
     'Description="Touched club gains +%{proficiencyBonus + wisdomModifier} attacks, inflicts 1d8 HP for 1 min"',
   'Shocking Grasp':
     'School=Evocation ' +
-    'Level=Elf0,S0,W0 ' +
+    'Level=S0,W0 ' +
     'Description="Touched suffers ${Math.floor((lvl+7)/6)}d8 HP lightning"',
   'Silence':
     'School=Illusion ' +
@@ -2577,7 +2574,7 @@ SRD5E.SPELLS = {
     'Description="Touched gains 120\' truesight, sees magically concealed doors, and can see into Ethereal Plane for 1 hr"',
   'True Strike':
     'School=Divination ' +
-    'Level=B0,Elf0,K0,S0,W0 ' +
+    'Level=B0,K0,S0,W0 ' +
     'Description="R30\' Self gains Adv on next attack on target w/in 1 rd"',
 
   'Unseen Servant':
@@ -4280,7 +4277,8 @@ SRD5E.raceRulesExtra = function(rules, name) {
       ('abilityNotes.armorSpeedAdjustment', 'abilityNotes.steady', '^', '0');
     rules.defineRule('combatNotes.dwarvenToughness', 'level', '=', null);
   } else if(name == 'High Elf') {
-    rules.defineRule('spellSlots.Elf0', 'magicNotes.elfCantrip', '?', null);
+    rules.defineRule('casterLevels.W', 'magicNotes.elfCantrip', '^=', '1');
+    rules.defineRule('spellSlots.W0', 'magicNotes.elfCantrip', '+=', '1');
   } else if(name == 'Tiefling') {
     rules.defineRule('magicNotes.infernalLegacy',
       'race', '?', 'source == "Tiefling"',

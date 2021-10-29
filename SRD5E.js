@@ -65,7 +65,7 @@ function SRD5E() {
 
 }
 
-SRD5E.VERSION = '2.3.1.0';
+SRD5E.VERSION = '2.3.1.1';
 
 /* List of items handled by choiceRules method. */
 SRD5E.CHOICES = [
@@ -3977,7 +3977,7 @@ SRD5E.featureRules = function(rules, name, sections, notes) {
   // TBD Move out of SRD35
   SRD35.featureRules(rules, name, sections, notes);
   for(var i = 0; i < notes.length; i++) {
-    var matchInfo = notes[i].match(/^([A-Z]\w*)\sProficiency\s\(([^\)]*)\)$/);
+    var matchInfo = notes[i].match(/^([A-Z]\w*)\sProficiency\s\((([^\(]|\([^\)]*\))*)\)$/);
     if(!matchInfo)
       continue;
     var group = matchInfo[1].toLowerCase();

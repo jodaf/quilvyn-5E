@@ -1478,7 +1478,7 @@ SRD5E.SPELLS = {
     'Description="R30\' target suffers 8d8 HP necrotic (Con half (plant Disadv, 64 HP on fail))"',
   'Blindness/Deafness':
     'School=Necromancy ' +
-    'Level=B2,C2,K2,S2,W2 ' +
+    'Level=B2,C2,"K2 [The Fiend]",S2,W2 ' +
     'Description="R30\' Inflicts choice of blindness or deafness on target (Con neg) for 1 min"',
   'Blink':
     'School=Transmutation ' +
@@ -1494,7 +1494,7 @@ SRD5E.SPELLS = {
     'Description="Self attack inflicts +2d6 HP radiant and lights target for conc or 1 min"',
   'Burning Hands':
     'School=Evocation ' +
-    'Level=K1,S1,W1 ' +
+    'Level="K1 [The Fiend]",S1,W1 ' +
     'Description="15\' cone inflicts 3d6 HP fire (Dex half)"',
 
   'Call Lightning':
@@ -1539,7 +1539,7 @@ SRD5E.SPELLS = {
     'Description="15\' cone blinds 6d10 HP of targets for 1 rd"',
   'Command':
     'School=Enchantment ' +
-    'Level=C1,K1,P1 ' +
+    'Level=C1,"K1 [The Fiend]",P1 ' +
     'Description="R60\' Target obeys self one-word command (Wis neg)"',
   'Commune':
     'School=Divination ' +
@@ -1826,7 +1826,7 @@ SRD5E.SPELLS = {
     'Description="R120\' Ranged spell inflicts 1d10 HP fire"',
   'Fire Shield':
     'School=Evocation ' +
-    'Level=K4,W4 ' +
+    'Level="K4 [The Fiend]",W4 ' +
     'Description="Self gains resistance to heat or cold damage, successful melee attacker suffers 2d8 HP fire or cold for 10 min"',
   'Fire Storm':
     'School=Evocation ' +
@@ -1834,7 +1834,7 @@ SRD5E.SPELLS = {
     'Description="R150\' 10 10\' cu inflicts 7d10 HP fire (Dex half)"',
   'Fireball':
     'School=Evocation ' +
-    'Level=K3,S3,W3 ' +
+    'Level="K3 [The Fiend]",S3,W3 ' +
     'Description="R150\' 20\' radius inflicts 8d6 HP fire (Dex half)"',
   'Flame Blade':
     'School=Evocation ' +
@@ -1842,7 +1842,7 @@ SRD5E.SPELLS = {
     'Description="Self wields flaming blade that inflicts 3d6 HP fire and lights 10\' radius"',
   'Flame Strike':
     'School=Evocation ' +
-    'Level=C5,Devotion5,K5 ' +
+    'Level=C5,Devotion5,"K5 [The Fiend]" ' +
     'Description="R60\' 10\' radius inflicts 4d6 HP fire and 4d6 HP radiant (Dex half)"',
   'Flaming Sphere':
     'School=Conjuration ' +
@@ -1956,7 +1956,7 @@ SRD5E.SPELLS = {
 
   'Hallow':
     'School=Evocation ' +
-    'Level=C5,K5 ' +
+    'Level=C5,"K5 [The Fiend]" ' +
     'Description="60\' radius becomes warded against outsiders and evokes boon effect"',
   'Hallucinatory Terrain':
     'School=Illusion ' +
@@ -2377,7 +2377,7 @@ SRD5E.SPELLS = {
     'Description="R30\' Foes of target attack another (Wis neg) for 1 min"',
   'Scorching Ray':
     'School=Evocation ' +
-    'Level=K2,S2,W2 ' +
+    'Level="K2 [The Fiend]",S2,W2 ' +
     'Description="R120\' 3 ranged attacks inflict 2d6 HP fire each"',
   'Scrying':
     'School=Divination ' +
@@ -2485,7 +2485,7 @@ SRD5E.SPELLS = {
     'Description="R60\' Spectral weapon inflicts 1d8 + $M HP and moves 20\' for 1 min"',
   'Stinking Cloud':
     'School=Conjuration ' +
-    'Level=B3,K3,S3,Swamp2,W3 ' +
+    'Level=B3,"K3 [The Fiend]",S3,Swamp2,W3 ' +
     'Description="R90\' 20\' radius causes retching for conc or 1 min"',
   'Stone Shape':
     'School=Transmutation ' +
@@ -2593,7 +2593,7 @@ SRD5E.SPELLS = {
 
   'Wall Of Fire':
     'School=Evocation ' +
-    'Level=D4,K4,S4,W4 ' +
+    'Level=D4,"K4 [The Fiend]",S4,W4 ' +
     'Description="R120\' 60\'x20\' wall inflicts 5d8 HP fire (Dex half) for conc or 1 min"',
   'Wall Of Force':
     'School=Evocation ' +
@@ -3178,14 +3178,15 @@ SRD5E.choiceRules = function(rules, type, name, attrs) {
     var school = QuilvynUtils.getAttrValue(attrs, 'School');
     var schoolAbbr = school.substring(0, 4);
     for(var i = 0; i < groupLevels.length; i++) {
-      var matchInfo = groupLevels[i].match(/^(\D+)(\d+)$/);
+      var matchInfo = groupLevels[i].match(/^(\D+)(\d+)(\s\[.*\])?$/);
       if(!matchInfo) {
         console.log('Bad level "' + groupLevels[i] + '" for spell ' + name);
         continue;
       }
       var group = matchInfo[1];
       var level = matchInfo[2] * 1;
-      var fullName = name + '(' + group + level + ' ' + schoolAbbr + ')';
+      var path = matchInfo[3] || '';
+      var fullName = name + '(' + group + level + path + ' ' + schoolAbbr + ')';
       // TODO indicate domain spells in attributes?
       var domainSpell = SRD5E.PATHS[group + ' Domain'] != null;
       SRD5E.spellRules
@@ -5359,6 +5360,9 @@ SRD5E.randomizeOneAttribute = function(attributes, attribute) {
       howMany = attrs[attr];
       choices = availableSpellsByGroupAndLevel[groupAndLevel];
       if(choices != null) {
+        choices = choices.filter(
+          x => !x.includes('[') || attrs['features.' + x.replace(/^.*\[|\].*$/g, '')] != null
+        );
         var slots = attrs['spellSlots.' + groupAndLevel];
         if(slots != null && slots < howMany) {
           howMany = slots;
@@ -5655,9 +5659,6 @@ SRD5E.ruleNotes = function() {
     '  </li><li>\n' +
     '    Quilvyn presents sub-race choices (e.g., Lightfoot Halfling)\n' +
     '    as separate races in the editor Race menu.\n' +
-    '  </li><li>\n' +
-    '    Quilvyn includes spells granted by individual warlock patrons in\n' +
-    '    the warlock spell list.\n' +
     '  </li>\n' +
     '</ul>\n' +
     '\n' +

@@ -65,7 +65,7 @@ function SRD5E() {
 
 }
 
-SRD5E.VERSION = '2.3.1.1';
+SRD5E.VERSION = '2.3.1.2';
 
 /* List of items handled by choiceRules method. */
 SRD5E.CHOICES = [
@@ -5302,8 +5302,8 @@ SRD5E.randomizeOneAttribute = function(attributes, attribute) {
   } else if(attribute == 'skills' || attribute == 'tools') {
     attrs = this.applyRules(attributes);
     var group = this.getChoices(attribute);
-    for(attr in attrs) {
     var pat = new RegExp('^features.' + attribute.replace(/s$/, '') + ' Proficiency \\((.*)\\)$', 'i');
+    for(attr in attrs) {
       if((matchInfo = attr.match(pat)) == null ||
          !matchInfo[1].match(/\bChoose\b/i))
         continue;
@@ -5369,8 +5369,52 @@ SRD5E.randomizeOneAttribute = function(attributes, attribute) {
       }
     }
   } else if(attribute == 'weapons') {
+    var notes = this.getChoices('notes');
     var weapons = this.getChoices('weapons');
     attrs = this.applyRules(attributes);
+    var pat = /Weapon Proficiency \((([^\(]|\([^\)]*\))*)\)$/i;
+    for(attr in attrs) {
+      if((matchInfo = attr.match(pat)) == null && notes[attr] != null)
+        matchInfo = notes[attr].match(pat);
+      if(matchInfo == null || !matchInfo[1].match(/\bChoose\b/i))
+        continue;
+      var pieces = matchInfo[1].split('/');
+      for(i = 0; i < pieces.length; i++) {
+        matchInfo = pieces[i].match(/^Choose\s+(\d+)\s+from\s+(.*)$/i)
+        if(!matchInfo)
+          continue;
+        var count = matchInfo[1] * 1;
+        if(matchInfo[2].match(/^any$/i)) {
+          choices = QuilvynUtils.getKeys(weapons);
+        } else {
+          choices = matchInfo[2].split(/\s*,\s*/);
+          for(var j = choices.length - 1; j >= 0; j--) {
+            if(choices[j].match(/^any\s+/i)) {
+              var type = choices[j].replace(/^any\s+/, '');
+              type = type.match(/simple/i) ? /category=(1|simple)/i :
+                     type.match(/martial/i) ? /category=(2|martial)/i :
+                     type.match(/light/i) ? /light|\bli\b/i :
+                     type.match(/one-handed/i) ? /one-handed|\b1h\b/i :
+                     type.match(/two-handed/i) ? /one-handed|\b2h\b/i :
+                     type.match(/versatile/i) ? /versatile|\bve\b/i :
+                     type.match(/heavy/i) ? /heavy|\bhe\b/i : /./;
+              for(var weapon in weapons) {
+                if(weapons[weapon].match(type))
+                  choices.push(weapon);
+              }
+              choices.splice(j, 1);
+            }
+          }
+        }
+        for(var k = choices.length - 1; k >= 0; k--) {
+          if(!attrs['weaponsChosen.' + choices[k]])
+            continue;
+          count--;
+          choices.splice(k, 1);
+        }
+      }
+      pickAttrs(attributes, 'weaponsChosen.', choices, count, 1);
+    }
     choices = [];
     for(attr in weapons) {
       var category = QuilvynUtils.getAttrValue(weapons[attr], 'Category');

@@ -65,7 +65,7 @@ function SRD5E() {
 
 }
 
-SRD5E.VERSION = '2.3.1.2';
+SRD5E.VERSION = '2.3.1.3';
 
 /* List of items handled by choiceRules method. */
 SRD5E.CHOICES = [

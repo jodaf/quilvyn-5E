@@ -15,7 +15,9 @@ this program; if not, write to the Free Software Foundation, Inc., 59 Temple
 Place, Suite 330, Boston, MA 02111-1307 USA.
 */
 
-/*jshint esversion: 6 */
+/* jshint esversion: 6 */
+/* jshint forin: false */
+/* globals ObjectViewer, Quilvyn, QuilvynRules, QuilvynUtils, SRD35 */
 "use strict";
 
 /*
@@ -3396,6 +3398,7 @@ SRD5E.classRules = function(
   }
 
   var classLevel = 'levels.' + name;
+  var i;
   var prefix =
     name.charAt(0).toLowerCase() + name.substring(1).replaceAll(' ', '');
 
@@ -3410,7 +3413,7 @@ SRD5E.classRules = function(
 
   if(languages.length > 0) {
     rules.defineRule('languageCount', classLevel, '+', languages.length);
-    for(var i = 0; i < languages.length; i++) {
+    for(i = 0; i < languages.length; i++) {
       if(languages[i] != 'any')
         rules.defineRule('languages.' + languages[i], classLevel, '=', '1');
     }
@@ -3443,13 +3446,12 @@ SRD5E.classRules = function(
 
     QuilvynRules.spellSlotRules(rules, 'casterLevels.' + name, spellSlots);
 
-    for(var i = 0; i < spellSlots.length; i++) {
-      var matchInfo = spellSlots[i].match(/^(\D+)(\d):/);
+    for(i = 0; i < spellSlots.length; i++) {
+      var matchInfo = spellSlots[i].match(/^(\D+)\d:/);
       if(!matchInfo) {
         console.log('Bad format for spell slot "' + spellSlots[i] + '"');
         continue;
       }
-      var spellLevel = matchInfo[2] * 1;
       var spellType = matchInfo[1];
       if(spellType != name)
         rules.defineRule
@@ -4108,12 +4110,11 @@ SRD5E.pathRules = function(
     QuilvynRules.spellSlotRules(rules, 'casterLevels.' + name, spellSlots);
 
     for(var i = 0; i < spellSlots.length; i++) {
-      var matchInfo = spellSlots[i].match(/^(\D+)(\d):/);
+      var matchInfo = spellSlots[i].match(/^(\D+)\d:/);
       if(!matchInfo) {
         console.log('Bad format for spell slot "' + spellSlots[i] + '"');
         continue;
       }
-      var spellLevel = matchInfo[2] * 1;
       var spellType = matchInfo[1];
       if(spellType != name)
         rules.defineRule
@@ -4196,6 +4197,7 @@ SRD5E.raceRules = function(
     return;
   }
 
+  var i;
   var matchInfo;
   var prefix =
     name.charAt(0).toLowerCase() + name.substring(1).replaceAll(' ', '');
@@ -4217,7 +4219,7 @@ SRD5E.raceRules = function(
 
   if(languages.length > 0) {
     rules.defineRule('languageCount', raceLevel, '=', languages.length);
-    for(var i = 0; i < languages.length; i++) {
+    for(i = 0; i < languages.length; i++) {
       if(languages[i] != 'any')
         rules.defineRule('languages.' + languages[i], raceLevel, '=', '1');
     }
@@ -4228,13 +4230,12 @@ SRD5E.raceRules = function(
     rules.defineRule('casterLevels.' + name, raceLevel, '=', null);
     QuilvynRules.spellSlotRules(rules, 'casterLevels.' + name, spellSlots);
 
-    for(var i = 0; i < spellSlots.length; i++) {
-      var matchInfo = spellSlots[i].match(/^(\D+)(\d):/);
+    for(i = 0; i < spellSlots.length; i++) {
+      matchInfo = spellSlots[i].match(/^(\D+)\d:/);
       if(!matchInfo) {
         console.log('Bad format for spell slot "' + spellSlots[i] + '"');
         continue;
       }
-      var spellLevel = matchInfo[2] * 1;
       var spellType = matchInfo[1];
       if(spellType != name)
         rules.defineRule
@@ -4497,7 +4498,7 @@ SRD5E.weaponRules = function(rules, name, category, properties, damage, range) {
                (category <= 1 && !is2h &&
                 !(properties.includes('heavy') || properties.includes('He')));
 
-  var damage = matchInfo[1];
+  damage = matchInfo[1];
   var weaponName = 'weapons.' + name;
   var format = '%V (%1 %2%3' + (range ? " R%4" : '') + ')';
 
@@ -4724,7 +4725,7 @@ SRD5E.createViewers = function(rules, viewers) {
             {name: 'LoadInfo', within: 'AbilityStats', separator: ''},
               {name: 'Carry', within: 'LoadInfo',
                format: '<b>Carry/Lift:</b> %V'},
-              {name: 'Lift', within: 'LoadInfo', format: '/%V'},
+              {name: 'Lift', within: 'LoadInfo', format: '/%V'}
       );
       if(name != 'Collected Notes') {
         viewer.addElements(
@@ -4775,7 +4776,7 @@ SRD5E.createViewers = function(rules, viewers) {
             {name: 'Gear', within: 'CombatPart', separator: innerSep},
               {name: 'Armor', within: 'Gear'},
               {name: 'Shield', within: 'Gear'},
-              {name: 'Weapons', within: 'Gear', separator: listSep},
+              {name: 'Weapons', within: 'Gear', separator: listSep}
       );
       if(name != 'Collected Notes') {
         viewer.addElements(
@@ -4846,14 +4847,14 @@ SRD5E.createViewers = function(rules, viewers) {
  */
 SRD5E.choiceEditorElements = function(rules, type) {
   var result = [];
+  var sections =
+    ['ability', 'combat', 'companion', 'feature', 'magic', 'skill'];
   var zeroToTen = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
   if(type == 'Alignment')
     result.push(
       // empty
     );
   else if(type == 'Armor') {
-    var zeroToFifty = [0, 5, 10, 15, 20, 25, 30, 35, 40, 45, 50];
-    var minusTenToZero = [-10, -9, -8, -7, -6, -5, -4, -3, -2, -1, 0];
     var tenToEighteen = [10, 11, 12, 13, 14, 15, 16, 17, 18];
     result.push(
       ['AC', 'AC Bonus', 'select-one', [0, 1, 2, 3, 4, 5]],
@@ -4894,8 +4895,6 @@ SRD5E.choiceEditorElements = function(rules, type) {
       ['Type', 'Types', 'text', [20]]
     );
   else if(type == 'Feature') {
-    var sections =
-      ['ability', 'combat', 'companion', 'feature', 'magic', 'skill'];
     result.push(
       ['Section', 'Section', 'select-one', sections],
       ['Note', 'Note', 'text', [60]]
@@ -4959,8 +4958,6 @@ SRD5E.choiceEditorElements = function(rules, type) {
       ['Type', 'Type', 'text', [20]]
     );
   else if(type == 'Weapon') {
-    var oneToFive = [1, 2, 3, 4, 5];
-    var sixteenToTwenty = [16, 17, 18, 19, 20];
     var zeroToOneFifty =
      [0, 10, 20, 30, 40, 50, 60, 70, 80, 90, 100, 110, 120, 130, 140, 150];
     result.push(
@@ -5120,9 +5117,15 @@ SRD5E.randomizeOneAttribute = function(attributes, attribute) {
   var attr;
   var attrs;
   var choices;
+  var count;
   var howMany;
-  var i;
+  var i,j,k;
   var matchInfo;
+  var notes;
+  var pat;
+  var pieces;
+  var type;
+  var which;
 
   if(attribute == 'armor') {
     var armors = this.getChoices('armors');
@@ -5147,15 +5150,15 @@ SRD5E.randomizeOneAttribute = function(attributes, attribute) {
     }
     attributes['armor'] = choices[QuilvynUtils.random(0, choices.length - 1)];
   } else if(attribute == 'boosts') {
-    var attrs = this.applyRules(attributes);
-    var notes = attributes.notes;
+    attrs = this.applyRules(attributes);
+    notes = attributes.notes;
     howMany = attrs.abilityBoosts || 0;
     matchInfo =
       (attributes.notes || '').match(/ability\s+boost[:\s]+\+\d+\s+\w+(\s*;\s*\+\d+\s+\w+)*/gi);
     if(matchInfo) {
       for(i = 0; i < matchInfo.length; i++) {
         var m = matchInfo[i].match(/\d+/g);
-        for(var j = 0; j < m.length; j++)
+        for(j = 0; j < m.length; j++)
           howMany -= m[j] * 1;
       }
     }
@@ -5258,7 +5261,7 @@ SRD5E.randomizeOneAttribute = function(attributes, attribute) {
       debug.push('xxxxxxx');
     }
     if(window.DEBUG) {
-      var notes = attributes.notes;
+      notes = attributes.notes;
       attributes.notes =
         (notes != null ? attributes.notes + '\n' : '') + debug.join('\n');
     }
@@ -5293,7 +5296,7 @@ SRD5E.randomizeOneAttribute = function(attributes, attribute) {
     var assignedLevels = QuilvynUtils.sumMatching(attributes, /^levels\./);
     if(!attributes.level) {
       if(assignedLevels > 0)
-        attributes.level = assignedLevels
+        attributes.level = assignedLevels;
       else if(attributes.experience)
         attributes.level =
           Math.floor((1 + Math.sqrt(1 + attributes.experience/125)) / 2);
@@ -5312,7 +5315,7 @@ SRD5E.randomizeOneAttribute = function(attributes, attribute) {
         attributes.level == 1 || QuilvynUtils.random(1,10) < 9 ? 1 : 2;
       // Find choices that are valid or can be made so
       while(classesToChoose > 0) {
-        var which = 'levels.' + choices[QuilvynUtils.random(0,choices.length-1)];
+        which = 'levels.' + choices[QuilvynUtils.random(0,choices.length-1)];
         attributes[which] = 1;
         if(QuilvynUtils.sumMatching(this.applyRules(attributes),
              /^validationNotes.*(BaseAttack|CasterLevel|Spells)/) == 0) {
@@ -5324,7 +5327,7 @@ SRD5E.randomizeOneAttribute = function(attributes, attribute) {
       }
     }
     while(assignedLevels < attributes.level) {
-      var which = 'levels.' + choices[QuilvynUtils.random(0,choices.length-1)];
+      which = 'levels.' + choices[QuilvynUtils.random(0,choices.length-1)];
       while(!attributes[which]) {
         which = 'levels.' + choices[QuilvynUtils.random(0,choices.length-1)];
       }
@@ -5347,25 +5350,26 @@ SRD5E.randomizeOneAttribute = function(attributes, attribute) {
     attributes['shield'] = choices[QuilvynUtils.random(0, choices.length - 1)];
   } else if(attribute == 'skills' || attribute == 'tools') {
     attrs = this.applyRules(attributes);
+    count = 0;
     var group = this.getChoices(attribute);
-    var pat = new RegExp('^features.' + attribute.replace(/s$/, '') + ' Proficiency \\((.*)\\)$', 'i');
+    pat = new RegExp('^features.' + attribute.replace(/s$/, '') + ' Proficiency \\((.*)\\)$', 'i');
     for(attr in attrs) {
       if((matchInfo = attr.match(pat)) == null ||
          !matchInfo[1].match(/\bChoose\b/i))
         continue;
-      var pieces = matchInfo[1].split('/');
+      pieces = matchInfo[1].split('/');
       for(i = 0; i < pieces.length; i++) {
-        matchInfo = pieces[i].match(/^Choose\s+(\d+)\s+from\s+(.*)$/i)
+        matchInfo = pieces[i].match(/^Choose\s+(\d+)\s+from\s+(.*)$/i);
         if(!matchInfo)
           continue;
-        var count = matchInfo[1] * 1;
+        count = matchInfo[1] * 1;
         if(matchInfo[2].match(/^any$/i)) {
           choices = QuilvynUtils.getKeys(group);
         } else {
           choices = matchInfo[2].split(/\s*,\s*/);
-          for(var j = choices.length - 1; j >= 0; j--) {
+          for(j = choices.length - 1; j >= 0; j--) {
             if(choices[j].match(/^any\s+/i)) {
-              var type = choices[j].replace(/^any\s+/, '');
+              type = choices[j].replace(/^any\s+/, '');
               for(var item in group) {
                 if(group[item].includes(type))
                   choices.push(item);
@@ -5374,7 +5378,7 @@ SRD5E.randomizeOneAttribute = function(attributes, attribute) {
             }
           }
         }
-        for(var k = choices.length - 1; k >= 0; k--) {
+        for(k = choices.length - 1; k >= 0; k--) {
           if(!attrs[attribute + 'Chosen.' + choices[k]])
             continue;
           count--;
@@ -5418,28 +5422,28 @@ SRD5E.randomizeOneAttribute = function(attributes, attribute) {
       }
     }
   } else if(attribute == 'weapons') {
-    var notes = this.getChoices('notes');
+    notes = this.getChoices('notes');
     var weapons = this.getChoices('weapons');
     attrs = this.applyRules(attributes);
-    var pat = /Weapon Proficiency \((([^\(]|\([^\)]*\))*)\)$/i;
+    pat = /Weapon Proficiency \((([^\(]|\([^\)]*\))*)\)$/i;
     for(attr in attrs) {
       if((matchInfo = attr.match(pat)) == null && notes[attr] != null)
         matchInfo = notes[attr].match(pat);
       if(matchInfo == null || !matchInfo[1].match(/\bChoose\b/i))
         continue;
-      var pieces = matchInfo[1].split('/');
+      pieces = matchInfo[1].split('/');
       for(i = 0; i < pieces.length; i++) {
-        matchInfo = pieces[i].match(/^Choose\s+(\d+)\s+from\s+(.*)$/i)
+        matchInfo = pieces[i].match(/^Choose\s+(\d+)\s+from\s+(.*)$/i);
         if(!matchInfo)
           continue;
-        var count = matchInfo[1] * 1;
+        count = matchInfo[1] * 1;
         if(matchInfo[2].match(/^any$/i)) {
           choices = QuilvynUtils.getKeys(weapons);
         } else {
           choices = matchInfo[2].split(/\s*,\s*/);
-          for(var j = choices.length - 1; j >= 0; j--) {
+          for(j = choices.length - 1; j >= 0; j--) {
             if(choices[j].match(/^any\s+/i)) {
-              var type = choices[j].replace(/^any\s+/, '');
+              type = choices[j].replace(/^any\s+/, '');
               type = type.match(/simple/i) ? /category=(1|simple)/i :
                      type.match(/martial/i) ? /category=(2|martial)/i :
                      type.match(/light/i) ? /light|\bli\b/i :
@@ -5455,7 +5459,7 @@ SRD5E.randomizeOneAttribute = function(attributes, attribute) {
             }
           }
         }
-        for(var k = choices.length - 1; k >= 0; k--) {
+        for(k = choices.length - 1; k >= 0; k--) {
           if(!attrs['weaponsChosen.' + choices[k]])
             continue;
           count--;
@@ -5506,7 +5510,9 @@ SRD5E.makeValid = function(attributes) {
 
   var attributesChanged = {};
   var debug = [];
+  var index;
   var notes = this.getChoices('notes');
+  var possibilities;
 
   // If 8 passes don't get rid of all repairable problems, give up
   for(var pass = 0; pass < 8; pass++) {
@@ -5536,12 +5542,12 @@ SRD5E.makeValid = function(attributes) {
         // Find a random requirement choice w/the format "name [op value]"
         var choices = requirements[i].split(/\s*\|\|\s*/);
         while(choices.length > 0) {
-          var index = QuilvynUtils.random(0, choices.length - 1);
+          index = QuilvynUtils.random(0, choices.length - 1);
           matchInfo = choices[index].match(/^([^<>!=]+)(([<>!=~]+)(.*))?/);
           if(matchInfo != null) {
             break;
           }
-          choices = choices.slice(0, index).concat(choice.slice(index + 1));
+          choices = choices.slice(0, index).concat(choices.slice(index + 1));
         }
         if(matchInfo == null) {
           continue;
@@ -5551,7 +5557,7 @@ SRD5E.makeValid = function(attributes) {
         var toFixName = matchInfo[1].replace(/\s+$/, '');
         var toFixOp = matchInfo[3] == null ? '>=' : matchInfo[3];
         var toFixValue =
-          matchInfo[4] == null ? 1 : matchInfo[4].replace(/^\s+/, '');;
+          matchInfo[4] == null ? 1 : matchInfo[4].replace(/^\s+/, '');
         if(toFixName.match(/^(Max|Sum)/)) {
           toFixCombiner = toFixName.substring(0, 3);
           toFixName = toFixName.substring(4).replace(/^\s+/, '');
@@ -5569,7 +5575,7 @@ SRD5E.makeValid = function(attributes) {
           // Find the set of choices that satisfy the requirement
           var target =
             this.getChoices(problemCategory) == null ? toFixValue : toFixName;
-          var possibilities = [];
+          possibilities = [];
           for(var choice in choices) {
             if((toFixOp.match(/[^!]=/) && choice == target) ||
                (toFixOp == '!=' && choice != target) ||
@@ -5608,7 +5614,7 @@ SRD5E.makeValid = function(attributes) {
         } else if(problemCategory == 'total' && attrValue > 0 &&
                   (choices = this.getChoices(problemSource)) != null) {
           // Too many items allocated in a category
-          var possibilities = [];
+          possibilities = [];
           for(var k in attributes) {
             if(k.match('^' + problemSource + '\\.') &&
                attributesChanged[k] == null) {
@@ -5616,7 +5622,7 @@ SRD5E.makeValid = function(attributes) {
             }
           }
           while(possibilities.length > 0 && attrValue > 0) {
-            var index = QuilvynUtils.random(0, possibilities.length - 1);
+            index = QuilvynUtils.random(0, possibilities.length - 1);
             toFixAttr = possibilities[index];
             possibilities =
               possibilities.slice(0,index).concat(possibilities.slice(index+1));

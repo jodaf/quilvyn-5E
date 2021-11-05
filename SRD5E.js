@@ -67,7 +67,7 @@ function SRD5E() {
 
 }
 
-SRD5E.VERSION = '2.3.1.4';
+SRD5E.VERSION = '2.3.1.5';
 
 /* List of items handled by choiceRules method. */
 SRD5E.CHOICES = [
@@ -1370,7 +1370,7 @@ SRD5E.SPELLS = {
   'Acid Splash':
     'School=Conjuration ' +
     'Level=S0,W0 ' +
-    'Description="R60\' Ranged touch inflicts %{(?level?+7)//6}d6 HP acid (Dex neg)"',
+    'Description="R60\' Ranged touch inflicts %{(level+7)//6}d6 HP acid (Dex neg)"',
   'Aid':
     'School=Abjuration ' +
     'Level=C2,P2 ' +
@@ -1520,7 +1520,7 @@ SRD5E.SPELLS = {
   'Chill Touch':
     'School=Necromancy ' +
     'Level=K0,S0,W0 ' +
-    'Description="R120\' Ranged spell inflicts %{(?level?+7)//6}d8 HP necrotic, undead also suffer Disadv on self attack for 1 rd"',
+    'Description="R120\' Ranged spell inflicts %{(level+7)//6}d8 HP necrotic, undead also suffer Disadv on self attack for 1 rd"',
   'Circle Of Death':
     'School=Necromancy ' +
     'Level=K6,S6,W6 ' +
@@ -1746,7 +1746,7 @@ SRD5E.SPELLS = {
   'Eldritch Blast':
     'School=Evocation ' +
     'Level=K0 ' +
-    'Description="R120\' Ranged spell creates %{(?level?+7)//6} rays that inflict 1d10 HP force each"',
+    'Description="R120\' Ranged spell creates %{(level+7)//6} rays that inflict 1d10 HP force each"',
   'Enhance Ability':
     'School=Transmutation ' +
     'Level=B2,C2,D2,S2 ' +
@@ -2260,7 +2260,7 @@ SRD5E.SPELLS = {
   'Poison Spray':
     'School=Conjuration ' +
     'Level=D0,K0,S0,W0 ' +
-    'Description="R10\' Target suffers %{(?level?+7)//6}d12 HP poison (Con neg)"',
+    'Description="R10\' Target suffers %{(level+7)//6}d12 HP poison (Con neg)"',
   'Polymorph':
     'School=Transmutation ' +
     'Level=B4,D4,S4,W4 ' +
@@ -2296,7 +2296,7 @@ SRD5E.SPELLS = {
   'Produce Flame':
     'School=Conjuration ' +
     'Level=D0 ' +
-    'Description="Lights 10\' radius for 10 min, self can make ranged spell attack inflicting %{(?level?+7)//6}d8 HP"',
+    'Description="Lights 10\' radius for 10 min, self can make ranged spell attack inflicting %{(level+7)//6}d8 HP"',
   'Programmed Illusion':
     'School=Illusion ' +
     'Level=B6,W6 ' +
@@ -2333,7 +2333,7 @@ SRD5E.SPELLS = {
   'Ray Of Frost':
     'School=Evocation ' +
     'Level=S0,W0 ' +
-    'Description="R60\' Ranged spell inflicts %{(?level?+7)//6}d8 HP cold and -10\' Speed for 1 rd"',
+    'Description="R60\' Ranged spell inflicts %{(level+7)//6}d8 HP cold and -10\' Speed for 1 rd"',
   'Regenerate':
     'School=Transmutation ' +
     'Level=B7,C7,D7 ' +
@@ -2374,7 +2374,7 @@ SRD5E.SPELLS = {
   'Sacred Flame':
     'School=Evocation ' +
     'Level=C0 ' +
-    'Description="R60\' Target suffers %{(?level?+7)//6}d8 HP radiant (Dex neg)"',
+    'Description="R60\' Target suffers %{(level+7)//6}d8 HP radiant (Dex neg)"',
   'Sanctuary':
     'School=Abjuration ' +
     'Level=C1,Devotion1 ' +
@@ -2430,7 +2430,7 @@ SRD5E.SPELLS = {
   'Shocking Grasp':
     'School=Evocation ' +
     'Level=S0,W0 ' +
-    'Description="Touched suffers %{(?level?+7)//6}d8 HP lightning"',
+    'Description="Touched suffers %{(level+7)//6}d8 HP lightning"',
   'Silence':
     'School=Illusion ' +
     'Level=B2,C2,Desert1,R2 ' +
@@ -2593,7 +2593,7 @@ SRD5E.SPELLS = {
   'Vicious Mockery':
     'School=Enchantment ' +
     'Level=B0 ' +
-    'Description="R60\' Target suffers %{(?level?+7)//6}d4 HP psychic and Disadv on attack (Wis neg) for 1 rd"',
+    'Description="R60\' Target suffers %{(level+7)//6}d4 HP psychic and Disadv on attack (Wis neg) for 1 rd"',
 
   'Wall Of Fire':
     'School=Evocation ' +

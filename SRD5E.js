@@ -1357,6 +1357,8 @@ SRD5E.SKILLS = {
   'Stealth':'Ability=dexterity',
   'Survival':'Ability=wisdom'
 };
+// Note that spellRules replaces ?level? and ?modifier? in the spell
+// descriptions with the appropriate caster level and ability modifer.
 SRD5E.SPELLS = {
 
   'Acid Arrow':
@@ -1366,7 +1368,7 @@ SRD5E.SPELLS = {
   'Acid Splash':
     'School=Conjuration ' +
     'Level=S0,W0 ' +
-    'Description="R60\' Ranged touch inflicts ${Math.floor((lvl+7)/6)}d6 HP acid (Dex neg)"',
+    'Description="R60\' Ranged touch inflicts %{(?level?+7)//6}d6 HP acid (Dex neg)"',
   'Aid':
     'School=Abjuration ' +
     'Level=C2,P2 ' +
@@ -1418,7 +1420,7 @@ SRD5E.SPELLS = {
   'Arcane Hand':
     'School=Evocation ' +
     'Level=W5 ' +
-    'Description="R120\' Large hand (AC 20, Str 26, Dex 10) can punch (inflicts 4d8 HP force), push 5\', grapple (inflicts 2d6+$M bludgeoning), and block for conc or 1 min"',
+    'Description="R120\' Large hand (AC 20, Str 26, Dex 10) can punch (inflicts 4d8 HP force), push 5\', grapple (inflicts 2d6+%{?modifier?} bludgeoning), and block for conc or 1 min"',
   'Arcane Lock':
     'School=Abjuration ' +
     'Level=W2 ' +
@@ -1516,7 +1518,7 @@ SRD5E.SPELLS = {
   'Chill Touch':
     'School=Necromancy ' +
     'Level=K0,S0,W0 ' +
-    'Description="R120\' Ranged spell inflicts ${Math.floor((lvl+7)/6)}d8 HP necrotic, undead also suffer Disadv on self attack for 1 rd"',
+    'Description="R120\' Ranged spell inflicts %{(?level?+7)//6}d8 HP necrotic, undead also suffer Disadv on self attack for 1 rd"',
   'Circle Of Death':
     'School=Necromancy ' +
     'Level=K6,S6,W6 ' +
@@ -1636,7 +1638,7 @@ SRD5E.SPELLS = {
   'Cure Wounds':
     'School=Evocation ' +
     'Level=B1,C1,D1,Life1,P1,R1 ' +
-    'Description="Touched regains 1d8+$M HP"',
+    'Description="Touched regains 1d8+%{?modifier?} HP"',
 
   'Dancing Lights':
     'School=Evocation ' +
@@ -1742,7 +1744,7 @@ SRD5E.SPELLS = {
   'Eldritch Blast':
     'School=Evocation ' +
     'Level=K0 ' +
-    'Description="R120\' Ranged spell creates $Lplus7div6 rays that inflict 1d10 HP force each"',
+    'Description="R120\' Ranged spell creates %{(?level?+7)//6} rays that inflict 1d10 HP force each"',
   'Enhance Ability':
     'School=Transmutation ' +
     'Level=B2,C2,D2,S2 ' +
@@ -1977,7 +1979,7 @@ SRD5E.SPELLS = {
   'Healing Word':
     'School=Evocation ' +
     'Level=B1,C1,D1 ' +
-    'Description="R60\' Target regains 1d4+$M HP"',
+    'Description="R60\' Target regains 1d4+%{?modifier?} HP"',
   'Heat Metal':
     'School=Transmutation ' +
     'Level=B2,D2 ' +
@@ -1993,7 +1995,7 @@ SRD5E.SPELLS = {
   'Heroism':
     'School=Enchantment ' +
     'Level=B1,P1 ' +
-    'Description="Touched gains immunity to fright and +$M temporary HP each rd for conc or 1 min"',
+    'Description="Touched gains immunity to fright and +%{?modifier?} temporary HP each rd for conc or 1 min"',
   'Hideous Laughter':
     'School=Enchantment ' +
     'Level=B1,W1 ' +
@@ -2146,7 +2148,7 @@ SRD5E.SPELLS = {
   'Mass Cure Wounds':
     'School=Evocation ' + // from errata
     'Level=B5,C5,D5,Life5 ' +
-    'Description="R60\' 6 targets in 30\' radius regain 3d8 + $M HP"',
+    'Description="R60\' 6 targets in 30\' radius regain 3d8 + %{?modifier?} HP"',
   'Mass Heal':
     'School=Evocation ' + // from errata
     'Level=C9 ' +
@@ -2154,7 +2156,7 @@ SRD5E.SPELLS = {
   'Mass Healing Word':
     'School=Evocation ' +
     'Level=C3 ' +
-    'Description="R60\' 6 targets regain 1d4 + $M HP"',
+    'Description="R60\' 6 targets regain 1d4 + %{?modifier?} HP"',
   'Mass Suggestion':
     'School=Enchantment ' +
     'Level=B6,K6,S6,W6 ' +
@@ -2256,7 +2258,7 @@ SRD5E.SPELLS = {
   'Poison Spray':
     'School=Conjuration ' +
     'Level=D0,K0,S0,W0 ' +
-    'Description="R10\' Target suffers ${Math.floor((lvl+7)/6)}d12 HP poison (Con neg)"',
+    'Description="R10\' Target suffers %{(?level?+7)//6}d12 HP poison (Con neg)"',
   'Polymorph':
     'School=Transmutation ' +
     'Level=B4,D4,S4,W4 ' +
@@ -2272,7 +2274,7 @@ SRD5E.SPELLS = {
   'Prayer Of Healing':
     'School=Evocation ' +
     'Level=C2 ' +
-    'Description="R60\' 6 targets regain 2d8 + $M HP"',
+    'Description="R60\' 6 targets regain 2d8 + %{?modifier?} HP"',
   'Prestidigitation':
     'School=Transmutation ' +
     'Level=B0,K0,S0,W0 ' +
@@ -2292,7 +2294,7 @@ SRD5E.SPELLS = {
   'Produce Flame':
     'School=Conjuration ' +
     'Level=D0 ' +
-    'Description="Lights 10\' radius for 10 min, self can make ranged spell attack inflicting ${Math.floor((lvl+7)/6)}d8 HP"',
+    'Description="Lights 10\' radius for 10 min, self can make ranged spell attack inflicting %{(?level?+7)//6}d8 HP"',
   'Programmed Illusion':
     'School=Illusion ' +
     'Level=B6,W6 ' +
@@ -2329,7 +2331,7 @@ SRD5E.SPELLS = {
   'Ray Of Frost':
     'School=Evocation ' +
     'Level=S0,W0 ' +
-    'Description="R60\' Ranged spell inflicts ${Math.floor((lvl+7)/6)}d8 HP cold and -10\' Speed for 1 rd"',
+    'Description="R60\' Ranged spell inflicts %{(?level?+7)//6}d8 HP cold and -10\' Speed for 1 rd"',
   'Regenerate':
     'School=Transmutation ' +
     'Level=B7,C7,D7 ' +
@@ -2370,7 +2372,7 @@ SRD5E.SPELLS = {
   'Sacred Flame':
     'School=Evocation ' +
     'Level=C0 ' +
-    'Description="R60\' Target suffers ${Math.floor((lvl+7)/6)}d8 HP radiant (Dex neg)"',
+    'Description="R60\' Target suffers %{(?level?+7)//6}d8 HP radiant (Dex neg)"',
   'Sanctuary':
     'School=Abjuration ' +
     'Level=C1,Devotion1 ' +
@@ -2422,11 +2424,11 @@ SRD5E.SPELLS = {
   'Shillelagh':
     'School=Transmutation ' +
     'Level=D0 ' +
-    'Description="Touched club gains +%{proficiencyBonus + wisdomModifier} attacks, inflicts 1d8 HP for 1 min"',
+    'Description="Touched club gains +%{proficiencyBonus+wisdomModifier} attacks, inflicts 1d8 HP for 1 min"',
   'Shocking Grasp':
     'School=Evocation ' +
     'Level=S0,W0 ' +
-    'Description="Touched suffers ${Math.floor((lvl+7)/6)}d8 HP lightning"',
+    'Description="Touched suffers %{(?level?+7)//6}d8 HP lightning"',
   'Silence':
     'School=Illusion ' +
     'Level=B2,C2,Desert1,R2 ' +
@@ -2482,7 +2484,7 @@ SRD5E.SPELLS = {
   'Spiritual Weapon':
     'School=Evocation ' +
     'Level=C2,Life2 ' +
-    'Description="R60\' Spectral weapon inflicts 1d8 + $M HP and moves 20\' for 1 min"',
+    'Description="R60\' Spectral weapon inflicts 1d8 + %{?modifier?} HP and moves 20\' for 1 min"',
   'Stinking Cloud':
     'School=Conjuration ' +
     'Level=B3,"K3 [The Fiend]",S3,Swamp2,W3 ' +
@@ -2589,7 +2591,7 @@ SRD5E.SPELLS = {
   'Vicious Mockery':
     'School=Enchantment ' +
     'Level=B0 ' +
-    'Description="R60\' Target suffers ${Math.floor((lvl+7)/6)}d4 HP psychic and Disadv on attack (Wis neg) for 1 rd"',
+    'Description="R60\' Target suffers %{(?level?+7)//6}d4 HP psychic and Disadv on attack (Wis neg) for 1 rd"',
 
   'Wall Of Fire':
     'School=Evocation ' +
@@ -3462,6 +3464,13 @@ SRD5E.classRules = function(
         spellAbility + 'Modifier', '=', '8 + source',
         'proficiencyBonus', '+', null
       );
+      rules.defineRule('spellCasterLevel.' + spellType,
+        'casterLevels.' + spellType, '=', null
+      );
+      rules.defineRule('spellModifier.' + spellType,
+        'casterLevels.' + spellType, '?', null,
+        spellAbility + 'Modifier', '=', null
+      );
     }
 
   }
@@ -3539,6 +3548,26 @@ SRD5E.classRulesExtra = function(rules, name) {
     );
     rules.defineRule
       ('skillNotes.bardExpertise', classLevel, '=', 'source<10 ? 2 : 4');
+    // Magical Secrets feature allows choosing non-Bard spells; here we set the
+    // caster level and modifier for any variable efffects. Note inclusion of
+    // 'A' spells for Artificer class from supplements.
+    rules.defineRule('spellCasterLevel.Magical Secrets',
+      'features.Magical Secrets', '=', '0',
+      'features.Additional Magical Secrets', '=', '0',
+      'casterLevels.Bard', '+', null
+    );
+    rules.defineRule('spellModifier.Magical Secrets',
+      'spellCasterLevel.Magical Secrets', '?', null,
+      'charismaModifier', '=', null
+    );
+    ['A', 'C', 'D', 'K', 'S', 'W'].forEach((spellType) => {
+      rules.defineRule('spellCasterLevel.' + spellType,
+        'spellCasterLevel.Magical Secrets', '=', null
+      );
+      rules.defineRule('spellModifier.' + spellType,
+        'spellModifier.Magical Secrets', '='. null
+      );
+    });
 
   } else if(name == 'Cleric') {
 
@@ -4383,15 +4412,31 @@ SRD5E.skillRules = function(rules, name, ability, classes) {
 SRD5E.spellRules = function(
   rules, name, school, casterGroup, level, description, domainSpell
 ) {
-  // TODO Remove this hard-coding of associated spell modifier
-  var ability = domainSpell ? 'wisdom' :
-                'BPSK'.includes(casterGroup) ? 'charisma' :
-                casterGroup == 'W' ? 'intelligence' :
-                'wisdom'; // CDR and Druid Circle spells. How about race spells?
-  description = description.replaceAll('$M', '%{' + ability + 'Modifier}');
-  // TBD Move out of SRD35
-  SRD35.spellRules
-    (rules, name, school, casterGroup, level, description, domainSpell);
+
+  if(!name) {
+    console.log('Empty spell name');
+    return;
+  }
+  if(school && !(school in rules.getChoices('schools'))) {
+    console.log('Bad school "' + school + '" for spell ' + name);
+    return;
+  }
+  if(!casterGroup.match(/^[A-Z][A-Za-z]*$/)) {
+    console.log('Bad caster group "' + casterGroup + '" for spell ' + name);
+    return;
+  }
+  if(typeof level != 'number') {
+    console.log('Bad level "' + level + '" for spell ' + name);
+    return;
+  }
+  if(!description)
+    description = '';
+
+  description =
+    description.replaceAll('?level?', 'spellCasterLevel.' + casterGroup)
+               .replaceAll('?modifier?', 'spellModifier.' + casterGroup);
+  rules.defineChoice('notes', 'spells.' + name + ':' + description);
+
 };
 
 /* Defines in #rules# the rules associated with tool #name# of type #type#. */

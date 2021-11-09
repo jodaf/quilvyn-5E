@@ -67,7 +67,7 @@ function SRD5E() {
 
 }
 
-SRD5E.VERSION = '2.3.1.6';
+SRD5E.VERSION = '2.3.1.7';
 
 /* List of items handled by choiceRules method. */
 SRD5E.CHOICES = [
@@ -264,7 +264,11 @@ SRD5E.CLASSES = {
       '"10:Purity Of Body","13:Tongue Of The Sun And Moon","14:Diamond Soul",' +
       '"15:Monk Timeless Body","18:Empty Body","20:Perfect Self" ' +
     'Selectables=' +
-      '"3:Way Of The Open Hand:Monastic Tradition"',
+      '"3:Way Of The Open Hand:Monastic Tradition" ' +
+    'CasterLevelDivine=levels.Monk ' +
+    'SpellAbility=wisdom ' +
+    'SpellSlots=' +
+      'M0:30=0', // Dummy slot, since all Monk spells come from features
   'Paladin':
     'HitDie=d10 ' +
     'Features=' +
@@ -912,7 +916,7 @@ SRD5E.FEATURES = {
   'Human Ability Adjustment':
     'Section=ability ' +
     'Note="+1 Charisma/+1 Constitution/+1 Dexterity/+1 Intelligence/+1 Strength/+1 Wisdom"',
-  'Infernal Legacy':'Section=magic Note="Cast %V"',
+  'Infernal Legacy':'Section=magic Note="Know <i>Thaumaturgy</i> cantrip%1"',
   'Keen Senses':'Section=skill Note="Skill Proficiency (Perception)"',
   'Lightfoot Halfling Ability Adjustment':
     'Section=ability Note="+2 Dexterity/+1 Charisma"',
@@ -1318,12 +1322,7 @@ SRD5E.RACES = {
     'Features=' +
       '1:Darkvision,"1:Hellish Resistance","1:Infernal Legacy",' +
       '"1:Tiefling Ability Adjustment" ' +
-    'Languages=Common,Infernal ' +
-    'SpellAbility=charisma ' +
-    'SpellSlots=' +
-      'Tiefling0:1=1,' +
-      'Tiefling1:3=1,' +
-      'Tiefling2:5=1'
+    'Languages=Common,Infernal'
 };
 SRD5E.SCHOOLS = {
   'Abjuration':'',
@@ -1648,7 +1647,7 @@ SRD5E.SPELLS = {
     'Description="R120\' 4 torch lights move 60\' for conc or 1 min"',
   'Darkness':
     'School=Evocation ' +
-    'Level=K2,S2,Swamp2,Tiefling2,W2 ' +
+    'Level=K2,S2,Swamp2,W2 ' +
     'Description="R60\' Target centers 15\' radius lightless area for conc or 10 min"',
   'Darkvision':
     'School=Transmutation ' +
@@ -1988,7 +1987,7 @@ SRD5E.SPELLS = {
     'Description="R60\' Touching target metal causes 2d8 HP fire for conc or 1 min"',
   'Hellish Rebuke':
     'School=Evocation ' +
-    'Level=K1,Tiefling1 ' +
+    'Level=K1 ' +
     'Description="R60\' Use Reaction to inflict 2d10 HP fire on successful attacker (Dex half)"',
   "Heroes' Feast":
     'School=Conjuration ' +
@@ -2538,7 +2537,7 @@ SRD5E.SPELLS = {
     'Description="R10\' Creates permanent portal to similar circle"',
   'Thaumaturgy':
     'School=Transmutation ' +
-    'Level=C0,Tiefling0 ' +
+    'Level=C0 ' +
     'Description="R30\' Creates minor magic effects for 1 min"',
   'Thunderwave':
     'School=Evocation ' +
@@ -3734,7 +3733,11 @@ SRD5E.classRulesExtra = function(rules, name) {
       classLevel, '=', 'source<3 ? null : 1'
     );
     rules.defineRule('speed', 'abilityNotes.unarmoredMovement.1', '+', null);
-
+    SRD5E.featureSpell(rules, 'Sanctuary', 'Tranquility', 'M', 1);
+    SRD5E.featureSpell(rules, 'Astral Projection', 'Empty Body', 'M', 9);
+    rules.defineRule('spellCasterLevel.M', 'levels.Monk', '=', null);
+    rules.defineRule('spellModifier.M', 'wisdomModifier', '=', null);
+    rules.defineRule('casterLevels.M', 'spellCasterLevel.M', '^=', null);
 
   } else if(name == 'Paladin') {
 
@@ -3883,6 +3886,28 @@ SRD5E.classRulesExtra = function(rules, name) {
     rules.defineRule('selectableFeatureCount.Warlock (Pact Boon)',
       classLevel, '=', 'source<3 ? null : 1'
     );
+    SRD5E.featureSpell(rules, 'Mage Armor', 'Armor Of Shadows', 'K', 1);
+    SRD5E.featureSpell(rules, 'Speak With Animals', 'Beast Speech', 'K', 1);
+    SRD5E.featureSpell(rules, 'Detect Magic', 'Eldritch Sight', 'K', 1);
+    SRD5E.featureSpell(rules, 'False Life', 'Fiendish Vigor', 'K', 1);
+    SRD5E.featureSpell(rules, 'Disguise Self', 'Mask Of Many Faces', 'K', 1);
+    SRD5E.featureSpell(rules, 'Silent Image', 'Misty Visions', 'K', 1);
+    SRD5E.featureSpell(rules, 'Jump', 'Otherworldly Leap', 'K', 1);
+    SRD5E.featureSpell(rules, 'Find Familiar', 'Pact Of The Chain', 'K', 1);
+    SRD5E.featureSpell(rules, 'Bane', 'Thief Of Five Fates', 'K', 1);
+    SRD5E.featureSpell(rules, 'Alter Self', 'Master Of Myriad Forms', 'K', 2);
+    SRD5E.featureSpell(rules, 'Levitate', 'Ascendant Step', 'K', 2);
+    SRD5E.featureSpell(rules, 'Slow', 'Mire The Mind', 'K', 3);
+    SRD5E.featureSpell(rules, 'Bestow Curse', 'Sign Of Ill Omen', 'K', 3);
+    SRD5E.featureSpell
+      (rules, 'Speak With Dead', 'Whispers Of The Grave', 'K', 3);
+    SRD5E.featureSpell(rules, 'Compulsion', 'Bewitching Whispers', 'K', 4);
+    SRD5E.featureSpell(rules, 'Confusion', 'Dreadful Word', 'K', 4);
+    SRD5E.featureSpell(rules, 'Polymorph', 'Sculptor Of Flesh', 'K', 4);
+    SRD5E.featureSpell
+      (rules, 'Arcane Eye', 'Visions Of Distant Realms', 'K', 4);
+    SRD5E.featureSpell(rules, 'Hold Monster', 'Chains Of Carceri', 'K', 5);
+    SRD5E.featureSpell(rules, 'Conjure Elemental', 'Minions Of Chaos', 'K', 5);
 
   } else if(name == 'Wizard') {
 
@@ -4023,6 +4048,28 @@ SRD5E.featureRules = function(rules, name, sections, notes) {
         rules.defineRule(group + 'Proficiency.' + affected[j], note, '=', '1');
     }
   }
+};
+
+/*
+ * Defines in #rules# the rules to grant spell #name# when feature #feature# is
+ * acquired. #group# and #level# contain the spell group and level. The granted
+ * spell is named "name(grouplevel [feature] school)" and is not included in
+ * rules' spell choices.
+ */
+SRD5E.featureSpell = function(rules, name, feature, group, level) {
+  var allSpells = rules.getChoices('spells');
+  var spell = QuilvynUtils.getKeys(allSpells, name + '\\(')[0];
+  if(!spell) {
+    console.log('Unknown spell "' + name + '" for feature ' + feature);
+    return;
+  }
+  var attrs = allSpells[spell];
+  var description = QuilvynUtils.getAttrValue(attrs, 'Description');
+  var school = QuilvynUtils.getAttrValue(attrs, 'School');
+  var fullName =
+    name + '(' + group + level + ' [' + feature + '] ' + school.substring(0, 4) + ')';
+  SRD5E.spellRules(rules, fullName, school, group, level, description, false);
+  rules.defineRule('spells.' + fullName, 'features.' + feature, '=', '1');
 };
 
 /*
@@ -4325,12 +4372,28 @@ SRD5E.raceRulesExtra = function(rules, name) {
     rules.defineRule('casterLevels.W', 'magicNotes.elfCantrip', '^=', '1');
     rules.defineRule('spellSlots.W0', 'magicNotes.elfCantrip', '+=', '1');
   } else if(name == 'Tiefling') {
-    rules.defineRule('magicNotes.infernalLegacy',
-      'race', '?', 'source == "Tiefling"',
+    rules.defineRule('magicNotes.infernalLegacy.1',
+      'features.Infernal Legacy', '?', null,
       'level', '=',
-        'source<3 ? "<i>Thaumaturgy</i> cantrip" : ' +
-        'source<5 ? "<i>Thaumaturgy</i> cantrip, <i>Hellish Rebuke</i> 1/long rest" : ' +
-        '"<i>Thaumaturgy</i> cantrip, <i>Hellish Rebuke</i> 1/long rest, <i>Darkness</i> 1/long rest"'
+        'source<3 ? "" : ' +
+        'source<5 ? ", cast <i>Hellish Rebuke</i> 1/long rest" : ' +
+        '", cast <i>Hellish Rebuke</i> and <i>Darkness</i> 1/long rest"'
+    );
+    SRD5E.featureSpell(rules, 'Thaumaturgy', 'Infernal Legacy', 'K', 0);
+    SRD5E.featureSpell(rules, 'Hellish Rebuke', 'Infernal Legacy', 'K', 1);
+    SRD5E.featureSpell(rules, 'Darkness', 'Infernal Legacy', 'K', 2);
+    rules.defineRule('spells.Hellish Rebuke(K1 [Infernal Legacy] Evoc)',
+      'level', '?', 'source >= 3'
+    );
+    rules.defineRule('spells.Darkness(K2 [Infernal Legacy] Evoc)',
+      'level', '?', 'source >= 5'
+    );
+    rules.defineRule('spellCasterLevel.Infernal Legacy',
+      'features.Infernal Legacy', '?', null,
+      'level', '=', null
+    );
+    rules.defineRule('casterLevels.K',
+      'spellCasterLevel.Infernal Legacy', '^=', null
     );
   }
 

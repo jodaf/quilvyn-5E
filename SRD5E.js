@@ -67,7 +67,7 @@ function SRD5E() {
 
 }
 
-SRD5E.VERSION = '2.3.1.7';
+SRD5E.VERSION = '2.3.1.8';
 
 /* List of items handled by choiceRules method. */
 SRD5E.CHOICES = [
@@ -2469,7 +2469,7 @@ SRD5E.SPELLS = {
   'Speak With Plants':
     'School=Transmutation ' +
     'Level=B3,D3,R3 ' +
-    'Description="Self talks to plans for 10 min"',
+    'Description="Self talks to plants for 10 min"',
   'Spider Climb':
     'School=Transmutation ' +
     'Level=Forest2,K2,Mountain2,S2,W2 ' +

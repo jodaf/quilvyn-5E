@@ -67,7 +67,7 @@ function SRD5E() {
 
 }
 
-SRD5E.VERSION = '2.3.2.0';
+SRD5E.VERSION = '2.3.2.1';
 
 /* List of items handled by choiceRules method. */
 SRD5E.CHOICES = [
@@ -472,7 +472,7 @@ SRD5E.FEATURES = {
   'Agonizing Blast':
     'Section=magic Note="<i>Eldritch Blast</i> inflicts +%V HP"',
   'Arcane Recovery':
-    'Section=magic Note="Short rest recovers %V spell slots 1/dy"',
+    'Section=magic Note="Short rest recovers %V spell slot levels 1/dy"',
   'Archdruid':'Section=magic Note="Unlimited Wild Shape"',
   'Armor Of Shadows':
     'Section=magic Note="Cast <i>Mage Armor</i> on self at will"',
@@ -514,14 +514,14 @@ SRD5E.FEATURES = {
   'Cleansing Touch':
     'Section=magic ' +
     'Note="Touch dispels spell effect on willing creature %V/long rest"',
-  'Colossus Slayer':'Section=combat Note="+1d8 HP vs. damaged foe 1/tn"',
+  'Colossus Slayer':'Section=combat Note="+1d8 HP vs. damaged foe 1/rd"',
   'Countercharm':
     'Section=magic ' +
-    'Note="R30\' Performance gives friendly listeners Adv on saves vs. charm and fright for 1 tn"',
-  'Cunning Action':'Section=combat Note="Bonus Dash, Disengage, or Hide 1/tn"',
+    'Note="R30\' Performance gives friendly listeners Adv on saves vs. charm and fright for 1 rd"',
+  'Cunning Action':'Section=combat Note="Bonus Dash, Disengage, or Hide 1/rd"',
   'Cutting Words':
     'Section=combat ' +
-    'Note="R60\' Reaction to subtract Bardic Inspiration die from foe roll"',
+    'Note="R60\' Use Reaction to subtract Bardic Inspiration die from foe roll"',
   'Danger Sense':'Section=save Note="Adv on Dex checks vs. visible dangers"',
   "Dark One's Blessing":
     'Section=combat Note="Gain %1 HP when foe drops to 0 HP"',
@@ -546,7 +546,7 @@ SRD5E.FEATURES = {
   'Divine Smite':
     'Section=combat ' +
     'Note="Spend spell slot for +(spell level + 1)d8 HP radiant melee weapon damage"',
-  'Divine Strike':'Section=combat Note="Weapon inflicts +%Vd8 HP %1 1/tn"',
+  'Divine Strike':'Section=combat Note="Weapon inflicts +%Vd8 HP %1 1/rd"',
   'Draconic Presence':
     'Section=magic ' +
     'Note="R60\' Spend 5 Sorcery Points for aura that charms or frightens (DC %V Wis neg) for conc or 1 min"',
@@ -600,7 +600,7 @@ SRD5E.FEATURES = {
     'Note="No Disadv vs. invisible foe","R30\' Aware of invisible creatures"',
   'Fiendish Resilience':
     'Section=save ' +
-    'Note="Gain resistance to chosen damage type until next short rest"',
+    'Note="Gain resistance to chosen damage type from non-magical and non-silver weapons until next short rest"',
   'Fiendish Vigor':
     'Section=magic Note="Cast <i>False Life</i> on self at will"',
   'Fighting Style (Archery)':'Section=combat Note="+2 ranged attacks"',
@@ -618,13 +618,14 @@ SRD5E.FEATURES = {
     'Section=magic Note="Convert Sorcery Points to and from spell slots"',
   'Flurry Of Blows':
     'Section=combat Note="Spend 1 Ki Point for 2 additional unarmed strikes"',
-  'Foe Slayer':'Section=combat Note="+%V attack or damage vs. favored enemy"',
+  'Foe Slayer':
+    'Section=combat Note="+%V attack or damage vs. favored enemy 1/rd"',
   'Font Of Inspiration':
     'Section=magic Note="Refresh Bardic Inspiration after short rest"',
   'Font Of Magic':'Section=magic Note="Use %V Sorcery Points/long rest"',
   'Frenzy':
     'Section=combat ' +
-    'Note="Bonus attack each tn during rage, exhausted afterwards"',
+    'Note="Bonus attack each rd during rage, exhausted afterwards"',
   'Gaze Of Two Minds':
     'Section=magic ' +
     'Note="Self perceive through willing touched senses for 1 rd"',
@@ -650,11 +651,11 @@ SRD5E.FEATURES = {
   'Improved Unarmored Movement':
     'Section=ability Note="Move across vertical surfaces and liquids"',
   'Indomitable Might':
-    'Section=ability Note="Use Str instead of roll for Str check"',
+    'Section=ability Note="Use Str score instead of roll for Str check"',
   'Indomitable':'Section=save Note="May re-roll failed save %V/long rest"',
   'Intimidating Presence':
     'Section=feature ' +
-    'Note="R30\' Target creature frightened (DC %V Will neg) for 1 tn"',
+    'Note="R30\' Target creature frightened (DC %V Will neg) for 1 rd"',
   'Jack Of All Trades':
     'Section=ability Note="+%V non-proficient ability checks"',
   'Ki':'Section=feature Note="Use %V Ki Points/short rest"',
@@ -745,7 +746,7 @@ SRD5E.FEATURES = {
     'Section=magic Note="Spend 2 Sorcery Points to cast spell as bonus action"',
   'Quivering Palm':
     'Section=combat ' +
-    'Note="Spend 3 Ki Points to reduce foe to 0 HP w/in %1 dy after unarmed hit (DC %V Con 10d10 HP)"',
+    'Note="Spend 3 Ki Points to reduce foe to 0 HP w/in %1 dy after unarmed hit (DC %V Con suffer 10d10 HP necrotic)"',
   'Rage':
     'Section=ability,combat,feature,magic,save ' +
     'Note=' +
@@ -753,7 +754,7 @@ SRD5E.FEATURES = {
       '"+%V melee damage",' +
       '"Rage advantages for 1 min %V/long rest (heavy armor neg)",' +
       '"Cannot cast or concentrate during rage",' +
-       '"Adv on Str skills, resistance to bludgeoning, piercing, and slashing damage"',
+       '"Adv on Str saves, resistance to bludgeoning, piercing, and slashing damage"',
   'Reckless Attack':
     'Section=combat ' +
     'Note="Trade Adv on melee Str attacks for foe Adv on all attacks"',
@@ -768,7 +769,8 @@ SRD5E.FEATURES = {
   'Repelling Blast':
     'Section=magic Note="<i>Eldritch Blast</i> pushes target 10\'"',
   'Retaliation':
-    'Section=combat Note="Melee attack Reaction after taking damage"',
+    'Section=combat ' +
+    'Note="Use Reaction to make melee attack after taking damage"',
   'Ritual Casting':'Section=magic Note="Cast known spell as ritual"',
   'Rogue Expertise':
     'Section=skill Note="Dbl proficiency on %V skills or Thieves\' Tools"',
@@ -794,10 +796,11 @@ SRD5E.FEATURES = {
   'Sneak Attack':
     'Section=combat Note="+%Vd6 damage on attacks w/Adv or shared threat"',
   'Song Of Rest':
-    'Section=magic Note="Friendly listeners regain 1d%V HP after short rest"',
+    'Section=magic Note="Friendly listeners regain +1d%V HP after short rest"',
   'Sorcerous Restoration':
     'Section=magic Note="Regain 4 Sorcery Points/short rest"',
-  'Spell Mastery':'Section=magic Note="Cast chosen W1 spell W2 spell at will"',
+  'Spell Mastery':
+    'Section=magic Note="Cast chosen W1 spell and W2 spell at will"',
   'Stand Against The Tide':
     'Section=combat ' +
     'Note="Use Reaction to redirect foe melee miss to another creature"',
@@ -823,14 +826,14 @@ SRD5E.FEATURES = {
   'Supreme Sneak':
     'Section=skill Note="Adv on Stealth when moving at half speed"',
   'Survivor':
-    'Section=combat Note="Regain %V HP each tn when between 1 and %1 HP"',
+    'Section=combat Note="Regain %V HP each rd when between 1 and %1 HP"',
   'Thief Of Five Fates':
     'Section=magic ' +
     'Note="Use Warlock spell slot to cast <i>Bane</i> 1/long rest"',
   "Thieves' Cant":'Section=skill Note="Signs and symbols known only by rogues"',
   "Thief's Reflexes":
     'Section=combat Note="First round extra tn at -10 Initiative"',
-  'Thirsting Blade':'Section=combat Note="2 attacks/tn w/pact blade"',
+  'Thirsting Blade':'Section=combat Note="2 attacks/rd w/pact blade"',
   'Tongue Of The Sun And Moon':
     'Section=feature Note="Communicate in any language"',
   'Tranquility':
@@ -932,7 +935,7 @@ SRD5E.FEATURES = {
   'Rock Gnome Ability Adjustment':
     'Section=ability Note="+2 Intelligence/+1 Constitution"',
   'Savage Attacks':
-    'Section=combat Note="Add 1 die to crit damage"',
+    'Section=combat Note="Add 1 die to melee crit damage"',
   'Skill Versatility':
     'Section=skill Note="Skill Proficiency (Choose 2 from any)"',
   'Slow':
@@ -1365,7 +1368,7 @@ SRD5E.SPELLS = {
   'Acid Arrow':
     'School=Evocation ' +
     'Level=Swamp2,W2 ' +
-    'Description="R90\' Ranged spell inflicts 4d4 HP acid, 2d4 HP next tn (miss half 1st tn, 0 HP 2nd)"',
+    'Description="R90\' Ranged spell inflicts 4d4 HP acid, 2d4 HP next rd (miss half 1st rd, 0 HP 2nd)"',
   'Acid Splash':
     'School=Conjuration ' +
     'Level=S0,W0 ' +
@@ -2509,7 +2512,7 @@ SRD5E.SPELLS = {
   'Sunbeam':
     'School=Evocation ' +
     'Level=D6,S6,W6 ' +
-    'Description="60\' line inflicts 6d8 HP radiant and blindness for 1 tn (Con half, no blindness) for conc or 1 min"',
+    'Description="60\' line inflicts 6d8 HP radiant and blindness for 1 rd (Con half, no blindness) for conc or 1 min"',
   'Sunburst':
     'School=Evocation ' +
     'Level=D8,S8,W8 ' +

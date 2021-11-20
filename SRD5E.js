@@ -67,7 +67,7 @@ function SRD5E() {
 
 }
 
-SRD5E.VERSION = '2.3.2.1';
+SRD5E.VERSION = '2.3.3.0';
 
 /* List of items handled by choiceRules method. */
 SRD5E.CHOICES = [
@@ -1126,84 +1126,77 @@ SRD5E.PATHS = {
     'Features=' +
       '"2:Druid Bonus Cantrip","2:Natural Recovery","6:Land\'s Stride",' +
       '"10:Nature\'s Ward","14:Nature\'s Sanctuary" ' +
-    'SpellAbility=wisdom ' +
-    'SpellSlots=' +
-      'Arctic2:3=2,' +
-      'Arctic3:5=2,' +
-      'Arctic4:7=2,' +
-      'Arctic5:9=2',
+    'Spells=' +
+      '"3:Hold Person,Spike Growth",' +
+      '"5:Sleet Storm,Slow",' +
+      '"7:Freedom Of Movement,Ice Storm",' +
+      '"9:Commune With Nature,Cone Of Cold"',
   'Circle Of The Land (Coast)':
     'Group=Druid ' +
     'Level=levels.Druid ' +
     'Features=' +
       '"2:Druid Bonus Cantrip","2:Natural Recovery","6:Land\'s Stride",' +
       '"10:Nature\'s Ward","14:Nature\'s Sanctuary" ' +
-    'SpellAbility=wisdom ' +
-    'SpellSlots=' +
-      'Coast2:3=2,' +
-      'Coast3:5=2,' +
-      'Coast4:7=2,' +
-      'Coast5:9=2',
+    'Spells=' +
+      '"3:Mirror Image,Misty Step",' +
+      '"5:Water Breathing,Water Walk",' +
+      '"7:Control Water,Freedom Of Movement",' +
+      '"9:Conjure Elemental,Scrying"',
   'Circle Of The Land (Desert)':
     'Group=Druid ' +
     'Level=levels.Druid ' +
     'Features=' +
       '"2:Druid Bonus Cantrip","2:Natural Recovery","6:Land\'s Stride",' +
       '"10:Nature\'s Ward","14:Nature\'s Sanctuary" ' +
-    'SpellAbility=wisdom ' +
-    'SpellSlots=' +
-      'Desert2:3=2,' +
-      'Desert3:5=2,' +
-      'Desert4:7=2,' +
-      'Desert5:9=2',
+    'Spells=' +
+      '"3:Blur,Silence",' +
+      '"5:Create Food And Water,Protection From Energy",' +
+      '"7:Blight,Hallucinatory Terrain",' +
+      '"9:Insect Plague,Wall Of Stone"',
   'Circle Of The Land (Forest)':
     'Group=Druid ' +
     'Level=levels.Druid ' +
     'Features=' +
       '"2:Druid Bonus Cantrip","2:Natural Recovery","6:Land\'s Stride",' +
       '"10:Nature\'s Ward","14:Nature\'s Sanctuary" ' +
-    'SpellAbility=wisdom ' +
-    'SpellSlots=' +
-      'Forest2:3=2,' +
-      'Forest3:5=2,' +
-      'Forest4:7=2,' +
-      'Forest5:9=2',
+    'Spells=' +
+      '"3:Barkskin,Spider Climb",' +
+      '"5:Call Lightning,Plant Growth",' +
+      '"7:Divination,Freedom Of Movement",' +
+      '"9:Commune With Nature,Tree Stride"',
   'Circle Of The Land (Grassland)':
     'Group=Druid ' +
     'Level=levels.Druid ' +
     'Features=' +
       '"2:Druid Bonus Cantrip","2:Natural Recovery","6:Land\'s Stride",' +
       '"10:Nature\'s Ward","14:Nature\'s Sanctuary" ' +
-    'SpellAbility=wisdom ' +
-    'SpellSlots=' +
-      'Grassland2:3=2,' +
-      'Grassland3:5=2,' +
-      'Grassland4:7=2,' +
-      'Grassland5:9=2',
+    'Spells=' +
+      '"3:Invisibility,Pass Without Trace",' +
+      '"5:Daylight,Haste",' +
+      '"7:Divination,Freedom Of Movement",' +
+      '"9:Dream,Insect Plague"',
   'Circle Of The Land (Mountain)':
     'Group=Druid ' +
     'Level=levels.Druid ' +
     'Features=' +
       '"2:Druid Bonus Cantrip","2:Natural Recovery","6:Land\'s Stride",' +
       '"10:Nature\'s Ward","14:Nature\'s Sanctuary" ' +
-    'SpellAbility=wisdom ' +
-    'SpellSlots=' +
-      'Mountain2:3=2,' +
-      'Mountain3:5=2,' +
-      'Mountain4:7=2,' +
-      'Mountain5:9=2',
+    'Spells=' +
+      '"3:Spider Climb,Spike Growth",' +
+      '"5:Lightning Bolt,Meld Into Stone",' +
+      '"7:Stone Shape,Stoneskin",' +
+      '"9:Passwall,Wall Of Stone"',
   'Circle Of The Land (Swamp)':
     'Group=Druid ' +
     'Level=levels.Druid ' +
     'Features=' +
       '"2:Druid Bonus Cantrip","2:Natural Recovery","6:Land\'s Stride",' +
       '"10:Nature\'s Ward","14:Nature\'s Sanctuary" ' +
-    'SpellAbility=wisdom ' +
-    'SpellSlots=' +
-      'Swamp2:3=2,' +
-      'Swamp3:5=2,' +
-      'Swamp4:7=2,' +
-      'Swamp5:9=2',
+    'Spells=' +
+      '"3:Acid Arrow,Darkness",' +
+      '"5:Water Walk,Stinking Cloud",' +
+      '"7:Freedom Of Movement,Locate Creature",' +
+      '"9:Insect Plague,Scrying"',
   'College Of Lore':
     'Group=Bard ' +
     'Level=levels.Bard ' +
@@ -1222,26 +1215,24 @@ SRD5E.PATHS = {
     'Features=' +
       '"1:Disciple Of Life","1:Life Bonus Proficiency","2:Preserve Life",' +
       '"6:Blessed Healer","8:Divine Strike","17:Supreme Healing" ' +
-    'SpellAbility=wisdom ' +
-    'SpellSlots=' +
-      'Life1:1=2,' +
-      'Life2:3=2,' +
-      'Life3:5=2,' +
-      'Life4:7=2,' +
-      'Life5:9=2',
+    'Spells=' +
+      '"1:Bless,Cure Wounds",' +
+      '"3:Lesser Restoration,Spiritual Weapon",' +
+      '"5:Beacon Of Hope,Revivify",' +
+      '"7:Death Ward,Guardian Of Faith",' +
+      '"9:Mass Cure Wounds,Raise Dead"',
   'Oath Of Devotion':
     'Group=Paladin ' +
     'Level=levels.Paladin ' +
     'Features=' +
       '"3:Sacred Weapon","3:Turn The Unholy","7:Aura Of Devotion",' +
       '"15:Purity Of Spirit","20:Holy Nimbus" ' +
-    'SpellAbility=charisma ' +
-    'SpellSlots=' +
-      'Devotion1:3=2,' +
-      'Devotion2:5=2,' +
-      'Devotion3:9=2,' +
-      'Devotion4:13=2,' +
-      'Devotion5:17=2',
+    'Spells=' +
+      '"3:Protection From Evil And Good,Sanctuary",' +
+      '"5:Lesser Restoration,Zone Of Truth",' +
+      '"9:Beacon Of Hope,Dispel Magic",' +
+      '"13:Freedom Of Movement,Guardian Of Faith",' +
+      '"17:Commune,Flame Strike"',
   'Path Of The Berserker':
     'Group=Barbarian ' +
     'Level=levels.Barbarian ' +
@@ -1367,7 +1358,7 @@ SRD5E.SPELLS = {
 
   'Acid Arrow':
     'School=Evocation ' +
-    'Level=Swamp2,W2 ' +
+    'Level=W2 ' +
     'Description="R90\' Ranged spell inflicts 4d4 HP acid, 2d4 HP next rd (miss half 1st rd, 0 HP 2nd)"',
   'Acid Splash':
     'School=Conjuration ' +
@@ -1456,11 +1447,11 @@ SRD5E.SPELLS = {
     'Description="R60\' Banishes target to home or demiplane (Cha neg) for conc or 1 min"',
   'Barkskin':
     'School=Transmutation ' +
-    'Level=D2,Forest2,R2 ' +
+    'Level=D2,R2 ' +
     'Description="Touched gains AC 16 for conc or 1 hr"',
   'Beacon Of Hope':
     'School=Abjuration ' +
-    'Level=C3,Devotion3,Life3 ' +
+    'Level=C3 ' +
     'Description="R30\' Targets gain Adv on Wis and death saves and maximum HP from healing for conc or 1 min"',
   'Bestow Curse':
     'School=Necromancy ' +
@@ -1476,11 +1467,11 @@ SRD5E.SPELLS = {
     'Description="R90\' 100\'x20\'x5\' blade wall provides 3/4 cover and inflicts 6d10 HP slashing (Dex half) for conc or 10 min"',
   'Bless':
     'School=Enchantment ' +
-    'Level=C1,Life1,P1 ' +
+    'Level=C1,P1 ' +
     'Description="R30\' 3 targets gain +1d4 on attacks and saving throws for conc or 1 min"',
   'Blight':
     'School=Necromancy ' +
-    'Level=D4,Desert4,K4,S4,W4 ' +
+    'Level=D4,K4,S4,W4 ' +
     'Description="R30\' target suffers 8d8 HP necrotic (Con half (plant Disadv, 64 HP on fail))"',
   'Blindness/Deafness':
     'School=Necromancy ' +
@@ -1492,7 +1483,7 @@ SRD5E.SPELLS = {
     'Description="Self becomes ethereal 50% of time for 1 min"',
   'Blur':
     'School=Illusion ' +
-    'Level=Desert2,S2,W2 ' +
+    'Level=S2,W2 ' +
     'Description="Foes suffer Disadv on self attacks for conc or 1 min"',
   'Branding Smite':
     'School=Evocation ' +
@@ -1505,7 +1496,7 @@ SRD5E.SPELLS = {
 
   'Call Lightning':
     'School=Conjuration ' +
-    'Level=D3,Forest3 ' +
+    'Level=D3 ' +
     'Description="R120\' Bolt inflicts 3d10 HP lightning (Dex half) in 5\' radius 1/rd for conc or 10 min"',
   'Calm Emotions':
     'School=Enchantment ' +
@@ -1549,11 +1540,11 @@ SRD5E.SPELLS = {
     'Description="R60\' Target obeys self one-word command (Wis neg)"',
   'Commune':
     'School=Divination ' +
-    'Level=C5,Devotion5 ' +
+    'Level=C5 ' +
     'Description="Deity answers 3 yes/no questions"',
   'Commune With Nature':
     'School=Divination ' +
-    'Level=Arctic5,D5,Forest5,R5 ' +
+    'Level=D5,R5 ' +
     'Description="Self gains 3 facts about nature w/in 3 miles (300\' underground)"',
   'Comprehend Languages':
     'School=Divination ' +
@@ -1565,7 +1556,7 @@ SRD5E.SPELLS = {
     'Description="R30\' Self controls target movement (Wis neg) for conc or 1 min"',
   'Cone Of Cold':
     'School=Evocation ' +
-    'Level=Arctic5,S5,W5 ' +
+    'Level=S5,W5 ' +
     'Description="60\' cone inflicts 8d8 HP cold (Con half)"',
   'Confusion':
     'School=Enchantment ' +
@@ -1581,7 +1572,7 @@ SRD5E.SPELLS = {
     'Description="R90\' Summons obedient celestial for conc or 1 hr"',
   'Conjure Elemental':
     'School=Conjuration ' +
-    'Level=Coast5,D5,W5 ' +
+    'Level=D5,W5 ' +
     'Description="R90\' Summons obedient environment-appropriate elemental for conc or 1 hr"',
   'Conjure Fey':
     'School=Conjuration ' +
@@ -1613,7 +1604,7 @@ SRD5E.SPELLS = {
     'Description="Touched emits heatless torch flame"',
   'Control Water':
     'School=Transmutation ' +
-    'Level=C4,Coast4,D4,W4 ' +
+    'Level=C4,D4,W4 ' +
     'Description="R300\' 100\' water rises 20\', parts, redirects, or whirlpools for conc or 10 min"',
   'Control Weather':
     'School=Transmutation ' +
@@ -1625,7 +1616,7 @@ SRD5E.SPELLS = {
     'Description="R60\' Negates foe casting up to spell level 3, DC 10 + spell level for higher"',
   'Create Food And Water':
     'School=Conjuration ' +
-    'Level=C3,Desert3,P3 ' +
+    'Level=C3,P3 ' +
     'Description="R30\' Creates 45 lb of food and 30 gallons of water"',
   'Create Or Destroy Water':
     'School=Transmutation ' +
@@ -1641,7 +1632,7 @@ SRD5E.SPELLS = {
     'Description="R30\' Creates 5\' cu of false matter lasting up to 1 dy"',
   'Cure Wounds':
     'School=Evocation ' +
-    'Level=B1,C1,D1,Life1,P1,R1 ' +
+    'Level=B1,C1,D1,P1,R1 ' +
     'Description="Touched regains 1d8+%{?modifier?} HP"',
 
   'Dancing Lights':
@@ -1650,7 +1641,7 @@ SRD5E.SPELLS = {
     'Description="R120\' 4 torch lights move 60\' for conc or 1 min"',
   'Darkness':
     'School=Evocation ' +
-    'Level=K2,S2,Swamp2,W2 ' +
+    'Level=K2,S2,W2 ' +
     'Description="R60\' Target centers 15\' radius lightless area for conc or 10 min"',
   'Darkvision':
     'School=Transmutation ' +
@@ -1658,11 +1649,11 @@ SRD5E.SPELLS = {
     'Description="Touched sees 60\' in dark for 8 hr"',
   'Daylight':
     'School=Evocation ' +
-    'Level=C3,D3,Grassland3,P3,R3,S3 ' +
+    'Level=C3,D3,P3,R3,S3 ' +
     'Description="R60\' Target centers 60\' radius bright light for 1 hr"',
   'Death Ward':
     'School=Abjuration ' +
-    'Level=C4,Life4,P4 ' +
+    'Level=C4,P4 ' +
     'Description="Touched keeps 1 HP when next reduced to 0 HP for 8 hrs"',
   'Delayed Blast Fireball':
     'School=Evocation ' +
@@ -1706,11 +1697,11 @@ SRD5E.SPELLS = {
     'Description="Inflicts Disadv on self attacks by outsider foes for conc or 1 min; touch breaks enchantment; spell attack dismisses (Cha neg)"',
   'Dispel Magic':
     'School=Abjuration ' +
-    'Level=B3,C3,D3,Devotion3,K3,P3,S3,W3 ' +
+    'Level=B3,C3,D3,K3,P3,S3,W3 ' +
     'Description="R120\' Ends spell effects up to spell level 3 on target, higher levels require DC 10 + spell level check"',
   'Divination':
     'School=Divination ' +
-    'Level=C4,Forest4,Grassland4 ' +
+    'Level=C4 ' +
     'Description="Self gains truthful answer about event up to 7 dy in the future"',
   'Divine Favor':
     'School=Evocation ' +
@@ -1734,7 +1725,7 @@ SRD5E.SPELLS = {
     'Description="R60\' Target obeys self telepathic commands (Wis neg) for conc or 1 min"',
   'Dream':
     'School=Illusion ' +
-    'Level=B5,Grassland5,K5,W5 ' +
+    'Level=B5,K5,W5 ' +
     'Description="Touched communicates via dreams of known target"',
   'Druidcraft':
     'School=Transmutation ' +
@@ -1848,7 +1839,7 @@ SRD5E.SPELLS = {
     'Description="Self wields flaming blade that inflicts 3d6 HP fire and lights 10\' radius"',
   'Flame Strike':
     'School=Evocation ' +
-    'Level=C5,Devotion5,"K5 [The Fiend]" ' +
+    'Level=C5,"K5 [The Fiend]" ' +
     'Description="R60\' 10\' radius inflicts 4d6 HP fire and 4d6 HP radiant (Dex half)"',
   'Flaming Sphere':
     'School=Conjuration ' +
@@ -1884,7 +1875,7 @@ SRD5E.SPELLS = {
     'Description="Touched gains immunity to surprise and Adv on attack, ability, and saving throws, foes suffer Disadv on attacks for 8 hr"',
   'Freedom Of Movement':
     'School=Abjuration ' +
-    'Level=Arctic4,B4,C4,Coast4,D4,Devotion4,Forest4,Grassland4,R4,Swamp4 ' +
+    'Level=B4,C4,D4,R4 ' +
     'Description="Touched gains immunity to impediments for 1 hr"',
   'Freezing Sphere':
     'School=Evocation ' +
@@ -1941,7 +1932,7 @@ SRD5E.SPELLS = {
     'Description="Touched becomes unexhausted, uncharmed, unpetrified, or uncursed or regains ability or HP"',
   'Guardian Of Faith':
     'School=Conjuration ' +
-    'Level=C4,Devotion4,Life4 ' +
+    'Level=C4 ' +
     'Description="R30\' 10\' radius inflicts 20 HP radiant to hostile creatures (Dex half) for 8 hr or 60 HP"',
   'Guards And Wards':
     'School=Abjuration ' +
@@ -1966,7 +1957,7 @@ SRD5E.SPELLS = {
     'Description="60\' radius becomes warded against outsiders and evokes boon effect"',
   'Hallucinatory Terrain':
     'School=Illusion ' +
-    'Level=B4,D4,Desert4,K4,W4 ' +
+    'Level=B4,D4,K4,W4 ' +
     'Description="R300\' Creates 150\' cu terrain illusion (Investigation disbelieve) for 1 dy"',
   'Harm':
     'School=Necromancy ' +
@@ -1974,7 +1965,7 @@ SRD5E.SPELLS = {
     'Description="R60\' Target suffers 14d6 HP necrotic (Con half) and equal maximum HP reduction for 1 hr"',
   'Haste':
     'School=Transmutation ' +
-    'Level=Grassland3,S3,W3 ' +
+    'Level=S3,W3 ' +
     'Description="R30\' Willing target gains dbl Speed, +2 AC, Adv on Dex, and bonus action for conc or 1 min"',
   'Heal':
     'School=Evocation ' +
@@ -2010,7 +2001,7 @@ SRD5E.SPELLS = {
     'Description="R90\' Immobilizes target (Wis neg) for conc or 1 min"',
   'Hold Person':
     'School=Enchantment ' +
-    'Level=Arctic2,B2,C2,D2,K2,S2,W2 ' +
+    'Level=B2,C2,D2,K2,S2,W2 ' +
     'Description="R60\' Immobilizes target (Wis neg) for conc or 1 min"',
   'Holy Aura':
     'School=Abjuration ' +
@@ -2027,7 +2018,7 @@ SRD5E.SPELLS = {
 
   'Ice Storm':
     'School=Evocation ' +
-    'Level=Arctic4,D4,S4,W4 ' +
+    'Level=D4,S4,W4 ' +
     'Description="R300\' 20\' radius inflicts 2d8 bludgeoning and 4d6 HP cold (Dex half)"',
   'Identify':
     'School=Divination ' +
@@ -2051,7 +2042,7 @@ SRD5E.SPELLS = {
     'Description="Touched suffers 3d10 HP necrotic"',
   'Insect Plague':
     'School=Conjuration ' +
-    'Level=C5,D5,Desert5,Grassland5,S5,Swamp5 ' +
+    'Level=C5,D5,S5 ' +
     'Description="R300\' 20\' radius inflicts 4d10 HP piercing (Con half) for conc or 10 min"',
   'Instant Summons':
     'School=Conjuration ' +
@@ -2059,7 +2050,7 @@ SRD5E.SPELLS = {
     'Description="Prepared 10 lb item appears in self hand"',
   'Invisibility':
     'School=Illusion ' +
-    'Level=B2,Grassland2,K2,S2,W2 ' +
+    'Level=B2,K2,S2,W2 ' +
     'Description="Touched becomes invisible for conc or 1 hr or until attacks or casts"',
   'Irresistible Dance':
     'School=Enchantment ' +
@@ -2082,7 +2073,7 @@ SRD5E.SPELLS = {
     'Description="Self learns info about named person, place, or object"',
   'Lesser Restoration':
     'School=Abjuration ' +
-    'Level=B2,C2,D2,Devotion2,Life2,P2,R2 ' +
+    'Level=B2,C2,D2,P2,R2 ' +
     'Description="Touched becomes unblinded, undeafened, undiseased, unparalyzed, or unpoisoned"',
   'Levitate':
     'School=Transmutation ' +
@@ -2094,7 +2085,7 @@ SRD5E.SPELLS = {
     'Description="Touched object lights 20\' radius (Dex neg) for 1 hr"',
   'Lightning Bolt':
     'School=Evocation ' +
-    'Level=S3,Mountain3,W3 ' +
+    'Level=S3,W3 ' +
     'Description="100\'x5\' line inflicts 8d6 HP lightning (Dex half)"',
   'Locate Animals Or Plants':
     'School=Divination ' +
@@ -2102,7 +2093,7 @@ SRD5E.SPELLS = {
     'Description="Self learns location of named beast or plant w/in 5 mile"',
   'Locate Creature':
     'School=Divination ' +
-    'Level=B4,C4,D4,P4,R4,Swamp4,W4 ' +
+    'Level=B4,C4,D4,P4,R4,W4 ' +
     'Description="Self learns location of named creature or species w/in 1000\' for conc or 1 hr"',
   'Locate Object':
     'School=Divination ' +
@@ -2151,7 +2142,7 @@ SRD5E.SPELLS = {
     'Description="R120\' Creates 20\' cu sight, sound, and touch illusion for conc or 10 min"',
   'Mass Cure Wounds':
     'School=Evocation ' + // from errata
-    'Level=B5,C5,D5,Life5 ' +
+    'Level=B5,C5,D5 ' +
     'Description="R60\' 6 targets in 30\' radius regain 3d8 + %{?modifier?} HP"',
   'Mass Heal':
     'School=Evocation ' + // from errata
@@ -2171,7 +2162,7 @@ SRD5E.SPELLS = {
     'Description="R60\' Target sent to labyrinthine demiplane (DC 20 Int escapes) for conc or 10 min"',
   'Meld Into Stone':
     'School=Transmutation ' +
-    'Level=C3,D3,Mountain3 ' +
+    'Level=C3,D3 ' +
     'Description="Self step into rock for 8 hr"',
   'Mending':
     'School=Transmutation ' +
@@ -2199,7 +2190,7 @@ SRD5E.SPELLS = {
     'Description="Creates 1 mile sq illusionary terrain for 10 dy"',
   'Mirror Image':
     'School=Illusion ' +
-    'Level=Coast2,K2,S2,W2 ' +
+    'Level=K2,S2,W2 ' +
     'Description="3 self duplicates draw attacks (AC %{10+dexterityModifier}) for 1 min"',
   'Mislead':
     'School=Illusion ' +
@@ -2207,7 +2198,7 @@ SRD5E.SPELLS = {
     'Description="Makes self invisible and creates illusory duplicate for conc or 1 hr"',
   'Misty Step':
     'School=Conjuration ' +
-    'Level=Coast2,K2,S2,W2 ' +
+    'Level=K2,S2,W2 ' +
     'Description="Self teleports 30\'"',
   'Modify Memory':
     'School=Enchantment ' +
@@ -2229,11 +2220,11 @@ SRD5E.SPELLS = {
 
   'Pass Without Trace':
     'School=Abjuration ' +
-    'Level=D2,Grassland2,R2 ' +
+    'Level=D2,R2 ' +
     'Description="Targets in 30\' radius gain +10 Stealth and become untrackable for conc or 1 hr"',
   'Passwall':
     'School=Transmutation ' +
-    'Level=Mountain5,W5 ' +
+    'Level=W5 ' +
     'Description="R30\' Creates 5\'x8\'x20\' passage through wood, plaster, or stone for 1 hr"',
   'Phantasmal Killer':
     'School=Illusion ' +
@@ -2257,7 +2248,7 @@ SRD5E.SPELLS = {
     'Description="Target or self and 8 willing others travel to another plane (Cha neg)"',
   'Plant Growth':
     'School=Transmutation ' +
-    'Level=B3,D3,Forest3,R3 ' +
+    'Level=B3,D3,R3 ' +
     'Description="R150\' Overgrows 100\' radius or enriches 1/2 mile radius for 1 yr"',
   'Poison Spray':
     'School=Conjuration ' +
@@ -2309,11 +2300,11 @@ SRD5E.SPELLS = {
     'Description="R500 miles Self sees and hears through illusory double for conc or 1 dy"',
   'Protection From Energy':
     'School=Abjuration ' +
-    'Level=C3,D3,Desert3,R3,S3,W3 ' +
+    'Level=C3,D3,R3,S3,W3 ' +
     'Description="Touched gains resistance to acid, cold, fire, lightning, or thunder damage for conc or 1 hr"',
   'Protection From Evil And Good':
     'School=Abjuration ' +
-    'Level=C1,Devotion1,K1,P1,W1 ' +
+    'Level=C1,K1,P1,W1 ' +
     'Description="Willing touched gains immunity to charm, fright, and possession from aberrations, celestials, elementals, fey, fiends, and undead, and those creatures suffer Disadv on attack on touched"',
   'Protection From Poison':
     'School=Abjuration ' +
@@ -2326,7 +2317,7 @@ SRD5E.SPELLS = {
 
   'Raise Dead':
     'School=Necromancy ' +
-    'Level=B5,C5,Life5,P5 ' +
+    'Level=B5,C5,P5 ' +
     'Description="Restores touched 10-day-old corpse to life"',
   'Ray Of Enfeeblement':
     'School=Necromancy ' +
@@ -2366,7 +2357,7 @@ SRD5E.SPELLS = {
     'Description="R50\' Items in 50\' radius fall upward for conc or 1 min"',
   'Revivify':
     'School=Necromancy ' + // from errata
-    'Level=C3,Life3,P3 ' +
+    'Level=C3,P3 ' +
     'Description="Restores touched 1-minute-old corpse to life w/1 HP"',
   'Rope Trick':
     'School=Transmutation ' +
@@ -2379,7 +2370,7 @@ SRD5E.SPELLS = {
     'Description="R60\' Target suffers %{(level+7)//6}d8 HP radiant (Dex neg)"',
   'Sanctuary':
     'School=Abjuration ' +
-    'Level=C1,Devotion1 ' +
+    'Level=C1 ' +
     'Description="R30\' Foes of target attack another (Wis neg) for 1 min"',
   'Scorching Ray':
     'School=Evocation ' +
@@ -2387,7 +2378,7 @@ SRD5E.SPELLS = {
     'Description="R120\' 3 ranged attacks inflict 2d6 HP fire each"',
   'Scrying':
     'School=Divination ' +
-    'Level=B5,C5,Coast5,D5,K5,Swamp5,W5 ' +
+    'Level=B5,C5,D5,K5,W5 ' +
     'Description="Self sees and hears chosen target (Wis neg) for conc or 10 min"',
   'Secret Chest':
     'School=Conjuration ' +
@@ -2435,7 +2426,7 @@ SRD5E.SPELLS = {
     'Description="Touched suffers %{(level+7)//6}d8 HP lightning"',
   'Silence':
     'School=Illusion ' +
-    'Level=B2,C2,Desert2,R2 ' +
+    'Level=B2,C2,R2 ' +
     'Description="R120\' 20\' radius blocks sound for conc or 10 min"',
   'Silent Image':
     'School=Illusion ' +
@@ -2451,11 +2442,11 @@ SRD5E.SPELLS = {
     'Description="R90\' 20\' radius sleeps up to 5d8 HP of creatures, weakest first"',
   'Sleet Storm':
     'School=Conjuration ' +
-    'Level=Arctic3,D3,S3,W3 ' +
+    'Level=D3,S3,W3 ' +
     'Description="R150\' 40\' radius causes falls (Dex neg)"',
   'Slow':
     'School=Transmutation ' +
-    'Level=Arctic3,S3,W3 ' +
+    'Level=S3,W3 ' +
     'Description="R120\' 6 targets in 40\' cu suffer half Speed, -2 AC and Dex saves, and 1 action/rd (Wis neg) for conc or 1 min"',
   'Spare The Dying':
     'School=Necromancy ' +
@@ -2475,11 +2466,11 @@ SRD5E.SPELLS = {
     'Description="Self talks to plants for 10 min"',
   'Spider Climb':
     'School=Transmutation ' +
-    'Level=Forest2,K2,Mountain2,S2,W2 ' +
+    'Level=K2,S2,W2 ' +
     'Description="Touched crawls on walls and ceilings for conc or 1 hr"',
   'Spike Growth':
     'School=Transmutation ' +
-    'Level=Arctic2,D2,Mountain2,R2 ' +
+    'Level=D2,R2 ' +
     'Description="R150\' 20\' radius inflicts 2d4 HP piercing and 5\' Speed for conc or 10 min"',
   'Spirit Guardians':
     'School=Conjuration ' +
@@ -2487,19 +2478,19 @@ SRD5E.SPELLS = {
     'Description="15\' radius inflicts 3d8 HP necrotic or radiant and half Speed (Wis half, no slowing)"',
   'Spiritual Weapon':
     'School=Evocation ' +
-    'Level=C2,Life2 ' +
+    'Level=C2 ' +
     'Description="R60\' Spectral weapon inflicts 1d8 + %{?modifier?} HP and moves 20\' for 1 min"',
   'Stinking Cloud':
     'School=Conjuration ' +
-    'Level=B3,"K3 [The Fiend]",S3,Swamp3,W3 ' +
+    'Level=B3,"K3 [The Fiend]",S3,W3 ' +
     'Description="R90\' 20\' radius causes retching for conc or 1 min"',
   'Stone Shape':
     'School=Transmutation ' +
-    'Level=C4,D4,Mountain4,W4 ' +
+    'Level=C4,D4,W4 ' +
     'Description="Reshapes touched medium-sized stone"',
   'Stoneskin':
     'School=Abjuration ' +
-    'Level=D4,Mountain4,R4,S4,W4 ' +
+    'Level=D4,R4,S4,W4 ' +
     'Description="Touched gains resistance to bludgeoning, piercing, and slashing damage for conc or 1 hr"',
   'Storm Of Vengeance':
     'School=Conjuration ' +
@@ -2564,7 +2555,7 @@ SRD5E.SPELLS = {
     'Description="Creates teleportation door between two plants for 1 rd"',
   'Tree Stride':
     'School=Conjuration ' +
-    'Level=D5,Forest5,R5 ' +
+    'Level=D5,R5 ' +
     'Description="Self teleports between like trees 1/rd for conc or 1 min"',
   'True Polymorph':
     'School=Transmutation ' +
@@ -2611,7 +2602,7 @@ SRD5E.SPELLS = {
     'Description="R120\' Creates 10 10\'x10\' panels for conc or 10 min"',
   'Wall Of Stone':
     'School=Evocation ' +
-    'Level=D5,Desert5,Mountain5,S5,W5 ' +
+    'Level=D5,S5,W5 ' +
     'Description="R120\' Creates 10 10\'x10\' panels for conc or 10 min"',
   'Wall Of Thorns':
     'School=Conjuration ' +
@@ -2623,11 +2614,11 @@ SRD5E.SPELLS = {
     'Description="Touched gains +1 AC and saves and resistance to all damage while within 60\' of self, self shares damage to touched for 1 hr"',
   'Water Breathing':
     'School=Transmutation ' +
-    'Level=Coast3,D3,R3,S3,W3 ' +
+    'Level=D3,R3,S3,W3 ' +
     'Description="R30\' 10 targets can breathe underwater for 1 dy"',
   'Water Walk':
     'School=Transmutation ' +
-    'Level=C3,Coast3,D3,R3,S3,Swamp3 ' +
+    'Level=C3,D3,R3,S3 ' +
     'Description="R30\' 10 targets can traverse liquid for 1 hr"',
   'Web':
     'School=Conjuration ' +
@@ -2656,7 +2647,7 @@ SRD5E.SPELLS = {
 
   'Zone Of Truth':
     'School=Enchantment ' +
-    'Level=B2,C2,Devotion2,P2 ' +
+    'Level=B2,C2,P2 ' +
     'Description="R60\' Creatures in 15\' radius cannot lie (Cha neg) for 10 min"'
 
 };
@@ -3152,7 +3143,8 @@ SRD5E.choiceRules = function(rules, type, name, attrs) {
       QuilvynUtils.getAttrValueArray(attrs, 'Features'),
       QuilvynUtils.getAttrValueArray(attrs, 'Selectables'),
       QuilvynUtils.getAttrValue(attrs, 'SpellAbility'),
-      QuilvynUtils.getAttrValueArray(attrs, 'SpellSlots')
+      QuilvynUtils.getAttrValueArray(attrs, 'SpellSlots'),
+      QuilvynUtils.getAttrValueArray(attrs, 'Spells')
     );
     SRD5E.pathRulesExtra(rules, name);
   } else if(type == 'Race') {
@@ -3736,8 +3728,8 @@ SRD5E.classRulesExtra = function(rules, name) {
       classLevel, '=', 'source<3 ? null : 1'
     );
     rules.defineRule('speed', 'abilityNotes.unarmoredMovement.1', '+', null);
-    SRD5E.featureSpell(rules, 'Sanctuary', 'Tranquility', 'M', 1);
-    SRD5E.featureSpell(rules, 'Astral Projection', 'Empty Body', 'M', 9);
+    SRD5E.featureSpells(rules, 'Tranquility', 'M', null, ['Sanctuary']);
+    SRD5E.featureSpells(rules, 'Empty Body', 'M', null, ['Astral Projection']);
     rules.defineRule('spellCasterLevel.M', 'levels.Monk', '=', null);
     rules.defineRule('spellModifier.M', 'wisdomModifier', '=', null);
     rules.defineRule('casterLevels.M', 'spellCasterLevel.M', '^=', null);
@@ -3889,28 +3881,35 @@ SRD5E.classRulesExtra = function(rules, name) {
     rules.defineRule('selectableFeatureCount.Warlock (Pact Boon)',
       classLevel, '=', 'source<3 ? null : 1'
     );
-    SRD5E.featureSpell(rules, 'Mage Armor', 'Armor Of Shadows', 'K', 1);
-    SRD5E.featureSpell(rules, 'Speak With Animals', 'Beast Speech', 'K', 1);
-    SRD5E.featureSpell(rules, 'Detect Magic', 'Eldritch Sight', 'K', 1);
-    SRD5E.featureSpell(rules, 'False Life', 'Fiendish Vigor', 'K', 1);
-    SRD5E.featureSpell(rules, 'Disguise Self', 'Mask Of Many Faces', 'K', 1);
-    SRD5E.featureSpell(rules, 'Silent Image', 'Misty Visions', 'K', 1);
-    SRD5E.featureSpell(rules, 'Jump', 'Otherworldly Leap', 'K', 1);
-    SRD5E.featureSpell(rules, 'Find Familiar', 'Pact Of The Chain', 'K', 1);
-    SRD5E.featureSpell(rules, 'Bane', 'Thief Of Five Fates', 'K', 1);
-    SRD5E.featureSpell(rules, 'Alter Self', 'Master Of Myriad Forms', 'K', 2);
-    SRD5E.featureSpell(rules, 'Levitate', 'Ascendant Step', 'K', 2);
-    SRD5E.featureSpell(rules, 'Slow', 'Mire The Mind', 'K', 3);
-    SRD5E.featureSpell(rules, 'Bestow Curse', 'Sign Of Ill Omen', 'K', 3);
-    SRD5E.featureSpell
-      (rules, 'Speak With Dead', 'Whispers Of The Grave', 'K', 3);
-    SRD5E.featureSpell(rules, 'Compulsion', 'Bewitching Whispers', 'K', 4);
-    SRD5E.featureSpell(rules, 'Confusion', 'Dreadful Word', 'K', 4);
-    SRD5E.featureSpell(rules, 'Polymorph', 'Sculptor Of Flesh', 'K', 4);
-    SRD5E.featureSpell
-      (rules, 'Arcane Eye', 'Visions Of Distant Realms', 'K', 4);
-    SRD5E.featureSpell(rules, 'Hold Monster', 'Chains Of Carceri', 'K', 5);
-    SRD5E.featureSpell(rules, 'Conjure Elemental', 'Minions Of Chaos', 'K', 5);
+    SRD5E.featureSpells(rules, 'Armor Of Shadows', 'K', null, ['Mage Armor']);
+    SRD5E.featureSpells
+      (rules, 'Beast Speech', 'K', null, ['Speak With Animals']);
+    SRD5E.featureSpells(rules, 'Eldritch Sight', 'K', null, ['Detect Magic']);
+    SRD5E.featureSpells(rules, 'Fiendish Vigor', 'K', null, ['False Life']);
+    SRD5E.featureSpells
+      (rules, 'Mask Of Many Faces', 'K', null, ['Disguise Self']);
+    SRD5E.featureSpells(rules, 'Misty Visions', 'K', null, ['Silent Image']);
+    SRD5E.featureSpells(rules, 'Otherworldly Leap', 'K', null, ['Jump']);
+    SRD5E.featureSpells
+      (rules, 'Pact Of The Chain', 'K', null, ['Find Familiar']);
+    SRD5E.featureSpells(rules, 'Thief Of Five Fates', 'K', null, ['Bane']);
+    SRD5E.featureSpells
+      (rules, 'Master Of Myriad Forms', 'K', null, ['Alter Self']);
+    SRD5E.featureSpells(rules, 'Ascendant Step', 'K', null, ['Levitate']);
+    SRD5E.featureSpells(rules, 'Mire The Mind', 'K', null, ['Slow']);
+    SRD5E.featureSpells(rules, 'Sign Of Ill Omen', 'K', null, ['Bestow Curse']);
+    SRD5E.featureSpells
+      (rules, 'Whispers Of The Grave', 'K', null, ['Speak With Dead']);
+    SRD5E.featureSpells
+      (rules, 'Bewitching Whispers', 'K', null, ['Compulsion']);
+    SRD5E.featureSpells(rules, 'Dreadful Word', 'K', null, ['Confusion']);
+    SRD5E.featureSpells(rules, 'Sculptor Of Flesh', 'K', null, ['Polymorph']);
+    SRD5E.featureSpells
+      (rules, 'Visions Of Distant Realms', 'K', null, ['Arcane Eye']);
+    SRD5E.featureSpells
+      (rules, 'Chains Of Carceri', 'K', null, ['Hold Monster']);
+    SRD5E.featureSpells
+      (rules, 'Minions Of Chaos', 'K', null, ['Conjure Elemental']);
 
   } else if(name == 'Wizard') {
 
@@ -4054,25 +4053,49 @@ SRD5E.featureRules = function(rules, name, sections, notes) {
 };
 
 /*
- * Defines in #rules# the rules to grant spell #name# when feature #feature# is
- * acquired. #group# and #level# contain the spell group and level. The granted
- * spell is named "name(grouplevel [feature] school)" and is not included in
- * rules' spell choices.
+ * Defines in #rules# the rules to grant the spells listed in #spellList# when
+ * feature #feature# is acquired. #spellType# contains the spell group (e.g.,
+ * 'B' for Bard, 'C' for Cleric, etc.). Each element of #spellList# has the
+ * format "[min level:]spell name[,spell name...]". If min level is provided,
+ * the spells listed in that element are not acquired until the character's
+ * value of #levelAttr# reaches that level.
  */
-SRD5E.featureSpell = function(rules, name, feature, group, level) {
+SRD5E.featureSpells = function(rules, feature, spellType, levelAttr, spellList){
+
   var allSpells = rules.getChoices('spells');
-  var spell = QuilvynUtils.getKeys(allSpells, name + '\\(')[0];
-  if(!spell) {
-    console.log('Unknown spell "' + name + '" for feature ' + feature);
-    return;
+
+  for(var i = 0; i < spellList.length; i++) {
+    var spellNames = spellList[i];
+    var minLevel = null;
+    if(spellNames.match(/^\d+:/)) {
+      minLevel = spellNames.split(':')[0] - 0;
+      spellNames = spellNames.split(':')[1];
+    }
+    spellNames = spellNames.split(',');
+    for(var j = 0; j < spellNames.length; j++) {
+      var spellName = spellNames[j];
+      var spell = QuilvynUtils.getKeys(allSpells, '^' + spellName + '\\(')[0];
+      if(!spell) {
+        console.log('Unknown spell "' + spellName + '" for feature ' + feature);
+        return;
+      }
+      var spellAttrs = allSpells[spell];
+      var spellDescription =
+        QuilvynUtils.getAttrValue(spellAttrs, 'Description');
+      var spellLevel =
+        QuilvynUtils.getAttrValue(spellAttrs, 'Level').match(/\d/)[0] - 0;
+      var spellSchool = QuilvynUtils.getAttrValue(spellAttrs, 'School');
+      var fullName = spellName + '(' + spellType + spellLevel + ' [' + feature + '] ' + spellSchool.substring(0, 4) + ')';
+      SRD5E.spellRules(
+        rules, fullName, spellSchool, spellType, spellLevel, spellDescription, false
+      );
+      rules.defineRule('spells.' + fullName, 'features.' + feature, '=', '1');
+      if(minLevel)
+        rules.defineRule
+          ('spells.' + fullName, levelAttr, '?', 'source>=' + minLevel);
+    }
   }
-  var attrs = allSpells[spell];
-  var description = QuilvynUtils.getAttrValue(attrs, 'Description');
-  var school = QuilvynUtils.getAttrValue(attrs, 'School');
-  var fullName =
-    name + '(' + group + level + ' [' + feature + '] ' + school.substring(0, 4) + ')';
-  SRD5E.spellRules(rules, fullName, school, group, level, description, false);
-  rules.defineRule('spells.' + fullName, 'features.' + feature, '=', '1');
+
 };
 
 /*
@@ -4112,7 +4135,8 @@ SRD5E.languageRules = function(rules, name) {
  * day granted.
  */
 SRD5E.pathRules = function(
-  rules, name, group, levelAttr, features, selectables, spellAbility, spellSlots
+  rules, name, group, levelAttr, features, selectables, spellAbility,
+  spellSlots, spells
 ) {
 
   if(!name) {
@@ -4187,6 +4211,12 @@ SRD5E.pathRules = function(
         spellAbility + 'Modifier', '=', null
       );
     }
+  }
+
+  if(spells.length > 0) {
+    SRD5E.featureSpells
+      (rules, name, group == 'Warlock' ? 'K' : group.charAt(0), pathLevel,
+       spells);
   }
 
 };
@@ -4382,14 +4412,10 @@ SRD5E.raceRulesExtra = function(rules, name) {
         'source<5 ? ", cast <i>Hellish Rebuke</i> 1/long rest" : ' +
         '", cast <i>Hellish Rebuke</i> and <i>Darkness</i> 1/long rest"'
     );
-    SRD5E.featureSpell(rules, 'Thaumaturgy', 'Infernal Legacy', 'K', 0);
-    SRD5E.featureSpell(rules, 'Hellish Rebuke', 'Infernal Legacy', 'K', 1);
-    SRD5E.featureSpell(rules, 'Darkness', 'Infernal Legacy', 'K', 2);
-    rules.defineRule('spells.Hellish Rebuke(K1 [Infernal Legacy] Evoc)',
-      'level', '?', 'source >= 3'
-    );
-    rules.defineRule('spells.Darkness(K2 [Infernal Legacy] Evoc)',
-      'level', '?', 'source >= 5'
+    SRD5E.featureSpells(rules, 'Infernal Legacy', 'K', 'level',
+      ['Thaumaturgy',
+       '3:Hellish Rebuke',
+       '5:Darkness']
     );
     rules.defineRule('spellCasterLevel.Infernal Legacy',
       'features.Infernal Legacy', '?', null,

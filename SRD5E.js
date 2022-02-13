@@ -67,13 +67,13 @@ function SRD5E() {
 
 }
 
-SRD5E.VERSION = '2.3.3.0';
+SRD5E.VERSION = '2.3.3.1';
 
-/* List of items handled by choiceRules method. */
+/* List of choices that can be expanded by house rules. */
 SRD5E.CHOICES = [
-  'Alignment', 'Armor', 'Background', 'Class', 'Deity', 'Feat', 'Feature',
-  'Goody', 'Language', 'Path', 'Race', 'School', 'Shield', 'Skill', 'Spell',
-  'Tool', 'Weapon'
+  'Armor', 'Background', 'Class', 'Deity', 'Feat', 'Feature', 'Goody',
+  'Language', 'Path', 'Race', 'School', 'Shield', 'Skill', 'Spell', 'Tool',
+  'Weapon'
 ];
 /*
  * List of items handled by randomizeOneAttribute method. The order handles
@@ -5107,7 +5107,7 @@ SRD5E.initialEditorElements = function() {
     ['hitPoints', 'Hit Points', 'text', [4, '(\\+?\\d+)']],
     ['armor', 'Armor', 'select-one', 'armors'],
     ['shield', 'Shield', 'select-one', 'shields'],
-    ['weapons', 'Weapons', 'bag', 'weapons'],
+    ['weapons', 'Weapons', 'setbag', 'weapons'],
     ['weaponsChosen', 'Proficiency', 'set', 'weapons'],
     ['spells', 'Spells', 'fset', 'spells'],
     ['notes', 'Notes', 'textarea', [40,10]],

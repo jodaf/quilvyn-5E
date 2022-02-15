@@ -67,7 +67,7 @@ function SRD5E() {
 
 }
 
-SRD5E.VERSION = '2.3.3.1';
+SRD5E.VERSION = '2.3.3.2';
 
 /* List of choices that can be expanded by house rules. */
 SRD5E.CHOICES = [
@@ -4366,25 +4366,27 @@ SRD5E.raceRulesExtra = function(rules, name) {
       'level', '=', 'Math.floor((source + 9) / 5)'
     );
     rules.defineRule('combatNotes.dragonbornBreathWeapon.1',
-      'race', '=', 'source == "Dragonborn" ? "5\'x30\' line" : null',
-      'dragonbornFeatures.Gold Draconic Ancestry', '=', '"15\' cone"',
-      'dragonbornFeatures.Green Draconic Ancestry', '=', '"15\' cone"',
-      'dragonbornFeatures.Red Draconic Ancestry', '=', '"15\' cone"',
-      'dragonbornFeatures.Silver Draconic Ancestry', '=', '"15\' cone"',
-      'dragonbornFeatures.White Draconic Ancestry', '=', '"15\' cone"'
+      'features.Dragonborn Breath Weapon', '?', null,
+      '', '=', '"5\'x30\' line"',
+      'features.Gold Draconic Ancestry', '=', '"15\' cone"',
+      'features.Green Draconic Ancestry', '=', '"15\' cone"',
+      'features.Red Draconic Ancestry', '=', '"15\' cone"',
+      'features.Silver Draconic Ancestry', '=', '"15\' cone"',
+      'features.White Draconic Ancestry', '=', '"15\' cone"'
     );
     rules.defineRule('combatNotes.dragonbornBreathWeapon.2',
-      'race', '=', 'source == "Dragonborn" ? "fire" : null',
-      'dragonbornFeatures.Black Draconic Ancestry', '=', '"acid"',
-      'dragonbornFeatures.Blue Draconic Ancestry', '=', '"lightning"',
-      'dragonbornFeatures.Bronze Draconic Ancestry', '=', '"lightning"',
-      'dragonbornFeatures.Copper Draconic Ancestry', '=', '"acid"',
-      'dragonbornFeatures.Green Draconic Ancestry', '=', '"poison"',
-      'dragonbornFeatures.Silver Draconic Ancestry', '=', '"cold"',
-      'dragonbornFeatures.White Draconic Ancestry', '=', '"cold"'
+      'features.Dragonborn Breath Weapon', '?', null,
+      '', '=', '"fire"',
+      'features.Black Draconic Ancestry', '=', '"acid"',
+      'features.Blue Draconic Ancestry', '=', '"lightning"',
+      'features.Bronze Draconic Ancestry', '=', '"lightning"',
+      'features.Copper Draconic Ancestry', '=', '"acid"',
+      'features.Green Draconic Ancestry', '=', '"poison"',
+      'features.Silver Draconic Ancestry', '=', '"cold"',
+      'features.White Draconic Ancestry', '=', '"cold"'
     );
     rules.defineRule('combatNotes.dragonbornBreathWeapon.3',
-      'race', '?', 'source == "Dragonborn"',
+      'features.Dragonborn Breath Weapon', '?', null,
       'constitutionModifier', '=', '8 + source',
       'proficiencyBonus', '+', null
     );

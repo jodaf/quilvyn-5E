@@ -67,7 +67,7 @@ function SRD5E() {
 
 }
 
-SRD5E.VERSION = '2.3.3.2';
+SRD5E.VERSION = '2.3.3.3';
 
 /* List of choices that can be expanded by house rules. */
 SRD5E.CHOICES = [
@@ -451,12 +451,6 @@ SRD5E.CLASSES = {
 };
 SRD5E.FEATS = {
   'Ability Boost':'',
-  'Ability Boost2':'Require="features.Ability Boost"',
-  'Ability Boost3':'Require="features.Ability Boost2"',
-  'Ability Boost4':'Require="features.Ability Boost3"',
-  'Ability Boost5':'Require="features.Ability Boost4"',
-  'Ability Boost6':'Require="features.Ability Boost5"',
-  'Ability Boost7':'Require="features.Ability Boost6"',
   'Grappler':'Require="strength >= 13"'
 };
 SRD5E.FEATURES = {
@@ -871,6 +865,7 @@ SRD5E.FEATURES = {
   'Witch Sight':
     'Section=feature Note="R30\' See true forms"',
   // Feat
+  'Ability Boost':'Section=ability Note="Ability Boost (Choose %V from any)"',
   'Grappler':
     'Section=combat ' +
     // Note: grapple larger foes benefit removed by errata
@@ -3414,7 +3409,7 @@ SRD5E.classRules = function(
   }
 
   rules.defineRule('featCount.General',
-    'levels.' + name, '=', 'source>=19 ? 5 : source>=4 ? Math.floor(source / 4) : null'
+    'levels.' + name, '=', 'source>=19 ? 5 : source>=4 ? Math.floor(source / 4) : 0'
   );
   rules.defineRule('proficiencyBonus',
     'levels.' + name, '=', 'Math.floor((source + 7) / 4)'
@@ -4020,10 +4015,11 @@ SRD5E.featRules = function(rules, name, requires, implies, types) {
  * derived directly from the attributes passed to featRules.
  */
 SRD5E.featRulesExtra = function(rules, name) {
-  if(name.startsWith('Ability Boost')) {
+  if(name == 'Ability Boost') {
     rules.defineChoice('notes', 'abilityNotes.abilityBoosts:%V to distribute');
+    rules.defineRule
+      ('abilityNotes.abilityBoost', 'feats.Ability Boost', '=', null);
     rules.defineRule('abilityNotes.abilityBoosts', 'abilityBoosts', '=', null);
-    rules.defineRule('abilityBoosts', 'features.' + name, '+=', '2');
   }
 };
 
@@ -4035,20 +4031,43 @@ SRD5E.featRulesExtra = function(rules, name) {
 SRD5E.featureRules = function(rules, name, sections, notes) {
   // TBD Move out of SRD35
   SRD35.featureRules(rules, name, sections, notes);
-  for(var i = 0; i < notes.length; i++) {
-    var matchInfo = notes[i].match(/^([A-Z]\w*)\sProficiency\s\((([^\(]|\([^\)]*\))*)\)$/);
+  var matchInfo;
+  var i, j;
+  for(i = 0; i < notes.length; i++) {
+    matchInfo = notes[i].match(/^([A-Z]\w*)\sProficiency\s\((([^\(]|\([^\)]*\))*)\)$/);
     if(!matchInfo)
       continue;
     var group = matchInfo[1].toLowerCase();
     var note = sections[i] + 'Notes.' + name.charAt(0).toLowerCase() + name.substring(1).replaceAll(' ', '');
     var affected = matchInfo[2].split('/');
-    for(var j = 0; j < affected.length; j++) {
+    for(j = 0; j < affected.length; j++) {
       matchInfo = affected[j].match(/^Choose\s(\d+)/);
       if(matchInfo)
         rules.defineRule(group + 'ChoiceCount', note, '+=', matchInfo[1]);
       else
         rules.defineRule(group + 'Proficiency.' + affected[j], note, '=', '1');
     }
+  }
+  for(i = 0; i < notes.length; i++) {
+    matchInfo = notes[i].match(/Ability Boost \((.*)\)/ig);
+    if(!matchInfo)
+      continue;
+    var note = sections[i] + 'Notes.' + name.charAt(0).toLowerCase() + name.substring(1).replaceAll(' ', '');
+    var totalBoosts = 0;
+    var addSource = false;
+    matchInfo.forEach(matched => {
+      matched.split('/').forEach(boosted => {
+        var choices = boosted.match(/Choose (\d+|%V)/i);
+        if(!choices)
+          rules.defineRule(boosted.toLowerCase(), note, '+', '1');
+        else if(choices[1].startsWith('%'))
+          addSource = true;
+        else
+          totalBoosts += choices[1] - 0;
+      });
+    });
+    rules.defineRule
+      ('abilityBoosts', note, '+=', totalBoosts + (addSource ? ' + source' : ''));
   }
 };
 
@@ -5101,7 +5120,7 @@ SRD5E.initialEditorElements = function() {
     ['origin', 'Origin', 'text', [20]],
     ['player', 'Player', 'text', [20]],
     ['experience', 'Experience', 'text', [8, '(\\+?\\d+)']],
-    ['feats', 'Feats', 'set', 'feats'],
+    ['feats', 'Feats', 'setbag', 'feats'],
     ['selectableFeatures', 'Selectable Features', 'set', 'selectableFeatures'],
     ['skillsChosen', 'Skills', 'set', 'skills'],
     ['toolsChosen', 'Tools', 'set', 'tools'],
@@ -5259,22 +5278,52 @@ SRD5E.randomizeOneAttribute = function(attributes, attribute) {
     attributes['armor'] = choices[QuilvynUtils.random(0, choices.length - 1)];
   } else if(attribute == 'boosts') {
     attrs = this.applyRules(attributes);
-    notes = attributes.notes;
+    notes = this.getChoices('notes');
     howMany = attrs.abilityBoosts || 0;
+    var potentialBoosts = {};
+    for(attr in SRD5E.ABILITIES)
+      potentialBoosts[attr.toLowerCase()] = 0;
+    potentialBoosts.any = 0;
+    for(attr in attrs) {
+      if(!notes[attr] ||
+         (matchInfo = notes[attr].match(/Ability Boost \((.*)\)/gi)) == null)
+        continue;
+      matchInfo.forEach(matched => {
+        matched.split('/').forEach(boosted => {
+          var choices = boosted.match(/Choose (\d+) from (.*)/i);
+          if(choices) {
+            choices[2].split(/\s*,\s*/).forEach(choice => {
+              potentialBoosts[choice.toLowerCase()] += choices[1] - 0;
+            });
+          }
+        });
+      });
+    }
+    for(attr in SRD5E.ABILITIES)
+      potentialBoosts[attr.toLowerCase()] += potentialBoosts.any;
+    delete potentialBoosts.any;
     matchInfo =
       (attributes.notes || '').match(/ability\s+boost[:\s]+\+\d+\s+\w+(\s*;\s*\+\d+\s+\w+)*/gi);
     if(matchInfo) {
-      for(i = 0; i < matchInfo.length; i++) {
-        var m = matchInfo[i].match(/\d+/g);
-        for(j = 0; j < m.length; j++)
-          howMany -= m[j] * 1;
-      }
+      matchInfo.forEach(boosted => {
+        boosted.match(/\d+\s+\w+/g).forEach(boost => {
+          var amountAndAbility = boost.match(/(\d+)\s+(\w+)/);
+          howMany -= amountAndAbility[1];
+          potentialBoosts[amountAndAbility[2]] -= amountAndAbility[1];
+        });
+      });
     }
-    if(howMany > 0)
-      attributes.notes = (attributes.notes ? attributes.notes + '\n' : '') + '* Ability Boost:';
-    for( ; howMany > 0; howMany--) {
-      attr = QuilvynUtils.randomKey(SRD5E.ABILITIES).toLowerCase();
-      attributes.notes += ' +1 ' + attr + ';';
+    if(howMany > 0) {
+      attributes.notes = (attributes.notes ? attributes.notes + '\n' : '') +
+      '* Ability Boost:';
+      while(howMany > 0) {
+        attr = QuilvynUtils.randomKey(SRD5E.ABILITIES).toLowerCase();
+        if(potentialBoosts[attr.toLowerCase() <= 0])
+          continue;
+        attributes.notes += ' +1 ' + attr + ';';
+        potentialBoosts[attr.toLowerCase()]--;
+        howMany--;
+      }
     }
   } else if(attribute == 'deity') {
     /* Pick a deity that's no more than one alignment position removed. */
@@ -5447,7 +5496,7 @@ SRD5E.randomizeOneAttribute = function(attributes, attribute) {
     attributes['name'] = SRD5E.randomName(attributes['race']);
   } else if(attribute == 'shield') {
     attrs = this.applyRules(attributes);
-    choices = [''];
+    choices = [];
     for(attr in this.getChoices('shields')) {
       if(attr == 'None' ||
          attrs['armorProficiency.Shield'] ||
@@ -5813,8 +5862,8 @@ SRD5E.ruleNotes = function() {
     '<ul>\n' +
     '  <li>\n' +
     '    To allow feats to be taken instead of Ability Score Improvements,\n' +
-    '    the latter are presented as feats named Ability Boost, Ability\n' +
-    '    Boost2, Ability Boost3, etc.\n' +
+    '    the latter is presented as a new feat, named Ability Boost, that.\n' +
+    '    can be taken multiple times.\n' +
     '  </li><li>\n' +
     '    Quilvyn presents sub-race choices (e.g., Lightfoot Halfling)\n' +
     '    as separate races in the editor Race menu.\n' +

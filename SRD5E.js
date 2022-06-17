@@ -1348,7 +1348,7 @@ SRD5E.SKILLS = {
   'Survival':'Ability=wisdom'
 };
 // Note that spellRules replaces ?level? and ?modifier? in the spell
-// descriptions with the appropriate caster level and ability modifer.
+// descriptions with the appropriate caster level and ability modifier.
 SRD5E.SPELLS = {
 
   'Acid Arrow':
@@ -2630,7 +2630,7 @@ SRD5E.SPELLS = {
   'Wind Wall':
     'School=Evocation ' +
     'Level=D3,R3 ' +
-    'Description="R120\' 50\'x15\' area inflicts 3d8 HP blugeoning (Str half) for conc or 1 min"',
+    'Description="R120\' 50\'x15\' area inflicts 3d8 HP bludgeoning (Str half) for conc or 1 min"',
   'Wish':
     'School=Conjuration ' +
     'Level=S9,W9 ' +
@@ -3540,7 +3540,7 @@ SRD5E.classRulesExtra = function(rules, name) {
     rules.defineRule
       ('skillNotes.bardExpertise', classLevel, '=', 'source<10 ? 2 : 4');
     // Magical Secrets feature allows choosing non-Bard spells; here we set the
-    // caster level and modifier for any variable efffects. Note inclusion of
+    // caster level and modifier for any variable effects. Note inclusion of
     // 'A' spells for Artificer class from supplements.
     rules.defineRule('spellCasterLevel.Magical Secrets',
       'features.Magical Secrets', '=', '0',

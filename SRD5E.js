@@ -900,7 +900,7 @@ SRD5E.FEATURES = {
   'Gnome Cunning':
     'Section=save Note="Adv on Cha, Int, and Wis saves vs. magic"',
   'Half-Elf Ability Adjustment':
-    'Section=ability Note="+2 Charisma/+1 any two"',
+    'Section=ability Note="+2 Charisma/Ability Boost (Choose 2 from any)"',
   'Half-Orc Ability Adjustment':
     'Section=ability Note="+2 Strength/+1 Constitution"',
   'Halfling Nimbleness':
@@ -3409,7 +3409,7 @@ SRD5E.classRules = function(
   }
 
   rules.defineRule('featCount.General',
-    'levels.' + name, '=', 'source>=19 ? 5 : source>=4 ? Math.floor(source / 4) : 0'
+    'levels.' + name, '+=', 'Math.min(Math.floor(source / 4), 5)'
   );
   rules.defineRule('proficiencyBonus',
     'levels.' + name, '=', 'Math.floor((source + 7) / 4)'
@@ -4019,7 +4019,8 @@ SRD5E.featRulesExtra = function(rules, name) {
     rules.defineChoice('notes', 'abilityNotes.abilityBoosts:%V to distribute');
     rules.defineRule
       ('abilityNotes.abilityBoost', 'feats.Ability Boost', '=', null);
-    rules.defineRule('abilityNotes.abilityBoosts', 'abilityBoosts', '=', null);
+    rules.defineRule
+      ('abilityNotes.abilityBoosts', 'abilityBoostChoiceCount', '=', null);
   }
 };
 
@@ -4031,43 +4032,41 @@ SRD5E.featRulesExtra = function(rules, name) {
 SRD5E.featureRules = function(rules, name, sections, notes) {
   // TBD Move out of SRD35
   SRD35.featureRules(rules, name, sections, notes);
-  var matchInfo;
-  var i, j;
-  for(i = 0; i < notes.length; i++) {
-    matchInfo = notes[i].match(/^([A-Z]\w*)\sProficiency\s\((([^\(]|\([^\)]*\))*)\)$/);
-    if(!matchInfo)
-      continue;
-    var group = matchInfo[1].toLowerCase();
-    var note = sections[i] + 'Notes.' + name.charAt(0).toLowerCase() + name.substring(1).replaceAll(' ', '');
-    var affected = matchInfo[2].split('/');
-    for(j = 0; j < affected.length; j++) {
-      matchInfo = affected[j].match(/^Choose\s(\d+)/);
-      if(matchInfo)
-        rules.defineRule(group + 'ChoiceCount', note, '+=', matchInfo[1]);
-      else
-        rules.defineRule(group + 'Proficiency.' + affected[j], note, '=', '1');
-    }
-  }
-  for(i = 0; i < notes.length; i++) {
-    matchInfo = notes[i].match(/Ability Boost \((.*)\)/ig);
-    if(!matchInfo)
-      continue;
-    var note = sections[i] + 'Notes.' + name.charAt(0).toLowerCase() + name.substring(1).replaceAll(' ', '');
-    var totalBoosts = 0;
-    var addSource = false;
-    matchInfo.forEach(matched => {
-      matched.split('/').forEach(boosted => {
-        var choices = boosted.match(/Choose (\d+|%V)/i);
-        if(!choices)
-          rules.defineRule(boosted.toLowerCase(), note, '+', '1');
-        else if(choices[1].startsWith('%'))
-          addSource = true;
+  for(var i = 0; i < notes.length; i++) {
+    var note =
+      sections[i] + 'Notes.' + name.charAt(0).toLowerCase() +
+      name.substring(1).replaceAll(' ', '');
+    var matchInfo =
+      notes[i].match(/^([A-Z]\w*)\sProficiency\s\((([^\(]|\([^\)]*\))*)\)$/);
+    if(matchInfo) {
+      var group = matchInfo[1].toLowerCase();
+      matchInfo[2].split('/').forEach(affected => {
+        matchInfo = affected.match(/^Choose\s(\d+)/);
+        if(matchInfo)
+          rules.defineRule(group + 'ChoiceCount', note, '+=', matchInfo[1]);
         else
-          totalBoosts += choices[1] - 0;
+          rules.defineRule(group + 'Proficiency.' + affected, note, '=', '1');
       });
-    });
-    rules.defineRule
-      ('abilityBoosts', note, '+=', totalBoosts + (addSource ? ' + source' : ''));
+    }
+    matchInfo = notes[i].match(/Ability Boost \((.*)\)/ig);
+    if(matchInfo) {
+      var totalBoosts = 0;
+      var addSource = false;
+      matchInfo.forEach(matched => {
+        matched.split('/').forEach(boosted => {
+          var choices = boosted.match(/Choose (\d+|%V)/i);
+          if(!choices)
+            rules.defineRule(boosted.toLowerCase(), note, '+', '1');
+          else if(choices[1].startsWith('%'))
+            addSource = true;
+          else
+            totalBoosts += choices[1] - 0;
+        });
+      });
+      rules.defineRule('abilityBoostChoiceCount',
+        note, '+=', totalBoosts + (addSource ? ' + source' : '')
+      );
+    }
   }
 };
 
@@ -4374,13 +4373,7 @@ SRD5E.raceRules = function(
  */
 SRD5E.raceRulesExtra = function(rules, name) {
 
-  if(name == 'Half-Elf') {
-    rules.defineRule
-      ('abilityBoosts', 'abilityNotes.half-ElfAbilityAdjustment', '+=', '2');
-  } else if(name == 'Half-Elf') {
-    rules.defineRule
-      ('skillProficiency.Intimidation', 'skillNotes.menacing', '=', '1');
-  } else if(name == 'Dragonborn') {
+  if(name == 'Dragonborn') {
     rules.defineRule('combatNotes.dragonbornBreathWeapon',
       'level', '=', 'Math.floor((source + 9) / 5)'
     );
@@ -5279,7 +5272,7 @@ SRD5E.randomizeOneAttribute = function(attributes, attribute) {
   } else if(attribute == 'boosts') {
     attrs = this.applyRules(attributes);
     notes = this.getChoices('notes');
-    howMany = attrs.abilityBoosts || 0;
+    howMany = attrs.abilityBoostChoiceCount || 0;
     var potentialBoosts = {};
     for(attr in SRD5E.ABILITIES)
       potentialBoosts[attr.toLowerCase()] = 0;

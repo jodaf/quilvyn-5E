@@ -67,7 +67,7 @@ function SRD5E() {
 
 }
 
-SRD5E.VERSION = '2.3.3.3';
+SRD5E.VERSION = '2.3.4.0';
 
 /* List of choices that can be expanded by house rules. */
 SRD5E.CHOICES = [
@@ -456,7 +456,8 @@ SRD5E.FEATS = {
 SRD5E.FEATURES = {
   // Background
   'Shelter Of The Faithful':
-    'Section=feature Note="Receive aid from associated temple"',
+    'Section=feature ' +
+    'Note="Receive aid from temples of %{deity} and fellow believers"',
   // Class
   'Action Surge':'Section=combat Note="Take an extra action %V/short rest"',
   'Additional Fighting Style':
@@ -466,7 +467,7 @@ SRD5E.FEATURES = {
   'Agonizing Blast':
     'Section=magic Note="<i>Eldritch Blast</i> inflicts +%V HP"',
   'Arcane Recovery':
-    'Section=magic Note="Short rest recovers %V spell slot levels 1/dy"',
+    'Section=magic Note="Short rest restores %V spell slot levels 1/dy"',
   'Archdruid':'Section=magic Note="Unlimited Wild Shape"',
   'Armor Of Shadows':
     'Section=magic Note="Cast <i>Mage Armor</i> on self at will"',
@@ -480,7 +481,7 @@ SRD5E.FEATURES = {
   'Barbarian Unarmored Defense':'Section=combat Note="+%1 AC in no armor"',
   'Bard Expertise':'Section=skill Note="Dbl proficiency on %V chosen skills"',
   'Bardic Inspiration':
-    'Section=magic ' +
+    'Section=feature ' +
     'Note="R60\' Give +1d%V bonus to ability, attack, or saving throw w/in 10 min %1/%2 rest"',
   'Beast Speech':'Section=magic Note="Cast <i>Speak With Animals</i> at will"',
   'Beast Spells':'Section=magic Note="Cast spells during Wild Shape"',
@@ -503,16 +504,17 @@ SRD5E.FEATURES = {
     'Note="Spend 1 Sorcery Point to protect %V creature(s) from self spell"',
   'Chains Of Carceri':
     'Section=magic ' +
-    'Note="Cast <i>Hold Monster</i> on celestial, elemental, or fiend 1/long rest"',
+    'Note="Cast <i>Hold Monster</i> at will on celestials, elementals, and fiends (1/long rest per creature)"',
   'Channel Divinity':'Section=feature Note="Use effect %V/short rest"',
   'Cleansing Touch':
     'Section=magic ' +
     'Note="Touch dispels spell effect on willing creature %V/long rest"',
-  'Colossus Slayer':'Section=combat Note="+1d8 HP vs. damaged foe 1/rd"',
+  'Colossus Slayer':'Section=combat Note="+1d8 HP vs. wounded foe 1/rd"',
   'Countercharm':
     'Section=magic ' +
     'Note="R30\' Performance gives friendly listeners Adv on saves vs. charm and fright for 1 rd"',
-  'Cunning Action':'Section=combat Note="Bonus Dash, Disengage, or Hide 1/rd"',
+  'Cunning Action':
+    'Section=combat Note="Dash, Disengage, or Hide bonus action 1/rd"',
   'Cutting Words':
     'Section=combat ' +
     'Note="R60\' Use Reaction to subtract Bardic Inspiration die from foe roll"',
@@ -539,7 +541,7 @@ SRD5E.FEATURES = {
     'Note="R60\' Know location of celestials, fiends, and undead for 1 rd %V/long rest"',
   'Divine Smite':
     'Section=combat ' +
-    'Note="Spend spell slot for +(spell level + 1)d8 HP radiant melee weapon damage"',
+    'Note="Spend spell slot for +(spell level + 1)d8 HP (+1d8 vs. undead and fiends) radiant melee weapon damage"',
   'Divine Strike':'Section=combat Note="Weapon inflicts +%Vd8 HP %1 1/rd"',
   'Draconic Presence':
     'Section=magic ' +
@@ -572,7 +574,7 @@ SRD5E.FEATURES = {
   'Empty Body':
     'Section=magic ' +
     'Note="Spend 4 Ki Points for 1 min invisibility w/resistance to all damage but force, 8 Ki Points for <i>Astral Projection</i>"',
-  'Escape The Horde':'Section=combat Note="Foe Disadv on OA"',
+  'Escape The Horde':'Section=combat Note="Foes have Disadv on OA on self"',
   'Evasion':'Section=save Note="Dex save yields no damage instead of half"',
   'Evocation Savant':
     'Section=magic Note="Copy evocation spells into spellbook for half cost"',
@@ -588,7 +590,8 @@ SRD5E.FEATURES = {
     'Section=skill ' +
     'Note="Adv on Survival to track, Adv on Intelligence to recall info about, and learn the language of %V chosen creature types"',
   'Feral Instinct':
-    'Section=combat Note="Adv on Initiative, rage and then act when surprised"',
+    'Section=combat ' +
+    'Note="Adv on Initiative; may rage and then act when surprised"',
   'Feral Senses':
     'Section=combat,skill ' +
     'Note="No Disadv vs. invisible foe","R30\' Aware of invisible creatures"',
@@ -645,7 +648,7 @@ SRD5E.FEATURES = {
   'Improved Unarmored Movement':
     'Section=ability Note="Move across vertical surfaces and liquids"',
   'Indomitable Might':
-    'Section=ability Note="Use Str score instead of roll for Str check"',
+    'Section=ability Note="Minimum %{strength} on Str checks"',
   'Indomitable':'Section=save Note="May re-roll failed save %V/long rest"',
   'Intimidating Presence':
     'Section=feature ' +
@@ -703,20 +706,22 @@ SRD5E.FEATURES = {
   "Nature's Ward":
     'Section=save ' +
     'Note="Immunity to disease, poison, and elemental and fey charm and fright"',
-  'One With Shadows':'Section=magic Note="Invisible in dim light until action"',
+  'One With Shadows':
+    'Section=magic Note="Invisible in dim light until move or action"',
   'Open Hand Technique':
     'Section=combat ' +
     'Note="On Flurry of Blows hit, choice of knock prone (DC %V Dex neg), push 15\' (DC %V Str neg), or deny foe Reaction for 1 rd"',
   'Otherworldly Leap':'Section=magic Note="Cast <i>Jump</i> on self at will"',
   'Overchannel':
     'Section=magic ' +
-    'Note="Evocation spell up to level 5 inflicts maximum damage, self takes 2+d12 HP necrotic damage after first time/long rest"',
+    'Note="Evocation spell up to level 5 inflicts maximum damage, self takes 2+ d12 HP necrotic damage per spell level after first time/long rest"',
   'Pact Of The Blade':'Section=magic Note="Create magic weapon"',
   'Pact Of The Chain':
     'Section=magic ' +
     'Note="Know <i>Find Familiar</i>, forego one attack for familiar attack"',
   'Pact Of The Tome':
-    'Section=magic Note="Gain <i>Book Of Shadows</i> w/3 cantrips"',
+    'Section=magic ' +
+    'Note="Gain <i>Book Of Shadows</i>; cast 3 chosen cantrips at will"',
   'Patient Defense':'Section=combat Note="Spend 1 Ki Point for bonus Dodge"',
   'Peerless Skill':
     'Section=ability Note="Add Bardic Inspiration die to ability check"',
@@ -727,7 +732,7 @@ SRD5E.FEATURES = {
     'Section=magic Note="Target takes half damage on cantrip save"',
   'Preserve Life':
     'Section=magic ' +
-    'Note="R30\' Channel Divinity restores %V HP among targets, up to half max HP each"',
+    'Note="R30\' Use Channel Divinity to restore %V HP among targets, up to half max HP each"',
   'Primal Champion':'Section=ability Note="+4 Strength/+4 Constitution"',
   'Primeval Awareness':
     'Section=magic ' +
@@ -745,15 +750,15 @@ SRD5E.FEATURES = {
     'Section=ability,combat,feature,magic,save ' +
     'Note=' +
       '"Adv on Str checks",' +
-      '"+%V melee damage",' +
+      '"+%V Str damage",' +
       '"Rage advantages for 1 min %V/long rest (heavy armor neg)",' +
       '"Cannot cast or concentrate during rage",' +
        '"Adv on Str saves, resistance to bludgeoning, piercing, and slashing damage"',
   'Reckless Attack':
     'Section=combat ' +
-    'Note="Trade Adv on melee Str attacks for foe Adv on all attacks"',
+    'Note="Gain Adv on Str melee attacks; suffer foe Adv on all attacks"',
   'Relentless Rage':
-    'Section=combat Note="DC 10+ Con to keep 1 HP when brought to 0 HP"',
+    'Section=save Note="DC 10+ Con save to keep 1 HP when brought to 0 HP"',
   'Reliable Talent':
     'Section=ability Note="Minimum 10 on proficient ability rolls"',
   'Remarkable Athlete':
@@ -770,7 +775,7 @@ SRD5E.FEATURES = {
     'Section=skill Note="Dbl proficiency on %V skills or Thieves\' Tools"',
   'Sacred Weapon':
     'Section=combat ' +
-    'Note="Channel Divinity gives weapon +%V attack and 20\' light for 1 min"',
+    'Note="Use Channel Divinity to give weapon +%V attack and 20\' light for 1 min"',
   'Sculpt Spells':
     'Section=magic ' +
     'Note="Protect spell level + 1 targets from self evocation spell effects"',
@@ -816,7 +821,7 @@ SRD5E.FEATURES = {
   'Superior Critical':'Section=combat Note="Crit on natural 18"',
   'Superior Inspiration':
     'Section=combat Note="Minimum 1 Bardic Inspiration after initiative"',
-  'Supreme Healing':'Section=magic Note="Healing spells yield max HP"',
+  'Supreme Healing':'Section=magic Note="Healing spells restore max HP"',
   'Supreme Sneak':
     'Section=skill Note="Adv on Stealth when moving at half speed"',
   'Survivor':
@@ -824,21 +829,23 @@ SRD5E.FEATURES = {
   'Thief Of Five Fates':
     'Section=magic ' +
     'Note="Use Warlock spell slot to cast <i>Bane</i> 1/long rest"',
-  "Thieves' Cant":'Section=skill Note="Signs and symbols known only by rogues"',
+  "Thieves' Cant":
+    'Section=skill Note="Understands jargon and signs known only by rogues"',
   "Thief's Reflexes":
-    'Section=combat Note="First round extra tn at -10 Initiative"',
+    'Section=combat ' +
+    'Note="Take extra turn during first round at -10 Initiative"',
   'Thirsting Blade':'Section=combat Note="2 attacks/rd w/pact blade"',
   'Tongue Of The Sun And Moon':
     'Section=feature Note="Communicate in any language"',
   'Tranquility':
     'Section=magic ' +
-    'Note="Self <i>Sanctuary</i> until next long rest (DC %V Wis neg)"',
+    'Note="Self <i>Sanctuary</i> between long rests (DC %V Wis neg)"',
   'Turn The Unholy':
     'Section=magic ' +
-    'Note="R30\' Channel Divinity makes fiends and undead flee (DC %V Wis neg) for 1 min"',
+    'Note="R30\' Use Channel Divinity to make fiends and undead flee (DC %V Wis neg) for 1 min"',
   'Turn Undead':
     'Section=combat ' +
-    'Note="R30\' Channel Divinity makes undead flee (DC %V Wis neg) for 1 min"',
+    'Note="R30\' Use Channel Divinity to make undead flee (DC %V Wis neg) for 1 min"',
   'Twinned Spell':
     'Section=magic ' +
     'Note="Spend spell level Sorcery Points to add second target"',
@@ -853,9 +860,11 @@ SRD5E.FEATURES = {
   'Voice Of The Chain Master':
     'Section=feature Note="Perceive and speak through familiar"',
   'Volley':
-    'Section=combat Note="Ranged attack any number of foes in 10\' radius"',
+    'Section=combat ' +
+    'Note="May make ranged attack on any number of foes in 10\' radius"',
   'Whirlwind Attack':
-    'Section=combat Note="Melee attack any number of adjacent foes"',
+    'Section=combat ' +
+    'Note="May make melee attack on any number of adjacent foes"',
   'Whispers Of The Grave':
     'Section=magic Note="Cast <i>Speak With Dead</i> at will"',
   'Wholeness Of Body':'Section=feature Note="Regain %V HP 1/long rest"',
@@ -872,8 +881,7 @@ SRD5E.FEATURES = {
     'Note="Adv on attacks on grappled foe; additional grapple to pin"',
   // Race
   "Artificer's Lore":
-    'Section=skill ' +
-    'Note="Dbl History proficiency regarding magic, alchemical, and tech objects"',
+    'Section=skill Note="+%V History (magic, alchemical, and tech objects)"',
   'Brave':
     'Section=save Note="Adv on saves vs. fright"',
   'Darkvision':
@@ -904,7 +912,7 @@ SRD5E.FEATURES = {
   'Half-Orc Ability Adjustment':
     'Section=ability Note="+2 Strength/+1 Constitution"',
   'Halfling Nimbleness':
-    'Section=ability Note="Move through space occupied by larger creature"',
+    'Section=ability Note="May move through space occupied by larger creature"',
   'Hellish Resistance':
     'Section=save Note="Resistance to fire damage"',
   'High Elf Ability Adjustment':
@@ -924,7 +932,7 @@ SRD5E.FEATURES = {
   'Menacing':
     'Section=skill Note="Skill Proficiency (Intimidation)"',
   'Naturally Stealthy':
-    'Section=skill Note="Hide behind a larger creature"',
+    'Section=skill Note="May hide behind a larger creature"',
   'Relentless Endurance':
     'Section=combat Note="Keep 1 HP when brought to 0 HP 1/long rest"',
   'Rock Gnome Ability Adjustment':
@@ -940,7 +948,7 @@ SRD5E.FEATURES = {
   'Steady':
     'Section=ability Note="No speed penalty in heavy armor"',
   'Stonecunning':
-    'Section=skill Note="Dbl proficiency on stonework History checks"',
+    'Section=skill Note="+%V History (stonework)"',
   'Tiefling Ability Adjustment':
     'Section=ability Note="+2 Charisma/+1 Intelligence"',
   'Tinker':
@@ -1261,6 +1269,7 @@ SRD5E.PATHS = {
 SRD5E.RACES = {
   'Dragonborn':
     'Features=' +
+      '"1:Language (Common/Draconic)",' +
       '"1:Dragonborn Ability Adjustment","1:Dragonborn Breath Weapon",' +
       '"1:Dragonborn Damage Resistance" ' +
     'Selectables=' +
@@ -1272,6 +1281,7 @@ SRD5E.RACES = {
     'Languages=Common,Draconic',
   'Hill Dwarf':
     'Features=' +
+      '"1:Language (Common/Dwarvish)",' +
       '"1:Tool Proficiency (Choose 1 from Brewer\'s Supplies, Mason\'s Tools, Smith\'s Tools)",' +
       '1:Darkvision,"1:Dwarven Combat Training","1:Dwarven Resilience",' +
       '"1:Dwarven Toughness","1:Hill Dwarf Ability Adjustment",1:Slow,' +
@@ -1279,36 +1289,43 @@ SRD5E.RACES = {
     'Languages=Common,Dwarvish',
   'High Elf':
     'Features=' +
+      '"1:Language (Common/Elvish/Choose 1 from any)",' +
       '1:Darkvision,"1:Elf Weapon Training","1:Elf Cantrip","1:Fey Ancestry",' +
       '"1:High Elf Ability Adjustment","1:Keen Senses",1:Trance ' +
     'Languages=Common,Elvish,any',
   'Rock Gnome':
     'Features=' +
+      '"1:Language (Common/Gnomish)",' +
       '"1:Artificer\'s Lore",1:Darkvision,"1:Gnome Cunning",' +
       '"1:Rock Gnome Ability Adjustment",1:Slow,1:Small,1:Tinker ' +
     'Languages=Common,Gnomish',
   'Half-Elf':
     'Features=' +
+      '"1:Language (Common/Elvish/Choose 1 from any)",' +
       '1:Darkvision,"1:Fey Ancestry","1:Half-Elf Ability Adjustment",' +
       '"1:Skill Versatility" ' +
     'Languages=Common,Elvish,any',
   'Half-Orc':
     'Features=' +
+      '"1:Language (Common/Orc)",' +
       '1:Darkvision,"1:Half-Orc Ability Adjustment",1:Menacing,' +
       '"1:Relentless Endurance","1:Savage Attacks" ' +
     'Languages=Common,Orc',
   'Lightfoot Halfling':
     'Features=' +
+      '"1:Language (Common/Halfling)",' +
       '1:Brave,"1:Halfling Nimbleness",' +
       '"1:Lightfoot Halfling Ability Adjustment","1:Lucky Halfling",' +
       '"1:Naturally Stealthy",1:Slow,1:Small ' +
     'Languages=Common,Halfling',
   'Human':
     'Features=' +
+      '"1:Language (Common/Choose 1 from any)",' +
       '"1:Human Ability Adjustment" ' +
       'Languages=Common,any',
   'Tiefling':
     'Features=' +
+      '"1:Language (Common/Infernal)",' +
       '1:Darkvision,"1:Hellish Resistance","1:Infernal Legacy",' +
       '"1:Tiefling Ability Adjustment" ' +
     'Languages=Common,Infernal'
@@ -2822,7 +2839,9 @@ SRD5E.abilityRules = function(rules) {
     rules.defineRule
       (ability + 'Modifier', ability, '=', 'Math.floor((source - 10) / 2)');
     rules.defineRule(ability + '.1', ability + 'Modifier', '=', null);
-    rules.defineRule(ability, '', 'v', '20');
+    rules.defineRule(ability,
+      'abilityBoosts.' + ability.charAt(0).toUpperCase() + ability.substring(1), '+', null
+    );
   }
   rules.defineRule('carry', 'strength', '=', 'source * 15');
   rules.defineRule('lift', 'strength', '=', 'source * 30');
@@ -2830,6 +2849,8 @@ SRD5E.abilityRules = function(rules) {
     '', '=', '30',
     'abilityNotes.armorSpeedAdjustment', '+', null
   );
+  QuilvynRules.validAllocationRules
+    (rules, 'abilityBoost', 'abilityBoostChoiceCount', 'Sum "^abilityBoosts\\."');
 
 };
 
@@ -3520,11 +3541,11 @@ SRD5E.classRulesExtra = function(rules, name) {
       classLevel, '=', 'source<20 ? 6 + Math.floor(source / 5) * 2 : 12'
     );
     rules.defineRule
-      ('magicNotes.bardicInspiration', 'bardicInspirationDie', '=', null);
-    rules.defineRule('magicNotes.bardicInspiration.1',
+      ('featureNotes.bardicInspiration', 'bardicInspirationDie', '=', null);
+    rules.defineRule('featureNotes.bardicInspiration.1',
       'charismaModifier', '=', 'Math.max(source, 1)'
     );
-    rules.defineRule('magicNotes.bardicInspiration.2',
+    rules.defineRule('featureNotes.bardicInspiration.2',
       classLevel, '=', '"long"',
       'magicNotes.fontOfInspiration', '=', '"short"'
     );
@@ -4415,9 +4436,18 @@ SRD5E.raceRulesExtra = function(rules, name) {
     rules.defineRule
       ('abilityNotes.armorSpeedAdjustment', 'abilityNotes.steady', '^', '0');
     rules.defineRule('combatNotes.dwarvenToughness', 'level', '=', null);
+    rules.defineRule('skillNotes.stonecunning',
+      'proficiencyBonus', '=', '2 * source',
+      'skillProficiency.History', '*', '0.5'
+    );
   } else if(name == 'High Elf') {
     rules.defineRule('casterLevels.W', 'magicNotes.elfCantrip', '^=', '1');
     rules.defineRule('spellSlots.W0', 'magicNotes.elfCantrip', '+=', '1');
+  } else if(name == 'Rock Gnome') {
+    rules.defineRule("skillNotes.artificer'sLore",
+      'proficiencyBonus', '=', '2 * source',
+      'skillProficiency.History', '*', '0.5'
+    );
   } else if(name == 'Tiefling') {
     rules.defineRule('magicNotes.infernalLegacy.1',
       'features.Infernal Legacy', '?', null,
@@ -4836,6 +4866,7 @@ SRD5E.createViewers = function(rules, viewers) {
             {name: 'Origin', within: 'Description'},
             {name: 'Player', within: 'Description'},
           {name: 'AbilityStats', within: 'Attributes', separator: innerSep},
+            {name: 'Ability Boosts', within: 'AbilityStats', separator:listSep},
             {name: 'ExperienceInfo', within: 'AbilityStats', separator: ''},
               {name: 'Experience', within: 'ExperienceInfo'},
               {name: 'Experience Needed', within: 'ExperienceInfo',
@@ -5104,6 +5135,7 @@ SRD5E.initialEditorElements = function() {
     ['intelligence', 'Intelligence', 'select-one', abilityChoices],
     ['wisdom', 'Wisdom', 'select-one', abilityChoices],
     ['charisma', 'Charisma', 'select-one', abilityChoices],
+    ['abilityBoosts', 'Ability Boosts', 'setbag', QuilvynUtils.getKeys(SRD5E.ABILITIES)],
     ['gender', 'Gender', 'text', [10]],
     ['race', 'Race', 'select-one', 'races'],
     ['levels', 'Class Levels', 'bag', 'levels'],
@@ -5275,48 +5307,43 @@ SRD5E.randomizeOneAttribute = function(attributes, attribute) {
     howMany = attrs.abilityBoostChoiceCount || 0;
     var potentialBoosts = {};
     for(attr in SRD5E.ABILITIES)
-      potentialBoosts[attr.toLowerCase()] = 0;
-    potentialBoosts.any = 0;
+      potentialBoosts[attr] = 0;
+    potentialBoosts.Any = 0;
     for(attr in attrs) {
       if(!notes[attr] ||
-         (matchInfo = notes[attr].match(/Ability Boost \((.*)\)/gi)) == null)
+         (matchInfo = notes[attr].match(/Ability\s+Boost\s+\((.*)\)/gi))==null)
         continue;
       matchInfo.forEach(matched => {
         matched.split('/').forEach(boosted => {
-          var choices = boosted.match(/Choose (\d+) from (.*)/i);
+          var choices = boosted.match(/Choose\s+(%V|\d+)\s+from\s+([^\)]*)/i);
           if(choices) {
             choices[2].split(/\s*,\s*/).forEach(choice => {
-              potentialBoosts[choice.toLowerCase()] += choices[1] - 0;
+              var amount =
+                !choices[1].startsWith('%') ? choices[1] - 0 : attrs[attr];
+              potentialBoosts[choice.charAt(0).toUpperCase() + choice.substring(1).toLowerCase()] += amount;
             });
           }
         });
       });
     }
     for(attr in SRD5E.ABILITIES)
-      potentialBoosts[attr.toLowerCase()] += potentialBoosts.any;
-    delete potentialBoosts.any;
-    matchInfo =
-      (attributes.notes || '').match(/ability\s+boost[:\s]+\+\d+\s+\w+(\s*;\s*\+\d+\s+\w+)*/gi);
-    if(matchInfo) {
-      matchInfo.forEach(boosted => {
-        boosted.match(/\d+\s+\w+/g).forEach(boost => {
-          var amountAndAbility = boost.match(/(\d+)\s+(\w+)/);
-          howMany -= amountAndAbility[1];
-          potentialBoosts[amountAndAbility[2]] -= amountAndAbility[1];
-        });
-      });
-    }
-    if(howMany > 0) {
-      attributes.notes = (attributes.notes ? attributes.notes + '\n' : '') +
-      '* Ability Boost:';
-      while(howMany > 0) {
-        attr = QuilvynUtils.randomKey(SRD5E.ABILITIES).toLowerCase();
-        if(potentialBoosts[attr.toLowerCase() <= 0])
-          continue;
-        attributes.notes += ' +1 ' + attr + ';';
-        potentialBoosts[attr.toLowerCase()]--;
-        howMany--;
+      potentialBoosts[attr] += potentialBoosts.Any;
+    delete potentialBoosts.Any;
+    for(attr in SRD5E.ABILITIES) {
+      if(('abilityBoosts.' + attr) in attributes) {
+        potentialBoosts[attr] -= attributes['abilityBoosts.' + attr];
+        howMany -= attributes['abilityBoosts.' + attr];
       }
+    }
+    while(howMany > 0 && QuilvynUtils.sumMatching(potentialBoosts, /./) > 0) {
+      attr = QuilvynUtils.randomKey(potentialBoosts);
+      if(potentialBoosts[attr] <= 0)
+        continue;
+      if(!attributes['abilityBoosts.' + attr])
+        attributes['abilityBoosts.' + attr] = 0;
+      attributes['abilityBoosts.' + attr]++;
+      potentialBoosts[attr]--;
+      howMany--;
     }
   } else if(attribute == 'deity') {
     /* Pick a deity that's no more than one alignment position removed. */
@@ -5855,7 +5882,7 @@ SRD5E.ruleNotes = function() {
     '<ul>\n' +
     '  <li>\n' +
     '    To allow feats to be taken instead of Ability Score Improvements,\n' +
-    '    the latter is presented as a new feat, named Ability Boost, that.\n' +
+    '    the latter is presented as a new feat, named Ability Boost, that\n' +
     '    can be taken multiple times.\n' +
     '  </li><li>\n' +
     '    Quilvyn presents sub-race choices (e.g., Lightfoot Halfling)\n' +

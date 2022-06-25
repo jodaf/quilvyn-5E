@@ -84,7 +84,7 @@ SRD5E.RANDOMIZABLE_ATTRIBUTES = [
   'charisma', 'constitution', 'dexterity', 'intelligence', 'strength', 'wisdom',
   'name', 'race', 'gender', 'alignment', 'background', 'deity', 'levels',
   'selectableFeatures', 'feats', 'skills', 'languages', 'hitPoints', 'armor',
-  'weapons', 'shield', 'spells', 'tools', 'boosts'
+  'weapons', 'shield', 'spells', 'tools', 'abilityBoosts'
 ];
 SRD5E.VIEWERS = ['Collected Notes', 'Compact', 'Standard'];
 
@@ -5301,7 +5301,7 @@ SRD5E.randomizeOneAttribute = function(attributes, attribute) {
         choices.push(attr);
     }
     attributes['armor'] = choices[QuilvynUtils.random(0, choices.length - 1)];
-  } else if(attribute == 'boosts') {
+  } else if(attribute == 'abilityBoosts') {
     attrs = this.applyRules(attributes);
     notes = this.getChoices('notes');
     howMany = attrs.abilityBoostChoiceCount || 0;
@@ -5882,7 +5882,7 @@ SRD5E.ruleNotes = function() {
     '<ul>\n' +
     '  <li>\n' +
     '    To allow feats to be taken instead of Ability Score Improvements,\n' +
-    '    the latter is presented as a new feat, named Ability Boost, that\n' +
+    '    the latter is presented as a new feat, named Ability Boost, that.\n' +
     '    can be taken multiple times.\n' +
     '  </li><li>\n' +
     '    Quilvyn presents sub-race choices (e.g., Lightfoot Halfling)\n' +

@@ -67,7 +67,7 @@ function SRD5E() {
 
 }
 
-SRD5E.VERSION = '2.3.4.0';
+SRD5E.VERSION = '2.3.4.1';
 
 /* List of choices that can be expanded by house rules. */
 SRD5E.CHOICES = [
@@ -4116,7 +4116,7 @@ SRD5E.featureSpells = function(rules, feature, spellType, levelAttr, spellList){
       var spell = QuilvynUtils.getKeys(allSpells, '^' + spellName + '\\(')[0];
       if(!spell) {
         console.log('Unknown spell "' + spellName + '" for feature ' + feature);
-        return;
+        continue;
       }
       var spellAttrs = allSpells[spell];
       var spellDescription =
@@ -5526,13 +5526,26 @@ SRD5E.randomizeOneAttribute = function(attributes, attribute) {
     }
     attributes['shield'] = choices[QuilvynUtils.random(0, choices.length - 1)];
   } else if(attribute == 'skills' || attribute == 'tools') {
+    notes = this.getChoices('notes');
     attrs = this.applyRules(attributes);
     count = 0;
     var group = this.getChoices(attribute);
-    pat = new RegExp('^features.' + attribute.replace(/s$/, '') + ' Proficiency \\((.*)\\)$', 'i');
+    pat = new RegExp(attribute.replace(/s$/, '') + ' Proficiency \\((.*)\\)$', 'i');
     for(attr in attrs) {
-      if((matchInfo = attr.match(pat)) == null ||
-         !matchInfo[1].match(/\bChoose\b/i))
+      // Choice features can be duplicated in attrs; for example, the feature
+      // note "Tool Proficiency (Disguise Kit/Choose 1 from any Music)" shows as
+      //
+      // <path>Features.Tool Proficiency (Disguise Kit/Choose 1 from any Music)
+      // features.Tool Proficiency (Disguise Kit/Choose 1 from any Music)
+      // features.Tool Proficiency (Disguise Kit)
+      // features.Tool Proficiency (Choose 1 from any Music)
+      //
+      // By ignoring the ones that begin with features, we ensure that we don't
+      // choose to many proficiencies.
+      matchInfo = attr.startsWith('features.') ? null : attr.match(pat);
+      if(matchInfo == null && notes[attr] != null)
+        matchInfo = notes[attr].match(pat);
+      if(matchInfo == null || !matchInfo[1].match(/\bChoose\b/i))
         continue;
       pieces = matchInfo[1].split('/');
       for(i = 0; i < pieces.length; i++) {
@@ -5604,7 +5617,9 @@ SRD5E.randomizeOneAttribute = function(attributes, attribute) {
     attrs = this.applyRules(attributes);
     pat = /Weapon Proficiency \((([^\(]|\([^\)]*\))*)\)$/i;
     for(attr in attrs) {
-      if((matchInfo = attr.match(pat)) == null && notes[attr] != null)
+      // See note for skills and tools, above
+      matchInfo = attr.startsWith('features.') ? null : attr.match(pat);
+      if(matchInfo == null && notes[attr] != null)
         matchInfo = notes[attr].match(pat);
       if(matchInfo == null || !matchInfo[1].match(/\bChoose\b/i))
         continue;

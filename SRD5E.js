@@ -67,7 +67,7 @@ function SRD5E() {
 
 }
 
-SRD5E.VERSION = '2.3.4.1';
+SRD5E.VERSION = '2.3.5.0';
 
 /* List of choices that can be expanded by house rules. */
 SRD5E.CHOICES = [
@@ -128,9 +128,8 @@ SRD5E.BACKGROUNDS = {
       '"Holy Symbol","Prayer Book",Incense,Vestments,Clothing,"15 GP" ' +
     'Features=' +
       '"1:Skill Proficiency (Insight/Religion)",' +
-      '"1:Languages (Choose 2 from any)",' +
-      '"1:Shelter Of The Faithful" ' +
-    'Languages=any,any'
+      '"1:Language (Choose 2 from any)",' +
+      '"1:Shelter Of The Faithful"'
 };
 SRD5E.CLASSES = {
   'Barbarian':
@@ -1277,58 +1276,49 @@ SRD5E.RACES = {
       '"1:Brass Draconic Ancestry","1:Bronze Draconic Ancestry",' +
       '"1:Copper Draconic Ancestry","1:Gold Draconic Ancestry",' +
       '"1:Green Draconic Ancestry","1:Red Draconic Ancestry",' +
-      '"1:Silver Draconic Ancestry","1:White Draconic Ancestry" ' +
-    'Languages=Common,Draconic',
+      '"1:Silver Draconic Ancestry","1:White Draconic Ancestry"',
   'Hill Dwarf':
     'Features=' +
       '"1:Language (Common/Dwarvish)",' +
       '"1:Tool Proficiency (Choose 1 from Brewer\'s Supplies, Mason\'s Tools, Smith\'s Tools)",' +
       '1:Darkvision,"1:Dwarven Combat Training","1:Dwarven Resilience",' +
       '"1:Dwarven Toughness","1:Hill Dwarf Ability Adjustment",1:Slow,' +
-      '1:Steady,1:Stonecunning ' +
-    'Languages=Common,Dwarvish',
+      '1:Steady,1:Stonecunning',
   'High Elf':
     'Features=' +
       '"1:Language (Common/Elvish/Choose 1 from any)",' +
       '1:Darkvision,"1:Elf Weapon Training","1:Elf Cantrip","1:Fey Ancestry",' +
-      '"1:High Elf Ability Adjustment","1:Keen Senses",1:Trance ' +
-    'Languages=Common,Elvish,any',
+      '"1:High Elf Ability Adjustment","1:Keen Senses",1:Trance',
   'Rock Gnome':
     'Features=' +
       '"1:Language (Common/Gnomish)",' +
       '"1:Artificer\'s Lore",1:Darkvision,"1:Gnome Cunning",' +
-      '"1:Rock Gnome Ability Adjustment",1:Slow,1:Small,1:Tinker ' +
-    'Languages=Common,Gnomish',
+      '"1:Rock Gnome Ability Adjustment",1:Slow,1:Small,1:Tinker',
   'Half-Elf':
     'Features=' +
       '"1:Language (Common/Elvish/Choose 1 from any)",' +
       '1:Darkvision,"1:Fey Ancestry","1:Half-Elf Ability Adjustment",' +
-      '"1:Skill Versatility" ' +
-    'Languages=Common,Elvish,any',
+      '"1:Skill Versatility"',
   'Half-Orc':
     'Features=' +
       '"1:Language (Common/Orc)",' +
       '1:Darkvision,"1:Half-Orc Ability Adjustment",1:Menacing,' +
-      '"1:Relentless Endurance","1:Savage Attacks" ' +
-    'Languages=Common,Orc',
+      '"1:Relentless Endurance","1:Savage Attacks"',
   'Lightfoot Halfling':
     'Features=' +
       '"1:Language (Common/Halfling)",' +
       '1:Brave,"1:Halfling Nimbleness",' +
       '"1:Lightfoot Halfling Ability Adjustment","1:Lucky Halfling",' +
-      '"1:Naturally Stealthy",1:Slow,1:Small ' +
-    'Languages=Common,Halfling',
+      '"1:Naturally Stealthy",1:Slow,1:Small',
   'Human':
     'Features=' +
       '"1:Language (Common/Choose 1 from any)",' +
-      '"1:Human Ability Adjustment" ' +
-      'Languages=Common,any',
+      '"1:Human Ability Adjustment"',
   'Tiefling':
     'Features=' +
       '"1:Language (Common/Infernal)",' +
       '1:Darkvision,"1:Hellish Resistance","1:Infernal Legacy",' +
-      '"1:Tiefling Ability Adjustment" ' +
-    'Languages=Common,Infernal'
+      '"1:Tiefling Ability Adjustment"'
 };
 SRD5E.SCHOOLS = {
   'Abjuration':'',
@@ -2968,14 +2958,14 @@ SRD5E.identityRules = function(
 
   QuilvynUtils.checkAttrTable(alignments, []);
   QuilvynUtils.checkAttrTable
-    (backgrounds, ['Equipment', 'Features', 'Languages']);
+    (backgrounds, ['Equipment', 'Features']);
   QuilvynUtils.checkAttrTable
-    (classes, ['Require', 'HitDie', 'Features', 'Selectables', 'Languages', 'CasterLevelArcane', 'CasterLevelDivine', 'SpellAbility', 'SpellSlots', 'Spells']);
+    (classes, ['Require', 'HitDie', 'Features', 'Selectables', 'CasterLevelArcane', 'CasterLevelDivine', 'SpellAbility', 'SpellSlots', 'Spells']);
   QuilvynUtils.checkAttrTable(deities, ['Alignment', 'Domain', 'Sphere']);
   QuilvynUtils.checkAttrTable
     (paths, ['Features', 'Selectables', 'Group', 'Level', 'SpellAbility', 'SpellSlots', 'Spells']);
   QuilvynUtils.checkAttrTable
-    (races, ['Require', 'Features', 'Selectables', 'Languages', 'SpellAbility', 'SpellSlots', 'Spells']);
+    (races, ['Require', 'Features', 'Selectables', 'SpellAbility', 'SpellSlots', 'Spells']);
 
   for(var alignment in alignments) {
     rules.choiceRules(rules, 'Alignment', alignment, alignments[alignment]);
@@ -3078,7 +3068,7 @@ SRD5E.talentRules = function(
   QuilvynRules.validAllocationRules
     (rules, 'feat', 'Sum "^featCount\\."', 'Sum "^feats\\."');
   QuilvynRules.validAllocationRules
-    (rules, 'language', 'languageCount', 'Sum "^languages\\."');
+    (rules, 'language', 'languageChoiceCount', 'Sum "^languagesChosen\\."');
   QuilvynRules.validAllocationRules
     (rules, 'selectableFeature', 'Sum "^selectableFeatureCount\\."', 'Sum "^selectableFeatures\\."');
   QuilvynRules.validAllocationRules
@@ -3098,8 +3088,7 @@ SRD5E.choiceRules = function(rules, type, name, attrs) {
   else if(type == 'Background')
     SRD5E.backgroundRules(rules, name,
       QuilvynUtils.getAttrValueArray(attrs, 'Equipment'),
-      QuilvynUtils.getAttrValueArray(attrs, 'Features'),
-      QuilvynUtils.getAttrValueArray(attrs, 'Languages')
+      QuilvynUtils.getAttrValueArray(attrs, 'Features')
     );
   else if(type == 'Armor') {
     var bulky = QuilvynUtils.getAttrValue(attrs, 'Bulky');
@@ -3116,7 +3105,6 @@ SRD5E.choiceRules = function(rules, type, name, attrs) {
       QuilvynUtils.getAttrValue(attrs, 'HitDie'),
       QuilvynUtils.getAttrValueArray(attrs, 'Features'),
       QuilvynUtils.getAttrValueArray(attrs, 'Selectables'),
-      QuilvynUtils.getAttrValueArray(attrs, 'Languages'),
       QuilvynUtils.getAttrValue(attrs, 'CasterLevelArcane'),
       QuilvynUtils.getAttrValue(attrs, 'CasterLevelDivine'),
       QuilvynUtils.getAttrValue(attrs, 'SpellAbility'),
@@ -3168,7 +3156,6 @@ SRD5E.choiceRules = function(rules, type, name, attrs) {
       QuilvynUtils.getAttrValueArray(attrs, 'Require'),
       QuilvynUtils.getAttrValueArray(attrs, 'Features'),
       QuilvynUtils.getAttrValueArray(attrs, 'Selectables'),
-      QuilvynUtils.getAttrValueArray(attrs, 'Languages'),
       QuilvynUtils.getAttrValue(attrs, 'SpellAbility'),
       QuilvynUtils.getAttrValueArray(attrs, 'SpellSlots')
     );
@@ -3320,10 +3307,22 @@ SRD5E.armorRules = function(rules, name, ac, bulky, maxDex, minStr, weight) {
 
 /*
  * Defines in #rules# the rules associated with background #name#, which grants
- * the equipment, features, and languages listed in #equipment#, #features#,
- * and #languages#.
+ * the equipment and features listed in #equipment# and #features#.
  */
-SRD5E.backgroundRules = function(rules, name, equipment, features, languages) {
+SRD5E.backgroundRules = function(rules, name, equipment, features) {
+
+  if(!name) {
+    console.log('Empty background name');
+    return;
+  }
+  if(!Array.isArray(equipment)) {
+    console.log('Bad equipment list "' + equipment + '" for background ' + name);
+    return;
+  }
+  if(!Array.isArray(features)) {
+    console.log('Bad features list "' + features + '" for background ' + name);
+    return;
+  }
 
   var prefix =
     name.substring(0, 1).toLowerCase() + name.substring(1).replaceAll(' ', '');
@@ -3338,15 +3337,6 @@ SRD5E.backgroundRules = function(rules, name, equipment, features, languages) {
   rules.defineSheetElement(name + ' Features', 'Feats+', null, '; ');
   rules.defineChoice('extras', prefix + 'Features');
 
-  if(languages.length > 0) {
-    rules.defineRule('languageCount', backgroundLevel, '+', languages.length);
-    for(var i = 0; i < languages.length; i++) {
-      if(languages[i] != 'any')
-        rules.defineRule
-          ('languages.' + languages[i], backgroundLevel, '=', '1');
-    }
-  }
-
   // TBD Do anything with equipment?
 
 };
@@ -3356,10 +3346,9 @@ SRD5E.backgroundRules = function(rules, name, equipment, features, languages) {
  * of hard prerequisites #requires#. The class grants #hitDie# (format [n]'d'n)
  * additional hit points with each level advance. #features# and #selectables#
  * list the fixed and selectable features acquired as the character advances in
- * class level, and #languages# lists any automatic languages for the class.
- * #casterLevelArcane# and #casterLevelDivine#, if specified, give the
- * Javascript expression for determining the caster level for the class; these
- * can incorporate a class level attribute (e.g., 'levels.Cleric') or the
+ * class level. #casterLevelArcane# and #casterLevelDivine#, if specified, give
+ * the Javascript expression for determining the caster level for the class;
+ * these can incorporate a class level attribute (e.g., 'levels.Cleric') or the
  * character level attribute 'level'. #spellAbility#, if specified, names the
  * ability for computing spell difficulty class. #spellSlots# lists the
  * number of spells per level per day that the class can cast, and #spells#
@@ -3367,8 +3356,8 @@ SRD5E.backgroundRules = function(rules, name, equipment, features, languages) {
  * spells used to look up individual spell attributes.
  */
 SRD5E.classRules = function(
-  rules, name, requires, hitDie, features, selectables, languages,
-  casterLevelArcane, casterLevelDivine, spellAbility, spellSlots
+  rules, name, requires, hitDie, features, selectables, casterLevelArcane,
+  casterLevelDivine, spellAbility, spellSlots
 ) {
 
   if(!name) {
@@ -3389,10 +3378,6 @@ SRD5E.classRules = function(
   }
   if(!Array.isArray(selectables)) {
     console.log('Bad selectables list "' + selectables + '" for class ' + name);
-    return;
-  }
-  if(!Array.isArray(languages)) {
-    console.log('Bad languages list "' + languages + '" for class ' + name);
     return;
   }
   if(spellAbility) {
@@ -3420,14 +3405,6 @@ SRD5E.classRules = function(
   SRD5E.featureListRules(rules, selectables, name, classLevel, true);
   rules.defineSheetElement(name + ' Features', 'Feats+', null, '; ');
   rules.defineChoice('extras', prefix + 'Features');
-
-  if(languages.length > 0) {
-    rules.defineRule('languageCount', classLevel, '+', languages.length);
-    for(i = 0; i < languages.length; i++) {
-      if(languages[i] != 'any')
-        rules.defineRule('languages.' + languages[i], classLevel, '=', '1');
-    }
-  }
 
   rules.defineRule('featCount.General',
     'levels.' + name, '+=', 'Math.min(Math.floor(source / 4), 5)'
@@ -3864,8 +3841,8 @@ SRD5E.classRulesExtra = function(rules, name) {
       'armor', '?', 'source == "None"',
       'combatNotes.draconicResilience.1', '=', null
     );
-    rules.defineRule('languageCount', 'skillNotes.dragonAncestor', '+', '1');
-    rules.defineRule('languages.Draconic', 'skillNotes.dragonAncestor', '=', '1');
+    rules.defineRule
+      ('languages.Draconic', 'skillNotes.dragonAncestor', '=', '1');
     rules.defineRule
       ('magicNotes.elementalAffinity', 'charismaModifier', '=', null);
 
@@ -4054,39 +4031,51 @@ SRD5E.featureRules = function(rules, name, sections, notes) {
   // TBD Move out of SRD35
   SRD35.featureRules(rules, name, sections, notes);
   for(var i = 0; i < notes.length; i++) {
+    var addSource = false;
     var note =
       sections[i] + 'Notes.' + name.charAt(0).toLowerCase() +
       name.substring(1).replaceAll(' ', '');
     var matchInfo =
-      notes[i].match(/^([A-Z]\w*)\sProficiency\s\((([^\(]|\([^\)]*\))*)\)$/);
+      notes[i].match(/([A-Z]\w*)\sProficiency\s\((([^\(]|\([^\)]*\))*)\)/);
     if(matchInfo) {
       var group = matchInfo[1].toLowerCase();
       matchInfo[2].split('/').forEach(affected => {
-        matchInfo = affected.match(/^Choose\s(\d+)/);
-        if(matchInfo)
-          rules.defineRule(group + 'ChoiceCount', note, '+=', matchInfo[1]);
-        else
+        matchInfo = affected.match(/^Choose\s(\d+|%V)/);
+        if(!matchInfo)
           rules.defineRule(group + 'Proficiency.' + affected, note, '=', '1');
+        else if(matchInfo[1].startsWith('%'))
+          rules.defineRule(group + 'ChoiceCount', note, '+=', null);
+        else
+          rules.defineRule(group + 'ChoiceCount', note, '+=', matchInfo[1]);
       });
     }
-    matchInfo = notes[i].match(/Ability Boost \((.*)\)/ig);
+    matchInfo = notes[i].match(/Ability Boost \((([^\(]|\([^\)]*\))*)\)/i);
     if(matchInfo) {
       var totalBoosts = 0;
-      var addSource = false;
-      matchInfo.forEach(matched => {
-        matched.split('/').forEach(boosted => {
-          var choices = boosted.match(/Choose (\d+|%V)/i);
-          if(!choices)
-            rules.defineRule(boosted.toLowerCase(), note, '+', '1');
-          else if(choices[1].startsWith('%'))
-            addSource = true;
-          else
-            totalBoosts += choices[1] - 0;
-        });
+      matchInfo[1].split('/').forEach(boosted => {
+        matchInfo = boosted.match(/Choose (\d+|%V)/i);
+        if(!matchInfo)
+          rules.defineRule(boosted.toLowerCase(), note, '+', '1');
+        else if(matchInfo[1].startsWith('%'))
+          addSource = true;
+        else
+          totalBoosts += matchInfo[1] - 0;
       });
       rules.defineRule('abilityBoostChoiceCount',
         note, '+=', totalBoosts + (addSource ? ' + source' : '')
       );
+    }
+    matchInfo = notes[i].match(/Language \((([^\(]|\([^\)]*\))*)\)/i);
+    if(matchInfo) {
+      matchInfo[1].split('/').forEach(affected => {
+        matchInfo = affected.match(/^Choose\s(\d+|%V)/);
+        if(!matchInfo)
+          rules.defineRule('languages.' + affected, note, '=', '1');
+        else if(matchInfo[1].startsWith('%'))
+          rules.defineRule('languageChoiceCount', note, '+=', null);
+        else
+          rules.defineRule('languageChoiceCount', note, '+=', matchInfo[1]);
+      });
     }
   }
 };
@@ -4162,7 +4151,8 @@ SRD5E.languageRules = function(rules, name) {
     console.log('Empty language name');
     return;
   }
-  // No rules pertain to language
+  rules.defineRule
+    ('languages.' + name, 'languagesChosen.' + name, '=', 'source ? 1 : null');
 };
 
 /*
@@ -4281,14 +4271,12 @@ SRD5E.pathRulesExtra = function(rules, name) {
 /*
  * Defines in #rules# the rules associated with race #name#, which has the list
  * of hard prerequisites #requires#. #features# and #selectables# list
- * associated features and #languages# any automatic languages. If the race
- * grants spell slots, #spellAbility# names the ability for computing spell
- * difficulty class, and #spellSlots# lists the number of spells per level per
- * day granted.
+ * associated features. If the race grants spell slots, #spellAbility# names
+ * the ability for computing spell difficulty class, and #spellSlots# lists the
+ * number of spells per level per day granted.
  */
 SRD5E.raceRules = function(
-  rules, name, requires, features, selectables, languages, spellAbility,
-  spellSlots
+  rules, name, requires, features, selectables, spellAbility, spellSlots
 ) {
 
   if(!name) {
@@ -4305,10 +4293,6 @@ SRD5E.raceRules = function(
   }
   if(!Array.isArray(selectables)) {
     console.log('Bad selectables list "' + selectables + '" for race ' + name);
-    return;
-  }
-  if(!Array.isArray(languages)) {
-    console.log('Bad languages list "' + languages + '" for race ' + name);
     return;
   }
   if(spellAbility) {
@@ -4342,14 +4326,6 @@ SRD5E.raceRules = function(
   SRD5E.featureListRules(rules, selectables, name, raceLevel, true);
   rules.defineSheetElement(name + ' Features', 'Feats+', null, '; ');
   rules.defineChoice('extras', prefix + 'Features');
-
-  if(languages.length > 0) {
-    rules.defineRule('languageCount', raceLevel, '=', languages.length);
-    for(i = 0; i < languages.length; i++) {
-      if(languages[i] != 'any')
-        rules.defineRule('languages.' + languages[i], raceLevel, '=', '1');
-    }
-  }
 
   if(spellSlots.length > 0) {
 
@@ -4742,7 +4718,9 @@ SRD5E.featureListRules = function(
   setName = setName.charAt(0).toLowerCase() + setName.substring(1).replaceAll(' ', '') + 'Features';
   for(var i = 0; i < features.length; i++) {
     var feature = features[i].replace(/^(.*\?\s*)?\d+:/, '');
-    var matchInfo = feature.match(/([A-Z]\w*)\sProficiency\s\((.*)\)$/);
+    var matchInfo = feature.match(/([A-Z]\w*)\sProficiency\s\((([^\(]|\([^\)]*\))*)\)$/);
+    if(!matchInfo)
+      matchInfo = feature.match(/(Language)\s\((([^\(]|\([^\)]*\))*)\)$/);
     if(!matchInfo)
       continue;
     var group = matchInfo[1].toLowerCase();
@@ -4752,6 +4730,9 @@ SRD5E.featureListRules = function(
       if(matchInfo) {
         rules.defineRule
           (group + 'ChoiceCount', setName + '.' + feature, '+=', matchInfo[1]);
+      } else if(group == 'language') {
+        rules.defineRule
+          ('languages.' + elements[j], setName + '.' + feature, '=', '1');
       } else {
         rules.defineRule(group + 'Proficiency.' + elements[j],
           setName + '.' + feature, '=', '1'
@@ -5017,8 +4998,7 @@ SRD5E.choiceEditorElements = function(rules, type) {
   } else if(type == 'Background') {
     result.push(
       ['Equipment', 'Equipment', 'text', [40]],
-      ['Features', 'Features', 'text', [40]],
-      ['Languages', 'Languages', 'text', [40]]
+      ['Features', 'Features', 'text', [40]]
     );
   } else if(type == 'Class') {
     result.push(
@@ -5026,7 +5006,6 @@ SRD5E.choiceEditorElements = function(rules, type) {
       ['HitDie', 'Hit Die', 'select-one', ['d4', 'd6', 'd8', 'd10', 'd12']],
       ['Features', 'Features', 'text', [40]],
       ['Selectables', 'Selectable Features', 'text', [40]],
-      ['Languages', 'Languages', 'text', [30]],
       ['CasterLevelArcane', 'Arcane Level', 'text', [10]],
       ['CasterLevelDivine', 'Divine Level', 'text', [10]],
       ['SpellAbility', 'Spell Ability', 'select-one', ['charisma', 'constitution', 'dexterity', 'intelligence', 'strength', 'wisdom']],
@@ -5078,7 +5057,6 @@ SRD5E.choiceEditorElements = function(rules, type) {
       ['Require', 'Prerequisites', 'text', [40]],
       ['Features', 'Features', 'text', [60]],
       ['Selectables', 'Selectables', 'text', [60]],
-      ['Languages', 'Languages', 'text', [30]],
       ['SpellAbility', 'Spell Ability', 'select-one', ['charisma', 'constitution', 'dexterity', 'intelligence', 'strength', 'wisdom']],
       ['SpellSlots', 'Spells Slots', 'text', [40]],
       ['Spells', 'Spells', 'text', [80]]
@@ -5149,7 +5127,7 @@ SRD5E.initialEditorElements = function() {
     ['selectableFeatures', 'Selectable Features', 'set', 'selectableFeatures'],
     ['skillsChosen', 'Skills', 'set', 'skills'],
     ['toolsChosen', 'Tools', 'set', 'tools'],
-    ['languages', 'Languages', 'set', 'languages'],
+    ['languagesChosen', 'Languages', 'set', 'languages'],
     ['hitPoints', 'Hit Points', 'text', [4, '(\\+?\\d+)']],
     ['armor', 'Armor', 'select-one', 'armors'],
     ['shield', 'Shield', 'select-one', 'shields'],
@@ -5458,17 +5436,6 @@ SRD5E.randomizeOneAttribute = function(attributes, attribute) {
       while(--attr > 0)
         attributes.hitPoints += QuilvynUtils.random(number, number * sides);
     }
-  } else if(attribute == 'languages') {
-    attrs = this.applyRules(attributes);
-    howMany = attrs.languageCount;
-    choices = [];
-    for(attr in this.getChoices('languages')) {
-      if(attrs['languages.' + attr])
-        howMany--;
-      else
-        choices.push(attr);
-    }
-    pickAttrs(attributes, 'languages.', choices, howMany, 1);
   } else if(attribute == 'levels') {
     var assignedLevels = QuilvynUtils.sumMatching(attributes, /^levels\./);
     if(!attributes.level) {
@@ -5525,12 +5492,15 @@ SRD5E.randomizeOneAttribute = function(attributes, attribute) {
       }
     }
     attributes['shield'] = choices[QuilvynUtils.random(0, choices.length - 1)];
-  } else if(attribute == 'skills' || attribute == 'tools') {
+  } else if(attribute == 'languages' ||
+            attribute == 'skills' ||
+            attribute == 'tools') {
     notes = this.getChoices('notes');
     attrs = this.applyRules(attributes);
+    howMany = attrs[attribute.replace(/s$/) + 'ChoiceCount'];
     count = 0;
     var group = this.getChoices(attribute);
-    pat = new RegExp(attribute.replace(/s$/, '') + ' Proficiency \\((.*)\\)$', 'i');
+    pat = new RegExp(attribute + '?(?: Proficiency)? \\((.*)\\)$', 'i');
     for(attr in attrs) {
       // Choice features can be duplicated in attrs; for example, the feature
       // note "Tool Proficiency (Disguise Kit/Choose 1 from any Music)" shows as
@@ -5540,8 +5510,8 @@ SRD5E.randomizeOneAttribute = function(attributes, attribute) {
       // features.Tool Proficiency (Disguise Kit)
       // features.Tool Proficiency (Choose 1 from any Music)
       //
-      // By ignoring the ones that begin with features, we ensure that we don't
-      // choose to many proficiencies.
+      // By ignoring the ones that begin with 'features.', we ensure that we
+      // don't choose too many proficiencies.
       matchInfo = attr.startsWith('features.') ? null : attr.match(pat);
       if(matchInfo == null && notes[attr] != null)
         matchInfo = notes[attr].match(pat);
@@ -5568,11 +5538,19 @@ SRD5E.randomizeOneAttribute = function(attributes, attribute) {
             }
           }
         }
+        // TODO: Problem here with multiple attributes that allow overlapping
+        // choices, e.g., two attributes that allow "Choose 1 from any". Once
+        // a choice is made for one attribute, that choice will decrement
+        // count below for the other attribute, causing the code to fail to
+        // make a choice. For now, this seems better than eliminating this loop
+        // and predictably over-choosing.
         for(k = choices.length - 1; k >= 0; k--) {
-          if(!attrs[attribute + 'Chosen.' + choices[k]])
-            continue;
-          count--;
-          choices.splice(k, 1);
+          if(attributes[attribute + 'Chosen.' + choices[k]]) {
+            count--;
+            choices.splice(k, 1);
+          } else if(attrs[attribute + '.' + choices[k]]) {
+            choices.splice(k, 1);
+          }
         }
       }
       pickAttrs(attributes, attribute + 'Chosen.', choices, count, 1);
@@ -5897,7 +5875,7 @@ SRD5E.ruleNotes = function() {
     '<ul>\n' +
     '  <li>\n' +
     '    To allow feats to be taken instead of Ability Score Improvements,\n' +
-    '    the latter is presented as a new feat, named Ability Boost, that.\n' +
+    '    the latter is presented as a new feat, named Ability Boost, that\n' +
     '    can be taken multiple times.\n' +
     '  </li><li>\n' +
     '    Quilvyn presents sub-race choices (e.g., Lightfoot Halfling)\n' +

@@ -67,7 +67,7 @@ function SRD5E() {
 
 }
 
-SRD5E.VERSION = '2.3.5.0';
+SRD5E.VERSION = '2.3.5.1';
 
 /* List of choices that can be expanded by house rules. */
 SRD5E.CHOICES = [
@@ -1369,6 +1369,7 @@ SRD5E.SPELLS = {
   'Aid':
     'School=Abjuration ' +
     'Level=C2,P2 ' +
+    'Raise="+5 HP" ' +
     'Description="R30\' 3 targets gain +5 temporary HP for 8 hr"',
   'Alarm':
     'School=Abjuration ' +
@@ -1381,10 +1382,12 @@ SRD5E.SPELLS = {
   'Animal Friendship':
     'School=Enchantment ' +
     'Level=B1,D1,R1 ' +
+    'Raise="+1 target" ' +
     'Description="R30\' Target beast convinced of good intent (Wis neg) for 1 dy"',
   'Animal Messenger':
     'School=Enchantment ' +
     'Level=B2,D2,R2 ' +
+    'Raise="+2 dy" ' +
     'Description="R30\' Tiny beast target moves to deliver 25-word message to person described for 1 dy"',
   'Animal Shapes':
     'School=Transmutation ' +
@@ -1393,10 +1396,12 @@ SRD5E.SPELLS = {
   'Animate Dead':
     'School=Necromancy ' +
     'Level=C3,W3 ' +
+    'Raise="+2 undead" ' +
     'Description="R10\' Bones or corpse becomes skeleton or zombie, obeys R60\' self commands for 1 dy"',
   'Animate Objects':
     'School=Transmutation ' +
     'Level=B5,S5,W5 ' +
+    'Raise="+2 objects" ' +
     'Description="R120\' 10 small, 5 medium, 2 large, or 1 huge objects obey R500\' commands for conc or 1 min"',
   'Antilife Shell':
     'School=Abjuration ' +
@@ -1417,7 +1422,8 @@ SRD5E.SPELLS = {
   'Arcane Hand':
     'School=Evocation ' +
     'Level=W5 ' +
-    'Description="R120\' Large hand (AC 20, Str 26, Dex 10) can punch (inflicts 4d8 HP force), push 5\', grapple (inflicts 2d6+%{?modifier?} bludgeoning), and block for conc or 1 min"',
+    'Raise="+2d8 HP force; +2d6 HP bludgeoning" ' +
+    'Description="R120\' Large hand (AC 20, Str 26, Dex 10) can punch (inflicts 4d8 HP force), push 5\', grapple (inflicts 2d6+%{?modifier?} HP bludgeoning), and block for conc or 1 min"',
   'Arcane Lock':
     'School=Abjuration ' +
     'Level=W2 ' +
@@ -1442,10 +1448,12 @@ SRD5E.SPELLS = {
   'Bane':
     'School=Enchantment ' +
     'Level=B1,C1 ' +
+    'Raise="+1 target" ' +
     'Description="R30\' 3 targets suffer -1d4 on attacks and saving throws (Cha neg) for conc or 1 min"',
   'Banishment':
     'School=Abjuration ' +
     'Level=C4,K4,P4,S4,W4 ' +
+    'Raise="+1 target" ' +
     'Description="R60\' Banishes target to home or demiplane (Cha neg) for conc or 1 min"',
   'Barkskin':
     'School=Transmutation ' +
@@ -1458,6 +1466,7 @@ SRD5E.SPELLS = {
   'Bestow Curse':
     'School=Necromancy ' +
     'Level=B3,C3,W3 ' +
+    'Raise="FILL" ' +
     'Description="Touched suffers choice of Disadv on specified ability rolls, Disadv on attacks on self, require Wis save to take any action, or +1d8 HP necrotic from self attacks (Wis neg) for conc or 1 min"',
   'Black Tentacles':
     'School=Conjuration ' +
@@ -1470,14 +1479,17 @@ SRD5E.SPELLS = {
   'Bless':
     'School=Enchantment ' +
     'Level=C1,P1 ' +
+    'Raise="+1 target" ' +
     'Description="R30\' 3 targets gain +1d4 on attacks and saving throws for conc or 1 min"',
   'Blight':
     'School=Necromancy ' +
     'Level=D4,K4,S4,W4 ' +
+    'Raise="+1d8 HP" ' +
     'Description="R30\' target suffers 8d8 HP necrotic (Con half (plant Disadv, 64 HP on fail))"',
   'Blindness/Deafness':
     'School=Necromancy ' +
     'Level=B2,C2,"K2 [The Fiend]",S2,W2 ' +
+    'Raise="+1 target" ' +
     'Description="R30\' Inflicts choice of blindness or deafness on target (Con neg) for 1 min"',
   'Blink':
     'School=Transmutation ' +
@@ -1490,15 +1502,18 @@ SRD5E.SPELLS = {
   'Branding Smite':
     'School=Evocation ' +
     'Level=P2 ' +
+    'Raise="+1d6 HP" ' +
     'Description="Self attack inflicts +2d6 HP radiant and lights target for conc or 1 min"',
   'Burning Hands':
     'School=Evocation ' +
     'Level="K1 [The Fiend]",S1,W1 ' +
+    'Raise="+1d6 HP" ' +
     'Description="15\' cone inflicts 3d6 HP fire (Dex half)"',
 
   'Call Lightning':
     'School=Conjuration ' +
     'Level=D3 ' +
+    'Raise="+1d10 HP" ' +
     'Description="R120\' Bolt inflicts 3d10 HP lightning (Dex half) in 5\' radius 1/rd for conc or 10 min"',
   'Calm Emotions':
     'School=Enchantment ' +
@@ -1507,10 +1522,12 @@ SRD5E.SPELLS = {
   'Chain Lightning':
     'School=Evocation ' +
     'Level=S6,W6 ' +
+    'Raise="+1 target" ' +
     'Description="R150\' 4 targets in 30\' radius suffer 10d8 HP lightning (Dex half)"',
   'Charm Person':
     'School=Enchantment ' +
     'Level=B1,D1,K1,S1,W1 ' +
+    'Raise="+1 target" ' +
     'Description="R30\' Target regards you as a friend (Wis neg) for 1 hr or until harmed"',
   'Chill Touch':
     'School=Necromancy ' +
@@ -1519,6 +1536,7 @@ SRD5E.SPELLS = {
   'Circle Of Death':
     'School=Necromancy ' +
     'Level=K6,S6,W6 ' +
+    'Raise="+2d6 HP" ' +
     'Description="R150\' 60\' radius inflicts 8d6 HP necrotic (Con half)"',
   'Clairvoyance':
     'School=Divination ' +
@@ -1531,14 +1549,17 @@ SRD5E.SPELLS = {
   'Cloudkill':
     'School=Conjuration ' +
     'Level=S5,W5 ' +
+    'Raise="+1d8 HP" ' +
     'Description="R120\' 20\' radius inflicts 5d8 HP poison (Con half), moves away 10\'/rd for conc or 10 min"',
   'Color Spray':
     'School=Illusion ' +
     'Level=S1,W1 ' +
+    'Raise="+2d10 HP" ' +
     'Description="15\' cone blinds 6d10 HP of targets for 1 rd"',
   'Command':
     'School=Enchantment ' +
     'Level=C1,"K1 [The Fiend]",P1 ' +
+    'Raise="+1 target" ' +
     'Description="R60\' Target obeys self one-word command (Wis neg)"',
   'Commune':
     'School=Divination ' +
@@ -1559,35 +1580,43 @@ SRD5E.SPELLS = {
   'Cone Of Cold':
     'School=Evocation ' +
     'Level=S5,W5 ' +
+    'Raise="+1d8 HP" ' +
     'Description="60\' cone inflicts 8d8 HP cold (Con half)"',
   'Confusion':
     'School=Enchantment ' +
     'Level=B4,D4,S4,W4 ' +
+    'Raise="+5\' radius" ' +
     'Description="R90\' Creatures in 10\' radius randomly 10% wander/50% do nothing/20% attack adjacent/20% act normally (Wis neg) for conc or 1 min"',
   'Conjure Animals':
     'School=Conjuration ' +
     'Level=D3,R3 ' +
+    'Raise="FILL" ' +
     'Description="R60\' Summons obedient fey creatures for conc or 1 hr"',
   'Conjure Celestial':
     'School=Conjuration ' +
     'Level=C7 ' +
-    'Description="R90\' Summons obedient celestial for conc or 1 hr"',
+    'Raise="CR 5 at level 9" ' +
+    'Description="R90\' Summons obedient CR 4 celestial for conc or 1 hr"',
   'Conjure Elemental':
     'School=Conjuration ' +
     'Level=D5,W5 ' +
-    'Description="R90\' Summons obedient environment-appropriate elemental for conc or 1 hr"',
+    'Raise="+1 CR" ' +
+    'Description="R90\' Summons obedient environment-appropriate CR 5 elemental for conc or 1 hr"',
   'Conjure Fey':
     'School=Conjuration ' +
     'Level=D6,K6 ' +
-    'Description="R90\' Summons obedient fey for conc or 1 hr"',
+    'Raise="+1 CR" ' +
+    'Description="R90\' Summons obedient CR 6 fey for conc or 1 hr"',
   'Conjure Minor Elementals':
     'School=Conjuration ' +
     'Level=D4,W4 ' +
-    'Description="R90\' Summons obedient elementals for conc or 1 hr"',
+    'Raise="Double count at level 6; triple at level 8" ' +
+    'Description="R90\' Summons 1/2/4/8 obedient CR 2/1/0.5/0.25 elementals for conc or 1 hr"',
   'Conjure Woodland Beings':
     'School=Conjuration ' +
     'Level=D4,R4 ' +
-    'Description="R60\' Summons obedient fey creatures for conc or 1 hr"',
+    'Raise="Double count at level 6; triple at level 8" ' +
+    'Description="R60\' Summons 1/2/4/8 obedient CR 2/1/0.5/0.25 fey creatures for conc or 1 hr"',
   'Contact Other Plane':
     'School=Divination ' +
     'Level=K5,W5 ' +
@@ -1615,6 +1644,7 @@ SRD5E.SPELLS = {
   'Counterspell':
     'School=Abjuration ' +
     'Level=K3,S3,W3 ' +
+    'Raise="Affects any spell of equal or lesser level" ' +
     'Description="R60\' Negates foe casting up to spell level 3, DC 10 + spell level for higher"',
   'Create Food And Water':
     'School=Conjuration ' +
@@ -1623,18 +1653,22 @@ SRD5E.SPELLS = {
   'Create Or Destroy Water':
     'School=Transmutation ' +
     'Level=C1,D1 ' +
-    'Description="R30\' Creates or destroys 10 gallons of water or 30\' fog"',
+    'Raise="+10 gallons or +5\' cu" ' +
+    'Description="R30\' Creates or destroys 10 gallons of water or 30\' cu fog"',
   'Create Undead':
     'School=Necromancy ' +
     'Level=C6,K6,W6 ' +
+    'Raise="FILL" ' +
     'Description="R10\' 3 corpses become ghouls that obey self for 1 dy"',
   'Creation':
     'School=Illusion ' +
     'Level=S5,W5 ' +
+    'Raise="+5\' cu" ' +
     'Description="R30\' Creates 5\' cu of false matter lasting up to 1 dy"',
   'Cure Wounds':
     'School=Evocation ' +
     'Level=B1,C1,D1,P1,R1 ' +
+    'Raise="+1d8 HP" ' +
     'Description="Touched regains 1d8+%{?modifier?} HP"',
 
   'Dancing Lights':
@@ -1660,6 +1694,7 @@ SRD5E.SPELLS = {
   'Delayed Blast Fireball':
     'School=Evocation ' +
     'Level=S7,W7 ' +
+    'Raise="+1d6 HP" ' +
     'Description="R150\' 20\' radius inflicts 12d6 HP fire (Dex half) within conc or 1 min"',
   'Demiplane':
     'School=Conjuration ' +
@@ -1692,6 +1727,7 @@ SRD5E.SPELLS = {
   'Disintegrate':
     'School=Transmutation ' +
     'Level=S6,W6 ' +
+    'Raise="+3d6 HP" ' +
     'Description="R60\' Target suffers 10d6+40 HP force, dusts if reduced to 0 HP (Dex neg)"',
   'Dispel Evil And Good':
     'School=Abjuration ' +
@@ -1700,6 +1736,7 @@ SRD5E.SPELLS = {
   'Dispel Magic':
     'School=Abjuration ' +
     'Level=B3,C3,D3,K3,P3,S3,W3 ' +
+    'Raise="Affects any spell of equal or lesser level" ' +
     'Description="R120\' Ends spell effects up to spell level 3 on target, higher levels require DC 10 + spell level check"',
   'Divination':
     'School=Divination ' +
@@ -1716,14 +1753,17 @@ SRD5E.SPELLS = {
   'Dominate Beast':
     'School=Enchantment ' +
     'Level=D4,S4 ' +
+    'Raise="FILL" ' +
     'Description="R60\' Target obeys self telepathic commands (Wis neg) for conc or 1 min"',
   'Dominate Monster':
     'School=Enchantment ' +
     'Level=B8,K8,S8,W8 ' +
+    'Raise="conc or 8 hr" ' +
     'Description="R60\' Target obeys self telepathic commands (Wis neg) for conc or 1 hr"',
   'Dominate Person':
     'School=Enchantment ' +
     'Level=B5,S5,W5 ' +
+    'Raise="FILL" ' +
     'Description="R60\' Target obeys self telepathic commands (Wis neg) for conc or 1 min"',
   'Dream':
     'School=Illusion ' +
@@ -1761,6 +1801,7 @@ SRD5E.SPELLS = {
   'Etherealness':
     'School=Transmutation ' +
     'Level=B7,C7,K7,S7,W7 ' +
+    'Raise="+3 targets" ' +
     'Description="Self enters Ethereal Plane for up to 8 hr"',
   'Expeditious Retreat':
     'School=Transmutation ' +
@@ -1786,6 +1827,7 @@ SRD5E.SPELLS = {
   'False Life':
     'School=Necromancy ' +
     'Level=S1,W1 ' +
+    'Raise="+5 HP" ' +
     'Description="Self gains 1d4+4 temporary HP for 1 hr"',
   'Fear':
     'School=Illusion ' +
@@ -1834,18 +1876,22 @@ SRD5E.SPELLS = {
   'Fireball':
     'School=Evocation ' +
     'Level="K3 [The Fiend]",S3,W3 ' +
+    'Raise="+1d6 HP" ' +
     'Description="R150\' 20\' radius inflicts 8d6 HP fire (Dex half)"',
   'Flame Blade':
     'School=Evocation ' +
     'Level=D2 ' +
+    'Raise="+1d6 HP" ' +
     'Description="Self wields flaming blade that inflicts 3d6 HP fire and lights 10\' radius"',
   'Flame Strike':
     'School=Evocation ' +
     'Level=C5,"K5 [The Fiend]" ' +
+    'Raise="+1d6 HP fire or +1d6 radiant" ' +
     'Description="R60\' 10\' radius inflicts 4d6 HP fire and 4d6 HP radiant (Dex half)"',
   'Flaming Sphere':
     'School=Conjuration ' +
     'Level=D2,W2 ' +
+    'Raise="+1d6 HP" ' +
     'Description="R60\' 5\' diameter sphere inflicts 2d6 HP fire (Dex half), moves 30\'/rd for conc or 1 min"',
   'Flesh To Stone':
     'School=Transmutation ' +
@@ -1858,10 +1904,12 @@ SRD5E.SPELLS = {
   'Fly':
     'School=Transmutation ' +
     'Level=K3,S3,W3 ' +
+    'Raise="+1 target" ' +
     'Description="Touched gains 60\' fly speed for conc or 10 min"',
   'Fog Cloud':
     'School=Conjuration ' +
     'Level=D1,R1,S1,W1 ' +
+    'Raise="+20\' radius" ' +
     'Description="R120\' 20\' radius obscures vision for conc or 1 hr"',
   'Forbiddance':
     'School=Abjuration ' +
@@ -1895,6 +1943,7 @@ SRD5E.SPELLS = {
   'Geas':
     'School=Enchantment ' +
     'Level=B5,C5,D5,P5,W5 ' +
+    'Raise="Duration 1 yr/permanent at level 7/9" ' +
     'Description="R60\' Target obeys command (Wis neg) for 30 dy"',
   'Gentle Repose':
     'School=Necromancy ' +
@@ -1911,10 +1960,12 @@ SRD5E.SPELLS = {
   'Globe Of Invulnerability':
     'School=Abjuration ' +
     'Level=S6,W6 ' +
+    'Raise="+1 spell level blocked" ' +
     'Description="10\' radius gives immunity to spells up to level 5"',
   'Glyph Of Warding':
     'School=Abjuration ' +
     'Level=B3,C3,W3 ' +
+    'Raise="+1d8 HP or +1 spell level" ' +
     'Description="20\' radius inflicts 5d8 HP acid, cold, fire, lightning, or thunder (Dex half) or spell up to level 3 when triggered"',
   'Goodberry':
     'School=Transmutation ' +
@@ -1947,6 +1998,7 @@ SRD5E.SPELLS = {
   'Guiding Bolt':
     'School=Evocation ' +
     'Level=C1 ' +
+    'Raise="+1d6 HP" ' +
     'Description="R120\' Ranged spell inflicts 4d6 HP radiant, lights target (Adv on next foe attack) for 1 rd"',
   'Gust Of Wind':
     'School=Evocation ' +
@@ -3005,7 +3057,7 @@ SRD5E.magicRules = function(rules, schools, spells) {
 
   QuilvynUtils.checkAttrTable(schools, ['Features']);
   QuilvynUtils.checkAttrTable
-    (spells, ['School', 'Group', 'Level', 'Description']);
+    (spells, ['School', 'Group', 'Level', 'Description', 'Raise']);
 
   for(var school in schools) {
     rules.choiceRules(rules, 'School', school, schools[school]);
@@ -3176,6 +3228,7 @@ SRD5E.choiceRules = function(rules, type, name, attrs) {
   else if(type == 'Spell') {
     var description = QuilvynUtils.getAttrValue(attrs, 'Description');
     var groupLevels = QuilvynUtils.getAttrValueArray(attrs, 'Level');
+    var raise = QuilvynUtils.getAttrValue(attrs, 'Raise');
     var school = QuilvynUtils.getAttrValue(attrs, 'School');
     var schoolAbbr = school.substring(0, 4);
     for(var i = 0; i < groupLevels.length; i++) {
@@ -3190,8 +3243,9 @@ SRD5E.choiceRules = function(rules, type, name, attrs) {
       var fullName = name + '(' + group + level + path + ' ' + schoolAbbr + ')';
       // TODO indicate domain spells in attributes?
       var domainSpell = SRD5E.PATHS[group + ' Domain'] != null;
-      SRD5E.spellRules
-        (rules, fullName, school, group, level, description, domainSpell);
+      SRD5E.spellRules(
+        rules, fullName, school, group, level, description, domainSpell, raise
+      );
       rules.addChoice('spells', fullName, attrs);
     }
   } else if(type == 'Tool')
@@ -4112,10 +4166,11 @@ SRD5E.featureSpells = function(rules, feature, spellType, levelAttr, spellList){
         QuilvynUtils.getAttrValue(spellAttrs, 'Description');
       var spellLevel =
         QuilvynUtils.getAttrValue(spellAttrs, 'Level').match(/\d/)[0] - 0;
+      var spellRaise = QuilvynUtils.getAttrValue(spellAttrs, 'Raise');
       var spellSchool = QuilvynUtils.getAttrValue(spellAttrs, 'School');
       var fullName = spellName + '(' + spellType + spellLevel + ' [' + feature + '] ' + spellSchool.substring(0, 4) + ')';
       SRD5E.spellRules(
-        rules, fullName, spellSchool, spellType, spellLevel, spellDescription, false
+        rules, fullName, spellSchool, spellType, spellLevel, spellDescription, false, spellRaise
       );
       rules.defineRule('spells.' + fullName, 'features.' + feature, '=', '1');
       if(minLevel)
@@ -4534,10 +4589,11 @@ SRD5E.skillRules = function(rules, name, ability, classes) {
  * Defines in #rules# the rules associated with spell #name#, which is from
  * magic school #school#. #casterGroup# and #level# are used to compute any
  * saving throw value required by the spell. #description# is a verbose
- * description of the spell's effects.
+ * description of the spell's effects. #raise#, if supplied, describes the
+ * effects of casting the spell using a higher-level spell slot.
  */
 SRD5E.spellRules = function(
-  rules, name, school, casterGroup, level, description, domainSpell
+  rules, name, school, casterGroup, level, description, domainSpell, raise
 ) {
 
   if(!name) {
@@ -4562,6 +4618,8 @@ SRD5E.spellRules = function(
   description =
     description.replaceAll('?level?', 'spellCasterLevel.' + casterGroup)
                .replaceAll('?modifier?', 'spellModifier.' + casterGroup);
+  if(raise)
+    description += ' (<b>+Level</b> ' + raise + ')';
   rules.defineChoice('notes', 'spells.' + name + ':' + description);
 
 };
@@ -5886,11 +5944,8 @@ SRD5E.ruleNotes = function() {
     '<h3>Limitations</h3>\n' +
     '<ul>\n' +
     '  <li>\n' +
-    '    Quilvyn does not generate background traits, ideals, bonds, flaws,\n' +
+    '    Quilvyn does not report background traits, ideals, bonds, flaws,\n' +
     '    or equipment. These items can be entered in the Notes section.\n' +
-    '  </li><li>\n' +
-    '    Quilvyn does not describe the effects of spells cast at higher\n' +
-    '    than minimum level.\n' +
     '  </li>\n' +
     '</ul>\n' +
     '\n' +

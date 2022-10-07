@@ -67,7 +67,7 @@ function SRD5E() {
 
 }
 
-SRD5E.VERSION = '2.3.5.1';
+SRD5E.VERSION = '2.3.6.0';
 
 /* List of choices that can be expanded by house rules. */
 SRD5E.CHOICES = [
@@ -1361,7 +1361,7 @@ SRD5E.SPELLS = {
   'Acid Arrow':
     'School=Evocation ' +
     'Level=W2 ' +
-    'Raise="inflicts +1d4 HP" ' +
+    'AtHigherLevels="inflicts +1d4 HP" ' +
     'Description="R90\' Ranged spell inflicts 4d4 HP acid, 2d4 HP next rd (miss half 1st rd, 0 HP 2nd)"',
   'Acid Splash':
     'School=Conjuration ' +
@@ -1370,7 +1370,7 @@ SRD5E.SPELLS = {
   'Aid':
     'School=Abjuration ' +
     'Level=C2,P2 ' +
-    'Raise="gains +5 HP" ' +
+    'AtHigherLevels="gives +5 HP" ' +
     'Description="R30\' 3 targets gain +5 temporary HP for 8 hr"',
   'Alarm':
     'School=Abjuration ' +
@@ -1383,12 +1383,12 @@ SRD5E.SPELLS = {
   'Animal Friendship':
     'School=Enchantment ' +
     'Level=B1,D1,R1 ' +
-    'Raise="affects +1 target" ' +
+    'AtHigherLevels="affects +1 target" ' +
     'Description="R30\' Target beast convinced of good intent (Wis neg) for 1 dy"',
   'Animal Messenger':
     'School=Enchantment ' +
     'Level=B2,D2,R2 ' +
-    'Raise="gains duration +2 dy" ' +
+    'AtHigherLevels="extends duration +2 dy" ' +
     'Description="R30\' Tiny beast target moves to deliver 25-word message to person described for 1 dy"',
   'Animal Shapes':
     'School=Transmutation ' +
@@ -1397,12 +1397,12 @@ SRD5E.SPELLS = {
   'Animate Dead':
     'School=Necromancy ' +
     'Level=C3,W3 ' +
-    'Raise="animates +2 undead" ' +
+    'AtHigherLevels="creates +2 undead" ' +
     'Description="R10\' Bones or corpse becomes skeleton or zombie, obeys R60\' self commands for 1 dy"',
   'Animate Objects':
     'School=Transmutation ' +
     'Level=B5,S5,W5 ' +
-    'Raise="animates +2 objects" ' +
+    'AtHigherLevels="animates +2 objects" ' +
     'Description="R120\' 10 small, 5 medium, 2 large, or 1 huge objects obey R500\' commands for conc or 1 min"',
   'Antilife Shell':
     'School=Abjuration ' +
@@ -1423,7 +1423,7 @@ SRD5E.SPELLS = {
   'Arcane Hand':
     'School=Evocation ' +
     'Level=W5 ' +
-    'Raise="inflicts +2d8 HP force and +2d6 HP bludgeoning" ' +
+    'AtHigherLevels="inflicts +2d8 HP force and +2d6 HP bludgeoning" ' +
     'Description="R120\' Large hand (AC 20, Str 26, Dex 10) can punch (inflicts 4d8 HP force), push 5\', grapple (inflicts 2d6+%{?modifier?} HP bludgeoning), and block for conc or 1 min"',
   'Arcane Lock':
     'School=Abjuration ' +
@@ -1449,12 +1449,12 @@ SRD5E.SPELLS = {
   'Bane':
     'School=Enchantment ' +
     'Level=B1,C1 ' +
-    'Raise="affects +1 target" ' +
+    'AtHigherLevels="affects +1 target" ' +
     'Description="R30\' 3 targets suffer -1d4 on attacks and saving throws (Cha neg) for conc or 1 min"',
   'Banishment':
     'School=Abjuration ' +
     'Level=C4,K4,P4,S4,W4 ' +
-    'Raise="affects +1 target" ' +
+    'AtHigherLevels="affects +1 target" ' +
     'Description="R60\' Banishes target to home or demiplane (Cha neg) for conc or 1 min"',
   'Barkskin':
     'School=Transmutation ' +
@@ -1467,7 +1467,7 @@ SRD5E.SPELLS = {
   'Bestow Curse':
     'School=Necromancy ' +
     'Level=B3,C3,W3 ' +
-    'Raise="FILL" ' +
+    'AtHigherLevels="extends duration to conc or 10 min/8 hr/24 hr/permanent at level 4/5/7/9" ' +
     'Description="Touched suffers choice of Disadv on specified ability rolls, Disadv on attacks on self, require Wis save to take any action, or +1d8 HP necrotic from self attacks (Wis neg) for conc or 1 min"',
   'Black Tentacles':
     'School=Conjuration ' +
@@ -1480,17 +1480,17 @@ SRD5E.SPELLS = {
   'Bless':
     'School=Enchantment ' +
     'Level=C1,P1 ' +
-    'Raise="affects +1 target" ' +
+    'AtHigherLevels="affects +1 target" ' +
     'Description="R30\' 3 targets gain +1d4 on attacks and saving throws for conc or 1 min"',
   'Blight':
     'School=Necromancy ' +
     'Level=D4,K4,S4,W4 ' +
-    'Raise="inflicts +1d8 HP" ' +
+    'AtHigherLevels="inflicts +1d8 HP" ' +
     'Description="R30\' target suffers 8d8 HP necrotic (Con half (plant Disadv, 64 HP on fail))"',
   'Blindness/Deafness':
     'School=Necromancy ' +
     'Level=B2,C2,"K2 [The Fiend]",S2,W2 ' +
-    'Raise="affects +1 target" ' +
+    'AtHigherLevels="affects +1 target" ' +
     'Description="R30\' Inflicts choice of blindness or deafness on target (Con neg) for 1 min"',
   'Blink':
     'School=Transmutation ' +
@@ -1503,18 +1503,18 @@ SRD5E.SPELLS = {
   'Branding Smite':
     'School=Evocation ' +
     'Level=P2 ' +
-    'Raise="inflicts +1d6 HP" ' +
+    'AtHigherLevels="inflicts +1d6 HP" ' +
     'Description="Self attack inflicts +2d6 HP radiant and lights target for conc or 1 min"',
   'Burning Hands':
     'School=Evocation ' +
     'Level="K1 [The Fiend]",S1,W1 ' +
-    'Raise="inflicts +1d6 HP" ' +
+    'AtHigherLevels="inflicts +1d6 HP" ' +
     'Description="15\' cone inflicts 3d6 HP fire (Dex half)"',
 
   'Call Lightning':
     'School=Conjuration ' +
     'Level=D3 ' +
-    'Raise="inflicts +1d10 HP" ' +
+    'AtHigherLevels="inflicts +1d10 HP" ' +
     'Description="R120\' Bolt inflicts 3d10 HP lightning (Dex half) in 5\' radius 1/rd for conc or 10 min"',
   'Calm Emotions':
     'School=Enchantment ' +
@@ -1523,12 +1523,12 @@ SRD5E.SPELLS = {
   'Chain Lightning':
     'School=Evocation ' +
     'Level=S6,W6 ' +
-    'Raise="affects +1 target" ' +
+    'AtHigherLevels="affects +1 target" ' +
     'Description="R150\' 4 targets in 30\' radius suffer 10d8 HP lightning (Dex half)"',
   'Charm Person':
     'School=Enchantment ' +
     'Level=B1,D1,K1,S1,W1 ' +
-    'Raise="affects +1 target" ' +
+    'AtHigherLevels="affects +1 target" ' +
     'Description="R30\' Target regards you as a friend (Wis neg) for 1 hr or until harmed"',
   'Chill Touch':
     'School=Necromancy ' +
@@ -1537,7 +1537,7 @@ SRD5E.SPELLS = {
   'Circle Of Death':
     'School=Necromancy ' +
     'Level=K6,S6,W6 ' +
-    'Raise="inflicts +2d6 HP" ' +
+    'AtHigherLevels="inflicts +2d6 HP" ' +
     'Description="R150\' 60\' radius inflicts 8d6 HP necrotic (Con half)"',
   'Clairvoyance':
     'School=Divination ' +
@@ -1550,17 +1550,17 @@ SRD5E.SPELLS = {
   'Cloudkill':
     'School=Conjuration ' +
     'Level=S5,W5 ' +
-    'Raise="inflicts +1d8 HP" ' +
+    'AtHigherLevels="inflicts +1d8 HP" ' +
     'Description="R120\' 20\' radius inflicts 5d8 HP poison (Con half), moves away 10\'/rd for conc or 10 min"',
   'Color Spray':
     'School=Illusion ' +
     'Level=S1,W1 ' +
-    'Raise="affects +2d10 HP of targets" ' +
+    'AtHigherLevels="affects +2d10 HP of targets" ' +
     'Description="15\' cone blinds 6d10 HP of targets for 1 rd"',
   'Command':
     'School=Enchantment ' +
     'Level=C1,"K1 [The Fiend]",P1 ' +
-    'Raise="affects +1 target" ' +
+    'AtHigherLevels="affects +1 target" ' +
     'Description="R60\' Target obeys self one-word command (Wis neg)"',
   'Commune':
     'School=Divination ' +
@@ -1581,42 +1581,42 @@ SRD5E.SPELLS = {
   'Cone Of Cold':
     'School=Evocation ' +
     'Level=S5,W5 ' +
-    'Raise="inflicts +1d8 HP" ' +
+    'AtHigherLevels="inflicts +1d8 HP" ' +
     'Description="60\' cone inflicts 8d8 HP cold (Con half)"',
   'Confusion':
     'School=Enchantment ' +
     'Level=B4,D4,S4,W4 ' +
-    'Raise="increases radius +5\'" ' +
+    'AtHigherLevels="increases radius +5\'" ' +
     'Description="R90\' Creatures in 10\' radius randomly 10% wander/50% do nothing/20% attack adjacent/20% act normally (Wis neg) for conc or 1 min"',
   'Conjure Animals':
     'School=Conjuration ' +
     'Level=D3,R3 ' +
-    'Raise="FILL" ' +
-    'Description="R60\' Summons obedient fey creatures for conc or 1 hr"',
+    'AtHigherLevels="doubles/triples/quadruples animal count at level 5/7/9" ' +
+    'Description="R60\' Summons 1/2/4/8 obedient CR 2/1/0.5/0.25 fey spirits in beast form for conc or 1 hr"',
   'Conjure Celestial':
     'School=Conjuration ' +
     'Level=C7 ' +
-    'Raise="summons CR 5 at level 9" ' +
+    'AtHigherLevels="summons CR 5 at level 9" ' +
     'Description="R90\' Summons obedient CR 4 celestial for conc or 1 hr"',
   'Conjure Elemental':
     'School=Conjuration ' +
     'Level=D5,W5 ' +
-    'Raise="summons +1 CR" ' +
+    'AtHigherLevels="summons +1 CR" ' +
     'Description="R90\' Summons obedient environment-appropriate CR 5 elemental for conc or 1 hr"',
   'Conjure Fey':
     'School=Conjuration ' +
     'Level=D6,K6 ' +
-    'Raise="summons +1 CR" ' +
+    'AtHigherLevels="summons +1 CR" ' +
     'Description="R90\' Summons obedient CR 6 fey for conc or 1 hr"',
   'Conjure Minor Elementals':
     'School=Conjuration ' +
     'Level=D4,W4 ' +
-    'Raise="doubles/triples elemental count at level 6/8" ' +
+    'AtHigherLevels="doubles/triples elemental count at level 6/8" ' +
     'Description="R90\' Summons 1/2/4/8 obedient CR 2/1/0.5/0.25 elementals for conc or 1 hr"',
   'Conjure Woodland Beings':
     'School=Conjuration ' +
     'Level=D4,R4 ' +
-    'Raise="double/triple creature count at level 6/8" ' +
+    'AtHigherLevels="double/triple creature count at level 6/8" ' +
     'Description="R60\' Summons 1/2/4/8 obedient CR 2/1/0.5/0.25 fey creatures for conc or 1 hr"',
   'Contact Other Plane':
     'School=Divination ' +
@@ -1645,7 +1645,7 @@ SRD5E.SPELLS = {
   'Counterspell':
     'School=Abjuration ' +
     'Level=K3,S3,W3 ' +
-    'Raise="affects any spell of equal or lesser level" ' +
+    'AtHigherLevels="affects any spell of equal or lesser level" ' +
     'Description="R60\' Negates foe casting up to spell level 3, DC 10 + spell level for higher"',
   'Create Food And Water':
     'School=Conjuration ' +
@@ -1654,22 +1654,22 @@ SRD5E.SPELLS = {
   'Create Or Destroy Water':
     'School=Transmutation ' +
     'Level=C1,D1 ' +
-    'Raise="affects +10 gallons or +5\' cu" ' +
+    'AtHigherLevels="affects +10 gallons or +5\' cu" ' +
     'Description="R30\' Creates or destroys 10 gallons of water or 30\' cu fog"',
   'Create Undead':
     'School=Necromancy ' +
     'Level=C6,K6,W6 ' +
-    'Raise="FILL" ' +
+    'AtHigherLevels="creates 4 ghouls/5 ghouls or 2 ghasts or wights/6 ghouls, 3 ghasts or wights, or 2 mummies at level 7/8/9" ' +
     'Description="R10\' 3 corpses become ghouls that obey self for 1 dy"',
   'Creation':
     'School=Illusion ' +
     'Level=S5,W5 ' +
-    'Raise="increases matter +5\' cu" ' +
+    'AtHigherLevels="creates +5\' cu of matter" ' +
     'Description="R30\' Creates 5\' cu of false matter lasting up to 1 dy"',
   'Cure Wounds':
     'School=Evocation ' +
     'Level=B1,C1,D1,P1,R1 ' +
-    'Raise="heals +1d8 HP" ' +
+    'AtHigherLevels="heals +1d8 HP" ' +
     'Description="Touched regains 1d8+%{?modifier?} HP"',
 
   'Dancing Lights':
@@ -1695,7 +1695,7 @@ SRD5E.SPELLS = {
   'Delayed Blast Fireball':
     'School=Evocation ' +
     'Level=S7,W7 ' +
-    'Raise="inflicts +1d6 HP" ' +
+    'AtHigherLevels="inflicts +1d6 HP" ' +
     'Description="R150\' 20\' radius inflicts 12d6 HP fire (Dex half) within conc or 1 min"',
   'Demiplane':
     'School=Conjuration ' +
@@ -1728,7 +1728,7 @@ SRD5E.SPELLS = {
   'Disintegrate':
     'School=Transmutation ' +
     'Level=S6,W6 ' +
-    'Raise="inflicts +3d6 HP" ' +
+    'AtHigherLevels="inflicts +3d6 HP" ' +
     'Description="R60\' Target suffers 10d6+40 HP force, dusts if reduced to 0 HP (Dex neg)"',
   'Dispel Evil And Good':
     'School=Abjuration ' +
@@ -1737,7 +1737,7 @@ SRD5E.SPELLS = {
   'Dispel Magic':
     'School=Abjuration ' +
     'Level=B3,C3,D3,K3,P3,S3,W3 ' +
-    'Raise="affects any spell of equal or lesser level" ' +
+    'AtHigherLevels="affects any spell of equal or lesser level" ' +
     'Description="R120\' Ends spell effects up to spell level 3 on target, higher levels require DC 10 + spell level check"',
   'Divination':
     'School=Divination ' +
@@ -1754,17 +1754,17 @@ SRD5E.SPELLS = {
   'Dominate Beast':
     'School=Enchantment ' +
     'Level=D4,S4 ' +
-    'Raise="FILL" ' +
+    'AtHigherLevels="extends duration to 10 min/1 hr/8 hr at level 5/6/7" ' +
     'Description="R60\' Target obeys self telepathic commands (Wis neg) for conc or 1 min"',
   'Dominate Monster':
     'School=Enchantment ' +
     'Level=B8,K8,S8,W8 ' +
-    'Raise="increases duration to conc or 8 hr" ' +
+    'AtHigherLevels="extends duration to 8 hr" ' +
     'Description="R60\' Target obeys self telepathic commands (Wis neg) for conc or 1 hr"',
   'Dominate Person':
     'School=Enchantment ' +
     'Level=B5,S5,W5 ' +
-    'Raise="FILL" ' +
+    'AtHigherLevels="extends duration to 10 min/1 hr/8 hr at level 6/7/8" ' +
     'Description="R60\' Target obeys self telepathic commands (Wis neg) for conc or 1 min"',
   'Dream':
     'School=Illusion ' +
@@ -1786,7 +1786,7 @@ SRD5E.SPELLS = {
   'Enhance Ability':
     'School=Transmutation ' +
     'Level=B2,C2,D2,S2 ' +
-    'Raise="affects +1 target" ' +
+    'AtHigherLevels="affects +1 target" ' +
     'Description="Touched gains Adv on chosen ability checks for 1 hr; Con also adds +2d6 temporary HP, Str dbl load, and Dex no damage from 20\' fall"',
   'Enlarge/Reduce':
     'School=Transmutation ' +
@@ -1803,7 +1803,7 @@ SRD5E.SPELLS = {
   'Etherealness':
     'School=Transmutation ' +
     'Level=B7,C7,K7,S7,W7 ' +
-    'Raise="affects +2/+5 targets at level 8/9" ' +
+    'AtHigherLevels="affects +2/+5 targets at level 8/9" ' +
     'Description="Self enters Ethereal Plane for up to 8 hr"',
   'Expeditious Retreat':
     'School=Transmutation ' +
@@ -1829,7 +1829,7 @@ SRD5E.SPELLS = {
   'False Life':
     'School=Necromancy ' +
     'Level=S1,W1 ' +
-    'Raise="grants +5 HP" ' +
+    'AtHigherLevels="gives +5 HP" ' +
     'Description="Self gains 1d4+4 temporary HP for 1 hr"',
   'Fear':
     'School=Illusion ' +
@@ -1878,22 +1878,22 @@ SRD5E.SPELLS = {
   'Fireball':
     'School=Evocation ' +
     'Level="K3 [The Fiend]",S3,W3 ' +
-    'Raise="inflicts +1d6 HP" ' +
+    'AtHigherLevels="inflicts +1d6 HP" ' +
     'Description="R150\' 20\' radius inflicts 8d6 HP fire (Dex half)"',
   'Flame Blade':
     'School=Evocation ' +
     'Level=D2 ' +
-    'Raise="inflicts +1d6 HP" ' +
+    'AtHigherLevels="inflicts +1d6 HP" ' +
     'Description="Self wields flaming blade that inflicts 3d6 HP fire and lights 10\' radius"',
   'Flame Strike':
     'School=Evocation ' +
     'Level=C5,"K5 [The Fiend]" ' +
-    'Raise="inflicts +1d6 HP fire or radiant" ' +
+    'AtHigherLevels="inflicts +1d6 HP fire or radiant" ' +
     'Description="R60\' 10\' radius inflicts 4d6 HP fire and 4d6 HP radiant (Dex half)"',
   'Flaming Sphere':
     'School=Conjuration ' +
     'Level=D2,W2 ' +
-    'Raise="inflicts +1d6 HP" ' +
+    'AtHigherLevels="inflicts +1d6 HP" ' +
     'Description="R60\' 5\' diameter sphere inflicts 2d6 HP fire (Dex half), moves 30\'/rd for conc or 1 min"',
   'Flesh To Stone':
     'School=Transmutation ' +
@@ -1906,12 +1906,12 @@ SRD5E.SPELLS = {
   'Fly':
     'School=Transmutation ' +
     'Level=K3,S3,W3 ' +
-    'Raise="affects +1 target" ' +
+    'AtHigherLevels="affects +1 target" ' +
     'Description="Touched gains 60\' fly speed for conc or 10 min"',
   'Fog Cloud':
     'School=Conjuration ' +
     'Level=D1,R1,S1,W1 ' +
-    'Raise="increases radius +20\'" ' +
+    'AtHigherLevels="increases radius +20\'" ' +
     'Description="R120\' 20\' radius obscures vision for conc or 1 hr"',
   'Forbiddance':
     'School=Abjuration ' +
@@ -1932,7 +1932,7 @@ SRD5E.SPELLS = {
   'Freezing Sphere':
     'School=Evocation ' +
     'Level=W6 ' +
-    'Raise="inflicts +1d6 HP" ' +
+    'AtHigherLevels="inflicts +1d6 HP" ' +
     'Description="R300\' 60\' radius inflicts 10d6 HP cold (Con half), freezes water for 1 min"',
 
   'Gaseous Form':
@@ -1946,7 +1946,7 @@ SRD5E.SPELLS = {
   'Geas':
     'School=Enchantment ' +
     'Level=B5,C5,D5,P5,W5 ' +
-    'Raise="increases duration to 1 yr/permanent at level 7/9" ' +
+    'AtHigherLevels="extends duration to 1 yr/permanent at level 7/9" ' +
     'Description="R60\' Target obeys command (Wis neg) for 30 dy"',
   'Gentle Repose':
     'School=Necromancy ' +
@@ -1963,12 +1963,12 @@ SRD5E.SPELLS = {
   'Globe Of Invulnerability':
     'School=Abjuration ' +
     'Level=S6,W6 ' +
-    'Raise="blocks +1 spell level" ' +
+    'AtHigherLevels="gives immunity to +1 spell level" ' +
     'Description="10\' radius gives immunity to spells up to level 5"',
   'Glyph Of Warding':
     'School=Abjuration ' +
     'Level=B3,C3,W3 ' +
-    'Raise="inflicts +1d8 HP or triggers +1 spell level" ' +
+    'AtHigherLevels="inflicts +1d8 HP or triggers +1 spell level" ' +
     'Description="20\' radius inflicts 5d8 HP acid, cold, fire, lightning, or thunder (Dex half) or spell up to level 3 when triggered"',
   'Goodberry':
     'School=Transmutation ' +
@@ -2001,7 +2001,7 @@ SRD5E.SPELLS = {
   'Guiding Bolt':
     'School=Evocation ' +
     'Level=C1 ' +
-    'Raise="inflicts +1d6 HP" ' +
+    'AtHigherLevels="inflicts +1d6 HP" ' +
     'Description="R120\' Ranged spell inflicts 4d6 HP radiant, lights target (Adv on next foe attack) for 1 rd"',
   'Gust Of Wind':
     'School=Evocation ' +
@@ -2027,22 +2027,22 @@ SRD5E.SPELLS = {
   'Heal':
     'School=Evocation ' +
     'Level=C6,D6 ' +
-    'Raise="heals +10 HP" ' +
+    'AtHigherLevels="heals +10 HP" ' +
     'Description="R60\' Target regains 70 HP and becomes unblinded, undeafened, and undiseased"',
   'Healing Word':
     'School=Evocation ' +
     'Level=B1,C1,D1 ' +
-    'Raise="heals +1d4 HP" ' +
+    'AtHigherLevels="heals +1d4 HP" ' +
     'Description="R60\' Target regains 1d4+%{?modifier?} HP"',
   'Heat Metal':
     'School=Transmutation ' +
     'Level=B2,D2 ' +
-    'Raise="inflicts +1d8 HP" ' +
+    'AtHigherLevels="inflicts +1d8 HP" ' +
     'Description="R60\' Touching target metal causes 2d8 HP fire for conc or 1 min"',
   'Hellish Rebuke':
     'School=Evocation ' +
     'Level=K1 ' +
-    'Raise="inflicts +1d10 HP" ' +
+    'AtHigherLevels="inflicts +1d10 HP" ' +
     'Description="R60\' Use Reaction to inflict 2d10 HP fire on successful attacker (Dex half)"',
   "Heroes' Feast":
     'School=Conjuration ' +
@@ -2051,7 +2051,7 @@ SRD5E.SPELLS = {
   'Heroism':
     'School=Enchantment ' +
     'Level=B1,P1 ' +
-    'Raise="affects +1 target" ' +
+    'AtHigherLevels="affects +1 target" ' +
     'Description="Touched gains immunity to fright and +%{?modifier?} temporary HP each rd for conc or 1 min"',
   'Hideous Laughter':
     'School=Enchantment ' +
@@ -2060,12 +2060,12 @@ SRD5E.SPELLS = {
   'Hold Monster':
     'School=Enchantment ' +
     'Level=B5,K5,S5,W5 ' +
-    'Raise="affects +1 target" ' +
+    'AtHigherLevels="affects +1 target" ' +
     'Description="R90\' Immobilizes target (Wis neg) for conc or 1 min"',
   'Hold Person':
     'School=Enchantment ' +
     'Level=B2,C2,D2,K2,S2,W2 ' +
-    'Raise="affects +1 target" ' +
+    'AtHigherLevels="affects +1 target" ' +
     'Description="R60\' Immobilizes target (Wis neg) for conc or 1 min"',
   'Holy Aura':
     'School=Abjuration ' +
@@ -2074,7 +2074,7 @@ SRD5E.SPELLS = {
   "Hunter's Mark":
     'School=Divination ' +
     'Level=R1 ' +
-    'Raise="increases duration to conc or 8/24 hr at level 3/5" ' +
+    'AtHigherLevels="extends duration to 8/24 hr at level 3/5" ' +
     'Description="R90\' Self gains Adv on Perception and Wisdom to locate target and +1d6 HP damage on weapon attacks for conc or 1 hr"',
   'Hypnotic Pattern':
     'School=Illusion ' +
@@ -2084,7 +2084,7 @@ SRD5E.SPELLS = {
   'Ice Storm':
     'School=Evocation ' +
     'Level=D4,S4,W4 ' +
-    'Raise="inflicts +1d8 HP bludgeoning" ' +
+    'AtHigherLevels="inflicts +1d8 HP bludgeoning" ' +
     'Description="R300\' 20\' radius inflicts 2d8 bludgeoning and 4d6 HP cold (Dex half)"',
   'Identify':
     'School=Divination ' +
@@ -2105,12 +2105,12 @@ SRD5E.SPELLS = {
   'Inflict Wounds':
     'School=Necromancy ' +
     'Level=C1 ' +
-    'Raise="inflicts +1d10 HP" ' +
+    'AtHigherLevels="inflicts +1d10 HP" ' +
     'Description="Touched suffers 3d10 HP necrotic"',
   'Insect Plague':
     'School=Conjuration ' +
     'Level=C5,D5,S5 ' +
-    'Raise="inflicts +1d10 HP" ' +
+    'AtHigherLevels="inflicts +1d10 HP" ' +
     'Description="R300\' 20\' radius inflicts 4d10 HP piercing (Con half) for conc or 10 min"',
   'Instant Summons':
     'School=Conjuration ' +
@@ -2119,7 +2119,7 @@ SRD5E.SPELLS = {
   'Invisibility':
     'School=Illusion ' +
     'Level=B2,K2,S2,W2 ' +
-    'Raise="affects +1 target" ' +
+    'AtHigherLevels="affects +1 target" ' +
     'Description="Touched becomes invisible for conc or 1 hr or until attacks or casts"',
   'Irresistible Dance':
     'School=Enchantment ' +
@@ -2155,7 +2155,7 @@ SRD5E.SPELLS = {
   'Lightning Bolt':
     'School=Evocation ' +
     'Level=S3,W3 ' +
-    'Raise="inflicts +1d6 HP" ' +
+    'AtHigherLevels="inflicts +1d6 HP" ' +
     'Description="100\'x5\' line inflicts 8d6 HP lightning (Dex half)"',
   'Locate Animals Or Plants':
     'School=Divination ' +
@@ -2172,7 +2172,7 @@ SRD5E.SPELLS = {
   'Longstrider':
     'School=Transmutation ' +
     'Level=B1,D1,R1,W1 ' +
-    'Raise="affects +1 target" ' +
+    'AtHigherLevels="affects +1 target" ' +
     'Description="Touched gains +10\' Speed for 1 hr"',
 
   'Mage Armor':
@@ -2186,7 +2186,7 @@ SRD5E.SPELLS = {
   'Magic Circle':
     'School=Abjuration ' +
     'Level=C3,K3,P3,W3 ' +
-    'Raise="increases duration +1 hr" ' +
+    'AtHigherLevels="extends duration +1 hr" ' +
     'Description="R10\' 10\' circle prevents passage and inflicts DisAdv on attacks by specified creature type for 1 hr"',
   'Magic Jar':
     'School=Necromancy ' +
@@ -2195,7 +2195,7 @@ SRD5E.SPELLS = {
   'Magic Missile':
     'School=Evocation ' +
     'Level=S1,W1 ' +
-    'Raise="creates +1 dart" ' +
+    'AtHigherLevels="creates +1 dart" ' +
     'Description="R120\' 3 darts inflict 1d4+1 HP force each"',
   'Magic Mouth':
     'School=Illusion ' +
@@ -2204,7 +2204,7 @@ SRD5E.SPELLS = {
   'Magic Weapon':
     'School=Transmutation ' +
     'Level=P2,W2 ' +
-    'Raise="grants +2/+3 bonus at level 4/6" ' +
+    'AtHigherLevels="gives +2/+3 bonus at level 4/6" ' +
     'Description="Touched weapon gains +1 magic bonus for conc or 1 hr"',
   'Magnificent Mansion':
     'School=Conjuration ' +
@@ -2213,12 +2213,12 @@ SRD5E.SPELLS = {
   'Major Image':
     'School=Illusion ' +
     'Level=B3,K3,S3,W3 ' +
-    'Raise="increases duration to permanent at level 6" ' +
+    'AtHigherLevels="extends duration to permanent at level 6" ' +
     'Description="R120\' Creates 20\' cu sight, sound, and touch illusion for conc or 10 min"',
   'Mass Cure Wounds':
     'School=Evocation ' + // from errata
     'Level=B5,C5,D5 ' +
-    'Raise="heals +1d8 HP" ' +
+    'AtHigherLevels="heals +1d8 HP" ' +
     'Description="R60\' 6 targets in 30\' radius regain 3d8 + %{?modifier?} HP"',
   'Mass Heal':
     'School=Evocation ' + // from errata
@@ -2227,12 +2227,12 @@ SRD5E.SPELLS = {
   'Mass Healing Word':
     'School=Evocation ' +
     'Level=C3 ' +
-    'Raise="heals +1d4 HP" ' +
+    'AtHigherLevels="heals +1d4 HP" ' +
     'Description="R60\' 6 targets regain 1d4 + %{?modifier?} HP"',
   'Mass Suggestion':
     'School=Enchantment ' +
     'Level=B6,K6,S6,W6 ' +
-    'Raise="increases duration to 10/30/366 dy at level 7/8/9" ' +
+    'AtHigherLevels="extends duration to 10/30/366 dy at level 7/8/9" ' +
     'Description="R60\' 12 targets follow self suggestion (Wis neg) for 1 dy"',
   'Maze':
     'School=Conjuration ' +
@@ -2281,12 +2281,12 @@ SRD5E.SPELLS = {
   'Modify Memory':
     'School=Enchantment ' +
     'Level=B5,W5 ' +
-    'Raise="changes memory of vent in past 7/30/365/any dy at level 6/7/8/9" ' +
+    'AtHigherLevels="changes memory of event in past 7/30/365/any dy at level 6/7/8/9" ' +
     'Description="R30\' Changes target memory of event in past dy (Wis neg)"',
   'Moonbeam':
     'School=Evocation ' +
     'Level=D2 ' +
-    'Raise="inflicts +1d10 HP" ' +
+    'AtHigherLevels="inflicts +1d10 HP" ' +
     'Description="R120\' 5\' radius inflicts 2d10 HP radiant (Con half) for conc or 1 min"',
   'Move Earth':
     'School=Transmutation ' +
@@ -2309,7 +2309,7 @@ SRD5E.SPELLS = {
   'Phantasmal Killer':
     'School=Illusion ' +
     'Level=W4 ' +
-    'Raise="inflicts +1d10 HP" ' +
+    'AtHigherLevels="inflicts +1d10 HP" ' +
     'Description="R120\' Target perceives personal horror that frightens and inflicts 4d10 HP psychic/rd (Wis neg) for conc or 1 min"',
   'Phantom Steed':
     'School=Illusion ' +
@@ -2322,7 +2322,7 @@ SRD5E.SPELLS = {
   'Planar Binding':
     'School=Abjuration ' +
     'Level=B5,C5,D5,W5 ' +
-    'Raise="increases duration to 10/30/180/366 dy at level 6/7/8/9" ' +
+    'AtHigherLevels="extends duration to 10/30/180/366 dy at level 6/7/8/9" ' +
     'Description="R60\' Binds outsider to service (Cha neg) for 1 dy"',
   'Plane Shift':
     'School=Conjuration ' +
@@ -2351,7 +2351,7 @@ SRD5E.SPELLS = {
   'Prayer Of Healing':
     'School=Evocation ' +
     'Level=C2 ' +
-    'Raise="heals +1d8 HP" ' +
+    'AtHigherLevels="heals +1d8 HP" ' +
     'Description="R60\' 6 targets regain 2d8 + %{?modifier?} HP"',
   'Prestidigitation':
     'School=Transmutation ' +
@@ -2368,7 +2368,7 @@ SRD5E.SPELLS = {
   'Private Sanctum':
     'School=Abjuration ' +
     'Level=W4 ' +
-    'Raise="increases area +100 \'" ' +
+    'AtHigherLevels="increases area +100 \'" ' +
     'Description="R120\' Protects 100\' sq from sound, vision, divination, teleportation, and planar travel for 1 dy"',
   'Produce Flame':
     'School=Conjuration ' +
@@ -2459,7 +2459,7 @@ SRD5E.SPELLS = {
   'Scorching Ray':
     'School=Evocation ' +
     'Level="K2 [The Fiend]",S2,W2 ' +
-    'Raise="grants +1 ranged attack" ' +
+    'AtHigherLevels="gives +1 ranged attack" ' +
     'Description="R120\' 3 ranged attacks inflict 2d6 HP fire each"',
   'Scrying':
     'School=Divination ' +
@@ -2492,7 +2492,7 @@ SRD5E.SPELLS = {
   'Shatter':
     'School=Evocation ' +
     'Level=B2,K2,S2,W2 ' +
-    'Raise="inflicts +1d8 HP" ' +
+    'AtHigherLevels="inflicts +1d8 HP" ' +
     'Description="R60\' 10\' radius inflicts 3d8 HP thunder (Con half)"',
   'Shield':
     'School=Abjuration ' +
@@ -2525,7 +2525,7 @@ SRD5E.SPELLS = {
   'Sleep':
     'School=Enchantment ' +
     'Level=B1,S1,W1 ' +
-    'Raise="affects +2d8 HP of creatures" ' +
+    'AtHigherLevels="affects +2d8 HP of creatures" ' +
     'Description="R90\' 20\' radius sleeps up to 5d8 HP of creatures, weakest first"',
   'Sleet Storm':
     'School=Conjuration ' +
@@ -2562,12 +2562,12 @@ SRD5E.SPELLS = {
   'Spirit Guardians':
     'School=Conjuration ' +
     'Level=C3 ' +
-    'Raise="inflicts +1d8 HP" ' +
+    'AtHigherLevels="inflicts +1d8 HP" ' +
     'Description="15\' radius inflicts 3d8 HP necrotic or radiant and half Speed (Wis half, no slowing)"',
   'Spiritual Weapon':
     'School=Evocation ' +
     'Level=C2 ' +
-    'Raise="inflicts +1d8 HP/2 levels" ' +
+    'AtHigherLevels="inflicts +1d8 HP/2 levels" ' +
     'Description="R60\' Spectral weapon inflicts 1d8 + %{?modifier?} HP and moves 20\' for 1 min"',
   'Stinking Cloud':
     'School=Conjuration ' +
@@ -2625,7 +2625,7 @@ SRD5E.SPELLS = {
   'Thunderwave':
     'School=Evocation ' +
     'Level=B1,D1,S1,W1 ' +
-    'Raise="inflicts +1d8 HP" ' +
+    'AtHigherLevels="inflicts +1d8 HP" ' +
     'Description="15\' cu inflicts 2d8 HP thunder and pushes 10\' (Con half, no push)"',
   'Time Stop':
     'School=Transmutation ' +
@@ -2672,7 +2672,7 @@ SRD5E.SPELLS = {
   'Vampiric Touch':
     'School=Necromancy ' +
     'Level=K3,W3 ' +
-    'Raise="inflicts +1d6 HP" ' +
+    'AtHigherLevels="inflicts +1d6 HP" ' +
     'Description="Touched suffers 3d6 HP and self regains half for conc or 1 min"',
   'Vicious Mockery':
     'School=Enchantment ' +
@@ -2682,7 +2682,7 @@ SRD5E.SPELLS = {
   'Wall Of Fire':
     'School=Evocation ' +
     'Level=D4,"K4 [The Fiend]",S4,W4 ' +
-    'Raise="inflicts +1d8 HP" ' +
+    'AtHigherLevels="inflicts +1d8 HP" ' +
     'Description="R120\' 60\'x20\' wall inflicts 5d8 HP fire (Dex half) for conc or 1 min"',
   'Wall Of Force':
     'School=Evocation ' +
@@ -2691,7 +2691,7 @@ SRD5E.SPELLS = {
   'Wall Of Ice':
     'School=Evocation ' +
     'Level=W6 ' +
-    'Raise="inflicts +2d6 HP initally, +1d6 HP to passers" ' +
+    'AtHigherLevels="inflicts +2d6 HP initally, +1d6 HP to passers" ' +
     'Description="R120\' Creates 10 10\'x10\' panels that inflict 10d6 HP cold (Dex half) initially plus, if broken, 5d6 HP cold to passers (Con half) for conc or 10 min"',
   'Wall Of Stone':
     'School=Evocation ' +
@@ -2700,7 +2700,7 @@ SRD5E.SPELLS = {
   'Wall Of Thorns':
     'School=Conjuration ' +
     'Level=D6 ' +
-    'Raise="inflicts +1d8 HP" ' +
+    'AtHigherLevels="inflicts +1d8 HP" ' +
     'Description="R120\' 60\'x10\' wall inflicts 7d8 HP piercing (Dex half) initially plus 7d8 HP slashing to passers (Dex half) for conc or 10 min"',
   'Warding Bond':
     'School=Abjuration ' +
@@ -3097,7 +3097,7 @@ SRD5E.magicRules = function(rules, schools, spells) {
 
   QuilvynUtils.checkAttrTable(schools, ['Features']);
   QuilvynUtils.checkAttrTable
-    (spells, ['School', 'Group', 'Level', 'Description', 'Raise']);
+    (spells, ['School', 'Group', 'Level', 'Description', 'AtHigherLevels']);
 
   for(var school in schools) {
     rules.choiceRules(rules, 'School', school, schools[school]);
@@ -3268,7 +3268,7 @@ SRD5E.choiceRules = function(rules, type, name, attrs) {
   else if(type == 'Spell') {
     var description = QuilvynUtils.getAttrValue(attrs, 'Description');
     var groupLevels = QuilvynUtils.getAttrValueArray(attrs, 'Level');
-    var raise = QuilvynUtils.getAttrValue(attrs, 'Raise');
+    var higher = QuilvynUtils.getAttrValue(attrs, 'AtHigherLevels');
     var school = QuilvynUtils.getAttrValue(attrs, 'School');
     var schoolAbbr = school.substring(0, 4);
     for(var i = 0; i < groupLevels.length; i++) {
@@ -3284,7 +3284,7 @@ SRD5E.choiceRules = function(rules, type, name, attrs) {
       // TODO indicate domain spells in attributes?
       var domainSpell = SRD5E.PATHS[group + ' Domain'] != null;
       SRD5E.spellRules(
-        rules, fullName, school, group, level, description, domainSpell, raise
+        rules, fullName, school, group, level, description, domainSpell, higher
       );
       rules.addChoice('spells', fullName, attrs);
     }
@@ -4206,7 +4206,7 @@ SRD5E.featureSpells = function(rules, feature, spellType, levelAttr, spellList){
         QuilvynUtils.getAttrValue(spellAttrs, 'Description');
       var spellLevel =
         QuilvynUtils.getAttrValue(spellAttrs, 'Level').match(/\d/)[0] - 0;
-      var spellRaise = QuilvynUtils.getAttrValue(spellAttrs, 'Raise');
+      var spellRaise = QuilvynUtils.getAttrValue(spellAttrs, 'AtHigherLevels');
       var spellSchool = QuilvynUtils.getAttrValue(spellAttrs, 'School');
       var fullName = spellName + '(' + spellType + spellLevel + ' [' + feature + '] ' + spellSchool.substring(0, 4) + ')';
       SRD5E.spellRules(
@@ -4629,11 +4629,11 @@ SRD5E.skillRules = function(rules, name, ability, classes) {
  * Defines in #rules# the rules associated with spell #name#, which is from
  * magic school #school#. #casterGroup# and #level# are used to compute any
  * saving throw value required by the spell. #description# is a verbose
- * description of the spell's effects. #raise#, if supplied, describes the
+ * description of the spell's effects. #higher#, if supplied, describes the
  * effects of casting the spell using a higher-level spell slot.
  */
 SRD5E.spellRules = function(
-  rules, name, school, casterGroup, level, description, domainSpell, raise
+  rules, name, school, casterGroup, level, description, domainSpell, higher
 ) {
 
   if(!name) {
@@ -4658,8 +4658,8 @@ SRD5E.spellRules = function(
   description =
     description.replaceAll('?level?', 'spellCasterLevel.' + casterGroup)
                .replaceAll('?modifier?', 'spellModifier.' + casterGroup);
-  if(raise)
-    description += ' [+Level ' + raise + ']';
+  if(higher)
+    description += ' [+Level ' + higher + ']';
   rules.defineChoice('notes', 'spells.' + name + ':' + description);
 
 };
@@ -5178,7 +5178,8 @@ SRD5E.choiceEditorElements = function(rules, type) {
       ['School', 'School', 'select-one', QuilvynUtils.getKeys(rules.getChoices('schools'))],
       ['Group', 'Caster Group', 'text', [15]],
       ['Level', 'Level', 'select-one', zeroToNine],
-      ['Description', 'Description', 'text', [60]]
+      ['Description', 'Description', 'text', [60]],
+      ['Higher', 'At Higher Levels', 'text', [60]]
     );
   } else if(type == 'Tool')
     result.push(

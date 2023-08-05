@@ -67,7 +67,7 @@ function SRD5E() {
 
 }
 
-SRD5E.VERSION = '2.3.6.0';
+SRD5E.VERSION = '2.3.6.1';
 
 /* List of choices that can be expanded by house rules. */
 SRD5E.CHOICES = [
@@ -419,10 +419,10 @@ SRD5E.CLASSES = {
     'SpellAbility=charisma ' +
     'SpellSlots=' +
       'K0:1=2;4=3;10=4,' +
-      'K1:1=1;2=2;3=null,' +
-      'K2:3=2;5=null,' +
-      'K3:5=2;7=null,' +
-      'K4:7=2;9=null,' +
+      'K1:1=1;2=2,' +
+      'K2:3=2,' +
+      'K3:5=2,' +
+      'K4:7=2,' +
       'K5:9=2;11=3;17=4',
   'Wizard':
     'HitDie=d6 ' +
@@ -3968,6 +3968,12 @@ SRD5E.classRulesExtra = function(rules, name) {
     rules.defineRule('selectableFeatureCount.Warlock (Pact Boon)',
       classLevel, '=', 'source<3 ? null : 1'
     );
+    rules.defineRule('maxKSlot',
+      'casterLevels.K', '=', 'Math.min(Math.floor((source + 1) / 2), 5)'
+    );
+    [1, 2, 3, 4].forEach(sl => {
+      rules.defineRule('spellSlots.K' + sl, 'maxKSlot', '?', 'source == ' + sl);
+    });
     SRD5E.featureSpells(rules, 'Armor Of Shadows', 'K', null, ['Mage Armor']);
     SRD5E.featureSpells
       (rules, 'Beast Speech', 'K', null, ['Speak With Animals']);

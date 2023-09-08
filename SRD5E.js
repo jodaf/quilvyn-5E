@@ -67,13 +67,12 @@ function SRD5E() {
 
 }
 
-SRD5E.VERSION = '2.3.6.1';
+SRD5E.VERSION = '2.3.6.2';
 
 /* List of choices that can be expanded by house rules. */
 SRD5E.CHOICES = [
-  'Armor', 'Background', 'Class', 'Deity', 'Feat', 'Feature', 'Goody',
-  'Language', 'Path', 'Race', 'School', 'Shield', 'Skill', 'Spell', 'Tool',
-  'Weapon'
+  'Armor', 'Background', 'Class', 'Deity', 'Feat', 'Feature', 'Language',
+  'Path', 'Race', 'School', 'Shield', 'Skill', 'Spell', 'Tool', 'Weapon'
 ];
 /*
  * List of items handled by randomizeOneAttribute method. The order handles
@@ -2786,44 +2785,71 @@ SRD5E.TOOLS = {
   'Vehicles (Water)':'Type=General'
 };
 SRD5E.WEAPONS = {
-  'Battleaxe':'Category=2 Property=Ve Damage=d8',
-  'Blowgun':'Category=2 Property=R Damage=d1 Range=25/100',
-  'Club':'Category=1 Property=Li Damage=d4',
-  'Dagger':'Category=1 Property=Li,Fi Damage=d4 Range=20/60',
-  'Dart':'Category=1 Property=R,Fi Damage=d4 Range=20/60',
-  'Flail':'Category=2 Property=1h Damage=d8',
-  'Glaive':'Category=2 Property=2h,He Damage=d10',
-  'Greataxe':'Category=2 Property=2h,He Damage=d12',
-  'Greatclub':'Category=1 Property=2h Damage=d8',
-  'Greatsword':'Category=2 Property=2h,He Damage=2d6',
-  'Halberd':'Category=2 Property=2h,He Damage=d10',
-  'Hand Crossbow':'Category=2 Property=R Damage=d6 Range=30/120',
-  'Handaxe':'Category=1 Property=Li Damage=d6 Range=20/60',
-  'Heavy Crossbow':'Category=2 Property=R Damage=d10 Range=100/400',
-  'Javelin':'Category=1 Property=1h Damage=d6 Range=30/120',
-  'Lance':'Category=2 Property=1h Damage=d12',
-  'Light Crossbow':'Category=1 Property=R Damage=d8 Range=80/320',
-  'Light Hammer':'Category=1 Property=Li Damage=d4 Range=20/60',
-  'Longbow':'Category=2 Property=R Damage=d8 Range=150/600',
-  'Longsword':'Category=2 Property=Ve Damage=d8',
-  'Mace':'Category=1 Property=1h Damage=d6',
-  'Maul':'Category=2 Property=2h Damage=2d6',
-  'Morningstar':'Category=2 Property=1h,He Damage=d8',
-  'Net':'Category=2 Property=R Damage=d0 Range=5/15',
-  'Pike':'Category=2 Property=2h Damage=d10',
-  'Quarterstaff':'Category=1 Property=Ve Damage=d6',
-  'Rapier':'Category=2 Property=1h,Fi Damage=d8',
-  'Scimitar':'Category=2 Property=Li,Fi Damage=d6',
-  'Shortbow':'Category=1 Property=R Damage=d6 Range=80/320',
-  'Shortsword':'Category=2 Property=Li,Fi Damage=d6',
-  'Sickle':'Category=1 Property=Li Damage=d4',
-  'Sling':'Category=1 Property=R Damage=d4 Range=30/120',
-  'Spear':'Category=1 Property=Ve Damage=d6 Range=20/60',
-  'Trident':'Category=2 Property=Ve Damage=d6 Range=20/60',
-  'Unarmed':'Category=0 Property=Un Damage=d1',
-  'War Pick':'Category=2 Property=1h Damage=d8',
-  'Warhammer':'Category=2 Property=Ve Damage=d8',
-  'Whip':'Category=2 Property=1h,Fi Damage=d4'
+
+  'Unarmed':'Category="Simple Melee" Damage=d1',
+
+  'Club':'Category="Simple Melee" Property=Light Damage=d4',
+  'Dagger':
+    'Category="Simple Melee" Property=Light,Finesse,Thrown Damage=d4 ' +
+    'Range=20/60',
+  'Greatclub':'Category="Simple Melee" Property=Two-Handed Damage=d8',
+  'Handaxe':
+    'Category="Simple Melee" Property=Light,Thrown Damage=d6 Range=20/60',
+  'Javelin':
+    'Category="Simple Melee" Property=Light,Thrown Damage=d6 Range=30/120',
+  'Light Hammer':
+    'Category="Simple Melee" Property=Light,Thrown Damage=d4 Range=20/60',
+  'Mace':'Category="Simple Melee" Damage=d6',
+  'Quarterstaff':'Category="Simple Melee" Property=Versatile Damage=d6',
+  'Sickle':'Category="Simple Melee" Property=Light Damage=d4',
+  'Spear':'Category="Simple Melee" Property=Versatile Damage=d6 Range=20/60',
+
+  'Light Crossbow':
+    'Category="Simple Ranged" Property=Ammunition,Loading,Two-Handed ' +
+    'Damage=d8 Range=80/320',
+  'Dart':
+    'Category="Simple Ranged" Property=Finesse,Thrown Damage=d4 Range=20/60',
+  'Shortbow':
+    'Category="Simple Ranged" Property=Ammunition,Two-Handed Damage=d6 ' +
+    'Range=80/320',
+  'Sling':'Category="Simple Ranged" Property=Ammunition Damage=d4 Range=30/120',
+
+  'Battleaxe':'Category="Martial Melee" Property=Versatile Damage=d8',
+  'Flail':'Category="Martial Melee" Damage=d8',
+  'Glaive':
+    'Category="Martial Melee" Property=Heavy,Reach,Two-Handed Damage=d10',
+  'Greataxe':'Category="Martial Melee" Property=Heavy,Two-Handed Damage=d12',
+  'Greatsword':'Category="Martial Melee" Property=Heavy,Two-Handed Damage=2d6',
+  'Halberd':
+    'Category="Martial Melee" Property=Heavy,Reach,Two-Handed Damage=d10',
+  'Lance':'Category="Martial Melee" Property=Reach,Special Damage=d12',
+  'Longsword':'Category="Martial Melee" Property=Versatile Damage=d8',
+  'Maul':'Category="Martial Melee" Property=Heavy,Two-Handed Damage=2d6',
+  'Morningstar':'Category="Martial Melee" Damage=d8',
+  'Pike':'Category="Martial Melee" Property=Heavy,Reach,Two-Handed Damage=d10',
+  'Rapier':'Category="Martial Melee" Property=Finesse Damage=d8',
+  'Scimitar':'Category="Martial Melee" Property=Finesse,Light Damage=d6',
+  'Shortsword':'Category="Martial Melee" Property=Finesse,Light Damage=d6',
+  'Trident':
+    'Category="Martial Melee" Property=Thrown,Versatile Damage=d6 Range=20/60',
+  'War Pick':'Category="Martial Melee" Damage=d8',
+  'Warhammer':'Category="Martial Melee" Property=Versatile Damage=d8',
+  'Whip':'Category="Martial Melee" Property=Finesse,Reach Damage=d4',
+
+  'Blowgun':
+    'Category="Martial Ranged" Property=Ammunition,Loading Damage=d1 ' +
+    'Range=25/100',
+  'Hand Crossbow':
+    'Category="Martial Ranged" Property=Ammunition,Light,Loading Damage=d6 ' +
+    'Range=30/120',
+  'Heavy Crossbow':
+    'Category="Martial Ranged" Property=Ammunition,Heavy,Loading,Two-Handed ' +
+    'Damage=d10 Range=100/400',
+  'Longbow':
+    'Category="Martial Ranged" Property=Ammunition,Heavy,Two-Handed ' +
+    'Damage=d8 Range=150/600',
+  'Net':'Category="Martial Ranged" Property=Special,Thrown Damage=d0 Range=5/15'
+
 };
 SRD5E.DEITIES = {
   // Allow clerics w/no deity to have a domain
@@ -4694,8 +4720,8 @@ SRD5E.weaponRules = function(rules, name, category, properties, damage, range) {
     console.log('Bad name for weapon  "' + name + '"');
     return;
   }
-  if(category == null ||
-     !(category + '').match(/^([0-2]|unarmed|simple|martial)$/i)) {
+  if(typeof category != 'string' ||
+     !category.match(/^(simple|martial) (melee|ranged)$/i)) {
     console.log('Bad category "' + category + '" for weapon ' + name);
     return;
   }
@@ -4712,21 +4738,12 @@ SRD5E.weaponRules = function(rules, name, category, properties, damage, range) {
     console.log('Bad range "' + range + '" for weapon ' + name);
   }
 
-  if((category + '').match(/^[0-2]$/))
-    ; // empty
-  else if(category.match(/^unarmed$/i))
-    category = 0;
-  else if(category.match(/^simple$/i))
-    category = 1;
-  else if(category.match(/^martial$/i))
-    category = 2;
-
-  var isFinessed = properties.includes('finesse') || properties.includes('Fi');
-  var isRanged = properties.includes('ranged') || properties.includes('R');
-  var is2h = properties.includes('two-handed') || properties.includes('2h');
+  var is2h = properties.includes('Two-Handed');
+  var isFinesse = properties.includes('Finesse');
+  var isRanged = category.match(/ranged/i);
+  var isSimple = category.match(/simple/i);
   var isMonk = name == 'Shortsword' || 
-               (category <= 1 && !is2h &&
-                !(properties.includes('heavy') || properties.includes('He')));
+               (isSimple && !is2h && !properties.includes('Heavy'));
 
   damage = matchInfo[1];
   var weaponName = 'weapons.' + name;
@@ -4740,14 +4757,14 @@ SRD5E.weaponRules = function(rules, name, category, properties, damage, range) {
     'sanityNotes.nonproficientWeaponPenalty.' + name + ':%V attack'
   );
 
-  if(category > 0) {
+  if(name != 'Unarmed') {
     rules.defineRule('sanityNotes.nonproficientWeaponPenalty.' + name,
       weaponName, '?', null,
       'proficiencyBonus', '=', '-source',
       'weaponProficiency.Martial', '^', '0',
       'weaponProficiency.' + name, '^', '0'
     );
-    if(category == 1) {
+    if(isSimple) {
       rules.defineRule('sanityNotes.nonproficientWeaponPenalty.' + name,
         'weaponProficiency.Simple', '^', '0'
       );
@@ -4760,18 +4777,18 @@ SRD5E.weaponRules = function(rules, name, category, properties, damage, range) {
   );
   rules.defineRule('attackBonus.' + name,
     weaponName, '=', '0',
-    isFinessed ? 'betterAttackAdjustment' :
-      isRanged ? 'combatNotes.dexterityAttackAdjustment' :
-                 'combatNotes.strengthAttackAdjustment', '+', null,
+    isFinesse ? 'betterAttackAdjustment' :
+     isRanged ? 'combatNotes.dexterityAttackAdjustment' :
+                'combatNotes.strengthAttackAdjustment', '+', null,
     isRanged ? 'attackBonus.Ranged' : 'attackBonus.Melee', '+', null,
     'weaponProficiencyBonus.' + name, '+', null,
     'weaponAttackAdjustment.' + name, '+', null
   );
   rules.defineRule('damageBonus.' + name,
     weaponName, '=', '0',
-    isFinessed ? 'betterDamageAdjustment' :
-      isRanged ? 'combatNotes.dexterityDamageAdjustment' :
-                 'combatNotes.strengthDamageAdjustment', '+', null,
+    isFinesse ? 'betterDamageAdjustment' :
+     isRanged ? 'combatNotes.dexterityDamageAdjustment' :
+                'combatNotes.strengthDamageAdjustment', '+', null,
     'weaponDamageAdjustment.' + name, '+', null
   );
   if(!range) {
@@ -4783,7 +4800,7 @@ SRD5E.weaponRules = function(rules, name, category, properties, damage, range) {
     'attackBonus.' + name, '=', 'source >= 0 ? "+" + source : source'
   );
   rules.defineRule(weaponName + '.2', weaponName, '=', '"' + damage + '"');
-  if(properties.includes('Ve') || properties.includes('versatile'))
+  if(properties.includes('Versatile'))
     rules.defineRule(weaponName + '.2',
       'shield', '=', 'source == "None" ? SRD5E.VERSATILE_WEAPON_DAMAGE["' + damage + '"] : null'
     );
@@ -5196,7 +5213,7 @@ SRD5E.choiceEditorElements = function(rules, type) {
      [0, 10, 20, 30, 40, 50, 60, 70, 80, 90, 100, 110, 120, 130, 140, 150];
     result.push(
       ['Category', 'Category', 'select-one', ['Simple', 'Martial']],
-      ['Property', 'Property', 'select-one', ['Unarmed', 'Light', 'One-Handed', 'Two-Handed', 'Ranged']],
+      ['Property', 'Property', 'text', [40]],
       ['Damage', 'Damage', 'select-one', QuilvynUtils.getKeys(SRD5E.VERSATILE_WEAPON_DAMAGE)],
       ['Range', 'Range in Feet', 'select-one', zeroToOneFifty]
     );
@@ -5719,13 +5736,12 @@ SRD5E.randomizeOneAttribute = function(attributes, attribute) {
           for(j = choices.length - 1; j >= 0; j--) {
             if(choices[j].match(/^any\s+/i)) {
               type = choices[j].replace(/^any\s+/, '');
-              type = type.match(/simple/i) ? /category=(1|simple)/i :
-                     type.match(/martial/i) ? /category=(2|martial)/i :
-                     type.match(/light/i) ? /light|\bli\b/i :
-                     type.match(/one-handed/i) ? /one-handed|\b1h\b/i :
-                     type.match(/two-handed/i) ? /one-handed|\b2h\b/i :
-                     type.match(/versatile/i) ? /versatile|\bve\b/i :
-                     type.match(/heavy/i) ? /heavy|\bhe\b/i : /./;
+              type = type.match(/simple/i) ? /simple/i :
+                     type.match(/martial/i) ? /martial/i :
+                     type.match(/light/i) ? /light/i :
+                     type.match(/two-handed/i) ? /two-handed/i :
+                     type.match(/versatile/i) ? /versatile/i :
+                     type.match(/heavy/i) ? /heavy/i : /./;
               for(var weapon in weapons) {
                 if(weapons[weapon].match(type))
                   choices.push(weapon);
@@ -5746,15 +5762,8 @@ SRD5E.randomizeOneAttribute = function(attributes, attribute) {
     choices = [];
     for(attr in weapons) {
       var category = QuilvynUtils.getAttrValue(weapons[attr], 'Category');
-      if(category == null)
-        category = 0;
-      else if((category + '').match(/simple/i))
-        category = 1;
-      else if((category + '').match(/martial/i))
-        category = 2;
-      if(category == 0 ||
-         attrs['weaponProficiency.Martial'] ||
-         category == 1 && attrs['weaponProficiency.Simple'] ||
+      if(attrs['weaponProficiency.Martial'] ||
+         category.match(/simple/i) && attrs['weaponProficiency.Simple'] ||
          attrs['weaponProficiency.' + attr]) {
         choices.push(attr);
       }

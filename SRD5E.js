@@ -5211,7 +5211,7 @@ SRD5E.choiceEditorElements = function(rules, type) {
     var zeroToOneFifty =
      [0, 10, 20, 30, 40, 50, 60, 70, 80, 90, 100, 110, 120, 130, 140, 150];
     result.push(
-      ['Category', 'Category', 'select-one', ['Simple', 'Martial']],
+      ['Category', 'Category', 'select-one', ['Unarmed', 'Simple Melee', 'Simple Ranged', 'Martial Melee', 'Martial Ranged']],
       ['Property', 'Property', 'text', [40]],
       ['Damage', 'Damage', 'select-one', QuilvynUtils.getKeys(SRD5E.VERSATILE_WEAPON_DAMAGE)],
       ['Range', 'Range in Feet', 'select-one', zeroToOneFifty]

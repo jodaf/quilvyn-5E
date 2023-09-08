@@ -2786,8 +2786,6 @@ SRD5E.TOOLS = {
 };
 SRD5E.WEAPONS = {
 
-  'Unarmed':'Category="Simple Melee" Damage=d1',
-
   'Club':'Category="Simple Melee" Property=Light Damage=d4',
   'Dagger':
     'Category="Simple Melee" Property=Light,Finesse,Thrown Damage=d4 ' +
@@ -3049,6 +3047,7 @@ SRD5E.combatRules = function(rules, armors, shields, weapons) {
   rules.defineRule
     ('hitPoints', 'combatNotes.constitutionHitPointsAdjustment', '+', null);
   rules.defineRule('initiative', 'dexterityModifier', '=', null);
+  SRD5E.weaponRules(rules, 'Unarmed', 'Unarmed', [], 'd1', null);
   rules.defineRule('weapons.Unarmed', '', '=', '1');
 
   for(var ability in SRD5E.ABILITIES) {
@@ -4721,7 +4720,7 @@ SRD5E.weaponRules = function(rules, name, category, properties, damage, range) {
     return;
   }
   if(typeof category != 'string' ||
-     !category.match(/^(simple|martial) (melee|ranged)$/i)) {
+     !category.match(/^unarmed|((simple|martial) (melee|ranged))$/i)) {
     console.log('Bad category "' + category + '" for weapon ' + name);
     return;
   }
@@ -4742,7 +4741,7 @@ SRD5E.weaponRules = function(rules, name, category, properties, damage, range) {
   var isFinesse = properties.includes('Finesse');
   var isRanged = category.match(/ranged/i);
   var isSimple = category.match(/simple/i);
-  var isMonk = name == 'Shortsword' || 
+  var isMonk = category == 'Unarmed' || name == 'Shortsword' || 
                (isSimple && !is2h && !properties.includes('Heavy'));
 
   damage = matchInfo[1];
@@ -4757,7 +4756,7 @@ SRD5E.weaponRules = function(rules, name, category, properties, damage, range) {
     'sanityNotes.nonproficientWeaponPenalty.' + name + ':%V attack'
   );
 
-  if(name != 'Unarmed') {
+  if(category != 'Unarmed') {
     rules.defineRule('sanityNotes.nonproficientWeaponPenalty.' + name,
       weaponName, '?', null,
       'proficiencyBonus', '=', '-source',

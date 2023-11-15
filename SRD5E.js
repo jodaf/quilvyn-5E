@@ -73,20 +73,21 @@ function SRD5E() {
 SRD5E.VERSION = '2.4.1.0';
 
 /* List of choices that can be expanded by house rules. */
+// Note: Left Goody out of this list for now because inclusion would require
+// documenting how to construct regular expressions.
 SRD5E.CHOICES = [
   'Armor', 'Background', 'Class', 'Deity', 'Feat', 'Feature', 'Language',
-  'Path', 'Race', 'School', 'Shield', 'Skill', 'Spell', 'Tool', 'Weapon'
+  'Race', 'School', 'Shield', 'Skill', 'Spell', 'Tool', 'Weapon'
 ];
 /*
  * List of items handled by randomizeOneAttribute method. The order handles
  * dependencies among attributes when generating random characters.
  */
 SRD5E.RANDOMIZABLE_ATTRIBUTES = [
-  'abilities',
-  'charisma', 'constitution', 'dexterity', 'intelligence', 'strength', 'wisdom',
-  'name', 'race', 'gender', 'alignment', 'background', 'deity', 'levels',
-  'selectableFeatures', 'feats', 'skills', 'languages', 'hitPoints', 'armor',
-  'weapons', 'shield', 'spells', 'tools', 'abilityBoosts'
+  'abilities', 'charisma', 'constitution', 'dexterity', 'intelligence',
+  'strength', 'wisdom', 'name', 'race', 'gender', 'alignment', 'background',
+  'deity', 'levels', 'selectableFeatures', 'feats', 'skills', 'languages',
+  'hitPoints', 'armor', 'shield', 'weapons', 'spells', 'tools', 'abilityBoosts'
 ];
 SRD5E.VIEWERS = ['Collected Notes', 'Compact', 'Standard', 'Stat Block'];
 
@@ -142,10 +143,14 @@ SRD5E.CLASSES = {
       '"1:Skill Proficiency (Choose 2 from Animal Handling, Athletics, Intimidation, Nature, Perception, Survival)",' +
       '"1:Weapon Proficiency (Martial)",' +
       '"1:Unarmored Defense (Barbarian)",1:Rage,"2:Danger Sense",' +
-      '"2:Reckless Attack","5:Extra Attack",' +
+      '"2:Reckless Attack","3:Primal Path","5:Extra Attack",' +
       '"armorWeight < 3 ? 5:Fast Movement",' +
       '"7:Feral Instinct","9:Brutal Critical","11:Relentless Rage",' +
-      '"15:Persistent Rage","18:Indomitable Might","20:Primal Champion" ' +
+      '"15:Persistent Rage","18:Indomitable Might","20:Primal Champion",' +
+      '"features.Path Of The Berserker ? 3:Frenzy",' +
+      '"features.Path Of The Berserker ? 6:Mindless Rage",' +
+      '"features.Path Of The Berserker ? 10:Intimidating Presence",' +
+      '"features.Path Of The Berserker ? 14:Retaliation" ' +
     'Selectables=' +
       '"3:Path Of The Berserker:Primal Path",' +
       '"3:Path Of The Totem Warrior (Bear):Primal Path",' +
@@ -160,24 +165,28 @@ SRD5E.CLASSES = {
       '"1:Tool Proficiency (Choose 3 from any Musical)",' +
       '"1:Weapon Proficiency (Simple/Hand Crossbow/Longsword/Rapier/Shortsword)",' +
       '"1:Bardic Inspiration","1:Ritual Casting",1:Spellcasting,' +
-      '"2:Jack Of All Trades","2:Song Of Rest","3:Bard Expertise",' +
-      '"5:Font Of Inspiration",6:Countercharm,"10:Magical Secrets",' +
-      '"20:Superior Inspiration" ' +
+      '"2:Jack Of All Trades","2:Song Of Rest","3:Bard College",' +
+      '"3:Expertise (Bard)","5:Font Of Inspiration",6:Countercharm,' +
+      '"10:Magical Secrets","20:Superior Inspiration",' +
+      '"features.College Of Lore ? 3:Bonus Proficiencies (College Of Lore)",' +
+      '"features.College Of Lore ? 3:Cutting Words",' +
+      '"features.College Of Lore ? 6:Additional Magical Secrets",' +
+      '"features.College Of Lore ? 14:Peerless Skill" ' +
     'Selectables=' +
       '"3:College Of Lore:Bard College" ' +
     'CasterLevelArcane=levels.Bard ' +
     'SpellAbility=charisma ' +
     'SpellSlots=' +
-      'B0:1=2;4=3;10=4,' +
-      'B1:1=2;2=3;3=4,' +
-      'B2:3=2;4=3,' +
-      'B3:5=2;6=3,' +
-      'B4:7=1;8=2;9=3,' +
-      'B5:9=1;10=2;18=3,' +
-      'B6:11=1;19=2,' +
-      'B7:13=1;20=2,' +
-      'B8:15=1,' +
-      'B9:17=1',
+      'B0:2@1;3@4;4@10,' +
+      'B1:2@1;3@2;4@3,' +
+      'B2:2@3;3@4,' +
+      'B3:2@5;3@6,' +
+      'B4:1@7;2@8;3@9,' +
+      'B5:1@9;2@10;3@18,' +
+      'B6:1@11;2@19,' +
+      'B7:1@13;2@20,' +
+      'B8:1@15,' +
+      'B9:1@17',
   'Cleric':
     'HitDie=d8 ' +
     'Features=' +
@@ -185,23 +194,39 @@ SRD5E.CLASSES = {
       '"1:Save Proficiency (Charisma/Wisdom)",' +
       '"1:Skill Proficiency (Choose 2 from History, Insight, Medicine, Persuasion, Religion)",' +
       '"1:Weapon Proficiency (Simple)",' +
-      '"1:Ritual Casting",1:Spellcasting,"2:Channel Divinity",' +
-      '"2:Turn Undead","5:Destroy Undead","10:Divine Intervention" ' +
+      '"1:Divine Domain","1:Ritual Casting",1:Spellcasting,' +
+      '"2:Channel Divinity","2:Turn Undead","5:Destroy Undead",' +
+      '"10:Divine Intervention",' +
+      '"features.Life Domain ? 1:Bonus Proficiency (Life Domain)",' +
+      '"features.Life Domain ? 1:Disciple Of Life",' +
+      '"features.Life Domain ? 2:Preserve Life",' +
+      '"features.Life Domain ? 6:Blessed Healer",' +
+      '"features.Life Domain ? 8:Divine Strike",' +
+      '"features.Life Domain ? 17:Supreme Healing" ' +
     'Selectables=' +
       '"deityDomains =~ \'Life\' ? 1:Life Domain:Divine Domain" ' +
     'CasterLevelDivine=levels.Cleric ' +
     'SpellAbility=wisdom ' +
     'SpellSlots=' +
-      'C0:1=3;4=4;10=5,' +
-      'C1:1=2;2=3;3=4,' +
-      'C2:3=2;4=3,' +
-      'C3:5=2;6=3,' +
-      'C4:7=1;8=2;9=3,' +
-      'C5:9=1;10=2;18=3,' +
-      'C6:11=1;19=2,' +
-      'C7:13=1;20=2,' +
-      'C8:15=1,' +
-      'C9:17=1',
+      'C0:3@1;4@4;5@10,' +
+      'C1:2@1;3@2;4@3,' +
+      'C2:2@3;3@4,' +
+      'C3:2@5;3@6,' +
+      'C4:1@7;2@8;3@9,' +
+      'C5:1@9;2@10;3@18,' +
+      'C6:1@11;2@19,' +
+      'C7:1@13;2@20,' +
+      'C8:1@15,' +
+      'C9:1@17',
+  /*
+   TODO Domain spells
+    'Life Domain':
+      '"1:Bless,Cure Wounds",' +
+      '"3:Lesser Restoration,Spiritual Weapon",' +
+      '"5:Beacon Of Hope,Revivify",' +
+      '"7:Death Ward,Guardian Of Faith",' +
+      '"9:Mass Cure Wounds,Raise Dead"',
+  */
   'Druid':
     'HitDie=d8 ' +
     'Features=' +
@@ -211,8 +236,53 @@ SRD5E.CLASSES = {
       '"1:Tool Proficiency (Herbalism Kit)",' +
       '"1:Weapon Proficiency (Club/Dagger/Dart/Javelin/Mace/Quarterstaff/Scimitar/Sickle/Sling/Spear)",' +
       '"1:Tool Proficiency (Herbalism Kit)",' +
-      '1:Druidic,"1:Ritual Casting",1:Spellcasting,"2:Wild Shape",' +
-      '"18:Timeless Body (Druid)","18:Beast Spells",20:Archdruid ' +
+      '1:Druidic,"1:Ritual Casting",1:Spellcasting,"2:Druid Circle",' +
+      '"2:Wild Shape","18:Timeless Body (Druid)","18:Beast Spells",' +
+      '20:Archdruid,' +
+      '"features.Circle Of The Land ? 2:Bonus Cantrip (Druid)",' +
+      '"features.Circle Of The Land ? 2:Natural Recovery",' +
+      '"features.Circle Of The Land ? 3:Circle Spells",' +
+      '"features.Circle Of The Land ? 6:Land\'s Stride",' +
+      '"features.Circle Of The Land ? 10:Nature\'s Ward",' +
+      '"features.Circle Of The Land ? 14:Nature\'s Sanctuary" ' +
+/*
+  TODO Circle Spells feature spells:
+  'Circle Of The Land (Arctic)':
+      '"3:Hold Person,Spike Growth",' +
+      '"5:Sleet Storm,Slow",' +
+      '"7:Freedom Of Movement,Ice Storm",' +
+      '"9:Commune With Nature,Cone Of Cold"',
+  'Circle Of The Land (Coast)':
+      '"3:Mirror Image,Misty Step",' +
+      '"5:Water Breathing,Water Walk",' +
+      '"7:Control Water,Freedom Of Movement",' +
+      '"9:Conjure Elemental,Scrying"',
+  'Circle Of The Land (Desert)':
+      '"3:Blur,Silence",' +
+      '"5:Create Food And Water,Protection From Energy",' +
+      '"7:Blight,Hallucinatory Terrain",' +
+      '"9:Insect Plague,Wall Of Stone"',
+  'Circle Of The Land (Forest)':
+      '"3:Barkskin,Spider Climb",' +
+      '"5:Call Lightning,Plant Growth",' +
+      '"7:Divination,Freedom Of Movement",' +
+      '"9:Commune With Nature,Tree Stride"',
+  'Circle Of The Land (Grassland)':
+      '"3:Invisibility,Pass Without Trace",' +
+      '"5:Daylight,Haste",' +
+      '"7:Divination,Freedom Of Movement",' +
+      '"9:Dream,Insect Plague"',
+  'Circle Of The Land (Mountain)':
+      '"3:Spider Climb,Spike Growth",' +
+      '"5:Lightning Bolt,Meld Into Stone",' +
+      '"7:Stone Shape,Stoneskin",' +
+      '"9:Passwall,Wall Of Stone"',
+  'Circle Of The Land (Swamp)':
+      '"3:Acid Arrow,Darkness",' +
+      '"5:Water Walk,Stinking Cloud",' +
+      '"7:Freedom Of Movement,Locate Creature",' +
+      '"9:Insect Plague,Scrying"',
+*/
     'Selectables=' +
       '"2:Circle Of The Land (Arctic):Druid Circle",' +
       '"2:Circle Of The Land (Coast):Druid Circle",' +
@@ -224,24 +294,30 @@ SRD5E.CLASSES = {
     'CasterLevelDivine=levels.Druid ' +
     'SpellAbility=wisdom ' +
     'SpellSlots=' +
-      'D0:1=2;4=3;10=4,' +
-      'D1:1=2;2=3;3=4,' +
-      'D2:3=2;4=3,' +
-      'D3:5=2;6=3,' +
-      'D4:7=1;8=2;9=3,' +
-      'D5:9=1;10=2;18=3,' +
-      'D6:11=1;19=2,' +
-      'D7:13=1;20=2,' +
-      'D8:15=1,' +
-      'D9:17=1',
-  'Fighter':
+      'D0:2@1;3@4;4@10,' +
+      'D1:2@1;3@2;4@3,' +
+      'D2:2@3;3@4,' +
+      'D3:2@5;3@6,' +
+      'D4:1@7;2@8;3@9,' +
+      'D5:1@9;2@10;3@18,' +
+      'D6:1@11;2@19,' +
+      'D7:1@13;2@20,' +
+      'D8:1@15,' +
+      'D9:1@17',
+ 'Fighter':
     'HitDie=d10 ' +
     'Features=' +
       '"1:Armor Proficiency (Heavy/Shield)",' +
       '"1:Save Proficiency (Constitution/Strength)",' +
       '"1:Skill Proficiency (Choose 2 from Acrobatics, Animal Handling, Athletics, History, Insight, Intimidation, Perception, Survival)",' +
       '"1:Weapon Proficiency (Martial)",' +
-      '"1:Second Wind","2:Action Surge","5:Extra Attack",9:Indomitable ' +
+      '"1:Fighting Style","1:Second Wind","2:Action Surge",' +
+      '"3:Martial Archetype","5:Extra Attack",9:Indomitable,' +
+      '"features.Champion ? 3:Improved Critical",' +
+      '"features.Champion ? 7:Remarkable Athlete",' +
+      '"features.Champion ? 10:Additional Fighting Style",' +
+      '"features.Champion ? 15:Superior Critical",' +
+      '"features.Champion ? 18:Survivor" ' +
     'Selectables=' +
       '"1:Fighting Style (Archery):Fighting Style",' +
       '"1:Fighting Style (Defense):Fighting Style",' +
@@ -259,11 +335,15 @@ SRD5E.CLASSES = {
       '"1:Weapon Proficiency (Simple/Shortsword)",' +
       '"1:Martial Arts","1:Unarmored Defense (Monk)","2:Flurry Of Blows",' +
       '"2:Ki","2:Patient Defense","2:Step Of The Wind",' +
-      '"2:Unarmored Movement","3:Deflect Missiles","4:Slow Fall",' +
-      '"5:Extra Attack","5:Stunning Strike","6:Ki-Empowered Strikes",' +
-      '7:Evasion,"7:Stillness Of Mind","9:Improved Unarmored Movement",' +
+      '"2:Unarmored Movement","3:Deflect Missiles","3:Monastic Tradition",' +
+      '"4:Slow Fall","5:Extra Attack","5:Stunning Strike",' +
+      '"6:Ki-Empowered Strikes",7:Evasion,"7:Stillness Of Mind",' +
       '"10:Purity Of Body","13:Tongue Of The Sun And Moon","14:Diamond Soul",' +
-      '"15:Timeless Body (Monk)","18:Empty Body","20:Perfect Self" ' +
+      '"15:Timeless Body (Monk)","18:Empty Body","20:Perfect Self",' +
+      '"features.Way Of The Open Hand ? 3:Open Hand Technique",' +
+      '"features.Way Of The Open Hand ? 6:Wholeness Of Body",' +
+      '"features.Way Of The Open Hand ? 11:Tranquility",' +
+      '"features.Way Of The Open Hand ? 17:Quivering Palm" ' +
     'Selectables=' +
       '"3:Way Of The Open Hand:Monastic Tradition"',
   'Paladin':
@@ -273,10 +353,15 @@ SRD5E.CLASSES = {
       '"1:Save Proficiency (Charisma/Wisdom)",' +
       '"1:Skill Proficiency (Choose 2 from Athletics, Insight, Intimidation, Medicine, Persuasion, Religion)",' +
       '"1:Weapon Proficiency (Martial)",' +
-      '"1:Divine Sense","1:Lay On Hands","2:Divine Smite",2:Spellcasting,' +
-      '"3:Channel Divinity","3:Divine Health","5:Extra Attack",' +
-      '"6:Aura Of Protection","10:Aura Of Courage",' +
-      '"11:Improved Divine Smite","14:Cleansing Touch" ' +
+      '"1:Divine Sense","1:Lay On Hands","2:Divine Smite","2:Fighting Style",' +
+      '2:Spellcasting,"3:Channel Divinity","3:Divine Health","3:Sacred Oath",' +
+      '"5:Extra Attack","6:Aura Of Protection","10:Aura Of Courage",' +
+      '"11:Improved Divine Smite","14:Cleansing Touch",' +
+      '"features.Oath Of Devotion ? 3:Sacred Weapon",' +
+      '"features.Oath Of Devotion ? 3:Turn The Unholy",' +
+      '"features.Oath Of Devotion ? 7:Aura Of Devotion",' +
+      '"features.Oath Of Devotion ? 15:Purity Of Spirit",' +
+      '"features.Oath Of Devotion ? 20:Holy Nimbus" ' +
     'Selectables=' +
       '"2:Fighting Style (Defense):Fighting Style",' +
       '"2:Fighting Style (Dueling):Fighting Style",' +
@@ -286,11 +371,21 @@ SRD5E.CLASSES = {
     'CasterLevelDivine=levels.Paladin ' +
     'SpellAbility=charisma ' +
     'SpellSlots=' +
-      'P1:2=2;3=3;5=4,' +
-      'P2:5=2;7=3,' +
-      'P3:9=2;11=3,' +
-      'P4:13=1;15=2;17=3,' +
-      'P5:17=1;19=2',
+      'P1:2@2;3@3;4@5,' +
+      'P2:2@5;3@7,' +
+      'P3:2@9;3@11,' +
+      'P4:1@13;2@15;3@17,' +
+      'P5:1@17;2@19',
+  /*
+   TODO Oath spells
+  'Oath Of Devotion':
+    'Spells=' +
+      '"3:Protection From Evil And Good,Sanctuary",' +
+      '"5:Lesser Restoration,Zone Of Truth",' +
+      '"9:Beacon Of Hope,Dispel Magic",' +
+      '"13:Freedom Of Movement,Guardian Of Faith",' +
+      '"17:Commune,Flame Strike"',
+  */
   'Ranger':
     'HitDie=d10 ' +
     'Features=' +
@@ -298,35 +393,35 @@ SRD5E.CLASSES = {
       '"1:Save Proficiency (Dexterity/Strength)",' +
       '"1:Skill Proficiency (Choose 3 from Animal Handling, Athletics, Insight, Investigation, Nature, Perception, Stealth, Survival)",' +
       '"1:Weapon Proficiency (Martial)",' +
-      '"1:Favored Enemy","1:Natural Explorer",2:Spellcasting,' +
-      '"3:Primeval Awareness","5:Extra Attack","8:Land\'s Stride",' +
-      '"10:Hide In Plain Sight","14:Vanish","18:Feral Senses",' +
-      '"20:Foe Slayer" ' +
+      '"1:Favored Enemy","1:Natural Explorer","1:Fighting Style",' +
+      '2:Spellcasting,"3:Primeval Awareness","3:Ranger Archetype",' +
+      '"5:Extra Attack","8:Land\'s Stride","10:Hide In Plain Sight",' +
+      '"14:Vanish","18:Feral Senses","20:Foe Slayer" ' +
     'Selectables=' +
       '"2:Fighting Style (Archery):Fighting Style",' +
       '"2:Fighting Style (Defense):Fighting Style",' +
       '"2:Fighting Style (Dueling):Fighting Style",' +
       '"2:Fighting Style (Two-Weapon Fighting):Fighting Style",' +
       '"3:Hunter:Ranger Archetype",' +
-      '"3:Colossus Slayer:Hunter Technique",' +
-      '"3:Giant Killer:Hunter Technique",' +
-      '"3:Horde Breaker:Hunter Technique",' +
-      '"7:Escape The Horde:Hunter Technique",' +
-      '"7:Multiattack Defense:Hunter Technique",' +
-      '"7:Steel Will:Hunter Technique",' +
-      '"11:Volley:Hunter Technique",' +
-      '"11:Whirlwind Attack:Hunter Technique",' +
-      '"15:Evasion:Hunter Technique",' +
-      '"15:Stand Against The Tide:Hunter Technique",' +
-      '"15:Uncanny Dodge:Hunter Technique" ' +
+      '"features.Hunter ? 3:Colossus Slayer:Hunter\'s Prey",' +
+      '"features.Hunter ? 3:Giant Killer:Hunter\'s Prey",' +
+      '"features.Hunter ? 3:Horde Breaker:Hunter\'s Prey",' +
+      '"features.Hunter ? 7:Escape The Horde:Defensive Tactics",' +
+      '"features.Hunter ? 7:Multiattack Defense:Defensive Tactics",' +
+      '"features.Hunter ? 7:Steel Will:Defensive Tactics",' +
+      '"features.Hunter ? 11:Volley:Multiattack",' +
+      '"features.Hunter ? 11:Whirlwind Attack:Multiattack",' +
+      '"features.Hunter ? 15:Evasion:Superior Hunter\'s Defense",' +
+      '"features.Hunter ? 15:Stand Against The Tide:Superior Hunter\'s Defense",' +
+      '"features.Hunter ? 15:Uncanny Dodge:Superior Hunter\'s Defense" ' +
     'CasterLevelDivine=levels.Ranger ' +
     'SpellAbility=wisdom ' +
     'SpellSlots=' +
-      'R1:2=2;3=3;5=4,' +
-      'R2:5=2;7=3,' +
-      'R3:9=2;11=3,' +
-      'R4:13=1;15=2;17=3,' +
-      'R5:17=1;19=2',
+      'R1:2@2;3@3;4@5,' +
+      'R2:2@5;3@7,' +
+      'R3:2@9;3@11,' +
+      'R4:1@13;2@15;3@17,' +
+      'R5:1@17;2@19',
   'Rogue':
     'HitDie=d8 ' +
     'Features=' +
@@ -336,9 +431,15 @@ SRD5E.CLASSES = {
       '"1:Tool Proficiency (Thieves\' Tools)",' +
       '"1:Weapon Proficiency (Simple/Hand Crossbow/Longsword/Rapier/Shortsword)",' +
       '"1:Tool Proficiency (Thieves\' Tools)",' +
-      '"1:Rogue Expertise","1:Sneak Attack","1:Thieves\' Cant",' +
-      '"2:Cunning Action","5:Uncanny Dodge",7:Evasion,"11:Reliable Talent",' +
-      '14:Blindsense,"15:Slippery Mind",18:Elusive,"20:Stroke Of Luck" ' +
+      '"1:Expertise (Rogue)","1:Sneak Attack","1:Thieves\' Cant",' +
+      '"2:Cunning Action","3:Roguish Archetype","5:Uncanny Dodge",7:Evasion,' +
+      '"11:Reliable Talent",14:Blindsense,"15:Slippery Mind",18:Elusive,' +
+      '"20:Stroke Of Luck",' +
+      '"features.Thief ? 3:Fast Hands",' +
+      '"features.Thief ? 3:Second-Story Work",' +
+      '"features.Thief ? 9:Supreme Sneak",' +
+      '"features.Thief ? 13:Use Magic Device",' +
+      '"features.Thief ? 17:Thief\'s Reflexes" ' +
     'Selectables=' +
       '"3:Thief:Roguish Archetype"',
   'Sorcerer':
@@ -460,7 +561,7 @@ SRD5E.FEATURES = {
     'Section=combat ' +
     'Note="May take an extra action %{levels.Fighter<17?1:2}/short rest"',
   'Additional Fighting Style':
-    'Section=combat Note="May select a second Fighting Style"',
+    'Section=feature Note="May select a second Fighting Style"',
   'Additional Magical Secrets':
     'Section=magic Note="May learn 2 additional spells from any class"',
   'Agonizing Blast':
@@ -483,9 +584,7 @@ SRD5E.FEATURES = {
   'Aura Of Protection':
     'Section=save ' +
     'Note="R%{levels.Paladin<18?10:30}\' Self and allies +%{charismaModifier>?1} all saves"',
-  'Bard Expertise':
-    'Section=skill ' +
-    'Note="Dbl proficiency on %{levels.Bard<10?2:4} chosen skills"',
+  'Bard College':'Section=feature Note="1 selection"',
   'Bardic Inspiration':
     'Section=feature ' +
     'Note="R60\' May give an ally a +1d%V bonus to an ability, attack, or saving throw w/in 10 min %{charismaModifier>?1}/%1 rest"',
@@ -503,6 +602,12 @@ SRD5E.FEATURES = {
   'Blindsense':
     'Section=skill ' +
     'Note="R10\' Knows location of hidden and invisible creatures"',
+  'Bonus Cantrip (Druid)':
+    'Section=magic Note="Knows an additional Druid cantrip"',
+  'Bonus Proficiencies (College Of Lore)':
+    'Section=skill Note="Skill Proficiency (Choose 3 from any)"',
+  'Bonus Proficiency (Life Domain)':
+    'Section=combat Note="Armor Proficiency (Heavy)"',
   'Book Of Ancient Secrets':
     'Section=magic ' +
     'Note="May inscribe spell rituals in a <i>Book Of Shadows</i>"',
@@ -539,6 +644,7 @@ SRD5E.FEATURES = {
     'Section=feature ' +
     'Note="May add 1d10 to an ability or save roll 1/short rest"',
   "Devil's Sight":'Section=feature Note="R120\' Sees normally in darkness"',
+  'Defensive Tactics':'Section=feature Note="1 selection"',
   'Deflect Missiles':
     'Section=combat ' +
     'Note="May use Reaction to reduce missile damage by 1d10+%{levels.Monk+dexterityModifier}"',
@@ -554,6 +660,7 @@ SRD5E.FEATURES = {
   'Distant Spell':
     'Section=magic ' +
     'Note="May spend 1 Sorcery Point to dbl spell range or to touch at 30\'"',
+  'Divine Domain':'Section=feature Note="1 selection"',
   'Divine Health':'Section=save Note="Immune to disease"',
   'Divine Intervention':
     'Section=magic Note="%{levels.Cleric<20?levels.Cleric:100}% chance to gain help from deity 1/wk"',
@@ -577,8 +684,7 @@ SRD5E.FEATURES = {
   'Dreadful Word':
     'Section=magic ' +
     'Note="May use a Warlock spell slot to cast <i>Confusion</i> 1/long rest"',
-  'Druid Bonus Cantrip':
-    'Section=magic Note="Knows an additional Druid cantrip"',
+  'Druid Circle':'Section=feature Note="1 selection"',
   'Druidic':
     'Section=skill Note="Speaks a secret language known only by druids"',
   'Eldritch Invocations':'Section=magic Note="%V selections"',
@@ -606,6 +712,12 @@ SRD5E.FEATURES = {
   'Evocation Savant':
     'Section=magic ' +
     'Note="May copy evocation spells into spellbook for half cost"',
+  'Expertise (Bard)':
+    'Section=skill ' +
+    'Note="Dbl proficiency on %{levels.Bard<10?2:4} chosen skills"',
+  'Expertise (Rogue)':
+    'Section=skill ' +
+    'Note="Dbl proficiency on %{levels.Rogue<6?2:4} chosen skills or Thieves\' Tools"',
   'Extended Spell':
     'Section=magic Note="May spend 1 Sorcery Point to gain dbl spell duration"',
   'Extra Attack':'Section=combat Note="+%V Attacks Per Round"',
@@ -628,6 +740,7 @@ SRD5E.FEATURES = {
     'Note="May gain resistance to chosen damage type from non-magical and non-silver weapons until next short rest"',
   'Fiendish Vigor':
     'Section=magic Note="May cast <i>False Life</i> on self at will"',
+  'Fighting Style':'Section=feature Note="%V selections"',
   'Fighting Style (Archery)':'Section=combat Note="+2 ranged attacks"',
   'Fighting Style (Defense)':'Section=combat Note="+1 AC in armor"',
   'Fighting Style (Dueling)':
@@ -672,13 +785,12 @@ SRD5E.FEATURES = {
   'Horde Breaker':
     'Section=combat ' +
     'Note="May make a second attack on a different adjacent foe"',
+  "Hunter's Prey":'Section=feature Note="1 selection"',
   'Hurl Through Hell':
     'Section=combat ' +
     'Note="May inflict 10d10 HP psychic on a struck foe 1/long rest"',
   'Improved Critical':'Section=combat Note="Crits on a natural 19"',
   'Improved Divine Smite':'Section=combat Note="+1d8 HP radiant melee damage"',
-  'Improved Unarmored Movement':
-    'Section=ability Note="May move across vertical surfaces and liquids"',
   'Indomitable Might':
     'Section=ability Note="Minimum %{strength} on Strength checks"',
   'Indomitable':
@@ -700,18 +812,16 @@ SRD5E.FEATURES = {
   'Lay On Hands':
     'Section=magic ' +
     'Note="May heal %{levels.Paladin*5} HP/long rest; may use 5 HP worth to cure disease or poison"',
-  'Life Bonus Proficiency':'Section=combat Note="Armor Proficiency (Heavy)"',
   'Lifedrinker':
     'Section=combat ' +
     'Note="Pact weapon inflicts +%{charismaModifier>?1} HP necrotic"',
-  'Lore Bonus Proficiencies':
-    'Section=skill Note="Skill Proficiency (Choose 3 from any)"',
   'Magical Secrets':
     'Section=magic ' +
     'Note="May learn %{(levels.Bard-6)//4*2} additional spells from any class"',
   'Martial Arts':
     'Section=combat ' +
     'Note="When unarmored, gains +%1 attack and damage with monk weapons, raises damage die to 1d%V, and may make a bonus unarmed strike after a monk weapon attack"',
+  'Martial Archetype':'Section=feature Note="1 selection"',
   'Mask Of Many Faces':
     'Section=magic Note="May cast <i>Disguise Self</i> at will"',
   'Master Of Myriad Forms':
@@ -724,6 +834,8 @@ SRD5E.FEATURES = {
     'Section=magic ' +
     'Note="May use a Warlock spell slot to cast <i>Slow</i> 1/long rest"',
   'Misty Visions':'Section=magic Note="May cast <i>Silent Image</i> at will"',
+  'Monastic Tradition':'Section=feature Note="1 selection"',
+  'Multiattack':'Section=feature Note="1 selection"',
   'Multiattack Defense':
     'Section=combat Note="+4 AC on additional foe attacks after a hit"',
   'Mystic Arcanum':
@@ -776,6 +888,7 @@ SRD5E.FEATURES = {
     'Section=magic ' +
     'Note="R30\' May use Channel Divinity to restore %{levels.Cleric*5} HP among targets, up to half max HP each"',
   'Primal Champion':'Section=ability Note="+4 Strength/+4 Constitution"',
+  'Primal Path':'Section=feature Note="1 selection"',
   'Primeval Awareness':
     'Section=magic ' +
     'Note="May use a spell slot to sense creatures in a 1 mile radius (favored terrain 6 mile radius) for 1 min/spell level"',
@@ -797,6 +910,7 @@ SRD5E.FEATURES = {
       '"Rage advantages for 1 min %{levels.Barbarian<3?2:levels.Barbarian<6?3:levels.Barbarian<12?4:levels.Bararian<17?5:levels.Barbarian<20?6:\'unlimited\'}/long rest (heavy armor neg)",' +
       '"Cannot cast or concentrate during rage",' +
        '"Adv on Strength saves and resistance to bludgeoning, piercing, and slashing damage"',
+  'Ranger Archetype':'Section=feature Note="1 selection"',
   'Reckless Attack':
     'Section=combat ' +
     'Note="Adv on Strength melee attacks; foes gain Adv on all attacks"',
@@ -816,9 +930,8 @@ SRD5E.FEATURES = {
     'Section=combat ' +
     'Note="May use Reaction to make a melee attack after taking damage"',
   'Ritual Casting':'Section=magic Note="May cast a known spell using a ritual"',
-  'Rogue Expertise':
-    'Section=skill ' +
-    'Note="Dbl proficiency on %{levels.Rogue<6?2:4} chosen skills or Thieves\' Tools"',
+  'Roguish Archetype':'Section=feature Note="1 selection"',
+  'Sacred Oath':'Section=feature Note="1 selection"',
   'Sacred Weapon':
     'Section=combat ' +
     'Note="May use Channel Divinity to give weapon +%{charismaModifier>?1} attack and 20\' light for 1 min"',
@@ -874,6 +987,7 @@ SRD5E.FEATURES = {
     'Section=magic ' +
     'Note="May spend 1 Sorcery Point to cast w/out somatic or verbal components"',
   'Superior Critical':'Section=combat Note="Crits on a natural 18"',
+  "Superior Hunter's Defense":'Section=feature Note="1 selection"',
   'Superior Inspiration':
     'Section=combat ' +
     'Note="Has a minimum 1 Bardic Inspiration available after initiative"',
@@ -915,7 +1029,10 @@ SRD5E.FEATURES = {
   'Unarmored Defense (Monk)':
     'Section=combat Note="+%{wisdomModifier} AC in no armor"',
   'Unarmored Movement':
-    'Section=ability Note="+%{(levels.Monk+6)//4*5} speed in no armor"',
+    'Section=ability,ability ' +
+    'Note=' +
+      '"+%{(levels.Monk+6)//4*5} speed in no armor",' +
+      '"May move across vertical surfaces and liquids"',
   'Uncanny Dodge':'Section=combat Note="May use Reaction for half damage"',
   'Use Magic Device':
     'Section=skill Note="May use otherwise restricted magic devices"',
@@ -1188,130 +1305,12 @@ SRD5E.LANGUAGES = {
   'Undercommon':''
 };
 SRD5E.PATHS = {
-  'Champion':
-    'Group=Fighter ' +
-    'Level=levels.Fighter ' +
-    'Features=' +
-      '"3:Improved Critical","7:Remarkable Athlete","7:Remarkable Athlete",' +
-      '"10:Additional Fighting Style","15:Superior Critical",18:Survivor',
-  'Circle Of The Land (Arctic)':
-    'Group=Druid ' +
-    'Level=levels.Druid ' +
-    'Features=' +
-      '"2:Druid Bonus Cantrip","2:Natural Recovery","6:Land\'s Stride",' +
-      '"10:Nature\'s Ward","14:Nature\'s Sanctuary" ' +
-    'Spells=' +
-      '"3:Hold Person,Spike Growth",' +
-      '"5:Sleet Storm,Slow",' +
-      '"7:Freedom Of Movement,Ice Storm",' +
-      '"9:Commune With Nature,Cone Of Cold"',
-  'Circle Of The Land (Coast)':
-    'Group=Druid ' +
-    'Level=levels.Druid ' +
-    'Features=' +
-      '"2:Druid Bonus Cantrip","2:Natural Recovery","6:Land\'s Stride",' +
-      '"10:Nature\'s Ward","14:Nature\'s Sanctuary" ' +
-    'Spells=' +
-      '"3:Mirror Image,Misty Step",' +
-      '"5:Water Breathing,Water Walk",' +
-      '"7:Control Water,Freedom Of Movement",' +
-      '"9:Conjure Elemental,Scrying"',
-  'Circle Of The Land (Desert)':
-    'Group=Druid ' +
-    'Level=levels.Druid ' +
-    'Features=' +
-      '"2:Druid Bonus Cantrip","2:Natural Recovery","6:Land\'s Stride",' +
-      '"10:Nature\'s Ward","14:Nature\'s Sanctuary" ' +
-    'Spells=' +
-      '"3:Blur,Silence",' +
-      '"5:Create Food And Water,Protection From Energy",' +
-      '"7:Blight,Hallucinatory Terrain",' +
-      '"9:Insect Plague,Wall Of Stone"',
-  'Circle Of The Land (Forest)':
-    'Group=Druid ' +
-    'Level=levels.Druid ' +
-    'Features=' +
-      '"2:Druid Bonus Cantrip","2:Natural Recovery","6:Land\'s Stride",' +
-      '"10:Nature\'s Ward","14:Nature\'s Sanctuary" ' +
-    'Spells=' +
-      '"3:Barkskin,Spider Climb",' +
-      '"5:Call Lightning,Plant Growth",' +
-      '"7:Divination,Freedom Of Movement",' +
-      '"9:Commune With Nature,Tree Stride"',
-  'Circle Of The Land (Grassland)':
-    'Group=Druid ' +
-    'Level=levels.Druid ' +
-    'Features=' +
-      '"2:Druid Bonus Cantrip","2:Natural Recovery","6:Land\'s Stride",' +
-      '"10:Nature\'s Ward","14:Nature\'s Sanctuary" ' +
-    'Spells=' +
-      '"3:Invisibility,Pass Without Trace",' +
-      '"5:Daylight,Haste",' +
-      '"7:Divination,Freedom Of Movement",' +
-      '"9:Dream,Insect Plague"',
-  'Circle Of The Land (Mountain)':
-    'Group=Druid ' +
-    'Level=levels.Druid ' +
-    'Features=' +
-      '"2:Druid Bonus Cantrip","2:Natural Recovery","6:Land\'s Stride",' +
-      '"10:Nature\'s Ward","14:Nature\'s Sanctuary" ' +
-    'Spells=' +
-      '"3:Spider Climb,Spike Growth",' +
-      '"5:Lightning Bolt,Meld Into Stone",' +
-      '"7:Stone Shape,Stoneskin",' +
-      '"9:Passwall,Wall Of Stone"',
-  'Circle Of The Land (Swamp)':
-    'Group=Druid ' +
-    'Level=levels.Druid ' +
-    'Features=' +
-      '"2:Druid Bonus Cantrip","2:Natural Recovery","6:Land\'s Stride",' +
-      '"10:Nature\'s Ward","14:Nature\'s Sanctuary" ' +
-    'Spells=' +
-      '"3:Acid Arrow,Darkness",' +
-      '"5:Water Walk,Stinking Cloud",' +
-      '"7:Freedom Of Movement,Locate Creature",' +
-      '"9:Insect Plague,Scrying"',
-  'College Of Lore':
-    'Group=Bard ' +
-    'Level=levels.Bard ' +
-    'Features=' +
-      '"3:Cutting Words","3:Lore Bonus Proficiencies",' +
-      '"6:Additional Magical Secrets","14:Peerless Skill"',
   'Draconic Bloodline':
     'Group=Sorcerer ' +
     'Level=levels.Sorcerer ' +
     'Features=' +
       '"1:Draconic Resilience","1:Dragon Ancestor","6:Elemental Affinity",' +
       '"14:Dragon Wings","18:Draconic Presence"',
-  'Life Domain':
-    'Group=Cleric ' +
-    'Level=levels.Cleric ' +
-    'Features=' +
-      '"1:Disciple Of Life","1:Life Bonus Proficiency","2:Preserve Life",' +
-      '"6:Blessed Healer","8:Divine Strike","17:Supreme Healing" ' +
-    'Spells=' +
-      '"1:Bless,Cure Wounds",' +
-      '"3:Lesser Restoration,Spiritual Weapon",' +
-      '"5:Beacon Of Hope,Revivify",' +
-      '"7:Death Ward,Guardian Of Faith",' +
-      '"9:Mass Cure Wounds,Raise Dead"',
-  'Oath Of Devotion':
-    'Group=Paladin ' +
-    'Level=levels.Paladin ' +
-    'Features=' +
-      '"3:Sacred Weapon","3:Turn The Unholy","7:Aura Of Devotion",' +
-      '"15:Purity Of Spirit","20:Holy Nimbus" ' +
-    'Spells=' +
-      '"3:Protection From Evil And Good,Sanctuary",' +
-      '"5:Lesser Restoration,Zone Of Truth",' +
-      '"9:Beacon Of Hope,Dispel Magic",' +
-      '"13:Freedom Of Movement,Guardian Of Faith",' +
-      '"17:Commune,Flame Strike"',
-  'Path Of The Berserker':
-    'Group=Barbarian ' +
-    'Level=levels.Barbarian ' +
-    'Features=' +
-      '3:Frenzy,"6:Mindless Rage","10:Intimidating Presence",14:Retaliation',
   'School Of Evocation':
     'Group=Wizard ' +
     'Level=levels.Wizard ' +
@@ -1323,19 +1322,7 @@ SRD5E.PATHS = {
     'Level=levels.Warlock ' +
     'Features=' +
       '"1:Dark One\'s Blessing","6:Dark One\'s Own Luck",' +
-      '"10:Fiendish Resilience","14:Hurl Through Hell"',
-  'Thief':
-    'Group=Rogue ' +
-    'Level=levels.Rogue ' +
-    'Features=' +
-      '"3:Fast Hands","3:Second-Story Work","9:Supreme Sneak",' +
-      '"13:Use Magic Device","17:Thief\'s Reflexes"',
-  'Way Of The Open Hand':
-    'Group=Monk ' +
-    'Level=levels.Monk ' +
-    'Features=' +
-      '"3:Open Hand Technique","6:Wholeness Of Body",11:Tranquility,' +
-      '"17:Quivering Palm"'
+      '"10:Fiendish Resilience","14:Hurl Through Hell"'
 };
 SRD5E.RACES = {
   'Dragonborn':
@@ -3332,7 +3319,7 @@ SRD5E.choiceRules = function(rules, type, name, attrs) {
     );
   else if(type == 'Language')
     SRD5E.languageRules(rules, name);
-  else if(type == 'Path') {
+  else if(type == 'Path')
     SRD5E.pathRules(rules, name,
       QuilvynUtils.getAttrValue(attrs, 'Group'),
       QuilvynUtils.getAttrValue(attrs, 'Level'),
@@ -3342,8 +3329,7 @@ SRD5E.choiceRules = function(rules, type, name, attrs) {
       QuilvynUtils.getAttrValueArray(attrs, 'SpellSlots'),
       QuilvynUtils.getAttrValueArray(attrs, 'Spells')
     );
-    SRD5E.pathRulesExtra(rules, name);
-  } else if(type == 'Race') {
+  else if(type == 'Race') {
     SRD5E.raceRules(rules, name,
       QuilvynUtils.getAttrValueArray(attrs, 'Require'),
       QuilvynUtils.getAttrValueArray(attrs, 'Features'),
@@ -3403,7 +3389,6 @@ SRD5E.choiceRules = function(rules, type, name, attrs) {
   }
   if(type != 'Feature' && type != 'Path' && type != 'Spell') {
     type = type == 'Class' ? 'levels' :
-    type = type == 'Deity' ? 'deities' :
     (type.charAt(0).toLowerCase() + type.substring(1).replaceAll(' ', '') + 's');
     rules.addChoice(type, name, attrs);
   }
@@ -3436,7 +3421,7 @@ SRD5E.armorRules = function(rules, name, ac, bulky, maxDex, minStr, weight) {
     return;
   }
   if(bulky != null && typeof bulky != 'boolean') {
-    console.log('Bad bulky "' + bulky + '" for skill ' + name);
+    console.log('Bad bulky "' + bulky + '" for armor ' + name);
   }
   if(typeof maxDex != 'number') {
     console.log('Bad max dex "' + maxDex + '" for armor ' + name);
@@ -3447,14 +3432,12 @@ SRD5E.armorRules = function(rules, name, ac, bulky, maxDex, minStr, weight) {
     return;
   }
   if(weight == null ||
-     !(weight + '').match(/^([0-3]|none|light|medium|heavy)$/i)) {
+     !(weight + '').match(/^(none|light|medium|heavy)$/i)) {
     console.log('Bad weight "' + weight + '" for armor ' + name);
     return;
   }
 
-  if((weight + '').match(/^[0-3]$/))
-    ; // empty
-  else if(weight.match(/^none$/i))
+  if(weight.match(/^none$/i))
     weight = 0;
   else if(weight.match(/^light$/i))
     weight = 1;
@@ -3679,7 +3662,7 @@ SRD5E.classRulesExtra = function(rules, name) {
       'constitutionModifier', '=', null
     );
     rules.defineRule('selectableFeatureCount.Barbarian (Primal Path)',
-      classLevel, '=', 'source<3 ? null : 1'
+      'featureNotes.primalPath', '=', '1'
     );
     rules.defineRule('speed', 'abilityNotes.fastMovement', '+', '10');
 
@@ -3695,7 +3678,7 @@ SRD5E.classRulesExtra = function(rules, name) {
       'featureNotes.fontOfInspiration', '=', '"short"'
     );
     rules.defineRule('selectableFeatureCount.Bard (Bard College)',
-      classLevel, '=', 'source<3 ? null : 1'
+      'featureNotes.bardCollege', '=', '1'
     );
     // Magical Secrets feature allows choosing non-Bard spells; here we set the
     // caster level and modifier for any variable effects. Note inclusion of
@@ -3724,8 +3707,15 @@ SRD5E.classRulesExtra = function(rules, name) {
       'wisdomModifier', '=', 'source + 8',
       'proficiencyBonus', '+', null
     );
+    rules.defineRule('selectableFeatureCount.Cleric (Divine Domain)',
+      'featureNotes.divineDomain', '=', '1'
+    );
     rules.defineRule
-      ('selectableFeatureCount.Cleric (Divine Domain)', classLevel, '=', '1');
+      ('combatNotes.divineStrike', classLevel, '=', 'source<14 ? 1 : 2');
+    rules.defineRule('combatNotes.divineStrike.1',
+      'features.Divine Strike', '?', null,
+      classLevel, '=', '"radiant"'
+    );
 
   } else if(name == 'Druid') {
 
@@ -3742,7 +3732,7 @@ SRD5E.classRulesExtra = function(rules, name) {
       'magicNotes.archdruid', '=', '"unlimited"'
     );
     rules.defineRule('selectableFeatureCount.Druid (Druid Circle)',
-      classLevel, '=', 'source<2 ? null : 1'
+      'featureNotes.druidCircle', '=', '1'
     );
     rules.defineRule
       ('spellSlots.D0', 'magicNotes.druidBonusCantrip', '+=', '1');
@@ -3760,28 +3750,32 @@ SRD5E.classRulesExtra = function(rules, name) {
       classLevel, '+=', 'source<5 ? null : source<11 ? 1 : source<20 ? 2 : 3'
     );
     rules.defineRule('featCount.General', 'fighterFeatBonus', '+', null);
+    rules.defineRule('featureNotes.fightingStyle',
+      'fighterFeatures.Fighting Style', '+=', '1',
+      'combatNotes.additionalFightingStyle', '+', '1'
+    );
     rules.defineRule('fighterFeatBonus',
       classLevel, '=', 'source<6 ? null : source<14 ? 1 : 2'
     );
     rules.defineRule('selectableFeatureCount.Fighter (Fighting Style)',
-      classLevel, '=', '1',
-      'combatNotes.additionalFightingStyle', '+', '1'
+      'featureNotes.fightingStyle', '=', null
     );
     rules.defineRule('selectableFeatureCount.Fighter (Martial Archetype)',
-      classLevel, '=', 'source<3 ? null : 1'
+      'featureNotes.martialArchetype', '=', '1'
     );
 
   } else if(name == 'Monk') {
 
-    rules.defineRule('abilityNotes.improvedUnarmoredMovement',
-      'armor', '?', 'source == "None"',
-      'shield', '?', 'source == "None"'
-    );
     rules.defineRule('abilityNotes.unarmoredMovement.1',
       'abilityNotes.unarmoredMovement', '?', null,
       'armor', '?', 'source == "None"',
       'shield', '?', 'source == "None"',
       classLevel, '=', 'Math.floor((source + 6) / 4) * 5'
+    );
+    rules.defineRule('abilityNotes.unarmoredMovement-1',
+      'armor', '?', 'source == "None"',
+      'shield', '?', 'source == "None"',
+      classLevel, '?', 'source >= 9'
     );
     rules.defineRule
       ('armorClass', 'combatNotes.unarmoredDefense(Monk).1', '+', null);
@@ -3824,7 +3818,7 @@ SRD5E.classRulesExtra = function(rules, name) {
         ('saveProficiency.' + ability, 'saveNotes.diamondSoul', '=', '1');
     }
     rules.defineRule('selectableFeatureCount.Monk (Monastic Tradition)',
-      classLevel, '=', 'source<3 ? null : 1'
+      'featureNotes.monasticTradition', '=', '1'
     );
     rules.defineRule('speed', 'abilityNotes.unarmoredMovement.1', '+', null);
     SRD5E.featureSpells(rules, 'Tranquility', 'M', null, ['Sanctuary']);
@@ -3844,13 +3838,16 @@ SRD5E.classRulesExtra = function(rules, name) {
     );
     rules.defineRule
       ('combatNotes.extraAttack', classLevel, '+=', 'source<5 ? null : 1');
+    rules.defineRule('featureNotes.fightingStyle',
+      'paladinFeatures.Fighting Style', '+=', '1'
+    );
     rules.defineRule
       ('magicNotes.turnTheUnholy', 'spellDifficultyClass.P', '=', null);
     rules.defineRule('selectableFeatureCount.Paladin (Fighting Style)',
-      classLevel, '=', 'source<2 ? null : 1'
+      'featureNotes.fightingStyle', '=', '1'
     );
     rules.defineRule('selectableFeatureCount.Paladin (Sacred Oath)',
-      classLevel, '=', 'source<3 ? null : 1'
+      'featureNotes.sacredOath', '=', '1'
     );
 
   } else if(name == 'Ranger') {
@@ -3866,15 +3863,26 @@ SRD5E.classRulesExtra = function(rules, name) {
       ('combatNotes.extraAttack', classLevel, '+=', 'source<5 ? null : 1');
     rules.defineRule
       ('attackBonus.Ranged', 'combatNotes.fightingStyle(Archery)', '+=', '2');
-    rules.defineRule('selectableFeatureCount.Ranger (Fighting Style)',
-      classLevel, '=', 'source<2 ? null : 1'
+    rules.defineRule('featureNotes.fightingStyle',
+      'rangerFeatures.Fighting Style', '+=', '1'
     );
-    rules.defineRule('selectableFeatureCount.Ranger (Hunter Technique)',
-      'rangerFeatures.Hunter', '?', null,
-      classLevel, '=', 'source<7 ? 1 : source<11 ? 2 : source<15 ? 3 : 4'
+    rules.defineRule('selectableFeatureCount.Ranger (Defensive Tactics)',
+      'featureNotes.defensiveTactics', '=', '1'
+    );
+    rules.defineRule('selectableFeatureCount.Ranger (Fighting Style)',
+      'featureNotes.fightingStyle', '=', '1'
+    );
+    rules.defineRule("selectableFeatureCount.Ranger (Hunter's Prey)",
+      "featureNotes.Hunter's Prey", '=', '1'
+    );
+    rules.defineRule('selectableFeatureCount.Ranger (Multiattack)',
+      'featureNotes.multiattack', '=', '1'
     );
     rules.defineRule('selectableFeatureCount.Ranger (Ranger Archetype)',
-      classLevel, '=', 'source<3 ? null : 1'
+      'featureNotes.rangerArchetype', '=', '1'
+    );
+    rules.defineRule("selectableFeatureCount.Ranger (Superior Hunter's Defense)",
+      "featureNotes.Superior Hunter's Defense", '=', '1'
     );
     rules.defineRule('skillNotes.naturalExplorer',
       classLevel, '=', 'source<6 ? 1 : source<10 ? 2 : 3'
@@ -3888,7 +3896,7 @@ SRD5E.classRulesExtra = function(rules, name) {
     rules.defineRule('featCount.General', 'rogueFeatBonus', '+', null);
     rules.defineRule('rogueFeatBonus', classLevel, '=', 'source<10 ? null : 1');
     rules.defineRule('selectableFeatureCount.Rogue (Roguish Archetype)',
-      classLevel, '=', 'source<3 ? null : 1'
+      'featureNotes.roguishArchetype', '=', '1'
     );
 
   } else if(name == 'Sorcerer') {
@@ -4299,24 +4307,6 @@ SRD5E.pathRules = function(
     SRD5E.featureSpells
       (rules, name, group == 'Warlock' ? 'K' : group.charAt(0), pathLevel,
        spells);
-  }
-
-};
-
-/*
- * Defines in #rules# the rules associated with path #name# that cannot be
- * derived directly from the attributes passed to pathRules.
- */
-SRD5E.pathRulesExtra = function(rules, name) {
-
-  let pathLevel =
-    name.charAt(0).toLowerCase() + name.substring(1).replaceAll(' ', '') +
-    'Level';
-
-  if(name == 'Life Domain') {
-    rules.defineRule
-      ('combatNotes.divineStrike', pathLevel, '=', 'source<14 ? 1 : 2');
-    rules.defineRule('combatNotes.divineStrike.1', pathLevel, '=', '"radiant"');
   }
 
 };
@@ -4971,7 +4961,7 @@ SRD5E.choiceEditorElements = function(rules, type) {
     let tenToEighteen = [10, 11, 12, 13, 14, 15, 16, 17, 18];
     result.push(
       ['AC', 'AC Bonus', 'select-one', [0, 1, 2, 3, 4, 5]],
-      ['Bulky', 'Bulky', 'checkbox', ['']],
+      ['Bulky', 'Stealth DisAdv', 'checkbox', ['']],
       ['Dex', 'Max Dex', 'select-one', zeroToTen],
       ['Str', 'Min Str', 'select-one', tenToEighteen],
       ['Weight', 'Weight', 'select-one', ['None', 'Light', 'Medium', 'Heavy']]
@@ -5096,7 +5086,7 @@ SRD5E.initialEditorElements = function() {
     ['levels', 'Class Levels', 'bag', 'levels'],
     ['background', 'Background', 'select-one', 'backgrounds'],
     ['alignment', 'Alignment', 'select-one', 'alignments'],
-    ['deity', 'Deity', 'select-one', 'deities'],
+    ['deity', 'Deity', 'select-one', 'deitys'],
     ['origin', 'Origin', 'text', [20]],
     ['player', 'Player', 'text', [20]],
     ['experience', 'Experience', 'text', [8, '(\\+?\\d+)']],
@@ -5240,14 +5230,6 @@ SRD5E.randomizeOneAttribute = function(attributes, attribute) {
     choices = [];
     for(attr in armors) {
       let weight = QuilvynUtils.getAttrValue(armors[attr], 'Weight');
-      if(weight == null)
-        weight = 0;
-      else if((weight + '').match(/light/i))
-        weight = 1;
-      else if((weight + '').match(/medium/i))
-        weight = 2;
-      else if((weight + '').match(/heavy/i))
-        weight = 3;
       if(weight == 0 ||
          attrs['armorProficiency.Heavy'] ||
          weight <= 2 && attrs['armorProficiency.Medium'] ||
@@ -5313,7 +5295,7 @@ SRD5E.randomizeOneAttribute = function(attributes, attribute) {
     else /* [LC]G or [LC]E */
       aliPat = aliInfo[1] + '[N' + aliInfo[2] + ']|N' + aliInfo[2];
     choices = [];
-    let deities = this.getChoices('deities');
+    let deities = this.getChoices('deitys');
     for(attr in deities) {
       if(deities[attr].match('=' + aliPat + '\\b'))
         choices.push(attr);

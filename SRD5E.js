@@ -110,19 +110,19 @@ SRD5E.ALIGNMENTS = {
   'Lawful Neutral':''
 };
 SRD5E.ARMORS = {
-  'None':'AC=0 Dex=10 Weight=0',
-  'Padded':'AC=1 Bulky=Y Dex=10 Weight=1',
-  'Leather':'AC=1 Dex=10 Weight=1',
-  'Studded Leather':'AC=2 Dex=10 Weight=1',
-  'Hide':'AC=2 Dex=2 Weight=2',
-  'Chain Shirt':'AC=3 Dex=2 Weight=2',
-  'Scale Mail':'AC=4 Bulky=Y Dex=2 Weight=2',
-  'Breastplate':'AC=4 Dex=2 Weight=2',
-  'Half Plate':'AC=5 Bulky=Y Dex=2 Weight=2',
-  'Ring Mail':'AC=4 Bulky=Y Dex=0 Weight=3',
-  'Chain Mail':'AC=6 Bulky=Y Dex=0 Str=13 Weight=3',
-  'Splint':'AC=7 Bulky=Y Dex=0 Str=15 Weight=3',
-  'Plate':'AC=8 Bulky=Y Dex=0 Str=15 Weight=3'
+  'None':'AC=0 Dex=10 Weight=None',
+  'Padded':'AC=1 Bulky=true Dex=10 Weight=Light',
+  'Leather':'AC=1 Dex=10 Weight=Light',
+  'Studded Leather':'AC=2 Dex=10 Weight=Light',
+  'Hide':'AC=2 Dex=2 Weight=Medium',
+  'Chain Shirt':'AC=3 Dex=2 Weight=Medium',
+  'Scale Mail':'AC=4 Bulky=true Dex=2 Weight=Medium',
+  'Breastplate':'AC=4 Dex=2 Weight=Medium',
+  'Half Plate':'AC=5 Bulky=true Dex=2 Weight=Medium',
+  'Ring Mail':'AC=4 Bulky=true Dex=0 Weight=Heavy',
+  'Chain Mail':'AC=6 Bulky=true Dex=0 Str=13 Weight=Heavy',
+  'Splint':'AC=7 Bulky=true Dex=0 Str=15 Weight=Heavy',
+  'Plate':'AC=8 Bulky=true Dex=0 Str=15 Weight=Heavy'
 };
 SRD5E.BACKGROUNDS = {
   'Acolyte':
@@ -157,7 +157,7 @@ SRD5E.CLASSES = {
       '"1:Armor Proficiency (Light)",' +
       '"1:Save Proficiency (Charisma/Dexterity)",' +
       '"1:Skill Proficiency (Choose 3 from any)",' +
-      '"1:Tool Proficiency (Choose 3 from any Music)",' +
+      '"1:Tool Proficiency (Choose 3 from any Musical)",' +
       '"1:Weapon Proficiency (Simple/Hand Crossbow/Longsword/Rapier/Shortsword)",' +
       '"1:Bardic Inspiration","1:Ritual Casting",1:Spellcasting,' +
       '"2:Jack Of All Trades","2:Song Of Rest","3:Bard Expertise",' +
@@ -255,7 +255,7 @@ SRD5E.CLASSES = {
     'Features=' +
       '"1:Save Proficiency (Dexterity/Strength)",' +
       '"1:Skill Proficiency (Choose 2 from Acrobatics, Athletics, History, Insight, Religion, Stealth)",' +
-      '"1:Tool Proficiency (Choose 1 from any Artisan, any Music)",' +
+      '"1:Tool Proficiency (Choose 1 from any Artisan, any Musical)",' +
       '"1:Weapon Proficiency (Simple/Shortsword)",' +
       '"1:Martial Arts","1:Unarmored Defense (Monk)","2:Flurry Of Blows",' +
       '"2:Ki","2:Patient Defense","2:Step Of The Wind",' +
@@ -2836,21 +2836,21 @@ SRD5E.TOOLS = {
   "Woodcarver's Tools":'Type=Artisan',
   'Disguise Kit':'Type=General',
   'Forgery Kit':'Type=General',
-  'Dice Set':'Type=Game',
-  'Dragonchess Set':'Type=Game',
-  'Playing Card Set':'Type=Game',
-  'Three-Dragon Ante Set':'Type=Game',
+  'Dice Set':'Type=Gaming',
+  'Dragonchess Set':'Type=Gaming',
+  'Playing Card Set':'Type=Gaming',
+  'Three-Dragon Ante Set':'Type=Gaming',
   'Herbalism Kit':'Type=General',
-  'Bagpipes':'Type=Music',
-  'Drum':'Type=Music',
-  'Dulcimer':'Type=Music',
-  'Flute':'Type=Music',
-  'Lute':'Type=Music',
-  'Lyre':'Type=Music',
-  'Horn':'Type=Music',
-  'Pan Flute':'Type=Music',
-  'Shawm':'Type=Music',
-  'Viol':'Type=Music',
+  'Bagpipes':'Type=Musical',
+  'Drum':'Type=Musical',
+  'Dulcimer':'Type=Musical',
+  'Flute':'Type=Musical',
+  'Lute':'Type=Musical',
+  'Lyre':'Type=Musical',
+  'Horn':'Type=Musical',
+  'Pan Flute':'Type=Musical',
+  'Shawm':'Type=Musical',
+  'Viol':'Type=Musical',
   "Navigator's Tools":'Type=General',
   "Poisoner's Kit":'Type=General',
   "Thieves' Tools":'Type=General',
@@ -3286,7 +3286,7 @@ SRD5E.choiceRules = function(rules, type, name, attrs) {
     let bulky = QuilvynUtils.getAttrValue(attrs, 'Bulky');
     SRD5E.armorRules(rules, name,
       QuilvynUtils.getAttrValue(attrs, 'AC'),
-      bulky == 'y' || bulky == 'Y',
+      bulky && !(bulky+'').match(/(^n|false)$/i),
       QuilvynUtils.getAttrValue(attrs, 'Dex'),
       QuilvynUtils.getAttrValue(attrs, 'Str'),
       QuilvynUtils.getAttrValue(attrs, 'Weight')
@@ -3347,9 +3347,7 @@ SRD5E.choiceRules = function(rules, type, name, attrs) {
     SRD5E.raceRules(rules, name,
       QuilvynUtils.getAttrValueArray(attrs, 'Require'),
       QuilvynUtils.getAttrValueArray(attrs, 'Features'),
-      QuilvynUtils.getAttrValueArray(attrs, 'Selectables'),
-      QuilvynUtils.getAttrValue(attrs, 'SpellAbility'),
-      QuilvynUtils.getAttrValueArray(attrs, 'SpellSlots')
+      QuilvynUtils.getAttrValueArray(attrs, 'Selectables')
     );
     SRD5E.raceRulesExtra(rules, name);
   } else if(type == 'School')
@@ -4326,13 +4324,9 @@ SRD5E.pathRulesExtra = function(rules, name) {
 /*
  * Defines in #rules# the rules associated with race #name#, which has the list
  * of hard prerequisites #requires#. #features# and #selectables# list
- * associated features. If the race grants spell slots, #spellAbility# names
- * the ability for computing spell difficulty class, and #spellSlots# lists the
- * number of spells per level per day granted.
+ * associated features.
  */
-SRD5E.raceRules = function(
-  rules, name, requires, features, selectables, spellAbility, spellSlots
-) {
+SRD5E.raceRules = function(rules, name, requires, features, selectables) {
 
   if(!name) {
     console.log('Empty race name');
@@ -4348,17 +4342,6 @@ SRD5E.raceRules = function(
   }
   if(!Array.isArray(selectables)) {
     console.log('Bad selectables list "' + selectables + '" for race ' + name);
-    return;
-  }
-  if(spellAbility) {
-    spellAbility = spellAbility.toLowerCase();
-    if(!(spellAbility.charAt(0).toUpperCase() + spellAbility.substring(1) in SRD5E.ABILITIES)) {
-      console.log('Bad spell ability "' + spellAbility + '" for class ' + name);
-      return;
-    }
-  }
-  if(!Array.isArray(spellSlots)) {
-    console.log('Bad spellSlots list "' + spellSlots + '" for race ' + name);
     return;
   }
 
@@ -4381,41 +4364,6 @@ SRD5E.raceRules = function(
   SRD5E.featureListRules(rules, selectables, name, raceLevel, true);
   rules.defineSheetElement(name + ' Features', 'Feats+', null, '; ');
   rules.defineChoice('extras', prefix + 'Features');
-
-  if(spellSlots.length > 0) {
-
-    rules.defineRule('casterLevels.' + name, raceLevel, '=', null);
-    QuilvynRules.spellSlotRules(rules, 'casterLevels.' + name, spellSlots);
-
-    for(i = 0; i < spellSlots.length; i++) {
-      matchInfo = spellSlots[i].match(/^(\D+)\d:/);
-      if(!matchInfo) {
-        console.log('Bad format for spell slot "' + spellSlots[i] + '"');
-        continue;
-      }
-      let spellType = matchInfo[1];
-      if(spellType != name)
-        rules.defineRule
-          ('casterLevels.' + spellType, 'casterLevels.' + name, '^=', null);
-      rules.defineRule('spellAttackModifier.' + spellType,
-        'casterLevels.' + spellType, '?', null,
-        spellAbility + 'Modifier', '=', null,
-        'proficiencyBonus', '+', null
-      );
-      rules.defineRule('spellDifficultyClass.' + spellType,
-        'casterLevels.' + spellType, '?', null,
-        spellAbility + 'Modifier', '=', '8 + source',
-        'proficiencyBonus', '+', null
-      );
-      rules.defineRule('spellCasterLevel.' + spellType,
-        'casterLevels.' + spellType, '=', null
-      );
-      rules.defineRule('spellModifier.' + spellType,
-        'casterLevels.' + spellType, '?', null,
-        spellAbility + 'Modifier', '=', null
-      );
-    }
-  }
 
 };
 
@@ -4520,8 +4468,8 @@ SRD5E.shieldRules = function(rules, name, ac) {
 
 /*
  * Defines in #rules# the rules associated with skill #name#, associated with
- * #ability# (one of 'strength', 'intelligence', etc.).
- * #classes# lists any classes that are proficient in this skill.
+ * #ability# (one of 'strength', 'intelligence', etc.). #classes# lists any
+ * classes that are proficient in this skill.
  */
 SRD5E.skillRules = function(rules, name, ability, classes) {
 
@@ -5054,8 +5002,7 @@ SRD5E.choiceEditorElements = function(rules, type) {
   else if(type == 'Feat')
     result.push(
       ['Require', 'Prerequisites', 'text', [40]],
-      ['Imply', 'Implies', 'text', [40]],
-      ['Type', 'Types', 'text', [20]]
+      ['Imply', 'Implies', 'text', [40]]
     );
   else if(type == 'Feature') {
     result.push(
@@ -5089,10 +5036,7 @@ SRD5E.choiceEditorElements = function(rules, type) {
     result.push(
       ['Require', 'Prerequisites', 'text', [40]],
       ['Features', 'Features', 'text', [60]],
-      ['Selectables', 'Selectables', 'text', [60]],
-      ['SpellAbility', 'Spell Ability', 'select-one', ['charisma', 'constitution', 'dexterity', 'intelligence', 'strength', 'wisdom']],
-      ['SpellSlots', 'Spells Slots', 'text', [40]],
-      ['Spells', 'Spells', 'text', [80]]
+      ['Selectables', 'Selectables', 'text', [60]]
     );
   else if(type == 'School')
     result.push(
@@ -5105,29 +5049,28 @@ SRD5E.choiceEditorElements = function(rules, type) {
   else if(type == 'Skill')
     result.push(
       ['Ability', 'Ability', 'select-one', ['charisma', 'constitution', 'dexterity', 'intelligence', 'strength', 'wisdom']],
-      ['Class', 'Class Skill', 'text', [30]]
+      ['Class', 'Proficient Classes', 'text', [30]]
     );
   else if(type == 'Spell') {
-    let zeroToNine = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
     result.push(
       ['School', 'School', 'select-one', QuilvynUtils.getKeys(rules.getChoices('schools'))],
-      ['Group', 'Caster Group', 'text', [15]],
-      ['Level', 'Level', 'select-one', zeroToNine],
+      ['Level', 'Caster Group and Level', 'text', [15]],
       ['Description', 'Description', 'text', [60]],
       ['Higher', 'At Higher Levels', 'text', [60]]
     );
-  } else if(type == 'Tool')
+  } else if(type == 'Tool') {
+    let toolTypes = ['Artisan', 'Gaming', 'Musical', 'General'];
     result.push(
-      ['Type', 'Type', 'text', [20]]
+      ['Type', 'Type', 'select-one', toolTypes]
     );
-  else if(type == 'Weapon') {
+  } else if(type == 'Weapon') {
     let zeroToOneFifty =
      [0, 10, 20, 30, 40, 50, 60, 70, 80, 90, 100, 110, 120, 130, 140, 150];
     result.push(
       ['Category', 'Category', 'select-one', ['Unarmed', 'Simple Melee', 'Simple Ranged', 'Martial Melee', 'Martial Ranged']],
       ['Property', 'Property', 'text', [40]],
       ['Damage', 'Damage', 'select-one', QuilvynUtils.getKeys(SRD5E.VERSATILE_WEAPON_DAMAGE)],
-      ['Range', 'Range in Feet', 'select-one', zeroToOneFifty]
+      ['Range', 'Range', 'select-one', zeroToOneFifty]
     );
   }
   return result;
@@ -5537,12 +5480,12 @@ SRD5E.randomizeOneAttribute = function(attributes, attribute) {
     pat = new RegExp(attribute + '?(?: Proficiency)? \\((.*)\\)$', 'i');
     for(attr in attrs) {
       // Choice features can be duplicated in attrs; for example, the feature
-      // note "Tool Proficiency (Disguise Kit/Choose 1 from any Music)" shows as
+      // note "Tool Proficiency (Disguise Kit/Choose 1 from any Musical)" shows as
       //
-      // <path>Features.Tool Proficiency (Disguise Kit/Choose 1 from any Music)
-      // features.Tool Proficiency (Disguise Kit/Choose 1 from any Music)
+      // <path>Features.Tool Proficiency (Disguise Kit/Choose 1 from any Musical)
+      // features.Tool Proficiency (Disguise Kit/Choose 1 from any Musical)
       // features.Tool Proficiency (Disguise Kit)
-      // features.Tool Proficiency (Choose 1 from any Music)
+      // features.Tool Proficiency (Choose 1 from any Musical)
       //
       // By ignoring the ones that begin with 'features.', we ensure that we
       // don't choose too many proficiencies.

@@ -152,10 +152,7 @@ SRD5E.CLASSES = {
       '"features.Path Of The Berserker ? 10:Intimidating Presence",' +
       '"features.Path Of The Berserker ? 14:Retaliation" ' +
     'Selectables=' +
-      '"3:Path Of The Berserker:Primal Path",' +
-      '"3:Path Of The Totem Warrior (Bear):Primal Path",' +
-      '"3:Path Of The Totem Warrior (Eagle):Primal Path",' +
-      '"3:Path Of The Totem Warrior (Wolf):Primal Path"',
+      '"3:Path Of The Berserker:Primal Path"',
   'Bard':
     'HitDie=d8 ' +
     'Features=' +
@@ -218,15 +215,6 @@ SRD5E.CLASSES = {
       'C7:1@13;2@20,' +
       'C8:1@15,' +
       'C9:1@17',
-  /*
-   TODO Domain spells
-    'Life Domain':
-      '"1:Bless,Cure Wounds",' +
-      '"3:Lesser Restoration,Spiritual Weapon",' +
-      '"5:Beacon Of Hope,Revivify",' +
-      '"7:Death Ward,Guardian Of Faith",' +
-      '"9:Mass Cure Wounds,Raise Dead"',
-  */
   'Druid':
     'HitDie=d8 ' +
     'Features=' +
@@ -376,16 +364,6 @@ SRD5E.CLASSES = {
       'P3:2@9;3@11,' +
       'P4:1@13;2@15;3@17,' +
       'P5:1@17;2@19',
-  /*
-   TODO Oath spells
-  'Oath Of Devotion':
-    'Spells=' +
-      '"3:Protection From Evil And Good,Sanctuary",' +
-      '"5:Lesser Restoration,Zone Of Truth",' +
-      '"9:Beacon Of Hope,Dispel Magic",' +
-      '"13:Freedom Of Movement,Guardian Of Faith",' +
-      '"17:Commune,Flame Strike"',
-  */
   'Ranger':
     'HitDie=d10 ' +
     'Features=' +
@@ -448,8 +426,13 @@ SRD5E.CLASSES = {
       '"1:Save Proficiency (Charisma/Constitution)",' +
       '"1:Skill Proficiency (Choose 2 from Arcana, Deception, Insight, Intimidation, Persuasion, Religion)",' +
       '"1:Weapon Proficiency (Dagger/Dart/Sling/Quarterstaff/Light Crossbow)",' +
-      '1:Spellcasting,"2:Font Of Magic","2:Flexible Casting",' +
-      '"20:Sorcerous Restoration" ' +
+      '1:Spellcasting,"1:Sorcerous Origin","2:Font Of Magic",3:Metamagic,' +
+      '"20:Sorcerous Restoration",' +
+      '"features.Draconic Bloodline ? 1:Draconic Resilience",' +
+      '"features.Draconic Bloodline ? 1:Dragon Ancestor",' +
+      '"features.Draconic Bloodline ? 6:Elemental Affinity",' +
+      '"features.Draconic Bloodline ? 14:Dragon Wings",' +
+      '"features.Draconic Bloodline ? 18:Draconic Presence" ' +
     'Selectables=' +
       '"1:Draconic Bloodline:Sorcerous Origin",' +
       '"3:Careful Spell:Metamagic","3:Distant Spell:Metamagic",' +
@@ -459,16 +442,16 @@ SRD5E.CLASSES = {
     'CasterLevelArcane=levels.Sorcerer ' +
     'SpellAbility=charisma ' +
     'SpellSlots=' +
-      'S0:1=4;4=5;10=6,' +
-      'S1:1=2;2=3;3=4,' +
-      'S2:3=2;4=3,' +
-      'S3:5=2;6=3,' +
-      'S4:7=1;8=2;9=3,' +
-      'S5:9=1;10=2;18=3,' +
-      'S6:11=1;19=2,' +
-      'S7:13=1;20=2,' +
-      'S8:15=1,' +
-      'S9:17=1',
+      'S0:4@1;5@4;6@10,' +
+      'S1:2@1;3@2;4@3,' +
+      'S2:2@3;3@4,' +
+      'S3:2@5;3@6,' +
+      'S4:1@7;2@8;3@9,' +
+      'S5:1@9;2@10;3@18,' +
+      'S6:1@11;2@19,' +
+      'S7:1@13;2@20,' +
+      'S8:1@15,' +
+      'S9:1@17',
   'Warlock':
     'HitDie=d8 ' +
     'Features=' +
@@ -476,8 +459,12 @@ SRD5E.CLASSES = {
       '"1:Save Proficiency (Charisma/Wisdom)",' +
       '"1:Skill Proficiency (Choose 2 from Arcana, Deception, History, Intimidation, Investigation, Nature, Religion)",' +
       '"1:Weapon Proficiency (Simple)",' +
-      '"1:Pact Magic","2:Eldritch Invocations","11:Mystic Arcanum",' +
-      '"20:Eldritch Master" ' +
+      '"1:Otherworldly Patron","1:Pact Magic","2:Eldritch Invocations",' +
+      '"3:Pact Boon","11:Mystic Arcanum","20:Eldritch Master",' +
+      '"features.The Fiend ? 1:Dark One\'s Blessing",' +
+      '"features.The Fiend ? 6:Dark One\'s Own Luck",' +
+      '"features.The Fiend ? 10:Fiendish Resilience",' +
+      '"features.The Fiend ? 14:Hurl Through Hell" ' +
     'Selectables=' +
       '"1:The Fiend:Otherworldly Patron",' +
       '"3:Pact Of The Blade:Pact Boon","3:Pact Of The Chain:Pact Boon",' +
@@ -517,12 +504,12 @@ SRD5E.CLASSES = {
     'CasterLevelArcane=levels.Warlock ' +
     'SpellAbility=charisma ' +
     'SpellSlots=' +
-      'K0:1=2;4=3;10=4,' +
-      'K1:1=1;2=2,' +
-      'K2:3=2,' +
-      'K3:5=2,' +
-      'K4:7=2,' +
-      'K5:9=2;11=3;17=4',
+      'K0:2@1;3@4;4@10,' +
+      'K1:1@1;2@2,' +
+      'K2:2@3,' +
+      'K3:2@5,' +
+      'K4:2@7,' +
+      'K5:2@9;3@11;4@17',
   'Wizard':
     'HitDie=d6 ' +
     'Features=' +
@@ -530,22 +517,27 @@ SRD5E.CLASSES = {
       '"1:Skill Proficiency (Choose 2 from Arcana, History, Insight, Investigation, Medicine, Religion)",' +
       '"1:Weapon Proficiency (Dagger/Dart/Light Crossbow/Quarterstaff/Sling)",' +
       '"1:Arcane Recovery","1:Ritual Casting",1:Spellcasting,' +
-      '"18:Spell Mastery","20:Signature Spells" ' +
+      '"2:Arcane Tradition","18:Spell Mastery","20:Signature Spells",' +
+      '"features.School Of Evocation ? 2:Evocation Savant",' +
+      '"features.School Of Evocation ? 2:Sculpt Spells",' +
+      '"features.School Of Evocation ? 6:Potent Cantrip",' +
+      '"features.School Of Evocation ? 10:Empowered Evocation",' +
+      '"features.School Of Evocation ? 14:Overchannel" ' +
     'Selectables=' +
       '"2:School Of Evocation:Arcane Tradition" ' +
     'CasterLevelArcane=levels.Wizard ' +
     'SpellAbility=intelligence ' +
     'SpellSlots=' +
-      'W0:1=3;4=4;10=5,' +
-      'W1:1=2;2=3;3=4,' +
-      'W2:3=2;4=3,' +
-      'W3:5=2;6=3,' +
-      'W4:7=1;8=2;9=3,' +
-      'W5:9=1;10=2;18=3,' +
-      'W6:11=1;19=2,' +
-      'W7:13=1;20=2,' +
-      'W8:15=1,' +
-      'W9:17=1',
+      'W0:3@13;4@4;5@10,' +
+      'W1:2@1;3@2;4@3,' +
+      'W2:2@3;3@4,' +
+      'W3:2@5;3@6,' +
+      'W4:1@7;2@8;3@9,' +
+      'W5:1@9;2@10;3@18,' +
+      'W6:1@11;2@19,' +
+      'W7:1@13;2@20,' +
+      'W8:1@15,' +
+      'W9:1@17'
 };
 SRD5E.FEATS = {
   'Ability Boost':'',
@@ -752,8 +744,6 @@ SRD5E.FEATURES = {
     'Note="May use Reaction to inflict Disadv on attacks by an adjacent foe"',
   'Fighting Style (Two-Weapon Fighting)':
     'Section=combat Note="Adds ability modifier to second attack damage"',
-  'Flexible Casting':
-    'Section=magic Note="May convert Sorcery Points to and from spell slots"',
   'Flurry Of Blows':
     'Section=combat ' +
     'Note="May spend 1 Ki Point to gain 2 additional unarmed strikes"',
@@ -762,7 +752,9 @@ SRD5E.FEATURES = {
     'Note="+%{wisdomModifier} attack or damage vs. favored enemy 1/rd"',
   'Font Of Inspiration':
     'Section=feature Note="Bardic Inspiration refreshes after a short rest"',
-  'Font Of Magic':'Section=magic Note="May use %V Sorcery Points/long rest"',
+  'Font Of Magic':
+    'Section=magic ' +
+    'Note="May use %V Sorcery Points/long rest/May convert Sorcery Points to and from spell slots"',
   'Frenzy':
     'Section=combat ' +
     'Note="Gains a bonus attack each rd during rage; exhausted afterwards"',
@@ -826,6 +818,7 @@ SRD5E.FEATURES = {
     'Section=magic Note="May cast <i>Disguise Self</i> at will"',
   'Master Of Myriad Forms':
     'Section=magic Note="May cast <i>Alter Self</i> at will"',
+  'Metamagic':'Section=feature Note="%V selections"',
   'Mindless Rage':'Section=save Note="Immune to charm and fright during rage"',
   'Minions Of Chaos':
     'Section=magic ' +
@@ -861,9 +854,11 @@ SRD5E.FEATURES = {
     'Note="On a Flurry of Blows hit, may inflict choice of knocked prone (DC %{kiSaveDC} Dexterity neg), pushed 15\' (DC %{kiSaveDC} Strength neg), or denied Reaction for 1 rd"',
   'Otherworldly Leap':
     'Section=magic Note="May cast <i>Jump</i> on self at will"',
+  'Otherworldly Patron':'Section=feature Note="1 selection"',
   'Overchannel':
     'Section=magic ' +
     'Note="Evocation spell up to level 5 inflicts maximum damage, self takes 2+ d12 HP necrotic damage per spell level after first time/long rest"',
+  'Pact Boon':'Section=feature Note="1 selection"',
   'Pact Of The Blade':'Section=magic Note="May create a magic weapon"',
   'Pact Of The Chain':
     'Section=combat,magic ' +
@@ -962,6 +957,7 @@ SRD5E.FEATURES = {
   'Song Of Rest':
     'Section=magic ' +
     'Note="Friendly listeners regain +1d%{levels.Bard>=9?6+(levels.Bard-5)//4*2:6} HP after a short rest"',
+  'Sorcerous Origin':'Section=feature Note="1 selection"',
   'Sorcerous Restoration':
     'Section=magic Note="Taking a short rest restores 4 Sorcery Points"',
   'Spell Mastery':
@@ -1304,25 +1300,8 @@ SRD5E.LANGUAGES = {
   'Sylvan':'',
   'Undercommon':''
 };
+// Paths are deprecated, with features absorbed into the class specs
 SRD5E.PATHS = {
-  'Draconic Bloodline':
-    'Group=Sorcerer ' +
-    'Level=levels.Sorcerer ' +
-    'Features=' +
-      '"1:Draconic Resilience","1:Dragon Ancestor","6:Elemental Affinity",' +
-      '"14:Dragon Wings","18:Draconic Presence"',
-  'School Of Evocation':
-    'Group=Wizard ' +
-    'Level=levels.Wizard ' +
-    'Features=' +
-      '"2:Evocation Savant","2:Sculpt Spells","6:Potent Cantrip",' +
-      '"10:Empowered Evocation","14:Overchannel"',
-  'The Fiend':
-    'Group=Warlock ' +
-    'Level=levels.Warlock ' +
-    'Features=' +
-      '"1:Dark One\'s Blessing","6:Dark One\'s Own Luck",' +
-      '"10:Fiendish Resilience","14:Hurl Through Hell"'
 };
 SRD5E.RACES = {
   'Dragonborn':
@@ -2915,76 +2894,76 @@ SRD5E.DEITIES = {
   // Allow clerics w/no deity to have a domain
   'None':'Domain=' + QuilvynUtils.getKeys(SRD5E.PATHS).filter(x => x.match(/Domain$/)).map(x => x.replace(' Domain', '')).join(','),
   // Celtic
-  'Celtic-The Daghdha':'Alignment=CG Domain=Nature,Trickery',
-  'Celtic-Arawn':'Alignment=NE Domain=Life,Death',
-  'Celtic-Belenus':'Alignment=NG Domain=Light',
-  'Celtic-Briantia':'Alignment=NG Domain=Life',
-  'Celtic-Diancecht':'Alignment=LG Domain=Life',
-  'Celtic-Dunatis':'Alignment=N Domain=Nature',
-  'Celtic-Goibhniu':'Alignment=NG Domain=Knowledge,Life',
-  'Celtic-Lugh':'Alignment=CN Domain=Knowledge,Life',
-  'Celtic-Manannan Mac Lir':'Alignment=LN Domain=Nature,Tempest',
-  'Celtic-Math Mathonwy':'Alignment=NE Domain=Knowledge',
-  'Celtic-Morrigan':'Alignment=CE Domain=War',
-  'Celtic-Nuada':'Alignment=N Domain=War',
-  'Celtic-Oghma':'Alignment=NG Domain=Knowledge',
-  'Celtic-Silvanus':'Alignment=N Domain=Nature',
+  'Celtic-The Daghdha':'Alignment="Chaotic Good" Domain=Nature,Trickery',
+  'Celtic-Arawn':'Alignment="Neutral Evil" Domain=Life,Death',
+  'Celtic-Belenus':'Alignment="Neutral Good" Domain=Light',
+  'Celtic-Briantia':'Alignment="Neutral Good" Domain=Life',
+  'Celtic-Diancecht':'Alignment="Lawful Good" Domain=Life',
+  'Celtic-Dunatis':'Alignment=Neutral Domain=Nature',
+  'Celtic-Goibhniu':'Alignment="Neutral Good" Domain=Knowledge,Life',
+  'Celtic-Lugh':'Alignment="Chaotic Neutral" Domain=Knowledge,Life',
+  'Celtic-Manannan Mac Lir':'Alignment="Lawful Neutral" Domain=Nature,Tempest',
+  'Celtic-Math Mathonwy':'Alignment="Neutral Evil" Domain=Knowledge',
+  'Celtic-Morrigan':'Alignment="Chaotic Evil" Domain=War',
+  'Celtic-Nuada':'Alignment=Neutral Domain=War',
+  'Celtic-Oghma':'Alignment="Neutral Good" Domain=Knowledge',
+  'Celtic-Silvanus':'Alignment=Neutral Domain=Nature',
   // Greek
-  'Greek-Zeus':'Alignment=N Domain=Tempest',
-  'Greek-Aphrodite':'Alignment=CG Domain=Light',
-  'Greek-Apollo':'Alignment=CG Domain=Knowledge,Life,Light',
-  'Greek-Ares':'Alignment=CE Domain=War',
-  'Greek-Artemis':'Alignment=NG Domain=Life,Nature',
-  'Greek-Athena':'Alignment=LG Domain=Knowledge,War',
-  'Greek-Demeter':'Alignment=NG Domain=Life',
-  'Greek-Dionysus':'Alignment=CN Domain=Life',
-  'Greek-Hades':'Alignment=LE Domain=Death',
-  'Greek-Hecate':'Alignment=CE Domain=Knowledge,Trickery',
-  'Greek-Hephaestus':'Alignment=NG Domain=Knowledge',
-  'Greek-Hera':'Alignment=CN Domain=Trickery',
-  'Greek-Hercules':'Alignment=CG Domain=Tempest,War',
-  'Greek-Hermes':'Alignment=CG Domain=Trickery',
-  'Greek-Hestia':'Alignment=NG Domain=Life',
-  'Greek-Nike':'Alignment=LN Domain=War',
-  'Greek-Pan':'Alignment=CN Domain=Nature',
-  'Greek-Poseidon':'Alignment=CN Domain=Tempest',
-  'Greek-Tyche':'Alignment=N Domain=Trickery',
+  'Greek-Zeus':'Alignment=Neutral Domain=Tempest',
+  'Greek-Aphrodite':'Alignment="Chaotic Good" Domain=Light',
+  'Greek-Apollo':'Alignment="Chaotic Good" Domain=Knowledge,Life,Light',
+  'Greek-Ares':'Alignment="Chaotic Evil" Domain=War',
+  'Greek-Artemis':'Alignment="Neutral Good" Domain=Life,Nature',
+  'Greek-Athena':'Alignment="Lawful Good" Domain=Knowledge,War',
+  'Greek-Demeter':'Alignment="Neutral Good" Domain=Life',
+  'Greek-Dionysus':'Alignment="Chaotic Neutral" Domain=Life',
+  'Greek-Hades':'Alignment="Lawful Evil" Domain=Death',
+  'Greek-Hecate':'Alignment="Chaotic Evil" Domain=Knowledge,Trickery',
+  'Greek-Hephaestus':'Alignment="Neutral Good" Domain=Knowledge',
+  'Greek-Hera':'Alignment="Chaotic Neutral" Domain=Trickery',
+  'Greek-Hercules':'Alignment="Chaotic Good" Domain=Tempest,War',
+  'Greek-Hermes':'Alignment="Chaotic Good" Domain=Trickery',
+  'Greek-Hestia':'Alignment="Neutral Good" Domain=Life',
+  'Greek-Nike':'Alignment="Lawful Neutral" Domain=War',
+  'Greek-Pan':'Alignment="Chaotic Neutral" Domain=Nature',
+  'Greek-Poseidon':'Alignment="Chaotic Neutral" Domain=Tempest',
+  'Greek-Tyche':'Alignment=Neutral Domain=Trickery',
   // Egyptian
-  'Egyptian-Re-Horakhty':'Alignment=LG Domain=Life,Light',
-  'Egyptian-Anubis':'Alignment=LN Domain=Death',
-  'Egyptian-Apep':'Alignment=NE Domain=Trickery',
-  'Egyptian-Bast':'Alignment=CG Domain=War',
-  'Egyptian-Bes':'Alignment=CN Domain=Trickery',
-  'Egyptian-Hathor':'Alignment=NG Domain=Life,Light',
-  'Egyptian-Imhotep':'Alignment=NG Domain=Knowledge',
-  'Egyptian-Isis':'Alignment=NG Domain=Knowledge,Life',
-  'Egyptian-Nephthys':'Alignment=CG Domain=Death',
-  'Egyptian-Osiris':'Alignment=LG Domain=Life,Nature',
-  'Egyptian-Ptah':'Alignment=LN Domain=Knowledge',
-  'Egyptian-Set':'Alignment=CE Domain=Death,Tempest,Trickery',
-  'Egyptian-Sobek':'Alignment=LE Domain=Nature,Tempest',
-  'Egyptian-Thoth':'Alignment=N Domain=Knowledge',
+  'Egyptian-Re-Horakhty':'Alignment="Lawful Good" Domain=Life,Light',
+  'Egyptian-Anubis':'Alignment="Lawful Neutral" Domain=Death',
+  'Egyptian-Apep':'Alignment="Neutral Evil" Domain=Trickery',
+  'Egyptian-Bast':'Alignment="Chaotic Good" Domain=War',
+  'Egyptian-Bes':'Alignment="Chaotic Neutral" Domain=Trickery',
+  'Egyptian-Hathor':'Alignment="Neutral Good" Domain=Life,Light',
+  'Egyptian-Imhotep':'Alignment="Neutral Good" Domain=Knowledge',
+  'Egyptian-Isis':'Alignment="Neutral Good" Domain=Knowledge,Life',
+  'Egyptian-Nephthys':'Alignment="Chaotic Good" Domain=Death',
+  'Egyptian-Osiris':'Alignment="Lawful Good" Domain=Life,Nature',
+  'Egyptian-Ptah':'Alignment="Lawful Neutral" Domain=Knowledge',
+  'Egyptian-Set':'Alignment="Chaotic Evil" Domain=Death,Tempest,Trickery',
+  'Egyptian-Sobek':'Alignment="Lawful Evil" Domain=Nature,Tempest',
+  'Egyptian-Thoth':'Alignment=Neutral Domain=Knowledge',
   // Norse
-  'Norse-Odin':'Alignment=NG Domain=Knowledge,War',
-  'Norse-Aegir':'Alignment=NE Domain=Tempest',
-  'Norse-Balder':'Alignment=NG Domain=Life,Light',
-  'Norse-Forseti':'Alignment=N Domain=Light',
-  'Norse-Frey':'Alignment=NG Domain=Life,Light',
-  'Norse-Freya':'Alignment=NG Domain=Life',
-  'Norse-Frigga':'Alignment=N Domain=Life,Light',
-  'Norse-Heimdall':'Alignment=LG Domain=Light,War',
-  'Norse-Hel':'Alignment=NE Domain=Death',
-  'Norse-Hermod':'Alignment=CN Domain=Trickery',
-  'Norse-Loki':'Alignment=CE Domain=Trickery',
-  'Norse-Njord':'Alignment=NG Domain=Nature,Tempest',
-  'Norse-Odor':'Alignment=CG Domain=Light',
-  'Norse-Sif':'Alignment=CG Domain=War',
-  'Norse-Skadi':'Alignment=N Domain=Nature',
-  'Norse-Surtur':'Alignment=LE Domain=War',
-  'Norse-Thor':'Alignment=CG Domain=Tempest,War',
-  'Norse-Thrym':'Alignment=CE Domain=War',
-  'Norse-Tyr':'Alignment=LN Domain=Knowledge,War',
-  'Norse-Uller':'Alignment=CN Domain=Nature'
+  'Norse-Odin':'Alignment="Neutral Good" Domain=Knowledge,War',
+  'Norse-Aegir':'Alignment="Neutral Evil" Domain=Tempest',
+  'Norse-Balder':'Alignment="Neutral Good" Domain=Life,Light',
+  'Norse-Forseti':'Alignment=Neutral Domain=Light',
+  'Norse-Frey':'Alignment="Neutral Good" Domain=Life,Light',
+  'Norse-Freya':'Alignment="Neutral Good" Domain=Life',
+  'Norse-Frigga':'Alignment=Neutral Domain=Life,Light',
+  'Norse-Heimdall':'Alignment="Lawful Good" Domain=Light,War',
+  'Norse-Hel':'Alignment="Neutral Evil" Domain=Death',
+  'Norse-Hermod':'Alignment="Chaotic Neutral" Domain=Trickery',
+  'Norse-Loki':'Alignment="Chaotic Evil" Domain=Trickery',
+  'Norse-Njord':'Alignment="Neutral Good" Domain=Nature,Tempest',
+  'Norse-Odor':'Alignment="Chaotic Good" Domain=Light',
+  'Norse-Sif':'Alignment="Chaotic Good" Domain=War',
+  'Norse-Skadi':'Alignment=Neutral Domain=Nature',
+  'Norse-Surtur':'Alignment="Lawful Evil" Domain=War',
+  'Norse-Thor':'Alignment="Chaotic Good" Domain=Tempest,War',
+  'Norse-Thrym':'Alignment="Chaotic Evil" Domain=War',
+  'Norse-Tyr':'Alignment="Lawful Neutral" Domain=Knowledge,War',
+  'Norse-Uller':'Alignment="Chaotic Neutral" Domain=Nature'
 };
 
 SRD5E.LEVELS_EXPERIENCE = [
@@ -3365,7 +3344,6 @@ SRD5E.choiceRules = function(rules, type, name, attrs) {
       let level = matchInfo[2] * 1;
       let path = matchInfo[3] || '';
       let fullName = name + '(' + group + level + path + ' ' + schoolAbbr + ')';
-      // TODO indicate domain spells in attributes?
       let domainSpell = SRD5E.PATHS[group + ' Domain'] != null;
       SRD5E.spellRules(
         rules, fullName, school, group, level, description, domainSpell, higher
@@ -3387,7 +3365,7 @@ SRD5E.choiceRules = function(rules, type, name, attrs) {
     console.log('Unknown choice type "' + type + '"');
     return;
   }
-  if(type != 'Feature' && type != 'Path' && type != 'Spell') {
+  if(type != 'Spell') {
     type = type == 'Class' ? 'levels' :
     (type.charAt(0).toLowerCase() + type.substring(1).replaceAll(' ', '') + 's');
     rules.addChoice(type, name, attrs);
@@ -3717,6 +3695,15 @@ SRD5E.classRulesExtra = function(rules, name) {
       classLevel, '=', '"radiant"'
     );
 
+    SRD5E.featureSpells(
+      rules, 'Life Domain', 'C', 'levels.Cleric', [
+      '1:Bless', '1:Cure Wounds',
+      '3:Lesser Restoration', '3:Spiritual Weapon',
+      '5:Beacon Of Hope', '5:Revivify',
+      '7:Death Ward', '7:Guardian Of Faith',
+      '9:Mass Cure Wounds', '9:Raise Dead'
+    ]);
+
   } else if(name == 'Druid') {
 
     rules.defineRule('magicNotes.wildShape.1',
@@ -3850,6 +3837,15 @@ SRD5E.classRulesExtra = function(rules, name) {
       'featureNotes.sacredOath', '=', '1'
     );
 
+    SRD5E.featureSpells(
+      rules, 'Oath Of Devotion', 'P', 'levels.Paladin', [
+      '3:Protection From Evil And Good', '3:Sanctuary',
+      '5:Lesser Restoration', '5:Zone Of Truth',
+      '9:Beacon Of Hope', '9:Dispel Magic',
+      '13:Freedom Of Movement', '13:Guardian Of Faith',
+      '17:Commune', '17:Flame Strike'
+    ]);
+
   } else if(name == 'Ranger') {
 
     rules.defineRule
@@ -3901,12 +3897,15 @@ SRD5E.classRulesExtra = function(rules, name) {
 
   } else if(name == 'Sorcerer') {
 
-    rules.defineRule('magicNotes.fontOfMagic', classLevel, '=', null);
-    rules.defineRule('selectableFeatureCount.Sorcerer (Metamagic)',
+    rules.defineRule('featureNotes.metamagic',
       classLevel, '=', 'source<3 ? null : source<10 ? 2 : source<17 ? 3 : 4'
     );
+    rules.defineRule('magicNotes.fontOfMagic', classLevel, '=', null);
+    rules.defineRule('selectableFeatureCount.Sorcerer (Metamagic)',
+      'featureNotes.Metamagic', '=', null
+    );
     rules.defineRule('selectableFeatureCount.Sorcerer (Sorcerous Origin)',
-      classLevel, '=', 'source<3 ? null : 1'
+      'featureNotes.Sorcerous Origin', '=', '1'
     );
 
     rules.defineRule
@@ -3928,10 +3927,10 @@ SRD5E.classRulesExtra = function(rules, name) {
       'magicNotes.eldritchInvocations', '=', null
     );
     rules.defineRule('selectableFeatureCount.Warlock (Otherworldly Patron)',
-      classLevel, '=', '1'
+      'featureNotes.otherworldlyPatron', '=', '1'
     );
     rules.defineRule('selectableFeatureCount.Warlock (Pact Boon)',
-      classLevel, '=', 'source<3 ? null : 1'
+      'featureNotes.pactBoon', '=', '1'
     );
     rules.defineRule('maxKSlot',
       'casterLevels.K', '=', 'Math.min(Math.floor((source + 1) / 2), 5)'

@@ -198,7 +198,7 @@ SRD5E.CLASSES = {
       '"features.Life Domain ? 1:Disciple Of Life",' +
       '"features.Life Domain ? 2:Preserve Life",' +
       '"features.Life Domain ? 6:Blessed Healer",' +
-      '"features.Life Domain ? 8:Divine Strike",' +
+      '"clericHasDivineStrike ? 8:Divine Strike",' +
       '"features.Life Domain ? 17:Supreme Healing" ' +
     'Selectables=' +
       '"deityDomains =~ \'Life\' ? 1:Life Domain:Divine Domain" ' +
@@ -233,44 +233,6 @@ SRD5E.CLASSES = {
       '"features.Circle Of The Land ? 6:Land\'s Stride",' +
       '"features.Circle Of The Land ? 10:Nature\'s Ward",' +
       '"features.Circle Of The Land ? 14:Nature\'s Sanctuary" ' +
-/*
-  TODO Circle Spells feature spells:
-  'Circle Of The Land (Arctic)':
-      '"3:Hold Person,Spike Growth",' +
-      '"5:Sleet Storm,Slow",' +
-      '"7:Freedom Of Movement,Ice Storm",' +
-      '"9:Commune With Nature,Cone Of Cold"',
-  'Circle Of The Land (Coast)':
-      '"3:Mirror Image,Misty Step",' +
-      '"5:Water Breathing,Water Walk",' +
-      '"7:Control Water,Freedom Of Movement",' +
-      '"9:Conjure Elemental,Scrying"',
-  'Circle Of The Land (Desert)':
-      '"3:Blur,Silence",' +
-      '"5:Create Food And Water,Protection From Energy",' +
-      '"7:Blight,Hallucinatory Terrain",' +
-      '"9:Insect Plague,Wall Of Stone"',
-  'Circle Of The Land (Forest)':
-      '"3:Barkskin,Spider Climb",' +
-      '"5:Call Lightning,Plant Growth",' +
-      '"7:Divination,Freedom Of Movement",' +
-      '"9:Commune With Nature,Tree Stride"',
-  'Circle Of The Land (Grassland)':
-      '"3:Invisibility,Pass Without Trace",' +
-      '"5:Daylight,Haste",' +
-      '"7:Divination,Freedom Of Movement",' +
-      '"9:Dream,Insect Plague"',
-  'Circle Of The Land (Mountain)':
-      '"3:Spider Climb,Spike Growth",' +
-      '"5:Lightning Bolt,Meld Into Stone",' +
-      '"7:Stone Shape,Stoneskin",' +
-      '"9:Passwall,Wall Of Stone"',
-  'Circle Of The Land (Swamp)':
-      '"3:Acid Arrow,Darkness",' +
-      '"5:Water Walk,Stinking Cloud",' +
-      '"7:Freedom Of Movement,Locate Creature",' +
-      '"9:Insect Plague,Scrying"',
-*/
     'Selectables=' +
       '"2:Circle Of The Land (Arctic):Druid Circle",' +
       '"2:Circle Of The Land (Coast):Druid Circle",' +
@@ -374,7 +336,11 @@ SRD5E.CLASSES = {
       '"1:Favored Enemy","1:Natural Explorer","1:Fighting Style",' +
       '2:Spellcasting,"3:Primeval Awareness","3:Ranger Archetype",' +
       '"5:Extra Attack","8:Land\'s Stride","10:Hide In Plain Sight",' +
-      '"14:Vanish","18:Feral Senses","20:Foe Slayer" ' +
+      '"14:Vanish","18:Feral Senses","20:Foe Slayer",' +
+      '"features.Hunter ? 3:Hunter\'s Prey",' +
+      '"features.Hunter ? 7:Defensive Tactics",' +
+      '"features.Hunter ? 11:Multiattack",' +
+      '"features.Hunter ? 15:Superior Hunter\'s Defense" ' +
     'Selectables=' +
       '"2:Fighting Style (Archery):Fighting Style",' +
       '"2:Fighting Style (Defense):Fighting Style",' +
@@ -528,7 +494,7 @@ SRD5E.CLASSES = {
     'CasterLevelArcane=levels.Wizard ' +
     'SpellAbility=intelligence ' +
     'SpellSlots=' +
-      'W0:3@13;4@4;5@10,' +
+      'W0:3@1;4@4;5@10,' +
       'W1:2@1;3@2;4@3,' +
       'W2:2@3;3@4,' +
       'W3:2@5;3@6,' +
@@ -3681,6 +3647,7 @@ SRD5E.classRulesExtra = function(rules, name) {
 
   } else if(name == 'Cleric') {
 
+    rules.defineRule('clericHasDivineStrike', 'features.Life Domain', '=', '1');
     rules.defineRule('combatNotes.turnUndead',
       'wisdomModifier', '=', 'source + 8',
       'proficiencyBonus', '+', null
@@ -3692,8 +3659,17 @@ SRD5E.classRulesExtra = function(rules, name) {
       ('combatNotes.divineStrike', classLevel, '=', 'source<14 ? 1 : 2');
     rules.defineRule('combatNotes.divineStrike.1',
       'features.Divine Strike', '?', null,
-      classLevel, '=', '"radiant"'
+      'features.Life Domain', '=', '"radiant"'
     );
+    for(let s in rules.getChoices('selectableFeatures')) {
+      if(s.match(/Cleric - .* Domain/)) {
+        let domain = s.replace('Cleric - ', '').replace(' Domain', '');
+        // Clerics w/no deity don't need to match deity domain
+        rules.defineRule('validationNotes.cleric-' + domain.replaceAll(' ', '') + 'DomainSelectableFeature',
+          'deity', '+', 'source == "None" ? 1 : null'
+        );
+      }
+    }
 
     SRD5E.featureSpells(
       rules, 'Life Domain', 'C', 'levels.Cleric', [
@@ -3722,7 +3698,66 @@ SRD5E.classRulesExtra = function(rules, name) {
       'featureNotes.druidCircle', '=', '1'
     );
     rules.defineRule
-      ('spellSlots.D0', 'magicNotes.druidBonusCantrip', '+=', '1');
+      ('spellSlots.D0', 'magicNotes.bonusCantrip(Druid)', '+=', '1');
+    for(let s in rules.getChoices('selectableFeatures')) {
+      if(s.match(/Druid - Circle Of The Land/)) {
+        let circle = s.replace('Druid - ', '');
+        rules.defineRule
+          ('features.Circle Of The Land', 'features.' + circle, '=', '1');
+      }
+    }
+
+    SRD5E.featureSpells(
+      rules, 'Circle Of The Land (Arctic)', 'D', 'levels.Druid', [
+      '3:Hold Person', '3:Spike Growth',
+      '5:Sleet Storm', '5:Slow',
+      '7:Freedom Of Movement', '7:Ice Storm',
+      '9:Commune With Nature', '9:Cone Of Cold'
+    ]);
+    SRD5E.featureSpells(
+      rules, 'Circle Of The Land (Coast)', 'D', 'levels.Druid', [
+      '3:Mirror Image', '3:Misty Step',
+      '5:Water Breathing', '5:Water Walk',
+      '7:Control Water', '7:Freedom Of Movement',
+      '9:Conjure Elemental', '9:Scrying'
+    ]);
+    SRD5E.featureSpells(
+      rules, 'Circle Of The Land (Desert)', 'D', 'levels.Druid', [
+      '3:Blur', '3:Silence',
+      '5:Create Food And Water', '5:Protection From Energy',
+      '7:Blight', '7:Hallucinatory Terrain',
+      '9:Insect Plague', '9:Wall Of Stone'
+    ]);
+    SRD5E.featureSpells(
+      rules, 'Circle Of The Land (Forest)', 'D', 'levels.Druid', [
+      '3:Barkskin', '3:Spider Climb',
+      '5:Call Lightning', '5:Plant Growth',
+      '7:Divination', '7:Freedom Of Movement',
+      '9:Commune With Nature', '9:Tree Stride'
+    ]);
+    SRD5E.featureSpells(
+      rules, 'Circle Of The Land (Grassland)', 'D', 'levels.Druid', [
+      '3:Invisibility', '3:Pass Without Trace',
+      '5:Daylight', '5:Haste',
+      '7:Divination', '7:Freedom Of Movement',
+      '9:Dream', '9:Insect Plague'
+    ]);
+    SRD5E.featureSpells(
+      rules, 'Circle Of The Land (Mountain)', 'D', 'levels.Druid', [
+      '3:Spider Climb', '3:Spike Growth',
+      '5:Lightning Bolt', '5:Meld Into Stone',
+      '7:Stone Shape', '7:Stoneskin',
+      '9:Passwall', '9:Wall Of Stone'
+    ]);
+    SRD5E.featureSpells(
+      rules, 'Circle Of The Land (Swamp)', 'D', 'levels.Druid', [
+      // TODO: Better way to do this?
+      PHB5E ? "3:Melf's Acid Arrow": '3:Acid Arrow',
+      '3:Darkness',
+      '5:Water Walk', '5:Stinking Cloud',
+      '7:Freedom Of Movement', '7:Locate Creature',
+      '9:Insect Plague', '9:Scrying'
+    ]);
 
   } else if(name == 'Fighter') {
 
@@ -3739,13 +3774,15 @@ SRD5E.classRulesExtra = function(rules, name) {
     rules.defineRule('featCount.General', 'fighterFeatBonus', '+', null);
     rules.defineRule('featureNotes.fightingStyle',
       'fighterFeatures.Fighting Style', '+=', '1',
-      'combatNotes.additionalFightingStyle', '+', '1'
+      'featureNotes.additionalFightingStyle', '+', '1'
     );
     rules.defineRule('fighterFeatBonus',
       classLevel, '=', 'source<6 ? null : source<14 ? 1 : 2'
     );
+    /* TODO This won't work properly for multiclass */
     rules.defineRule('selectableFeatureCount.Fighter (Fighting Style)',
-      'featureNotes.fightingStyle', '=', null
+      'fighterFeatures.Fighting Style', '?', null,
+      'featureNotes.fightingStyle', '+=', null
     );
     rules.defineRule('selectableFeatureCount.Fighter (Martial Archetype)',
       'featureNotes.martialArchetype', '=', '1'
@@ -3830,7 +3867,9 @@ SRD5E.classRulesExtra = function(rules, name) {
     );
     rules.defineRule
       ('magicNotes.turnTheUnholy', 'spellDifficultyClass.P', '=', null);
+    /* TODO This won't work properly for multiclass */
     rules.defineRule('selectableFeatureCount.Paladin (Fighting Style)',
+      'paladinFeatures.Fighting Style', '?', null,
       'featureNotes.fightingStyle', '=', '1'
     );
     rules.defineRule('selectableFeatureCount.Paladin (Sacred Oath)',
@@ -3865,11 +3904,13 @@ SRD5E.classRulesExtra = function(rules, name) {
     rules.defineRule('selectableFeatureCount.Ranger (Defensive Tactics)',
       'featureNotes.defensiveTactics', '=', '1'
     );
+    /* TODO This won't work properly for multiclass */
     rules.defineRule('selectableFeatureCount.Ranger (Fighting Style)',
+      'rangerFeatures.Fighting Style', '?', null,
       'featureNotes.fightingStyle', '=', '1'
     );
     rules.defineRule("selectableFeatureCount.Ranger (Hunter's Prey)",
-      "featureNotes.Hunter's Prey", '=', '1'
+      "featureNotes.hunter'sPrey", '=', '1'
     );
     rules.defineRule('selectableFeatureCount.Ranger (Multiattack)',
       'featureNotes.multiattack', '=', '1'
@@ -3878,7 +3919,7 @@ SRD5E.classRulesExtra = function(rules, name) {
       'featureNotes.rangerArchetype', '=', '1'
     );
     rules.defineRule("selectableFeatureCount.Ranger (Superior Hunter's Defense)",
-      "featureNotes.Superior Hunter's Defense", '=', '1'
+      "featureNotes.superiorHunter'sDefense", '=', '1'
     );
     rules.defineRule('skillNotes.naturalExplorer',
       classLevel, '=', 'source<6 ? 1 : source<10 ? 2 : 3'
@@ -3902,10 +3943,10 @@ SRD5E.classRulesExtra = function(rules, name) {
     );
     rules.defineRule('magicNotes.fontOfMagic', classLevel, '=', null);
     rules.defineRule('selectableFeatureCount.Sorcerer (Metamagic)',
-      'featureNotes.Metamagic', '=', null
+      'featureNotes.metamagic', '=', null
     );
     rules.defineRule('selectableFeatureCount.Sorcerer (Sorcerous Origin)',
-      'featureNotes.Sorcerous Origin', '=', '1'
+      'featureNotes.sorcerousOrigin', '=', '1'
     );
 
     rules.defineRule
@@ -4334,8 +4375,6 @@ SRD5E.raceRules = function(rules, name, requires, features, selectables) {
     return;
   }
 
-  let i;
-  let matchInfo;
   let prefix =
     name.charAt(0).toLowerCase() + name.substring(1).replaceAll(' ', '');
   let raceLevel = prefix + 'Level';

@@ -593,8 +593,7 @@ SRD5E.FEATURES = {
   'Cutting Words':
     'Section=combat ' +
     'Note="R60\' May use Reaction to subtract a Bardic Inspiration die from a foe roll"',
-  'Danger Sense':
-    'Section=save Note="Adv on Dexterity checks vs. visible dangers"',
+  'Danger Sense':'Section=save Note="Adv on Dexterity vs. visible dangers"',
   "Dark One's Blessing":
     'Section=combat ' +
     'Note="Gains %{(levels.Warlock+charismaModifier)>?1} HP when foe drops to 0 HP"',
@@ -796,7 +795,7 @@ SRD5E.FEATURES = {
   'Monastic Tradition':'Section=feature Note="1 selection"',
   'Multiattack':'Section=feature Note="1 selection"',
   'Multiattack Defense':
-    'Section=combat Note="+4 AC on additional foe attacks after a hit"',
+    'Section=combat Note="+4 AC on additional foe attacks after a successful attack"',
   'Mystic Arcanum':
     'Section=magic ' +
     'Note="May use K6%{(levels.Warlock<13?\'\':\', K7\')+(levels.Warlock<15?\'\':\', K8\')+(levels.Warlock<17?\'\':\', K9\')} spells 1/long rest"',
@@ -817,7 +816,7 @@ SRD5E.FEATURES = {
     'Note="Invisible in dim light (moving or taking an action ends)"',
   'Open Hand Technique':
     'Section=combat ' +
-    'Note="On a Flurry of Blows hit, may inflict choice of knocked prone (DC %{kiSaveDC} Dexterity neg), pushed 15\' (DC %{kiSaveDC} Strength neg), or denied Reaction for 1 rd"',
+    'Note="A successful Flurry of Blows attack may inflict choice of knocked prone (DC %{kiSaveDC} Dexterity neg), pushed 15\' (DC %{kiSaveDC} Strength neg), or denied Reaction for 1 rd"',
   'Otherworldly Leap':
     'Section=magic Note="May cast <i>Jump</i> on self at will"',
   'Otherworldly Patron':'Section=feature Note="1 selection"',
@@ -862,13 +861,13 @@ SRD5E.FEATURES = {
     'Note="May spend 2 Sorcery Points to cast a spell as bonus action"',
   'Quivering Palm':
     'Section=combat ' +
-    'Note="May spend 3 Ki Points to reduce a foe to 0 HP w/in %{levels.Monk} dy after an unarmed hit (DC %{kiSaveDC} Constitution suffer 10d10 HP necrotic)"',
+    'Note="May spend 3 Ki Points to reduce a foe to 0 HP w/in %{levels.Monk} dy after a successful unarmed attack (DC %{kiSaveDC} Constitution suffer 10d10 HP necrotic)"',
   'Rage':
     'Section=ability,combat,feature,magic,save ' +
     'Note=' +
-      '"Adv on Strength checks",' +
+      '"Adv on Strength",' +
       '"+%{levels.Barbarian<9?2:levels.Barbarian<16?3:4} Strength damage",' +
-      '"Rage advantages for 1 min %{levels.Barbarian<3?2:levels.Barbarian<6?3:levels.Barbarian<12?4:levels.Bararian<17?5:levels.Barbarian<20?6:\'unlimited\'}/long rest (heavy armor neg)",' +
+      '"Rage advantages for 1 min %{levels.Barbarian<3?2:levels.Barbarian<6?3:levels.Barbarian<12?4:levels.Barbarian<17?5:levels.Barbarian<20?6:\'unlimited\'}/long rest (heavy armor neg)",' +
       '"Cannot cast or concentrate during rage",' +
        '"Adv on Strength saves and resistance to bludgeoning, piercing, and slashing damage"',
   'Ranger Archetype':'Section=feature Note="1 selection"',
@@ -944,7 +943,7 @@ SRD5E.FEATURES = {
       '"May change a miss into a hit 1/short rest"',
   'Stunning Strike':
     'Section=combat ' +
-    'Note="May spend 1 Ki Point to stun foe after a hit (DC %{kiSaveDC} Constitution neg) for 1 rd"',
+    'Note="May spend 1 Ki Point to stun foe after a successful attack (DC %{kiSaveDC} Constitution neg) for 1 rd"',
   'Subtle Spell':
     'Section=magic ' +
     'Note="May spend 1 Sorcery Point to cast w/out somatic or verbal components"',
@@ -1370,7 +1369,7 @@ SRD5E.SPELLS = {
   'Acid Splash':
     'School=Conjuration ' +
     'Level=S0,W0 ' +
-    'Description="R60\' Ranged touch inflicts %{(level+7)//6}d6 HP acid (Dex neg)"',
+    'Description="R60\' Ranged touch inflicts %{(level+7)//6}d6 HP acid (Dexterity neg)"',
   'Aid':
     'School=Abjuration ' +
     'Level=C2,P2 ' +
@@ -1388,7 +1387,7 @@ SRD5E.SPELLS = {
     'School=Enchantment ' +
     'Level=B1,D1,R1 ' +
     'AtHigherLevels="affects +1 target" ' +
-    'Description="R30\' Target beast convinced of good intent (Wis neg) for 1 dy"',
+    'Description="R30\' Target beast convinced of good intent (Wisdom neg) for 1 dy"',
   'Animal Messenger':
     'School=Enchantment ' +
     'Level=B2,D2,R2 ' +
@@ -1428,7 +1427,7 @@ SRD5E.SPELLS = {
     'School=Evocation ' +
     'Level=W5 ' +
     'AtHigherLevels="inflicts +2d8 HP force and +2d6 HP bludgeoning" ' +
-    'Description="R120\' Large hand (AC 20, Str 26, Dex 10) can punch (inflicts 4d8 HP force), push 5\', grapple (inflicts 2d6+%{?modifier?} HP bludgeoning), and block for conc or 1 min"',
+    'Description="R120\' Large hand (AC 20, Strength 26, Dexterity 10) can punch (inflicts 4d8 HP force), push 5\', grapple (inflicts 2d6+%{?modifier?} HP bludgeoning), and block for conc or 1 min"',
   'Arcane Lock':
     'School=Abjuration ' +
     'Level=W2 ' +
@@ -1454,12 +1453,12 @@ SRD5E.SPELLS = {
     'School=Enchantment ' +
     'Level=B1,C1 ' +
     'AtHigherLevels="affects +1 target" ' +
-    'Description="R30\' 3 targets suffer -1d4 on attacks and saving throws (Cha neg) for conc or 1 min"',
+    'Description="R30\' 3 targets suffer -1d4 on attacks and saving throws (Charisma neg) for conc or 1 min"',
   'Banishment':
     'School=Abjuration ' +
     'Level=C4,K4,P4,S4,W4 ' +
     'AtHigherLevels="affects +1 target" ' +
-    'Description="R60\' Banishes target to home or demiplane (Cha neg) for conc or 1 min"',
+    'Description="R60\' Banishes target to home or demiplane (Charisma neg) for conc or 1 min"',
   'Barkskin':
     'School=Transmutation ' +
     'Level=D2,R2 ' +
@@ -1467,20 +1466,20 @@ SRD5E.SPELLS = {
   'Beacon Of Hope':
     'School=Abjuration ' +
     'Level=C3 ' +
-    'Description="R30\' Targets gain Adv on Wis and death saves and maximum HP from healing for conc or 1 min"',
+    'Description="R30\' Targets gain Adv on Wisdom and death saves and maximum HP from healing for conc or 1 min"',
   'Bestow Curse':
     'School=Necromancy ' +
     'Level=B3,C3,W3 ' +
     'AtHigherLevels="extends duration to conc or 10 min/8 hr/24 hr/permanent at level 4/5/7/9" ' +
-    'Description="Touched suffers choice of Disadv on specified ability rolls, Disadv on attacks on self, require Wis save to take any action, or +1d8 HP necrotic from self attacks (Wis neg) for conc or 1 min"',
+    'Description="Touched suffers choice of Disadv on specified ability rolls, Disadv on attacks on self, require Wisdom save to take any action, or +1d8 HP necrotic from self attacks (Wisdom neg) for conc or 1 min"',
   'Black Tentacles':
     'School=Conjuration ' +
     'Level=W4 ' +
-    'Description="R90\' 20\' sq inflicts 3d6 HP bludgeoning and restrains (Dex neg, Str or Dex breaks free) for conc or 1 min"',
+    'Description="R90\' 20\' sq inflicts 3d6 HP bludgeoning and restrains (Dexterity neg, Strength or Dexterity breaks free) for conc or 1 min"',
   'Blade Barrier':
     'School=Evocation ' +
     'Level=C6 ' +
-    'Description="R90\' 100\'x20\'x5\' blade wall provides 3/4 cover and inflicts 6d10 HP slashing (Dex half) for conc or 10 min"',
+    'Description="R90\' 100\'x20\'x5\' blade wall provides 3/4 cover and inflicts 6d10 HP slashing (Dexterity half) for conc or 10 min"',
   'Bless':
     'School=Enchantment ' +
     'Level=C1,P1 ' +
@@ -1490,12 +1489,12 @@ SRD5E.SPELLS = {
     'School=Necromancy ' +
     'Level=D4,K4,S4,W4 ' +
     'AtHigherLevels="inflicts +1d8 HP" ' +
-    'Description="R30\' target suffers 8d8 HP necrotic (Con half (plant Disadv, 64 HP on fail))"',
+    'Description="R30\' target suffers 8d8 HP necrotic (Constitution half (plant Disadv, 64 HP on fail))"',
   'Blindness/Deafness':
     'School=Necromancy ' +
     'Level=B2,C2,"K2 [The Fiend]",S2,W2 ' +
     'AtHigherLevels="affects +1 target" ' +
-    'Description="R30\' Inflicts choice of blindness or deafness on target (Con neg) for 1 min"',
+    'Description="R30\' Inflicts choice of blindness or deafness on target (Constitution neg) for 1 min"',
   'Blink':
     'School=Transmutation ' +
     'Level=S3,W3 ' +
@@ -1513,27 +1512,27 @@ SRD5E.SPELLS = {
     'School=Evocation ' +
     'Level="K1 [The Fiend]",S1,W1 ' +
     'AtHigherLevels="inflicts +1d6 HP" ' +
-    'Description="15\' cone inflicts 3d6 HP fire (Dex half)"',
+    'Description="15\' cone inflicts 3d6 HP fire (Dexterity half)"',
 
   'Call Lightning':
     'School=Conjuration ' +
     'Level=D3 ' +
     'AtHigherLevels="inflicts +1d10 HP" ' +
-    'Description="R120\' Bolt inflicts 3d10 HP lightning (Dex half) in 5\' radius 1/rd for conc or 10 min"',
+    'Description="R120\' Bolt inflicts 3d10 HP lightning (Dexterity half) in 5\' radius 1/rd for conc or 10 min"',
   'Calm Emotions':
     'School=Enchantment ' +
     'Level=B2,C2 ' +
-    'Description="R60\' 20\' radius suppresses charm and fright or hostility (Cha neg) for conc or 1 min"',
+    'Description="R60\' 20\' radius suppresses charm and fright or hostility (Charisma neg) for conc or 1 min"',
   'Chain Lightning':
     'School=Evocation ' +
     'Level=S6,W6 ' +
     'AtHigherLevels="affects +1 target" ' +
-    'Description="R150\' 4 targets in 30\' radius suffer 10d8 HP lightning (Dex half)"',
+    'Description="R150\' 4 targets in 30\' radius suffer 10d8 HP lightning (Dexterity half)"',
   'Charm Person':
     'School=Enchantment ' +
     'Level=B1,D1,K1,S1,W1 ' +
     'AtHigherLevels="affects +1 target" ' +
-    'Description="R30\' Target regards you as a friend (Wis neg) for 1 hr or until harmed"',
+    'Description="R30\' Target regards you as a friend (Wisdom neg) for 1 hr or until harmed"',
   'Chill Touch':
     'School=Necromancy ' +
     'Level=K0,S0,W0 ' +
@@ -1542,7 +1541,7 @@ SRD5E.SPELLS = {
     'School=Necromancy ' +
     'Level=K6,S6,W6 ' +
     'AtHigherLevels="inflicts +2d6 HP" ' +
-    'Description="R150\' 60\' radius inflicts 8d6 HP necrotic (Con half)"',
+    'Description="R150\' 60\' radius inflicts 8d6 HP necrotic (Constitution half)"',
   'Clairvoyance':
     'School=Divination ' +
     'Level=B3,C3,S3,W3 ' +
@@ -1555,7 +1554,7 @@ SRD5E.SPELLS = {
     'School=Conjuration ' +
     'Level=S5,W5 ' +
     'AtHigherLevels="inflicts +1d8 HP" ' +
-    'Description="R120\' 20\' radius inflicts 5d8 HP poison (Con half), moves away 10\'/rd for conc or 10 min"',
+    'Description="R120\' 20\' radius inflicts 5d8 HP poison (Constitution half), moves away 10\'/rd for conc or 10 min"',
   'Color Spray':
     'School=Illusion ' +
     'Level=S1,W1 ' +
@@ -1565,7 +1564,7 @@ SRD5E.SPELLS = {
     'School=Enchantment ' +
     'Level=C1,"K1 [The Fiend]",P1 ' +
     'AtHigherLevels="affects +1 target" ' +
-    'Description="R60\' Target obeys self one-word command (Wis neg)"',
+    'Description="R60\' Target obeys self one-word command (Wisdom neg)"',
   'Commune':
     'School=Divination ' +
     'Level=C5 ' +
@@ -1581,17 +1580,17 @@ SRD5E.SPELLS = {
   'Compulsion':
     'School=Enchantment ' +
     'Level=B4 ' +
-    'Description="R30\' Self controls target movement (Wis neg) for conc or 1 min"',
+    'Description="R30\' Self controls target movement (Wisdom neg) for conc or 1 min"',
   'Cone Of Cold':
     'School=Evocation ' +
     'Level=S5,W5 ' +
     'AtHigherLevels="inflicts +1d8 HP" ' +
-    'Description="60\' cone inflicts 8d8 HP cold (Con half)"',
+    'Description="60\' cone inflicts 8d8 HP cold (Constitution half)"',
   'Confusion':
     'School=Enchantment ' +
     'Level=B4,D4,S4,W4 ' +
     'AtHigherLevels="increases radius +5\'" ' +
-    'Description="R90\' Creatures in 10\' radius randomly 10% wander/50% do nothing/20% attack adjacent/20% act normally (Wis neg) for conc or 1 min"',
+    'Description="R90\' Creatures in 10\' radius randomly 10% wander/50% do nothing/20% attack adjacent/20% act normally (Wisdom neg) for conc or 1 min"',
   'Conjure Animals':
     'School=Conjuration ' +
     'Level=D3,R3 ' +
@@ -1625,11 +1624,11 @@ SRD5E.SPELLS = {
   'Contact Other Plane':
     'School=Divination ' +
     'Level=K5,W5 ' +
-    'Description="Self contact w/extraplanar being inflicts 6d6 HP psychic and insanity until long rest (DC 15 Int neg and receive 5 one-word answers)"',
+    'Description="Self contact w/extraplanar being inflicts 6d6 HP psychic and insanity until long rest (DC 15 Intelligence neg and receive 5 one-word answers)"',
   'Contagion':
     'School=Necromancy ' +
     'Level=C5,D5 ' +
-    'Description="Touched poisoned, diseased for 7 dy after failing 3 Con saves (3 successes neg)"',
+    'Description="Touched poisoned, diseased for 7 dy after failing 3 Constitution saves (3 successes neg)"',
   'Contingency':
     'School=Evocation ' +
     'Level=W6 ' +
@@ -1700,7 +1699,7 @@ SRD5E.SPELLS = {
     'School=Evocation ' +
     'Level=S7,W7 ' +
     'AtHigherLevels="inflicts +1d6 HP" ' +
-    'Description="R150\' 20\' radius inflicts 12d6 HP fire (Dex half) within conc or 1 min"',
+    'Description="R150\' 20\' radius inflicts 12d6 HP fire (Dexterity half) within conc or 1 min"',
   'Demiplane':
     'School=Conjuration ' +
     'Level=K8,W8 ' +
@@ -1733,11 +1732,11 @@ SRD5E.SPELLS = {
     'School=Transmutation ' +
     'Level=S6,W6 ' +
     'AtHigherLevels="inflicts +3d6 HP" ' +
-    'Description="R60\' Target suffers 10d6+40 HP force, dusts if reduced to 0 HP (Dex neg)"',
+    'Description="R60\' Target suffers 10d6+40 HP force, dusts if reduced to 0 HP (Dexterity neg)"',
   'Dispel Evil And Good':
     'School=Abjuration ' +
     'Level=C5,P5 ' +
-    'Description="Inflicts Disadv on self attacks by outsider foes for conc or 1 min; touch breaks enchantment; spell attack dismisses (Cha neg)"',
+    'Description="Inflicts Disadv on self attacks by outsider foes for conc or 1 min; touch breaks enchantment; spell attack dismisses (Charisma neg)"',
   'Dispel Magic':
     'School=Abjuration ' +
     'Level=B3,C3,D3,K3,P3,S3,W3 ' +
@@ -1754,22 +1753,22 @@ SRD5E.SPELLS = {
   'Divine Word':
     'School=Evocation ' +
     'Level=C7 ' +
-    'Description="R30\' Kills (up to 20 HP), stuns (up to 30 HP), blinds (up to 40 HP), and deafens (up to 50 HP) targets (Cha neg)"',
+    'Description="R30\' Kills (up to 20 HP), stuns (up to 30 HP), blinds (up to 40 HP), and deafens (up to 50 HP) targets (Charisma neg)"',
   'Dominate Beast':
     'School=Enchantment ' +
     'Level=D4,S4 ' +
     'AtHigherLevels="extends duration to 10 min/1 hr/8 hr at level 5/6/7" ' +
-    'Description="R60\' Target obeys self telepathic commands (Wis neg) for conc or 1 min"',
+    'Description="R60\' Target obeys self telepathic commands (Wisdom neg) for conc or 1 min"',
   'Dominate Monster':
     'School=Enchantment ' +
     'Level=B8,K8,S8,W8 ' +
     'AtHigherLevels="extends duration to 8 hr" ' +
-    'Description="R60\' Target obeys self telepathic commands (Wis neg) for conc or 1 hr"',
+    'Description="R60\' Target obeys self telepathic commands (Wisdom neg) for conc or 1 hr"',
   'Dominate Person':
     'School=Enchantment ' +
     'Level=B5,S5,W5 ' +
     'AtHigherLevels="extends duration to 10 min/1 hr/8 hr at level 6/7/8" ' +
-    'Description="R60\' Target obeys self telepathic commands (Wis neg) for conc or 1 min"',
+    'Description="R60\' Target obeys self telepathic commands (Wisdom neg) for conc or 1 min"',
   'Dream':
     'School=Illusion ' +
     'Level=B5,K5,W5 ' +
@@ -1791,19 +1790,19 @@ SRD5E.SPELLS = {
     'School=Transmutation ' +
     'Level=B2,C2,D2,S2 ' +
     'AtHigherLevels="affects +1 target" ' +
-    'Description="Touched gains Adv on chosen ability checks for 1 hr; Con also adds +2d6 temporary HP, Str dbl load, and Dex no damage from 20\' fall"',
+    'Description="Touched gains Adv on chosen ability checks for 1 hr; Constitution also adds +2d6 temporary HP, Strength dbl load, and Dexterity no damage from 20\' fall"',
   'Enlarge/Reduce':
     'School=Transmutation ' +
     'Level=S2,W2 ' +
-    'Description="R30\' Target becomes dbl (Adv on Str, +1d4 weapon damage) or half (Disadv on Str, -1d4 weapon damage) size for conc or 1 min"',
+    'Description="R30\' Target becomes dbl (Adv on Strength, +1d4 weapon damage) or half (Disadv on Strength, -1d4 weapon damage) size for conc or 1 min"',
   'Entangle':
     'School=Conjuration ' +
     'Level=D1 ' +
-    'Description="R90\' Growth ensnares creatures in 20\' sq (Str neg) for conc or 1 min"',
+    'Description="R90\' Growth ensnares creatures in 20\' sq (Strength neg) for conc or 1 min"',
   'Enthrall':
     'School=Enchantment ' +
     'Level=B2,K2 ' +
-    'Description="R60\' Target suffers Disadv on Perception to notice others (Wis neg) for 1 min"',
+    'Description="R60\' Target suffers Disadv on Perception to notice others (Wisdom neg) for 1 min"',
   'Etherealness':
     'School=Transmutation ' +
     'Level=B7,C7,K7,S7,W7 ' +
@@ -1825,7 +1824,7 @@ SRD5E.SPELLS = {
   'Faerie Fire':
     'School=Evocation ' +
     'Level=B1,D1 ' +
-    'Description="R60\' Objects in 20\' cu glow (foe Adv on attacks) (Dex neg) for conc or 1 min"',
+    'Description="R60\' Objects in 20\' cu glow (foe Adv on attacks) (Dexterity neg) for conc or 1 min"',
   'Faithful Hound':
     'School=Conjuration ' +
     'Level=W4 ' +
@@ -1838,7 +1837,7 @@ SRD5E.SPELLS = {
   'Fear':
     'School=Illusion ' +
     'Level=B3,K3,S3,W3 ' +
-    'Description="Creatures in 30\' cone flee (Wis neg) for conc or 1 min"',
+    'Description="Creatures in 30\' cone flee (Wisdom neg) for conc or 1 min"',
   'Feather Fall':
     'School=Transmutation ' +
     'Level=B1,S1,W1 ' +
@@ -1846,7 +1845,7 @@ SRD5E.SPELLS = {
   'Feeblemind':
     'School=Enchantment ' +
     'Level=B8,D8,K8,W8 ' +
-    'Description="R150\' Target suffers 4d6 HP psychic, and Cha and Int drop to 1 (Int damage only)"',
+    'Description="R150\' Target suffers 4d6 HP psychic, and Charisma and Intelligence drop to 1 (Intelligence damage only)"',
   'Find Familiar':
     'School=Conjuration ' +
     'Level=W1 ' +
@@ -1866,7 +1865,7 @@ SRD5E.SPELLS = {
   'Finger Of Death':
     'School=Necromancy ' +
     'Level=K7,S7,W7 ' +
-    'Description="R60\' Target suffers 7d8+30 HP necrotic (Con half), becomes obedient zombie if killed"',
+    'Description="R60\' Target suffers 7d8+30 HP necrotic (Constitution half), becomes obedient zombie if killed"',
   'Fire Bolt':
     'School=Evocation ' +
     'Level=S0,W0 ' +
@@ -1878,12 +1877,12 @@ SRD5E.SPELLS = {
   'Fire Storm':
     'School=Evocation ' +
     'Level=C7,D7,S7 ' +
-    'Description="R150\' 10 10\' cu inflicts 7d10 HP fire (Dex half)"',
+    'Description="R150\' 10 10\' cu inflicts 7d10 HP fire (Dexterity half)"',
   'Fireball':
     'School=Evocation ' +
     'Level="K3 [The Fiend]",S3,W3 ' +
     'AtHigherLevels="inflicts +1d6 HP" ' +
-    'Description="R150\' 20\' radius inflicts 8d6 HP fire (Dex half)"',
+    'Description="R150\' 20\' radius inflicts 8d6 HP fire (Dexterity half)"',
   'Flame Blade':
     'School=Evocation ' +
     'Level=D2 ' +
@@ -1893,16 +1892,16 @@ SRD5E.SPELLS = {
     'School=Evocation ' +
     'Level=C5,"K5 [The Fiend]" ' +
     'AtHigherLevels="inflicts +1d6 HP fire or radiant" ' +
-    'Description="R60\' 10\' radius inflicts 4d6 HP fire and 4d6 HP radiant (Dex half)"',
+    'Description="R60\' 10\' radius inflicts 4d6 HP fire and 4d6 HP radiant (Dexterity half)"',
   'Flaming Sphere':
     'School=Conjuration ' +
     'Level=D2,W2 ' +
     'AtHigherLevels="inflicts +1d6 HP" ' +
-    'Description="R60\' 5\' diameter sphere inflicts 2d6 HP fire (Dex half), moves 30\'/rd for conc or 1 min"',
+    'Description="R60\' 5\' diameter sphere inflicts 2d6 HP fire (Dexterity half), moves 30\'/rd for conc or 1 min"',
   'Flesh To Stone':
     'School=Transmutation ' +
     'Level=K6,W6 ' +
-    'Description="R60\' Target restrained, then petrified after 3 failed Con saves (Con x3 neg) for conc or 1 min"',
+    'Description="R60\' Target restrained, then petrified after 3 failed Constitution saves (Constitution x3 neg) for conc or 1 min"',
   'Floating Disk':
     'School=Conjuration ' +
     'Level=W1 ' +
@@ -1937,7 +1936,7 @@ SRD5E.SPELLS = {
     'School=Evocation ' +
     'Level=W6 ' +
     'AtHigherLevels="inflicts +1d6 HP" ' +
-    'Description="R300\' 60\' radius inflicts 10d6 HP cold (Con half), freezes water for 1 min"',
+    'Description="R300\' 60\' radius inflicts 10d6 HP cold (Constitution half), freezes water for 1 min"',
 
   'Gaseous Form':
     'School=Transmutation ' +
@@ -1951,7 +1950,7 @@ SRD5E.SPELLS = {
     'School=Enchantment ' +
     'Level=B5,C5,D5,P5,W5 ' +
     'AtHigherLevels="extends duration to 1 yr/permanent at level 7/9" ' +
-    'Description="R60\' Target obeys command (Wis neg) for 30 dy"',
+    'Description="R60\' Target obeys command (Wisdom neg) for 30 dy"',
   'Gentle Repose':
     'School=Necromancy ' +
     'Level=C2,W2 ' +
@@ -1963,7 +1962,7 @@ SRD5E.SPELLS = {
   'Glibness':
     'School=Transmutation ' +
     'Level=B8,K8 ' +
-    'Description="Self can take 15 on Cha checks and always detects as truthful for 1 hr"',
+    'Description="Self can take 15 on Charisma checks and always detects as truthful for 1 hr"',
   'Globe Of Invulnerability':
     'School=Abjuration ' +
     'Level=S6,W6 ' +
@@ -1973,7 +1972,7 @@ SRD5E.SPELLS = {
     'School=Abjuration ' +
     'Level=B3,C3,W3 ' +
     'AtHigherLevels="inflicts +1d8 HP or triggers +1 spell level" ' +
-    'Description="20\' radius inflicts 5d8 HP acid, cold, fire, lightning, or thunder (Dex half) or spell up to level 3 when triggered"',
+    'Description="20\' radius inflicts 5d8 HP acid, cold, fire, lightning, or thunder (Dexterity half) or spell up to level 3 when triggered"',
   'Goodberry':
     'School=Transmutation ' +
     'Level=D1,R1 ' +
@@ -1981,7 +1980,7 @@ SRD5E.SPELLS = {
   'Grease':
     'School=Conjuration ' +
     'Level=W1 ' +
-    'Description="R60\' Creatures in 10\' sq fall (Dex neg) for 1 min"',
+    'Description="R60\' Creatures in 10\' sq fall (Dexterity neg) for 1 min"',
   'Greater Invisibility':
     'School=Illusion ' +
     'Level=B4,S4,W4 ' +
@@ -1993,7 +1992,7 @@ SRD5E.SPELLS = {
   'Guardian Of Faith':
     'School=Conjuration ' +
     'Level=C4 ' +
-    'Description="R30\' 10\' radius inflicts 20 HP radiant to hostile creatures (Dex half) for 8 hr or 60 HP"',
+    'Description="R30\' 10\' radius inflicts 20 HP radiant to hostile creatures (Dexterity half) for 8 hr or 60 HP"',
   'Guards And Wards':
     'School=Abjuration ' +
     'Level=B6,W6 ' +
@@ -2010,7 +2009,7 @@ SRD5E.SPELLS = {
   'Gust Of Wind':
     'School=Evocation ' +
     'Level=D2,S2,W2 ' +
-    'Description="60\'x10\' wind pushes 15\' (Str neg), inflicts half movement for conc or 1 min"',
+    'Description="60\'x10\' wind pushes 15\' (Strength neg), inflicts half movement for conc or 1 min"',
 
   'Hallow':
     'School=Evocation ' +
@@ -2023,11 +2022,11 @@ SRD5E.SPELLS = {
   'Harm':
     'School=Necromancy ' +
     'Level=C6 ' +
-    'Description="R60\' Target suffers 14d6 HP necrotic (Con half) and equal maximum HP reduction for 1 hr"',
+    'Description="R60\' Target suffers 14d6 HP necrotic (Constitution half) and equal maximum HP reduction for 1 hr"',
   'Haste':
     'School=Transmutation ' +
     'Level=S3,W3 ' +
-    'Description="R30\' Willing target gains dbl Speed, +2 AC, Adv on Dex, and bonus action for conc or 1 min"',
+    'Description="R30\' Willing target gains dbl Speed, +2 AC, Adv on Dexterity, and bonus action for conc or 1 min"',
   'Heal':
     'School=Evocation ' +
     'Level=C6,D6 ' +
@@ -2047,11 +2046,11 @@ SRD5E.SPELLS = {
     'School=Evocation ' +
     'Level=K1 ' +
     'AtHigherLevels="inflicts +1d10 HP" ' +
-    'Description="R60\' May use Reaction to inflict 2d10 HP fire on a successful attacker (Dex half)"',
+    'Description="R60\' May use Reaction to inflict 2d10 HP fire on a successful attacker (Dexterity half)"',
   "Heroes' Feast":
     'School=Conjuration ' +
     'Level=C6,D6 ' +
-    'Description="R30\' 12 diners undiseased and unpoisoned and gain immunity to poison and fright, Adv on Wis checks, and +2d10 HP for 1 dy"',
+    'Description="R30\' 12 diners undiseased and unpoisoned and gain immunity to poison and fright, Adv on Wisdom, and +2d10 HP for 1 dy"',
   'Heroism':
     'School=Enchantment ' +
     'Level=B1,P1 ' +
@@ -2060,21 +2059,21 @@ SRD5E.SPELLS = {
   'Hideous Laughter':
     'School=Enchantment ' +
     'Level=B1,W1 ' +
-    'Description="R30\' Target ROFL (Wis neg) for conc or 1 min"',
+    'Description="R30\' Target ROFL (Wisdom neg) for conc or 1 min"',
   'Hold Monster':
     'School=Enchantment ' +
     'Level=B5,K5,S5,W5 ' +
     'AtHigherLevels="affects +1 target" ' +
-    'Description="R90\' Immobilizes target (Wis neg) for conc or 1 min"',
+    'Description="R90\' Immobilizes target (Wisdom neg) for conc or 1 min"',
   'Hold Person':
     'School=Enchantment ' +
     'Level=B2,C2,D2,K2,S2,W2 ' +
     'AtHigherLevels="affects +1 target" ' +
-    'Description="R60\' Immobilizes target (Wis neg) for conc or 1 min"',
+    'Description="R60\' Immobilizes target (Wisdom neg) for conc or 1 min"',
   'Holy Aura':
     'School=Abjuration ' +
     'Level=C8 ' +
-    'Description="30\' radius targets gain Adv on saves and blind fiends and undead with melee hit (Con neg); foes suffer Disadv on attacks"',
+    'Description="30\' radius targets gain Adv on saves and blind fiends and undead with a successful melee attack (Constitution neg); foes suffer Disadv on attacks"',
   "Hunter's Mark":
     'School=Divination ' +
     'Level=R1 ' +
@@ -2083,13 +2082,13 @@ SRD5E.SPELLS = {
   'Hypnotic Pattern':
     'School=Illusion ' +
     'Level=B3,K3,S3,W3 ' +
-    'Description="R120\' creatures in 30\' cu charmed (Wis neg) for conc or 1 min"',
+    'Description="R120\' creatures in 30\' cu charmed (Wisdom neg) for conc or 1 min"',
 
   'Ice Storm':
     'School=Evocation ' +
     'Level=D4,S4,W4 ' +
     'AtHigherLevels="inflicts +1d8 HP bludgeoning" ' +
-    'Description="R300\' 20\' radius inflicts 2d8 bludgeoning and 4d6 HP cold (Dex half)"',
+    'Description="R300\' 20\' radius inflicts 2d8 bludgeoning and 4d6 HP cold (Dexterity half)"',
   'Identify':
     'School=Divination ' +
     'Level=B1,W1 ' +
@@ -2101,11 +2100,11 @@ SRD5E.SPELLS = {
   'Imprisonment':
     'School=Abjuration ' +
     'Level=K9,W9 ' +
-    'Description="R30\' Restrains target in chosen prison (Wis neg)"',
+    'Description="R30\' Restrains target in chosen prison (Wisdom neg)"',
   'Incendiary Cloud':
     'School=Conjuration ' +
     'Level=S8,W8 ' +
-    'Description="R150\' 20\' radius inflicts 10d8 HP fire (Dex half), moves away 10\'/rd for conc or 1 min"',
+    'Description="R150\' 20\' radius inflicts 10d8 HP fire (Dexterity half), moves away 10\'/rd for conc or 1 min"',
   'Inflict Wounds':
     'School=Necromancy ' +
     'Level=C1 ' +
@@ -2115,7 +2114,7 @@ SRD5E.SPELLS = {
     'School=Conjuration ' +
     'Level=C5,D5,S5 ' +
     'AtHigherLevels="inflicts +1d10 HP" ' +
-    'Description="R300\' 20\' radius inflicts 4d10 HP piercing (Con half) for conc or 10 min"',
+    'Description="R300\' 20\' radius inflicts 4d10 HP piercing (Constitution half) for conc or 10 min"',
   'Instant Summons':
     'School=Conjuration ' +
     'Level=W6 ' +
@@ -2128,7 +2127,7 @@ SRD5E.SPELLS = {
   'Irresistible Dance':
     'School=Enchantment ' +
     'Level=B6,W6 ' +
-    'Description="R30\' Target dances (Disadv on Dex and attack, foes Adv on attacks) (Wis neg) for conc or 1 min"',
+    'Description="R30\' Target dances (Disadv on Dexterity and attack, foes Adv on attacks) (Wisdom neg) for conc or 1 min"',
 
   'Jump':
     'School=Transmutation ' +
@@ -2151,16 +2150,16 @@ SRD5E.SPELLS = {
   'Levitate':
     'School=Transmutation ' +
     'Level=S2,W2 ' +
-    'Description="R60\' Target floats (Con neg) for conc or 10 min"',
+    'Description="R60\' Target floats (Constitution neg) for conc or 10 min"',
   'Light':
     'School=Evocation ' +
     'Level=B0,C0,S0,W0 ' +
-    'Description="Touched object lights 20\' radius (Dex neg) for 1 hr"',
+    'Description="Touched object lights 20\' radius (Dexterity neg) for 1 hr"',
   'Lightning Bolt':
     'School=Evocation ' +
     'Level=S3,W3 ' +
     'AtHigherLevels="inflicts +1d6 HP" ' +
-    'Description="100\'x5\' line inflicts 8d6 HP lightning (Dex half)"',
+    'Description="100\'x5\' line inflicts 8d6 HP lightning (Dexterity half)"',
   'Locate Animals Or Plants':
     'School=Divination ' +
     'Level=B2,D2,R2 ' +
@@ -2195,7 +2194,7 @@ SRD5E.SPELLS = {
   'Magic Jar':
     'School=Necromancy ' +
     'Level=W6 ' +
-    'Description="R100\' Self possesses creature body and traps soul (Cha neg)"',
+    'Description="R100\' Self possesses creature body and traps soul (Charisma neg)"',
   'Magic Missile':
     'School=Evocation ' +
     'Level=S1,W1 ' +
@@ -2237,11 +2236,11 @@ SRD5E.SPELLS = {
     'School=Enchantment ' +
     'Level=B6,K6,S6,W6 ' +
     'AtHigherLevels="extends duration to 10/30/366 dy at level 7/8/9" ' +
-    'Description="R60\' 12 targets follow self suggestion (Wis neg) for 1 dy"',
+    'Description="R60\' 12 targets follow self suggestion (Wisdom neg) for 1 dy"',
   'Maze':
     'School=Conjuration ' +
     'Level=W8 ' +
-    'Description="R60\' Target sent to labyrinthine demiplane (DC 20 Int escapes) for conc or 10 min"',
+    'Description="R60\' Target sent to labyrinthine demiplane (DC 20 Intelligence escapes) for conc or 10 min"',
   'Meld Into Stone':
     'School=Transmutation ' +
     'Level=C3,D3 ' +
@@ -2257,7 +2256,7 @@ SRD5E.SPELLS = {
   'Meteor Swarm':
     'School=Evocation ' +
     'Level=S9,W9 ' +
-    'Description="R1 mile 40\' radius inflicts 20d6 HP fire and 20d6 HP bludgeoning (Dex half)"',
+    'Description="R1 mile 40\' radius inflicts 20d6 HP fire and 20d6 HP bludgeoning (Dexterity half)"',
   'Mind Blank':
     'School=Abjuration ' +
     'Level=B8,W8 ' +
@@ -2286,12 +2285,12 @@ SRD5E.SPELLS = {
     'School=Enchantment ' +
     'Level=B5,W5 ' +
     'AtHigherLevels="changes memory of event in past 7/30/365/any dy at level 6/7/8/9" ' +
-    'Description="R30\' Changes target memory of event in past dy (Wis neg)"',
+    'Description="R30\' Changes target memory of event in past dy (Wisdom neg)"',
   'Moonbeam':
     'School=Evocation ' +
     'Level=D2 ' +
     'AtHigherLevels="inflicts +1d10 HP" ' +
-    'Description="R120\' 5\' radius inflicts 2d10 HP radiant (Con half) for conc or 1 min"',
+    'Description="R120\' 5\' radius inflicts 2d10 HP radiant (Constitution half) for conc or 1 min"',
   'Move Earth':
     'School=Transmutation ' +
     'Level=D6,S6,W6 ' +
@@ -2314,7 +2313,7 @@ SRD5E.SPELLS = {
     'School=Illusion ' +
     'Level=W4 ' +
     'AtHigherLevels="inflicts +1d10 HP" ' +
-    'Description="R120\' Target perceives personal horror that frightens and inflicts 4d10 HP psychic/rd (Wis neg) for conc or 1 min"',
+    'Description="R120\' Target perceives personal horror that frightens and inflicts 4d10 HP psychic/rd (Wisdom neg) for conc or 1 min"',
   'Phantom Steed':
     'School=Illusion ' +
     'Level=W3 ' +
@@ -2327,11 +2326,11 @@ SRD5E.SPELLS = {
     'School=Abjuration ' +
     'Level=B5,C5,D5,W5 ' +
     'AtHigherLevels="extends duration to 10/30/180/366 dy at level 6/7/8/9" ' +
-    'Description="R60\' Binds outsider to service (Cha neg) for 1 dy"',
+    'Description="R60\' Binds outsider to service (Charisma neg) for 1 dy"',
   'Plane Shift':
     'School=Conjuration ' +
     'Level=C7,D7,K7,S7,W7 ' +
-    'Description="Target or self and 8 willing others travel to another plane (Cha neg)"',
+    'Description="Target or self and 8 willing others travel to another plane (Charisma neg)"',
   'Plant Growth':
     'School=Transmutation ' +
     'Level=B3,D3,R3 ' +
@@ -2339,11 +2338,11 @@ SRD5E.SPELLS = {
   'Poison Spray':
     'School=Conjuration ' +
     'Level=D0,K0,S0,W0 ' +
-    'Description="R10\' Target suffers %{(level+7)//6}d12 HP poison (Con neg)"',
+    'Description="R10\' Target suffers %{(level+7)//6}d12 HP poison (Constitution neg)"',
   'Polymorph':
     'School=Transmutation ' +
     'Level=B4,D4,S4,W4 ' +
-    'Description="R60\' Transforms target creature (Wis neg) for conc or 1 hr or until reduced to 0 HP"',
+    'Description="R60\' Transforms target creature (Wisdom neg) for conc or 1 hr or until reduced to 0 HP"',
   'Power Word Kill':
     'School=Enchantment ' +
     'Level=B9,K9,S9,W9 ' +
@@ -2351,7 +2350,7 @@ SRD5E.SPELLS = {
   'Power Word Stun':
     'School=Enchantment ' +
     'Level=B8,K8,S8,W8 ' +
-    'Description="R60\' Stuns target with at most 150 HP (Con neg)"',
+    'Description="R60\' Stuns target with at most 150 HP (Constitution neg)"',
   'Prayer Of Healing':
     'School=Evocation ' +
     'Level=C2 ' +
@@ -2364,11 +2363,11 @@ SRD5E.SPELLS = {
   'Prismatic Spray':
     'School=Evocation ' +
     'Level=S7,W7 ' +
-    'Description="R60\' cone inflicts 10d6 HP fire, acid, lightning, poison, or cold (Dex half), restrains (Dex neg) and then turns to stone (3 Con before 3 fails neg), or blinds (Dex neg) followed by banishing to another plane (Wis neg)"',
+    'Description="R60\' cone inflicts 10d6 HP fire, acid, lightning, poison, or cold (Dexterity half), restrains (Dexterity neg) and then turns to stone (3 Constitution before 3 fails neg), or blinds (Dexterity neg) followed by banishing to another plane (Wisdom neg)"',
   'Prismatic Wall':
     'School=Abjuration ' +
     'Level=W9 ' +
-    'Description="R60\' 90\'x30\' area blinds w/in 20\' for 1 min (Con neg); passers suffer 10d6 HP each fire, acid, lightning, poison, and cold (Dex half), restraint (Dex neg) and then turning to stone (3 Con before 3 fails neg), and blindness (Dex neg) followed by banishment to another plane (Wis neg)"',
+    'Description="R60\' 90\'x30\' area blinds w/in 20\' for 1 min (Constitution neg); passers suffer 10d6 HP each fire, acid, lightning, poison, and cold (Dexterity half), restraint (Dexterity neg) and then turning to stone (3 Constitution before 3 fails neg), and blindness (Dexterity neg) followed by banishment to another plane (Wisdom neg)"',
   'Private Sanctum':
     'School=Abjuration ' +
     'Level=W4 ' +
@@ -2410,7 +2409,7 @@ SRD5E.SPELLS = {
   'Ray Of Enfeeblement':
     'School=Necromancy ' +
     'Level=K2,W2 ' +
-    'Description="R60\' Ranged spell inflicts half damage on Str weapons (Con neg) for conc or 1 min"',
+    'Description="R60\' Ranged spell inflicts half damage on Strength weapons (Constitution neg) for conc or 1 min"',
   'Ray Of Frost':
     'School=Evocation ' +
     'Level=S0,W0 ' +
@@ -2430,7 +2429,7 @@ SRD5E.SPELLS = {
   'Resilient Sphere':
     'School=Evocation ' +
     'Level=W4 ' +
-    'Description="R30\' Traps target in impervious sphere (Dex neg) for conc or 1 min"',
+    'Description="R30\' Traps target in impervious sphere (Dexterity neg) for conc or 1 min"',
   'Resistance':
     'School=Abjuration ' +
     'Level=C0,D0 ' +
@@ -2455,11 +2454,11 @@ SRD5E.SPELLS = {
   'Sacred Flame':
     'School=Evocation ' +
     'Level=C0 ' +
-    'Description="R60\' Target suffers %{(level+7)//6}d8 HP radiant (Dex neg)"',
+    'Description="R60\' Target suffers %{(level+7)//6}d8 HP radiant (Dexterity neg)"',
   'Sanctuary':
     'School=Abjuration ' +
     'Level=C1 ' +
-    'Description="R30\' Foes of target attack another (Wis neg) for 1 min"',
+    'Description="R30\' Foes of target attack another (Wisdom neg) for 1 min"',
   'Scorching Ray':
     'School=Evocation ' +
     'Level="K2 [The Fiend]",S2,W2 ' +
@@ -2468,7 +2467,7 @@ SRD5E.SPELLS = {
   'Scrying':
     'School=Divination ' +
     'Level=B5,C5,D5,K5,W5 ' +
-    'Description="Self sees and hears chosen target (Wis neg) for conc or 10 min"',
+    'Description="Self sees and hears chosen target (Wisdom neg) for conc or 10 min"',
   'Secret Chest':
     'School=Conjuration ' +
     'Level=W4 ' +
@@ -2480,7 +2479,7 @@ SRD5E.SPELLS = {
   'Seeming':
     'School=Illusion ' +
     'Level=B5,S5,W5 ' +
-    'Description="R30\' Changes appearance of targets (Cha neg) for 8 hr"',
+    'Description="R30\' Changes appearance of targets (Charisma neg) for 8 hr"',
   'Sending':
     'School=Evocation ' +
     'Level=B3,C3,W3 ' +
@@ -2497,7 +2496,7 @@ SRD5E.SPELLS = {
     'School=Evocation ' +
     'Level=B2,K2,S2,W2 ' +
     'AtHigherLevels="inflicts +1d8 HP" ' +
-    'Description="R60\' 10\' radius inflicts 3d8 HP thunder (Con half)"',
+    'Description="R60\' 10\' radius inflicts 3d8 HP thunder (Constitution half)"',
   'Shield':
     'School=Abjuration ' +
     'Level=S1,W1 ' +
@@ -2534,11 +2533,11 @@ SRD5E.SPELLS = {
   'Sleet Storm':
     'School=Conjuration ' +
     'Level=D3,S3,W3 ' +
-    'Description="R150\' 40\' radius causes falls (Dex neg)"',
+    'Description="R150\' 40\' radius causes falls (Dexterity neg)"',
   'Slow':
     'School=Transmutation ' +
     'Level=S3,W3 ' +
-    'Description="R120\' 6 targets in 40\' cu suffer half Speed, -2 AC and Dex saves, and 1 action/rd (Wis neg) for conc or 1 min"',
+    'Description="R120\' 6 targets in 40\' cu suffer half Speed, -2 AC and Dexterity saves, and 1 action/rd (Wisdom neg) for conc or 1 min"',
   'Spare The Dying':
     'School=Necromancy ' +
     'Level=C0 ' +
@@ -2567,7 +2566,7 @@ SRD5E.SPELLS = {
     'School=Conjuration ' +
     'Level=C3 ' +
     'AtHigherLevels="inflicts +1d8 HP" ' +
-    'Description="15\' radius inflicts 3d8 HP necrotic or radiant and half Speed (Wis half, no slowing)"',
+    'Description="15\' radius inflicts 3d8 HP necrotic or radiant and half Speed (Wisdom half, no slowing)"',
   'Spiritual Weapon':
     'School=Evocation ' +
     'Level=C2 ' +
@@ -2588,19 +2587,19 @@ SRD5E.SPELLS = {
   'Storm Of Vengeance':
     'School=Conjuration ' +
     'Level=D9 ' +
-    'Description="RSight 360\' radius inflicts 2d6 HP thunder and deafness (Con neg), then 1d6 HP acid, then 10d6 HP lightning (Dex half), then 2d6 HP bludgeoning, then 1d6 cold for conc or 1 min"',
+    'Description="RSight 360\' radius inflicts 2d6 HP thunder and deafness (Constitution neg), then 1d6 HP acid, then 10d6 HP lightning (Dexterity half), then 2d6 HP bludgeoning, then 1d6 cold for conc or 1 min"',
   'Suggestion':
     'School=Enchantment ' +
     'Level=B2,K2,S2,W2 ' +
-    'Description="R30\' Target follows reasonable suggestion (Wis neg) for conc or 8 hr"',
+    'Description="R30\' Target follows reasonable suggestion (Wisdom neg) for conc or 8 hr"',
   'Sunbeam':
     'School=Evocation ' +
     'Level=D6,S6,W6 ' +
-    'Description="60\' line inflicts 6d8 HP radiant and blindness for 1 rd (Con half, no blindness) for conc or 1 min"',
+    'Description="60\' line inflicts 6d8 HP radiant and blindness for 1 rd (Constitution half, no blindness) for conc or 1 min"',
   'Sunburst':
     'School=Evocation ' +
     'Level=D8,S8,W8 ' +
-    'Description="60\' radius inflicts 12d6 HP radius and blindness (Con half, no blindness) for 1 min"',
+    'Description="60\' radius inflicts 12d6 HP radius and blindness (Constitution half, no blindness) for 1 min"',
   'Symbol':
     'School=Abjuration ' +
     'Level=B7,C7,W7 ' +
@@ -2609,7 +2608,7 @@ SRD5E.SPELLS = {
   'Telekinesis':
     'School=Transmutation ' +
     'Level=S5,W5 ' +
-    'Description="R60\' Moves 1000 lb 30\'/rd (Str neg) for conc or 10 min"',
+    'Description="R60\' Moves 1000 lb 30\'/rd (Strength neg) for conc or 10 min"',
   'Telepathic Bond':
     'School=Divination ' +
     'Level=W5 ' +
@@ -2630,7 +2629,7 @@ SRD5E.SPELLS = {
     'School=Evocation ' +
     'Level=B1,D1,S1,W1 ' +
     'AtHigherLevels="inflicts +1d8 HP" ' +
-    'Description="15\' cu inflicts 2d8 HP thunder and pushes 10\' (Con half, no push)"',
+    'Description="15\' cu inflicts 2d8 HP thunder and pushes 10\' (Constitution half, no push)"',
   'Time Stop':
     'School=Transmutation ' +
     'Level=S9,W9 ' +
@@ -2654,7 +2653,7 @@ SRD5E.SPELLS = {
   'True Polymorph':
     'School=Transmutation ' +
     'Level=B9,K9,W9 ' +
-    'Description="R30\' Transforms target creature or object (Wis neg) for conc or 1 hr or until reduced to 0 HP"',
+    'Description="R30\' Transforms target creature or object (Wisdom neg) for conc or 1 hr or until reduced to 0 HP"',
   'True Resurrection':
     'School=Necromancy ' +
     'Level=C9,D9 ' +
@@ -2681,13 +2680,13 @@ SRD5E.SPELLS = {
   'Vicious Mockery':
     'School=Enchantment ' +
     'Level=B0 ' +
-    'Description="R60\' Target suffers %{(level+7)//6}d4 HP psychic and Disadv on attack (Wis neg) for 1 rd"',
+    'Description="R60\' Target suffers %{(level+7)//6}d4 HP psychic and Disadv on attack (Wisdom neg) for 1 rd"',
 
   'Wall Of Fire':
     'School=Evocation ' +
     'Level=D4,"K4 [The Fiend]",S4,W4 ' +
     'AtHigherLevels="inflicts +1d8 HP" ' +
-    'Description="R120\' 60\'x20\' wall inflicts 5d8 HP fire (Dex half) for conc or 1 min"',
+    'Description="R120\' 60\'x20\' wall inflicts 5d8 HP fire (Dexterity half) for conc or 1 min"',
   'Wall Of Force':
     'School=Evocation ' +
     'Level=W5 ' +
@@ -2695,8 +2694,8 @@ SRD5E.SPELLS = {
   'Wall Of Ice':
     'School=Evocation ' +
     'Level=W6 ' +
-    'AtHigherLevels="inflicts +2d6 HP initally, +1d6 HP to passers" ' +
-    'Description="R120\' Creates 10 10\'x10\' panels that inflict 10d6 HP cold (Dex half) initially plus, if broken, 5d6 HP cold to passers (Con half) for conc or 10 min"',
+    'AtHigherLevels="inflicts +2d6 HP initially, +1d6 HP to passers" ' +
+    'Description="R120\' Creates 10 10\'x10\' panels that inflict 10d6 HP cold (Dexterity half) initially plus, if broken, 5d6 HP cold to passers (Constitution half) for conc or 10 min"',
   'Wall Of Stone':
     'School=Evocation ' +
     'Level=D5,S5,W5 ' +
@@ -2705,7 +2704,7 @@ SRD5E.SPELLS = {
     'School=Conjuration ' +
     'Level=D6 ' +
     'AtHigherLevels="inflicts +1d8 HP" ' +
-    'Description="R120\' 60\'x10\' wall inflicts 7d8 HP piercing (Dex half) initially plus 7d8 HP slashing to passers (Dex half) for conc or 10 min"',
+    'Description="R120\' 60\'x10\' wall inflicts 7d8 HP piercing (Dexterity half) initially plus 7d8 HP slashing to passers (Dexterity half) for conc or 10 min"',
   'Warding Bond':
     'School=Abjuration ' +
     'Level=C2 ' +
@@ -2721,11 +2720,11 @@ SRD5E.SPELLS = {
   'Web':
     'School=Conjuration ' +
     'Level=S2,W2 ' +
-    'Description="R60\' 20\' cu restrains creatures (Dex neg, Str frees) for conc or 1 hr"',
+    'Description="R60\' 20\' cu restrains creatures (Dexterity neg, Strength frees) for conc or 1 hr"',
   'Weird':
     'School=Illusion ' +
     'Level=W9 ' +
-    'Description="R120\' Targets perceive personal horrors that frighten and inflict 4d10 HP psychic/rd (Wis neg) for conc or 1 min"',
+    'Description="R120\' Targets perceive personal horrors that frighten and inflict 4d10 HP psychic/rd (Wisdom neg) for conc or 1 min"',
   'Wind Walk':
     'School=Transmutation ' +
     'Level=D6 ' +
@@ -2733,7 +2732,7 @@ SRD5E.SPELLS = {
   'Wind Wall':
     'School=Evocation ' +
     'Level=D3,R3 ' +
-    'Description="R120\' 50\'x15\' area inflicts 3d8 HP bludgeoning (Str half) for conc or 1 min"',
+    'Description="R120\' 50\'x15\' area inflicts 3d8 HP bludgeoning (Strength half) for conc or 1 min"',
   'Wish':
     'School=Conjuration ' +
     'Level=S9,W9 ' +
@@ -2746,7 +2745,7 @@ SRD5E.SPELLS = {
   'Zone Of Truth':
     'School=Enchantment ' +
     'Level=B2,C2,P2 ' +
-    'Description="R60\' Creatures in 15\' radius cannot lie (Cha neg) for 10 min"'
+    'Description="R60\' Creatures in 15\' radius cannot lie (Charisma neg) for 10 min"'
 
 };
 SRD5E.TOOLS = {

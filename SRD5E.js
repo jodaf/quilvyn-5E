@@ -17,7 +17,7 @@ Place, Suite 330, Boston, MA 02111-1307 USA.
 
 /* jshint esversion: 6 */
 /* jshint forin: false */
-/* globals ObjectViewer, Quilvyn, QuilvynRules, QuilvynUtils, SRD35 */
+/* globals ObjectViewer, PHB5E, Quilvyn, QuilvynRules, QuilvynUtils, SRD35 */
 "use strict";
 
 /*
@@ -227,7 +227,7 @@ SRD5E.CLASSES = {
       '1:Druidic,"1:Ritual Casting",1:Spellcasting,"2:Druid Circle",' +
       '"2:Wild Shape","18:Timeless Body (Druid)","18:Beast Spells",' +
       '20:Archdruid,' +
-      '"features.Circle Of The Land ? 2:Bonus Cantrip (Druid)",' +
+      '"features.Circle Of The Land ? 2:Bonus Cantrip (Circle Of The Land)",' +
       '"features.Circle Of The Land ? 2:Natural Recovery",' +
       '"features.Circle Of The Land ? 3:Circle Spells",' +
       '"features.Circle Of The Land ? 6:Land\'s Stride",' +
@@ -433,7 +433,8 @@ SRD5E.CLASSES = {
       '"features.The Fiend ? 14:Hurl Through Hell" ' +
     'Selectables=' +
       '"1:The Fiend:Otherworldly Patron",' +
-      '"3:Pact Of The Blade:Pact Boon","3:Pact Of The Chain:Pact Boon",' +
+      '"3:Pact Of The Blade:Pact Boon",' +
+      '"3:Pact Of The Chain:Pact Boon",' +
       '"3:Pact Of The Tome:Pact Boon",' +
       '"2:Agonizing Blast:Eldritch Invocation",' +
       '"2:Armor Of Shadows:Eldritch Invocation",' +
@@ -527,12 +528,16 @@ SRD5E.FEATURES = {
     'Note="<i>Eldritch Blast</i> inflicts +%{charismaModifier} HP"',
   'Arcane Recovery':
     'Section=magic ' +
-    'Note="Taking a short rest restores %{(levels.Wizard+1)//2} spell slot levels 1/dy"',
-  'Archdruid':'Section=magic Note="May use Wild Shape at will"',
+    'Note="May recover %{(levels.Wizard+1)//2} spell slot levels (level 6 maximum) during a short rest 1/long rest"',
+  'Arcane Tradition':'Section=feature Note="1 selection"',
+  'Archdruid':
+    'Section=magic,magic ' +
+    'Note=' +
+      '"May use Wild Shape at will",' +
+      '"Casting spells requires no verbal, somatic, or cost-free material components"',
   'Armor Of Shadows':
-    'Section=magic Note="May cast <i>Mage Armor</i> on self at will"',
-  'Ascendant Step':
-    'Section=magic Note="May cast <i>Levitate</i> on self at will"',
+    'Section=magic Note="May cast self <i>Mage Armor</i> at will"',
+  'Ascendant Step':'Section=magic Note="May cast self <i>Levitate</i> at will"',
   'Aura Of Courage':
     'Section=save ' +
     'Note="R%{levels.Paladin<18?10:30}\' Self and allies immune to fright"',
@@ -545,7 +550,7 @@ SRD5E.FEATURES = {
   'Bard College':'Section=feature Note="1 selection"',
   'Bardic Inspiration':
     'Section=feature ' +
-    'Note="R60\' May give an ally a +1d%V bonus to an ability, attack, or saving throw w/in 10 min %{charismaModifier>?1}/%1 rest"',
+    'Note="R60\' May give an ally a +1d%V bonus on an ability, attack, or saving throw w/in 10 min %{charismaModifier>?1}/%1 rest"',
   'Beast Speech':
     'Section=magic Note="May cast <i>Speak With Animals</i> at will"',
   'Beast Spells':'Section=magic Note="May cast spells during Wild Shape"',
@@ -556,11 +561,11 @@ SRD5E.FEATURES = {
     'Note="May use a Warlock spell slot to cast <i>Compulsion</i> 1/long rest"',
   'Blessed Healer':
     'Section=magic ' +
-    'Note="Casting healing spells restores 2 + spell level HP to self"',
+    'Note="Casting a healing spell restores 2 + spell level HP to self"',
   'Blindsense':
     'Section=skill ' +
     'Note="R10\' Knows location of hidden and invisible creatures"',
-  'Bonus Cantrip (Druid)':
+  'Bonus Cantrip (Circle Of The Land)':
     'Section=magic Note="Knows an additional Druid cantrip"',
   'Bonus Proficiencies (College Of Lore)':
     'Section=skill Note="Skill Proficiency (Choose 3 from any)"',
@@ -574,7 +579,7 @@ SRD5E.FEATURES = {
     'Note="Adds %{(levels.Barbarian-5)//4} %{levels.Barbarian<13?\'die\':\'dice\'} to crit damage"',
   'Careful Spell':
     'Section=magic ' +
-    'Note="May spend 1 Sorcery Point to protect %{charismaModifier>?1} creature from self spell"',
+    'Note="May spend 1 Sorcery Point to protect %{charismaModifier>?1} creatures from self spell"',
   'Chains Of Carceri':
     'Section=magic ' +
     'Note="May cast <i>Hold Monster</i> at will on celestials, elementals, and fiends 1/long rest per creature"',
@@ -584,19 +589,19 @@ SRD5E.FEATURES = {
   'Cleansing Touch':
     'Section=magic ' +
     'Note="May dispel a spell effect on a touched willing creature %{charismaModifier>?1}/long rest"',
-  'Colossus Slayer':'Section=combat Note="+1d8 HP vs. wounded foe 1/rd"',
+  'Colossus Slayer':'Section=combat Note="+1d8 HP damage vs. wounded foe 1/rd"',
   'Countercharm':
     'Section=magic ' +
     'Note="R30\' Performance gives friendly listeners Adv on saves vs. charm and fright for 1 rd"',
   'Cunning Action':
-    'Section=combat Note="May use Dash, Disengage, or Hide bonus action 1/rd"',
+    'Section=combat Note="May use a bonus action to Dash, Disengage, or Hide 1/rd"',
   'Cutting Words':
     'Section=combat ' +
     'Note="R60\' May use Reaction to subtract a Bardic Inspiration die from a foe roll"',
   'Danger Sense':'Section=save Note="Adv on Dexterity vs. visible dangers"',
   "Dark One's Blessing":
     'Section=combat ' +
-    'Note="Gains %{(levels.Warlock+charismaModifier)>?1} HP when foe drops to 0 HP"',
+    'Note="Reducing foe to 0 HP gives self %{(levels.Warlock+charismaModifier)>?1} temporary HP"',
   "Dark One's Own Luck":
     'Section=feature ' +
     'Note="May add 1d10 to an ability or save roll 1/short rest"',
@@ -604,13 +609,15 @@ SRD5E.FEATURES = {
   'Defensive Tactics':'Section=feature Note="1 selection"',
   'Deflect Missiles':
     'Section=combat ' +
-    'Note="May use Reaction to reduce missile damage by 1d10+%{levels.Monk+dexterityModifier}"',
+    'Note="May use Reaction to reduce missile damage by 1d10 + %{levels.Monk+dexterityModifier} HP; reducing to 0 HP allows spending 1 Ki Point for immediate attack"',
   'Destroy Undead':
     'Section=combat ' +
     'Note="Turning destroys undead up to CR %{levels.Cleric>=8?(levels.Cleric-5)//3<?4:0.5}"',
   'Diamond Soul':
-    'Section=save ' +
-    'Note="Proficient on all saves; may spend 1 Ki Point to re-roll"',
+    'Section=save,save ' +
+    'Note=' +
+      '"Proficient on all saves",' +
+      '"May spend 1 Ki Point to reroll a save"',
   'Disciple Of Life':
     'Section=magic ' +
     'Note="Healing spells restore an additional 2 + spell level HP"',
@@ -626,18 +633,20 @@ SRD5E.FEATURES = {
     'Note="R60\' May discern location of celestials, fiends, and undead for 1 rd %{charismaModifier+1}/long rest"',
   'Divine Smite':
     'Section=combat ' +
-    'Note="May spend a spell slot to gain +(spell level + 1)d8 HP (+1d8 vs. undead and fiends) radiant melee weapon damage"',
+    'Note="After a successful melee attack, may spend a spell slot to inflict +(slot level + 1)d8 HP (maximum 5d8) radiant damage (+1d8 HP vs. undead and fiends)"',
   'Divine Strike':'Section=combat Note="Weapon inflicts +%Vd8 HP %1 1/rd"',
   'Draconic Presence':
     'Section=magic ' +
-    'Note="R60\' May spend 5 Sorcery Points to gain an aura that charms or frightens (DC %{spellDifficultyClass.S} Wisdom neg) for conc or 1 min"',
+    'Note="R60\' May spend 5 Sorcery Points to gain an aura that inflicts choice of charm or fright (DC %{spellDifficultyClass.S} Wisdom neg) for conc or 1 min"',
   'Draconic Resilience':
     'Section=combat ' +
     'Note="+%{levels.Sorcerer} Hit Points/AC %{dexterityModifier+13} in no armor"',
   'Dragon Ancestor':
-    'Section=skill ' +
-    'Note="Fluent in Draconic/Dbl proficiency on Charisma checks w/dragons"',
-  'Dragon Wings':'Section=ability Note="%{speed}\' fly speed"',
+    'Section=skill,skill ' +
+    'Note=' +
+      '"Fluent in Draconic",' +
+      '"Dbl proficiency on Charisma checks w/dragons"',
+  'Dragon Wings':'Section=ability Note="May gain %{speed}\' fly speed at will"',
   'Dreadful Word':
     'Section=magic ' +
     'Note="May use a Warlock spell slot to cast <i>Confusion</i> 1/long rest"',
@@ -646,26 +655,28 @@ SRD5E.FEATURES = {
     'Section=skill Note="Speaks a secret language known only by druids"',
   'Eldritch Invocations':'Section=magic Note="%V selections"',
   'Eldritch Master':
-    'Section=magic Note="May regain spells from patron 1/long rest"',
+    'Section=magic Note="May regain expended spell slots 1/long rest"',
   'Eldritch Sight':'Section=magic Note="May cast <i>Detect Magic</i> at will"',
-  'Eldritch Spear':'Section=magic Note="R300\' <i>Eldritch Blast</i>"',
+  'Eldritch Spear':
+    'Section=magic Note="Increases <i>Eldritch Blast</i> range to 300\'"',
   'Elemental Affinity':
     'Section=magic,save ' +
     'Note=' +
-      '"+%{charismaModifier} HP ancestry type damage on spells",' +
-      '"May spend 1 Sorcery Point to gain 1 hr resistance to ancestry type damage"',
-  'Elusive':'Section=combat Note="Foe attacks never have Adv"',
+      '"+%{charismaModifier} HP ancestry damage type on spells",' +
+      '"May spend 1 Sorcery Point to gain 1 hr resistance to ancestry damage type"',
+  'Elusive':'Section=combat Note="Attacks on self never have Adv"',
   'Empowered Evocation':
     'Section=magic Note="+%{intelligenceModifier} HP evocation spell damage"',
   'Empowered Spell':
     'Section=magic ' +
-    'Note="May spend 1 Sorcery Point to re-roll %{charismaModifier>?1} spell damage dice"',
+    'Note="May spend 1 Sorcery Point to reroll %{charismaModifier>?1} spell damage dice"',
   'Empty Body':
     'Section=magic ' +
-    'Note="May spend 4 Ki Points to gain 1 min invisibility w/resistance to all damage but force/May spend 8 Ki Points to use <i>Astral Projection</i> effects"',
+    'Note="May spend 4 Ki Points to gain 1 min invisibility w/resistance to all damage other than force/May spend 8 Ki Points to cast <i>Astral Projection</i>"',
   'Escape The Horde':'Section=combat Note="Foes have Disadv on OA on self"',
   'Evasion':
-    'Section=save Note="Dexterity save yields no damage instead of half"',
+    'Section=save ' +
+    'Note="Successful Dexterity save yields no damage instead of half; failure yields half damage"',
   'Evocation Savant':
     'Section=magic ' +
     'Note="May copy evocation spells into spellbook for half cost"',
@@ -676,7 +687,8 @@ SRD5E.FEATURES = {
     'Section=skill ' +
     'Note="Dbl proficiency on %{levels.Rogue<6?2:4} chosen skills or Thieves\' Tools"',
   'Extended Spell':
-    'Section=magic Note="May spend 1 Sorcery Point to gain dbl spell duration"',
+    'Section=magic ' +
+    'Note="May spend 1 Sorcery Point to gain dbl spell duration (24 hr maximum)"',
   'Extra Attack':'Section=combat Note="+%V Attacks Per Round"',
   'Eyes Of The Rune Keeper':'Section=feature Note="May read all writing"',
   'Fast Hands':
@@ -685,36 +697,39 @@ SRD5E.FEATURES = {
   'Fast Movement':'Section=ability Note="+10 Speed (heavy armor neg)"',
   'Favored Enemy':
     'Section=skill ' +
-    'Note="Adv on Survival to track and Adv on Intelligence to recall info about and learn the language of %{levels.Ranger<6?1:levels.Ranger<14?2:3} chosen creature types"',
+    'Note=' +
+      '"Adv on Survival to track, Adv on Intelligence to recall info about, and may learn the language of %{levels.Ranger<6?1:levels.Ranger<14?2:3} chosen creature types"',
   'Feral Instinct':
     'Section=combat ' +
     'Note="Adv on Initiative/May rage and then act when surprised"',
   'Feral Senses':
     'Section=combat,skill ' +
-    'Note="No Disadv vs. invisible foe","R30\' Aware of invisible creatures"',
+    'Note=' +
+      '"Suffers no Disadv vs. invisible foe",' +
+      '"R30\' Aware of invisible creatures"',
   'Fiendish Resilience':
     'Section=save ' +
     'Note="May gain resistance to chosen damage type from non-magical and non-silver weapons until next short rest"',
   'Fiendish Vigor':
-    'Section=magic Note="May cast <i>False Life</i> on self at will"',
+    'Section=magic Note="May cast self <i>False Life</i> at will"',
   'Fighting Style':'Section=feature Note="%V selections"',
   'Fighting Style (Archery)':'Section=combat Note="+2 ranged attacks"',
   'Fighting Style (Defense)':'Section=combat Note="+1 AC in armor"',
   'Fighting Style (Dueling)':
     'Section=combat Note="+2 damage with a single, one-handed weapon"',
   'Fighting Style (Great Weapon Fighting)':
-    'Section=combat Note="May re-roll 1s and 2s on two-handed weapon damage"',
+    'Section=combat Note="May reroll 1s and 2s on two-handed weapon damage"',
   'Fighting Style (Protection)':
     'Section=combat ' +
-    'Note="May use Reaction to inflict Disadv on attacks by an adjacent foe"',
+    'Note="May use Reaction and shield to inflict Disadv on attacks on an adjacent creature"',
   'Fighting Style (Two-Weapon Fighting)':
     'Section=combat Note="Adds ability modifier to second attack damage"',
   'Flurry Of Blows':
     'Section=combat ' +
-    'Note="May spend 1 Ki Point to gain 2 additional unarmed strikes"',
+    'Note="May spend 1 Ki Point to gain 2 bonus unarmed strikes"',
   'Foe Slayer':
     'Section=combat ' +
-    'Note="+%{wisdomModifier} attack or damage vs. favored enemy 1/rd"',
+    'Note="May gain choice of +%{wisdomModifier} attack or damage vs. favored enemy 1/rd"',
   'Font Of Inspiration':
     'Section=feature Note="Bardic Inspiration refreshes after a short rest"',
   'Font Of Magic':
@@ -722,18 +737,19 @@ SRD5E.FEATURES = {
     'Note="May use %V Sorcery Points/long rest/May convert Sorcery Points to and from spell slots"',
   'Frenzy':
     'Section=combat ' +
-    'Note="Gains a bonus attack each rd during rage; exhausted afterwards"',
+    'Note="Gains a bonus attack each rd during rage; suffers 1 level of exhaustion afterwards"',
   'Gaze Of Two Minds':
     'Section=magic ' +
-    'Note="Touch allows perceiving through the senses of a willing target for 1 rd"',
+    'Note="Touch allows self to perceive through the senses of a willing humanoid for 1 rd"',
   'Giant Killer':
     'Section=combat ' +
-    'Note="May use Reaction to attack an adjacent Large or larger foe after a miss"',
+    'Note="May use Reaction to attack an adjacent Large or larger foe after it misses self"',
   'Heightened Spell':
     'Section=magic ' +
     'Note="May spend 3 Sorcery Points to inflict target Disadv on spell save"',
   'Hide In Plain Sight':
-    'Section=skill Note="+10 Stealth to hide using prepared camouflage"',
+    'Section=skill ' +
+    'Note="+10 Stealth to hide using prepared camouflage (move or action ends)"',
   'Holy Nimbus':
     'Section=magic,save ' +
     'Note=' +
@@ -741,21 +757,23 @@ SRD5E.FEATURES = {
       '"May gain Adv on saves vs. spells by fiends and undead for 1 min 1/long rest"',
   'Horde Breaker':
     'Section=combat ' +
-    'Note="May make a second attack on a different adjacent foe"',
+    'Note="May make a second attack on a different adjacent foe 1/rd"',
   "Hunter's Prey":'Section=feature Note="1 selection"',
   'Hurl Through Hell':
     'Section=combat ' +
-    'Note="May inflict 10d10 HP psychic on a struck foe 1/long rest"',
+    'Note="After a successful attack, may inflict 10d10 HP psychic and cause foe to disappear for 1 rd 1/long rest"',
   'Improved Critical':'Section=combat Note="Crits on a natural 19"',
-  'Improved Divine Smite':'Section=combat Note="+1d8 HP radiant melee damage"',
+  'Improved Divine Smite':
+    'Section=combat ' +
+    'Note="Successful melee attack inflicts +1d8 HP radiant damage"',
   'Indomitable Might':
     'Section=ability Note="Minimum %{strength} on Strength checks"',
   'Indomitable':
     'Section=save ' +
-    'Note="May re-roll a failed save %{levels.Fighter<13?1:level.Fighter<17?2:3}/long rest"',
+    'Note="May reroll a failed save %{levels.Fighter<13?1:level.Fighter<17?2:3}/long rest"',
   'Intimidating Presence':
     'Section=feature ' +
-    'Note="R30\' May inflict frightened on target (DC %{charismaModifier+8+proficiencyBonus} Will neg) for 1 rd"',
+    'Note="R30\' May use an action to inflict frightened on target (DC %{charismaModifier+8+proficiencyBonus} Will neg)"',
   'Jack Of All Trades':
     'Section=ability ' +
     'Note="+%{proficiencyBonus//2} non-proficient ability checks"',
@@ -764,7 +782,7 @@ SRD5E.FEATURES = {
     'Section=combat Note="Unarmed attacks count as magical"',
   "Land's Stride":
     'Section=ability,save ' +
-    'Note="Moves normally through difficult terrain and nonmagical plants",' +
+    'Note="May move normally through difficult terrain and nonmagical plants",' +
          '"Adv on saves vs. impeding plants"',
   'Lay On Hands':
     'Section=magic ' +
@@ -776,8 +794,10 @@ SRD5E.FEATURES = {
     'Section=magic ' +
     'Note="May learn %{(levels.Bard-6)//4*2} additional spells from any class"',
   'Martial Arts':
-    'Section=combat ' +
-    'Note="When unarmored, gains +%1 attack and damage with monk weapons, raises damage die to 1d%V, and may make a bonus unarmed strike after a monk weapon attack"',
+    'Section=combat,combat ' +
+    'Note=' +
+      '"When unarmored, gains +%1 attack and damage with monk weapons and raises damage die to 1d%V",' +
+      '"When unarmored, may make a bonus unarmed strike after a monk weapon attack"',
   'Martial Archetype':'Section=feature Note="1 selection"',
   'Mask Of Many Faces':
     'Section=magic Note="May cast <i>Disguise Self</i> at will"',
@@ -795,16 +815,16 @@ SRD5E.FEATURES = {
   'Monastic Tradition':'Section=feature Note="1 selection"',
   'Multiattack':'Section=feature Note="1 selection"',
   'Multiattack Defense':
-    'Section=combat Note="+4 AC on additional foe attacks after a successful attack"',
+    'Section=combat Note="After a successful foe attack, gains +4 AC on additional attacks from same foe in same rd"',
   'Mystic Arcanum':
     'Section=magic ' +
-    'Note="May use K6%{(levels.Warlock<13?\'\':\', K7\')+(levels.Warlock<15?\'\':\', K8\')+(levels.Warlock<17?\'\':\', K9\')} spells 1/long rest"',
+    'Note="May cast chosen K6%{(levels.Warlock<13?\'\':\', K7\')+(levels.Warlock<15?\'\':\', K8\')+(levels.Warlock<17?\'\':\', K9\')} %{levels.Warlock<13?\'spell\':\'spells\'} 1/long rest"',
   'Natural Explorer':
     'Section=skill ' +
-    'Note="Gains dbl Intelligence and Wisdom Proficiency, moves normally through difficult terrain, never becomes lost, remains always alert, may stealth alone at full speed, locates dbl food, and gains extra info from tracking in %V chosen terrain types"',
+    'Note="Dbl Proficiency on Intelligence and Wisdom, moves normally through difficult terrain, never becomes lost, remains always alert, may stealth alone at full speed, locates dbl food, and gains extra info from tracking in %V chosen terrain types"',
   'Natural Recovery':
     'Section=magic ' +
-    'Note="Recovers %{levels.Druid//2} spell slot levels during a short rest 1/long rest"',
+    'Note="May recover %{(levels.Druid+1)//2} spell slot levels (level 6 maximum) during a short rest 1/long rest"',
   "Nature's Sanctuary":
     'Section=combat ' +
     'Note="Beasts and plants cannot attack self (DC %{wisdomModifier+8+proficiencyBonus} Will neg)"',
@@ -813,45 +833,47 @@ SRD5E.FEATURES = {
     'Note="Immune to disease, poison, and elemental and fey charm and fright"',
   'One With Shadows':
     'Section=magic ' +
-    'Note="Invisible in dim light (moving or taking an action ends)"',
+    'Note="May become invisible in dim light (moving or taking an action ends)"',
   'Open Hand Technique':
     'Section=combat ' +
-    'Note="A successful Flurry of Blows attack may inflict choice of knocked prone (DC %{kiSaveDC} Dexterity neg), pushed 15\' (DC %{kiSaveDC} Strength neg), or denied Reaction for 1 rd"',
-  'Otherworldly Leap':
-    'Section=magic Note="May cast <i>Jump</i> on self at will"',
+    'Note="Successful Flurry of Blows attack may inflict choice of knocked prone (DC %{kiSaveDC} Dexterity neg), 15\' push (DC %{kiSaveDC} Strength neg), or denied Reaction for 1 rd"',
+  'Otherworldly Leap':'Section=magic Note="May cast self <i>Jump</i> at will"',
   'Otherworldly Patron':'Section=feature Note="1 selection"',
   'Overchannel':
     'Section=magic ' +
-    'Note="Evocation spell up to level 5 inflicts maximum damage, self takes 2+ d12 HP necrotic damage per spell level after first time/long rest"',
+    'Note="Evocation spell up to level 5 inflicts maximum damage, self takes 2d12+ HP necrotic damage per spell level after first use/long rest"',
   'Pact Boon':'Section=feature Note="1 selection"',
-  'Pact Of The Blade':'Section=magic Note="May create a magic weapon"',
+  'Pact Of The Blade':
+    'Section=magic ' +
+    'Note="May use an action to conjure a magic weapon or use a 1 hr ritual to make a magic weapon summonable"',
   'Pact Of The Chain':
     'Section=combat,magic ' +
     'Note=' +
-      '"May forego one attack to allow familiar Reaction attack",' +
-      '"Knows <i>Find Familiar</i>"',
+      '"May forego one attack to allow familiar to use Reaction to attack",' +
+      '"May cast <i>Find Familiar</i> as a ritual"',
   'Pact Of The Tome':
     'Section=magic ' +
-    'Note="Gains a <i>Book Of Shadows</i>/May cast 3 chosen cantrips at will"',
+    'Note="Has a <i>Book Of Shadows</i> containing 3 chosen cantrips that can be cast at will"',
   'Patient Defense':
-    'Section=combat Note="May spend 1 Ki Point for bonus Dodge"',
+    'Section=combat Note="May spend 1 Ki Point for a bonus Dodge"',
   'Peerless Skill':
     'Section=ability Note="May add a Bardic Inspiration die to an ability check"',
   'Perfect Self':
     'Section=combat ' +
     'Note="Has a minimum of 4 Ki Points available after initiative"',
   'Persistent Rage':
-    'Section=combat Note="May continue raging when unengaged w/any foe"',
+    'Section=combat Note="May continue raging when unengaged w/a foe"',
   'Potent Cantrip':
-    'Section=magic Note="Target takes half damage on cantrip save"',
+    'Section=magic ' +
+    'Note="Target that makes save vs. self cantrip takes half damage"',
   'Preserve Life':
     'Section=magic ' +
-    'Note="R30\' May use Channel Divinity to restore %{levels.Cleric*5} HP among targets, up to half max HP each"',
+    'Note="R30\' May use Channel Divinity to restore %{levels.Cleric*5} HP among targets, up to half maximum HP each"',
   'Primal Champion':'Section=ability Note="+4 Strength/+4 Constitution"',
   'Primal Path':'Section=feature Note="1 selection"',
   'Primeval Awareness':
     'Section=magic ' +
-    'Note="May use a spell slot to sense creatures in a 1 mile radius (favored terrain 6 mile radius) for 1 min/spell level"',
+    'Note="May spend a spell slot to sense creatures in a 1 mile radius (favored terrain 6 mile radius) for 1 min/slot level"',
   'Purity Of Body':'Section=save Note="Immune to disease and poison"',
   'Purity Of Spirit':
     'Section=magic ' +
@@ -861,19 +883,19 @@ SRD5E.FEATURES = {
     'Note="May spend 2 Sorcery Points to cast a spell as bonus action"',
   'Quivering Palm':
     'Section=combat ' +
-    'Note="May spend 3 Ki Points to reduce a foe to 0 HP w/in %{levels.Monk} dy after a successful unarmed attack (DC %{kiSaveDC} Constitution suffer 10d10 HP necrotic)"',
+    'Note="After a successful unarmed attack, may spend 3 Ki Points to reduce a foe to 0 HP w/in %{levels.Monk} dy (DC %{kiSaveDC} Constitution suffer 10d10 HP necrotic)"',
   'Rage':
     'Section=ability,combat,feature,magic,save ' +
     'Note=' +
       '"Adv on Strength",' +
       '"+%{levels.Barbarian<9?2:levels.Barbarian<16?3:4} Strength damage",' +
-      '"Rage advantages for 1 min %{levels.Barbarian<3?2:levels.Barbarian<6?3:levels.Barbarian<12?4:levels.Barbarian<17?5:levels.Barbarian<20?6:\'unlimited\'}/long rest (heavy armor neg)",' +
+      '"May use rage features for 1 min %{levels.Barbarian<3?2:levels.Barbarian<6?3:levels.Barbarian<12?4:levels.Barbarian<17?5:levels.Barbarian<20?6:\'unlimited\'}/long rest (heavy armor neg)",' +
       '"Cannot cast or concentrate during rage",' +
        '"Adv on Strength saves and resistance to bludgeoning, piercing, and slashing damage"',
   'Ranger Archetype':'Section=feature Note="1 selection"',
   'Reckless Attack':
     'Section=combat ' +
-    'Note="Adv on Strength melee attacks; foes gain Adv on all attacks"',
+    'Note="During rage, may suffer foe Adv on attacks to gain Adv on Strength melee attacks for 1 rd"',
   'Relentless Rage':
     'Section=save ' +
     'Note="Successful DC 10+ Constitution save retains 1 HP when brought to 0 HP"',
@@ -885,10 +907,10 @@ SRD5E.FEATURES = {
       '"+%{proficiencyBonus//2} non-proficient Strength, Dexterity, and Constitution checks",' +
       '"+%{strengthModifier}\' running jump"',
   'Repelling Blast':
-    'Section=magic Note="<i>Eldritch Blast</i> pushes target 10\'"',
+    'Section=magic Note="May have <i>Eldritch Blast</i> inflict 10\' push"',
   'Retaliation':
     'Section=combat ' +
-    'Note="May use Reaction to make a melee attack after taking damage"',
+    'Note="May use Reaction to make a melee attack on a successful attacker"',
   'Ritual Casting':'Section=magic Note="May cast a known spell using a ritual"',
   'Roguish Archetype':'Section=feature Note="1 selection"',
   'Sacred Oath':'Section=feature Note="1 selection"',
@@ -902,7 +924,8 @@ SRD5E.FEATURES = {
     'Section=magic ' +
     'Note="May use a Warlock spell slot to cast <i>Polymorph</i> 1/long rest"',
   'Second Wind':
-    'Section=combat Note="May regain 1d10+%{levels.Fighter} HP 1/short rest"',
+    'Section=combat ' +
+    'Note="May use a bonus action to regain 1d10+%{levels.Fighter} HP 1/short rest"',
   'Second-Story Work':
     'Section=ability,skill ' +
     'Note=' +
@@ -933,26 +956,26 @@ SRD5E.FEATURES = {
   'Steel Will':'Section=save Note="Adv on saves vs. fright"',
   'Step Of The Wind':
     'Section=combat ' +
-    'Note="May spend 1 Ki Point to gain bonus Disengage or Dash and dbl jump"',
+    'Note="May spend 1 Ki Point to gain a bonus Disengage or Dash and dbl jump"',
   'Stillness Of Mind':
     'Section=save Note="May end self charm and fright at will"',
   'Stroke Of Luck':
-    'Section=ability,combat ' +
+    'Section=combat ' +
     'Note=' +
-      '"May take an automatic 20 on an ability check 1/short rest",' +
-      '"May change a miss into a hit 1/short rest"',
+      '"May change a miss into a hit or take an automatic 20 on an ability check 1/short rest"',
   'Stunning Strike':
     'Section=combat ' +
-    'Note="May spend 1 Ki Point to stun foe after a successful attack (DC %{kiSaveDC} Constitution neg) for 1 rd"',
+    'Note="After a successful attack, may spend 1 Ki Point to stun foe (DC %{kiSaveDC} Constitution neg) for 1 rd"',
   'Subtle Spell':
     'Section=magic ' +
-    'Note="May spend 1 Sorcery Point to cast w/out somatic or verbal components"',
+    'Note="May spend 1 Sorcery Point to cast a spell w/out somatic or verbal components"',
   'Superior Critical':'Section=combat Note="Crits on a natural 18"',
   "Superior Hunter's Defense":'Section=feature Note="1 selection"',
   'Superior Inspiration':
     'Section=combat ' +
     'Note="Has a minimum 1 Bardic Inspiration available after initiative"',
-  'Supreme Healing':'Section=magic Note="Healing spells restore maximum HP"',
+  'Supreme Healing':
+    'Section=magic Note="Healing spells restore maximum possible HP"',
   'Supreme Sneak':
     'Section=skill Note="Adv on Stealth when moving at half speed"',
   'Survivor':
@@ -966,7 +989,8 @@ SRD5E.FEATURES = {
   "Thief's Reflexes":
     'Section=combat ' +
     'Note="May take an extra turn during the first combat round at -10 Initiative"',
-  'Thirsting Blade':'Section=combat Note="May make 2 attacks/rd w/pact blade"',
+  'Thirsting Blade':
+    'Section=combat Note="Attack action w/pact blade allows 2 attacks"',
   'Timeless Body (Druid)':'Section=feature Note="Ages at 1/10 normal rate"',
   'Timeless Body (Monk)':
     'Section=feature ' +
@@ -975,7 +999,7 @@ SRD5E.FEATURES = {
     'Section=feature Note="May communicate in any language"',
   'Tranquility':
     'Section=magic ' +
-    'Note="Self <i>Sanctuary</i> between long rests (DC %{kiSaveDC} Wisdom neg)"',
+    'Note="May gain <i>Sanctuary</i> effects between long rests (DC %{kiSaveDC} Wisdom neg)"',
   'Turn The Unholy':
     'Section=magic ' +
     'Note="R30\' May use Channel Divinity to make fiends and undead flee (DC %V Wisdom neg) for 1 min"',
@@ -984,7 +1008,7 @@ SRD5E.FEATURES = {
     'Note="R30\' May use Channel Divinity to make undead flee (DC %V Wisdom neg) for 1 min"',
   'Twinned Spell':
     'Section=magic ' +
-    'Note="May spend spell level Sorcery Points to add a second target"',
+    'Note="May spend spell level Sorcery Points to add a second spell target"',
   'Unarmored Defense (Barbarian)':
     'Section=combat Note="+%{constitutionModifier} AC in no armor"',
   'Unarmored Defense (Monk)':
@@ -992,9 +1016,11 @@ SRD5E.FEATURES = {
   'Unarmored Movement':
     'Section=ability,ability ' +
     'Note=' +
-      '"+%{(levels.Monk+6)//4*5} speed in no armor",' +
+      '"+%{(levels.Monk+6)//4*5} Speed in no armor",' +
       '"May move across vertical surfaces and liquids"',
-  'Uncanny Dodge':'Section=combat Note="May use Reaction for half damage"',
+  'Uncanny Dodge':
+    'Section=combat ' +
+    'Note="May use Reaction to reduce damage taken from an attack by half"',
   'Use Magic Device':
     'Section=skill Note="May use otherwise restricted magic devices"',
   'Vanish':
@@ -1032,7 +1058,7 @@ SRD5E.FEATURES = {
     'Section=save Note="Adv on saves vs. fright"',
   'Breath Weapon':
     'Section=combat Note="%1 inflicts %{(level+9)//5}d6 HP %2 (DC %3 %4 half)"',
-  'Damage Resistance':'Section=save Note="Resistance to %V damage"',
+  'Damage Resistance':'Section=save Note="Has resistance to %V damage"',
   'Darkvision':
     'Section=feature Note="R60\' Sees one light level better"',
   'Dragonborn Ability Adjustment':
@@ -1060,7 +1086,7 @@ SRD5E.FEATURES = {
     'Section=ability ' +
     'Note="May move through a space occupied by a larger creature"',
   'Hellish Resistance':
-    'Section=save Note="Resistance to fire damage"',
+    'Section=save Note="Has resistance to fire damage"',
   'High Elf Ability Adjustment':
     'Section=ability Note="+2 Dexterity/+1 Intelligence"',
   'Hill Dwarf Ability Adjustment':
@@ -1076,7 +1102,7 @@ SRD5E.FEATURES = {
     'Section=ability Note="+2 Dexterity/+1 Charisma"',
   'Lucky Halfling':
     'Section=feature ' +
-    'Note="May re-roll 1s on attack, ability, and saving throws"',
+    'Note="May reroll 1s on attack, ability, and saving throws"',
   'Menacing':
     'Section=skill Note="Skill Proficiency (Intimidation)"',
   'Naturally Stealthy':
@@ -1357,8 +1383,8 @@ SRD5E.SKILLS = {
   'Stealth':'Ability=dexterity',
   'Survival':'Ability=wisdom'
 };
-// Note that spellRules replaces ?level? and ?modifier? in the spell
-// descriptions with the appropriate caster level and ability modifier.
+// Note that spellRules replaces lvl and mdf in the spell descriptions with the
+// appropriate caster level and ability modifier.
 SRD5E.SPELLS = {
 
   'Acid Arrow':
@@ -1427,7 +1453,7 @@ SRD5E.SPELLS = {
     'School=Evocation ' +
     'Level=W5 ' +
     'AtHigherLevels="inflicts +2d8 HP force and +2d6 HP bludgeoning" ' +
-    'Description="R120\' Large hand (AC 20, Strength 26, Dexterity 10) can punch (inflicts 4d8 HP force), push 5\', grapple (inflicts 2d6+%{?modifier?} HP bludgeoning), and block for conc or 1 min"',
+    'Description="R120\' Large hand (AC 20, Strength 26, Dexterity 10) can punch (inflicts 4d8 HP force), push 5\', grapple (inflicts 2d6+%{mdf} HP bludgeoning), and block for conc or 1 min"',
   'Arcane Lock':
     'School=Abjuration ' +
     'Level=W2 ' +
@@ -1673,7 +1699,7 @@ SRD5E.SPELLS = {
     'School=Evocation ' +
     'Level=B1,C1,D1,P1,R1 ' +
     'AtHigherLevels="heals +1d8 HP" ' +
-    'Description="Touched regains 1d8+%{?modifier?} HP"',
+    'Description="Touched regains 1d8+%{mdf} HP"',
 
   'Dancing Lights':
     'School=Evocation ' +
@@ -2036,7 +2062,7 @@ SRD5E.SPELLS = {
     'School=Evocation ' +
     'Level=B1,C1,D1 ' +
     'AtHigherLevels="heals +1d4 HP" ' +
-    'Description="R60\' Target regains 1d4+%{?modifier?} HP"',
+    'Description="R60\' Target regains 1d4+%{mdf} HP"',
   'Heat Metal':
     'School=Transmutation ' +
     'Level=B2,D2 ' +
@@ -2055,7 +2081,7 @@ SRD5E.SPELLS = {
     'School=Enchantment ' +
     'Level=B1,P1 ' +
     'AtHigherLevels="affects +1 target" ' +
-    'Description="Touched gains immunity to fright and +%{?modifier?} temporary HP each rd for conc or 1 min"',
+    'Description="Touched gains immunity to fright and +%{mdf} temporary HP each rd for conc or 1 min"',
   'Hideous Laughter':
     'School=Enchantment ' +
     'Level=B1,W1 ' +
@@ -2222,7 +2248,7 @@ SRD5E.SPELLS = {
     'School=Evocation ' + // from errata
     'Level=B5,C5,D5 ' +
     'AtHigherLevels="heals +1d8 HP" ' +
-    'Description="R60\' 6 targets in 30\' radius regain 3d8 + %{?modifier?} HP"',
+    'Description="R60\' 6 targets in 30\' radius regain 3d8 + %{mdf} HP"',
   'Mass Heal':
     'School=Evocation ' + // from errata
     'Level=C9 ' +
@@ -2231,7 +2257,7 @@ SRD5E.SPELLS = {
     'School=Evocation ' +
     'Level=C3 ' +
     'AtHigherLevels="heals +1d4 HP" ' +
-    'Description="R60\' 6 targets regain 1d4 + %{?modifier?} HP"',
+    'Description="R60\' 6 targets regain 1d4 + %{mdf} HP"',
   'Mass Suggestion':
     'School=Enchantment ' +
     'Level=B6,K6,S6,W6 ' +
@@ -2355,7 +2381,7 @@ SRD5E.SPELLS = {
     'School=Evocation ' +
     'Level=C2 ' +
     'AtHigherLevels="heals +1d8 HP" ' +
-    'Description="R60\' 6 targets regain 2d8 + %{?modifier?} HP"',
+    'Description="R60\' 6 targets regain 2d8 + %{mdf} HP"',
   'Prestidigitation':
     'School=Transmutation ' +
     'Level=B0,K0,S0,W0 ' +
@@ -2571,7 +2597,7 @@ SRD5E.SPELLS = {
     'School=Evocation ' +
     'Level=C2 ' +
     'AtHigherLevels="inflicts +1d8 HP/2 levels" ' +
-    'Description="R60\' Spectral weapon inflicts 1d8 + %{?modifier?} HP and moves 20\' for 1 min"',
+    'Description="R60\' Spectral weapon inflicts 1d8 + %{mdf} HP and moves 20\' for 1 min"',
   'Stinking Cloud':
     'School=Conjuration ' +
     'Level=B3,"K3 [The Fiend]",S3,W3 ' +
@@ -3697,7 +3723,7 @@ SRD5E.classRulesExtra = function(rules, name) {
       'featureNotes.druidCircle', '=', '1'
     );
     rules.defineRule
-      ('spellSlots.D0', 'magicNotes.bonusCantrip(Druid)', '+=', '1');
+      ('spellSlots.D0', 'magicNotes.bonusCantrip(CircleOfTheLand)', '+=', '1');
     for(let s in rules.getChoices('selectableFeatures')) {
       if(s.match(/Druid - Circle Of The Land/)) {
         let circle = s.replace('Druid - ', '');
@@ -3883,6 +3909,10 @@ SRD5E.classRulesExtra = function(rules, name) {
       '13:Freedom Of Movement', '13:Guardian Of Faith',
       '17:Commune', '17:Flame Strike'
     ]);
+    SRD5E.featureSpells(
+      rules, 'Purity Of Spirit', 'P', 'levels.Paladin', [
+      '15:Protection From Evil And Good'
+    ]);
 
   } else if(name == 'Ranger') {
 
@@ -4011,7 +4041,7 @@ SRD5E.classRulesExtra = function(rules, name) {
   } else if(name == 'Wizard') {
 
     rules.defineRule('selectableFeatureCount.Wizard (Arcane Tradition)',
-      classLevel, '=', 'source<2 ? null : 1'
+      'featureNotes.arcaneTradition', '=', '1'
     );
 
   }
@@ -4567,8 +4597,8 @@ SRD5E.spellRules = function(
     description = '';
 
   description =
-    description.replaceAll('?level?', 'spellCasterLevel.' + casterGroup)
-               .replaceAll('?modifier?', 'spellModifier.' + casterGroup);
+    description.replaceAll('lvl', 'spellCasterLevel.' + casterGroup)
+               .replaceAll('mdf', 'spellModifier.' + casterGroup);
   if(higher)
     description += ' [+Level ' + higher + ']';
   rules.defineChoice('notes', 'spells.' + name + ':' + description);

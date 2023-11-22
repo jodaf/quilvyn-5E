@@ -655,7 +655,7 @@ SRD5E.FEATURES = {
     'Section=skill Note="Speaks a secret language known only by druids"',
   'Eldritch Invocations':'Section=magic Note="%V selections"',
   'Eldritch Master':
-    'Section=magic Note="May regain expended spell slots 1/long rest"',
+    'Section=magic Note="May recover expended spell slots 1/long rest"',
   'Eldritch Sight':'Section=magic Note="May cast <i>Detect Magic</i> at will"',
   'Eldritch Spear':
     'Section=magic Note="Increases <i>Eldritch Blast</i> range to 300\'"',
@@ -1049,7 +1049,7 @@ SRD5E.FEATURES = {
   'Grappler':
     'Section=combat ' +
     // Note: grapple larger foes benefit removed by errata
-    'Note="Adv on attacks on a grappled foe; additional successful grapple pins"',
+    'Note="Adv on attacks on a grappled foe/May pin a grappled foe w/an additional successful attempt"',
   // Race
   "Artificer's Lore":
     'Section=skill ' +

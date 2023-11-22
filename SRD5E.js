@@ -1053,28 +1053,31 @@ SRD5E.FEATURES = {
   // Race
   "Artificer's Lore":
     'Section=skill ' +
-    'Note="+%{proficiencyBonus*(skillProficiency.History?1:2)} History (magic, alchemical, and tech objects)"',
+    'Note="+%{proficiencyBonus*(skillProficiency.History?1:2)} History (magic, alchemical, and technological objects)"',
   'Brave':
     'Section=save Note="Adv on saves vs. fright"',
   'Breath Weapon':
     'Section=combat Note="%1 inflicts %{(level+9)//5}d6 HP %2 (DC %3 %4 half)"',
+  'Cantrip (High Elf)':'Section=magic Note="Knows 1 Wizard cantrip"',
   'Damage Resistance':'Section=save Note="Has resistance to %V damage"',
   'Darkvision':
     'Section=feature Note="R60\' Sees one light level better"',
+  'Draconic Ancestry':'Section=feature Note="1 selection"',
   'Dragonborn Ability Adjustment':
     'Section=ability Note="+2 Strength/+1 Charisma"',
   'Dwarven Combat Training':
     'Section=combat ' +
     'Note="Weapon Proficiency (Battleaxe/Handaxe/Light Hammer/Warhammer)"',
   'Dwarven Resilience':
-    'Section=save Note="Adv on saves vs. poison, resistance to poison damage"',
+    'Section=save ' +
+    'Note="Adv on saves vs. poison/Has resistance to poison damage"',
   'Dwarven Toughness':'Section=combat Note="+%{level} Hit Points"',
-  'Elf Cantrip':'Section=magic Note="Knows 1 Wizard cantrip"',
   'Elf Weapon Training':
     'Section=combat ' +
     'Note="Weapon Proficiency (Longbow/Longsword/Shortbow/Shortsword)"',
+  'Extra Language':'Section=skill Note="Knows 1 choice of language"',
   'Fey Ancestry':
-    'Section=save Note="Adv on saves vs. charm, immunity to sleep"',
+    'Section=save Note="Adv on saves vs. charm/Immune to magical sleep"',
   'Gnome Cunning':
     'Section=save ' +
     'Note="Adv on Charisma, Intelligence, and Wisdom saves vs. magic"',
@@ -1100,7 +1103,7 @@ SRD5E.FEATURES = {
   'Keen Senses':'Section=skill Note="Skill Proficiency (Perception)"',
   'Lightfoot Halfling Ability Adjustment':
     'Section=ability Note="+2 Dexterity/+1 Charisma"',
-  'Lucky Halfling':
+  'Lucky (Halfling)':
     'Section=feature ' +
     'Note="May reroll 1s on attack, ability, and saving throws"',
   'Menacing':
@@ -1297,15 +1300,20 @@ SRD5E.PATHS = {
 SRD5E.RACES = {
   'Dragonborn':
     'Features=' +
-      '"1:Language (Common/Draconic)",' +
+      '"1:Language (Common/Draconic)","1:Draconic Ancestry",' +
       '"1:Dragonborn Ability Adjustment","1:Breath Weapon",' +
       '"1:Damage Resistance" ' +
     'Selectables=' +
-      '"1:Black Draconic Ancestry","1:Blue Draconic Ancestry",' +
-      '"1:Brass Draconic Ancestry","1:Bronze Draconic Ancestry",' +
-      '"1:Copper Draconic Ancestry","1:Gold Draconic Ancestry",' +
-      '"1:Green Draconic Ancestry","1:Red Draconic Ancestry",' +
-      '"1:Silver Draconic Ancestry","1:White Draconic Ancestry"',
+      '"1:Black Dragon Ancestry:Draconic Ancestry",' +
+      '"1:Blue Dragon Ancestry:Draconic Ancestry",' +
+      '"1:Brass Dragon Ancestry:Draconic Ancestry",' +
+      '"1:Bronze Dragon Ancestry:Draconic Ancestry",'+
+      '"1:Copper Dragon Ancestry:Draconic Ancestry",' +
+      '"1:Gold Dragon Ancestry:Draconic Ancestry",' +
+      '"1:Green Dragon Ancestry:Draconic Ancestry",' +
+      '"1:Red Dragon Ancestry:Draconic Ancestry",' +
+      '"1:Silver Dragon Ancestry:Draconic Ancestry",' +
+      '"1:White Dragon Ancestry:Draconic Ancestry"',
   'Hill Dwarf':
     'Features=' +
       '"1:Language (Common/Dwarvish)",' +
@@ -1316,8 +1324,9 @@ SRD5E.RACES = {
   'High Elf':
     'Features=' +
       '"1:Language (Common/Elvish/Choose 1 from any)",' +
-      '1:Darkvision,"1:Elf Weapon Training","1:Elf Cantrip","1:Fey Ancestry",' +
-      '"1:High Elf Ability Adjustment","1:Keen Senses",1:Trance',
+      '"1:Cantrip (High Elf)",1:Darkvision,"1:Elf Weapon Training",' +
+      '"1:Extra Language","1:Fey Ancestry","1:High Elf Ability Adjustment",' +
+      '"1:Keen Senses",1:Trance',
   'Rock Gnome':
     'Features=' +
       '"1:Language (Common/Gnomish)",' +
@@ -1337,7 +1346,7 @@ SRD5E.RACES = {
     'Features=' +
       '"1:Language (Common/Halfling)",' +
       '1:Brave,"1:Halfling Nimbleness",' +
-      '"1:Lightfoot Halfling Ability Adjustment","1:Lucky Halfling",' +
+      '"1:Lightfoot Halfling Ability Adjustment","1:Lucky (Halfling)",' +
       '"1:Naturally Stealthy",1:Slow,1:Small',
   'Human':
     'Features=' +
@@ -4433,21 +4442,21 @@ SRD5E.raceRulesExtra = function(rules, name) {
   if(name == 'Dragonborn') {
     rules.defineRule('combatNotes.breathWeapon.1',
       'features.Breath Weapon', '=', '"5\'x30\' line"',
-      'features.Gold Draconic Ancestry', '=', '"15\' cone"',
-      'features.Green Draconic Ancestry', '=', '"15\' cone"',
-      'features.Red Draconic Ancestry', '=', '"15\' cone"',
-      'features.Silver Draconic Ancestry', '=', '"15\' cone"',
-      'features.White Draconic Ancestry', '=', '"15\' cone"'
+      'features.Gold Dragon Ancestry', '=', '"15\' cone"',
+      'features.Green Dragon Ancestry', '=', '"15\' cone"',
+      'features.Red Dragon Ancestry', '=', '"15\' cone"',
+      'features.Silver Dragon Ancestry', '=', '"15\' cone"',
+      'features.White Dragon Ancestry', '=', '"15\' cone"'
     );
     rules.defineRule('combatNotes.breathWeapon.2',
       'features.Breath Weapon', '=', '"fire"',
-      'features.Black Draconic Ancestry', '=', '"acid"',
-      'features.Blue Draconic Ancestry', '=', '"lightning"',
-      'features.Bronze Draconic Ancestry', '=', '"lightning"',
-      'features.Copper Draconic Ancestry', '=', '"acid"',
-      'features.Green Draconic Ancestry', '=', '"poison"',
-      'features.Silver Draconic Ancestry', '=', '"cold"',
-      'features.White Draconic Ancestry', '=', '"cold"'
+      'features.Black Dragon Ancestry', '=', '"acid"',
+      'features.Blue Dragon Ancestry', '=', '"lightning"',
+      'features.Bronze Dragon Ancestry', '=', '"lightning"',
+      'features.Copper Dragon Ancestry', '=', '"acid"',
+      'features.Green Dragon Ancestry', '=', '"poison"',
+      'features.Silver Dragon Ancestry', '=', '"cold"',
+      'features.White Dragon Ancestry', '=', '"cold"'
     );
     rules.defineRule('combatNotes.breathWeapon.3',
       'features.Breath Weapon', '?', null,
@@ -4455,20 +4464,23 @@ SRD5E.raceRulesExtra = function(rules, name) {
       'proficiencyBonus', '+', null
     );
     rules.defineRule('combatNotes.breathWeapon.4',
-      'combatNotes.breathWeapon.2', '=', 'source.match(/cold|poison/) ? "Con" : "Dex"'
+      'combatNotes.breathWeapon.2', '=', 'source.match(/cold|poison/) ? "Constitution" : "Dexterity"'
     );
     rules.defineRule('saveNotes.damageResistance',
       'combatNotes.breathWeapon.2', '=', null
     );
-    rules.defineRule('selectableFeatureCount.Dragonborn',
-      'race', '=', 'source == "Dragonborn" ? 1 : null'
+    rules.defineRule('selectableFeatureCount.Dragonborn (Draconic Ancestry)',
+      'featureNotes.draconicAncestry', '=', '1'
     );
   } else if(name.match(/Dwarf/)) {
     rules.defineRule
       ('abilityNotes.armorSpeedAdjustment', 'abilityNotes.steady', '^', '0');
   } else if(name == 'High Elf') {
-    rules.defineRule('casterLevels.W', 'magicNotes.elfCantrip', '^=', '1');
-    rules.defineRule('spellSlots.W0', 'magicNotes.elfCantrip', '+=', '1');
+    rules.defineRule // italics noop
+      ('languageChoiceCount', 'featureNotes.extraLanguage', '+', 'null');
+    rules.defineRule
+      ('casterLevels.W', 'magicNotes.cantrip(HighElf)', '^=', '1');
+    rules.defineRule('spellSlots.W0', 'magicNotes.cantrip(HighElf)', '+=', '1');
   } else if(name == 'Tiefling') {
     SRD5E.featureSpells(rules, 'Infernal Legacy', 'K', 'level',
       ['Thaumaturgy', '3:Hellish Rebuke', '5:Darkness']

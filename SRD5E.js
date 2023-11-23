@@ -550,7 +550,7 @@ SRD5E.FEATURES = {
   'Bard College':'Section=feature Note="1 selection"',
   'Bardic Inspiration':
     'Section=feature ' +
-    'Note="R60\' May give an ally a +1d%V bonus on an ability, attack, or saving throw w/in 10 min %{charismaModifier>?1}/%1 rest"',
+    'Note="R60\' May give an ally a +1d%{bardicInspirationDie} bonus on an ability, attack, or saving throw w/in 10 min %{charismaModifier>?1}/%{featureNotes.fontOfInspiration?\'short\':\'long\'} rest"',
   'Beast Speech':
     'Section=magic Note="May cast <i>Speak With Animals</i> at will"',
   'Beast Spells':'Section=magic Note="May cast spells during Wild Shape"',
@@ -634,7 +634,9 @@ SRD5E.FEATURES = {
   'Divine Smite':
     'Section=combat ' +
     'Note="After a successful melee attack, may spend a spell slot to inflict +(slot level + 1)d8 HP (maximum 5d8) radiant damage (+1d8 HP vs. undead and fiends)"',
-  'Divine Strike':'Section=combat Note="Weapon inflicts +%Vd8 HP %1 1/rd"',
+  'Divine Strike':
+    'Section=combat ' +
+    'Note="Weapon inflicts +%{levels.Cleric<14?1:2}d8 HP %{divineStrikeDamageType} 1/rd"',
   'Draconic Presence':
     'Section=magic ' +
     'Note="R60\' May spend 5 Sorcery Points to gain an aura that inflicts choice of charm or fright (DC %{spellDifficultyClass.S} Wisdom neg) for conc or 1 min"',
@@ -777,7 +779,7 @@ SRD5E.FEATURES = {
   'Jack Of All Trades':
     'Section=ability ' +
     'Note="+%{proficiencyBonus//2} non-proficient ability checks"',
-  'Ki':'Section=feature Note="May use %V Ki Points/short rest"',
+  'Ki':'Section=feature Note="May use %{levels.Monk} Ki Points/short rest"',
   'Ki-Empowered Strikes':
     'Section=combat Note="Unarmed attacks count as magical"',
   "Land's Stride":
@@ -821,7 +823,7 @@ SRD5E.FEATURES = {
     'Note="May cast chosen K6%{(levels.Warlock<13?\'\':\', K7\')+(levels.Warlock<15?\'\':\', K8\')+(levels.Warlock<17?\'\':\', K9\')} %{levels.Warlock<13?\'spell\':\'spells\'} 1/long rest"',
   'Natural Explorer':
     'Section=skill ' +
-    'Note="Dbl Proficiency on Intelligence and Wisdom, moves normally through difficult terrain, never becomes lost, remains always alert, may stealth alone at full speed, locates dbl food, and gains extra info from tracking in %V chosen terrain types"',
+    'Note="Dbl Proficiency on Intelligence and Wisdom, moves normally through difficult terrain, never becomes lost, remains always alert, may stealth alone at full speed, locates dbl food, and gains extra info from tracking in %{levels.Ranger<6?1:levels.Ranger<10?2:3} chosen terrain types"',
   'Natural Recovery':
     'Section=magic ' +
     'Note="May recover %{(levels.Druid+1)//2} spell slot levels (level 6 maximum) during a short rest 1/long rest"',
@@ -941,7 +943,8 @@ SRD5E.FEATURES = {
     'Section=ability ' +
     'Note="May use Reaction to negate %{levels.Monk*5} HP falling damage"',
   'Sneak Attack':
-    'Section=combat Note="+%Vd6 damage on attacks w/Adv or shared threat"',
+    'Section=combat ' +
+    'Note="+%{(levels.Rogue+1)//2}d6 damage on attacks w/Adv or shared threat"',
   'Song Of Rest':
     'Section=magic ' +
     'Note="Friendly listeners regain +1d%{levels.Bard>=9?6+(levels.Bard-5)//4*2:6} HP after a short rest"',
@@ -1002,10 +1005,10 @@ SRD5E.FEATURES = {
     'Note="May gain <i>Sanctuary</i> effects between long rests (DC %{kiSaveDC} Wisdom neg)"',
   'Turn The Unholy':
     'Section=magic ' +
-    'Note="R30\' May use Channel Divinity to make fiends and undead flee (DC %V Wisdom neg) for 1 min"',
+    'Note="R30\' May use Channel Divinity to make fiends and undead flee (DC %{spellDifficultyClass.P} Wisdom neg) for 1 min"',
   'Turn Undead':
     'Section=combat ' +
-    'Note="R30\' May use Channel Divinity to make undead flee (DC %V Wisdom neg) for 1 min"',
+    'Note="R30\' May use Channel Divinity to make undead flee (DC %{spellDifficultyClass.C} Wisdom neg) for 1 min"',
   'Twinned Spell':
     'Section=magic ' +
     'Note="May spend spell level Sorcery Points to add a second spell target"',
@@ -1041,7 +1044,7 @@ SRD5E.FEATURES = {
     'Section=feature Note="May regain %{levels.Monk*3} HP 1/long rest"',
   'Wild Shape':
     'Section=magic ' +
-    'Note="May transform into a CR %1%2 creature for %3 hr %4/short rest"',
+    'Note="May transform into a CR %V%{levels.Druid<4?\' (land only)\':levels.Druid<8?\' (non-flying)\':\'\'} creature for %{levels.Druid//2} hr %{magicNotes.archdruid?\'unlimited\':2}/short rest"',
   'Witch Sight':
     'Section=feature Note="R30\' Sees true forms"',
   // Feat
@@ -1057,9 +1060,10 @@ SRD5E.FEATURES = {
   'Brave':
     'Section=save Note="Adv on saves vs. fright"',
   'Breath Weapon':
-    'Section=combat Note="%1 inflicts %{(level+9)//5}d6 HP %2 (DC %3 %4 half)"',
+    'Section=combat Note="%{breathWeaponShape} inflicts %{(level+9)//5}d6 HP %{breathWeaponEnergy} (DC %{8+constitutionModifier+proficiencyBonus} %{breathWeaponEnergy=~\'cold|poison\'?\'Constitution\':\'Dexterity\'} half)"',
   'Cantrip (High Elf)':'Section=magic Note="Knows 1 Wizard cantrip"',
-  'Damage Resistance':'Section=save Note="Has resistance to %V damage"',
+  'Damage Resistance':
+    'Section=save Note="Has resistance to %{breathWeaponEnergy} damage"',
   'Darkvision':
     'Section=feature Note="R60\' Sees one light level better"',
   'Draconic Ancestry':'Section=feature Note="1 selection"',
@@ -3649,11 +3653,8 @@ SRD5E.classRulesExtra = function(rules, name) {
     rules.defineRule('bardicInspirationDie',
       classLevel, '=', 'source<20 ? 6 + Math.floor(source / 5) * 2 : 12'
     );
-    rules.defineRule
-      ('featureNotes.bardicInspiration', 'bardicInspirationDie', '=', null);
-    rules.defineRule('featureNotes.bardicInspiration.1',
-      'features.Bardic Inspiration', '=', '"long"',
-      'featureNotes.fontOfInspiration', '=', '"short"'
+    rules.defineRule('featureNotes.bardicInspiration', // Italics noop
+      'featureNotes.fontOfInspiration', '+', 'null'
     );
     rules.defineRule('selectableFeatureCount.Bard (Bard College)',
       'featureNotes.bardCollege', '=', '1'
@@ -3682,16 +3683,10 @@ SRD5E.classRulesExtra = function(rules, name) {
   } else if(name == 'Cleric') {
 
     rules.defineRule('clericHasDivineStrike', 'features.Life Domain', '=', '1');
-    rules.defineRule('combatNotes.turnUndead',
-      'wisdomModifier', '=', 'source + 8',
-      'proficiencyBonus', '+', null
-    );
     rules.defineRule('selectableFeatureCount.Cleric (Divine Domain)',
       'featureNotes.divineDomain', '=', '1'
     );
-    rules.defineRule
-      ('combatNotes.divineStrike', classLevel, '=', 'source<14 ? 1 : 2');
-    rules.defineRule('combatNotes.divineStrike.1',
+    rules.defineRule('divineStrikeDamageType',
       'features.Divine Strike', '?', null,
       'features.Life Domain', '=', '"radiant"'
     );
@@ -3716,17 +3711,9 @@ SRD5E.classRulesExtra = function(rules, name) {
 
   } else if(name == 'Druid') {
 
-    rules.defineRule('magicNotes.wildShape.1',
-      classLevel, '=', 'source<4 ? "1/4" : source<8 ? "1/2" : "1"'
-    );
-    rules.defineRule('magicNotes.wildShape.2',
-      classLevel, '=', 'source<4 ? " (land only)" : source<8 ? " (non-flying)" : ""'
-    );
-    rules.defineRule
-      ('magicNotes.wildShape.3', classLevel, '=', 'Math.floor(source /2)');
-    rules.defineRule('magicNotes.wildShape.4',
-      classLevel, '=', '2',
-      'magicNotes.archdruid', '=', '"unlimited"'
+    rules.defineRule('magicNotes.wildShape',
+      classLevel, '=', 'source<4 ? "1/4" : source<8 ? "1/2" : "1"',
+      'magicNotes.archdruid', '+', 'null' // Italics noop
     );
     rules.defineRule('selectableFeatureCount.Druid (Druid Circle)',
       'featureNotes.druidCircle', '=', '1'
@@ -3853,7 +3840,6 @@ SRD5E.classRulesExtra = function(rules, name) {
       'armor', '?', 'source == "None"',
       'wisdomModifier', '=', null
     );
-    rules.defineRule('featureNotes.ki', classLevel, '=', null);
     rules.defineRule('kiSaveDC',
       'monkFeatures.Ki', '?', null,
       'proficiencyBonus', '=', '8 + source',
@@ -3899,8 +3885,6 @@ SRD5E.classRulesExtra = function(rules, name) {
     rules.defineRule('featureNotes.fightingStyle',
       'paladinFeatures.Fighting Style', '+=', '1'
     );
-    rules.defineRule
-      ('magicNotes.turnTheUnholy', 'spellDifficultyClass.P', '=', null);
     /* TODO This won't work properly for multiclass */
     rules.defineRule('selectableFeatureCount.Paladin (Fighting Style)',
       'paladinFeatures.Fighting Style', '?', null,
@@ -3959,15 +3943,9 @@ SRD5E.classRulesExtra = function(rules, name) {
     rules.defineRule("selectableFeatureCount.Ranger (Superior Hunter's Defense)",
       "featureNotes.superiorHunter'sDefense", '=', '1'
     );
-    rules.defineRule('skillNotes.naturalExplorer',
-      classLevel, '=', 'source<6 ? 1 : source<10 ? 2 : 3'
-    );
 
   } else if(name == 'Rogue') {
 
-    rules.defineRule('combatNotes.sneakAttack',
-      classLevel, '=', 'Math.floor((source + 1) / 2)'
-    );
     rules.defineRule('featCount.General', 'rogueFeatBonus', '+', null);
     rules.defineRule('rogueFeatBonus', classLevel, '=', 'source<10 ? null : 1');
     rules.defineRule('selectableFeatureCount.Rogue (Roguish Archetype)',
@@ -3977,7 +3955,7 @@ SRD5E.classRulesExtra = function(rules, name) {
   } else if(name == 'Sorcerer') {
 
     rules.defineRule('featureNotes.metamagic',
-      classLevel, '=', 'source<3 ? null : source<10 ? 2 : source<17 ? 3 : 4'
+      classLevel, '=', 'source<10 ? 2 : source<17 ? 3 : 4'
     );
     rules.defineRule('magicNotes.fontOfMagic', classLevel, '=', null);
     rules.defineRule('selectableFeatureCount.Sorcerer (Metamagic)',
@@ -4440,7 +4418,7 @@ SRD5E.raceRules = function(rules, name, requires, features, selectables) {
 SRD5E.raceRulesExtra = function(rules, name) {
 
   if(name == 'Dragonborn') {
-    rules.defineRule('combatNotes.breathWeapon.1',
+    rules.defineRule('breathWeaponShape',
       'features.Breath Weapon', '=', '"5\'x30\' line"',
       'features.Gold Dragon Ancestry', '=', '"15\' cone"',
       'features.Green Dragon Ancestry', '=', '"15\' cone"',
@@ -4448,7 +4426,7 @@ SRD5E.raceRulesExtra = function(rules, name) {
       'features.Silver Dragon Ancestry', '=', '"15\' cone"',
       'features.White Dragon Ancestry', '=', '"15\' cone"'
     );
-    rules.defineRule('combatNotes.breathWeapon.2',
+    rules.defineRule('breathWeaponEnergy',
       'features.Breath Weapon', '=', '"fire"',
       'features.Black Dragon Ancestry', '=', '"acid"',
       'features.Blue Dragon Ancestry', '=', '"lightning"',
@@ -4457,17 +4435,6 @@ SRD5E.raceRulesExtra = function(rules, name) {
       'features.Green Dragon Ancestry', '=', '"poison"',
       'features.Silver Dragon Ancestry', '=', '"cold"',
       'features.White Dragon Ancestry', '=', '"cold"'
-    );
-    rules.defineRule('combatNotes.breathWeapon.3',
-      'features.Breath Weapon', '?', null,
-      'constitutionModifier', '=', '8 + source',
-      'proficiencyBonus', '+', null
-    );
-    rules.defineRule('combatNotes.breathWeapon.4',
-      'combatNotes.breathWeapon.2', '=', 'source.match(/cold|poison/) ? "Constitution" : "Dexterity"'
-    );
-    rules.defineRule('saveNotes.damageResistance',
-      'combatNotes.breathWeapon.2', '=', null
     );
     rules.defineRule('selectableFeatureCount.Dragonborn (Draconic Ancestry)',
       'featureNotes.draconicAncestry', '=', '1'
@@ -4712,7 +4679,7 @@ SRD5E.weaponRules = function(rules, name, category, properties, damage, range) {
                 'combatNotes.strengthDamageAdjustment', '+', null,
     'weaponDamageAdjustment.' + name, '+', null
   );
-  if(!range) {
+  if(isMonk) {
     rules.defineRule('attackBonus.' + name, 'monkMeleeAttackBonus', '+', null);
     rules.defineRule('damageBonus.' + name, 'monkMeleeDamageBonus', '+', null);
   }

@@ -172,7 +172,7 @@ SRD5E.CLASSES = {
     'Selectables=' +
       '"3:College Of Lore:Bard College" ' +
     'CasterLevelArcane=levels.Bard ' +
-    'SpellAbility=charisma ' +
+    'SpellAbility=Charisma ' +
     'SpellSlots=' +
       'B0:2@1;3@4;4@10,' +
       'B1:2@1;3@2;4@3,' +
@@ -203,7 +203,7 @@ SRD5E.CLASSES = {
     'Selectables=' +
       '"deityDomains =~ \'Life\' ? 1:Life Domain:Divine Domain" ' +
     'CasterLevelDivine=levels.Cleric ' +
-    'SpellAbility=wisdom ' +
+    'SpellAbility=Wisdom ' +
     'SpellSlots=' +
       'C0:3@1;4@4;5@10,' +
       'C1:2@1;3@2;4@3,' +
@@ -242,7 +242,7 @@ SRD5E.CLASSES = {
       '"2:Circle Of The Land (Mountain):Druid Circle",' +
       '"2:Circle Of The Land (Swamp):Druid Circle" ' +
     'CasterLevelDivine=levels.Druid ' +
-    'SpellAbility=wisdom ' +
+    'SpellAbility=Wisdom ' +
     'SpellSlots=' +
       'D0:2@1;3@4;4@10,' +
       'D1:2@1;3@2;4@3,' +
@@ -319,7 +319,7 @@ SRD5E.CLASSES = {
       '"2:Fighting Style (Protection):Fighting Style",' +
       '"3:Oath Of Devotion:Sacred Oath" ' +
     'CasterLevelDivine=levels.Paladin ' +
-    'SpellAbility=charisma ' +
+    'SpellAbility=Charisma ' +
     'SpellSlots=' +
       'P1:2@2;3@3;4@5,' +
       'P2:2@5;3@7,' +
@@ -359,7 +359,7 @@ SRD5E.CLASSES = {
       '"features.Hunter ? 15:Stand Against The Tide:Superior Hunter\'s Defense",' +
       '"features.Hunter ? 15:Uncanny Dodge:Superior Hunter\'s Defense" ' +
     'CasterLevelDivine=levels.Ranger ' +
-    'SpellAbility=wisdom ' +
+    'SpellAbility=Wisdom ' +
     'SpellSlots=' +
       'R1:2@2;3@3;4@5,' +
       'R2:2@5;3@7,' +
@@ -406,7 +406,7 @@ SRD5E.CLASSES = {
       '"3:Heightened Spell:Metamagic","3:Quickened Spell:Metamagic",' +
       '"3:Subtle Spell:Metamagic","3:Twinned Spell:Metamagic" ' +
     'CasterLevelArcane=levels.Sorcerer ' +
-    'SpellAbility=charisma ' +
+    'SpellAbility=Charisma ' +
     'SpellSlots=' +
       'S0:4@1;5@4;6@10,' +
       'S1:2@1;3@2;4@3,' +
@@ -469,7 +469,7 @@ SRD5E.CLASSES = {
       '"features.Pact Of The Blade ? 5:Thirsting Blade",' +
       '"features.Pact Of The Chain ? 2:Voice Of The Chain Master" ' +
     'CasterLevelArcane=levels.Warlock ' +
-    'SpellAbility=charisma ' +
+    'SpellAbility=Charisma ' +
     'SpellSlots=' +
       'K0:2@1;3@4;4@10,' +
       'K1:1@1;2@2,' +
@@ -493,7 +493,7 @@ SRD5E.CLASSES = {
     'Selectables=' +
       '"2:School Of Evocation:Arcane Tradition" ' +
     'CasterLevelArcane=levels.Wizard ' +
-    'SpellAbility=intelligence ' +
+    'SpellAbility=Intelligence ' +
     'SpellSlots=' +
       'W0:3@1;4@4;5@10,' +
       'W1:2@1;3@2;4@3,' +
@@ -1377,24 +1377,24 @@ SRD5E.SHIELDS = {
   'Shield':'AC=2'
 };
 SRD5E.SKILLS = {
-  'Acrobatics':'Ability=dexterity',
-  'Animal Handling':'Ability=wisdom',
-  'Arcana':'Ability=intelligence',
-  'Athletics':'Ability=strength',
-  'Deception':'Ability=charisma',
-  'History':'Ability=intelligence',
-  'Insight':'Ability=wisdom',
-  'Intimidation':'Ability=charisma',
-  'Investigation':'Ability=intelligence',
-  'Medicine':'Ability=wisdom',
-  'Nature':'Ability=intelligence',
-  'Perception':'Ability=wisdom',
-  'Performance':'Ability=charisma',
-  'Persuasion':'Ability=charisma',
-  'Religion':'Ability=intelligence',
-  'Sleight Of Hand':'Ability=dexterity',
-  'Stealth':'Ability=dexterity',
-  'Survival':'Ability=wisdom'
+  'Acrobatics':'Ability=Dexterity',
+  'Animal Handling':'Ability=Wisdom',
+  'Arcana':'Ability=Intelligence',
+  'Athletics':'Ability=Strength',
+  'Deception':'Ability=Charisma',
+  'History':'Ability=Intelligence',
+  'Insight':'Ability=Wisdom',
+  'Intimidation':'Ability=Charisma',
+  'Investigation':'Ability=Intelligence',
+  'Medicine':'Ability=Wisdom',
+  'Nature':'Ability=Intelligence',
+  'Perception':'Ability=Wisdom',
+  'Performance':'Ability=Charisma',
+  'Persuasion':'Ability=Charisma',
+  'Religion':'Ability=Intelligence',
+  'Sleight Of Hand':'Ability=Dexterity',
+  'Stealth':'Ability=Dexterity',
+  'Survival':'Ability=Wisdom'
 };
 // Note that spellRules replaces lvl and mdf in the spell descriptions with the
 // appropriate caster level and ability modifier.
@@ -2895,8 +2895,7 @@ SRD5E.WEAPONS = {
 
 };
 SRD5E.DEITIES = {
-  // Allow clerics w/no deity to have a domain
-  'None':'Domain=' + QuilvynUtils.getKeys(SRD5E.PATHS).filter(x => x.match(/Domain$/)).map(x => x.replace(' Domain', '')).join(','),
+  'None':'',
   // Celtic
   'Celtic-The Daghdha':'Alignment="Chaotic Good" Domain=Nature,Trickery',
   'Celtic-Arawn':'Alignment="Neutral Evil" Domain=Life,Death',
@@ -3282,8 +3281,7 @@ SRD5E.choiceRules = function(rules, type, name, attrs) {
   else if(type == 'Feat') {
     SRD5E.featRules(rules, name,
       QuilvynUtils.getAttrValueArray(attrs, 'Require'),
-      QuilvynUtils.getAttrValueArray(attrs, 'Imply'),
-      QuilvynUtils.getAttrValueArray(attrs, 'Type')
+      QuilvynUtils.getAttrValueArray(attrs, 'Imply')
     );
     SRD5E.featRulesExtra(rules, name);
   } else if(type == 'Feature')
@@ -3348,9 +3346,8 @@ SRD5E.choiceRules = function(rules, type, name, attrs) {
       let level = matchInfo[2] * 1;
       let path = matchInfo[3] || '';
       let fullName = name + '(' + group + level + path + ' ' + schoolAbbr + ')';
-      let domainSpell = SRD5E.PATHS[group + ' Domain'] != null;
       SRD5E.spellRules(
-        rules, fullName, school, group, level, description, domainSpell, higher
+        rules, fullName, school, group, level, description, higher
       );
       rules.addChoice('spells', fullName, attrs);
     }
@@ -4085,10 +4082,9 @@ SRD5E.deityRules = function(rules, name, alignment, domains, sphere) {
 
 /*
  * Defines in #rules# the rules associated with feat #name#. #require# and
- * #implies# list any hard and soft prerequisites for the feat, and #types#
- * lists the categories of the feat.
+ * #implies# list any hard and soft prerequisites for the feat.
  */
-SRD5E.featRules = function(rules, name, requires, implies, types) {
+SRD5E.featRules = function(rules, name, requires, implies) {
 
   if(!name) {
     console.log('Empty feat name');
@@ -4102,10 +4098,6 @@ SRD5E.featRules = function(rules, name, requires, implies, types) {
     console.log('Bad implies list "' + implies + '" for feat ' + name);
     return;
   }
-  if(!Array.isArray(types)) {
-    console.log('Bad types list "' + types + '" for feat ' + name);
-    return;
-  }
 
   let prefix =
     name.charAt(0).toLowerCase() + name.substring(1).replaceAll(' ', '');
@@ -4117,10 +4109,6 @@ SRD5E.featRules = function(rules, name, requires, implies, types) {
     QuilvynRules.prerequisiteRules
       (rules, 'sanity', prefix + 'Feat', 'feats.' + name, implies);
   rules.defineRule('features.' + name, 'feats.' + name, '=', null);
-  for(let i = 0; i < types.length; i++) {
-    if(types[i] != 'General')
-      rules.defineRule('sum' + types[i] + 'Feats', 'feats.' + name, '+=', null);
-  }
 
 };
 
@@ -4232,7 +4220,7 @@ SRD5E.featureSpells = function(rules, feature, spellType, levelAttr, spellList){
       let spellSchool = QuilvynUtils.getAttrValue(spellAttrs, 'School');
       let fullName = spellName + '(' + spellType + spellLevel + ' [' + feature + '] ' + spellSchool.substring(0, 4) + ')';
       SRD5E.spellRules(
-        rules, fullName, spellSchool, spellType, spellLevel, spellDescription, false, spellRaise
+        rules, fullName, spellSchool, spellType, spellLevel, spellDescription, spellRaise
       );
       rules.defineRule('spells.' + fullName, 'features.' + feature, '=', '1');
       if(minLevel)
@@ -4513,12 +4501,10 @@ SRD5E.skillRules = function(rules, name, ability, classes) {
     console.log('Empty skill name');
     return;
   }
-  if(ability) {
-    ability = ability.toLowerCase();
-    if(!(ability.charAt(0).toUpperCase() + ability.substring(1) in SRD5E.ABILITIES)) {
-      console.log('Bad ability "' + ability + '" for skill ' + name);
-      return;
-    }
+  ability = (ability + '').toLowerCase();
+  if(typeof ability != 'string' || !(ability.charAt(0).toUpperCase() + ability.substring(1) in SRD5E.ABILITIES)) {
+    console.log('Bad ability "' + ability + '" for skill ' + name);
+    return;
   }
   if(!Array.isArray(classes)) {
     console.log('Bad classes list "' + classes + '" for skill ' + name);
@@ -4553,7 +4539,7 @@ SRD5E.skillRules = function(rules, name, ability, classes) {
  * effects of casting the spell using a higher-level spell slot.
  */
 SRD5E.spellRules = function(
-  rules, name, school, casterGroup, level, description, domainSpell, higher
+  rules, name, school, casterGroup, level, description, higher
 ) {
 
   if(!name) {
@@ -4995,18 +4981,15 @@ SRD5E.createViewers = function(rules, viewers) {
  * item to #rules#.
  */
 SRD5E.choiceEditorElements = function(rules, type) {
+  let abilities = QuilvynUtils.getKeys(SRD5E.ABILITIES).sort();
   let result = [];
   let sections =
     ['ability', 'combat', 'companion', 'feature', 'magic', 'skill'];
   let zeroToTen = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
-  if(type == 'Alignment')
-    result.push(
-      // empty
-    );
-  else if(type == 'Armor') {
+  if(type == 'Armor') {
     let tenToEighteen = [10, 11, 12, 13, 14, 15, 16, 17, 18];
     result.push(
-      ['AC', 'AC Bonus', 'select-one', [0, 1, 2, 3, 4, 5]],
+      ['AC', 'AC Bonus', 'select-one', zeroToTen],
       ['Bulky', 'Stealth DisAdv', 'checkbox', ['']],
       ['Dex', 'Max Dex', 'select-one', zeroToTen],
       ['Str', 'Min Str', 'select-one', tenToEighteen],
@@ -5023,11 +5006,9 @@ SRD5E.choiceEditorElements = function(rules, type) {
       ['HitDie', 'Hit Die', 'select-one', ['d4', 'd6', 'd8', 'd10', 'd12']],
       ['Features', 'Features', 'text', [40]],
       ['Selectables', 'Selectable Features', 'text', [40]],
-      ['CasterLevelArcane', 'Arcane Level', 'text', [10]],
-      ['CasterLevelDivine', 'Divine Level', 'text', [10]],
-      ['SpellAbility', 'Spell Ability', 'select-one', ['charisma', 'constitution', 'dexterity', 'intelligence', 'strength', 'wisdom']],
-      ['SpellSlots', 'Spells Slots', 'text', [40]],
-      ['Spells', 'Spells', 'text', [40]]
+      ['CasterLevelArcane', 'Spell Type', 'select-one', ['Arcane', 'Divine']],
+      ['SpellAbility', 'Spell Ability', 'select-one', abilities],
+      ['SpellSlots', 'Spells Slots', 'text', [40]]
     );
   } else if(type == 'Deity')
     result.push(
@@ -5045,28 +5026,9 @@ SRD5E.choiceEditorElements = function(rules, type) {
       ['Section', 'Section', 'select-one', sections],
       ['Note', 'Note', 'text', [60]]
     );
-  } else if(type == 'Goody') {
-    let effects = ['add', 'lower', 'raise', 'set'];
-    result.push(
-      ['Pattern', 'Pattern', 'text', [40]],
-      ['Effect', 'Effect', 'select-one', effects],
-      ['Value', 'Value', 'text', [20]],
-      ['Section', 'Section', 'select-one', sections],
-      ['Note', 'Note', 'text', [60]]
-    );
   } else if(type == 'Language')
     result.push(
       // empty
-    );
-  else if(type == 'Path')
-    result.push(
-      ['Group', 'Group', 'text', [15]],
-      ['Level', 'Level', 'text', [15]],
-      ['Features', 'Features', 'text', [40]],
-      ['Selectables', 'Features', 'text', [40]],
-      ['SpellAbility', 'Spell Ability', 'select-one', ['charisma', 'constitution', 'dexterity', 'intelligence', 'strength', 'wisdom']],
-      ['SpellSlots', 'Spells Slots', 'text', [40]],
-      ['Spells', 'Spells', 'text', [40]]
     );
   else if(type == 'Race')
     result.push(
@@ -5084,7 +5046,7 @@ SRD5E.choiceEditorElements = function(rules, type) {
     );
   else if(type == 'Skill')
     result.push(
-      ['Ability', 'Ability', 'select-one', ['charisma', 'constitution', 'dexterity', 'intelligence', 'strength', 'wisdom']],
+      ['Ability', 'Ability', 'select-one', abilities],
       ['Class', 'Proficient Classes', 'text', [30]]
     );
   else if(type == 'Spell') {
@@ -5092,7 +5054,7 @@ SRD5E.choiceEditorElements = function(rules, type) {
       ['School', 'School', 'select-one', QuilvynUtils.getKeys(rules.getChoices('schools'))],
       ['Level', 'Caster Group and Level', 'text', [15]],
       ['Description', 'Description', 'text', [60]],
-      ['Higher', 'At Higher Levels', 'text', [60]]
+      ['AtHigherLevels', 'At Higher Levels', 'text', [60]]
     );
   } else if(type == 'Tool') {
     let toolTypes = ['Artisan', 'Gaming', 'Musical', 'General'];

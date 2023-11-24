@@ -10,9 +10,10 @@ quilvyn-5E relies on the core modules installed by the quilvyn-core package.
 
 ### Installation
 
-To use quilvyn-5E, unbundle the release package into the plugins/
-subdirectory within the Quilvyn installation directory, then append the
-following lines to the file plugins/plugins.js:
+To use quilvyn-5E, unbundle the release package, making sure that the
+contents of the plugins/ and Images/ subdirectories are placed into the
+corresponding Quilvyn installation subdirectories, then append the following
+lines to the file plugins/plugins.js:
 
     RULESETS['5E (SRD only)'] = {
       url:'plugins/SRD5E.js',

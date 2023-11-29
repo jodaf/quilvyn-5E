@@ -76,8 +76,9 @@ SRD5E.VERSION = '2.4.1.0';
 // Note: Left Goody out of this list for now because inclusion would require
 // documenting how to construct regular expressions.
 SRD5E.CHOICES = [
-  'Armor', 'Background', 'Class', 'Deity', 'Feat', 'Feature', 'Language',
-  'Race', 'School', 'Shield', 'Skill', 'Spell', 'Tool', 'Weapon'
+  'Armor', 'Background', 'Class', 'Class Feature', 'Deity', 'Feat', 'Feature', 
+  'Language', 'Race', 'Race Feature', 'School', 'Skill', 'Spell', 'Tool',
+  'Weapon'
 ];
 /*
  * List of items handled by randomizeOneAttribute method. The order handles
@@ -536,8 +537,12 @@ SRD5E.FEATURES = {
       '"May use Wild Shape at will",' +
       '"Casting spells requires no verbal, somatic, or cost-free material components"',
   'Armor Of Shadows':
-    'Section=magic Note="May cast self <i>Mage Armor</i> at will"',
-  'Ascendant Step':'Section=magic Note="May cast self <i>Levitate</i> at will"',
+    'Section=magic Note="May cast self <i>Mage Armor</i> at will" ' +
+    'Spells="Mage Armor"',
+  'Ascendant Step':
+    'Section=magic ' +
+    'Note="May cast self <i>Levitate</i> at will" ' +
+    'Spells=Levitate',
   'Aura Of Courage':
     'Section=save ' +
     'Note="R%{levels.Paladin<18?10:30}\' Self and allies immune to fright"',
@@ -552,13 +557,16 @@ SRD5E.FEATURES = {
     'Section=feature ' +
     'Note="R60\' May give an ally a +1d%{bardicInspirationDie} bonus on an ability, attack, or saving throw w/in 10 min %{charismaModifier>?1}/%{featureNotes.fontOfInspiration?\'short\':\'long\'} rest"',
   'Beast Speech':
-    'Section=magic Note="May cast <i>Speak With Animals</i> at will"',
+    'Section=magic ' +
+    'Note="May cast <i>Speak With Animals</i> at will" ' +
+    'Spells="Speak With Animals"',
   'Beast Spells':'Section=magic Note="May cast spells during Wild Shape"',
   'Beguiling Influence':
     'Section=skill Note="Skill Proficiency (Deception/Persuasion)"',
   'Bewitching Whispers':
     'Section=magic ' +
-    'Note="May use a Warlock spell slot to cast <i>Compulsion</i> 1/long rest"',
+    'Note="May use a Warlock spell slot to cast <i>Compulsion</i> 1/long rest" ' +
+    'Spells=Compulsion',
   'Blessed Healer':
     'Section=magic ' +
     'Note="Casting a healing spell restores 2 + spell level HP to self"',
@@ -582,10 +590,55 @@ SRD5E.FEATURES = {
     'Note="May spend 1 Sorcery Point to protect %{charismaModifier>?1} creatures from self spell"',
   'Chains Of Carceri':
     'Section=magic ' +
-    'Note="May cast <i>Hold Monster</i> at will on celestials, elementals, and fiends 1/long rest per creature"',
+    'Note="May cast <i>Hold Monster</i> at will on celestials, elementals, and fiends 1/long rest per creature" ' +
+    'Spells="Hold Monster"',
   'Channel Divinity':
     'Section=feature ' +
     'Note="May use a Channel Divinity effect %{(levels.Paladin?1:0)+(!levels.Cleric?0:levels.Cleric<6?1:levels.Cleric<18?2:3)}/short rest"',
+  'Circle Of The Land (Arctic)':
+    'Spells=' +
+      '"3:Hold Person","3:Spike Growth",' +
+      '"5:Sleet Storm",5:Slow,' +
+      '"7:Freedom Of Movement","7:Ice Storm",' +
+      '"9:Commune With Nature","9:Cone Of Cold"',
+  'Circle Of The Land (Coast)':
+    'Spells=' +
+      '"3:Mirror Image","3:Misty Step",' +
+      '"5:Water Breathing","5:Water Walk",' +
+      '"7:Control Water","7:Freedom Of Movement",' +
+      '"9:Conjure Elemental",9:Scrying',
+  'Circle Of The Land (Desert)':
+    'Spells=' +
+      '3:Blur,3:Silence,' +
+      '"5:Create Food And Water","5:Protection From Energy",' +
+      '7:Blight,"7:Hallucinatory Terrain",' +
+      '"9:Insect Plague","9:Wall Of Stone"',
+  'Circle Of The Land (Forest)':
+    'Spells=' +
+      '3:Barkskin,"3:Spider Climb",' +
+      '"5:Call Lightning","5:Plant Growth",' +
+      '7:Divination,"7:Freedom Of Movement",' +
+      '"9:Commune With Nature","9:Tree Stride"',
+  'Circle Of The Land (Grassland)':
+    'Spells=' +
+      '3:Invisibility,"3:Pass Without Trace",' +
+      '5:Daylight,5:Haste,' +
+      '7:Divination,"7:Freedom Of Movement",' +
+      '9:Dream,"9:Insect Plague"',
+  'Circle Of The Land (Mountain)':
+    'Spells=' +
+      '"3:Spider Climb","3:Spike Growth",' +
+      '"5:Lightning Bolt","5:Meld Into Stone",' +
+      '"7:Stone Shape",7:Stoneskin,' +
+      '9:Passwall,"9:Wall Of Stone"',
+  'Circle Of The Land (Swamp)':
+    'Spells=' +
+      // TODO: Better way to do this?
+      (window.PHB5E ? '"3:Melf\'s Acid Arrow",' : '"3:Acid Arrow",') +
+      '3:Darkness,' +
+      '"5:Water Walk","5:Stinking Cloud",' +
+      '"7:Freedom Of Movement","7:Locate Creature",' +
+      '"9:Insect Plague",9:Scrying',
   'Cleansing Touch':
     'Section=magic ' +
     'Note="May dispel a spell effect on a touched willing creature %{charismaModifier>?1}/long rest"',
@@ -651,14 +704,18 @@ SRD5E.FEATURES = {
   'Dragon Wings':'Section=ability Note="May gain %{speed}\' fly speed at will"',
   'Dreadful Word':
     'Section=magic ' +
-    'Note="May use a Warlock spell slot to cast <i>Confusion</i> 1/long rest"',
+    'Note="May use a Warlock spell slot to cast <i>Confusion</i> 1/long rest" ' +
+    'Spells=Confusion',
   'Druid Circle':'Section=feature Note="1 selection"',
   'Druidic':
     'Section=skill Note="Speaks a secret language known only by druids"',
   'Eldritch Invocations':'Section=magic Note="%V selections"',
   'Eldritch Master':
     'Section=magic Note="May recover expended spell slots 1/long rest"',
-  'Eldritch Sight':'Section=magic Note="May cast <i>Detect Magic</i> at will"',
+  'Eldritch Sight':
+    'Section=magic ' +
+    'Note="May cast <i>Detect Magic</i> at will" ' +
+    'Spells="Detect Magic"',
   'Eldritch Spear':
     'Section=magic Note="Increases <i>Eldritch Blast</i> range to 300\'"',
   'Elemental Affinity':
@@ -674,7 +731,8 @@ SRD5E.FEATURES = {
     'Note="May spend 1 Sorcery Point to reroll %{charismaModifier>?1} spell damage dice"',
   'Empty Body':
     'Section=magic ' +
-    'Note="May spend 4 Ki Points to gain 1 min invisibility w/resistance to all damage other than force/May spend 8 Ki Points to cast <i>Astral Projection</i>"',
+    'Note="May spend 4 Ki Points to gain 1 min invisibility w/resistance to all damage other than force/May spend 8 Ki Points to cast self <i>Astral Projection</i>" ' +
+    'Spells="Astral Projection"',
   'Escape The Horde':'Section=combat Note="Foes have Disadv on OA on self"',
   'Evasion':
     'Section=save ' +
@@ -713,7 +771,9 @@ SRD5E.FEATURES = {
     'Section=save ' +
     'Note="May gain resistance to chosen damage type from non-magical and non-silver weapons until next short rest"',
   'Fiendish Vigor':
-    'Section=magic Note="May cast self <i>False Life</i> at will"',
+    'Section=magic ' +
+    'Note="May cast self <i>False Life</i> at will" ' +
+    'Spells="False Life"',
   'Fighting Style':'Section=feature Note="%V selections"',
   'Fighting Style (Archery)':'Section=combat Note="+2 ranged attacks"',
   'Fighting Style (Defense)':'Section=combat Note="+1 AC in armor"',
@@ -789,6 +849,13 @@ SRD5E.FEATURES = {
   'Lay On Hands':
     'Section=magic ' +
     'Note="May heal %{levels.Paladin*5} HP/long rest; may use 5 HP worth to cure disease or poison"',
+  'Life Domain':
+    'Spells=' +
+      '1:Bless,"1:Cure Wounds",' +
+      '"3:Lesser Restoration","3:Spiritual Weapon",' +
+      '"5:Beacon Of Hope",5:Revivify,' +
+      '"7:Death Ward","7:Guardian Of Faith",' +
+      '"9:Mass Cure Wounds","9:Raise Dead"',
   'Lifedrinker':
     'Section=combat ' +
     'Note="Pact weapon inflicts +%{charismaModifier>?1} HP necrotic"',
@@ -802,18 +869,27 @@ SRD5E.FEATURES = {
       '"When unarmored, may make a bonus unarmed strike after a monk weapon attack"',
   'Martial Archetype':'Section=feature Note="1 selection"',
   'Mask Of Many Faces':
-    'Section=magic Note="May cast <i>Disguise Self</i> at will"',
+    'Section=magic ' +
+    'Note="May cast <i>Disguise Self</i> at will" ' +
+    'Spells="Disguise Self"',
   'Master Of Myriad Forms':
-    'Section=magic Note="May cast <i>Alter Self</i> at will"',
+    'Section=magic ' +
+    'Note="May cast <i>Alter Self</i> at will" ' +
+    'Spells="Alter Self"',
   'Metamagic':'Section=feature Note="%V selections"',
   'Mindless Rage':'Section=save Note="Immune to charm and fright during rage"',
   'Minions Of Chaos':
     'Section=magic ' +
-    'Note="May use a Warlock spell slot to cast <i>Conjure Elemental</i> 1/long rest"',
+    'Note="May use a Warlock spell slot to cast <i>Conjure Elemental</i> 1/long rest" ' +
+    'Spells="Conjure Elemental"',
   'Mire The Mind':
     'Section=magic ' +
-    'Note="May use a Warlock spell slot to cast <i>Slow</i> 1/long rest"',
-  'Misty Visions':'Section=magic Note="May cast <i>Silent Image</i> at will"',
+    'Note="May use a Warlock spell slot to cast <i>Slow</i> 1/long rest" ' +
+    'Spells=Slow',
+  'Misty Visions':
+    'Section=magic ' +
+    'Note="May cast <i>Silent Image</i> at will" ' +
+    'Spells="Silent Image"',
   'Monastic Tradition':'Section=feature Note="1 selection"',
   'Multiattack':'Section=feature Note="1 selection"',
   'Multiattack Defense':
@@ -833,13 +909,23 @@ SRD5E.FEATURES = {
   "Nature's Ward":
     'Section=save ' +
     'Note="Immune to disease, poison, and elemental and fey charm and fright"',
+  'Oath Of Devotion':
+    'Spells=' +
+      '"3:Protection From Evil And Good",3:Sanctuary,' +
+      '"5:Lesser Restoration","5:Zone Of Truth",' +
+      '"9:Beacon Of Hope","9:Dispel Magic",' +
+      '"13:Freedom Of Movement","13:Guardian Of Faith",' +
+      '17:Commune,"17:Flame Strike"',
   'One With Shadows':
     'Section=magic ' +
     'Note="May become invisible in dim light (moving or taking an action ends)"',
   'Open Hand Technique':
     'Section=combat ' +
     'Note="Successful Flurry of Blows attack may inflict choice of knocked prone (DC %{kiSaveDC} Dexterity neg), 15\' push (DC %{kiSaveDC} Strength neg), or denied Reaction for 1 rd"',
-  'Otherworldly Leap':'Section=magic Note="May cast self <i>Jump</i> at will"',
+  'Otherworldly Leap':
+    'Section=magic ' +
+    'Note="May cast self <i>Jump</i> at will" ' +
+    'Spells=Jump',
   'Otherworldly Patron':'Section=feature Note="1 selection"',
   'Overchannel':
     'Section=magic ' +
@@ -852,7 +938,8 @@ SRD5E.FEATURES = {
     'Section=combat,magic ' +
     'Note=' +
       '"May forego one attack to allow familiar to use Reaction to attack",' +
-      '"May cast <i>Find Familiar</i> as a ritual"',
+      '"May cast <i>Find Familiar</i> as a ritual" ' +
+    'Spells="Find Familiar"',
   'Pact Of The Tome':
     'Section=magic ' +
     'Note="Has a <i>Book Of Shadows</i> containing 3 chosen cantrips that can be cast at will"',
@@ -879,7 +966,8 @@ SRD5E.FEATURES = {
   'Purity Of Body':'Section=save Note="Immune to disease and poison"',
   'Purity Of Spirit':
     'Section=magic ' +
-    'Note="Has a continuous <i>Protection From Evil And Good</i> effect"',
+    'Note="Has a continuous <i>Protection From Evil And Good</i> effect" ' +
+    'Spells="Protection From Evil And Good"',
   'Quickened Spell':
     'Section=magic ' +
     'Note="May spend 2 Sorcery Points to cast a spell as bonus action"',
@@ -924,7 +1012,8 @@ SRD5E.FEATURES = {
     'Note="May protect spell level + 1 targets from self evocation spell effects"',
   'Sculptor Of Flesh':
     'Section=magic ' +
-    'Note="May use a Warlock spell slot to cast <i>Polymorph</i> 1/long rest"',
+    'Note="May use a Warlock spell slot to cast <i>Polymorph</i> 1/long rest" ' +
+    'Spells=Polymorph',
   'Second Wind':
     'Section=combat ' +
     'Note="May use a bonus action to regain 1d10+%{levels.Fighter} HP 1/short rest"',
@@ -935,7 +1024,8 @@ SRD5E.FEATURES = {
       '"+%{dexterityModifier}\' running jump"',
   'Sign Of Ill Omen':
     'Section=magic ' +
-    'Note="May use a Warlock spell slot to cast <i>Bestow Curse</i> 1/long rest"',
+    'Note="May use a Warlock spell slot to cast <i>Bestow Curse</i> 1/long rest" ' +
+    'Spells="Bestow Curse"',
   'Signature Spells':
     'Section=magic Note="May cast 2 chosen W3 spells 1/short rest"',
   'Slippery Mind':'Section=save Note="Save Proficiency (Wisdom)"',
@@ -986,7 +1076,8 @@ SRD5E.FEATURES = {
     'Note="Regains %{constitutionModifier+5} HP each rd when between 1 and %{hitPoints//2} HP"',
   'Thief Of Five Fates':
     'Section=magic ' +
-    'Note="May use a warlock spell slot to cast <i>Bane</i> 1/long rest"',
+    'Note="May use a warlock spell slot to cast <i>Bane</i> 1/long rest" ' +
+    'Spells=Bane',
   "Thieves' Cant":
     'Section=skill Note="Understands jargon and signs known only by rogues"',
   "Thief's Reflexes":
@@ -1002,7 +1093,8 @@ SRD5E.FEATURES = {
     'Section=feature Note="May communicate in any language"',
   'Tranquility':
     'Section=magic ' +
-    'Note="May gain <i>Sanctuary</i> effects between long rests (DC %{kiSaveDC} Wisdom neg)"',
+    'Note="May gain <i>Sanctuary</i> effects between long rests (DC %{kiSaveDC} Wisdom neg)" ' +
+    'Spells=Sanctuary',
   'Turn The Unholy':
     'Section=magic ' +
     'Note="R30\' May use Channel Divinity to make fiends and undead flee (DC %{spellDifficultyClass.P} Wisdom neg) for 1 min"',
@@ -1029,7 +1121,9 @@ SRD5E.FEATURES = {
   'Vanish':
     'Section=skill Note="May hide as a bonus action/Untrackable nonmagically"',
   'Visions Of Distant Realms':
-    'Section=magic Note="May cast <i>Arcane Eye</i> at will"',
+    'Section=magic ' +
+    'Note="May cast <i>Arcane Eye</i> at will" ' +
+    'Spells="Arcane Eye"',
   'Voice Of The Chain Master':
     'Section=feature Note="May perceive and speak through familiar"',
   'Volley':
@@ -1039,7 +1133,9 @@ SRD5E.FEATURES = {
     'Section=combat ' +
     'Note="May make a melee attack on any number of adjacent foes"',
   'Whispers Of The Grave':
-    'Section=magic Note="May cast <i>Speak With Dead</i> at will"',
+    'Section=magic ' +
+    'Note="May cast <i>Speak With Dead</i> at will" ' +
+    'Spells="Speak With Dead"',
   'Wholeness Of Body':
     'Section=feature Note="May regain %{levels.Monk*3} HP 1/long rest"',
   'Wild Shape':
@@ -3122,7 +3218,7 @@ SRD5E.identityRules = function(
     (backgrounds, ['Equipment', 'Features']);
   QuilvynUtils.checkAttrTable
     (classes, ['Require', 'HitDie', 'Features', 'Selectables', 'CasterLevelArcane', 'CasterLevelDivine', 'SpellAbility', 'SpellSlots', 'Spells']);
-  QuilvynUtils.checkAttrTable(deities, ['Alignment', 'Domain', 'Sphere']);
+  QuilvynUtils.checkAttrTable(deities, ['Alignment', 'Domain']);
   QuilvynUtils.checkAttrTable
     (paths, ['Features', 'Selectables', 'Group', 'Level', 'SpellAbility', 'SpellSlots', 'Spells']);
   QuilvynUtils.checkAttrTable
@@ -3183,7 +3279,7 @@ SRD5E.talentRules = function(
 ) {
 
   QuilvynUtils.checkAttrTable(feats, ['Require', 'Imply', 'Type']);
-  QuilvynUtils.checkAttrTable(features, ['Section', 'Note']);
+  QuilvynUtils.checkAttrTable(features, ['Section', 'Note', 'Spells']);
   QuilvynUtils.checkAttrTable(languages, []);
   QuilvynUtils.checkAttrTable(skills, ['Ability', 'Class']);
   QuilvynUtils.checkAttrTable(tools, ['Type']);
@@ -3272,11 +3368,18 @@ SRD5E.choiceRules = function(rules, type, name, attrs) {
       QuilvynUtils.getAttrValueArray(attrs, 'SpellSlots')
     );
     SRD5E.classRulesExtra(rules, name);
-  } else if(type == 'Deity')
+  } else if(type == 'Class Feature')
+    SRD5E.classFeatureRules(rules, name,
+      QuilvynUtils.getAttrValueArray(attrs, 'Require'),
+      QuilvynUtils.getAttrValue(attrs, 'Class'),
+      QuilvynUtils.getAttrValue(attrs, 'Level'),
+      QuilvynUtils.getAttrValue(attrs, 'Selectable'),
+      QuilvynUtils.getAttrValueArray(attrs, 'Replace')
+    );
+  else if(type == 'Deity')
     SRD5E.deityRules(rules, name,
       QuilvynUtils.getAttrValue(attrs, 'Alignment'),
-      QuilvynUtils.getAttrValueArray(attrs, 'Domain'),
-      QuilvynUtils.getAttrValue(attrs, 'Sphere')
+      QuilvynUtils.getAttrValueArray(attrs, 'Domain')
     );
   else if(type == 'Feat') {
     SRD5E.featRules(rules, name,
@@ -3287,7 +3390,8 @@ SRD5E.choiceRules = function(rules, type, name, attrs) {
   } else if(type == 'Feature')
     SRD5E.featureRules(rules, name,
       QuilvynUtils.getAttrValueArray(attrs, 'Section'),
-      QuilvynUtils.getAttrValueArray(attrs, 'Note')
+      QuilvynUtils.getAttrValueArray(attrs, 'Note'),
+      QuilvynUtils.getAttrValueArray(attrs, 'Spells')
     );
   else if(type == 'Goody')
     SRD5E.goodyRules(rules, name,
@@ -3317,7 +3421,15 @@ SRD5E.choiceRules = function(rules, type, name, attrs) {
       QuilvynUtils.getAttrValueArray(attrs, 'Selectables')
     );
     SRD5E.raceRulesExtra(rules, name);
-  } else if(type == 'School')
+  } else if(type == 'Race Feature')
+    SRD5E.raceFeatureRules(rules, name,
+      QuilvynUtils.getAttrValueArray(attrs, 'Require'),
+      QuilvynUtils.getAttrValue(attrs, 'Race'),
+      QuilvynUtils.getAttrValue(attrs, 'Level'),
+      QuilvynUtils.getAttrValue(attrs, 'Selectable'),
+      QuilvynUtils.getAttrValueArray(attrs, 'Replace')
+    );
+  else if(type == 'School')
     SRD5E.schoolRules(rules, name,
       QuilvynUtils.getAttrValueArray(attrs, 'Features')
     );
@@ -3697,15 +3809,6 @@ SRD5E.classRulesExtra = function(rules, name) {
       }
     }
 
-    SRD5E.featureSpells(
-      rules, 'Life Domain', 'C', 'levels.Cleric', [
-      '1:Bless', '1:Cure Wounds',
-      '3:Lesser Restoration', '3:Spiritual Weapon',
-      '5:Beacon Of Hope', '5:Revivify',
-      '7:Death Ward', '7:Guardian Of Faith',
-      '9:Mass Cure Wounds', '9:Raise Dead'
-    ]);
-
   } else if(name == 'Druid') {
 
     rules.defineRule('magicNotes.wildShape',
@@ -3724,58 +3827,6 @@ SRD5E.classRulesExtra = function(rules, name) {
           ('features.Circle Of The Land', 'features.' + circle, '=', '1');
       }
     }
-
-    SRD5E.featureSpells(
-      rules, 'Circle Of The Land (Arctic)', 'D', 'levels.Druid', [
-      '3:Hold Person', '3:Spike Growth',
-      '5:Sleet Storm', '5:Slow',
-      '7:Freedom Of Movement', '7:Ice Storm',
-      '9:Commune With Nature', '9:Cone Of Cold'
-    ]);
-    SRD5E.featureSpells(
-      rules, 'Circle Of The Land (Coast)', 'D', 'levels.Druid', [
-      '3:Mirror Image', '3:Misty Step',
-      '5:Water Breathing', '5:Water Walk',
-      '7:Control Water', '7:Freedom Of Movement',
-      '9:Conjure Elemental', '9:Scrying'
-    ]);
-    SRD5E.featureSpells(
-      rules, 'Circle Of The Land (Desert)', 'D', 'levels.Druid', [
-      '3:Blur', '3:Silence',
-      '5:Create Food And Water', '5:Protection From Energy',
-      '7:Blight', '7:Hallucinatory Terrain',
-      '9:Insect Plague', '9:Wall Of Stone'
-    ]);
-    SRD5E.featureSpells(
-      rules, 'Circle Of The Land (Forest)', 'D', 'levels.Druid', [
-      '3:Barkskin', '3:Spider Climb',
-      '5:Call Lightning', '5:Plant Growth',
-      '7:Divination', '7:Freedom Of Movement',
-      '9:Commune With Nature', '9:Tree Stride'
-    ]);
-    SRD5E.featureSpells(
-      rules, 'Circle Of The Land (Grassland)', 'D', 'levels.Druid', [
-      '3:Invisibility', '3:Pass Without Trace',
-      '5:Daylight', '5:Haste',
-      '7:Divination', '7:Freedom Of Movement',
-      '9:Dream', '9:Insect Plague'
-    ]);
-    SRD5E.featureSpells(
-      rules, 'Circle Of The Land (Mountain)', 'D', 'levels.Druid', [
-      '3:Spider Climb', '3:Spike Growth',
-      '5:Lightning Bolt', '5:Meld Into Stone',
-      '7:Stone Shape', '7:Stoneskin',
-      '9:Passwall', '9:Wall Of Stone'
-    ]);
-    SRD5E.featureSpells(
-      rules, 'Circle Of The Land (Swamp)', 'D', 'levels.Druid', [
-      // TODO: Better way to do this?
-      PHB5E ? "3:Melf's Acid Arrow": '3:Acid Arrow',
-      '3:Darkness',
-      '5:Water Walk', '5:Stinking Cloud',
-      '7:Freedom Of Movement', '7:Locate Creature',
-      '9:Insect Plague', '9:Scrying'
-    ]);
 
   } else if(name == 'Fighter') {
 
@@ -3862,8 +3913,6 @@ SRD5E.classRulesExtra = function(rules, name) {
       'featureNotes.monasticTradition', '=', '1'
     );
     rules.defineRule('speed', 'abilityNotes.unarmoredMovement.1', '+', null);
-    SRD5E.featureSpells(rules, 'Tranquility', 'M', null, ['Sanctuary']);
-    SRD5E.featureSpells(rules, 'Empty Body', 'M', null, ['Astral Projection']);
     rules.defineRule('spellCasterLevel.M', 'levels.Monk', '=', null);
     rules.defineRule('spellModifier.M', 'wisdomModifier', '=', null);
     rules.defineRule('casterLevels.M', 'spellCasterLevel.M', '^=', null);
@@ -3890,19 +3939,6 @@ SRD5E.classRulesExtra = function(rules, name) {
     rules.defineRule('selectableFeatureCount.Paladin (Sacred Oath)',
       'featureNotes.sacredOath', '=', '1'
     );
-
-    SRD5E.featureSpells(
-      rules, 'Oath Of Devotion', 'P', 'levels.Paladin', [
-      '3:Protection From Evil And Good', '3:Sanctuary',
-      '5:Lesser Restoration', '5:Zone Of Truth',
-      '9:Beacon Of Hope', '9:Dispel Magic',
-      '13:Freedom Of Movement', '13:Guardian Of Faith',
-      '17:Commune', '17:Flame Strike'
-    ]);
-    SRD5E.featureSpells(
-      rules, 'Purity Of Spirit', 'P', 'levels.Paladin', [
-      '15:Protection From Evil And Good'
-    ]);
 
   } else if(name == 'Ranger') {
 
@@ -3992,35 +4028,6 @@ SRD5E.classRulesExtra = function(rules, name) {
     [1, 2, 3, 4].forEach(sl => {
       rules.defineRule('spellSlots.K' + sl, 'maxKSlot', '?', 'source == ' + sl);
     });
-    SRD5E.featureSpells(rules, 'Armor Of Shadows', 'K', null, ['Mage Armor']);
-    SRD5E.featureSpells
-      (rules, 'Beast Speech', 'K', null, ['Speak With Animals']);
-    SRD5E.featureSpells(rules, 'Eldritch Sight', 'K', null, ['Detect Magic']);
-    SRD5E.featureSpells(rules, 'Fiendish Vigor', 'K', null, ['False Life']);
-    SRD5E.featureSpells
-      (rules, 'Mask Of Many Faces', 'K', null, ['Disguise Self']);
-    SRD5E.featureSpells(rules, 'Misty Visions', 'K', null, ['Silent Image']);
-    SRD5E.featureSpells(rules, 'Otherworldly Leap', 'K', null, ['Jump']);
-    SRD5E.featureSpells
-      (rules, 'Pact Of The Chain', 'K', null, ['Find Familiar']);
-    SRD5E.featureSpells(rules, 'Thief Of Five Fates', 'K', null, ['Bane']);
-    SRD5E.featureSpells
-      (rules, 'Master Of Myriad Forms', 'K', null, ['Alter Self']);
-    SRD5E.featureSpells(rules, 'Ascendant Step', 'K', null, ['Levitate']);
-    SRD5E.featureSpells(rules, 'Mire The Mind', 'K', null, ['Slow']);
-    SRD5E.featureSpells(rules, 'Sign Of Ill Omen', 'K', null, ['Bestow Curse']);
-    SRD5E.featureSpells
-      (rules, 'Whispers Of The Grave', 'K', null, ['Speak With Dead']);
-    SRD5E.featureSpells
-      (rules, 'Bewitching Whispers', 'K', null, ['Compulsion']);
-    SRD5E.featureSpells(rules, 'Dreadful Word', 'K', null, ['Confusion']);
-    SRD5E.featureSpells(rules, 'Sculptor Of Flesh', 'K', null, ['Polymorph']);
-    SRD5E.featureSpells
-      (rules, 'Visions Of Distant Realms', 'K', null, ['Arcane Eye']);
-    SRD5E.featureSpells
-      (rules, 'Chains Of Carceri', 'K', null, ['Hold Monster']);
-    SRD5E.featureSpells
-      (rules, 'Minions Of Chaos', 'K', null, ['Conjure Elemental']);
 
   } else if(name == 'Wizard') {
 
@@ -4033,11 +4040,75 @@ SRD5E.classRulesExtra = function(rules, name) {
 };
 
 /*
- * Defines in #rules# the rules associated with deity #name#. #alignment# gives
- * the deity's alignment, #domains# the associated domains, and #sphere# any
- * sphere of influence.
+ * Defines in #rules# the rules required to give feature #name# to class
+ * #className# at level #level#. #selectable# gives the category if this feature
+ * is selectable; it is otherwise null. #require# lists any hard prerequisites
+ * for the feature, and #replace# lists any class features that this new one
+ * replaces.
  */
-SRD5E.deityRules = function(rules, name, alignment, domains, sphere) {
+SRD5E.classFeatureRules = function(
+  rules, name, require, className, level, selectable, replace
+) {
+
+  if(!name) {
+    console.log('Empty class feature name');
+    return;
+  }
+  if(!Array.isArray(require)) {
+    console.log('Bad require list "' + require + '" for class feature ' + name);
+    return;
+  }
+  if(!(className in rules.getChoices('levels'))) {
+    console.log('Bad class "' + className + '" for class feature ' + name);
+    return;
+  }
+  if(typeof level != 'number') {
+    console.log('Bad level "' + level + '" for class feature ' + name);
+    return;
+  }
+  if(selectable && typeof selectable != 'string') {
+    console.log('Bad selectable "' + selectable + '" for class feature ' + name);
+    return;
+  }
+  if(!Array.isArray(replace)) {
+    console.log('Bad replace list "' + replace + '" for class feature ' + name);
+    return;
+  }
+
+  let classLevel = 'levels.' + className;
+  let featureSpec = level + ':' + name;
+  let prefix =
+    className.charAt(0).toLowerCase() + className.substring(1).replaceAll(' ', '');
+  if(selectable)
+    featureSpec += ':' + selectable;
+  if(require.length > 0)
+    featureSpec = require.join('/') + ' ? ' + featureSpec;
+  QuilvynRules.featureListRules
+    (rules, [featureSpec], className, classLevel, selectable ? true : false);
+  if(selectable) {
+    let countVar =
+      'selectableFeatureCount.' + className + ' (' + selectable + ')';
+    if(!rules.getSources(countVar))
+      rules.defineRule(countVar,
+        classLevel, '=', level>1 ? 'source>=' + level + ' ? 1 : null' : '1'
+      );
+  }
+  replace.forEach(f => {
+    let hasVar = 'has' + f.replaceAll(' ', '');
+    rules.defineRule(prefix + 'Features.' + f, hasVar, '?', 'source==1');
+    rules.defineRule(hasVar,
+      classLevel, '=', '1',
+      prefix + 'Features.' + name, '=', '0'
+    );
+  });
+
+};
+
+/*
+ * Defines in #rules# the rules associated with deity #name#. #alignment# gives
+ * the deity's alignment and #domains# the associated domains.
+ */
+SRD5E.deityRules = function(rules, name, alignment, domains) {
 
   if(!name) {
     console.log('Empty deity name');
@@ -4059,23 +4130,18 @@ SRD5E.deityRules = function(rules, name, alignment, domains, sphere) {
   if(rules.deityStats == null) {
     rules.deityStats = {
       alignment:{},
-      domains:{},
-      sphere:{}
+      domains:{}
     };
   }
 
   rules.deityStats.alignment[name] = alignment;
   rules.deityStats.domains[name] = domains.join('/');
-  rules.deityStats.sphere[name] = sphere;
 
   rules.defineRule('deityAlignment',
     'deity', '=', QuilvynUtils.dictLit(rules.deityStats.alignment) + '[source]'
   );
   rules.defineRule('deityDomains',
     'deity', '=', QuilvynUtils.dictLit(rules.deityStats.domains) + '[source]'
-  );
-  rules.defineRule('deitySphere',
-    'deity', '=', QuilvynUtils.dictLit(rules.deityStats.sphere) + '[source]'
   );
 
 };
@@ -4131,9 +4197,10 @@ SRD5E.featRulesExtra = function(rules, name) {
  * the sections of the notes related to the feature and #notes# the note texts;
  * the two must have the same number of elements.
  */
-SRD5E.featureRules = function(rules, name, sections, notes) {
+SRD5E.featureRules = function(rules, name, sections, notes, spells) {
   // TODO Move out of SRD35
-  SRD35.featureRules(rules, name, sections, notes);
+  if(sections.length > 0 || notes.length > 0)
+    SRD35.featureRules(rules, name, sections, notes);
   for(let i = 0; i < notes.length; i++) {
     let addSource = false;
     let note =
@@ -4181,6 +4248,18 @@ SRD5E.featureRules = function(rules, name, sections, notes) {
           rules.defineRule('languageChoiceCount', note, '+=', matchInfo[1]);
       });
     }
+  }
+  if(spells.length > 0) {
+    let levelAttr = 'level';
+    let spellType = '?';
+    let classes = rules.getChoices('levels');
+    for(let c in classes) {
+      if(!(classes[c].includes(name)))
+        continue;
+      levelAttr = 'levels.' + c;
+      spellType = c == 'Warlock' ? 'K' : c.charAt(0);
+    }
+    SRD5E.featureSpells(rules, name, spellType, levelAttr, spells);
   }
 };
 
@@ -4448,6 +4527,71 @@ SRD5E.raceRulesExtra = function(rules, name) {
       'spellCasterLevel.Infernal Legacy', '^=', null
     );
   }
+
+};
+
+/*
+ * Defines in #rules# the rules required to give feature #name# to race
+ * #raceName# at level #level#. #selectable# gives the category if this feature
+ * is selectable; it is otherwise null. #require# lists any hard prerequisites
+ * for the feature, and #replace# lists any race features that this new one
+ * replaces.
+ */
+SRD5E.raceFeatureRules = function(
+  rules, name, require, raceName, level, selectable, replace
+) {
+
+  if(!name) {
+    console.log('Empty race feature name');
+    return;
+  }
+  if(!Array.isArray(require)) {
+    console.log('Bad require list "' + require + '" for race feature ' + name);
+    return;
+  }
+  if(!(raceName in rules.getChoices('races'))) {
+    console.log('Bad race "' + raceName + '" for race feature ' + name);
+    return;
+  }
+  if(typeof level != 'number') {
+    console.log('Bad level "' + level + '" for race feature ' + name);
+    return;
+  }
+  if(selectable && typeof selectable != 'string') {
+    console.log('Bad selectable "' + selectable + '" for race feature ' + name);
+    return;
+  }
+  if(!Array.isArray(replace)) {
+    console.log('Bad replace list "' + replace + '" for race feature ' + name);
+    return;
+  }
+
+  let prefix =
+    raceName.charAt(0).toLowerCase() + raceName.substring(1).replaceAll(' ','');
+  let raceLevel = prefix + 'Level';
+  let featureSpec = level + ':' + name;
+  if(selectable)
+    featureSpec += ':' + selectable;
+  if(require.length > 0)
+    featureSpec = require.join('/') + ' ? ' + featureSpec;
+  QuilvynRules.featureListRules
+    (rules, [featureSpec], raceName, raceLevel, selectable ? true : false);
+  if(selectable) {
+    let countVar =
+      'selectableFeatureCount.' + raceName + ' (' + selectable + ')';
+    if(!rules.getSources(countVar))
+      rules.defineRule(countVar,
+        raceLevel, '=', level>1 ? 'source>=' + level + ' ? 1 : null' : '1'
+      );
+  }
+  replace.forEach(f => {
+    let hasVar = 'has' + f.replaceAll(' ', '');
+    rules.defineRule(prefix + 'Features.' + f, hasVar, '?', 'source==1');
+    rules.defineRule(hasVar,
+      raceLevel, '=', '1',
+      prefix + 'Features.' + name, '=', '0'
+    );
+  });
 
 };
 
@@ -4982,18 +5126,23 @@ SRD5E.createViewers = function(rules, viewers) {
  */
 SRD5E.choiceEditorElements = function(rules, type) {
   let abilities = QuilvynUtils.getKeys(SRD5E.ABILITIES).sort();
+  let oneToTwenty = [
+    1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20
+  ];
   let result = [];
   let sections =
     ['ability', 'combat', 'companion', 'feature', 'magic', 'skill'];
   let zeroToTen = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
   if(type == 'Armor') {
-    let tenToEighteen = [10, 11, 12, 13, 14, 15, 16, 17, 18];
+    let zeroToEighteen = [
+      0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18
+    ];
     result.push(
+      ['Weight', 'Weight', 'select-one', ['None', 'Light', 'Medium', 'Heavy']],
       ['AC', 'AC Bonus', 'select-one', zeroToTen],
-      ['Bulky', 'Stealth DisAdv', 'checkbox', ['']],
       ['Dex', 'Max Dex', 'select-one', zeroToTen],
-      ['Str', 'Min Str', 'select-one', tenToEighteen],
-      ['Weight', 'Weight', 'select-one', ['None', 'Light', 'Medium', 'Heavy']]
+      ['Str', 'Min Str', 'select-one', zeroToEighteen],
+      ['Bulky', 'Stealth DisAdv', 'checkbox', ['']]
     );
   } else if(type == 'Background') {
     result.push(
@@ -5010,11 +5159,18 @@ SRD5E.choiceEditorElements = function(rules, type) {
       ['SpellAbility', 'Spell Ability', 'select-one', abilities],
       ['SpellSlots', 'Spells Slots', 'text', [40]]
     );
-  } else if(type == 'Deity')
+  } else if(type == 'Class Feature')
+    result.push(
+      ['Class', 'Class', 'select-one', QuilvynUtils.getKeys(rules.getChoices('levels'))],
+      ['Level', 'Level', 'select-one', oneToTwenty],
+      ['Selectable', 'Selectable Type', 'text', [20]],
+      ['Require', 'Prerequisite', 'text', [40]],
+      ['Replace', 'Replace', 'text', [40]]
+    );
+  else if(type == 'Deity')
     result.push(
       ['Alignment', 'Alignment', 'select-one', QuilvynUtils.getKeys(rules.getChoices('alignments'))],
-      ['Domain', 'Domains', 'text', [30]],
-      ['Sphere', 'Sphere', 'text', [15]]
+      ['Domain', 'Domains', 'text', [30]]
     );
   else if(type == 'Feat')
     result.push(
@@ -5036,13 +5192,17 @@ SRD5E.choiceEditorElements = function(rules, type) {
       ['Features', 'Features', 'text', [60]],
       ['Selectables', 'Selectables', 'text', [60]]
     );
+  else if(type == 'Race Feature')
+    result.push(
+      ['Race', 'Race', 'select-one', QuilvynUtils.getKeys(rules.getChoices('races'))],
+      ['Level', 'Level', 'select-one', oneToTwenty],
+      ['Selectable', 'Selectable Type', 'text', [20]],
+      ['Require', 'Prerequisite', 'text', [40]],
+      ['Replace', 'Replace', 'text', [40]]
+    );
   else if(type == 'School')
     result.push(
-      ['Features', 'Features', 'text', [40]]
-    );
-  else if(type == 'Shield')
-    result.push(
-      ['AC', 'Armor Class', 'select-one', [1, 2, 3, 4, 5]]
+      // empty
     );
   else if(type == 'Skill')
     result.push(
@@ -5833,29 +5993,32 @@ SRD5E.ruleNotes = function() {
     '<h3>Usage Notes</h3>\n' +
     '<ul>\n' +
     '  <li>\n' +
-    '    To allow feats to be taken instead of Ability Score Improvements,\n' +
-    '    the latter is presented as a new feat, named Ability Boost, that\n' +
-    '    can be taken multiple times.\n' +
+    '  To allow feats to be taken instead of Ability Score Improvements,\n' +
+    '  the latter is presented as a new feat, named Ability Boost, that\n' +
+    '  can be taken multiple times.\n' +
     '  </li><li>\n' +
-    '    Quilvyn presents sub-race choices (e.g., Lightfoot Halfling)\n' +
-    '    as separate races in the editor Race menu.\n' +
+    '  Quilvyn presents sub-race choices (e.g., Lightfoot Halfling)\n' +
+    '  as separate races in the editor Race menu.\n' +
+    '  </li><li>\n' +
+    '  Discussion of adding different types of homebrew options to the\n' +
+    '  SRD5E rule set can be found in <a href="plugins/homebrew-srd5e.html">SRD5E Homebrew Examples</a>.\n' +
     '  </li>\n' +
     '</ul>\n' +
     '\n' +
     '<h3>Limitations</h3>\n' +
     '<ul>\n' +
     '  <li>\n' +
-    '    Quilvyn does not report background traits, ideals, bonds, flaws,\n' +
-    '    or equipment. These items can be entered in the Notes section.\n' +
+    '  Quilvyn does not report background traits, ideals, bonds, flaws,\n' +
+    '  or equipment. These items can be entered in the Notes section.\n' +
     '  </li>\n' +
     '</ul>\n' +
     '\n' +
     '<h3>Known Bugs</h3>\n' +
     '<ul>\n' +
     '  <li>\n' +
-    '    Quilvyn does not test multiclass ability prerequisites, and Quilvyn\n'+
-    '    gives multiclass characters the complete set of proficiencies for\n' +
-    '    each class.\n' +
+    '  Quilvyn does not test multiclass ability prerequisites, and Quilvyn\n'+
+    '  gives multiclass characters the complete set of proficiencies for\n' +
+    '  each class.\n' +
     '  </li>\n' +
     '</ul>\n' +
     '<h3>Copyrights and Licensing</h3>\n' +

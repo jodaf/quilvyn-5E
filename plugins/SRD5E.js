@@ -153,7 +153,8 @@ SRD5E.CLASSES = {
       '"features.Path Of The Berserker ? 10:Intimidating Presence",' +
       '"features.Path Of The Berserker ? 14:Retaliation" ' +
     'Selectables=' +
-      '"3:Path Of The Berserker:Primal Path"',
+      '"3:Path Of The Berserker:Primal Path" ' +
+    'SpellAbility=Wisdom',
   'Bard':
     'HitDie=d8 ' +
     'Features=' +
@@ -172,7 +173,6 @@ SRD5E.CLASSES = {
       '"features.College Of Lore ? 14:Peerless Skill" ' +
     'Selectables=' +
       '"3:College Of Lore:Bard College" ' +
-    'CasterLevelArcane=levels.Bard ' +
     'SpellAbility=Charisma ' +
     'SpellSlots=' +
       'B0:2@1;3@4;4@10,' +
@@ -203,7 +203,6 @@ SRD5E.CLASSES = {
       '"features.Life Domain ? 17:Supreme Healing" ' +
     'Selectables=' +
       '"deityDomains =~ \'Life\' ? 1:Life Domain:Divine Domain" ' +
-    'CasterLevelDivine=levels.Cleric ' +
     'SpellAbility=Wisdom ' +
     'SpellSlots=' +
       'C0:3@1;4@4;5@10,' +
@@ -242,7 +241,6 @@ SRD5E.CLASSES = {
       '"2:Circle Of The Land (Grassland):Druid Circle",' +
       '"2:Circle Of The Land (Mountain):Druid Circle",' +
       '"2:Circle Of The Land (Swamp):Druid Circle" ' +
-    'CasterLevelDivine=levels.Druid ' +
     'SpellAbility=Wisdom ' +
     'SpellSlots=' +
       'D0:2@1;3@4;4@10,' +
@@ -276,7 +274,8 @@ SRD5E.CLASSES = {
       '"1:Fighting Style (Great Weapon Fighting):Fighting Style",' +
       '"1:Fighting Style (Protection):Fighting Style",' +
       '"1:Fighting Style (Two-Weapon Fighting):Fighting Style",' +
-      '"3:Champion:Martial Archetype"',
+      '"3:Champion:Martial Archetype" ' +
+    'SpellAbility=Intelligence',
   'Monk':
     'HitDie=d8 ' +
     'Features=' +
@@ -296,7 +295,8 @@ SRD5E.CLASSES = {
       '"features.Way Of The Open Hand ? 11:Tranquility",' +
       '"features.Way Of The Open Hand ? 17:Quivering Palm" ' +
     'Selectables=' +
-      '"3:Way Of The Open Hand:Monastic Tradition"',
+      '"3:Way Of The Open Hand:Monastic Tradition" ' +
+    'SpellAbility=Wisdom',
   'Paladin':
     'HitDie=d10 ' +
     'Features=' +
@@ -319,7 +319,6 @@ SRD5E.CLASSES = {
       '"2:Fighting Style (Great Weapon Fighting):Fighting Style",' +
       '"2:Fighting Style (Protection):Fighting Style",' +
       '"3:Oath Of Devotion:Sacred Oath" ' +
-    'CasterLevelDivine=levels.Paladin ' +
     'SpellAbility=Charisma ' +
     'SpellSlots=' +
       'P1:2@2;3@3;4@5,' +
@@ -359,7 +358,6 @@ SRD5E.CLASSES = {
       '"features.Hunter ? 15:Evasion:Superior Hunter\'s Defense",' +
       '"features.Hunter ? 15:Stand Against The Tide:Superior Hunter\'s Defense",' +
       '"features.Hunter ? 15:Uncanny Dodge:Superior Hunter\'s Defense" ' +
-    'CasterLevelDivine=levels.Ranger ' +
     'SpellAbility=Wisdom ' +
     'SpellSlots=' +
       'R1:2@2;3@3;4@5,' +
@@ -386,7 +384,8 @@ SRD5E.CLASSES = {
       '"features.Thief ? 13:Use Magic Device",' +
       '"features.Thief ? 17:Thief\'s Reflexes" ' +
     'Selectables=' +
-      '"3:Thief:Roguish Archetype"',
+      '"3:Thief:Roguish Archetype" ' +
+    'SpellAbility=Intelligence',
   'Sorcerer':
     'HitDie=d6 ' +
     'Features=' +
@@ -406,7 +405,6 @@ SRD5E.CLASSES = {
       '"3:Empowered Spell:Metamagic","3:Extended Spell:Metamagic",' +
       '"3:Heightened Spell:Metamagic","3:Quickened Spell:Metamagic",' +
       '"3:Subtle Spell:Metamagic","3:Twinned Spell:Metamagic" ' +
-    'CasterLevelArcane=levels.Sorcerer ' +
     'SpellAbility=Charisma ' +
     'SpellSlots=' +
       'S0:4@1;5@4;6@10,' +
@@ -469,7 +467,6 @@ SRD5E.CLASSES = {
       '"features.Pact Of The Blade ? 12:Lifedrinker",' +
       '"features.Pact Of The Blade ? 5:Thirsting Blade",' +
       '"features.Pact Of The Chain ? 2:Voice Of The Chain Master" ' +
-    'CasterLevelArcane=levels.Warlock ' +
     'SpellAbility=Charisma ' +
     'SpellSlots=' +
       'K0:2@1;3@4;4@10,' +
@@ -493,7 +490,6 @@ SRD5E.CLASSES = {
       '"features.School Of Evocation ? 14:Overchannel" ' +
     'Selectables=' +
       '"2:School Of Evocation:Arcane Tradition" ' +
-    'CasterLevelArcane=levels.Wizard ' +
     'SpellAbility=Intelligence ' +
     'SpellSlots=' +
       'W0:3@1;4@4;5@10,' +
@@ -633,9 +629,7 @@ SRD5E.FEATURES = {
       '9:Passwall,"9:Wall Of Stone"',
   'Circle Of The Land (Swamp)':
     'Spells=' +
-      // TODO: Better way to do this?
-      (window.PHB5E ? '"3:Melf\'s Acid Arrow",' : '"3:Acid Arrow",') +
-      '3:Darkness,' +
+      '"3:Acid Arrow",3:Darkness,' +
       '"5:Water Walk","5:Stinking Cloud",' +
       '"7:Freedom Of Movement","7:Locate Creature",' +
       '"9:Insect Plague",9:Scrying',
@@ -1199,7 +1193,9 @@ SRD5E.FEATURES = {
     'Note="+1 Charisma/+1 Constitution/+1 Dexterity/+1 Intelligence/+1 Strength/+1 Wisdom"',
   'Infernal Legacy':
     'Section=magic ' +
-    'Note="Knows <i>Thaumaturgy</i> cantrip%{level<3?\'\':level<5?\', may cast <i>Hellish Rebuke</i> 1/long rest\':\', may cast <i>Hellish Rebuke</i> and <i>Darkness</i> 1/long rest\'}"',
+    'Note="Knows <i>Thaumaturgy</i> cantrip%{level<3?\'\':level<5?\', may cast <i>Hellish Rebuke</i> 1/long rest\':\', may cast <i>Hellish Rebuke</i> and <i>Darkness</i> 1/long rest\'}" ' +
+    'Spells=Thaumaturgy,"3:Hellish Rebuke",5:Darkness ' +
+    'SpellAbility=Charisma',
   'Keen Senses':'Section=skill Note="Skill Proficiency (Perception)"',
   'Lightfoot Halfling Ability Adjustment':
     'Section=ability Note="+2 Dexterity/+1 Charisma"',
@@ -3217,7 +3213,7 @@ SRD5E.identityRules = function(
   QuilvynUtils.checkAttrTable
     (backgrounds, ['Equipment', 'Features']);
   QuilvynUtils.checkAttrTable
-    (classes, ['Require', 'HitDie', 'Features', 'Selectables', 'CasterLevelArcane', 'CasterLevelDivine', 'SpellAbility', 'SpellSlots', 'Spells']);
+    (classes, ['Require', 'HitDie', 'Features', 'Selectables', 'SpellAbility', 'SpellSlots']);
   QuilvynUtils.checkAttrTable(deities, ['Alignment', 'Domain']);
   QuilvynUtils.checkAttrTable
     (paths, ['Features', 'Selectables', 'Group', 'Level', 'SpellAbility', 'SpellSlots', 'Spells']);
@@ -3279,7 +3275,8 @@ SRD5E.talentRules = function(
 ) {
 
   QuilvynUtils.checkAttrTable(feats, ['Require', 'Imply', 'Type']);
-  QuilvynUtils.checkAttrTable(features, ['Section', 'Note', 'Spells']);
+  QuilvynUtils.checkAttrTable
+    (features, ['Section', 'Note', 'Spells', 'SpellAbility']);
   QuilvynUtils.checkAttrTable(languages, []);
   QuilvynUtils.checkAttrTable(skills, ['Ability', 'Class']);
   QuilvynUtils.checkAttrTable(tools, ['Type']);
@@ -3362,8 +3359,6 @@ SRD5E.choiceRules = function(rules, type, name, attrs) {
       QuilvynUtils.getAttrValue(attrs, 'HitDie'),
       QuilvynUtils.getAttrValueArray(attrs, 'Features'),
       QuilvynUtils.getAttrValueArray(attrs, 'Selectables'),
-      QuilvynUtils.getAttrValue(attrs, 'CasterLevelArcane'),
-      QuilvynUtils.getAttrValue(attrs, 'CasterLevelDivine'),
       QuilvynUtils.getAttrValue(attrs, 'SpellAbility'),
       QuilvynUtils.getAttrValueArray(attrs, 'SpellSlots')
     );
@@ -3391,7 +3386,8 @@ SRD5E.choiceRules = function(rules, type, name, attrs) {
     SRD5E.featureRules(rules, name,
       QuilvynUtils.getAttrValueArray(attrs, 'Section'),
       QuilvynUtils.getAttrValueArray(attrs, 'Note'),
-      QuilvynUtils.getAttrValueArray(attrs, 'Spells')
+      QuilvynUtils.getAttrValueArray(attrs, 'Spells'),
+      QuilvynUtils.getAttrValue(attrs, 'SpellAbility')
     );
   else if(type == 'Goody')
     SRD5E.goodyRules(rules, name,
@@ -3612,18 +3608,12 @@ SRD5E.backgroundRules = function(rules, name, equipment, features) {
  * of hard prerequisites #requires#. The class grants #hitDie# (format [n]'d'n)
  * additional hit points with each level advance. #features# and #selectables#
  * list the fixed and selectable features acquired as the character advances in
- * class level. #casterLevelArcane# and #casterLevelDivine#, if specified, give
- * the Javascript expression for determining the caster level for the class;
- * these can incorporate a class level attribute (e.g., 'levels.Cleric') or the
- * character level attribute 'level'. #spellAbility#, if specified, names the
- * ability for computing spell difficulty class. #spellSlots# lists the
- * number of spells per level per day that the class can cast, and #spells#
- * lists spells defined by the class. #spellDict# is the dictionary of all
- * spells used to look up individual spell attributes.
+ * class level. #spellAbility# names the ability for computing spell difficulty
+ * class, and #spellSlots# lists the number of spells per level per day that
+ * the class can cast.
  */
 SRD5E.classRules = function(
-  rules, name, requires, hitDie, features, selectables, casterLevelArcane,
-  casterLevelDivine, spellAbility, spellSlots
+  rules, name, requires, hitDie, features, selectables, spellAbility, spellSlots
 ) {
 
   if(!name) {
@@ -3646,12 +3636,10 @@ SRD5E.classRules = function(
     console.log('Bad selectables list "' + selectables + '" for class ' + name);
     return;
   }
-  if(spellAbility) {
-    spellAbility = spellAbility.toLowerCase();
-    if(!(spellAbility.charAt(0).toUpperCase() + spellAbility.substring(1) in SRD5E.ABILITIES)) {
-      console.log('Bad spell ability "' + spellAbility + '" for class ' + name);
-      return;
-    }
+  spellAbility = (spellAbility + '').toLowerCase();
+  if(!(spellAbility.charAt(0).toUpperCase() + spellAbility.substring(1) in SRD5E.ABILITIES)) {
+    console.log('Bad spell ability "' + spellAbility + '" for class ' + name);
+    return;
   }
   if(!Array.isArray(spellSlots)) {
     console.log('Bad spellSlots list "' + spellSlots + '" for class ' + name);
@@ -3679,25 +3667,17 @@ SRD5E.classRules = function(
     'levels.' + name, '=', 'Math.floor((source + 7) / 4)'
   );
 
+  rules.defineRule
+    ('casterLevel' + (spellAbility=='wisdom' ? 'Divine' : 'Arcane'), classLevel, '+=', null);
+  rules.defineRule('casterLevels.' + name, classLevel, '^=', null);
+  rules.defineRule('spellModifier.' + name,
+    'casterLevels.' + name, '?', null,
+    spellAbility + 'Modifier', '=', null
+  );
+
   if(spellSlots.length > 0) {
 
-    let casterLevelExpr = casterLevelArcane || casterLevelDivine || classLevel;
-    if(casterLevelExpr.match(new RegExp('\\b' + classLevel + '\\b', 'i'))) {
-      rules.defineRule('casterLevels.' + name,
-        classLevel, '=', casterLevelExpr.replace(new RegExp('\\b' + classLevel + '\\b', 'gi'), 'source')
-      );
-    } else {
-      rules.defineRule('casterLevels.' + name,
-        classLevel, '?', null,
-        'level', '=', casterLevelExpr.replace(new RegExp('\\blevel\\b', 'gi'), 'source')
-      );
-    }
-    if(casterLevelArcane)
-      rules.defineRule('casterLevelArcane', 'casterLevels.' + name, '+=', null);
-    if(casterLevelDivine)
-      rules.defineRule('casterLevelDivine', 'casterLevels.' + name, '+=', null);
-
-    QuilvynRules.spellSlotRules(rules, 'casterLevels.' + name, spellSlots);
+    QuilvynRules.spellSlotRules(rules, classLevel, spellSlots);
 
     for(i = 0; i < spellSlots.length; i++) {
       let matchInfo = spellSlots[i].match(/^(\D+)\d:/);
@@ -3706,25 +3686,17 @@ SRD5E.classRules = function(
         continue;
       }
       let spellType = matchInfo[1];
-      if(spellType != name)
-        rules.defineRule
-          ('casterLevels.' + spellType, 'casterLevels.' + name, '^=', null);
-      rules.defineRule('spellAttackModifier.' + spellType,
-        'casterLevels.' + spellType, '?', null,
-        spellAbility + 'Modifier', '=', null,
-        'proficiencyBonus', '+', null
-      );
-      rules.defineRule('spellDifficultyClass.' + spellType,
-        'casterLevels.' + spellType, '?', null,
-        spellAbility + 'Modifier', '=', '8 + source',
-        'proficiencyBonus', '+', null
-      );
-      rules.defineRule('spellCasterLevel.' + spellType,
-        'casterLevels.' + spellType, '=', null
-      );
+      rules.defineRule('casterLevels.' + spellType, classLevel, '^=', null);
       rules.defineRule('spellModifier.' + spellType,
         'casterLevels.' + spellType, '?', null,
         spellAbility + 'Modifier', '=', null
+      );
+      rules.defineRule('spellAttackModifier.' + spellType,
+        'spellModifier.' + spellType, '=', null,
+        'proficiencyBonus', '+', null
+      );
+      rules.defineRule('spellDifficultyClass.' + spellType,
+        'spellAttackModifier.' + spellType, '=', '8 + source'
       );
     }
 
@@ -3771,18 +3743,18 @@ SRD5E.classRulesExtra = function(rules, name) {
     // Magical Secrets feature allows choosing non-Bard spells; here we set the
     // caster level and modifier for any variable effects. Note inclusion of
     // 'A' spells for Artificer class from supplements.
-    rules.defineRule('spellCasterLevel.Magical Secrets',
+    rules.defineRule('casterLevels.Magical Secrets',
       'features.Magical Secrets', '=', '0',
       'features.Additional Magical Secrets', '=', '0',
       'casterLevels.Bard', '+', null
     );
     rules.defineRule('spellModifier.Magical Secrets',
-      'spellCasterLevel.Magical Secrets', '?', null,
+      'casterLevels.Magical Secrets', '?', null,
       'charismaModifier', '=', null
     );
-    ['A', 'C', 'D', 'K', 'S', 'W'].forEach((spellType) => {
-      rules.defineRule('spellCasterLevel.' + spellType,
-        'spellCasterLevel.Magical Secrets', '=', null
+    ['A', 'C', 'D', 'P', 'R', 'S', 'K', 'W'].forEach((spellType) => {
+      rules.defineRule('casterLevels.' + spellType,
+        'casterLevels.Magical Secrets', '=', null
       );
       rules.defineRule('spellModifier.' + spellType,
         'spellModifier.Magical Secrets', '='. null
@@ -3913,9 +3885,6 @@ SRD5E.classRulesExtra = function(rules, name) {
       'featureNotes.monasticTradition', '=', '1'
     );
     rules.defineRule('speed', 'abilityNotes.unarmoredMovement.1', '+', null);
-    rules.defineRule('spellCasterLevel.M', 'levels.Monk', '=', null);
-    rules.defineRule('spellModifier.M', 'wisdomModifier', '=', null);
-    rules.defineRule('casterLevels.M', 'spellCasterLevel.M', '^=', null);
 
   } else if(name == 'Paladin') {
 
@@ -4197,7 +4166,17 @@ SRD5E.featRulesExtra = function(rules, name) {
  * the sections of the notes related to the feature and #notes# the note texts;
  * the two must have the same number of elements.
  */
-SRD5E.featureRules = function(rules, name, sections, notes, spells) {
+SRD5E.featureRules = function(
+  rules, name, sections, notes, spells, spellAbility
+) {
+  if(spellAbility) {
+    spellAbility = spellAbility.toLowerCase();
+    if(!(spellAbility.charAt(0).toUpperCase() + spellAbility.substring(1) in SRD5E.ABILITIES)) {
+      console.log
+        ('Bad spell ability "' + spellAbility + '" for feature ' + name);
+      return;
+    }
+  }
   // TODO Move out of SRD35
   if(sections.length > 0 || notes.length > 0)
     SRD35.featureRules(rules, name, sections, notes);
@@ -4251,13 +4230,40 @@ SRD5E.featureRules = function(rules, name, sections, notes, spells) {
   }
   if(spells.length > 0) {
     let levelAttr = 'level';
-    let spellType = '?';
-    let classes = rules.getChoices('levels');
-    for(let c in classes) {
-      if(!(classes[c].includes(name)))
+    let spellType = name;
+    let sources =
+      Object.assign({}, rules.getChoices('levels'), rules.getChoices('races'), rules.getChoices('backgrounds'));
+    for(let s in sources) {
+      if(!(sources[s].includes(name)))
         continue;
-      levelAttr = 'levels.' + c;
-      spellType = c == 'Warlock' ? 'K' : c.charAt(0);
+      spellType = s.replaceAll(' ', '');
+      let slot = QuilvynUtils.getAttrValue(sources[s], 'SpellSlots');
+      if(slot) {
+        // Spell feature for casting class. Reuse attack and DC values.
+        levelAttr = 'levels.' + s;
+        spellType = slot.replace(/\d.*/, '');
+      } else {
+        // Spell feature for non-casting class or for a race or background.
+        // Display attack and DC values when this feature is acquired.
+        // Only need to compute casterLevels and spellModifier for races and
+        // backgrounds, since classRules computes these for classes.
+        if(!(s in rules.getChoices('levels'))) {
+          rules.defineRule('casterLevels.' + s, 'level', '^=', null);
+          rules.defineRule('spellModifier.' + s,
+            'casterLevels.' + s, '?', null,
+            spellAbility + 'Modifier', '=', null
+          );
+        }
+        rules.defineRule('spellAttackModifier.' + s,
+          'features.' + name, '=', '0',
+          'spellModifier.' + s, '+', null,
+          'proficiencyBonus', '+', null
+        );
+        rules.defineRule('spellDifficultyClass.' + s,
+          'features.' + name, '=', '0',
+          'spellAttackModifier.' + s, '+', '8 + source'
+        );
+      }
     }
     SRD5E.featureSpells(rules, name, spellType, levelAttr, spells);
   }
@@ -4285,6 +4291,8 @@ SRD5E.featureSpells = function(rules, feature, spellType, levelAttr, spellList){
     spellNames = spellNames.split(',');
     for(let j = 0; j < spellNames.length; j++) {
       let spellName = spellNames[j];
+      if(window.PHB5E && spellName in PHB5E.SPELLS_RENAMED)
+        spellName = PHB5E.SPELLS_RENAMED[spellName];
       let spell = QuilvynUtils.getKeys(allSpells, '^' + spellName + '\\(')[0];
       if(!spell) {
         console.log('Unknown spell "' + spellName + '" for feature ' + feature);
@@ -4416,9 +4424,6 @@ SRD5E.pathRules = function(
         spellAbility + 'Modifier', '=', '8 + source',
         'proficiencyBonus', '+', null
       );
-      rules.defineRule('spellCasterLevel.' + spellType,
-        'casterLevels.' + spellType, '=', null
-      );
       rules.defineRule('spellModifier.' + spellType,
         'casterLevels.' + spellType, '?', null,
         spellAbility + 'Modifier', '=', null
@@ -4515,17 +4520,6 @@ SRD5E.raceRulesExtra = function(rules, name) {
     rules.defineRule
       ('casterLevels.W', 'magicNotes.cantrip(HighElf)', '^=', '1');
     rules.defineRule('spellSlots.W0', 'magicNotes.cantrip(HighElf)', '+=', '1');
-  } else if(name == 'Tiefling') {
-    SRD5E.featureSpells(rules, 'Infernal Legacy', 'K', 'level',
-      ['Thaumaturgy', '3:Hellish Rebuke', '5:Darkness']
-    );
-    rules.defineRule('spellCasterLevel.Infernal Legacy',
-      'features.Infernal Legacy', '?', null,
-      'level', '=', null
-    );
-    rules.defineRule('casterLevels.K',
-      'spellCasterLevel.Infernal Legacy', '^=', null
-    );
   }
 
 };
@@ -4706,7 +4700,7 @@ SRD5E.spellRules = function(
     description = '';
 
   description =
-    description.replaceAll('lvl', 'spellCasterLevel.' + casterGroup)
+    description.replaceAll('lvl', 'casterLevels.' + casterGroup)
                .replaceAll('mdf', 'spellModifier.' + casterGroup);
   if(higher)
     description += ' [+Level ' + higher + ']';
@@ -5155,7 +5149,6 @@ SRD5E.choiceEditorElements = function(rules, type) {
       ['HitDie', 'Hit Die', 'select-one', ['d4', 'd6', 'd8', 'd10', 'd12']],
       ['Features', 'Features', 'text', [40]],
       ['Selectables', 'Selectable Features', 'text', [40]],
-      ['CasterLevelArcane', 'Spell Type', 'select-one', ['Arcane', 'Divine']],
       ['SpellAbility', 'Spell Ability', 'select-one', abilities],
       ['SpellSlots', 'Spells Slots', 'text', [40]]
     );
@@ -5180,7 +5173,9 @@ SRD5E.choiceEditorElements = function(rules, type) {
   else if(type == 'Feature') {
     result.push(
       ['Section', 'Section', 'select-one', sections],
-      ['Note', 'Note', 'text', [60]]
+      ['Note', 'Note', 'text', [60]],
+      ['Spells', 'Spells', 'text', [60]],
+      ['SpellAbility', 'Spell Ability', 'select-one', abilities]
     );
   } else if(type == 'Language')
     result.push(

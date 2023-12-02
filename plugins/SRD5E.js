@@ -1496,11 +1496,13 @@ SRD5E.SPELLS = {
     'School=Evocation ' +
     'Level=W2 ' +
     'AtHigherLevels="inflicts +1d4 HP" ' +
-    'Description="R90\' Ranged spell inflicts 4d4 HP acid, 2d4 HP next rd (miss half 1st rd, 0 HP 2nd)"',
+    'Description=' +
+      '"R90\' Ranged spell inflicts 4d4 HP acid, 2d4 HP next rd (miss half 1st rd only)"',
   'Acid Splash':
     'School=Conjuration ' +
     'Level=S0,W0 ' +
-    'Description="R60\' Ranged touch inflicts %{(level+7)//6}d6 HP acid (Dexterity neg)"',
+    'Description=' +
+      '"R60\' Single target or 2 adjacent targets suffer %{(level+7)//6}d6 HP acid (Dexterity neg)"',
   'Aid':
     'School=Abjuration ' +
     'Level=C2,P2 ' +
@@ -1509,39 +1511,47 @@ SRD5E.SPELLS = {
   'Alarm':
     'School=Abjuration ' +
     'Level=R1,W1 ' +
-    'Description="R30\' Entry into 20\' cu triggers audible or mental alarm for 8 hr"',
+    'Description=' +
+      '"R30\' Entry into 20\' cu by a non-designated creature triggers an audible or mental alarm for 8 hr"',
   'Alter Self':
     'School=Transmutation ' +
     'Level=S2,W2 ' +
-    'Description="Self becomes aquatic, looks different, or gains natural weapons for conc or 1 hr"',
+    'Description=' +
+      '"Self becomes aquatic, changes appearance, or gains magic natural weapons (+1 attack, 1d6+ HP damage) for conc or 1 hr"',
   'Animal Friendship':
     'School=Enchantment ' +
     'Level=B1,D1,R1 ' +
     'AtHigherLevels="affects +1 target" ' +
-    'Description="R30\' Target beast convinced of good intent (Wisdom neg) for 1 dy"',
+    'Description=' +
+      '"R30\' Target beast becomes convinced of self harmlessness (Wisdom neg; Intelligence >= 4 immune) for 1 dy"',
   'Animal Messenger':
     'School=Enchantment ' +
     'Level=B2,D2,R2 ' +
-    'AtHigherLevels="extends duration +2 dy" ' +
-    'Description="R30\' Tiny beast target moves to deliver 25-word message to person described for 1 dy"',
+    'AtHigherLevels="duration +2 dy" ' +
+    'Description=' +
+      '"R30\' Tiny beast target moves to deliver 25-word message to person described for 1 dy"',
   'Animal Shapes':
     'School=Transmutation ' +
     'Level=D8 ' +
-    'Description="R30\' Willing targets become up to large, CR 4 creatures for conc or 1 dy"',
+    'Description=' +
+      '"R30\' Willing targets become CR 4, large or smaller creatures for conc, 1 dy, or until reduced to 0 HP"',
   'Animate Dead':
     'School=Necromancy ' +
     'Level=C3,W3 ' +
     'AtHigherLevels="creates +2 undead" ' +
-    'Description="R10\' Bones or corpse becomes skeleton or zombie, obeys R60\' self commands for 1 dy"',
+    'Description=' +
+      '"R10\' Bones or corpse of medium or small creature becomes obedient (R60\') skeleton or zombie for 1 dy"',
   'Animate Objects':
     'School=Transmutation ' +
     'Level=B5,S5,W5 ' +
     'AtHigherLevels="animates +2 objects" ' +
-    'Description="R120\' 10 small, 5 medium, 2 large, or 1 huge objects obey R500\' commands for conc or 1 min"',
+    'Description=' +
+      '"R120\' 10 small, 5 medium, 2 large, or 1 huge objects obey mental commands (R500\') for conc or 1 min"',
   'Antilife Shell':
     'School=Abjuration ' +
     'Level=D5 ' +
-    'Description="10\' radius prevents creature passage for conc or 1 hr"',
+    'Description=' +
+      '"10\' radius prevents passage of living creatures for conc or 1 hr"',
   'Antimagic Field':
     'School=Abjuration ' +
     'Level=C8,W8 ' +
@@ -1549,24 +1559,33 @@ SRD5E.SPELLS = {
   'Antipathy/Sympathy':
     'School=Enchantment ' +
     'Level=D8,W8 ' +
-    'Description="R60\' Target object repels or attracts specified creatures for 10 dy"',
+    'Description=' +
+      '"R60\' Target object repels or attracts specified creatures for 10 dy"',
   'Arcane Eye':
     'School=Divination ' +
     'Level=W4 ' +
-    'Description="R30\' Self sees through remote invisible eye w/darkvision that moves 30\'/rd for conc or 1 hr"',
+    'Description=' +
+      '"R30\' Self sees through a remote invisible eye w/darkvision that moves 30\'/rd for conc or 1 hr"',
   'Arcane Hand':
     'School=Evocation ' +
     'Level=W5 ' +
     'AtHigherLevels="inflicts +2d8 HP force and +2d6 HP bludgeoning" ' +
-    'Description="R120\' Large hand (AC 20, Strength 26, Dexterity 10) can punch (inflicts 4d8 HP force), push 5\', grapple (inflicts 2d6+%{mdf} HP bludgeoning), and block for conc or 1 min"',
+    'Description=' +
+      '"R120\' Large force hand (AC 20, %{hitPoints} HP, Strength 26, Dexterity 10) moves 60\'/rd and can punch (inflicts 4d8 HP force), push 5\' (DC 26 Athletics neg), grapple (may crush, inflicting 2d6+%{mdf} HP bludgeoning), and block for conc or 1 min"',
   'Arcane Lock':
     'School=Abjuration ' +
     'Level=W2 ' +
-    'Description="Touched barrier becomes passable only by designated creatures"',
+    'Description=' +
+      '"Touched barrier opens only for designated creatures or specified password (<i>Knock</i> neg for 10 min)"',
+  'Arcane Sword':
+    'School=Evocation ' +
+    'Level=B7,W7 ' +
+    'Description="R60\' Force sword inflicts 3d10 HP force for conc or 1 min"',
   "Arcanist's Magic Aura":
     'School=Illusion ' +
     'Level=W2 ' +
-    'Description="Target reports false divinations for 1 dy"',
+    'Description=' +
+      '"Divinations on willing target report false information for 1 dy"',
   'Astral Projection':
     'School=Necromancy ' +
     'Level=C9,K9,W9 ' +
@@ -1574,58 +1593,69 @@ SRD5E.SPELLS = {
   'Augury':
     'School=Divination ' +
     'Level=C2 ' +
-    'Description="Self learns weal or woe outcome of act up to 30 min in the future"',
+    'Description=' +
+      '"Self learns weal or woe outcome of proposed act up to 30 min in the future"',
   'Awaken':
     'School=Transmutation ' +
     'Level=B5,D5 ' +
-    'Description="Touched beast or plant gains Intelligence 10, speech, and movement and becomes friendly for 30 dy"',
+    'Description=' +
+      '"Touched beast or plant gains Intelligence 10, speech, and movement and becomes charmed for 30 dy"',
 
   'Bane':
     'School=Enchantment ' +
     'Level=B1,C1 ' +
     'AtHigherLevels="affects +1 target" ' +
-    'Description="R30\' 3 targets suffer -1d4 on attacks and saving throws (Charisma neg) for conc or 1 min"',
+    'Description=' +
+      '"R30\' 3 targets suffer -1d4 on attacks and saving throws (Charisma neg) for conc or 1 min"',
   'Banishment':
     'School=Abjuration ' +
     'Level=C4,K4,P4,S4,W4 ' +
     'AtHigherLevels="affects +1 target" ' +
-    'Description="R60\' Banishes target to home or demiplane (Charisma neg) for conc or 1 min"',
+    'Description=' +
+      '"R60\' Banishes target to home or demiplane (Charisma neg) for conc or 1 min"',
   'Barkskin':
     'School=Transmutation ' +
     'Level=D2,R2 ' +
-    'Description="Touched gains AC 16 for conc or 1 hr"',
+    'Description="Willing ouched gains AC 16 for conc or 1 hr"',
   'Beacon Of Hope':
     'School=Abjuration ' +
     'Level=C3 ' +
-    'Description="R30\' Targets gain Adv on Wisdom and death saves and maximum HP from healing for conc or 1 min"',
+    'Description=' +
+      '"R30\' Targets gain Adv on Wisdom and death saves and maximum HP from healing for conc or 1 min"',
   'Bestow Curse':
     'School=Necromancy ' +
     'Level=B3,C3,W3 ' +
     'AtHigherLevels="extends duration to conc or 10 min/8 hr/24 hr/permanent at level 4/5/7/9" ' +
-    'Description="Touched suffers choice of Disadv on specified ability rolls, Disadv on attacks on self, require Wisdom save to take any action, or +1d8 HP necrotic from self attacks (Wisdom neg) for conc or 1 min"',
+    'Description=' +
+      '"Touched suffers choice of Disadv on specified ability rolls, Disadv on attacks on self, require Wisdom save to take any action, or +1d8 HP necrotic from self attacks (Wisdom neg) for conc or 1 min"',
   'Black Tentacles':
     'School=Conjuration ' +
     'Level=W4 ' +
-    'Description="R90\' 20\' sq inflicts 3d6 HP bludgeoning and restrains (Dexterity neg, Strength or Dexterity breaks free) for conc or 1 min"',
+    'Description=' +
+      '"R90\' 20\' sq inflicts 3d6 HP bludgeoning and restrains (Dexterity neg, Strength or Dexterity breaks free) for conc or 1 min"',
   'Blade Barrier':
     'School=Evocation ' +
     'Level=C6 ' +
-    'Description="R90\' 100\'x20\'x5\' blade wall provides 3/4 cover and inflicts 6d10 HP slashing (Dexterity half) for conc or 10 min"',
+    'Description=' +
+      '"R90\' 100\'x20\'x5\' blade wall provides 3/4 cover and inflicts 6d10 HP slashing (Dexterity half) for conc or 10 min"',
   'Bless':
     'School=Enchantment ' +
     'Level=C1,P1 ' +
     'AtHigherLevels="affects +1 target" ' +
-    'Description="R30\' 3 targets gain +1d4 on attacks and saving throws for conc or 1 min"',
+    'Description=' +
+      '"R30\' 3 targets gain +1d4 on attacks and saving throws for conc or 1 min"',
   'Blight':
     'School=Necromancy ' +
     'Level=D4,K4,S4,W4 ' +
     'AtHigherLevels="inflicts +1d8 HP" ' +
-    'Description="R30\' target suffers 8d8 HP necrotic (Constitution half (plant Disadv, 64 HP on fail))"',
+    'Description=' +
+      '"R30\' target suffers 8d8 HP necrotic (Constitution half (plant Disadv, 64 HP on fail))"',
   'Blindness/Deafness':
     'School=Necromancy ' +
     'Level=B2,C2,"K2 [The Fiend]",S2,W2 ' +
     'AtHigherLevels="affects +1 target" ' +
-    'Description="R30\' Inflicts choice of blindness or deafness on target (Constitution neg) for 1 min"',
+    'Description=' +
+      '"R30\' Inflicts choice of blindness or deafness on target (Constitution ends) for 1 min"',
   'Blink':
     'School=Transmutation ' +
     'Level=S3,W3 ' +
@@ -1633,12 +1663,13 @@ SRD5E.SPELLS = {
   'Blur':
     'School=Illusion ' +
     'Level=S2,W2 ' +
-    'Description="Foes suffer Disadv on self attacks for conc or 1 min"',
+    'Description="Foes suffer Disadv when attacking self for conc or 1 min"',
   'Branding Smite':
     'School=Evocation ' +
     'Level=P2 ' +
     'AtHigherLevels="inflicts +1d6 HP" ' +
-    'Description="Self attack inflicts +2d6 HP radiant and lights target for conc or 1 min"',
+    'Description=' +
+      '"Next successful self attack inflicts +2d6 HP radiant and lights target for conc or 1 min"',
   'Burning Hands':
     'School=Evocation ' +
     'Level="K1 [The Fiend]",S1,W1 ' +
@@ -1649,43 +1680,51 @@ SRD5E.SPELLS = {
     'School=Conjuration ' +
     'Level=D3 ' +
     'AtHigherLevels="inflicts +1d10 HP" ' +
-    'Description="R120\' Bolt inflicts 3d10 HP lightning (Dexterity half) in 5\' radius 1/rd for conc or 10 min"',
+    'Description=' +
+      '"R120\' 5\' radius inflicts 3d10 HP lightning (Dexterity half; +1d10 HP if using a natural storm) 1/rd for conc or 10 min"',
   'Calm Emotions':
     'School=Enchantment ' +
     'Level=B2,C2 ' +
-    'Description="R60\' 20\' radius suppresses charm and fright or hostility (Charisma neg) for conc or 1 min"',
+    'Description=' +
+      '"R60\' 20\' radius suppresses choice of charm and fright or hostility (Charisma neg) for conc or 1 min"',
   'Chain Lightning':
     'School=Evocation ' +
     'Level=S6,W6 ' +
     'AtHigherLevels="affects +1 target" ' +
-    'Description="R150\' 4 targets in 30\' radius suffer 10d8 HP lightning (Dexterity half)"',
+    'Description=' +
+      '"R150\' 4 targets in a 30\' radius suffer 10d8 HP lightning (Dexterity half)"',
   'Charm Person':
     'School=Enchantment ' +
     'Level=B1,D1,K1,S1,W1 ' +
     'AtHigherLevels="affects +1 target" ' +
-    'Description="R30\' Target regards you as a friend (Wisdom neg) for 1 hr or until harmed"',
+    'Description=' +
+      '"R30\' Target regards you as a friend (Wisdom neg) for 1 hr or until harmed"',
   'Chill Touch':
     'School=Necromancy ' +
     'Level=K0,S0,W0 ' +
-    'Description="R120\' Ranged spell inflicts %{(level+7)//6}d8 HP necrotic, undead also suffer Disadv on self attack for 1 rd"',
+    'Description=' +
+      '"R120\' Ranged spell inflicts %{(level+7)//6}d8 HP necrotic and target cannot heal for 1 rd, undead also suffer Disadv on self attack for 1 rd"',
   'Circle Of Death':
     'School=Necromancy ' +
     'Level=K6,S6,W6 ' +
     'AtHigherLevels="inflicts +2d6 HP" ' +
-    'Description="R150\' 60\' radius inflicts 8d6 HP necrotic (Constitution half)"',
+    'Description=' +
+      '"R150\' 60\' radius inflicts 8d6 HP necrotic (Constitution half)"',
   'Clairvoyance':
     'School=Divination ' +
     'Level=B3,C3,S3,W3 ' +
-    'Description="R1 mile Self sees or hears remotely through invisible sensor for conc or 10 min"',
+    'Description=' +
+      '"R1 mile Self gains choice of remote sight or hearing through an invisible sensor for conc or 10 min"',
   'Clone':
     'School=Necromancy ' +
     'Level=W8 ' +
-    'Description="Grows backup body for touched target"',
+    'Description="120-day process grows a backup body for touched target"',
   'Cloudkill':
     'School=Conjuration ' +
     'Level=S5,W5 ' +
     'AtHigherLevels="inflicts +1d8 HP" ' +
-    'Description="R120\' 20\' radius inflicts 5d8 HP poison (Constitution half), moves away 10\'/rd for conc or 10 min"',
+    'Description=' +
+      '"R120\' 20\' radius inflicts 5d8 HP poison (Constitution half) and moves away 10\'/rd for conc or 10 min"',
   'Color Spray':
     'School=Illusion ' +
     'Level=S1,W1 ' +
@@ -1695,7 +1734,8 @@ SRD5E.SPELLS = {
     'School=Enchantment ' +
     'Level=C1,"K1 [The Fiend]",P1 ' +
     'AtHigherLevels="affects +1 target" ' +
-    'Description="R60\' Target obeys self one-word command (Wisdom neg)"',
+    'Description=' +
+      '"R60\' Target obeys self one-word command (Wisdom neg) for 1 rd"',
   'Commune':
     'School=Divination ' +
     'Level=C5 ' +
@@ -1703,7 +1743,8 @@ SRD5E.SPELLS = {
   'Commune With Nature':
     'School=Divination ' +
     'Level=D5,R5 ' +
-    'Description="Self gains 3 facts about nature w/in 3 miles (300\' underground)"',
+    'Description=' +
+      '"Self gains 3 facts about nature w/in 3 miles (300\' underground)"',
   'Comprehend Languages':
     'School=Divination ' +
     'Level=B1,K1,S1,W1 ' +
@@ -1711,7 +1752,8 @@ SRD5E.SPELLS = {
   'Compulsion':
     'School=Enchantment ' +
     'Level=B4 ' +
-    'Description="R30\' Self controls target movement (Wisdom neg) for conc or 1 min"',
+    'Description=' +
+      '"R30\' Self controls target movement (Wisdom ends) for conc or 1 min"',
   'Cone Of Cold':
     'School=Evocation ' +
     'Level=S5,W5 ' +
@@ -1721,45 +1763,54 @@ SRD5E.SPELLS = {
     'School=Enchantment ' +
     'Level=B4,D4,S4,W4 ' +
     'AtHigherLevels="increases radius +5\'" ' +
-    'Description="R90\' Creatures in 10\' radius randomly 10% wander/50% do nothing/20% attack adjacent/20% act normally (Wisdom neg) for conc or 1 min"',
+    'Description=' +
+      '"R90\' Creatures in a 10\' radius randomly 10% wander/50% do nothing/20% attack adjacent creature/20% act normally (Wisdom neg) for conc or 1 min"',
   'Conjure Animals':
     'School=Conjuration ' +
     'Level=D3,R3 ' +
     'AtHigherLevels="doubles/triples/quadruples animal count at level 5/7/9" ' +
-    'Description="R60\' Summons 1/2/4/8 obedient CR 2/1/0.5/0.25 fey spirits in beast form for conc or 1 hr"',
+    'Description=' +
+      '"R60\' Summons 1/2/4/8 obedient CR 2/1/half/quarter fey spirits in beast form for conc, 1 hr, or until slain"',
   'Conjure Celestial':
     'School=Conjuration ' +
     'Level=C7 ' +
     'AtHigherLevels="summons CR 5 at level 9" ' +
-    'Description="R90\' Summons obedient CR 4 celestial for conc or 1 hr"',
+    'Description=' +
+       '"R90\' Summons obedient CR 4 celestial for conc, 1 hr, or until slain"',
   'Conjure Elemental':
     'School=Conjuration ' +
     'Level=D5,W5 ' +
-    'AtHigherLevels="summons +1 CR" ' +
-    'Description="R90\' Summons obedient environment-appropriate CR 5 elemental for conc or 1 hr"',
+    'AtHigherLevels="CR +1" ' +
+    'Description=' +
+       '"R90\' Summons obedient environment-appropriate CR 5 elemental for conc, 1 hr, or until slain"',
   'Conjure Fey':
     'School=Conjuration ' +
     'Level=D6,K6 ' +
-    'AtHigherLevels="summons +1 CR" ' +
-    'Description="R90\' Summons obedient CR 6 fey for conc or 1 hr"',
+    'AtHigherLevels="CR +1" ' +
+    'Description=' +
+      '"R90\' Summons obedient CR 6 fey for conc, 1 hr, or until slain"',
   'Conjure Minor Elementals':
     'School=Conjuration ' +
     'Level=D4,W4 ' +
     'AtHigherLevels="doubles/triples elemental count at level 6/8" ' +
-    'Description="R90\' Summons 1/2/4/8 obedient CR 2/1/0.5/0.25 elementals for conc or 1 hr"',
+    'Description=' +
+      '"R90\' Summons 1/2/4/8 obedient CR 2/1/half/quarter elementals for conc, 1 hr, or until slain"',
   'Conjure Woodland Beings':
     'School=Conjuration ' +
     'Level=D4,R4 ' +
-    'AtHigherLevels="double/triple creature count at level 6/8" ' +
-    'Description="R60\' Summons 1/2/4/8 obedient CR 2/1/0.5/0.25 fey creatures for conc or 1 hr"',
+    'AtHigherLevels="doubles/triples creature count at level 6/8" ' +
+    'Description=' +
+      '"R60\' Summons 1/2/4/8 obedient CR 2/1/half/quarter fey creatures for conc, 1 hr, or until slain"',
   'Contact Other Plane':
     'School=Divination ' +
     'Level=K5,W5 ' +
-    'Description="Self contact w/extraplanar being inflicts 6d6 HP psychic and insanity until long rest (DC 15 Intelligence neg and receive 5 one-word answers)"',
+    'Description=' +
+      '"Contact w/an extraplanar being inflicts 6d6 HP psychic and insanity on self until long rest (DC 15 Intelligence neg and receive 5 one-word answers)"',
   'Contagion':
     'School=Necromancy ' +
     'Level=C5,D5 ' +
-    'Description="Touched poisoned, diseased for 7 dy after failing 3 Constitution saves (3 successes neg)"',
+    'Description=' +
+      '"Touched becomes diseased for 7 dy after failing 3 Constitution saves (3 successes neg)"',
   'Contingency':
     'School=Evocation ' +
     'Level=W6 ' +
@@ -1771,16 +1822,19 @@ SRD5E.SPELLS = {
   'Control Water':
     'School=Transmutation ' +
     'Level=C4,D4,W4 ' +
-    'Description="R300\' 100\' water rises 20\', parts, redirects, or whirlpools for conc or 10 min"',
+    'Description=' +
+      '"R300\' 100\' water rises 20\', parts, redirects, or whirlpools for conc or 10 min"',
   'Control Weather':
     'School=Transmutation ' +
     'Level=C8,D8,W8 ' +
-    'Description="Modifies seasonal weather in 5 mile radius for conc or 8 hr"',
+    'Description=' +
+      '"Modifies seasonal weather in 5 mile radius for conc or 8 hr"',
   'Counterspell':
     'School=Abjuration ' +
     'Level=K3,S3,W3 ' +
-    'AtHigherLevels="affects any spell of equal or lesser level" ' +
-    'Description="R60\' Negates foe casting up to spell level 3, DC 10 + spell level for higher"',
+    'AtHigherLevels="negates any spell of equal or lesser level" ' +
+    'Description=' +
+      '"R60\' Negates foe casting up to spell level 3; successful DC 10 + spell level negates a higher-level spell"',
   'Create Food And Water':
     'School=Conjuration ' +
     'Level=C3,P3 ' +
@@ -1789,12 +1843,14 @@ SRD5E.SPELLS = {
     'School=Transmutation ' +
     'Level=C1,D1 ' +
     'AtHigherLevels="affects +10 gallons or +5\' cu" ' +
-    'Description="R30\' Creates or destroys 10 gallons of water or 30\' cu fog"',
+    'Description=' +
+      '"R30\' Creates or destroys 10 gallons of water or 30\' cu fog"',
   'Create Undead':
     'School=Necromancy ' +
     'Level=C6,K6,W6 ' +
-    'AtHigherLevels="creates 4 ghouls/5 ghouls or 2 ghasts or wights/6 ghouls, 3 ghasts or wights, or 2 mummies at level 7/8/9" ' +
-    'Description="R10\' 3 corpses become ghouls that obey self for 1 dy"',
+    'AtHigherLevels=' +
+      '"creates 4 ghouls/5 ghouls or 2 ghasts or wights/6 ghouls, 3 ghasts or wights, or 2 mummies at level 7/8/9" ' +
+    'Description="R10\' 3 corpses become obedient (R120\') ghouls for 1 dy"',
   'Creation':
     'School=Illusion ' +
     'Level=S5,W5 ' +
@@ -1803,7 +1859,7 @@ SRD5E.SPELLS = {
   'Cure Wounds':
     'School=Evocation ' +
     'Level=B1,C1,D1,P1,R1 ' +
-    'AtHigherLevels="heals +1d8 HP" ' +
+    'AtHigherLevels="restores +1d8 HP" ' +
     'Description="Touched regains 1d8+%{mdf} HP"',
 
   'Dancing Lights':

@@ -995,7 +995,8 @@ SRD5E.FEATURES = {
   'Retaliation':
     'Section=Combat ' +
     'Note="May use Reaction to make a melee attack on a successful attacker"',
-  'Ritual Casting':'Section=Magic Note="May cast a known spell using a ritual"',
+  'Ritual Casting':
+    'Section=Magic Note="May cast spells marked with [R] using a ritual"',
   'Roguish Archetype':'Section=Feature Note="1 selection"',
   'Sacred Oath':'Section=Feature Note="1 selection"',
   'Sacred Weapon':
@@ -1511,6 +1512,7 @@ SRD5E.SPELLS = {
   'Alarm':
     'School=Abjuration ' +
     'Level=R1,W1 ' +
+    'Ritual=true ' +
     'Description=' +
       '"R30\' Entry into 20\' cu by a non-designated creature triggers an audible or mental alarm for 8 hr"',
   'Alter Self':
@@ -1527,6 +1529,7 @@ SRD5E.SPELLS = {
   'Animal Messenger':
     'School=Enchantment ' +
     'Level=B2,D2,R2 ' +
+    'Ritual=true ' +
     'AtHigherLevels="duration +2 dy" ' +
     'Description=' +
       '"R30\' Tiny beast target moves to deliver 25-word message to person described for 1 dy"',
@@ -1580,7 +1583,8 @@ SRD5E.SPELLS = {
   'Arcane Sword':
     'School=Evocation ' +
     'Level=B7,W7 ' +
-    'Description="R60\' Force sword inflicts 3d10 HP force for conc up to 1 min"',
+    'Description=' +
+      '"R60\' Force weapon inflicts 3d10 HP force (spell attack), moves 20\'/rd for conc or 1 min"',
   "Arcanist's Magic Aura":
     'School=Illusion ' +
     'Level=W2 ' +
@@ -1593,6 +1597,7 @@ SRD5E.SPELLS = {
   'Augury':
     'School=Divination ' +
     'Level=C2 ' +
+    'Ritual=true ' +
     'Description=' +
       '"Self learns weal or woe outcome of proposed act up to 30 min in the future"',
   'Awaken':
@@ -1739,15 +1744,18 @@ SRD5E.SPELLS = {
   'Commune':
     'School=Divination ' +
     'Level=C5 ' +
+    'Ritual=true ' +
     'Description="Deity answers 3 yes/no questions"',
   'Commune With Nature':
     'School=Divination ' +
     'Level=D5,R5 ' +
+    'Ritual=true ' +
     'Description=' +
       '"Self gains 3 facts about nature w/in 3 miles (300\' underground)"',
   'Comprehend Languages':
     'School=Divination ' +
     'Level=B1,K1,S1,W1 ' +
+    'Ritual=true ' +
     'Description="Self understands all languages for 1 hr"',
   'Compulsion':
     'School=Enchantment ' +
@@ -1804,6 +1812,7 @@ SRD5E.SPELLS = {
   'Contact Other Plane':
     'School=Divination ' +
     'Level=K5,W5 ' +
+    'Ritual=true ' +
     'Description=' +
       '"Contact w/an extraplanar being inflicts 6d6 HP psychic and insanity on self until long rest (DC 15 Intelligence neg and receive 5 one-word answers)"',
   'Contagion':
@@ -1902,10 +1911,12 @@ SRD5E.SPELLS = {
   'Detect Magic':
     'School=Divination ' +
     'Level=B1,C1,D1,P1,R1,S1,W1 ' +
+    'Ritual=true ' +
     'Description="R30\' Self senses magic auras for conc up to 10 min"',
   'Detect Poison And Disease':
     'School=Divination ' +
     'Level=C1,D1,P1,R1 ' +
+    'Ritual=true ' +
     'Description=' +
       '"R30\' Self senses poison, poisonous creatures, and diseases for conc up to 10 min"',
   'Detect Thoughts':
@@ -1943,6 +1954,7 @@ SRD5E.SPELLS = {
   'Divination':
     'School=Divination ' +
     'Level=C4 ' +
+    'Ritual=true ' +
     'Description=' +
       '"Self gains truthful answer about an event up to 7 dy in the future"',
   'Divine Favor':
@@ -2065,6 +2077,7 @@ SRD5E.SPELLS = {
   'Find Familiar':
     'School=Conjuration ' +
     'Level=W1 ' +
+    'Ritual=true ' +
     'Description=' +
       '"R10\' Self gains service from a summoned spirit in animal form"',
   'Find Steed':
@@ -2132,6 +2145,7 @@ SRD5E.SPELLS = {
   'Floating Disk':
     'School=Conjuration ' +
     'Level=W1 ' +
+    'Ritual=true ' +
     'Description=' +
       '"R30\' 3\'-diameter x 1\\" thick force disk floats 3\' high 20\' behind self, holding 500 lbs for 1 hr"',
   'Fly':
@@ -2147,6 +2161,7 @@ SRD5E.SPELLS = {
   'Forbiddance':
     'School=Abjuration ' +
     'Level=C6 ' +
+    'Ritual=true ' +
     'Description=' +
       '"Touched 40000\' sq bars teleport and portals; entry inflicts 5d10 HP choice of radiant or necrotic to choice of celestials, fey, fiends, or undead for 1 dy"',
   'Forcecage':
@@ -2188,6 +2203,7 @@ SRD5E.SPELLS = {
   'Gentle Repose':
     'School=Necromancy ' +
     'Level=C2,W2 ' +
+    'Ritual=true ' +
     'Description=' +
       '"Touched corpse becomes immune to decay and animation for 10 dy"',
   'Giant Insect':
@@ -2351,11 +2367,13 @@ SRD5E.SPELLS = {
   'Identify':
     'School=Divination ' +
     'Level=B1,W1 ' +
+    'Ritual=true ' +
     'Description=' +
       '"Self determines magic properties or spells affecting touched"',
   'Illusory Script':
     'School=Illusion ' +
     'Level=B1,K1,W1 ' +
+    'Ritual=true ' +
     'Description=' +
       '"Self writing on target material becomes legible only to specified creatures for 10 dy"',
   'Imprisonment':
@@ -2381,6 +2399,7 @@ SRD5E.SPELLS = {
   'Instant Summons':
     'School=Conjuration ' +
     'Level=W6 ' +
+    'Ritual=true ' +
     'Description=' +
       '"Prepares a 10 lb item to appear later in self hand if not held"',
   'Invisibility':
@@ -2431,6 +2450,7 @@ SRD5E.SPELLS = {
   'Locate Animals Or Plants':
     'School=Divination ' +
     'Level=B2,D2,R2 ' +
+    'Ritual=true ' +
     'Description="Self learns location of named beast or plant w/in 5 miles"',
   'Locate Creature':
     'School=Divination ' +
@@ -2477,6 +2497,7 @@ SRD5E.SPELLS = {
   'Magic Mouth':
     'School=Illusion ' +
     'Level=B2,W2 ' +
+    'Ritual=true ' +
     'Description="R30\' Target object speaks a 25-word message when triggered"',
   'Magic Weapon':
     'School=Transmutation ' +
@@ -2523,6 +2544,7 @@ SRD5E.SPELLS = {
   'Meld Into Stone':
     'School=Transmutation ' +
     'Level=C3,D3 ' +
+    'Ritual=true ' +
     'Description="Self may step into rock for 8 hr"',
   'Mending':
     'School=Transmutation ' +
@@ -2610,6 +2632,7 @@ SRD5E.SPELLS = {
   'Phantom Steed':
     'School=Illusion ' +
     'Level=W3 ' +
+    'Ritual=true ' +
     'Description=' +
       '"R30\' Self or target may ride a conjured horse 100\'/rd (13 MPH) for 1 hr or until damaged"',
   'Planar Ally':
@@ -2708,6 +2731,7 @@ SRD5E.SPELLS = {
   'Purify Food And Drink':
     'School=Transmutation ' +
     'Level=C1,D1,P1 ' +
+    'Ritual=true ' +
     'Description=' +
       '"R10\' Removes poison and disease from nonmagical food and drink in a 5\' radius"',
 
@@ -2843,6 +2867,7 @@ SRD5E.SPELLS = {
   'Silence':
     'School=Illusion ' +
     'Level=B2,C2,R2 ' +
+    'Ritual=true ' +
     'Description="R120\' 20\' radius blocks sound for conc up to 10 min"',
   'Silent Image':
     'School=Illusion ' +
@@ -2876,6 +2901,7 @@ SRD5E.SPELLS = {
   'Speak With Animals':
     'School=Divination ' +
     'Level=B1,D1,R1 ' +
+    'Ritual=true ' +
     'Description="Self may talk with animals for 10 min"',
   'Speak With Dead':
     'School=Necromancy ' +
@@ -2949,19 +2975,23 @@ SRD5E.SPELLS = {
   'Telekinesis':
     'School=Transmutation ' +
     'Level=S5,W5 ' +
-    'Description="R60\' Moves 1000 lb 30\'/rd (Strength neg) for conc up to 10 min"',
+    'Description=' +
+      '"R60\' Self may mentally move a 1000 lb object 30\'/rd (Strength neg) for conc up to 10 min"',
   'Telepathic Bond':
     'School=Divination ' +
     'Level=W5 ' +
-    'Description="R30\' 8 targets communicate mentally for 1 hr"',
+    'Ritual=true ' +
+    'Description="R30\' 8 willing targets may communicate mentally for 1 hr"',
   'Teleport':
     'School=Conjuration ' +
     'Level=B7,S7,W7 ' +
-    'Description="R10\' Object or self and 8 allies teleport any distance"',
+    'Description=' +
+      '"R10\' Target object or self and 8 allies teleport any distance"',
   'Teleportation Circle':
     'School=Conjuration ' +
     'Level=B5,S5,W5 ' +
-    'Description="R10\' Creates permanent portal to similar circle"',
+    'Description=' +
+      '"R10\' Creates a portal that provides access to similar circles for 1 rd"',
   'Thaumaturgy':
     'School=Transmutation ' +
     'Level=C0 ' +
@@ -2970,39 +3000,48 @@ SRD5E.SPELLS = {
     'School=Evocation ' +
     'Level=B1,D1,S1,W1 ' +
     'AtHigherLevels="inflicts +1d8 HP" ' +
-    'Description="15\' cu inflicts 2d8 HP thunder and pushes 10\' (Constitution half, no push)"',
+    'Description=' +
+      '"15\' cu inflicts 2d8 HP thunder and pushes 10\' (Constitution half HP only)"',
   'Time Stop':
     'School=Transmutation ' +
     'Level=S9,W9 ' +
-    'Description="Self gains extra 1d4 + 1 turns, ends if another affected"',
+    'Description=' +
+      '"Self gains extra 1d4 + 1 turns (affecting another creature or moving more than 1000\' away ends)"',
   'Tiny Hut':
     'School=Evocation ' +
     'Level=B3,W3 ' +
-    'Description="Creates 10\' radius dome impassable by objects and spells for 8 hr"',
+    'Ritual=true ' +
+    'Description=' +
+      '"Creates a 10\' radius dome, impassable by objects and spells, for 8 hr"',
   'Tongues':
     'School=Divination ' +
     'Level=B3,C3,K3,S3,W3 ' +
-    'Description="Touched understands and speaks any language for 1 hr"',
+    'Description=' +
+      '"Touched understands any language and is universally understood for 1 hr"',
   'Transport Via Plants':
     'School=Conjuration ' +
     'Level=D6 ' +
-    'Description="Creates teleportation door between two plants for 1 rd"',
+    'Description=' +
+      '"Allows teleportation from target large plant to another for 1 rd"',
   'Tree Stride':
     'School=Conjuration ' +
     'Level=D5,R5 ' +
-    'Description="Self teleports between like trees 1/rd for conc up to 1 min"',
+    'Description=' +
+      '"Self may teleport 500\' between like trees 1/rd for conc up to 1 min"',
   'True Polymorph':
     'School=Transmutation ' +
     'Level=B9,K9,W9 ' +
-    'Description="R30\' Transforms target creature or object (Wisdom neg) for conc up to 1 hr or until reduced to 0 HP"',
+    'Description=' +
+      '"R30\' Transforms target creature or object (Wisdom neg) for conc up to 1 hr or until reduced to 0 HP"',
   'True Resurrection':
     'School=Necromancy ' +
     'Level=C9,D9 ' +
-    'Description="Restores touched or named 200-year-old corpse to life"',
+    'Description="Restores life to touched or named 200-year-old corpse"',
   'True Seeing':
     'School=Divination ' +
     'Level=B6,C6,K6,S6,W6 ' +
-    'Description="Touched gains 120\' truesight, sees magically concealed doors, and can see into Ethereal Plane for 1 hr"',
+    'Description=' +
+      '"Touched gains 120\' truesight, sees magically concealed doors, and can see into the Ethereal Plane for 1 hr"',
   'True Strike':
     'School=Divination ' +
     'Level=B0,K0,S0,W0 ' +
@@ -3011,69 +3050,85 @@ SRD5E.SPELLS = {
   'Unseen Servant':
     'School=Conjuration ' +
     'Level=B1,K1,W1 ' +
-    'Description="R60\' Invisible force performs simple tasks for 1 hr"',
+    'Ritual=true ' +
+    'Description=' +
+      '"R60\' Invisible force (AC 10; 1 HP; Strength 2) moves 15\'/rd and performs simple tasks for 1 hr or until damaged"',
 
   'Vampiric Touch':
     'School=Necromancy ' +
     'Level=K3,W3 ' +
     'AtHigherLevels="inflicts +1d6 HP" ' +
-    'Description="Touched suffers 3d6 HP and self regains half for conc up to 1 min"',
+    'Description=' +
+      '"Touched suffers 3d6 HP and self regains half for conc up to 1 min"',
   'Vicious Mockery':
     'School=Enchantment ' +
     'Level=B0 ' +
-    'Description="R60\' Target suffers %{(level+7)//6}d4 HP psychic and Disadv on attack (Wisdom neg) for 1 rd"',
+    'Description=' +
+      '"R60\' Target suffers %{(level+7)//6}d4 HP psychic and Disadv on attack (Wisdom neg) for 1 rd"',
 
   'Wall Of Fire':
     'School=Evocation ' +
     'Level=D4,"K4 [The Fiend]",S4,W4 ' +
     'AtHigherLevels="inflicts +1d8 HP" ' +
-    'Description="R120\' 60\'x20\' wall inflicts 5d8 HP fire (Dexterity half) for conc up to 1 min"',
+    'Description=' +
+      '"R120\' 60\'x20\'x1\' wall inflicts 5d8 HP fire (Dexterity half) w/in 10\' of chosen side for conc up to 1 min"',
   'Wall Of Force':
     'School=Evocation ' +
     'Level=W5 ' +
-    'Description="R120\' Creates 10 10\'x10\' panels that are impassable by objects for conc up to 10 min"',
+    'Description=' +
+      '"R120\' Creates 10 10\'x10\' impassable force panels for conc up to 10 min"',
   'Wall Of Ice':
     'School=Evocation ' +
     'Level=W6 ' +
     'AtHigherLevels="inflicts +2d6 HP initially, +1d6 HP to passers" ' +
-    'Description="R120\' Creates 10 10\'x10\' panels that inflict 10d6 HP cold (Dexterity half) initially plus, if broken, 5d6 HP cold to passers (Constitution half) for conc up to 10 min"',
+    'Description=' +
+      '"R120\' Creates 10 10\'x10\'x1\' panels (AC 12; 30 HP) that inflict 10d6 HP cold (Dexterity half) initially and, if broken, 5d6 HP cold to passers (Constitution half) for conc up to 10 min"',
   'Wall Of Stone':
     'School=Evocation ' +
     'Level=D5,S5,W5 ' +
-    'Description="R120\' Creates 10 10\'x10\' panels for conc up to 10 min"',
+    'Description=' +
+      '"R120\' Creates 10 10\'x10\'x6\\" or 10\'x20\'x3\\" panels for conc up to 10 min"',
   'Wall Of Thorns':
     'School=Conjuration ' +
     'Level=D6 ' +
     'AtHigherLevels="inflicts +1d8 HP" ' +
-    'Description="R120\' 60\'x10\' wall inflicts 7d8 HP piercing (Dexterity half) initially plus 7d8 HP slashing to passers (Dexterity half) for conc up to 10 min"',
+    'Description=' +
+      '"R120\' 60\'x10\'x5\' wall inflicts 7d8 HP piercing (Dexterity half) initially plus 1/2 Speed and 7d8 HP slashing to passers (Dexterity half) for conc up to 10 min"',
   'Warding Bond':
     'School=Abjuration ' +
     'Level=C2 ' +
-    'Description="Touched gains +1 AC and saves and resistance to all damage while within 60\' of self, self shares damage to touched for 1 hr"',
+    'Description=' +
+      '"Touched gains +1 AC, +1 saves, and resistance to all damage while within 60\' of self, and self also suffers any damage to touched, for 1 hr"',
   'Water Breathing':
     'School=Transmutation ' +
     'Level=D3,R3,S3,W3 ' +
-    'Description="R30\' 10 targets can breathe underwater for 1 dy"',
+    'Ritual=true ' +
+    'Description="R30\' 10 targets may breathe underwater for 1 dy"',
   'Water Walk':
     'School=Transmutation ' +
     'Level=C3,D3,R3,S3 ' +
-    'Description="R30\' 10 targets can traverse liquid for 1 hr"',
+    'Ritual=true ' +
+    'Description="R30\' 10 targets may traverse liquids for 1 hr"',
   'Web':
     'School=Conjuration ' +
     'Level=S2,W2 ' +
-    'Description="R60\' 20\' cu restrains creatures (Dexterity neg, Strength frees) for conc up to 1 hr"',
+    'Description=' +
+      '"R60\' 20\' cu restrains creatures (Dexterity neg, Strength frees) for conc up to 1 hr; burning inflicts 2d4 HP fire"',
   'Weird':
     'School=Illusion ' +
     'Level=W9 ' +
-    'Description="R120\' Targets perceive personal horrors that frighten and inflict 4d10 HP psychic/rd (Wisdom neg) for conc up to 1 min"',
+    'Description=' +
+      '"R120\' 30\' radius inflicts frightened and 4d10 HP psychic/rd (Wisdom ends) for conc up to 1 min"',
   'Wind Walk':
     'School=Transmutation ' +
     'Level=D6 ' +
-    'Description="R30\' Self and 10 others become gaseous, can fly 300\'/rd for 8 hr"',
+    'Description=' +
+      '"R30\' Self and 10 others may become gaseous, fly 300\'/rd, and gain resistance to nonmagical weapons at will for 8 hr"',
   'Wind Wall':
     'School=Evocation ' +
     'Level=D3,R3 ' +
-    'Description="R120\' 50\'x15\' area inflicts 3d8 HP bludgeoning (Strength half) for conc up to 1 min"',
+    'Description=' +
+      '"R120\' 50\'x15\'x1\' area inflicts 3d8 HP bludgeoning (Strength half) and deflects lightweight creatures and objects for conc up to 1 min"',
   'Wish':
     'School=Conjuration ' +
     'Level=S9,W9 ' +
@@ -3081,12 +3136,13 @@ SRD5E.SPELLS = {
   'Word Of Recall':
     'School=Conjuration ' +
     'Level=C6 ' +
-    'Description="R5\' Self and 5 others teleport to prepared location"',
+    'Description="R5\' Self and 5 others teleport to a prepared location"',
 
   'Zone Of Truth':
     'School=Enchantment ' +
     'Level=B2,C2,P2 ' +
-    'Description="R60\' Creatures in 15\' radius cannot lie (Charisma neg) for 10 min"'
+    'Description=' +
+      '"R60\' Creatures in a 15\' radius cannot lie (Charisma neg) for 10 min"'
 
 };
 SRD5E.TOOLS = {
@@ -3467,8 +3523,9 @@ SRD5E.identityRules = function(
 SRD5E.magicRules = function(rules, schools, spells) {
 
   QuilvynUtils.checkAttrTable(schools, ['Features']);
-  QuilvynUtils.checkAttrTable
-    (spells, ['School', 'Group', 'Level', 'Description', 'AtHigherLevels']);
+  QuilvynUtils.checkAttrTable(spells, [
+    'School', 'Group', 'Level', 'Ritual', 'Description', 'AtHigherLevels'
+  ]);
 
   for(let school in schools) {
     rules.choiceRules(rules, 'School', school, schools[school]);
@@ -3652,6 +3709,8 @@ SRD5E.choiceRules = function(rules, type, name, attrs) {
     let description = QuilvynUtils.getAttrValue(attrs, 'Description');
     let groupLevels = QuilvynUtils.getAttrValueArray(attrs, 'Level');
     let higher = QuilvynUtils.getAttrValue(attrs, 'AtHigherLevels');
+    let ritual = QuilvynUtils.getAttrValue(attrs, 'Ritual');
+    ritual = ritual && !(ritual+'').match(/(^n|false)$/i);
     let school = QuilvynUtils.getAttrValue(attrs, 'School');
     let schoolAbbr = school.substring(0, 4);
     for(let i = 0; i < groupLevels.length; i++) {
@@ -3665,7 +3724,7 @@ SRD5E.choiceRules = function(rules, type, name, attrs) {
       let path = matchInfo[3] || '';
       let fullName = name + '(' + group + level + path + ' ' + schoolAbbr + ')';
       SRD5E.spellRules(
-        rules, fullName, school, group, level, description, higher
+        rules, fullName, school, group, level, ritual, description, higher
       );
       rules.addChoice('spells', fullName, attrs);
     }
@@ -4514,10 +4573,13 @@ SRD5E.featureSpells = function(rules, feature, spellType, levelAttr, spellList){
       let spellLevel =
         QuilvynUtils.getAttrValue(spellAttrs, 'Level').match(/\d/)[0] - 0;
       let spellRaise = QuilvynUtils.getAttrValue(spellAttrs, 'AtHigherLevels');
+      let spellRitual = QuilvynUtils.getAttrValue(spellAttrs, 'Ritual');
+      spellRitual = spellRitual && !(spellRitual+'').match(/(^n|false)$/i);
       let spellSchool = QuilvynUtils.getAttrValue(spellAttrs, 'School');
       let fullName = spellName + '(' + spellType + spellLevel + ' [' + feature + '] ' + spellSchool.substring(0, 4) + ')';
       SRD5E.spellRules(
-        rules, fullName, spellSchool, spellType, spellLevel, spellDescription, spellRaise
+        rules, fullName, spellSchool, spellType, spellLevel, spellRitual,
+        spellDescription, spellRaise
       );
       rules.defineRule('spells.' + fullName, 'features.' + feature, '=', '1');
       if(minLevel)
@@ -4882,12 +4944,13 @@ SRD5E.skillRules = function(rules, name, ability, classes) {
 /*
  * Defines in #rules# the rules associated with spell #name#, which is from
  * magic school #school#. #casterGroup# and #level# are used to compute any
- * saving throw value required by the spell. #description# is a verbose
- * description of the spell's effects. #higher#, if supplied, describes the
- * effects of casting the spell using a higher-level spell slot.
+ * saving throw value required by the spell. #ritual# indicates whether or not
+ * the spell can be cast using a ritual. #description# is a verbose description
+ * of the spell's effects. #higher#, if supplied, describes the effects of
+ * casting the spell using a higher-level spell slot.
  */
 SRD5E.spellRules = function(
-  rules, name, school, casterGroup, level, description, higher
+  rules, name, school, casterGroup, level, ritual, description, higher
 ) {
 
   if(!name) {
@@ -4914,6 +4977,8 @@ SRD5E.spellRules = function(
                .replaceAll('mdf', 'spellModifier.' + casterGroup);
   if(higher)
     description += ' [+Level ' + higher + ']';
+  if(ritual)
+    description += ' [R]';
   rules.defineChoice('notes', 'spells.' + name + ':' + description);
 
 };

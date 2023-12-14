@@ -76,9 +76,9 @@ SRD5E.VERSION = '2.4.1.0';
 // Note: Left Goody out of this list for now because inclusion would require
 // documenting how to construct regular expressions.
 SRD5E.CHOICES = [
-  'Armor', 'Background', 'Class', 'Class Feature', 'Deity', 'Feat', 'Feature', 
-  'Language', 'Race', 'Race Feature', 'School', 'Skill', 'Spell', 'Tool',
-  'Weapon'
+  'Armor', 'Background', 'Background Feature', 'Class', 'Class Feature',
+  'Deity', 'Feat', 'Feature', 'Language', 'Race', 'Race Feature', 'School',
+  'Skill', 'Spell', 'Tool', 'Weapon'
 ];
 /*
  * List of items handled by randomizeOneAttribute method. The order handles
@@ -689,7 +689,7 @@ SRD5E.FEATURES = {
     'Note="R60\' May spend 5 Sorcery Points to gain an aura that inflicts choice of charm or fright (DC %{spellDifficultyClass.S} Wisdom neg) for conc up to 1 min"',
   'Draconic Resilience':
     'Section=Combat ' +
-    'Note="+%{levels.Sorcerer} Hit Points/AC %{dexterityModifier+13} in no armor"',
+    'Note="+%{levels.Sorcerer} Hit Points/Armor Class %{dexterityModifier+13} in no armor"',
   'Dragon Ancestor':
     'Section=Skill,Skill ' +
     'Note=' +
@@ -770,7 +770,7 @@ SRD5E.FEATURES = {
     'Spells="False Life"',
   'Fighting Style':'Section=Feature Note="%V selections"',
   'Fighting Style (Archery)':'Section=Combat Note="+2 ranged attacks"',
-  'Fighting Style (Defense)':'Section=Combat Note="+1 AC in armor"',
+  'Fighting Style (Defense)':'Section=Combat Note="+1 Armor Class in armor"',
   'Fighting Style (Dueling)':
     'Section=Combat Note="+2 damage with a single, one-handed weapon"',
   'Fighting Style (Great Weapon Fighting)':
@@ -887,7 +887,7 @@ SRD5E.FEATURES = {
   'Monastic Tradition':'Section=Feature Note="1 selection"',
   'Multiattack':'Section=Feature Note="1 selection"',
   'Multiattack Defense':
-    'Section=Combat Note="After a successful foe attack, gains +4 AC on additional attacks from same foe in same rd"',
+    'Section=Combat Note="After a successful foe attack, gains +4 Armor Class on additional attacks from same foe in same rd"',
   'Mystic Arcanum':
     'Section=Magic ' +
     'Note="May cast chosen K6%{(levels.Warlock<13?\'\':\', K7\')+(levels.Warlock<15?\'\':\', K8\')+(levels.Warlock<17?\'\':\', K9\')} %{levels.Warlock<13?\'spell\':\'spells\'} 1/long rest"',
@@ -1100,9 +1100,9 @@ SRD5E.FEATURES = {
     'Section=Magic ' +
     'Note="May spend spell level Sorcery Points to add a second spell target"',
   'Unarmored Defense (Barbarian)':
-    'Section=Combat Note="+%{constitutionModifier} AC in no armor"',
+    'Section=Combat Note="+%{constitutionModifier} Armor Class in no armor"',
   'Unarmored Defense (Monk)':
-    'Section=Combat Note="+%{wisdomModifier} AC in no armor"',
+    'Section=Combat Note="+%{wisdomModifier} Armor Class in no armor"',
   'Unarmored Movement':
     'Section=Ability,Ability ' +
     'Note=' +
@@ -1469,7 +1469,7 @@ SRD5E.SHIELDS = {
   'None':'AC=0',
   'Shield':'AC=2'
 };
-SRD5E.SKILLS = {
+ SRD5E.SKILLS = {
   'Acrobatics':'Ability=Dexterity',
   'Animal Handling':'Ability=Wisdom',
   'Arcana':'Ability=Intelligence',
@@ -3611,11 +3611,6 @@ SRD5E.talentRules = function(
 SRD5E.choiceRules = function(rules, type, name, attrs) {
   if(type == 'Alignment')
     SRD5E.alignmentRules(rules, name);
-  else if(type == 'Background')
-    SRD5E.backgroundRules(rules, name,
-      QuilvynUtils.getAttrValueArray(attrs, 'Equipment'),
-      QuilvynUtils.getAttrValueArray(attrs, 'Features')
-    );
   else if(type == 'Armor') {
     let bulky = QuilvynUtils.getAttrValue(attrs, 'Bulky');
     SRD5E.armorRules(rules, name,
@@ -3625,7 +3620,18 @@ SRD5E.choiceRules = function(rules, type, name, attrs) {
       QuilvynUtils.getAttrValue(attrs, 'Str'),
       QuilvynUtils.getAttrValue(attrs, 'Weight')
     );
-  } else if(type == 'Class') {
+  } else if(type == 'Background')
+    SRD5E.backgroundRules(rules, name,
+      QuilvynUtils.getAttrValueArray(attrs, 'Equipment'),
+      QuilvynUtils.getAttrValueArray(attrs, 'Features')
+    );
+  else if(type == 'Background Feature')
+    SRD5E.backgroundFeatureRules(rules, name,
+      QuilvynUtils.getAttrValue(attrs, 'Background'),
+      QuilvynUtils.getAttrValue(attrs, 'Level'),
+      QuilvynUtils.getAttrValueArray(attrs, 'Replace')
+    );
+  else if(type == 'Class') {
     SRD5E.classRules(rules, name,
       QuilvynUtils.getAttrValueArray(attrs, 'Require'),
       QuilvynUtils.getAttrValue(attrs, 'HitDie'),
@@ -3874,6 +3880,48 @@ SRD5E.backgroundRules = function(rules, name, equipment, features) {
   rules.defineChoice('extras', prefix + 'Features');
 
   // TODO Do anything with equipment?
+
+};
+
+/*
+ * Defines in #rules# the rules required to give feature #name# to background
+ * #backgroundName#. #replace# lists any background features that this new one
+ * replaces.
+ */
+SRD5E.backgroundFeatureRules = function(
+  rules, name, backgroundName, level, replace
+) {
+
+  if(!name) {
+    console.log('Empty background feature name');
+    return;
+  }
+  if(!(backgroundName in rules.getChoices('backgrounds'))) {
+    console.log('Bad background "' + backgroundName + '" for background feature ' + name);
+    return;
+  }
+  if(typeof level != 'number') {
+    console.log('Bad level "' + level + '" for class feature ' + name);
+    return;
+  }
+  if(!Array.isArray(replace)) {
+    console.log('Bad replace list "' + replace + '" for background feature ' + name);
+    return;
+  }
+
+  let featureSpec = level + ':' + name;
+  let prefix =
+    backgroundName.charAt(0).toLowerCase() + backgroundName.substring(1).replaceAll(' ', '');
+  QuilvynRules.featureListRules
+    (rules, [featureSpec], backgroundName, 'level', false);
+  replace.forEach(f => {
+    let hasVar = 'has' + f.replaceAll(' ', '');
+    rules.defineRule(prefix + 'Features.' + f, hasVar, '?', 'source==1');
+    rules.defineRule(hasVar,
+      'features.' + backgroundName, '=', '1',
+      prefix + 'Features.' + name, '=', '0'
+    );
+  });
 
 };
 
@@ -5416,21 +5464,27 @@ SRD5E.choiceEditorElements = function(rules, type) {
       ['Str', 'Min Str', 'select-one', zeroToEighteen],
       ['Bulky', 'Stealth Disadv', 'checkbox', ['']]
     );
-  } else if(type == 'Background') {
+  } else if(type == 'Background')
     result.push(
       ['Equipment', 'Equipment', 'text', [40]],
       ['Features', 'Features', 'text', [40]]
     );
-  } else if(type == 'Class') {
+  else if(type == 'Background Feature')
     result.push(
-      ['Require', 'Prerequisites', 'text', [40]],
+      ['Background', 'Background', 'select-one', QuilvynUtils.getKeys(rules.getChoices('backgrounds'))],
+      ['Level', 'Level', 'select-one', oneToTwenty],
+      ['Replace', 'Replace', 'text', [40]]
+    );
+  else if(type == 'Class')
+    result.push(
+      ['Require', 'Prerequisite', 'text', [40]],
       ['HitDie', 'Hit Die', 'select-one', ['d4', 'd6', 'd8', 'd10', 'd12']],
       ['Features', 'Features', 'text', [40]],
       ['Selectables', 'Selectable Features', 'text', [40]],
       ['SpellAbility', 'Spell Ability', 'select-one', abilities],
       ['SpellSlots', 'Spells Slots', 'text', [40]]
     );
-  } else if(type == 'Class Feature')
+  else if(type == 'Class Feature')
     result.push(
       ['Class', 'Class', 'select-one', QuilvynUtils.getKeys(rules.getChoices('levels'))],
       ['Level', 'Level', 'select-one', oneToTwenty],
@@ -5445,7 +5499,7 @@ SRD5E.choiceEditorElements = function(rules, type) {
     );
   else if(type == 'Feat')
     result.push(
-      ['Require', 'Prerequisites', 'text', [40]],
+      ['Require', 'Prerequisite', 'text', [40]],
       ['Imply', 'Implies', 'text', [40]]
     );
   else if(type == 'Feature') {
@@ -5461,7 +5515,7 @@ SRD5E.choiceEditorElements = function(rules, type) {
     );
   else if(type == 'Race')
     result.push(
-      ['Require', 'Prerequisites', 'text', [40]],
+      ['Require', 'Prerequisite', 'text', [40]],
       ['Features', 'Features', 'text', [60]],
       ['Selectables', 'Selectables', 'text', [60]]
     );

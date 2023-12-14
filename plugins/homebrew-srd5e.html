@@ -252,12 +252,9 @@ with the Deception and Performance skills.
 <img src='../Images/hb5e-language.jpg' alt='Homebrew Language'/>
 </td><td>
 <p>
-Adding a homebrew language requires only specifying the name. Once added,
-languages can be added to a character by selecting from the language list and
-can be included in the list of languages automatically known by homebrew races.
-</p><p>
-The example shows the entry for a language called Scaletongue, used in
-the example for <a href="#race">adding a race</a>.
+Adding a homebrew language requires only specifying the name. The example shows
+the entry for a language named Aquan&mdash;perhaps the common tongue of
+sentient marine races.
 </p>
 </td></tr>
 
@@ -277,8 +274,8 @@ requirements, Quilvyn provides the Prerequisite entry to allow you to specify a
 race that has, for example, a minimum strength requirement. Most races will
 have fixed features, such as an ability adjustment. Quilvyn also allows
 entering selectable features to support variations such as sub-races.
-Each feature in these lists will require <a href="#feature">adding a feature</a>
-to describe its effects.
+Each feature in these lists will require <a href="#feature">adding a homebrew
+feature</a> to describe its effects.
 </p><p>
 The example shows the entry for the Lizardfolk race from the Monster Manual.
 Features for this race are: Natural Armor, Hold Breath, Multiattack, Language
@@ -308,7 +305,7 @@ The example shows the entry for a school named Control.
 </td><td>
 <p>
 When adding a homebrew skill, Quilvyn displays fields for the skill's related
-ability and the list of classes which are proficient in the skill.
+ability and the list of classes that are proficient in the skill.
 </p><p>
 The example shows the entry for a Sailing skill, which is related to
 Intelligence. Fighters and Rangers are proficient in the skill.
@@ -345,7 +342,7 @@ slot level above 4th.
 <p>
 When adding a homebrew weapon, Quilvyn displays fields that allow you to enter
 the weapon's category (Unarmed, Simple Melee or Ranged, or Martial Melee or
-Ranged), properties, and (for ranged weapons) range increment.
+Ranged), properties, and (for ranged weapons) standard and long range values.
 </p><p>
 The example shows the entry for a boomerang, a martial ranged weapon with a
 30'/120' range that inflicts 1d4 damage.
@@ -373,10 +370,9 @@ this:
 <h2>Using attributes in prerequisites</h2>
 
 <p>
-In the core rulebook, many feats and all prestige classes have
-prerequisites&mdash;attribute values that the character must have to take the
-feat or a level in the prestige class. Quilvyn allows you to specify similar
-prerequisites when entering a homebrew class, feat, or race.
+Some core feats include prerequisites&mdash;attribute values that the character
+must have to take the feat or a level in the prestige class. Quilvyn allows you
+to specify similar prerequisites when entering a homebrew class, feat, or race.
 </p><p>
 Since the effects of the Alert Dodger feat come from battle experience, it
 makes sense to require a minimum proficiency bonus&mdash;say, 3&mdash;to take
@@ -386,10 +382,10 @@ the feat. This is represented by adding text to the feat's Prerequisite field:
 
 <p>
 Quilvyn will generate tests for this requirement and will show a validation
-error if a character with no Fighter levels is given this feat. You can also
-specify that the character must have a specific feature as part of your
-prerequisites. For the Alert Dodger feat, it seems reasonable to require that
-the character also have the Evasion feature:
+error if a character with a proficiency bonus of 2 or less is given this feat.
+You can also specify that the character must have a specific feature as part of
+your prerequisites. For the Alert Dodger feat, it seems reasonable to require
+that the character also have the Evasion feature:
 </p>
 <img src='../Images/hb5e-attr-2.jpg' alt='Alert Dodger feat'/>
 
@@ -470,10 +466,11 @@ skillModifiers. prefixes are not necessary:
 Some feats, many class and race features, and some spells have effects that
 vary based on character attributes. For example: the PHB Inspiring Leader feat
 gives allies a number of temporary hit points based on the character's level
-and charisma modifier; the Dwarven Toughness race increases the character's hit
-points by 1 per level; the Paladin's Lay On Hands feature allows the character
-to heal hit points equal to five times their level; and the damage inflicted by
-the <i>Acid Splash</i> spell increases at levels 5, 11, and 17.
+and charisma modifier; the Dwarven Toughness race feature increases the
+character's hit points by 1 per level; the Paladin's Lay On Hands feature
+allows the character to heal hit points equal to five times their level; and
+the damage inflicted by the <i>Acid Splash</i> spell increases at character
+levels 5, 11, and 17.
 </p><p>
 You can embed references to character attributes in the text of feature notes
 and spell descriptions by enclosing them within the characters %{}. Using this
@@ -508,7 +505,7 @@ feature and the Fighter's Survivor feature look like this:
 <code>R30' May use an action to inflict frightened on target (DC %{charismaModifier+8+proficiencyBonus} Will neg)</code><br/>
 <code>Regains %{constitutionModifier+5} HP each rd when between 1 and %{hitPoints//2} HP</code>
 </p><p>
-As theses notes shows, individual notes and descriptions can contain multiple
+As these notes show, individual notes and descriptions can contain multiple
 embedded references, and individual references can use multiple attributes.
 </p><p>
 Within embedded references, Quilvyn supports the common comparison operators
@@ -612,8 +609,8 @@ useful in entering homebrew feats, features, classes, and races.
 </td><td>
 <ul style="padding-left: 15px; margin-top: 0">
 <li>features.&lt;name&gt;, e.g.<br/>
-  features.Dodge<br/>
-  features.Precise Shot</li>
+  features.Evasion<br/>
+  features.Small</li>
 <li>languages.&lt;name&gt;, e.g.,<br/>
   languages.Abyssal<br/>
   languages.Halfling</li>
@@ -632,7 +629,6 @@ useful in entering homebrew feats, features, classes, and races.
 <li>toolProficiency.&lt;name&gt;, e.g.,<br/>
   toolProficiency.Bagpipe<br/>
   toolProficiency.Herbalism Kit</li>
-<li>skillPoints</li>
 </ul>
 </td>
 </tr></table>

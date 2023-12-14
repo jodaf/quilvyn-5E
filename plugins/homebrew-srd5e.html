@@ -116,8 +116,8 @@ Quilvyn allows you to give backgrounds, classes, and races new features and to
 replace predefined features with homebrew ones. For homebrew features, Quilvyn
 displays entries for the name of the background, class, or race that gains the
 feature and the level at which the feature is gained. If the feature is gained
-only if selected by the user (e.g, a Cleric domain), enter the type in the
-Selectable Type box (e.g., "Divine Domain" for a Cleric domain); otherwise,
+only if selected by the user (e.g, a cleric domain), enter the type in the
+Selectable Type box (e.g., "Divine Domain" for a cleric domain); otherwise,
 leave the box empty, indicating that all characters of the given background,
 class, or race gain the feature. Unlike most text boxes, the Selectable Type
 field only accepts a single value. The Prerequisite box lists any requirements
@@ -147,13 +147,13 @@ optional class prerequisites, the class hit dice, class features, and
 information about class spellcasting. Features that are acquired after level 1
 (for example, the rogue Cunning Action feature acquired at level 2) should be
 preceded by the level and a colon (so, 2:Cunning Action). For classes that cast
-spells the spell ability and spell slots input fields provide places to enter
+spells, the spell ability and spell slots input fields provide places to enter
 the basic ability used to calculate spell DCs and the progression of spell
 slots available to the caster. Each item in the spell slot text box gives a
 spell type and level followed by a colon, then by a series of
 &lt;count&gt;@&lt;level&gt; terms, each of which indicates how many spell slots
 the class receives at the given level. For example, the spell slot entry for
-the cleric class would include C2: 2@3; 3@4, indicating that clerics acquire 2
+the cleric class would include C2: 2@3 3@4, indicating that clerics acquire 2
 C2 slots at level 3 and a third at level 4.
 </p><p>
 The example shows a set of possible values for a Noble class, which provides
@@ -308,7 +308,7 @@ When adding a homebrew skill, Quilvyn displays fields for the skill's related
 ability and the list of classes that are proficient in the skill.
 </p><p>
 The example shows the entry for a Sailing skill, which is related to
-Intelligence. Fighters and Rangers are proficient in the skill.
+Intelligence. Fighters and rangers are proficient in the skill.
 </p>
 </td></tr>
 
@@ -356,7 +356,7 @@ The example shows the entry for a boomerang, a martial ranged weapon with a
 <p>
 There are three places that you might want to use references to character
 attributes when adding homebrew choices: prerequisites for homebrew classes,
-feats, class and race features, and races; in feature notes that modify
+feats, races, and class and race features; in feature notes that modify
 character attributes; and embedded in feature notes and spell descriptions.
 Attribute references appear somewhat differently in each of these contexts.
 </p><p>
@@ -467,7 +467,7 @@ Some feats, many class and race features, and some spells have effects that
 vary based on character attributes. For example: the PHB Inspiring Leader feat
 gives allies a number of temporary hit points based on the character's level
 and charisma modifier; the Dwarven Toughness race feature increases the
-character's hit points by 1 per level; the Paladin's Lay On Hands feature
+character's hit points by 1 per level; the paladin's Lay On Hands feature
 allows the character to heal hit points equal to five times their level; and
 the damage inflicted by the <i>Acid Splash</i> spell increases at character
 levels 5, 11, and 17.
@@ -499,10 +499,10 @@ character's wisdom modifier to their armor class and will display the note in
 italics.
 </p><p>
 Beyond simple references, Quilvyn supports performing calculations within
-embedded references. The notes for the Barbarian's Intimidating Presence
-feature and the Fighter's Survivor feature look like this:
+embedded references. The notes for the barbarian's Intimidating Presence
+feature and the fighter's Survivor feature look like this:
 </p><p>
-<code>R30' May use an action to inflict frightened on target (DC %{charismaModifier+8+proficiencyBonus} Will neg)</code><br/>
+<code>R30' May use an action to inflict frightened on target (DC %{charismaModifier+8+proficiencyBonus} Wisdom neg)</code><br/>
 <code>Regains %{constitutionModifier+5} HP each rd when between 1 and %{hitPoints//2} HP</code>
 </p><p>
 As these notes show, individual notes and descriptions can contain multiple
@@ -514,7 +514,7 @@ Within embedded references, Quilvyn supports the common comparison operators
 and integer division (//). It also supports the ternary if-then-else operator
 (?:) and the operators &lt;? and &gt;?, which return the smaller and larger
 of their two operands, respectively. Using these operators, we can define the
-note for the Paladin's Aura Of Protection feature as follows:
+note for the paladin's Aura Of Protection feature as follows:
 </p><p>
 <code>R%{levels.Paladin&lt;18?10:30}' Self and allies +%{charismaModifier&gt;?1} all saves</code>
 </p><p>
@@ -532,8 +532,8 @@ the <i>Healing Word</i> spell reads:
 <code>R60' Target regains 1d4+%{mdf} HP</code>
 </p><p>
 When showing this description on the character sheet, Quilvyn will replace the
-reference to mdf with the character's charisma modifier for a bard spell and
-the character's wisdom modifier for a cleric or druid spell.
+reference to mdf with the character's charisma modifier for the bard spell and
+the character's wisdom modifier for the cleric and druid spells.
 </p>
 
 <hr style="width: 100%"/>

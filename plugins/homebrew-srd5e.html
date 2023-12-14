@@ -117,12 +117,12 @@ replace predefined features with homebrew ones. For homebrew features, Quilvyn
 displays entries for the name of the background, class, or race that gains the
 feature and the level at which the feature is gained. If the feature is gained
 only if selected by the user (e.g, a Cleric domain), enter the type in the
-Selectable Type box ("Divine Domain"); otherwise, leave the box empty,
-indicating that all characters of the given background, class, or race gain the
-feature. Unlike most text boxes, the Selectable Type field only accepts a
-single value. The Prerequisite box lists any requirements that must be met to
-gain the feature, and Replace lists any predefined features that this one
-replaces.
+Selectable Type box (e.g., "Divine Domain" for a Cleric domain); otherwise,
+leave the box empty, indicating that all characters of the given background,
+class, or race gain the feature. Unlike most text boxes, the Selectable Type
+field only accepts a single value. The Prerequisite box lists any requirements
+that must be met to gain the feature, and Replace lists any predefined features
+that this one replaces.
 </p><p>
 The first example shown replaces the Shelter Of The Faith feature of characters
 with the Acolyte background with a homebrew feature named Ritual Assistant.
@@ -156,13 +156,13 @@ the class receives at the given level. For example, the spell slot entry for
 the cleric class would include C2: 2@3; 3@4, indicating that clerics acquire 2
 C2 slots at level 3 and a third at level 4.
 </p><p>
-The example shows one possible entry for a Noble class, which provides 1d6 hit
-points each level and proficiency in light armor, shields, martial weapons,
-a choice of two languages, Charisma, Wisdom, Deception, and Insight. Class
-features additionally include Entourage, Influence, and Landed Aristocracy,
-which are acquired at levels 2, 4, and 7, respectively. The effects of each of
-these features would be described by <a href="#feature">homebrew features</a>
-of the same name.
+The example shows a set of possible values for a Noble class, which provides
+1d6 hit points at each level and proficiency in light armor, shields, martial
+weapons, a choice of two languages, Charisma, Wisdom, Deception, and Insight.
+Class features additionally include Entourage, Influence, and Landed
+Aristocracy, which are acquired at levels 2, 4, and 7, respectively. The
+effects of each of these features would be described by
+<a href="#feature">homebrew features</a> of the same name.
 </p>
 </td></tr>
 
@@ -204,14 +204,15 @@ generate a validation warning if the Implies requirements are not met. When
 specified, the Prerequisite and Implies fields will normally contain references
 to character attributes; see the discussion of
 <a href="#attrs">using character attributes</a> for how to include these. The
-effects of a feat are entered separately as a feature.
+effects of a feat are entered separately as
+<a href="#feature">homebrew feature</a> of the same name.
 </p><p>
-The example shows the entry for a general feat named Flail Expert.
-The Prerequisite box notes that it requires a dexterity value of at least 13
-and Weapon Proficiency (Martial) to select the feat, and the Implies box notes
-that the feat is useless unless the character possesses a flail. The example
-also shows the corresponding feature that describes the effect of selecting the
-Flail Expert feat.
+The example shows the entry for a feat named Flail Expert. The Prerequisite box
+notes that it requires a dexterity value of at least 13 and Weapon Proficiency
+(Martial) to select the feat, and the Implies box notes that the feat is
+useless unless the character possesses a flail. The example also shows the
+corresponding feature that describes the effect of selecting the Flail Expert
+feat.
 </p>
 </td></tr>
 
@@ -223,10 +224,10 @@ Flail Expert feat.
 <p>
 In Quilvyn, <i>features</i> describe the effects of feats and background, class,
 and racial features. When adding a homebrew feature, enter the section of the
-character sheet (one of attributes, combat, companion, feature, magic, save, or
-skill) where the note for the feature should appear, then enter the note text.
-You can enter multiple sections and notes, but the number of sections entered
-must equal the number of notes. Feature notes can both reference and modify
+character sheet (one of attributes, combat, feature, magic, save, or skill)
+where the note for the feature should appear, then enter the note text. You can
+enter multiple sections and notes, but the number of sections entered must
+equal the number of notes. Feature notes can both reference and modify
 character attributes; see the discussion of
 <a href="#attrs">using character attributes</a> for how to do this. For
 features that give access to specific spells, such as the Tiefling's Infernal

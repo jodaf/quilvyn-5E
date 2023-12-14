@@ -5401,6 +5401,7 @@ SRD5E.createViewers = function(rules, viewers) {
             {name: 'SpellStats', within: 'SpellPart', separator: innerSep},
               {name: 'Spells Known', within: 'SpellStats', separator: listSep},
               {name: 'Spell Slots', within: 'SpellStats', separator:listSep},
+              {name: 'Spell Points', within: 'SpellStats'},
               {name: 'Spell Attack Modifier', within: 'SpellStats',
                format: '<b>Attack</b>: %V', separator: listSep},
               {name: 'Spell Difficulty Class', within: 'SpellStats',

@@ -829,7 +829,7 @@ SRD5E.FEATURES = {
     'Note="May reroll a failed save %{levels.Fighter<13?1:level.Fighter<17?2:3}/long rest"',
   'Intimidating Presence':
     'Section=Feature ' +
-    'Note="R30\' May use an action to inflict frightened on target (DC %{charismaModifier+8+proficiencyBonus} Will neg)"',
+    'Note="R30\' May use an action to inflict frightened on target (DC %{charismaModifier+8+proficiencyBonus} Wisdom neg)"',
   'Jack Of All Trades':
     'Section=Ability ' +
     'Note="+%{proficiencyBonus//2} non-proficient ability checks"',
@@ -899,7 +899,7 @@ SRD5E.FEATURES = {
     'Note="May recover %{(levels.Druid+1)//2} spell slot levels (level 6 maximum) during a short rest 1/long rest"',
   "Nature's Sanctuary":
     'Section=Combat ' +
-    'Note="Beasts and plants cannot attack self (DC %{wisdomModifier+8+proficiencyBonus} Will neg)"',
+    'Note="Beasts and plants cannot attack self (DC %{wisdomModifier+8+proficiencyBonus} Wisdom neg)"',
   "Nature's Ward":
     'Section=Save ' +
     'Note="Immune to disease, poison, and elemental and fey charm and fright"',

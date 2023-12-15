@@ -17,7 +17,7 @@ Place, Suite 330, Boston, MA 02111-1307 USA.
 
 /* jshint esversion: 6 */
 /* jshint forin: false */
-/* globals ObjectViewer, PHB5E, Quilvyn, QuilvynRules, QuilvynUtils, SRD35 */
+/* globals Expr, ObjectViewer, PHB5E, Quilvyn, QuilvynRules, QuilvynUtils */
 "use strict";
 
 /*
@@ -4491,65 +4491,167 @@ SRD5E.featRulesExtra = function(rules, name) {
 SRD5E.featureRules = function(
   rules, name, sections, notes, spells, spellAbility
 ) {
-  if(spellAbility) {
-    spellAbility = spellAbility.toLowerCase();
-    if(!(spellAbility.charAt(0).toUpperCase() + spellAbility.substring(1) in SRD5E.ABILITIES)) {
-      console.log
-        ('Bad spell ability "' + spellAbility + '" for feature ' + name);
-      return;
-    }
+
+  if(!name) {
+    console.log('Empty feature name');
+    return;
   }
-  // TODO Move out of SRD35
-  if(sections.length > 0 || notes.length > 0)
-    SRD35.featureRules(rules, name, sections, notes);
-  for(let i = 0; i < notes.length; i++) {
+  if(!Array.isArray(sections)) {
+    console.log('Bad sections list "' + sections + '" for feature ' + name);
+    return;
+  }
+  if(!Array.isArray(notes)) {
+    console.log('Bad notes list "' + notes + '" for feature ' + name);
+    return;
+  }
+  if(sections.length != notes.length) {
+    console.log(sections.length + ' sections, ' + notes.length + ' notes for feature ' + name);
+    return;
+  }
+  // Backwards compatibility for modules that don't pass spells or spellAbility
+  if(spellAbility == null)
+    spellAbility = 'intelligence';
+  if(spells == null)
+    spells = [];
+  spellAbility = (spellAbility+'').toLowerCase();
+  if(!(spellAbility.charAt(0).toUpperCase() + spellAbility.substring(1) in SRD5E.ABILITIES)) {
+    console.log
+      ('Bad spell ability "' + spellAbility + '" for feature ' + name);
+    return;
+  }
+  if(!Array.isArray(spells)) {
+    console.log('Bad spells list "' + spells + '" for feature ' + name);
+    return;
+  }
+
+  notes = notes.map(x => QuilvynRules.wrapVarsContainingSpace(x));
+
+  let matchInfo;
+  let prefix =
+    name.charAt(0).toLowerCase() + name.substring(1).replaceAll(' ', '');
+
+  for(let i = 0; i < sections.length; i++) {
+
+    let section = sections[i].toLowerCase();
+    let effects = notes[i];
+    let maxSubnote =
+      effects.includes('%1') ? +effects.match(/%\d/g).sort().pop().replace('%'):
+      effects.includes('%V') ? 0 : -1;
+    let note = section + 'Notes.' + prefix;
+    let priorInSection =
+      sections.slice(0, i).filter(x => x.toLowerCase() == section.toLowerCase()).length;
+    if(priorInSection > 0)
+      note += '-' + priorInSection;
+
+    rules.defineChoice('notes', note + ':' + effects);
+    rules.defineRule
+      (note, 'features.' + name, effects.indexOf('%V') >= 0 ? '?' : '=', null);
+
     let addSource = false;
-    let note =
-      sections[i].toLowerCase() + 'Notes.' + name.charAt(0).toLowerCase() +
-      name.substring(1).replaceAll(' ', '');
-    let matchInfo =
-      notes[i].match(/([A-Z]\w*)\sProficiency\s\((([^\(]|\([^\)]*\))*)\)/);
-    if(matchInfo) {
-      let group = matchInfo[1].toLowerCase();
-      matchInfo[2].split('/').forEach(affected => {
-        matchInfo = affected.match(/^Choose\s(\d+|%V)/);
-        if(!matchInfo)
-          rules.defineRule(group + 'Proficiency.' + affected, note, '=', '1');
-        else if(matchInfo[1].startsWith('%'))
-          rules.defineRule(group + 'ChoiceCount', note, '+=', null);
-        else
-          rules.defineRule(group + 'ChoiceCount', note, '+=', matchInfo[1]);
-      });
+
+    while(effects.length > 0) {
+
+      let m = effects.match(/^((%\{[^\}]*\}|\([^\)]*\)|[^\/])*)\/?(.*)$/);
+      let effect = m[1];
+      effects = m[3];
+
+      matchInfo =
+        effect.match(/([A-Z]\w*)\sProficiency\s\((([^\(]|\([^\)]*\))*)\)/);
+      if(matchInfo) {
+        let group = matchInfo[1].toLowerCase();
+        matchInfo[2].split('/').forEach(affected => {
+          matchInfo = affected.match(/^Choose\s(\d+|%V)/);
+          if(!matchInfo)
+            rules.defineRule(group + 'Proficiency.' + affected, note, '=', '1');
+          else if(matchInfo[1].startsWith('%'))
+            rules.defineRule(group + 'ChoiceCount', note, '+=', null);
+          else
+            rules.defineRule(group + 'ChoiceCount', note, '+=', matchInfo[1]);
+        });
+      }
+      matchInfo = effect.match(/Ability Boost \((([^\(]|\([^\)]*\))*)\)/i);
+      if(matchInfo) {
+        let totalBoosts = 0;
+        matchInfo[1].split('/').forEach(boosted => {
+          matchInfo = boosted.match(/Choose (\d+|%V)/i);
+          if(!matchInfo)
+            rules.defineRule(boosted.toLowerCase(), note, '+', '1');
+          else if(matchInfo[1].startsWith('%'))
+            addSource = true;
+          else
+            totalBoosts += matchInfo[1] - 0;
+        });
+        rules.defineRule('abilityBoostChoiceCount',
+          note, '+=', totalBoosts + (addSource ? ' + source' : '')
+        );
+      }
+      matchInfo = effect.match(/Language \((([^\(]|\([^\)]*\))*)\)/i);
+      if(matchInfo) {
+        matchInfo[1].split('/').forEach(affected => {
+          matchInfo = affected.match(/^Choose\s(\d+|%V)/);
+          if(!matchInfo)
+            rules.defineRule('languages.' + affected, note, '=', '1');
+          else if(matchInfo[1].startsWith('%'))
+            rules.defineRule('languageChoiceCount', note, '+=', null);
+          else
+            rules.defineRule('languageChoiceCount', note, '+=', matchInfo[1]);
+        });
+      }
+
+      if((matchInfo = effect.match(/^([-+x](\d+(\.\d+)?|%[V1-9]|%\{[^\}]*\}))\s+(.*)$/)) != null) {
+
+        let adjust = matchInfo[1];
+        let adjusted = matchInfo[4];
+
+        // Support +%{expr} by evaling expr for each id it contains
+        if(adjust.match(/%{/) && !adjusted.match(/\b[a-z]/)) {
+          let expression = adjust.substring(3, adjust.length - 1);
+          let ids = new Expr(expression).identifiers();
+          // TODO What if ids.length==0?
+          // TODO If only 1 id, we could use a normal rule w/out eval
+          let sn = ++maxSubnote;
+          let target = sn>0 ? note + '.' + sn : note;
+          rules.defineRule(target, 'features.' + name, '?', null);
+          ids.forEach(id => {
+            if(expression.trim() == id)
+              rules.defineRule(target, id, '=', null);
+            else
+              rules.defineRule
+                (target, id, '=', 'new Expr("' + expression + '").eval(dict)');
+          });
+          adjust = '%' + (sn==0 ? 'V' : sn);
+          if(sn == 0)
+            // Override '=' feature dependency rule created above
+            rules.defineRule(note, 'features.' + name, '?', null);
+        }
+
+        let adjuster =
+          adjust.match(/%\d/) ? note + '.' + adjust.replace(/.*%/, '') : note;
+        let op = adjust.startsWith('x') ? '*' : '+';
+        if(op == '*')
+          adjust = adjust.substring(1);
+        if(section == 'save' && adjusted.match(/^[A-Z]\w*$/)) {
+          adjusted = 'save.' + adjusted;
+        } else if(section == 'skill' &&
+                  adjusted.match(/^[A-Z][a-z]*(\s[A-Z][a-z]*)*(\s\([A-Z][a-z]*(\s[A-Z][a-z]*)*\))?$/)) {
+          adjusted = 'skillModifier.' + adjusted;
+        } else if(adjusted.match(/^[A-Z][a-z]*(\s[A-Z][a-z]*)*$/)) {
+          adjusted = adjusted.charAt(0).toLowerCase() + adjusted.substring(1).replaceAll(' ', '');
+        } else {
+          continue;
+        }
+        rules.defineRule(adjusted,
+          adjuster, op, !adjust.includes('%') ? adjust : adjust.startsWith('-') ? '-source' : 'source'
+        );
+        if(adjust == '%1' && !effect.includes(adjust))
+          rules.defineRule(adjuster, note, '?', null);
+
+      }
+
     }
-    matchInfo = notes[i].match(/Ability Boost \((([^\(]|\([^\)]*\))*)\)/i);
-    if(matchInfo) {
-      let totalBoosts = 0;
-      matchInfo[1].split('/').forEach(boosted => {
-        matchInfo = boosted.match(/Choose (\d+|%V)/i);
-        if(!matchInfo)
-          rules.defineRule(boosted.toLowerCase(), note, '+', '1');
-        else if(matchInfo[1].startsWith('%'))
-          addSource = true;
-        else
-          totalBoosts += matchInfo[1] - 0;
-      });
-      rules.defineRule('abilityBoostChoiceCount',
-        note, '+=', totalBoosts + (addSource ? ' + source' : '')
-      );
-    }
-    matchInfo = notes[i].match(/Language \((([^\(]|\([^\)]*\))*)\)/i);
-    if(matchInfo) {
-      matchInfo[1].split('/').forEach(affected => {
-        matchInfo = affected.match(/^Choose\s(\d+|%V)/);
-        if(!matchInfo)
-          rules.defineRule('languages.' + affected, note, '=', '1');
-        else if(matchInfo[1].startsWith('%'))
-          rules.defineRule('languageChoiceCount', note, '+=', null);
-        else
-          rules.defineRule('languageChoiceCount', note, '+=', matchInfo[1]);
-      });
-    }
+
   }
+
   if(spells.length > 0) {
     let levelAttr = 'level';
     let spellType = name;
@@ -4589,6 +4691,7 @@ SRD5E.featureRules = function(
     }
     SRD5E.featureSpells(rules, name, spellType, levelAttr, spells);
   }
+
 };
 
 /*

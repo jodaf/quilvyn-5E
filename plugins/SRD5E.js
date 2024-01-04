@@ -4062,26 +4062,6 @@ SRD5E.classRulesExtra = function(rules, name) {
     rules.defineRule('selectableFeatureCount.Bard (Bard College)',
       'featureNotes.bardCollege', '=', '1'
     );
-    // Magical Secrets feature allows choosing non-Bard spells; here we set the
-    // caster level and modifier for any variable effects. Note inclusion of
-    // 'A' spells for Artificer class from supplements.
-    rules.defineRule('casterLevels.Magical Secrets',
-      'features.Magical Secrets', '=', '0',
-      'features.Additional Magical Secrets', '=', '0',
-      'casterLevels.Bard', '+', null
-    );
-    rules.defineRule('spellModifier.Magical Secrets',
-      'casterLevels.Magical Secrets', '?', null,
-      'charismaModifier', '=', null
-    );
-    ['A', 'C', 'D', 'P', 'R', 'S', 'K', 'W'].forEach((spellType) => {
-      rules.defineRule('casterLevels.' + spellType,
-        'casterLevels.Magical Secrets', '=', null
-      );
-      rules.defineRule('spellModifier.' + spellType,
-        'spellModifier.Magical Secrets', '='. null
-      );
-    });
 
   } else if(name == 'Cleric') {
 
@@ -4634,7 +4614,7 @@ SRD5E.featureRules = function(
           adjusted = 'save.' + adjusted;
         } else if(section == 'skill' &&
                   adjusted.match(/^[A-Z][a-z]*(\s[A-Z][a-z]*)*(\s\([A-Z][a-z]*(\s[A-Z][a-z]*)*\))?$/)) {
-          adjusted = 'skillModifier.' + adjusted;
+          adjusted = 'skills.' + adjusted;
         } else if(adjusted.match(/^[A-Z][a-z]*(\s[A-Z][a-z]*)*$/)) {
           adjusted = adjusted.charAt(0).toLowerCase() + adjusted.substring(1).replaceAll(' ', '');
         } else {
@@ -4654,13 +4634,14 @@ SRD5E.featureRules = function(
 
   if(spells.length > 0) {
     let levelAttr = 'level';
-    let spellType = name;
+    let spellType = name.replaceAll(/[- ]/g, '');
     let sources =
       Object.assign({}, rules.getChoices('levels'), rules.getChoices('races'), rules.getChoices('backgrounds'));
     for(let s in sources) {
-      if(!(sources[s].includes(name)))
+      let re = new RegExp('[,:"=]' + name.replace(/[/\-\\^$*+?.()|[\]{}]/g, '\\$&'));
+      if(!sources[s].match(re))
         continue;
-      spellType = s.replaceAll(' ', '');
+      spellType = s.replaceAll(/[- ]/g, '');
       let slot = QuilvynUtils.getAttrValue(sources[s], 'SpellSlots');
       if(slot) {
         // Spell feature for casting class. Reuse attack and DC values.
@@ -4672,7 +4653,9 @@ SRD5E.featureRules = function(
         // Only need to compute casterLevels and spellModifier for races and
         // backgrounds, since classRules computes these for classes.
         if(!(s in rules.getChoices('levels'))) {
-          rules.defineRule('casterLevels.' + s, 'level', '^=', null);
+          let sourceLevel =
+            s.charAt(0).toLowerCase() + s.substring(1).replaceAll(' ', '') + 'Level';
+          rules.defineRule('casterLevels.' + s, sourceLevel, '=', null);
           rules.defineRule('spellModifier.' + s,
             'casterLevels.' + s, '?', null,
             spellAbility + 'Modifier', '=', null
@@ -4684,8 +4667,7 @@ SRD5E.featureRules = function(
           'proficiencyBonus', '+', null
         );
         rules.defineRule('spellDifficultyClass.' + s,
-          'features.' + name, '=', '0',
-          'spellAttackModifier.' + s, '+', '8 + source'
+          'spellAttackModifier.' + s, '=', '8 + source'
         );
       }
     }
@@ -4842,19 +4824,16 @@ SRD5E.pathRules = function(
       if(spellType != name)
         rules.defineRule
           ('casterLevels.' + spellType, 'casterLevels.' + name, '^=', null);
-      rules.defineRule('spellAttackModifier.' + spellType,
+      rules.defineRule('spellModifier.' + spellType,
         'casterLevels.' + spellType, '?', null,
+        spellAbility + 'Modifier', '=', null
+      );
+      rules.defineRule('spellAttackModifier.' + spellType,
         spellAbility + 'Modifier', '=', null,
         'proficiencyBonus', '+', null
       );
       rules.defineRule('spellDifficultyClass.' + spellType,
-        'casterLevels.' + spellType, '?', null,
-        spellAbility + 'Modifier', '=', '8 + source',
-        'proficiencyBonus', '+', null
-      );
-      rules.defineRule('spellModifier.' + spellType,
-        'casterLevels.' + spellType, '?', null,
-        spellAbility + 'Modifier', '=', null
+        'spellAttackModifier.' + spellType, '=', '8 + source'
       );
     }
   }
@@ -5242,7 +5221,10 @@ SRD5E.weaponRules = function(rules, name, category, properties, damage, range) {
   rules.defineRule(weaponName + '.1',
     'attackBonus.' + name, '=', 'source >= 0 ? "+" + source : source'
   );
-  rules.defineRule(weaponName + '.2', weaponName, '=', '"' + damage + '"');
+  rules.defineRule(weaponName + '.2',
+    weaponName, '?', null,
+    '', '=', '"' + damage + '"'
+  );
   if(properties.includes('Versatile'))
     rules.defineRule(weaponName + '.2',
       'shield', '=', 'source == "None" ? SRD5E.VERSATILE_WEAPON_DAMAGE["' + damage + '"] : null'
@@ -6422,14 +6404,19 @@ SRD5E.ruleNotes = function() {
     '<h3>Usage Notes</h3>\n' +
     '<ul>\n' +
     '  <li>\n' +
-    '  To allow feats to be taken instead of Ability Score Improvements,\n' +
-    '  the latter is presented as a new feat, named Ability Boost, that\n' +
+    '  To allow feats to be taken instead of Ability Score Improvements,' +
+    '  the latter is presented as a new feat, named Ability Boost, that' +
     '  can be taken multiple times.\n' +
     '  </li><li>\n' +
-    '  Quilvyn presents sub-race choices (e.g., Lightfoot Halfling)\n' +
+    '  Quilvyn presents sub-race choices (e.g., Lightfoot Halfling)' +
     '  as separate races in the editor Race menu.\n' +
     '  </li><li>\n' +
-    '  Discussion of adding different types of homebrew options to the\n' +
+    '  You can use homebrew spell definitions to support class features that' +
+    "  allow characters to learn spells from other classes' spell lists. For" +
+    '  example, if a Bard with the Magical Secrets feature learns' +
+    '  <i>Bless</i>, you can define a homebrew B1 <i>Bless</i> spell.\n' +
+    '  </li><li>\n' +
+    '  Discussion of adding different types of homebrew options to the' +
     '  SRD5E rule set can be found in <a href="plugins/homebrew-srd5e.html">SRD5E Homebrew Examples</a>.\n' +
     '  </li>\n' +
     '</ul>\n' +

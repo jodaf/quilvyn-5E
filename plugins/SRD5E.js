@@ -551,7 +551,7 @@ SRD5E.FEATURES = {
   'Bard College':'Section=Feature Note="1 selection"',
   'Bardic Inspiration':
     'Section=Feature ' +
-    'Note="R60\' May give an ally a +1d%{bardicInspirationDie} bonus on an ability, attack, or saving throw w/in 10 min %{charismaModifier>?1}/%{featureNotes.fontOfInspiration?\'short\':\'long\'} rest"',
+    'Note="R60\' May use a bonus action to give an ally a +1d%{bardicInspirationDie} bonus on an ability, attack, or saving throw w/in 10 min %{charismaModifier>?1}/%{featureNotes.fontOfInspiration?\'short\':\'long\'} rest"',
   'Beast Speech':
     'Section=Magic ' +
     'Note="May cast <i>Speak With Animals</i> at will" ' +
@@ -641,7 +641,8 @@ SRD5E.FEATURES = {
     'Section=Magic ' +
     'Note="R30\' Performance gives friendly listeners Adv on saves vs. charm and fright for 1 rd"',
   'Cunning Action':
-    'Section=Combat Note="May use a bonus action to Dash, Disengage, or Hide 1/rd"',
+    'Section=Combat ' +
+    'Note="May use a bonus action to Dash, Disengage, or Hide 1/rd"',
   'Cutting Words':
     'Section=Combat ' +
     'Note="R60\' May use Reaction to subtract a Bardic Inspiration die from a foe roll"',
@@ -695,7 +696,9 @@ SRD5E.FEATURES = {
     'Note=' +
       '"Fluent in Draconic",' +
       '"Dbl proficiency on Charisma checks w/dragons"',
-  'Dragon Wings':'Section=Ability Note="May gain %{speed}\' fly speed at will"',
+  'Dragon Wings':
+    'Section=Ability ' +
+    'Note="May use a bonus action to gain %{speed}\' fly Speed"',
   'Dreadful Word':
     'Section=Magic ' +
     'Note="May use a Warlock spell slot to cast <i>Confusion</i> 1/long rest" ' +
@@ -747,7 +750,7 @@ SRD5E.FEATURES = {
   'Eyes Of The Rune Keeper':'Section=Feature Note="May read all writing"',
   'Fast Hands':
     'Section=Combat ' +
-    'Note="May use Cunning Action to use Sleight Of Hand, disarm a trap, open a lock, or Use An Object"',
+    'Note="May use a bonus action to use Sleight Of Hand, disarm a trap, open a lock, or Use An Object"',
   'Fast Movement':'Section=Ability Note="+10 Speed (heavy armor neg)"',
   'Favored Enemy':
     'Section=Skill ' +
@@ -782,7 +785,7 @@ SRD5E.FEATURES = {
     'Section=Combat Note="Adds ability modifier to second attack damage"',
   'Flurry Of Blows':
     'Section=Combat ' +
-    'Note="May spend 1 Ki Point to gain 2 bonus unarmed strikes"',
+    'Note="May spend 1 Ki Point to use a bonus action to make 2 unarmed strikes"',
   'Foe Slayer':
     'Section=Combat ' +
     'Note="May gain choice of +%{wisdomModifier} attack or damage vs. favored enemy 1/rd"',
@@ -790,10 +793,10 @@ SRD5E.FEATURES = {
     'Section=Feature Note="Bardic Inspiration refreshes after a short rest"',
   'Font Of Magic':
     'Section=Magic ' +
-    'Note="May use %V Sorcery Points/long rest/May convert Sorcery Points to and from spell slots"',
+    'Note="May use %V Sorcery Points/long rest/May use a bonus action to convert between Sorcery Points and spell slots"',
   'Frenzy':
     'Section=Combat ' +
-    'Note="Gains a bonus attack each rd during rage; suffers 1 level of exhaustion afterwards"',
+    'Note="May use a bonus action to attack w/a melee weapon each rd during rage; suffers 1 level of exhaustion after rage"',
   'Gaze Of Two Minds':
     'Section=Magic ' +
     'Note="Touch allows self to perceive through the senses of a willing humanoid for 1 rd"',
@@ -860,7 +863,7 @@ SRD5E.FEATURES = {
     'Section=Combat,Combat ' +
     'Note=' +
       '"When unarmored, gains +%1 attack and damage with monk weapons and raises damage die to 1d%V",' +
-      '"When unarmored, may make a bonus unarmed strike after a monk weapon attack"',
+      '"When unarmored, may use a bonus action to make an unarmed strike after a monk weapon attack"',
   'Martial Archetype':'Section=Feature Note="1 selection"',
   'Mask Of Many Faces':
     'Section=Magic ' +
@@ -938,7 +941,7 @@ SRD5E.FEATURES = {
     'Section=Magic ' +
     'Note="Has a <i>Book Of Shadows</i> containing 3 chosen cantrips that can be cast at will"',
   'Patient Defense':
-    'Section=Combat Note="May spend 1 Ki Point for a bonus Dodge"',
+    'Section=Combat Note="May spend 1 Ki Point and use a bonus action to Dodge"',
   'Peerless Skill':
     'Section=Ability Note="May add a Bardic Inspiration die to an ability check"',
   'Perfect Self':
@@ -1044,7 +1047,7 @@ SRD5E.FEATURES = {
   'Steel Will':'Section=Save Note="Adv on saves vs. fright"',
   'Step Of The Wind':
     'Section=Combat ' +
-    'Note="May spend 1 Ki Point to gain a bonus Disengage or Dash and dbl jump"',
+    'Note="May spend 1 Ki Point and use a bonus action to Disengage or Dash and dbl jump distance"',
   'Stillness Of Mind':
     'Section=Save Note="May end self charm and fright at will"',
   'Stroke Of Luck':
@@ -1061,7 +1064,7 @@ SRD5E.FEATURES = {
   "Superior Hunter's Defense":'Section=Feature Note="1 selection"',
   'Superior Inspiration':
     'Section=Combat ' +
-    'Note="Has a minimum 1 Bardic Inspiration available after initiative"',
+    'Note="Has a minimum of 1 Bardic Inspiration available after initiative"',
   'Supreme Healing':
     'Section=Magic Note="Healing spells restore maximum possible HP"',
   'Supreme Sneak':
@@ -1114,7 +1117,8 @@ SRD5E.FEATURES = {
   'Use Magic Device':
     'Section=Skill Note="May use otherwise restricted magic devices"',
   'Vanish':
-    'Section=Skill Note="May hide as a bonus action/Untrackable nonmagically"',
+    'Section=Skill ' +
+    'Note="May use a bonus action to hide/Untrackable nonmagically"',
   'Visions Of Distant Realms':
     'Section=Magic ' +
     'Note="May cast <i>Arcane Eye</i> at will" ' +
@@ -2464,7 +2468,7 @@ SRD5E.SPELLS = {
     'School=Divination ' +
     'Level=B2,C2,D2,P2,R2,W2 ' +
     'Description=' +
-      '"Self learns location of specified object or type w/in 1000\' for conc up to 10 min"',
+      '"Self learns location of a specified object or type w/in 1000\' for conc up to 10 min"',
   'Longstrider':
     'School=Transmutation ' +
     'Level=B1,D1,R1,W1 ' +
@@ -2614,7 +2618,7 @@ SRD5E.SPELLS = {
     'School=Abjuration ' +
     'Level=B3,R3,W3 ' +
     'Description=' +
-      '"Willing touched or object gains immunity to divination for 8 hr"',
+      '"Willing touched or touched object gains immunity to divination for 8 hr"',
 
   'Pass Without Trace':
     'School=Abjuration ' +

@@ -695,7 +695,7 @@ SRD5E.FEATURES = {
     'Section=Skill,Skill ' +
     'Note=' +
       '"Fluent in Draconic",' +
-      '"Dbl proficiency on Charisma checks w/dragons"',
+      '"Dbl proficiency bonus (+%{proficiencyBonus}) on Charisma checks w/dragons"',
   'Dragon Wings':
     'Section=Ability ' +
     'Note="May use a bonus action to gain %{speed}\' fly Speed"',
@@ -739,10 +739,10 @@ SRD5E.FEATURES = {
     'Note="May copy evocation spells into spellbook for half cost"',
   'Expertise (Bard)':
     'Section=Skill ' +
-    'Note="Dbl proficiency on %{levels.Bard<10?2:4} chosen skills"',
+    'Note="Dbl proficiency bonus (+%{proficiencyBonus}) on %{levels.Bard<10?2:4} chosen skills"',
   'Expertise (Rogue)':
     'Section=Skill ' +
-    'Note="Dbl proficiency on %{levels.Rogue<6?2:4} chosen skills or Thieves\' Tools"',
+    'Note="Dbl proficiency bonus (+%{proficiencyBonus}) on %{levels.Rogue<6?2:4} chosen skills or Thieves\' Tools"',
   'Extended Spell':
     'Section=Magic ' +
     'Note="May spend 1 Sorcery Point to gain dbl spell duration (24 hr maximum)"',

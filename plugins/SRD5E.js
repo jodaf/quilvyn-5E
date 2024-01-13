@@ -4659,19 +4659,19 @@ SRD5E.featureRules = function(
         if(!(s in rules.getChoices('levels'))) {
           let sourceLevel =
             s.charAt(0).toLowerCase() + s.substring(1).replaceAll(' ', '') + 'Level';
-          rules.defineRule('casterLevels.' + s, sourceLevel, '=', null);
-          rules.defineRule('spellModifier.' + s,
-            'casterLevels.' + s, '?', null,
+          rules.defineRule('casterLevels.' + spellType, sourceLevel, '=', null);
+          rules.defineRule('spellModifier.' + spellType,
+            'casterLevels.' + spellType, '?', null,
             spellAbility + 'Modifier', '=', null
           );
         }
-        rules.defineRule('spellAttackModifier.' + s,
+        rules.defineRule('spellAttackModifier.' + spellType,
           'features.' + name, '=', '0',
-          'spellModifier.' + s, '+', null,
+          'spellModifier.' + spellType, '+', null,
           'proficiencyBonus', '+', null
         );
-        rules.defineRule('spellDifficultyClass.' + s,
-          'spellAttackModifier.' + s, '=', '8 + source'
+        rules.defineRule('spellDifficultyClass.' + spellType,
+          'spellAttackModifier.' + spellType, '=', '8 + source'
         );
       }
     }

@@ -1174,7 +1174,6 @@ SRD5E.FEATURES = {
   'Elf Weapon Training':
     'Section=Combat ' +
     'Note="Weapon Proficiency (Longbow/Longsword/Shortbow/Shortsword)"',
-  'Extra Language':'Section=Skill Note="Knows 1 choice of language"',
   'Fey Ancestry':
     'Section=Save Note="Adv on saves vs. charm/Immune to magical sleep"',
   'Gnome Cunning':
@@ -1426,8 +1425,8 @@ SRD5E.RACES = {
     'Features=' +
       '"1:Language (Common/Elvish/Choose 1 from any)",' +
       '"1:Cantrip (High Elf)",1:Darkvision,"1:Elf Weapon Training",' +
-      '"1:Extra Language","1:Fey Ancestry","1:High Elf Ability Adjustment",' +
-      '"1:Keen Senses",1:Trance',
+      '"1:Fey Ancestry","1:High Elf Ability Adjustment","1:Keen Senses",' +
+      '1:Trance',
   'Rock Gnome':
     'Features=' +
       '"1:Language (Common/Gnomish)",' +
@@ -4926,8 +4925,6 @@ SRD5E.raceRulesExtra = function(rules, name) {
     rules.defineRule
       ('abilityNotes.armorSpeedAdjustment', 'abilityNotes.steady', '^', '0');
   } else if(name == 'High Elf') {
-    rules.defineRule // italics noop
-      ('languageChoiceCount', 'featureNotes.extraLanguage', '+', 'null');
     rules.defineRule
       ('casterLevels.W', 'magicNotes.cantrip(HighElf)', '^=', '1');
     rules.defineRule('spellSlots.W0', 'magicNotes.cantrip(HighElf)', '+=', '1');

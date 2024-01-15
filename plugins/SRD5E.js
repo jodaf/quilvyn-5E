@@ -3764,6 +3764,92 @@ SRD5E.choiceRules = function(rules, type, name, attrs) {
   }
 };
 
+/*
+ * Removes #name# from the set of user #type# choices, reversing the effects of
+ * choiceRules.
+ */
+SRD5E.removeChoice = function(rules, type, name) {
+  let choiceGroup =
+    type.charAt(0).toLowerCase() + type.substring(1).replaceAll(' ', '') + 's';
+  let choices = rules.getChoices(choiceGroup);
+  let constantName = type.toUpperCase().replaceAll(' ', '_') + 'S';
+  if(choices && choices[name]) {
+    let currentAttrs = choices[name];
+    delete choices[name];
+    // Disable rules based on this choice that affect character sheet
+    // Assume there are no rules to disable:
+    //   School
+    // Assume any rules are sufficiently disabled by choice removal:
+    //   Armor, Background, Background Feature, Deity, Language, Shield, Skill,
+    //   Spell, Tool, Weapon
+    // Need to take action to disable rules:
+    //   Class, Class Feature, Feat, Feature, Race, Race Feature
+    if(type.match(/^(Class|Class Feature|Race|Race Feature)$/)) {
+      let classOrRace =
+        type=='Class Feature' ?
+          QuilvynUtils.getAttrValue(currentAttrs, 'Class') :
+        type=='Race Feature' ?
+          QuilvynUtils.getAttrValue(currentAttrs, 'Race') : name;
+      let features =
+        type.match(/^(Class|Race) Feature$/) ?
+          QuilvynUtils.getAttrValue(currentAttrs, 'Selectable') ? [] : [name] :
+        QuilvynUtils.getAttrValueArray(currentAttrs, 'Features');
+      let selectables =
+        type.match(/^(Class|Race) Feature$/) ?
+          !QuilvynUtils.getAttrValue(currentAttrs, 'Selectable') ? [name] : [] :
+        QuilvynUtils.getAttrValueArray(currentAttrs, 'Selectables');
+      if(classOrRace) {
+        let prefix =
+          classOrRace.charAt(0).toLowerCase() +
+          classOrRace.substring(1).replaceAll(' ', '');
+        let levelVar =
+          type.match(/Race/) ? prefix + 'Level' : ('levels.' + classOrRace);
+        features.forEach(f => {
+          rules.defineRule(prefix + 'Features.' + f, levelVar, '=', 'null');
+        });
+        selectables.forEach(s => {
+          let sfVar = 'selectableFeatures.' + classOrRace + ' - ' + s;
+          rules.defineRule(prefix + 'Features.' + s, sfVar, '=', 'null');
+        });
+      }
+    } else if(type == 'Feat') {
+      rules.defineRule('features.' + name, 'feats.' + name, '=', 'null');
+    } else if(type == 'Feature') {
+      let prefix =
+        name.charAt(0).toLowerCase() + name.substring(1).replaceAll(' ', '');
+      QuilvynUtils.getAttrValueArray(currentAttrs, 'Section').forEach(s => {
+        rules.defineRule(s.toLowerCase() + 'Notes.' + prefix,
+          'features.' + name, '=', 'null'
+        );
+      });
+    }
+    if(rules.plugin &&
+       rules.plugin[constantName] &&
+       name in rules.plugin[constantName] &&
+       rules.plugin[constantName][name] != currentAttrs)
+      rules.choiceRules(rules, type, name, rules.plugin[constantName][name]);
+  } else if(choices && type == 'Spell') {
+    let notes = rules.getChoices('notes');
+    let potions = rules.getChoices('potions');
+    let scrolls = rules.getChoices('scrolls');
+    QuilvynUtils.getKeys(choices, '^' + name + '\\(').forEach(s => {
+      console.log('Deleting spell "' + name + '"');
+      delete choices[s];
+      delete notes['spells.' + s];
+      delete potions[s.replace('(', ' Oil (')];
+      delete notes['potions.' + s.replace('(', ' Oil (')];
+      delete potions[s.replace('(', ' Potion (')];
+      delete notes['potions.' + s.replace('(', ' Potion (')];
+      delete scrolls[s];
+      delete notes['scrolls.' + s];
+    });
+    if(rules.plugin &&
+       rules.plugin[constantName] &&
+       name in rules.plugin[constantName])
+      rules.choiceRules(rules, type, name, rules.plugin[constantName][name]);
+  }
+};
+
 /* Defines in #rules# the rules associated with alignment #name#. */
 SRD5E.alignmentRules = function(rules, name) {
   if(!name) {

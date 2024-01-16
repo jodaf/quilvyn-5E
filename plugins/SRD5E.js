@@ -3772,9 +3772,11 @@ SRD5E.removeChoice = function(rules, type, name) {
   let choiceGroup =
     type.charAt(0).toLowerCase() + type.substring(1).replaceAll(' ', '') + 's';
   let choices = rules.getChoices(choiceGroup);
+  if(!choices)
+    return;
   let constantName = type.toUpperCase().replaceAll(' ', '_') + 'S';
-  if(choices && choices[name]) {
-    let currentAttrs = choices[name];
+  let currentAttrs = choices[name];
+  if(currentAttrs) {
     delete choices[name];
     // Disable rules based on this choice that affect character sheet
     // Assume there are no rules to disable:
@@ -3823,30 +3825,25 @@ SRD5E.removeChoice = function(rules, type, name) {
         );
       });
     }
-    if(rules.plugin &&
-       rules.plugin[constantName] &&
-       name in rules.plugin[constantName] &&
-       rules.plugin[constantName][name] != currentAttrs)
-      rules.choiceRules(rules, type, name, rules.plugin[constantName][name]);
-  } else if(choices && type == 'Spell') {
+  } else if(type == 'Spell') {
     let notes = rules.getChoices('notes');
-    let potions = rules.getChoices('potions');
-    let scrolls = rules.getChoices('scrolls');
     QuilvynUtils.getKeys(choices, '^' + name + '\\(').forEach(s => {
-      console.log('Deleting spell "' + name + '"');
+      currentAttrs = choices[s];
       delete choices[s];
       delete notes['spells.' + s];
-      delete potions[s.replace('(', ' Oil (')];
-      delete notes['potions.' + s.replace('(', ' Oil (')];
-      delete potions[s.replace('(', ' Potion (')];
-      delete notes['potions.' + s.replace('(', ' Potion (')];
-      delete scrolls[s];
-      delete notes['scrolls.' + s];
     });
-    if(rules.plugin &&
-       rules.plugin[constantName] &&
-       name in rules.plugin[constantName])
-      rules.choiceRules(rules, type, name, rules.plugin[constantName][name]);
+  }
+  let plugins = rules.getPlugins();
+  if(rules.plugin)
+    plugins.push(rules.plugin);
+  for(let i = 0; i < plugins.length; i++) {
+    let p = plugins[i];
+    if(p[constantName] &&
+       name in p[constantName] &&
+       p[constantName][name] != currentAttrs) {
+      rules.choiceRules(rules, type, name, p[constantName][name]);
+      break;
+    }
   }
 };
 

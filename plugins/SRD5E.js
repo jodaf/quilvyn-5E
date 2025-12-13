@@ -1,5 +1,5 @@
 /*
-Copyright 2023, James J. Hayes
+Copyright 2025, James J. Hayes
 
 This program is free software; you can redistribute it and/or modify it under
 the terms of the GNU General Public License as published by the Free Software
@@ -70,7 +70,7 @@ function SRD5E() {
 
 }
 
-SRD5E.VERSION = '2.4.1.1';
+SRD5E.VERSION = '2.4.2.0';
 
 /* List of choices that can be expanded by house rules. */
 // Note: Left Goody out of this list for now because inclusion would require
@@ -131,7 +131,7 @@ SRD5E.BACKGROUNDS = {
     'Equipment=' +
       '"Holy Symbol","Prayer Book",Incense,Vestments,Clothing,"15 GP" ' +
     'Features=' +
-      '"1:Skill Proficiency (Insight/Religion)",' +
+      '"1:Skill Proficiency (Insight; Religion)",' +
       '"1:Language (Choose 2 from any)",' +
       '"1:Shelter Of The Faithful"'
 };
@@ -508,6 +508,119 @@ SRD5E.FEATS = {
   'Grappler':'Require="strength >= 13"'
 };
 SRD5E.FEATURES = {
+
+  // Race
+  'Small':
+    'Section=combat Note="Has disadvantage on attacks with heavy weapons"',
+
+  // Dwarf
+  'Darkvision':'Section=feature Note="R60\' Sees one light level better"',
+  'Dwarf Ability Adjustment':'Section=ability Note="+2 Constitution"',
+  'Dwarven Combat Training':
+    'Section=combat ' +
+    'Note="Weapon Proficiency (Battleaxe; Handaxe; Light Hammer; Warhammer)"',
+  'Dwarven Resilience':
+    'Section=save ' +
+    'Note="Has advantage vs. poison and resistance to poison damage"',
+  'Steady':'Section=ability Note="Suffers no speed penalty in heavy armor"',
+  'Stonecunning':
+    'Section=skill ' +
+    'Note="+%{proficiencyBonus*(skillProficiency.History?1:2)} History (stonework)"',
+  // Hill Dwarf
+  'Dwarven Toughness':'Section=combat Note="+%{level} Hit Points"',
+  'Hill Dwarf Ability Adjustment':'Section=ability Note="+1 Wisdom"',
+
+  // Elf
+  // Darkvision as above
+  'Elf Ability Adjustment':'Section=ability Note="+2 Dexterity"',
+  'Fey Ancestry':
+    'Section=save Note="Has advantage vs. charm and immunity to magical sleep"',
+  'Keen Senses':'Section=skill Note="Skill Proficiency (Perception)"',
+  'Trance':
+    'Section=feature Note="4 hr meditation gives the benefits of 8 hr sleep"',
+  // High Elf
+  'Cantrip (High Elf)':'Section=magic Note="Knows 1 Wizard cantrip"',
+  'Elf Weapon Training':
+    'Section=combat ' +
+    'Note="Weapon Proficiency (Longbow; Longsword; Shortbow; Shortsword)"',
+  'Extra Language':'Section=skill Note="Language (Choose 1 from any)"',
+  'High Elf Ability Adjustment':'Section=ability Note="+1 Intelligence"',
+
+  // Halfling
+  'Brave':'Section=save Note="Has advantage vs. fright"',
+  'Halfling Ability Adjustment':'Section=ability Note="+2 Dexterity"',
+  'Halfling Nimbleness':
+    'Section=ability ' +
+    'Note="Can move through a space occupied by a larger creature"',
+  'Lucky (Halfling)':
+    'Section=feature ' +
+    'Note="May reroll 1s on attack, ability, and saving throws"',
+  // Lightfoot Halfling
+  'Lightfoot Halfling Ability Adjustment':'Section=ability Note="+1 Charisma"',
+  'Naturally Stealthy':'Section=skill Note="Can hide behind a larger creature"',
+
+  // Human
+  'Human Ability Adjustment':
+    'Section=ability ' +
+    'Note="+1 Charisma/+1 Constitution/+1 Dexterity/+1 Intelligence/+1 Strength/+1 Wisdom"',
+
+  // Dragonborn
+  'Breath Weapon':
+    'Section=combat Note="%{breathWeaponShape} inflicts %{(level+9)//5}d6 HP %{breathWeaponEnergy} (DC %{8+constitutionModifier+proficiencyBonus} %{breathWeaponEnergy=~\'cold|poison\'?\'Constitution\':\'Dexterity\'} half)"',
+  'Damage Resistance':
+    'Section=save Note="Has resistance to %{breathWeaponEnergy} damage"',
+  'Draconic Ancestry':'Section=feature Note="1 selection"',
+  'Dragonborn Ability Adjustment':
+    'Section=ability Note="+2 Strength/+1 Charisma"',
+
+  // Gnome
+  // Darkvision as above
+  'Gnome Ability Adjustment':'Section=ability Note="+2 Intelligence"',
+  'Gnome Cunning':
+    'Section=save ' +
+    'Note="Has advantage on Charisma, Intelligence, and Wisdom vs. magic"',
+  // Rock Gnome
+  "Artificer's Lore":
+    'Section=skill ' +
+    'Note="+%{proficiencyBonus*(skillProficiency.History?1:2)} History (magic, alchemical, and technological objects)"',
+  'Rock Gnome Ability Adjustment':'Section=ability Note="+1 Constitution"',
+  'Tinker':
+    'Section=feature,skill ' +
+    'Note=' +
+      '"Tool Proficiency (Tinker\'s Tools)",' +
+      '"Can use Tinker\'s Tools to create a tiny clockwork device in 1 hr"',
+
+  // Half-Elf
+  'Half-Elf Ability Adjustment':
+    'Section=ability Note="+2 Charisma/Ability Boost (Choose 2 from any)"',
+  // Darkvision as above
+  // Fey Ancestry as above
+  'Skill Versatility':
+    'Section=skill Note="Skill Proficiency (Choose 2 from any)"',
+
+  // Half-Orc
+  // Darkvision as above
+  'Half-Orc Ability Adjustment':
+    'Section=ability Note="+2 Strength/+1 Constitution"',
+  'Menacing':'Section=skill Note="Skill Proficiency (Intimidation)"',
+  'Relentless Endurance':
+    'Section=Combat Note="May retain 1 HP when brought to 0 HP 1/long rest"',
+  'Savage Attacks':
+    'Section=combat ' +
+    'Note="Melee critical hits inflict 1 additional die of damage"',
+
+  // Tiefling
+  // Darkvision as above
+  'Tiefling Ability Adjustment':
+    'Section=ability Note="+2 Charisma/+1 Intelligence"',
+  'Hellish Resistance':
+    'Section=Save Note="Has resistance to fire damage"',
+  'Infernal Legacy':
+    'Section=magic ' +
+    'Note="Knows the <i>Thaumaturgy</i> cantrip%{level<3?\'\':level<5?\' and can cast <i>Hellish Rebuke</i> 1/long rest\':\' and can cast <i>Hellish Rebuke</i> and <i>Darkness</i> 1/long rest\'}" ' +
+    'Spells=Thaumaturgy,"3:Hellish Rebuke",5:Darkness ' +
+    'SpellAbility=Charisma',
+
   // Background
   'Shelter Of The Faithful':
     'Section=Feature ' +
@@ -1148,92 +1261,7 @@ SRD5E.FEATURES = {
     'Section=Combat ' +
     // Note: grapple larger foes benefit removed by errata
     'Note="Adv on attacks on a grappled foe/May pin a grappled foe w/an additional successful attempt"',
-  // Race
-  "Artificer's Lore":
-    'Section=Skill ' +
-    'Note="+%{proficiencyBonus*(skillProficiency.History?1:2)} History (magic, alchemical, and technological objects)"',
-  'Brave':
-    'Section=Save Note="Adv on saves vs. fright"',
-  'Breath Weapon':
-    'Section=Combat Note="%{breathWeaponShape} inflicts %{(level+9)//5}d6 HP %{breathWeaponEnergy} (DC %{8+constitutionModifier+proficiencyBonus} %{breathWeaponEnergy=~\'cold|poison\'?\'Constitution\':\'Dexterity\'} half)"',
-  'Cantrip (High Elf)':'Section=Magic Note="Knows 1 Wizard cantrip"',
-  'Damage Resistance':
-    'Section=Save Note="Has resistance to %{breathWeaponEnergy} damage"',
-  'Darkvision':
-    'Section=Feature Note="R60\' Sees one light level better"',
-  'Draconic Ancestry':'Section=Feature Note="1 selection"',
-  'Dragonborn Ability Adjustment':
-    'Section=Ability Note="+2 Strength/+1 Charisma"',
-  'Dwarven Combat Training':
-    'Section=Combat ' +
-    'Note="Weapon Proficiency (Battleaxe/Handaxe/Light Hammer/Warhammer)"',
-  'Dwarven Resilience':
-    'Section=Save ' +
-    'Note="Adv on saves vs. poison/Has resistance to poison damage"',
-  'Dwarven Toughness':'Section=Combat Note="+%{level} Hit Points"',
-  'Elf Weapon Training':
-    'Section=Combat ' +
-    'Note="Weapon Proficiency (Longbow/Longsword/Shortbow/Shortsword)"',
-  'Fey Ancestry':
-    'Section=Save Note="Adv on saves vs. charm/Immune to magical sleep"',
-  'Gnome Cunning':
-    'Section=Save ' +
-    'Note="Adv on Charisma, Intelligence, and Wisdom saves vs. magic"',
-  'Half-Elf Ability Adjustment':
-    'Section=Ability Note="+2 Charisma/Ability Boost (Choose 2 from any)"',
-  'Half-Orc Ability Adjustment':
-    'Section=Ability Note="+2 Strength/+1 Constitution"',
-  'Halfling Nimbleness':
-    'Section=Ability ' +
-    'Note="May move through a space occupied by a larger creature"',
-  'Hellish Resistance':
-    'Section=Save Note="Has resistance to fire damage"',
-  'High Elf Ability Adjustment':
-    'Section=Ability Note="+2 Dexterity/+1 Intelligence"',
-  'Hill Dwarf Ability Adjustment':
-    'Section=Ability Note="+2 Constitution/+1 Wisdom"',
-  'Human Ability Adjustment':
-    'Section=Ability ' +
-    'Note="+1 Charisma/+1 Constitution/+1 Dexterity/+1 Intelligence/+1 Strength/+1 Wisdom"',
-  'Infernal Legacy':
-    'Section=Magic ' +
-    'Note="Knows <i>Thaumaturgy</i> cantrip%{level<3?\'\':level<5?\', may cast <i>Hellish Rebuke</i> 1/long rest\':\', may cast <i>Hellish Rebuke</i> and <i>Darkness</i> 1/long rest\'}" ' +
-    'Spells=Thaumaturgy,"3:Hellish Rebuke",5:Darkness ' +
-    'SpellAbility=Charisma',
-  'Keen Senses':'Section=Skill Note="Skill Proficiency (Perception)"',
-  'Lightfoot Halfling Ability Adjustment':
-    'Section=Ability Note="+2 Dexterity/+1 Charisma"',
-  'Lucky (Halfling)':
-    'Section=Feature ' +
-    'Note="May reroll 1s on attack, ability, and saving throws"',
-  'Menacing':
-    'Section=Skill Note="Skill Proficiency (Intimidation)"',
-  'Naturally Stealthy':
-    'Section=Skill Note="May hide behind a larger creature"',
-  'Relentless Endurance':
-    'Section=Combat Note="May retain 1 HP when brought to 0 HP 1/long rest"',
-  'Rock Gnome Ability Adjustment':
-    'Section=Ability Note="+2 Intelligence/+1 Constitution"',
-  'Savage Attacks':
-    'Section=Combat Note="Adds 1 die to melee crit damage"',
-  'Skill Versatility':
-    'Section=Skill Note="Skill Proficiency (Choose 2 from any)"',
-  'Slow':
-    'Section=Ability Note="-5 Speed"',
-  'Small':
-    'Section=Combat Note="Disadv on attacks w/heavy weapons"',
-  'Steady':
-    'Section=Ability Note="Suffers no speed penalty in heavy armor"',
-  'Stonecunning':
-    'Section=Skill ' +
-    'Note="+%{proficiencyBonus*(skillProficiency.History?1:2)} History (stonework)"',
-  'Tiefling Ability Adjustment':
-    'Section=Ability Note="+2 Charisma/+1 Intelligence"',
-  'Tinker':
-    'Section=Feature,Skill ' +
-    'Note="Tool Proficiency (Tinker\'s Tools)","May use Tinker\'s Tools to create a tiny clockwork device in 1 hr"',
-  'Trance':
-    'Section=Feature Note="4 hr meditation gives the benefits of 8 hr sleep"',
+
   // Sanity, Validation and Miscellaneous
   'Bulky Armor':
     'Section=Skill Note="Disadv on Stealth"',
@@ -1398,11 +1426,45 @@ SRD5E.LANGUAGES = {
 SRD5E.PATHS = {
 };
 SRD5E.RACES = {
-  'Dragonborn':
+  'Hill Dwarf':
+    'Size=Medium ' +
+    'Speed=25 ' +
     'Features=' +
-      '"1:Language (Common/Draconic)","1:Draconic Ancestry",' +
-      '"1:Dragonborn Ability Adjustment","1:Breath Weapon",' +
-      '"1:Damage Resistance" ' +
+      '"1:Dwarf Ability Adjustment","1:Steady","1:Darkvision",' +
+      '"1:Dwarven Resilience","1:Dwarven Combat Training",' +
+      '"1:Tool Proficiency (Choose 1 from Brewer\'s Supplies, Mason\'s Tools, Smith\'s Tools)",' +
+      '"1:Stonecunning","1:Language (Common; Dwarvish)",' +
+      '"1:Hill Dwarf Ability Adjustment","1:Dwarven Toughness"',
+  'High Elf':
+    'Size=Medium ' +
+    'Speed=30 ' +
+    'Features=' +
+      '"1:Elf Ability Adjustment",' +
+      '"1:Darkvision","1:Keen Senses","1:Fey Ancestry","1:Trance",' +
+      '"1:Language (Common; Elvish)",' +
+      '"1:High Elf Ability Adjustment","1:Elf Weapon Training",' +
+      '"1:Cantrip (High Elf)","1:Extra Language"',
+  'Lightfoot Halfling':
+    'Size=Small ' +
+    'Speed=25 ' +
+    'Features=' +
+      '"1:Halfling Ability Adjustment",' +
+      '"1:Lucky (Halfling)","1:Brave","1:Halfling Nimbleness",' +
+      '"1:Language (Common; Halfling)",' +
+      '"1:Lightfoot Halfling Ability Adjustment","1:Naturally Stealthy"',
+  'Human':
+    'Size=Medium ' +
+    'Speed=30 ' +
+    'Features=' +
+      '"1:Human Ability Adjustment",' +
+      '"1:Language (Common; Choose 1 from any)"',
+  'Dragonborn':
+    'Size=Medium ' +
+    'Speed=30 ' +
+    'Features=' +
+      '"1:Dragonborn Ability Adjustment","1:Draconic Ancestry",' +
+      '"1:Breath Weapon","1:Damage Resistance",' +
+      '"1:Language (Common; Draconic)" ' +
     'Selectables=' +
       '"1:Black Dragon Ancestry:Draconic Ancestry",' +
       '"1:Blue Dragon Ancestry:Draconic Ancestry",' +
@@ -1414,49 +1476,33 @@ SRD5E.RACES = {
       '"1:Red Dragon Ancestry:Draconic Ancestry",' +
       '"1:Silver Dragon Ancestry:Draconic Ancestry",' +
       '"1:White Dragon Ancestry:Draconic Ancestry"',
-  'Hill Dwarf':
-    'Features=' +
-      '"1:Language (Common/Dwarvish)",' +
-      '"1:Tool Proficiency (Choose 1 from Brewer\'s Supplies, Mason\'s Tools, Smith\'s Tools)",' +
-      '1:Darkvision,"1:Dwarven Combat Training","1:Dwarven Resilience",' +
-      '"1:Dwarven Toughness","1:Hill Dwarf Ability Adjustment",1:Slow,' +
-      '1:Steady,1:Stonecunning',
-  'High Elf':
-    'Features=' +
-      '"1:Language (Common/Elvish/Choose 1 from any)",' +
-      '"1:Cantrip (High Elf)",1:Darkvision,"1:Elf Weapon Training",' +
-      '"1:Fey Ancestry","1:High Elf Ability Adjustment","1:Keen Senses",' +
-      '1:Trance',
   'Rock Gnome':
+    'Size=Small ' +
+    'Speed=25 ' +
     'Features=' +
-      '"1:Language (Common/Gnomish)",' +
-      '"1:Artificer\'s Lore",1:Darkvision,"1:Gnome Cunning",' +
-      '"1:Rock Gnome Ability Adjustment",1:Slow,1:Small,1:Tinker',
+      '"1:Gnome Ability Adjustment","1:Darkvision","1:Gnome Cunning",' +
+      '"1:Language (Common; Gnomish)",' +
+      '"1:Rock Gnome Ability Adjustment","1:Artificer\'s Lore","1:Tinker"',
   'Half-Elf':
+    'Size=Medium ' +
+    'Speed=30 ' +
     'Features=' +
-      '"1:Language (Common/Elvish/Choose 1 from any)",' +
-      '1:Darkvision,"1:Fey Ancestry","1:Half-Elf Ability Adjustment",' +
-      '"1:Skill Versatility"',
+      '"1:Half-Elf Ability Adjustment","1:Darkvision","1:Fey Ancestry",' +
+      '"1:Skill Versatility",' +
+      '"1:Language (Common; Elvish; Choose 1 from any)"',
   'Half-Orc':
+    'Size=Medium ' +
+    'Speed=30 ' +
     'Features=' +
-      '"1:Language (Common/Orc)",' +
-      '1:Darkvision,"1:Half-Orc Ability Adjustment",1:Menacing,' +
-      '"1:Relentless Endurance","1:Savage Attacks"',
-  'Lightfoot Halfling':
-    'Features=' +
-      '"1:Language (Common/Halfling)",' +
-      '1:Brave,"1:Halfling Nimbleness",' +
-      '"1:Lightfoot Halfling Ability Adjustment","1:Lucky (Halfling)",' +
-      '"1:Naturally Stealthy",1:Slow,1:Small',
-  'Human':
-    'Features=' +
-      '"1:Language (Common/Choose 1 from any)",' +
-      '"1:Human Ability Adjustment"',
+      '"1:Half-Orc Ability Adjustment","1:Darkvision","1:Menacing",' +
+      '"1:Relentless Endurance","1:Savage Attacks","1:Language (Common; Orc)"',
   'Tiefling':
+    'Size=Medium ' +
+    'Speed=30 ' +
     'Features=' +
-      '"1:Language (Common/Infernal)",' +
-      '1:Darkvision,"1:Hellish Resistance","1:Infernal Legacy",' +
-      '"1:Tiefling Ability Adjustment"'
+      '"1:Tiefling Ability Adjustment",' +
+      '"1:Darkvision","1:Hellish Resistance","1:Infernal Legacy",' +
+      '"1:Language (Common; Infernal)"'
 };
 SRD5E.SCHOOLS = {
   'Abjuration':'',
@@ -3492,7 +3538,7 @@ SRD5E.identityRules = function(
   QuilvynUtils.checkAttrTable
     (paths, ['Features', 'Selectables', 'Group', 'Level', 'SpellAbility', 'SpellSlots', 'Spells']);
   QuilvynUtils.checkAttrTable
-    (races, ['Require', 'Features', 'Selectables', 'SpellAbility', 'SpellSlots', 'Spells']);
+    (races, ['Require', 'Features', 'Selectables', 'Size', 'Speed']);
 
   for(let alignment in alignments) {
     rules.choiceRules(rules, 'Alignment', alignment, alignments[alignment]);
@@ -3519,6 +3565,7 @@ SRD5E.identityRules = function(
   );
   rules.defineRule
     ('experienceNeeded', 'level', '=', 'SRD5E.LEVELS_EXPERIENCE[source] * 1000');
+  rules.defineRule('features.Small', 'size', '=', 'source=="Small" ? 1 : null');
   rules.defineRule('level',
     'experience', '=', 'SRD5E.LEVELS_EXPERIENCE.findIndex(item => item * 1000 > source)'
   );
@@ -3695,7 +3742,9 @@ SRD5E.choiceRules = function(rules, type, name, attrs) {
     SRD5E.raceRules(rules, name,
       QuilvynUtils.getAttrValueArray(attrs, 'Require'),
       QuilvynUtils.getAttrValueArray(attrs, 'Features'),
-      QuilvynUtils.getAttrValueArray(attrs, 'Selectables')
+      QuilvynUtils.getAttrValueArray(attrs, 'Selectables'),
+      QuilvynUtils.getAttrValue(attrs, 'Size'),
+      QuilvynUtils.getAttrValue(attrs, 'Speed')
     );
     SRD5E.raceRulesExtra(rules, name);
   } else if(type == 'Race Feature')
@@ -4632,7 +4681,7 @@ SRD5E.featureRules = function(
         effect.match(/([A-Z]\w*)\sProficiency\s\((([^\(]|\([^\)]*\))*)\)/);
       if(matchInfo) {
         let group = matchInfo[1].toLowerCase();
-        matchInfo[2].split('/').forEach(affected => {
+        matchInfo[2].split(/\/|;\s*/).forEach(affected => {
           matchInfo = affected.match(/^Choose\s(\d+|%V)/);
           if(!matchInfo)
             rules.defineRule(group + 'Proficiency.' + affected, note, '=', '1');
@@ -4645,7 +4694,7 @@ SRD5E.featureRules = function(
       matchInfo = effect.match(/Ability Boost \((([^\(]|\([^\)]*\))*)\)/i);
       if(matchInfo) {
         let totalBoosts = 0;
-        matchInfo[1].split('/').forEach(boosted => {
+        matchInfo[1].split(/\/|;\s*/).forEach(boosted => {
           matchInfo = boosted.match(/Choose (\d+|%V)/i);
           if(!matchInfo)
             rules.defineRule(boosted.toLowerCase(), note, '+', '1');
@@ -4660,7 +4709,7 @@ SRD5E.featureRules = function(
       }
       matchInfo = effect.match(/Language \((([^\(]|\([^\)]*\))*)\)/i);
       if(matchInfo) {
-        matchInfo[1].split('/').forEach(affected => {
+        matchInfo[1].split(/\/|;\s*/).forEach(affected => {
           matchInfo = affected.match(/^Choose\s(\d+|%V)/);
           if(!matchInfo)
             rules.defineRule('languages.' + affected, note, '=', '1');
@@ -4942,9 +4991,12 @@ SRD5E.pathRules = function(
 /*
  * Defines in #rules# the rules associated with race #name#, which has the list
  * of hard prerequisites #requires#. #features# and #selectables# list
- * associated features.
+ * associated features, #size# gives the racial size and #speed# gives the
+ * racial speed.
  */
-SRD5E.raceRules = function(rules, name, requires, features, selectables) {
+SRD5E.raceRules = function(
+  rules, name, requires, features, selectables, size, speed)
+{
 
   if(!name) {
     console.log('Empty race name');
@@ -4960,6 +5012,14 @@ SRD5E.raceRules = function(rules, name, requires, features, selectables) {
   }
   if(!Array.isArray(selectables)) {
     console.log('Bad selectables list "' + selectables + '" for race ' + name);
+    return;
+  }
+  if(!(size+'').match(/^(Large|Medium|Small)$/)) {
+    console.log('Bad size "' + size + '" for race ' + name);
+    return;
+  }
+  if(typeof(speed) != 'number') {
+    console.log('Bad speed "' + speed + '" for race ' + name);
     return;
   }
 
@@ -4981,6 +5041,9 @@ SRD5E.raceRules = function(rules, name, requires, features, selectables) {
   rules.defineSheetElement(name + ' Features', 'Feats+', null, '; ');
   rules.defineChoice('extras', prefix + 'Features');
 
+  rules.defineRule('size', raceLevel, '=', '"' + size + '"');
+  rules.defineRule('speed', raceLevel, '=', speed);
+
 };
 
 /*
@@ -4990,14 +5053,6 @@ SRD5E.raceRules = function(rules, name, requires, features, selectables) {
 SRD5E.raceRulesExtra = function(rules, name) {
 
   if(name == 'Dragonborn') {
-    rules.defineRule('breathWeaponShape',
-      'features.Breath Weapon', '=', '"5\'x30\' line"',
-      'features.Gold Dragon Ancestry', '=', '"15\' cone"',
-      'features.Green Dragon Ancestry', '=', '"15\' cone"',
-      'features.Red Dragon Ancestry', '=', '"15\' cone"',
-      'features.Silver Dragon Ancestry', '=', '"15\' cone"',
-      'features.White Dragon Ancestry', '=', '"15\' cone"'
-    );
     rules.defineRule('breathWeaponEnergy',
       'features.Breath Weapon', '=', '"fire"',
       'features.Black Dragon Ancestry', '=', '"acid"',
@@ -5007,6 +5062,14 @@ SRD5E.raceRulesExtra = function(rules, name) {
       'features.Green Dragon Ancestry', '=', '"poison"',
       'features.Silver Dragon Ancestry', '=', '"cold"',
       'features.White Dragon Ancestry', '=', '"cold"'
+    );
+    rules.defineRule('breathWeaponShape',
+      'features.Breath Weapon', '=', '"5\'x30\' line"',
+      'features.Gold Dragon Ancestry', '=', '"15\' cone"',
+      'features.Green Dragon Ancestry', '=', '"15\' cone"',
+      'features.Red Dragon Ancestry', '=', '"15\' cone"',
+      'features.Silver Dragon Ancestry', '=', '"15\' cone"',
+      'features.White Dragon Ancestry', '=', '"15\' cone"'
     );
     rules.defineRule('selectableFeatureCount.Dragonborn (Draconic Ancestry)',
       'featureNotes.draconicAncestry', '=', '1'
@@ -5361,7 +5424,7 @@ SRD5E.featureListRules = function(
     if(!matchInfo)
       continue;
     let group = matchInfo[1].toLowerCase();
-    let elements = matchInfo[2].split('/');
+    let elements = matchInfo[2].split(/\/|;\s*/);
     for(let j = 0; j < elements.length; j++) {
       matchInfo = elements[j].match(/^Choose\s+(\d+)\s+from/i);
       if(matchInfo) {
@@ -5498,6 +5561,7 @@ SRD5E.createViewers = function(rules, viewers) {
               {name: 'Experience Needed', within: 'ExperienceInfo',
                format: '/%V'},
             {name: 'Level', within: 'AbilityStats'},
+            {name: 'Size', within: 'AbilityStats'},
             {name: 'Speed', within: 'AbilityStats'},
             {name: 'LoadInfo', within: 'AbilityStats', separator: ''},
               {name: 'Carry', within: 'LoadInfo',
@@ -5694,7 +5758,9 @@ SRD5E.choiceEditorElements = function(rules, type) {
     result.push(
       ['Require', 'Prerequisite', 'text', [40]],
       ['Features', 'Features', 'text', [60]],
-      ['Selectables', 'Selectables', 'text', [60]]
+      ['Selectables', 'Selectables', 'text', [60]],
+      ['Size', 'Size', 'select-one', ['Small', 'Medium', 'Large']],
+      ['Speed', 'Speed', 'text', [3]]
     );
   else if(type == 'Race Feature')
     result.push(
@@ -5921,7 +5987,7 @@ SRD5E.randomizeOneAttribute = function(attributes, attribute) {
          (matchInfo = notes[attr].match(/Ability\s+Boost\s+\((.*)\)/gi))==null)
         continue;
       matchInfo.forEach(matched => {
-        matched.split('/').forEach(boosted => {
+        matched.split(/\/|;\s*/).forEach(boosted => {
           let choices = boosted.match(/Choose\s+(%V|\d+)\s+from\s+([^\)]*)/i);
           if(choices) {
             choices[2].split(/\s*,\s*/).forEach(choice => {
@@ -6146,7 +6212,7 @@ SRD5E.randomizeOneAttribute = function(attributes, attribute) {
         matchInfo = notes[attr].match(pat);
       if(matchInfo == null || !matchInfo[1].match(/\bChoose\b/i))
         continue;
-      pieces = matchInfo[1].split('/');
+      pieces = matchInfo[1].split(/\/|;\s*/);
       for(i = 0; i < pieces.length; i++) {
         matchInfo = pieces[i].match(/^Choose\s+(\d+)\s+from\s+(.*)$/i);
         if(!matchInfo)
@@ -6230,7 +6296,7 @@ SRD5E.randomizeOneAttribute = function(attributes, attribute) {
         matchInfo = notes[attr].match(pat);
       if(matchInfo == null || !matchInfo[1].match(/\bChoose\b/i))
         continue;
-      pieces = matchInfo[1].split('/');
+      pieces = matchInfo[1].split(/\/|;\s*/);
       for(i = 0; i < pieces.length; i++) {
         matchInfo = pieces[i].match(/^Choose\s+(\d+)\s+from\s+(.*)$/i);
         if(!matchInfo)

@@ -139,13 +139,12 @@ SRD5E.CLASSES = {
   'Barbarian':
     'HitDie=d12 ' +
     'Features=' +
-      '"1:Armor Proficiency (Medium/Shield)",' +
-      '"1:Save Proficiency (Constitution/Strength)",' +
+      '"1:Armor Proficiency (Light; Medium; Shield)",' +
+      '"1:Save Proficiency (Strength; Constitution)",' +
       '"1:Skill Proficiency (Choose 2 from Animal Handling, Athletics, Intimidation, Nature, Perception, Survival)",' +
-      '"1:Weapon Proficiency (Martial)",' +
-      '"1:Unarmored Defense (Barbarian)",1:Rage,"2:Danger Sense",' +
-      '"2:Reckless Attack","3:Primal Path","5:Extra Attack",' +
-      '"armorWeight < 3 ? 5:Fast Movement",' +
+      '"1:Weapon Proficiency (Simple Weapons; Martial Weapons)",' +
+      '"1:Rage","1:Unarmored Defense (Barbarian)","2:Reckless Attack",' +
+      '"2:Danger Sense","3:Primal Path","5:Extra Attack","5:Fast Movement",' +
       '"7:Feral Instinct","9:Brutal Critical","11:Relentless Rage",' +
       '"15:Persistent Rage","18:Indomitable Might","20:Primal Champion",' +
       '"features.Path Of The Berserker ? 3:Frenzy",' +
@@ -159,11 +158,12 @@ SRD5E.CLASSES = {
     'HitDie=d8 ' +
     'Features=' +
       '"1:Armor Proficiency (Light)",' +
-      '"1:Save Proficiency (Charisma/Dexterity)",' +
-      '"1:Skill Proficiency (Choose 3 from any)",' +
+      '"1:Weapon Proficiency (Simple Weapons; Hand Crossbow; Longsword; Rapier; Shortsword)",' +
       '"1:Tool Proficiency (Choose 3 from any Musical)",' +
-      '"1:Weapon Proficiency (Simple/Hand Crossbow/Longsword/Rapier/Shortsword)",' +
-      '"1:Bardic Inspiration","1:Ritual Casting",1:Spellcasting,' +
+      '"1:Save Proficiency (Dexterity; Charisma)",' +
+      '"1:Skill Proficiency (Choose 3 from any)",' +
+      // TODO Is Ritual Casting a separate feature or part of Spellcasting?
+      '"1:Spellcasting","1:Ritual Casting","1:Bardic Inspiration",' +
       '"2:Jack Of All Trades","2:Song Of Rest","3:Bard College",' +
       '"3:Expertise (Bard)","5:Font Of Inspiration",6:Countercharm,' +
       '"10:Magical Secrets","20:Superior Inspiration",' +
@@ -188,11 +188,11 @@ SRD5E.CLASSES = {
   'Cleric':
     'HitDie=d8 ' +
     'Features=' +
-      '"1:Armor Proficiency (Medium/Shield)",' +
-      '"1:Save Proficiency (Charisma/Wisdom)",' +
+      '"1:Armor Proficiency (Light; Medium; Shield)",' +
+      '"1:Weapon Proficiency (Simple Weapons)",' +
+      '"1:Save Proficiency (Wisdom; Charisma)",' +
       '"1:Skill Proficiency (Choose 2 from History, Insight, Medicine, Persuasion, Religion)",' +
-      '"1:Weapon Proficiency (Simple)",' +
-      '"1:Divine Domain","1:Ritual Casting",1:Spellcasting,' +
+      '"1:Spellcasting","1:Divine Domain","1:Ritual Casting",' +
       '"2:Channel Divinity","2:Turn Undead","5:Destroy Undead",' +
       '"10:Divine Intervention",' +
       '"features.Life Domain ? 1:Bonus Proficiency (Life Domain)",' +
@@ -218,15 +218,14 @@ SRD5E.CLASSES = {
   'Druid':
     'HitDie=d8 ' +
     'Features=' +
-      '"1:Armor Proficiency (Medium/Shield)",' +
-      '"1:Save Proficiency (Intelligence/Wisdom)",' +
+      '"1:Armor Proficiency (Light; Medium; Shield)",' +
+      '"1:Weapon Proficiency (Club; Dagger; Dart; Javelin; Mace; Quarterstaff; Scimitar; Sickle; Sling; Spear)",' +
+      '"1:Tool Proficiency (Herbalism Kit)",' +
+      '"1:Save Proficiency (Intelligence; Wisdom)",' +
       '"1:Skill Proficiency (Choose 2 from Arcana, Animal Handling, Insight, Medicine, Nature, Perception, Religion, Survival)",' +
-      '"1:Tool Proficiency (Herbalism Kit)",' +
-      '"1:Weapon Proficiency (Club/Dagger/Dart/Javelin/Mace/Quarterstaff/Scimitar/Sickle/Sling/Spear)",' +
-      '"1:Tool Proficiency (Herbalism Kit)",' +
-      '1:Druidic,"1:Ritual Casting",1:Spellcasting,"2:Druid Circle",' +
-      '"2:Wild Shape","18:Timeless Body (Druid)","18:Beast Spells",' +
-      '20:Archdruid,' +
+      '"1:Druidic","1:Spellcasting","1:Ritual Casting","2:Wild Shape",' +
+      '"2:Druid Circle","18:Timeless Body (Druid)","18:Beast Spells",' +
+      '"20:Archdruid",' +
       '"features.Circle Of The Land ? 2:Bonus Cantrip (Circle Of The Land)",' +
       '"features.Circle Of The Land ? 2:Natural Recovery",' +
       '"features.Circle Of The Land ? 3:Circle Spells",' +
@@ -259,7 +258,7 @@ SRD5E.CLASSES = {
       '"1:Armor Proficiency (Heavy/Shield)",' +
       '"1:Save Proficiency (Constitution/Strength)",' +
       '"1:Skill Proficiency (Choose 2 from Acrobatics, Animal Handling, Athletics, History, Insight, Intimidation, Perception, Survival)",' +
-      '"1:Weapon Proficiency (Martial)",' +
+      '"1:Weapon Proficiency (Martial Weapons)",' +
       '"1:Fighting Style","1:Second Wind","2:Action Surge",' +
       '"3:Martial Archetype","5:Extra Attack",9:Indomitable,' +
       '"features.Champion ? 3:Improved Critical",' +
@@ -282,7 +281,7 @@ SRD5E.CLASSES = {
       '"1:Save Proficiency (Dexterity/Strength)",' +
       '"1:Skill Proficiency (Choose 2 from Acrobatics, Athletics, History, Insight, Religion, Stealth)",' +
       '"1:Tool Proficiency (Choose 1 from any Artisan, any Musical)",' +
-      '"1:Weapon Proficiency (Simple/Shortsword)",' +
+      '"1:Weapon Proficiency (Simple Weapons; Shortsword)",' +
       '"1:Martial Arts","1:Unarmored Defense (Monk)","2:Flurry Of Blows",' +
       '"2:Ki","2:Patient Defense","2:Step Of The Wind",' +
       '"2:Unarmored Movement","3:Deflect Missiles","3:Monastic Tradition",' +
@@ -303,7 +302,7 @@ SRD5E.CLASSES = {
       '"1:Armor Proficiency (Heavy/Shield)",' +
       '"1:Save Proficiency (Charisma/Wisdom)",' +
       '"1:Skill Proficiency (Choose 2 from Athletics, Insight, Intimidation, Medicine, Persuasion, Religion)",' +
-      '"1:Weapon Proficiency (Martial)",' +
+      '"1:Weapon Proficiency (Martial Weapons)",' +
       '"1:Divine Sense","1:Lay On Hands","2:Divine Smite","2:Fighting Style",' +
       '2:Spellcasting,"3:Channel Divinity","3:Divine Health","3:Sacred Oath",' +
       '"5:Extra Attack","6:Aura Of Protection","10:Aura Of Courage",' +
@@ -332,7 +331,7 @@ SRD5E.CLASSES = {
       '"1:Armor Proficiency (Medium/Shield)",' +
       '"1:Save Proficiency (Dexterity/Strength)",' +
       '"1:Skill Proficiency (Choose 3 from Animal Handling, Athletics, Insight, Investigation, Nature, Perception, Stealth, Survival)",' +
-      '"1:Weapon Proficiency (Martial)",' +
+      '"1:Weapon Proficiency (Martial Weapons)",' +
       '"1:Favored Enemy","1:Natural Explorer","1:Fighting Style",' +
       '2:Spellcasting,"3:Primeval Awareness","3:Ranger Archetype",' +
       '"5:Extra Attack","8:Land\'s Stride","10:Hide In Plain Sight",' +
@@ -372,7 +371,7 @@ SRD5E.CLASSES = {
       '"1:Save Proficiency (Dexterity/Intelligence)",' +
       '"1:Skill Proficiency (Choose 4 from Acrobatics, Athletics, Deception, Insight, Intimidation, Investigation, Perception, Performance, Persuasion, Sleight Of Hand, Stealth)",' +
       '"1:Tool Proficiency (Thieves\' Tools)",' +
-      '"1:Weapon Proficiency (Simple/Hand Crossbow/Longsword/Rapier/Shortsword)",' +
+      '"1:Weapon Proficiency (Simple Weapons; Hand Crossbow; Longsword; Rapier; Shortsword)",' +
       '"1:Tool Proficiency (Thieves\' Tools)",' +
       '"1:Expertise (Rogue)","1:Sneak Attack","1:Thieves\' Cant",' +
       '"2:Cunning Action","3:Roguish Archetype","5:Uncanny Dodge",7:Evasion,' +
@@ -423,7 +422,7 @@ SRD5E.CLASSES = {
       '"1:Armor Proficiency (Light)",' +
       '"1:Save Proficiency (Charisma/Wisdom)",' +
       '"1:Skill Proficiency (Choose 2 from Arcana, Deception, History, Intimidation, Investigation, Nature, Religion)",' +
-      '"1:Weapon Proficiency (Simple)",' +
+      '"1:Weapon Proficiency (Simple Weapons)",' +
       '"1:Otherworldly Patron","1:Pact Magic","2:Eldritch Invocations",' +
       '"3:Pact Boon","11:Mystic Arcanum","20:Eldritch Master",' +
       '"features.The Fiend ? 1:Dark One\'s Blessing",' +
@@ -604,7 +603,7 @@ SRD5E.FEATURES = {
     'Section=ability Note="+2 Strength/+1 Constitution"',
   'Menacing':'Section=skill Note="Skill Proficiency (Intimidation)"',
   'Relentless Endurance':
-    'Section=Combat Note="May retain 1 HP when brought to 0 HP 1/long rest"',
+    'Section=Combat Note="May retain 1 hit point when brought to 0 hit points once per long rest"',
   'Savage Attacks':
     'Section=combat ' +
     'Note="Melee critical hits inflict 1 additional die of damage"',
@@ -625,14 +624,217 @@ SRD5E.FEATURES = {
   'Shelter Of The Faithful':
     'Section=Feature ' +
     'Note="May receive aid from temples of %{deity} and fellow believers"',
+
   // Class
+
+  // Barbarian
+  'Brutal Critical':
+    'Section=combat ' +
+    'Note="Melee critical hits inflict %{(levels.Barbarian-5)//4} additional %{levels.Barbarian<13?\'die\':\'dice\'} of damage"',
+  'Danger Sense':
+    'Section=save Note="Has advantage on Dexterity vs. visible dangers"',
+  'Extra Attack':'Section=combat Note="+%V Attacks Per Round"',
+  'Fast Movement':'Section=ability Note="+10 Speed; heavy armor negates"',
+  'Feral Instinct':
+    'Section=combat ' +
+    'Note="Has advantage on initiative/Can rage and then act when surprised"',
+  'Indomitable Might':
+    'Section=ability Note="Scores a minimum %{strength} on Strength checks"',
+  'Persistent Rage':
+    'Section=combat Note="Can continue raging when unengaged with any foe"',
+  'Primal Champion':'Section=ability Note="+4 Strength/+4 Constitution"',
+  'Primal Path':'Section=feature Note="1 selection"',
+  'Rage':
+    'Section=ability,combat,feature,magic,save ' +
+    'Note=' +
+      '"Has advantage on Strength checks during rage",' +
+      '"+%{levels.Barbarian<9?2:levels.Barbarian<16?3:4} damage with Strength melee weapons during rage",' +
+      '"Can use rage features for 1 min %{levels.Barbarian<3?2:levels.Barbarian<6?3:levels.Barbarian<12?4:levels.Barbarian<17?5:levels.Barbarian<20?6:\'unlimited\'} times per long rest; heavy armor negates benefits",' +
+      '"Cannot cast or concentrate on spells during rage",' +
+      '"Has advantage on Strength saves and resistance to bludgeoning, piercing, and slashing damage during rage"',
+  'Reckless Attack':
+    'Section=combat ' +
+    'Note="During rage, can suffer foe advantage on attacks to gain advantage on Strength melee attacks for 1 rd"',
+  'Relentless Rage':
+    'Section=save ' +
+    'Note="Can make a DC 10 Constitution save to retain 1 hit point when brought to 0 hit points; each use adds 5 to the DC until a short rest"',
+  'Unarmored Defense (Barbarian)':
+    'Section=combat Note="+%{constitutionModifier} Armor Class in no armor"',
+  // Berzerker
+  'Frenzy':
+    'Section=combat ' +
+    'Note="Can use a bonus action to attack with a melee weapon each rd during rage; suffers 1 level of exhaustion after rage"',
+  'Intimidating Presence':
+    'Section=feature ' +
+    'Note="R30\' Can use an action to inflict frightened on a target (DC %{charismaModifier+8+proficiencyBonus} Wisdom neg) and additional actions to extend each rd; ends if the target moves out of sight or more than 60\' away"',
+  'Mindless Rage':'Section=save Note="Immune to charm and fright during rage"',
+  'Retaliation':
+    'Section=combat ' +
+    'Note="Can use a Reaction to make a melee attack on a successful attacker"',
+
+  // Bard
+  'Bard College':'Section=feature Note="1 selection"',
+  'Bardic Inspiration':
+    'Section=feature ' +
+    'Note="R60\' Can use a bonus action to give an ally a +1d%{bardicInspirationDie} bonus on an ability, attack, or saving throw within 10 min %{charismaModifier>1?charismaModifier + \' times\':\'once\'} per %{featureNotes.fontOfInspiration?\'short\':\'long\'} rest"',
+  'Countercharm':
+    'Section=magic ' +
+    'Note="R30\' Performance gives friendly listeners advantage on saves vs. charm and fright for 1 rd"',
+  'Expertise (Bard)':
+    'Section=skill ' +
+    'Note="+%{proficiencyBonus} on %{levels.Bard<10?2:4} chosen proficient skills"',
+  'Font Of Inspiration':
+    'Section=feature Note="Bardic Inspiration refreshes after a short rest"',
+  'Jack Of All Trades':
+    'Section=ability ' +
+    'Note="+%{proficiencyBonus//2} on non-proficient ability checks"',
+  'Magical Secrets':
+    'Section=magic ' +
+    'Note="Can learn %{(levels.Bard-6)//4*2} additional spells from any class"',
+  'Ritual Casting':
+    'Section=magic Note="Can cast spells marked with [R] using a ritual"',
+  'Song Of Rest':
+    'Section=magic ' +
+    'Note="Friendly listeners regain +1d%{levels.Bard>=9?6+(levels.Bard-5)//4*2:6} hit points after a short rest"',
+  // TODO No note for Spellcasting feature?
+  'Superior Inspiration':
+    'Section=combat ' +
+    'Note="Has a minimum of 1 use of Bardic Inspiration available after initiative"',
+  // College Of Lore
+  'Additional Magical Secrets':
+    'Section=magic Note="Can learn 2 additional spells from any class"',
+  'Bonus Proficiencies (College Of Lore)':
+    'Section=skill Note="Skill Proficiency (Choose 3 from any)"',
+  'Cutting Words':
+    'Section=combat ' +
+    'Note="R60\' Can use a Reaction to subtract a Bardic Inspiration die from a foe roll"',
+  'Peerless Skill':
+    'Section=ability ' +
+    'Note="Can add a Bardic Inspiration die to a self ability check"',
+
+  // Cleric
+  'Channel Divinity':
+    'Section=feature ' +
+    'Note="Can use a Channel Divinity effect %{featureNotes.channelDivinity.1>1 ? featureNotes.channelDivinity.1 + \' times\': \'once\'} per short rest"',
+  'Destroy Undead':
+    'Section=combat ' +
+    'Note="Turning destroys undead up to CR %{levels.Cleric>=8?(levels.Cleric-5)//3<?4:0.5}"',
+  'Divine Domain':'Section=feature Note="1 selection"',
+  'Divine Intervention':
+    'Section=magic ' +
+    'Note="Has a %{levels.Cleric<20?levels.Cleric:100}% chance to gain help from %{deity} once per week"',
+  'Life Domain':
+    'Spells=' +
+      '"1:Bless","1:Cure Wounds",' +
+      '"3:Lesser Restoration","3:Spiritual Weapon",' +
+      '"5:Beacon Of Hope","5:Revivify",' +
+      '"7:Death Ward","7:Guardian Of Faith",' +
+      '"9:Mass Cure Wounds","9:Raise Dead"',
+  // Ritual Casting as above
+  // Spellcasting as above
+  'Supreme Healing':
+    'Section=magic ' +
+    'Note="Healing spells restore the maximum possible hit points"',
+  'Turn Undead':
+    'Section=combat ' +
+    'Note="R30\' Can use Channel Divinity to make undead flee (DC %{spellDifficultyClass.C} Wisdom neg) for 1 min"',
+  // Life Domain
+  'Blessed Healer':
+    'Section=magic ' +
+    'Note="Casting a healing spell restores 2 + spell level hit points to self"',
+  'Bonus Proficiency (Life Domain)':
+    'Section=combat Note="Armor Proficiency (Heavy)"',
+  'Disciple Of Life':
+    'Section=magic ' +
+    'Note="Casting a healing spell restores an additional 2 + spell level hit points"',
+  'Divine Strike':
+    'Section=combat ' +
+    'Note="Weapon inflicts +%{levels.Cleric<14?1:2}d8 HP %{divineStrikeDamageType} once per rd"',
+  'Preserve Life':
+    'Section=magic ' +
+    'Note="R30\' Can use Channel Divinity to restore %{levels.Cleric*5} hit points among targets, up to half maximum hit points each"',
+
+  // Druid
+  'Archdruid':
+    'Section=magic,magic ' +
+    'Note=' +
+      '"Can use Wild Shape at will",' +
+      '"Casting spells requires no verbal, somatic, or cost-free material components"',
+  'Beast Spells':'Section=magic Note="Can cast spells during Wild Shape"',
+  'Druid Circle':'Section=feature Note="1 selection"',
+  'Druidic':
+    'Section=skill Note="Speaks a secret language known only by druids"',
+  // Ritual Casting as above
+  // Spellcasting as above
+  'Timeless Body (Druid)':'Section=feature Note="Ages at 1/10 normal rate"',
+  'Wild Shape':
+    'Section=magic ' +
+    'Note="Can transform into a CR %V%{levels.Druid<4?\' (land only)\':levels.Druid<8?\' (non-flying)\':\'\'} creature for %{levels.Druid//2} hr %{magicNotes.archdruid?\'unlimited\':2} times per short rest"',
+  // Circle Of The Land
+  'Bonus Cantrip (Circle Of The Land)':
+    'Section=magic Note="Knows an additional Druid cantrip"',
+  'Circle Of The Land (Arctic)':
+    'Spells=' +
+      '"3:Hold Person","3:Spike Growth",' +
+      '"5:Sleet Storm","5:Slow",' +
+      '"7:Freedom Of Movement","7:Ice Storm",' +
+      '"9:Commune With Nature","9:Cone Of Cold"',
+  'Circle Of The Land (Coast)':
+    'Spells=' +
+      '"3:Mirror Image","3:Misty Step",' +
+      '"5:Water Breathing","5:Water Walk",' +
+      '"7:Control Water","7:Freedom Of Movement",' +
+      '"9:Conjure Elemental","9:Scrying"',
+  'Circle Of The Land (Desert)':
+    'Spells=' +
+      '"3:Blur","3:Silence",' +
+      '"5:Create Food And Water","5:Protection From Energy",' +
+      '"7:Blight","7:Hallucinatory Terrain",' +
+      '"9:Insect Plague","9:Wall Of Stone"',
+  'Circle Of The Land (Forest)':
+    'Spells=' +
+      '"3:Barkskin","3:Spider Climb",' +
+      '"5:Call Lightning","5:Plant Growth",' +
+      '"7:Divination","7:Freedom Of Movement",' +
+      '"9:Commune With Nature","9:Tree Stride"',
+  'Circle Of The Land (Grassland)':
+    'Spells=' +
+      '"3:Invisibility","3:Pass Without Trace",' +
+      '"5:Daylight","5:Haste",' +
+      '"7:Divination","7:Freedom Of Movement",' +
+      '"9:Dream","9:Insect Plague"',
+  'Circle Of The Land (Mountain)':
+    'Spells=' +
+      '"3:Spider Climb","3:Spike Growth",' +
+      '"5:Lightning Bolt","5:Meld Into Stone",' +
+      '"7:Stone Shape","7:Stoneskin",' +
+      '"9:Passwall","9:Wall Of Stone"',
+  'Circle Of The Land (Swamp)':
+    'Spells=' +
+      '"3:Acid Arrow","3:Darkness",' +
+      '"5:Water Walk","5:Stinking Cloud",' +
+      '"7:Freedom Of Movement","7:Locate Creature",' +
+      '"9:Insect Plague","9:Scrying"',
+  // TODO No note for Circle Spells?
+  "Land's Stride":
+    'Section=ability,save ' +
+    'Note="Can move normally through difficult terrain and nonmagical plants",' +
+         '"Has advantage on saves vs. impeding plants"',
+  'Natural Recovery':
+    'Section=magic ' +
+    'Note="Can recover %{(levels.Druid+1)//2} spell slot levels (level 6 maximum) during a short rest once per long rest"',
+  "Nature's Sanctuary":
+    'Section=combat ' +
+    'Note="Beasts and plants cannot attack self (DC %{wisdomModifier+8+proficiencyBonus} Wisdom neg for 24 hr)"',
+  "Nature's Ward":
+    'Section=save ' +
+    'Note="Has immunity to disease, poison, and elemental and fey charm and fright"',
+
   'Action Surge':
     'Section=Combat ' +
     'Note="May take an extra action %{levels.Fighter<17?1:2}/short rest"',
   'Additional Fighting Style':
     'Section=Feature Note="May select a second Fighting Style"',
-  'Additional Magical Secrets':
-    'Section=Magic Note="May learn 2 additional spells from any class"',
   'Agonizing Blast':
     'Section=Magic ' +
     'Note="<i>Eldritch Blast</i> inflicts +%{charismaModifier} HP"',
@@ -640,11 +842,6 @@ SRD5E.FEATURES = {
     'Section=Magic ' +
     'Note="May recover %{(levels.Wizard+1)//2} spell slot levels (level 6 maximum) during a short rest 1/long rest"',
   'Arcane Tradition':'Section=Feature Note="1 selection"',
-  'Archdruid':
-    'Section=Magic,Magic ' +
-    'Note=' +
-      '"May use Wild Shape at will",' +
-      '"Casting spells requires no verbal, somatic, or cost-free material components"',
   'Armor Of Shadows':
     'Section=Magic Note="May cast self <i>Mage Armor</i> at will" ' +
     'Spells="Mage Armor"',
@@ -661,39 +858,22 @@ SRD5E.FEATURES = {
   'Aura Of Protection':
     'Section=Save ' +
     'Note="R%{levels.Paladin<18?10:30}\' Self and allies +%{charismaModifier>?1} all saves"',
-  'Bard College':'Section=Feature Note="1 selection"',
-  'Bardic Inspiration':
-    'Section=Feature ' +
-    'Note="R60\' May use a bonus action to give an ally a +1d%{bardicInspirationDie} bonus on an ability, attack, or saving throw w/in 10 min %{charismaModifier>?1}/%{featureNotes.fontOfInspiration?\'short\':\'long\'} rest"',
   'Beast Speech':
     'Section=Magic ' +
     'Note="May cast <i>Speak With Animals</i> at will" ' +
     'Spells="Speak With Animals"',
-  'Beast Spells':'Section=Magic Note="May cast spells during Wild Shape"',
   'Beguiling Influence':
     'Section=Skill Note="Skill Proficiency (Deception/Persuasion)"',
   'Bewitching Whispers':
     'Section=Magic ' +
     'Note="May use a Warlock spell slot to cast <i>Compulsion</i> 1/long rest" ' +
     'Spells=Compulsion',
-  'Blessed Healer':
-    'Section=Magic ' +
-    'Note="Casting a healing spell restores 2 + spell level HP to self"',
   'Blindsense':
     'Section=Skill ' +
     'Note="R10\' Knows location of hidden and invisible creatures"',
-  'Bonus Cantrip (Circle Of The Land)':
-    'Section=Magic Note="Knows an additional Druid cantrip"',
-  'Bonus Proficiencies (College Of Lore)':
-    'Section=Skill Note="Skill Proficiency (Choose 3 from any)"',
-  'Bonus Proficiency (Life Domain)':
-    'Section=Combat Note="Armor Proficiency (Heavy)"',
   'Book Of Ancient Secrets':
     'Section=Magic ' +
     'Note="May inscribe spell rituals in a <i>Book Of Shadows</i>"',
-  'Brutal Critical':
-    'Section=Combat ' +
-    'Note="Adds %{(levels.Barbarian-5)//4} %{levels.Barbarian<13?\'die\':\'dice\'} to crit damage"',
   'Careful Spell':
     'Section=Magic ' +
     'Note="May spend 1 Sorcery Point to protect %{charismaModifier>?1} creatures from self spell"',
@@ -701,68 +881,16 @@ SRD5E.FEATURES = {
     'Section=Magic ' +
     'Note="May cast <i>Hold Monster</i> at will on celestials, elementals, and fiends 1/long rest per creature" ' +
     'Spells="Hold Monster"',
-  'Channel Divinity':
-    'Section=Feature ' +
-    'Note="May use a Channel Divinity effect %{(levels.Paladin?1:0)+(!levels.Cleric?0:levels.Cleric<6?1:levels.Cleric<18?2:3)}/short rest"',
-  'Circle Of The Land (Arctic)':
-    'Spells=' +
-      '"3:Hold Person","3:Spike Growth",' +
-      '"5:Sleet Storm",5:Slow,' +
-      '"7:Freedom Of Movement","7:Ice Storm",' +
-      '"9:Commune With Nature","9:Cone Of Cold"',
-  'Circle Of The Land (Coast)':
-    'Spells=' +
-      '"3:Mirror Image","3:Misty Step",' +
-      '"5:Water Breathing","5:Water Walk",' +
-      '"7:Control Water","7:Freedom Of Movement",' +
-      '"9:Conjure Elemental",9:Scrying',
-  'Circle Of The Land (Desert)':
-    'Spells=' +
-      '3:Blur,3:Silence,' +
-      '"5:Create Food And Water","5:Protection From Energy",' +
-      '7:Blight,"7:Hallucinatory Terrain",' +
-      '"9:Insect Plague","9:Wall Of Stone"',
-  'Circle Of The Land (Forest)':
-    'Spells=' +
-      '3:Barkskin,"3:Spider Climb",' +
-      '"5:Call Lightning","5:Plant Growth",' +
-      '7:Divination,"7:Freedom Of Movement",' +
-      '"9:Commune With Nature","9:Tree Stride"',
-  'Circle Of The Land (Grassland)':
-    'Spells=' +
-      '3:Invisibility,"3:Pass Without Trace",' +
-      '5:Daylight,5:Haste,' +
-      '7:Divination,"7:Freedom Of Movement",' +
-      '9:Dream,"9:Insect Plague"',
-  'Circle Of The Land (Mountain)':
-    'Spells=' +
-      '"3:Spider Climb","3:Spike Growth",' +
-      '"5:Lightning Bolt","5:Meld Into Stone",' +
-      '"7:Stone Shape",7:Stoneskin,' +
-      '9:Passwall,"9:Wall Of Stone"',
-  'Circle Of The Land (Swamp)':
-    'Spells=' +
-      '"3:Acid Arrow",3:Darkness,' +
-      '"5:Water Walk","5:Stinking Cloud",' +
-      '"7:Freedom Of Movement","7:Locate Creature",' +
-      '"9:Insect Plague",9:Scrying',
   'Cleansing Touch':
     'Section=Magic ' +
     'Note="May dispel a spell effect on a touched willing creature %{charismaModifier>?1}/long rest"',
   'Colossus Slayer':'Section=Combat Note="+1d8 HP damage vs. wounded foe 1/rd"',
-  'Countercharm':
-    'Section=Magic ' +
-    'Note="R30\' Performance gives friendly listeners Adv on saves vs. charm and fright for 1 rd"',
   'Cunning Action':
     'Section=Combat ' +
     'Note="May use a bonus action to Dash, Disengage, or Hide 1/rd"',
-  'Cutting Words':
-    'Section=Combat ' +
-    'Note="R60\' May use Reaction to subtract a Bardic Inspiration die from a foe roll"',
-  'Danger Sense':'Section=Save Note="Adv on Dexterity vs. visible dangers"',
   "Dark One's Blessing":
     'Section=Combat ' +
-    'Note="Reducing foe to 0 HP gives self %{(levels.Warlock+charismaModifier)>?1} temporary HP"',
+    'Note="Reducing foe to 0 hit points gives self %{(levels.Warlock+charismaModifier)>?1} temporary hit points"',
   "Dark One's Own Luck":
     'Section=Feature ' +
     'Note="May add 1d10 to an ability or save roll 1/short rest"',
@@ -770,34 +898,22 @@ SRD5E.FEATURES = {
   'Defensive Tactics':'Section=Feature Note="1 selection"',
   'Deflect Missiles':
     'Section=Combat ' +
-    'Note="May use Reaction to reduce missile damage by 1d10+%{levels.Monk+dexterityModifier} HP; reducing to 0 HP allows spending 1 Ki Point for immediate attack"',
-  'Destroy Undead':
-    'Section=Combat ' +
-    'Note="Turning destroys undead up to CR %{levels.Cleric>=8?(levels.Cleric-5)//3<?4:0.5}"',
+    'Note="May use Reaction to reduce missile damage by 1d10+%{levels.Monk+dexterityModifier} HP; reducing to 0 hit points allows spending 1 Ki Point for immediate attack"',
   'Diamond Soul':
     'Section=Save,Save ' +
     'Note=' +
       '"Proficient on all saves",' +
       '"May spend 1 Ki Point to reroll a save"',
-  'Disciple Of Life':
-    'Section=Magic ' +
-    'Note="Healing spells restore an additional 2 + spell level HP"',
   'Distant Spell':
     'Section=Magic ' +
     'Note="May spend 1 Sorcery Point to dbl spell range or to touch at 30\'"',
-  'Divine Domain':'Section=Feature Note="1 selection"',
   'Divine Health':'Section=Save Note="Immune to disease"',
-  'Divine Intervention':
-    'Section=Magic Note="%{levels.Cleric<20?levels.Cleric:100}% chance to gain help from deity 1/wk"',
   'Divine Sense':
     'Section=Magic ' +
     'Note="R60\' May discern location of celestials, fiends, and undead for 1 rd %{charismaModifier+1}/long rest"',
   'Divine Smite':
     'Section=Combat ' +
     'Note="After a successful melee attack, may spend a spell slot to inflict +(slot level + 1)d8 HP (maximum 5d8) radiant damage (+1d8 HP vs. undead and fiends)"',
-  'Divine Strike':
-    'Section=Combat ' +
-    'Note="Weapon inflicts +%{levels.Cleric<14?1:2}d8 HP %{divineStrikeDamageType} 1/rd"',
   'Draconic Presence':
     'Section=Magic ' +
     'Note="R60\' May spend 5 Sorcery Points to gain an aura that inflicts choice of charm or fright (DC %{spellDifficultyClass.S} Wisdom neg) for conc up to 1 min"',
@@ -816,9 +932,6 @@ SRD5E.FEATURES = {
     'Section=Magic ' +
     'Note="May use a Warlock spell slot to cast <i>Confusion</i> 1/long rest" ' +
     'Spells=Confusion',
-  'Druid Circle':'Section=Feature Note="1 selection"',
-  'Druidic':
-    'Section=Skill Note="Speaks a secret language known only by druids"',
   'Eldritch Invocations':'Section=Magic Note="%V selections"',
   'Eldritch Master':
     'Section=Magic Note="May recover expended spell slots 1/long rest"',
@@ -850,28 +963,20 @@ SRD5E.FEATURES = {
   'Evocation Savant':
     'Section=Magic ' +
     'Note="May copy evocation spells into spellbook for half cost"',
-  'Expertise (Bard)':
-    'Section=Skill ' +
-    'Note="Dbl proficiency bonus (+%{proficiencyBonus}) on %{levels.Bard<10?2:4} chosen skills"',
   'Expertise (Rogue)':
     'Section=Skill ' +
     'Note="Dbl proficiency bonus (+%{proficiencyBonus}) on %{levels.Rogue<6?2:4} chosen skills or Thieves\' Tools"',
   'Extended Spell':
     'Section=Magic ' +
     'Note="May spend 1 Sorcery Point to gain dbl spell duration (24 hr maximum)"',
-  'Extra Attack':'Section=Combat Note="+%V Attacks Per Round"',
   'Eyes Of The Rune Keeper':'Section=Feature Note="May read all writing"',
   'Fast Hands':
     'Section=Combat ' +
     'Note="May use a bonus action to use Sleight Of Hand, disarm a trap, open a lock, or Use An Object"',
-  'Fast Movement':'Section=Ability Note="+10 Speed (heavy armor neg)"',
   'Favored Enemy':
     'Section=Skill ' +
     'Note=' +
       '"Adv on Survival to track, Adv on Intelligence to recall info about, and may learn the language of %{levels.Ranger<6?1:levels.Ranger<14?2:3} chosen creature types"',
-  'Feral Instinct':
-    'Section=Combat ' +
-    'Note="Adv on Initiative/May rage and then act when surprised"',
   'Feral Senses':
     'Section=Combat,Skill ' +
     'Note=' +
@@ -902,14 +1007,9 @@ SRD5E.FEATURES = {
   'Foe Slayer':
     'Section=Combat ' +
     'Note="May gain choice of +%{wisdomModifier} attack or damage vs. favored enemy 1/rd"',
-  'Font Of Inspiration':
-    'Section=Feature Note="Bardic Inspiration refreshes after a short rest"',
   'Font Of Magic':
     'Section=Magic ' +
     'Note="May use %V Sorcery Points/long rest/May use a bonus action to convert between Sorcery Points and spell slots"',
-  'Frenzy':
-    'Section=Combat ' +
-    'Note="May use a bonus action to attack w/a melee weapon each rd during rage; suffers 1 level of exhaustion after rage"',
   'Gaze Of Two Minds':
     'Section=Magic ' +
     'Note="Touch allows self to perceive through the senses of a willing humanoid for 1 rd"',
@@ -938,40 +1038,18 @@ SRD5E.FEATURES = {
   'Improved Divine Smite':
     'Section=Combat ' +
     'Note="Successful melee attack inflicts +1d8 HP radiant damage"',
-  'Indomitable Might':
-    'Section=Ability Note="Minimum %{strength} on Strength checks"',
   'Indomitable':
     'Section=Save ' +
     'Note="May reroll a failed save %{levels.Fighter<13?1:level.Fighter<17?2:3}/long rest"',
-  'Intimidating Presence':
-    'Section=Feature ' +
-    'Note="R30\' May use an action to inflict frightened on target (DC %{charismaModifier+8+proficiencyBonus} Wisdom neg)"',
-  'Jack Of All Trades':
-    'Section=Ability ' +
-    'Note="+%{proficiencyBonus//2} non-proficient ability checks"',
   'Ki':'Section=Feature Note="May use %{levels.Monk} Ki Points/short rest"',
   'Ki-Empowered Strikes':
     'Section=Combat Note="Unarmed attacks count as magical"',
-  "Land's Stride":
-    'Section=Ability,Save ' +
-    'Note="May move normally through difficult terrain and nonmagical plants",' +
-         '"Adv on saves vs. impeding plants"',
   'Lay On Hands':
     'Section=Magic ' +
-    'Note="May heal %{levels.Paladin*5} HP/long rest; may use 5 HP worth to cure disease or poison"',
-  'Life Domain':
-    'Spells=' +
-      '1:Bless,"1:Cure Wounds",' +
-      '"3:Lesser Restoration","3:Spiritual Weapon",' +
-      '"5:Beacon Of Hope",5:Revivify,' +
-      '"7:Death Ward","7:Guardian Of Faith",' +
-      '"9:Mass Cure Wounds","9:Raise Dead"',
+    'Note="May heal %{levels.Paladin*5} hit points per long rest; may use 5 hit points\' worth to cure disease or poison"',
   'Lifedrinker':
     'Section=Combat ' +
     'Note="Pact weapon inflicts +%{charismaModifier>?1} HP necrotic"',
-  'Magical Secrets':
-    'Section=Magic ' +
-    'Note="May learn %{(levels.Bard-6)//4*2} additional spells from any class"',
   'Martial Arts':
     'Section=Combat,Combat ' +
     'Note=' +
@@ -987,7 +1065,6 @@ SRD5E.FEATURES = {
     'Note="May cast <i>Alter Self</i> at will" ' +
     'Spells="Alter Self"',
   'Metamagic':'Section=Feature Note="%V selections"',
-  'Mindless Rage':'Section=Save Note="Immune to charm and fright during rage"',
   'Minions Of Chaos':
     'Section=Magic ' +
     'Note="May use a Warlock spell slot to cast <i>Conjure Elemental</i> 1/long rest" ' +
@@ -1010,15 +1087,6 @@ SRD5E.FEATURES = {
   'Natural Explorer':
     'Section=Skill ' +
     'Note="Dbl Proficiency on Intelligence and Wisdom, moves normally through difficult terrain, never becomes lost, remains always alert, may stealth alone at full speed, locates dbl food, and gains extra info from tracking in %{levels.Ranger<6?1:levels.Ranger<10?2:3} chosen terrain types"',
-  'Natural Recovery':
-    'Section=Magic ' +
-    'Note="May recover %{(levels.Druid+1)//2} spell slot levels (level 6 maximum) during a short rest 1/long rest"',
-  "Nature's Sanctuary":
-    'Section=Combat ' +
-    'Note="Beasts and plants cannot attack self (DC %{wisdomModifier+8+proficiencyBonus} Wisdom neg)"',
-  "Nature's Ward":
-    'Section=Save ' +
-    'Note="Immune to disease, poison, and elemental and fey charm and fright"',
   'Oath Of Devotion':
     'Spells=' +
       '"3:Protection From Evil And Good",3:Sanctuary,' +
@@ -1055,21 +1123,12 @@ SRD5E.FEATURES = {
     'Note="Has a <i>Book Of Shadows</i> containing 3 chosen cantrips that can be cast at will"',
   'Patient Defense':
     'Section=Combat Note="May spend 1 Ki Point and use a bonus action to Dodge"',
-  'Peerless Skill':
-    'Section=Ability Note="May add a Bardic Inspiration die to an ability check"',
   'Perfect Self':
     'Section=Combat ' +
     'Note="Has a minimum of 4 Ki Points available after initiative"',
-  'Persistent Rage':
-    'Section=Combat Note="May continue raging when unengaged w/a foe"',
   'Potent Cantrip':
     'Section=Magic ' +
     'Note="Target that makes save vs. self cantrip takes half damage"',
-  'Preserve Life':
-    'Section=Magic ' +
-    'Note="R30\' May use Channel Divinity to restore %{levels.Cleric*5} HP among targets, up to half maximum HP each"',
-  'Primal Champion':'Section=Ability Note="+4 Strength/+4 Constitution"',
-  'Primal Path':'Section=Feature Note="1 selection"',
   'Primeval Awareness':
     'Section=Magic ' +
     'Note="May spend a spell slot to sense creatures in a 1 mile radius (favored terrain 6 mile radius) for 1 min/slot level"',
@@ -1083,22 +1142,8 @@ SRD5E.FEATURES = {
     'Note="May spend 2 Sorcery Points to cast a spell as bonus action"',
   'Quivering Palm':
     'Section=Combat ' +
-    'Note="After a successful unarmed attack, may spend 3 Ki Points to reduce a foe to 0 HP w/in %{levels.Monk} dy (DC %{kiSaveDC} Constitution suffer 10d10 HP necrotic)"',
-  'Rage':
-    'Section=Ability,Combat,Feature,Magic,Save ' +
-    'Note=' +
-      '"Adv on Strength",' +
-      '"+%{levels.Barbarian<9?2:levels.Barbarian<16?3:4} Strength damage",' +
-      '"May use rage features for 1 min %{levels.Barbarian<3?2:levels.Barbarian<6?3:levels.Barbarian<12?4:levels.Barbarian<17?5:levels.Barbarian<20?6:\'unlimited\'}/long rest (heavy armor neg)",' +
-      '"Cannot cast or concentrate during rage",' +
-       '"Adv on Strength saves and resistance to bludgeoning, piercing, and slashing damage"',
+    'Note="After a successful unarmed attack, may spend 3 Ki Points to reduce a foe to 0 hit points w/in %{levels.Monk} dy (DC %{kiSaveDC} Constitution suffer 10d10 HP necrotic)"',
   'Ranger Archetype':'Section=Feature Note="1 selection"',
-  'Reckless Attack':
-    'Section=Combat ' +
-    'Note="During rage, may suffer foe Adv on attacks to gain Adv on Strength melee attacks for 1 rd"',
-  'Relentless Rage':
-    'Section=Save ' +
-    'Note="Successful DC 10+ Constitution save retains 1 HP when brought to 0 HP"',
   'Reliable Talent':
     'Section=Ability Note="Minimum 10 on proficient ability rolls"',
   'Remarkable Athlete':
@@ -1108,11 +1153,6 @@ SRD5E.FEATURES = {
       '"+%{strengthModifier}\' running jump"',
   'Repelling Blast':
     'Section=Magic Note="May have <i>Eldritch Blast</i> inflict 10\' push"',
-  'Retaliation':
-    'Section=Combat ' +
-    'Note="May use Reaction to make a melee attack on a successful attacker"',
-  'Ritual Casting':
-    'Section=Magic Note="May cast spells marked with [R] using a ritual"',
   'Roguish Archetype':'Section=Feature Note="1 selection"',
   'Sacred Oath':'Section=Feature Note="1 selection"',
   'Sacred Weapon':
@@ -1127,7 +1167,7 @@ SRD5E.FEATURES = {
     'Spells=Polymorph',
   'Second Wind':
     'Section=Combat ' +
-    'Note="May use a bonus action to regain 1d10+%{levels.Fighter} HP 1/short rest"',
+    'Note="May use a bonus action to regain 1d10+%{levels.Fighter} hit points once per short rest"',
   'Second-Story Work':
     'Section=Ability,Skill ' +
     'Note=' +
@@ -1146,9 +1186,6 @@ SRD5E.FEATURES = {
   'Sneak Attack':
     'Section=Combat ' +
     'Note="+%{(levels.Rogue+1)//2}d6 damage on attacks w/Adv or shared threat"',
-  'Song Of Rest':
-    'Section=Magic ' +
-    'Note="Friendly listeners regain +1d%{levels.Bard>=9?6+(levels.Bard-5)//4*2:6} HP after a short rest"',
   'Sorcerous Origin':'Section=Feature Note="1 selection"',
   'Sorcerous Restoration':
     'Section=Magic Note="Taking a short rest restores 4 Sorcery Points"',
@@ -1175,16 +1212,11 @@ SRD5E.FEATURES = {
     'Note="May spend 1 Sorcery Point to cast a spell w/out somatic or verbal components"',
   'Superior Critical':'Section=Combat Note="Crits on a natural 18"',
   "Superior Hunter's Defense":'Section=Feature Note="1 selection"',
-  'Superior Inspiration':
-    'Section=Combat ' +
-    'Note="Has a minimum of 1 Bardic Inspiration available after initiative"',
-  'Supreme Healing':
-    'Section=Magic Note="Healing spells restore maximum possible HP"',
   'Supreme Sneak':
     'Section=Skill Note="Adv on Stealth when moving at half speed"',
   'Survivor':
     'Section=Combat ' +
-    'Note="Regains %{constitutionModifier+5} HP each rd when between 1 and %{hitPoints//2} HP"',
+    'Note="Regains %{constitutionModifier+5} hit points each rd when between 1 and %{hitPoints//2} hit points"',
   'Thief Of Five Fates':
     'Section=Magic ' +
     'Note="May use a warlock spell slot to cast <i>Bane</i> 1/long rest" ' +
@@ -1193,10 +1225,9 @@ SRD5E.FEATURES = {
     'Section=Skill Note="Understands jargon and signs known only by rogues"',
   "Thief's Reflexes":
     'Section=Combat ' +
-    'Note="May take an extra turn during the first combat round at -10 Initiative"',
+    'Note="May take an extra turn during the first combat round at -10 initiative"',
   'Thirsting Blade':
     'Section=Combat Note="Attack action w/pact blade allows 2 attacks"',
-  'Timeless Body (Druid)':'Section=Feature Note="Ages at 1/10 normal rate"',
   'Timeless Body (Monk)':
     'Section=Feature ' +
     'Note="Suffers no debility from aging/Needs no food or water"',
@@ -1209,14 +1240,9 @@ SRD5E.FEATURES = {
   'Turn The Unholy':
     'Section=Magic ' +
     'Note="R30\' May use Channel Divinity to make fiends and undead flee (DC %{spellDifficultyClass.P} Wisdom neg) for 1 min"',
-  'Turn Undead':
-    'Section=Combat ' +
-    'Note="R30\' May use Channel Divinity to make undead flee (DC %{spellDifficultyClass.C} Wisdom neg) for 1 min"',
   'Twinned Spell':
     'Section=Magic ' +
     'Note="May spend spell level Sorcery Points to add a second spell target"',
-  'Unarmored Defense (Barbarian)':
-    'Section=Combat Note="+%{constitutionModifier} Armor Class in no armor"',
   'Unarmored Defense (Monk)':
     'Section=Combat Note="+%{wisdomModifier} Armor Class in no armor"',
   'Unarmored Movement':
@@ -1249,10 +1275,7 @@ SRD5E.FEATURES = {
     'Note="May cast <i>Speak With Dead</i> at will" ' +
     'Spells="Speak With Dead"',
   'Wholeness Of Body':
-    'Section=Feature Note="May regain %{levels.Monk*3} HP 1/long rest"',
-  'Wild Shape':
-    'Section=Magic ' +
-    'Note="May transform into a CR %V%{levels.Druid<4?\' (land only)\':levels.Druid<8?\' (non-flying)\':\'\'} creature for %{levels.Druid//2} hr %{magicNotes.archdruid?\'unlimited\':2}/short rest"',
+    'Section=Feature Note="May regain %{levels.Monk*3} hit points once per long rest"',
   'Witch Sight':
     'Section=Feature Note="R30\' Sees true forms"',
   // Feat
@@ -1346,7 +1369,7 @@ SRD5E.GOODIES = {
   'Martial Weapon Proficiency':
     'Pattern="martial\\s+weapon\\s+proficiency" ' +
     'Effect=set ' +
-    'Attribute=weaponProficiency.Martial ' +
+    'Attribute="weaponProficiency.Martial Weapons" ' +
     'Section=combat Note="Proficiency in all martial weapons"',
   'Medium Armor Proficiency':
     'Pattern="medium\\s+armor\\s+proficiency" ' +
@@ -1373,7 +1396,7 @@ SRD5E.GOODIES = {
   'Simple Weapon Proficiency':
     'Pattern="simple\\s+weapon\\s+proficiency" ' +
     'Effect=set ' +
-    'Attribute=weaponProficiency.Simple ' +
+    'Attribute="weaponProficiency.Simple Weapons"' +
     'Section=combat Note="Proficiency in all simple weapons"',
   'Speed':
     'Pattern="([-+]\\d).*\\s+speed|speed\\s+([-+]\\d)" ' +
@@ -4178,6 +4201,10 @@ SRD5E.classRulesExtra = function(rules, name) {
 
   if(name == 'Barbarian') {
 
+    rules.defineRule('abilityNotes.fastMovement.1',
+      'abilityNotes.fastMovement', '?', null,
+      'armorWeight', '=', 'source < 3 ? 10 : null'
+    );
     rules.defineRule('armorClass',
       'combatNotes.unarmoredDefense(Barbarian).1', '+', null
     );
@@ -4191,15 +4218,15 @@ SRD5E.classRulesExtra = function(rules, name) {
     rules.defineRule('selectableFeatureCount.Barbarian (Primal Path)',
       'featureNotes.primalPath', '=', '1'
     );
-    rules.defineRule('speed', 'abilityNotes.fastMovement', '+', '10');
+    rules.defineRule('speed', 'abilityNotes.fastMovement.1', '+', null);
 
   } else if(name == 'Bard') {
 
     rules.defineRule('bardicInspirationDie',
       classLevel, '=', 'source<20 ? 6 + Math.floor(source / 5) * 2 : 12'
     );
-    rules.defineRule('featureNotes.bardicInspiration', // Italics noop
-      'featureNotes.fontOfInspiration', '+', 'null'
+    rules.defineRule('featureNotes.bardicInspiration',
+      'featureNotes.fontOfInspiration', '+', 'null' // italics
     );
     rules.defineRule('selectableFeatureCount.Bard (Bard College)',
       'featureNotes.bardCollege', '=', '1'
@@ -4208,6 +4235,10 @@ SRD5E.classRulesExtra = function(rules, name) {
   } else if(name == 'Cleric') {
 
     rules.defineRule('clericHasDivineStrike', 'features.Life Domain', '=', '1');
+    rules.defineRule('featureNotes.channelDivinity.1',
+      'features.Channel Divinity', '?', null,
+      'levels.Cleric', '+=', 'source<6 ? 1 : source<18 ? 2 : 3'
+    );
     rules.defineRule('selectableFeatureCount.Cleric (Divine Domain)',
       'featureNotes.divineDomain', '=', '1'
     );
@@ -4341,6 +4372,9 @@ SRD5E.classRulesExtra = function(rules, name) {
     );
     rules.defineRule
       ('combatNotes.extraAttack', classLevel, '+=', 'source<5 ? null : 1');
+    rules.defineRule('featureNotes.channelDivinity.1',
+      'levels.Paladin', '+=', 'source<3 ? null : 1'
+    );
     rules.defineRule('featureNotes.fightingStyle',
       'paladinFeatures.Fighting Style', '+=', '1'
     );
@@ -5337,12 +5371,12 @@ SRD5E.weaponRules = function(rules, name, category, properties, damage, range) {
     rules.defineRule('sanityNotes.nonproficientWeaponPenalty.' + name,
       weaponName, '?', null,
       'proficiencyBonus', '=', '-source',
-      'weaponProficiency.Martial', '^', '0',
+      'weaponProficiency.Martial Weapons', '^', '0',
       'weaponProficiency.' + name, '^', '0'
     );
     if(isSimple) {
       rules.defineRule('sanityNotes.nonproficientWeaponPenalty.' + name,
-        'weaponProficiency.Simple', '^', '0'
+        'weaponProficiency.Simple Weapons', '^', '0'
       );
     }
   }
@@ -6335,8 +6369,8 @@ SRD5E.randomizeOneAttribute = function(attributes, attribute) {
     choices = [];
     for(attr in weapons) {
       let category = QuilvynUtils.getAttrValue(weapons[attr], 'Category');
-      if(attrs['weaponProficiency.Martial'] ||
-         category.match(/simple/i) && attrs['weaponProficiency.Simple'] ||
+      if(attrs['weaponProficiency.Martial Weapons'] ||
+         category.match(/simple/i) && attrs['weaponProficiency.Simple Weapons'] ||
          attrs['weaponProficiency.' + attr]) {
         choices.push(attr);
       }

@@ -255,10 +255,10 @@ SRD5E.CLASSES = {
  'Fighter':
     'HitDie=d10 ' +
     'Features=' +
-      '"1:Armor Proficiency (Heavy/Shield)",' +
-      '"1:Save Proficiency (Constitution/Strength)",' +
+      '"1:Armor Proficiency (Light; Heavy; Shield)",' +
+      '"1:Weapon Proficiency (Simple Weapons; Martial Weapons)",' +
+      '"1:Save Proficiency (Strength; Constitution)",' +
       '"1:Skill Proficiency (Choose 2 from Acrobatics, Animal Handling, Athletics, History, Insight, Intimidation, Perception, Survival)",' +
-      '"1:Weapon Proficiency (Martial Weapons)",' +
       '"1:Fighting Style","1:Second Wind","2:Action Surge",' +
       '"3:Martial Archetype","5:Extra Attack",9:Indomitable,' +
       '"features.Champion ? 3:Improved Critical",' +
@@ -830,11 +830,48 @@ SRD5E.FEATURES = {
     'Section=save ' +
     'Note="Has immunity to disease, poison, and elemental and fey charm and fright"',
 
+  // Fighter
   'Action Surge':
-    'Section=Combat ' +
-    'Note="May take an extra action %{levels.Fighter<17?1:2}/short rest"',
+    'Section=combat ' +
+    'Note="Can take an extra action %{levels.Fighter<17?\'once\':\'twice\'} per short rest"',
+  // Extra Attack as above
+  'Fighting Style':
+    'Section=feature ' +
+    'Note="%V selection%{featureNotes.fightingStyle>1?\'s\':\'\'}"',
+  'Fighting Style (Archery)':'Section=combat Note="+2 ranged attacks"',
+  'Fighting Style (Defense)':'Section=combat Note="+1 Armor Class in armor"',
+  'Fighting Style (Dueling)':
+    'Section=combat Note="+2 damage with a single, one-handed melee weapon"',
+  'Fighting Style (Great Weapon Fighting)':
+    'Section=combat Note="Can reroll 1s and 2s on two-handed weapon damage"',
+  'Fighting Style (Protection)':
+    'Section=combat ' +
+    'Note="Can use a Reaction and a shield to inflict disadvantage on attacks targeting an adjacent creature"',
+  'Fighting Style (Two-Weapon Fighting)':
+    'Section=combat Note="Adds ability modifier to second attack damage"',
+  'Indomitable':
+    'Section=save ' +
+    'Note="Can reroll a failed save %{levels.Fighter<13?\'once\':level.Fighter<17?\'twice\':\'3 times\'} per long rest"',
+  'Martial Archetype':'Section=feature Note="1 selection"',
+  'Second Wind':
+    'Section=combat ' +
+    'Note="Can use a bonus action to regain 1d10+%{levels.Fighter} hit points once per short rest"',
+  // Champion
   'Additional Fighting Style':
-    'Section=Feature Note="May select a second Fighting Style"',
+    'Section=feature Note="Can select a second Fighting Style"',
+  'Improved Critical':
+    'Section=combat Note="Scores a critical hit on a natural 19"',
+  'Remarkable Athlete':
+    'Section=ability,skill ' +
+    'Note=' +
+      '"+%{proficiencyBonus//2} on non-proficient Strength, Dexterity, and Constitution checks",' +
+      '"+%{strengthModifier}\' running jump distance"',
+  'Superior Critical':
+    'Section=combat Note="Scores a critical hit on a natural 18"',
+  'Survivor':
+    'Section=combat ' +
+    'Note="Regains %{constitutionModifier+5} hit points each rd when between 1 and %{hitPoints//2} hit points"',
+
   'Agonizing Blast':
     'Section=Magic ' +
     'Note="<i>Eldritch Blast</i> inflicts +%{charismaModifier} HP"',
@@ -989,18 +1026,6 @@ SRD5E.FEATURES = {
     'Section=Magic ' +
     'Note="May cast self <i>False Life</i> at will" ' +
     'Spells="False Life"',
-  'Fighting Style':'Section=Feature Note="%V selections"',
-  'Fighting Style (Archery)':'Section=Combat Note="+2 ranged attacks"',
-  'Fighting Style (Defense)':'Section=Combat Note="+1 Armor Class in armor"',
-  'Fighting Style (Dueling)':
-    'Section=Combat Note="+2 damage with a single, one-handed weapon"',
-  'Fighting Style (Great Weapon Fighting)':
-    'Section=Combat Note="May reroll 1s and 2s on two-handed weapon damage"',
-  'Fighting Style (Protection)':
-    'Section=Combat ' +
-    'Note="May use Reaction and shield to inflict Disadv on attacks on an adjacent creature"',
-  'Fighting Style (Two-Weapon Fighting)':
-    'Section=Combat Note="Adds ability modifier to second attack damage"',
   'Flurry Of Blows':
     'Section=Combat ' +
     'Note="May spend 1 Ki Point to use a bonus action to make 2 unarmed strikes"',
@@ -1034,13 +1059,9 @@ SRD5E.FEATURES = {
   'Hurl Through Hell':
     'Section=Combat ' +
     'Note="After a successful attack, may inflict 10d10 HP psychic and cause foe to disappear for 1 rd 1/long rest"',
-  'Improved Critical':'Section=Combat Note="Crits on a natural 19"',
   'Improved Divine Smite':
     'Section=Combat ' +
     'Note="Successful melee attack inflicts +1d8 HP radiant damage"',
-  'Indomitable':
-    'Section=Save ' +
-    'Note="May reroll a failed save %{levels.Fighter<13?1:level.Fighter<17?2:3}/long rest"',
   'Ki':'Section=Feature Note="May use %{levels.Monk} Ki Points/short rest"',
   'Ki-Empowered Strikes':
     'Section=Combat Note="Unarmed attacks count as magical"',
@@ -1055,7 +1076,6 @@ SRD5E.FEATURES = {
     'Note=' +
       '"When unarmored, gains +%1 attack and damage with monk weapons and raises damage die to 1d%V",' +
       '"When unarmored, may use a bonus action to make an unarmed strike after a monk weapon attack"',
-  'Martial Archetype':'Section=Feature Note="1 selection"',
   'Mask Of Many Faces':
     'Section=Magic ' +
     'Note="May cast <i>Disguise Self</i> at will" ' +
@@ -1146,11 +1166,6 @@ SRD5E.FEATURES = {
   'Ranger Archetype':'Section=Feature Note="1 selection"',
   'Reliable Talent':
     'Section=Ability Note="Minimum 10 on proficient ability rolls"',
-  'Remarkable Athlete':
-    'Section=Ability,Skill ' +
-    'Note=' +
-      '"+%{proficiencyBonus//2} non-proficient Strength, Dexterity, and Constitution checks",' +
-      '"+%{strengthModifier}\' running jump"',
   'Repelling Blast':
     'Section=Magic Note="May have <i>Eldritch Blast</i> inflict 10\' push"',
   'Roguish Archetype':'Section=Feature Note="1 selection"',
@@ -1165,9 +1180,6 @@ SRD5E.FEATURES = {
     'Section=Magic ' +
     'Note="May use a Warlock spell slot to cast <i>Polymorph</i> 1/long rest" ' +
     'Spells=Polymorph',
-  'Second Wind':
-    'Section=Combat ' +
-    'Note="May use a bonus action to regain 1d10+%{levels.Fighter} hit points once per short rest"',
   'Second-Story Work':
     'Section=Ability,Skill ' +
     'Note=' +
@@ -1210,13 +1222,9 @@ SRD5E.FEATURES = {
   'Subtle Spell':
     'Section=Magic ' +
     'Note="May spend 1 Sorcery Point to cast a spell w/out somatic or verbal components"',
-  'Superior Critical':'Section=Combat Note="Crits on a natural 18"',
   "Superior Hunter's Defense":'Section=Feature Note="1 selection"',
   'Supreme Sneak':
     'Section=Skill Note="Adv on Stealth when moving at half speed"',
-  'Survivor':
-    'Section=Combat ' +
-    'Note="Regains %{constitutionModifier+5} hit points each rd when between 1 and %{hitPoints//2} hit points"',
   'Thief Of Five Fates':
     'Section=Magic ' +
     'Note="May use a warlock spell slot to cast <i>Bane</i> 1/long rest" ' +

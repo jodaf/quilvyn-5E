@@ -278,15 +278,15 @@ SRD5E.CLASSES = {
   'Monk':
     'HitDie=d8 ' +
     'Features=' +
-      '"1:Save Proficiency (Dexterity/Strength)",' +
-      '"1:Skill Proficiency (Choose 2 from Acrobatics, Athletics, History, Insight, Religion, Stealth)",' +
-      '"1:Tool Proficiency (Choose 1 from any Artisan, any Musical)",' +
       '"1:Weapon Proficiency (Simple Weapons; Shortsword)",' +
-      '"1:Martial Arts","1:Unarmored Defense (Monk)","2:Flurry Of Blows",' +
-      '"2:Ki","2:Patient Defense","2:Step Of The Wind",' +
-      '"2:Unarmored Movement","3:Deflect Missiles","3:Monastic Tradition",' +
+      '"1:Tool Proficiency (Choose 1 from any Artisan, any Musical)",' +
+      '"1:Save Proficiency (Strength; Dexterity)",' +
+      '"1:Skill Proficiency (Choose 2 from Acrobatics, Athletics, History, Insight, Religion, Stealth)",' +
+      '"1:Unarmored Defense (Monk)","1:Martial Arts","2:Ki",' +
+      '"2:Flurry Of Blows","2:Patient Defense","2:Step Of The Wind",' +
+      '"2:Unarmored Movement","3:Monastic Tradition","3:Deflect Missiles",' +
       '"4:Slow Fall","5:Extra Attack","5:Stunning Strike",' +
-      '"6:Ki-Empowered Strikes",7:Evasion,"7:Stillness Of Mind",' +
+      '"6:Ki-Empowered Strikes","7:Evasion","7:Stillness Of Mind",' +
       '"10:Purity Of Body","13:Tongue Of The Sun And Moon","14:Diamond Soul",' +
       '"15:Timeless Body (Monk)","18:Empty Body","20:Perfect Self",' +
       '"features.Way Of The Open Hand ? 3:Open Hand Technique",' +
@@ -670,7 +670,7 @@ SRD5E.FEATURES = {
   'Mindless Rage':'Section=save Note="Immune to charm and fright during rage"',
   'Retaliation':
     'Section=combat ' +
-    'Note="Can use a Reaction to make a melee attack on a successful attacker"',
+    'Note="Can use a reaction to make a melee attack on a successful attacker"',
 
   // Bard
   'Bard College':'Section=feature Note="1 selection"',
@@ -707,7 +707,7 @@ SRD5E.FEATURES = {
     'Section=skill Note="Skill Proficiency (Choose 3 from any)"',
   'Cutting Words':
     'Section=combat ' +
-    'Note="R60\' Can use a Reaction to subtract a Bardic Inspiration die from a foe roll"',
+    'Note="R60\' Can use a reaction to subtract a Bardic Inspiration die from a foe roll"',
   'Peerless Skill':
     'Section=ability ' +
     'Note="Can add a Bardic Inspiration die to a self ability check"',
@@ -846,7 +846,7 @@ SRD5E.FEATURES = {
     'Section=combat Note="Can reroll 1s and 2s on two-handed weapon damage"',
   'Fighting Style (Protection)':
     'Section=combat ' +
-    'Note="Can use a Reaction and a shield to inflict disadvantage on attacks targeting an adjacent creature"',
+    'Note="Can use a reaction and a shield to inflict disadvantage on attacks targeting an adjacent creature"',
   'Fighting Style (Two-Weapon Fighting)':
     'Section=combat Note="Adds ability modifier to second attack damage"',
   'Indomitable':
@@ -871,6 +871,73 @@ SRD5E.FEATURES = {
   'Survivor':
     'Section=combat ' +
     'Note="Regains %{constitutionModifier+5} hit points each rd when between 1 and %{hitPoints//2} hit points"',
+
+  // Monk
+  'Deflect Missiles':
+    'Section=combat ' +
+    'Note="Can use a reaction to reduce missile damage by 1d10+%{levels.Monk+dexterityModifier} HP; reducing it to 0 hit points allows spending 1 Ki Point to make an immediate attack"',
+  'Empty Body':
+    'Section=magic ' +
+    'Note="Can spend 4 Ki Points to become invisible and gain resistance to all damage other than force for 1 min/Can spend 8 Ki Points to cast <i>Astral Projection</i> on self" ' +
+    'Spells="Astral Projection"',
+  'Evasion':
+    'Section=save ' +
+    'Note="Successful Dexterity saves yield no damage instead of half, and failures yield half damage"',
+  // Extra Attack as above
+  'Flurry Of Blows':
+    'Section=combat ' +
+    'Note="Can spend 1 Ki Point to make 2 unarmed strikes as a bonus action"',
+  'Ki':'Section=feature Note="Can use %{levels.Monk} Ki Points per short rest"',
+  'Ki-Empowered Strikes':
+    'Section=combat Note="Unarmed attacks count as magical"',
+  'Martial Arts':
+    'Section=combat,combat ' +
+    'Note=' +
+      '"When unarmored, gains +%1 attack and damage with monk weapons and raises damage die to 1d%V",' +
+      '"When unarmored, can use a bonus action to make an unarmed strike after a monk weapon attack"',
+  'Patient Defense':
+    'Section=combat Note="Can spend 1 Ki Point to Dodge as a bonus action"',
+  'Perfect Self':
+    'Section=combat ' +
+    'Note="Has a minimum of 4 Ki Points available after initiative"',
+  'Purity Of Body':'Section=save Note="Has immunity to disease and poison"',
+  'Slow Fall':
+    'Section=ability ' +
+    'Note="Can use a reaction to reduce falling damage by %{levels.Monk*5} HP"',
+  'Step Of The Wind':
+    'Section=combat ' +
+    'Note="Can spend 1 Ki Point to dbl jump distance and Disengage or Dash as a bonus action"',
+  'Stillness Of Mind':
+    'Section=save ' +
+    'Note="Can use an action to end charm or fright affecting self"',
+  'Stunning Strike':
+    'Section=combat ' +
+    'Note="Can spend 1 Ki Point after a successful attack to stun the target (DC %{kiSaveDC} Constitution neg) for 1 rd"',
+  'Timeless Body (Monk)':
+    'Section=feature ' +
+    'Note="Suffers no debility from aging and needs no food or water"',
+  'Tongue Of The Sun And Moon':
+    'Section=feature Note="Can communicate in any language"',
+  'Unarmored Defense (Monk)':
+    'Section=combat Note="+%{wisdomModifier} Armor Class in no armor"',
+  'Unarmored Movement':
+    'Section=ability,ability ' +
+    'Note=' +
+      '"+%{(levels.Monk+6)//4*5} Speed in no armor",' +
+      '"Can move across vertical surfaces and liquids"',
+  // Way Of The Open Hand
+  'Open Hand Technique':
+    'Section=combat ' +
+    'Note="Can use Flurry of Blows to inflict a choice of knocked prone (DC %{kiSaveDC} Dexterity neg), a 15\' push (DC %{kiSaveDC} Strength neg), or loss of reactions for 1 rd"',
+  'Quivering Palm':
+    'Section=combat ' +
+    'Note="Can spend 3 Ki Points after a successful unarmed attack to reduce a foe to 0 hit points at any time within %{levels.Monk} days (DC %{kiSaveDC} Constitution inflicts 10d10 HP necrotic)"',
+  'Tranquility':
+    'Section=magic ' +
+    'Note="Can gain <i>Sanctuary</i> effects between long rests (DC %{kiSaveDC} Wisdom neg)" ' +
+    'Spells=Sanctuary',
+  'Wholeness Of Body':
+    'Section=feature Note="Can use an action to regain %{levels.Monk*3} hit points once per long rest"',
 
   'Agonizing Blast':
     'Section=Magic ' +
@@ -933,9 +1000,6 @@ SRD5E.FEATURES = {
     'Note="May add 1d10 to an ability or save roll 1/short rest"',
   "Devil's Sight":'Section=Feature Note="R120\' Sees normally in darkness"',
   'Defensive Tactics':'Section=Feature Note="1 selection"',
-  'Deflect Missiles':
-    'Section=Combat ' +
-    'Note="May use Reaction to reduce missile damage by 1d10+%{levels.Monk+dexterityModifier} HP; reducing to 0 hit points allows spending 1 Ki Point for immediate attack"',
   'Diamond Soul':
     'Section=Save,Save ' +
     'Note=' +
@@ -989,14 +1053,7 @@ SRD5E.FEATURES = {
   'Empowered Spell':
     'Section=Magic ' +
     'Note="May spend 1 Sorcery Point to reroll %{charismaModifier>?1} spell damage dice"',
-  'Empty Body':
-    'Section=Magic ' +
-    'Note="May spend 4 Ki Points to gain 1 min invisibility w/resistance to all damage other than force/May spend 8 Ki Points to cast self <i>Astral Projection</i>" ' +
-    'Spells="Astral Projection"',
   'Escape The Horde':'Section=Combat Note="Foes have Disadv on OA on self"',
-  'Evasion':
-    'Section=Save ' +
-    'Note="Successful Dexterity save yields no damage instead of half; failure yields half damage"',
   'Evocation Savant':
     'Section=Magic ' +
     'Note="May copy evocation spells into spellbook for half cost"',
@@ -1026,9 +1083,6 @@ SRD5E.FEATURES = {
     'Section=Magic ' +
     'Note="May cast self <i>False Life</i> at will" ' +
     'Spells="False Life"',
-  'Flurry Of Blows':
-    'Section=Combat ' +
-    'Note="May spend 1 Ki Point to use a bonus action to make 2 unarmed strikes"',
   'Foe Slayer':
     'Section=Combat ' +
     'Note="May gain choice of +%{wisdomModifier} attack or damage vs. favored enemy 1/rd"',
@@ -1062,20 +1116,12 @@ SRD5E.FEATURES = {
   'Improved Divine Smite':
     'Section=Combat ' +
     'Note="Successful melee attack inflicts +1d8 HP radiant damage"',
-  'Ki':'Section=Feature Note="May use %{levels.Monk} Ki Points/short rest"',
-  'Ki-Empowered Strikes':
-    'Section=Combat Note="Unarmed attacks count as magical"',
   'Lay On Hands':
     'Section=Magic ' +
     'Note="May heal %{levels.Paladin*5} hit points per long rest; may use 5 hit points\' worth to cure disease or poison"',
   'Lifedrinker':
     'Section=Combat ' +
     'Note="Pact weapon inflicts +%{charismaModifier>?1} HP necrotic"',
-  'Martial Arts':
-    'Section=Combat,Combat ' +
-    'Note=' +
-      '"When unarmored, gains +%1 attack and damage with monk weapons and raises damage die to 1d%V",' +
-      '"When unarmored, may use a bonus action to make an unarmed strike after a monk weapon attack"',
   'Mask Of Many Faces':
     'Section=Magic ' +
     'Note="May cast <i>Disguise Self</i> at will" ' +
@@ -1117,9 +1163,6 @@ SRD5E.FEATURES = {
   'One With Shadows':
     'Section=Magic ' +
     'Note="May become invisible in dim light (moving or taking an action ends)"',
-  'Open Hand Technique':
-    'Section=Combat ' +
-    'Note="Successful Flurry of Blows attack may inflict choice of knocked prone (DC %{kiSaveDC} Dexterity neg), 15\' push (DC %{kiSaveDC} Strength neg), or denied Reaction for 1 rd"',
   'Otherworldly Leap':
     'Section=Magic ' +
     'Note="May cast self <i>Jump</i> at will" ' +
@@ -1141,18 +1184,12 @@ SRD5E.FEATURES = {
   'Pact Of The Tome':
     'Section=Magic ' +
     'Note="Has a <i>Book Of Shadows</i> containing 3 chosen cantrips that can be cast at will"',
-  'Patient Defense':
-    'Section=Combat Note="May spend 1 Ki Point and use a bonus action to Dodge"',
-  'Perfect Self':
-    'Section=Combat ' +
-    'Note="Has a minimum of 4 Ki Points available after initiative"',
   'Potent Cantrip':
     'Section=Magic ' +
     'Note="Target that makes save vs. self cantrip takes half damage"',
   'Primeval Awareness':
     'Section=Magic ' +
     'Note="May spend a spell slot to sense creatures in a 1 mile radius (favored terrain 6 mile radius) for 1 min/slot level"',
-  'Purity Of Body':'Section=Save Note="Immune to disease and poison"',
   'Purity Of Spirit':
     'Section=Magic ' +
     'Note="Has a continuous <i>Protection From Evil And Good</i> effect" ' +
@@ -1160,9 +1197,6 @@ SRD5E.FEATURES = {
   'Quickened Spell':
     'Section=Magic ' +
     'Note="May spend 2 Sorcery Points to cast a spell as bonus action"',
-  'Quivering Palm':
-    'Section=Combat ' +
-    'Note="After a successful unarmed attack, may spend 3 Ki Points to reduce a foe to 0 hit points w/in %{levels.Monk} dy (DC %{kiSaveDC} Constitution suffer 10d10 HP necrotic)"',
   'Ranger Archetype':'Section=Feature Note="1 selection"',
   'Reliable Talent':
     'Section=Ability Note="Minimum 10 on proficient ability rolls"',
@@ -1192,9 +1226,6 @@ SRD5E.FEATURES = {
   'Signature Spells':
     'Section=Magic Note="May cast 2 chosen W3 spells 1/short rest"',
   'Slippery Mind':'Section=Save Note="Save Proficiency (Wisdom)"',
-  'Slow Fall':
-    'Section=Ability ' +
-    'Note="May use Reaction to negate %{levels.Monk*5} HP falling damage"',
   'Sneak Attack':
     'Section=Combat ' +
     'Note="+%{(levels.Rogue+1)//2}d6 damage on attacks w/Adv or shared threat"',
@@ -1207,18 +1238,10 @@ SRD5E.FEATURES = {
     'Section=Combat ' +
     'Note="May use Reaction to redirect a foe melee miss to another creature"',
   'Steel Will':'Section=Save Note="Adv on saves vs. fright"',
-  'Step Of The Wind':
-    'Section=Combat ' +
-    'Note="May spend 1 Ki Point and use a bonus action to Disengage or Dash and dbl jump distance"',
-  'Stillness Of Mind':
-    'Section=Save Note="May end self charm and fright at will"',
   'Stroke Of Luck':
     'Section=Combat ' +
     'Note=' +
       '"May change a miss into a hit or take an automatic 20 on an ability check 1/short rest"',
-  'Stunning Strike':
-    'Section=Combat ' +
-    'Note="After a successful attack, may spend 1 Ki Point to stun foe (DC %{kiSaveDC} Constitution neg) for 1 rd"',
   'Subtle Spell':
     'Section=Magic ' +
     'Note="May spend 1 Sorcery Point to cast a spell w/out somatic or verbal components"',
@@ -1236,28 +1259,12 @@ SRD5E.FEATURES = {
     'Note="May take an extra turn during the first combat round at -10 initiative"',
   'Thirsting Blade':
     'Section=Combat Note="Attack action w/pact blade allows 2 attacks"',
-  'Timeless Body (Monk)':
-    'Section=Feature ' +
-    'Note="Suffers no debility from aging/Needs no food or water"',
-  'Tongue Of The Sun And Moon':
-    'Section=Feature Note="May communicate in any language"',
-  'Tranquility':
-    'Section=Magic ' +
-    'Note="May gain <i>Sanctuary</i> effects between long rests (DC %{kiSaveDC} Wisdom neg)" ' +
-    'Spells=Sanctuary',
   'Turn The Unholy':
     'Section=Magic ' +
     'Note="R30\' May use Channel Divinity to make fiends and undead flee (DC %{spellDifficultyClass.P} Wisdom neg) for 1 min"',
   'Twinned Spell':
     'Section=Magic ' +
     'Note="May spend spell level Sorcery Points to add a second spell target"',
-  'Unarmored Defense (Monk)':
-    'Section=Combat Note="+%{wisdomModifier} Armor Class in no armor"',
-  'Unarmored Movement':
-    'Section=Ability,Ability ' +
-    'Note=' +
-      '"+%{(levels.Monk+6)//4*5} Speed in no armor",' +
-      '"May move across vertical surfaces and liquids"',
   'Uncanny Dodge':
     'Section=Combat ' +
     'Note="May use Reaction to reduce damage taken from an attack by half"',
@@ -1282,8 +1289,6 @@ SRD5E.FEATURES = {
     'Section=Magic ' +
     'Note="May cast <i>Speak With Dead</i> at will" ' +
     'Spells="Speak With Dead"',
-  'Wholeness Of Body':
-    'Section=Feature Note="May regain %{levels.Monk*3} hit points once per long rest"',
   'Witch Sight':
     'Section=Feature Note="R30\' Sees true forms"',
   // Feat

@@ -1005,7 +1005,7 @@ SRD5E.FEATURES = {
   // Extra Attack as above
   'Favored Enemy':
     'Section=skill ' +
-    'Note="Has advantage on Survival to track and on Intelligence to recall info about %{levels.Ranger<6?1:levels.Ranger<14?2:3} chosen creature types, and may learn any languages they speak"',
+    'Note="Has advantage on Survival to track and on Intelligence to recall info about %{levels.Ranger<6?1:levels.Ranger<14?2:3} chosen creature types, and can learn any languages they speak"',
   'Feral Senses':
     'Section=combat,skill ' +
     'Note=' +
@@ -4355,7 +4355,7 @@ SRD5E.classRulesExtra = function(rules, name) {
     rules.defineRule('selectableFeatureCount.Fighter (Fighting Style)',
       'fighterFeatures.Fighting Style', '?', null,
       'featureNotes.fightingStyle', '+=', '1',
-      'featureNotes.additionalFightingStype', '+', '1'
+      'featureNotes.additionalFightingStyle', '+', '1'
     );
     rules.defineRule('selectableFeatureCount.Fighter (Martial Archetype)',
       'featureNotes.martialArchetype', '=', '1'

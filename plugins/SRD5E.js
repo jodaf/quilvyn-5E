@@ -162,7 +162,6 @@ SRD5E.CLASSES = {
       '"1:Tool Proficiency (Choose 3 from any Musical)",' +
       '"1:Save Proficiency (Dexterity; Charisma)",' +
       '"1:Skill Proficiency (Choose 3 from any)",' +
-      // TODO Is Ritual Casting a separate feature or part of Spellcasting?
       '"1:Spellcasting","1:Ritual Casting","1:Bardic Inspiration",' +
       '"2:Jack Of All Trades","2:Song Of Rest","3:Bard College",' +
       '"3:Expertise (Bard)","5:Font Of Inspiration",6:Countercharm,' +
@@ -387,18 +386,26 @@ SRD5E.CLASSES = {
   'Sorcerer':
     'HitDie=d6 ' +
     'Features=' +
-      '"1:Save Proficiency (Charisma/Constitution)",' +
+      '"1:Weapon Proficiency (Dagger; Dart; Sling; Quarterstaff; Light Crossbow)",' +
+      '"1:Save Proficiency (Constitution; Charisma)",' +
       '"1:Skill Proficiency (Choose 2 from Arcana, Deception, Insight, Intimidation, Persuasion, Religion)",' +
-      '"1:Weapon Proficiency (Dagger/Dart/Sling/Quarterstaff/Light Crossbow)",' +
-      '1:Spellcasting,"1:Sorcerous Origin","2:Font Of Magic",3:Metamagic,' +
+      '"1:Spellcasting","1:Sorcerous Origin","2:Font Of Magic","3:Metamagic",' +
       '"20:Sorcerous Restoration",' +
       '"features.Draconic Bloodline ? 1:Draconic Resilience",' +
-      '"features.Draconic Bloodline ? 1:Dragon Ancestor",' +
       '"features.Draconic Bloodline ? 6:Elemental Affinity",' +
       '"features.Draconic Bloodline ? 14:Dragon Wings",' +
       '"features.Draconic Bloodline ? 18:Draconic Presence" ' +
     'Selectables=' +
-      '"1:Draconic Bloodline:Sorcerous Origin",' +
+      '"1:Draconic Bloodline (Black):Sorcerous Origin",' +
+      '"1:Draconic Bloodline (Blue):Sorcerous Origin",' +
+      '"1:Draconic Bloodline (Brass):Sorcerous Origin",' +
+      '"1:Draconic Bloodline (Bronze):Sorcerous Origin",' +
+      '"1:Draconic Bloodline (Copper):Sorcerous Origin",' +
+      '"1:Draconic Bloodline (Gold):Sorcerous Origin",' +
+      '"1:Draconic Bloodline (Green):Sorcerous Origin",' +
+      '"1:Draconic Bloodline (Red):Sorcerous Origin",' +
+      '"1:Draconic Bloodline (Silver):Sorcerous Origin",' +
+      '"1:Draconic Bloodline (White):Sorcerous Origin",' +
       '"3:Careful Spell:Metamagic","3:Distant Spell:Metamagic",' +
       '"3:Empowered Spell:Metamagic","3:Extended Spell:Metamagic",' +
       '"3:Heightened Spell:Metamagic","3:Quickened Spell:Metamagic",' +
@@ -419,9 +426,9 @@ SRD5E.CLASSES = {
     'HitDie=d8 ' +
     'Features=' +
       '"1:Armor Proficiency (Light)",' +
-      '"1:Save Proficiency (Charisma/Wisdom)",' +
-      '"1:Skill Proficiency (Choose 2 from Arcana, Deception, History, Intimidation, Investigation, Nature, Religion)",' +
       '"1:Weapon Proficiency (Simple Weapons)",' +
+      '"1:Save Proficiency (Wisdom; Charisma)",' +
+      '"1:Skill Proficiency (Choose 2 from Arcana, Deception, History, Intimidation, Investigation, Nature, Religion)",' +
       '"1:Otherworldly Patron","1:Pact Magic","2:Eldritch Invocations",' +
       '"3:Pact Boon","11:Mystic Arcanum","20:Eldritch Master",' +
       '"features.The Fiend ? 1:Dark One\'s Blessing",' +
@@ -433,20 +440,22 @@ SRD5E.CLASSES = {
       '"3:Pact Of The Blade:Pact Boon",' +
       '"3:Pact Of The Chain:Pact Boon",' +
       '"3:Pact Of The Tome:Pact Boon",' +
-      '"2:Agonizing Blast:Eldritch Invocation",' +
+      '"spells.Eldritch Blast(K0 Evoc) ? 2:Agonizing Blast:Eldritch Invocation",' +
       '"2:Armor Of Shadows:Eldritch Invocation",' +
       '"2:Beast Speech:Eldritch Invocation",' +
       '"2:Beguiling Influence:Eldritch Invocation",' +
+      '"features.Pact Of The Tome ? 2:Book Of Ancient Secrets",' +
       '"2:Devil\'s Sight:Eldritch Invocation",' +
       '"2:Eldritch Sight:Eldritch Invocation",' +
-      '"2:Eldritch Spear:Eldritch Invocation",' +
+      '"spells.Eldritch Blast(K0 Evoc) ? 2:Eldritch Spear:Eldritch Invocation",' +
       '"2:Eyes Of The Rune Keeper:Eldritch Invocation",' +
       '"2:Fiendish Vigor:Eldritch Invocation",' +
       '"2:Gaze Of Two Minds:Eldritch Invocation",' +
       '"2:Mask Of Many Faces:Eldritch Invocation",' +
       '"2:Misty Visions:Eldritch Invocation",' +
-      '"2:Repelling Blast:Eldritch Invocation",' +
+      '"spells.Eldritch Blast(K0 Evoc) ? 2:Repelling Blast:Eldritch Invocation",' +
       '"2:Thief Of Five Fates:Eldritch Invocation",' +
+      '"features.Pact Of The Chain ? 2:Voice Of The Chain Master",' +
       '"5:Mire The Mind:Eldritch Invocation",' +
       '"5:One With Shadows:Eldritch Invocation",' +
       '"5:Sign Of Ill Omen:Eldritch Invocation",' +
@@ -457,14 +466,12 @@ SRD5E.CLASSES = {
       '"9:Minions Of Chaos:Eldritch Invocation",' +
       '"9:Otherworldly Leap:Eldritch Invocation",' +
       '"9:Whispers Of The Grave:Eldritch Invocation",' +
-      '"15:Master Of Myriad Forms:Eldritch Invocation",' +
-      '"15:Visions Of Distant Realms:Eldritch Invocation",' +
-      '"15:Witch Sight:Eldritch Invocation",' +
-      '"features.Pact Of The Tome ? 2:Book Of Ancient Secrets",' +
-      '"features.Pact Of The Chain ? 15:Chains Of Carceri",' +
       '"features.Pact Of The Blade ? 12:Lifedrinker",' +
+      '"features.Pact Of The Chain ? 15:Chains Of Carceri",' +
+      '"15:Master Of Myriad Forms:Eldritch Invocation",' +
       '"features.Pact Of The Blade ? 5:Thirsting Blade",' +
-      '"features.Pact Of The Chain ? 2:Voice Of The Chain Master" ' +
+      '"15:Visions Of Distant Realms:Eldritch Invocation",' +
+      '"15:Witch Sight:Eldritch Invocation" ' +
     'SpellAbility=Charisma ' +
     'SpellSlots=' +
       'K0:2@1;3@4;4@10,' +
@@ -476,10 +483,10 @@ SRD5E.CLASSES = {
   'Wizard':
     'HitDie=d6 ' +
     'Features=' +
-      '"1:Save Proficiency (Intelligence/Wisdom)",' +
+      '"1:Weapon Proficiency (Dagger; Dart; Light Crossbow; Quarterstaff; Sling)",' +
+      '"1:Save Proficiency (Intelligence; Wisdom)",' +
       '"1:Skill Proficiency (Choose 2 from Arcana, History, Insight, Investigation, Medicine, Religion)",' +
-      '"1:Weapon Proficiency (Dagger/Dart/Light Crossbow/Quarterstaff/Sling)",' +
-      '"1:Arcane Recovery","1:Ritual Casting",1:Spellcasting,' +
+      '"1:Spellcasting","1:Ritual Casting","1:Arcane Recovery",' +
       '"2:Arcane Tradition","18:Spell Mastery","20:Signature Spells",' +
       '"features.School Of Evocation ? 2:Evocation Savant",' +
       '"features.School Of Evocation ? 2:Sculpt Spells",' +
@@ -552,7 +559,7 @@ SRD5E.FEATURES = {
     'Note="Can move through a space occupied by a larger creature"',
   'Lucky (Halfling)':
     'Section=feature ' +
-    'Note="May reroll 1s on attack, ability, and saving throws"',
+    'Note="Can reroll 1s on attack, ability, and saving throws"',
   // Lightfoot Halfling
   'Lightfoot Halfling Ability Adjustment':'Section=ability Note="+1 Charisma"',
   'Naturally Stealthy':'Section=skill Note="Can hide behind a larger creature"',
@@ -602,7 +609,7 @@ SRD5E.FEATURES = {
     'Section=ability Note="+2 Strength/+1 Constitution"',
   'Menacing':'Section=skill Note="Skill Proficiency (Intimidation)"',
   'Relentless Endurance':
-    'Section=Combat Note="May retain 1 hit point when brought to 0 hit points once per long rest"',
+    'Section=combat Note="Can retain 1 hit point when brought to 0 hit points once per long rest"',
   'Savage Attacks':
     'Section=combat ' +
     'Note="Melee critical hits inflict 1 additional die of damage"',
@@ -612,17 +619,12 @@ SRD5E.FEATURES = {
   'Tiefling Ability Adjustment':
     'Section=ability Note="+2 Charisma/+1 Intelligence"',
   'Hellish Resistance':
-    'Section=Save Note="Has resistance to fire damage"',
+    'Section=save Note="Has resistance to fire damage"',
   'Infernal Legacy':
     'Section=magic ' +
     'Note="Knows the <i>Thaumaturgy</i> cantrip%{level<3?\'\':level<5?\' and can cast <i>Hellish Rebuke</i> 1/long rest\':\' and can cast <i>Hellish Rebuke</i> and <i>Darkness</i> 1/long rest\'}" ' +
     'Spells=Thaumaturgy,"3:Hellish Rebuke",5:Darkness ' +
     'SpellAbility=Charisma',
-
-  // Background
-  'Shelter Of The Faithful':
-    'Section=Feature ' +
-    'Note="May receive aid from temples of %{deity} and fellow believers"',
 
   // Class
 
@@ -659,7 +661,7 @@ SRD5E.FEATURES = {
     'Note="Can make a DC 10 Constitution save to retain 1 hit point when brought to 0 hit points; each use adds 5 to the DC until a short rest"',
   'Unarmored Defense (Barbarian)':
     'Section=combat Note="+%{constitutionModifier} Armor Class in no armor"',
-  // Berzerker
+  // Berserker
   'Frenzy':
     'Section=combat ' +
     'Note="Can use a bonus action to attack with a melee weapon each rd during rage; suffers 1 level of exhaustion after rage"',
@@ -819,7 +821,7 @@ SRD5E.FEATURES = {
     'Section=ability,save ' +
     'Note=' +
       '"Can move normally through difficult terrain and nonmagical plants",' +
-      '"Has advantage on saves vs. impeding plants"',
+      '"Has advantage vs. impeding plants"',
   'Natural Recovery':
     'Section=magic ' +
     'Note="Can recover %{(levels.Druid+1)//2} spell slot levels (level 6 maximum) during a short rest once per long rest"',
@@ -876,6 +878,11 @@ SRD5E.FEATURES = {
   'Deflect Missiles':
     'Section=combat ' +
     'Note="Can use a reaction to reduce missile damage by 1d10+%{levels.Monk+dexterityModifier} HP; reducing it to 0 hit points allows spending 1 Ki Point to make an immediate attack"',
+  'Diamond Soul':
+    'Section=save,save ' +
+    'Note=' +
+      '"Proficient on all saves",' +
+      '"Can spend 1 Ki Point to reroll a save"',
   'Empty Body':
     'Section=magic ' +
     'Note="Can spend 4 Ki Points to become invisible and gain resistance to all damage other than force for 1 min/Can spend 8 Ki Points to cast <i>Astral Projection</i> on self" ' +
@@ -895,6 +902,7 @@ SRD5E.FEATURES = {
     'Note=' +
       '"When unarmored, gains +%1 attack and damage with monk weapons and raises damage die to 1d%V",' +
       '"When unarmored, can use a bonus action to make an unarmed strike after a monk weapon attack"',
+  'Monastic Tradition':'Section=feature Note="1 selection"',
   'Patient Defense':
     'Section=combat Note="Can spend 1 Ki Point to Dodge as a bonus action"',
   'Perfect Self':
@@ -906,7 +914,7 @@ SRD5E.FEATURES = {
     'Note="Can use a reaction to reduce falling damage by %{levels.Monk*5} HP"',
   'Step Of The Wind':
     'Section=combat ' +
-    'Note="Can spend 1 Ki Point to double jump distance and Disengage or Dash as a bonus action"',
+    'Note="Can spend 1 Ki Point to double jump distance and to Disengage or Dash as a bonus action"',
   'Stillness Of Mind':
     'Section=save ' +
     'Note="Can use an action to end charm or fright affecting self"',
@@ -1099,221 +1107,234 @@ SRD5E.FEATURES = {
     'Section=skill ' +
     'Note="Ignores class, race, and level restrictions on magic device use"',
 
-  'Agonizing Blast':
-    'Section=Magic ' +
-    'Note="<i>Eldritch Blast</i> inflicts +%{charismaModifier} HP"',
-  'Arcane Recovery':
-    'Section=Magic ' +
-    'Note="May recover %{(levels.Wizard+1)//2} spell slot levels (level 6 maximum) during a short rest 1/long rest"',
-  'Arcane Tradition':'Section=Feature Note="1 selection"',
-  'Armor Of Shadows':
-    'Section=Magic Note="May cast self <i>Mage Armor</i> at will" ' +
-    'Spells="Mage Armor"',
-  'Ascendant Step':
-    'Section=Magic ' +
-    'Note="May cast self <i>Levitate</i> at will" ' +
-    'Spells=Levitate',
-  'Beast Speech':
-    'Section=Magic ' +
-    'Note="May cast <i>Speak With Animals</i> at will" ' +
-    'Spells="Speak With Animals"',
-  'Beguiling Influence':
-    'Section=Skill Note="Skill Proficiency (Deception/Persuasion)"',
-  'Bewitching Whispers':
-    'Section=Magic ' +
-    'Note="May use a Warlock spell slot to cast <i>Compulsion</i> 1/long rest" ' +
-    'Spells=Compulsion',
-  'Book Of Ancient Secrets':
-    'Section=Magic ' +
-    'Note="May inscribe spell rituals in a <i>Book Of Shadows</i>"',
+  // Sorcerer
   'Careful Spell':
-    'Section=Magic ' +
-    'Note="May spend 1 Sorcery Point to protect %{charismaModifier>?1} creatures from self spell"',
-  'Chains Of Carceri':
-    'Section=Magic ' +
-    'Note="May cast <i>Hold Monster</i> at will on celestials, elementals, and fiends 1/long rest per creature" ' +
-    'Spells="Hold Monster"',
-  "Dark One's Blessing":
-    'Section=Combat ' +
-    'Note="Reducing foe to 0 hit points gives self %{(levels.Warlock+charismaModifier)>?1} temporary hit points"',
-  "Dark One's Own Luck":
-    'Section=Feature ' +
-    'Note="May add 1d10 to an ability or save roll 1/short rest"',
-  "Devil's Sight":'Section=Feature Note="R120\' Sees normally in darkness"',
-  'Diamond Soul':
-    'Section=Save,Save ' +
-    'Note=' +
-      '"Proficient on all saves",' +
-      '"May spend 1 Ki Point to reroll a save"',
+    'Section=magic ' +
+    'Note="Can spend 1 Sorcery Point to give %{charismaModifier>?1} creatures a successful save on a self spell"',
   'Distant Spell':
-    'Section=Magic ' +
-    'Note="May spend 1 Sorcery Point to dbl spell range or to touch at 30\'"',
-  'Draconic Presence':
-    'Section=Magic ' +
-    'Note="R60\' May spend 5 Sorcery Points to gain an aura that inflicts choice of charm or fright (DC %{spellDifficultyClass.S} Wisdom neg) for conc up to 1 min"',
-  'Draconic Resilience':
-    'Section=Combat ' +
-    'Note="+%{levels.Sorcerer} Hit Points/Armor Class %{dexterityModifier+13} in no armor"',
-  'Dragon Ancestor':
-    'Section=Skill,Skill ' +
-    'Note=' +
-      '"Fluent in Draconic",' +
-      '"Dbl proficiency bonus (+%{proficiencyBonus}) on Charisma checks w/dragons"',
-  'Dragon Wings':
-    'Section=Ability ' +
-    'Note="May use a bonus action to gain %{speed}\' fly Speed"',
-  'Dreadful Word':
-    'Section=Magic ' +
-    'Note="May use a Warlock spell slot to cast <i>Confusion</i> 1/long rest" ' +
-    'Spells=Confusion',
-  'Eldritch Invocations':'Section=Magic Note="%V selections"',
-  'Eldritch Master':
-    'Section=Magic Note="May recover expended spell slots 1/long rest"',
-  'Eldritch Sight':
-    'Section=Magic ' +
-    'Note="May cast <i>Detect Magic</i> at will" ' +
-    'Spells="Detect Magic"',
-  'Eldritch Spear':
-    'Section=Magic Note="Increases <i>Eldritch Blast</i> range to 300\'"',
-  'Elemental Affinity':
-    'Section=Magic,Save ' +
-    'Note=' +
-      '"+%{charismaModifier} HP ancestry damage type on spells",' +
-      '"May spend 1 Sorcery Point to gain 1 hr resistance to ancestry damage type"',
-  'Empowered Evocation':
-    'Section=Magic Note="+%{intelligenceModifier} HP evocation spell damage"',
+    'Section=magic ' +
+    'Note="Can spend 1 Sorcery Point to double the range of a spell or to give a touch spell a 30\' range"',
   'Empowered Spell':
-    'Section=Magic ' +
-    'Note="May spend 1 Sorcery Point to reroll %{charismaModifier>?1} spell damage dice"',
-  'Evocation Savant':
-    'Section=Magic ' +
-    'Note="May copy evocation spells into spellbook for half cost"',
+    'Section=magic ' +
+    'Note="Can spend 1 Sorcery Point to reroll %{charismaModifier>?1} spell damage dice"',
   'Extended Spell':
-    'Section=Magic ' +
-    'Note="May spend 1 Sorcery Point to gain dbl spell duration (24 hr maximum)"',
-  'Eyes Of The Rune Keeper':'Section=Feature Note="May read all writing"',
-  'Fiendish Resilience':
-    'Section=Save ' +
-    'Note="May gain resistance to chosen damage type from non-magical and non-silver weapons until next short rest"',
-  'Fiendish Vigor':
-    'Section=Magic ' +
-    'Note="May cast self <i>False Life</i> at will" ' +
-    'Spells="False Life"',
+    'Section=magic ' +
+    'Note="Can spend 1 Sorcery Point to double the duration of a spell, up to 24 hr maximum"',
   'Font Of Magic':
-    'Section=Magic ' +
-    'Note="May use %V Sorcery Points/long rest/May use a bonus action to convert between Sorcery Points and spell slots"',
-  'Gaze Of Two Minds':
-    'Section=Magic ' +
-    'Note="Touch allows self to perceive through the senses of a willing humanoid for 1 rd"',
+    'Section=magic ' +
+    'Note="Can use %V Sorcery Points per long rest/Can use a bonus action to convert between Sorcery Points and spell slots"',
   'Heightened Spell':
-    'Section=Magic ' +
-    'Note="May spend 3 Sorcery Points to inflict target Disadv on spell save"',
-  'Hurl Through Hell':
-    'Section=Combat ' +
-    'Note="After a successful attack, may inflict 10d10 HP psychic and cause foe to disappear for 1 rd 1/long rest"',
-  'Lifedrinker':
-    'Section=Combat ' +
-    'Note="Pact weapon inflicts +%{charismaModifier>?1} HP necrotic"',
-  'Mask Of Many Faces':
-    'Section=Magic ' +
-    'Note="May cast <i>Disguise Self</i> at will" ' +
-    'Spells="Disguise Self"',
-  'Master Of Myriad Forms':
-    'Section=Magic ' +
-    'Note="May cast <i>Alter Self</i> at will" ' +
-    'Spells="Alter Self"',
-  'Metamagic':'Section=Feature Note="%V selections"',
-  'Minions Of Chaos':
-    'Section=Magic ' +
-    'Note="May use a Warlock spell slot to cast <i>Conjure Elemental</i> 1/long rest" ' +
-    'Spells="Conjure Elemental"',
-  'Mire The Mind':
-    'Section=Magic ' +
-    'Note="May use a Warlock spell slot to cast <i>Slow</i> 1/long rest" ' +
-    'Spells=Slow',
-  'Misty Visions':
-    'Section=Magic ' +
-    'Note="May cast <i>Silent Image</i> at will" ' +
-    'Spells="Silent Image"',
-  'Monastic Tradition':'Section=Feature Note="1 selection"',
-  'Mystic Arcanum':
-    'Section=Magic ' +
-    'Note="May cast chosen K6%{(levels.Warlock<13?\'\':\', K7\')+(levels.Warlock<15?\'\':\', K8\')+(levels.Warlock<17?\'\':\', K9\')} %{levels.Warlock<13?\'spell\':\'spells\'} 1/long rest"',
-  'One With Shadows':
-    'Section=Magic ' +
-    'Note="May become invisible in dim light (moving or taking an action ends)"',
-  'Otherworldly Leap':
-    'Section=Magic ' +
-    'Note="May cast self <i>Jump</i> at will" ' +
-    'Spells=Jump',
-  'Otherworldly Patron':'Section=Feature Note="1 selection"',
-  'Overchannel':
-    'Section=Magic ' +
-    'Note="Evocation spell up to level 5 inflicts maximum damage, self takes 2d12+ HP necrotic damage per spell level after first use/long rest"',
-  'Pact Boon':'Section=Feature Note="1 selection"',
-  'Pact Of The Blade':
-    'Section=Magic ' +
-    'Note="May use an action to conjure a magic weapon or use a 1 hr ritual to make a magic weapon summonable"',
-  'Pact Of The Chain':
-    'Section=Combat,Magic ' +
+    'Section=magic ' +
+    'Note="Can spend 3 Sorcery Points to inflict target disadvantage on the initial save vs. a self spell"',
+  'Metamagic':'Section=feature Note="%V selections"',
+  'Quickened Spell':
+    'Section=magic ' +
+    'Note="Can spend 2 Sorcery Points to cast a 1-action spell as bonus action"',
+  'Sorcerous Origin':'Section=feature Note="1 selection"',
+  'Sorcerous Restoration':
+    'Section=magic Note="Taking a short rest restores 4 Sorcery Points"',
+  // Spellcasting as above
+  'Subtle Spell':
+    'Section=magic ' +
+    'Note="Can spend 1 Sorcery Point to cast a spell without somatic or verbal components"',
+  'Twinned Spell':
+    'Section=magic ' +
+    'Note="Can spend Sorcery Points equal to the level of a spell to add a second target"',
+  // Draconic Bloodline
+  'Draconic Bloodline':
+    'Section=skill,skill ' +
     'Note=' +
-      '"May forego one attack to allow familiar to use Reaction to attack",' +
-      '"May cast <i>Find Familiar</i> as a ritual" ' +
+      '"Language (Draconic)",' +
+      '"+%{proficiencyBonus} on Charisma checks with dragons"',
+  'Draconic Presence':
+    'Section=magic ' +
+    'Note="R60\' Can spend 5 Sorcery Points to gain an aura that inflicts a choice of charm or fright (DC %{spellDifficultyClass.S} Wisdom neg for 24 hr) for conc up to 1 min"',
+  'Draconic Resilience':
+    'Section=combat ' +
+    'Note="+%{levels.Sorcerer} Hit Points/Armor Class %{dexterityModifier+13} in no armor"',
+  'Dragon Wings':
+    'Section=ability ' +
+    'Note="Can use a bonus action to gain a %{speed}\' fly Speed"',
+  'Elemental Affinity':
+    'Section=magic,save ' +
+    'Note=' +
+      '"Spells that deal %{draconicDamage} damage inflict +%{charismaModifier} HP",' +
+      '"Can spend 1 Sorcery Point to gain resistance to %{draconicDamage} for 1 hr"',
+
+  // Warlock
+  'Eldritch Invocations':'Section=magic Note="%V selections"',
+  'Eldritch Master':
+    'Section=magic Note="Can recover expended spell slots once per long rest"',
+  'Otherworldly Patron':'Section=feature Note="1 selection"',
+  'Mystic Arcanum':
+    'Section=magic ' +
+    'Note="Can cast %{levels.Warlock>12?\'chosen K6\'+(levels.Warlock<15?\' and K7\':levels.Warlock<17?\', K7, and K8\':\', K7, K8, and K9\')+\' spells\':\'a chosen K6 spell\'} without using a spell slot once per long rest"',
+  'Pact Boon':'Section=feature Note="1 selection"',
+  // TODO No description for Pact Magic?
+  'Pact Of The Blade':
+    'Section=magic ' +
+    'Note="Can use an action to conjure a magic weapon or use a 1 hr ritual to make a magic weapon summonable"',
+  'Pact Of The Chain':
+    'Section=combat,magic ' +
+    'Note=' +
+      '"Can forego one attack to allow familiar to attack as a reaction",' +
+      '"Can cast <i>Find Familiar</i> as a ritual" ' +
     'Spells="Find Familiar"',
   'Pact Of The Tome':
-    'Section=Magic ' +
+    'Section=magic ' +
     'Note="Has a <i>Book Of Shadows</i> containing 3 chosen cantrips that can be cast at will"',
-  'Potent Cantrip':
-    'Section=Magic ' +
-    'Note="Target that makes save vs. self cantrip takes half damage"',
-  'Quickened Spell':
-    'Section=Magic ' +
-    'Note="May spend 2 Sorcery Points to cast a spell as bonus action"',
+  // The Fiend
+  "Dark One's Blessing":
+    'Section=combat ' +
+    'Note="Reducing a foe to 0 hit points gives self %{(levels.Warlock+charismaModifier)>?1} temporary hit points"',
+  "Dark One's Own Luck":
+    'Section=feature ' +
+    'Note="Can add 1d10 to an ability or save roll once per short rest"',
+  'Fiendish Resilience':
+    'Section=save ' +
+    'Note="At the end of a rest, can gain resistance to a chosen damage type from non-magical and non-silver weapons"',
+  'Hurl Through Hell':
+    'Section=combat ' +
+    'Note="After a successful attack, can inflict 10d10 HP psychic and cause the target to disappear for 1 rd once per long rest"',
+  // Eldritch Invocations
+  'Agonizing Blast':
+    'Section=magic ' +
+    'Note="<i>Eldritch Blast</i> inflicts +%{charismaModifier} HP"',
+  'Armor Of Shadows':
+    'Section=magic ' +
+    'Note="Can cast <i>Mage Armor</i> on self at will" ' +
+    'Spells="Mage Armor"',
+  'Ascendant Step':
+    'Section=magic ' +
+    'Note="Can cast <i>Levitate</i> on self at will" ' +
+    'Spells=Levitate',
+  'Beast Speech':
+    'Section=magic ' +
+    'Note="Can cast <i>Speak With Animals</i> at will" ' +
+    'Spells="Speak With Animals"',
+  'Beguiling Influence':
+    'Section=skill Note="Skill Proficiency (Deception; Persuasion)"',
+  'Bewitching Whispers':
+    'Section=magic ' +
+    'Note="Can use a Warlock spell slot to cast <i>Compulsion</i> once per long rest" ' +
+    'Spells=Compulsion',
+  'Book Of Ancient Secrets':
+    'Section=magic ' +
+    'Note="Can inscribe spell rituals in a <i>Book Of Shadows</i>"',
+  'Chains Of Carceri':
+    'Section=magic ' +
+    'Note="Can cast <i>Hold Monster</i> at will on celestials, elementals, and fiends once per long rest per creature" ' +
+    'Spells="Hold Monster"',
+  "Devil's Sight":'Section=feature Note="R120\' Sees normally in darkness"',
+  'Dreadful Word':
+    'Section=magic ' +
+    'Note="Can use a Warlock spell slot to cast <i>Confusion</i> once per long rest" ' +
+    'Spells=Confusion',
+  'Eldritch Sight':
+    'Section=magic ' +
+    'Note="Can cast <i>Detect Magic</i> at will" ' +
+    'Spells="Detect Magic"',
+  'Eldritch Spear':
+    'Section=magic Note="Increases <i>Eldritch Blast</i> range to 300\'"',
+  'Eyes Of The Rune Keeper':'Section=feature Note="Can read all writing"',
+  'Fiendish Vigor':
+    'Section=magic ' +
+    'Note="Can cast <i>False Life</i> on self at will" ' +
+    'Spells="False Life"',
+  'Gaze Of Two Minds':
+    'Section=magic ' +
+    'Note="Touch allows self to perceive through the senses of a willing humanoid while maintained"',
+  'Lifedrinker':
+    'Section=combat ' +
+    'Note="Pact weapon inflicts +%{charismaModifier>?1} HP necrotic"',
+  'Mask Of Many Faces':
+    'Section=magic ' +
+    'Note="Can cast <i>Disguise Self</i> at will" ' +
+    'Spells="Disguise Self"',
+  'Master Of Myriad Forms':
+    'Section=magic ' +
+    'Note="Can cast <i>Alter Self</i> at will" ' +
+    'Spells="Alter Self"',
+  'Minions Of Chaos':
+    'Section=magic ' +
+    'Note="Can use a Warlock spell slot to cast <i>Conjure Elemental</i> once per long rest" ' +
+    'Spells="Conjure Elemental"',
+  'Mire The Mind':
+    'Section=magic ' +
+    'Note="Can use a Warlock spell slot to cast <i>Slow</i> once per long rest" ' +
+    'Spells=Slow',
+  'Misty Visions':
+    'Section=magic ' +
+    'Note="Can cast <i>Silent Image</i> at will" ' +
+    'Spells="Silent Image"',
+  'One With Shadows':
+    'Section=magic ' +
+    'Note="Can become invisible in dim light; moving or taking an action or reaction ends"',
+  'Otherworldly Leap':
+    'Section=magic ' +
+    'Note="Can cast <i>Jump</i> on self at will" ' +
+    'Spells=Jump',
   'Repelling Blast':
-    'Section=Magic Note="May have <i>Eldritch Blast</i> inflict 10\' push"',
-  'Sculpt Spells':
-    'Section=Magic ' +
-    'Note="May protect spell level + 1 targets from self evocation spell effects"',
+    'Section=magic Note="Can inflict a 10\' push with a successful <i>Eldritch Blast</i>"',
   'Sculptor Of Flesh':
-    'Section=Magic ' +
-    'Note="May use a Warlock spell slot to cast <i>Polymorph</i> 1/long rest" ' +
+    'Section=magic ' +
+    'Note="Can use a Warlock spell slot to cast <i>Polymorph</i> once per long rest" ' +
     'Spells=Polymorph',
   'Sign Of Ill Omen':
-    'Section=Magic ' +
-    'Note="May use a Warlock spell slot to cast <i>Bestow Curse</i> 1/long rest" ' +
+    'Section=magic ' +
+    'Note="Can use a Warlock spell slot to cast <i>Bestow Curse</i> once per long rest" ' +
     'Spells="Bestow Curse"',
-  'Signature Spells':
-    'Section=Magic Note="May cast 2 chosen W3 spells 1/short rest"',
-  'Sorcerous Origin':'Section=Feature Note="1 selection"',
-  'Sorcerous Restoration':
-    'Section=Magic Note="Taking a short rest restores 4 Sorcery Points"',
-  'Spell Mastery':
-    'Section=Magic Note="May cast chosen W1 spell and W2 spell at will"',
-  'Subtle Spell':
-    'Section=Magic ' +
-    'Note="May spend 1 Sorcery Point to cast a spell w/out somatic or verbal components"',
   'Thief Of Five Fates':
-    'Section=Magic ' +
-    'Note="May use a warlock spell slot to cast <i>Bane</i> 1/long rest" ' +
+    'Section=magic ' +
+    'Note="Can use a warlock spell slot to cast <i>Bane</i> once per long rest" ' +
     'Spells=Bane',
   'Thirsting Blade':
-    'Section=Combat Note="Attack action w/pact blade allows 2 attacks"',
-  'Twinned Spell':
-    'Section=Magic ' +
-    'Note="May spend spell level Sorcery Points to add a second spell target"',
+    'Section=combat Note="Attack action with a pact blade allows 2 attacks"',
   'Visions Of Distant Realms':
-    'Section=Magic ' +
-    'Note="May cast <i>Arcane Eye</i> at will" ' +
+    'Section=magic ' +
+    'Note="Can cast <i>Arcane Eye</i> at will" ' +
     'Spells="Arcane Eye"',
   'Voice Of The Chain Master':
-    'Section=Feature Note="May perceive and speak through familiar"',
+    'Section=feature ' +
+    'Note="Can perceive and speak through familiar and communicate telepathically with it"',
   'Whispers Of The Grave':
-    'Section=Magic ' +
-    'Note="May cast <i>Speak With Dead</i> at will" ' +
+    'Section=magic ' +
+    'Note="Can cast <i>Speak With Dead</i> at will" ' +
     'Spells="Speak With Dead"',
-  'Witch Sight':
-    'Section=Feature Note="R30\' Sees true forms"',
-  // Feat
+  'Witch Sight':'Section=feature Note="R30\' Sees true forms"',
+
+  // Wizard
+  'Arcane Recovery':
+    'Section=magic ' +
+    'Note="Can recover %{(levels.Wizard+1)//2} spell slot levels (level 6 maximum) during a short rest once per long rest"',
+  'Arcane Tradition':'Section=feature Note="1 selection"',
+  'Signature Spells':
+    'Section=magic ' +
+    'Note="Can cast 2 chosen W3 spells without spending a spell slot once per short rest"',
+  'Spell Mastery':
+    'Section=magic ' +
+    'Note="Can cast a chosen W1 spell and a chosen W2 spell at will and spend 8 hr to change the choices"',
+  // School Of Evocation
+  'Empowered Evocation':
+    'Section=magic Note="+%{intelligenceModifier} HP evocation spell damage"',
+  'Evocation Savant':
+    'Section=magic ' +
+    'Note="Can copy evocation spells into spellbook for half cost"',
+  'Overchannel':
+    'Section=magic ' +
+    'Note="Can inflict maximum damage from evocation spells up to level 5; doing so also inflicts 2d12+ HP necrotic damage per spell level on self for each use after the first until a long rest"',
+  'Potent Cantrip':
+    'Section=magic Note="Cantrips inflict half HP on a successful save"',
+  'Sculpt Spells':
+    'Section=magic ' +
+    'Note="Can give spell level + 1 creatures a successful save and no damage instead of half on a self spell"',
+
+  // Backgrounds
+  'Shelter Of The Faithful':
+    'Section=Feature ' +
+    'Note="May receive aid from temples of %{deity} and fellow believers"',
+
+  // Feats
   'Ability Boost':'Section=Ability Note="Ability Boost (Choose %V from any)"',
   'Grappler':
     'Section=Combat ' +
@@ -1321,12 +1342,13 @@ SRD5E.FEATURES = {
     'Note="Adv on attacks on a grappled foe/May pin a grappled foe w/an additional successful attempt"',
 
   // Sanity, Validation and Miscellaneous
-  'Bulky Armor':
-    'Section=Skill Note="Disadv on Stealth"',
+  'Bulky Armor':'Section=skill Note="Has disadvantage on Stealth"',
   'Nonproficient Armor':
-    'Section=Sanity Note="Disadv on Dexterity and Strength rolls, cannot cast spells"',
+    'Section=sanity ' +
+    'Note="Has disadvantage on Dexterity and Strength rolls and cannot cast spells"',
   'Two-Handed Weapon With Shield':
-    'Section=Validation Note="Shields cannot be used with two-handed weapons"'
+    'Section=validation Note="Shields cannot be used with two-handed weapons"'
+
 };
 SRD5E.GOODIES = {
   'Armor':
@@ -2111,7 +2133,7 @@ SRD5E.SPELLS = {
     'School=Evocation ' +
     'Level=K0 ' +
     'Description=' +
-      '"R120\' Ranged spell creates %{(level+7)//6} rays that inflict 1d10 HP force each"',
+      '"R%{$\'features.Eldritch Spear\'?300:120}\' Ranged spell creates %{(level+7)//6} rays that inflict 1d10 HP force each"',
   'Enhance Ability':
     'School=Transmutation ' +
     'Level=B2,C2,D2,S2 ' +
@@ -3622,7 +3644,7 @@ SRD5E.identityRules = function(
     'casterLevelDivine', '+=', null
   );
   rules.defineRule
-    ('experienceNeeded', 'level', '=', 'SRD5E.LEVELS_EXPERIENCE[source] * 1000');
+    ('experienceNeeded', 'level', '=', 'SRD5E.LEVELS_EXPERIENCE[source]*1000');
   rules.defineRule('features.Small', 'size', '=', 'source=="Small" ? 1 : null');
   rules.defineRule('level',
     'experience', '=', 'SRD5E.LEVELS_EXPERIENCE.findIndex(item => item * 1000 > source)'
@@ -4467,6 +4489,25 @@ SRD5E.classRulesExtra = function(rules, name) {
 
   } else if(name == 'Sorcerer') {
 
+    let allSelectables = rules.getChoices('selectableFeatures');
+    let origins =
+      Object.keys(allSelectables).filter(x => allSelectables[x].includes('Sorcerous Origin')).map(x => x.replace('Sorcerer - ', ''));
+    origins.forEach(o => {
+      if(o.includes('(')) {
+        let originGroup = o.replace(/\s*\(.*/, '');
+        rules.defineRule('features.' + originGroup, 'features.' + o, '=', '1');
+      }
+    });
+    rules.defineRule('draconicDamage',
+      'features.Draconic Bloodline', '=', '"fire"',
+      'features.Draconic Bloodline (Black)', '=', '"acid"',
+      'features.Draconic Bloodline (Blue)', '=', '"lightning"',
+      'features.Draconic Bloodline (Bronze)', '=', '"lightning"',
+      'features.Draconic Bloodline (Copper)', '=', '"acid"',
+      'features.Draconic Bloodline (Green)', '=', '"poison"',
+      'features.Draconic Bloodline (Silver)', '=', '"cold"',
+      'features.Draconic Bloodline (White)', '=', '"cold"'
+    );
     rules.defineRule('featureNotes.metamagic',
       classLevel, '=', 'source<10 ? 2 : source<17 ? 3 : 4'
     );
@@ -4485,8 +4526,6 @@ SRD5E.classRulesExtra = function(rules, name) {
       'armor', '?', 'source == "None"',
       'dexterityModifier', '=', 'source + 13'
     );
-    rules.defineRule
-      ('languages.Draconic', 'skillNotes.dragonAncestor', '=', '1');
 
   } else if(name == 'Warlock') {
 
@@ -4501,6 +4540,9 @@ SRD5E.classRulesExtra = function(rules, name) {
     );
     rules.defineRule('selectableFeatureCount.Warlock (Pact Boon)',
       'featureNotes.pactBoon', '=', '1'
+    );
+    rules.defineRule('spells.Eldritch Blast (K0 Evoc)',
+      'magicNotes.eldritchSpear', '=', 'null' // italics
     );
     rules.defineRule('maxKSlot',
       'casterLevels.K', '=', 'Math.min(Math.floor((source + 1) / 2), 5)'

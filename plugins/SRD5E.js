@@ -153,7 +153,8 @@ SRD5E.CLASSES = {
       '"features.Path Of The Berserker ? 14:Retaliation" ' +
     'Selectables=' +
       '"3:Path Of The Berserker:Primal Path" ' +
-    'SpellAbility=Wisdom',
+    'SpellAbility=Wisdom ' +
+    'MulticlassPrerequisite="strength >= 13"',
   'Bard':
     'HitDie=d8 ' +
     'Features=' +
@@ -183,7 +184,8 @@ SRD5E.CLASSES = {
       'B6:1@11;2@19,' +
       'B7:1@13;2@20,' +
       'B8:1@15,' +
-      'B9:1@17',
+      'B9:1@17 ' +
+    'MulticlassPrerequisite="charisma >= 13"',
   'Cleric':
     'HitDie=d8 ' +
     'Features=' +
@@ -213,7 +215,8 @@ SRD5E.CLASSES = {
       'C6:1@11;2@19,' +
       'C7:1@13;2@20,' +
       'C8:1@15,' +
-      'C9:1@17',
+      'C9:1@17 ' +
+    'MulticlassPrerequisite="wisdom >= 13"',
   'Druid':
     'HitDie=d8 ' +
     'Features=' +
@@ -250,7 +253,8 @@ SRD5E.CLASSES = {
       'D6:1@11;2@19,' +
       'D7:1@13;2@20,' +
       'D8:1@15,' +
-      'D9:1@17',
+      'D9:1@17 ' +
+    'MulticlassPrerequisite="wisdom >= 13"',
  'Fighter':
     'HitDie=d10 ' +
     'Features=' +
@@ -273,7 +277,8 @@ SRD5E.CLASSES = {
       '"1:Fighting Style (Protection):Fighting Style",' +
       '"1:Fighting Style (Two-Weapon Fighting):Fighting Style",' +
       '"3:Champion:Martial Archetype" ' +
-    'SpellAbility=Intelligence',
+    'SpellAbility=Intelligence ' +
+    'MulticlassPrerequisite="strength >= 13 || dexterity >= 13"',
   'Monk':
     'HitDie=d8 ' +
     'Features=' +
@@ -294,7 +299,8 @@ SRD5E.CLASSES = {
       '"features.Way Of The Open Hand ? 17:Quivering Palm" ' +
     'Selectables=' +
       '"3:Way Of The Open Hand:Monastic Tradition" ' +
-    'SpellAbility=Wisdom',
+    'SpellAbility=Wisdom ' +
+    'MulticlassPrerequisite="dexterity >= 13","wisdom >= 13"',
   'Paladin':
     'HitDie=d10 ' +
     'Features=' +
@@ -323,7 +329,8 @@ SRD5E.CLASSES = {
       'P2:2@5;3@7,' +
       'P3:2@9;3@11,' +
       'P4:1@13;2@15;3@17,' +
-      'P5:1@17;2@19',
+      'P5:1@17;2@19 ' +
+    'MulticlassPrerequisite="strength >= 13","charisma >= 13"',
   'Ranger':
     'HitDie=d10 ' +
     'Features=' +
@@ -362,7 +369,8 @@ SRD5E.CLASSES = {
       'R2:2@5;3@7,' +
       'R3:2@9;3@11,' +
       'R4:1@13;2@15;3@17,' +
-      'R5:1@17;2@19',
+      'R5:1@17;2@19 ' +
+    'MulticlassPrerequisite="dexterity >= 13","wisdom >= 13"',
   'Rogue':
     'HitDie=d8 ' +
     'Features=' +
@@ -382,7 +390,8 @@ SRD5E.CLASSES = {
       '"features.Thief ? 17:Thief\'s Reflexes" ' +
     'Selectables=' +
       '"3:Thief:Roguish Archetype" ' +
-    'SpellAbility=Intelligence',
+    'SpellAbility=Intelligence ' +
+    'MulticlassPrerequisite="dexterity >= 13"',
   'Sorcerer':
     'HitDie=d6 ' +
     'Features=' +
@@ -421,7 +430,8 @@ SRD5E.CLASSES = {
       'S6:1@11;2@19,' +
       'S7:1@13;2@20,' +
       'S8:1@15,' +
-      'S9:1@17',
+      'S9:1@17 ' +
+    'MulticlassPrerequisite="charisma >= 13"',
   'Warlock':
     'HitDie=d8 ' +
     'Features=' +
@@ -479,7 +489,8 @@ SRD5E.CLASSES = {
       'K2:2@3,' +
       'K3:2@5,' +
       'K4:2@7,' +
-      'K5:2@9;3@11;4@17',
+      'K5:2@9;3@11;4@17 ' +
+    'MulticlassPrerequisite="charisma >= 13"',
   'Wizard':
     'HitDie=d6 ' +
     'Features=' +
@@ -506,7 +517,8 @@ SRD5E.CLASSES = {
       'W6:1@11;2@19,' +
       'W7:1@13;2@20,' +
       'W8:1@15,' +
-      'W9:1@17'
+      'W9:1@17 ' +
+    'MulticlassPrerequisite="intelligence >= 13"'
 };
 SRD5E.FEATS = {
   'Ability Boost':'',
@@ -523,6 +535,7 @@ SRD5E.FEATURES = {
   'Dwarf Ability Adjustment':'Section=ability Note="+2 Constitution"',
   'Dwarven Combat Training':
     'Section=combat ' +
+    // errata replaces Throwing Hammer with Light Hammer
     'Note="Weapon Proficiency (Battleaxe; Handaxe; Light Hammer; Warhammer)"',
   'Dwarven Resilience':
     'Section=save ' +
@@ -622,7 +635,8 @@ SRD5E.FEATURES = {
     'Section=save Note="Has resistance to fire damage"',
   'Infernal Legacy':
     'Section=magic ' +
-    'Note="Knows the <i>Thaumaturgy</i> cantrip%{level<3?\'\':level<5?\' and can cast <i>Hellish Rebuke</i> 1/long rest\':\' and can cast <i>Hellish Rebuke</i> and <i>Darkness</i> 1/long rest\'}" ' +
+    // errata replaces once per day with once per long rest
+    'Note="Knows the <i>Thaumaturgy</i> cantrip%{level<3?\'\':level<5?\' and can cast <i>Hellish Rebuke</i> once per long rest\':\' and can cast <i>Hellish Rebuke</i> and <i>Darkness</i> once per long rest\'}" ' +
     'Spells=Thaumaturgy,"3:Hellish Rebuke",5:Darkness ' +
     'SpellAbility=Charisma',
 
@@ -696,7 +710,8 @@ SRD5E.FEATURES = {
     'Section=magic Note="Can cast spells marked with [R] using a ritual"',
   'Song Of Rest':
     'Section=magic ' +
-    'Note="Friendly listeners regain +1d%{levels.Bard>=9?6+(levels.Bard-5)//4*2:6} hit points after a short rest"',
+    // errata specifies spending Hit Dice
+    'Note="Friendly listeners regain +1d%{levels.Bard>=9?6+(levels.Bard-5)//4*2:6} hit points from spending Hit Dice after a short rest"',
   // TODO No note for Spellcasting feature?
   'Superior Inspiration':
     'Section=combat ' +
@@ -1177,12 +1192,13 @@ SRD5E.FEATURES = {
   'Pact Of The Chain':
     'Section=combat,magic ' +
     'Note=' +
+      // errata specifies that the attack is a reaction
       '"Can forego one attack to allow familiar to attack as a reaction",' +
       '"Can cast <i>Find Familiar</i> as a ritual" ' +
     'Spells="Find Familiar"',
   'Pact Of The Tome':
     'Section=magic ' +
-    'Note="Has a <i>Book Of Shadows</i> containing 3 chosen cantrips that can be cast at will"',
+    'Note="Has a <i>Book Of Shadows</i> containing 3 chosen cantrips from any spell lists that can be cast at will"',
   // The Fiend
   "Dark One's Blessing":
     'Section=combat ' +
@@ -1220,7 +1236,7 @@ SRD5E.FEATURES = {
     'Spells=Compulsion',
   'Book Of Ancient Secrets':
     'Section=magic ' +
-    'Note="Can inscribe spell rituals in a <i>Book Of Shadows</i>"',
+    'Note="Has 2 1st-level spell rituals inscribed in a <i>Book Of Shadows</i> and can inscribe additional rituals"',
   'Chains Of Carceri':
     'Section=magic ' +
     'Note="Can cast <i>Hold Monster</i> at will on celestials, elementals, and fiends once per long rest per creature" ' +
@@ -1335,11 +1351,11 @@ SRD5E.FEATURES = {
     'Note="Can receive aid from temples of %{deity} and fellow believers"',
 
   // Feats
-  'Ability Boost':'Section=Ability Note="Ability Boost (Choose %V from any)"',
+  'Ability Boost':'Section=ability Note="Ability Boost (Choose %V from any)"',
   'Grappler':
-    'Section=Combat ' +
-    // Note: grapple larger foes benefit removed by errata
-    'Note="Adv on attacks on a grappled foe/May pin a grappled foe w/an additional successful attempt"',
+    'Section=combat ' +
+    // errata removes grapple larger foes benefit
+    'Note="Has advantage on attacks on a grappled foe and can restrain a grappled foe with an additional successful grapple"',
 
   // Sanity, Validation and Miscellaneous
   'Bulky Armor':'Section=skill Note="Has disadvantage on Stealth"',
@@ -3336,6 +3352,7 @@ SRD5E.WEAPONS = {
   'Quarterstaff':'Category="Simple Melee" Property=Versatile Damage=1d6',
   'Sickle':'Category="Simple Melee" Property=Light Damage=1d4',
   'Spear':'Category="Simple Melee" Property=Versatile Damage=1d6 Range=20/60',
+  // errata removes Unarmed Strike
 
   'Light Crossbow':
     'Category="Simple Ranged" Property=Ammunition,Loading,Two-Handed ' +
@@ -3580,8 +3597,11 @@ SRD5E.combatRules = function(rules, armors, shields, weapons) {
   rules.defineRule('features.Two-Handed Weapon With Shield',
     'shield', '?', 'source != "None"'
   );
-  rules.defineRule
-    ('hitPoints', 'combatNotes.constitutionHitPointsAdjustment', '+', null);
+  rules.defineRule('hitPoints',
+    'combatNotes.constitutionHitPointsAdjustment', '+', null,
+    // errata specifies a minimum in the case of low constitution
+    'level', '^', null
+  );
   rules.defineRule('initiative', 'dexterityModifier', '=', null);
   SRD5E.weaponRules(rules, 'Unarmed', 'Unarmed', [], '1', null);
   rules.defineRule('weapons.Unarmed', '', '=', '1');
@@ -3613,7 +3633,7 @@ SRD5E.identityRules = function(
   QuilvynUtils.checkAttrTable
     (backgrounds, ['Equipment', 'Features']);
   QuilvynUtils.checkAttrTable
-    (classes, ['Require', 'HitDie', 'Features', 'Selectables', 'SpellAbility', 'SpellSlots']);
+    (classes, ['Require', 'HitDie', 'Features', 'Selectables', 'SpellAbility', 'SpellSlots', 'MulticlassPrerequisite']);
   QuilvynUtils.checkAttrTable(deities, ['Alignment', 'Domain']);
   QuilvynUtils.checkAttrTable
     (paths, ['Features', 'Selectables', 'Group', 'Level', 'SpellAbility', 'SpellSlots', 'Spells']);
@@ -3649,8 +3669,14 @@ SRD5E.identityRules = function(
   rules.defineRule('level',
     'experience', '=', 'SRD5E.LEVELS_EXPERIENCE.findIndex(item => item * 1000 > source)'
   );
-  QuilvynRules.validAllocationRules
-    (rules, 'level', 'level', 'Sum "^levels\\."');
+  QuilvynRules.validAllocationRules(rules, 'level', 'level', 'levelsAllocated');
+  rules.defineChoice
+    ('notes', 'validationNotes.multiclassRequirements:Requires meeting the multiclass requirements for %V additional chosen class%{validationNotes.multiclassRequirements>1?\'es\':\'\'}');
+  rules.defineRule('validationNotes.multiclassRequirements',
+    'classCount', '=', 'source>1 ? source - 1 : null',
+    'multiclassPrerequisitesMet', '+', '-source',
+    '', '^', '0'
+  );
 
 };
 
@@ -3768,7 +3794,8 @@ SRD5E.choiceRules = function(rules, type, name, attrs) {
       QuilvynUtils.getAttrValueArray(attrs, 'Features'),
       QuilvynUtils.getAttrValueArray(attrs, 'Selectables'),
       QuilvynUtils.getAttrValue(attrs, 'SpellAbility'),
-      QuilvynUtils.getAttrValueArray(attrs, 'SpellSlots')
+      QuilvynUtils.getAttrValueArray(attrs, 'SpellSlots'),
+      QuilvynUtils.getAttrValueArray(attrs, 'MulticlassPrerequisite')
     );
     SRD5E.classRulesExtra(rules, name);
   } else if(type == 'Class Feature')
@@ -4154,10 +4181,12 @@ SRD5E.backgroundFeatureRules = function(
  * list the fixed and selectable features acquired as the character advances in
  * class level. #spellAbility# names the ability for computing spell difficulty
  * class, and #spellSlots# lists the number of spells per level per day that
- * the class can cast.
+ * the class can cast. #multiclassPrerequisite# specifies any prerequesites
+ * for adding the class to an existing character of another class.
  */
 SRD5E.classRules = function(
-  rules, name, requires, hitDie, features, selectables, spellAbility, spellSlots
+  rules, name, requires, hitDie, features, selectables, spellAbility,
+  spellSlots, multiclassPrerequisite
 ) {
 
   if(!name) {
@@ -4189,6 +4218,10 @@ SRD5E.classRules = function(
     console.log('Bad spellSlots list "' + spellSlots + '" for class ' + name);
     return;
   }
+  if(!Array.isArray(multiclassPrerequisite)) {
+    console.log('Bad multiclass prerequisite list "' + multiclassPrerequisite + '" for class ' + name);
+    return;
+  }
 
   let classLevel = 'levels.' + name;
   let i;
@@ -4204,9 +4237,11 @@ SRD5E.classRules = function(
   rules.defineSheetElement(name + ' Features', 'Feats+', null, '; ');
   rules.defineChoice('extras', prefix + 'Features');
 
+  rules.defineRule('classCount', classLevel, '+=', '1');
   rules.defineRule('featCount.General',
     'levels.' + name, '+=', 'Math.min(Math.floor(source / 4), 5)'
   );
+  rules.defineRule('levelsAllocated', classLevel, '+=', null);
   rules.defineRule('proficiencyBonus',
     'levels.' + name, '=', 'Math.floor((source + 7) / 4)'
   );
@@ -4244,6 +4279,15 @@ SRD5E.classRules = function(
       );
     }
 
+  }
+
+  if(multiclassPrerequisite.length > 0) {
+    QuilvynRules.prerequisiteRules(rules,
+      'test', prefix + 'Multiclass', classLevel, multiclassPrerequisite
+    );
+    rules.defineRule('multiclassPrerequisitesMet',
+      'testNotes.' + prefix + 'Multiclass', '+=', 'source==0 ? 1 : null'
+    );
   }
 
 };
@@ -5832,7 +5876,8 @@ SRD5E.choiceEditorElements = function(rules, type) {
       ['Features', 'Features', 'text', [40]],
       ['Selectables', 'Selectable Features', 'text', [40]],
       ['SpellAbility', 'Spell Ability', 'select-one', abilities],
-      ['SpellSlots', 'Spells Slots', 'text', [40]]
+      ['SpellSlots', 'Spells Slots', 'text', [40]],
+      ['MulticlassPrerequisite', 'Multiclass Prerequisite', 'text', [40]]
     );
   else if(type == 'Class Feature')
     result.push(
@@ -6690,17 +6735,16 @@ SRD5E.ruleNotes = function() {
     '<h3>Limitations</h3>\n' +
     '<ul>\n' +
     '  <li>\n' +
-    '  Quilvyn does not report background traits, ideals, bonds, flaws,\n' +
-    '  or equipment. These items can be entered in the Notes section.\n' +
+    '  Quilvyn does not report background traits, ideals, bonds, flaws, or' +
+    '  equipment. These items can be entered in the Notes section.\n' +
     '  </li>\n' +
     '</ul>\n' +
     '\n' +
     '<h3>Known Bugs</h3>\n' +
     '<ul>\n' +
     '  <li>\n' +
-    '  Quilvyn does not test multiclass ability prerequisites, and Quilvyn\n'+
-    '  gives multiclass characters the complete set of proficiencies for\n' +
-    '  each class.\n' +
+    '  Quilvyn gives multiclass characters the complete set of proficiencies' +
+    '  for each class.\n' +
     '  </li>\n' +
     '</ul>\n' +
     '<h3>Copyrights and Licensing</h3>\n' +

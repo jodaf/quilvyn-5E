@@ -1331,8 +1331,8 @@ SRD5E.FEATURES = {
 
   // Backgrounds
   'Shelter Of The Faithful':
-    'Section=Feature ' +
-    'Note="May receive aid from temples of %{deity} and fellow believers"',
+    'Section=feature ' +
+    'Note="Can receive aid from temples of %{deity} and fellow believers"',
 
   // Feats
   'Ability Boost':'Section=Ability Note="Ability Boost (Choose %V from any)"',

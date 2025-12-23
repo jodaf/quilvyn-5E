@@ -5337,8 +5337,10 @@ SRD5E.shieldRules = function(rules, name, ac) {
   }
   rules.shieldStats.ac[name] = ac;
 
-  rules.defineRule
-    ('armorClass', 'shield', '+', QuilvynUtils.dictLit(rules.shieldStats.ac) + '[source]');
+  rules.defineRule('shieldACBonus',
+    'shield', '=', QuilvynUtils.dictLit(rules.shieldStats.ac) + '[source]'
+  );
+  rules.defineRule('armorClass', 'shieldACBonus', '+', null);
 
 };
 

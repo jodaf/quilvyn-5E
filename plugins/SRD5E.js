@@ -2481,10 +2481,10 @@ SRD5E.SPELLS = {
     'AtHigherLevels="affects +1 target" ' +
     'Description=' +
       '"Touched gains immunity to fright and +%{mdf} temporary hit points each rd for concentration up to 1 min"',
-  'Hideous Laughter':
+  'Hideous Laughter': // *
     'School=Enchantment ' +
     'Level=B1,W1 ' +
-    'Description="R30\' Target ROFL (Wisdom ends) for concentration up to 1 min"',
+    'Description="R30\' Inflicts ROFL (save Wisdom ends) for concentration up to 1 min"',
   'Hold Monster': // *
     'School=Enchantment ' +
     'Level=B5,K5,S5,W5 ' +
@@ -2773,460 +2773,471 @@ SRD5E.SPELLS = {
     'Description=' +
       '"Willing touched or touched object gains immunity to divination for 8 hr"',
 
-  'Pass Without Trace':
+  'Pass Without Trace': // *
     'School=Abjuration ' +
     'Level=D2,R2 ' +
     'Description=' +
       '"Targets in a 30\' radius gain +10 Stealth and become trackable only by magic for concentration up to 1 hr"',
-  'Passwall':
+  'Passwall': // *
     'School=Transmutation ' +
     'Level=W5 ' +
     'Description=' +
       '"R30\' Creates a 5\'x8\'x20\' passage through wood, plaster, or stone for 1 hr"',
-  'Phantasmal Killer':
+  'Phantasmal Killer': // *
     'School=Illusion ' +
     'Level=W4 ' +
     'AtHigherLevels="inflicts +1d10 HP" ' +
     'Description=' +
-      '"R120\' Target perceives a personal horror (Wisdom neg) that frightens and inflicts 4d10 HP psychic/rd (Wisdom neg that rd) for concentration up to 1 min"',
-  'Phantom Steed':
+      '"R120\' Target perceives a personal horror (save Wisdom neg) that frightens and inflicts 4d10 HP psychic per rd (save Wisdom ends) for concentration up to 1 min"',
+  'Phantom Steed': // *
     'School=Illusion ' +
     'Level=W3 ' +
     'Ritual=true ' +
     'Description=' +
-      '"R30\' Self or target may ride a conjured horse 100\'/rd (13 MPH) for 1 hr or until damaged"',
-  'Planar Ally':
+      '"R30\' Conjures a mount that can be ridden by a designated creature 100\' per rd (13 MPH) for 1 hr or until damaged"',
+  'Planar Ally': // *
     'School=Conjuration ' +
     'Level=C6 ' +
-    'Description=' +
-      '"R60\' Self may bargain for service from an otherworldly entity"',
-  'Planar Binding':
+    'Description="R60\' Bargains for service from an otherworldly entity"',
+  'Planar Binding': // *
     'School=Abjuration ' +
     'Level=B5,C5,D5,W5 ' +
-    'AtHigherLevels="extends duration to 10/30/180/366 days at level 6/7/8/9" ' +
+    'AtHigherLevels="extends the duration to 10, 30, 180, or 366 days at level 6, 7, 8, or 9" ' +
     'Description=' +
-      '"R60\' Binds a celestial, elemental, fey, or fiend to service (Charisma neg) for 1 day"',
-  'Plane Shift':
+      '"R60\' Binds a celestial, elemental, fey, or fiend to service (save Charisma neg) for 1 day"',
+  'Plane Shift': // *
     'School=Conjuration ' +
     'Level=C7,D7,K7,S7,W7 ' +
     'Description=' +
-      '"Target (Charisma neg) or self and 8 willing others travel to another plane"',
-  'Plant Growth':
+      '"Target (save Charisma neg) or self and 8 willing others travel to another plane"',
+  'Plant Growth': // *
     'School=Transmutation ' +
     'Level=B3,D3,R3 ' +
     'Description=' +
-      '"R150\' Causes plants to overgrow in a 100\' radius or enriches a 1/2 mile radius for 1 yr"',
-  'Poison Spray':
+      '"R150\' Causes plants in a 100\' radius to overgrow or enriches a 1/2 mile radius for 1 year"',
+  'Poison Spray': // *
     'School=Conjuration ' +
     'Level=D0,K0,S0,W0 ' +
     'Description=' +
-      '"R10\' Target suffers %{(level+7)//6}d12 HP poison (Constitution neg)"',
-  'Polymorph':
+      '"R10\' Inflicts %{(level+7)//6}d12 HP poison (save Constitution neg)"',
+  'Polymorph': // *
     'School=Transmutation ' +
     'Level=B4,D4,S4,W4 ' +
     'Description=' +
-      '"R60\' Transforms target creature (Wisdom neg; shapechanger immune) for concentration up to 1 hr or until reduced to 0 HP"',
-  'Power Word Kill':
+      '"R60\' Transforms target creature (save Wisdom neg; shapechangers automatically succeed) for concentration up to 1 hr or until reduced to 0 HP"',
+  'Power Word Kill': // *
     'School=Enchantment ' +
     'Level=B9,K9,S9,W9 ' +
-    'Description="R60\' Slays target w/up to 100 HP"',
-  'Power Word Stun':
+    'Description=' +
+      '"R60\' Kills a target with up to 100 hit points; others are unaffected"',
+  'Power Word Stun': // *
     'School=Enchantment ' +
     'Level=B8,K8,S8,W8 ' +
-    'Description="R60\' Stuns target w/up to 150 HP (Constitution ends)"',
-  'Prayer Of Healing':
+    'Description=' +
+      '"R60\' Stuns a target with up to 150 HP (save Constitution ends); others are unaffected"',
+  'Prayer Of Healing': // *
     'School=Evocation ' +
     'Level=C2 ' +
-    'AtHigherLevels="restores +1d8 HP" ' +
-    'Description="R30\' 6 targets regain 2d8+%{mdf} HP"',
-  'Prestidigitation':
+    'AtHigherLevels="restores +1d8 hit points" ' +
+    'Description="R30\' 6 targets regain 2d8+%{mdf} hit points"',
+  'Prestidigitation': // *
     'School=Transmutation ' +
     'Level=B0,K0,S0,W0 ' +
-    'Description="R10\' Self may perform minor magic effects for 1 hr"',
-  'Prismatic Spray':
+    'Description="R10\' Creates minor magic effects for 1 hr"',
+  'Prismatic Spray': // *
     'School=Evocation ' +
     'Level=S7,W7 ' +
     'Description=' +
-      '"60\' cone randomly inflicts one of: 10d6 HP fire, acid, lightning, poison, or cold (Dexterity half); restrains (Dexterity neg) and petrifies after 3 failed Constitution saves (3 successes neg); blinds (Dexterity neg) and banishes to another plane (Wisdom neg)"',
-  'Prismatic Wall':
+      '"60\' cone randomly inflicts one of: 10d6 HP fire, acid, lightning, poison, or cold (save Dexterity half); restrained (save Dexterity neg) and petrified after 3 failed Constitution saves (3 successes neg); blinded (save Dexterity neg) and banished to another plane (save Wisdom neg)"',
+  'Prismatic Wall': // *
     'School=Abjuration ' +
     'Level=W9 ' +
     'Description=' +
-      '"R60\' 90\'x30\' area blinds w/in 20\' for 1 min (Constitution neg); passers suffer 10d6 HP each fire, acid, lightning, poison, and cold (Dexterity half), restraint (Dexterity neg) and petrification after 3 failed Constitution saves (3 successes neg), and blindness (Dexterity neg) and banishment to another plane (Wisdom neg)"',
+      '"R60\' 90\'x30\' area blinds within 20\' for 1 min (save Constitution neg); creatures passing through suffer 10d6 HP each fire, acid, lightning, poison, and cold (save Dexterity half), restraint (save Dexterity neg) and petrification after 3 failed Constitution saves (3 successes neg), and blindness (save Dexterity neg) and banishment to another plane (save Wisdom neg)"',
   'Private Sanctum': // *
     'School=Abjuration ' +
     'Level=W4 ' +
     'AtHigherLevels="increases area by 100\'" ' +
     'Description=' +
       '"R120\' Protects up to 100\' sq from choices of sound, vision, divination, teleportation, and planar travel for 1 day; casting daily for 1 year makes the effects permanent"',
-  'Produce Flame':
+  'Produce Flame': // *
     'School=Conjuration ' +
     'Level=D0 ' +
     'Description=' +
-      '"Lights a 10\' radius for 10 min; may use for a ranged spell attack inflicting %{(level+7)//6}d8 HP that ends spell"',
-  'Programmed Illusion':
+      '"Lights a 10\' radius for 10 min; use for a ranged spell attack that inflicts %{(level+7)//6}d8 HP ends the spell"',
+  'Programmed Illusion': // *
     'School=Illusion ' +
     'Level=B6,W6 ' +
     'Description=' +
       '"R120\' Creates a 30\' cube illusion when triggered (Investigation detects)"',
-  'Project Image':
+  'Project Image': // *
     'School=Illusion ' +
     'Level=B7,W7 ' +
     'Description=' +
-      '"R500 miles Self may see, hear, and speak through an illusory double (Investigation detects) created in a familiar place for concentration up to 1 day"',
-  'Protection From Energy':
+      '"R500 miles Self can see, hear, and speak through an illusory double (Investigation detects) created in a familiar place for concentration up to 1 day"',
+  'Protection From Energy': // *
     'School=Abjuration ' +
     'Level=C3,D3,R3,S3,W3 ' +
-    'Description="Touched gains resistance to choice of acid, cold, fire, lightning, or thunder damage for concentration up to 1 hr"',
-  'Protection From Evil And Good':
+    'Description="Touched gains resistance to a choice of acid, cold, fire, lightning, or thunder damage for concentration up to 1 hr"',
+  'Protection From Evil And Good': // *
     'School=Abjuration ' +
     'Level=C1,K1,P1,W1 ' +
     'Description=' +
-      '"Willing touched gains immunity to charm, fright, and possession from aberrations, celestials, elementals, fey, fiends, and undead; those creatures suffer Disadv on attacks on target"',
-  'Protection From Poison':
+      '"Willing touched gains immunity to charm, fright, and possession from aberrations, celestials, elementals, fey, fiends, and undead and advantage on saves vs. existing conditions for concentration up to 10 min; those creatures also suffer disadvantage on attacks on the target"',
+  'Protection From Poison': // *
     'School=Abjuration ' +
     'Level=C2,D2,P2,R2 ' +
     'Description=' +
-      '"Touched recovers from 1 poison and gains Adv on saves vs. poison and resistance to poison damage for 1 hr"',
-  'Purify Food And Drink':
+      '"Touched recovers from 1 poison and gains advantage on saves vs. poison and resistance to poison damage for 1 hr"',
+  'Purify Food And Drink': // *
     'School=Transmutation ' +
     'Level=C1,D1,P1 ' +
     'Ritual=true ' +
     'Description=' +
       '"R10\' Removes poison and disease from nonmagical food and drink in a 5\' radius"',
 
-  'Raise Dead':
+  'Raise Dead': // *
     'School=Necromancy ' +
     'Level=B5,C5,P5 ' +
     'Description=' +
-      '"Restores life to and removes diseases and poisons from a willing touched 10-day-old corpse"',
-  'Ray Of Enfeeblement':
+      '"Restores life with 1 hit point to and removes nonmagical diseases and poisons from a willing touched 10-day-old corpse; target suffers -4 attacks, saves, and ability checks, reduced by 1 for each long rest"',
+  'Ray Of Enfeeblement': // *
     'School=Necromancy ' +
     'Level=K2,W2 ' +
     'Description=' +
-      '"R60\' Ranged spell inflicts half damage with Strength weapons (Constitution ends) for concentration up to 1 min"',
-  'Ray Of Frost':
+      '"R60\' Ranged spell inflicts half damage with Strength weapons (save Constitution ends) for concentration up to 1 min"',
+  'Ray Of Frost': // *
     'School=Evocation ' +
     'Level=S0,W0 ' +
     'Description=' +
       '"R60\' Ranged spell inflicts %{(level+7)//6}d8 HP cold and -10\' Speed for 1 rd"',
-  'Regenerate':
+  'Regenerate': // *
     'School=Transmutation ' +
     'Level=B7,C7,D7 ' +
     'Description=' +
-      '"Touched regains 4d8+15 HP and 1 HP/rd for 1 hr and reattaches or regrows severed parts"',
-  'Reincarnate':
+      '"Touched regains 4d8+15 HP, plus 1 HP per rd for 1 hr, and reattaches or regrows severed parts after 2 min"',
+  'Reincarnate': // *
     'School=Transmutation ' +
     'Level=D5 ' +
     'Description=' +
       '"Resurrects the willing soul of a touched corpse in a new body"',
-  'Remove Curse':
+  'Remove Curse': // *
     'School=Abjuration ' +
     'Level=C3,K3,P3,W3 ' +
-    'Description="Frees touched from all curses"',
+    'Description="Frees touched creature from all curses or breaks the attunement to a touched cursed object"',
   'Resilient Sphere': // *
     'School=Evocation ' +
     'Level=W4 ' +
     'Description=' +
       '"R30\' Traps the target in an impervious sphere (save Dexterity neg) for concentration up to 1 min"',
-  'Resistance':
+  'Resistance': // *
     'School=Abjuration ' +
     'Level=C0,D0 ' +
-    'Description="Touched gains +1d4 on 1 save w/in concentration up to 1 min"',
-  'Resurrection':
+    'Description=' +
+      '"Touched gains +1d4 on 1 save within concentration up to 1 min"',
+  'Resurrection': // *
     'School=Necromancy ' +
     'Level=B7,C7 ' +
     'Description=' +
-      '"Restores life and full HP to a willing touched 100-year-old corpse, removing all diseases and poisons"',
-  'Reverse Gravity':
+      '"Restores life with full hit points to and removes nonmagical diseases and poisons from a willing touched 100-year-old corpse; target suffers -4 attacks, saves, and ability checks, reduced by 1 for each long rest"',
+  'Reverse Gravity': // *
     'School=Transmutation ' +
     'Level=D7,S7,W7 ' +
     'Description=' +
       '"R100\' Items in a 50\' radius fall upward for concentration up to 1 min"',
-  'Revivify':
-    'School=Necromancy ' + // from errata
+  'Revivify': // *
+    // errata changes school to Necromancy
+    'School=Necromancy ' +
     'Level=C3,P3 ' +
-    'Description="Restores life and 1 HP to a touched 1-minute-old corpse"',
-  'Rope Trick':
+    'Description=' +
+      '"Restores life and 1 hit point to a touched 1-minute-old corpse"',
+  'Rope Trick': // *
     'School=Transmutation ' +
     'Level=W2 ' +
     'Description=' +
-      '"Touched rope leads to an extradimensional space w/room for 8 creatures for 1 hr"',
+      '"Touched rope leads to an extradimensional space with room for 8 creatures for 1 hr"',
 
-  'Sacred Flame':
+  'Sacred Flame': // *
     'School=Evocation ' +
     'Level=C0 ' +
     'Description=' +
-      '"R60\' Target suffers %{(level+7)//6}d8 HP radiant (Dexterity neg)"',
-  'Sanctuary':
+      '"R60\' Inflicts %{(level+7)//6}d8 HP radiant (save Dexterity neg)"',
+  'Sanctuary': // *
     'School=Abjuration ' +
     'Level=C1 ' +
-    'Description="R30\' Foes of target attack another (Wisdom neg) for 1 min"',
-  'Scorching Ray':
+    'Description=' +
+      '"R30\' Foes of the target cannot attack it (save Wisdom neg) for 1 min; target attacking ends"',
+  'Scorching Ray': // *
     'School=Evocation ' +
     'Level="K2 [The Fiend]",S2,W2 ' +
     'AtHigherLevels="gives +1 ranged attack" ' +
     'Description="R120\' 3 ranged attacks inflict 2d6 HP fire each"',
-  'Scrying':
+  'Scrying': // *
     'School=Divination ' +
     'Level=B5,C5,D5,K5,W5 ' +
     'Description=' +
-      '"Self sees and hears chosen target (Wisdom neg) for concentration up to 10 min"',
+      '"Self sees and hears a chosen target (save Wisdom, modified by degree of familiarity, neg for 24 hr) for concentration up to 10 min"',
   'Secret Chest': // *
     'School=Conjuration ' +
     'Level=W4 ' +
     'Description=' +
       '"Self can move a touched 12 cubic ft chest to and from the Ethereal Plane for 60+ days"',
-  'See Invisibility':
+  'See Invisibility': // *
     'School=Divination ' +
     'Level=B2,S2,W2 ' +
-    'Description="Self sees invisible and ethereal items for 1 hr"',
-  'Seeming':
+    'Description=' +
+      '"Reveals invisible and ethereal creatures and objects for 1 hr"',
+  'Seeming': // *
     'School=Illusion ' +
     'Level=B5,S5,W5 ' +
     'Description=' +
-      '"R30\' Changes appearance of targets (Charisma neg; Investigation detects) for 8 hr"',
-  'Sending':
+      '"R30\' Changes the appearance of targets (save Charisma neg; Investigation detects) for 8 hr"',
+  'Sending': // *
     'School=Evocation ' +
     'Level=B3,C3,W3 ' +
-    'Description="Self may exchange 25-word messages with a known target"',
-  'Sequester':
+    'Description="Self can exchange 25-word messages with a familiar target"',
+  'Sequester': // *
     'School=Transmutation ' +
     'Level=W7 ' +
     'Description=' +
-      '"Touched becomes hidden and enters suspended animation until specified trigger"',
-  'Shapechange':
+      '"Touched object or willing creature becomes hidden and enters suspended animation until a specified trigger"',
+  'Shapechange': // *
     'School=Transmutation ' +
     'Level=D9,W9 ' +
     'Description=' +
-      '"Self polymorphs for concentration up to 1 hr or until reduced to 0 HP"',
-  'Shatter':
+      '"Polymorphs self into a familiar living creature of equal or lesser CR for concentration up to 1 hr or until reduced to 0 HP"',
+  'Shatter': // *
     'School=Evocation ' +
     'Level=B2,K2,S2,W2 ' +
     'AtHigherLevels="inflicts +1d8 HP" ' +
     'Description=' +
-      '"R60\' 10\' radius inflicts 3d8 HP thunder (Constitution half)"',
-  'Shield':
+      '"R60\' 10\' radius inflicts 3d8 HP thunder (save Constitution half; inorganic creatures have disadvantage)"',
+  'Shield': // *
     'School=Abjuration ' +
     'Level=S1,W1 ' +
     'Description=' +
-      '"May cast as a Reaction to gain +5 AC and immunity to <i>Magic Missile</i> until next turn"',
-  'Shield Of Faith':
+      '"Reaction gives +5 AC and immunity to <i>Magic Missile</i> until the next turn"',
+  'Shield Of Faith': // *
     'School=Abjuration ' +
     'Level=C1,P1 ' +
     'Description="R60\' Target gains +2 AC for concentration up to 10 min"',
-  'Shillelagh':
+  'Shillelagh': // *
     'School=Transmutation ' +
     'Level=D0 ' +
     'Description=' +
-      '"Touched club inflicts +%{proficiencyBonus+mdf} magical attacks and 1d8+%{mdf} HP damage for 1 min"',
+      '"Held club inflicts +%{proficiencyBonus+mdf} magical attacks and 1d8+%{mdf} HP damage for 1 min"',
   'Shocking Grasp':
     'School=Evocation ' +
     'Level=S0,W0 ' +
     'Description=' +
-      '"Touched suffers %{(level+7)//6}d8 HP lightning and cannot use Reaction until next turn"',
-  'Silence':
+      '"Touched suffers %{(level+7)//6}d8 HP lightning and loss of reactions until its next turn"',
+  'Silence': // *
     'School=Illusion ' +
     'Level=B2,C2,R2 ' +
     'Ritual=true ' +
-    'Description="R120\' 20\' radius blocks sound for concentration up to 10 min"',
-  'Silent Image':
+    'Description=' +
+      '"R120\' 20\' radius blocks sound for concentration up to 10 min"',
+  'Silent Image': // *
     'School=Illusion ' +
     'Level=B1,S1,W1 ' +
     'Description=' +
-      '"R60\' Creates a 15\' cube illusion (Investigation detects) for concentration up to 10 min"',
-  'Simulacrum':
+      '"R60\' Creates a 15\' cube moveable illusion (Investigation detects) for concentration up to 10 min"',
+  'Simulacrum': // *
     'School=Illusion ' +
     'Level=W7 ' +
-    'Description="Creates from snow an obedient, half HP duplicate creature"',
-  'Sleep':
+    'Description=' +
+      '"Uses snow to create an obedient copy of a target creature with half its hit points"',
+  'Sleep': // *
     'School=Enchantment ' +
     'Level=B1,S1,W1 ' +
-    'AtHigherLevels="affects +2d8 HP of creatures" ' +
+    'AtHigherLevels="affects +2d8 hit points of creatures" ' +
     'Description=' +
-      '"R90\' 20\' radius sleeps 5d8 HP of creatures, weakest first, for 1 min (damage or shaking wakens)"',
-  'Sleet Storm':
+      '"R90\' 20\' radius puts to sleep 5d8 hit points of creatures, starting with those with the least hit points, for 1 min (damage or shaking wakens)"',
+  'Sleet Storm': // *
     'School=Conjuration ' +
     'Level=D3,S3,W3 ' +
     'Description=' +
-      '"R150\' 40\' radius douses flames and inflicts difficult terrain and falling prone (Dexterity neg)"',
-  'Slow':
+      '"R150\' 40\' radius douses flames and inflicts difficult terrain and falling prone (save Dexterity neg) for concentation up to 1 min"',
+  'Slow': // *
     'School=Transmutation ' +
     'Level=S3,W3 ' +
     'Description=' +
-      '"R120\' 6 targets in a 40\' cube suffer half Speed, -2 AC and Dexterity saves, and no more than 1 action/rd (Wisdom ends) for concentration up to 1 min"',
-  'Spare The Dying':
+      '"R120\' 6 targets in a 40\' cube suffer half Speed, -2 AC and Dexterity saves, loss of reactions, and no more than 1 action per rd (save Wisdom ends) for concentration up to 1 min"',
+  'Spare The Dying': // *
     'School=Necromancy ' +
     'Level=C0 ' +
-    'Description="Touched creature becomes stable"',
-  'Speak With Animals':
+    'Description="Touched dying creature becomes stable"',
+  'Speak With Animals': // *
     'School=Divination ' +
     'Level=B1,D1,R1 ' +
     'Ritual=true ' +
-    'Description="Self may talk with animals for 10 min"',
-  'Speak With Dead':
+    'Description="Self can talk with animals for 10 min"',
+  'Speak With Dead': // *
     'School=Necromancy ' +
     'Level=B3,C3 ' +
-    'Description="R10\' Self may ask a corpse 5 questions"',
-  'Speak With Plants':
+    'Description=' +
+      '"R10\' Self can ask a corpse 5 questions; the corpse is then immune for 10 days "',
+  'Speak With Plants': // *
     'School=Transmutation ' +
     'Level=B3,D3,R3 ' +
-    'Description="Self may talk with and command plants for 10 min"',
-  'Spider Climb':
+    'Description="Self can talk with and command plants for 10 min"',
+  'Spider Climb': // *
     'School=Transmutation ' +
     'Level=K2,S2,W2 ' +
-    'Description="Touched may crawl on walls and ceilings for concentration up to 1 hr"',
-  'Spike Growth':
+    'Description=' +
+      '"Touched can crawl on walls and ceilings for concentration up to 1 hr"',
+  'Spike Growth': // *
     'School=Transmutation ' +
     'Level=D2,R2 ' +
     'Description=' +
-      '"R150\' 20\' radius inflicts 2d4 HP per 5\' movement for concentration up to 10 min"',
-  'Spirit Guardians':
+      '"R150\' 20\' radius becomes difficult terrain and inflicts 2d4 HP per 5\' movement for concentration up to 10 min"',
+  'Spirit Guardians': // *
     'School=Conjuration ' +
     'Level=C3 ' +
     'AtHigherLevels="inflicts +1d8 HP" ' +
     'Description=' +
-      '"15\' radius inflicts 3d8 HP necrotic or radiant (Wisdom half) and half Speed for concentration up to 10 min"',
-  'Spiritual Weapon':
+      '"15\' radius inflicts on foes 3d8 HP necrotic or radiant (save Wisdom half) and half Speed for concentration up to 10 min"',
+  'Spiritual Weapon': // *
     'School=Evocation ' +
     'Level=C2 ' +
-    'AtHigherLevels="inflicts +1d8 HP/2 levels" ' +
+    'AtHigherLevels="inflicts +1d8 HP per 2 levels" ' +
     'Description=' +
-      '"R60\' Spectral weapon inflicts 1d8+%{mdf} HP and moves 20\' for 1 min"',
-  'Stinking Cloud':
+      '"R60\' Creates a spectral weapon that inflicts 1d8+%{mdf} HP and can move 20\' and attack as a bonus action for 1 min"',
+  'Stinking Cloud': // *
     'School=Conjuration ' +
     'Level=B3,"K3 [The Fiend]",S3,W3 ' +
     'Description=' +
-      '"R90\' 20\' radius inflicts loss of action (Constitution neg) for concentration up to 1 min"',
-  'Stone Shape':
+      '"R90\' 20\' radius inflicts loss of actions (save Constitution neg) for concentration up to 1 min"',
+  'Stone Shape': // *
     'School=Transmutation ' +
     'Level=C4,D4,W4 ' +
-    'Description="Reshapes touched medium-sized stone"',
-  'Stoneskin':
+    'Description="Reshapes touched 5\' cube of stone"',
+  'Stoneskin': // *
     'School=Abjuration ' +
     'Level=D4,R4,S4,W4 ' +
     'Description=' +
       '"Touched gains resistance to bludgeoning, piercing, and slashing damage for concentration up to 1 hr"',
-  'Storm Of Vengeance':
+  'Storm Of Vengeance': // *
     'School=Conjuration ' +
     'Level=D9 ' +
     'Description=' +
-      '"RSight 360\' radius inflicts 2d6 HP thunder and deafness (Constitution neg), then 1d6 HP acid, then 10d6 HP lightning (Dexterity half), then 2d6 HP bludgeoning, then 1d6 cold/rd for concentration up to 1 min"',
-  'Suggestion':
+      '"360\' radius within sight inflicts 2d6 HP thunder and deafness (save Constitution neg), then 1d6 HP acid, then 10d6 HP lightning (6 targets; save Dexterity half), then 2d6 HP bludgeoning, then 1d6 cold per rd and no ranged attacks for concentration up to 1 min"',
+  'Suggestion': // *
     'School=Enchantment ' +
     'Level=B2,K2,S2,W2 ' +
     'Description=' +
-      '"R30\' Target follows a reasonable suggestion (Wisdom neg) for concentration up to 8 hr"',
+      '"R30\' Target follows a reasonable suggestion (save Wisdom neg) for concentration up to 8 hr"',
   'Sunbeam':
     'School=Evocation ' +
     'Level=D6,S6,W6 ' +
     'Description=' +
       '"60\' line inflicts 6d8 HP radiant and blindness for 1 rd (Constitution half HP only) for concentration up to 1 min"',
-  'Sunburst':
+  'Sunburst': // *
     'School=Evocation ' +
     'Level=D8,S8,W8 ' +
     'Description=' +
-      '"R150\' 60\' radius inflicts 12d6 HP and blindness (Constitution half HP only) for 1 min"',
-  'Symbol':
+      '"R150\' 60\' radius inflicts 12d6 HP and blindness (save Constitution half HP only; an additional save each turn ends blindness) for 1 min"',
+  'Symbol': // *
     'School=Abjuration ' +
     'Level=B7,C7,W7 ' +
     'Description=' +
-      '"Inscribes touched w/a permanent glyph that inflicts harmful magic effects"',
+      '"Inscribes a touch object with a permanent glyph that, when triggered, inflicts a choice of harmful magic effect&mdash;10d10 HP necrotic (save Constitution half), arguing for 1 min (save Constitution neg), frightened and fleeing for 1 min (save Wisdom neg), overwhelmed with dispair for 1 min (save Charisma neg), insane for 1 min (save Intelligence neg), incapacitated by pain for 1 min (save Constitution neg), asleep for 10 min or until shaken or harmed (save Wisdom neg), or stunned for 1 min (save Wisdom neg)"',
 
-  'Telekinesis':
+  'Telekinesis': // *
     'School=Transmutation ' +
     'Level=S5,W5 ' +
     'Description=' +
-      '"R60\' Self may mentally move a 1000 lb object 30\'/rd (Strength neg) for concentration up to 10 min"',
-  'Telepathic Bond':
+      '"R60\' Self can mentally move a 1000 lb object 30\' per rd (save Strength neg) for concentration up to 10 min"',
+  'Telepathic Bond': // *
     'School=Divination ' +
     'Level=W5 ' +
     'Ritual=true ' +
-    'Description="R30\' 8 willing targets may communicate mentally for 1 hr"',
-  'Teleport':
+    'Description="R30\' 8 willing targets can communicate mentally for 1 hr"',
+  'Teleport': // *
     'School=Conjuration ' +
     'Level=B7,S7,W7 ' +
     'Description=' +
-      '"R10\' Target object or self and 8 allies teleport any distance"',
-  'Teleportation Circle':
+      '"R10\' Teleports an unattended object or self and 8 allies any distance; greater familiarity with the destination improves the accuracy"',
+  'Teleportation Circle': // *
     'School=Conjuration ' +
     'Level=B5,S5,W5 ' +
     'Description=' +
-      '"R10\' Creates a portal that provides access to similar circles for 1 rd"',
-  'Thaumaturgy':
+      '"R10\' Creates a portal that provides a link to similar circles for 1 rd"',
+  'Thaumaturgy': // *
     'School=Transmutation ' +
     'Level=C0 ' +
-    'Description="R30\' Creates minor magic effects for 1 min"',
-  'Thunderwave':
+    'Description="R30\' Creates minor magic effects&mdash;a booming voice, modification of flames, harmless tremors, an illusory sound, movement of a door or window, or a change in eye appearance&mdash;for 1 min"',
+  'Thunderwave': // *
     'School=Evocation ' +
     'Level=B1,D1,S1,W1 ' +
     'AtHigherLevels="inflicts +1d8 HP" ' +
     'Description=' +
-      '"15\' cube inflicts 2d8 HP thunder and pushes 10\' (Constitution half HP only)"',
-  'Time Stop':
+      '"15\' cube inflicts 2d8 HP thunder and pushes 10\' (save Constitution half HP only)"',
+  'Time Stop': // *
     'School=Transmutation ' +
     'Level=S9,W9 ' +
     'Description=' +
-      '"Self gains 1d4+1 turns (affecting another creature or moving more than 1000\' away ends)"',
+      '"Self can take 1d4+1 turns while no time passes for others; affecting another creature or moving more than 1000\' away ends"',
   'Tiny Hut': // *
     'School=Evocation ' +
     'Level=B3,W3 ' +
     'Ritual=true ' +
     'Description=' +
       '"Creates a 10\' radius dome, impassable by objects and spells, for 8 hr"',
-  'Tongues':
+  'Tongues': // *
     'School=Divination ' +
     'Level=B3,C3,K3,S3,W3 ' +
     'Description=' +
       '"Touched understands any language and is universally understood for 1 hr"',
-  'Transport Via Plants':
+  'Transport Via Plants': // *
     'School=Conjuration ' +
     'Level=D6 ' +
     'Description=' +
-      '"Allows teleportation from target large plant to another for 1 rd"',
-  'Tree Stride':
+      '"R10\' Allows teleportation from a large plant target to another for 1 rd"',
+  'Tree Stride': // *
     'School=Conjuration ' +
     'Level=D5,R5 ' +
     'Description=' +
-      '"Self may teleport 500\' between like trees 1/rd for concentration up to 1 min"',
+      '"Self may teleport 500\' between like trees once per rd for concentration up to 1 min"',
   'True Polymorph':
     'School=Transmutation ' +
     'Level=B9,K9,W9 ' +
     'Description=' +
-      '"R30\' Transforms target creature or object (Wisdom neg) for concentration up to 1 hr or until reduced to 0 HP"',
+      '"R30\' Transforms the target creature (save Wisdom neg) or object for concentration up to 1 hr or until reduced to 0 HP; concentrating for a full hr makes the change permanent"',
   'True Resurrection':
     'School=Necromancy ' +
     'Level=C9,D9 ' +
     'Description=' +
-      '"Restores life and full HP to a willing touched or named 200-year-old corpse, removing all diseases, poisons, wounds, and curses"',
-  'True Seeing':
+      '"Restores life and full hit points to and removes all diseases, poisons, wounds, and curses from a willing touched or named 200-year-old corpse"',
+  'True Seeing': // *
     'School=Divination ' +
     'Level=B6,C6,K6,S6,W6 ' +
     'Description=' +
       '"Touched gains 120\' truesight, sees magically concealed doors, and can see into the Ethereal Plane for 1 hr"',
-  'True Strike':
+  'True Strike': // *
     'School=Divination ' +
     'Level=B0,K0,S0,W0 ' +
-    'Description="R30\' Self gains Adv on next attack on target w/in 1 rd"',
+    'Description=' +
+      '"R30\' Self gains advantage on the next attack on the target within 1 rd"',
 
-  'Unseen Servant':
+  'Unseen Servant': // *
     'School=Conjuration ' +
     'Level=B1,K1,W1 ' +
     'Ritual=true ' +
     'Description=' +
-      '"R60\' Invisible force (AC 10; 1 HP; Strength 2) moves 15\'/rd and performs simple tasks for 1 hr or until damaged"',
+      '"R60\' Invisible force with AC 10, 1 hit point, and Strength 2 can move 15\' per rd and performs simple tasks for 1 hr or until damaged"',
 
-  'Vampiric Touch':
+  'Vampiric Touch': // *
     'School=Necromancy ' +
     'Level=K3,W3 ' +
     'AtHigherLevels="inflicts +1d6 HP" ' +
     'Description=' +
-      '"Touched suffers 3d6 HP and self regains half for concentration up to 1 min"',
-  'Vicious Mockery':
+      '"Touch inflicts 3d6 HP, and self regains half as many, for concentration up to 1 min"',
+  'Vicious Mockery': // *
     'School=Enchantment ' +
     'Level=B0 ' +
     'Description=' +
-      '"R60\' Target suffers %{(level+7)//6}d4 HP psychic and Disadv on attack (Wisdom neg) for 1 rd"',
+      '"R60\' Inflicts %{(level+7)//6}d4 HP psychic and disadvanted on next attack (save Wisdom neg) for 1 rd"',
 
   'Wall Of Fire':
     'School=Evocation ' +

@@ -163,10 +163,10 @@ SRD5E.CLASSES = {
       '"1:Tool Proficiency (Choose 3 from any Musical)",' +
       '"1:Save Proficiency (Dexterity; Charisma)",' +
       '"1:Skill Proficiency (Choose 3 from any)",' +
-      '"1:Spellcasting","1:Ritual Casting","1:Bardic Inspiration",' +
-      '"2:Jack Of All Trades","2:Song Of Rest","3:Bard College",' +
-      '"3:Expertise (Bard)","5:Font Of Inspiration",6:Countercharm,' +
-      '"10:Magical Secrets","20:Superior Inspiration",' +
+      '"1:Spellcasting","1:Bardic Inspiration","2:Jack Of All Trades",' +
+      '"2:Song Of Rest","3:Bard College","3:Expertise (Bard)",' +
+      '"5:Font Of Inspiration","6:Countercharm","10:Magical Secrets",' +
+      '"20:Superior Inspiration",' +
       '"features.College Of Lore ? 3:Bonus Proficiencies (College Of Lore)",' +
       '"features.College Of Lore ? 3:Cutting Words",' +
       '"features.College Of Lore ? 6:Additional Magical Secrets",' +
@@ -193,9 +193,8 @@ SRD5E.CLASSES = {
       '"1:Weapon Proficiency (Simple Weapons)",' +
       '"1:Save Proficiency (Wisdom; Charisma)",' +
       '"1:Skill Proficiency (Choose 2 from History, Insight, Medicine, Persuasion, Religion)",' +
-      '"1:Spellcasting","1:Divine Domain","1:Ritual Casting",' +
-      '"2:Channel Divinity","2:Turn Undead","5:Destroy Undead",' +
-      '"10:Divine Intervention",' +
+      '"1:Spellcasting","1:Divine Domain","2:Channel Divinity",' +
+      '"2:Turn Undead","5:Destroy Undead","10:Divine Intervention",' +
       '"features.Life Domain ? 1:Bonus Proficiency (Life Domain)",' +
       '"features.Life Domain ? 1:Disciple Of Life",' +
       '"features.Life Domain ? 2:Preserve Life",' +
@@ -225,9 +224,8 @@ SRD5E.CLASSES = {
       '"1:Tool Proficiency (Herbalism Kit)",' +
       '"1:Save Proficiency (Intelligence; Wisdom)",' +
       '"1:Skill Proficiency (Choose 2 from Arcana, Animal Handling, Insight, Medicine, Nature, Perception, Religion, Survival)",' +
-      '"1:Druidic","1:Spellcasting","1:Ritual Casting","2:Wild Shape",' +
-      '"2:Druid Circle","18:Timeless Body (Druid)","18:Beast Spells",' +
-      '"20:Archdruid",' +
+      '"1:Druidic","1:Spellcasting","2:Wild Shape","2:Druid Circle",' +
+      '"18:Timeless Body (Druid)","18:Beast Spells","20:Archdruid",' +
       '"features.Circle Of The Land ? 2:Bonus Cantrip (Circle Of The Land)",' +
       '"features.Circle Of The Land ? 2:Natural Recovery",' +
       '"features.Circle Of The Land ? 3:Circle Spells",' +
@@ -497,8 +495,8 @@ SRD5E.CLASSES = {
       '"1:Weapon Proficiency (Dagger; Dart; Light Crossbow; Quarterstaff; Sling)",' +
       '"1:Save Proficiency (Intelligence; Wisdom)",' +
       '"1:Skill Proficiency (Choose 2 from Arcana, History, Insight, Investigation, Medicine, Religion)",' +
-      '"1:Spellcasting","1:Ritual Casting","1:Arcane Recovery",' +
-      '"2:Arcane Tradition","18:Spell Mastery","20:Signature Spells",' +
+      '"1:Spellcasting","1:Arcane Recovery","2:Arcane Tradition",' +
+      '"18:Spell Mastery","20:Signature Spells",' +
       '"features.School Of Evocation ? 2:Evocation Savant",' +
       '"features.School Of Evocation ? 2:Sculpt Spells",' +
       '"features.School Of Evocation ? 6:Potent Cantrip",' +
@@ -706,13 +704,13 @@ SRD5E.FEATURES = {
   'Magical Secrets':
     'Section=magic ' +
     'Note="Can learn %{(levels.Bard-6)//4*2} additional spells from any class"',
-  'Ritual Casting':
-    'Section=magic Note="Can cast spells marked with [R] using a ritual"',
   'Song Of Rest':
     'Section=magic ' +
     // errata specifies spending Hit Dice
     'Note="Friendly listeners regain +1d%{levels.Bard>=9?6+(levels.Bard-5)//4*2:6} hit points from spending Hit Dice after a short rest"',
-  // TODO No note for Spellcasting feature?
+  'Spellcasting':
+    'Section=magic ' +
+    'Note="Can cast spells from the %V spell list%{magicNotes.spellcasting.1?\' and cast spells marked with [R] using a ritual\':\'\'}"',
   'Superior Inspiration':
     'Section=combat ' +
     'Note="Has a minimum of 1 use of Bardic Inspiration available after initiative"',
@@ -746,7 +744,6 @@ SRD5E.FEATURES = {
       '"5:Beacon Of Hope","5:Revivify",' +
       '"7:Death Ward","7:Guardian Of Faith",' +
       '"9:Mass Cure Wounds","9:Raise Dead"',
-  // Ritual Casting as above
   // Spellcasting as above
   'Supreme Healing':
     'Section=magic ' +
@@ -780,7 +777,6 @@ SRD5E.FEATURES = {
   'Druid Circle':'Section=feature Note="1 selection"',
   'Druidic':
     'Section=skill Note="Speaks a secret language known only by druids"',
-  // Ritual Casting as above
   // Spellcasting as above
   'Timeless Body (Druid)':'Section=feature Note="Ages at 1/10 normal rate"',
   'Wild Shape':
@@ -831,7 +827,7 @@ SRD5E.FEATURES = {
       '"5:Water Walk","5:Stinking Cloud",' +
       '"7:Freedom Of Movement","7:Locate Creature",' +
       '"9:Insect Plague","9:Scrying"',
-  // TODO No note for Circle Spells?
+  'Circle Spells':'Section=magic Note="Has access to terrain-specific spells"',
   "Land's Stride":
     'Section=ability,save ' +
     'Note=' +
@@ -1185,7 +1181,8 @@ SRD5E.FEATURES = {
     'Section=magic ' +
     'Note="Can cast %{levels.Warlock>12?\'chosen K6\'+(levels.Warlock<15?\' and K7\':levels.Warlock<17?\', K7, and K8\':\', K7, K8, and K9\')+\' spells\':\'a chosen K6 spell\'} without using a spell slot once per long rest"',
   'Pact Boon':'Section=feature Note="1 selection"',
-  // TODO No description for Pact Magic?
+  'Pact Magic':
+    'Section=magic Note="Can cast spells from the warlock spell list"',
   'Pact Of The Blade':
     'Section=magic ' +
     'Note="Can use an action to conjure a magic weapon or use a 1 hr ritual to make a magic weapon summonable"',
@@ -4303,6 +4300,10 @@ SRD5E.classRules = function(
       );
     }
 
+    rules.defineRule('magicNotes.spellcasting',
+      classLevel, '=', '"' + name.toLowerCase() + '"'
+    );
+
   }
 
   if(multiclassPrerequisite.length > 0) {
@@ -4353,6 +4354,7 @@ SRD5E.classRulesExtra = function(rules, name) {
     rules.defineRule('featureNotes.bardicInspiration',
       'featureNotes.fontOfInspiration', '+', 'null' // italics
     );
+    rules.defineRule('magicNotes.spellcasting.1', classLevel, '=', '1');
     rules.defineRule('selectableFeatureCount.Bard (Bard College)',
       'featureNotes.bardCollege', '=', '1'
     );
@@ -4364,6 +4366,7 @@ SRD5E.classRulesExtra = function(rules, name) {
       'features.Channel Divinity', '?', null,
       'levels.Cleric', '+=', 'source<6 ? 1 : source<18 ? 2 : 3'
     );
+    rules.defineRule('magicNotes.spellcasting.1', classLevel, '=', '1');
     rules.defineRule('selectableFeatureCount.Cleric (Divine Domain)',
       'featureNotes.divineDomain', '=', '1'
     );
@@ -4383,6 +4386,7 @@ SRD5E.classRulesExtra = function(rules, name) {
 
   } else if(name == 'Druid') {
 
+    rules.defineRule('magicNotes.spellcasting.1', classLevel, '=', '1');
     rules.defineRule('magicNotes.wildShape',
       classLevel, '=', 'source<4 ? "1/4" : source<8 ? "1/2" : "1"',
       'magicNotes.archdruid', '+', 'null' // Italics noop
@@ -4621,6 +4625,7 @@ SRD5E.classRulesExtra = function(rules, name) {
 
   } else if(name == 'Wizard') {
 
+    rules.defineRule('magicNotes.spellcasting.1', classLevel, '=', '1');
     rules.defineRule('selectableFeatureCount.Wizard (Arcane Tradition)',
       'featureNotes.arcaneTradition', '=', '1'
     );
@@ -4907,7 +4912,6 @@ SRD5E.featureRules = function(
           let expression = adjust.substring(3, adjust.length - 1);
           let ids = new Expr(expression).identifiers();
           // TODO What if ids.length==0?
-          // TODO If only 1 id, we could use a normal rule w/out eval
           let sn = ++maxSubnote;
           let target = sn>0 ? note + '.' + sn : note;
           rules.defineRule(target, 'features.' + name, '?', null);
@@ -5191,9 +5195,17 @@ SRD5E.raceRules = function(
     console.log('Bad selectables list "' + selectables + '" for race ' + name);
     return;
   }
+  if(size == null) {
+    // Backwards compatability
+    size = features.filter(x => x.match(/^(\d+:)?Small$/)).length > 0 ? 'Small' : 'Medium';
+  }
   if(!(size+'').match(/^(Large|Medium|Small)$/)) {
     console.log('Bad size "' + size + '" for race ' + name);
     return;
+  }
+  if(speed == null) {
+    // Backwards compatability
+    speed = features.filter(x => x.match(/^(\d+:)?Slow$/)).length > 0 ? 25 : 30;
   }
   if(typeof(speed) != 'number') {
     console.log('Bad speed "' + speed + '" for race ' + name);

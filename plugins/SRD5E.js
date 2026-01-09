@@ -679,7 +679,7 @@ SRD5E.FEATURES = {
     'Note="Can use a bonus action to attack with a melee weapon each rd during rage; suffers 1 level of exhaustion after rage"',
   'Intimidating Presence':
     'Section=feature ' +
-    'Note="R30\' Can use an action to inflict frightened on a target (DC %{charismaModifier+8+proficiencyBonus} Wisdom neg) and additional actions to extend each rd; ends if the target moves out of sight or more than 60\' away"',
+    'Note="R30\' Can use an action to inflict frightened on a target (DC %{charismaModifier+8+proficiencyBonus} Wisdom negates) and additional actions to extend each rd; ends if the target moves out of sight or more than 60\' away"',
   'Mindless Rage':'Section=save Note="Immune to charm and fright during rage"',
   'Retaliation':
     'Section=combat ' +
@@ -750,7 +750,7 @@ SRD5E.FEATURES = {
     'Note="Healing spells restore the maximum possible hit points"',
   'Turn Undead':
     'Section=combat ' +
-    'Note="R30\' Can use Channel Divinity to make undead flee (DC %{spellDifficultyClass.C} Wisdom neg) for 1 min"',
+    'Note="R30\' Can use Channel Divinity to make undead flee (DC %{spellDifficultyClass.C} Wisdom negates) for 1 min"',
   // Life Domain
   'Blessed Healer':
     'Section=magic ' +
@@ -838,7 +838,7 @@ SRD5E.FEATURES = {
     'Note="Can recover %{(levels.Druid+1)//2} spell slot levels (level 6 maximum) during a short rest once per long rest"',
   "Nature's Sanctuary":
     'Section=combat ' +
-    'Note="Beasts and plants cannot attack self (DC %{wisdomModifier+8+proficiencyBonus} Wisdom neg for 24 hr)"',
+    'Note="Beasts and plants cannot attack self (DC %{wisdomModifier+8+proficiencyBonus} Wisdom negates for 24 hr)"',
   "Nature's Ward":
     'Section=save ' +
     'Note="Has immunity to disease, poison, and elemental and fey charm and fright"',
@@ -931,7 +931,7 @@ SRD5E.FEATURES = {
     'Note="Can use an action to end charm or fright affecting self"',
   'Stunning Strike':
     'Section=combat ' +
-    'Note="Can spend 1 Ki Point after a successful attack to stun the target (DC %{kiSaveDC} Constitution neg) for 1 rd"',
+    'Note="Can spend 1 Ki Point after a successful attack to stun the target (DC %{kiSaveDC} Constitution negates) for 1 rd"',
   'Timeless Body (Monk)':
     'Section=feature ' +
     'Note="Suffers no debility from aging and needs no food or water"',
@@ -947,13 +947,13 @@ SRD5E.FEATURES = {
   // Way Of The Open Hand
   'Open Hand Technique':
     'Section=combat ' +
-    'Note="Can use Flurry of Blows to inflict a choice of knocked prone (DC %{kiSaveDC} Dexterity neg), a 15\' push (DC %{kiSaveDC} Strength neg), or loss of reactions for 1 rd"',
+    'Note="Can use Flurry of Blows to inflict a choice of knocked prone (DC %{kiSaveDC} Dexterity negates), a 15\' push (DC %{kiSaveDC} Strength negates), or loss of reactions for 1 rd"',
   'Quivering Palm':
     'Section=combat ' +
     'Note="Can spend 3 Ki Points after a successful unarmed attack to reduce a foe to 0 hit points at any time within %{levels.Monk} days (DC %{kiSaveDC} Constitution inflicts 10d10 HP necrotic)"',
   'Tranquility':
     'Section=magic ' +
-    'Note="Can gain <i>Sanctuary</i> effects between long rests (DC %{kiSaveDC} Wisdom neg)" ' +
+    'Note="Can gain <i>Sanctuary</i> effects between long rests (DC %{kiSaveDC} Wisdom negates)" ' +
     'Spells=Sanctuary',
   'Wholeness Of Body':
     'Section=feature Note="Can use an action to regain %{levels.Monk*3} hit points once per long rest"',
@@ -1010,7 +1010,7 @@ SRD5E.FEATURES = {
     'Note="Can use Channel Divinity to give a weapon +%{charismaModifier>?1} attack and 20\' bright light for 1 min"',
   'Turn The Unholy':
     'Section=combat ' +
-    'Note="R30\' Can use Channel Divinity to make fiends and undead flee (DC %{spellDifficultyClass.P} Wisdom neg) for 1 min"',
+    'Note="R30\' Can use Channel Divinity to make fiends and undead flee (DC %{spellDifficultyClass.P} Wisdom negates) for 1 min"',
 
   // Ranger
   // Extra Attack as above
@@ -1159,7 +1159,7 @@ SRD5E.FEATURES = {
       '"+%{proficiencyBonus} on Charisma checks with dragons"',
   'Draconic Presence':
     'Section=magic ' +
-    'Note="R60\' Can spend 5 Sorcery Points to gain an aura that inflicts a choice of charm or fright (DC %{spellDifficultyClass.S} Wisdom neg for 24 hr) for concentration up to 1 min"',
+    'Note="R60\' Can spend 5 Sorcery Points to gain an aura that inflicts a choice of charm or fright (DC %{spellDifficultyClass.S} Wisdom negates for 24 hr) for concentration up to 1 min"',
   'Draconic Resilience':
     'Section=combat ' +
     'Note="+%{levels.Sorcerer} Hit Points/Armor Class %{dexterityModifier+13} in no armor"',
@@ -1645,7 +1645,7 @@ SRD5E.SPELLS = {
     'School=Conjuration ' +
     'Level=S0,W0 ' +
     'Description=' +
-      '"R60\' Inflicts %{(level+7)//6}d6 HP acid (save Dexterity neg) on a single target or 2 adjacent targets"',
+      '"R60\' Inflicts %{(level+7)//6}d6 HP acid (save Dexterity negates) on a single target or 2 adjacent targets"',
   'Aid':
     'School=Abjuration ' +
     'Level=C2,P2 ' +
@@ -1667,7 +1667,7 @@ SRD5E.SPELLS = {
     'Level=B1,D1,R1 ' +
     'AtHigherLevels="affects +1 target" ' +
     'Description=' +
-      '"R30\' Convinces target beast that self is harmless (save Wisdom neg; Intelligence 4 or higher immune) for 1 day or until harmed"',
+      '"R30\' Convinces target beast that self is harmless (save Wisdom negates; Intelligence 4 or higher immune) for 1 day or until harmed"',
   'Animal Messenger':
     'School=Enchantment ' +
     'Level=B2,D2,R2 ' +
@@ -1716,7 +1716,7 @@ SRD5E.SPELLS = {
     'Level=W5 ' +
     'AtHigherLevels="inflicts +2d8 HP force and +2d6 HP bludgeoning" ' +
     'Description=' +
-      '"R120\' Large force hand (Armor Class 20, %{hitPoints} hit points, Strength 26, Dexterity 10) can move 60\' per rd and can punch (inflicts 4d8 HP force), push 5\' (save DC 26 Athletics neg), grapple (may crush, inflicting 2d6+%{mdf} HP bludgeoning), and block for concentration up to 1 min"',
+      '"R120\' Large force hand (Armor Class 20, %{hitPoints} hit points, Strength 26, Dexterity 10) can move 60\' per rd and can punch (inflicts 4d8 HP force), push 5\' (save DC 26 Athletics negates), grapple (may crush, inflicting 2d6+%{mdf} HP bludgeoning), and block for concentration up to 1 min"',
   'Arcane Lock':
     'School=Abjuration ' +
     'Level=W2 ' +
@@ -1753,13 +1753,13 @@ SRD5E.SPELLS = {
     'Level=B1,C1 ' +
     'AtHigherLevels="affects +1 target" ' +
     'Description=' +
-      '"R30\' 3 targets suffer -1d4 on attacks and saving throws (save Charisma neg) for concentration up to 1 min"',
+      '"R30\' 3 targets suffer -1d4 on attacks and saving throws (save Charisma negates) for concentration up to 1 min"',
   'Banishment':
     'School=Abjuration ' +
     'Level=C4,K4,P4,S4,W4 ' +
     'AtHigherLevels="affects +1 target" ' +
     'Description=' +
-      '"R60\' Banishes the target to its home plane or a demiplane (save Charisma neg) for concentration up to 1 min"',
+      '"R60\' Banishes the target to its home plane or a demiplane (save Charisma negates) for concentration up to 1 min"',
   'Barkskin':
     'School=Transmutation ' +
     'Level=D2,R2 ' +
@@ -1774,12 +1774,12 @@ SRD5E.SPELLS = {
     'Level=B3,C3,W3 ' +
     'AtHigherLevels="extends the maximum duration to 10 min, 8 hr, 24 hr, or permanently at level 4, 5, 7, or 9" ' +
     'Description=' +
-      '"Touched suffers a choice of disadvantage on specified ability rolls, disadvantage on attacks on self, requiring a successful Wisdom save to take any action, or +1d8 HP necrotic from self attacks (save Wisdom neg) for concentration up to 1 min"',
+      '"Touched suffers a choice of disadvantage on specified ability rolls, disadvantage on attacks on self, requiring a successful Wisdom save to take any action, or +1d8 HP necrotic from self attacks (save Wisdom negates) for concentration up to 1 min"',
   'Black Tentacles':
     'School=Conjuration ' +
     'Level=W4 ' +
     'Description=' +
-      '"R90\' 20\' sq inflicts 3d6 HP bludgeoning and restrains (save Dexterity neg, Strength or Dexterity breaks free) for concentration up to 1 min"',
+      '"R90\' 20\' sq inflicts 3d6 HP bludgeoning and restrains (save Dexterity negates, Strength or Dexterity breaks free) for concentration up to 1 min"',
   'Blade Barrier':
     'School=Evocation ' +
     'Level=C6 ' +
@@ -1835,7 +1835,7 @@ SRD5E.SPELLS = {
     'School=Enchantment ' +
     'Level=B2,C2 ' +
     'Description=' +
-      '"R60\' 20\' radius suppresses a choice of charm and fright or hostility (save Charisma neg) for concentration up to 1 min"',
+      '"R60\' 20\' radius suppresses a choice of charm and fright or hostility (save Charisma negates) for concentration up to 1 min"',
   'Chain Lightning':
     'School=Evocation ' +
     'Level=S6,W6 ' +
@@ -1847,7 +1847,7 @@ SRD5E.SPELLS = {
     'Level=B1,D1,K1,S1,W1 ' +
     'AtHigherLevels="affects +1 target" ' +
     'Description=' +
-      '"R30\' Target regards self as a friend (save Wisdom neg) for 1 hr or until harmed"',
+      '"R30\' Target regards self as a friend (save Wisdom negates) for 1 hr or until harmed"',
   'Chill Touch':
     'School=Necromancy ' +
     'Level=K0,S0,W0 ' +
@@ -1884,7 +1884,7 @@ SRD5E.SPELLS = {
     'Level=C1,"K1 [The Fiend]",P1 ' +
     'AtHigherLevels="affects +1 target" ' +
     'Description=' +
-      '"R60\' Target obeys a one-word command from self (save Wisdom neg) for 1 rd"',
+      '"R60\' Target obeys a one-word command from self (save Wisdom negates) for 1 rd"',
   'Commune':
     'School=Divination ' +
     'Level=C5 ' +
@@ -1916,7 +1916,7 @@ SRD5E.SPELLS = {
     'Level=B4,D4,S4,W4 ' +
     'AtHigherLevels="increases the radius by 5\'" ' +
     'Description=' +
-      '"R90\' Creatures in a 10\' radius randomly: 10% wander; 50% do nothing; 20% attack an adjacent creature; 20% act normally (save Wisdom neg) for concentration up to 1 min"',
+      '"R90\' Creatures in a 10\' radius randomly: 10% wander; 50% do nothing; 20% attack an adjacent creature; 20% act normally (save Wisdom negates) for concentration up to 1 min"',
   'Conjure Animals':
     'School=Conjuration ' +
     'Level=D3,R3 ' +
@@ -1958,7 +1958,7 @@ SRD5E.SPELLS = {
     'Level=K5,W5 ' +
     'Ritual=true ' +
     'Description=' +
-      '"Contact with an extraplanar being inflicts 6d6 HP psychic and insanity on self until a long rest (save DC 15 Intelligence neg and gives 5 one-word answers)"',
+      '"Contact with an extraplanar being inflicts 6d6 HP psychic and insanity on self until a long rest (save DC 15 Intelligence negates and gives 5 one-word answers)"',
   'Contagion':
     'School=Necromancy ' +
     'Level=C5,D5 ' +
@@ -2085,12 +2085,12 @@ SRD5E.SPELLS = {
     'Level=S6,W6 ' +
     'AtHigherLevels="inflicts +3d6 HP" ' +
     'Description=' +
-      '"R60\' Inflicts 10d6+40 HP force and turns the target to dust if reduced to 0 HP (save Dexterity neg), or disintegrates a Large or smaller object or magical force"',
+      '"R60\' Inflicts 10d6+40 HP force and turns the target to dust if reduced to 0 HP (save Dexterity negates), or disintegrates a Large or smaller object or magical force"',
   'Dispel Evil And Good':
     'School=Abjuration ' +
     'Level=C5,P5 ' +
     'Description=' +
-      '"Celestials, elementals, fey, fiends, and undead suffer disadvantage on attacks vs. self for concentration up to 1 min; a successful spell attack returns them to their home plane (save Charisma neg), and touch also ends their enchantment, fright, or possession on the creature touched"',
+      '"Celestials, elementals, fey, fiends, and undead suffer disadvantage on attacks vs. self for concentration up to 1 min; a successful spell attack returns them to their home plane (save Charisma negates), and touch also ends their enchantment, fright, or possession on the creature touched"',
   'Dispel Magic':
     'School=Abjuration ' +
     'Level=B3,C3,D3,K3,P3,S3,W3 ' +
@@ -2111,30 +2111,30 @@ SRD5E.SPELLS = {
     'School=Evocation ' +
     'Level=C7 ' +
     'Description=' +
-      '"R30\' Inflicts death on targets with up to 20 HP, stunned on those with up to 30 HP, blinded on those with up to 40 HP, and deafened on those with up to 50 HP, and forces them to return to their home planes (save Charisma neg)"',
+      '"R30\' Inflicts death on targets with up to 20 HP, stunned on those with up to 30 HP, blinded on those with up to 40 HP, and deafened on those with up to 50 HP, and forces them to return to their home planes (save Charisma negates)"',
   'Dominate Beast':
     'School=Enchantment ' +
     'Level=D4,S4 ' +
     'AtHigherLevels="extends the duration to 10 min, 1 hr, or 8 hr at level 5, 6, or 7" ' +
     'Description=' +
-      '"R60\' Target beast obeys telepathic commands (save Wisdom neg; damage allows another save) for concentration up to 1 min"',
+      '"R60\' Target beast obeys telepathic commands (save Wisdom negates; damage allows another save) for concentration up to 1 min"',
   'Dominate Monster':
     'School=Enchantment ' +
     'Level=B8,K8,S8,W8 ' +
     'AtHigherLevels="extends the duration to 8 hr" ' +
     'Description=' +
-      '"R60\' Target creature obeys telepathic commands (save Wisdom neg; damage allows another save) for concentration up to 1 hr"',
+      '"R60\' Target creature obeys telepathic commands (save Wisdom negates; damage allows another save) for concentration up to 1 hr"',
   'Dominate Person':
     'School=Enchantment ' +
     'Level=B5,S5,W5 ' +
     'AtHigherLevels="extends the duration to 10 min, 1 hr, or 8 hr at level 6, 7, or 8" ' +
     'Description=' +
-      '"R60\' Target humanoid obeys telepathic commands (save Wisdom neg; damage allows another save) for concentration up to 1 min"',
+      '"R60\' Target humanoid obeys telepathic commands (save Wisdom negates; damage allows another save) for concentration up to 1 min"',
   'Dream':
     'School=Illusion ' +
     'Level=B5,K5,W5 ' +
     'Description=' +
-      '"Touched controls the dreams of a known target for 8 hr and can inflict 3d6 HP psychic (save Wisdom neg)"',
+      '"Touched controls the dreams of a known target for 8 hr and can inflict 3d6 HP psychic (save Wisdom negates)"',
   'Druidcraft':
     'School=Transmutation ' +
     'Level=D0 ' +
@@ -2145,7 +2145,7 @@ SRD5E.SPELLS = {
     'School=Evocation ' +
     'Level=C8,D8,S8 ' +
     'Description=' +
-      '"R500\' 100\' radius opens fissures, damages structures, breaks concentration (save Constitution neg), and knocks prone (save Dexterity neg) for concentration up to 1 min"',
+      '"R500\' 100\' radius opens fissures, damages structures, breaks concentration (save Constitution negates), and knocks prone (save Dexterity negates) for concentration up to 1 min"',
   'Eldritch Blast':
     'School=Evocation ' +
     'Level=K0 ' +
@@ -2161,17 +2161,17 @@ SRD5E.SPELLS = {
     'School=Transmutation ' +
     'Level=S2,W2 ' +
     'Description=' +
-      '"R30\' Target increases a size category, gaining advantage on Strength checks and  +1d4 HP weapon damage, or decreases a size category, suffering disadvantage on Strength checks and -1d4 HP weapon damage (save Constitution neg), for concentration up to 1 min; can instead target an unattended object"',
+      '"R30\' Target increases a size category, gaining advantage on Strength checks and  +1d4 HP weapon damage, or decreases a size category, suffering disadvantage on Strength checks and -1d4 HP weapon damage (save Constitution negates), for concentration up to 1 min; can instead target an unattended object"',
   'Entangle':
     'School=Conjuration ' +
     'Level=D1 ' +
     'Description=' +
-      '"R90\' 20\' sq ensnares creatures (save Strength neg) for concentration up to 1 min"',
+      '"R90\' 20\' sq ensnares creatures (save Strength negates) for concentration up to 1 min"',
   'Enthrall':
     'School=Enchantment ' +
     'Level=B2,K2 ' +
     'Description=' +
-      '"R60\' Target suffers disadvantage on Perception to notice others (save Wisdom neg) for 1 min"',
+      '"R60\' Target suffers disadvantage on Perception to notice others (save Wisdom negates) for 1 min"',
   'Etherealness':
     'School=Transmutation ' +
     'Level=B7,C7,K7,S7,W7 ' +
@@ -2186,7 +2186,7 @@ SRD5E.SPELLS = {
     'School=Necromancy ' +
     'Level=B6,K6,S6,W6 ' +
     'Description=' +
-      '"R60\' Inflicts a choice of sleep, panic, or sickened (disadvantage on attack and ability rolls) on 1 target per rd (save Wisdom neg) for concentration up to 1 min"',
+      '"R60\' Inflicts a choice of sleep, panic, or sickened (disadvantage on attack and ability rolls) on 1 target per rd (save Wisdom negates) for concentration up to 1 min"',
 
   'Fabricate':
     'School=Transmutation ' +
@@ -2197,12 +2197,12 @@ SRD5E.SPELLS = {
     'School=Evocation ' +
     'Level=B1,D1 ' +
     'Description=' +
-      '"R60\' Objects in a 20\' cube glow, giving foes advantage on attacks (save Dexterity neg), for concentration up to 1 min"',
+      '"R60\' Objects in a 20\' cube glow, giving foes advantage on attacks (save Dexterity negates), for concentration up to 1 min"',
   'Faithful Hound':
     'School=Conjuration ' +
     'Level=W4 ' +
     'Description=' +
-      '"R30\' Creates an invisible watchdog that barks at Small or larger intruders within 30\' and attacks those within 5\' (password neg) with a +%{mdf+proficiencyBonus} bite that inflicts 4d8 HP piercing for 8 hr"',
+      '"R30\' Creates an invisible watchdog that barks at Small or larger intruders within 30\' and attacks those within 5\' (password negates) with a +%{mdf+proficiencyBonus} bite that inflicts 4d8 HP piercing for 8 hr"',
   'False Life':
     'School=Necromancy ' +
     'Level=S1,W1 ' +
@@ -2289,7 +2289,7 @@ SRD5E.SPELLS = {
     'School=Transmutation ' +
     'Level=K6,W6 ' +
     'Description=' +
-      '"R60\' Target becomes restrained (save Constitution neg), then petrified after 3 failed Constitution saves (3 successes neg) for concentration; the effects become permanent after 1 min"',
+      '"R60\' Target becomes restrained (save Constitution negates), then petrified after 3 failed Constitution saves (3 successes negates) for concentration; the effects become permanent after 1 min"',
   'Floating Disk':
     'School=Conjuration ' +
     'Level=W1 ' +
@@ -2350,7 +2350,7 @@ SRD5E.SPELLS = {
     'Level=B5,C5,D5,P5,W5 ' +
     'AtHigherLevels="extends the duration to 1 yr or permanently at level 7 or 9" ' +
     'Description=' +
-      '"R60\' Target obeys self instructions (save Wisdom neg) for 30 days"',
+      '"R60\' Target obeys self instructions (save Wisdom negates) for 30 days"',
   'Gentle Repose':
     'School=Necromancy ' +
     'Level=C2,W2 ' +
@@ -2388,7 +2388,7 @@ SRD5E.SPELLS = {
     'School=Conjuration ' +
     'Level=W1 ' +
     'Description=' +
-      '"R60\' 10\' sq becomes difficult terrain and causes creatures to fall prone (save Dexterity neg) for 1 min"',
+      '"R60\' 10\' sq becomes difficult terrain and causes creatures to fall prone (save Dexterity negates) for 1 min"',
   'Greater Invisibility':
     'School=Illusion ' +
     'Level=B4,S4,W4 ' +
@@ -2422,7 +2422,7 @@ SRD5E.SPELLS = {
     'School=Evocation ' +
     'Level=D2,S2,W2 ' +
     'Description=' +
-      '"60\'x10\' wind pushes 15\' (save Strength neg), inflicts half movement, and has a 50% chance of extinguishing flames for concentration up to 1 min"',
+      '"60\'x10\' wind pushes 15\' (save Strength negates), inflicts half movement, and has a 50% chance of extinguishing flames for concentration up to 1 min"',
 
   'Hallow':
     'School=Evocation ' +
@@ -2499,7 +2499,7 @@ SRD5E.SPELLS = {
     'School=Abjuration ' +
     'Level=C8 ' +
     'Description=' +
-      '"Targets in a 30\' radius gain advantage on saves, inflict disadvantage on attackers, and blind successful fiend and undead melee attackers (save Constitution neg) for concentration up to 1 min"',
+      '"Targets in a 30\' radius gain advantage on saves, inflict disadvantage on attackers, and blind successful fiend and undead melee attackers (save Constitution negates) for concentration up to 1 min"',
   "Hunter's Mark":
     'School=Divination ' +
     'Level=R1 ' +
@@ -2510,7 +2510,7 @@ SRD5E.SPELLS = {
     'School=Illusion ' +
     'Level=B3,K3,S3,W3 ' +
     'Description=' +
-      '"R120\' Creatures in a 30\' cube become incapacitated (save Wisdom neg) for concentration up to 1 min; taking damage ends the effects"',
+      '"R120\' Creatures in a 30\' cube become incapacitated (save Wisdom negates) for concentration up to 1 min; taking damage ends the effects"',
 
   'Ice Storm':
     'School=Evocation ' +
@@ -2533,7 +2533,7 @@ SRD5E.SPELLS = {
     'School=Abjuration ' +
     'Level=K9,W9 ' +
     'Description=' +
-      '"R30\' Restrains the target in a chosen type of prison (save Wisdom neg)"',
+      '"R30\' Restrains the target in a chosen type of prison (save Wisdom negates)"',
   'Incendiary Cloud':
     'School=Conjuration ' +
     'Level=S8,W8 ' +
@@ -2592,12 +2592,12 @@ SRD5E.SPELLS = {
     'School=Transmutation ' +
     'Level=S2,W2 ' +
     'Description=' +
-      '"R60\' Target floats (save Constitution neg) and can be moved up or down 20\' each rd for concentration up to 10 min"',
+      '"R60\' Target floats (save Constitution negates) and can be moved up or down 20\' each rd for concentration up to 10 min"',
   'Light':
     'School=Evocation ' +
     'Level=B0,C0,S0,W0 ' +
     'Description=' +
-      '"Touched object lights a 20\' radius (save Dexterity neg) for 1 hr"',
+      '"Touched object lights a 20\' radius (save Dexterity negates) for 1 hr"',
   'Lightning Bolt':
     'School=Evocation ' +
     'Level=S3,W3 ' +
@@ -2645,7 +2645,7 @@ SRD5E.SPELLS = {
     'School=Necromancy ' +
     'Level=W6 ' +
     'Description=' +
-      '"R100\' Moves self soul to a prepared jar from which it can possess a target\'s body and trap its soul in the jar (save Charisma neg)"',
+      '"R100\' Moves self soul to a prepared jar from which it can possess a target\'s body and trap its soul in the jar (save Charisma negates)"',
   'Magic Missile':
     'School=Evocation ' +
     'Level=S1,W1 ' +
@@ -2692,7 +2692,7 @@ SRD5E.SPELLS = {
     'Level=B6,K6,S6,W6 ' +
     'AtHigherLevels="extends the duration to 10, 30, or 366 days at level 7, 8, or 9" ' +
     'Description=' +
-      '"R60\' 12 targets follow a reasonable suggestion (save Wisdom neg) for 1 day"',
+      '"R60\' 12 targets follow a reasonable suggestion (save Wisdom negates) for 1 day"',
   'Maze':
     'School=Conjuration ' +
     'Level=W8 ' +
@@ -2752,7 +2752,7 @@ SRD5E.SPELLS = {
     'AtHigherLevels=' +
       '"changes the memory of an event from the past 7, 30, 365, or unlimited days at level 6, 7, 8, or 9" ' +
     'Description=' +
-      '"R30\' Changes the target\'s memory of an event from the past 24 hr (save Wisdom neg)"',
+      '"R30\' Changes the target\'s memory of an event from the past 24 hr (save Wisdom negates)"',
   'Moonbeam':
     'School=Evocation ' +
     'Level=D2 ' +
@@ -2786,7 +2786,7 @@ SRD5E.SPELLS = {
     'Level=W4 ' +
     'AtHigherLevels="inflicts +1d10 HP" ' +
     'Description=' +
-      '"R120\' Target perceives a personal horror (save Wisdom neg) that frightens and inflicts 4d10 HP psychic per rd (save Wisdom ends) for concentration up to 1 min"',
+      '"R120\' Target perceives a personal horror (save Wisdom negates) that frightens and inflicts 4d10 HP psychic per rd (save Wisdom ends) for concentration up to 1 min"',
   'Phantom Steed':
     'School=Illusion ' +
     'Level=W3 ' +
@@ -2802,12 +2802,12 @@ SRD5E.SPELLS = {
     'Level=B5,C5,D5,W5 ' +
     'AtHigherLevels="extends the duration to 10, 30, 180, or 366 days at level 6, 7, 8, or 9" ' +
     'Description=' +
-      '"R60\' Binds a celestial, elemental, fey, or fiend to service (save Charisma neg) for 1 day"',
+      '"R60\' Binds a celestial, elemental, fey, or fiend to service (save Charisma negates) for 1 day"',
   'Plane Shift':
     'School=Conjuration ' +
     'Level=C7,D7,K7,S7,W7 ' +
     'Description=' +
-      '"Target (save Charisma neg) or self and 8 willing others travel to another plane"',
+      '"Target (save Charisma negates) or self and 8 willing others travel to another plane"',
   'Plant Growth':
     'School=Transmutation ' +
     'Level=B3,D3,R3 ' +
@@ -2817,12 +2817,12 @@ SRD5E.SPELLS = {
     'School=Conjuration ' +
     'Level=D0,K0,S0,W0 ' +
     'Description=' +
-      '"R10\' Inflicts %{(level+7)//6}d12 HP poison (save Constitution neg)"',
+      '"R10\' Inflicts %{(level+7)//6}d12 HP poison (save Constitution negates)"',
   'Polymorph':
     'School=Transmutation ' +
     'Level=B4,D4,S4,W4 ' +
     'Description=' +
-      '"R60\' Transforms the target creature (save Wisdom neg; shapechangers automatically succeed) for concentration up to 1 hr or until reduced to 0 HP"',
+      '"R60\' Transforms the target creature (save Wisdom negates; shapechangers automatically succeed) for concentration up to 1 hr or until reduced to 0 HP"',
   'Power Word Kill':
     'School=Enchantment ' +
     'Level=B9,K9,S9,W9 ' +
@@ -2846,12 +2846,12 @@ SRD5E.SPELLS = {
     'School=Evocation ' +
     'Level=S7,W7 ' +
     'Description=' +
-      '"60\' cone randomly inflicts one of: 10d6 HP fire, acid, lightning, poison, or cold (save Dexterity half); restrained (save Dexterity neg) and petrified after 3 failed Constitution saves (3 successes neg); blinded (save Dexterity neg) and banished to another plane (save Wisdom neg)"',
+      '"60\' cone randomly inflicts one of: 10d6 HP fire, acid, lightning, poison, or cold (save Dexterity half); restrained (save Dexterity negates) and petrified after 3 failed Constitution saves (3 successes negates); blinded (save Dexterity negates) and banished to another plane (save Wisdom negates)"',
   'Prismatic Wall':
     'School=Abjuration ' +
     'Level=W9 ' +
     'Description=' +
-      '"R60\' 90\'x30\' area blinds within 20\' for 1 min (save Constitution neg); creatures passing through suffer 10d6 HP each fire, acid, lightning, poison, and cold (save Dexterity half), restraint (save Dexterity neg) and petrification after 3 failed Constitution saves (3 successes neg), and blindness (save Dexterity neg) and banishment to another plane (save Wisdom neg)"',
+      '"R60\' 90\'x30\' area blinds within 20\' for 1 min (save Constitution negates); creatures passing through suffer 10d6 HP each fire, acid, lightning, poison, and cold (save Dexterity half), restraint (save Dexterity negates) and petrification after 3 failed Constitution saves (3 successes negates), and blindness (save Dexterity negates) and banishment to another plane (save Wisdom negates)"',
   'Private Sanctum':
     'School=Abjuration ' +
     'Level=W4 ' +
@@ -2927,7 +2927,7 @@ SRD5E.SPELLS = {
     'School=Evocation ' +
     'Level=W4 ' +
     'Description=' +
-      '"R30\' Traps the target in an impervious sphere (save Dexterity neg) for concentration up to 1 min"',
+      '"R30\' Traps the target in an impervious sphere (save Dexterity negates) for concentration up to 1 min"',
   'Resistance':
     'School=Abjuration ' +
     'Level=C0,D0 ' +
@@ -2959,12 +2959,12 @@ SRD5E.SPELLS = {
     'School=Evocation ' +
     'Level=C0 ' +
     'Description=' +
-      '"R60\' Inflicts %{(level+7)//6}d8 HP radiant (save Dexterity neg)"',
+      '"R60\' Inflicts %{(level+7)//6}d8 HP radiant (save Dexterity negates)"',
   'Sanctuary':
     'School=Abjuration ' +
     'Level=C1 ' +
     'Description=' +
-      '"R30\' Foes of the target cannot attack it (save Wisdom neg) for 1 min; target attacking ends"',
+      '"R30\' Foes of the target cannot attack it (save Wisdom negates) for 1 min; target attacking ends"',
   'Scorching Ray':
     'School=Evocation ' +
     'Level="K2 [The Fiend]",S2,W2 ' +
@@ -2974,7 +2974,7 @@ SRD5E.SPELLS = {
     'School=Divination ' +
     'Level=B5,C5,D5,K5,W5 ' +
     'Description=' +
-      '"Self sees and hears a chosen target (save Wisdom, modified by degree of familiarity, neg for 24 hr) for concentration up to 10 min"',
+      '"Self sees and hears a chosen target (save Wisdom, modified by degree of familiarity, negates for 24 hr) for concentration up to 10 min"',
   'Secret Chest':
     'School=Conjuration ' +
     'Level=W4 ' +
@@ -2989,7 +2989,7 @@ SRD5E.SPELLS = {
     'School=Illusion ' +
     'Level=B5,S5,W5 ' +
     'Description=' +
-      '"R30\' Changes the appearance of targets (save Charisma neg; Investigation detects) for 8 hr"',
+      '"R30\' Changes the appearance of targets (save Charisma negates; Investigation detects) for 8 hr"',
   'Sending':
     'School=Evocation ' +
     'Level=B3,C3,W3 ' +
@@ -3055,7 +3055,7 @@ SRD5E.SPELLS = {
     'School=Conjuration ' +
     'Level=D3,S3,W3 ' +
     'Description=' +
-      '"R150\' 40\' radius douses flames and inflicts difficult terrain and falling prone (save Dexterity neg) for concentration up to 1 min"',
+      '"R150\' 40\' radius douses flames and inflicts difficult terrain and falling prone (save Dexterity negates) for concentration up to 1 min"',
   'Slow':
     'School=Transmutation ' +
     'Level=S3,W3 ' +
@@ -3105,7 +3105,7 @@ SRD5E.SPELLS = {
     'School=Conjuration ' +
     'Level=B3,"K3 [The Fiend]",S3,W3 ' +
     'Description=' +
-      '"R90\' 20\' radius inflicts loss of actions (save Constitution neg) for concentration up to 1 min"',
+      '"R90\' 20\' radius inflicts loss of actions (save Constitution negates) for concentration up to 1 min"',
   'Stone Shape':
     'School=Transmutation ' +
     'Level=C4,D4,W4 ' +
@@ -3119,12 +3119,12 @@ SRD5E.SPELLS = {
     'School=Conjuration ' +
     'Level=D9 ' +
     'Description=' +
-      '"360\' radius within sight inflicts 2d6 HP thunder and deafness (save Constitution neg), then 1d6 HP acid, then 10d6 HP lightning (6 targets; save Dexterity half), then 2d6 HP bludgeoning, then 1d6 cold per rd and no ranged attacks for concentration up to 1 min"',
+      '"360\' radius within sight inflicts 2d6 HP thunder and deafness (save Constitution negates), then 1d6 HP acid, then 10d6 HP lightning (6 targets; save Dexterity half), then 2d6 HP bludgeoning, then 1d6 cold per rd and no ranged attacks for concentration up to 1 min"',
   'Suggestion':
     'School=Enchantment ' +
     'Level=B2,K2,S2,W2 ' +
     'Description=' +
-      '"R30\' Target follows a reasonable suggestion (save Wisdom neg) for concentration up to 8 hr"',
+      '"R30\' Target follows a reasonable suggestion (save Wisdom negates) for concentration up to 8 hr"',
   'Sunbeam':
     'School=Evocation ' +
     'Level=D6,S6,W6 ' +
@@ -3139,13 +3139,13 @@ SRD5E.SPELLS = {
     'School=Abjuration ' +
     'Level=B7,C7,W7 ' +
     'Description=' +
-      '"Inscribes a touch object with a permanent glyph that, when triggered, inflicts a choice of harmful magic effect&mdash;10d10 HP necrotic (save Constitution half), arguing for 1 min (save Constitution neg), frightened and fleeing for 1 min (save Wisdom neg), overwhelmed with despair for 1 min (save Charisma neg), insane for 1 min (save Intelligence neg), incapacitated by pain for 1 min (save Constitution neg), asleep for 10 min or until shaken or harmed (save Wisdom neg), or stunned for 1 min (save Wisdom neg)"',
+      '"Inscribes a touch object with a permanent glyph that, when triggered, inflicts a choice of harmful magic effect&mdash;10d10 HP necrotic (save Constitution half), arguing for 1 min (save Constitution negates), frightened and fleeing for 1 min (save Wisdom negates), overwhelmed with despair for 1 min (save Charisma negates), insane for 1 min (save Intelligence negates), incapacitated by pain for 1 min (save Constitution negates), asleep for 10 min or until shaken or harmed (save Wisdom negates), or stunned for 1 min (save Wisdom negates)"',
 
   'Telekinesis':
     'School=Transmutation ' +
     'Level=S5,W5 ' +
     'Description=' +
-      '"R60\' Self can mentally move a 1000 lb object 30\' per rd (save Strength neg) for concentration up to 10 min"',
+      '"R60\' Self can mentally move a 1000 lb object 30\' per rd (save Strength negates) for concentration up to 10 min"',
   'Telepathic Bond':
     'School=Divination ' +
     'Level=W5 ' +
@@ -3201,7 +3201,7 @@ SRD5E.SPELLS = {
     'School=Transmutation ' +
     'Level=B9,K9,W9 ' +
     'Description=' +
-      '"R30\' Transforms the target creature (save Wisdom neg) or object for concentration up to 1 hr or until reduced to 0 HP; concentrating for a full hr makes the change permanent"',
+      '"R30\' Transforms the target creature (save Wisdom negates) or object for concentration up to 1 hr or until reduced to 0 HP; concentrating for a full hr makes the change permanent"',
   'True Resurrection':
     'School=Necromancy ' +
     'Level=C9,D9 ' +
@@ -3235,7 +3235,7 @@ SRD5E.SPELLS = {
     'School=Enchantment ' +
     'Level=B0 ' +
     'Description=' +
-      '"R60\' Inflicts %{(level+7)//6}d4 HP psychic and disadvantage on the next attack (save Wisdom neg) for 1 rd"',
+      '"R60\' Inflicts %{(level+7)//6}d4 HP psychic and disadvantage on the next attack (save Wisdom negates) for 1 rd"',
 
   'Wall Of Fire':
     'School=Evocation ' +
@@ -3284,7 +3284,7 @@ SRD5E.SPELLS = {
     'School=Conjuration ' +
     'Level=S2,W2 ' +
     'Description=' +
-      '"R60\' 20\' cube restrains creatures (save Dexterity neg and Strength frees) for concentration up to 1 hr; burning the web inflicts 2d4 HP fire"',
+      '"R60\' 20\' cube restrains creatures (save Dexterity negates and Strength frees) for concentration up to 1 hr; burning the web inflicts 2d4 HP fire"',
   'Weird':
     'School=Illusion ' +
     'Level=W9 ' +
@@ -3315,7 +3315,7 @@ SRD5E.SPELLS = {
     'School=Enchantment ' +
     'Level=B2,C2,P2 ' +
     'Description=' +
-      '"R60\' Creatures in a 15\' radius cannot lie (save Charisma neg) for 10 min"'
+      '"R60\' Creatures in a 15\' radius cannot lie (save Charisma negates) for 10 min"'
 
 };
 SRD5E.TOOLS = {

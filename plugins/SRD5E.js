@@ -3129,7 +3129,7 @@ SRD5E.SPELLS = {
     'School=Evocation ' +
     'Level=D6,S6,W6 ' +
     'Description=' +
-      '"60\' line inflicts 6d8 HP radiant and blindness for 1 rd (Constitution half HP only) for concentration up to 1 min"',
+      '"60\' line inflicts 6d8 HP radiant and blindness for 1 rd (save Constitution half HP only) for concentration up to 1 min"',
   'Sunburst':
     'School=Evocation ' +
     'Level=D8,S8,W8 ' +

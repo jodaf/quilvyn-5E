@@ -582,7 +582,7 @@ SRD5E.FEATURES = {
 
   // Dragonborn
   'Breath Weapon':
-    'Section=combat Note="%{breathWeaponShape} inflicts %{(level+9)//5}d6 HP %{breathWeaponEnergy} (DC %{8+constitutionModifier+proficiencyBonus} %{breathWeaponEnergy=~\'cold|poison\'?\'Constitution\':\'Dexterity\'} half)"',
+    'Section=combat Note="%{breathWeaponShape} inflicts %{(level+9)//5}d6 HP %{breathWeaponEnergy} (save DC %{8+constitutionModifier+proficiencyBonus} %{breathWeaponEnergy=~\'cold|poison\'?\'Constitution\':\'Dexterity\'} half)"',
   'Damage Resistance':
     'Section=save Note="Has resistance to %{breathWeaponEnergy} damage"',
   'Draconic Ancestry':'Section=feature Note="1 selection"',
@@ -679,7 +679,7 @@ SRD5E.FEATURES = {
     'Note="Can use a bonus action to attack with a melee weapon each rd during rage; suffers 1 level of exhaustion after rage"',
   'Intimidating Presence':
     'Section=feature ' +
-    'Note="R30\' Can use an action to inflict frightened on a target (DC %{charismaModifier+8+proficiencyBonus} Wisdom negates) and additional actions to extend each rd; ends if the target moves out of sight or more than 60\' away"',
+    'Note="R30\' Can use an action to inflict frightened on a target (save DC %{charismaModifier+8+proficiencyBonus} Wisdom negates) and additional actions to extend each rd; ends if the target moves out of sight or more than 60\' away"',
   'Mindless Rage':'Section=save Note="Immune to charm and fright during rage"',
   'Retaliation':
     'Section=combat ' +
@@ -750,7 +750,7 @@ SRD5E.FEATURES = {
     'Note="Healing spells restore the maximum possible hit points"',
   'Turn Undead':
     'Section=combat ' +
-    'Note="R30\' Can use Channel Divinity to make undead flee (DC %{spellDifficultyClass.C} Wisdom negates) for 1 min"',
+    'Note="R30\' Can use Channel Divinity to make undead flee (save DC %{spellDifficultyClass.C} Wisdom negates) for 1 min"',
   // Life Domain
   'Blessed Healer':
     'Section=magic ' +
@@ -838,7 +838,7 @@ SRD5E.FEATURES = {
     'Note="Can recover %{(levels.Druid+1)//2} spell slot levels (level 6 maximum) during a short rest once per long rest"',
   "Nature's Sanctuary":
     'Section=combat ' +
-    'Note="Beasts and plants cannot attack self (DC %{wisdomModifier+8+proficiencyBonus} Wisdom negates for 24 hr)"',
+    'Note="Beasts and plants cannot attack self (save DC %{wisdomModifier+8+proficiencyBonus} Wisdom negates for 24 hr)"',
   "Nature's Ward":
     'Section=save ' +
     'Note="Has immunity to disease, poison, and elemental and fey charm and fright"',
@@ -931,7 +931,7 @@ SRD5E.FEATURES = {
     'Note="Can use an action to end charm or fright affecting self"',
   'Stunning Strike':
     'Section=combat ' +
-    'Note="Can spend 1 Ki Point after a successful attack to stun the target (DC %{kiSaveDC} Constitution negates) for 1 rd"',
+    'Note="Can spend 1 Ki Point after a successful attack to stun the target (save DC %{kiSaveDC} Constitution negates) for 1 rd"',
   'Timeless Body (Monk)':
     'Section=feature ' +
     'Note="Suffers no debility from aging and needs no food or water"',
@@ -947,13 +947,13 @@ SRD5E.FEATURES = {
   // Way Of The Open Hand
   'Open Hand Technique':
     'Section=combat ' +
-    'Note="Can use Flurry of Blows to inflict a choice of knocked prone (DC %{kiSaveDC} Dexterity negates), a 15\' push (DC %{kiSaveDC} Strength negates), or loss of reactions for 1 rd"',
+    'Note="Can use Flurry of Blows to inflict a choice of knocked prone (save DC %{kiSaveDC} Dexterity negates), a 15\' push (save DC %{kiSaveDC} Strength negates), or loss of reactions for 1 rd"',
   'Quivering Palm':
     'Section=combat ' +
-    'Note="Can spend 3 Ki Points after a successful unarmed attack to reduce a foe to 0 hit points at any time within %{levels.Monk} days (DC %{kiSaveDC} Constitution inflicts 10d10 HP necrotic)"',
+    'Note="Can spend 3 Ki Points after a successful unarmed attack to reduce a foe to 0 hit points at any time within %{levels.Monk} days (save DC %{kiSaveDC} Constitution inflicts 10d10 HP necrotic)"',
   'Tranquility':
     'Section=magic ' +
-    'Note="Can gain <i>Sanctuary</i> effects between long rests (DC %{kiSaveDC} Wisdom negates)" ' +
+    'Note="Can gain <i>Sanctuary</i> effects between long rests (save DC %{kiSaveDC} Wisdom negates)" ' +
     'Spells=Sanctuary',
   'Wholeness Of Body':
     'Section=feature Note="Can use an action to regain %{levels.Monk*3} hit points once per long rest"',
@@ -1010,7 +1010,7 @@ SRD5E.FEATURES = {
     'Note="Can use Channel Divinity to give a weapon +%{charismaModifier>?1} attack and 20\' bright light for 1 min"',
   'Turn The Unholy':
     'Section=combat ' +
-    'Note="R30\' Can use Channel Divinity to make fiends and undead flee (DC %{spellDifficultyClass.P} Wisdom negates) for 1 min"',
+    'Note="R30\' Can use Channel Divinity to make fiends and undead flee (save DC %{spellDifficultyClass.P} Wisdom negates) for 1 min"',
 
   // Ranger
   // Extra Attack as above
@@ -1159,7 +1159,7 @@ SRD5E.FEATURES = {
       '"+%{proficiencyBonus} on Charisma checks with dragons"',
   'Draconic Presence':
     'Section=magic ' +
-    'Note="R60\' Can spend 5 Sorcery Points to gain an aura that inflicts a choice of charm or fright (DC %{spellDifficultyClass.S} Wisdom negates for 24 hr) for concentration up to 1 min"',
+    'Note="R60\' Can spend 5 Sorcery Points to gain an aura that inflicts a choice of charm or fright (save DC %{spellDifficultyClass.S} Wisdom negates for 24 hr) for concentration up to 1 min"',
   'Draconic Resilience':
     'Section=combat ' +
     'Note="+%{levels.Sorcerer} Hit Points/Armor Class %{dexterityModifier+13} in no armor"',
@@ -2697,7 +2697,7 @@ SRD5E.SPELLS = {
     'School=Conjuration ' +
     'Level=W8 ' +
     'Description=' +
-      '"R60\' Sends the target to a labyrinthine demiplane (DC 20 Intelligence escapes; minotaurs and goristro demons automatically succeed) for concentration up to 10 min"',
+      '"R60\' Sends the target to a labyrinthine demiplane (save DC 20 Intelligence escapes; minotaurs and goristro demons automatically succeed) for concentration up to 10 min"',
   'Meld Into Stone':
     'School=Transmutation ' +
     'Level=C3,D3 ' +

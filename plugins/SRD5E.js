@@ -1640,7 +1640,7 @@ SRD5E.SPELLS = {
     'Level=W2 ' +
     'AtHigherLevels="inflicts +1d4 HP initial and secondary" ' +
     'Description=' +
-      '"R90\' Ranged spell inflicts 4d4 HP acid, plus 2d4 HP next rd (miss half initial HP only)"',
+      '"R90\' Ranged spell inflicts 4d4 HP acid, plus 2d4 HP the following rd (miss half initial HP only)"',
   'Acid Splash':
     'School=Conjuration ' +
     'Level=S0,W0 ' +
@@ -1667,7 +1667,7 @@ SRD5E.SPELLS = {
     'Level=B1,D1,R1 ' +
     'AtHigherLevels="affects +1 target" ' +
     'Description=' +
-      '"R30\' Target beast becomes convinced of self harmlessness (save Wisdom neg; Intelligence 4 or higher immune) for 1 day or until harmed"',
+      '"R30\' Convinces target beast that self is harmless (save Wisdom neg; Intelligence 4 or higher immune) for 1 day or until harmed"',
   'Animal Messenger':
     'School=Enchantment ' +
     'Level=B2,D2,R2 ' +
@@ -1696,7 +1696,7 @@ SRD5E.SPELLS = {
     'School=Abjuration ' +
     'Level=D5 ' +
     'Description=' +
-      '"10\' radius prevents passage of living creatures for concentration up to 1 hr"',
+      '"10\' radius prevents the passage of living creatures for concentration up to 1 hr"',
   'Antimagic Field':
     'School=Abjuration ' +
     'Level=C8,W8 ' +
@@ -1705,7 +1705,7 @@ SRD5E.SPELLS = {
     'School=Enchantment ' +
     'Level=D8,W8 ' +
     'Description=' +
-      '"R60\' Target object or 200\' cubic area repels or attracts specified creatures for 10 day"',
+      '"R60\' Target object or 200\' cubic area repels or attracts specified creatures for 10 days"',
   'Arcane Eye':
     'School=Divination ' +
     'Level=W4 ' +
@@ -1731,7 +1731,7 @@ SRD5E.SPELLS = {
     'School=Illusion ' +
     'Level=W2 ' +
     'Description=' +
-      '"Divinations on willing target report false information for 24 hr"',
+      '"Divinations on a willing target report false information for 24 hr"',
   'Astral Projection':
     'School=Necromancy ' +
     'Level=C9,K9,W9 ' +
@@ -1759,7 +1759,7 @@ SRD5E.SPELLS = {
     'Level=C4,K4,P4,S4,W4 ' +
     'AtHigherLevels="affects +1 target" ' +
     'Description=' +
-      '"R60\' Banishes target to its home plane or a demiplane (save Charisma neg) for concentration up to 1 min"',
+      '"R60\' Banishes the target to its home plane or a demiplane (save Charisma neg) for concentration up to 1 min"',
   'Barkskin':
     'School=Transmutation ' +
     'Level=D2,R2 ' +
@@ -1772,7 +1772,7 @@ SRD5E.SPELLS = {
   'Bestow Curse':
     'School=Necromancy ' +
     'Level=B3,C3,W3 ' +
-    'AtHigherLevels="extends the duration to concentration up to 10 min, 8 hr, 24 hr, or permanently at level 4, 5, 7, or 9" ' +
+    'AtHigherLevels="extends the maximum duration to 10 min, 8 hr, 24 hr, or permanently at level 4, 5, 7, or 9" ' +
     'Description=' +
       '"Touched suffers a choice of disadvantage on specified ability rolls, disadvantage on attacks on self, requiring a successful Wisdom save to take any action, or +1d8 HP necrotic from self attacks (save Wisdom neg) for concentration up to 1 min"',
   'Black Tentacles':
@@ -2079,7 +2079,7 @@ SRD5E.SPELLS = {
     'School=Illusion ' +
     'Level=B1,S1,W1 ' +
     'Description=' +
-      '"Changes the appearance of self body and clothing for 1 hr; physical investigates detects the illusion"',
+      '"Changes the appearance of self body and clothing for 1 hr; physical investigation detects the illusion"',
   'Disintegrate':
     'School=Transmutation ' +
     'Level=S6,W6 ' +
@@ -2090,7 +2090,7 @@ SRD5E.SPELLS = {
     'School=Abjuration ' +
     'Level=C5,P5 ' +
     'Description=' +
-      '"Celestials, elementals, fey, fiends, and undead suffer disadvantage on attacks vs. self for concentration up to 1 min, a successful spell attack returns them to their home plane (save Charisma neg), and a touch also ends an enchantment, fright, or possession by them"',
+      '"Celestials, elementals, fey, fiends, and undead suffer disadvantage on attacks vs. self for concentration up to 1 min; a successful spell attack returns them to their home plane (save Charisma neg), and touch also ends their enchantment, fright, or possession on the creature touched"',
   'Dispel Magic':
     'School=Abjuration ' +
     'Level=B3,C3,D3,K3,P3,S3,W3 ' +
@@ -2255,7 +2255,7 @@ SRD5E.SPELLS = {
     'School=Evocation ' +
     'Level="K4 [The Fiend]",W4 ' +
     'Description=' +
-      '"Self gains resistance to heat or cold damage, and a successful adjacent attacker suffers 2d8 HP fire or cold for 10 min"',
+      '"Self gains resistance to a choice of heat or cold damage, and a successful adjacent attacker suffers 2d8 HP fire or cold for 10 min"',
   'Fire Storm':
     'School=Evocation ' +
     'Level=C7,D7,S7 ' +
@@ -2295,12 +2295,13 @@ SRD5E.SPELLS = {
     'Level=W1 ' +
     'Ritual=true ' +
     'Description=' +
-      '"R30\' 3\' x 1\\" force disk floats 3\' above ground 20\' behind self, holding 500 lbs for 1 hr"',
+      '"R30\' 3\'x1\\" force disk floats 3\' above the ground 20\' behind self and holds 500 lbs for 1 hr"',
   'Fly':
     'School=Transmutation ' +
     'Level=K3,S3,W3 ' +
     'AtHigherLevels="affects +1 target" ' +
-    'Description="Touched gains 60\' fly speed for concentration up to 10 min"',
+    'Description=' +
+      '"Touched gains a 60\' fly speed for concentration up to 10 min"',
   'Fog Cloud':
     'School=Conjuration ' +
     'Level=D1,R1,S1,W1 ' +
@@ -2377,7 +2378,7 @@ SRD5E.SPELLS = {
     'Level=B3,C3,W3 ' +
     'AtHigherLevels="inflicts +1d8 HP or increases the level of the triggered spell by 1" ' +
     'Description=' +
-      '"20\' radius inflicts 5d8 HP of a choice of acid, cold, fire, lightning, or thunder (save Dexterity half) or a spell of up to level 3 when triggered"',
+      '"20\' radius inflicts 5d8 HP of a choice of acid, cold, fire, lightning, or thunder (save Dexterity half), or a spell of up to level 3, when triggered"',
   'Goodberry':
     'School=Transmutation ' +
     'Level=D1,R1 ' +
@@ -2401,7 +2402,7 @@ SRD5E.SPELLS = {
     'School=Conjuration ' +
     'Level=C4 ' +
     'Description=' +
-       '"R30\' 10\' radius inflicts 20 HP radiant to hostile creatures (save Dexterity half) for 8 hr or 60 HP inflicted"',
+       '"R30\' 10\' radius inflicts 20 HP radiant to hostile creatures (save Dexterity half) for 8 hr or until 60 HP inflicted"',
   'Guards And Wards':
     'School=Abjuration ' +
     'Level=B6,W6 ' +
@@ -2502,7 +2503,7 @@ SRD5E.SPELLS = {
   "Hunter's Mark":
     'School=Divination ' +
     'Level=R1 ' +
-    'AtHigherLevels="extends duration to 8/24 hr at level 3/5" ' +
+    'AtHigherLevels="extends the duration to 8 or 24 hr at level 3 or 5" ' +
     'Description=' +
       '"R90\' Self gains +1d6 HP weapon damage to the target and advantage on Perception and Wisdom to locate it for concentration up to 1 hr"',
   'Hypnotic Pattern':
@@ -2565,7 +2566,7 @@ SRD5E.SPELLS = {
     'School=Enchantment ' +
     'Level=B6,W6 ' +
     'Description=' +
-      '"R30\' Target suffers disadvantage on Dexterity and attacks, and foes gain advantage on attacks (save Wisdom ends), for concentration up to 1 min"',
+      '"R30\' Target suffers disadvantage on Dexterity and attacks, and foes gain advantage on attacks, (save Wisdom ends) for concentration up to 1 min"',
 
   'Jump':
     'School=Transmutation ' +
@@ -2637,9 +2638,9 @@ SRD5E.SPELLS = {
   'Magic Circle':
     'School=Abjuration ' +
     'Level=C3,K3,P3,W3 ' +
-    'AtHigherLevels="extends duration +1 hr" ' +
+    'AtHigherLevels="extends the duration +1 hr" ' +
     'Description=' +
-      '"R10\' 10\' radius prevents a choice of physical entry or exit (save Charisma allows magical transit), inflicts disadvantage on attacks, and negates charm, fright, and possession by one or more choices of celestials, fey, fiends, or undead for 1 hr"',
+      '"R10\' 10\' radius prevents a choice of physical entry or exit (save Charisma allows magical transit), inflicts disadvantage on attacks, and negates charm, fright, and possession by one or more choices of celestials, fey, fiends, or undead, for 1 hr"',
   'Magic Jar':
     'School=Necromancy ' +
     'Level=W6 ' +
@@ -2735,7 +2736,7 @@ SRD5E.SPELLS = {
     'School=Illusion ' +
     'Level=K2,S2,W2 ' +
     'Description=' +
-      '"3 duplicates (AC %{10+dexterityModifier}; damage destroys) allow misdirecting attacks on self with a 6, 8, or 11 on a d20 with 3, 2, or 1 remaining duplicate for 1 min"',
+      '"3 duplicates (AC %{10+dexterityModifier}; damage destroys) allow misdirecting attacks on self for 1 min with an 11, 8, or 6 on a d20 while 1, 2, or 3 duplicates remain"',
   'Mislead':
     'School=Illusion ' +
     'Level=B5,W5 ' +
@@ -2749,7 +2750,7 @@ SRD5E.SPELLS = {
     'School=Enchantment ' +
     'Level=B5,W5 ' +
     'AtHigherLevels=' +
-      '"changes the memory of an event from the past 7, 30, 365, unlimited days at level 6, 7, 8, or 9" ' +
+      '"changes the memory of an event from the past 7, 30, 365, or unlimited days at level 6, 7, 8, or 9" ' +
     'Description=' +
       '"R30\' Changes the target\'s memory of an event from the past 24 hr (save Wisdom neg)"',
   'Moonbeam':
@@ -2821,7 +2822,7 @@ SRD5E.SPELLS = {
     'School=Transmutation ' +
     'Level=B4,D4,S4,W4 ' +
     'Description=' +
-      '"R60\' Transforms target creature (save Wisdom neg; shapechangers automatically succeed) for concentration up to 1 hr or until reduced to 0 HP"',
+      '"R60\' Transforms the target creature (save Wisdom neg; shapechangers automatically succeed) for concentration up to 1 hr or until reduced to 0 HP"',
   'Power Word Kill':
     'School=Enchantment ' +
     'Level=B9,K9,S9,W9 ' +
@@ -2854,14 +2855,14 @@ SRD5E.SPELLS = {
   'Private Sanctum':
     'School=Abjuration ' +
     'Level=W4 ' +
-    'AtHigherLevels="increases area by 100\'" ' +
+    'AtHigherLevels="increases the protected area by 100\'" ' +
     'Description=' +
       '"R120\' Protects up to 100\' sq from choices of sound, vision, divination, teleportation, and planar travel for 1 day; casting daily for 1 year makes the effects permanent"',
   'Produce Flame':
     'School=Conjuration ' +
     'Level=D0 ' +
     'Description=' +
-      '"Lights a 10\' radius for 10 min; use for a ranged spell attack that inflicts %{(level+7)//6}d8 HP ends the spell"',
+      '"Lights a 10\' radius for 10 min; can be used for a ranged spell attack that inflicts %{(level+7)//6}d8 HP and ends the spell"',
   'Programmed Illusion':
     'School=Illusion ' +
     'Level=B6,W6 ' +
@@ -2921,7 +2922,7 @@ SRD5E.SPELLS = {
   'Remove Curse':
     'School=Abjuration ' +
     'Level=C3,K3,P3,W3 ' +
-    'Description="Frees touched creature from all curses or breaks the attunement to a touched cursed object"',
+    'Description="Frees a touched creature from all curses or breaks the attunement to a touched cursed object"',
   'Resilient Sphere':
     'School=Evocation ' +
     'Level=W4 ' +
@@ -3154,7 +3155,7 @@ SRD5E.SPELLS = {
     'School=Conjuration ' +
     'Level=B7,S7,W7 ' +
     'Description=' +
-      '"R10\' Teleports an unattended object or self and 8 allies any distance; greater familiarity with the destination improves the accuracy"',
+      '"R10\' Teleports an unattended object or self and 8 allies any distance; greater familiarity with the destination improves accuracy"',
   'Teleportation Circle':
     'School=Conjuration ' +
     'Level=B5,S5,W5 ' +
@@ -3190,7 +3191,7 @@ SRD5E.SPELLS = {
     'School=Conjuration ' +
     'Level=D6 ' +
     'Description=' +
-      '"R10\' Allows teleportation from a large plant target to another for 1 rd"',
+      '"R10\' Allows creatures to teleport from a large plant target to another for 1 rd"',
   'Tree Stride':
     'School=Conjuration ' +
     'Level=D5,R5 ' +
@@ -3234,7 +3235,7 @@ SRD5E.SPELLS = {
     'School=Enchantment ' +
     'Level=B0 ' +
     'Description=' +
-      '"R60\' Inflicts %{(level+7)//6}d4 HP psychic and disadvantage on next attack (save Wisdom neg) for 1 rd"',
+      '"R60\' Inflicts %{(level+7)//6}d4 HP psychic and disadvantage on the next attack (save Wisdom neg) for 1 rd"',
 
   'Wall Of Fire':
     'School=Evocation ' +
@@ -3250,7 +3251,7 @@ SRD5E.SPELLS = {
   'Wall Of Ice':
     'School=Evocation ' +
     'Level=W6 ' +
-    'AtHigherLevels="inflicts +2d6 HP initially, +1d6 HP to passers" ' +
+    'AtHigherLevels="inflicts +2d6 HP initially and +1d6 HP when passing" ' +
     'Description=' +
       '"R120\' Creates 10 10\'x10\'x1\' panels, with AC 12 and 30 HP each, that inflict 10d6 HP cold (save Dexterity half) initially and, if broken, 5d6 HP cold to creatures passing through (save Constitution half) for concentration up to 10 min"',
   'Wall Of Stone':
@@ -3302,7 +3303,8 @@ SRD5E.SPELLS = {
   'Wish':
     'School=Conjuration ' +
     'Level=S9,W9 ' +
-    'Description="Alters reality with few limits"',
+    'Description=' +
+      '"Mimics an 8th level spell or otherwise alters reality with few limits"',
   'Word Of Recall':
     'School=Conjuration ' +
     'Level=C6 ' +

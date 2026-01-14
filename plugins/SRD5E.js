@@ -1039,7 +1039,8 @@ SRD5E.FEATURES = {
   'Ranger Archetype':'Section=feature Note="1 selection"',
   // Spellcasting as above
   'Vanish':
-    'Section=skill Note="Can hide as a bonus action/Untrackable nonmagically"',
+    'Section=skill ' +
+    'Note="Can hide as a bonus action and can be tracked only via magic"',
   // Hunter
   'Colossus Slayer':
     'Section=combat ' +
@@ -1978,7 +1979,7 @@ SRD5E.SPELLS = {
     'School=Transmutation ' +
     'Level=C4,D4,W4 ' +
     'Description=' +
-      '"R300\' Water in a 100\' cube rises 20\', parts, redirects, or whirlpools for concentration up to 10 min"',
+      '"R300\' Water in a 100\' cube rises 20\', parts, redirects, or forms a whirlpool for concentration up to 10 min"',
   'Control Weather':
     'School=Transmutation ' +
     'Level=C8,D8,W8 ' +
@@ -2038,7 +2039,7 @@ SRD5E.SPELLS = {
   'Death Ward':
     'School=Abjuration ' +
     'Level=C4,P4 ' +
-    'Description="Touched retains 1 HP when next reduced to 0 HP or survives next death effect within 8 hrs"',
+    'Description="Touched retains 1 HP when next reduced to 0 HP or survives the next death effect within 8 hrs"',
   'Delayed Blast Fireball':
     'School=Evocation ' +
     'Level=S7,W7 ' +
@@ -2220,7 +2221,7 @@ SRD5E.SPELLS = {
     'School=Enchantment ' +
     'Level=B8,D8,K8,W8 ' +
     'Description=' +
-      '"R150\' Target suffers 4d6 HP psychic and reduction of Charisma and Intelligence to 1 (save Intelligence inflicts HP only; failure allows additional saves every 30 days)"',
+      '"R150\' Target suffers 4d6 HP psychic and reduction of Charisma and Intelligence to 1 (save Intelligence HP only; failure allows additional saves every 30 days)"',
   'Find Familiar':
     'School=Conjuration ' +
     'Level=W1 ' +

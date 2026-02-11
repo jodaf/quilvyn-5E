@@ -1122,7 +1122,7 @@ SRD5E.FEATURES = {
   // Sorcerer
   'Careful Spell':
     'Section=magic ' +
-    'Note="Can spend 1 Sorcery Point to give %{charismaModifier>1?charismModifier+\' creatures\':\'1 creature\'} a successful save on a self spell"',
+    'Note="Can spend 1 Sorcery Point to give %{charismaModifier>1?charismaModifier+\' creatures\':\'1 creature\'} a successful save on a self spell"',
   'Distant Spell':
     'Section=magic ' +
     'Note="Can spend 1 Sorcery Point to double the range of a spell or to give a touch spell a 30\' range"',
@@ -5200,7 +5200,7 @@ SRD5E.raceRules = function(
     return;
   }
   if(size == null) {
-    // Backwards compatability
+    // Backwards compatibility
     size = features.filter(x => x.match(/^(\d+:)?Small$/)).length > 0 ? 'Small' : 'Medium';
   }
   if(!(size+'').match(/^(Large|Medium|Small)$/)) {
@@ -5208,7 +5208,7 @@ SRD5E.raceRules = function(
     return;
   }
   if(speed == null) {
-    // Backwards compatability
+    // Backwards compatibility
     speed = features.filter(x => x.match(/^(\d+:)?Slow$/)).length > 0 ? 25 : 30;
   }
   if(typeof(speed) != 'number') {

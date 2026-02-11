@@ -570,7 +570,7 @@ SRD5E.FEATURES = {
     'Note="Can move through a space occupied by a larger creature"',
   'Lucky (Halfling)':
     'Section=feature ' +
-    'Note="Can reroll 1s on attack, ability, and saving throws"',
+    'Note="Can reroll 1s on attacks, ability checks, and saves"',
   // Lightfoot Halfling
   'Lightfoot Halfling Ability Adjustment':'Section=ability Note="+1 Charisma"',
   'Naturally Stealthy':'Section=skill Note="Can hide behind a larger creature"',
@@ -662,7 +662,7 @@ SRD5E.FEATURES = {
     'Note=' +
       '"Has advantage on Strength checks during rage",' +
       '"+%{levels.Barbarian<9?2:levels.Barbarian<16?3:4} damage with Strength melee weapons during rage",' +
-      '"Can use rage features for 1 min %{levels.Barbarian<3?2:levels.Barbarian<6?3:levels.Barbarian<12?4:levels.Barbarian<17?5:levels.Barbarian<20?6:\'unlimited\'} times per long rest; heavy armor negates benefits",' +
+      '"Can enter a rage for 1 min %{levels.Barbarian<3?2:levels.Barbarian<6?3:levels.Barbarian<12?4:levels.Barbarian<17?5:levels.Barbarian<20?6:\'unlimited\'} times per long rest; heavy armor negates benefits",' +
       '"Cannot cast or concentrate on spells during rage",' +
       '"Has advantage on Strength saves and resistance to bludgeoning, piercing, and slashing damage during rage"',
   'Reckless Attack':
@@ -688,16 +688,16 @@ SRD5E.FEATURES = {
   // Bard
   'Bard College':'Section=feature Note="1 selection"',
   'Bardic Inspiration':
-    'Section=feature ' +
-    'Note="R60\' Can use a bonus action to give an ally a +1d%{bardicInspirationDie} bonus on an ability, attack, or saving throw within 10 min %{charismaModifier>1?charismaModifier + \' times\':\'once\'} per %{featureNotes.fontOfInspiration?\'short\':\'long\'} rest"',
-  'Countercharm':
     'Section=magic ' +
+    'Note="R60\' Can use a bonus action to give an ally a +1d%{bardicInspirationDie} bonus on an ability, attack, or saving throw within 10 min %{charismaModifier>1?charismaModifier + \' times\':\'once\'} per %{magicNotes.fontOfInspiration?\'short\':\'long\'} rest"',
+  'Countercharm':
+    'Section=skill ' +
     'Note="R30\' Performance gives friendly listeners advantage on saves vs. charm and fright for 1 rd"',
   'Expertise (Bard)':
     'Section=skill ' +
     'Note="+%{proficiencyBonus} on %{levels.Bard<10?2:4} chosen proficient skills"',
   'Font Of Inspiration':
-    'Section=feature Note="Bardic Inspiration refreshes after a short rest"',
+    'Section=magic Note="Bardic Inspiration refreshes after a short rest"',
   'Jack Of All Trades':
     'Section=ability ' +
     'Note="+%{proficiencyBonus//2} on non-proficient ability checks"',
@@ -728,8 +728,8 @@ SRD5E.FEATURES = {
 
   // Cleric
   'Channel Divinity':
-    'Section=feature ' +
-    'Note="Can use a Channel Divinity effect %{featureNotes.channelDivinity.1>1 ? featureNotes.channelDivinity.1 + \' times\': \'once\'} per short rest"',
+    'Section=magic ' +
+    'Note="Can use a Channel Divinity effect %{magicNotes.channelDivinity.1>1 ? magicNotes.channelDivinity.1 + \' times\': \'once\'} per short rest"',
   'Destroy Undead':
     'Section=combat ' +
     'Note="Turning destroys undead up to CR %{levels.Cleric>=8?(levels.Cleric-5)//3<?4:0.5}"',
@@ -888,15 +888,15 @@ SRD5E.FEATURES = {
   // Monk
   'Deflect Missiles':
     'Section=combat ' +
-    'Note="Can use a reaction to reduce missile damage by 1d10+%{levels.Monk+dexterityModifier} HP; reducing it to 0 hit points allows spending 1 Ki Point to make an immediate attack"',
+    'Note="Can use a reaction to reduce missile damage by 1d10+%{levels.Monk+dexterityModifier} HP; reducing it to 0 hit points allows spending 1 ki point to make an immediate attack"',
   'Diamond Soul':
     'Section=save,save ' +
     'Note=' +
       '"Proficient on all saves",' +
-      '"Can spend 1 Ki Point to reroll a save"',
+      '"Can spend 1 ki point to reroll a save"',
   'Empty Body':
     'Section=magic ' +
-    'Note="Can spend 4 Ki Points to become invisible and gain resistance to all damage other than force for 1 min/Can spend 8 Ki Points to cast <i>Astral Projection</i> on self" ' +
+    'Note="Can spend 4 ki points to become invisible and gain resistance to all damage other than force for 1 min/Can spend 8 ki points to cast <i>Astral Projection</i> on self" ' +
     'Spells="Astral Projection"',
   'Evasion':
     'Section=save ' +
@@ -904,39 +904,39 @@ SRD5E.FEATURES = {
   // Extra Attack as above
   'Flurry Of Blows':
     'Section=combat ' +
-    'Note="Can spend 1 Ki Point to make 2 unarmed strikes as a bonus action"',
-  'Ki':'Section=feature Note="Can use %{levels.Monk} Ki Points per short rest"',
+    'Note="Can spend 1 ki point to make 2 unarmed strikes as a bonus action"',
+  'Ki':'Section=feature Note="Can use %{levels.Monk} ki points per short rest"',
   'Ki-Empowered Strikes':
     'Section=combat Note="Unarmed attacks count as magical"',
   'Martial Arts':
     'Section=combat,combat ' +
     'Note=' +
-      '"When unarmored, gains +%1 attack and damage with monk weapons and raises damage die to 1d%V",' +
+      '"When unarmored, gains +%1 attack and damage with monk weapons and raises their damage dice to 1d%V",' +
       '"When unarmored, can use a bonus action to make an unarmed strike after a monk weapon attack"',
   'Monastic Tradition':'Section=feature Note="1 selection"',
   'Patient Defense':
-    'Section=combat Note="Can spend 1 Ki Point to Dodge as a bonus action"',
+    'Section=combat Note="Can spend 1 ki point to Dodge as a bonus action"',
   'Perfect Self':
     'Section=combat ' +
-    'Note="Has a minimum of 4 Ki Points available after initiative"',
+    'Note="Has a minimum of 4 ki points available after initiative"',
   'Purity Of Body':'Section=save Note="Has immunity to disease and poison"',
   'Slow Fall':
     'Section=ability ' +
     'Note="Can use a reaction to reduce falling damage by %{levels.Monk*5} HP"',
   'Step Of The Wind':
     'Section=combat ' +
-    'Note="Can spend 1 Ki Point to double jump distance and to Disengage or Dash as a bonus action"',
+    'Note="Can spend 1 ki point to double jump distance and to Disengage or Dash as a bonus action"',
   'Stillness Of Mind':
     'Section=save ' +
     'Note="Can use an action to end charm or fright affecting self"',
   'Stunning Strike':
     'Section=combat ' +
-    'Note="Can spend 1 Ki Point after a successful attack to stun the target (save DC %{kiSaveDC} Constitution negates) for 1 rd"',
+    'Note="Can spend 1 ki point after a successful attack to stun the target (save DC %{kiSaveDC} Constitution negates) for 1 rd"',
   'Timeless Body (Monk)':
     'Section=feature ' +
     'Note="Suffers no debility from aging and needs no food or water"',
   'Tongue Of The Sun And Moon':
-    'Section=feature Note="Can communicate in any language"',
+    'Section=skill Note="Can communicate in any language"',
   'Unarmored Defense (Monk)':
     'Section=combat Note="+%{wisdomModifier} Armor Class in no armor"',
   'Unarmored Movement':
@@ -950,7 +950,7 @@ SRD5E.FEATURES = {
     'Note="Can use Flurry of Blows to inflict a choice of knocked prone (save DC %{kiSaveDC} Dexterity negates), a 15\' push (save DC %{kiSaveDC} Strength negates), or loss of reactions for 1 rd"',
   'Quivering Palm':
     'Section=combat ' +
-    'Note="Can spend 3 Ki Points after a successful unarmed attack to reduce a foe to 0 hit points at any time within %{levels.Monk} days (save DC %{kiSaveDC} Constitution inflicts 10d10 HP necrotic)"',
+    'Note="Can spend 3 ki points after a successful unarmed attack to reduce a foe to 0 hit points at any time within %{levels.Monk} days (save DC %{kiSaveDC} Constitution inflicts 10d10 HP necrotic)"',
   'Tranquility':
     'Section=magic ' +
     'Note="Can gain <i>Sanctuary</i> effects between long rests (save DC %{kiSaveDC} Wisdom negates)" ' +
@@ -971,7 +971,7 @@ SRD5E.FEATURES = {
     'Note="Can dispel a spell effect on a touched willing creature %{charismaModifier>1?charismaModifier+\' times\':\'once\'} per long rest"',
   'Divine Health':'Section=save Note="Has immunity to disease"',
   'Divine Sense':
-    'Section=magic ' +
+    'Section=skill ' +
     'Note="R60\' Can discern the location of celestials, fiends, and undead for 1 rd %{charismaModifier!=0?(charismaModifier+1)+\' times\':\'once\'} per long rest"',
   'Divine Smite':
     'Section=combat ' +
@@ -1032,7 +1032,7 @@ SRD5E.FEATURES = {
   // Land's Stride as above
   'Natural Explorer':
     'Section=skill ' +
-    'Note="Doubles Proficiency on Intelligence and Wisdom skills, moves normally through difficult terrain, never becomes lost, always remains alert, can stealth alone at full speed, locates double food, and gains extra info from tracking in %{levels.Ranger<6?1:levels.Ranger<10?2:3} chosen terrain types"',
+    'Note="In %{levels.Ranger<6?1:levels.Ranger<10?2:3} chosen terrain types, gains +%{proficiencyBonus} on proficient Intelligence and Wisdom skills, moves normally through difficult terrain, never becomes lost, always remains alert, can stealth alone at full speed, locates double food, and gains extra info from tracking"',
   'Primeval Awareness':
     'Section=magic ' +
     'Note="Can spend a spell slot to sense creatures in a 1 mile radius, or in a 6 mile radius of favored terrain, for 1 min per slot level"',
@@ -1068,7 +1068,7 @@ SRD5E.FEATURES = {
   "Superior Hunter's Defense":'Section=feature Note="1 selection"',
   'Uncanny Dodge':
     'Section=combat ' +
-    'Note="Can use a reaction to reduce damage taken from an attack by half"',
+    'Note="Can use a reaction to reduce the damage taken from an attack by half"',
   'Volley':
     'Section=combat ' +
     'Note="Can make a ranged attack on any number of foes in a 10\' radius"',
@@ -1122,19 +1122,19 @@ SRD5E.FEATURES = {
   // Sorcerer
   'Careful Spell':
     'Section=magic ' +
-    'Note="Can spend 1 Sorcery Point to give %{charismaModifier>?1} creatures a successful save on a self spell"',
+    'Note="Can spend 1 Sorcery Point to give %{charismaModifier>1?charismModifier+\' creatures\':\'1 creature\'} a successful save on a self spell"',
   'Distant Spell':
     'Section=magic ' +
     'Note="Can spend 1 Sorcery Point to double the range of a spell or to give a touch spell a 30\' range"',
   'Empowered Spell':
     'Section=magic ' +
-    'Note="Can spend 1 Sorcery Point to reroll %{charismaModifier>?1} spell damage dice"',
+    'Note="Can spend 1 Sorcery Point to reroll %{charismaModifier>?1} spell damage %{charismaModifier>1?\'dice\':\'die\'}"',
   'Extended Spell':
     'Section=magic ' +
     'Note="Can spend 1 Sorcery Point to double the duration of a spell, up to 24 hr maximum"',
   'Font Of Magic':
     'Section=magic ' +
-    'Note="Can use %V Sorcery Points per long rest/Can use a bonus action to convert between Sorcery Points and spell slots"',
+    'Note="Can use %V Sorcery Points per long rest and can use a bonus action to convert between Sorcery Points and spell slots"',
   'Heightened Spell':
     'Section=magic ' +
     'Note="Can spend 3 Sorcery Points to inflict target disadvantage on the initial save vs. a self spell"',
@@ -1315,7 +1315,7 @@ SRD5E.FEATURES = {
     'Section=magic ' +
     'Note="Can cast <i>Speak With Dead</i> at will" ' +
     'Spells="Speak With Dead"',
-  'Witch Sight':'Section=feature Note="R30\' Sees true forms"',
+  'Witch Sight':'Section=skill Note="R30\' Sees true forms"',
 
   // Wizard
   'Arcane Recovery':
@@ -3324,6 +3324,7 @@ SRD5E.TOOLS = {
   "Brewer's Supplies":'Type=Artisan',
   "Calligrapher's Supplies":'Type=Artisan',
   "Carpenter's Tools":'Type=Artisan',
+  "Cartographer's Tools":'Type=Artisan',
   "Cobbler's Tools":'Type=Artisan',
   "Cook's Utensils":'Type=Artisan',
   "Glassblower's Tools":'Type=Artisan',
@@ -4354,8 +4355,8 @@ SRD5E.classRulesExtra = function(rules, name) {
     rules.defineRule('bardicInspirationDie',
       classLevel, '=', 'source<20 ? 6 + Math.floor(source / 5) * 2 : 12'
     );
-    rules.defineRule('featureNotes.bardicInspiration',
-      'featureNotes.fontOfInspiration', '+', 'null' // italics
+    rules.defineRule('magicNotes.bardicInspiration',
+      'magicNotes.fontOfInspiration', '+', 'null' // italics
     );
     rules.defineRule('magicNotes.spellcasting.1', classLevel, '=', '1');
     rules.defineRule('selectableFeatureCount.Bard (Bard College)',
@@ -4365,7 +4366,7 @@ SRD5E.classRulesExtra = function(rules, name) {
   } else if(name == 'Cleric') {
 
     rules.defineRule('clericHasDivineStrike', 'features.Life Domain', '=', '1');
-    rules.defineRule('featureNotes.channelDivinity.1',
+    rules.defineRule('magicNotes.channelDivinity.1',
       'features.Channel Divinity', '?', null,
       'levels.Cleric', '+=', 'source<6 ? 1 : source<18 ? 2 : 3'
     );
@@ -4504,11 +4505,11 @@ SRD5E.classRulesExtra = function(rules, name) {
     );
     rules.defineRule
       ('combatNotes.extraAttack', classLevel, '+=', 'source<5 ? null : 1');
-    rules.defineRule('featureNotes.channelDivinity.1',
-      'levels.Paladin', '+=', 'source<3 ? null : 1'
-    );
     rules.defineRule('featureNotes.fightingStyle',
       'paladinFeatures.Fighting Style', '+=', '1'
+    );
+    rules.defineRule('magicNotes.channelDivinity.1',
+      'levels.Paladin', '+=', 'source<3 ? null : 1'
     );
     rules.defineRule('selectableFeatureCount.Paladin (Fighting Style)',
       'paladinFeatures.Fighting Style', '?', null,
@@ -5592,8 +5593,14 @@ SRD5E.weaponRules = function(rules, name, category, properties, damage, range) {
   rules.defineRule('weaponProficiency.' + name,
     'weaponsChosen.' + name, '=', 'source ? 1 : null'
   );
-  if(isMonk)
-    rules.defineRule(weaponName + '.2', 'monkMeleeDieBonus', '^', null);
+  // Have to be careful here. Using the ^ operation won't work, because the
+  // comparison is lexical and, e.g., "1d10" < "1d8". monkMeleeDieBonus tops
+  // out at 1d10, so there's no need to check for override if the weapon
+  // already does that much damage.
+  if(isMonk && !damage.match(/d1[02]/))
+    rules.defineRule(weaponName + '.2',
+      'monkMeleeDieBonus', '=', 'source=="1d10" || source>"' + damage + '" ? source : null'
+    );
 
 };
 

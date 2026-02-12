@@ -5025,9 +5025,11 @@ SRD5E.featureSpells = function(rules, feature, spellType, levelAttr, spellList){
     spellNames = spellNames.split(',');
     for(let j = 0; j < spellNames.length; j++) {
       let spellName = spellNames[j];
-      if(window.PHB5E && spellName in PHB5E.SPELLS_RENAMED)
-        spellName = PHB5E.SPELLS_RENAMED[spellName];
       let spell = QuilvynUtils.getKeys(allSpells, '^' + spellName + '\\(')[0];
+      if(!spell && window.PHB5E && spellName in PHB5E.SPELLS_RENAMED) {
+        spellName = PHB5E.SPELLS_RENAMED[spellName];
+        spell = QuilvynUtils.getKeys(allSpells, '^' + spellName + '\\(')[0];
+      }
       if(!spell) {
         console.log('Unknown spell "' + spellName + '" for feature ' + feature);
         continue;

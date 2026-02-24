@@ -602,7 +602,7 @@ SRD5E.FEATURES = {
     'Note="+%{proficiencyBonus*(skillProficiency.History?1:2)} History (magic, alchemical, and technological objects)"',
   'Rock Gnome Ability Adjustment':'Section=ability Note="+1 Constitution"',
   'Tinker':
-    'Section=feature,skill ' +
+    'Section=skill,skill ' +
     'Note=' +
       '"Tool Proficiency (Tinker\'s Tools)",' +
       '"Can use Tinker\'s Tools to create a tiny clockwork device in 1 hr"',
@@ -659,11 +659,10 @@ SRD5E.FEATURES = {
   'Primal Champion':'Section=ability Note="+4 Strength/+4 Constitution"',
   'Primal Path':'Section=feature Note="1 selection"',
   'Rage':
-    'Section=ability,combat,feature,magic,save ' +
+    'Section=ability,combat,magic,save ' +
     'Note=' +
       '"Has advantage on Strength checks during rage",' +
-      '"+%{levels.Barbarian<9?2:levels.Barbarian<16?3:4} damage with Strength melee weapons during rage",' +
-      '"Can enter a rage for 1 min %{levels.Barbarian<3?2:levels.Barbarian<6?3:levels.Barbarian<12?4:levels.Barbarian<17?5:levels.Barbarian<20?6:\'unlimited\'} times per long rest; heavy armor negates benefits",' +
+      '"Can enter a rage, gaining +%{levels.Barbarian<9?2:levels.Barbarian<16?3:4} damage with Strength melee weapons, for 1 min %{levels.Barbarian<3?2:levels.Barbarian<6?3:levels.Barbarian<12?4:levels.Barbarian<17?5:levels.Barbarian<20?6:\'unlimited\'} times per long rest; heavy armor negates benefits",' +
       '"Cannot cast or concentrate on spells during rage",' +
       '"Has advantage on Strength saves and resistance to bludgeoning, piercing, and slashing damage during rage"',
   'Reckless Attack':
@@ -859,7 +858,8 @@ SRD5E.FEATURES = {
   'Fighting Style (Archery)':'Section=combat Note="+2 ranged attacks"',
   'Fighting Style (Defense)':'Section=combat Note="+1 Armor Class in armor"',
   'Fighting Style (Dueling)':
-    'Section=combat Note="+2 damage with a single, one-handed melee weapon"',
+    'Section=combat ' +
+    'Note="Inflicts +2 HP with a single, one-handed melee weapon"',
   'Fighting Style (Great Weapon Fighting)':
     'Section=combat Note="Can reroll 1s and 2s on two-handed weapon damage"',
   'Fighting Style (Protection)':
@@ -1026,7 +1026,7 @@ SRD5E.FEATURES = {
   'Feral Senses':
     'Section=combat,skill ' +
     'Note=' +
-      '"Suffers no disadvantage vs. an invisible foe",' +
+      '"Suffers no disadvantage when attacking an invisible foe",' +
       '"R30\' Can locate invisible creatures"',
   // Fighting Style as above
   'Foe Slayer':
@@ -1038,7 +1038,7 @@ SRD5E.FEATURES = {
   // Land's Stride as above
   'Natural Explorer':
     'Section=skill ' +
-    'Note="In %{levels.Ranger<6?1:levels.Ranger<10?2:3} chosen terrain types, gains +%{proficiencyBonus} on proficient Intelligence and Wisdom skills, moves normally through difficult terrain, never becomes lost, always remains alert, can stealth alone at full speed, locates double food, and gains extra info from tracking"',
+    'Note="In %{levels.Ranger<6?1:levels.Ranger<10?2:3} chosen terrain types, gains +%{proficiencyBonus} on related proficient Intelligence and Wisdom skills, moves normally through difficult terrain, never becomes lost, always remains alert, can stealth alone at full speed, locates twice the amount of food when foraging, and gains extra info from tracking"',
   'Primeval Awareness':
     'Section=magic ' +
     'Note="Can spend a spell slot to sense creatures in a 1 mile radius, or in a 6 mile radius of favored terrain, for 1 min per slot level"',
@@ -1050,7 +1050,7 @@ SRD5E.FEATURES = {
   // Hunter
   'Colossus Slayer':
     'Section=combat ' +
-    'Note="Can inflict +1d8 HP damage vs. an already-injured foe once per rd"',
+    'Note="Can inflict +1d8 HP vs. an already-injured foe once per rd"',
   'Defensive Tactics':'Section=feature Note="1 selection"',
   'Escape The Horde':
     'Section=combat ' +
@@ -1066,7 +1066,7 @@ SRD5E.FEATURES = {
   'Multiattack':'Section=feature Note="1 selection"',
   'Multiattack Defense':
     'Section=combat ' +
-    'Note="After a successful foe attack, gains +4 Armor Class vs. additional attacks from the same foe in same rd"',
+    'Note="After a successful foe attack, gains +4 Armor Class vs. additional attacks from the same foe in same turn"',
   'Stand Against The Tide':
     'Section=combat ' +
     'Note="Can use a reaction to redirect a foe melee miss to another creature"',
@@ -1087,8 +1087,7 @@ SRD5E.FEATURES = {
     'Section=skill ' +
     'Note="R10\' Knows the location of hidden and invisible creatures"',
   'Cunning Action':
-    'Section=combat ' +
-    'Note="Can use a bonus action to Dash, Disengage, or Hide once per rd"',
+    'Section=combat Note="Can use a bonus action to Dash, Disengage, or Hide"',
   'Elusive':'Section=combat Note="Attacks on self never have advantage"',
   // Evasion as above
   // Expertise as above
@@ -1098,7 +1097,7 @@ SRD5E.FEATURES = {
   'Slippery Mind':'Section=save Note="Save Proficiency (Wisdom)"',
   'Sneak Attack':
     'Section=combat ' +
-    'Note="+%{(levels.Rogue+1)//2}d6 damage on attacks with advantage or on a foe threatened by another adjacent creature"',
+    'Note="Inflicts +%{(levels.Rogue+1)//2}d6 HP on attacks with advantage or on a foe threatened by another adjacent creature once per turn"',
   'Stroke Of Luck':
     'Section=combat ' +
     'Note="Can change a miss into a hit or take an automatic 20 on an ability check once per short rest"',
@@ -1144,7 +1143,7 @@ SRD5E.FEATURES = {
     'Note="Can spend 1 Sorcery Point to reroll %{charismaModifier>?1} spell damage %{charismaModifier>1?\'dice\':\'die\'}"',
   'Extended Spell':
     'Section=magic ' +
-    'Note="Can spend 1 Sorcery Point to double the duration of a spell, up to 24 hr maximum"',
+    'Note="Can spend 1 Sorcery Point to double the duration of a spell, up to a 24 hr maximum"',
   'Heightened Spell':
     'Section=magic ' +
     'Note="Can spend 3 Sorcery Points to inflict target disadvantage on the initial save vs. a self spell"',
@@ -1162,7 +1161,7 @@ SRD5E.FEATURES = {
     'Section=skill,skill ' +
     'Note=' +
       '"Language (Draconic)",' +
-      '"+%{proficiencyBonus} on Charisma checks with dragons"',
+      '"+%{proficiencyBonus} on proficient Charisma checks with dragons"',
   'Draconic Presence':
     'Section=magic ' +
     'Note="R60\' Can spend 5 Sorcery Points to gain an aura that inflicts a choice of charm or fright (save DC %{spellDifficultyClass.S} Wisdom negates for 24 hr) for concentration up to 1 min"',
@@ -1202,6 +1201,7 @@ SRD5E.FEATURES = {
     'Spells="Find Familiar"',
   'Pact Of The Tome':
     'Section=magic ' +
+    // errata specifies that each cantrip can be from a different list
     'Note="Has a <i>Book Of Shadows</i> containing 3 chosen cantrips from any spell lists"',
   // The Fiend
   "Dark One's Blessing":
@@ -1209,13 +1209,13 @@ SRD5E.FEATURES = {
     'Note="Reducing a foe to 0 hit points gives self %{(levels.Warlock+charismaModifier)>?1} temporary hit points"',
   "Dark One's Own Luck":
     'Section=feature ' +
-    'Note="Can add 1d10 to an ability or save roll once per short rest"',
+    'Note="Can add 1d10 to an ability check or save once per short rest"',
   'Fiendish Resilience':
     'Section=save ' +
-    'Note="At the end of a rest, can gain resistance to a chosen damage type from non-magical and non-silver weapons"',
+    'Note="At the end of a rest, can gain resistance to a chosen damage type from anything other than magical or silver weapons"',
   'Hurl Through Hell':
     'Section=combat ' +
-    'Note="After a successful attack, can inflict 10d10 HP psychic and cause the target to disappear for 1 rd once per long rest"',
+    'Note="After a successful attack, can inflict 10d10 HP psychic and cause the target to disappear until the end of the next turn once per long rest"',
   // Eldritch Invocations
   'Agonizing Blast':
     'Section=magic ' +
@@ -1243,7 +1243,7 @@ SRD5E.FEATURES = {
     'Note="Has 2 1st-level spell rituals inscribed in a <i>Book Of Shadows</i> and can inscribe additional rituals"',
   'Chains Of Carceri':
     'Section=magic ' +
-    'Note="Can cast <i>Hold Monster</i> at will on celestials, elementals, and fiends once per long rest per creature" ' +
+    'Note="Can cast <i>Hold Monster</i> at will on celestials, elementals, and fiends once per creature per long rest" ' +
     'Spells="Hold Monster"',
   "Devil's Sight":'Section=feature Note="R120\' Sees normally in darkness"',
   'Dreadful Word':
@@ -1256,7 +1256,7 @@ SRD5E.FEATURES = {
     'Spells="Detect Magic"',
   'Eldritch Spear':
     'Section=magic Note="Increases <i>Eldritch Blast</i> range to 300\'"',
-  'Eyes Of The Rune Keeper':'Section=feature Note="Can read all writing"',
+  'Eyes Of The Rune Keeper':'Section=skill Note="Can read all writing"',
   'Fiendish Vigor':
     'Section=magic ' +
     'Note="Can cast <i>False Life</i> on self at will" ' +
@@ -1315,13 +1315,15 @@ SRD5E.FEATURES = {
     'Note="Can cast <i>Arcane Eye</i> at will" ' +
     'Spells="Arcane Eye"',
   'Voice Of The Chain Master':
-    'Section=feature ' +
+    'Section=magic ' +
     'Note="Can perceive and speak through familiar and communicate telepathically with it"',
   'Whispers Of The Grave':
     'Section=magic ' +
     'Note="Can cast <i>Speak With Dead</i> at will" ' +
     'Spells="Speak With Dead"',
-  'Witch Sight':'Section=skill Note="R30\' Sees true forms"',
+  'Witch Sight':
+    'Section=skill ' +
+    'Note="R30\' Sees the true form of shapechangers and creatures concealed by illusion or transformation"',
 
   // Wizard
   'Arcane Recovery':
@@ -1340,10 +1342,10 @@ SRD5E.FEATURES = {
     'Section=magic Note="+%{intelligenceModifier} HP evocation spell damage"',
   'Evocation Savant':
     'Section=magic ' +
-    'Note="Can copy evocation spells into spellbook for half cost"',
+    'Note="Requires half the normal time and cost to copy evocation spells into spellbook"',
   'Overchannel':
     'Section=magic ' +
-    'Note="Can inflict maximum damage from evocation spells up to level 5; doing so also inflicts 2d12+ HP necrotic damage per spell level on self for each use after the first until a long rest"',
+    'Note="Can inflict maximum damage from evocation spells up to level 5; additional uses before a long rest also inflict necrotic damage on self, starting at 2d12 HP and increasing by 1d12 HP on each successive use"',
   'Potent Cantrip':
     'Section=magic Note="Cantrips inflict half HP on a successful save"',
   'Sculpt Spells':

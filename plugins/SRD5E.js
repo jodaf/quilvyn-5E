@@ -1328,7 +1328,7 @@ SRD5E.FEATURES = {
   // Wizard
   'Arcane Recovery':
     'Section=magic ' +
-    'Note="Can recover %{(levels.Wizard+1)//2} spell slot levels (level 5 maximum) at the end of a short rest once per long rest"',
+    'Note="Can recover %{(levels.Wizard+1)//2} spell slot level%{levels.Wizard>2?\'s\':\'\'} (level 5 maximum) at the end of a short rest once per long rest"',
   'Arcane Tradition':'Section=feature Note="1 selection"',
   'Signature Spells':
     'Section=magic ' +

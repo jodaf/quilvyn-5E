@@ -916,7 +916,7 @@ SRD5E.FEATURES = {
   'Martial Arts':
     'Section=combat,combat ' +
     'Note=' +
-      '"When unarmored, gains +%1 attack and damage with unarmed strikes monk weapons and raises their damage dice to 1d%V",' +
+      '"When unarmored, gains +%1 attack and damage with unarmed strikes and monk weapons and raises their damage dice to 1d%V",' +
       '"When unarmored, can use a bonus action to make an unarmed strike after an unarmed strike or monk weapon attack"',
   'Monastic Tradition':'Section=feature Note="1 selection"',
   'Patient Defense':

@@ -696,7 +696,7 @@ SRD5E.FEATURES = {
     'Note="R30\' Performance gives friendly listeners advantage on saves vs. charm and fright for 1 rd"',
   'Expertise':
     'Section=skill ' +
-    'Note="+%{proficiencyBonus} on %V chosen proficient skills%{levels.Rogue>=3?\\" or Thieves\' Tools\\":\'\'}"',
+    'Note="+%{proficiencyBonus} on %V chosen proficient skills%{levels.Rogue?\\" or Thieves\' Tools\\":\'\'}"',
   'Expertise (Rogue)':
     'Section=skill ' +
     'Note="+%{proficiencyBonus} on %{levels.Rogue<6?2:4} chosen proficient skills or Thieves\' Tools"',

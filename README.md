@@ -17,8 +17,7 @@ lines to the file plugins/plugins.js:
 
     RULESETS['5E (SRD only)'] = {
       url:'plugins/SRD5E.js',
-      group:'5E',
-      require:'SRD35.js'
+      group:'5E'
     };
 
 ### Usage

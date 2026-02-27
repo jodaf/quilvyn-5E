@@ -3526,6 +3526,10 @@ SRD5E.VERSATILE_WEAPON_DAMAGE = {
 /* Defines the rules related to character abilities. */
 SRD5E.abilityRules = function(rules, abilities) {
 
+  // backwards compatability for plugins that don't pass a 2nd parameter
+  if(!abilities)
+    abilities = SRD5E.ABILITIES;
+
   for(let a in abilities) {
     a = a.toLowerCase();
     rules.defineChoice('notes', a + ':%V (%1)');

@@ -70,7 +70,7 @@ function SRD5E() {
 
 }
 
-SRD5E.VERSION = '2.4.2.0';
+SRD5E.VERSION = '2.4.2.1';
 
 /* List of choices that can be expanded by house rules. */
 // Note: Left Goody out of this list for now because inclusion would require
@@ -3371,70 +3371,110 @@ SRD5E.TOOLS = {
 };
 SRD5E.WEAPONS = {
 
-  'Club':'Category="Simple Melee" Property=Light Damage=1d4',
+  'Club':
+    'Category="Simple Melee" Property=Light Damage="1d4 B" Cost=0.1 Weight=2',
   'Dagger':
-    'Category="Simple Melee" Property=Light,Finesse,Thrown Damage=1d4 ' +
-    'Range=20/60',
-  'Greatclub':'Category="Simple Melee" Property=Two-Handed Damage=1d8',
+    'Category="Simple Melee" Property=Light,Finesse,Thrown Damage="1d4 P" ' +
+    'Range=20/60 Cost=2 Weight=1',
+  'Greatclub':
+    'Category="Simple Melee" Property=Two-Handed Damage="1d8 B" Cost=0.2 ' +
+    'Weight=10',
   'Handaxe':
-    'Category="Simple Melee" Property=Light,Thrown Damage=1d6 Range=20/60',
+    'Category="Simple Melee" Property=Light,Thrown Damage="1d6 S" ' +
+    'Range=20/60 Cost=5 Weight=2',
   'Javelin':
-    'Category="Simple Melee" Property=Light,Thrown Damage=1d6 Range=30/120',
+    'Category="Simple Melee" Property=Thrown Damage="1d6 P" Range=30/120 ' +
+    'Cost=0.5 Weight=2',
   'Light Hammer':
-    'Category="Simple Melee" Property=Light,Thrown Damage=1d4 Range=20/60',
-  'Mace':'Category="Simple Melee" Damage=1d6',
-  'Quarterstaff':'Category="Simple Melee" Property=Versatile Damage=1d6',
-  'Sickle':'Category="Simple Melee" Property=Light Damage=1d4',
-  'Spear':'Category="Simple Melee" Property=Versatile Damage=1d6 Range=20/60',
+    'Category="Simple Melee" Property=Light,Thrown Damage="1d4 B" ' +
+    'Range=20/60 Cost=2 Weight=2',
+  'Mace':'Category="Simple Melee" Damage="1d6 B" Cost=5 Weight=4',
+  'Quarterstaff':
+    'Category="Simple Melee" Property="Versatile (1d8)" Damage="1d6 B" ' +
+    'Cost=0.2 Weight=4',
+  'Sickle':
+    'Category="Simple Melee" Property=Light Damage="1d4 S" Cost=1 Weight=2',
+  'Spear':
+    'Category="Simple Melee" Property=Thrown,"Versatile (1d8)" ' +
+    'Damage="1d6 P" Range=20/60 Cost=1 Weight=3',
   // errata removes Unarmed Strike
 
   'Light Crossbow':
     'Category="Simple Ranged" Property=Ammunition,Loading,Two-Handed ' +
-    'Damage=1d8 Range=80/320',
+    'Damage="1d8 P" Range=80/320 Cost=25 Weight=5',
   'Dart':
-    'Category="Simple Ranged" Property=Finesse,Thrown Damage=1d4 Range=20/60',
+    'Category="Simple Ranged" Property=Finesse,Thrown Damage="1d4 P" ' +
+    'Range=20/60 Cost=0.05 Weight=0.25',
   'Shortbow':
-    'Category="Simple Ranged" Property=Ammunition,Two-Handed Damage=1d6 ' +
-    'Range=80/320',
+    'Category="Simple Ranged" Property=Ammunition,Two-Handed Damage="1d6 P" ' +
+    'Range=80/320 Cost=25 Weight=2',
   'Sling':
-    'Category="Simple Ranged" Property=Ammunition Damage=1d4 Range=30/120',
+    'Category="Simple Ranged" Property=Ammunition Damage="1d4 B" ' +
+    'Range=30/120 Cost=0.1 Weight=0',
 
-  'Battleaxe':'Category="Martial Melee" Property=Versatile Damage=1d8',
-  'Flail':'Category="Martial Melee" Damage=1d8',
+  'Battleaxe':
+    'Category="Martial Melee" Property="Versatile (1d10)" Damage="1d8 S" ' +
+    'Cost=10 Weight=4',
+  'Flail':'Category="Martial Melee" Damage="1d8 B" Cost=10 Weight=2',
   'Glaive':
-    'Category="Martial Melee" Property=Heavy,Reach,Two-Handed Damage=1d10',
-  'Greataxe':'Category="Martial Melee" Property=Heavy,Two-Handed Damage=1d12',
-  'Greatsword':'Category="Martial Melee" Property=Heavy,Two-Handed Damage=2d6',
+    'Category="Martial Melee" Property=Heavy,Reach,Two-Handed ' +
+    'Damage="1d10 S" Cost=20 Weight=6',
+  'Greataxe':
+    'Category="Martial Melee" Property=Heavy,Two-Handed Damage="1d12 S" ' +
+    'Cost=30 Weight=7',
+  'Greatsword':
+    'Category="Martial Melee" Property=Heavy,Two-Handed Damage="2d6 S" ' +
+    'Cost=50 Weight=6',
   'Halberd':
-    'Category="Martial Melee" Property=Heavy,Reach,Two-Handed Damage=1d10',
-  'Lance':'Category="Martial Melee" Property=Reach,Special Damage=1d12',
-  'Longsword':'Category="Martial Melee" Property=Versatile Damage=1d8',
-  'Maul':'Category="Martial Melee" Property=Heavy,Two-Handed Damage=2d6',
-  'Morningstar':'Category="Martial Melee" Damage=1d8',
-  'Pike':'Category="Martial Melee" Property=Heavy,Reach,Two-Handed Damage=1d10',
-  'Rapier':'Category="Martial Melee" Property=Finesse Damage=1d8',
-  'Scimitar':'Category="Martial Melee" Property=Finesse,Light Damage=1d6',
-  'Shortsword':'Category="Martial Melee" Property=Finesse,Light Damage=1d6',
+    'Category="Martial Melee" Property=Heavy,Reach,Two-Handed ' +
+    'Damage="1d10 S" Cost=20 Weight=6',
+  'Lance':
+    'Category="Martial Melee" Property=Reach,Special Damage="1d12 P" Cost=10 ' +
+    'Weight=6',
+  'Longsword':
+    'Category="Martial Melee" Property="Versatile (1d10)" Damage="1d8 S" ' +
+    'Cost=15 Weight=3',
+  'Maul':
+    'Category="Martial Melee" Property=Heavy,Two-Handed Damage="2d6 B" ' +
+    'Cost=10 Weight=10',
+  'Morningstar':'Category="Martial Melee" Damage="1d8 P" Cost=15 Weight=4',
+  'Pike':
+    'Category="Martial Melee" Property=Heavy,Reach,Two-Handed ' +
+    'Damage="1d10 P" Cost=5 Weight=18',
+  'Rapier':
+    'Category="Martial Melee" Property=Finesse Damage="1d8 P" Cost=25 Weight=2',
+  'Scimitar':
+    'Category="Martial Melee" Property=Finesse,Light Damage="1d6 S" Cost=25 ' +
+    'Weight=3',
+  'Shortsword':
+    'Category="Martial Melee" Property=Finesse,Light Damage="1d6 P" Cost=0 ' +
+    'Weight=10',
   'Trident':
-    'Category="Martial Melee" Property=Thrown,Versatile Damage=1d6 Range=20/60',
-  'War Pick':'Category="Martial Melee" Damage=1d8',
-  'Warhammer':'Category="Martial Melee" Property=Versatile Damage=1d8',
-  'Whip':'Category="Martial Melee" Property=Finesse,Reach Damage=1d4',
+    'Category="Martial Melee" Property=Thrown,"Versatile (1d8)" ' +
+    'Damage="1d6 P" Range=20/60 Cost=5 Weight=5',
+  'War Pick':'Category="Martial Melee" Damage="1d8 P" Cost=5 Weight=2',
+  'Warhammer':
+    'Category="Martial Melee" Property="Versatile (1d10)" Damage="1d8 B" ' +
+    'Cost=15 Weight=2',
+  'Whip':
+    'Category="Martial Melee" Property=Finesse,Reach Damage="1d4 S" Cost=2 ' +
+    'Weight=3',
 
   'Blowgun':
-    'Category="Martial Ranged" Property=Ammunition,Loading Damage=1 ' +
-    'Range=25/100',
+    'Category="Martial Ranged" Property=Ammunition,Loading Damage="1 P" ' +
+    'Range=25/100 Cost=10 Weight=1',
   'Hand Crossbow':
-    'Category="Martial Ranged" Property=Ammunition,Light,Loading Damage=1d6 ' +
-    'Range=30/120',
+    'Category="Martial Ranged" Property=Ammunition,Light,Loading ' +
+    'Damage="1d6 P" Range=30/120 Cost=75 Weight=3',
   'Heavy Crossbow':
     'Category="Martial Ranged" Property=Ammunition,Heavy,Loading,Two-Handed ' +
-    'Damage=1d10 Range=100/400',
+    'Damage="1d10 P" Range=100/400 Cost=50 Weight=18',
   'Longbow':
     'Category="Martial Ranged" Property=Ammunition,Heavy,Two-Handed ' +
-    'Damage=1d8 Range=150/600',
+    'Damage="1d8 P" Range=150/600 Cost=50 Weight=2',
   'Net':
-    'Category="Martial Ranged" Property=Special,Thrown Damage=None Range=5/15'
+    'Category="Martial Ranged" Property=Special,Thrown Damage="None" ' +
+    'Range=5/15 Cost=1 Weight=3'
 
 };
 SRD5E.DEITIES = {
@@ -3557,7 +3597,7 @@ SRD5E.combatRules = function(rules, armors, shields, weapons) {
     (armors, ['AC', 'Bulky', 'Dex', 'Str', 'Weight']);
   QuilvynUtils.checkAttrTable(shields, ['AC']);
   QuilvynUtils.checkAttrTable
-    (weapons, ['Category', 'Damage', 'Property', 'Range']);
+    (weapons, ['Category', 'Damage', 'Property', 'Range', 'Cost', 'Weight']);
 
   for(let armor in armors) {
     rules.choiceRules(rules, 'Armor', armor, armors[armor]);
@@ -3640,7 +3680,7 @@ SRD5E.combatRules = function(rules, armors, shields, weapons) {
     'level', '^', null
   );
   rules.defineRule('initiative', 'dexterityModifier', '=', null);
-  SRD5E.weaponRules(rules, 'Unarmed', 'Unarmed', [], '1', null);
+  SRD5E.weaponRules(rules, 'Unarmed', 'Unarmed', [], '1 B', null, 0, 0);
   rules.defineRule('weapons.Unarmed', '', '=', '1');
 
   for(let ability in SRD5E.ABILITIES) {
@@ -3944,7 +3984,9 @@ SRD5E.choiceRules = function(rules, type, name, attrs) {
       QuilvynUtils.getAttrValue(attrs, 'Category'),
       QuilvynUtils.getAttrValueArray(attrs, 'Property'),
       QuilvynUtils.getAttrValue(attrs, 'Damage'),
-      QuilvynUtils.getAttrValue(attrs, 'Range')
+      QuilvynUtils.getAttrValue(attrs, 'Range'),
+      QuilvynUtils.getAttrValue(attrs, 'Cost'),
+      QuilvynUtils.getAttrValue(attrs, 'Weight')
     );
   else {
     console.log('Unknown choice type "' + type + '"');
@@ -5505,7 +5547,9 @@ SRD5E.toolRules = function(rules, name, type) {
  * specified, the weapon can be used as a ranged weapon with a range increment
  * of #range# feet.
  */
-SRD5E.weaponRules = function(rules, name, category, properties, damage, range) {
+SRD5E.weaponRules = function(
+  rules, name, category, properties, damage, range, cost, weight
+) {
 
   if(!name) {
     console.log('Bad name for weapon  "' + name + '"');
@@ -5520,7 +5564,7 @@ SRD5E.weaponRules = function(rules, name, category, properties, damage, range) {
     console.log('Bad properties list "' + properties + '" for weapon ' + name);
     return;
   }
-  let matchInfo = (damage + '').match(/^(((\d*d)?\d+)([\-+]\d+)?)$/);
+  let matchInfo = (damage + '').match(/^((\d*d)?\d+)([\-+]\d+)?(\s(B|P|S|bludgeoning|piercing|slashing))?$/);
   if(!matchInfo && damage != 'None') {
     console.log('Bad damage "' + damage + '" for weapon ' + name);
     return;
@@ -5528,17 +5572,43 @@ SRD5E.weaponRules = function(rules, name, category, properties, damage, range) {
   if(range && !(range + '').match(/^\d+\/\d+$/)) {
     console.log('Bad range "' + range + '" for weapon ' + name);
   }
+  if(cost == null) // backward compatibility
+    cost = 0;
+  if(typeof cost == 'string' && cost.match(/^0\.\d+$/))
+    cost = +cost;
+  if(typeof cost != 'number') {
+    console.log('Bad cost "' + cost + '" for weapon ' + name);
+    return;
+  }
+  if(weight == null) // backward compatibility
+    weight = 0;
+  if(typeof weight == 'string' && weight.match(/^0\.\d+$/))
+    weight = +weight;
+  if(typeof weight != 'number') {
+    console.log('Bad weight "' + weight + '" for weapon ' + name);
+    return;
+  }
 
+  let damageType =
+    matchInfo && matchInfo[5] ? ' ' + matchInfo[5].charAt(0).toUpperCase() : '';
   let is2h = properties.includes('Two-Handed');
   let isFinesse = properties.includes('Finesse');
   let isRanged = category.match(/ranged/i);
   let isSimple = category.match(/simple/i);
   let isMonk = category == 'Unarmed' || name == 'Shortsword' || 
                (isSimple && !is2h && !properties.includes('Heavy'));
+  let versatileDamage =
+    properties.filter(x => x.match(/^Versatile\s\(\d+d\d+\)$/));
+  if(versatileDamage.length > 0)
+    versatileDamage =
+      ' [2h ' + versatileDamage[0].match(/\d+d\d+/)[0].replace(/^1d/, 'd') + ']';
+  else
+    versatileDamage = '';
 
   damage = matchInfo ? matchInfo[1] : damage;
   let weaponName = 'weapons.' + name;
-  let format = '%V (%1 %2%3' + (range ? " R%4" : '') + ')';
+  let format =
+    '%V (%1 %2%3' + damageType + versatileDamage + (range ? ' R%4' : '') + ')';
 
   if(damage.startsWith('d'))
     damage = '1' + damage;
@@ -5577,11 +5647,14 @@ SRD5E.weaponRules = function(rules, name, category, properties, damage, range) {
   );
   rules.defineRule('damageBonus.' + name,
     weaponName, '=', '0',
-    isFinesse ? 'betterDamageAdjustment' :
-     isRanged ? 'combatNotes.dexterityDamageAdjustment' :
-                'combatNotes.strengthDamageAdjustment', '+', null,
     'weaponDamageAdjustment.' + name, '+', null
   );
+  if(damage != 'None')
+    rules.defineRule('damageBonus.' + name,
+      isFinesse ? 'betterDamageAdjustment' :
+       isRanged ? 'combatNotes.dexterityDamageAdjustment' :
+                  'combatNotes.strengthDamageAdjustment', '+', null
+    );
   if(isMonk) {
     rules.defineRule('attackBonus.' + name, 'monkMeleeAttackBonus', '+', null);
     rules.defineRule('damageBonus.' + name, 'monkMeleeDamageBonus', '+', null);
@@ -6017,8 +6090,10 @@ SRD5E.choiceEditorElements = function(rules, type) {
     result.push(
       ['Category', 'Category', 'select-one', ['Unarmed', 'Simple Melee', 'Simple Ranged', 'Martial Melee', 'Martial Ranged']],
       ['Property', 'Property', 'text', [40]],
-      ['Damage', 'Damage', 'select-one', QuilvynUtils.getKeys(SRD5E.VERSATILE_WEAPON_DAMAGE)],
-      ['Range', 'Range', 'text', [10]]
+      ['Damage', 'Damage', 'text', [15]],
+      ['Range', 'Range', 'text', [10]],
+      ['Cost', 'Cost (gp)', 'text', [5]],
+      ['Weight', 'Weight (lbs)', 'text', [5]]
     );
   }
   return result;

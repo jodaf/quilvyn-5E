@@ -3447,11 +3447,11 @@ SRD5E.WEAPONS = {
     'Category="Martial Melee" Property=Finesse,Light Damage="1d6 S" Cost=25 ' +
     'Weight=3',
   'Shortsword':
-    'Category="Martial Melee" Property=Finesse,Light Damage="1d6 P" Cost=0 ' +
-    'Weight=10',
+    'Category="Martial Melee" Property=Finesse,Light Damage="1d6 P" Cost=10 ' +
+    'Weight=2',
   'Trident':
     'Category="Martial Melee" Property=Thrown,"Versatile (1d8)" ' +
-    'Damage="1d6 P" Range=20/60 Cost=5 Weight=5',
+    'Damage="1d6 P" Range=20/60 Cost=5 Weight=4',
   'War Pick':'Category="Martial Melee" Damage="1d8 P" Cost=5 Weight=2',
   'Warhammer':
     'Category="Martial Melee" Property="Versatile (1d10)" Damage="1d8 B" ' +
@@ -3597,7 +3597,7 @@ SRD5E.combatRules = function(rules, armors, shields, weapons) {
     (armors, ['AC', 'Bulky', 'Dex', 'Str', 'Weight']);
   QuilvynUtils.checkAttrTable(shields, ['AC']);
   QuilvynUtils.checkAttrTable
-    (weapons, ['Category', 'Damage', 'Property', 'Range', 'Cost', 'Weight']);
+    (weapons, ['Category', 'Damage', 'Property', 'Range', 'Cost', 'Weight', 'Mastery']);
 
   for(let armor in armors) {
     rules.choiceRules(rules, 'Armor', armor, armors[armor]);

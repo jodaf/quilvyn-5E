@@ -499,15 +499,17 @@ SRD5E2024.FEATS = {
   'Magic Initiate (Wizard)':'',
   'Savage Attacker':'',
   'Skilled':'',
-  'Ability Score Increase':'',
+  'Ability Score Improvement':'',
   'Grappler':'Require="strength >= 13"',
   'Archery':'',
   'Defense':'',
   'Great Weapon Fighting':'',
   'Two-Weapon Fighting':'',
   'Boon Of Combat Prowess':'',
+  'Boon Of Dimensional Travel':'',
   'Boon Of Fate':'',
-  'Boon Of Irresistible Offense':'',
+  'Boon Of Irresistible Offense (Dexterity)':'',
+  'Boon Of Irresistible Offense (Strength)':'',
   'Boon Of Spell Recall':'',
   'Boon Of The Night Spirit':'',
   'Boon Of Truesight':'',
@@ -1262,14 +1264,14 @@ SRD5E2024.FEATURES_CHANGED = {
   // Dragonborn
   'Breath Weapon':
     'Section=combat ' +
-    'Note="Choice of a 15\' cone or a 30\' line inflicts %{(level+7)//6}d10 HP %{breathWeaponEnergy} (save DC %{8+constitutionModifier+proficiencyBonus} Constitution half) %{proficiencyBonus} times per long rest"',
+    'Note="Choice of a 15\' cone or a 30\' line inflicts %{(level+7)//6}d10 HP %{breathWeaponEnergy} (save DC %{8+constitutionModifier+proficiencyBonus} Dexterity half) %{proficiencyBonus} times per long rest"',
   'Damage Resistance':
-    'Section=save Note="Has resistance to %{breathWeaponEnergy} damage"',
+    'Section=save Note="Has resistance to %{breathWeaponEnergy}"',
   'Darkvision':'Section=feature Note="R%V\' Sees one light level better"',
   'Draconic Ancestry':'Section=feature Note="1 selection"',
   'Draconic Flight':
     'Section=ability ' +
-    'Note="Can use a bonus action to gain a %{speed} fly Speed once per long rest"',
+    'Note="Can use a bonus action to gain a %{speed}\' fly Speed for 10 min once per long rest"',
 
   // Dwarf
   // Darkvision as above
@@ -1278,7 +1280,7 @@ SRD5E2024.FEATURES_CHANGED = {
   'Stonecunning':
     // changed effects
     'Section=skill ' +
-    'Note="Can use a bonus action to gain 60\' Tremorsense to 10 min %{proficiencyBonus} times per long rest"',
+    'Note="Can use a bonus action to gain 60\' Tremorsense for 10 min %{proficiencyBonus} times per long rest"',
 
   // Elf
   // Darkvision as above
@@ -1292,7 +1294,7 @@ SRD5E2024.FEATURES_CHANGED = {
   'Fey Ancestry':
     // changed effects
     'Section=save Note="Has advantage vs. charm"',
-  'Drow':
+  'High Elf':
     'Section=magic ' +
     'Note=' +
       '"Knows 1 Wizard cantrip that can be changed after a long rest%{level>2?\' and can cast <i>Detect Magic</i>\'+(level>4?\' and <i>Misty Step</i>\':\'\')+\' once per long rest\':\'\'}" ' +
@@ -1323,29 +1325,38 @@ SRD5E2024.FEATURES_CHANGED = {
     'Section=magic,magic ' +
     'Note=' +
       '"Knows the <i>Mending</i> and <i>Prestidigitation</i> cantrips",' +
-      '"Can use <i>Prestidigitation</i> to create a Tiny clockwork device in 10 min" ' +
+      '"Can spend 10 min and use <i>Prestidigitation</i> to create a Tiny clockwork device that lasts 8 hr" ' +
     'Spells="Mending","Prestidigitation"',
 
   // Goliath
+  'Cloud Giant':'Section=combat Note="Has the Cloud\'s Jaunt feature"',
   "Cloud's Jaunt":
     'Section=combat Note="Can use a bonus action to teleport 30\'"',
-  "Fires's Burn":
+  'Fire Giant':'Section=combat Note="Has the Fire\'s Burn feature"',
+  "Fire's Burn":
     'Section=combat Note="Can inflict +1d10 HP fire with an attack"',
+  'Frost Giant':'Section=combat Note="Has the Frost\'s Chill feature"',
   "Frost's Chill":
     'Section=combat ' +
-    'Note="Can inflict +1d6 HP cold and -10 Speed for 1 rd with an attack"',
+    'Note="Can inflict +1d6 HP cold and -10 Speed until the start of the next turn with an attack"',
   'Giant Ancestry':'Section=feature Note="1 selection"',
+  'Hill Giant':'Section=combat Note="Has the Hill\'s Tumble feature"',
   "Hill's Tumble":
     'Section=combat ' +
     'Note="Can inflict prone on a Large or smaller target with an attack"',
+  'Large Form':
+    'Section=combat ' +
+    'Note="Can use a bonus action to become Large for 10 min, gaining advantage on Strength checks and +10 Speed, once per long rest"',
   'Powerful Build':
     'Section=ability,combat ' +
     'Note=' +
       '"x2 Carry/x2 Lift",' +
       '"Has advantage on checks to break a grapple"',
+  'Stone Giant':'Section=combat Note="Has the Stone\'s Endurance feature"',
   "Stone's Endurance":
     'Section=combat ' +
     'Note="Can use a reaction to reduce damage taken by 1d12+%{constitutionModifier} HP"',
+  'Storm Giant':'Section=combat Note="Has the Storm\'s Thunder feature"',
   "Storm's Thunder":
     'Section=combat ' +
     'Note="Can use a reaction in response to damage from a foe within 60\' to inflict 1d8 HP thunder on it"',
@@ -1402,13 +1413,81 @@ SRD5E2024.FEATURES_CHANGED = {
     // errata removes grapple larger foes benefit
     'Note="Has advantage on attacks on a grappled foe and can restrain a grappled foe with an additional successful grapple"',
 
-  // Sanity, Validation and Miscellaneous
-  'Bulky Armor':'Section=skill Note="Has disadvantage on Stealth"',
-  'Nonproficient Armor':
-    'Section=sanity ' +
-    'Note="Has disadvantage on Dexterity and Strength rolls and cannot cast spells"',
-  'Two-Handed Weapon With Shield':
-    'Section=validation Note="Shields cannot be used with two-handed weapons"'
+  'Alert':
+    'Section=combat,combat ' +
+    'Note=' +
+      '"+%{proficiencyBonus} Initiative",' +
+      '"Can swap initiatives with a willing ally"',
+  'Magic Initiate (Cleric)':
+    'Section=magic ' +
+    'Note="Knows 2 C0 cantrips and can cast a chosen C1 spell once per long rest"',
+  'Magic Initiate (Druid)':
+    'Section=magic ' +
+    'Note="Knows 2 D0 cantrips and can cast a chosen D1 spell once per long rest"',
+  'Magic Initiate (Wizard)':
+    'Section=magic ' +
+    'Note="Knows 2 W0 cantrips and can cast a chosen W1 spell once per long rest"',
+  'Savage Attacker':
+    'Section=combat Note="Can use the better of 2 damage rolls once per turn"',
+  // TODO or Tool
+  'Skilled':'Section=skill Note="Skill Proficiency (Choose 3 from any)"',
+  'Ability Score Improvement':
+    'Section=ability ' +
+    'Note="Ability Boost (Choose 2 from any)"',
+  'Grappler':
+    // changed effects
+    'Section=ability,combat ' +
+    'Note=' +
+      '"Ability Boost (Choose 1 from Strength, Dexterity)",' +
+      '"Can both Damage and Grapple with an unarmed strike once per turn, has advantage on attacks on a grappled foe, and can move at full speed with a grappled foe of %{size} size or smaller"',
+  'Archery':SRD5E.FEATURES['Fighting Style (Archery)'],
+  'Defense':SRD5E.FEATURES['Fighting Style (Defense)'],
+  'Great Weapon Fighting':
+    // changed effects
+    'Section=combat ' +
+    'Note="Can treat 1s and 2s as 3s on two-handed weapon damage"',
+  'Two-Weapon Fighting':SRD5E.FEATURES['Fighting Style (Two-Weapon Fighting)'],
+  'Boon Of Combat Prowess':
+    'Section=ability,combat ' +
+    'Note=' +
+      '"Ability Boost (Choose 1 from any)",' +
+      '"Can treat an attack miss as a hit once per turn"',
+  'Boon Of Dimensional Travel':
+    'Section=ability,combat ' +
+    'Note=' +
+      '"Ability Boost (Choose 1 from any)",' +
+      '"Can teleport 30\' after attacking or casting"',
+  'Boon Of Fate':
+    'Section=ability,combat ' +
+    'Note=' +
+      '"Ability Boost (Choose 1 from any)",' +
+      '"R60\' Can modify a d20 roll by 2d4 once per combat"',
+  'Boon Of Irresistible Offense (Dexterity)':
+    'Section=ability,combat ' +
+    'Note=' +
+      '"Ability Boost (Dexterity)",' +
+      '"Bludeoning, piercing, and slashing damage ignores resistance, and natural 20 hits inflict +{dexterity} damage"',
+  'Boon Of Irresistible Offense (Strength)':
+    'Section=ability,combat ' +
+    'Note=' +
+      '"Ability Boost (Strength)",' +
+      '"Bludeoning, piercing, and slashing damage ignores resistance, and natural 20 hits inflict +{strength} damage"',
+  'Boon Of Spell Recall':
+    'Section=ability,magic ' +
+    'Note=' +
+      '"Ability Boost (Choose 1 from Intelligence, Wisdom, Charisma)",' +
+      '"Casting a level 1-4 spell does not use a spell slot if a d4 roll equals the spell level"',
+  'Boon Of The Night Spirit':
+    'Section=ability,combat,save ' +
+    'Note=' +
+      '"Ability Boost (Choose 1 from any)",' +
+      '"Can use a bonus action to become invisible in dim or no light; taking an action or reaction ends",' +
+      '"In dim or no light, has resistance to all damage other than psychic and radiant"',
+  'Boon Of Truesight':
+    'Section=ability,skill ' +
+    'Note=' +
+      '"Ability Boost (Choose 1 from any)",' +
+      '"Has 60\' Truesight"'
 
 };
 SRD5E2024.FEATURES =
@@ -1454,7 +1533,8 @@ SRD5E2024.SPECIES = {
     'Size=Medium ' +
     'Speed=30 ' +
     'Features=' +
-      '"1:Darkvision","1:Dwarven Resilience","1:Dwarven Toughness"',
+      '"1:Darkvision","1:Dwarven Resilience","1:Dwarven Toughness",' +
+      '"1:Stonecunning"',
   'Elf':
     'Size=Medium ' +
     'Speed=30 ' +
@@ -1477,13 +1557,7 @@ SRD5E2024.SPECIES = {
     'Size=Medium ' +
     'Speed=35 ' +
     'Features=' +
-      '"1:Giant Ancestry","1:Powerful Build","5:Large Form",' +
-      '"features.Cloud Giant ? 1:Cloud\'s Jaunt",' +
-      '"features.Fire Giant ? 1:Fire\'s Burn",' +
-      '"features.Frost Giant ? 1:Frost\'s Chill",' +
-      '"features.Hill Giant ? 1:Hill\'s Tumble",' +
-      '"features.Stone Giant ? 1:Stone\'s Endurance",' +
-      '"features.Storm Giant ? 1:Storm\'s Thunder" ' +
+      '"1:Giant Ancestry","1:Powerful Build","5:Large Form" ' +
     'Selectables=' +
       '"1:Cloud Giant:Giant Ancestry",' +
       '"1:Fire Giant:Giant Ancestry",' +
@@ -4067,21 +4141,35 @@ SRD5E2024.speciesRulesExtra = function(rules, name) {
       'featureNotes.draconicAncestry', '=', '1'
     );
   } else if(name.match(/Dwarf/)) {
-    rules.defineRule('featureRules.darkvision', speciesLevel, '=', '120');
+    rules.defineRule('featureNotes.darkvision', speciesLevel, '^=', '120');
   } else if(name.match(/Elf/)) {
     rules.defineRule('selectableFeatureCount.Elf (Elven Lineage)',
       'featureNotes.elvenLineage', '=', '1'
     );
+    rules.defineRule
+      ('featureNotes.darkvision', 'featureNotes.drow', '^=', '120');
   } else if(name.match(/Gnome/)) {
     rules.defineRule('selectableFeatureCount.Gnome (Gnomish Lineage)',
       'featureNotes.gnomishLineage', '=', '1'
     );
   } else if(name.match(/Goliath/)) {
+    rules.defineRule
+      ("combatNotes.cloud'sJaunt", 'combatNotes.cloudGiant', '=', '1');
+    rules.defineRule
+      ("combatNotes.fire'sBurn", 'combatNotes.fireGiant', '=', '1');
+    rules.defineRule
+      ("combatNotes.frost'sChill", 'combatNotes.frostGiant', '=', '1');
+    rules.defineRule
+      ("combatNotes.hill'sTumble", 'combatNotes.hillGiant', '=', '1');
+    rules.defineRule
+      ("combatNotes.stone'sEndurance", 'combatNotes.stoneGiant', '=', '1');
+    rules.defineRule
+      ("combatNotes.storm'sThunder", 'combatNotes.stormGiant', '=', '1');
     rules.defineRule('selectableFeatureCount.Goliath (Giant Ancestry)',
       'featureNotes.giantAncestry', '=', '1'
     );
   } else if(name.match(/Orc/)) {
-    rules.defineRule('featureRules.darkvision', speciesLevel, '=', '120');
+    rules.defineRule('featureNotes.darkvision', speciesLevel, '^=', '120');
   } else if(name.match(/Tiefling/)) {
     rules.defineRule('selectableFeatureCount.Tiefling (Fiendish Legacy)',
       'featureNotes.fiendishLegacy', '=', '1'

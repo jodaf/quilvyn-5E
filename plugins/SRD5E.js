@@ -5712,26 +5712,39 @@ SRD5E.featureListRules = function(
   setName = setName.charAt(0).toLowerCase() + setName.substring(1).replaceAll(' ', '') + 'Features';
   for(let i = 0; i < features.length; i++) {
     let feature = features[i].replace(/^(.*\?\s*)?\d+:/, '');
-    let matchInfo = feature.match(/([A-Z]\w*)\sProficiency\s\((([^\(]|\([^\)]*\))*)\)$/);
-    if(!matchInfo)
-      matchInfo = feature.match(/(Language)\s\((([^\(]|\([^\)]*\))*)\)$/);
-    if(!matchInfo)
-      continue;
-    let group = matchInfo[1].toLowerCase();
-    let elements = matchInfo[2].split(/\/|;\s*/);
-    for(let j = 0; j < elements.length; j++) {
-      matchInfo = elements[j].match(/^Choose\s+(\d+)\s+from/i);
-      if(matchInfo) {
-        rules.defineRule
-          (group + 'ChoiceCount', setName + '.' + feature, '+=', matchInfo[1]);
-      } else if(group == 'language') {
-        rules.defineRule
-          ('languages.' + elements[j], setName + '.' + feature, '=', '1');
-      } else {
-        rules.defineRule(group + 'Proficiency.' + elements[j],
-          setName + '.' + feature, '=', '1'
-        );
+    let matchInfo =
+      feature.match(/([A-Z]\w*)\sProficiency\s\((([^\(]|\([^\)]*\))*)\)$/) ||
+      feature.match(/(Language)\s\((([^\(]|\([^\)]*\))*)\)$/);
+    if(matchInfo) {
+      let group = matchInfo[1].toLowerCase();
+      let elements = matchInfo[2].split(/\/|;\s*/);
+      for(let j = 0; j < elements.length; j++) {
+        matchInfo = elements[j].match(/^Choose\s+(\d+)\s+from/i);
+        if(matchInfo) {
+          rules.defineRule
+            (group + 'ChoiceCount', setName + '.' + feature, '+=', matchInfo[1]);
+        } else if(group == 'language') {
+          rules.defineRule
+            ('languages.' + elements[j], setName + '.' + feature, '=', '1');
+        } else {
+          rules.defineRule(group + 'Proficiency.' + elements[j],
+            setName + '.' + feature, '=', '1'
+          );
+        }
       }
+    }
+    matchInfo = feature.match(/Ability Boost \((([^\(]|\([^\)]*\))*)\)/i);
+    if(matchInfo) {
+      let totalBoosts = 0;
+      matchInfo[1].split(/\/|;\s*/).forEach(boosted => {
+        matchInfo = boosted.match(/Choose (\d+|%V)/i);
+        if(!matchInfo)
+          rules.defineRule(boosted.toLowerCase(), note, '+', '1');
+        else
+          totalBoosts += matchInfo[1] - 0;
+      });
+      rules.defineRule
+        ('abilityBoostChoiceCount', setName + '.' + feature, '+=', totalBoosts);
     }
   }
 };
@@ -6280,8 +6293,10 @@ SRD5E.randomizeOneAttribute = function(attributes, attribute) {
       potentialBoosts[attr] = 0;
     potentialBoosts.Any = 0;
     for(attr in attrs) {
-      if(!notes[attr] ||
-         (matchInfo = notes[attr].match(/Ability\s+Boost\s+\((.*)\)/gi))==null)
+      matchInfo = attr.match(/Ability\s+Boost\s+\((.*)\)/gi);
+      if(!matchInfo && notes[attr])
+        matchInfo = notes[attr].match(/Ability\s+Boost\s+\((.*)\)/gi);
+      if(!matchInfo)
         continue;
       matchInfo.forEach(matched => {
         matched.split(/\/|;\s*/).forEach(boosted => {

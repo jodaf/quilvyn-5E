@@ -667,10 +667,10 @@ SRD5E.FEATURES = {
       '"Has advantage on Strength saves and resistance to bludgeoning, piercing, and slashing damage during rage"',
   'Reckless Attack':
     'Section=combat ' +
-    'Note="Can suffer foe advantage on attacks to gain advantage on Strength melee attacks for 1 rd"',
+    'Note="Can suffer foe advantage on attacks to gain advantage on Strength melee attacks until the start of the next turn"',
   'Relentless Rage':
     'Section=save ' +
-    'Note="Can make a DC 10 Constitution save to retain 1 hit point when brought to 0 hit points; each use adds 5 to the DC until a short rest"',
+    'Note="Can make a DC 10 Constitution save to retain 1 hit point when brought to 0 hit points during rage; each use adds 5 to the DC until a short rest"',
   'Unarmored Defense (Barbarian)':
     'Section=combat Note="+%{constitutionModifier} Armor Class in no armor"',
   // Berserker
@@ -3680,7 +3680,7 @@ SRD5E.combatRules = function(rules, armors, shields, weapons) {
     'level', '^', null
   );
   rules.defineRule('initiative', 'dexterityModifier', '=', null);
-  SRD5E.weaponRules(rules, 'Unarmed', 'Unarmed', [], '1 B', null, 0, 0);
+  SRD5E.weaponRules(rules, 'Unarmed', 'Unarmed', [], '1 B', null, 0, 0, true);
   rules.defineRule('weapons.Unarmed', '', '=', '1');
 
   for(let ability in SRD5E.ABILITIES) {
@@ -3979,16 +3979,23 @@ SRD5E.choiceRules = function(rules, type, name, attrs) {
     SRD5E.toolRules(rules, name,
       QuilvynUtils.getAttrValue(attrs, 'Type')
     );
-  else if(type == 'Weapon')
+  else if(type == 'Weapon') {
+    let category = QuilvynUtils.getAttrValue(attrs, 'Category');
+    let properties = QuilvynUtils.getAttrValueArray(attrs, 'Property');
+    let isMonkWeapon =
+      category == 'Unarmed' || name == 'Shortsword' || 
+      (category.match(/^simple/i) &&
+       !properties.includes('Two-Handed') && !properties.includes('Heavy'));
     SRD5E.weaponRules(rules, name,
-      QuilvynUtils.getAttrValue(attrs, 'Category'),
-      QuilvynUtils.getAttrValueArray(attrs, 'Property'),
+      category,
+      properties,
       QuilvynUtils.getAttrValue(attrs, 'Damage'),
       QuilvynUtils.getAttrValue(attrs, 'Range'),
       QuilvynUtils.getAttrValue(attrs, 'Cost'),
-      QuilvynUtils.getAttrValue(attrs, 'Weight')
+      QuilvynUtils.getAttrValue(attrs, 'Weight'),
+      isMonkWeapon
     );
-  else {
+  } else {
     console.log('Unknown choice type "' + type + '"');
     return;
   }
@@ -5545,10 +5552,12 @@ SRD5E.toolRules = function(rules, name, type) {
  * #category# proficiency level to use effectively and has weapon properties
  * #properties#. The weapon does #damage# HP on a successful attack. If
  * specified, the weapon can be used as a ranged weapon with a range increment
- * of #range# feet.
+ * of #range# feet. The weapon costs #cost# gp and weighs #weight# lbs; both
+ * of these may be decimals. The #isMonkWeapon# boolean indicates whether or
+ * not this weapon benefits from the monk's Martial Arts feature.
  */
 SRD5E.weaponRules = function(
-  rules, name, category, properties, damage, range, cost, weight
+  rules, name, category, properties, damage, range, cost, weight, isMonkWeapon
 ) {
 
   if(!name) {
@@ -5595,8 +5604,6 @@ SRD5E.weaponRules = function(
   let isFinesse = properties.includes('Finesse');
   let isRanged = category.match(/ranged/i);
   let isSimple = category.match(/simple/i);
-  let isMonk = category == 'Unarmed' || name == 'Shortsword' || 
-               (isSimple && !is2h && !properties.includes('Heavy'));
   let versatileDamage =
     properties.filter(x => x.match(/^Versatile\s\(\d+d\d+\)$/));
   if(versatileDamage.length > 0)
@@ -5655,7 +5662,7 @@ SRD5E.weaponRules = function(
        isRanged ? 'combatNotes.dexterityDamageAdjustment' :
                   'combatNotes.strengthDamageAdjustment', '+', null
     );
-  if(isMonk) {
+  if(isMonkWeapon) {
     rules.defineRule('attackBonus.' + name, 'monkMeleeAttackBonus', '+', null);
     rules.defineRule('damageBonus.' + name, 'monkMeleeDamageBonus', '+', null);
   }
@@ -5690,7 +5697,7 @@ SRD5E.weaponRules = function(
   // comparison is lexical and, e.g., "1d10" < "1d8". monkMeleeDieBonus tops
   // out at 1d10, so there's no need to check for override if the weapon
   // already does that much damage.
-  if(isMonk && !damage.match(/d1[02]/))
+  if(isMonkWeapon && !damage.match(/d1[02]/))
     rules.defineRule(weaponName + '.2',
       'monkMeleeDieBonus', '=', 'source=="1d10" || source>"' + damage + '" ? source : null'
     );

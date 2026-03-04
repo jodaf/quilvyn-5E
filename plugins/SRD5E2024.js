@@ -132,8 +132,7 @@ SRD5E2024.CLASSES = {
       '"3:Primal Knowledge","5:Extra Attack","5:Fast Movement",' +
       '"7:Feral Instinct","7:Instinctive Pounce","9:Brutal Strike",' +
       '"11:Relentless Rage","13:Improved Brutal Strike","15:Persistent Rage",' +
-      '"17:Improved Brutal Strike","18:Indomitable Might","19:Epic Boon",' +
-      '"20:Primal Champion",' +
+      '"18:Indomitable Might","19:Epic Boon","20:Primal Champion",' +
       '"features.Path Of The Berserker ? 3:Frenzy",' +
       '"features.Path Of The Berserker ? 6:Mindless Rage",' +
       '"features.Path Of The Berserker ? 10:Retaliation",' +
@@ -522,7 +521,7 @@ SRD5E2024.FEATURES_CHANGED = {
   'Barbarian Subclass':SRD5E.FEATURES['Primal Path'],
   'Brutal Strike':
     'Section=combat ' +
-    'Note="Can forego advantage on a Strength-based attack to inflict +%{levels.Barbarian<17?1:2}d10 HP weapon damage and %{levels.Barbarian<17?\'a choice\':\'2 choices\'} of %{combatNotes.improvedBrutalStrike?\\"disadvantage on the target\'s next save and loss of opportunity attacks for 1 rd, a +5 bonus to the next attack on the target within 1 rd, \\":\'\'}a 15\' push, optionally moving with the target, or -15 Speed for 1 rd"',
+    'Note="Can forego Reckless Attack advantage on a Strength-based attack to inflict +%{levels.Barbarian<17?1:2}d10 HP weapon damage and %{levels.Barbarian<17?\'a choice\':\'2 choices\'} of %{combatNotes.improvedBrutalStrike?\\"disadvantage on the target\'s next save and loss of opportunity attacks until the start of the next turn, a +5 bonus to the next attack on the target before the start of the next turn, \\":\'\'}a 15\' push and optional move along with the target, or -15 Speed until the start of the next turn"',
   'Primal Knowledge':
     'Section=skill,skill ' +
     'Note=' +
@@ -530,7 +529,7 @@ SRD5E2024.FEATURES_CHANGED = {
       '"Can use Strength for Acrobatics, Intimidation, Perception, Stealth, and Survival"',
   'Danger Sense':
     SRD5E.FEATURES['Danger Sense']
-    .replace(' vs. visible dangers', ''),
+    .replace('vs. visible dangers', 'saves'),
   'Epic Boon':'Section=feature Note="+1 General Feat"',
   // Extra Attack as SRD5E
   // Fast Movement as SRD5E
@@ -3687,17 +3686,23 @@ SRD5E2024.choiceRules = function(rules, type, name, attrs) {
     SRD5E2024.toolRules(rules, name,
       QuilvynUtils.getAttrValue(attrs, 'Type')
     );
-  else if(type == 'Weapon')
+  else if(type == 'Weapon') {
+    let category = QuilvynUtils.getAttrValue(attrs, 'Category');
+    let properties = QuilvynUtils.getAttrValueArray(attrs, 'Property');
+    let isMonkWeapon =
+      category == 'Unarmed' || category == 'Simple' ||
+      properties.includes('Light');
     SRD5E2024.weaponRules(rules, name,
-      QuilvynUtils.getAttrValue(attrs, 'Category'),
-      QuilvynUtils.getAttrValueArray(attrs, 'Property'),
+      category,
+      properties,
       QuilvynUtils.getAttrValue(attrs, 'Damage'),
       QuilvynUtils.getAttrValue(attrs, 'Range'),
       QuilvynUtils.getAttrValue(attrs, 'Cost'),
       QuilvynUtils.getAttrValue(attrs, 'Weight'),
+      isMonkWeapon,
       QuilvynUtils.getAttrValue(attrs, 'Mastery')
     );
-  else {
+  } else {
     console.log('Unknown choice type "' + type + '"');
     return;
   }
@@ -3779,6 +3784,9 @@ SRD5E2024.classRulesExtra = function(rules, name) {
     );
     rules.defineRule('armorClass',
       'combatNotes.unarmoredDefense(Barbarian).1', '+', null
+    );
+    rules.defineRule('combatNotes.brutalStrike',
+      'combatNotes.improvedBrutalStrike', '+', 'null' // italics
     );
     rules.defineRule
       ('combatNotes.extraAttack', classLevel, '+=', 'source<5 ? null : 1');
@@ -4234,14 +4242,35 @@ SRD5E2024.toolRules = function(rules, name, type) {
  * #category# proficiency level to use effectively and has weapon properties
  * #properties#. The weapon does #damage# HP on a successful attack. If
  * specified, the weapon can be used as a ranged weapon with a range increment
- * of #range# feet.
+ * of #range# feet. The weapon costs #cost# gp and weighs #weight# lbs; both
+ * of these may be decimals. The #isMonkWeapon# boolean indicates whether or
+ * not this weapon benefits from the monk's Martial Arts feature. #mastery#
+ * specifies the mastery property of the weapon.
  */
 SRD5E2024.weaponRules = function(
-  rules, name, category, properties, damage, range, cost, weight, mastery
+  rules, name, category, properties, damage, range, cost, weight, isMonkWeapon,
+  mastery
 ) {
-  SRD5E.weaponRules
-    (rules, name, category, properties, damage, range, cost, weight);
-  // TODO something with mastery?
+  SRD5E.weaponRules(
+    rules, name, category, properties, damage, range, cost, weight, isMonkWeapon
+  );
+  // TODO do anything with mastery?
+  // Handle property-based proficiency new to the 2024 rules. Could easily
+  // generalize this to additional properties, but presently no class or other
+  // feature gives general proficiency for any of these weapon properties:
+  // Ammunition,Loading,Heavy,Reach,Thrown,Two-Handed,Versatile (ndn)
+  // Also note that all characters are proficient in Unarmed, and all classes
+  // give at least Simple Weapon proficiency, so there's no need to add tests
+  // for those.
+  if(!category.match(/unarmed|simple/i)) {
+    ['Finesse', 'Light'].forEach(p => {
+      if(properties.includes(p)) {
+        rules.defineRule('sanityNotes.nonproficientWeaponPenalty.' + name,
+          'weaponProficiency.' + p + ' Weapons', '^', '0'
+        );
+      }
+    });
+  }
 };
 
 /*

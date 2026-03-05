@@ -191,7 +191,9 @@ SRD5E2024.CLASSES = {
     'Selectables=' +
       '"1:Protector:Divine Order",' +
       '"1:Thaumaturge:Divine Order",' +
-      '"deityDomains =~ \'Life\' ? 1:Life Domain:Divine Domain" ' +
+      '"deityDomains =~ \'Life\' ? 1:Life Domain:Divine Domain",' +
+      '"7:Divine Strike:Blessed Strike",' +
+      '"7:Potent Spellcasting:Blessed Strike" ' +
     'SpellAbility=Wisdom ' +
     'SpellSlots=' +
       'C0:3@1;4@4;5@10,' +
@@ -218,6 +220,7 @@ SRD5E2024.CLASSES = {
       '"7:Elemental Fury","15:Improved Elemental Fury","18:Beast Spells",' +
       '"19:Epic Boon","20:Archdruid",' +
       '"features.Circle Of The Land ? 3:Circle Of The Land Spells",' +
+      '"features.Circle Of The Land ? 3:Land\'s Aid",' +
       '"features.Circle Of The Land ? 6:Natural Recovery",' +
       '"features.Circle Of The Land ? 10:Nature\'s Ward",' +
       '"features.Circle Of The Land ? 14:Nature\'s Sanctuary" ' +
@@ -225,8 +228,8 @@ SRD5E2024.CLASSES = {
       '"1:Magician:Primal Order",' +
       '"1:Warden:Primal Order",' +
       '"3:Circle Of The Land:Druid Subclass",' +
-      '"7:Potent Spellcasting (Druid):Elemental Fury",' +
-      '"7:Primal Srike:Elemental Fury" ' +
+      '"7:Potent Spellcasting:Elemental Fury",' +
+      '"7:Primal Strike:Elemental Fury" ' +
     'SpellAbility=Wisdom ' +
     'SpellSlots=' +
       'D0:2@1;3@4;4@10,' +
@@ -586,11 +589,14 @@ SRD5E2024.FEATURES_CHANGED = {
     .replace('10', '9'),
   'Font Of Inspiration':
     'Section=magic,magic ' +
-    // chaned effects
+    // changed effects
     'Note=' +
       '"Bardic Inspiration refreshes after a short rest",' +
       '"Can expend a spell slot to regain 1 Bardic Inspiration use"',
-  // Jack Of All Trades as SRD5E
+  'Jack Of All Trades':
+    // changed effects
+    'Section=skill ' +
+    'Note="+%{proficiencyBonus//2} on non-proficient skill checks"',
   'Magical Secrets':
     SRD5E.FEATURES['Magical Secrets']
     .replace(/learn.*spells/, 'learn spells'),
@@ -608,9 +614,15 @@ SRD5E2024.FEATURES_CHANGED = {
   // Bonus Proficiencies (College Of Lore) as SRD5E
   // Cutting Words as SRD5E
   'Magical Discoveries':SRD5E.FEATURES['Additional Magical Secrets'],
-  // Peerless Skill as SRD5E
+  'Peerless Skill':
+    // changed effects
+    'Section=ability,combat ' +
+    'Note=' +
+      '"Can add a Bardic Inspiration die to a failed ability check; does not expend a use on failure",' +
+      '"Can add a Bardic Inspiration die to a failed attack; does not expend a use on failure"',
 
   // Cleric
+  'Blessed Strikes':'Section=feature Note="1 selection"',
   'Channel Divinity':
     'Section=magic ' +
     // changed effects
@@ -620,6 +632,7 @@ SRD5E2024.FEATURES_CHANGED = {
     'Section=magic ' +
     // changed effects
     'Note="Can cast a level 5 Cleric spell without using a spell slot or material components once per long rest"',
+  'Divine Order':'Section=feature Note="1 selection"',
   'Divine Spark':
     'Section=combat ' +
     'Note="R30\' Can use Channel Divinity to restore %Vd8 hit points or to inflict %Vd8 HP of a choice of necrotic or radiant (save Constitution half)"',
@@ -629,11 +642,14 @@ SRD5E2024.FEATURES_CHANGED = {
     'Section=magic ' +
     'Note="Can use Divine Intervention to cast <i>Wish</i>; requires 2d4 long rests before using Divine Intervention again" ' +
     'Spells=Wish',
-  'Potent Spellcasting (Cleric)':
-    'Section=magic,magic ' +
+  'Improved Blessed Strikes':
+    'Section=combat,magic ' +
     'Note=' +
-      '"Cleric cantrips inflict +%{wisdomModifier} HP",' +
+      '"Has increased Divine Strike effects",' +
       '"Damaging cantrips give %{wisdomModifier*2} temporary hit points to a target within 60\'"',
+  'Potent Spellcasting':
+    'Section=magic ' +
+    'Note="%{levels.Cleric?\'Cleric\':\'Druid\'} cantrips inflict +%{wisdomModifier} HP"',
   'Protector':
     'Section=combat ' +
     'Note="Armor Proficiency (Heavy)/Weapon Proficiency (Martial Weapons)"',
@@ -644,7 +660,7 @@ SRD5E2024.FEATURES_CHANGED = {
     'Section=magic,skill ' +
     'Note=' +
       '"Knows +1 Cleric cantrip",' +
-      '"+%V Arcana/+%V Wisdom"',
+      '"+%V Arcana/+%V Religion"',
   // Turn Undead as SRD5E
   // Life Domain
   // Blessed Healer as SRD5E
@@ -664,18 +680,17 @@ SRD5E2024.FEATURES_CHANGED = {
   // Druid
   'Archdruid':
     // changed effects
-    'Section=combat,feature,magic,magic ' +
+    'Section=combat,feature,magic ' +
     'Note=' +
       '"Has at least 1 use of Wild Shape available after initiative",' +
       '"Ages at 1/10 normal rate",' +
-      '"Can use Wild Shape at will",' +
-      '"Can convert Wild Shape uses into a spell slot, expending a use for each 2 spell levels"',
+      '"Can convert Wild Shape uses into a spell slot, expending a use for each 2 spell levels, once per long rest"',
   // Beast Spells as SRD5E
   'Druidic':
     // changed effects
     'Section=magic,skill ' +
     'Note=' +
-      '"Knows <i>Speak With Animals</i>",' +
+      '"Knows the <i>Speak With Animals</i> spell",' +
       '"Speaks a secret language known only by druids" ' +
     'Spells="Speak With Animals"',
   'Druid Subclass':'Section=feature Note="1 selection"',
@@ -684,27 +699,29 @@ SRD5E2024.FEATURES_CHANGED = {
   'Improved Elemental Fury':
     'Section=combat,magic ' +
     'Note=' +
-      '"Has increased Elemental Fury effects",' +
-      '"Has increased Elemental Fury effects"',
+      '"Has increased Primal Strike effects",' +
+      '"Cantrips with a range of 10\' or more can be cast at 300\'"',
   'Magician':
     'Section=magic,skill ' +
     'Note=' +
       '"Knows +1 Druid cantrip",' +
       '"+%{wisdomModifier>?1} Arcana/+%{wisdomModifer>?1} Nature"',
-  'Potent Spellcasting (Druid)':
-    'Section=magic ' +
-    'Note="Druid cantrips inflict +%{wisdomModifier} HP%{magicNotes.improvedElementalFury?\\" and gain +300 range\\":\'\'}"',
+  // Potent Spellcasting as above
+  'Primal Order':'Section=feature Note="1 selection"',
   'Primal Strike':
     'Section=combat ' +
-    'Note="Attacks inflict +%{combatNotes.improvedElementalFury?2:1}d8 HP of a choice of cold, fire, lightning, or thunder once per turn"',
+    'Note="Weapon or natural attacks inflict +%{combatNotes.improvedElementalFury?2:1}d8 HP of a choice of cold, fire, lightning, or thunder once per turn"',
   // Spellcasting as above
+  'Warden':
+    'Section=combat ' +
+    'Note="Armor Proficiency (Medium)/Weapon Proficiency (Martial Weapons)"',
   'Wild Companion':
     'Section=magic ' +
-    'Note="Can expend a spell slot to cast <i>Find Familiar</i>; the summoned animal remains present until the next long rest" ' +
+    'Note="Can expend a spell slot or a use of Wild Shape to summon a Fey familiar using <i>Find Familiar</i>; the familiar remains present until the next long rest" ' +
     'Spells="Find Familiar"',
   'Wild Resurgence':
     'Section=magic ' +
-    'Note="Can expend a spell slot to gain a Wild Shape use, or expend a Wild Shape to give a level 1 spell slot once per long rest"',
+    'Note="Can expend a spell slot to gain a Wild Shape use, or expend a Wild Shape use to gain a level 1 spell slot once per long rest"',
   'Wild Shape':
     'Section=magic ' +
     // changed effects
@@ -739,17 +756,20 @@ SRD5E2024.FEATURES_CHANGED = {
     'Note=' +
       '"Has the Arid Land, Polar Land, Temparate Land, and Tropical Land features",' +
       '"Can choose spells from 1 type of land to have prepared after a long rest"',
+  "Land's Aid":
+    'Section=magic ' +
+    'Note="R60\' Can expend a Wild Shape use to inflict %{levels.Druid<10?2:levels.Druid<14?3:4}d6 HP necrotic to targets in a 10\' radius; an additional target regains an equal number of hit points"',
   'Natural Recovery':
     SRD5E.FEATURES['Natural Recovery']
     .replace('recover', 'cast 1 Druid spell without using a spell slot and recover'),
   "Nature's Sanctuary":
     'Section=combat ' +
     // changed effects
-    'Note="R120\' 15\' cube of spectral vines and trees can move 60\' as a bonus action and gives allies Nature\'s Ward resistance and self and allies half cover for 1 min"',
+    'Note="R120\' 15\' cube of spectral vines and trees can move 60\' as a bonus action, gives allies Nature\'s Ward resistance, and gives self and allies half cover, for 1 min"',
   "Nature's Ward":
     'Section=save ' +
     // changed effects
-    'Note="Has immunity to poisoned and resistance to fire, cold, lightning or poison depending on whether Circle Spells are current taken from Arid, Polar, Temparate, or Tropical Land"',
+    'Note="Has immunity to poisoned and resistance to fire, cold, lightning, or poison depending on whether Circle Spells are currently taken from Arid, Polar, Temparate, or Tropical Land"',
   // TODO These SRD5E features raise errors in featureRules
   'Circle Of The Land (Arctic)':'Section=magic Note=""',
   'Circle Of The Land (Coast)':'Section=magic Note=""',
@@ -3815,14 +3835,25 @@ SRD5E2024.classRulesExtra = function(rules, name) {
     rules.defineRule('selectableFeatureCount.Bard (Bard Subclass)',
       'featureNotes.bardSubclass', '=', '1'
     );
+    rules.defineRule
+      ('skillNotes.expertise', classLevel, '+=', 'source<10 ? 2 : 4');
+    rules.defineRule('spells.Power Word Heal(B9 Ench)',
+      'magicNotes.wordsOfCreation', '+', 'null' // italics
+    );
 
   } else if(name == 'Cleric') {
 
+    rules.defineRule('combatNotes.blessedStrikes',
+      'combatNotes.improvedBlessedStrikes', '+', 'null' // italics
+    );
     rules.defineRule('combatNotes.divineSpark',
       'levels.Cleric', '=', 'source<7 ? 1 : source<13 ? 2 : source<18 ? 3 : 4'
     );
-    rules.defineRule('magicNotes.potentSpellcasting.1',
-      'magicNotes.improvedBlessedStrikes', '?', null
+    rules.defineRule('combatNotes.improvedBlessedStrikes',
+      'clericFeatures.Blessed Strikes', '?', null
+    );
+    rules.defineRule('magicNotes.improvedBlessedStrikes',
+      'clericFeatures.Potent Spellcasting', '?', null
     );
     rules.defineRule('magicNotes.spellcasting.1', classLevel, '=', '1');
     rules.defineRule('selectableFeatureCount.Cleric (Cleric Subclass)',
@@ -3835,11 +3866,17 @@ SRD5E2024.classRulesExtra = function(rules, name) {
     rules.defineRule('clericHasDivineStrike', 'features.Life Domain', '=', '1');
     rules.defineRule('magicNotes.channelDivinity.1',
       'features.Channel Divinity', '?', null,
-      'levels.Cleric', '+=', 'source<6 ? 1 : source<18 ? 2 : 3'
+      'levels.Cleric', '+=', 'source<6 ? 2 : source<18 ? 3 : 4'
     );
     rules.defineRule('divineStrikeDamageType',
       'features.Divine Strike', '?', null,
       'features.Life Domain', '=', '"radiant"'
+    );
+    rules.defineRule('selectableFeatureCount.Cleric (Blessed Strikes)',
+      'featureNotes.blessedStrikes', '=', '1'
+    );
+    rules.defineRule('selectableFeatureCount.Cleric (Divine Order)',
+      'featureNotes.divineOrder', '=', '1'
     );
     for(let s in rules.getChoices('selectableFeatures')) {
       if(s.match(/Cleric - .* Domain/)) {
@@ -3853,6 +3890,15 @@ SRD5E2024.classRulesExtra = function(rules, name) {
 
   } else if(name == 'Druid') {
 
+    rules.defineRule('combatNotes.primalStrike',
+      'combatNotes.improvedElementalFury', '+', 'null' // italics
+    );
+    rules.defineRule('combatNotes.improvedElementalFury',
+      'druidFeatures.Primal Strike', '?', null
+    );
+    rules.defineRule('magicNotes.improvedElementalFury',
+      'druidFeatures.Potent Spellcasting', '?', null
+    );
     rules.defineRule('magicNotes.spellcasting.1', classLevel, '=', '1');
     rules.defineRule('magicNotes.wildShape',
       classLevel, '=', 'source<4 ? "1/4" : source<8 ? "1/2" : "1"'
@@ -3866,6 +3912,7 @@ SRD5E2024.classRulesExtra = function(rules, name) {
     rules.defineRule('selectableFeatureCount.Druid (Primal Order)',
       'featureNotes.primalOrder', '=', '1'
     );
+    rules.defineRule('spellSlots.D0', 'magicNotes.magician', '+', '1');
 
   } else if(name == 'Fighter') {
 

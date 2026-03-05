@@ -728,7 +728,7 @@ SRD5E.FEATURES = {
     'Note="R60\' Can use a reaction to subtract a Bardic Inspiration die from a foe roll"',
   'Peerless Skill':
     'Section=ability ' +
-    'Note="Can add a Bardic Inspiration die to a self ability check"',
+    'Note="Can add a Bardic Inspiration die to an ability check"',
 
   // Cleric
   'Channel Divinity':
@@ -754,7 +754,7 @@ SRD5E.FEATURES = {
     'Note="Healing spells restore the maximum possible hit points"',
   'Turn Undead':
     'Section=combat ' +
-    'Note="R30\' Can use Channel Divinity to make undead flee (save DC %{spellDifficultyClass.C} Wisdom negates) for 1 min"',
+    'Note="R30\' Can use Channel Divinity to make undead flee (save DC %{spellDifficultyClass.C} Wisdom negates) for 1 min or until damaged"',
   // Life Domain
   'Blessed Healer':
     'Section=magic ' +
@@ -4930,49 +4930,6 @@ SRD5E.featureRules = function(
       let effect = m[1];
       effects = m[3];
 
-      matchInfo =
-        effect.match(/([A-Z]\w*)\sProficiency\s\((([^\(]|\([^\)]*\))*)\)/);
-      if(matchInfo) {
-        let group = matchInfo[1].toLowerCase();
-        matchInfo[2].split(/\/|;\s*/).forEach(affected => {
-          matchInfo = affected.match(/^Choose\s(\d+|%V)/);
-          if(!matchInfo)
-            rules.defineRule(group + 'Proficiency.' + affected, note, '=', '1');
-          else if(matchInfo[1].startsWith('%'))
-            rules.defineRule(group + 'ChoiceCount', note, '+=', null);
-          else
-            rules.defineRule(group + 'ChoiceCount', note, '+=', matchInfo[1]);
-        });
-      }
-      matchInfo = effect.match(/Ability Boost \((([^\(]|\([^\)]*\))*)\)/i);
-      if(matchInfo) {
-        let totalBoosts = 0;
-        matchInfo[1].split(/\/|;\s*/).forEach(boosted => {
-          matchInfo = boosted.match(/Choose (\d+|%V)/i);
-          if(!matchInfo)
-            rules.defineRule(boosted.toLowerCase(), note, '+', '1');
-          else if(matchInfo[1].startsWith('%'))
-            addSource = true;
-          else
-            totalBoosts += matchInfo[1] - 0;
-        });
-        rules.defineRule('abilityBoostChoiceCount',
-          note, '+=', totalBoosts + (addSource ? ' + source' : '')
-        );
-      }
-      matchInfo = effect.match(/Language \((([^\(]|\([^\)]*\))*)\)/i);
-      if(matchInfo) {
-        matchInfo[1].split(/\/|;\s*/).forEach(affected => {
-          matchInfo = affected.match(/^Choose\s(\d+|%V)/);
-          if(!matchInfo)
-            rules.defineRule('languages.' + affected, note, '=', '1');
-          else if(matchInfo[1].startsWith('%'))
-            rules.defineRule('languageChoiceCount', note, '+=', null);
-          else
-            rules.defineRule('languageChoiceCount', note, '+=', matchInfo[1]);
-        });
-      }
-
       if((matchInfo = effect.match(/^([-+x](\d+(\.\d+)?|%[V1-9]|%\{[^\}]*\}))\s+(.*)$/)) != null) {
 
         let adjust = matchInfo[1];
@@ -5020,6 +4977,66 @@ SRD5E.featureRules = function(
         if(adjust == '%1' && !effect.includes(adjust))
           rules.defineRule(adjuster, note, '?', null);
 
+      }
+
+      // Generate rules for common notes:
+      // X Proficiency (item [; item ...])
+      matchInfo =
+        effect.match(/([A-Z]\w*)\sProficiency\s\((([^\(]|\([^\)]*\))*)\)/);
+      if(matchInfo) {
+        let group = matchInfo[1].toLowerCase();
+        matchInfo[2].split(/\/|;\s*/).forEach(affected => {
+          matchInfo = affected.match(/^Choose\s(\d+|%V)/);
+          if(!matchInfo)
+            rules.defineRule(group + 'Proficiency.' + affected, note, '=', '1');
+          else if(matchInfo[1].startsWith('%'))
+            rules.defineRule(group + 'ChoiceCount', note, '+=', null);
+          else
+            rules.defineRule(group + 'ChoiceCount', note, '+=', matchInfo[1]);
+        });
+      }
+
+      // Ability Boost (ability [; ability ...])
+      matchInfo = effect.match(/Ability Boost \((([^\(]|\([^\)]*\))*)\)/i);
+      if(matchInfo) {
+        let totalBoosts = 0;
+        matchInfo[1].split(/\/|;\s*/).forEach(boosted => {
+          matchInfo = boosted.match(/Choose (\d+|%V)/i);
+          if(!matchInfo)
+            rules.defineRule(boosted.toLowerCase(), note, '+', '1');
+          else if(matchInfo[1].startsWith('%'))
+            addSource = true;
+          else
+            totalBoosts += matchInfo[1] - 0;
+        });
+        rules.defineRule('abilityBoostChoiceCount',
+          note, '+=', totalBoosts + (addSource ? ' + source' : '')
+        );
+      }
+
+      // Language (language [; language ...])
+      matchInfo = effect.match(/Language \((([^\(]|\([^\)]*\))*)\)/i);
+      if(matchInfo) {
+        matchInfo[1].split(/\/|;\s*/).forEach(affected => {
+          matchInfo = affected.match(/^Choose\s(\d+|%V)/);
+          if(!matchInfo)
+            rules.defineRule('languages.' + affected, note, '=', '1');
+          else if(matchInfo[1].startsWith('%'))
+            rules.defineRule('languageChoiceCount', note, '+=', null);
+          else
+            rules.defineRule('languageChoiceCount', note, '+=', matchInfo[1]);
+        });
+      }
+
+      // Has the ... feature
+      matchInfo = effect.match(/^Has\s+the\s+(.*)\s+features?$/);
+      if(matchInfo) {
+        let features = matchInfo[1].split(/\s*,\s*|\s*\band\s+/);
+        features.forEach(f => {
+          f = f.trim();
+          if(f != '' && !f.includes('%'))
+            rules.defineRule('features.' + f, note, '=', '1');
+        });
       }
 
     }

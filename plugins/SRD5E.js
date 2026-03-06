@@ -143,10 +143,10 @@ SRD5E.CLASSES = {
       '"1:Save Proficiency (Strength; Constitution)",' +
       '"1:Skill Proficiency (Choose 2 from Animal Handling, Athletics, Intimidation, Nature, Perception, Survival)",' +
       '"1:Weapon Proficiency (Simple Weapons; Martial Weapons)",' +
-      '"1:Rage","1:Unarmored Defense (Barbarian)","2:Reckless Attack",' +
-      '"2:Danger Sense","3:Primal Path","5:Extra Attack","5:Fast Movement",' +
-      '"7:Feral Instinct","9:Brutal Critical","11:Relentless Rage",' +
-      '"15:Persistent Rage","18:Indomitable Might","20:Primal Champion",' +
+      '"1:Rage","1:Unarmored Defense","2:Reckless Attack","2:Danger Sense",' +
+      '"3:Primal Path","5:Extra Attack","5:Fast Movement","7:Feral Instinct",' +
+      '"9:Brutal Critical","11:Relentless Rage","15:Persistent Rage",' +
+      '"18:Indomitable Might","20:Primal Champion",' +
       '"features.Path Of The Berserker ? 3:Frenzy",' +
       '"features.Path Of The Berserker ? 6:Mindless Rage",' +
       '"features.Path Of The Berserker ? 10:Intimidating Presence",' +
@@ -284,12 +284,12 @@ SRD5E.CLASSES = {
       '"1:Tool Proficiency (Choose 1 from any Artisan, any Musical)",' +
       '"1:Save Proficiency (Strength; Dexterity)",' +
       '"1:Skill Proficiency (Choose 2 from Acrobatics, Athletics, History, Insight, Religion, Stealth)",' +
-      '"1:Unarmored Defense (Monk)","1:Martial Arts","2:Ki",' +
-      '"2:Flurry Of Blows","2:Patient Defense","2:Step Of The Wind",' +
-      '"2:Unarmored Movement","3:Monastic Tradition","3:Deflect Missiles",' +
-      '"4:Slow Fall","5:Extra Attack","5:Stunning Strike",' +
-      '"6:Ki-Empowered Strikes","7:Evasion","7:Stillness Of Mind",' +
-      '"10:Purity Of Body","13:Tongue Of The Sun And Moon","14:Diamond Soul",' +
+      '"1:Unarmored Defense","1:Martial Arts","2:Ki","2:Flurry Of Blows",' +
+      '"2:Patient Defense","2:Step Of The Wind","2:Unarmored Movement",' +
+      '"3:Monastic Tradition","3:Deflect Missiles","4:Slow Fall",' +
+      '"5:Extra Attack","5:Stunning Strike","6:Ki-Empowered Strikes",' +
+      '"7:Evasion","7:Stillness Of Mind","10:Purity Of Body",' +
+      '"13:Tongue Of The Sun And Moon","14:Diamond Soul",' +
       '"15:Timeless Body (Monk)","18:Empty Body","20:Perfect Self",' +
       '"features.Way Of The Open Hand ? 3:Open Hand Technique",' +
       '"features.Way Of The Open Hand ? 6:Wholeness Of Body",' +
@@ -671,8 +671,7 @@ SRD5E.FEATURES = {
   'Relentless Rage':
     'Section=save ' +
     'Note="Can make a DC 10 Constitution save to retain 1 hit point when brought to 0 hit points during rage; each use adds 5 to the DC until a short rest"',
-  'Unarmored Defense (Barbarian)':
-    'Section=combat Note="+%{constitutionModifier} Armor Class in no armor"',
+  'Unarmored Defense':'Section=combat Note="+%V Armor Class in no armor"',
   // Berserker
   'Frenzy':
     'Section=combat ' +
@@ -878,14 +877,14 @@ SRD5E.FEATURES = {
   'Additional Fighting Style':
     'Section=feature Note="Can select a second Fighting Style"',
   'Improved Critical':
-    'Section=combat Note="Scores a critical hit on a natural 19"',
+    'Section=combat Note="Scores a possible critical on a natural 19"',
   'Remarkable Athlete':
     'Section=ability,skill ' +
     'Note=' +
       '"+%{proficiencyBonus//2} on non-proficient Strength, Dexterity, and Constitution checks",' +
       '"+%{strengthModifier}\' running jump distance"',
   'Superior Critical':
-    'Section=combat Note="Scores a critical hit on a natural 18"',
+    'Section=combat Note="Scores a potential critical on a natural 18"',
   'Survivor':
     'Section=combat ' +
     'Note="Regains %{constitutionModifier+5} hit points each rd when between 1 and %{hitPoints//2} hit points"',
@@ -893,7 +892,7 @@ SRD5E.FEATURES = {
   // Monk
   'Deflect Missiles':
     'Section=combat ' +
-    'Note="Can use a reaction to reduce missile damage by 1d10+%{levels.Monk+dexterityModifier} HP; reducing it to 0 HP allows spending 1 ki point to make an immediate attack with the missile"',
+    'Note="Can use a reaction to reduce suffered missile damage by 1d10+%{levels.Monk+dexterityModifier} HP; reducing it to 0 HP allows spending 1 ki point to make an immediate attack with the missile"',
   'Diamond Soul':
     'Section=save,save ' +
     'Note=' +
@@ -914,10 +913,8 @@ SRD5E.FEATURES = {
   'Ki-Empowered Strikes':
     'Section=combat Note="Unarmed attacks count as magical"',
   'Martial Arts':
-    'Section=combat,combat ' +
-    'Note=' +
-      '"When unarmored, gains +%1 attack and damage with unarmed strikes and monk weapons and raises their damage dice to 1d%V",' +
-      '"When unarmored, can use a bonus action to make an unarmed strike after an unarmed strike or monk weapon attack"',
+    'Section=combat ' +
+    'Note="When unarmored and wielding only monk weapons, gains +%1 attack and damage with unarmed strikes and weapon attacks, raises their damage dice to 1d%V, and can use a bonus action to make an unarmed strike after attacking"',
   'Monastic Tradition':'Section=feature Note="1 selection"',
   'Patient Defense':
     'Section=combat Note="Can spend 1 ki point to Dodge as a bonus action"',
@@ -942,8 +939,7 @@ SRD5E.FEATURES = {
     'Note="Suffers no debility from aging and needs no food or water"',
   'Tongue Of The Sun And Moon':
     'Section=skill Note="Can communicate in any language"',
-  'Unarmored Defense (Monk)':
-    'Section=combat Note="+%{wisdomModifier} Armor Class in no armor"',
+  // Unarmored Defense as above
   'Unarmored Movement':
     'Section=ability,ability ' +
     'Note=' +
@@ -4396,14 +4392,18 @@ SRD5E.classRulesExtra = function(rules, name) {
       'abilityNotes.fastMovement', '?', null,
       'armorWeight', '=', 'source < 3 ? 10 : null'
     );
-    rules.defineRule('armorClass',
-      'combatNotes.unarmoredDefense(Barbarian).1', '+', null
-    );
+    rules.defineRule('armorClass', 'combatNotes.unarmoredDefense.1', '+', null);
     rules.defineRule
       ('combatNotes.extraAttack', classLevel, '+=', 'source<5 ? null : 1');
-    rules.defineRule('combatNotes.unarmoredDefense(Barbarian).1',
-      'combatNotes.unarmoredDefense(Barbarian)', '?', null,
+    rules.defineRule('combatNotes.unarmoredDefense',
+      'combatNotes.unarmoredDefense.2', '+=', null
+    );
+    rules.defineRule('combatNotes.unarmoredDefense.1',
       'armor', '?', 'source == "None"',
+      'combatNotes.unarmoredDefense', '=', null
+    );
+    rules.defineRule('combatNotes.unarmoredDefense.2',
+      'barbarianFeatures.Unarmored Defense', '?', null,
       'constitutionModifier', '=', null
     );
     rules.defineRule('selectableFeatureCount.Barbarian (Primal Path)',
@@ -4515,8 +4515,7 @@ SRD5E.classRulesExtra = function(rules, name) {
       'shield', '?', 'source == "None"',
       classLevel, '?', 'source >= 9'
     );
-    rules.defineRule
-      ('armorClass', 'combatNotes.unarmoredDefense(Monk).1', '+', null);
+    rules.defineRule('armorClass', 'combatNotes.unarmoredDefense.1', '+', null);
     rules.defineRule
       ('combatNotes.extraAttack', classLevel, '+=', 'source<5 ? null : 1');
     rules.defineRule('combatNotes.martialArts',
@@ -4528,9 +4527,15 @@ SRD5E.classRulesExtra = function(rules, name) {
       'strengthModifier', '+', '-source',
       '', '^', '0'
     );
-    rules.defineRule('combatNotes.unarmoredDefense(Monk).1',
-      'combatNotes.unarmoredDefense(Monk)', '?', null,
+    rules.defineRule('combatNotes.unarmoredDefense',
+      'combatNotes.unarmoredDefense.3', '+=', null
+    );
+    rules.defineRule('combatNotes.unarmoredDefense.1',
       'armor', '?', 'source == "None"',
+      'combatNotes.unarmoredDefense', '=', null
+    );
+    rules.defineRule('combatNotes.unarmoredDefense.3',
+      'monkFeatures.Unarmored Defense', '?', null,
       'wisdomModifier', '=', null
     );
     rules.defineRule('monkMeleeAttackBonus',

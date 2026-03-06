@@ -127,11 +127,11 @@ SRD5E2024.CLASSES = {
       '"1:Save Proficiency (Strength; Constitution)",' +
       '"1:Skill Proficiency (Choose 2 from Animal Handling, Athletics, Intimidation, Nature, Perception, Survival)",' +
       '"1:Weapon Proficiency (Simple Weapons; Martial Weapons)",' +
-      '"1:Rage","1:Unarmored Defense (Barbarian)","1:Weapon Mastery",' +
-      '"2:Danger Sense","2:Reckless Attack","3:Barbarian Subclass",' +
-      '"3:Primal Knowledge","5:Extra Attack","5:Fast Movement",' +
-      '"7:Feral Instinct","7:Instinctive Pounce","9:Brutal Strike",' +
-      '"11:Relentless Rage","13:Improved Brutal Strike","15:Persistent Rage",' +
+      '"1:Rage","1:Unarmored Defense","1:Weapon Mastery","2:Danger Sense",' +
+      '"2:Reckless Attack","3:Barbarian Subclass","3:Primal Knowledge",' +
+      '"5:Extra Attack","5:Fast Movement","7:Feral Instinct",' +
+      '"7:Instinctive Pounce","9:Brutal Strike","11:Relentless Rage",' +
+      '"13:Improved Brutal Strike","15:Persistent Rage",' +
       '"18:Indomitable Might","19:Epic Boon","20:Primal Champion",' +
       '"features.Path Of The Berserker ? 3:Frenzy",' +
       '"features.Path Of The Berserker ? 6:Mindless Rage",' +
@@ -252,10 +252,10 @@ SRD5E2024.CLASSES = {
       '"1:Save Proficiency (Strength; Constitution)",' +
       '"1:Skill Proficiency (Choose 2 from Acrobatics, Animal Handling, Athletics, History, Insight, Intimidation, Persuasion; Perception, Survival)",' +
       '"1:Fighting Style","1:Second Wind","1:Weapon Mastery",' +
-      '"2:Action Surge","3:Fighter Subclass","5:Extra Attack",' +
-      '"5:Tactical Shift","9:Indomitable","9:Tactical Master",' +
-      '"11:Two Extra Attacks","13:Studied Attacks","19:Epic Boon",' +
-      '"20:Three Extra Attacks",' +
+      '"2:Action Surge","2:Tactical Mind","3:Fighter Subclass",' +
+      '"5:Extra Attack","5:Tactical Shift","9:Indomitable",' +
+      '"9:Tactical Master","11:Two Extra Attacks","13:Studied Attacks",' +
+      '"19:Epic Boon","20:Three Extra Attacks",' +
       '"features.Champion ? 3:Improved Critical",' +
       '"features.Champion ? 3:Remarkable Athlete",' +
       '"features.Champion ? 7:Additional Fighting Style",' +
@@ -275,12 +275,12 @@ SRD5E2024.CLASSES = {
       '"1:Tool Proficiency (Choose 1 from any Artisan, any Musical)",' +
       '"1:Save Proficiency (Strength; Dexterity)",' +
       '"1:Skill Proficiency (Choose 2 from Acrobatics, Athletics, History, Insight, Religion, Stealth)",' +
-      '"1:Martial Arts","1:Unarmored Defense (Monk)","2:Monk\'s Focus",' +
+      '"1:Martial Arts","1:Unarmored Defense","2:Monk\'s Focus",' +
       '"2:Unarmored Movement","Uncanny Metabolism","3:Deflect Attacks",' +
       '"3:Monk Subclass","4:Slow Fall","5:Extra Attack","5:Stunning Strike",' +
       '"6:Empowered Strikes","7:Evasion","7:Stillness Of Mind",' +
       '"9:Acrobatic Movement","10:Heightened Focus","10:Self-Restoration",' +
-      '"13:Deflect Energy Moon","14:Disciplined Survivor","15:Perfect Focus",' +
+      '"13:Deflect Energy","14:Disciplined Survivor","15:Perfect Focus",' +
       '"18:Superior Defense","19:Epic Boon","20:Body And Mind",' +
       '"features.Warrior Of The Open Hand ? 3:Open Hand Technique",' +
       '"features.Warrior Of The Open Hand ? 6:Wholeness Of Body",' +
@@ -557,7 +557,7 @@ SRD5E2024.FEATURES_CHANGED = {
   'Relentless Rage':
     SRD5E.FEATURES['Relentless Rage']
     .replace('1 hit point', '%{levels.Barbarian*2} hit points'),
-  // Unarmored Defense (Barbarian) as SRD5E
+  // Unarmored Defense as SRD5E
   // TODO
   'Weapon Mastery':
     'Section=combat '+
@@ -785,14 +785,16 @@ SRD5E2024.FEATURES_CHANGED = {
   // Extra Attack as above
   'Fighter Subclass':'Section=feature Note="1 selection"',
   'Fighting Style':'Section=feature Note="+1 Fighting Style Feat"',
-  // Indomitable as SRD5E
+  'Indomitable':
+    SRD5E.FEATURES.Indomitable
+    .replace('failed save', 'failed save, adding a +%{levels.Fighter} bonus,'),
   'Second Wind':
     'Section=combat ' +
     // changed effects
-    'Note="Can use a bonus action to regain 1d10+%{levels.Fighter} hit points %V times per long rest; can regin 1 use after a short rest"',
+    'Note="Can use a bonus action to regain 1d10+%{levels.Fighter} hit points %V times per long rest; can regain 1 use after a short rest"',
   'Studied Attacks':
     'Section=combat ' +
-    'Note="Missed attack gives advantage on the next attack on the same target within 1 rd"',
+    'Note="Missed attack gives advantage on the next attack on the same target before the end of the next turn"',
   'Tactical Master':
     'Section=combat Note="Can use a mastery weapon to Push, Sap, or Slow"',
   'Tactical Mind':
@@ -833,11 +835,13 @@ SRD5E2024.FEATURES_CHANGED = {
   'Body And Mind':'Section=ability Note="+4 Dexterity/+4 Wisdom"',
   'Deflect Attacks':
     SRD5E.FEATURES['Deflect Missiles']
-    .replace(' missile', "%{combatNotes.deflectEnergy?'':' suffered bludgeoning, piercing, or slashing'}")
-    .replace('make an immediate attack', 'redirect 2d%{combatNotes.martialArts} HP to an adjacent creature (DC %{monkSaveDC} save Dexterity negates), or a creature within 60\' if the damage came from a ranged attack'),
+    .replace(' missile', "%{combatNotes.deflectEnergy?'':' bludgeoning, piercing, or slashing'}")
+    .replace('make an immediate attack with the missile', 'redirect 2d%{combatNotes.martialArts} HP (DC %{monkSaveDC} save Dexterity negates) to an adjacent creature, or to a creature within 60\' if the damage came from a ranged attack'),
   'Deflect Energy':
     'Section=combat Note="Has increased Deflect Attacks effects"',
-  'Disciplined Survivor':SRD5E.FEATURES['Diamond Soul'],
+  'Disciplined Survivor':
+    SRD5E.FEATURES['Diamond Soul']
+    .replace('ki point', 'focus point'),
   // Epic Boon as above
   // Extra Attack as above
   'Empowered Strikes':
@@ -848,13 +852,11 @@ SRD5E2024.FEATURES_CHANGED = {
     .replace('ki point', 'focus point')
     .replace('2 unarmed', '%{combatNotes.heightenedFocus?3:2} unarmed'),
   'Heightened Focus':
-    'Section=combat Note="Has increased Monk\'s Focus effects"',
+    'Section=combat ' +
+    'Note="Has increased Flurry Of Blows, Patient Defense, and Step Of The Wind effects"',
   'Martial Arts':
-    'Section=combat,combat ' +
-    // changed effects
-    'Note=' +
-      '"Attacks inflict 1d%V when unarmored and wielding only monk weapons",' +
-      '"When unarmored and wielding only monk weapons, can use a bonus action to make an Unarmed Strike and gains +%{dexterityModifier-strengthModifier>?0} (using Dexterity instead of Strength) on attacks, damage, grapples, and shoves"',
+    SRD5E.FEATURES['Martial Arts']
+    .replace(' after attacking', ''),
   'Monk Subclass':'Section=feature Note="1 selection"',
   "Monk's Focus":
     'Section=combat,feature ' +
@@ -864,7 +866,7 @@ SRD5E2024.FEATURES_CHANGED = {
   'Patient Defense':
     'Section=combat ' +
     // changed effects
-    'Note="Can use a bonus action to Disengage, optionally spending 1 focus point to Dodge%{combatNotes.heightenedFous?\' and gain %2d{combatNotes.martialArts} temporary hit points\':\'\'}"',
+    'Note="Can use a bonus action to Disengage, optionally spending 1 focus point to Dodge%{combatNotes.heightenedFocus?\' and gain 2d\'+combatNotes.martialArts+\' temporary hit points\':\'\'}"',
   'Perfect Focus':
     SRD5E.FEATURES['Perfect Self']
     .replace('ki', 'focus'),
@@ -876,16 +878,18 @@ SRD5E2024.FEATURES_CHANGED = {
     'Section=combat ' +
     // changed effects
     'Note="Can use a bonus action to Dash, optionally spending 1 focus point to Disengage and to double jump distance%{combatNotes.heightenedFocus?\'; can bring along 1 Large creature when moving\':\'\'}"',
+  // TODO advantage on next attack on target?
   'Stunning Strike':
     SRD5E.FEATURES['Stunning Strike']
-    .replace('negates', 'inflicts half Speed'),
+    .replace('negates', 'inflicts half Speed')
+    .replace('end of', 'start of'),
   'Superior Defense':
     'Section=save ' +
     'Note="Can spend 3 focus points to gain resistance to non-force damage for 1 min"',
   'Unarmored Movement':
     // changed effects
     'Section=ability Note="+%{(levels.Monk+6)//4*5} Speed in no armor"',
-  // Unarmored Defense (Monk) as SRD5E
+  // Unarmored Defense as SRD5E
   'Uncanny Metabolism':
     'Section=combat ' +
     'Note="Can regain all focus points and 1d%{combatNotes.martialArts}+%{levels.Monk} hit points at initiative once per long rest"',
@@ -893,13 +897,16 @@ SRD5E2024.FEATURES_CHANGED = {
   'Fleet Step':
     'Section=combat ' +
     'Note="Can use Step Of The Wind immediately after another bonus action"',
-  // Open Hand Technique as SRD5E
+  'Open Hand Technique':
+    SRD5E.FEATURES['Open Hand Technique']
+    .replace('reactions until the end of the', 'opportunity attacks until the start of its'),
   'Quivering Palm':
     'Section=combat ' +
     // changed effects
-    'Note="Can spend 4 ki points after a successful unarmed attack to inflict 10d12 force (save DC %{kiSaveDC} Constitution half) at any time within %{levels.Monk} days"',
+    'Note="Can spend 4 focus points after a successful unarmed attack to inflict 10d12 HP force (save DC %{monkSaveDC} Constitution half) at any time within %{levels.Monk} days"',
   'Wholeness Of Body':
     SRD5E.FEATURES['Wholeness Of Body']
+    .replace('action', 'bonus action')
     .replace('%{levels.Monk*3}', '1d%{combatNotes.martialArts}+%{wisdomModifier}')
     .replace('once', "%{wisdomModifier>1?wisdomModifier+\' times\':\'once\'}"),
 
@@ -3802,17 +3809,21 @@ SRD5E2024.classRulesExtra = function(rules, name) {
       'abilityNotes.fastMovement', '?', null,
       'armorWeight', '=', 'source < 3 ? 10 : null'
     );
-    rules.defineRule('armorClass',
-      'combatNotes.unarmoredDefense(Barbarian).1', '+', null
-    );
+    rules.defineRule('armorClass', 'combatNotes.unarmoredDefense.1', '+', null);
     rules.defineRule('combatNotes.brutalStrike',
       'combatNotes.improvedBrutalStrike', '+', 'null' // italics
     );
     rules.defineRule
       ('combatNotes.extraAttack', classLevel, '+=', 'source<5 ? null : 1');
-    rules.defineRule('combatNotes.unarmoredDefense(Barbarian).1',
-      'combatNotes.unarmoredDefense(Barbarian)', '?', null,
+    rules.defineRule('combatNotes.unarmoredDefense',
+      'combatNotes.unarmoredDefense.2', '+=', null
+    );
+    rules.defineRule('combatNotes.unarmoredDefense.1',
       'armor', '?', 'source == "None"',
+      'combatNotes.unarmoredDefense', '=', null
+    );
+    rules.defineRule('combatNotes.unarmoredDefense.2',
+      'barbarianFeatures.Unarmored Defense', '?', null,
       'constitutionModifier', '=', null
     );
     rules.defineRule('combatNotes.weaponMastery',
@@ -3946,26 +3957,43 @@ SRD5E2024.classRulesExtra = function(rules, name) {
       'shield', '?', 'source == "None"',
       classLevel, '=', 'Math.floor((source + 6) / 4) * 5'
     );
-    rules.defineRule
-      ('combatNotes.extraAttack', classLevel, '+=', 'source<5 ? null : 1');
-    rules.defineRule('combatNotes.martialArts',
-      classLevel, '=', '4 + Math.floor((source + 1)/ 6) * 2'
+    rules.defineRule('combatNotes.deflectAttacks',
+      'combatNotes.deflectEnergy', '+', 'null' // italics
     );
     rules.defineRule
-      ('armorClass', 'combatNotes.unarmoredDefense(Monk).1', '+', null);
-    rules.defineRule('combatNotes.unarmoredDefense(Monk).1',
-      'combatNotes.unarmoredDefense(Monk)', '?', null,
+      ('combatNotes.extraAttack', classLevel, '+=', 'source<5 ? null : 1');
+    rules.defineRule('combatNotes.flurryOfBlows',
+      'combatNotes.heightenedFocus', '+', 'null' // italics
+    );
+    rules.defineRule('combatNotes.martialArts',
+      classLevel, '=', '6 + Math.floor((source + 1)/ 6) * 2'
+    );
+    rules.defineRule('combatNotes.martialArts.1',
+      'monkFeatures.Martial Arts', '?', null,
+      'dexterityModifier', '=', 'source',
+      'strengthModifier', '+', '-source',
+      '', '^', '0'
+    );
+    rules.defineRule('armorClass', 'combatNotes.unarmoredDefense.1', '+', null);
+    rules.defineRule('combatNotes.unarmoredDefense',
+      'combatNotes.unarmoredDefense.3', '+=', null
+    );
+    rules.defineRule('combatNotes.unarmoredDefense.1',
       'armor', '?', 'source == "None"',
+      'combatNotes.unarmoredDefense', '=', null
+    );
+    rules.defineRule('combatNotes.unarmoredDefense.3',
+      'monkFeatures.Unarmored Defense', '?', null,
       'wisdomModifier', '=', null
     );
     rules.defineRule('monkSaveDC',
-      "monkFeatures.Monk'sFocus", '?', null,
+      "monkFeatures.Monk's Focus", '?', null,
       'proficiencyBonus', '=', '8 + source',
       'wisdomModifier', '+', null
     );
     for(let a in SRD5E.ABILITIES) {
       rules.defineRule
-        ('saveProficiency.' + a, 'saveNotes.disciplinedSurvivo', '=', '1');
+        ('saveProficiency.' + a, 'saveNotes.disciplinedSurvivor', '=', '1');
     }
     rules.defineRule('selectableFeatureCount.Monk (Monk Subclass)',
       'featureNotes.monkSubclass', '=', '1'

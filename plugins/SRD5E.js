@@ -1046,7 +1046,7 @@ SRD5E.FEATURES = {
   // Hunter
   'Colossus Slayer':
     'Section=combat ' +
-    'Note="Can inflict +1d8 HP vs. an already-injured foe once per rd"',
+    'Note="Can inflict +1d8 HP vs. an already-injured foe once per turn"',
   'Defensive Tactics':'Section=feature Note="1 selection"',
   'Escape The Horde':
     'Section=combat ' +
@@ -1057,7 +1057,7 @@ SRD5E.FEATURES = {
     'Note="Can use a reaction to attack an adjacent Large or larger foe after it misses self"',
   'Horde Breaker':
     'Section=combat ' +
-    'Note="Can make a second attack on a different adjacent foe once per rd"',
+    'Note="Can make a second attack on a different adjacent foe once per turn"',
   "Hunter's Prey":'Section=feature Note="1 selection"',
   'Multiattack':'Section=feature Note="1 selection"',
   'Multiattack Defense':
@@ -1163,7 +1163,7 @@ SRD5E.FEATURES = {
     'Note="R60\' Can spend 5 Sorcery Points to gain an aura that inflicts a choice of charm or fright (save DC %{spellDifficultyClass.S} Wisdom negates for 24 hr) for concentration up to 1 min"',
   'Draconic Resilience':
     'Section=combat ' +
-    'Note="+%{levels.Sorcerer} Hit Points/Armor Class %{dexterityModifier+13} in no armor"',
+    'Note="+%{levels.Sorcerer} Hit Points/+3 Armor Class in no armor"',
   'Dragon Wings':
     'Section=ability ' +
     'Note="Can use a bonus action to gain a %{speed}\' fly Speed"',
@@ -1211,7 +1211,7 @@ SRD5E.FEATURES = {
     'Note="At the end of a rest, can gain resistance to a chosen damage type from anything other than magical or silver weapons"',
   'Hurl Through Hell':
     'Section=combat ' +
-    'Note="After a successful attack, can inflict 10d10 HP psychic and cause the target to disappear until the end of the next turn once per long rest"',
+    'Note="After a successful attack, can inflict 10d10 HP psychic and cause the target to disappear until the end of the next turn (fiends take no damage) once per long rest"',
   // Eldritch Invocations
   'Agonizing Blast':
     'Section=magic ' +
@@ -1328,7 +1328,7 @@ SRD5E.FEATURES = {
   'Arcane Tradition':'Section=feature Note="1 selection"',
   'Signature Spells':
     'Section=magic ' +
-    'Note="Can cast 2 chosen W3 spells without spending a spell slot once per short rest"',
+    'Note="Can cast 2 chosen W3 spells without expending a spell slot once per short rest"',
   'Spell Mastery':
     'Section=magic ' +
     'Note="Can cast a chosen W1 spell and a chosen W2 spell at will and change the choices after 8 hr of study"',
@@ -1341,7 +1341,7 @@ SRD5E.FEATURES = {
     'Note="Requires half the normal time and cost to copy evocation spells into spellbook"',
   'Overchannel':
     'Section=magic ' +
-    'Note="Can inflict maximum damage from evocation spells up to level 5; additional uses before a long rest also inflict necrotic damage on self, starting at 2d12 HP and increasing by 1d12 HP on each successive use"',
+    'Note="Can inflict maximum damage from evocation spells up to level 5; additional uses before a long rest also inflict damage on self, starting at 2d12 HP necrotic and increasing by 1d12 HP on each successive use"',
   'Potent Cantrip':
     'Section=magic Note="Cantrips inflict half HP on a successful save"',
   'Sculpt Spells':
@@ -4668,11 +4668,10 @@ SRD5E.classRulesExtra = function(rules, name) {
     );
 
     rules.defineRule
-      ('armorClass', 'combatNotes.draconicResilience.2', '^', null);
+      ('armorClass', 'combatNotes.draconicResilience.2', '+', null);
     rules.defineRule('combatNotes.draconicResilience.2',
-      'features.Draconic Resilience', '?', null,
       'armor', '?', 'source == "None"',
-      'dexterityModifier', '=', 'source + 13'
+      'features.Draconic Resilience', '=', '3'
     );
 
   } else if(name == 'Warlock') {

@@ -78,7 +78,7 @@ SRD5E.VERSION = '2.4.2.1';
 SRD5E.CHOICES = [
   'Armor', 'Background', 'Background Feature', 'Class', 'Class Feature',
   'Deity', 'Feat', 'Feature', 'Language', 'Race', 'Race Feature', 'School',
-  'Skill', 'Spell', 'Tool', 'Weapon'
+  'Shield', 'Skill', 'Spell', 'Tool', 'Weapon'
 ];
 /*
  * List of items handled by randomizeOneAttribute method. The order handles
@@ -112,19 +112,19 @@ SRD5E.ALIGNMENTS = {
   'Lawful Neutral':''
 };
 SRD5E.ARMORS = {
-  'None':'AC=0 Dex=10 Weight=None',
-  'Padded':'AC=1 Bulky=true Dex=10 Weight=Light',
-  'Leather':'AC=1 Dex=10 Weight=Light',
-  'Studded Leather':'AC=2 Dex=10 Weight=Light',
-  'Hide':'AC=2 Dex=2 Weight=Medium',
-  'Chain Shirt':'AC=3 Dex=2 Weight=Medium',
-  'Scale Mail':'AC=4 Bulky=true Dex=2 Weight=Medium',
-  'Breastplate':'AC=4 Dex=2 Weight=Medium',
-  'Half Plate':'AC=5 Bulky=true Dex=2 Weight=Medium',
-  'Ring Mail':'AC=4 Bulky=true Dex=0 Weight=Heavy',
-  'Chain Mail':'AC=6 Bulky=true Dex=0 Str=13 Weight=Heavy',
-  'Splint':'AC=7 Bulky=true Dex=0 Str=15 Weight=Heavy',
-  'Plate':'AC=8 Bulky=true Dex=0 Str=15 Weight=Heavy'
+  'None':'Category=None AC=0 Dex=10 Cost=0 Weight=0',
+  'Padded':'Category=Light AC=1 Bulky=true Dex=10 Cost=5 Weight=8',
+  'Leather':'Category=Light AC=1 Dex=10 Cost=10 Weight=10',
+  'Studded Leather':'Category=Light AC=2 Dex=10 Cost=5 Weight=13',
+  'Hide':'Category=Medium AC=2 Dex=2 Cost=10 Weight=12',
+  'Chain Shirt':'Category=Medium AC=3 Dex=2 Cost=50 Weight=20',
+  'Scale Mail':'Category=Medium AC=4 Bulky=true Dex=2 Cost=50 Weight=45',
+  'Breastplate':'Category=Medium AC=4 Dex=2 Cost=400 Weight=20',
+  'Half Plate':'Category=Medium AC=5 Bulky=true Dex=2 Cost=750 Weight=40',
+  'Ring Mail':'Category=Heavy AC=4 Bulky=true Dex=0 Cost=30 Weight=40',
+  'Chain Mail':'Category=Heavy AC=6 Bulky=true Dex=0 Str=13 Cost=75 Weight=55',
+  'Splint':'Category=Heavy AC=7 Bulky=true Dex=0 Str=15 Cost=200 Weight=60',
+  'Plate':'Category=Heavy AC=8 Bulky=true Dex=0 Str=15 Cost=1500 Weight=65'
 };
 SRD5E.BACKGROUNDS = {
   'Acolyte':
@@ -1614,8 +1614,8 @@ SRD5E.SCHOOLS = {
   'Transmutation':''
 };
 SRD5E.SHIELDS = {
-  'None':'AC=0',
-  'Shield':'AC=2'
+  'None':'AC=0 Cost=0 Weight=0',
+  'Shield':'AC=2 Cost=10 Weight=6'
 };
  SRD5E.SKILLS = {
   'Acrobatics':'Ability=Dexterity',
@@ -3591,8 +3591,8 @@ SRD5E.abilityRules = function(rules, abilities) {
 SRD5E.combatRules = function(rules, armors, shields, weapons) {
 
   QuilvynUtils.checkAttrTable
-    (armors, ['AC', 'Bulky', 'Dex', 'Str', 'Weight']);
-  QuilvynUtils.checkAttrTable(shields, ['AC']);
+    (armors, ['AC', 'Bulky', 'Category', 'Cost', 'Dex', 'Str', 'Weight']);
+  QuilvynUtils.checkAttrTable(shields, ['AC', 'Cost', 'Weight']);
   QuilvynUtils.checkAttrTable
     (weapons, ['Category', 'Damage', 'Property', 'Range', 'Cost', 'Weight', 'Mastery']);
 
@@ -3650,7 +3650,7 @@ SRD5E.combatRules = function(rules, armors, shields, weapons) {
   );
   rules.defineRule('combatNotes.dexterityArmorClassAdjustment',
     'dexterityModifier', '=', null,
-    'armorWeight', '*', 'source == 3 ? 0 : null'
+    'armorCategory', '*', 'source == "Heavy" ? 0 : null'
   );
   rules.defineRule
     ('combatNotes.dexterityAttackAdjustment', 'dexterityModifier', '=', null);
@@ -3661,8 +3661,7 @@ SRD5E.combatRules = function(rules, armors, shields, weapons) {
   rules.defineRule
     ('combatNotes.strengthDamageAdjustment', 'strengthModifier', '=', null);
   rules.defineRule('features.Nonproficient Armor',
-    // Modify heavy so that Prof (Light+Medium) doesn't suffice for heavy armor
-    'armorWeight', '=', 'source == 3 ? 4 : source',
+    'armorCategory', '=', 'source=="Heavy" ? 4 : source=="Medium" ? 2 : source=="Light" ? 1 : 0',
     'armorProficiency.Light', '+', '-1',
     'armorProficiency.Medium', '+', '-2',
     'armorProficiency.Heavy', '+', '-4',
@@ -3846,10 +3845,12 @@ SRD5E.choiceRules = function(rules, type, name, attrs) {
   else if(type == 'Armor') {
     let bulky = QuilvynUtils.getAttrValue(attrs, 'Bulky');
     SRD5E.armorRules(rules, name,
+      QuilvynUtils.getAttrValue(attrs, 'Category'),
       QuilvynUtils.getAttrValue(attrs, 'AC'),
       bulky && !(bulky+'').match(/(^n|false)$/i),
       QuilvynUtils.getAttrValue(attrs, 'Dex'),
       QuilvynUtils.getAttrValue(attrs, 'Str'),
+      QuilvynUtils.getAttrValue(attrs, 'Cost'),
       QuilvynUtils.getAttrValue(attrs, 'Weight')
     );
   } else if(type == 'Background')
@@ -3944,7 +3945,9 @@ SRD5E.choiceRules = function(rules, type, name, attrs) {
     );
   else if(type == 'Shield')
     SRD5E.shieldRules(rules, name,
-      QuilvynUtils.getAttrValue(attrs, 'AC')
+      QuilvynUtils.getAttrValue(attrs, 'AC'),
+      QuilvynUtils.getAttrValue(attrs, 'Cost'),
+      QuilvynUtils.getAttrValue(attrs, 'Weight')
     );
   else if(type == 'Skill')
     SRD5E.skillRules(rules, name,
@@ -4104,16 +4107,28 @@ SRD5E.alignmentRules = function(rules, name) {
 };
 
 /*
- * Defines in #rules# the rules associated with armor #name#, which adds #ac#
- * to the character's armor class, requires a #weight# proficiency level to use
- * effectively, allows a maximum dex bonus to ac of #maxDex#, requires (if
- * specified) a strength of #minStr# to avoid a speed penalty, and is considered
- * bulky armor if #bulky# is true.
+ * Defines in #rules# the rules associated with armor #name#, which requires a
+ * #category# proficiency level to use effectively, adds #ac# to the
+ * character's armor class, allows a maximum dex bonus to ac of #maxDex#,
+ * requires (if specified) a strength of #minStr# to avoid a speed penalty,
+ * is considered bulky armor if #bulky# is true, costs #cost# gold pieces and
+ * weighs #weight# lbs.
  */
-SRD5E.armorRules = function(rules, name, ac, bulky, maxDex, minStr, weight) {
+SRD5E.armorRules = function(
+  rules, name, category, ac, bulky, maxDex, minStr, cost, weight
+) {
 
   if(!name) {
     console.log('Empty armor name');
+    return;
+  }
+  if(category == null ||
+     !(category + '').match(/^(none|light|medium|heavy)$/i)) {
+    console.log('Bad category "' + category + '" for armor ' + name);
+    return;
+  }
+  if(typeof cost != 'number') {
+    console.log('Bad cost "' + cost + '" for armor ' + name);
     return;
   }
   if(typeof ac != 'number') {
@@ -4131,45 +4146,47 @@ SRD5E.armorRules = function(rules, name, ac, bulky, maxDex, minStr, weight) {
     console.log('Bad min str "' + minStr + '" for armor ' + name);
     return;
   }
-  if(weight == null ||
-     !(weight + '').match(/^(none|light|medium|heavy)$/i)) {
+  if(cost == null) // backward compatibility
+    cost = 0;
+  if(typeof cost == 'string' && cost.match(/^0\.\d+$/))
+    cost = +cost;
+  if(typeof cost != 'number') {
+    console.log('Bad cost "' + cost + '" for armor ' + name);
+    return;
+  }
+  if(weight == null) // backward compatibility
+    weight = 0;
+  if(typeof weight == 'string' && weight.match(/^0\.\d+$/))
+    weight = +weight;
+  if(typeof weight != 'number') {
     console.log('Bad weight "' + weight + '" for armor ' + name);
     return;
   }
-
-  if(weight.match(/^none$/i))
-    weight = 0;
-  else if(weight.match(/^light$/i))
-    weight = 1;
-  else if(weight.match(/^medium$/i))
-    weight = 2;
-  else if(weight.match(/^heavy$/i))
-    weight = 3;
 
   if(rules.armorStats == null) {
     rules.armorStats = {
       ac:{},
       bulky:{},
+      category:{},
       dex:{},
-      str:{},
-      weight:{}
+      str:{}
     };
   }
   rules.armorStats.ac[name] = ac;
   rules.armorStats.bulky[name] = bulky;
+  rules.armorStats.category[name] = category;
   rules.armorStats.dex[name] = maxDex;
   rules.armorStats.str[name] = minStr;
-  rules.armorStats.weight[name] = weight;
 
   rules.defineRule('armorClass',
     '', '=', '10',
     'armor', '+', QuilvynUtils.dictLit(rules.armorStats.ac) + '[source]'
   );
+  rules.defineRule('armorCategory',
+    'armor', '=', QuilvynUtils.dictLit(rules.armorStats.category) + '[source]'
+  );
   rules.defineRule('armorStrRequirement',
     'armor', '=', QuilvynUtils.dictLit(rules.armorStats.minStr) + '[source]'
-  );
-  rules.defineRule('armorWeight',
-    'armor', '=', QuilvynUtils.dictLit(rules.armorStats.weight) + '[source]'
   );
   rules.defineRule('combatNotes.dexterityArmorClassAdjustment',
     'armor', 'v', QuilvynUtils.dictLit(rules.armorStats.dex) + '[source]'
@@ -4394,7 +4411,7 @@ SRD5E.classRulesExtra = function(rules, name) {
 
     rules.defineRule('abilityNotes.fastMovement.1',
       'abilityNotes.fastMovement', '?', null,
-      'armorWeight', '=', 'source < 3 ? 10 : null'
+      'armorCategory', '=', 'source != "Heavy" ? 10 : null'
     );
     rules.defineRule('armorClass', 'combatNotes.unarmoredDefense.1', '+', null);
     rules.defineRule
@@ -5451,9 +5468,9 @@ SRD5E.schoolRules = function(rules, name) {
 
 /*
  * Defines in #rules# the rules associated with shield #name#, which adds #ac#
- * to the character's armor class.
+ * to the character's armor class, costs #cost# gp, and weighs #weight# lbs.
  */
-SRD5E.shieldRules = function(rules, name, ac) {
+SRD5E.shieldRules = function(rules, name, ac, cost, weight) {
 
   if(!name) {
     console.log('Empty shield name');
@@ -5461,6 +5478,22 @@ SRD5E.shieldRules = function(rules, name, ac) {
   }
   if(typeof ac != 'number') {
     console.log('Bad ac "' + ac + '" for shield ' + name);
+    return;
+  }
+  if(cost == null) // backward compatibility
+    cost = 0;
+  if(typeof cost == 'string' && cost.match(/^0\.\d+$/))
+    cost = +cost;
+  if(typeof cost != 'number') {
+    console.log('Bad cost "' + cost + '" for shield ' + name);
+    return;
+  }
+  if(weight == null) // backward compatibility
+    weight = 0;
+  if(typeof weight == 'string' && weight.match(/^0\.\d+$/))
+    weight = +weight;
+  if(typeof weight != 'number') {
+    console.log('Bad weight "' + weight + '" for shield ' + name);
     return;
   }
 
@@ -6038,11 +6071,13 @@ SRD5E.choiceEditorElements = function(rules, type) {
       0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18
     ];
     result.push(
-      ['Weight', 'Weight', 'select-one', ['None', 'Light', 'Medium', 'Heavy']],
+      ['Category', 'Category', 'select-one', ['None', 'Light', 'Medium', 'Heavy']],
+      ['Cost', 'Cost (gp)', 'text', [5]],
       ['AC', 'AC Bonus', 'select-one', zeroToTen],
       ['Dex', 'Max Dex', 'select-one', zeroToTen],
       ['Str', 'Min Str', 'select-one', zeroToEighteen],
-      ['Bulky', 'Stealth Disadv', 'checkbox', ['']]
+      ['Bulky', 'Stealth Disadv', 'checkbox', ['']],
+      ['Weight', 'Weight (lbs)', 'text', [5]]
     );
   } else if(type == 'Background')
     result.push(
@@ -6113,6 +6148,12 @@ SRD5E.choiceEditorElements = function(rules, type) {
   else if(type == 'School')
     result.push(
       // empty
+    );
+  else if(type == 'Shield')
+    result.push(
+      ['Cost', 'Cost (gp)', 'text', [5]],
+      ['AC', 'AC Bonus', 'select-one', zeroToTen],
+      ['Weight', 'Weight (lbs)', 'text', [5]]
     );
   else if(type == 'Skill')
     result.push(
@@ -6307,11 +6348,11 @@ SRD5E.randomizeOneAttribute = function(attributes, attribute) {
     attrs = this.applyRules(attributes);
     choices = [];
     for(attr in armors) {
-      let weight = QuilvynUtils.getAttrValue(armors[attr], 'Weight');
-      if(weight == 0 ||
+      let category = QuilvynUtils.getAttrValue(armors[attr], 'Category');
+      if(category == 'None' ||
          attrs['armorProficiency.Heavy'] ||
-         weight <= 2 && attrs['armorProficiency.Medium'] ||
-         weight == 1 && attrs['armorProficiency.Light'] ||
+         attrs['armorProficiency.Medium'] && ['Light', 'Medium'].includes(category) ||
+         attrs['armorProficiency.Light'] && category == 'Light' ||
          attrs['armorProficiency.' + attr])
         choices.push(attr);
     }

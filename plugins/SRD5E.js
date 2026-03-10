@@ -25,8 +25,8 @@ Place, Suite 330, Boston, MA 02111-1307 USA.
  * function contains methods that load rules for particular parts of the SRD:
  * raceRules for character races, magicRules for spells, etc. These member
  * methods can be called independently in order to use a subset of the SRD v5
- * rules. Similarly, the constant fields of SRD5E (ALIGNMENTS, FEATS, etc.) can
- * be manipulated to modify the choices.
+ * rules. Similarly, the constant fields of SRD5E (BACKGROUNDS, FEATS, etc.)
+ * can be manipulated to modify the choices.
  */
 function SRD5E() {
 
@@ -3570,7 +3570,8 @@ SRD5E.abilityRules = function(rules, abilities) {
     a = a.toLowerCase();
     rules.defineChoice('notes', a + ':%V (%1)');
     rules.defineRule(a + 'Modifier', a, '=', 'Math.floor((source - 10) / 2)');
-    rules.defineRule(a + '.1', a + 'Modifier', '=', null);
+    rules.defineRule
+      (a + '.1', a + 'Modifier', '=', 'QuilvynUtils.signed(source)');
     rules.defineRule(a,
       'abilityBoosts.' + a.charAt(0).toUpperCase() + a.substring(1), '+', null
     );
@@ -3675,6 +3676,7 @@ SRD5E.combatRules = function(rules, armors, shields, weapons) {
     // errata specifies a minimum in the case of low constitution
     'level', '^', null
   );
+  rules.defineChoice('notes', 'initiative:%S');
   rules.defineRule('initiative', 'dexterityModifier', '=', null);
   SRD5E.weaponRules(rules, 'Unarmed', 'Unarmed', [], '1 B', null, 0, 0, true);
   rules.defineRule('weapons.Unarmed', '', '=', '1');
@@ -3688,6 +3690,7 @@ SRD5E.combatRules = function(rules, armors, shields, weapons) {
       ability.toLowerCase() + 'Modifier', '=', null,
       'saveBonus.' + ability, '+', null
     );
+    rules.defineChoice('notes', 'save.' + ability + ':%S');
   }
 
   QuilvynRules.validAllocationRules
@@ -4327,6 +4330,7 @@ SRD5E.classRules = function(
   rules.defineRule('proficiencyBonus',
     'levels.' + name, '=', 'Math.floor((source + 7) / 4)'
   );
+  rules.defineChoice('notes', 'proficiencyBonus:%S');
 
   rules.defineRule
     ('casterLevel' + (spellAbility=='wisdom' ? 'Divine' : 'Arcane'), classLevel, '+=', null);
@@ -5507,7 +5511,7 @@ SRD5E.skillRules = function(rules, name, ability, classes) {
     'proficiencyBonus', '=', null
   );
   rules.defineChoice
-      ('notes', 'skills.' + name + ':(' + ability.substring(0, 3) + ') %V');
+      ('notes', 'skills.' + name + ':(' + ability.substring(0, 3) + ') %S');
   rules.defineRule('skills.' + name,
     ability + 'Modifier', '=', null,
     'skillBonus.' + name, '+', null

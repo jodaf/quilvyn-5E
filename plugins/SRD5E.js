@@ -160,7 +160,7 @@ SRD5E.CLASSES = {
     'Features=' +
       '"1:Armor Proficiency (Light)",' +
       '"1:Weapon Proficiency (Simple Weapons; Hand Crossbow; Longsword; Rapier; Shortsword)",' +
-      '"1:Tool Proficiency (Choose 3 from any Musical)",' +
+      '"1:Tool Proficiency (Choose 3 from any Musical Instrument)",' +
       '"1:Save Proficiency (Dexterity; Charisma)",' +
       '"1:Skill Proficiency (Choose 3 from any)",' +
       '"1:Spellcasting","1:Bardic Inspiration","2:Jack Of All Trades",' +
@@ -281,7 +281,7 @@ SRD5E.CLASSES = {
     'HitDie=d8 ' +
     'Features=' +
       '"1:Weapon Proficiency (Simple Weapons; Shortsword)",' +
-      '"1:Tool Proficiency (Choose 1 from any Artisan, any Musical)",' +
+      '"1:Tool Proficiency (Choose 1 from any Artisan\'s Tools, any Musical Instrument)",' +
       '"1:Save Proficiency (Strength; Dexterity)",' +
       '"1:Skill Proficiency (Choose 2 from Acrobatics, Athletics, History, Insight, Religion, Stealth)",' +
       '"1:Unarmored Defense","1:Martial Arts","2:Ki","2:Flurry Of Blows",' +
@@ -518,8 +518,82 @@ SRD5E.CLASSES = {
       'W9:1@17 ' +
     'MulticlassPrerequisite="intelligence >= 13"'
 };
+SRD5E.DEITIES = {
+  'None':'',
+  // Celtic
+  'Celtic-The Daghdha':'Alignment="Chaotic Good" Domain=Nature,Trickery',
+  'Celtic-Arawn':'Alignment="Neutral Evil" Domain=Life,Death',
+  'Celtic-Belenus':'Alignment="Neutral Good" Domain=Light',
+  'Celtic-Briantia':'Alignment="Neutral Good" Domain=Life',
+  'Celtic-Diancecht':'Alignment="Lawful Good" Domain=Life',
+  'Celtic-Dunatis':'Alignment=Neutral Domain=Nature',
+  'Celtic-Goibhniu':'Alignment="Neutral Good" Domain=Knowledge,Life',
+  'Celtic-Lugh':'Alignment="Chaotic Neutral" Domain=Knowledge,Life',
+  'Celtic-Manannan Mac Lir':'Alignment="Lawful Neutral" Domain=Nature,Tempest',
+  'Celtic-Math Mathonwy':'Alignment="Neutral Evil" Domain=Knowledge',
+  'Celtic-Morrigan':'Alignment="Chaotic Evil" Domain=War',
+  'Celtic-Nuada':'Alignment=Neutral Domain=War',
+  'Celtic-Oghma':'Alignment="Neutral Good" Domain=Knowledge',
+  'Celtic-Silvanus':'Alignment=Neutral Domain=Nature',
+  // Greek
+  'Greek-Zeus':'Alignment=Neutral Domain=Tempest',
+  'Greek-Aphrodite':'Alignment="Chaotic Good" Domain=Light',
+  'Greek-Apollo':'Alignment="Chaotic Good" Domain=Knowledge,Life,Light',
+  'Greek-Ares':'Alignment="Chaotic Evil" Domain=War',
+  'Greek-Artemis':'Alignment="Neutral Good" Domain=Life,Nature',
+  'Greek-Athena':'Alignment="Lawful Good" Domain=Knowledge,War',
+  'Greek-Demeter':'Alignment="Neutral Good" Domain=Life',
+  'Greek-Dionysus':'Alignment="Chaotic Neutral" Domain=Life',
+  'Greek-Hades':'Alignment="Lawful Evil" Domain=Death',
+  'Greek-Hecate':'Alignment="Chaotic Evil" Domain=Knowledge,Trickery',
+  'Greek-Hephaestus':'Alignment="Neutral Good" Domain=Knowledge',
+  'Greek-Hera':'Alignment="Chaotic Neutral" Domain=Trickery',
+  'Greek-Hercules':'Alignment="Chaotic Good" Domain=Tempest,War',
+  'Greek-Hermes':'Alignment="Chaotic Good" Domain=Trickery',
+  'Greek-Hestia':'Alignment="Neutral Good" Domain=Life',
+  'Greek-Nike':'Alignment="Lawful Neutral" Domain=War',
+  'Greek-Pan':'Alignment="Chaotic Neutral" Domain=Nature',
+  'Greek-Poseidon':'Alignment="Chaotic Neutral" Domain=Tempest',
+  'Greek-Tyche':'Alignment=Neutral Domain=Trickery',
+  // Egyptian
+  'Egyptian-Re-Horakhty':'Alignment="Lawful Good" Domain=Life,Light',
+  'Egyptian-Anubis':'Alignment="Lawful Neutral" Domain=Death',
+  'Egyptian-Apep':'Alignment="Neutral Evil" Domain=Trickery',
+  'Egyptian-Bast':'Alignment="Chaotic Good" Domain=War',
+  'Egyptian-Bes':'Alignment="Chaotic Neutral" Domain=Trickery',
+  'Egyptian-Hathor':'Alignment="Neutral Good" Domain=Life,Light',
+  'Egyptian-Imhotep':'Alignment="Neutral Good" Domain=Knowledge',
+  'Egyptian-Isis':'Alignment="Neutral Good" Domain=Knowledge,Life',
+  'Egyptian-Nephthys':'Alignment="Chaotic Good" Domain=Death',
+  'Egyptian-Osiris':'Alignment="Lawful Good" Domain=Life,Nature',
+  'Egyptian-Ptah':'Alignment="Lawful Neutral" Domain=Knowledge',
+  'Egyptian-Set':'Alignment="Chaotic Evil" Domain=Death,Tempest,Trickery',
+  'Egyptian-Sobek':'Alignment="Lawful Evil" Domain=Nature,Tempest',
+  'Egyptian-Thoth':'Alignment=Neutral Domain=Knowledge',
+  // Norse
+  'Norse-Odin':'Alignment="Neutral Good" Domain=Knowledge,War',
+  'Norse-Aegir':'Alignment="Neutral Evil" Domain=Tempest',
+  'Norse-Balder':'Alignment="Neutral Good" Domain=Life,Light',
+  'Norse-Forseti':'Alignment=Neutral Domain=Light',
+  'Norse-Frey':'Alignment="Neutral Good" Domain=Life,Light',
+  'Norse-Freya':'Alignment="Neutral Good" Domain=Life',
+  'Norse-Frigga':'Alignment=Neutral Domain=Life,Light',
+  'Norse-Heimdall':'Alignment="Lawful Good" Domain=Light,War',
+  'Norse-Hel':'Alignment="Neutral Evil" Domain=Death',
+  'Norse-Hermod':'Alignment="Chaotic Neutral" Domain=Trickery',
+  'Norse-Loki':'Alignment="Chaotic Evil" Domain=Trickery',
+  'Norse-Njord':'Alignment="Neutral Good" Domain=Nature,Tempest',
+  'Norse-Odor':'Alignment="Chaotic Good" Domain=Light',
+  'Norse-Sif':'Alignment="Chaotic Good" Domain=War',
+  'Norse-Skadi':'Alignment=Neutral Domain=Nature',
+  'Norse-Surtur':'Alignment="Lawful Evil" Domain=War',
+  'Norse-Thor':'Alignment="Chaotic Good" Domain=Tempest,War',
+  'Norse-Thrym':'Alignment="Chaotic Evil" Domain=War',
+  'Norse-Tyr':'Alignment="Lawful Neutral" Domain=Knowledge,War',
+  'Norse-Uller':'Alignment="Chaotic Neutral" Domain=Nature'
+};
 SRD5E.FEATS = {
-  'Ability Boost':'',
+  'Ability Score Improvement':'',
   'Grappler':'Require="strength >= 13"'
 };
 SRD5E.FEATURES = {
@@ -1354,7 +1428,8 @@ SRD5E.FEATURES = {
     'Note="Can receive aid from temples of %{deity} and fellow believers"',
 
   // Feats
-  'Ability Boost':'Section=ability Note="Ability Boost (Choose %V from any)"',
+  'Ability Score Improvement':
+    'Section=ability Note="Ability Boost (Choose %V from any)"',
   'Grappler':
     'Section=combat ' +
     // errata removes grapple larger foes benefit
@@ -3325,45 +3400,43 @@ SRD5E.SPELLS = {
 
 };
 SRD5E.TOOLS = {
-  "Alchemist's Supplies":'Type=Artisan',
-  "Brewer's Supplies":'Type=Artisan',
-  "Calligrapher's Supplies":'Type=Artisan',
-  "Carpenter's Tools":'Type=Artisan',
-  "Cartographer's Tools":'Type=Artisan',
-  "Cobbler's Tools":'Type=Artisan',
-  "Cook's Utensils":'Type=Artisan',
-  "Glassblower's Tools":'Type=Artisan',
-  "Jeweler's Tools":'Type=Artisan',
-  "Leatherworker's Tools":'Type=Artisan',
-  "Mason's Tools":'Type=Artisan',
-  "Painter's Supplies":'Type=Artisan',
-  "Potter's Tools":'Type=Artisan',
-  "Smith's Tools":'Type=Artisan',
-  "Tinker's Tools":'Type=Artisan',
-  "Weaver's Tools":'Type=Artisan',
-  "Woodcarver's Tools":'Type=Artisan',
-  'Disguise Kit':'Type=General',
-  'Forgery Kit':'Type=General',
-  'Dice Set':'Type=Gaming',
-  'Dragonchess Set':'Type=Gaming',
-  'Playing Card Set':'Type=Gaming',
-  'Three-Dragon Ante Set':'Type=Gaming',
-  'Herbalism Kit':'Type=General',
-  'Bagpipes':'Type=Musical',
-  'Drum':'Type=Musical',
-  'Dulcimer':'Type=Musical',
-  'Flute':'Type=Musical',
-  'Lute':'Type=Musical',
-  'Lyre':'Type=Musical',
-  'Horn':'Type=Musical',
-  'Pan Flute':'Type=Musical',
-  'Shawm':'Type=Musical',
-  'Viol':'Type=Musical',
-  "Navigator's Tools":'Type=General',
-  "Poisoner's Kit":'Type=General',
-  "Thieves' Tools":'Type=General',
-  'Vehicles (Land)':'Type=General',
-  'Vehicles (Water)':'Type=General'
+  "Alchemist's Supplies":'Category="Artisan\'s Tools" Cost=50 Weight=8',
+  "Brewer's Supplies":'Category="Artisan\'s Tools" Cost=29 Weight=9',
+  "Calligrapher's Supplies":'Category="Artisan\'s Tools" Cost=10 Weight=5',
+  "Carpenter's Tools":'Category="Artisan\'s Tools" Cost=8 Weight=6',
+  "Cartographer's Tools":'Category="Artisan\'s Tools" Cost=15 Weight=6',
+  "Cobbler's Tools":'Category="Artisan\'s Tools" Cost=5 Weight=5',
+  "Cook's Utensils":'Category="Artisan\'s Tools" Cost=1 Weight=8',
+  "Glassblower's Tools":'Category="Artisan\'s Tools" Cost=30 Weight=5',
+  "Jeweler's Tools":'Category="Artisan\'s Tools" Cost=25 Weight=2',
+  "Leatherworker's Tools":'Category="Artisan\'s Tools" Cost=5 Weight=5',
+  "Mason's Tools":'Category="Artisan\'s Tools" Cost=10 Weight=8',
+  "Painter's Supplies":'Category="Artisan\'s Tools" Cost=10 Weight=5',
+  "Potter's Tools":'Category="Artisan\'s Tools" Cost=10 Weight=3',
+  "Smith's Tools":'Category="Artisan\'s Tools" Cost=20 Weight=8',
+  "Tinker's Tools":'Category="Artisan\'s Tools" Cost=50 Weight=10',
+  "Weaver's Tools":'Category="Artisan\'s Tools" Cost=1 Weight=5',
+  "Woodcarver's Tools":'Category="Artisan\'s Tools" Cost=1 Weight=5',
+  'Disguise Kit':'Category="Artisan\'s Tools" Cost=25 Weight=3',
+  'Forgery Kit':'Category="Artisan\'s Tools" Cost=15 Weight=5',
+  'Dice Set':'Category="Gaming Set" Cost=0.1 Weight=0',
+  'Playing Card Set':'Category="Gaming Set" Cost=0.5 Weight=0',
+  'Herbalism Kit':'Category=General Cost=5 Weight=3',
+  'Bagpipes':'Category="Musical Instrument" Cost=30 Weight=6',
+  'Drum':'Category="Musical Instrument" Cost=6 Weight=3',
+  'Dulcimer':'Category="Musical Instrument" Cost=25 Weight=10',
+  'Flute':'Category="Musical Instrument" Cost=2 Weight=1',
+  'Lute':'Category="Musical Instrument" Cost=35 Weight=2',
+  'Lyre':'Category="Musical Instrument" Cost=30 Weight=2',
+  'Horn':'Category="Musical Instrument" Cost=3 Weight=2',
+  'Pan Flute':'Category="Musical Instrument" Cost=12 Weight=2',
+  'Shawm':'Category="Musical Instrument" Cost=2 Weight=1',
+  'Viol':'Category="Musical Instrument" Cost=30 Weight=1',
+  "Navigator's Tools":'Category=General Cost=25 Weight=2',
+  "Poisoner's Kit":'Category=General Cost=50 Weight=2',
+  "Thieves' Tools":'Category=General Cost=25 Weight=1',
+  'Vehicles (Land)':'Category=General',
+  'Vehicles (Water)':'Category=General'
 };
 SRD5E.WEAPONS = {
 
@@ -3472,80 +3545,6 @@ SRD5E.WEAPONS = {
     'Category="Martial Ranged" Property=Special,Thrown Damage="None" ' +
     'Range=5/15 Cost=1 Weight=3'
 
-};
-SRD5E.DEITIES = {
-  'None':'',
-  // Celtic
-  'Celtic-The Daghdha':'Alignment="Chaotic Good" Domain=Nature,Trickery',
-  'Celtic-Arawn':'Alignment="Neutral Evil" Domain=Life,Death',
-  'Celtic-Belenus':'Alignment="Neutral Good" Domain=Light',
-  'Celtic-Briantia':'Alignment="Neutral Good" Domain=Life',
-  'Celtic-Diancecht':'Alignment="Lawful Good" Domain=Life',
-  'Celtic-Dunatis':'Alignment=Neutral Domain=Nature',
-  'Celtic-Goibhniu':'Alignment="Neutral Good" Domain=Knowledge,Life',
-  'Celtic-Lugh':'Alignment="Chaotic Neutral" Domain=Knowledge,Life',
-  'Celtic-Manannan Mac Lir':'Alignment="Lawful Neutral" Domain=Nature,Tempest',
-  'Celtic-Math Mathonwy':'Alignment="Neutral Evil" Domain=Knowledge',
-  'Celtic-Morrigan':'Alignment="Chaotic Evil" Domain=War',
-  'Celtic-Nuada':'Alignment=Neutral Domain=War',
-  'Celtic-Oghma':'Alignment="Neutral Good" Domain=Knowledge',
-  'Celtic-Silvanus':'Alignment=Neutral Domain=Nature',
-  // Greek
-  'Greek-Zeus':'Alignment=Neutral Domain=Tempest',
-  'Greek-Aphrodite':'Alignment="Chaotic Good" Domain=Light',
-  'Greek-Apollo':'Alignment="Chaotic Good" Domain=Knowledge,Life,Light',
-  'Greek-Ares':'Alignment="Chaotic Evil" Domain=War',
-  'Greek-Artemis':'Alignment="Neutral Good" Domain=Life,Nature',
-  'Greek-Athena':'Alignment="Lawful Good" Domain=Knowledge,War',
-  'Greek-Demeter':'Alignment="Neutral Good" Domain=Life',
-  'Greek-Dionysus':'Alignment="Chaotic Neutral" Domain=Life',
-  'Greek-Hades':'Alignment="Lawful Evil" Domain=Death',
-  'Greek-Hecate':'Alignment="Chaotic Evil" Domain=Knowledge,Trickery',
-  'Greek-Hephaestus':'Alignment="Neutral Good" Domain=Knowledge',
-  'Greek-Hera':'Alignment="Chaotic Neutral" Domain=Trickery',
-  'Greek-Hercules':'Alignment="Chaotic Good" Domain=Tempest,War',
-  'Greek-Hermes':'Alignment="Chaotic Good" Domain=Trickery',
-  'Greek-Hestia':'Alignment="Neutral Good" Domain=Life',
-  'Greek-Nike':'Alignment="Lawful Neutral" Domain=War',
-  'Greek-Pan':'Alignment="Chaotic Neutral" Domain=Nature',
-  'Greek-Poseidon':'Alignment="Chaotic Neutral" Domain=Tempest',
-  'Greek-Tyche':'Alignment=Neutral Domain=Trickery',
-  // Egyptian
-  'Egyptian-Re-Horakhty':'Alignment="Lawful Good" Domain=Life,Light',
-  'Egyptian-Anubis':'Alignment="Lawful Neutral" Domain=Death',
-  'Egyptian-Apep':'Alignment="Neutral Evil" Domain=Trickery',
-  'Egyptian-Bast':'Alignment="Chaotic Good" Domain=War',
-  'Egyptian-Bes':'Alignment="Chaotic Neutral" Domain=Trickery',
-  'Egyptian-Hathor':'Alignment="Neutral Good" Domain=Life,Light',
-  'Egyptian-Imhotep':'Alignment="Neutral Good" Domain=Knowledge',
-  'Egyptian-Isis':'Alignment="Neutral Good" Domain=Knowledge,Life',
-  'Egyptian-Nephthys':'Alignment="Chaotic Good" Domain=Death',
-  'Egyptian-Osiris':'Alignment="Lawful Good" Domain=Life,Nature',
-  'Egyptian-Ptah':'Alignment="Lawful Neutral" Domain=Knowledge',
-  'Egyptian-Set':'Alignment="Chaotic Evil" Domain=Death,Tempest,Trickery',
-  'Egyptian-Sobek':'Alignment="Lawful Evil" Domain=Nature,Tempest',
-  'Egyptian-Thoth':'Alignment=Neutral Domain=Knowledge',
-  // Norse
-  'Norse-Odin':'Alignment="Neutral Good" Domain=Knowledge,War',
-  'Norse-Aegir':'Alignment="Neutral Evil" Domain=Tempest',
-  'Norse-Balder':'Alignment="Neutral Good" Domain=Life,Light',
-  'Norse-Forseti':'Alignment=Neutral Domain=Light',
-  'Norse-Frey':'Alignment="Neutral Good" Domain=Life,Light',
-  'Norse-Freya':'Alignment="Neutral Good" Domain=Life',
-  'Norse-Frigga':'Alignment=Neutral Domain=Life,Light',
-  'Norse-Heimdall':'Alignment="Lawful Good" Domain=Light,War',
-  'Norse-Hel':'Alignment="Neutral Evil" Domain=Death',
-  'Norse-Hermod':'Alignment="Chaotic Neutral" Domain=Trickery',
-  'Norse-Loki':'Alignment="Chaotic Evil" Domain=Trickery',
-  'Norse-Njord':'Alignment="Neutral Good" Domain=Nature,Tempest',
-  'Norse-Odor':'Alignment="Chaotic Good" Domain=Light',
-  'Norse-Sif':'Alignment="Chaotic Good" Domain=War',
-  'Norse-Skadi':'Alignment=Neutral Domain=Nature',
-  'Norse-Surtur':'Alignment="Lawful Evil" Domain=War',
-  'Norse-Thor':'Alignment="Chaotic Good" Domain=Tempest,War',
-  'Norse-Thrym':'Alignment="Chaotic Evil" Domain=War',
-  'Norse-Tyr':'Alignment="Lawful Neutral" Domain=Knowledge,War',
-  'Norse-Uller':'Alignment="Chaotic Neutral" Domain=Nature'
 };
 
 SRD5E.LEVELS_EXPERIENCE = [
@@ -3777,12 +3776,12 @@ SRD5E.talentRules = function(
   rules, feats, features, goodies, languages, skills, tools
 ) {
 
-  QuilvynUtils.checkAttrTable(feats, ['Require', 'Imply', 'Type']);
+  QuilvynUtils.checkAttrTable(feats, ['Require', 'Imply', 'Category']);
   QuilvynUtils.checkAttrTable
     (features, ['Section', 'Note', 'Spells', 'SpellAbility']);
   QuilvynUtils.checkAttrTable(languages, []);
   QuilvynUtils.checkAttrTable(skills, ['Ability', 'Class']);
-  QuilvynUtils.checkAttrTable(tools, ['Type']);
+  QuilvynUtils.checkAttrTable(tools, ['Category', 'Cost', 'Weight']);
 
   for(let feat in feats) {
     rules.choiceRules(rules, 'Feat', feat, feats[feat]);
@@ -3979,7 +3978,9 @@ SRD5E.choiceRules = function(rules, type, name, attrs) {
     }
   } else if(type == 'Tool')
     SRD5E.toolRules(rules, name,
-      QuilvynUtils.getAttrValue(attrs, 'Type')
+      QuilvynUtils.getAttrValue(attrs, 'Category'),
+      QuilvynUtils.getAttrValue(attrs, 'Cost'),
+      QuilvynUtils.getAttrValue(attrs, 'Weight')
     );
   else if(type == 'Weapon') {
     let category = QuilvynUtils.getAttrValue(attrs, 'Category');
@@ -4874,10 +4875,11 @@ SRD5E.featRules = function(rules, name, requires, implies) {
  * derived directly from the attributes passed to featRules.
  */
 SRD5E.featRulesExtra = function(rules, name) {
-  if(name == 'Ability Boost') {
+  if(name == 'Ability Score Improvement') {
     rules.defineChoice('notes', 'abilityNotes.abilityBoosts:%V to distribute');
-    rules.defineRule
-      ('abilityNotes.abilityBoost', 'feats.Ability Boost', '=', null);
+    rules.defineRule('abilityNotes.abilityScoreImprovement',
+      'feats.Ability Score Improvement', '=', null
+    );
     rules.defineRule
       ('abilityNotes.abilityBoosts', 'abilityBoostChoiceCount', '=', null);
   }
@@ -5594,10 +5596,29 @@ SRD5E.spellRules = function(
 
 };
 
-/* Defines in #rules# the rules associated with tool #name# of type #type#. */
-SRD5E.toolRules = function(rules, name, type) {
+/*
+ * Defines in #rules# the rules associated with tool #name# that belongs to
+ * category #category#, costs #cost# gp, and weighs #weight# lbs.
+ */
+SRD5E.toolRules = function(rules, name, category, cost, weight) {
   if(!name) {
     console.log('Empty tool name');
+    return;
+  }
+  if(cost == null) // backward compatibility
+    cost = 0;
+  if(typeof cost == 'string' && cost.match(/^0\.\d+$/))
+    cost = +cost;
+  if(typeof cost != 'number') {
+    console.log('Bad cost "' + cost + '" for tool ' + name);
+    return;
+  }
+  if(weight == null) // backward compatibility
+    weight = 0;
+  if(typeof weight == 'string' && weight.match(/^0\.\d+$/))
+    weight = +weight;
+  if(typeof weight != 'number') {
+    console.log('Bad weight "' + weight + '" for tool ' + name);
     return;
   }
   rules.defineRule('toolProficiency.' + name,
@@ -5804,7 +5825,8 @@ SRD5E.featureListRules = function(
       matchInfo[1].split(/\/|;\s*/).forEach(boosted => {
         matchInfo = boosted.match(/Choose (\d+|%V)/i);
         if(!matchInfo)
-          rules.defineRule(boosted.toLowerCase(), note, '+', '1');
+          rules.defineRule
+            (boosted.toLowerCase(), setName + '.' + feature, '+', '1');
         else
           totalBoosts += matchInfo[1] - 0;
       });
@@ -6168,9 +6190,12 @@ SRD5E.choiceEditorElements = function(rules, type) {
       ['AtHigherLevels', 'At Higher Levels', 'text', [60]]
     );
   } else if(type == 'Tool') {
-    let toolTypes = ['Artisan', 'Gaming', 'Musical', 'General'];
+    let toolCategories =
+      ["Artisan's Tools", 'Gaming Set', 'Musical Instrument', 'General'];
     result.push(
-      ['Type', 'Type', 'select-one', toolTypes]
+      ['Category', 'Category', 'select-one', toolCategories],
+      ['Cost', 'Cost (gp)', 'text', [5]],
+      ['Weight', 'Weight (lbs)', 'text', [5]]
     );
   } else if(type == 'Weapon') {
     result.push(
@@ -6440,6 +6465,8 @@ SRD5E.randomizeOneAttribute = function(attributes, attribute) {
     let allChoices = this.getChoices(prefix);
     for(attr in allChoices) {
       let types = QuilvynUtils.getAttrValueArray(allChoices[attr], 'Type');
+      if(types.length == 0)
+        types = QuilvynUtils.getAttrValueArray(allChoices[attr], 'Category');
       if(types.indexOf('General') < 0)
         types.push('General');
       if(attrs[prefix + '.' + attr] != null) {
@@ -6583,12 +6610,12 @@ SRD5E.randomizeOneAttribute = function(attributes, attribute) {
     pat = new RegExp(attribute + '?(?: Proficiency)? \\((.*)\\)$', 'i');
     for(attr in attrs) {
       // Choice features can be duplicated in attrs; for example, the feature
-      // note "Tool Proficiency (Disguise Kit/Choose 1 from any Musical)" shows as
+      // note "Tool Proficiency (Disguise Kit/Choose 1 from any Musical Instrument)" shows as
       //
-      // <path>Features.Tool Proficiency (Disguise Kit/Choose 1 from any Musical)
-      // features.Tool Proficiency (Disguise Kit/Choose 1 from any Musical)
+      // <path>Features.Tool Proficiency (Disguise Kit/Choose 1 from any Musical Instrument)
+      // features.Tool Proficiency (Disguise Kit/Choose 1 from any Musical Instrument)
       // features.Tool Proficiency (Disguise Kit)
-      // features.Tool Proficiency (Choose 1 from any Musical)
+      // features.Tool Proficiency (Choose 1 from any Musical Instrument)
       //
       // By ignoring the ones that begin with 'features.', we ensure that we
       // don't choose too many proficiencies.
@@ -6947,8 +6974,8 @@ SRD5E.ruleNotes = function() {
     '<ul>\n' +
     '  <li>\n' +
     '  To allow feats to be taken instead of Ability Score Improvements,' +
-    '  the latter is presented as a new feat, named Ability Boost, that' +
-    '  can be taken multiple times.\n' +
+    '  the latter is presented as a new feat, named Ability Score ' +
+    '  Improvement, that can be taken multiple times.\n' +
     '  </li><li>\n' +
     '  Quilvyn presents sub-race choices (e.g., Lightfoot Halfling)' +
     '  as separate races in the editor Race menu.\n' +

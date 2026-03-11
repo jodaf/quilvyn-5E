@@ -3401,7 +3401,7 @@ SRD5E.SPELLS = {
 };
 SRD5E.TOOLS = {
   "Alchemist's Supplies":'Category="Artisan\'s Tools" Cost=50 Weight=8',
-  "Brewer's Supplies":'Category="Artisan\'s Tools" Cost=29 Weight=9',
+  "Brewer's Supplies":'Category="Artisan\'s Tools" Cost=20 Weight=9',
   "Calligrapher's Supplies":'Category="Artisan\'s Tools" Cost=10 Weight=5',
   "Carpenter's Tools":'Category="Artisan\'s Tools" Cost=8 Weight=6',
   "Cartographer's Tools":'Category="Artisan\'s Tools" Cost=15 Weight=6',
@@ -3426,9 +3426,9 @@ SRD5E.TOOLS = {
   'Drum':'Category="Musical Instrument" Cost=6 Weight=3',
   'Dulcimer':'Category="Musical Instrument" Cost=25 Weight=10',
   'Flute':'Category="Musical Instrument" Cost=2 Weight=1',
+  'Horn':'Category="Musical Instrument" Cost=3 Weight=2',
   'Lute':'Category="Musical Instrument" Cost=35 Weight=2',
   'Lyre':'Category="Musical Instrument" Cost=30 Weight=2',
-  'Horn':'Category="Musical Instrument" Cost=3 Weight=2',
   'Pan Flute':'Category="Musical Instrument" Cost=12 Weight=2',
   'Shawm':'Category="Musical Instrument" Cost=2 Weight=1',
   'Viol':'Category="Musical Instrument" Cost=30 Weight=1',
@@ -3781,7 +3781,7 @@ SRD5E.talentRules = function(
     (features, ['Section', 'Note', 'Spells', 'SpellAbility']);
   QuilvynUtils.checkAttrTable(languages, []);
   QuilvynUtils.checkAttrTable(skills, ['Ability', 'Class']);
-  QuilvynUtils.checkAttrTable(tools, ['Category', 'Cost', 'Weight']);
+  QuilvynUtils.checkAttrTable(tools, ['Category', 'Cost', 'Weight', 'Ability']);
 
   for(let feat in feats) {
     rules.choiceRules(rules, 'Feat', feat, feats[feat]);
@@ -3890,7 +3890,8 @@ SRD5E.choiceRules = function(rules, type, name, attrs) {
   else if(type == 'Feat') {
     SRD5E.featRules(rules, name,
       QuilvynUtils.getAttrValueArray(attrs, 'Require'),
-      QuilvynUtils.getAttrValueArray(attrs, 'Imply')
+      QuilvynUtils.getAttrValueArray(attrs, 'Imply'),
+      QuilvynUtils.getAttrValueArray(attrs, 'Category')
     );
     SRD5E.featRulesExtra(rules, name);
   } else if(type == 'Feature')
@@ -3980,7 +3981,8 @@ SRD5E.choiceRules = function(rules, type, name, attrs) {
     SRD5E.toolRules(rules, name,
       QuilvynUtils.getAttrValue(attrs, 'Category'),
       QuilvynUtils.getAttrValue(attrs, 'Cost'),
-      QuilvynUtils.getAttrValue(attrs, 'Weight')
+      QuilvynUtils.getAttrValue(attrs, 'Weight'),
+      QuilvynUtils.getAttrValue(attrs, 'Ability')
     );
   else if(type == 'Weapon') {
     let category = QuilvynUtils.getAttrValue(attrs, 'Category');
@@ -4840,9 +4842,10 @@ SRD5E.deityRules = function(rules, name, alignment, domains) {
 
 /*
  * Defines in #rules# the rules associated with feat #name#. #require# and
- * #implies# list any hard and soft prerequisites for the feat.
+ * #implies# list any hard and soft prerequisites for the feat, and
+ * #categories# lists the categories to which the feat belongs.
  */
-SRD5E.featRules = function(rules, name, requires, implies) {
+SRD5E.featRules = function(rules, name, requires, implies, categories) {
 
   if(!name) {
     console.log('Empty feat name');
@@ -4854,6 +4857,10 @@ SRD5E.featRules = function(rules, name, requires, implies) {
   }
   if(!Array.isArray(implies)) {
     console.log('Bad implies list "' + implies + '" for feat ' + name);
+    return;
+  }
+  if(!Array.isArray(categories)) {
+    console.log('Bad categories list "' + categories + '" for feat ' + name);
     return;
   }
 
@@ -5598,9 +5605,10 @@ SRD5E.spellRules = function(
 
 /*
  * Defines in #rules# the rules associated with tool #name# that belongs to
- * category #category#, costs #cost# gp, and weighs #weight# lbs.
+ * category #category#, costs #cost# gp, weighs #weight# lbs, and (optionally)
+ * uses #ability# for checks.
  */
-SRD5E.toolRules = function(rules, name, category, cost, weight) {
+SRD5E.toolRules = function(rules, name, category, cost, weight, ability) {
   if(!name) {
     console.log('Empty tool name');
     return;
@@ -5621,6 +5629,12 @@ SRD5E.toolRules = function(rules, name, category, cost, weight) {
     console.log('Bad weight "' + weight + '" for tool ' + name);
     return;
   }
+  if(ability != null && !(ability in SRD5E.ABILITIES)) {
+    console.log('Bad ability "' + ability + '" for tool ' + name);
+    return;
+  }
+  if(ability != null)
+    rules.defineChoice('notes', 'toolProficiency.' + name + ': (' + ability.toLowerCase().substring(0, 3) + ')');
   rules.defineRule('toolProficiency.' + name,
     'toolsChosen.' + name, '=', 'source ? 1 : null'
   );

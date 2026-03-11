@@ -26,7 +26,7 @@ Place, Suite 330, Boston, MA 02111-1307 USA.
  * the SRD: speciesRules for character species, magicRules for spells, etc.
  * These member methods can be called independently in order to use a subset of
  * the SRD v5.2.1 rules. Similarly, the constant fields of SRD5E2024
- * (ALIGNMENTS, FEATS, etc.) can be manipulated to modify the choices.
+ * (BACKGROUNDS, FEATS, etc.) can be manipulated to modify the choices.
  */
 function SRD5E2024() {
 
@@ -80,7 +80,7 @@ function SRD5E2024() {
 SRD5E2024.CHOICES = SRD5E.CHOICES.map(x => x.replace('Race', 'Species'));
 SRD5E2024.VERSION = '2.4.1.0';
 
-SRD5E2024.ARMORS = SRD5E.ARMORS;
+SRD5E2024.ARMORS = Object.assign({}, SRD5E.ARMORS);
 SRD5E2024.BACKGROUNDS = {
   'Acolyte':
     'Equipment=' +
@@ -489,6 +489,7 @@ SRD5E2024.CLASSES = {
       'W9:1@17 ' +
     'MulticlassPrerequisite="intelligence >= 13"'
 };
+SRD5E2024.DEITIES = Object.assign({}, SRD5E.DEITIES);
 SRD5E2024.FEATS = {
   'Alert':'',
   'Magic Initiate (Cleric)':'',
@@ -509,7 +510,7 @@ SRD5E2024.FEATS = {
   'Boon Of Irresistible Offense (Strength)':'',
   'Boon Of Spell Recall':'',
   'Boon Of The Night Spirit':'',
-  'Boon Of Truesight':'',
+  'Boon Of Truesight':''
 };
 SRD5E2024.FEATURES_CHANGED = {
 
@@ -1540,7 +1541,7 @@ SRD5E2024.FEATURES_CHANGED = {
 };
 SRD5E2024.FEATURES =
   Object.assign({}, SRD5E.FEATURES, SRD5E2024.FEATURES_CHANGED);
-SRD5E2024.GOODIES = SRD5E.GOODIES;
+SRD5E2024.GOODIES = Object.assign({}, SRD5E.GOODIES);
 SRD5E2024.LANGUAGES = {
   'Abyssal':'',
   'Celestial':'',
@@ -1648,11 +1649,8 @@ SRD5E2024.SCHOOLS = {
   'Necromancy':'',
   'Transmutation':''
 };
-SRD5E2024.SHIELDS = {
-  'None':'AC=0',
-  'Shield':'AC=2'
-};
- SRD5E2024.SKILLS = {
+SRD5E2024.SHIELDS = Object.assign({}, SRD5E.SHIELDS);
+SRD5E2024.SKILLS = {
   'Acrobatics':'Ability=Dexterity',
   'Animal Handling':'Ability=Wisdom',
   'Arcana':'Ability=Intelligence',
@@ -3395,45 +3393,50 @@ SRD5E2024.SPELLS = {
 
 };
 SRD5E2024.TOOLS = {
-  "Alchemist's Supplies":'Type=Artisan',
-  "Brewer's Supplies":'Type=Artisan',
-  "Calligrapher's Supplies":'Type=Artisan',
-  "Carpenter's Tools":'Type=Artisan',
-  "Cartographer's Tools":'Type=Artisan',
-  "Cobbler's Tools":'Type=Artisan',
-  "Cook's Utensils":'Type=Artisan',
-  "Glassblower's Tools":'Type=Artisan',
-  "Jeweler's Tools":'Type=Artisan',
-  "Leatherworker's Tools":'Type=Artisan',
-  "Mason's Tools":'Type=Artisan',
-  "Painter's Supplies":'Type=Artisan',
-  "Potter's Tools":'Type=Artisan',
-  "Smith's Tools":'Type=Artisan',
-  "Tinker's Tools":'Type=Artisan',
-  "Weaver's Tools":'Type=Artisan',
-  "Woodcarver's Tools":'Type=Artisan',
-  'Disguise Kit':'Type=General',
-  'Forgery Kit':'Type=General',
-  'Dice Set':'Type=Gaming',
-  'Dragonchess Set':'Type=Gaming',
-  'Playing Card Set':'Type=Gaming',
-  'Three-Dragon Ante Set':'Type=Gaming',
-  'Herbalism Kit':'Type=General',
-  'Bagpipes':'Type=Musical',
-  'Drum':'Type=Musical',
-  'Dulcimer':'Type=Musical',
-  'Flute':'Type=Musical',
-  'Lute':'Type=Musical',
-  'Lyre':'Type=Musical',
-  'Horn':'Type=Musical',
-  'Pan Flute':'Type=Musical',
-  'Shawm':'Type=Musical',
-  'Viol':'Type=Musical',
-  "Navigator's Tools":'Type=General',
-  "Poisoner's Kit":'Type=General',
-  "Thieves' Tools":'Type=General',
-  'Vehicles (Land)':'Type=General',
-  'Vehicles (Water)':'Type=General'
+  "Alchemist's Supplies":
+    SRD5E.TOOLS["Alchemist's Supplies"] + ' Ability=Intelligence',
+  "Brewer's Supplies":
+    SRD5E.TOOLS["Brewer's Supplies"] + ' Ability=Intelligence',
+  "Calligrapher's Supplies":
+    SRD5E.TOOLS["Calligrapher's Supplies"] + ' Ability=Dexterity',
+  "Carpenter's Tools":SRD5E.TOOLS["Carpenter's Tools"] + ' Ability=Strength',
+  "Cartographer's Tools":
+    SRD5E.TOOLS["Cartographer's Tools"] + ' Ability=Wisdom',
+  "Cobbler's Tools":SRD5E.TOOLS["Cobbler's Tools"] + ' Ability=Dexterity',
+  "Cook's Utensils":SRD5E.TOOLS["Cook's Utensils"] + ' Ability=Wisdom',
+  "Glassblower's Tools":
+    SRD5E.TOOLS["Glassblower's Tools"] + ' Ability=Intelligence',
+  "Jeweler's Tools":SRD5E.TOOLS["Jeweler's Tools"] + ' Ability=Intelligence',
+  "Leatherworker's Tools":
+    SRD5E.TOOLS["Leatherworker's Tools"] + ' Ability=Dexterity',
+  "Mason's Tools":SRD5E.TOOLS["Mason's Tools"] + ' Ability=Strength',
+  "Painter's Supplies":SRD5E.TOOLS["Painter's Supplies"] + ' Ability=Wisdom',
+  "Potter's Tools":SRD5E.TOOLS["Potter's Tools"] + ' Ability=Intelligence',
+  "Smith's Tools":SRD5E.TOOLS["Smith's Tools"] + ' Ability=Strength',
+  "Tinker's Tools":SRD5E.TOOLS["Tinker's Tools"] + ' Ability=Dexterity',
+  "Weaver's Tools":SRD5E.TOOLS["Weaver's Tools"] + ' Ability=Dexterity',
+  "Woodcarver's Tools":SRD5E.TOOLS["Woodcarver's Tools"] + ' Ability=Dexterity',
+  'Disguise Kit':SRD5E.TOOLS['Disguise Kit'] + ' Ability=Charisma',
+  'Forgery Kit':SRD5E.TOOLS['Forgery Kit'] + ' Ability=Dexterity',
+  'Dice Set':SRD5E.TOOLS['Dice Set'] + ' Ability=Wisdom',
+  'Dragonchess Set':'Category="Gaming Set" Cost=1 Weight=0.5 Ability=Wisdom',
+  'Playing Card Set':SRD5E.TOOLS['Playing Card Set'] + ' Ability=Wisdom',
+  'Three-Dragon Ante Set':
+    'Category="Gaming Set" Cost=1 Weight=0 Ability=Wisdom',
+  'Herbalism Kit':SRD5E.TOOLS['Herbalism Kit'] + ' Ability=Intelligence',
+  'Bagpipes':SRD5E.TOOLS.Bagpipes + ' Ability=Charisma',
+  'Drum':SRD5E.TOOLS.Drum + ' Ability=Charisma',
+  'Dulcimer':SRD5E.TOOLS.Dulcimer + ' Ability=Charisma',
+  'Flute':SRD5E.TOOLS.Flute + ' Ability=Charisma',
+  'Horn':SRD5E.TOOLS.Horn + ' Ability=Charisma',
+  'Lute':SRD5E.TOOLS.Lute + ' Ability=Charisma',
+  'Lyre':SRD5E.TOOLS.Lyre + ' Ability=Charisma',
+  'Pan Flute':SRD5E.TOOLS['Pan Flute'] + ' Ability=Charisma',
+  'Shawm':SRD5E.TOOLS.Shawm + ' Ability=Charisma',
+  'Viol':SRD5E.TOOLS.Viol + ' Ability=Charisma',
+  "Navigator's Tools":SRD5E.TOOLS["Navigator's Tools"] + ' Ability=Wisdom',
+  "Poisoner's Kit":SRD5E.TOOLS["Poisoner's Kit"] + ' Ability=Intelligence',
+  "Thieves' Tools":SRD5E.TOOLS["Thieves' Tools"] + ' Ability=Dexterity'
 };
 SRD5E2024.WEAPONS = {
 
@@ -3491,91 +3494,6 @@ SRD5E2024.WEAPONS = {
     'Range=30/90 Mastery=Vex'
 
 };
-SRD5E2024.DEITIES = {
-  'None':'',
-  // Celtic
-  'Celtic-The Daghdha':'Alignment="Chaotic Good" Domain=Nature,Trickery',
-  'Celtic-Arawn':'Alignment="Neutral Evil" Domain=Life,Death',
-  'Celtic-Belenus':'Alignment="Neutral Good" Domain=Light',
-  'Celtic-Briantia':'Alignment="Neutral Good" Domain=Life',
-  'Celtic-Diancecht':'Alignment="Lawful Good" Domain=Life',
-  'Celtic-Dunatis':'Alignment=Neutral Domain=Nature',
-  'Celtic-Goibhniu':'Alignment="Neutral Good" Domain=Knowledge,Life',
-  'Celtic-Lugh':'Alignment="Chaotic Neutral" Domain=Knowledge,Life',
-  'Celtic-Manannan Mac Lir':'Alignment="Lawful Neutral" Domain=Nature,Tempest',
-  'Celtic-Math Mathonwy':'Alignment="Neutral Evil" Domain=Knowledge',
-  'Celtic-Morrigan':'Alignment="Chaotic Evil" Domain=War',
-  'Celtic-Nuada':'Alignment=Neutral Domain=War',
-  'Celtic-Oghma':'Alignment="Neutral Good" Domain=Knowledge',
-  'Celtic-Silvanus':'Alignment=Neutral Domain=Nature',
-  // Greek
-  'Greek-Zeus':'Alignment=Neutral Domain=Tempest',
-  'Greek-Aphrodite':'Alignment="Chaotic Good" Domain=Light',
-  'Greek-Apollo':'Alignment="Chaotic Good" Domain=Knowledge,Life,Light',
-  'Greek-Ares':'Alignment="Chaotic Evil" Domain=War',
-  'Greek-Artemis':'Alignment="Neutral Good" Domain=Life,Nature',
-  'Greek-Athena':'Alignment="Lawful Good" Domain=Knowledge,War',
-  'Greek-Demeter':'Alignment="Neutral Good" Domain=Life',
-  'Greek-Dionysus':'Alignment="Chaotic Neutral" Domain=Life',
-  'Greek-Hades':'Alignment="Lawful Evil" Domain=Death',
-  'Greek-Hecate':'Alignment="Chaotic Evil" Domain=Knowledge,Trickery',
-  'Greek-Hephaestus':'Alignment="Neutral Good" Domain=Knowledge',
-  'Greek-Hera':'Alignment="Chaotic Neutral" Domain=Trickery',
-  'Greek-Hercules':'Alignment="Chaotic Good" Domain=Tempest,War',
-  'Greek-Hermes':'Alignment="Chaotic Good" Domain=Trickery',
-  'Greek-Hestia':'Alignment="Neutral Good" Domain=Life',
-  'Greek-Nike':'Alignment="Lawful Neutral" Domain=War',
-  'Greek-Pan':'Alignment="Chaotic Neutral" Domain=Nature',
-  'Greek-Poseidon':'Alignment="Chaotic Neutral" Domain=Tempest',
-  'Greek-Tyche':'Alignment=Neutral Domain=Trickery',
-  // Egyptian
-  'Egyptian-Re-Horakhty':'Alignment="Lawful Good" Domain=Life,Light',
-  'Egyptian-Anubis':'Alignment="Lawful Neutral" Domain=Death',
-  'Egyptian-Apep':'Alignment="Neutral Evil" Domain=Trickery',
-  'Egyptian-Bast':'Alignment="Chaotic Good" Domain=War',
-  'Egyptian-Bes':'Alignment="Chaotic Neutral" Domain=Trickery',
-  'Egyptian-Hathor':'Alignment="Neutral Good" Domain=Life,Light',
-  'Egyptian-Imhotep':'Alignment="Neutral Good" Domain=Knowledge',
-  'Egyptian-Isis':'Alignment="Neutral Good" Domain=Knowledge,Life',
-  'Egyptian-Nephthys':'Alignment="Chaotic Good" Domain=Death',
-  'Egyptian-Osiris':'Alignment="Lawful Good" Domain=Life,Nature',
-  'Egyptian-Ptah':'Alignment="Lawful Neutral" Domain=Knowledge',
-  'Egyptian-Set':'Alignment="Chaotic Evil" Domain=Death,Tempest,Trickery',
-  'Egyptian-Sobek':'Alignment="Lawful Evil" Domain=Nature,Tempest',
-  'Egyptian-Thoth':'Alignment=Neutral Domain=Knowledge',
-  // Norse
-  'Norse-Odin':'Alignment="Neutral Good" Domain=Knowledge,War',
-  'Norse-Aegir':'Alignment="Neutral Evil" Domain=Tempest',
-  'Norse-Balder':'Alignment="Neutral Good" Domain=Life,Light',
-  'Norse-Forseti':'Alignment=Neutral Domain=Light',
-  'Norse-Frey':'Alignment="Neutral Good" Domain=Life,Light',
-  'Norse-Freya':'Alignment="Neutral Good" Domain=Life',
-  'Norse-Frigga':'Alignment=Neutral Domain=Life,Light',
-  'Norse-Heimdall':'Alignment="Lawful Good" Domain=Light,War',
-  'Norse-Hel':'Alignment="Neutral Evil" Domain=Death',
-  'Norse-Hermod':'Alignment="Chaotic Neutral" Domain=Trickery',
-  'Norse-Loki':'Alignment="Chaotic Evil" Domain=Trickery',
-  'Norse-Njord':'Alignment="Neutral Good" Domain=Nature,Tempest',
-  'Norse-Odor':'Alignment="Chaotic Good" Domain=Light',
-  'Norse-Sif':'Alignment="Chaotic Good" Domain=War',
-  'Norse-Skadi':'Alignment=Neutral Domain=Nature',
-  'Norse-Surtur':'Alignment="Lawful Evil" Domain=War',
-  'Norse-Thor':'Alignment="Chaotic Good" Domain=Tempest,War',
-  'Norse-Thrym':'Alignment="Chaotic Evil" Domain=War',
-  'Norse-Tyr':'Alignment="Lawful Neutral" Domain=Knowledge,War',
-  'Norse-Uller':'Alignment="Chaotic Neutral" Domain=Nature'
-};
-
-SRD5E2024.LEVELS_EXPERIENCE = [
-  0, 0.3, 0.9, 2.7, 6.5, 14, 23, 34, 48, 64,
-  85, 100, 120, 140, 165, 195, 225, 265, 305, 355, 1000
-];
-// Extended from SRD5E weapons table based on SRD35 damage for large creatures
-SRD5E2024.VERSATILE_WEAPON_DAMAGE = {
-  'None':'None', '1':'1', '1d2':'1d3', '1d3':'1d4', '1d4':'1d6', '1d6':'1d8',
-  '1d8':'1d10', '1d10':'1d12', '1d12':'3d6', '2d4':'2d6', '2d6':'3d6',
-  '2d8':'3d8', '2d10':'4d8'
-};
 
 /* Defines the rules related to character abilities. */
 SRD5E2024.abilityRules = function(rules, abilities) {
@@ -3618,10 +3536,12 @@ SRD5E2024.choiceRules = function(rules, type, name, attrs) {
   else if(type == 'Armor') {
     let bulky = QuilvynUtils.getAttrValue(attrs, 'Bulky');
     SRD5E2024.armorRules(rules, name,
+      QuilvynUtils.getAttrValue(attrs, 'Category'),
       QuilvynUtils.getAttrValue(attrs, 'AC'),
       bulky && !(bulky+'').match(/(^n|false)$/i),
       QuilvynUtils.getAttrValue(attrs, 'Dex'),
       QuilvynUtils.getAttrValue(attrs, 'Str'),
+      QuilvynUtils.getAttrValue(attrs, 'Cost'),
       QuilvynUtils.getAttrValue(attrs, 'Weight')
     );
   } else if(type == 'Background')
@@ -3662,7 +3582,8 @@ SRD5E2024.choiceRules = function(rules, type, name, attrs) {
   else if(type == 'Feat') {
     SRD5E2024.featRules(rules, name,
       QuilvynUtils.getAttrValueArray(attrs, 'Require'),
-      QuilvynUtils.getAttrValueArray(attrs, 'Imply')
+      QuilvynUtils.getAttrValueArray(attrs, 'Imply'),
+      QuilvynUtils.getAttrValueArray(attrs, 'Category')
     );
     SRD5E2024.featRulesExtra(rules, name);
   } else if(type == 'Feature')
@@ -3689,7 +3610,9 @@ SRD5E2024.choiceRules = function(rules, type, name, attrs) {
     );
   else if(type == 'Shield')
     SRD5E2024.shieldRules(rules, name,
-      QuilvynUtils.getAttrValue(attrs, 'AC')
+      QuilvynUtils.getAttrValue(attrs, 'AC'),
+      QuilvynUtils.getAttrValue(attrs, 'Cost'),
+      QuilvynUtils.getAttrValue(attrs, 'Weight')
     );
   else if(type == 'Skill')
     SRD5E2024.skillRules(rules, name,
@@ -3737,8 +3660,11 @@ SRD5E2024.choiceRules = function(rules, type, name, attrs) {
       rules.addChoice('spells', fullName, attrs);
     }
   } else if(type == 'Tool')
-    SRD5E2024.toolRules(rules, name,
-      QuilvynUtils.getAttrValue(attrs, 'Type')
+    SRD5E.toolRules(rules, name,
+      QuilvynUtils.getAttrValue(attrs, 'Category'),
+      QuilvynUtils.getAttrValue(attrs, 'Cost'),
+      QuilvynUtils.getAttrValue(attrs, 'Weight'),
+      QuilvynUtils.getAttrValue(attrs, 'Ability')
     );
   else if(type == 'Weapon') {
     let category = QuilvynUtils.getAttrValue(attrs, 'Category');
@@ -3771,17 +3697,23 @@ SRD5E2024.choiceRules = function(rules, type, name, attrs) {
 /* Defines in #rules# the rules associated with alignment #name#. */
 SRD5E2024.alignmentRules = function(rules, name) {
   SRD5E.alignmentRules(rules, name);
+  // No changes needed to SRD5E
 };
 
 /*
- * Defines in #rules# the rules associated with armor #name#, which adds #ac#
- * to the character's armor class, requires a #weight# proficiency level to use
- * effectively, allows a maximum dex bonus to ac of #maxDex#, requires (if
- * specified) a strength of #minStr# to avoid a speed penalty, and is considered
- * bulky armor if #bulky# is true.
+ * Defines in #rules# the rules associated with armor #name#, which requires a
+ * #category# proficiency level to use effectively, adds #ac# to the
+ * character's armor class, allows a maximum dex bonus to ac of #maxDex#,
+ * requires (if specified) a strength of #minStr# to avoid a speed penalty,
+ * is considered bulky armor if #bulky# is true, costs #cost# gold pieces and
+ * weighs #weight# lbs.
  */
-SRD5E2024.armorRules = function(rules, name, ac, bulky, maxDex, minStr, weight) {
-  SRD5E.armorRules(rules, name, ac, bulky, maxDex, minStr, weight);
+SRD5E2024.armorRules = function(
+  rules, name, category, ac, bulky, maxDex, minStr, cost, weight
+) {
+  SRD5E.armorRules
+    (rules, name, category, ac, bulky, maxDex, minStr, cost, weight);
+  // No changes needed to SRD5E
 };
 
 /*
@@ -3790,6 +3722,7 @@ SRD5E2024.armorRules = function(rules, name, ac, bulky, maxDex, minStr, weight) 
  */
 SRD5E2024.backgroundRules = function(rules, name, equipment, features) {
   SRD5E.backgroundRules(rules, name, equipment, features);
+  // No changes needed to SRD5E
 };
 
 /*
@@ -3801,6 +3734,7 @@ SRD5E2024.backgroundFeatureRules = function(
   rules, name, backgroundName, level, replace
 ) {
   SRD5E.backgroundFeatureRules(rules, name, backgroundName, level, replace);
+  // No changes needed to SRD5E
 };
 
 /*
@@ -3820,6 +3754,7 @@ SRD5E2024.classRules = function(
   SRD5E.classRules
     (rules, name, requires, hitDie, features, selectables, spellAbility,
      spellSlots, multiclassPrerequisite);
+  // No changes needed to SRD5E
 };
 
 /*
@@ -4163,6 +4098,7 @@ SRD5E2024.classFeatureRules = function(
 ) {
   SRD5E.classFeatureRules
     (rules, name, require, className, level, selectable, replace);
+  // No changes needed to SRD5E
 };
 
 /*
@@ -4171,14 +4107,17 @@ SRD5E2024.classFeatureRules = function(
  */
 SRD5E2024.deityRules = function(rules, name, alignment, domains) {
   SRD5E.deityRules(rules, name, alignment, domains);
+  // No changes needed to SRD5E
 };
 
 /*
  * Defines in #rules# the rules associated with feat #name#. #require# and
- * #implies# list any hard and soft prerequisites for the feat.
+ * #implies# list any hard and soft prerequisites for the feat, and
+ * #categories# lists the categories to which the feat belongs.
  */
-SRD5E2024.featRules = function(rules, name, requires, implies) {
-  SRD5E.featRules(rules, name, requires, implies);
+SRD5E2024.featRules = function(rules, name, requires, implies, categories) {
+  SRD5E.featRules(rules, name, requires, implies, categories);
+  // No changes needed to SRD5E
 };
 
 /*
@@ -4204,6 +4143,7 @@ SRD5E2024.featureRules = function(
   rules, name, sections, notes, spells, spellAbility
 ) {
   SRD5E.featureRules(rules, name, sections, notes, spells, spellAbility);
+  // No changes needed to SRD5E
 };
 
 /*
@@ -4216,6 +4156,7 @@ SRD5E2024.featureRules = function(
  */
 SRD5E2024.featureSpells = function(rules, feature, spellType, levelAttr, spellList){
   SRD5E.featureSpells(rules, feature, spellType, levelAttr, spellList);
+  // No changes needed to SRD5E
 };
 
 /*
@@ -4235,11 +4176,13 @@ SRD5E2024.goodyRules = function(
 ) {
   SRD5E.goodyRules
     (rules, name, pattern, effect, value, attributes, sections, notes);
+  // No changes needed to SRD5E
 };
 
 /* Defines in #rules# the rules associated with language #name#. */
 SRD5E2024.languageRules = function(rules, name) {
   SRD5E.languageRules(rules, name);
+  // No changes needed to SRD5E
 };
 
 /*
@@ -4248,6 +4191,7 @@ SRD5E2024.languageRules = function(rules, name) {
  */
 SRD5E2024.schoolRules = function(rules, name) {
   SRD5E.schoolRules(rules, name);
+  // No changes needed to SRD5E
 };
 
 /*
@@ -4257,9 +4201,10 @@ SRD5E2024.schoolRules = function(rules, name) {
  * racial speed.
  */
 SRD5E2024.speciesRules = function(
-  rules, name, requires, features, selectables, size, speed)
-{
+  rules, name, requires, features, selectables, size, speed
+) {
   SRD5E.raceRules(rules, name, requires, features, selectables, size, speed);
+  // No changes needed to SRD5E
 };
 
 /*
@@ -4337,14 +4282,16 @@ SRD5E2024.speciesFeatureRules = function(
 ) {
   SRD5E.raceFeatureRules
     (rules, name, require, raceName, level, selectable, replace);
+  // No changes needed to SRD5E
 };
 
 /*
  * Defines in #rules# the rules associated with shield #name#, which adds #ac#
- * to the character's armor class.
+ * to the character's armor class, costs #cost# gp, and weighs #weight# lbs.
  */
-SRD5E2024.shieldRules = function(rules, name, ac) {
-  SRD5E.shieldRules(rules, name, ac);
+SRD5E2024.shieldRules = function(rules, name, ac, cost, weight) {
+  SRD5E.shieldRules(rules, name, ac, cost, weight);
+  // No changes needed to SRD5E
 };
 
 /*
@@ -4354,6 +4301,7 @@ SRD5E2024.shieldRules = function(rules, name, ac) {
  */
 SRD5E2024.skillRules = function(rules, name, ability, classes) {
   SRD5E.skillRules(rules, name, ability, classes);
+  // No changes needed to SRD5E
 };
 
 /*
@@ -4369,11 +4317,17 @@ SRD5E2024.spellRules = function(
 ) {
   SRD5E.spellRules
     (rules, name, school, casterGroup, level, ritual, description, higher);
+  // No changes needed to SRD5E
 };
 
-/* Defines in #rules# the rules associated with tool #name# of type #type#. */
-SRD5E2024.toolRules = function(rules, name, type) {
-  SRD5E.toolRules(rules, name, type);
+/*
+ * Defines in #rules# the rules associated with tool #name# that belongs to
+ * category #category#, costs #cost# gp, weighs #weight# lbs, and (optionally)
+ * uses #ability# for checks.
+ */
+SRD5E2024.toolRules = function(rules, name, category, cost, weight, ability) {
+  SRD5E.toolRules(rules, name, category, cost, weight, ability);
+  // No changes needed to SRD5E
 };
 
 /*
@@ -4423,6 +4377,7 @@ SRD5E2024.featureListRules = function(
   rules, features, setName, levelAttr, selectable
 ) {
   SRD5E.featureListRules(rules, features, setName, levelAttr, selectable);
+  // No changes needed to SRD5E
 };
 
 /* Returns the elements in a basic 5E character editor. */

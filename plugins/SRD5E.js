@@ -1692,7 +1692,7 @@ SRD5E.SHIELDS = {
   'None':'AC=0 Cost=0 Weight=0',
   'Shield':'AC=2 Cost=10 Weight=6'
 };
- SRD5E.SKILLS = {
+SRD5E.SKILLS = {
   'Acrobatics':'Ability=Dexterity',
   'Animal Handling':'Ability=Wisdom',
   'Arcana':'Ability=Intelligence',
@@ -3551,12 +3551,6 @@ SRD5E.LEVELS_EXPERIENCE = [
   0, 0.3, 0.9, 2.7, 6.5, 14, 23, 34, 48, 64,
   85, 100, 120, 140, 165, 195, 225, 265, 305, 355, 1000
 ];
-// Extended from SRD5E weapons table based on SRD35 damage for large creatures
-SRD5E.VERSATILE_WEAPON_DAMAGE = {
-  'None':'None', '1':'1', '1d2':'1d3', '1d3':'1d4', '1d4':'1d6', '1d6':'1d8',
-  '1d8':'1d10', '1d10':'1d12', '1d12':'3d6', '2d4':'2d6', '2d6':'3d6',
-  '2d8':'3d8', '2d10':'4d8'
-};
 
 /* Defines the rules related to character abilities. */
 SRD5E.abilityRules = function(rules, abilities) {
@@ -5767,10 +5761,6 @@ SRD5E.weaponRules = function(
     weaponName, '?', null,
     '', '=', '"' + damage + '"'
   );
-  if(properties.includes('Versatile'))
-    rules.defineRule(weaponName + '.2',
-      'shield', '=', 'source == "None" ? SRD5E.VERSATILE_WEAPON_DAMAGE["' + damage + '"] : null'
-    );
   rules.defineRule(weaponName + '.3',
     'damageBonus.' + name, '=', 'source > 0 ? "+" + source : source == 0 ? "" : source'
   );

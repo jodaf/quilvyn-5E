@@ -1579,19 +1579,21 @@ SRD5E.GOODIES = {
     'Section=save Note="Proficiency in Wisdom saves"'
 };
 SRD5E.LANGUAGES = {
-  'Abyssal':'',
-  'Celestial':'',
+  // Standard
   'Common':'',
-  'Deep Speech':'',
-  'Draconic':'',
   'Dwarvish':'',
   'Elvish':'',
   'Giant':'',
   'Gnomish':'',
   'Goblin':'',
   'Halfling':'',
-  'Infernal':'',
   'Orc':'',
+  // Exotic
+  'Abyssal':'',
+  'Celestial':'',
+  'Deep Speech':'',
+  'Draconic':'',
+  'Infernal':'',
   'Primordial':'',
   'Sylvan':'',
   'Undercommon':''
@@ -1753,9 +1755,9 @@ SRD5E.SPELLS = {
     'School=Enchantment ' +
     'Level=B2,D2,R2 ' +
     'Ritual=true ' +
-    'AtHigherLevels="extends the duration +2 days" ' +
+    'AtHigherLevels="extends the duration +48 hr" ' +
     'Description=' +
-      '"R30\' Tiny beast target moves to deliver a 25-word message to a described recipient for 1 day"',
+      '"R30\' Tiny beast target moves to deliver a 25-word message to a described recipient for 24 hr"',
   'Animal Shapes':
     'School=Transmutation ' +
     'Level=D8 ' +
@@ -5010,10 +5012,10 @@ SRD5E.featureRules = function(
       // Generate rules for common notes:
       // X Proficiency (item [; item ...])
       matchInfo =
-        effect.match(/([A-Z]\w*)\sProficiency\s\((([^\(]|\([^\)]*\))*)\)/);
+        effect.match(/([A-Z]\w*)\s(Proficiency|Training)\s\((([^\(]|\([^\)]*\))*)\)/);
       if(matchInfo) {
         let group = matchInfo[1].toLowerCase();
-        matchInfo[2].split(/\/|;\s*/).forEach(affected => {
+        matchInfo[3].split(/\/|;\s*/).forEach(affected => {
           matchInfo = affected.match(/^Choose\s(\d+|%V)/);
           if(!matchInfo)
             rules.defineRule(group + 'Proficiency.' + affected, note, '=', '1');
@@ -5803,11 +5805,11 @@ SRD5E.featureListRules = function(
   for(let i = 0; i < features.length; i++) {
     let feature = features[i].replace(/^(.*\?\s*)?\d+:/, '');
     let matchInfo =
-      feature.match(/([A-Z]\w*)\sProficiency\s\((([^\(]|\([^\)]*\))*)\)$/) ||
+      feature.match(/([A-Z]\w*)\s(Proficiency|Training)\s\((([^\(]|\([^\)]*\))*)\)$/) ||
       feature.match(/(Language)\s\((([^\(]|\([^\)]*\))*)\)$/);
     if(matchInfo) {
       let group = matchInfo[1].toLowerCase();
-      let elements = matchInfo[2].split(/\/|;\s*/);
+      let elements = matchInfo[3].split(/\/|;\s*/);
       for(let j = 0; j < elements.length; j++) {
         matchInfo = elements[j].match(/^Choose\s+(\d+)\s+from/i);
         if(matchInfo) {

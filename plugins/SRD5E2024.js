@@ -51,7 +51,7 @@ function SRD5E2024() {
   rules.getChoices = SRD5E.getChoices;
   rules.ruleNotes = SRD5E2024.ruleNotes;
 
-  SRD5E.createViewers(rules, SRD5E.VIEWERS);
+  SRD5E2024.createViewers(rules, SRD5E.VIEWERS);
   rules.defineChoice('extras',
     'feats', 'featCount', 'sanityNotes', 'selectableFeatureCount',
     'validationNotes'
@@ -123,7 +123,7 @@ SRD5E2024.CLASSES = {
   'Barbarian':
     'HitDie=d12 ' +
     'Features=' +
-      '"1:Armor Proficiency (Light; Medium; Shield)",' +
+      '"1:Armor Training (Light; Medium; Shield)",' +
       '"1:Save Proficiency (Strength; Constitution)",' +
       '"1:Skill Proficiency (Choose 2 from Animal Handling, Athletics, Intimidation, Nature, Perception, Survival)",' +
       '"1:Weapon Proficiency (Simple Weapons; Martial Weapons)",' +
@@ -144,7 +144,7 @@ SRD5E2024.CLASSES = {
   'Bard':
     'HitDie=d8 ' +
     'Features=' +
-      '"1:Armor Proficiency (Light)",' +
+      '"1:Armor Training (Light)",' +
       '"1:Weapon Proficiency (Simple Weapons)",' +
       '"1:Tool Proficiency (Choose 3 from any Musical)",' +
       '"1:Save Proficiency (Dexterity; Charisma)",' +
@@ -175,7 +175,7 @@ SRD5E2024.CLASSES = {
   'Cleric':
     'HitDie=d8 ' +
     'Features=' +
-      '"1:Armor Proficiency (Light; Medium; Shield)",' +
+      '"1:Armor Training (Light; Medium; Shield)",' +
       '"1:Weapon Proficiency (Simple Weapons)",' +
       '"1:Save Proficiency (Wisdom; Charisma)",' +
       '"1:Skill Proficiency (Choose 2 from History, Insight, Medicine, Persuasion, Religion)",' +
@@ -210,7 +210,7 @@ SRD5E2024.CLASSES = {
   'Druid':
     'HitDie=d8 ' +
     'Features=' +
-      '"1:Armor Proficiency (Light; Shield)",' +
+      '"1:Armor Training (Light; Shield)",' +
       '"1:Weapon Proficiency (Simple Weapons)",' +
       '"1:Tool Proficiency (Herbalism Kit)",' +
       '"1:Save Proficiency (Intelligence; Wisdom)",' +
@@ -247,7 +247,7 @@ SRD5E2024.CLASSES = {
     'HitDie=d10 ' +
     'Features=' +
       '"1:Fighter Primary Ability",' +
-      '"1:Armor Proficiency (Light; Medium; Heavy; Shield)",' +
+      '"1:Armor Training (Light; Medium; Heavy; Shield)",' +
       '"1:Weapon Proficiency (Simple Weapons; Martial Weapons)",' +
       '"1:Save Proficiency (Strength; Constitution)",' +
       '"1:Skill Proficiency (Choose 2 from Acrobatics, Animal Handling, Athletics, History, Insight, Intimidation, Persuasion; Perception, Survival)",' +
@@ -293,7 +293,7 @@ SRD5E2024.CLASSES = {
   'Paladin':
     'HitDie=d10 ' +
     'Features=' +
-      '"1:Armor Proficiency (Light; Medium; Heavy; Shield)",' +
+      '"1:Armor Training (Light; Medium; Heavy; Shield)",' +
       '"1:Weapon Proficiency (Simple Weapons; Martial Weapons)",' +
       '"1:Save Proficiency (Wisdom; Charisma)",' +
       '"1:Skill Proficiency (Choose 2 from Athletics, Insight, Intimidation, Medicine, Persuasion, Religion)",' +
@@ -320,7 +320,7 @@ SRD5E2024.CLASSES = {
   'Ranger':
     'HitDie=d10 ' +
     'Features=' +
-      '"1:Armor Proficiency (Light; Medium; Shield)",' +
+      '"1:Armor Training (Light; Medium; Shield)",' +
       '"1:Weapon Proficiency (Simple Weapons; Martial Weapons)",' +
       '"1:Save Proficiency (Strength; Dexterity)",' +
       '"1:Skill Proficiency (Choose 3 from Animal Handling, Athletics, Insight, Investigation, Nature, Perception, Stealth, Survival)",' +
@@ -352,7 +352,7 @@ SRD5E2024.CLASSES = {
   'Rogue':
     'HitDie=d8 ' +
     'Features=' +
-      '"1:Armor Proficiency (Light)",' +
+      '"1:Armor Training (Light)",' +
       '"1:Weapon Proficiency (Simple Weapons; Finesse Weapons; Light Weapons)",' +
       '"1:Tool Proficiency (Thieves\' Tools)",' +
       '"1:Save Proficiency (Dexterity; Intelligence)",' +
@@ -408,7 +408,7 @@ SRD5E2024.CLASSES = {
   'Warlock':
     'HitDie=d8 ' +
     'Features=' +
-      '"1:Armor Proficiency (Light)",' +
+      '"1:Armor Training (Light)",' +
       '"1:Weapon Proficiency (Simple Weapons)",' +
       '"1:Save Proficiency (Wisdom; Charisma)",' +
       '"1:Skill Proficiency (Choose 2 from Arcana, Deception, History, Intimidation, Investigation, Nature, Religion)",' +
@@ -491,26 +491,26 @@ SRD5E2024.CLASSES = {
 };
 SRD5E2024.DEITIES = Object.assign({}, SRD5E.DEITIES);
 SRD5E2024.FEATS = {
-  'Alert':'',
-  'Magic Initiate (Cleric)':'',
-  'Magic Initiate (Druid)':'',
-  'Magic Initiate (Wizard)':'',
-  'Savage Attacker':'',
-  'Skilled':'',
-  'Ability Score Improvement':'',
-  'Grappler':'Require="strength >= 13"',
-  'Archery':'',
-  'Defense':'',
-  'Great Weapon Fighting':'',
-  'Two-Weapon Fighting':'',
-  'Boon Of Combat Prowess':'',
-  'Boon Of Dimensional Travel':'',
-  'Boon Of Fate':'',
-  'Boon Of Irresistible Offense (Dexterity)':'',
-  'Boon Of Irresistible Offense (Strength)':'',
-  'Boon Of Spell Recall':'',
-  'Boon Of The Night Spirit':'',
-  'Boon Of Truesight':''
+  'Alert':'Category=Origin',
+  'Magic Initiate (Cleric)':'Category=Origin',
+  'Magic Initiate (Druid)':'Category=Origin',
+  'Magic Initiate (Wizard)':'Category=Origin',
+  'Savage Attacker':'Category=Origin',
+  'Skilled':'Category=Origin',
+  'Ability Score Improvement':'Category=General',
+  'Grappler':'Require="strength >= 13" Category=General',
+  'Archery':'Category="Fighting Style"',
+  'Defense':'Category="Fighting Style"',
+  'Great Weapon Fighting':'Category="Fighting Style"',
+  'Two-Weapon Fighting':'Category="Fighting Style"',
+  'Boon Of Combat Prowess':'Category="Epic Boon"',
+  'Boon Of Dimensional Travel':'Category="Epic Boon"',
+  'Boon Of Fate':'Category="Epic Boon"',
+  'Boon Of Irresistible Offense (Dexterity)':'Category="Epic Boon"',
+  'Boon Of Irresistible Offense (Strength)':'Category="Epic Boon"',
+  'Boon Of Spell Recall':'Category="Epic Boon"',
+  'Boon Of The Night Spirit':'Category="Epic Boon"',
+  'Boon Of Truesight':'Category="Epic Boon"'
 };
 SRD5E2024.FEATURES_CHANGED = {
 
@@ -554,7 +554,6 @@ SRD5E2024.FEATURES_CHANGED = {
     SRD5E.FEATURES['Relentless Rage']
     .replace('1 hit point', '%{levels.Barbarian*2} hit points'),
   // Unarmored Defense as SRD5E
-  // TODO
   'Weapon Mastery':
     'Section=combat '+
     'Note="Can use the mastery properties of %V chosen Simple or Martial Melee weapons"',
@@ -648,7 +647,7 @@ SRD5E2024.FEATURES_CHANGED = {
     'Note="%{levels.Cleric?\'Cleric\':\'Druid\'} cantrips inflict +%{wisdomModifier} HP"',
   'Protector':
     'Section=combat ' +
-    'Note="Armor Proficiency (Heavy)/Weapon Proficiency (Martial Weapons)"',
+    'Note="Armor Training (Heavy)/Weapon Proficiency (Martial Weapons)"',
   'Sear Undead':
     'Section=combat ' +
     'Note="Successful Turn Undead also inflicts %{wisdomModifier>?1}d8 HP radiant"',
@@ -689,7 +688,7 @@ SRD5E2024.FEATURES_CHANGED = {
       '"Knows the <i>Speak With Animals</i> spell",' +
       '"Speaks a secret language known only by druids" ' +
     'Spells="Speak With Animals"',
-  'Druid Subclass':'Section=feature Note="1 selection"',
+  'Druid Subclass':SRD5E.FEATURES['Druid Circle'],
   'Elemental Fury':'Section=feature Note="1 selection"',
   // Epic Boon as above
   'Improved Elemental Fury':
@@ -710,7 +709,7 @@ SRD5E2024.FEATURES_CHANGED = {
   // Spellcasting as above
   'Warden':
     'Section=combat ' +
-    'Note="Armor Proficiency (Medium)/Weapon Proficiency (Martial Weapons)"',
+    'Note="Armor Training (Medium)/Weapon Proficiency (Martial Weapons)"',
   'Wild Companion':
     'Section=magic ' +
     'Note="Can expend a spell slot or a use of Wild Shape to summon a Fey familiar using <i>Find Familiar</i>; the familiar remains present until the next long rest" ' +
@@ -766,20 +765,12 @@ SRD5E2024.FEATURES_CHANGED = {
     'Section=save ' +
     // changed effects
     'Note="Has immunity to poisoned and resistance to fire, cold, lightning, or poison depending on whether Circle Spells are currently taken from Arid, Polar, Temperate, or Tropical Land"',
-  // TODO These SRD5E features raise errors in featureRules
-  'Circle Of The Land (Arctic)':'Section=magic Note=""',
-  'Circle Of The Land (Coast)':'Section=magic Note=""',
-  'Circle Of The Land (Desert)':'Section=magic Note=""',
-  'Circle Of The Land (Forest)':'Section=magic Note=""',
-  'Circle Of The Land (Grassland)':'Section=magic Note=""',
-  'Circle Of The Land (Mountain)':'Section=magic Note=""',
-  'Circle Of The Land (Swamp)':'Section=magic Note=""',
 
   // Fighter
   // Action Surge as SRD5E
   // Epic Boon as above
   // Extra Attack as above
-  'Fighter Subclass':'Section=feature Note="1 selection"',
+  'Fighter Subclass':SRD5E.FEATURES['Martial Archetype'],
   'Fighting Style':'Section=feature Note="+1 Fighting Style Feat"',
   'Indomitable':
     SRD5E.FEATURES.Indomitable
@@ -853,7 +844,7 @@ SRD5E2024.FEATURES_CHANGED = {
   'Martial Arts':
     SRD5E.FEATURES['Martial Arts']
     .replace(' after attacking', ''),
-  'Monk Subclass':'Section=feature Note="1 selection"',
+  'Monk Subclass':SRD5E.FEATURES['Monastic Tradition'],
   "Monk's Focus":
     'Section=combat,feature ' +
     'Note=' +
@@ -934,7 +925,7 @@ SRD5E2024.FEATURES_CHANGED = {
     'Section=magic ' +
     'Note="Can cast <i>Divine Smite</i> once per long rest" ' +
     'Spells="Divine Smite"',
-  'Paladin Subclass':'Section=feature Note="1 selection"',
+  'Paladin Subclass':SRD5E.FEATURES['Sacred Oath'],
   'Radiant Strikes':SRD5E.FEATURES['Improved Divine Smite'],
   'Restoring Touch':
     'Section=magic ' +
@@ -992,7 +983,7 @@ SRD5E2024.FEATURES_CHANGED = {
   'Precise Hunter':
     'Section=combat ' +
     'Note="Has advantage on attacks vs. <i>Hunter\'s Mark</i> target"',
-  'Ranger Subclass':'Section=feature Note="1 selection"',
+  'Ranger Subclass':SRD5E.FEATURES['Ranger Archetype'],
   'Roving':
     'Section=ability,ability ' +
     'Note=' +
@@ -1055,7 +1046,7 @@ SRD5E2024.FEATURES_CHANGED = {
     // changed effects
     'Section=skill ' +
     'Note="Scores at least a 10 on proficient skill and tool checks"',
-  'Rogue Subclass':'Section=feature Note="1 selection"',
+  'Rogue Subclass':SRD5E.FEATURES['Roguish Archetype'],
   'Slippery Mind':
     SRD5E.FEATURES['Slippery Mind']
     .replace('Wisdom', 'Charisma; Wisdom'),
@@ -1103,7 +1094,7 @@ SRD5E2024.FEATURES_CHANGED = {
     'Section=magic ' +
     'Note="Can gain +1 spell DC and advantage on spell attacks for 1 min 2 times per long rest"',
   // Metamagic as SRD5E
-  'Sorcerer Subclass':'Section=feature Note="1 selection"',
+  'Sorcerer Subclass':SRD5E.FEATURES['Sorcerous Origin'],
   'Sorcerous Restoration':
     SRD5E.FEATURES['Sorcerous Restoration']
     .replace('4', '%{levels.Sorcerer//2}')
@@ -1182,7 +1173,7 @@ SRD5E2024.FEATURES_CHANGED = {
     'Section=magic ' +
     // changed effects
     'Note="Can cast spells from the warlock spell list and cast spells marked with [R] using a ritual"',
-  'Warlock Subclass':'Section=feature Note="1 selection"',
+  'Warlock Subclass':SRD5E.FEATURES['Otherworldly Patron'],
   // Eldritch Invocations
   'Agonizing Blast':
     SRD5E.FEATURES['Agonizing Blast']
@@ -1293,7 +1284,7 @@ SRD5E2024.FEATURES_CHANGED = {
     .replace('the choices', 'one choice')
     .replace('8 hr or study', 'a long rest'),
   // Spellcasting as above
-  'Wizard Subclass':'Section=feature Note="1 selection"',
+  'Wizard Subclass':SRD5E.FEATURES['Arcane Tradition'],
   // Evoker
   // Empowered Evocation as SRD5E
   'Evocation Savant':
@@ -1541,12 +1532,16 @@ SRD5E2024.FEATURES_CHANGED = {
 };
 SRD5E2024.FEATURES =
   Object.assign({}, SRD5E.FEATURES, SRD5E2024.FEATURES_CHANGED);
+// Delete SRD5E features that cause errors
+for(let f in SRD5E2024.FEATURES) {
+  if(f.startsWith('Circle Of The Land ('))
+    delete SRD5E2024.FEATURES[f];
+}
 SRD5E2024.GOODIES = Object.assign({}, SRD5E.GOODIES);
 SRD5E2024.LANGUAGES = {
-  'Abyssal':'',
-  'Celestial':'',
+  // Standard
   'Common':'',
-  'Deep Speech':'',
+  'Common Sign Language':'',
   'Draconic':'',
   'Dwarvish':'',
   'Elvish':'',
@@ -1554,8 +1549,12 @@ SRD5E2024.LANGUAGES = {
   'Gnomish':'',
   'Goblin':'',
   'Halfling':'',
-  'Infernal':'',
   'Orc':'',
+  // Rare
+  'Abyssal':'',
+  'Celestial':'',
+  'Deep Speech':'',
+  'Infernal':'',
   'Primordial':'',
   'Sylvan':'',
   'Undercommon':''
@@ -1650,42 +1649,30 @@ SRD5E2024.SCHOOLS = {
   'Transmutation':''
 };
 SRD5E2024.SHIELDS = Object.assign({}, SRD5E.SHIELDS);
-SRD5E2024.SKILLS = {
-  'Acrobatics':'Ability=Dexterity',
-  'Animal Handling':'Ability=Wisdom',
-  'Arcana':'Ability=Intelligence',
-  'Athletics':'Ability=Strength',
-  'Deception':'Ability=Charisma',
-  'History':'Ability=Intelligence',
-  'Insight':'Ability=Wisdom',
-  'Intimidation':'Ability=Charisma',
-  'Investigation':'Ability=Intelligence',
-  'Medicine':'Ability=Wisdom',
-  'Nature':'Ability=Intelligence',
-  'Perception':'Ability=Wisdom',
-  'Performance':'Ability=Charisma',
-  'Persuasion':'Ability=Charisma',
-  'Religion':'Ability=Intelligence',
-  'Sleight Of Hand':'Ability=Dexterity',
-  'Stealth':'Ability=Dexterity',
-  'Survival':'Ability=Wisdom'
-};
+SRD5E2024.SKILLS = Object.assign({}, SRD5E.SKILLS);
 // Note that spellRules replaces lvl and mdf in the spell descriptions with the
 // appropriate caster level and ability modifier.
-SRD5E2024.SPELLS = {
+SRD5E2024.SPELLS_CHANGED = {
 
   'Aura Of Life':
     'School=Abjuration ' +
     'Level=C4,P4 ' +
     'Description="TODO"',
+  'Befuddlement':
+    'School=Enchantment ' +
+    'Level=B8,D8,K8,W8 ' +
+    'Description="TODO"',
   'Charm Monster':
     'School=Enchantment ' +
     'Level=B4,D4,K4,S4,W4 ' +
+    'AtHigherLevels="affects +1 target" ' +
     'Description="TODO"',
   'Chromatic Orb':
     'School=Evocation ' +
     'Level=S1,W1 ' +
+    'AtHigherLevels="inflicts +1d8 HP and can leap +1 times" ' +
     'Description="TODO"',
+
   'Divine Smite':
     'School=Evocation ' +
     'Level=P1 ' +
@@ -1709,387 +1696,59 @@ SRD5E2024.SPELLS = {
     'Level=W5 ' +
     'Description="TODO"',
 
-  'Acid Arrow':
-    'School=Evocation ' +
-    'Level=W2 ' +
-    'AtHigherLevels="inflicts +1d4 HP initial and secondary" ' +
-    'Description=' +
-      '"R90\' Ranged spell inflicts 4d4 HP acid, plus 2d4 HP the following rd (miss half initial HP only)"',
   'Acid Splash':
-    'School=Conjuration ' +
-    'Level=S0,W0 ' +
-    'Description=' +
-      '"R60\' Inflicts %{(level+7)//6}d6 HP acid (save Dexterity negates) on a single target or 2 adjacent targets"',
+    SRD5E.SPELLS['Acid Splash']
+    .replace('Conjuration', 'Evocation'),
   'Aid':
-    'School=Abjuration ' +
-    'Level=C2,P2 ' +
-    'AtHigherLevels="gives +5 temporary hit points" ' +
-    'Description="R30\' 3 targets gain +5 hit points for 8 hr"',
-  'Alarm':
-    'School=Abjuration ' +
-    'Level=R1,W1 ' +
-    'Ritual=true ' +
-    'Description=' +
-      '"R30\' Entry into a 20\' cube by a non-designated Tiny or larger creature triggers an audible or mental alarm for 8 hr"',
-  'Alter Self':
-    'School=Transmutation ' +
-    'Level=S2,W2 ' +
-    'Description=' +
-      '"Self becomes aquatic, changes appearance, or gains magic natural weapons with +1 attack and 1d6+ HP damage, for concentration up to 1 hr"',
-  'Animal Friendship':
-    'School=Enchantment ' +
-    'Level=B1,D1,R1 ' +
-    'AtHigherLevels="affects +1 target" ' +
-    'Description=' +
-      '"R30\' Convinces target beast that self is harmless (save Wisdom negates; Intelligence 4 or higher immune) for 1 day or until harmed"',
-  'Animal Messenger':
-    'School=Enchantment ' +
-    'Level=B2,D2,R2 ' +
-    'Ritual=true ' +
-    'AtHigherLevels="extends the duration +2 days" ' +
-    'Description=' +
-      '"R30\' Tiny beast target moves to deliver a 25-word message to a described recipient for 1 day"',
-  'Animal Shapes':
-    'School=Transmutation ' +
-    'Level=D8 ' +
-    'Description=' +
-      '"R30\' Willing targets become CR 4, Large or smaller beasts for concentration up to 1 day or until reduced to 0 hit points"',
-  'Animate Dead':
-    'School=Necromancy ' +
-    'Level=C3,W3 ' +
-    'AtHigherLevels="animates +2 undead" ' +
-    'Description=' +
-      '"R10\' Bones or the corpse of a Medium or Small creature becomes a skeleton or zombie that obeys commands when within 60\' for 1 day"',
-  'Animate Objects':
-    'School=Transmutation ' +
-    'Level=B5,S5,W5 ' +
-    'AtHigherLevels="animates +2 objects" ' +
-    'Description=' +
-      '"R120\' 10 small, 5 medium, 2 large, or 1 huge objects obey mental commands when within 500\' for concentration up to 1 min"',
-  'Antilife Shell':
-    'School=Abjuration ' +
-    'Level=D5 ' +
-    'Description=' +
-      '"10\' radius prevents the passage of living creatures for concentration up to 1 hr"',
-  'Antimagic Field':
-    'School=Abjuration ' +
-    'Level=C8,W8 ' +
-    'Description="10\' radius suppresses magic for concentration up to 1 hr"',
+    SRD5E.SPELLS.Aid
+    .replace('C2,P2', 'B2,C2,D2,P2,R2'),
   'Antipathy/Sympathy':
-    'School=Enchantment ' +
-    'Level=D8,W8 ' +
-    'Description=' +
-      '"R60\' Target object or 200\' cubic area repels or attracts specified creatures for 10 days"',
-  'Arcane Eye':
-    'School=Divination ' +
-    'Level=W4 ' +
-    'Description=' +
-      '"R30\' Self sees with darkvision through a remote invisible eye that can move 30\' per rd for concentration up to 1 hr"',
-  'Arcane Hand':
-    'School=Evocation ' +
-    'Level=W5 ' +
-    'AtHigherLevels="inflicts +2d8 HP force and +2d6 HP bludgeoning" ' +
-    'Description=' +
-      '"R120\' Large force hand (Armor Class 20, %{hitPoints} hit points, Strength 26, Dexterity 10) can move 60\' per rd and can punch (inflicts 4d8 HP force), push 5\' (save DC 26 Athletics negates), grapple (may crush, inflicting 2d6+%{mdf} HP bludgeoning), and block for concentration up to 1 min"',
-  'Arcane Lock':
-    'School=Abjuration ' +
-    'Level=W2 ' +
-    'Description=' +
-      '"Touched barrier opens only for designated creatures or a specified password; <i>Knock</i> suppresses the effects for 10 min"',
-  'Arcane Sword':
-    'School=Evocation ' +
-    'Level=B7,W7 ' +
-    'Description=' +
-      '"R60\' Creates a force weapon that inflicts 3d10 HP force and can move 20\' per rd for concentration up to 1 min"',
-  "Arcanist's Magic Aura":
-    'School=Illusion ' +
-    'Level=W2 ' +
-    'Description=' +
-      '"Divinations on a willing target report false information for 24 hr"',
-  'Astral Projection':
-    'School=Necromancy ' +
-    'Level=C9,K9,W9 ' +
-    'Description="R10\' Self and 8 willing targets project to astral plane"',
+    SRD5E.SPELLS['Antipathy/Sympathy']
+    .replace('D8,W8', 'B8,D8,W8'),
   'Augury':
-    'School=Divination ' +
-    'Level=C2 ' +
-    'Ritual=true ' +
-    'Description=' +
-      '"Reveals the weal or woe outcome of a proposed act up to 30 min in the future"',
-  'Awaken':
-    'School=Transmutation ' +
-    'Level=B5,D5 ' +
-    'Description=' +
-      '"Touched beast or plant gains Intelligence 10, speech, and movement and becomes charmed for 30 days or until harmed"',
+    SRD5E.SPELLS.Augury
+    .replace('C2', 'C2,D2,W2'),
 
   'Bane':
-    'School=Enchantment ' +
-    'Level=B1,C1 ' +
-    'AtHigherLevels="affects +1 target" ' +
-    'Description=' +
-      '"R30\' 3 targets suffer -1d4 on attacks and saving throws (save Charisma negates) for concentration up to 1 min"',
-  'Banishment':
-    'School=Abjuration ' +
-    'Level=C4,K4,P4,S4,W4 ' +
-    'AtHigherLevels="affects +1 target" ' +
-    'Description=' +
-      '"R60\' Banishes the target to its home plane or a demiplane (save Charisma negates) for concentration up to 1 min"',
-  'Barkskin':
-    'School=Transmutation ' +
-    'Level=D2,R2 ' +
-    'Description="Willing touched gains AC 16 for concentration up to 1 hr"',
-  'Beacon Of Hope':
-    'School=Abjuration ' +
-    'Level=C3 ' +
-    'Description=' +
-      '"R30\' Targets gain advantage on Wisdom and death saves and regain maximum hit points from healing for concentration up to 1 min"',
-  'Bestow Curse':
-    'School=Necromancy ' +
-    'Level=B3,C3,W3 ' +
-    'AtHigherLevels="extends the maximum duration to 10 min, 8 hr, 24 hr, or permanently at level 4, 5, 7, or 9" ' +
-    'Description=' +
-      '"Touched suffers a choice of disadvantage on specified ability rolls, disadvantage on attacks on self, requiring a successful Wisdom save to take any action, or +1d8 HP necrotic from self attacks (save Wisdom negates) for concentration up to 1 min"',
-  'Black Tentacles':
-    'School=Conjuration ' +
-    'Level=W4 ' +
-    'Description=' +
-      '"R90\' 20\' sq inflicts 3d6 HP bludgeoning and restrains (save Dexterity negates, Strength or Dexterity breaks free) for concentration up to 1 min"',
-  'Blade Barrier':
-    'School=Evocation ' +
-    'Level=C6 ' +
-    'Description=' +
-      '"R90\' Creates a 100\'x20\'x5\' blade wall or a 60\'x20\'x5\' blade ring that provides 3/4 cover and inflicts 6d10 HP slashing (save Dexterity half) for concentration up to 10 min"',
-  'Bless':
-    'School=Enchantment ' +
-    'Level=C1,P1 ' +
-    'AtHigherLevels="affects +1 target" ' +
-    'Description=' +
-      '"R30\' 3 targets gain +1d4 on attacks and saving throws for concentration up to 1 min"',
-  'Blight':
-    'School=Necromancy ' +
-    'Level=D4,K4,S4,W4 ' +
-    'AtHigherLevels="inflicts +1d8 HP" ' +
-    'Description=' +
-      '"R30\' Inflicts 8d8 HP necrotic (save Constitution half; plant target has disadvantage on the save and suffers maximum damage on failure)"',
+    SRD5E.SPELLS.Bane
+    .replace('B1,C1', 'B1,C1,K1'),
   'Blindness/Deafness':
-    'School=Necromancy ' +
-    'Level=B2,C2,"K2 [The Fiend]",S2,W2 ' +
-    'AtHigherLevels="affects +1 target" ' +
-    'Description=' +
-      '"R30\' Inflicts a choice of blindness or deafness (save Constitution ends) for 1 min"',
-  'Blink':
-    'School=Transmutation ' +
-    'Level=S3,W3 ' +
-    'Description=' +
-      '"Self has a 50% chance of becoming ethereal at the end each turn, returning to a spot within 10\' at the start of the next turn, for 1 min"',
-  'Blur':
-    'School=Illusion ' +
-    'Level=S2,W2 ' +
-    'Description=' +
-      '"Foes suffer disadvantage when using sight to attack self for concentration up to 1 min"',
+    SRD5E.SPELLS['Blindness/Deafness']
+    .replace('Necromancy', 'Transmutation'),
+/*
   'Branding Smite':
     'School=Evocation ' +
     'Level=P2 ' +
     'AtHigherLevels="inflicts +1d6 HP" ' +
     'Description=' +
       '"Next successful self weapon attack inflicts +2d6 HP radiant and lights the target for concentration up to 1 min"',
-  'Burning Hands':
-    'School=Evocation ' +
-    'Level="K1 [The Fiend]",S1,W1 ' +
-    'AtHigherLevels="inflicts +1d6 HP" ' +
-    'Description="15\' cone inflicts 3d6 HP fire (save Dexterity half)"',
+*/
 
-  'Call Lightning':
-    'School=Conjuration ' +
-    'Level=D3 ' +
-    'AtHigherLevels="inflicts +1d10 HP" ' +
-    'Description=' +
-      '"R120\' 5\' radius inflicts 3d10 HP lightning (save Dexterity half; +1d10 HP if using a natural storm) once per rd for concentration up to 10 min"',
-  'Calm Emotions':
-    'School=Enchantment ' +
-    'Level=B2,C2 ' +
-    'Description=' +
-      '"R60\' 20\' radius suppresses a choice of charm and fright or hostility (save Charisma negates) for concentration up to 1 min"',
-  'Chain Lightning':
-    'School=Evocation ' +
-    'Level=S6,W6 ' +
-    'AtHigherLevels="affects +1 target" ' +
-    'Description=' +
-      '"R150\' Inflicts 10d8 HP lightning (save Dexterity half) on 4 targets in a 30\' radius "',
-  'Charm Person':
-    'School=Enchantment ' +
-    'Level=B1,D1,K1,S1,W1 ' +
-    'AtHigherLevels="affects +1 target" ' +
-    'Description=' +
-      '"R30\' Target regards self as a friend (save Wisdom negates) for 1 hr or until harmed"',
-  'Chill Touch':
-    'School=Necromancy ' +
-    'Level=K0,S0,W0 ' +
-    'Description=' +
-      '"R120\' Ranged spell inflicts %{(level+7)//6}d8 HP necrotic and target cannot regain hit points for 1 rd; undead also suffer disadvantage vs. self attack for 1 rd"',
   'Circle Of Death':
-    'School=Necromancy ' +
-    'Level=K6,S6,W6 ' +
-    'AtHigherLevels="inflicts +2d6 HP" ' +
-    'Description=' +
-      '"R150\' 60\' radius inflicts 8d6 HP necrotic (save Constitution half)"',
-  'Clairvoyance':
-    'School=Divination ' +
-    'Level=B3,C3,S3,W3 ' +
-    'Description=' +
-      '"R1 mile Self can see or hear through an invisible sensor for concentration up to 10 min"',
-  'Clone':
-    'School=Necromancy ' +
-    'Level=W8 ' +
-    'Description="120-day process grows a backup body for the touched target"',
-  'Cloudkill':
-    'School=Conjuration ' +
-    'Level=S5,W5 ' +
-    'AtHigherLevels="inflicts +1d8 HP" ' +
-    'Description=' +
-      '"R120\' 20\' radius inflicts 5d8 HP poison (save Constitution half) and moves away 10\' per rd for concentration up to 10 min"',
+    SRD5E.SPELLS['Circle Of Death']
+    .replaceAll('d6', 'd8'),
   'Color Spray':
-    'School=Illusion ' +
-    'Level=S1,W1 ' +
-    'AtHigherLevels="affects +2d10 HP of targets" ' +
-    'Description="15\' cone blinds 6d10 HP of targets for 1 rd"',
+    SRD5E.SPELLS['Color Spray']
+    .replaceAll('S1,W1', 'B1,S1,W1'),
   'Command':
-    'School=Enchantment ' +
-    'Level=C1,"K1 [The Fiend]",P1 ' +
-    'AtHigherLevels="affects +1 target" ' +
-    'Description=' +
-      '"R60\' Target obeys a one-word command from self (save Wisdom negates) for 1 rd"',
-  'Commune':
-    'School=Divination ' +
-    'Level=C5 ' +
-    'Ritual=true ' +
-    'Description="Deity answers 3 yes/no questions; additional uses before a long rest add a 25% chance of failure"',
-  'Commune With Nature':
-    'School=Divination ' +
-    'Level=D5,R5 ' +
-    'Ritual=true ' +
-    'Description=' +
-      '"Reveals 3 facts about nature within 3 miles, or within 300\' when underground"',
-  'Comprehend Languages':
-    'School=Divination ' +
-    'Level=B1,K1,S1,W1 ' +
-    'Ritual=true ' +
-    'Description="Self understands all languages for 1 hr"',
-  'Compulsion':
-    'School=Enchantment ' +
-    'Level=B4 ' +
-    'Description=' +
-      '"R30\' Self controls target movement direction (save Wisdom ends) for concentration up to 1 min"',
+    SRD5E.SPELLS.Command
+    .replace('C1,"K1 [The Fiend]",P1', 'B1,C1,"K1 [The Fiend]",P1'),
   'Cone Of Cold':
-    'School=Evocation ' +
-    'Level=S5,W5 ' +
-    'AtHigherLevels="inflicts +1d8 HP" ' +
-    'Description="60\' cone inflicts 8d8 HP cold (save Constitution half)"',
-  'Confusion':
-    'School=Enchantment ' +
-    'Level=B4,D4,S4,W4 ' +
-    'AtHigherLevels="increases the radius by 5\'" ' +
-    'Description=' +
-      '"R90\' Creatures in a 10\' radius randomly: 10% wander; 50% do nothing; 20% attack an adjacent creature; 20% act normally (save Wisdom negates) for concentration up to 1 min"',
-  'Conjure Animals':
-    'School=Conjuration ' +
-    'Level=D3,R3 ' +
-    'AtHigherLevels="doubles, triples, or quadruples the number of animals at level 5, 7, or 9" ' +
-    'Description=' +
-      '"R60\' Summons a choice of 1, 2, 4, or 8 obedient CR 2, 1, half, or quarter fey spirits in beast form for concentration up to 1 hr"',
-  'Conjure Celestial':
-    'School=Conjuration ' +
-    'Level=C7 ' +
-    'AtHigherLevels="increases the CR to 5 at level 9" ' +
-    'Description=' +
-       '"R90\' Summons an obedient CR 4 celestial for concentration up to 1 hr"',
-  'Conjure Elemental':
-    'School=Conjuration ' +
-    'Level=D5,W5 ' +
-    'AtHigherLevels="increases the CR by 1" ' +
-    'Description=' +
-       '"R90\' Summons an obedient environment-appropriate CR 5 elemental for 1 hr; loss of concentration makes it hostile"',
+    SRD5E.SPELLS['Cone Of Cold']
+    .replace('S5,W5', 'D5,S5,W5'),
   'Conjure Fey':
-    'School=Conjuration ' +
-    'Level=D6,K6 ' +
-    'AtHigherLevels="increases the CR by 1" ' +
-    'Description=' +
-      '"R90\' Summons an obedient CR 6 fey for 1 hr; loss of concentration makes it hostile"',
-  'Conjure Minor Elementals':
-    'School=Conjuration ' +
-    'Level=D4,W4 ' +
-    'AtHigherLevels="doubles or triples the number of elementals at level 6 or 8" ' +
-    'Description=' +
-      '"R90\' Summons a choice of 1, 2, 4, or 8 obedient CR 2, 1, half, or quarter elementals for concentration up to 1 hr"',
-  'Conjure Woodland Beings':
-    'School=Conjuration ' +
-    'Level=D4,R4 ' +
-    'AtHigherLevels="doubles or triples the number of creatures at level 6 or 8" ' +
-    'Description=' +
-      '"R60\' Summons a choice of 1, 2, 4, or 8 obedient CR 2, 1, half, or quarter fey creatures for concentration up to 1 hr"',
-  'Contact Other Plane':
-    'School=Divination ' +
-    'Level=K5,W5 ' +
-    'Ritual=true ' +
-    'Description=' +
-      '"Contact with an extraplanar being inflicts 6d6 HP psychic and insanity on self until a long rest (save DC 15 Intelligence negates and gives 5 one-word answers)"',
-  'Contagion':
-    'School=Necromancy ' +
-    'Level=C5,D5 ' +
-    // errata changes description
-    'Description=' +
-      '"Touched suffers poisoned (save Constitution each turn; 3 successes ends, and 3 failures inflict a choice of disease for 7 days)"',
+    SRD5E.SPELLS['Conjure Fey']
+    .replace('D6,K6', 'D6'),
   'Contingency':
-    'School=Evocation ' +
-    'Level=W6 ' +
-    'Description=' +
-      '"Sets a trigger for a spell of level 5 or lower to affect self within 10 days"',
+    SRD5E.SPELLS.Contingency
+    .replace('Evocation', 'Abjuration'),
   'Continual Flame':
-    'School=Evocation ' +
-    'Level=C2,W2 ' +
-    'Description="Touched emits a heatless torch flame"',
-  'Control Water':
-    'School=Transmutation ' +
-    'Level=C4,D4,W4 ' +
-    'Description=' +
-      '"R300\' Water in a 100\' cube rises 20\', parts, redirects, or forms a whirlpool for concentration up to 10 min"',
-  'Control Weather':
-    'School=Transmutation ' +
-    'Level=C8,D8,W8 ' +
-    'Description=' +
-      '"Modifies seasonal weather in a 5 mile radius for concentration up to 8 hr"',
-  'Counterspell':
-    'School=Abjuration ' +
-    'Level=K3,S3,W3 ' +
-    'AtHigherLevels="negates any spell of equal or lesser level" ' +
-    'Description=' +
-      '"R60\' Negates foe casting up to spell level 3; successful DC 10 + spell level negates a higher-level spell"',
-  'Create Food And Water':
-    'School=Conjuration ' +
-    'Level=C3,P3 ' +
-    'Description="R30\' Creates 45 lb of food and 30 gallons of water"',
-  'Create Or Destroy Water':
-    'School=Transmutation ' +
-    'Level=C1,D1 ' +
-    'AtHigherLevels="affects +10 gallons or a +5\' cube" ' +
-    'Description=' +
-      '"R30\' Creates or destroys 10 gallons of water or fog in a 30\' cube"',
-  'Create Undead':
-    'School=Necromancy ' +
-    'Level=C6,K6,W6 ' +
-    'AtHigherLevels=' +
-      '"creates 4 ghouls; 5 ghouls, 2 ghasts, or 2 wights; or 6 ghouls, 3 ghasts, 3 wights, or 2 mummies at level 7, 8, or 9" ' +
-    'Description="R10\' 3 corpses become ghouls that obey commands within 120\' for 1 day"',
-  'Creation':
-    'School=Illusion ' +
-    'Level=S5,W5 ' +
-    'AtHigherLevels="creates a +5\' cube" ' +
-    'Description="R30\' Creates a 5\' cube of false matter lasting up to 1 day"',
+    SRD5E.SPELLS['Continual Flame']
+    .replace('C2,W2', 'C2,D2,W2'),
   'Cure Wounds':
-    'School=Evocation ' +
-    'Level=B1,C1,D1,P1,R1 ' +
-    'AtHigherLevels="restores +1d8 HP" ' +
-    'Description="Touched regains 1d8+%{mdf} hit points"',
+    SRD5E.SPELLS['Cure Wounds']
+    .replace('Evocation', 'Abjuration')
+    .replaceAll('1d8', '2d8'),
 
   'Dancing Lights':
     'School=Evocation ' +
@@ -2579,7 +2238,7 @@ SRD5E2024.SPELLS = {
     'Level=R1 ' +
     'AtHigherLevels="extends the duration to 8 or 24 hr at level 3 or 5" ' +
     'Description=' +
-      '"R90\' Self gains +1d%{magicNotes.foeSlayer?10:6} HP weapon damage vs. the target and advantage on Perception and Wisdom to locate it for concentration up to 1 hr"',
+      '"R90\' Self gains +1d6 HP weapon damage to the target and advantage on Perception and Wisdom to locate it for concentration up to 1 hr"',
   'Hypnotic Pattern':
     'School=Illusion ' +
     'Level=B3,K3,S3,W3 ' +
@@ -3392,6 +3051,7 @@ SRD5E2024.SPELLS = {
       '"R60\' Creatures in a 15\' radius cannot lie (save Charisma negates) for 10 min"'
 
 };
+SRD5E2024.SPELLS = Object.assign({}, SRD5E.SPELLS, SRD5E2024.SPELLS_CHANGED);
 SRD5E2024.TOOLS = {
   "Alchemist's Supplies":
     SRD5E.TOOLS["Alchemist's Supplies"] + ' Ability=Intelligence',
@@ -3437,6 +3097,7 @@ SRD5E2024.TOOLS = {
   "Navigator's Tools":SRD5E.TOOLS["Navigator's Tools"] + ' Ability=Wisdom',
   "Poisoner's Kit":SRD5E.TOOLS["Poisoner's Kit"] + ' Ability=Intelligence',
   "Thieves' Tools":SRD5E.TOOLS["Thieves' Tools"] + ' Ability=Dexterity'
+  // Vehicle (Land) and Vehicle (Water) have been dropped
 };
 SRD5E2024.WEAPONS = {
 
@@ -4366,18 +4027,18 @@ SRD5E2024.weaponRules = function(
   }
 };
 
-/*
- * Defines in #rules# the rules associated with with the list #features#. Rules
- * add each feature to #setName# if the value of #levelAttr# is at least equal
- * to the value required for the feature. If #selectable# is true, the user is
- * allowed to select these features for the character, rather than having them
- * assigned automatically.
- */
-SRD5E2024.featureListRules = function(
-  rules, features, setName, levelAttr, selectable
-) {
-  SRD5E.featureListRules(rules, features, setName, levelAttr, selectable);
-  // No changes needed to SRD5E
+/* Returns an ObjectViewer loaded with the default character sheet format. */
+SRD5E2024.createViewers = function(rules, viewers) {
+  SRD5E.createViewers(rules, viewers);
+  viewers.forEach(v => {
+    let viewer = rules.getViewer(v);
+    if(viewer) {
+      viewer.elements.forEach(e => {
+        if(e.name == 'Armor Proficiency')
+          e.format = '<b>Armor Training</b>: %V';
+      });
+    }
+  });
 };
 
 /* Returns the elements in a basic 5E character editor. */

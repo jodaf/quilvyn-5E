@@ -2431,7 +2431,7 @@ SRD5E.SPELLS = {
   'Geas':
     'School=Enchantment ' +
     'Level=B5,C5,D5,P5,W5 ' +
-    'AtHigherLevels="extends the duration to 1 yr or permanently at level 7 or 9" ' +
+    'AtHigherLevels="extends the duration to 1 year or permanently at level 7 or 9" ' +
     'Description=' +
       '"R60\' Target obeys self instructions (save Wisdom negates) for 30 days"',
   'Gentle Repose':

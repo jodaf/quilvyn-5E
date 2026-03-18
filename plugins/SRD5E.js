@@ -1744,13 +1744,13 @@ SRD5E.SPELLS = {
     'School=Transmutation ' +
     'Level=S2,W2 ' +
     'Description=' +
-      '"Self becomes aquatic, changes appearance, or gains magic natural weapons with +1 attack and 1d6+ HP damage, for concentration up to 1 hr"',
+      '"Self becomes aquatic, changes appearance, or gains magic natural weapons with +%{proficiencyBonus+strengthModifier+1} attack and 1d6+%{strengthModifier+1} HP damage, for concentration up to 1 hr"',
   'Animal Friendship':
     'School=Enchantment ' +
     'Level=B1,D1,R1 ' +
     'AtHigherLevels="affects +1 target" ' +
     'Description=' +
-      '"R30\' Convinces target beast that self is harmless (save Wisdom negates; Intelligence 4 or higher immune) for 1 day or until harmed"',
+      '"R30\' Convinces target beast that self is harmless (save Wisdom negates; Intelligence 4 or higher immune) for 24 hr or until harmed"',
   'Animal Messenger':
     'School=Enchantment ' +
     'Level=B2,D2,R2 ' +
@@ -1762,19 +1762,19 @@ SRD5E.SPELLS = {
     'School=Transmutation ' +
     'Level=D8 ' +
     'Description=' +
-      '"R30\' Willing targets become CR 4, Large or smaller beasts for concentration up to 1 day or until reduced to 0 hit points"',
+      '"R30\' Willing targets become CR 4, Large or smaller beasts for concentration up to 24 hr or until reduced to 0 hit points"',
   'Animate Dead':
     'School=Necromancy ' +
     'Level=C3,W3 ' +
     'AtHigherLevels="animates +2 undead" ' +
     'Description=' +
-      '"R10\' Bones or the corpse of a Medium or Small creature becomes a skeleton or zombie that obeys commands when within 60\' for 1 day"',
+      '"R10\' Bones or the corpse of a Medium or Small humanoid becomes a skeleton or zombie that obeys commands when within 60\' for 24 hr"',
   'Animate Objects':
     'School=Transmutation ' +
     'Level=B5,S5,W5 ' +
     'AtHigherLevels="animates +2 objects" ' +
     'Description=' +
-      '"R120\' 10 small, 5 medium, 2 large, or 1 huge objects obey mental commands when within 500\' for concentration up to 1 min"',
+      '"R120\' 10 Tiny (20 hit points; armor class 15; +8 slam inflicts 1d4+4 HP bludgeoning) or Small (25 hit points; armor class 16; +6 slam inflicts 1d8+2 HP), 5 Medium (40 hit points; armor class 13; +5 slam inflicts 2d6+1 HP), 2 Large (50 hit points; armor class 10; +6 slam inflicts 2d10+2 HP), or 1 Huge (80 hit points; armor class 10; +8 slam inflicts 2d12+4 HP) objects obey mental commands when within 500\' for concentration up to 1 min"',
   'Antilife Shell':
     'School=Abjuration ' +
     'Level=D5 ' +
@@ -1788,7 +1788,7 @@ SRD5E.SPELLS = {
     'School=Enchantment ' +
     'Level=D8,W8 ' +
     'Description=' +
-      '"R60\' Target object or 200\' cubic area repels or attracts specified creatures for 10 days"',
+      '"R60\' Target creature, object, or 200\' cubic area repels or attracts specified creature type for 10 days"',
   'Arcane Eye':
     'School=Divination ' +
     'Level=W4 ' +
@@ -1799,12 +1799,12 @@ SRD5E.SPELLS = {
     'Level=W5 ' +
     'AtHigherLevels="inflicts +2d8 HP force and +2d6 HP bludgeoning" ' +
     'Description=' +
-      '"R120\' Large force hand (Armor Class 20, %{hitPoints} hit points, Strength 26, Dexterity 10) can move 60\' per rd and can punch (inflicts 4d8 HP force), push 5\' (save DC 26 Athletics negates), grapple (may crush, inflicting 2d6+%{mdf} HP bludgeoning), and block for concentration up to 1 min"',
+      '"R120\' Large force hand (Armor Class 20, %{hitPoints} hit points, Strength 26, Dexterity 10) can move 60\' per rd and can punch (inflicts 4d8 HP force), push 5\' (save DC 26 Athletics negates), grapple (may crush, inflicting 2d6+%{mdf} HP bludgeoning), provide half cover, and inflict difficult terrain for concentration up to 1 min"',
   'Arcane Lock':
     'School=Abjuration ' +
     'Level=W2 ' +
     'Description=' +
-      '"Touched barrier opens only for designated creatures or a specified password; <i>Knock</i> suppresses the effects for 10 min"',
+      '"Touched barrier opens only for designated creatures or a specified password"',
   'Arcane Sword':
     'School=Evocation ' +
     'Level=B7,W7 ' +
@@ -1814,7 +1814,7 @@ SRD5E.SPELLS = {
     'School=Illusion ' +
     'Level=W2 ' +
     'Description=' +
-      '"Divinations on a willing target report false information for 24 hr"',
+      '"Magic cast on a willing target reports false auras and takes effect as a different creature type for 24 hr"',
   'Astral Projection':
     'School=Necromancy ' +
     'Level=C9,K9,W9 ' +
@@ -2885,7 +2885,7 @@ SRD5E.SPELLS = {
     'Level=B5,C5,D5,W5 ' +
     'AtHigherLevels="extends the duration to 10, 30, 180, or 366 days at level 6, 7, 8, or 9" ' +
     'Description=' +
-      '"R60\' Binds a celestial, elemental, fey, or fiend to service (save Charisma negates) for 1 day"',
+      '"R60\' Binds a celestial, elemental, fey, or fiend to service (save Charisma negates) for 24 hr"',
   'Plane Shift':
     'School=Conjuration ' +
     'Level=C7,D7,K7,S7,W7 ' +
@@ -3274,7 +3274,7 @@ SRD5E.SPELLS = {
     'School=Conjuration ' +
     'Level=D6 ' +
     'Description=' +
-      '"R10\' Allows creatures to teleport from a large plant target to another for 1 rd"',
+      '"R10\' Allows creatures to teleport from a Large plant target to another for 1 rd"',
   'Tree Stride':
     'School=Conjuration ' +
     'Level=D5,R5 ' +

@@ -1654,84 +1654,58 @@ SRD5E2024.SKILLS = Object.assign({}, SRD5E.SKILLS);
 // appropriate caster level and ability modifier.
 SRD5E2024.SPELLS_CHANGED = {
 
-  'Aura Of Life':
-    'School=Abjuration ' +
-    'Level=C4,P4 ' +
-    'Description="TODO"',
-  'Befuddlement':
-    'School=Enchantment ' +
-    'Level=B8,D8,K8,W8 ' +
-    'Description="TODO"',
-  'Charm Monster':
-    'School=Enchantment ' +
-    'Level=B4,D4,K4,S4,W4 ' +
-    'AtHigherLevels="affects +1 target" ' +
-    'Description="TODO"',
-  'Chromatic Orb':
-    'School=Evocation ' +
-    'Level=S1,W1 ' +
-    'AtHigherLevels="inflicts +1d8 HP and can leap +1 times" ' +
-    'Description="TODO"',
-  'Dissonant Whispers':
-    'School=Enchantment ' +
-    'Level=B1 ' +
-    'AtHigherLevels="inflicts +1d6 HP" ' +
-    'Description="TODO"',
-  'Divine Smite':
-    'School=Evocation ' +
-    'Level=P1 ' +
-    'AtHigherLevels="inflicts +1d8 HP" ' +
-    'Description="Cast as a bonus action after hitting a target, causes the attack inflict +2d8 HP radiant, or +3d8 HP radiant on a fiend or undead"',
-  "Dragon's Breath":
-    'School=Transmutation ' +
-    'Level=S2,W2 ' +
-    'AtHigherLevels="inflicts +1d6 HP" ' +
-    'Description="TODO"',
-  'Elementalism':
-    'School=Transmutation ' +
-    'Level=D0,S0,W0 ' +
-    'Description="TODO"',
-  'Ensnaring Strike':
-    'School=Conjuration ' +
-    'Level=R1 ' +
-    'AtHigherLevels="inflicts +1d6 HP" ' +
-    'Description="TODO"',
-  'Hex':
-    'School=Enchantment ' +
-    'Level=K1 ' +
-    'AtHigherLevels="increases duration to 4 hr, 8 hr, or 24 hr at level 2, 3, or 5" ' +
-    'Description="TODO"',
-
-  'Power Word Heal':
-    'School=Enchantment ' +
-    'Level=B9,C9 ' +
-    'Description="TODO"',
-  'Ray Of Sickness':
-    'School=Necromancy ' +
-    'Level=S1,W1 ' +
-    'AtHigherLevels="inflicts +1d8 HP" ' +
-    'Description="R60\' Ranged spell inflicts 2d8 HP poison and poisoned for 1 rd"',
-  'Summon Dragon':
-    'School=Conjuration ' +
-    'Level=W5 ' +
-    'Description="TODO"',
-
   'Acid Splash':
     SRD5E.SPELLS['Acid Splash']
-    .replace('Conjuration', 'Evocation'),
+    .replace('Conjuration', 'Evocation')
+    .replace('on a single target or 2 adjacent targets', 'in a 5\' radius'),
   'Aid':
     SRD5E.SPELLS.Aid
     .replace('C2,P2', 'B2,C2,D2,P2,R2'),
+  'Alter Self':
+    SRD5E.SPELLS['Alter Self']
+    .replaceAll('strengthModifier+1', 'mdf+1'),
+  'Animal Messenger':
+    SRD5E.SPELLS['Animal Messenger']
+    .replace('moves', 'moves (save Charisma negates; CR greater than 0 automatically succeeds)'),
+  'Animal Shapes':
+    SRD5E.SPELLS['Animal Shapes']
+    .replace('beasts', 'beasts, gaining temporary hit points appropriate to the animal,'),
+  'Animate Objects':
+    SRD5E.SPELLS['Animate Objects']
+    .replace(/10 Tiny.*objects/, '%{mdf} Medium (10 hit points; armor class 15; +%{mdf} attack inflicts 1d4+3 force), %{mdf//2} Large (20 hit points; armor class 15; +%{mdf} attack inflicts 2d6+%{mdf+3} HP), or %{mdf//3} Huge (40 hit points, armor class 15; +%{mdf} attack inflicts 2d12+%{mdf+3} HP) objects'),
   'Antipathy/Sympathy':
     SRD5E.SPELLS['Antipathy/Sympathy']
-    .replace('D8,W8', 'B8,D8,W8'),
+    .replace('D8,W8', 'B8,D8,W8')
+    .replace(/, object.*repels/, ' repels'),
+  'Arcane Hand':
+    SRD5E.SPELLS['Arcane Hand']
+    .replace('4d8', '5d8')
+    .replace('DC 26 Athletics', 'Strength')
+    .replace('2d6', '4d6'),
+  'Arcane Sword':
+    SRD5E.SPELLS['Arcane Sword']
+    .replace('3d10', '4d12')
+    .replace('20', '30'),
   'Augury':
     SRD5E.SPELLS.Augury
     .replace('C2', 'C2,D2,W2'),
+  'Aura Of Life': // new
+    'School=Abjuration ' +
+    'Level=C4,P4 ' +
+    'Description="30\' radius gives allies resistance to necrotic"',
+  'Aura Of Life': // ref PHB5E
+    'School=Abjuration ' +
+    'Level=C4,P4 ' +
+    'Description=' +
+      '"30\' radius gives allies resistance to necrotic damage and immunity to maximum hit point reduction, and raises those with 0 hit points to 1 hit point, for concentration up to 10 min"',
 
   'Bane':
     SRD5E.SPELLS.Bane
     .replace('B1,C1', 'B1,C1,K1'),
+  'Befuddlement': // new
+    'School=Enchantment ' +
+    'Level=B8,D8,K8,W8 ' +
+    'Description="TODO"',
   'Blindness/Deafness':
     SRD5E.SPELLS['Blindness/Deafness']
     .replace('Necromancy', 'Transmutation'),
@@ -1744,6 +1718,16 @@ SRD5E2024.SPELLS_CHANGED = {
       '"Next successful self weapon attack inflicts +2d6 HP radiant and lights the target for concentration up to 1 min"',
 */
 
+  'Charm Monster': // new
+    'School=Enchantment ' +
+    'Level=B4,D4,K4,S4,W4 ' +
+    'AtHigherLevels="affects +1 target" ' +
+    'Description="TODO"',
+  'Chromatic Orb': // new
+    'School=Evocation ' +
+    'Level=S1,W1 ' +
+    'AtHigherLevels="inflicts +1d8 HP and can leap +1 times" ' +
+    'Description="TODO"',
   'Circle Of Death':
     SRD5E.SPELLS['Circle Of Death']
     .replaceAll('d6', 'd8'),
@@ -1779,25 +1763,49 @@ SRD5E2024.SPELLS_CHANGED = {
   'Dispel Magic':
     SRD5E.SPELLS['Dispel Magic']
     .replace('B3,C3,D3,K3,P3,S3,W3', 'B3,C3,D3,K3,P3,R3,S3,W3'),
+  'Dissonant Whispers': // new
+    'School=Enchantment ' +
+    'Level=B1 ' +
+    'AtHigherLevels="inflicts +1d6 HP" ' +
+    'Description="TODO"',
   'Divination':
     SRD5E.SPELLS.Divination
     .replace('C4', 'C4,D4,W4'),
   'Divine Favor':
     SRD5E.SPELLS['Divine Favor']
     .replace('Evocation', 'Transmutation'),
+  'Divine Smite': // new
+    'School=Evocation ' +
+    'Level=P1 ' +
+    'AtHigherLevels="inflicts +1d8 HP" ' +
+    'Description="Cast as a bonus action after hitting a target, causes the attack inflict +2d8 HP radiant, or +3d8 HP radiant on a fiend or undead"',
   'Dominate Beast':
     SRD5E.SPELLS['Dominate Beast']
     .replace('D4,S4', 'D4,R4,S4'),
+  "Dragon's Breath": // new
+    'School=Transmutation ' +
+    'Level=S2,W2 ' +
+    'AtHigherLevels="inflicts +1d6 HP" ' +
+    'Description="TODO"',
 
   'Earthquake':
     SRD5E.SPELLS.Earthquake
     .replace('Evocation', 'Transmutation'),
+  'Elementalism': // new
+    'School=Transmutation ' +
+    'Level=D0,S0,W0 ' +
+    'Description="TODO"',
   'Enhance Ability':
     SRD5E.SPELLS['Enhance Ability']
     .replace('B2,C2,D2,S2', 'B2,C2,D2,R2,S2,W2'),
   'Enlarge/Reduce':
     SRD5E.SPELLS['Enlarge/Reduce']
     .replace('S2,W2', 'B2,D2,S2,W2'),
+  'Ensnaring Strike': // new
+    'School=Conjuration ' +
+    'Level=R1 ' +
+    'AtHigherLevels="inflicts +1d6 HP" ' +
+    'Description="TODO"',
   'Entangle':
     SRD5E.SPELLS.Entangle
     .replace('D1', 'D1,R1'),
@@ -1874,638 +1882,165 @@ SRD5E2024.SPELLS_CHANGED = {
   "Heroes' Feast":
     SRD5E.SPELLS["Heroes' Feast"]
     .replace('C6,D6', 'B6,C6,D6'),
+  'Hex': // new
+    'School=Enchantment ' +
+    'Level=K1 ' +
+    'AtHigherLevels="increases duration to 4 hr, 8 hr, or 24 hr at level 2, 3, or 5" ' +
+    'Description="TODO"',
   'Hideous Laughter':
     SRD5E.SPELLS['Hideous Laughter']
     .replace('B1,W1', 'B1,K1,W1'),
 
+  'Ice Knife': // new
+    'School=Conjuration ' +
+    'Level=D1,S1,W1 '+
+    'AtHigherLevels="inflicts +1d6 HP cold" ' +
+    'Description="R60\' Spell attack inflicts 1d10 piercing on a hit, plus 2d6 HP cold (save Dexterity negates) in a 5\' radius"',
   'Ice Storm':
-    'School=Evocation ' +
-    'Level=D4,S4,W4 ' +
-    'AtHigherLevels="inflicts +1d8 HP bludgeoning" ' +
-    'Description=' +
-      '"R300\' 20\' radius inflicts 2d8 HP bludgeoning and 4d6 HP cold (save Dexterity half) and becomes difficult terrain for 1 rd"',
-  'Identify':
-    'School=Divination ' +
-    'Level=B1,W1 ' +
-    'Ritual=true ' +
-    'Description="Reveals the magic properties or spells affecting touched"',
-  'Illusory Script':
-    'School=Illusion ' +
-    'Level=B1,K1,W1 ' +
-    'Ritual=true ' +
-    'Description=' +
-      '"Self writing on target material becomes legible only to specified creatures for 10 days"',
-  'Imprisonment':
-    'School=Abjuration ' +
-    'Level=K9,W9 ' +
-    'Description=' +
-      '"R30\' Restrains the target in a chosen type of prison (save Wisdom negates)"',
+    SRD5E.SPELLS['Ice Storm']
+    .replaceAll('d8', 'd10'),
   'Incendiary Cloud':
-    'School=Conjuration ' +
-    'Level=S8,W8 ' +
-    'Description=' +
-      '"R150\' 20\' radius inflicts 10d8 HP fire (save Dexterity half), obscures, and moves away 10\' per rd for concentration up to 1 min"',
-  'Inflict Wounds':
-    'School=Necromancy ' +
-    'Level=C1 ' +
-    'AtHigherLevels="inflicts +1d10 HP" ' +
-    'Description="Touch inflicts 3d10 HP necrotic"',
-  'Insect Plague':
-    'School=Conjuration ' +
-    'Level=C5,D5,S5 ' +
-    'AtHigherLevels="inflicts +1d10 HP" ' +
-    'Description=' +
-      '"R300\' 20\' radius inflicts 4d10 HP piercing (save Constitution half) for concentration up to 10 min"',
-  'Instant Summons':
-    'School=Conjuration ' +
-    'Level=W6 ' +
-    'Ritual=true ' +
-    'Description=' +
-      '"Prepares a 10 lb item to teleport to self when desired; if the item is held when summoned, the spell instead reveals the possessor"',
-  'Invisibility':
-    'School=Illusion ' +
-    'Level=B2,K2,S2,W2 ' +
-    'AtHigherLevels="affects +1 target" ' +
-    'Description=' +
-      '"Touched becomes invisible for concentration up to 1 hr; target attacking or casting ends"',
-  'Irresistible Dance':
-    'School=Enchantment ' +
-    'Level=B6,W6 ' +
-    'Description=' +
-      '"R30\' Target suffers disadvantage on Dexterity and attacks, and foes gain advantage on attacks, (save Wisdom ends) for concentration up to 1 min"',
+    SRD5E.SPELLS['Incendiary Cloud']
+    .replace('S8,W8', 'D8,S8,W8'),
 
-  'Jump':
-    'School=Transmutation ' +
-    'Level=D1,R1,S1,W1 ' +
-    'Description="Touched gains triple jump distance for 1 min"',
-
-  'Knock':
-    'School=Transmutation ' +
-    'Level=B2,S2,W2 ' +
-    'Description=' +
-      '"R60\' Unlocks, unsticks, or unbars the target or suppresses <i>Arcane Lock</i> for 10 min"',
-
-  'Legend Lore':
-    'School=Divination ' +
-    'Level=B5,C5,W5 ' +
-    'Description="Reveals info about a specified person, place, or object"',
-  'Lesser Restoration':
-    'School=Abjuration ' +
-    'Level=B2,C2,D2,P2,R2 ' +
-    'Description=' +
-      '"Touched recovers from a choice of blindness, deafness, disease, paralysis, or poison"',
-  'Levitate':
-    'School=Transmutation ' +
-    'Level=S2,W2 ' +
-    'Description=' +
-      '"R60\' Target floats (save Constitution negates) and can be moved up or down 20\' each rd for concentration up to 10 min"',
-  'Light':
-    'School=Evocation ' +
-    'Level=B0,C0,S0,W0 ' +
-    'Description=' +
-      '"Touched object lights a 20\' radius (save Dexterity negates) for 1 hr"',
-  'Lightning Bolt':
-    'School=Evocation ' +
-    'Level=S3,W3 ' +
-    'AtHigherLevels="inflicts +1d6 HP" ' +
-    'Description="100\'x5\' line inflicts 8d6 HP lightning (save Dexterity half) and ignites unattended flammable objects"',
-  'Locate Animals Or Plants':
-    'School=Divination ' +
-    'Level=B2,D2,R2 ' +
-    'Ritual=true ' +
-    'Description=' +
-      '"Reveals the location within 5 miles of a specified kind of beast or plant"',
-  'Locate Creature':
-    'School=Divination ' +
-    'Level=B4,C4,D4,P4,R4,W4 ' +
-    'Description=' +
-      '"Reveals the location of a specified creature or species within 1000\' for concentration up to 1 hr; running water blocks"',
-  'Locate Object':
-    'School=Divination ' +
-    'Level=B2,C2,D2,P2,R2,W2 ' +
-    'Description=' +
-      '"Reveals the location of a specified object or type within 1000\' for concentration up to 10 min; lead blocks"',
-  'Longstrider':
-    'School=Transmutation ' +
-    'Level=B1,D1,R1,W1 ' +
-    'AtHigherLevels="affects +1 target" ' +
-    'Description="Touched gains +10\' Speed for 1 hr"',
-
-  'Mage Armor':
-    'School=Abjuration ' +
-    'Level=S1,W1 ' +
-    'Description=' +
-      '"Willing, unarmored touched gains AC 13 + Dexterity modifier for 8 hr; the spell ends if the target dons armor"',
-  'Mage Hand':
-    'School=Conjuration ' +
-    'Level=B0,K0,S0,W0 ' +
-    'Description=' +
-      '"R30\' Spectral hand performs minor tasks, moving up to 10 lb, for 1 min"',
-  'Magic Circle':
-    'School=Abjuration ' +
-    'Level=C3,K3,P3,W3 ' +
-    'AtHigherLevels="extends the duration +1 hr" ' +
-    'Description=' +
-      '"R10\' 10\' radius prevents a choice of physical entry or exit (save Charisma allows magical transit), inflicts disadvantage on attacks, and negates charm, fright, and possession by one or more choices of celestials, fey, fiends, or undead, for 1 hr"',
-  'Magic Jar':
-    'School=Necromancy ' +
-    'Level=W6 ' +
-    'Description=' +
-      '"R100\' Moves self soul to a prepared jar from which it can possess a target\'s body and trap its soul in the jar (save Charisma negates)"',
-  'Magic Missile':
-    'School=Evocation ' +
-    'Level=S1,W1 ' +
-    'AtHigherLevels="creates +1 dart" ' +
-    'Description="R120\' 3 darts inflict 1d4+1 HP force each"',
-  'Magic Mouth':
-    'School=Illusion ' +
-    'Level=B2,W2 ' +
-    'Ritual=true ' +
-    'Description="R30\' Target object speaks a 25-word message when triggered"',
   'Magic Weapon':
-    'School=Transmutation ' +
-    'Level=P2,W2 ' +
-    'AtHigherLevels="gives a +2 or +3 bonus at level 4 or 6" ' +
-    'Description="Gives touched weapon a +1 magic bonus for concentration up to 1 hr"',
-  'Magnificent Mansion':
-    'School=Conjuration ' +
-    'Level=B7,W7 ' +
-    'Description=' +
-      '"R300\' Self and designated creatures can enter an extradimensional dwelling containing provisions for 100 people for 1 day"',
+    SRD5E.SPELLS['Magic Weapon']
+    .replace('P2,W2', 'P2,R2,S2,W2')
+    .replace('level 4', 'level 3'),
   'Major Image':
-    'School=Illusion ' +
-    'Level=B3,K3,S3,W3 ' +
-    'AtHigherLevels="extends the duration to permanent at level 6" ' +
-    'Description=' +
-      '"R120\' Creates a 20\' cube sight, sound, and touch illusion (Investigation detects) for concentration up to 10 min"',
+    SRD5E.SPELLS['Major Image']
+    .replace('level 6', 'level 4'),
   'Mass Cure Wounds':
-    'School=Evocation ' + // from errata
-    'Level=B5,C5,D5 ' +
-    'AtHigherLevels="restores +1d8 HP" ' +
-    'Description="R60\' 6 targets in a 30\' radius regain 3d8+%{mdf} HP"',
+    SRD5E.SPELLS['Mass Cure Wounds']
+    .replace('Evocation', 'Abjuration'),
   'Mass Heal':
-    'School=Evocation ' + // from errata
-    'Level=C9 ' +
-    'Description=' +
-      '"R60\' Targets regain 700 HP total and recover from blindness, deafness, and disease"',
+    SRD5E.SPELLS['Mass Heal']
+    .replace('Evocation', 'Abjuration'),
   'Mass Healing Word':
-    'School=Evocation ' +
-    'Level=C3 ' +
-    'AtHigherLevels="restores +1d4 HP" ' +
-    'Description="R60\' 6 targets regain 1d4+%{mdf} HP"',
+    SRD5E.SPELLS['Mass Healing Word']
+    .replace('Evocation', 'Abjuration')
+    .replace('C3', 'B3,C3'),
   'Mass Suggestion':
-    'School=Enchantment ' +
-    'Level=B6,K6,S6,W6 ' +
-    'AtHigherLevels="extends the duration to 10, 30, or 366 days at level 7, 8, or 9" ' +
-    'Description=' +
-      '"R60\' 12 targets follow a reasonable suggestion (save Wisdom negates) for 1 day"',
-  'Maze':
-    'School=Conjuration ' +
-    'Level=W8 ' +
-    'Description=' +
-      '"R60\' Sends the target to a labyrinthine demiplane (save DC 20 Intelligence escapes; minotaurs and goristro demons automatically succeed) for concentration up to 10 min"',
+    SRD5E.SPELLS['Mass Suggestion']
+    .replace('B6,K6,S6,W6', 'B6,S6,W6'),
   'Meld Into Stone':
-    'School=Transmutation ' +
-    'Level=C3,D3 ' +
-    'Ritual=true ' +
-    'Description=' +
-      '"Self steps into rock, losing sight and muffling hearing but allowing casting spells on self, for up to 8 hr"',
-  'Mending':
-    'School=Transmutation ' +
-    'Level=B0,C0,D0,S0,W0 ' +
-    'Description="Touch repairs a break or tear up to 1 ft"',
+    SRD5E.SPELLS['Meld Into Stone']
+    .replace('C3,D3', 'C3,D3,R3'),
   'Message':
-    'School=Transmutation ' +
-    'Level=B0,S0,W0 ' +
-    'Description=' +
-      '"R120\' Self and target can hold a whispered conversation for 1 rd"',
-  'Meteor Swarm':
-    'School=Evocation ' +
-    'Level=S9,W9 ' +
-    'Description=' +
-      '"R1 mile 4 40\' radius areas each inflict 20d6 HP fire and 20d6 HP bludgeoning (save Dexterity half) and ignite unattended flammable objects"',
-  'Mind Blank':
-    'School=Abjuration ' +
-    'Level=B8,W8 ' +
-    'Description=' +
-      '"Touched gains immunity to psychic damage, emotion and thought detection, divination, and charm for 1 day"',
-  'Minor Illusion':
-    'School=Illusion ' +
-    'Level=B0,K0,S0,W0 ' +
-    'Description=' +
-      '"R30\' Creates the sound of 1 creature or a 5\' cube image (Investigation detects) for 1 min"',
-  'Mirage Arcane':
-    'School=Illusion ' +
-    'Level=B7,D7,W7 ' +
-    'Description="Creates 1 mile sq of illusionary terrain for 10 days"',
+    SRD5E.SPELLS.Message
+    .replace('B0,S0,W0', 'B0,D0,S0,W0'),
+  'Mind Spike': // new
+    'School=Divination ' +
+    'Level=K2,S2,W2 ' +
+    'AtHigherLevels="inflicts +1d8 HP" ' +
+    'Description="R120\' Inflicts 3d8 HP psychic and reveals the target\'s location for concentration up to 1 hr (save Wisdom half HP only)"',
   'Mirror Image':
-    'School=Illusion ' +
-    'Level=K2,S2,W2 ' +
-    'Description=' +
-      '"3 duplicates (AC %{10+dexterityModifier}; damage destroys) allow misdirecting attacks on self for 1 min with an 11, 8, or 6 on a d20 while 1, 2, or 3 duplicates remain"',
+    SRD5E.SPELLS['Mirror Image']
+    .replace('K2,S2,W2', 'B2,K2,S2,W2'),
   'Mislead':
+    SRD5E.SPELLS.Mislead
+    .replace('B5,W5', 'B5,K5,W5'),
+
+  'Phantasmal Force': // ref PHB5E
     'School=Illusion ' +
-    'Level=B5,W5 ' +
+    'Level=B2,"K2 [The Archfey]","K2 [The Great Old One]",S2,W2 ' +
     'Description=' +
-      '"Makes self invisible and creates an illusory duplicate that can move %{speed*2}\' and share senses for concentration up to 1 hr; attacking or casting ends"',
-  'Misty Step':
-    'School=Conjuration ' +
-    'Level=K2,S2,W2 ' +
-    'Description="Teleports self 30\'"',
-  'Modify Memory':
-    'School=Enchantment ' +
-    'Level=B5,W5 ' +
-    'AtHigherLevels=' +
-      '"changes the memory of an event from the past 7, 30, 365, or unlimited days at level 6, 7, 8, or 9" ' +
-    'Description=' +
-      '"R30\' Changes the target\'s memory of an event from the past 24 hr (save Wisdom negates)"',
-  'Moonbeam':
-    'School=Evocation ' +
-    'Level=D2 ' +
-    'AtHigherLevels="inflicts +1d10 HP" ' +
-    'Description=' +
-      '"R120\' 5\' radius inflicts 2d10 HP radiant (save Constitution half; shapechangers have disadvantage and revert form on failure) and can move 60\' per rd for concentration up to 1 min"',
-  'Move Earth':
-    'School=Transmutation ' +
-    'Level=D6,S6,W6 ' +
-    'Description=' +
-      '"R120\' Reshapes a 40\' cube of earth each 10 minutes for concentration up to 2 hr"',
-
-  'Nondetection':
-    'School=Abjuration ' +
-    'Level=B3,R3,W3 ' +
-    'Description=' +
-      '"Willing touched or touched object gains immunity to divination for 8 hr"',
-
-  'Pass Without Trace':
-    'School=Abjuration ' +
-    'Level=D2,R2 ' +
-    'Description=' +
-      '"Targets in a 30\' radius gain +10 Stealth and become trackable only by magic for concentration up to 1 hr"',
-  'Passwall':
-    'School=Transmutation ' +
-    'Level=W5 ' +
-    'Description=' +
-      '"R30\' Creates a 5\'x8\'x20\' passage through wood, plaster, or stone for 1 hr"',
+      '"R60\' Target perceives an illusion (save Intelligence negates; Investigation ends) that can inflict 1d6 HP psychic per rd for concentration up to 1 min"',
   'Phantasmal Killer':
-    'School=Illusion ' +
-    'Level=W4 ' +
-    'AtHigherLevels="inflicts +1d10 HP" ' +
-    'Description=' +
-      '"R120\' Target perceives a personal horror (save Wisdom negates) that frightens and inflicts 4d10 HP psychic per rd (save Wisdom ends) for concentration up to 1 min"',
-  'Phantom Steed':
-    'School=Illusion ' +
-    'Level=W3 ' +
-    'Ritual=true ' +
-    'Description=' +
-      '"R30\' Conjures a mount that can be ridden by a designated creature 100\' per rd (13 MPH) for 1 hr or until damaged"',
-  'Planar Ally':
-    'School=Conjuration ' +
-    'Level=C6 ' +
-    'Description="R60\' Bargains for service from an otherworldly entity"',
+    SRD5E.SPELLS['Phantasmal Killer']
+    .replace('W4', 'B4,W4'),
   'Planar Binding':
-    'School=Abjuration ' +
-    'Level=B5,C5,D5,W5 ' +
-    'AtHigherLevels="extends the duration to 10, 30, 180, or 366 days at level 6, 7, 8, or 9" ' +
-    'Description=' +
-      '"R60\' Binds a celestial, elemental, fey, or fiend to service (save Charisma negates) for 1 day"',
-  'Plane Shift':
-    'School=Conjuration ' +
-    'Level=C7,D7,K7,S7,W7 ' +
-    'Description=' +
-      '"Target (save Charisma negates) or self and 8 willing others travel to another plane"',
-  'Plant Growth':
-    'School=Transmutation ' +
-    'Level=B3,D3,R3 ' +
-    'Description=' +
-      '"R150\' Causes plants in a 100\' radius to overgrow or enriches a 1/2 mile radius for 1 year"',
+    SRD5E.SPELLS['Planar Binding']
+    .replace('B5,C5,D5,W5', 'B5,C5,D5,K5,W5'),
   'Poison Spray':
-    'School=Conjuration ' +
-    'Level=D0,K0,S0,W0 ' +
-    'Description=' +
-      '"R10\' Inflicts %{(level+7)//6}d12 HP poison (save Constitution negates)"',
-  'Polymorph':
-    'School=Transmutation ' +
-    'Level=B4,D4,S4,W4 ' +
-    'Description=' +
-      '"R60\' Transforms the target creature (save Wisdom negates; shapechangers automatically succeed) for concentration up to 1 hr or until reduced to 0 HP"',
-  'Power Word Kill':
+    SRD5E.SPELLS['Poison Spray']
+    .replace('Conjuration', 'Necromancy'),
+  'Power Word Heal': // ref PHB5E
     'School=Enchantment ' +
-    'Level=B9,K9,S9,W9 ' +
+    'Level=B9,C9 ' +
     'Description=' +
-      '"R60\' Kills a target with up to 100 hit points; others are unaffected"',
-  'Power Word Stun':
-    'School=Enchantment ' +
-    'Level=B8,K8,S8,W8 ' +
-    'Description=' +
-      '"R60\' Stuns a target with up to 150 HP (save Constitution ends); others are unaffected"',
+      '"R60\' Target regains all hit points, recovers from charm, fright, paralysis, poison, and stunning, and can use a reaction to stand from prone"',
   'Prayer Of Healing':
-    'School=Evocation ' +
-    'Level=C2 ' +
-    'AtHigherLevels="restores +1d8 hit points" ' +
-    'Description="R30\' 6 targets regain 2d8+%{mdf} hit points"',
-  'Prestidigitation':
-    'School=Transmutation ' +
-    'Level=B0,K0,S0,W0 ' +
-    'Description="R10\' Creates minor magic effects for 1 hr"',
+    SRD5E.SPELLS['Prayer Of Healing']
+    .replace('C2', 'C2,P2'),
   'Prismatic Spray':
-    'School=Evocation ' +
-    'Level=S7,W7 ' +
-    'Description=' +
-      '"60\' cone randomly inflicts one of: 10d6 HP fire, acid, lightning, poison, or cold (save Dexterity half); restrained (save Dexterity negates) and petrified after 3 failed Constitution saves (3 successes negates); blinded (save Dexterity negates) and banished to another plane (save Wisdom negates)"',
+    SRD5E.SPELLS['Prismatic Spray']
+    .replace('S7,W7', 'B7,S7,W7'),
   'Prismatic Wall':
-    'School=Abjuration ' +
-    'Level=W9 ' +
-    'Description=' +
-      '"R60\' 90\'x30\' area blinds within 20\' for 1 min (save Constitution negates); creatures passing through suffer 10d6 HP each fire, acid, lightning, poison, and cold (save Dexterity half), restraint (save Dexterity negates) and petrification after 3 failed Constitution saves (3 successes negates), and blindness (save Dexterity negates) and banishment to another plane (save Wisdom negates)"',
-  'Private Sanctum':
-    'School=Abjuration ' +
-    'Level=W4 ' +
-    'AtHigherLevels="increases the protected area by 100\'" ' +
-    'Description=' +
-      '"R120\' Protects up to 100\' sq from choices of sound, vision, divination, teleportation, and planar travel for 1 day; casting daily for 1 year makes the effects permanent"',
-  'Produce Flame':
-    'School=Conjuration ' +
-    'Level=D0 ' +
-    'Description=' +
-      '"Lights a 10\' radius for 10 min; can be used for a ranged spell attack that inflicts %{(level+7)//6}d8 HP and ends the spell"',
-  'Programmed Illusion':
-    'School=Illusion ' +
-    'Level=B6,W6 ' +
-    'Description=' +
-      '"R120\' Creates a 30\' cube illusion when triggered (Investigation detects)"',
-  'Project Image':
-    'School=Illusion ' +
-    'Level=B7,W7 ' +
-    'Description=' +
-      '"R500 miles Self can see, hear, and speak through an illusory double (Investigation detects) created in a familiar place for concentration up to 1 day"',
-  'Protection From Energy':
-    'School=Abjuration ' +
-    'Level=C3,D3,R3,S3,W3 ' +
-    'Description="Touched gains resistance to a choice of acid, cold, fire, lightning, or thunder damage for concentration up to 1 hr"',
+    SRD5E.SPELLS['Prismatic Wall']
+    .replace('W9', 'B9,W9'),
   'Protection From Evil And Good':
-    'School=Abjuration ' +
-    'Level=C1,K1,P1,W1 ' +
-    'Description=' +
-      '"Willing touched gains immunity to charm, fright, and possession from aberrations, celestials, elementals, fey, fiends, and undead and advantage on saves vs. existing conditions for concentration up to 10 min; those creatures also suffer disadvantage on attacks on the target"',
-  'Protection From Poison':
-    'School=Abjuration ' +
-    'Level=C2,D2,P2,R2 ' +
-    'Description=' +
-      '"Touched recovers from 1 poison and gains advantage on saves vs. poison and resistance to poison damage for 1 hr"',
-  'Purify Food And Drink':
-    'School=Transmutation ' +
-    'Level=C1,D1,P1 ' +
-    'Ritual=true ' +
-    'Description=' +
-      '"R10\' Removes poison and disease from nonmagical food and drink in a 5\' radius"',
+    SRD5E.SPELLS['Protection From Evil And Good']
+    .replace('C1,K1,P1,W1', 'C1,D1,K1,P1,W1'),
 
-  'Raise Dead':
+  'Ray Of Sickness': // ref PHB5E
     'School=Necromancy ' +
-    'Level=B5,C5,P5 ' +
-    'Description=' +
-      '"Restores life with 1 hit point to and removes nonmagical diseases and poisons from a willing touched 10-day-old corpse; target suffers -4 attacks, saves, and ability checks, reduced by 1 for each long rest"',
-  'Ray Of Enfeeblement':
-    'School=Necromancy ' +
-    'Level=K2,W2 ' +
-    'Description=' +
-      '"R60\' Ranged spell inflicts half damage with Strength weapons (save Constitution ends) for concentration up to 1 min"',
-  'Ray Of Frost':
-    'School=Evocation ' +
-    'Level=S0,W0 ' +
-    'Description=' +
-      '"R60\' Ranged spell inflicts %{(level+7)//6}d8 HP cold and -10\' Speed for 1 rd"',
-  'Regenerate':
-    'School=Transmutation ' +
-    'Level=B7,C7,D7 ' +
-    'Description=' +
-      '"Touched regains 4d8+15 HP, plus 1 HP per rd for 1 hr, and reattaches or regrows severed parts after 2 min"',
-  'Reincarnate':
-    'School=Transmutation ' +
-    'Level=D5 ' +
-    'Description=' +
-      '"Resurrects the willing soul of a touched corpse in a new body"',
-  'Remove Curse':
-    'School=Abjuration ' +
-    'Level=C3,K3,P3,W3 ' +
-    'Description="Frees a touched creature from all curses or breaks the attunement to a touched cursed object"',
-  'Resilient Sphere':
-    'School=Evocation ' +
-    'Level=W4 ' +
-    'Description=' +
-      '"R30\' Traps the target in an impervious sphere (save Dexterity negates) for concentration up to 1 min"',
-  'Resistance':
-    'School=Abjuration ' +
-    'Level=C0,D0 ' +
-    'Description=' +
-      '"Touched gains +1d4 on 1 save within concentration up to 1 min"',
-  'Resurrection':
-    'School=Necromancy ' +
-    'Level=B7,C7 ' +
-    'Description=' +
-      '"Restores life with full hit points to and removes nonmagical diseases and poisons from a willing touched 100-year-old corpse; target suffers -4 attacks, saves, and ability checks, reduced by 1 for each long rest"',
-  'Reverse Gravity':
-    'School=Transmutation ' +
-    'Level=D7,S7,W7 ' +
-    'Description=' +
-      '"R100\' Items in a 50\' radius fall upward for concentration up to 1 min"',
-  'Revivify':
-    // errata changes school to Necromancy
-    'School=Necromancy ' +
-    'Level=C3,P3 ' +
-    'Description=' +
-      '"Restores life and 1 hit point to a touched 1-minute-old corpse"',
-  'Rope Trick':
-    'School=Transmutation ' +
-    'Level=W2 ' +
-    'Description=' +
-      '"Touched rope leads to an extradimensional space with room for 8 creatures for 1 hr"',
-
-  'Sacred Flame':
-    'School=Evocation ' +
-    'Level=C0 ' +
-    'Description=' +
-      '"R60\' Inflicts %{(level+7)//6}d8 HP radiant (save Dexterity negates)"',
-  'Sanctuary':
-    'School=Abjuration ' +
-    'Level=C1 ' +
-    'Description=' +
-      '"R30\' Foes of the target cannot attack it (save Wisdom negates) for 1 min; target attacking ends"',
-  'Scorching Ray':
-    'School=Evocation ' +
-    'Level="K2 [The Fiend]",S2,W2 ' +
-    'AtHigherLevels="gives +1 ranged attack" ' +
-    'Description="R120\' 3 ranged attacks inflict 2d6 HP fire each"',
-  'Scrying':
-    'School=Divination ' +
-    'Level=B5,C5,D5,K5,W5 ' +
-    'Description=' +
-      '"Self sees and hears a chosen target (save Wisdom, modified by degree of familiarity, negates for 24 hr) for concentration up to 10 min"',
-  'Secret Chest':
-    'School=Conjuration ' +
-    'Level=W4 ' +
-    'Description=' +
-      '"Self can move a touched 12 cubic ft chest to and from the Ethereal Plane for 60+ days"',
-  'See Invisibility':
-    'School=Divination ' +
-    'Level=B2,S2,W2 ' +
-    'Description=' +
-      '"Reveals invisible and ethereal creatures and objects for 1 hr"',
-  'Seeming':
-    'School=Illusion ' +
-    'Level=B5,S5,W5 ' +
-    'Description=' +
-      '"R30\' Changes the appearance of targets (save Charisma negates; Investigation detects) for 8 hr"',
-  'Sending':
-    'School=Evocation ' +
-    'Level=B3,C3,W3 ' +
-    'Description="Self can exchange 25-word messages with a familiar target"',
-  'Sequester':
-    'School=Transmutation ' +
-    'Level=W7 ' +
-    'Description=' +
-      '"Touched object or willing creature becomes hidden and enters suspended animation until a specified trigger"',
-  'Shapechange':
-    'School=Transmutation ' +
-    'Level=D9,W9 ' +
-    'Description=' +
-      '"Polymorphs self into a familiar living creature of equal or lesser CR for concentration up to 1 hr or until reduced to 0 HP"',
-  'Shatter':
-    'School=Evocation ' +
-    'Level=B2,K2,S2,W2 ' +
-    'AtHigherLevels="inflicts +1d8 HP" ' +
-    'Description=' +
-      '"R60\' 10\' radius inflicts 3d8 HP thunder (save Constitution half; inorganic creatures have disadvantage)"',
-  'Shield':
-    'School=Abjuration ' +
     'Level=S1,W1 ' +
-    'Description=' +
-      '"Reaction gives +5 AC and immunity to <i>Magic Missile</i> until the next turn"',
-  'Shield Of Faith':
-    'School=Abjuration ' +
-    'Level=C1,P1 ' +
-    'Description="R60\' Target gains +2 AC for concentration up to 10 min"',
-  'Shillelagh':
-    'School=Transmutation ' +
-    'Level=D0 ' +
-    'Description=' +
-      '"Held club inflicts +%{proficiencyBonus+mdf} magical attacks and 1d8+%{mdf} HP damage for 1 min"',
-  'Shocking Grasp':
-    'School=Evocation ' +
-    'Level=S0,W0 ' +
-    'Description=' +
-      '"Touched suffers %{(level+7)//6}d8 HP lightning and loss of reactions until its next turn"',
-  'Silence':
-    'School=Illusion ' +
-    'Level=B2,C2,R2 ' +
-    'Ritual=true ' +
-    'Description=' +
-      '"R120\' 20\' radius blocks sound for concentration up to 10 min"',
-  'Silent Image':
-    'School=Illusion ' +
-    'Level=B1,S1,W1 ' +
-    'Description=' +
-      '"R60\' Creates a 15\' cube movable illusion (Investigation detects) for concentration up to 10 min"',
-  'Simulacrum':
-    'School=Illusion ' +
-    'Level=W7 ' +
-    'Description=' +
-      '"Uses snow to create an obedient copy of a target creature with half its hit points"',
-  'Sleep':
-    'School=Enchantment ' +
-    'Level=B1,S1,W1 ' +
-    'AtHigherLevels="affects +2d8 hit points of creatures" ' +
-    'Description=' +
-      '"R90\' 20\' radius puts to sleep 5d8 hit points of creatures, starting with those with the least hit points, for 1 min (damage or shaking wakens)"',
-  'Sleet Storm':
-    'School=Conjuration ' +
-    'Level=D3,S3,W3 ' +
-    'Description=' +
-      '"R150\' 40\' radius douses flames and inflicts difficult terrain and falling prone (save Dexterity negates) for concentration up to 1 min"',
-  'Slow':
-    'School=Transmutation ' +
-    'Level=S3,W3 ' +
-    'Description=' +
-      '"R120\' 6 targets in a 40\' cube suffer half Speed, -2 AC and Dexterity saves, loss of reactions, and no more than 1 action per rd (save Wisdom ends) for concentration up to 1 min"',
-  'Spare The Dying':
-    'School=Necromancy ' +
-    'Level=C0 ' +
-    'Description="Touched dying creature becomes stable"',
-  'Speak With Animals':
-    'School=Divination ' +
-    'Level=B1,D1,R1 ' +
-    'Ritual=true ' +
-    'Description="Self can talk with animals for 10 min"',
-  'Speak With Dead':
-    'School=Necromancy ' +
-    'Level=B3,C3 ' +
-    'Description=' +
-      '"R10\' Self can ask a corpse 5 questions; the corpse is then immune for 10 days "',
-  'Speak With Plants':
-    'School=Transmutation ' +
-    'Level=B3,D3,R3 ' +
-    'Description="Self can talk with and command plants for 10 min"',
-  'Spider Climb':
-    'School=Transmutation ' +
-    'Level=K2,S2,W2 ' +
-    'Description=' +
-      '"Touched can crawl on walls and ceilings for concentration up to 1 hr"',
-  'Spike Growth':
-    'School=Transmutation ' +
-    'Level=D2,R2 ' +
-    'Description=' +
-      '"R150\' 20\' radius becomes difficult terrain and inflicts 2d4 HP per 5\' movement for concentration up to 10 min"',
-  'Spirit Guardians':
-    'School=Conjuration ' +
-    'Level=C3 ' +
     'AtHigherLevels="inflicts +1d8 HP" ' +
     'Description=' +
-      '"15\' radius inflicts on foes 3d8 HP necrotic or radiant (save Wisdom half) and half Speed for concentration up to 10 min"',
-  'Spiritual Weapon':
+      '"R60\' Ranged spell inflicts 2d8 HP poison and poisoned for until the end of the next turn",',
+  'Reincarnate':
+    SRD5E.SPELLS.Reincarnate
+    .replace('Transmutation', 'Necromancy'),
+  'Resilient Sphere':
+    SRD5E.SPELLS['Resilient Sphere']
+    .replace('Evocation', 'Abjuration'),
+  'Revivify':
+    SRD5E.SPELLS.Revivify
+    .replace('C3,P3', 'C3,D3,P3,R3'),
+
+  'Searing Smite': // ref PHB5E
     'School=Evocation ' +
-    'Level=C2 ' +
-    'AtHigherLevels="inflicts +1d8 HP per 2 levels" ' +
+    'Level=P1 ' +
+    'AtHigherLevels="inflicts +1d6 HP initial" ' +
     'Description=' +
-      '"R60\' Creates a spectral weapon that inflicts 1d8+%{mdf} HP and can move 20\' and attack as a bonus action for 1 min"',
-  'Stinking Cloud':
-    'School=Conjuration ' +
-    'Level=B3,"K3 [The Fiend]",S3,W3 ' +
-    'Description=' +
-      '"R90\' 20\' radius inflicts loss of actions (save Constitution negates) for concentration up to 1 min"',
-  'Stone Shape':
+      '"Cast as a bonus action after a successful self weapon attack, inflicts +1d6 HP fire, plus 1d6 HP fire per rd (save Constitution ends) for 1 min"',
+  'Shatter':
+    SRD5E.SPELLS.Shatter
+    .replace('B2,K2,S2,W2', 'B2,S2,W2'),
+  'Shining Smite': // new
     'School=Transmutation ' +
-    'Level=C4,D4,W4 ' +
-    'Description="Reshapes touched 5\' cube of stone"',
+    'Level=P2 ' +
+    'AtHigherLevels="inflicts +1d6 HP" ' +
+    'Description="Cast as a bonus action after a successful self weapon attack, causes the target to emit a bright light, negating invisibility and giving its foes advantage on attacks"',
+  'Slow':
+    SRD5E.SPELLS.Slow
+    .replace('S3,W3', 'B3,S3,W3'),
+  'Sorcerous Burst':
+    'School=Evocation ' +
+    'Level=S0 ' +
+    'Description=' +
+      '"R60\' Ranged spell inflicts %{(level+7)//6}d8 HP of a choice of acid, cold, fire, lightning, poison, psychic, or thunder; rolled 8s on the damage allow adding up to +%{mdf}d8 damage"',
+  'Spare The Dying':
+    SRD5E.SPELLS['Spare The Dying']
+    .replace('C0', 'C0,D0'),
+  'Speak With Animals':
+    SRD5E.SPELLS['Speak With Animals']
+    .replace('B1,D1,R1', 'B1,D1,K1,R1'),
+  'Speak With Dead':
+    SRD5E.SPELLS['Speak With Dead']
+    .replace('B3,C3', 'B3,C3,W3'),
+  'Starry Wisp':
+    'School=Evocation ' +
+    'Level=B0,D0 ' +
+    'Description=' +
+      '"R60\' Ranged spell inflicts %{(level+7)//6}d8 HP radiant and a dim glow until the end of the next turn"',
   'Stoneskin':
-    'School=Abjuration ' +
-    'Level=D4,R4,S4,W4 ' +
-    'Description=' +
-      '"Touched gains resistance to bludgeoning, piercing, and slashing damage for concentration up to 1 hr"',
-  'Storm Of Vengeance':
+    SRD5E.SPELLS.Stoneskin
+    .replace('Abjuration', 'Transmutation'),
+  'Summon Dragon': // new
     'School=Conjuration ' +
-    'Level=D9 ' +
-    'Description=' +
-      '"360\' radius within sight inflicts 2d6 HP thunder and deafness (save Constitution negates), then 1d6 HP acid, then 10d6 HP lightning (6 targets; save Dexterity half), then 2d6 HP bludgeoning, then 1d6 cold per rd and no ranged attacks for concentration up to 1 min"',
-  'Suggestion':
-    'School=Enchantment ' +
-    'Level=B2,K2,S2,W2 ' +
-    'Description=' +
-      '"R30\' Target follows a reasonable suggestion (save Wisdom negates) for concentration up to 8 hr"',
+    'Level=W5 ' +
+    'Description="TODO"',
   'Sunbeam':
-    'School=Evocation ' +
-    'Level=D6,S6,W6 ' +
-    'Description=' +
-      '"60\' line inflicts 6d8 HP radiant and blindness for 1 rd (save Constitution half HP only) for concentration up to 1 min"',
+    SRD5E.SPELLS.Sunbeam
+    .replace('D6,S6,W6', 'C6,D6,S6,W6'),
   'Sunburst':
-    'School=Evocation ' +
-    'Level=D8,S8,W8 ' +
-    'Description=' +
-      '"R150\' 60\' radius inflicts 12d6 HP and blindness (save Constitution half HP only; an additional save each turn ends blindness) for 1 min"',
+    SRD5E.SPELLS.Sunburst
+    .replace('D8,S8,W8', 'C8,D8,S8,W8'),
   'Symbol':
-    'School=Abjuration ' +
-    'Level=B7,C7,W7 ' +
-    'Description=' +
-      '"Inscribes a touch object with a permanent glyph that, when triggered, inflicts a choice of harmful magic effect&mdash;10d10 HP necrotic (save Constitution half), arguing for 1 min (save Constitution negates), frightened and fleeing for 1 min (save Wisdom negates), overwhelmed with despair for 1 min (save Charisma negates), insane for 1 min (save Intelligence negates), incapacitated by pain for 1 min (save Constitution negates), asleep for 10 min or until shaken or harmed (save Wisdom negates), or stunned for 1 min (save Wisdom negates)"',
+    SRD5E.SPELLS.Symbol
+    .replace('B7,C7,W7', 'B7,C7,D7,W7'),
 
   'Telekinesis':
     'School=Transmutation ' +

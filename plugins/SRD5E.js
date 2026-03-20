@@ -1842,7 +1842,7 @@ SRD5E.SPELLS = {
     'Level=C4,K4,P4,S4,W4 ' +
     'AtHigherLevels="affects +1 target" ' +
     'Description=' +
-      '"R60\' Banishes the target to its home plane or a demiplane (save Charisma negates) for concentration up to 1 min"',
+      '"R60\' Banishes the target to its home plane or to a demiplane (save Charisma negates) for concentration up to 1 min"',
   'Barkskin':
     'School=Transmutation ' +
     'Level=D2,R2 ' +
@@ -1855,7 +1855,7 @@ SRD5E.SPELLS = {
   'Bestow Curse':
     'School=Necromancy ' +
     'Level=B3,C3,W3 ' +
-    'AtHigherLevels="extends the maximum duration to 10 min, 8 hr, 24 hr, or permanently at level 4, 5, 7, or 9" ' +
+    'AtHigherLevels="extends the maximum duration to 10 min, 8 hr, 24 hr, or permanently at level 4, 5, 7, or 9; levels above 4 require no concentration" ' +
     'Description=' +
       '"Touched suffers a choice of disadvantage on specified ability rolls, disadvantage on attacks on self, requiring a successful Wisdom save to take any action, or +1d8 HP necrotic from self attacks (save Wisdom negates) for concentration up to 1 min"',
   'Black Tentacles':
@@ -1999,7 +1999,7 @@ SRD5E.SPELLS = {
     'Level=B4,D4,S4,W4 ' +
     'AtHigherLevels="increases the radius by 5\'" ' +
     'Description=' +
-      '"R90\' Creatures in a 10\' radius randomly: 10% wander; 50% do nothing; 20% attack an adjacent creature; 20% act normally (save Wisdom negates) for concentration up to 1 min"',
+      '"R90\' Creatures in a 10\' radius randomly: 10% wander; 50% do nothing; 20% attack an adjacent creature; 20% act normally (save Wisdom ends) for concentration up to 1 min"',
   'Conjure Animals':
     'School=Conjuration ' +
     'Level=D3,R3 ' +

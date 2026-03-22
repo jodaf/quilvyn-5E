@@ -1760,34 +1760,83 @@ SRD5E2024.SPELLS_CHANGED = {
   'Cone Of Cold':
     SRD5E.SPELLS['Cone Of Cold']
     .replace('S5,W5', 'D5,S5,W5'),
+  'Conjure Animals':
+    SRD5E.SPELLS['Conjure Animals'] + ' ' +
+    'AtHigherLevels="inflicts +1d10 HP" ' +
+    'Description=' +
+      '"R60\' 10\' radius inflicts 3d10 HP slashing (save Dexterity negates), and 5\' radius gives self advantage on Strength saves, for concentration up to 10 min; can be moved 30\' each turn"',
+  'Conjure Celestial':
+    SRD5E.SPELLS['Conjure Celestial'] + ' ' +
+    'AtHigherLevels="restores or inflicts +1d12 hit points" ' +
+    'Description=' +
+       '"R90\' 10\' radius either restores 4d12+%{mdf} or inflicts 6d12 HP radiant (save Dexterity half) on each target for concentration up to 10 min; can be moved 30\' each turn"',
+  'Conjure Elemental':
+    SRD5E.SPELLS['Conjure Elemental'] + ' ' +
+    'AtHigherLevels="inflicts +1d8 HP" ' +
+    'Description=' +
+       '"R60\' 5\' radius restrains a target and inflicts 8d8 HP of a choice of lightning, thunder, fire, or cold (save Dexterity negates), inflicting an additional 4d8 HP each rd until a successful Dexterity save, for concentration up to 10 min"',
   'Conjure Fey':
-    SRD5E.SPELLS['Conjure Fey']
-    .replace('D6,K6', 'D6'),
+    SRD5E.SPELLS['Conjure Fey'] + ' ' +
+    'Level=D6 ' +
+    'AtHigherLevels="inflicts +1d12 HP" ' +
+    'Description=' +
+      '"R60\' Melee spell attacks by a summoned spirit inflict 3d12+%{mdf} HP psychic for concentration up to 10 min; can be moved 30\' each turn as a bonus action"',
+  'Conjure Minor Elementals':
+    SRD5E.SPELLS['Conjure Minor Elementals'] + ' ' +
+    'AtHigherLevels="inflicts +1d8 HP" ' +
+    'Description=' +
+      '"Self attacks within 15\' inflict +2d8 HP of a choice of acid, cold, fire, or lightning for concentration up to 10 min"',
+  'Conjure Woodland Beings':
+    SRD5E.SPELLS['Conjure Woodland Beings'] + ' ' +
+    'AtHigherLevels="inflicts +1d8 HP" ' +
+    'Description=' +
+      '"10\' emanation inflicts 5d8 HP force (save Wisdom half) and allows self to use a bonus action to Disengage for concentration up to 10 min"',
+  'Contact Other Plane':
+    SRD5E.SPELLS['Contact Other Plane']
+    .replace('insanity', 'incapacitated'),
+  'Contagion':
+    SRD5E.SPELLS.Contagion + ' ' +
+    'Description=' +
+      '"Touch inflicts 11d8 HP necrotic, poisoned, and disadvantage on chosen ability saves (save Constitution negates; subsequent saves each turn either ends after three saves or extends to 7 days after 3 failures; other effects that would end poisoned require a successful Constitution save to succeed)"',
   'Contingency':
     SRD5E.SPELLS.Contingency
     .replace('Evocation', 'Abjuration'),
   'Continual Flame':
     SRD5E.SPELLS['Continual Flame']
     .replace('C2,W2', 'C2,D2,W2'),
+  'Counterspell':
+    SRD5E.SPELLS.Counterspell + ' ' +
+    'AtHigherLevels="" ' +
+    'Description="R60\' Negates foe casting (save Constitution negates)"',
   'Cure Wounds':
     SRD5E.SPELLS['Cure Wounds']
     .replace('Evocation', 'Abjuration')
     .replaceAll('1d8', '2d8'),
 
+  'Darkvision':
+    SRD5E.SPELLS.Darkvision
+    .replace("60'", "150'"),
   'Demiplane':
     SRD5E.SPELLS.Demiplane
     .replace('K8,W8', 'K8,S8,W8'),
+  'Detect Evil And Good':
+    SRD5E.SPELLS['Detect Evil And Good']
+    .replace('consecration, and desecration', 'and <i>Hallow</i> effects'),
   'Detect Magic':
     SRD5E.SPELLS['Detect Magic']
     .replace('B1,C1,D1,P1,R1,S1,W1','B1,C1,D1,K1,P1,R1,S1,W1'),
   'Dispel Magic':
     SRD5E.SPELLS['Dispel Magic']
     .replace('B3,C3,D3,K3,P3,S3,W3', 'B3,C3,D3,K3,P3,R3,S3,W3'),
-  'Dissonant Whispers': // new
+  'Detect Poison And Disease':
+    SRD5E.SPELLS['Detect Poison And Disease']
+    .replace('diseases', 'magical contagions'),
+  'Dissonant Whispers': // ref PHB5E
     'School=Enchantment ' +
     'Level=B1 ' +
     'AtHigherLevels="inflicts +1d6 HP" ' +
-    'Description="TODO"',
+    'Description=' +
+      '"R60\' Inflicts 3d6 HP psychic and forces the target to use its reaction to flee (save Wisdom half HP only)"',
   'Divination':
     SRD5E.SPELLS.Divination
     .replace('C4', 'C4,D4,W4'),
@@ -1806,7 +1855,7 @@ SRD5E2024.SPELLS_CHANGED = {
     'School=Transmutation ' +
     'Level=S2,W2 ' +
     'AtHigherLevels="inflicts +1d6 HP" ' +
-    'Description="TODO"',
+    'Description="Touch can use a Magic action to inflict 3d6 HP of a choice of acid, cold, fire, lightning, or poison (save Dexterity half) in a 15\' cone for concentration up to 1 min"',
 
   'Earthquake':
     SRD5E.SPELLS.Earthquake

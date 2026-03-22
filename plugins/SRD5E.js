@@ -2047,7 +2047,7 @@ SRD5E.SPELLS = {
     'Level=C5,D5 ' +
     // errata changes description
     'Description=' +
-      '"Touched suffers poisoned (save Constitution each turn; 3 successes ends, and 3 failures inflict a choice of disease for 7 days)"',
+      '"Touch inflicts poisoned (save Constitution each turn; 3 successes ends, and 3 failures inflict a choice of disease for 7 days)"',
   'Contingency':
     'School=Evocation ' +
     'Level=W6 ' +
@@ -2066,7 +2066,7 @@ SRD5E.SPELLS = {
     'School=Transmutation ' +
     'Level=C8,D8,W8 ' +
     'Description=' +
-      '"Modifies seasonal weather in a 5 mile radius for concentration up to 8 hr"',
+      '"Adjusts temperature, wind, and precipitation in a 5 mile radius for concentration up to 8 hr"',
   'Counterspell':
     'School=Abjuration ' +
     'Level=K3,S3,W3 ' +
@@ -2076,7 +2076,7 @@ SRD5E.SPELLS = {
   'Create Food And Water':
     'School=Conjuration ' +
     'Level=C3,P3 ' +
-    'Description="R30\' Creates 45 lb of food and 30 gallons of water"',
+    'Description="R30\' Creates 45 lb of food that lasts for 24 hr and 30 gallons of water"',
   'Create Or Destroy Water':
     'School=Transmutation ' +
     'Level=C1,D1 ' +
@@ -2088,12 +2088,13 @@ SRD5E.SPELLS = {
     'Level=C6,K6,W6 ' +
     'AtHigherLevels=' +
       '"creates 4 ghouls; 5 ghouls, 2 ghasts, or 2 wights; or 6 ghouls, 3 ghasts, 3 wights, or 2 mummies at level 7, 8, or 9" ' +
-    'Description="R10\' 3 corpses become ghouls that obey commands within 120\' for 1 day"',
+    'Description="R10\' 3 corpses become ghouls that obey commands within 120\' for 24 hr"',
   'Creation':
     'School=Illusion ' +
     'Level=S5,W5 ' +
     'AtHigherLevels="creates a +5\' cube" ' +
-    'Description="R30\' Creates a 5\' cube of false matter lasting up to 1 day"',
+    'Description=' +
+      '"R30\' Creates a 5\' cube of false matter lasting up to 24 hr"',
   'Cure Wounds':
     'School=Evocation ' +
     'Level=B1,C1,D1,P1,R1 ' +
@@ -2104,7 +2105,7 @@ SRD5E.SPELLS = {
     'School=Evocation ' +
     'Level=B0,S0,W0 ' +
     'Description=' +
-      '"R120\' 4 torch lights dimly light a 10\' radius and can move 60\' per rd for concentration up to 1 min"',
+      '"R120\' 4 torch lights dimly light a 10\' radius and can move 60\' per rd as a bonus action for concentration up to 1 min"',
   'Darkness':
     'School=Evocation ' +
     'Level=K2,S2,W2 ' +
@@ -2179,7 +2180,7 @@ SRD5E.SPELLS = {
     'Level=B3,C3,D3,K3,P3,S3,W3 ' +
     'AtHigherLevels="ends any spell of equal or lesser level" ' +
     'Description=' +
-      '"R120\' Ends the effects on the target of a spell up to level 3, and successful DC 10 + spell level checks end each higher-level spell"',
+      '"R120\' Ends the effects on the target of spells up to level 3, and successful DC 10 + spell level checks end each higher-level spell"',
   'Divination':
     'School=Divination ' +
     'Level=C4 ' +

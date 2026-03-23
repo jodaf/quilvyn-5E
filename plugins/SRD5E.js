@@ -2250,7 +2250,7 @@ SRD5E.SPELLS = {
     'School=Conjuration ' +
     'Level=D1 ' +
     'Description=' +
-      '"R90\' 20\' sq ensnares creatures (save Strength negates) for concentration up to 1 min"',
+      '"R90\' 20\' sq ensnares creatures (save Strength ends) for concentration up to 1 min"',
   'Enthrall':
     'School=Enchantment ' +
     'Level=B2,K2 ' +
@@ -2270,7 +2270,7 @@ SRD5E.SPELLS = {
     'School=Necromancy ' +
     'Level=B6,K6,S6,W6 ' +
     'Description=' +
-      '"R60\' Inflicts a choice of sleep, panic, or sickened (disadvantage on attack and ability rolls) on 1 target per rd (save Wisdom negates) for concentration up to 1 min"',
+      '"R60\' Inflicts a choice of sleep, panic, or sickened (disadvantage on attack and ability rolls) (save Wisdom negates) on 1 target per rd for concentration up to 1 min"',
 
   'Fabricate':
     'School=Transmutation ' +
@@ -2281,7 +2281,7 @@ SRD5E.SPELLS = {
     'School=Evocation ' +
     'Level=B1,D1 ' +
     'Description=' +
-      '"R60\' Objects in a 20\' cube glow, giving foes advantage on attacks (save Dexterity negates), for concentration up to 1 min"',
+      '"R60\' Objects in a 20\' cube glow, giving their foes advantage on attacks (save Dexterity negates), for concentration up to 1 min"',
   'Faithful Hound':
     'School=Conjuration ' +
     'Level=W4 ' +
@@ -2310,12 +2310,12 @@ SRD5E.SPELLS = {
     'Level=W1 ' +
     'Ritual=true ' +
     'Description=' +
-      '"R10\' Self gains the service of a summoned spirit in animal form that can deliver touch attacks when within 100\'"',
+      '"R10\' Self gains the service of a summoned spirit in animal form that allows telepathic communication, remote sensing, and remote touch attacks when within 100\'"',
   'Find Steed':
     'School=Conjuration ' +
     'Level=P2 ' +
     'Description=' +
-      '"R10\' Self gains the service of a summoned spirit in steed form"',
+      '"R10\' Self gains the service of a summoned spirit in steed form; it has an Intelligence of at least 6, can understand at least 1 language, and can communicate telepathically with self for 1 mile"',
   'Find The Path':
     'School=Divination ' +
     'Level=B6,C6,D6 ' +
@@ -2339,7 +2339,7 @@ SRD5E.SPELLS = {
     'School=Evocation ' +
     'Level="K4 [The Fiend]",W4 ' +
     'Description=' +
-      '"Self gains resistance to a choice of heat or cold damage, and a successful adjacent attacker suffers 2d8 HP fire or cold for 10 min"',
+      '"Self gains resistance to a choice of heat or cold damage, and a successful adjacent attacker suffers 2d8 HP fire or cold, for 10 min"',
   'Fire Storm':
     'School=Evocation ' +
     'Level=C7,D7,S7 ' +
@@ -2373,7 +2373,7 @@ SRD5E.SPELLS = {
     'School=Transmutation ' +
     'Level=K6,W6 ' +
     'Description=' +
-      '"R60\' Target becomes restrained (save Constitution negates), then petrified after 3 failed Constitution saves (3 successes negates) for concentration; the effects become permanent after 1 min"',
+      '"R60\' Target becomes restrained (save Constitution negates), then petrified after 3 failed Constitution saves (3 successes negates) for concentration; the effects become permanent after 1 min concentration"',
   'Floating Disk':
     'School=Conjuration ' +
     'Level=W1 ' +
@@ -2396,12 +2396,12 @@ SRD5E.SPELLS = {
     'Level=C6 ' +
     'Ritual=true ' +
     'Description=' +
-      '"Touched 40000 sq ft bars teleport and portals; entry inflicts 5d10 HP of a choice of radiant or necrotic to one or more choices of celestials, fey, fiends, or undead for 1 day; casting daily for 30 days makes the effects permanent"',
+      '"Touched 40000 sq ft bars teleport and portals; entry inflicts 5d10 HP of a choice of radiant or necrotic to one or more choices of celestials, elementals, fey, fiends, or undead for 1 day; casting daily for 30 days makes the effects permanent"',
   'Forcecage':
     'School=Evocation ' +
     'Level=B7,K7,W7 ' +
     'Description=' +
-      '"R100\' Creates a choice of a 20\' barred force cube or a 10\' solid force box for 1 hr"',
+      '"R100\' Creates a choice of a 20\' barred force cube or a 10\' solid force box that can trap creatures inside (save Charisma allows magical escape) for 1 hr"',
   'Foresight':
     'School=Divination ' +
     'Level=B9,D9,K9,W9 ' +
@@ -2411,13 +2411,13 @@ SRD5E.SPELLS = {
     'School=Abjuration ' +
     'Level=B4,C4,D4,R4 ' +
     'Description=' +
-      '"Touched gains immunity to movement impediments and can escape from restraints for 1 hr"',
+      '"Touched gains immunity to movement impediments and can escape from nonmagical restraints for 1 hr"',
   'Freezing Sphere':
     'School=Evocation ' +
     'Level=W6 ' +
     'AtHigherLevels="inflicts +1d6 HP" ' +
     'Description=' +
-      '"R300\' 60\' radius inflicts 10d6 HP cold (save Constitution half) and freezes water for 1 min"',
+      '"R300\' 60\' radius inflicts 10d6 HP cold (save Constitution half) and freezes water for 1 min; effects can be placed into a globe that can be thrown 40\' within 1 min"',
 
   'Gaseous Form':
     'School=Transmutation ' +
@@ -5807,7 +5807,8 @@ SRD5E.featureListRules = function(
     let feature = features[i].replace(/^(.*\?\s*)?\d+:/, '');
     let matchInfo =
       feature.match(/([A-Z]\w*)\s(Proficiency|Training)\s\((([^\(]|\([^\)]*\))*)\)$/) ||
-      feature.match(/(Language)\s\((([^\(]|\([^\)]*\))*)\)$/);
+      // double parens around Language to place the language list in group 3
+      feature.match(/((Language))\s\((([^\(]|\([^\)]*\))*)\)$/);
     if(matchInfo) {
       let group = matchInfo[1].toLowerCase();
       let elements = matchInfo[3].split(/\/|;\s*/);

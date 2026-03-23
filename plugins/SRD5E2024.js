@@ -1859,40 +1859,54 @@ SRD5E2024.SPELLS_CHANGED = {
 
   'Earthquake':
     SRD5E.SPELLS.Earthquake
-    .replace('Evocation', 'Transmutation'),
+    .replace('Evocation', 'Transmutation')
+    .replace('Constitution', 'Dexterity'),
   'Elementalism': // new
     'School=Transmutation ' +
     'Level=D0,S0,W0 ' +
     'Description="TODO"',
   'Enhance Ability':
     SRD5E.SPELLS['Enhance Ability']
-    .replace('B2,C2,D2,S2', 'B2,C2,D2,R2,S2,W2'),
+    .replace('B2,C2,D2,S2', 'B2,C2,D2,R2,S2,W2')
+    .replace(/; Constitution[^"]*/, ''),
   'Enlarge/Reduce':
     SRD5E.SPELLS['Enlarge/Reduce']
-    .replace('S2,W2', 'B2,D2,S2,W2'),
-  'Ensnaring Strike': // new
+    .replace('S2,W2', 'B2,D2,S2,W2')
+    .replaceAll('weapon', 'weapon and unarmed'),
+  'Ensnaring Strike': // ref PHB5E
     'School=Conjuration ' +
     'Level=R1 ' +
     'AtHigherLevels="inflicts +1d6 HP" ' +
-    'Description="TODO"',
+    'Description=' +
+      '"Next successful self attack restrains the foe and inflicts 1d6 HP per rd piercing (save Athletics ends; Large creatures have advantage on the save) for concentration up to 1 min"',
   'Entangle':
     SRD5E.SPELLS.Entangle
-    .replace('D1', 'D1,R1'),
+    .replace('D1', 'D1,R1')
+    .replace('Strength ends', 'Strength negates; Athletics ends'),
+  'Enthrall':
+    SRD5E.SPELLS.Enthrall + ' ' +
+    'Description=' +
+      '"R60\' Target suffers -10 Perception (save Wisdom negates) for concentration up to 1 min"',
   'Etherealness':
     SRD5E.SPELLS.Etherealness
     .replace('Transmutation', 'Conjuration'),
+  'Eyebite':
+    SRD5E.SPELLS.Eyebite
+    .replace('sickened', 'poisoned'),
 
+  'Faithful Hound':
+    SRD5E.SPELLS['Faithful Hound']
+    .replace('%{mdf+proficiencyBonus} ', '',)
+    .replace('HP piercing', 'HP force (Dexterity negates)'),
   'False Life':
     SRD5E.SPELLS['False Life']
     .replace('1d4', '2d4')
     .replace(' for 1 hr', ''),
-/*
-  'Feeblemind':
-    'School=Enchantment ' +
-    'Level=B8,D8,K8,W8 ' +
-    'Description=' +
-      '"R150\' Target suffers 4d6 HP psychic and reduction of Charisma and Intelligence to 1 (save Intelligence HP only; failure allows additional saves every 30 days)"',
-*/
+  // Feeblemind deleted
+  'Find Steed':
+    SRD5E.SPELLS['Find Steed']
+    .replace('it has', "it has Armor Class 12, 25 hit points, a 60' Speed, and' and can communicate telepathically with self up to 1 mile") + ' ' +
+    'AtHigherLevels="increases Armor Class by 1 and hit points by 10; level 4 also gives a 60\' fly Speed"',
   'Fire Shield':
     SRD5E.SPELLS['Fire Shield']
     .replace('"K4 [The Fiend]",W4','D4,"K4 [The Fiend]",S4,W4'),
@@ -1902,6 +1916,7 @@ SRD5E2024.SPELLS_CHANGED = {
     .replace(' per 2 levels', ''),
   'Flame Strike':
     SRD5E.SPELLS['Flame Strike']
+    .replaceAll('4d6', '5d6')
     .replace('of a choice of fire or radiant', 'fire and radiant'),
   'Flaming Sphere':
     SRD5E.SPELLS['Flaming Sphere']
@@ -1909,6 +1924,15 @@ SRD5E2024.SPELLS_CHANGED = {
   'Flesh To Stone':
     SRD5E.SPELLS['Flesh To Stone']
     .replace('K6,W6', 'D6,S6,W6'),
+  'Forbiddance':
+    SRD5E.SPELLS.Forbiddance
+    .replace('celestials', 'aberrations, celestials'),
+  'Foresight':
+    SRD5E.SPELLS.Foresight
+    .replace('immunity to surprise and ', ''),
+  'Freedom Of Movement':
+    SRD5E.SPELLS['Freedom Of Movement']
+    .replace('and can', 'and a %{speed} swim Speed and can'),
   'Freezing Sphere':
     SRD5E.SPELLS['Freezing Sphere']
     .replace('W6', 'S6,W6'),

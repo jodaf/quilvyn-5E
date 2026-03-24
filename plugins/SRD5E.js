@@ -2423,7 +2423,7 @@ SRD5E.SPELLS = {
     'School=Transmutation ' +
     'Level=K3,S3,W3 ' +
     'Description=' +
-      '"Touched creature becomes gaseous, gaining a 10\' fly Speed and advantage on Strength, Dexterity, and Constitution saves, for concentration up to 1 hr"',
+      '"Touched willing creature becomes gaseous, gaining a 10\' fly Speed, resistance to nonmagical damage, and advantage on Strength, Dexterity, and Constitution saves, for concentration up to 1 hr"',
   'Gate':
     'School=Conjuration ' +
     'Level=C9,S9,W9 ' +
@@ -2467,7 +2467,7 @@ SRD5E.SPELLS = {
     'School=Transmutation ' +
     'Level=D1,R1 ' +
     'Description=' +
-      '"Creates 10 berries that each heal 1 HP and provide food for 1 day"',
+      '"Creates 10 berries that each heal 1 hit point and provide food for 1 day"',
   'Grease':
     'School=Conjuration ' +
     'Level=W1 ' +
@@ -2481,16 +2481,16 @@ SRD5E.SPELLS = {
     'School=Abjuration ' +
     'Level=B5,C5,D5 ' +
     'Description=' +
-      '"Touched recovers from exhausted, charmed, petrified, cursed, or ability damage or regains hit point maximum"',
+      '"Touched recovers from exhausted, charmed, petrified, cursed, or ability reduction or regains hit point maximum"',
   'Guardian Of Faith':
     'School=Conjuration ' +
     'Level=C4 ' +
     'Description=' +
-       '"R30\' 10\' radius inflicts 20 HP radiant to hostile creatures (save Dexterity half) for 8 hr or until 60 HP inflicted"',
+       '"R30\' 10\' radius inflicts 20 HP radiant on hostile creatures (save Dexterity half) for 8 hr or until 60 HP inflicted"',
   'Guards And Wards':
     'School=Abjuration ' +
     'Level=B6,W6 ' +
-    'Description="Multiple magic effects protect 2500 sq ft for 1 day"',
+    'Description="Multiple magic effects protect 2500 sq ft for 24 hr"',
   'Guidance':
     'School=Divination ' +
     'Level=C0,D0 ' +
@@ -2506,18 +2506,18 @@ SRD5E.SPELLS = {
     'School=Evocation ' +
     'Level=D2,S2,W2 ' +
     'Description=' +
-      '"60\'x10\' wind pushes 15\' (save Strength negates), inflicts half movement, and has a 50% chance of extinguishing flames for concentration up to 1 min"',
+      '"60\'x10\' wind pushes 15\' (save Strength negates), inflicts half movement, disperses gas and vapor, extinguishes flames (50% chance for protected flames) for concentration up to 1 min"',
 
   'Hallow':
     'School=Evocation ' +
     'Level=C5,"K5 [The Fiend]" ' +
     'Description=' +
-      '"60\' radius becomes warded against celestials, elementals, fey, fiends, and undead and their effects and evokes a boon effect"',
+      '"60\' radius becomes warded against celestials, elementals, fey, fiends, and undead and their effects and evokes a boon or bane effect (save Charisma negates)"',
   'Hallucinatory Terrain':
     'School=Illusion ' +
     'Level=B4,D4,K4,W4 ' +
     'Description=' +
-      '"R300\' Creates a 150\' cube terrain illusion (Investigation detects) for 1 day"',
+      '"R300\' Creates a 150\' cube terrain illusion (Investigation detects) for 24 hr"',
   'Harm':
     'School=Necromancy ' +
     'Level=C6 ' +
@@ -2527,7 +2527,7 @@ SRD5E.SPELLS = {
     'School=Transmutation ' +
     'Level=S3,W3 ' +
     'Description=' +
-      '"R30\' Willing target gains double Speed, +2 AC, advantage on Dexterity, and an additional action for concentration up to 1 min and suffers 1 rd of lethargy afterward"',
+      '"R30\' Willing target gains double Speed, +2 armor class, advantage on Dexterity, and an additional action for concentration up to 1 min and suffers 1 rd of incapacitation afterward"',
   'Heal':
     'School=Evocation ' +
     'Level=C6,D6 ' +
@@ -2544,7 +2544,7 @@ SRD5E.SPELLS = {
     'Level=B2,D2 ' +
     'AtHigherLevels="inflicts +1d8 HP" ' +
     'Description=' +
-      '"R60\' Touching the target metal inflicts 2d8 HP fire, plus attack and ability disadvantage if the the target is worn or held (save Constitution allows dropping), for concentration up to 1 min"',
+      '"R60\' Touching the target metal inflicts 2d8 HP fire, plus attack and ability disadvantage if the the target is worn or held (save Constitution negates disadvantage)), for concentration up to 1 min"',
   'Hellish Rebuke':
     'School=Evocation ' +
     'Level=K1 ' +
@@ -2562,7 +2562,7 @@ SRD5E.SPELLS = {
     'Level=B1,P1 ' +
     'AtHigherLevels="affects +1 target" ' +
     'Description=' +
-      '"Touched gains immunity to fright and +%{mdf} temporary hit points each rd for concentration up to 1 min"',
+      '"Touched gains immunity to becoming frightened and +%{mdf} temporary hit points each rd for concentration up to 1 min"',
   'Hideous Laughter':
     'School=Enchantment ' +
     'Level=B1,W1 ' +
@@ -2572,24 +2572,24 @@ SRD5E.SPELLS = {
     'Level=B5,K5,S5,W5 ' +
     'AtHigherLevels="affects +1 target" ' +
     'Description=' +
-      '"R90\' Immobilizes the target creature (save Wisdom ends) for concentration up to 1 min"',
+      '"R90\' Paralyzes the target creature (save Wisdom ends) for concentration up to 1 min"',
   'Hold Person':
     'School=Enchantment ' +
     'Level=B2,C2,D2,K2,S2,W2 ' +
     'AtHigherLevels="affects +1 target" ' +
     'Description=' +
-      '"R60\' Immobilizes the target humanoid (save Wisdom ends) for concentration up to 1 min"',
+      '"R60\' Paralyzes the target humanoid (save Wisdom ends) for concentration up to 1 min"',
   'Holy Aura':
     'School=Abjuration ' +
     'Level=C8 ' +
     'Description=' +
-      '"Targets in a 30\' radius gain advantage on saves, inflict disadvantage on attackers, and blind successful fiend and undead melee attackers (save Constitution negates) for concentration up to 1 min"',
+      '"Targets in a 30\' radius gain advantage on saves, inflict disadvantage on attackers, and blind a successful fiend or undead melee attacker (save Constitution negates) for concentration up to 1 min"',
   "Hunter's Mark":
     'School=Divination ' +
     'Level=R1 ' +
     'AtHigherLevels="extends the duration to 8 or 24 hr at level 3 or 5" ' +
     'Description=' +
-      '"R90\' Self gains +1d6 HP weapon damage to the target and advantage on Perception and Wisdom to locate it for concentration up to 1 hr"',
+      '"R90\' Self inflicts +1d6 HP weapon damage on the target and gains advantage on Perception and Wisdom to locate it for concentration up to 1 hr"',
   'Hypnotic Pattern':
     'School=Illusion ' +
     'Level=B3,K3,S3,W3 ' +
@@ -2601,7 +2601,7 @@ SRD5E.SPELLS = {
     'Level=D4,S4,W4 ' +
     'AtHigherLevels="inflicts +1d8 HP bludgeoning" ' +
     'Description=' +
-      '"R300\' 20\' radius inflicts 2d8 HP bludgeoning and 4d6 HP cold (save Dexterity half) and becomes difficult terrain for 1 rd"',
+      '"R300\' 20\' radius inflicts 2d8 HP bludgeoning and 4d6 HP cold (save Dexterity half) and becomes difficult terrain until the end of the next turn"',
   'Identify':
     'School=Divination ' +
     'Level=B1,W1 ' +
@@ -2650,7 +2650,7 @@ SRD5E.SPELLS = {
     'School=Enchantment ' +
     'Level=B6,W6 ' +
     'Description=' +
-      '"R30\' Target suffers disadvantage on Dexterity and attacks, and foes gain advantage on attacks, (save Wisdom ends) for concentration up to 1 min"',
+      '"R30\' Target suffers disadvantage on Dexterity and attacks, and foes gain advantage on attacks (save Wisdom ends after 1 rd), for concentration up to 1 min"',
 
   'Jump':
     'School=Transmutation ' +

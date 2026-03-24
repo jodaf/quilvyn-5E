@@ -1905,8 +1905,8 @@ SRD5E2024.SPELLS_CHANGED = {
   // Feeblemind deleted
   'Find Steed':
     SRD5E.SPELLS['Find Steed']
-    .replace('it has', "it has Armor Class 12, 25 hit points, a 60' Speed, and' and can communicate telepathically with self up to 1 mile") + ' ' +
-    'AtHigherLevels="increases Armor Class by 1 and hit points by 10; level 4 also gives a 60\' fly Speed"',
+    .replace('it has', "it has armor class 12, 25 hit points, a 60' Speed, and' and can communicate telepathically with self up to 1 mile") + ' ' +
+    'AtHigherLevels="increases the armor class by 1 and hit points by 10; level 4 also gives a 60\' fly Speed"',
   'Fire Shield':
     SRD5E.SPELLS['Fire Shield']
     .replace('"K4 [The Fiend]",W4','D4,"K4 [The Fiend]",S4,W4'),
@@ -1937,6 +1937,10 @@ SRD5E2024.SPELLS_CHANGED = {
     SRD5E.SPELLS['Freezing Sphere']
     .replace('W6', 'S6,W6'),
 
+  'Gaseous Form':
+    SRD5E.SPELLS['Gaseous Form']
+    .replace('nonmagical damage', 'bludgeoning, piercing, and slashing') + ' ' +
+    'AtHigherLevels="affects +1 target"',
   'Gate':
     SRD5E.SPELLS.Gate
     .replace('C9,S9,W9', 'C9,K9,S9,W9'),
@@ -1948,7 +1952,10 @@ SRD5E2024.SPELLS_CHANGED = {
     .replace('C2,W2', 'C2,P2,W2'),
   'Giant Insect':
     SRD5E.SPELLS['Giant Insect']
-    .replace('Transmutation', 'Conjuration'),
+    .replace('Transmutation', 'Conjuration') + ' ' +
+    'AtHigherLevels="increases the armor class by 1, hit points by 10, number of attacks by 1 per 2 levels, and piercing damage by 1" ' +
+    'Description=' +
+      '"R60\' Summons a choice of an obedient giant centipede, spider, or wasp with armor class 15, 30 hit points, 40\' Speed, understanding of self languages, 2 attacks per rd that inflict 1d6 + 7 HP piercing and 1d4 HP poison"',
   'Glibness':
     SRD5E.SPELLS.Glibness
     .replace('Transmutation', 'Enchantment'),
@@ -1961,40 +1968,67 @@ SRD5E2024.SPELLS_CHANGED = {
   'Greater Restoration':
     SRD5E.SPELLS['Greater Restoration']
     .replace('B5,C5,D5', 'B5,C5,D5,P5,R5'),
+  'Guidance':
+    SRD5E.SPELLS.Guidance + ' ' +
+    'Description=' +
+      '"Touched gains +1d4 on a choice of skill for concentration up to 1 min"',
   'Gust Of Wind':
     SRD5E.SPELLS['Gust Of Wind']
     .replace('D2,S2,W2', 'D2,R2,S2,W2'),
 
+  'Hallow':
+    SRD5E.SPELLS.Hallow
+    .replace('celestials', 'aberrations, celestials'),
+  'Harm':
+    SRD5E.SPELLS.Harm
+    .replace(' for 1 hr', ''),
   'Heal':
     SRD5E.SPELLS.Heal
     .replace('Evocation', 'Abjuration'),
   'Healing Word':
     SRD5E.SPELLS['Healing Word']
     .replace('Evocadtion', 'Abjuration')
-    .replace('1d4+%{mdf}', '2d4'),
+    .replaceAll('1d4', '2d4'),
   "Heroes' Feast":
     SRD5E.SPELLS["Heroes' Feast"]
-    .replace('C6,D6', 'B6,C6,D6'),
-  'Hex': // new
+    .replace('C6,D6', 'B6,C6,D6')
+    .replace(/recover.*Wisdom/, 'gain resitance to poison, immunity to becoming poisoned and frightened'),
+  'Hex': // ref PHB5E
     'School=Enchantment ' +
     'Level=K1 ' +
-    'AtHigherLevels="increases duration to 4 hr, 8 hr, or 24 hr at level 2, 3, or 5" ' +
-    'Description="TODO"',
+    'AtHigherLevels="extends the duration to 4, 8, or 24 hr at level 2, 3 or 5" ' +
+    'Description=' +
+      '"R90\' Self attacks on the target inflict +1d6 HP necrotic, and the target has disadvantage on a chosen ability, for concentration up to 1 hr"',
   'Hideous Laughter':
     SRD5E.SPELLS['Hideous Laughter']
-    .replace('B1,W1', 'B1,K1,W1'),
+    .replace('B1,W1', 'B1,K1,W1') + ' ' +
+    'AtHigherLevels="affects +1 target"',
+  'Holy Aura':
+    SRD5E.SPELLS['Holy Aura']
+    .replace('negates)', 'negates) until the end of its next turn'),
+  "Hunter's Mark":
+    SRD5E.SPELLS["Hunter's Mark"]
+    .replace('weapon damage', 'force'),
 
-  'Ice Knife': // new
+  'Ice Knife': // ref Xanathar
     'School=Conjuration ' +
-    'Level=D1,S1,W1 '+
+    'Level=D1,S1,W1 ' +
     'AtHigherLevels="inflicts +1d6 HP cold" ' +
-    'Description="R60\' Spell attack inflicts 1d10 piercing on a hit, plus 2d6 HP cold (save Dexterity negates) in a 5\' radius"',
+    'Description=' +
+      '"R60\' Ranged spell attack inflicts 1d10 HP piercing on a hit and 2d6 HP cold in a 5\' radius (save Dexterity negates)"',
   'Ice Storm':
     SRD5E.SPELLS['Ice Storm']
     .replaceAll('d8', 'd10'),
   'Incendiary Cloud':
     SRD5E.SPELLS['Incendiary Cloud']
     .replace('S8,W8', 'D8,S8,W8'),
+  'Inflict Wounds':
+    SRD5E.SPELLS['Inflict Wounds']
+    .replace('3d10 HP necrotic', '2d10 HP necrotic (save Constitution half)'),
+
+  'Jump':
+    SRD5E.SPELLS.Jump
+    .replace('triple jump distance', "30' jump after a 10' move"),
 
   'Magic Weapon':
     SRD5E.SPELLS['Magic Weapon']

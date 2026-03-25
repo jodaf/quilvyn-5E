@@ -2666,7 +2666,8 @@ SRD5E.SPELLS = {
   'Legend Lore':
     'School=Divination ' +
     'Level=B5,C5,W5 ' +
-    'Description="Reveals info about a specified person, place, or object"',
+    'Description=' +
+      '"Reveals info about a specified famous person, place, or object"',
   'Lesser Restoration':
     'School=Abjuration ' +
     'Level=B2,C2,D2,P2,R2 ' +
@@ -2697,12 +2698,12 @@ SRD5E.SPELLS = {
     'School=Divination ' +
     'Level=B4,C4,D4,P4,R4,W4 ' +
     'Description=' +
-      '"Reveals the location of a specified creature or species within 1000\' for concentration up to 1 hr; running water blocks"',
+      '"Reveals the location of a specified creature or species within 1000\' for concentration up to 1 hr; running water blocks the spell"',
   'Locate Object':
     'School=Divination ' +
     'Level=B2,C2,D2,P2,R2,W2 ' +
     'Description=' +
-      '"Reveals the location of a specified object or type within 1000\' for concentration up to 10 min; lead blocks"',
+      '"Reveals the location of a specified object or type within 1000\' for concentration up to 10 min; lead blocks the spell"',
   'Longstrider':
     'School=Transmutation ' +
     'Level=B1,D1,R1,W1 ' +
@@ -2713,7 +2714,7 @@ SRD5E.SPELLS = {
     'School=Abjuration ' +
     'Level=S1,W1 ' +
     'Description=' +
-      '"Willing, unarmored touched gains AC 13 + Dexterity modifier for 8 hr; the spell ends if the target dons armor"',
+      '"Willing, unarmored touched gains armor class 13 + Dexterity modifier for 8 hr; the spell ends if the target dons armor"',
   'Mage Hand':
     'School=Conjuration ' +
     'Level=B0,K0,S0,W0 ' +
@@ -2749,13 +2750,13 @@ SRD5E.SPELLS = {
     'School=Conjuration ' +
     'Level=B7,W7 ' +
     'Description=' +
-      '"R300\' Self and designated creatures can enter an extradimensional dwelling containing provisions for 100 people for 1 day"',
+      '"R300\' Self and designated creatures can enter an extradimensional dwelling containing provisions for 100 people for 24 hr"',
   'Major Image':
     'School=Illusion ' +
     'Level=B3,K3,S3,W3 ' +
     'AtHigherLevels="extends the duration to permanent at level 6" ' +
     'Description=' +
-      '"R120\' Creates a 20\' cube sight, sound, and touch illusion (Investigation detects) for concentration up to 10 min"',
+      '"R120\' Creates a 20\' cube sight, sound, and temperature illusion (Investigation detects) for concentration up to 10 min"',
   'Mass Cure Wounds':
     'School=Evocation ' + // from errata
     'Level=B5,C5,D5 ' +
@@ -2765,7 +2766,7 @@ SRD5E.SPELLS = {
     'School=Evocation ' + // from errata
     'Level=C9 ' +
     'Description=' +
-      '"R60\' Targets regain 700 HP total and recover from blindness, deafness, and disease"',
+      '"R60\' Targets regain 700 HP total and recover from blinded, deafened, and diseased"',
   'Mass Healing Word':
     'School=Evocation ' +
     'Level=C3 ' +
@@ -2776,7 +2777,7 @@ SRD5E.SPELLS = {
     'Level=B6,K6,S6,W6 ' +
     'AtHigherLevels="extends the duration to 10, 30, or 366 days at level 7, 8, or 9" ' +
     'Description=' +
-      '"R60\' 12 targets follow a reasonable suggestion (save Wisdom negates) for 1 day"',
+      '"R60\' 12 targets follow a reasonable suggestion (save Wisdom negates) for 24 hr"',
   'Maze':
     'School=Conjuration ' +
     'Level=W8 ' +
@@ -2791,7 +2792,7 @@ SRD5E.SPELLS = {
   'Mending':
     'School=Transmutation ' +
     'Level=B0,C0,D0,S0,W0 ' +
-    'Description="Touch repairs a break or tear up to 1 ft"',
+    'Description="Touch repairs a break or tear up to 1\'"',
   'Message':
     'School=Transmutation ' +
     'Level=B0,S0,W0 ' +
@@ -2806,7 +2807,13 @@ SRD5E.SPELLS = {
     'School=Abjuration ' +
     'Level=B8,W8 ' +
     'Description=' +
-      '"Touched gains immunity to psychic damage, emotion and thought detection, divination, and charm for 1 day"',
+      '"Touched gains immunity to psychic damage, emotion and thought detection, divination, and charm for 24 hr"',
+  'Mind Spike': // ref Xanathar
+    'School=Divination ' +
+    'Level=K2,S2,W2 ' +
+    'AtHigherLevels="inflicts +1d8 HP" ' +
+    'Description=' +
+      '"R60\' Inflicts 3d8 HP psychic, and self knows the target\'s location (save Wisdom half HP only) for concentration up to 1 hr"',
   'Minor Illusion':
     'School=Illusion ' +
     'Level=B0,K0,S0,W0 ' +
@@ -2820,12 +2827,12 @@ SRD5E.SPELLS = {
     'School=Illusion ' +
     'Level=K2,S2,W2 ' +
     'Description=' +
-      '"3 duplicates (AC %{10+dexterityModifier}; damage destroys) allow misdirecting attacks on self for 1 min with an 11, 8, or 6 on a d20 while 1, 2, or 3 duplicates remain"',
+      '"3 duplicates (armor class %{10+dexterityModifier}; damage destroys) allow misdirecting attacks on self for 1 min with an 11, 8, or 6 on a d20 while 1, 2, or 3 duplicates remain"',
   'Mislead':
     'School=Illusion ' +
     'Level=B5,W5 ' +
     'Description=' +
-      '"Makes self invisible and creates an illusory duplicate that can move %{speed*2}\' and share senses for concentration up to 1 hr; attacking or casting ends"',
+      '"Makes self invisible and creates an illusory duplicate that can move %{speed*2}\' and share senses for concentration up to 1 hr; attacking or casting ends the invisibility"',
   'Misty Step':
     'School=Conjuration ' +
     'Level=K2,S2,W2 ' +
@@ -2836,7 +2843,7 @@ SRD5E.SPELLS = {
     'AtHigherLevels=' +
       '"changes the memory of an event from the past 7, 30, 365, or unlimited days at level 6, 7, 8, or 9" ' +
     'Description=' +
-      '"R30\' Changes the target\'s memory of an event from the past 24 hr (save Wisdom negates)"',
+      '"R30\' Incapacitates the target for concentration up to 1 min and allows changing the target\'s memory of a 10-min event from the past 24 hr (save Wisdom negates)"',
   'Moonbeam':
     'School=Evocation ' +
     'Level=D2 ' +

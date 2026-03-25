@@ -2030,26 +2030,47 @@ SRD5E2024.SPELLS_CHANGED = {
     SRD5E.SPELLS.Jump
     .replace('triple jump distance', "30' jump after a 10' move"),
 
+  'Lesser Restoration':
+    SRD5E.SPELLS['Lesser Restoration']
+    .replace(', disease', ''),
+  'Light':
+    SRD5E.SPELLS.Light
+    .replace('object', 'unattended object')
+    .replace(' (save Dexterity negates)', ''),
+  'Locate Creature':
+    SRD5E.SPELLS['Locate Creature']
+    .replace('running water', 'lead'),
+
+  'Magic Circle':
+    SRD5E.SPELLS['Magic Circle']
+    .replace('celestials', 'celestials, elementals'),
   'Magic Weapon':
     SRD5E.SPELLS['Magic Weapon']
     .replace('P2,W2', 'P2,R2,S2,W2')
-    .replace('level 4', 'level 3'),
+    .replace('level 4', 'level 3')
+    .replace('concentration up to ', ''),
   'Major Image':
     SRD5E.SPELLS['Major Image']
     .replace('level 6', 'level 4'),
   'Mass Cure Wounds':
     SRD5E.SPELLS['Mass Cure Wounds']
-    .replace('Evocation', 'Abjuration'),
+    .replace('Evocation', 'Abjuration')
+    .replace('3d8', '5d8'),
   'Mass Heal':
     SRD5E.SPELLS['Mass Heal']
-    .replace('Evocation', 'Abjuration'),
+    .replace('Evocation', 'Abjuration')
+    .replace('diseased', 'poisoned'),
   'Mass Healing Word':
     SRD5E.SPELLS['Mass Healing Word']
     .replace('Evocation', 'Abjuration')
-    .replace('C3', 'B3,C3'),
+    .replace('C3', 'B3,C3')
+    .replace('1d4', '2d4'),
   'Mass Suggestion':
     SRD5E.SPELLS['Mass Suggestion']
     .replace('B6,K6,S6,W6', 'B6,S6,W6'),
+  'Maze':
+    SRD5E.SPELLS.Maze
+    .replace('; minotaurs and goristro demons automatically succeed', ''),
   'Meld Into Stone':
     SRD5E.SPELLS['Meld Into Stone']
     .replace('C3,D3', 'C3,D3,R3'),
@@ -2063,10 +2084,14 @@ SRD5E2024.SPELLS_CHANGED = {
     'Description="R120\' Inflicts 3d8 HP psychic and reveals the target\'s location for concentration up to 1 hr (save Wisdom half HP only)"',
   'Mirror Image':
     SRD5E.SPELLS['Mirror Image']
-    .replace('K2,S2,W2', 'B2,K2,S2,W2'),
+    .replace('K2,S2,W2', 'B2,K2,S2,W2')
+    .replace('with an 11, 8, or 6 on a d20 while 1, 2, or 3 duplicates remain', 'with a 3 or higher on a d6 for each remaining duplicate'),
   'Mislead':
     SRD5E.SPELLS.Mislead
     .replace('B5,W5', 'B5,K5,W5'),
+  'Moonbeam':
+    SRD5E.SPELLS.Moonbeam
+    .replace('have disadvantage and ', ''),
 
   'Phantasmal Force': // ref PHB5E
     'School=Illusion ' +

@@ -2866,7 +2866,7 @@ SRD5E.SPELLS = {
     'School=Abjuration ' +
     'Level=D2,R2 ' +
     'Description=' +
-      '"Targets in a 30\' radius gain +10 Stealth and become trackable only by magic for concentration up to 1 hr"',
+      '"Targets in a 30\' radius gain +10 Stealth and leave no tracks for concentration up to 1 hr"',
   'Passwall':
     'School=Transmutation ' +
     'Level=W5 ' +
@@ -2903,7 +2903,7 @@ SRD5E.SPELLS = {
     'School=Transmutation ' +
     'Level=B3,D3,R3 ' +
     'Description=' +
-      '"R150\' Causes plants in a 100\' radius to overgrow or enriches a 1/2 mile radius for 1 year"',
+      '"R150\' Causes plants in a 100\' radius to overgrow, slowing movement to 1/4 Speed, or enriches a 1/2 mile radius for 1 year"',
   'Poison Spray':
     'School=Conjuration ' +
     'Level=D0,K0,S0,W0 ' +
@@ -2937,18 +2937,18 @@ SRD5E.SPELLS = {
     'School=Evocation ' +
     'Level=S7,W7 ' +
     'Description=' +
-      '"60\' cone randomly inflicts one of: 10d6 HP fire, acid, lightning, poison, or cold (save Dexterity half); restrained (save Dexterity negates) and petrified after 3 failed Constitution saves (3 successes negates); blinded (save Dexterity negates) and banished to another plane (save Wisdom negates)"',
+      '"60\' cone randomly inflicts one of: 10d6 HP fire, acid, lightning, poison, or cold (save Dexterity half); restrained (save Dexterity negates) and petrified after 3 failed Constitution saves (3 successes negates); blinded (save Dexterity negates) and banished to another plane (save Wisdom negates); 2 of the preceding effects"',
   'Prismatic Wall':
     'School=Abjuration ' +
     'Level=W9 ' +
     'Description=' +
-      '"R60\' 90\'x30\' area blinds within 20\' for 1 min (save Constitution negates); creatures passing through suffer 10d6 HP each fire, acid, lightning, poison, and cold (save Dexterity half), restraint (save Dexterity negates) and petrification after 3 failed Constitution saves (3 successes negates), and blindness (save Dexterity negates) and banishment to another plane (save Wisdom negates)"',
+      '"R60\' 90\'x30\'x1\\" wall blinds within 20\' for 10 min (save Constitution negates); creatures passing through suffer 10d6 HP each fire, acid, lightning, poison, and cold (save Dexterity half), restraint (save Dexterity negates) and petrification after 3 failed Constitution saves (3 successes negates), and blindness (save Dexterity negates) and banishment to another plane (save Wisdom negates)"',
   'Private Sanctum':
     'School=Abjuration ' +
     'Level=W4 ' +
     'AtHigherLevels="increases the protected area by 100\'" ' +
     'Description=' +
-      '"R120\' Protects up to 100\' sq from choices of sound, vision, divination, teleportation, and planar travel for 1 day; casting daily for 1 year makes the effects permanent"',
+      '"R120\' Protects up to 100\' sq from choices of sound, vision, divination, teleportation, and planar travel for 24 hr; casting daily for 1 year makes the effects permanent"',
   'Produce Flame':
     'School=Conjuration ' +
     'Level=D0 ' +
@@ -2958,7 +2958,7 @@ SRD5E.SPELLS = {
     'School=Illusion ' +
     'Level=B6,W6 ' +
     'Description=' +
-      '"R120\' Creates a 30\' cube illusion when triggered (Investigation detects)"',
+      '"R120\' Creates a 30\' cube illusion when triggered (Investigation detects), with a 10 min pause between triggers"',
   'Project Image':
     'School=Illusion ' +
     'Level=B7,W7 ' +
@@ -2977,7 +2977,7 @@ SRD5E.SPELLS = {
     'School=Abjuration ' +
     'Level=C2,D2,P2,R2 ' +
     'Description=' +
-      '"Touched recovers from 1 poison and gains advantage on saves vs. poison and resistance to poison damage for 1 hr"',
+      '"Touched recovers from 1 poison and gains advantage on saves vs. being poisoned and resistance to poison damage for 1 hr"',
   'Purify Food And Drink':
     'School=Transmutation ' +
     'Level=C1,D1,P1 ' +
@@ -2999,12 +2999,12 @@ SRD5E.SPELLS = {
     'School=Evocation ' +
     'Level=S0,W0 ' +
     'Description=' +
-      '"R60\' Ranged spell inflicts %{(level+7)//6}d8 HP cold and -10\' Speed for 1 rd"',
+      '"R60\' Ranged spell inflicts %{(level+7)//6}d8 HP cold and -10\' Speed until the start of the next turn"',
   'Regenerate':
     'School=Transmutation ' +
     'Level=B7,C7,D7 ' +
     'Description=' +
-      '"Touched regains 4d8+15 HP, plus 1 HP per rd for 1 hr, and reattaches or regrows severed parts after 2 min"',
+      '"Touched regains 4d8+15 hit points, plus 1 hit point per rd for 1 hr, and reattaches or regrows severed parts after 2 min"',
   'Reincarnate':
     'School=Transmutation ' +
     'Level=D5 ' +
@@ -3013,7 +3013,8 @@ SRD5E.SPELLS = {
   'Remove Curse':
     'School=Abjuration ' +
     'Level=C3,K3,P3,W3 ' +
-    'Description="Frees a touched creature from all curses or breaks the attunement to a touched cursed object"',
+    'Description=' +
+      '"Frees a touched creature from all curses or breaks the attunement to a touched cursed object"',
   'Resilient Sphere':
     'School=Evocation ' +
     'Level=W4 ' +
@@ -3028,7 +3029,7 @@ SRD5E.SPELLS = {
     'School=Necromancy ' +
     'Level=B7,C7 ' +
     'Description=' +
-      '"Restores life with full hit points to and removes nonmagical diseases and poisons from a willing touched 100-year-old corpse; target suffers -4 attacks, saves, and ability checks, reduced by 1 for each long rest"',
+      '"Restores life with full hit points to and removes nonmagical diseases and poisons from a willing touched 100-year-old corpse; target suffers -4 attacks, saves, and ability checks, reduced by 1 for each long rest; inflicts on self loss of spellcasting and disadvantage on attacks, ability checks, and saves until the next long rest"',
   'Reverse Gravity':
     'School=Transmutation ' +
     'Level=D7,S7,W7 ' +

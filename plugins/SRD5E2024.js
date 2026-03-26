@@ -2097,46 +2097,86 @@ SRD5E2024.SPELLS_CHANGED = {
     'School=Illusion ' +
     'Level=B2,"K2 [The Archfey]","K2 [The Great Old One]",S2,W2 ' +
     'Description=' +
-      '"R60\' Target perceives an illusion (save Intelligence negates; Investigation ends) that can inflict 1d6 HP psychic per rd for concentration up to 1 min"',
+      '"R60\' Target perceives an illusion (save Intelligence negates; Investigation ends) that can inflict 2d8 HP psychic per rd for concentration up to 1 min"',
   'Phantasmal Killer':
     SRD5E.SPELLS['Phantasmal Killer']
     .replace('W4', 'B4,W4'),
   'Planar Binding':
     SRD5E.SPELLS['Planar Binding']
     .replace('B5,C5,D5,W5', 'B5,C5,D5,K5,W5'),
+  'Plane Shift':
+    SRD5E.SPELLS['Plane Shift']
+    .replace('Target (save Charisma negates) or self', 'Self'),
+  'Plant Growth':
+    SRD5E.SPELLS['Plant Growth']
+    .replace('1 year', '365 days'),
   'Poison Spray':
     SRD5E.SPELLS['Poison Spray']
-    .replace('Conjuration', 'Necromancy'),
+    .replace('Conjuration', 'Necromancy')
+    .replace("R10'", "R30'"),
+  'Polymorph':
+    SRD5E.SPELLS.Polymorph
+    .replace('; shapechangers automatically succeed', ''),
   'Power Word Heal': // ref PHB5E
     'School=Enchantment ' +
     'Level=B9,C9 ' +
     'Description=' +
       '"R60\' Target regains all hit points, recovers from charm, fright, paralysis, poison, and stunning, and can use a reaction to stand from prone"',
+  'Power Word Kill':
+    SRD5E.SPELLS['Power Word Kill']
+    .replace('are unaffected', 'suffer 12d12 HP psychic'),
+  'Power Word Stun':
+    SRD5E.SPELLS['Power Word Stun']
+    .replace('unaffected', 'have Speed 0 until the start of the next turn'),
   'Prayer Of Healing':
     SRD5E.SPELLS['Prayer Of Healing']
-    .replace('C2', 'C2,P2'),
+    .replace('C2', 'C2,P2') + ' ' +
+    'Description=' +
+      '"R30\' 5 targets gain the benefits of a short rest and regain 2d8 hit points"',
   'Prismatic Spray':
     SRD5E.SPELLS['Prismatic Spray']
-    .replace('S7,W7', 'B7,S7,W7'),
+    .replace('S7,W7', 'B7,S7,W7')
+    .replace('10d6', '12d6'),
   'Prismatic Wall':
     SRD5E.SPELLS['Prismatic Wall']
-    .replace('W9', 'B9,W9'),
+    .replace('W9', 'B9,W9')
+    .replace('10d6', '12d6'),
+  'Private Sanctum':
+    SRD5E.SPELLS['Private Sanctum']
+    .replace('1 year', '365 days'),
   'Protection From Evil And Good':
     SRD5E.SPELLS['Protection From Evil And Good']
     .replace('C1,K1,P1,W1', 'C1,D1,K1,P1,W1'),
+  'Protection From Poison':
+    SRD5E.SPELLS['Protection From Poison']
+    .replace('1 poison', 'poisoned condition'),
 
+  'Raise Dead':
+    SRD5E.SPELLS['Raise Dead']
+    .replace('nonmagical diseases and ', ''),
+  'Ray Of Enfeeblement':
+    SRD5E.SPELLS['Ray Of Enfeeblement'] + ' ' +
+    'Description=' +
+      '"R60\' Ranged spell inflicts disadvantage on Strength checks and -1d8 damage with Strength weapons (save Constitution disadvantage on the first attack before the start of the next turn only; additional saves each rd ends) for concentration up to 1 min"',
   'Ray Of Sickness': // ref PHB5E
     'School=Necromancy ' +
     'Level=S1,W1 ' +
     'AtHigherLevels="inflicts +1d8 HP" ' +
     'Description=' +
-      '"R60\' Ranged spell inflicts 2d8 HP poison and poisoned for until the end of the next turn",',
+      '"R60\' Ranged spell inflicts 2d8 HP poison and poisoned until the end of the next turn",',
   'Reincarnate':
     SRD5E.SPELLS.Reincarnate
     .replace('Transmutation', 'Necromancy'),
   'Resilient Sphere':
     SRD5E.SPELLS['Resilient Sphere']
     .replace('Evocation', 'Abjuration'),
+  'Resistance':
+    SRD5E.SPELLS.Resistance + ' ' +
+    'Description=' +
+      '"Touched reduces by 1d4 HP any damage taken from a choice of acid, bludgeoning, cold, fire, lightning, necrotic, piercing, poison, radiant, slashing, or thunder for concentration up to 1 min"',
+  'Resurrection':
+    SRD5E.SPELLS.Resurrection
+    .replace('nonmagical diseases and ', ''),
   'Revivify':
     SRD5E.SPELLS.Revivify
     .replace('C3,P3', 'C3,D3,P3,R3'),

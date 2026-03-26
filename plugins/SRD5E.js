@@ -1774,7 +1774,7 @@ SRD5E.SPELLS = {
     'Level=B5,S5,W5 ' +
     'AtHigherLevels="animates +2 objects" ' +
     'Description=' +
-      '"R120\' 10 Tiny (20 hit points; armor class 15; +8 slam inflicts 1d4+4 HP bludgeoning) or Small (25 hit points; armor class 16; +6 slam inflicts 1d8+2 HP), 5 Medium (40 hit points; armor class 13; +5 slam inflicts 2d6+1 HP), 2 Large (50 hit points; armor class 10; +6 slam inflicts 2d10+2 HP), or 1 Huge (80 hit points; armor class 10; +8 slam inflicts 2d12+4 HP) objects obey mental commands when within 500\' for concentration up to 1 min"',
+      '"R120\' 10 Tiny (20 hit points; Armor Class 15; +8 slam inflicts 1d4+4 HP bludgeoning) or Small (25 hit points; Armor Class 16; +6 slam inflicts 1d8+2 HP), 5 Medium (40 hit points; Armor Class 13; +5 slam inflicts 2d6+1 HP), 2 Large (50 hit points; Armor Class 10; +6 slam inflicts 2d10+2 HP), or 1 Huge (80 hit points; Armor Class 10; +8 slam inflicts 2d12+4 HP) objects obey mental commands when within 500\' for concentration up to 1 min"',
   'Antilife Shell':
     'School=Abjuration ' +
     'Level=D5 ' +
@@ -1846,7 +1846,8 @@ SRD5E.SPELLS = {
   'Barkskin':
     'School=Transmutation ' +
     'Level=D2,R2 ' +
-    'Description="Willing touched gains AC 16 for concentration up to 1 hr"',
+    'Description=' +
+      '"Willing touched gains Armor Class 16 for concentration up to 1 hr"',
   'Beacon Of Hope':
     'School=Abjuration ' +
     'Level=C3 ' +
@@ -2527,7 +2528,7 @@ SRD5E.SPELLS = {
     'School=Transmutation ' +
     'Level=S3,W3 ' +
     'Description=' +
-      '"R30\' Willing target gains double Speed, +2 armor class, advantage on Dexterity, and an additional action for concentration up to 1 min and suffers 1 rd of incapacitation afterward"',
+      '"R30\' Willing target gains double Speed, +2 Armor Class, advantage on Dexterity, and an additional action for concentration up to 1 min and suffers 1 rd of incapacitation afterward"',
   'Heal':
     'School=Evocation ' +
     'Level=C6,D6 ' +
@@ -2714,7 +2715,7 @@ SRD5E.SPELLS = {
     'School=Abjuration ' +
     'Level=S1,W1 ' +
     'Description=' +
-      '"Willing, unarmored touched gains armor class 13 + Dexterity modifier for 8 hr; the spell ends if the target dons armor"',
+      '"Willing, unarmored touched gains Armor Class 13 + Dexterity modifier for 8 hr; the spell ends if the target dons armor"',
   'Mage Hand':
     'School=Conjuration ' +
     'Level=B0,K0,S0,W0 ' +
@@ -2827,7 +2828,7 @@ SRD5E.SPELLS = {
     'School=Illusion ' +
     'Level=K2,S2,W2 ' +
     'Description=' +
-      '"3 duplicates (armor class %{10+dexterityModifier}; damage destroys) allow misdirecting attacks on self for 1 min with an 11, 8, or 6 on a d20 while 1, 2, or 3 duplicates remain"',
+      '"3 duplicates (Armor Class %{10+dexterityModifier}; damage destroys) allow misdirecting attacks on self for 1 min with an 11, 8, or 6 on a d20 while 1, 2, or 3 duplicates remain"',
   'Mislead':
     'School=Illusion ' +
     'Level=B5,W5 ' +
@@ -3066,12 +3067,12 @@ SRD5E.SPELLS = {
     'School=Divination ' +
     'Level=B5,C5,D5,K5,W5 ' +
     'Description=' +
-      '"Self sees and hears a chosen target (save Wisdom, modified by degree of familiarity, negates for 24 hr) for concentration up to 10 min"',
+      '"Self sees and hears a chosen target (save Wisdom, modified by degree of familiarity, negates for 24 hr) or known location for concentration up to 10 min"',
   'Secret Chest':
     'School=Conjuration ' +
     'Level=W4 ' +
     'Description=' +
-      '"Self can move a touched 12 cubic ft chest to and from the Ethereal Plane for 60+ days"',
+      '"Self can move a touched 12 cubic ft chest to and from the Ethereal Plane for 60 days, after which there is a cumulative 5% chance per day of the spell ending"',
   'See Invisibility':
     'School=Divination ' +
     'Level=B2,S2,W2 ' +
@@ -3095,7 +3096,7 @@ SRD5E.SPELLS = {
     'School=Transmutation ' +
     'Level=D9,W9 ' +
     'Description=' +
-      '"Polymorphs self into a familiar living creature of equal or lesser CR for concentration up to 1 hr or until reduced to 0 HP"',
+      '"Allows self to polymorph repeatedly into a familiar living creature of equal or lesser CR, gaining the hit points and hit dice of that creature, for concentration up to 1 hr or until reduced to 0 HP"',
   'Shatter':
     'School=Evocation ' +
     'Level=B2,K2,S2,W2 ' +
@@ -3106,16 +3107,17 @@ SRD5E.SPELLS = {
     'School=Abjuration ' +
     'Level=S1,W1 ' +
     'Description=' +
-      '"Reaction gives +5 AC and immunity to <i>Magic Missile</i> until the next turn"',
+      '"Reaction gives self +5 Armor Class and immunity to <i>Magic Missile</i> until the start of the next turn"',
   'Shield Of Faith':
     'School=Abjuration ' +
     'Level=C1,P1 ' +
-    'Description="R60\' Target gains +2 AC for concentration up to 10 min"',
+    'Description=' +
+      '"R60\' Target gains +2 Armor Class for concentration up to 10 min"',
   'Shillelagh':
     'School=Transmutation ' +
     'Level=D0 ' +
     'Description=' +
-      '"Held club inflicts +%{proficiencyBonus+mdf} magical attacks and 1d8+%{mdf} HP damage for 1 min"',
+      '"Held club gains +%{proficiencyBonus+mdf} magical attacks and inflicts 1d8+%{mdf} HP damage for 1 min"',
   'Shocking Grasp':
     'School=Evocation ' +
     'Level=S0,W0 ' +
@@ -3152,7 +3154,7 @@ SRD5E.SPELLS = {
     'School=Transmutation ' +
     'Level=S3,W3 ' +
     'Description=' +
-      '"R120\' 6 targets in a 40\' cube suffer half Speed, -2 AC and Dexterity saves, loss of reactions, and no more than 1 action per rd (save Wisdom ends) for concentration up to 1 min"',
+      '"R120\' 6 targets in a 40\' cube suffer half Speed, -2 Armor Class and Dexterity saves, loss of reactions, no more than 1 action per rd, and a 50% chance of a 1-rd delay on spell effects (save Wisdom ends) for concentration up to 1 min"',
   'Spare The Dying':
     'School=Necromancy ' +
     'Level=C0 ' +
@@ -3166,7 +3168,7 @@ SRD5E.SPELLS = {
     'School=Necromancy ' +
     'Level=B3,C3 ' +
     'Description=' +
-      '"R10\' Self can ask a corpse 5 questions; the corpse is then immune for 10 days "',
+      '"R10\' Self can ask a corpse 5 questions within 10 min; the corpse is then immune for 10 days "',
   'Speak With Plants':
     'School=Transmutation ' +
     'Level=B3,D3,R3 ' +
@@ -3175,12 +3177,12 @@ SRD5E.SPELLS = {
     'School=Transmutation ' +
     'Level=K2,S2,W2 ' +
     'Description=' +
-      '"Touched can crawl on walls and ceilings for concentration up to 1 hr"',
+      '"Willing touched can crawl on walls and ceilings for concentration up to 1 hr"',
   'Spike Growth':
     'School=Transmutation ' +
     'Level=D2,R2 ' +
     'Description=' +
-      '"R150\' 20\' radius becomes difficult terrain and inflicts 2d4 HP per 5\' movement for concentration up to 10 min"',
+      '"R150\' 20\' radius becomes difficult terrain and inflicts 2d4 HP piercing per 5\' movement for concentration up to 10 min"',
   'Spirit Guardians':
     'School=Conjuration ' +
     'Level=C3 ' +
@@ -3192,7 +3194,7 @@ SRD5E.SPELLS = {
     'Level=C2 ' +
     'AtHigherLevels="inflicts +1d8 HP per 2 levels" ' +
     'Description=' +
-      '"R60\' Creates a spectral weapon that inflicts 1d8+%{mdf} HP and can move 20\' and attack as a bonus action for 1 min"',
+      '"R60\' Creates a spectral weapon that inflicts 1d8+%{mdf} HP force and can move 20\' and attack as a bonus action for 1 min"',
   'Stinking Cloud':
     'School=Conjuration ' +
     'Level=B3,"K3 [The Fiend]",S3,W3 ' +
@@ -3221,7 +3223,7 @@ SRD5E.SPELLS = {
     'School=Evocation ' +
     'Level=D6,S6,W6 ' +
     'Description=' +
-      '"60\' line inflicts 6d8 HP radiant and blindness for 1 rd (save Constitution half HP only) for concentration up to 1 min"',
+      '"5\'x60\' line inflicts 6d8 HP radiant and blindness until the start of the next turn (save Constitution half HP only) each rd for concentration up to 1 min"',
   'Sunburst':
     'School=Evocation ' +
     'Level=D8,S8,W8 ' +
@@ -3231,7 +3233,7 @@ SRD5E.SPELLS = {
     'School=Abjuration ' +
     'Level=B7,C7,W7 ' +
     'Description=' +
-      '"Inscribes a touch object with a permanent glyph that, when triggered, inflicts a choice of harmful magic effect&mdash;10d10 HP necrotic (save Constitution half), arguing for 1 min (save Constitution negates), frightened and fleeing for 1 min (save Wisdom negates), overwhelmed with despair for 1 min (save Charisma negates), insane for 1 min (save Intelligence negates), incapacitated by pain for 1 min (save Constitution negates), asleep for 10 min or until shaken or harmed (save Wisdom negates), or stunned for 1 min (save Wisdom negates)"',
+      '"Inscribes a touched object with a permanent glyph that, when triggered, inflicts a choice of harmful magic effect&mdash;10d10 HP necrotic (save Constitution half), arguing for 1 min (save Constitution negates), frightened and fleeing for 1 min (save Wisdom negates), overwhelmed with despair for 1 min (save Charisma negates), insane for 1 min (save Intelligence negates), incapacitated by pain for 1 min (save Constitution negates), asleep for 10 min or until shaken or harmed (save Wisdom negates), or stunned for 1 min (save Wisdom negates)"',
 
   'Telekinesis':
     'School=Transmutation ' +
@@ -3315,7 +3317,7 @@ SRD5E.SPELLS = {
     'Level=B1,K1,W1 ' +
     'Ritual=true ' +
     'Description=' +
-      '"R60\' Invisible force with AC 10, 1 hit point, and Strength 2 can move 15\' per rd and performs simple tasks for 1 hr or until damaged"',
+      '"R60\' Invisible force with Armor Class 10, 1 hit point, and Strength 2 can move 15\' per rd and performs simple tasks for 1 hr or until damaged"',
 
   'Vampiric Touch':
     'School=Necromancy ' +
@@ -3345,7 +3347,7 @@ SRD5E.SPELLS = {
     'Level=W6 ' +
     'AtHigherLevels="inflicts +2d6 HP initially and +1d6 HP when passing" ' +
     'Description=' +
-      '"R120\' Creates 10 10\'x10\'x1\' panels, with AC 12 and 30 HP each, that inflict 10d6 HP cold (save Dexterity half) initially and, if broken, 5d6 HP cold to creatures passing through (save Constitution half) for concentration up to 10 min"',
+      '"R120\' Creates 10 10\'x10\'x1\' panels, with Armor Class 12 and 30 HP each, that inflict 10d6 HP cold (save Dexterity half) initially and, if broken, 5d6 HP cold to creatures passing through (save Constitution half) for concentration up to 10 min"',
   'Wall Of Stone':
     'School=Evocation ' +
     'Level=D5,S5,W5 ' +
@@ -3361,7 +3363,7 @@ SRD5E.SPELLS = {
     'School=Abjuration ' +
     'Level=C2 ' +
     'Description=' +
-      '"Touched gains +1 AC, +1 saves, and resistance to all damage while within 60\' of self, and any damage to the target also affects self, for 1 hr"',
+      '"Touched gains +1 Armor Class, +1 saves, and resistance to all damage while within 60\' of self, and any damage to the target also affects self, for 1 hr"',
   'Water Breathing':
     'School=Transmutation ' +
     'Level=D3,R3,S3,W3 ' +

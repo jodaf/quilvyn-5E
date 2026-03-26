@@ -1672,7 +1672,7 @@ SRD5E2024.SPELLS_CHANGED = {
     .replace('beasts', 'beasts, gaining temporary hit points appropriate to the animal,'),
   'Animate Objects':
     SRD5E.SPELLS['Animate Objects']
-    .replace(/10 Tiny.*objects/, '%{mdf} Medium (10 hit points; armor class 15; +%{mdf} attack inflicts 1d4+3 force), %{mdf//2} Large (20 hit points; armor class 15; +%{mdf} attack inflicts 2d6+%{mdf+3} HP), or %{mdf//3} Huge (40 hit points, armor class 15; +%{mdf} attack inflicts 2d12+%{mdf+3} HP) objects'),
+    .replace(/10 Tiny.*objects/, '%{mdf} Medium (10 hit points; Armor Class 15; +%{mdf} attack inflicts 1d4+3 force), %{mdf//2} Large (20 hit points; Armor Class 15; +%{mdf} attack inflicts 2d6+%{mdf+3} HP), or %{mdf//3} Huge (40 hit points, Armor Class 15; +%{mdf} attack inflicts 2d12+%{mdf+3} HP) objects'),
   'Antipathy/Sympathy':
     SRD5E.SPELLS['Antipathy/Sympathy']
     .replace('D8,W8', 'B8,D8,W8')
@@ -1905,8 +1905,8 @@ SRD5E2024.SPELLS_CHANGED = {
   // Feeblemind deleted
   'Find Steed':
     SRD5E.SPELLS['Find Steed']
-    .replace('it has', "it has armor class 12, 25 hit points, a 60' Speed, and' and can communicate telepathically with self up to 1 mile") + ' ' +
-    'AtHigherLevels="increases the armor class by 1 and hit points by 10; level 4 also gives a 60\' fly Speed"',
+    .replace('it has', "it has Armor Class 12, 25 hit points, a 60' Speed, and' and can communicate telepathically with self up to 1 mile") + ' ' +
+    'AtHigherLevels="increases the Armor Class by 1 and hit points by 10; level 4 also gives a 60\' fly Speed"',
   'Fire Shield':
     SRD5E.SPELLS['Fire Shield']
     .replace('"K4 [The Fiend]",W4','D4,"K4 [The Fiend]",S4,W4'),
@@ -1953,9 +1953,9 @@ SRD5E2024.SPELLS_CHANGED = {
   'Giant Insect':
     SRD5E.SPELLS['Giant Insect']
     .replace('Transmutation', 'Conjuration') + ' ' +
-    'AtHigherLevels="increases the armor class by 1, hit points by 10, number of attacks by 1 per 2 levels, and piercing damage by 1" ' +
+    'AtHigherLevels="increases the Armor Class by 1, hit points by 10, number of attacks by 1 per 2 levels, and piercing damage by 1" ' +
     'Description=' +
-      '"R60\' Summons a choice of an obedient giant centipede, spider, or wasp with armor class 15, 30 hit points, 40\' Speed, understanding of self languages, 2 attacks per rd that inflict 1d6 + 7 HP piercing and 1d4 HP poison"',
+      '"R60\' Summons a choice of an obedient giant centipede, spider, or wasp for concentration up to 10 min ; it has Armor Class 15, 30 hit points, 40\' Speed, understanding of self languages, 2 attacks per rd that inflict 1d6 + 7 HP piercing and 1d4 HP poison"',
   'Glibness':
     SRD5E.SPELLS.Glibness
     .replace('Transmutation', 'Enchantment'),
@@ -2184,46 +2184,82 @@ SRD5E2024.SPELLS_CHANGED = {
   'Searing Smite': // ref PHB5E
     'School=Evocation ' +
     'Level=P1 ' +
-    'AtHigherLevels="inflicts +1d6 HP initial" ' +
+    'AtHigherLevels="inflicts +1d6 HP initial and subsequent" ' +
     'Description=' +
       '"Cast as a bonus action after a successful self weapon attack, inflicts +1d6 HP fire, plus 1d6 HP fire per rd (save Constitution ends) for 1 min"',
+  'Sending':
+    SRD5E.SPELLS.Sending + ' ' +
+    'Description="Sends a telepathic 25-word message to a familiar target"',
+  'Shapechange':
+    SRD5E.SPELLS.Shapechange + ' ' +
+    'Description=' +
+      '"Allows self to polymorph repeatedly into a familiar living creature of equal or lesser CR, initially gaining temporary hit points of the first creature, for concentration up to 1 hr"',
   'Shatter':
     SRD5E.SPELLS.Shatter
-    .replace('B2,K2,S2,W2', 'B2,S2,W2'),
+    .replace('B2,K2,S2,W2', 'B2,S2,W2')
+    .replace('inorganic creatures', 'constructs'),
+  'Shillelagh':
+    SRD5E.SPELLS.Shillelagh + ' ' +
+    'Description=' +
+      '"Held club gains +%{proficiencyBonus+mdf} attacks and inflicts %{levels.Druid<5?\'1d8\':levels.Druid<11?\'1d10\':levels.Druid<17?\'1d12\':\'2d6\'}+%{mdf} HP of a choice of force or weapon damage for 1 min"',
   'Shining Smite': // new
     'School=Transmutation ' +
     'Level=P2 ' +
     'AtHigherLevels="inflicts +1d6 HP" ' +
-    'Description="Cast as a bonus action after a successful self weapon attack, causes the target to emit a bright light, negating invisibility and giving its foes advantage on attacks"',
+    'Description=' +
+      '"Cast as a bonus action after a successful self weapon attack, inflicts +2d6 HP radiant and causes the target to emit a 5\' bright light, negating invisibility and giving its foes advantage on attacks, for concentration up to 1 min"',
+  'Shocking Grasp':
+    SRD5E.SPELLS['Shocking Grasp']
+    .replace('reactions', 'opportunity attacks'),
+  'Sleep':
+    SRD5E.SPELLS.Sleep + ' ' +
+    'AtHigherLevels="" ' +
+    'Description=' +
+      '"R60\' Each target in a 5\' radius becomes incapacitated (save Wisdom negates) until the end of its next turn, then unconscious (save Wisdom negates) for concentration up to 1 min (damage or shaking wakens)"',
   'Slow':
     SRD5E.SPELLS.Slow
-    .replace('S3,W3', 'B3,S3,W3'),
-  'Sorcerous Burst':
+    .replace('S3,W3', 'B3,S3,W3')
+    .replace('50% chance of a 1-rd delay on spell effects', '25% chance of somatic spell failure'),
+  'Sorcerous Burst': // new
     'School=Evocation ' +
     'Level=S0 ' +
     'Description=' +
-      '"R60\' Ranged spell inflicts %{(level+7)//6}d8 HP of a choice of acid, cold, fire, lightning, poison, psychic, or thunder; rolled 8s on the damage allow adding up to +%{mdf}d8 damage"',
+      '"R120\' Ranged spell inflicts %{(level+7)//6}d8 HP of a choice of acid, cold, fire, lightning, poison, psychic, or thunder; rolled 8s on the damage allow adding up to +%{mdf}d8 damage"',
   'Spare The Dying':
     SRD5E.SPELLS['Spare The Dying']
-    .replace('C0', 'C0,D0'),
+    .replace('C0', 'C0,D0')
+    .replace('Touched', "R%{level<5?15:level<11?30:level<17?60:120}' Target"),
   'Speak With Animals':
     SRD5E.SPELLS['Speak With Animals']
     .replace('B1,D1,R1', 'B1,D1,K1,R1'),
   'Speak With Dead':
     SRD5E.SPELLS['Speak With Dead']
     .replace('B3,C3', 'B3,C3,W3'),
-  'Starry Wisp':
+  'Spider Climb':
+    SRD5E.SPELLS['Spider Climb'] + ' ' +
+    'AtHigherLevels="affects +1 target"',
+  'Starry Wisp': // new
     'School=Evocation ' +
     'Level=B0,D0 ' +
     'Description=' +
       '"R60\' Ranged spell inflicts %{(level+7)//6}d8 HP radiant and a dim glow until the end of the next turn"',
+  'Stinking Cloud':
+    SRD5E.SPELLS['Stinking Cloud']
+    .replace('loss', 'poisoned and loss'),
   'Stoneskin':
     SRD5E.SPELLS.Stoneskin
     .replace('Abjuration', 'Transmutation'),
+  'Storm Of Vengeance':
+    SRD5E.SPELLS['Storm Of Vengeance']
+    .replace('sight', '1 mile')
+    .replace('360', '300')
+    .replace('1d6', '4d6'),
   'Summon Dragon': // new
     'School=Conjuration ' +
     'Level=W5 ' +
-    'Description="TODO"',
+    'AtHigherLevels="increases the Armor Class by 1, hit points by 10, number of attacks by 1 per 2 levels, and piercing damage by 1" ' +
+    'Description=' +
+      '"R60\' Summons an obedient draconic spirit for concentration up to 1 hr; it has Armor Class 19, 50 hit points, 30\' Speed, 60\' fly Speed, 30\' swim Spee, 2 attacks per rd that inflict 1d6 + 19 HP piercing, and a breath weapon that inflicts 2d6 HP of a choice of acid, cold, fire, lightning, or poison in a 30\' cone"',
   'Sunbeam':
     SRD5E.SPELLS.Sunbeam
     .replace('D6,S6,W6', 'C6,D6,S6,W6'),
@@ -2232,7 +2268,8 @@ SRD5E2024.SPELLS_CHANGED = {
     .replace('D8,S8,W8', 'C8,D8,S8,W8'),
   'Symbol':
     SRD5E.SPELLS.Symbol
-    .replace('B7,C7,W7', 'B7,C7,D7,W7'),
+    .replace('B7,C7,W7', 'B7,C7,D7,W7')
+    .replace('Constitution negates', 'Wisdom negates'),
 
   'Telepathic Bond':
     SRD5E.SPELLS['Telepathic Bond']

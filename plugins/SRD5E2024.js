@@ -1987,12 +1987,12 @@ SRD5E2024.SPELLS_CHANGED = {
     .replace('Evocation', 'Abjuration'),
   'Healing Word':
     SRD5E.SPELLS['Healing Word']
-    .replace('Evocadtion', 'Abjuration')
+    .replace('Evocation', 'Abjuration')
     .replaceAll('1d4', '2d4'),
   "Heroes' Feast":
     SRD5E.SPELLS["Heroes' Feast"]
     .replace('C6,D6', 'B6,C6,D6')
-    .replace(/recover.*Wisdom/, 'gain resitance to poison, immunity to becoming poisoned and frightened'),
+    .replace(/recover.*Wisdom/, 'gain resistance to poison, immunity to becoming poisoned and frightened'),
   'Hex': // ref PHB5E
     'School=Enchantment ' +
     'Level=K1 ' +
@@ -2259,7 +2259,7 @@ SRD5E2024.SPELLS_CHANGED = {
     'Level=W5 ' +
     'AtHigherLevels="increases the Armor Class by 1, hit points by 10, number of attacks by 1 per 2 levels, and piercing damage by 1" ' +
     'Description=' +
-      '"R60\' Summons an obedient draconic spirit for concentration up to 1 hr; it has Armor Class 19, 50 hit points, 30\' Speed, 60\' fly Speed, 30\' swim Spee, 2 attacks per rd that inflict 1d6 + 19 HP piercing, and a breath weapon that inflicts 2d6 HP of a choice of acid, cold, fire, lightning, or poison in a 30\' cone"',
+      '"R60\' Summons an obedient draconic spirit for concentration up to 1 hr; it has Armor Class 19, 50 hit points, 30\' Speed, 60\' fly Speed, 30\' swim Speed, 2 attacks per rd that inflict 1d6 + 19 HP piercing, and a breath weapon that inflicts 2d6 HP of a choice of acid, cold, fire, lightning, or poison in a 30\' cone"',
   'Sunbeam':
     SRD5E.SPELLS.Sunbeam
     .replace('D6,S6,W6', 'C6,D6,S6,W6'),
@@ -2271,12 +2271,29 @@ SRD5E2024.SPELLS_CHANGED = {
     .replace('B7,C7,W7', 'B7,C7,D7,W7')
     .replace('Constitution negates', 'Wisdom negates'),
 
+  'Telekinesis':
+    SRD5E.SPELLS.Telekinesis
+    .replace('1000 lb', 'Huge or smaller'),
   'Telepathic Bond':
     SRD5E.SPELLS['Telepathic Bond']
     .replace('W5', 'B5,W5'),
   'Teleportation Circle':
     SRD5E.SPELLS['Teleportation Circle']
-    .replace('B5,S5,W5', 'B5,K5,S5,W5'),
+    .replace('B5,S5,W5', 'B5,K5,S5,W5')
+    .replace('1 year', '365 days'),
+  'Tiny Hut':
+    SRD5E.SPELLS['Tiny Hut']
+    .replace('spells', 'spells up to level 3'),
+  'Transport Via Plants':
+    SRD5E.SPELLS['Transport Via Plants']
+    .replace('1 rd', '1 min'),
+  'True Seeing':
+    SRD5E.SPELLS['True Seeing']
+    .replace(/truesight.*for 1 hr/, 'truesight for 1 hr'),
+  'True Strike':
+    SRD5E.SPELLS['True Strike'] + ' ' +
+    'Description=' +
+      '"+%{proficiencyBonus+mdf} attack with held weapon inflicts%{level<5?\'\':level<11?\' +1d6 HP of\':level<17?\' +2d6 HP of\':\' +3d6 HP of\'} a choice of radiant or normal weapon damage"',
   'Tsunami': // ref PHB5E
     'School=Conjuration ' +
     'Level=D8 ' +
@@ -2286,6 +2303,9 @@ SRD5E2024.SPELLS_CHANGED = {
   'Vampiric Touch':
     SRD5E.SPELLS['Vampiric Touch']
     .replace('K3,W3', 'K3,S3,W3'),
+  'Vicious Mockery':
+    SRD5E.SPELLS['Vicious Mockery']
+    .replaceAll('d4', 'd6'),
   'Vitriolic Sphere': // ref Xanathar
     'School=Evocation ' +
     'Level=S4,W4 ' +
@@ -2296,9 +2316,20 @@ SRD5E2024.SPELLS_CHANGED = {
   'Warding Bond':
     SRD5E.SPELLS['Warding Bond']
     .replace('C2', 'C2,P2'),
+  'Web':
+    SRD5E.SPELLS.Web
+    .replace('Strength', 'Athletics'),
   'Weird':
     SRD5E.SPELLS.Weird
     .replace('W9', 'K9,W9')
+    .replace('4d10 HP psychic', '10d10 HP psychic (save Wisdom negates), then 5d10 HP psychic'),
+  'Wind Walk':
+    SRD5E.SPELLS['Wind Walk']
+    .replace('nonmagical weapons', 'bludgeoning, piercing, and slashing')
+    .replace('incapacitation', 'stunned'),
+  'Wind Wall':
+    SRD5E.SPELLS['Wind Wall']
+    .replace('3d8', '4d8')
 
 };
 SRD5E2024.SPELLS = Object.assign({}, SRD5E.SPELLS, SRD5E2024.SPELLS_CHANGED);

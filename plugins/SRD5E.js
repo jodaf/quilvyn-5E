@@ -3254,7 +3254,7 @@ SRD5E.SPELLS = {
     'School=Conjuration ' +
     'Level=B5,S5,W5 ' +
     'Description=' +
-      '"R10\' Creates a portal that provides a link to similar circles for 1 rd"',
+      '"R10\' Creates a portal that provides a link to similar circles for 1 rd; casting on the same spot every day for 1 year makes it permanent"',
   'Thaumaturgy':
     'School=Transmutation ' +
     'Level=C0 ' +
@@ -3290,7 +3290,7 @@ SRD5E.SPELLS = {
     'School=Conjuration ' +
     'Level=D5,R5 ' +
     'Description=' +
-      '"Self may teleport 500\' between like trees once per rd for concentration up to 1 min"',
+      '"Allows self to teleport 500\' between like trees once per rd for concentration up to 1 min"',
   'True Polymorph':
     'School=Transmutation ' +
     'Level=B9,K9,W9 ' +
@@ -3300,7 +3300,7 @@ SRD5E.SPELLS = {
     'School=Necromancy ' +
     'Level=C9,D9 ' +
     'Description=' +
-      '"Restores life and full hit points to and removes all diseases, poisons, wounds, and curses from a willing touched or named 200-year-old corpse"',
+      '"Restores life and full hit points to and removes all diseases, poisons, wounds, and curses from a willing touched corpse or named creature dead up to 200 years"',
   'True Seeing':
     'School=Divination ' +
     'Level=B6,C6,K6,S6,W6 ' +
@@ -3341,24 +3341,24 @@ SRD5E.SPELLS = {
     'School=Evocation ' +
     'Level=W5 ' +
     'Description=' +
-      '"R120\' Creates 10 10\'x10\' impassable force panels for concentration up to 10 min"',
+      '"R120\' Creates 10 10\'x10\' impassable force panels or a 10\' radius impassible sphere for concentration up to 10 min"',
   'Wall Of Ice':
     'School=Evocation ' +
     'Level=W6 ' +
     'AtHigherLevels="inflicts +2d6 HP initially and +1d6 HP when passing" ' +
     'Description=' +
-      '"R120\' Creates 10 10\'x10\'x1\' panels, with Armor Class 12 and 30 HP each, that inflict 10d6 HP cold (save Dexterity half) initially and, if broken, 5d6 HP cold to creatures passing through (save Constitution half) for concentration up to 10 min"',
+      '"R120\' Creates a 10\' radius sphere or 10 10\'x10\'x1\' panels, with Armor Class 12 and 30 hit points each, that inflict 10d6 HP cold (save Dexterity half) initially and, if broken, 5d6 HP cold to creatures passing through (save Constitution half) for concentration up to 10 min"',
   'Wall Of Stone':
     'School=Evocation ' +
     'Level=D5,S5,W5 ' +
     'Description=' +
-      '"R120\' Creates 10 10\'x10\'x6\\" or 10\'x20\'x3\\" panels for concentration up to 10 min"',
+      '"R120\' Creates 10 10\'x10\'x6\\" or 10\'x20\'x3\\" stone panels, with Armor Class 15 and 30 hit points each, for concentration up to 10 min; concentrating for 10 min makes the wall permanent"',
   'Wall Of Thorns':
     'School=Conjuration ' +
     'Level=D6 ' +
     'AtHigherLevels="inflicts +1d8 HP" ' +
     'Description=' +
-      '"R120\' Creates a 60\'x10\'x5\' wall or a 20\'x20\'x5\' ring that inflicts 7d8 HP piercing (save Dexterity half) initially, plus half Speed and 7d8 HP slashing to creatures passing through (save Dexterity half) for concentration up to 10 min"',
+      '"R120\' Creates a 60\'x10\'x5\' wall or a 20\'x20\'x5\' ring that inflicts 7d8 HP piercing (save Dexterity half) initially, plus one-quarter Speed and 7d8 HP slashing to creatures passing through (save Dexterity half) for concentration up to 10 min"',
   'Warding Bond':
     'School=Abjuration ' +
     'Level=C2 ' +
@@ -3388,12 +3388,12 @@ SRD5E.SPELLS = {
     'School=Transmutation ' +
     'Level=D6 ' +
     'Description=' +
-      '"R30\' Self and 10 others can become gaseous, gaining a 300\' per rd fly Speed and resistance to nonmagical weapons, at will for 8 hr; converting to or from gas requires 1 min of incapacitation"',
+      '"R30\' Self and 10 others can become gaseous, gaining a 300\' fly Speed and resistance to nonmagical weapons, at will for 8 hr; converting to or from gas inflicts incapacitation for 1 min"',
   'Wind Wall':
     'School=Evocation ' +
     'Level=D3,R3 ' +
     'Description=' +
-      '"R120\' Creates a 50\'x15\'x1\' area that inflicts 3d8 HP bludgeoning (save Strength half) and deflects lightweight creatures and objects for concentration up to 1 min"',
+      '"R120\' Creates a 50\'x15\'x1\' area that inflicts 3d8 HP bludgeoning (save Strength half) and deflects lightweight creatures, objects, and projectiles for concentration up to 1 min"',
   'Wish':
     'School=Conjuration ' +
     'Level=S9,W9 ' +
@@ -3568,7 +3568,7 @@ SRD5E.LEVELS_EXPERIENCE = [
 /* Defines the rules related to character abilities. */
 SRD5E.abilityRules = function(rules, abilities) {
 
-  // backwards compatability for plugins that don't pass a 2nd parameter
+  // backwards compatibility for plugins that don't pass a 2nd parameter
   if(!abilities)
     abilities = SRD5E.ABILITIES;
 

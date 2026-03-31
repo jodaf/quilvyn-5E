@@ -185,6 +185,7 @@ SRD5E2024.CLASSES = {
       '"14:Improved Blessed Strikes","19:Epic Boon",' +
       '"20:Greater Divine Intervention",' +
       '"features.Life Domain ? 3:Disciple Of Life",' +
+      '"features.Life Domain ? 3:Life Domain Spells",' +
       '"features.Life Domain ? 3:Preserve Life",' +
       '"features.Life Domain ? 6:Blessed Healer",' +
       '"features.Life Domain ? 17:Supreme Healing" ' +
@@ -298,16 +299,19 @@ SRD5E2024.CLASSES = {
       '"1:Save Proficiency (Wisdom; Charisma)",' +
       '"1:Skill Proficiency (Choose 2 from Athletics, Insight, Intimidation, Medicine, Persuasion, Religion)",' +
       '"1:Lay On Hands","1:Spellcasting","1:Weapon Mastery",' +
-      '"2:Fighting Style","2:Paladin\'s Smite","3:Channel Divinity",' +
+      '"2:Paladin Fighting Style","2:Paladin\'s Smite","3:Channel Divinity",' +
       '"3:Divine Sense","3:Paladin Subclass","5:Extra Attack",' +
       '"5:Faithful Steed","6:Aura Of Protection","9:Abjure Foes",' +
       '"10:Aura Of Courage","11:Radiant Strikes","14:Restoring Touch",' +
       '"18:Aura Expansion","19:Epic Boon",' +
+      '"features.Oath Of Devotion ? 3:Oath Of Devotion Spells",' +
       '"features.Oath Of Devotion ? 3:Sacred Weapon",' +
       '"features.Oath Of Devotion ? 7:Aura Of Devotion",' +
       '"features.Oath Of Devotion ? 15:Smite Of Protection",' +
       '"features.Oath Of Devotion ? 20:Holy Nimbus" ' +
     'Selectables=' +
+      '"2:Blessed Warrior:Paladin Fighting Style",' +
+      '"2:Fighting Style:Paladin Fighting Style",' +
       '"3:Oath Of Devotion:Paladin Subclass" ' +
     'SpellAbility=Charisma ' +
     'SpellSlots=' +
@@ -325,7 +329,7 @@ SRD5E2024.CLASSES = {
       '"1:Save Proficiency (Strength; Dexterity)",' +
       '"1:Skill Proficiency (Choose 3 from Animal Handling, Athletics, Insight, Investigation, Nature, Perception, Stealth, Survival)",' +
       '"1:Favored Enemy","1:Spellcasting","1:Weapon Mastery",' +
-      '"2:Deft Explorer","2:Fighting Style","3:Ranger Subclass",' +
+      '"2:Deft Explorer","2:Ranger Fighting Style","3:Ranger Subclass",' +
       '"5:Extra Attack","6:Roving","9:Expertise","10:Tireless",' +
       '"13:Relentless Hunter","14:Nature\'s Veil","17:Precise Hunter",' +
       '"18:Feral Senses","19:Epic Boon","20:Foe Slayer",' +
@@ -335,6 +339,8 @@ SRD5E2024.CLASSES = {
       '"features.Hunter ? 11:Superior Hunter\'s Prey",' +
       '"features.Hunter ? 15:Superior Hunter\'s Defense" ' +
     'Selectables=' +
+      '"2:Druidic Warrior:Ranger Fighting Style",' +
+      '"2:Fighting Style:Ranger Fighting Style",' +
       '"3:Hunter:Ranger Subclass",' +
       '"features.Hunter ? 11:Volley:Multiattack",' +
       '"features.Hunter ? 11:Whirlwind Attack:Multiattack",' +
@@ -520,7 +526,7 @@ SRD5E2024.FEATURES_CHANGED = {
   'Barbarian Subclass':SRD5E.FEATURES['Primal Path'],
   'Brutal Strike':
     'Section=combat ' +
-    'Note="Can forego Reckless Attack advantage on a Strength-based attack to inflict +%{levels.Barbarian<17?1:2}d10 HP weapon damage and %{levels.Barbarian<17?\'a choice\':\'2 choices\'} of %{combatNotes.improvedBrutalStrike?\\"disadvantage on the target\'s next save and loss of opportunity attacks until the start of the next turn, a +5 bonus to the next attack on the target before the start of the next turn, \\":\'\'}a 15\' push and optional move along with the target, or -15 Speed until the start of the next turn"',
+    'Note="Can forego Reckless Attack advantage on a Strength-based attack to inflict +%{levels.Barbarian<17?1:2}d10 HP weapon damage and %{levels.Barbarian<17?\'a choice\':\'2 choices\'} of: %{combatNotes.improvedBrutalStrike?\\"disadvantage on the target\'s next save and loss of opportunity attacks until the start of the next turn; a +5 bonus to the next attack on the target before the start of the next turn; \\":\'\'}a 15\' push and optional move along with the target; -15 Speed until the start of the next turn"',
   'Primal Knowledge':
     'Section=skill,skill ' +
     'Note=' +
@@ -542,11 +548,12 @@ SRD5E2024.FEATURES_CHANGED = {
     'Section=combat Note="Can move %{speed//2}\' when entering rage"',
   'Persistent Rage':
     SRD5E.FEATURES['Persistent Rage']
-    .replace('Can', 'Can recover all uses of Rage during initiative once per long rest, and can'),
+    .replace('Can', 'Can recover all uses of Rage during initiative once per long rest and can'),
   'Primal Champion':SRD5E.FEATURES['Primal Champion'],
   'Rage':
     SRD5E.FEATURES.Rage
-    .replace('1 min', '10 min')
+    .replace(' melee', '')
+    .replace('1 min', 'up to 10 min (attacking, forcing a save, or using a bonus action each rd extends the rage)')
     .replace('unlimited', '6')
     .replace('long rest', 'long rest, regaining 1 use after a short rest'),
   // Reckless Attack as SRD5E
@@ -565,7 +572,7 @@ SRD5E2024.FEATURES_CHANGED = {
   'Intimidating Presence':
     // changed effects
     'Section=combat ' +
-    'Note="Can use a bonus action to inflict fear (DC %{8+strengthModifier+proficiencyBonus} ends) on targets for 1 min once per long rest; can expend uses of Rage for additional uses"',
+    'Note="R30\' Can use a bonus action to inflict frightened (DC %{8+strengthModifier+proficiencyBonus} ends) on targets for 1 min once per long rest; can expend uses of Rage for additional uses"',
   // Mindless Rage as SRD5E
   // Retaliation as SRD5E
 
@@ -577,21 +584,20 @@ SRD5E2024.FEATURES_CHANGED = {
   'Countercharm':
     'Section=combat ' +
     // changed effects
-    'Note="R30\' Can use a reaction to give a target a reroll with advantage on a save vs. charm or fright"',
+    'Note="R30\' Can use a reaction to give a target a reroll with advantage on a save vs. charmed or frightened"',
   // Epic Boon as above
   'Expertise':
     // changed effects
     'Section=skill Note="+%{proficiencyBonus} on %V chosen proficient skills"',
   'Font Of Inspiration':
-    'Section=magic,magic ' +
+    'Section=combat,magic ' +
     // changed effects
     'Note=' +
       '"Bardic Inspiration refreshes after a short rest",' +
       '"Can expend a spell slot to regain 1 Bardic Inspiration use"',
   'Jack Of All Trades':
     // changed effects
-    'Section=skill ' +
-    'Note="+%{proficiencyBonus//2} on non-proficient skill checks"',
+    'Section=skill Note="+%V on non-proficient skill checks"',
   'Magical Secrets':
     SRD5E.FEATURES['Magical Secrets']
     .replace(/learn.*spells/, 'learn spells'),
@@ -603,7 +609,7 @@ SRD5E2024.FEATURES_CHANGED = {
     'Section=magic,magic ' +
     'Note=' +
       '"Knows the <i>Power Word Heal</i> and <i>Power Word Kill</i> spells",' +
-      '"Can target 2 creatures within a 10\' radius with <i>Power Word Heal</i> and <i>Power Word Kill</i>" ' +
+      '"Can target 2 creatures within 10\' of each other with <i>Power Word Heal</i> and <i>Power Word Kill</i>" ' +
     'Spells="Power Word Heal","Power Word Kill"',
   // College Of Lore
   // Bonus Proficiencies (College Of Lore) as SRD5E
@@ -658,9 +664,13 @@ SRD5E2024.FEATURES_CHANGED = {
       '"+%V Arcana/+%V Religion"',
   // Turn Undead as SRD5E
   // Life Domain
-  // Blessed Healer as SRD5E
-  // Disciple Of Life as SRD5E
-  'Life Domain':
+  'Blessed Healer':
+    SRD5E.FEATURES['Blessed Healer']
+    .replace('Casting', 'Using a spell slot to cast'),
+  'Disciple Of Life':
+    SRD5E.FEATURES['Disciple Of Life']
+    .replace('Casting', 'Using a spell slot to cast'),
+  'Life Domain Spells':
     // changed effects
     'Spells=' +
       '"3:Aid","3:Bless","3:Cure Wounds","3:Lesser Restoration",' +
@@ -675,11 +685,8 @@ SRD5E2024.FEATURES_CHANGED = {
   // Druid
   'Archdruid':
     // changed effects
-    'Section=combat,feature,magic ' +
-    'Note=' +
-      '"Has at least 1 use of Wild Shape available after initiative",' +
-      '"Ages at 1/10 normal rate",' +
-      '"Can convert Wild Shape uses into a spell slot, expending a use for each 2 spell levels, once per long rest"',
+    'Section=feature ' +
+    'Note="Has the Evergreen Wild Shape, Nature Magician, and Longevity features"',
   // Beast Spells as SRD5E
   'Druidic':
     // changed effects
@@ -691,16 +698,24 @@ SRD5E2024.FEATURES_CHANGED = {
   'Druid Subclass':SRD5E.FEATURES['Druid Circle'],
   'Elemental Fury':'Section=feature Note="1 selection"',
   // Epic Boon as above
+  'Evergreen Wild Shape':
+    'Section=combat ' +
+    'Note="Has at least 1 use of Wild Shape available after initiative"',
   'Improved Elemental Fury':
     'Section=combat,magic ' +
     'Note=' +
       '"Has increased Primal Strike effects",' +
       '"Cantrips with a range of 10\' or more can be cast at 300\'"',
+  'Longevity':'Section=feature Note="Ages at 1/10 normal rate"',
   'Magician':
     'Section=magic,skill ' +
     'Note=' +
       '"Knows +1 Druid cantrip",' +
       '"+%{wisdomModifier>?1} Arcana/+%{wisdomModifier>?1} Nature"',
+  'Nature Magician':
+    'Section=magic ' +
+    'Note=' +
+      '"Can convert Wild Shape uses into a spell slot, expending a use for each 2 spell levels, once per long rest"',
   // Potent Spellcasting as above
   'Primal Order':'Section=feature Note="1 selection"',
   'Primal Strike':
@@ -716,11 +731,11 @@ SRD5E2024.FEATURES_CHANGED = {
     'Spells="Find Familiar"',
   'Wild Resurgence':
     'Section=magic ' +
-    'Note="Can expend a spell slot to gain a Wild Shape use, or expend a Wild Shape use to gain a level 1 spell slot once per long rest"',
+    'Note="Can expend a Wild Shape use to gain a level 1 spell slot once per long rest and expend a spell slot to gain a Wild Shape use"',
   'Wild Shape':
     'Section=magic ' +
     // changed effects
-    'Note="Can transform into a CR %V%{levels.Druid<8?\' (non-flying)\':\'\'} creature with %{levels.Druid} temporary hit points for %{levels.Druid//2} hr %{levels.Druid<6?2:levels.Druid<17?3:4} times per long rest; a short restores 1 use"',
+    'Note="Can transform into a CR %V%{levels.Druid<8?\' (non-flying)\':\'\'} creature with %{levels.Druid} temporary hit points for %{levels.Druid//2} hr %{levels.Druid<6?2:levels.Druid<17?3:4} times per long rest; a short rest restores 1 use"',
   // Circle Of The Land
   'Arid Land':
     'Spells=' +
@@ -746,7 +761,7 @@ SRD5E2024.FEATURES_CHANGED = {
       '"5:Stinking Cloud",' +
       '"7:Polymorph",' +
       '"9:Insect Plague"',
-  'Circle Of The Land':
+  'Circle Of The Land Spells':
     'Section=magic,magic ' +
     'Note=' +
       '"Has the Arid Land, Polar Land, Temperate Land, and Tropical Land features",' +
@@ -758,9 +773,9 @@ SRD5E2024.FEATURES_CHANGED = {
     SRD5E.FEATURES['Natural Recovery']
     .replace('recover', 'cast 1 Druid spell without using a spell slot and recover'),
   "Nature's Sanctuary":
-    'Section=combat ' +
+    'Section=magic ' +
     // changed effects
-    'Note="R120\' 15\' cube of spectral vines and trees can move 60\' as a bonus action, gives allies Nature\'s Ward resistance, and gives self and allies half cover, for 1 min"',
+    'Note="R120\' Creates a 15\' cube of spectral vines and trees that can move 60\' as a bonus action, gives allies Nature\'s Ward resistance, and gives self and allies half cover, for 1 min"',
   "Nature's Ward":
     'Section=save ' +
     // changed effects
@@ -797,6 +812,13 @@ SRD5E2024.FEATURES_CHANGED = {
   // Weapon Mastery as above
   // Champion
   'Additional Fighting Style':'Section=feature Note="+1 Fighting Style Feat"',
+  'Defy Death':
+    'Section=save ' +
+    'Note="Has advantage on death saving throws, and a roll of 18-19 on one gains the benefits of a 20"',
+  'Heroic Rally':
+    'Section=combat ' +
+    'Note=' +
+      '"Regains %{constitutionModifier+5} hit points each rd when between 1 and %{hitPoints//2} hit points"',
   'Heroic Warrior':
     'Section=combat ' +
     'Note="Can give self Heroic Inspiration at the start of each turn"',
@@ -810,10 +832,7 @@ SRD5E2024.FEATURES_CHANGED = {
   // Superior Critical as SRD5E
   'Survivor':
     // changed effects
-    'Section=combat,save ' +
-    'Note=' +
-      '"Regains %{constitutionModifier+5} hit points each rd when between 1 and %{hitPoints//2} hit points",' +
-      '"Has advantage on death saving throws, and a roll of 18-19 on one gains the benefits of a 20"',
+    'Section=combat Note="Has the Defy Death and Heroic Rally features"',
 
   // Monk
   'Acrobatic Movement':
@@ -823,7 +842,8 @@ SRD5E2024.FEATURES_CHANGED = {
   'Deflect Attacks':
     SRD5E.FEATURES['Deflect Missiles']
     .replace(' missile', "%{combatNotes.deflectEnergy?'':' bludgeoning, piercing, or slashing'}")
-    .replace('make an immediate attack with the missile', 'redirect 2d%{combatNotes.martialArts} HP (DC %{monkSaveDC} save Dexterity negates) to an adjacent creature, or to a creature within 60\' if the damage came from a ranged attack'),
+    .replace('ki point', 'focus point')
+    .replace('make an immediate attack with the missile', 'redirect 2d%{combatNotes.martialArts}+%{dexterityModifier} HP (DC %{monkSaveDC} save Dexterity negates) to an adjacent creature, or to a creature within 60\' if the damage came from a ranged attack'),
   'Deflect Energy':
     'Section=combat Note="Has increased Deflect Attacks effects"',
   'Disciplined Survivor':
@@ -846,7 +866,7 @@ SRD5E2024.FEATURES_CHANGED = {
     .replace(' after attacking', ''),
   'Monk Subclass':SRD5E.FEATURES['Monastic Tradition'],
   "Monk's Focus":
-    'Section=combat,feature ' +
+    'Section=combat,combat ' +
     'Note=' +
       '"Has the Flurry Of Blows, Patient Defense, and Step Of The Wind features",' +
       '"Can use %{levels.Monk} focus points per short rest"',
@@ -868,7 +888,7 @@ SRD5E2024.FEATURES_CHANGED = {
   // TODO advantage on next attack on target?
   'Stunning Strike':
     SRD5E.FEATURES['Stunning Strike']
-    .replace('negates', 'inflicts half Speed')
+    .replace('negates', 'inflicts half Speed and advantage on the next foe attack')
     .replace('end of', 'start of'),
   'Superior Defense':
     'Section=save ' +
@@ -886,7 +906,7 @@ SRD5E2024.FEATURES_CHANGED = {
     'Note="Can use Step Of The Wind immediately after another bonus action"',
   'Open Hand Technique':
     SRD5E.FEATURES['Open Hand Technique']
-    .replace('reactions until the end of the', 'opportunity attacks until the start of its'),
+    .replace('reactions until the end of the', "opportunity attacks until the start of the target's"),
   'Quivering Palm':
     'Section=combat ' +
     // changed effects
@@ -900,11 +920,13 @@ SRD5E2024.FEATURES_CHANGED = {
   // Paladin
   'Abjure Foes':
     'Section=combat ' +
-    'Note="R60\' Can use Channel Divinity to limit %{charismaModifier>1?charismaModifier+\' targets\':\'1 target\'} to one move or action each turn (save Wisdom negates; taking damage ends) for 1 min"',
+    'Note="R60\' Can use Channel Divinity to frighten %{charismaModifier>1?charismaModifier+\' targets\':\'1 target\'} (save DC %{spellDifficultyClass.P} Wisdom negates), limiting %{charismaModifier>1?\'them\':\'it\'} to one move or action each turn, for 1 min or until damaged"',
   'Aura Expansion':'Section=save Note="Has increased Aura effects"',
   // Aura Of Courage as SRD5E
   // Aura Of Protection as SRD5E
-  'Blessed Warrior':'Section=magic Note="Knows 2 C0 cantrips"',
+  'Blessed Warrior':
+    'Section=magic ' +
+    'Note="Knows 2 Cleric cantrips; can replace 1 of them when gaining a Paladin level"',
   // Channel Divinity as above
   'Divine Sense':
     'Section=skill ' +
@@ -916,11 +938,12 @@ SRD5E2024.FEATURES_CHANGED = {
     'Section=magic ' +
     'Note="Can cast <i>Find Steed</i> once per long rest" ' +
     'Spells="Find Steed"',
-  // TODO: Blessed Warrior cantrips instead of the extra Fighting Style feat
   // Fighting Style as above
   'Lay On Hands':
     SRD5E.FEATURES['Lay On Hands']
+    .replace('heal', 'use bonus actions to heal')
     .replace('cure a disease or neutralize a poison', 'remove a poisoned condition'),
+  'Paladin Fighting Style':'Section=feature Note="1 selection"',
   "Paladin's Smite":
     'Section=magic ' +
     'Note="Can cast <i>Divine Smite</i> once per long rest" ' +
@@ -936,11 +959,12 @@ SRD5E2024.FEATURES_CHANGED = {
   // Aura Of Devotion as SRD5E
   'Holy Nimbus':
     SRD5E.FEATURES['Holy Nimbus']
-    .replaceAll('1 min', '10 min')
+    .replace('emit', 'use a bonus action to emit')
+    .replace('1 min', '10 min')
     .replace('spells by ', '')
-    .replaceAll('long rest', 'long rest; can spend level 5 spell slots for additional uses')
+    .replace('long rest', 'long rest; can spend level 5 spell slots for additional uses')
     .replace('10 HP', '%{charismaModifier+proficiencyBonus} HP'),
-  'Oath Of Devotion':
+  'Oath Of Devotion Spells':
     'Spells=' +
       '"3:Protection From Evil And Good","3:Shield Of Faith",' +
       '"5:Aid","5:Zone Of Truth",' +
@@ -975,14 +999,16 @@ SRD5E2024.FEATURES_CHANGED = {
   'Feral Senses':
     // changed effects
     'Section=skill Note="Has 30\' blindsight"',
-  // Fighting Style as above TODO or Druidic Warrior
   'Foe Slayer':
+    // changed effects
     'Section=magic Note="<i>Hunter\'s Mark</i> inflicts d10 damage"',
   "Nature's Veil":
-    'Section=magic Note="Can use a bonus action to become invisible until the end of the next turn %{wisdomModifier>1?wisdomModifier+\' times\':\'once\'} per long rest"',
+    'Section=combat ' +
+    'Note="Can use a bonus action to become invisible until the end of the next turn %{wisdomModifier>1?wisdomModifier+\' times\':\'once\'} per long rest"',
   'Precise Hunter':
     'Section=combat ' +
     'Note="Has advantage on attacks vs. <i>Hunter\'s Mark</i> target"',
+  'Ranger Fighting Style':'Section=feature Note="1 selection"',
   'Ranger Subclass':SRD5E.FEATURES['Ranger Archetype'],
   'Roving':
     'Section=ability,ability ' +
@@ -1024,7 +1050,7 @@ SRD5E2024.FEATURES_CHANGED = {
     'Note="Successful attackers suffer disadvantage on additional attacks on self in the same turn"',
   "Superior Hunter's Prey":
     'Section=magic ' +
-    'Note="Can inflict <i>Hunter\'s Prey</i> damage to a second creature within 30\' of the target once per turn"',
+    'Note="Can inflict <i>Hunter\'s Mark</i> damage to a second creature within 30\' of the target once per turn"',
   "Superior Hunter's Defense":
     'Section=save ' +
     'Note="Can use a reaction upon taking damage to gain resistance to that type of damage until the end of the current turn"',
@@ -1033,7 +1059,7 @@ SRD5E2024.FEATURES_CHANGED = {
   // Cunning Action as SRD5E
   'Cunning Strike':
     'Section=combat ' +
-    'Note="Can reduce Sneak Attack damage to inflict %{combatNotes.improvedCunningStrike?\'2 choices of\':\'a choice of\'}: %{combatNotes.deviousStrikes?\\"limitation to 1 action or move on the target\'s next turn (reduces damage by 2d6 HP), unconsciousness (reduces damage by 6d6 HP) (save Constitution ends) for 1 min, blindness (reduces damage by 3d6) until the end of its next turn, \\":\'\'}poisoned (reduces damage by 1d6 HP) (save Constitution ends) for 1 min, prone (reduces damage by 1d6 HP) (save Dexterity negates), or to move %{speed//2}\' after attacking without provoking opportunity attacks (reduces damage by 1d6 HP)"',
+    'Note="Can reduce Sneak Attack damage to inflict %{combatNotes.improvedCunningStrike?\'2 choices of\':\'a choice of\'}: %{combatNotes.deviousStrikes?\\"limitation to 1 action or move on the target\'s next turn (save Constitution negates) (reduces damage by 2d6 HP), unconsciousness (save Constitution negates; additional saves each rd end) for 1 min (reduces damage by 6d6 HP), blindness until the end of its next turn (save Dexterity negates) (reduces damage by 3d6), \\":\'\'}poisoned (save Constitution negates; additional saves each rd end) for 1 min (reduces damage by 1d6 HP), prone (save Dexterity negates) (reduces damage by 1d6 HP), or to move %{speed//2}\' after attacking without provoking opportunity attacks (reduces damage by 1d6 HP)"',
   'Devious Strikes':
     'Section=combat Note="Has increased Cunning Strike effects"',
   // Elusive as SRD5E
@@ -1070,14 +1096,17 @@ SRD5E2024.FEATURES_CHANGED = {
   'Fast Hands':
     'Section=combat ' +
     // changed effects
-    'Note="Can use a bonus action to disarm a trap, open a lock, or take a Utilize action"',
+    'Note="Can use a bonus action to disarm a trap, open a lock, pick a pocket, or take a Utilize action"',
   'Second-Story Work':
-    SRD5E.FEATURES['Second-Story Work']
-    .replace('dexterityModifier', 'dexterityModifier-strengthModifier'),
+    'Section=ability,skill ' +
+    'Note=' +
+      // changed effects
+      '"Has a %{speed}\' climb Speed",' +
+      '"+%{dexterityModifier-strengthModifier}\' running jump distance"',
   'Supreme Sneak':
     'Section=combat ' +
     // changed effects
-    'Note="Can use Cunning Strike to attack while invisible from hiding without becoming visible"',
+    'Note="Can use Cunning Strike to attack while invisible from hiding without becoming visible; reduces the damage by 1d6 HP"',
   // Thief's Reflexes as SRD5E
   'Use Magic Device':
     'Section=skill ' +
@@ -1089,10 +1118,13 @@ SRD5E2024.FEATURES_CHANGED = {
     'Section=magic ' +
     'Note="While using Innate Sorcery, can use 1 Metamagic option each turn without spending Sorcery Points"',
   // Epic Boon as above
-  // Font Of Magic as SRD5E
+  'Font Of Magic':
+    'Section=magic ' +
+    // changed effects
+    'Note="Can use %V Sorcery Points per long rest, convert spell slots to Sorcery Points, and use a bonus action to convert Sorcery Points to a spell slot"',
   'Innate Sorcery':
     'Section=magic ' +
-    'Note="Can gain +1 spell DC and advantage on spell attacks for 1 min 2 times per long rest"',
+    'Note="Can use a bonus action to gain +1 spell DC and advantage on spell attacks for 1 min 2 times per long rest"',
   // Metamagic as SRD5E
   'Sorcerer Subclass':SRD5E.FEATURES['Sorcerous Origin'],
   'Sorcerous Restoration':
@@ -1115,7 +1147,7 @@ SRD5E2024.FEATURES_CHANGED = {
   'Heightened Spell':
     SRD5E.FEATURES['Heightened Spell']
     .replace('3', '2')
-    .replace('the initial save', 'saves'),
+    .replace('initial save', 'saves'),
   // Quickened Spell as SRD5E
   'Seeking Spell':
     'Section=magic ' +
@@ -1142,7 +1174,7 @@ SRD5E2024.FEATURES_CHANGED = {
       '"9:Legend Lore","9:Summon Dragon"',
   'Dragon Companion':
     'Section=magic ' +
-    'Note="Can cast <i>Summon Dragon</i> without material components once per long rest and can make the duration 1 min instead of concentration" ' +
+    'Note="Can cast <i>Summon Dragon</i> without material components once per long rest and can make its duration 1 min instead of concentration" ' +
     'Spells="Summon Dragon"',
   'Dragon Wings':
     'Section=ability ' +
@@ -1172,12 +1204,12 @@ SRD5E2024.FEATURES_CHANGED = {
   'Pact Magic':
     'Section=magic ' +
     // changed effects
-    'Note="Can cast spells from the warlock spell list and cast spells marked with [R] using a ritual"',
+    'Note="Can cast spells from the Warlock spell list and cast spells marked with [R] using a ritual"',
   'Warlock Subclass':SRD5E.FEATURES['Otherworldly Patron'],
   // Eldritch Invocations
   'Agonizing Blast':
     SRD5E.FEATURES['Agonizing Blast']
-    .replace('<i>Eldritch Blast</i>', 'Chosen Warlock cantrip'),
+    .replace('<i>Eldritch Blast</i> inflicts', "%{$$'features.Agonizing Blast'>1?$$'features.Agonizing Blast'+' chosen Warlock cantrips inflict':'Chosen Warlock cantrip inflicts'}"),
   // Armor Of Shadows as SRD5E
   // Ascendant Step as SRD5E
   // Devil's Sight as SRD5E
@@ -1187,11 +1219,11 @@ SRD5E2024.FEATURES_CHANGED = {
     'Section=magic ' +
     'Note="Has advantage on Constitution saves to maintain concentration"',
   'Eldritch Smite':
-    'Section=combat Note="Can spend a spell slot to inflict +1d8 + 1d8 per spell level with a pact weapon, and to inflict prone on a Huge or smaller target"',
+    'Section=combat Note="Can spend a spell slot on a pact weapon hit to inflict +1d8 HP force plus +1d8 HP force per spell level and to inflict prone on a Huge or smaller target"',
   'Eldritch Spear':
     // changed effects
     'Section=magic ' +
-    'Note="Increases the range of a chosen ranged Warlock cantrip by %{30*levels.Warlock}\'"',
+    'Note="Increases the range of %{$\'features.Eldritch Spear\'>1?$\'features.Eldritch Spear\'+\' chosen ranged Warlock cantrips\':\'a chosen ranged Warlock cantrip\'} by %{30*levels.Warlock}\'"',
   'Fiendish Vigor':
     SRD5E.FEATURES['Fiendish Vigor']
     .replace('at will', 'at will, gaining the maximum possible temporary hit points'),
@@ -1210,11 +1242,11 @@ SRD5E2024.FEATURES_CHANGED = {
   'Investment Of The Chain Master': // modified from Tasha
     'Section=magic ' +
     'Note="Familiar gains a 40\' fly or swim Speed, can inflict a choice of necrotic or radiant damage, and inflicts DC %{spellDifficultyClass.K} saves; self can use a bonus action to command it to attack and a reaction to give it resistance to damage"',
-  'Lessons Of The First Ones':'Section=feature Note="+1 Origin Feat"',
+  'Lessons Of The First Ones':'Section=feature Note="+%V Origin Feat"',
   'Lifedrinker':
     'Section=combat ' +
     // changed effects
-    'Note="Can inflict +1d6 HP of a choice of necrotic, psychic, or radiant damage, plus expend a Hit Point Die to regain hit points, once per turn"',
+    'Note="Can inflict +1d6 HP of a choice of necrotic, psychic, or radiant with a pact weapon, plus expend a Hit Point Die to regain hit points, once per turn"',
   // Mask Of Many Faces as SRD5E
   // Master Of Myriad Forms as SRD5E
   // Misty Visions as SRD5E
@@ -1227,7 +1259,7 @@ SRD5E2024.FEATURES_CHANGED = {
   'Pact Of The Blade':
     'Section=magic ' +
     // changed effects
-    'Note="Can use a bonus action to create a bonded simple or martial pact weapon or to bond with a touched magic weapon and gain proficiency with it; it can be used as a spellcasting focus and deals Charisma-based attacks that inflict a choice of necrotic, psychic, radiant, or normal weapon damage; moving 5\' away from the weapon for 1 min ends the bond"',
+    'Note="Can use a bonus action to create a bonded simple or martial pact weapon or to bond with a touched magic weapon and gain proficiency with it; it can be used as a spellcasting focus, and its Charisma-based attacks inflict a choice of necrotic, psychic, radiant, or normal weapon damage; moving 5\' away from the weapon for 1 min ends the bond"',
   'Pact Of The Chain':
     SRD5E.FEATURES['Pact Of The Chain']
     .replace('as a ritual', 'without expending a spell slot'),
@@ -1237,7 +1269,7 @@ SRD5E2024.FEATURES_CHANGED = {
   'Repelling Blast':
     SRD5E.FEATURES['Repelling Blast']
     .replace('push', 'push on a Large or smaller target')
-    .replace('<i>Eldritch Blast</i>', 'attack using a chosen Warlock cantrip'),
+    .replace('<i>Eldritch Blast</i>', "attack using %{$$'features.Repelling Blast'>1?$$'features.Repelling Blast'+' chosen Warlock cantrips':'a chosen Warlock cantrip'}"),
   'Thirsting Blade':
     SRD5E.FEATURES['Thirsting Blade']
     .replace('2', '%{combatNotes.devouringBlade?3:2}'),
@@ -1247,7 +1279,7 @@ SRD5E2024.FEATURES_CHANGED = {
   // Fiend Patron
   "Dark One's Blessing":
     SRD5E.FEATURES["Dark One's Blessing"]
-    .replace('Reducing', "R10' Self or an ally reducing"),
+    .replace('temporary hit points', 'temporary hit points; others reducing a foe within 10\' to 0 hit points gives the same benefit'),
   'Fiend Spells':
     'Spells=' +
       '"3:Burning Hands","3:Command","3:Scorching Ray","3:Suggestion",' +
@@ -1460,13 +1492,13 @@ SRD5E2024.FEATURES_CHANGED = {
       '"Can swap initiatives with a willing ally"',
   'Magic Initiate (Cleric)':
     'Section=magic ' +
-    'Note="Knows 2 C0 cantrips and can cast a chosen C1 spell once per long rest"',
+    'Note="Knows 2 Cleric cantrips and can cast a chosen C1 spell once per long rest"',
   'Magic Initiate (Druid)':
     'Section=magic ' +
-    'Note="Knows 2 D0 cantrips and can cast a chosen D1 spell once per long rest"',
+    'Note="Knows 2 Druid cantrips and can cast a chosen D1 spell once per long rest"',
   'Magic Initiate (Wizard)':
     'Section=magic ' +
-    'Note="Knows 2 W0 cantrips and can cast a chosen W1 spell once per long rest"',
+    'Note="Knows 2 Wizard cantrips and can cast a chosen W1 spell once per long rest"',
   'Savage Attacker':
     'Section=combat Note="Can use the better of 2 damage rolls once per turn"',
   // TODO or Tool
@@ -2008,6 +2040,7 @@ SRD5E2024.SPELLS_CHANGED = {
     .replace('negates)', 'negates) until the end of its next turn'),
   "Hunter's Mark":
     SRD5E.SPELLS["Hunter's Mark"]
+    .replace('1d6', '1d%{magicNotes.foeSlayer?10:6}')
     .replace('weapon damage', 'force'),
 
   'Ice Knife': // ref Xanathar
@@ -2711,7 +2744,7 @@ SRD5E2024.classRulesExtra = function(rules, name) {
 
     rules.defineRule('abilityNotes.fastMovement.1',
       'abilityNotes.fastMovement', '?', null,
-      'armorWeight', '=', 'source < 3 ? 10 : null'
+      'armorCategory', '=', 'source != "Heavy" ? 10 : null'
     );
     rules.defineRule('armorClass', 'combatNotes.unarmoredDefense.1', '+', null);
     rules.defineRule('combatNotes.brutalStrike',
@@ -2743,8 +2776,8 @@ SRD5E2024.classRulesExtra = function(rules, name) {
     rules.defineRule('bardicInspirationDie',
       classLevel, '=', 'source<20 ? 6 + Math.floor(source / 5) * 2 : 12'
     );
-    rules.defineRule('magicNotes.bardicInspiration',
-      'magicNotes.fontOfInspiration', '+', 'null' // italics
+    rules.defineRule('combatNotes.bardicInspiration',
+      'combatNotes.fontOfInspiration', '+', 'null' // italics
     );
     rules.defineRule('magicNotes.spellcasting.1', classLevel, '=', '1');
     rules.defineRule('selectableFeatureCount.Bard (Bard Subclass)',
@@ -2752,13 +2785,16 @@ SRD5E2024.classRulesExtra = function(rules, name) {
     );
     rules.defineRule
       ('skillNotes.expertise', classLevel, '+=', 'source<10 ? 2 : 4');
+    rules.defineRule('skillNotes.jackOfAllTrades',
+      'proficiencyBonus', '=', 'Math.floor(source / 2)'
+    );
     rules.defineRule('spells.Power Word Heal(B9 Ench)',
       'magicNotes.wordsOfCreation', '+', 'null' // italics
     );
 
   } else if(name == 'Cleric') {
 
-    rules.defineRule('combatNotes.blessedStrikes',
+    rules.defineRule('combatNotes.divineStrike',
       'combatNotes.improvedBlessedStrikes', '+', 'null' // italics
     );
     rules.defineRule('combatNotes.divineSpark',
@@ -2785,7 +2821,7 @@ SRD5E2024.classRulesExtra = function(rules, name) {
     );
     rules.defineRule('divineStrikeDamageType',
       'features.Divine Strike', '?', null,
-      'features.Life Domain', '=', '"radiant"'
+      'features.Life Domain', '=', '"of a choice of necrotic or radiant"'
     );
     rules.defineRule('selectableFeatureCount.Cleric (Blessed Strikes)',
       'featureNotes.blessedStrikes', '=', '1'
@@ -2910,21 +2946,27 @@ SRD5E2024.classRulesExtra = function(rules, name) {
     rules.defineRule
       ('combatNotes.extraAttack', classLevel, '+=', 'source<5 ? null : 1');
     rules.defineRule('magicNotes.channelDivinity.1',
-      'levels.Paladin', '+=', 'source<3 ? null : 2'
+      'levels.Paladin', '+=', 'source<3 ? null : source<11 ? 2 : 3'
     );
     rules.defineRule('magicNotes.spellcasting.1', classLevel, '=', '1');
     rules.defineRule('saveNotes.auraOfCourage',
       'saveNotes.auraExpansion', '+', 'null' // italics
     );
+    for(let a in SRD5E.ABILITIES)
+      rules.defineRule('save.' + a, 'saveNotes.auraOfProtection', '+', '2');
+    rules.defineRule('selectableFeatureCount.Paladin (Paladin Fighting Style)',
+      'featureNotes.paladinFightingStyle', '=', '1'
+    );
     rules.defineRule('selectableFeatureCount.Paladin (Paladin Subclass)',
       'featureNotes.paladinSubclass', '=', '1'
     );
+    rules.defineRule('spellSlots.C0', 'magicNotes.blessedWarrior', '+=', '2');
 
   } else if(name == 'Ranger') {
 
     rules.defineRule('abilityNotes.roving.1',
       'abilityNotes.roving', '?', null,
-      'armorWeight', '=', 'source < 3 ? 10 : null'
+      'armorCategory', '=', 'source=="Heavy" ? null : 10'
     );
     rules.defineRule
       ('combatNotes.extraAttack', classLevel, '+=', 'source<5 ? null : 1');
@@ -2945,12 +2987,16 @@ SRD5E2024.classRulesExtra = function(rules, name) {
       'magicNotes.foeSlayer', '+', 'null' // italics
     );
     rules.defineRule('magicNotes.spellcasting.1', classLevel, '=', '1');
+    rules.defineRule('selectableFeatureCount.Ranger (Ranger Fighting Style)',
+      'featureNotes.rangerFightingStyle', '=', '1'
+    );
     rules.defineRule('selectableFeatureCount.Ranger (Ranger Subclass)',
       'featureNotes.rangerSubclass', '=', '1'
     );
     rules.defineRule
       ('skillNotes.expertise', classLevel, '+=', 'source<9 ? null : 2');
     rules.defineRule('speed', 'abilityNotes.roving.1', '+', null);
+    rules.defineRule('spellSlots.D0', 'magicNotes.druidicWarrior', '+=', '2');
 
   } else if(name == 'Rogue') {
 
@@ -2991,6 +3037,9 @@ SRD5E2024.classRulesExtra = function(rules, name) {
     rules.defineRule('combatNotes.thirstingBlade',
       'combatNotes.devouringBlade', '+', 'null' // italics
     );
+    rules.defineRule('featureNotes.lessonsOfTheFirstOnes',
+      'warlockFeatures.Lessons Of The First Ones', '=', null
+    );
     rules.defineRule('magicNotes.eldritchInvocations',
       classLevel, '=', 'source==1 ? 1 : source<5 ? 3 : source<9 ? Math.floor((source + 5) / 2) : Math.floor((source + 12) / 3)'
     );
@@ -3006,9 +3055,6 @@ SRD5E2024.classRulesExtra = function(rules, name) {
 
     rules.defineRule('selectableFeatureCount.Warlock (Pact Boon)',
       'featureNotes.pactBoon', '=', '1'
-    );
-    rules.defineRule('spells.Eldritch Blast (K0 Evoc)',
-      'magicNotes.eldritchSpear', '=', 'null' // italics
     );
     rules.defineRule('maxKSlot',
       'casterLevels.K', '=', 'Math.min(Math.floor((source + 1) / 2), 5)'
@@ -3243,7 +3289,11 @@ SRD5E2024.shieldRules = function(rules, name, ac, cost, weight) {
  */
 SRD5E2024.skillRules = function(rules, name, ability, classes) {
   SRD5E.skillRules(rules, name, ability, classes);
-  // No changes needed to SRD5E
+  rules.defineRule('jackOfAllTrades.' + name,
+    'skillBonus.' + name, '?', '!source',
+    'skillNotes.jackOfAllTrades', '=', null
+  );
+  rules.defineRule('skills.' + name, 'jackOfAllTrades.' + name, '+', null);
 };
 
 /*

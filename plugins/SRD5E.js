@@ -198,6 +198,7 @@ SRD5E.CLASSES = {
       '"features.Life Domain ? 1:Bonus Proficiency (Life Domain)",' +
       '"features.Life Domain ? 1:Disciple Of Life",' +
       '"features.Life Domain ? 2:Preserve Life",' +
+      '"features.Life Domain ? 3:Life Domain Spells",' +
       '"features.Life Domain ? 6:Blessed Healer",' +
       '"clericHasDivineStrike ? 8:Divine Strike",' +
       '"features.Life Domain ? 17:Supreme Healing" ' +
@@ -310,6 +311,7 @@ SRD5E.CLASSES = {
       '"2:Divine Smite","3:Divine Health","3:Sacred Oath",' +
       '"3:Channel Divinity","5:Extra Attack","6:Aura Of Protection",' +
       '"10:Aura Of Courage","11:Improved Divine Smite","14:Cleansing Touch",' +
+      '"features.Oath Of Devotion ? 3:Oath Of Devotion Spells",' +
       '"features.Oath Of Devotion ? 3:Sacred Weapon",' +
       '"features.Oath Of Devotion ? 3:Turn The Unholy",' +
       '"features.Oath Of Devotion ? 7:Aura Of Devotion",' +
@@ -721,6 +723,7 @@ SRD5E.FEATURES = {
     'Note="Melee critical hits inflict %{(levels.Barbarian-5)//4} additional %{levels.Barbarian<13?\'die\':\'dice\'} of damage"',
   'Danger Sense':
     'Section=save Note="Has advantage on Dexterity vs. visible dangers"',
+  // TODO rephrase in terms of the Attack action?
   'Extra Attack':'Section=combat Note="+%V Attacks Per Round"',
   'Fast Movement':'Section=ability Note="+10 Speed; heavy armor negates"',
   'Feral Instinct':
@@ -729,14 +732,14 @@ SRD5E.FEATURES = {
   'Indomitable Might':
     'Section=ability Note="Scores a minimum of %{strength} on Strength checks"',
   'Persistent Rage':
-    'Section=combat Note="Can continue raging when unengaged with any foe"',
+    'Section=combat Note="Can continue raging without taking any action"',
   'Primal Champion':'Section=ability Note="+4 Strength/+4 Constitution"',
   'Primal Path':'Section=feature Note="1 selection"',
   'Rage':
     'Section=ability,combat,magic,save ' +
     'Note=' +
       '"Has advantage on Strength checks during rage",' +
-      '"Can enter a rage, gaining +%{levels.Barbarian<9?2:levels.Barbarian<16?3:4} damage with Strength melee weapons, for 1 min %{levels.Barbarian<3?2:levels.Barbarian<6?3:levels.Barbarian<12?4:levels.Barbarian<17?5:levels.Barbarian<20?6:\'unlimited\'} times per long rest; heavy armor negates benefits",' +
+      '"Can enter a rage as a bonus action, gaining +%{levels.Barbarian<9?2:levels.Barbarian<16?3:4} damage with Strength melee weapons, for 1 min %{levels.Barbarian<3?2:levels.Barbarian<6?3:levels.Barbarian<12?4:levels.Barbarian<17?5:levels.Barbarian<20?6:\'unlimited\'} times per long rest; heavy armor negates the benefits",' +
       '"Cannot cast or concentrate on spells during rage",' +
       '"Has advantage on Strength saves and resistance to bludgeoning, piercing, and slashing damage during rage"',
   'Reckless Attack':
@@ -754,7 +757,7 @@ SRD5E.FEATURES = {
     'Section=combat ' +
     'Note="R30\' Can use an action to inflict frightened on a target (save DC %{charismaModifier+8+proficiencyBonus} Wisdom negates) and additional actions to extend each rd; ends if the target moves out of sight or more than 60\' away"',
   'Mindless Rage':
-    'Section=save Note="Has immunity to charm and fright during rage"',
+    'Section=save Note="Has immunity to charmed and frightened during rage"',
   'Retaliation':
     'Section=combat ' +
     'Note="Can use a reaction to make a melee attack on a successful adjacent attacker"',
@@ -763,10 +766,10 @@ SRD5E.FEATURES = {
   'Bard College':'Section=feature Note="1 selection"',
   'Bardic Inspiration':
     'Section=combat ' +
-    'Note="R60\' Can use a bonus action to give an ally +1d%{bardicInspirationDie} on an ability check, attack, or save within 10 min %{charismaModifier>1?charismaModifier + \' times\':\'once\'} per %{magicNotes.fontOfInspiration?\'short\':\'long\'} rest"',
+    'Note="R60\' Can use a bonus action to give an ally +1d%{bardicInspirationDie} on an ability check, attack, or save within 10 min %{charismaModifier>1?charismaModifier + \' times\':\'once\'} per %{combatNotes.fontOfInspiration?\'short\':\'long\'} rest"',
   'Countercharm':
     'Section=skill ' +
-    'Note="R30\' Performance gives friendly listeners advantage on saves vs. charm and fright for 1 rd"',
+    'Note="R30\' Performance gives friendly listeners advantage on saves vs. charmed and frightened for 1 rd"',
   'Expertise':
     'Section=skill ' +
     'Note="+%{proficiencyBonus} on %V chosen proficient skills%{levels.Rogue?\\" or Thieves\' Tools\\":\'\'}"',
@@ -776,8 +779,7 @@ SRD5E.FEATURES = {
   'Font Of Inspiration':
     'Section=combat Note="Bardic Inspiration refreshes after a short rest"',
   'Jack Of All Trades':
-    'Section=ability ' +
-    'Note="+%{proficiencyBonus//2} on non-proficient ability checks"',
+    'Section=ability Note="+%V on non-proficient ability checks"',
   'Magical Secrets':
     'Section=magic ' +
     'Note="Can learn %{(levels.Bard-6)//4*2} additional spells from any class"',
@@ -814,13 +816,6 @@ SRD5E.FEATURES = {
   'Divine Intervention':
     'Section=magic ' +
     'Note="Has a %{levels.Cleric<20?levels.Cleric:100}% chance to gain help from %{deity} once per week"',
-  'Life Domain':
-    'Spells=' +
-      '"1:Bless","1:Cure Wounds",' +
-      '"3:Lesser Restoration","3:Spiritual Weapon",' +
-      '"5:Beacon Of Hope","5:Revivify",' +
-      '"7:Death Ward","7:Guardian Of Faith",' +
-      '"9:Mass Cure Wounds","9:Raise Dead"',
   // Spellcasting as above
   'Supreme Healing':
     'Section=magic ' +
@@ -839,10 +834,17 @@ SRD5E.FEATURES = {
     'Note="Casting a healing spell restores an additional 2 + spell level hit points"',
   'Divine Strike':
     'Section=combat ' +
-    'Note="Weapon inflicts +%{levels.Cleric<14?1:2}d8 HP %{divineStrikeDamageType} once per rd"',
+    'Note="Weapon inflicts +%{levels.Cleric<14?1:2}d8 HP %{divineStrikeDamageType} once per turn"',
+  'Life Domain Spells':
+    'Spells=' +
+      '"1:Bless","1:Cure Wounds",' +
+      '"3:Lesser Restoration","3:Spiritual Weapon",' +
+      '"5:Beacon Of Hope","5:Revivify",' +
+      '"7:Death Ward","7:Guardian Of Faith",' +
+      '"9:Mass Cure Wounds","9:Raise Dead"',
   'Preserve Life':
     'Section=magic ' +
-    'Note="R30\' Can use Channel Divinity to restore %{levels.Cleric*5} hit points among targets, up to half maximum hit points each"',
+    'Note="R30\' Can use Channel Divinity to restore %{levels.Cleric*5} hit points among targets, raising each to up to half its maximum hit points"',
 
   // Druid
   'Archdruid':
@@ -997,7 +999,7 @@ SRD5E.FEATURES = {
     'Note="Has a minimum of 4 ki points available after initiative"',
   'Purity Of Body':'Section=save Note="Has immunity to disease and poison"',
   'Slow Fall':
-    'Section=ability ' +
+    'Section=save ' +
     'Note="Can use a reaction to reduce falling damage by %{levels.Monk*5} HP"',
   'Step Of The Wind':
     'Section=combat ' +
@@ -1037,10 +1039,12 @@ SRD5E.FEATURES = {
   // Paladin
   'Aura Of Courage':
     'Section=save ' +
-    'Note="R%{levels.Paladin<18?10:30}\' Self and allies have immunity to fright"',
+    'Note="R%{levels.Paladin<18?10:30}\' Self and allies have immunity to frightened"',
   'Aura Of Protection':
-    'Section=save ' +
-    'Note="R%{levels.Paladin<18?10:30}\' Self and allies +%{charismaModifier>?1} all saves"',
+    'Section=save,save ' +
+    'Note=' +
+      '"+%{charismaModifier>?1} on all saves",' +
+      '"R%{levels.Paladin<18?10:30}\' Gives allies +%{charismaModifier>?1} on all saves"',
   // Channel Divinity as above
   'Cleansing Touch':
     'Section=magic ' +
@@ -1064,13 +1068,12 @@ SRD5E.FEATURES = {
   // Oath Of Devotion
   'Aura Of Devotion':
     'Section=save ' +
-    'Note="R%{levels.Paladin<18?10:30}\' Self and allies have immunity to charm"',
+    'Note="R%{levels.Paladin<18?10:30}\' Self and allies have immunity to charmed"',
   'Holy Nimbus':
-    'Section=combat,save ' +
+    'Section=combat ' +
     'Note=' +
-      '"Can emit a 30\' bright light that inflicts 10 HP radiant to foes for 1 min once per long rest",' +
-      '"Can gain advantage on saves vs. spells by fiends and undead for 1 min once per long rest"',
-  'Oath Of Devotion':
+      '"Can emit a 30\' bright light that inflicts 10 HP radiant to foes and gives self advantage on saves vs. spells by fiends and undead for 1 min once per long rest"',
+  'Oath Of Devotion Spells':
     'Spells=' +
       '"3:Protection From Evil And Good","3:Sanctuary",' +
       '"5:Lesser Restoration","5:Zone Of Truth",' +
@@ -1120,7 +1123,7 @@ SRD5E.FEATURES = {
   // Hunter
   'Colossus Slayer':
     'Section=combat ' +
-    'Note="Can inflict +1d8 HP vs. an already-injured foe once per turn"',
+    'Note="Can inflict +1d8 HP with a weapon vs. an already-injured foe once per turn"',
   'Defensive Tactics':'Section=feature Note="1 selection"',
   'Escape The Horde':
     'Section=combat ' +
@@ -1131,7 +1134,7 @@ SRD5E.FEATURES = {
     'Note="Can use a reaction to attack an adjacent Large or larger foe after it misses self"',
   'Horde Breaker':
     'Section=combat ' +
-    'Note="Can make a second attack on a different adjacent foe once per turn"',
+    'Note="Can make a second weapon attack on a different adjacent foe once per turn"',
   "Hunter's Prey":'Section=feature Note="1 selection"',
   'Multiattack':'Section=feature Note="1 selection"',
   'Multiattack Defense':
@@ -1216,10 +1219,10 @@ SRD5E.FEATURES = {
     'Note="Can spend 1 Sorcery Point to double the duration of a spell, up to a 24 hr maximum"',
   'Heightened Spell':
     'Section=magic ' +
-    'Note="Can spend 3 Sorcery Points to inflict target disadvantage on the initial save vs. a self spell"',
+    'Note="Can spend 3 Sorcery Points to inflict disadvantage on a target\'s initial save vs. a self spell"',
   'Quickened Spell':
     'Section=magic ' +
-    'Note="Can spend 2 Sorcery Points to cast a 1-action spell as bonus action"',
+    'Note="Can spend 2 Sorcery Points to use a bonus action to cast a 1-action spell"',
   'Subtle Spell':
     'Section=magic ' +
     'Note="Can spend 1 Sorcery Point to cast a spell without somatic or verbal components"',
@@ -3584,10 +3587,7 @@ SRD5E.abilityRules = function(rules, abilities) {
   }
   rules.defineRule('carry', 'strength', '=', 'source * 15');
   rules.defineRule('lift', 'strength', '=', 'source * 30');
-  rules.defineRule('speed',
-    '', '=', '30',
-    'abilityNotes.armorSpeedAdjustment', '+', null
-  );
+  rules.defineRule('speed', 'abilityNotes.armorSpeedAdjustment', '+', null);
   QuilvynRules.validAllocationRules
     (rules, 'abilityBoost', 'abilityBoostChoiceCount', 'Sum "^abilityBoosts\\."');
 
@@ -4444,11 +4444,14 @@ SRD5E.classRulesExtra = function(rules, name) {
 
   } else if(name == 'Bard') {
 
+    rules.defineRule('abilityNotes.jackOfAllTrades',
+      'proficiencyBonus', '=', 'Math.floor(source / 2)'
+    );
     rules.defineRule('bardicInspirationDie',
       classLevel, '=', 'source<20 ? 6 + Math.floor(source / 5) * 2 : 12'
     );
-    rules.defineRule('magicNotes.bardicInspiration',
-      'magicNotes.fontOfInspiration', '+', 'null' // italics
+    rules.defineRule('combatNotes.bardicInspiration',
+      'combatNotes.fontOfInspiration', '+', 'null' // italics
     );
     rules.defineRule('magicNotes.spellcasting.1', classLevel, '=', '1');
     rules.defineRule('selectableFeatureCount.Bard (Bard College)',
@@ -4612,6 +4615,8 @@ SRD5E.classRulesExtra = function(rules, name) {
     rules.defineRule('magicNotes.channelDivinity.1',
       'levels.Paladin', '+=', 'source<3 ? null : 1'
     );
+    for(let a in SRD5E.ABILITIES)
+      rules.defineRule('save.' + a, 'saveNotes.auraOfProtection', '+', '2');
     rules.defineRule('selectableFeatureCount.Paladin (Fighting Style)',
       'paladinFeatures.Fighting Style', '?', null,
       'featureNotes.fightingStyle', '=', '1'
@@ -6253,7 +6258,7 @@ SRD5E.initialEditorElements = function() {
     ['player', 'Player', 'text', [20]],
     ['experience', 'Experience', 'text', [8, '(\\+?\\d+)']],
     ['feats', 'Feats', 'setbag', 'feats'],
-    ['selectableFeatures', 'Selectable Features', 'set', 'selectableFeatures'],
+    ['selectableFeatures', 'Selectable Features', 'setbag', 'selectableFeatures'],
     ['skillsChosen', 'Skills', 'set', 'skills'],
     ['toolsChosen', 'Tools', 'set', 'tools'],
     ['languagesChosen', 'Languages', 'set', 'languages'],

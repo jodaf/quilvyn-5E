@@ -1408,11 +1408,11 @@ SRD5E.FEATURES = {
     'Note="Can cast 2 chosen W3 spells without expending a spell slot once per short rest"',
   'Spell Mastery':
     'Section=magic ' +
-    'Note="Can cast a chosen W1 spell and a chosen W2 spell at will and change the choices after 8 hr of study"',
+    'Note="Can cast a chosen 1-action W1 spell and a chosen 1-action W2 spell at will and change the choices after 8 hr of study"',
   // Spellcasting as above
   // School Of Evocation
   'Empowered Evocation':
-    'Section=magic Note="+%{intelligenceModifier} HP evocation spell damage"',
+    'Section=magic Note="Evocation spells inflict +%{intelligenceModifier} HP"',
   'Evocation Savant':
     'Section=magic ' +
     'Note="Requires half the normal time and cost to copy evocation spells into spellbook"',
@@ -1423,7 +1423,7 @@ SRD5E.FEATURES = {
     'Section=magic Note="Cantrips inflict half HP on a successful save"',
   'Sculpt Spells':
     'Section=magic ' +
-    'Note="Can give spell level + 1 creatures a successful save and no damage instead of half on a self spell"',
+    'Note="Can give spell level + 1 creatures a successful save and no damage instead of half on a self evocation spell"',
 
   // Backgrounds
   'Shelter Of The Faithful':
@@ -2377,7 +2377,7 @@ SRD5E.SPELLS = {
     'School=Transmutation ' +
     'Level=K6,W6 ' +
     'Description=' +
-      '"R60\' Target becomes restrained (save Constitution negates), then petrified after 3 failed Constitution saves (3 successes negates) for concentration; the effects become permanent after 1 min concentration"',
+      '"R60\' Target becomes restrained (save Constitution negates), then petrified after 3 failed Constitution saves (3 successes negates) for concentration; the effects become permanent after 1 min of concentration"',
   'Floating Disk':
     'School=Conjuration ' +
     'Level=W1 ' +
@@ -2510,7 +2510,7 @@ SRD5E.SPELLS = {
     'School=Evocation ' +
     'Level=D2,S2,W2 ' +
     'Description=' +
-      '"60\'x10\' wind pushes 15\' (save Strength negates), inflicts half movement, disperses gas and vapor, extinguishes flames (50% chance for protected flames) for concentration up to 1 min"',
+      '"60\'x10\' wind pushes 15\' (save Strength negates), inflicts half movement, disperses gas and vapor, and extinguishes flames (50% chance for protected flames) for concentration up to 1 min"',
 
   'Hallow':
     'School=Evocation ' +
@@ -2548,7 +2548,7 @@ SRD5E.SPELLS = {
     'Level=B2,D2 ' +
     'AtHigherLevels="inflicts +1d8 HP" ' +
     'Description=' +
-      '"R60\' Touching the target metal inflicts 2d8 HP fire, plus attack and ability disadvantage if the the target is worn or held (save Constitution negates disadvantage)), for concentration up to 1 min"',
+      '"R60\' Touching the target metal inflicts 2d8 HP fire, plus attack and ability disadvantage if the the target is worn or held (save Constitution negates disadvantage), for concentration up to 1 min"',
   'Hellish Rebuke':
     'School=Evocation ' +
     'Level=K1 ' +
@@ -2587,7 +2587,7 @@ SRD5E.SPELLS = {
     'School=Abjuration ' +
     'Level=C8 ' +
     'Description=' +
-      '"Targets in a 30\' radius gain advantage on saves, inflict disadvantage on attackers, and blind a successful fiend or undead melee attacker (save Constitution negates) for concentration up to 1 min"',
+      '"Targets in a 30\' radius gain advantage on saves, inflict disadvantage on attackers, and blind successful fiend and undead melee attackers (save Constitution negates) for concentration up to 1 min"',
   "Hunter's Mark":
     'School=Divination ' +
     'Level=R1 ' +
@@ -3236,7 +3236,7 @@ SRD5E.SPELLS = {
     'School=Abjuration ' +
     'Level=B7,C7,W7 ' +
     'Description=' +
-      '"Inscribes a touched object with a permanent glyph that, when triggered, inflicts a choice of harmful magic effect&mdash;10d10 HP necrotic (save Constitution half), arguing for 1 min (save Constitution negates), frightened and fleeing for 1 min (save Wisdom negates), overwhelmed with despair for 1 min (save Charisma negates), insane for 1 min (save Intelligence negates), incapacitated by pain for 1 min (save Constitution negates), asleep for 10 min or until shaken or harmed (save Wisdom negates), or stunned for 1 min (save Wisdom negates)"',
+      '"Inscribes a touched object with a permanent glyph that, when triggered, inflicts a choice of harmful magic effect: 10d10 HP necrotic (save Constitution half); arguing for 1 min (save Constitution negates); frightened and fleeing for 1 min (save Wisdom negates); overwhelmed with despair for 1 min (save Charisma negates); insane for 1 min (save Intelligence negates); incapacitated by pain for 1 min (save Constitution negates); asleep for 10 min or until shaken or harmed (save Wisdom negates); stunned for 1 min (save Wisdom negates)"',
 
   'Telekinesis':
     'School=Transmutation ' +
@@ -3361,7 +3361,7 @@ SRD5E.SPELLS = {
     'Level=D6 ' +
     'AtHigherLevels="inflicts +1d8 HP" ' +
     'Description=' +
-      '"R120\' Creates a 60\'x10\'x5\' wall or a 20\'x20\'x5\' ring that inflicts 7d8 HP piercing (save Dexterity half) initially, plus one-quarter Speed and 7d8 HP slashing to creatures passing through (save Dexterity half) for concentration up to 10 min"',
+      '"R120\' Creates a 60\'x10\'x5\' wall or a 20\'x20\'x5\' ring that inflicts 7d8 HP piercing (save Dexterity half) initially, plus 1/4 Speed and 7d8 HP slashing to creatures passing through (save Dexterity half) for concentration up to 10 min"',
   'Warding Bond':
     'School=Abjuration ' +
     'Level=C2 ' +

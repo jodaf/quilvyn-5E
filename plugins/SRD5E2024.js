@@ -1216,7 +1216,7 @@ SRD5E2024.FEATURES_CHANGED = {
   'Devouring Blade':
     'Section=combat Note="Has increased Thirsting Blade effects"',
   'Eldritch Mind': // ref Tasha
-    'Section=magic ' +
+    'Section=save ' +
     'Note="Has advantage on Constitution saves to maintain concentration"',
   'Eldritch Smite':
     'Section=combat Note="Can spend a spell slot on a pact weapon hit to inflict +1d8 HP force plus +1d8 HP force per spell level and to inflict prone on a Huge or smaller target"',
@@ -1275,7 +1275,9 @@ SRD5E2024.FEATURES_CHANGED = {
     .replace('2', '%{combatNotes.devouringBlade?3:2}'),
   // Visions Of Distant Realms as SRD5E
   // Whispers Of The Grave as SRD5E
-  // Witch Sight as SRD5E
+  'Witch Sight':
+    // changed effects
+    'Section=skill Note="Has 30\' Truesight"',
   // Fiend Patron
   "Dark One's Blessing":
     SRD5E.FEATURES["Dark One's Blessing"]
@@ -1322,7 +1324,7 @@ SRD5E2024.FEATURES_CHANGED = {
   'Evocation Savant':
     'Section=magic ' +
     // changed effects
-    'Note="Can copy 1 evocation spell of each level into spellbook for free"',
+    'Note="Can copy %{spellSlots.W9?9:spellSlots.W8?8:spellSlots.W7?7:spellSlots.W6?6:spellSlots.W5?5:spellSlots.W4?4:spellSlots.W3?3:2} evocation spells into spellbook for free"',
   // Overchannel as SRD5E
   'Potent Cantrip':
     SRD5E.FEATURES['Potent Cantrip']

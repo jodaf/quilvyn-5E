@@ -15,8 +15,12 @@ contents of the plugins/ and Images/ subdirectories are placed into the
 corresponding Quilvyn installation subdirectories, then append the following
 lines to the file plugins/plugins.js:
 
-    RULESETS['5E (SRD only)'] = {
+    RULESETS['D&D 5E (SRD only)'] = {
       url:'plugins/SRD5E.js',
+      group:'5E'
+    };
+    RULESETS['D&D 5.5E (SRD only)'] = {
+      url:'plugins/SRD5E2024.js',
       group:'5E'
     };
 

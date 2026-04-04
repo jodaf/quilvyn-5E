@@ -4354,7 +4354,7 @@ SRD5E.classRules = function(
 
   rules.defineRule('classCount', classLevel, '+=', '1');
   rules.defineRule('featCount.General',
-    'levels.' + name, '+=', 'Math.min(Math.floor(source / 4), 5)'
+    classLevel, '+=', 'Math.min(Math.floor(source / 4), 5)'
   );
   rules.defineRule('levelsAllocated', classLevel, '+=', null);
   rules.defineRule('proficiencyBonus',
@@ -4524,13 +4524,12 @@ SRD5E.classRulesExtra = function(rules, name) {
     rules.defineRule('combatNotes.extraAttack',
       classLevel, '+=', 'source<5 ? null : source<11 ? 1 : source<20 ? 2 : 3'
     );
-    rules.defineRule('featCount.General', 'fighterFeatBonus', '+', null);
+    rules.defineRule('featCount.General',
+      classLevel, '+=', 'Math.min(Math.floor(source / 4), 5) + (source<6 ? 0 : source<14 ? 1 : 2)'
+    );
     rules.defineRule('featureNotes.fightingStyle',
       'fighterFeatures.Fighting Style', '+=', '1',
       'featureNotes.additionalFightingStyle', '+', '1'
-    );
-    rules.defineRule('fighterFeatBonus',
-      classLevel, '=', 'source<6 ? null : source<14 ? 1 : 2'
     );
     rules.defineRule('selectableFeatureCount.Fighter (Fighting Style)',
       'fighterFeatures.Fighting Style', '?', null,
@@ -4668,8 +4667,9 @@ SRD5E.classRulesExtra = function(rules, name) {
 
   } else if(name == 'Rogue') {
 
-    rules.defineRule('featCount.General', 'rogueFeatBonus', '+', null);
-    rules.defineRule('rogueFeatBonus', classLevel, '=', 'source<10 ? null : 1');
+    rules.defineRule('featCount.General',
+      classLevel, '+=', 'Math.min(Math.floor(source / 4), 5) + (source<10 ? 0 : 1)'
+    );
     rules.defineRule('selectableFeatureCount.Rogue (Roguish Archetype)',
       'featureNotes.roguishArchetype', '=', '1'
     );
@@ -5017,6 +5017,10 @@ SRD5E.featureRules = function(
         } else if(section == 'skill' &&
                   adjusted.match(/^[A-Z][a-z]*(\s[A-Z][a-z]*)*(\s\([A-Z][a-z]*(\s[A-Z][a-z]*)*\))?$/)) {
           adjusted = 'skills.' + adjusted;
+        } else if(adjusted.match(/^[A-Z][a-z]*(\s[A-Z][a-z]*)*\sFeats?$/)) {
+          adjusted = 'featCount.' + adjusted.replace(/\sFeats?/, '');
+          if(op == '+')
+            op = '+=';
         } else if(adjusted.match(/^[A-Z][a-z]*(\s[A-Z][a-z]*)*$/)) {
           adjusted = adjusted.charAt(0).toLowerCase() + adjusted.substring(1).replaceAll(' ', '');
         } else {
@@ -6494,7 +6498,7 @@ SRD5E.randomizeOneAttribute = function(attributes, attribute) {
       let types = QuilvynUtils.getAttrValueArray(allChoices[attr], 'Type');
       if(types.length == 0)
         types = QuilvynUtils.getAttrValueArray(allChoices[attr], 'Category');
-      if(types.indexOf('General') < 0)
+      if(!types.includes('Epic Boon') && !types.includes('General'))
         types.push('General');
       if(attrs[prefix + '.' + attr] != null) {
         for(i = 0; i < types.length; i++) {
@@ -6512,7 +6516,7 @@ SRD5E.randomizeOneAttribute = function(attributes, attribute) {
     for(attr in toAllocateByType) {
       let availableChoicesInType = {};
       for(let a in availableChoices) {
-        if(attr == 'General' || availableChoices[a].includes(attr))
+        if(availableChoices[a].includes(attr))
           availableChoicesInType[a] = '';
       }
       howMany = toAllocateByType[attr];

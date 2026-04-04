@@ -535,7 +535,7 @@ SRD5E2024.FEATURES_CHANGED = {
   'Danger Sense':
     SRD5E.FEATURES['Danger Sense']
     .replace('vs. visible dangers', 'saves'),
-  'Epic Boon':'Section=feature Note="+1 General Feat"',
+  'Epic Boon':'Section=feature Note="+1 Epic Boon Feat"',
   // Extra Attack as SRD5E
   // Fast Movement as SRD5E
   'Feral Instinct':
@@ -2881,9 +2881,8 @@ SRD5E2024.classRulesExtra = function(rules, name) {
     rules.defineRule('combatNotes.weaponMastery',
       classLevel, '+=', 'Math.floor((source + 20) / 6)'
     );
-    rules.defineRule('featCount.General', 'fighterFeatBonus', '+', null);
-    rules.defineRule('fighterFeatBonus',
-      classLevel, '=', 'source<6 ? null : source<14 ? 1 : 2'
+    rules.defineRule('featCount.General',
+      classLevel, '+=', 'Math.min(Math.floor(source / 4), 5) + (source<6 ? 0 : source<14 ? 1 : 2)'
     );
     rules.defineRule('selectableFeatureCount.Fighter (Fighter Primary Ability)',
       'featureNotes.fighterPrimaryAbility', '=', '1'
@@ -3008,8 +3007,9 @@ SRD5E2024.classRulesExtra = function(rules, name) {
       'combatNotes.improvedCunningStrike', '+', 'null' // italics
     );
     rules.defineRule('combatNotes.weaponMastery', classLevel, '+=', '2');
-    rules.defineRule('featCount.General', 'rogueFeatBonus', '+', null);
-    rules.defineRule('rogueFeatBonus', classLevel, '=', 'source<10 ? null : 1');
+    rules.defineRule('featCount.General',
+      classLevel, '+=', 'Math.min(Math.floor(source / 4), 5) + (source<10 ? 0 : 1)'
+    );
     rules.defineRule('selectableFeatureCount.Rogue (Rogue Subclass)',
       'featureNotes.rogueSubclass', '=', '1'
     );
@@ -3136,7 +3136,7 @@ SRD5E2024.featRulesExtra = function(rules, name) {
   } else if(name.match(/^Magic Initiate \(.*\)$/)) {
     let c = name.replace('Magic Initiate (', '').replace(')', '');
     rules.defineRule('casterLevels.' + (c == 'Warlock' ? 'K' : c.charAt(0)),
-      'feats.' + name, '^=', '1'
+      'features.' + name, '^=', '1'
     );
   } else if(name == 'Skilled') {
     rules.defineRule('skillNotes.skilled', 'feats.Skilled', '=', 'source * 3');

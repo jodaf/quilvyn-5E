@@ -35,7 +35,7 @@ function SRD5E2024() {
     return;
   }
 
-  let rules = new QuilvynRules('SRD 5E 2024', SRD5E2024.VERSION);
+  let rules = new QuilvynRules('SRD 5.5E', SRD5E2024.VERSION);
   SRD5E2024.rules = rules;
   rules.plugin = SRD5E2024;
 
@@ -193,8 +193,8 @@ SRD5E2024.CLASSES = {
       '"1:Protector:Divine Order",' +
       '"1:Thaumaturge:Divine Order",' +
       '"deityDomains =~ \'Life\' ? 1:Life Domain:Divine Domain",' +
-      '"7:Divine Strike:Blessed Strike",' +
-      '"7:Potent Spellcasting:Blessed Strike" ' +
+      '"7:Divine Strike:Blessed Strikes",' +
+      '"7:Potent Spellcasting:Blessed Strikes" ' +
     'SpellAbility=Wisdom ' +
     'SpellSlots=' +
       'C0:3@1;4@4;5@10,' +
@@ -393,11 +393,11 @@ SRD5E2024.CLASSES = {
       '"features.Draconic Sorcery ? 18:Dragon Companion" ' +
     'Selectables=' +
       '"1:Draconic Sorcery:Sorcerer Subclass",' +
-      '"3:Careful Spell:Metamagic","3:Distant Spell:Metamagic",' +
-      '"3:Empowered Spell:Metamagic","3:Extended Spell:Metamagic",' +
-      '"3:Heightened Spell:Metamagic","3:Quickened Spell:Metamagic",' +
-      '"3:Seeking Spell:Metamagic","3:Subtle Spell:Metamagic",' +
-      '"3:Transmuted Spell","3:Twinned Spell:Metamagic" ' +
+      '"2:Careful Spell:Metamagic","2:Distant Spell:Metamagic",' +
+      '"2:Empowered Spell:Metamagic","2:Extended Spell:Metamagic",' +
+      '"2:Heightened Spell:Metamagic","2:Quickened Spell:Metamagic",' +
+      '"2:Seeking Spell:Metamagic","2:Subtle Spell:Metamagic",' +
+      '"2:Transmuted Spell:Metamagic","2:Twinned Spell:Metamagic" ' +
     'SpellAbility=Charisma ' +
     'SpellSlots=' +
       'S0:4@1;5@4;6@10,' +
@@ -1282,6 +1282,7 @@ SRD5E2024.FEATURES_CHANGED = {
   "Dark One's Blessing":
     SRD5E.FEATURES["Dark One's Blessing"]
     .replace('temporary hit points', 'temporary hit points; others reducing a foe within 10\' to 0 hit points gives the same benefit'),
+  // TODO align feature name w/2014 version
   'Fiend Spells':
     'Spells=' +
       '"3:Burning Hands","3:Command","3:Scorching Ray","3:Suggestion",' +
@@ -1338,7 +1339,7 @@ SRD5E2024.FEATURES_CHANGED = {
   // Dragonborn
   'Breath Weapon':
     'Section=combat ' +
-    'Note="Choice of a 15\' cone or a 30\' line inflicts %{(level+7)//6}d10 HP %{breathWeaponEnergy} (save DC %{8+constitutionModifier+proficiencyBonus} Dexterity half) %{proficiencyBonus} times per long rest"',
+    'Note="Choice of a 15\' cone or a 5\'x30\' line inflicts %{(level+7)//6}d10 HP %{breathWeaponEnergy} (save DC %{8+constitutionModifier+proficiencyBonus} Dexterity half) %{proficiencyBonus} times per long rest"',
   'Damage Resistance':
     'Section=save Note="Has resistance to %{breathWeaponEnergy}"',
   'Darkvision':'Section=feature Note="R%V\' Sees one light level better"',
@@ -1349,7 +1350,9 @@ SRD5E2024.FEATURES_CHANGED = {
 
   // Dwarf
   // Darkvision as above
-  // Dwarven Resilience as SRD5E
+  'Dwarven Resilience':
+    SRD5E.FEATURES['Dwarven Resilience']
+    .replace('poison', 'poisoned'),
   // Dwarven Toughness as SRD5E
   'Stonecunning':
     // changed effects
@@ -1367,17 +1370,19 @@ SRD5E2024.FEATURES_CHANGED = {
   'Elven Lineage':'Section=feature Note="1 selection"',
   'Fey Ancestry':
     // changed effects
-    'Section=save Note="Has advantage vs. charm"',
+    'Section=save Note="Has advantage vs. charmed"',
   'High Elf':
     'Section=magic ' +
     'Note=' +
-      '"Knows 1 Wizard cantrip that can be changed after a long rest%{level>2?\' and can cast <i>Detect Magic</i>\'+(level>4?\' and <i>Misty Step</i>\':\'\')+\' once per long rest\':\'\'}" ' +
-    'Spells="3:Detect Magic","5:Misty Step"',
+      '"Knows the <i>Prestidigitation</i> cantrip%{level>2?\' and can cast <i>Detect Magic</i>\'+(level>4?\' and <i>Misty Step</i>\':\'\')+\' once per long rest\':\'\'}" ' +
+    'Spells=Prestidigitation,"3:Detect Magic","5:Misty Step"',
   'Keen Senses':
     // changed effects
     'Section=skill ' +
     'Note="Skill Proficiency (Choose 1 from Insight, Perception, or Survival)"',
-  // Trance as SRD5E
+  'Trance':
+    SRD5E.FEATURES.Trance
+    .replace('8 hr sleep', 'a long rest'),
   'Wood Elf':
     'Section=Ability,magic ' +
     'Note=' +
@@ -1405,21 +1410,23 @@ SRD5E2024.FEATURES_CHANGED = {
   // Goliath
   'Cloud Giant':'Section=combat Note="Has the Cloud\'s Jaunt feature"',
   "Cloud's Jaunt":
-    'Section=combat Note="Can use a bonus action to teleport 30\'"',
+    'Section=combat ' +
+    'Note="Can use a bonus action to teleport 30\' %{proficiencyBonus} times per long rest"',
   'Fire Giant':'Section=combat Note="Has the Fire\'s Burn feature"',
   "Fire's Burn":
-    'Section=combat Note="Can inflict +1d10 HP fire with an attack"',
+    'Section=combat ' +
+    'Note="Can inflict +1d10 HP fire with an attack %{proficiencyBonus} times per long rest"',
   'Frost Giant':'Section=combat Note="Has the Frost\'s Chill feature"',
   "Frost's Chill":
     'Section=combat ' +
-    'Note="Can inflict +1d6 HP cold and -10 Speed until the start of the next turn with an attack"',
+    'Note="Can inflict +1d6 HP cold and -10 Speed until the start of the next turn with an attack %{proficiencyBonus} times per long rest"',
   'Giant Ancestry':'Section=feature Note="1 selection"',
   'Hill Giant':'Section=combat Note="Has the Hill\'s Tumble feature"',
   "Hill's Tumble":
     'Section=combat ' +
-    'Note="Can inflict prone on a Large or smaller target with an attack"',
+    'Note="Can inflict prone on a Large or smaller target with an attack %{proficiencyBonus} times per long rest"',
   'Large Form':
-    'Section=combat ' +
+    'Section=ability ' +
     'Note="Can use a bonus action to become Large for 10 min, gaining advantage on Strength checks and +10 Speed, once per long rest"',
   'Powerful Build':
     'Section=ability,combat ' +
@@ -1429,11 +1436,11 @@ SRD5E2024.FEATURES_CHANGED = {
   'Stone Giant':'Section=combat Note="Has the Stone\'s Endurance feature"',
   "Stone's Endurance":
     'Section=combat ' +
-    'Note="Can use a reaction to reduce damage taken by 1d12+%{constitutionModifier} HP"',
+    'Note="Can use a reaction to reduce damage taken by 1d12+%{constitutionModifier} HP %{proficiencyBonus} times per long rest"',
   'Storm Giant':'Section=combat Note="Has the Storm\'s Thunder feature"',
   "Storm's Thunder":
     'Section=combat ' +
-    'Note="Can use a reaction in response to damage from a foe within 60\' to inflict 1d8 HP thunder on it"',
+    'Note="Can use a reaction in response to damage from a foe within 60\' to inflict 1d8 HP thunder on it %{proficiencyBonus} times per long rest"',
 
   // Halfling
   // Brave as SRD5E
@@ -1450,7 +1457,7 @@ SRD5E2024.FEATURES_CHANGED = {
   // Orc
   'Adrenaline Rush':
     'Section=combat ' +
-    'Note="Can use a bonus action to Dash and gain %{proficiencyBonus} temporary it points %{proficiencyBonus} times per short rest"',
+    'Note="Can use a bonus action to Dash and gain %{proficiencyBonus} temporary hit points %{proficiencyBonus} times per short rest"',
   // Darkvision as above
   // Relentless Endurance as SRD5E
 
@@ -1492,22 +1499,20 @@ SRD5E2024.FEATURES_CHANGED = {
     'Note=' +
       '"+%{proficiencyBonus} Initiative",' +
       '"Can swap initiatives with a willing ally"',
-  'Magic Initiate (Cleric)':
+  'Magic Initiate (Cleric)': // ref PHB5E
     'Section=magic ' +
     'Note="Knows 2 Cleric cantrips and can cast a chosen C1 spell once per long rest"',
-  'Magic Initiate (Druid)':
+  'Magic Initiate (Druid)': // ref PHB5E
     'Section=magic ' +
     'Note="Knows 2 Druid cantrips and can cast a chosen D1 spell once per long rest"',
-  'Magic Initiate (Wizard)':
+  'Magic Initiate (Wizard)': // ref PHB5E
     'Section=magic ' +
     'Note="Knows 2 Wizard cantrips and can cast a chosen W1 spell once per long rest"',
   'Savage Attacker':
     'Section=combat Note="Can use the better of 2 damage rolls once per turn"',
   // TODO or Tool
-  'Skilled':'Section=skill Note="Skill Proficiency (Choose 3 from any)"',
-  'Ability Score Improvement':
-    'Section=ability ' +
-    'Note="Ability Boost (Choose 2 from any)"',
+  'Skilled':'Section=skill Note="Skill Proficiency (Choose %V from any)"',
+  // Ability Score Improvement as SRD5E
   'Grappler':
     // changed effects
     'Section=ability,combat ' +
@@ -1535,17 +1540,17 @@ SRD5E2024.FEATURES_CHANGED = {
     'Section=ability,combat ' +
     'Note=' +
       '"Ability Boost (Choose 1 from any)",' +
-      '"R60\' Can modify a d20 roll by 2d4 once per combat"',
+      '"R60\' Can modify a d20 roll by 2d4 once per initiative or rest"',
   'Boon Of Irresistible Offense (Dexterity)':
     'Section=ability,combat ' +
     'Note=' +
       '"Ability Boost (Dexterity)",' +
-      '"Bludgeoning, piercing, and slashing damage ignores resistance, and natural 20 hits inflict +{dexterity} damage"',
+      '"Bludgeoning, piercing, and slashing damage ignores resistance, and natural 20 hits inflict +%{dexterity} damage"',
   'Boon Of Irresistible Offense (Strength)':
     'Section=ability,combat ' +
     'Note=' +
       '"Ability Boost (Strength)",' +
-      '"Bludgeoning, piercing, and slashing damage ignores resistance, and natural 20 hits inflict +{strength} damage"',
+      '"Bludgeoning, piercing, and slashing damage ignores resistance, and natural 20 hits inflict +%{strength} damage"',
   'Boon Of Spell Recall':
     'Section=ability,magic ' +
     'Note=' +
@@ -1555,7 +1560,7 @@ SRD5E2024.FEATURES_CHANGED = {
     'Section=ability,combat,save ' +
     'Note=' +
       '"Ability Boost (Choose 1 from any)",' +
-      '"Can use a bonus action to become invisible in dim or no light; taking an action or reaction ends",' +
+      '"Can use a bonus action to become invisible in dim or no light; taking an action, bonus action, or reaction ends",' +
       '"In dim or no light, has resistance to all damage other than psychic and radiant"',
   'Boon Of Truesight':
     'Section=ability,skill ' +
@@ -1601,16 +1606,16 @@ SRD5E2024.SPECIES = {
       '"1:Draconic Ancestry","1:Breath Weapon","1:Damage Resistance",' +
       '"1:Darkvision","5:Draconic Flight" ' +
     'Selectables=' +
-      '"1:Black Dragon Ancestry:Draconic Ancestry",' +
-      '"1:Blue Dragon Ancestry:Draconic Ancestry",' +
-      '"1:Brass Dragon Ancestry:Draconic Ancestry",' +
-      '"1:Bronze Dragon Ancestry:Draconic Ancestry",'+
-      '"1:Copper Dragon Ancestry:Draconic Ancestry",' +
-      '"1:Gold Dragon Ancestry:Draconic Ancestry",' +
-      '"1:Green Dragon Ancestry:Draconic Ancestry",' +
-      '"1:Red Dragon Ancestry:Draconic Ancestry",' +
-      '"1:Silver Dragon Ancestry:Draconic Ancestry",' +
-      '"1:White Dragon Ancestry:Draconic Ancestry"',
+      '"1:Black Dragon:Draconic Ancestry",' +
+      '"1:Blue Dragon:Draconic Ancestry",' +
+      '"1:Brass Dragon:Draconic Ancestry",' +
+      '"1:Bronze Dragon:Draconic Ancestry",'+
+      '"1:Copper Dragon:Draconic Ancestry",' +
+      '"1:Gold Dragon:Draconic Ancestry",' +
+      '"1:Green Dragon:Draconic Ancestry",' +
+      '"1:Red Dragon:Draconic Ancestry",' +
+      '"1:Silver Dragon:Draconic Ancestry",' +
+      '"1:White Dragon:Draconic Ancestry"',
   'Dwarf':
     'Size=Medium ' +
     'Speed=30 ' +
@@ -1713,6 +1718,7 @@ SRD5E2024.SPELLS_CHANGED = {
     .replace(/, object.*repels/, ' repels'),
   'Arcane Hand':
     SRD5E.SPELLS['Arcane Hand']
+    .replace('W5', 'S5,W5')
     .replace('4d8', '5d8')
     .replace('DC 26 Athletics', 'Strength')
     .replace('2d6', '4d6'),
@@ -1742,7 +1748,8 @@ SRD5E2024.SPELLS_CHANGED = {
   'Befuddlement': // new
     'School=Enchantment ' +
     'Level=B8,D8,K8,W8 ' +
-    'Description="TODO"',
+    'Description=' +
+      '"R150\' Target suffers 10d6 HP psychic and loss of spells and Magic actions (save Intelligence half HP only; saves every 30 days end)"',
   'Bestow Curse':
     SRD5E.SPELLS['Bestow Curse']
     .replace('any action', 'any action other than Dodge'),
@@ -1759,14 +1766,7 @@ SRD5E2024.SPELLS_CHANGED = {
     SRD5E.SPELLS['Blindness/Deafness']
     .replace('Necromancy', 'Transmutation')
     .replace("30'", "120'"),
-/*
-  'Branding Smite':
-    'School=Evocation ' +
-    'Level=P2 ' +
-    'AtHigherLevels="inflicts +1d6 HP" ' +
-    'Description=' +
-      '"Next successful self weapon attack inflicts +2d6 HP radiant and lights the target for concentration up to 1 min"',
-*/
+  // Branding Smite deleted
 
   'Charm Monster': // new
     SRD5E.SPELLS['Charm Person']
@@ -2130,6 +2130,7 @@ SRD5E2024.SPELLS_CHANGED = {
 
   'Phantasmal Force': // ref PHB5E
     'School=Illusion ' +
+    // Spell description shows B2,S2,W2, but not on the spell lists?
     'Level=B2,"K2 [The Archfey]","K2 [The Great Old One]",S2,W2 ' +
     'Description=' +
       '"R60\' Target perceives an illusion (save Intelligence negates; Investigation ends) that can inflict 2d8 HP psychic per rd for concentration up to 1 min"',
@@ -3007,6 +3008,8 @@ SRD5E2024.classRulesExtra = function(rules, name) {
       'combatNotes.improvedCunningStrike', '+', 'null' // italics
     );
     rules.defineRule('combatNotes.weaponMastery', classLevel, '+=', '2');
+    rules.defineRule('featCount.General', 'rogueFeatBonus', '+', null);
+    rules.defineRule('rogueFeatBonus', classLevel, '=', 'source<10 ? null : 1');
     rules.defineRule('selectableFeatureCount.Rogue (Rogue Subclass)',
       'featureNotes.rogueSubclass', '=', '1'
     );
@@ -3115,12 +3118,28 @@ SRD5E2024.featRules = function(rules, name, requires, implies, categories) {
  * derived directly from the attributes passed to featRules.
  */
 SRD5E2024.featRulesExtra = function(rules, name) {
-  if(name == 'Ability Boost') {
-    rules.defineChoice('notes', 'abilityNotes.abilityBoosts:%V to distribute');
-    rules.defineRule
-      ('abilityNotes.abilityBoost', 'feats.Ability Boost', '=', null);
-    rules.defineRule
-      ('abilityNotes.abilityBoosts', 'abilityBoostChoiceCount', '=', null);
+  let prefix =
+    name.charAt(0).toLowerCase() + name.substring(1).replaceAll(' ', '');
+  if(name == 'Ability Score Improvement') {
+    rules.defineRule('abilityNotes.abilityScoreImprovement',
+      'feats.Ability Score Improvement', '+=', 'source * 2',
+    );
+    rules.defineRule('abilityBoostChoiceCount',
+      'abilityNotes.abilityScoreImprovement', '+=', null
+    );
+  } else if(name == 'Defense') {
+    rules.defineRule('armorClass', 'combatNotes.defense.1', '+', null);
+    rules.defineRule('combatNotes.defense.1',
+      'combatNotes.defense', '?', null,
+      'armorCategory', '=', 'source == "None" ? null : 1'
+    );
+  } else if(name.match(/^Magic Initiate \(.*\)$/)) {
+    let c = name.replace('Magic Initiate (', '').replace(')', '');
+    rules.defineRule('casterLevels.' + (c == 'Warlock' ? 'K' : c.charAt(0)),
+      'feats.' + name, '^=', '1'
+    );
+  } else if(name == 'Skilled') {
+    rules.defineRule('skillNotes.skilled', 'feats.Skilled', '=', 'source * 3');
   }
 };
 
@@ -3211,13 +3230,13 @@ SRD5E2024.speciesRulesExtra = function(rules, name) {
   if(name == 'Dragonborn') {
     rules.defineRule('breathWeaponEnergy',
       'features.Breath Weapon', '=', '"fire"',
-      'features.Black Dragon Ancestry', '=', '"acid"',
-      'features.Blue Dragon Ancestry', '=', '"lightning"',
-      'features.Bronze Dragon Ancestry', '=', '"lightning"',
-      'features.Copper Dragon Ancestry', '=', '"acid"',
-      'features.Green Dragon Ancestry', '=', '"poison"',
-      'features.Silver Dragon Ancestry', '=', '"cold"',
-      'features.White Dragon Ancestry', '=', '"cold"'
+      'features.Black Dragon', '=', '"acid"',
+      'features.Blue Dragon', '=', '"lightning"',
+      'features.Bronze Dragon', '=', '"lightning"',
+      'features.Copper Dragon', '=', '"acid"',
+      'features.Green Dragon', '=', '"poison"',
+      'features.Silver Dragon', '=', '"cold"',
+      'features.White Dragon', '=', '"cold"'
     );
     rules.defineRule('selectableFeatureCount.Dragonborn (Draconic Ancestry)',
       'featureNotes.draconicAncestry', '=', '1'
@@ -3331,7 +3350,7 @@ SRD5E2024.toolRules = function(rules, name, category, cost, weight, ability) {
  * specified, the weapon can be used as a ranged weapon with a range increment
  * of #range# feet. The weapon costs #cost# gp and weighs #weight# lbs; both
  * of these may be decimals. The #isMonkWeapon# boolean indicates whether or
- * not this weapon benefits from the monk's Martial Arts feature. #mastery#
+ * not this weapon benefits from the Monk's Martial Arts feature. #mastery#
  * specifies the mastery property of the weapon.
  */
 SRD5E2024.weaponRules = function(

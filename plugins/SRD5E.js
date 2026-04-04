@@ -613,7 +613,7 @@ SRD5E.FEATURES = {
     'Note="Weapon Proficiency (Battleaxe; Handaxe; Light Hammer; Warhammer)"',
   'Dwarven Resilience':
     'Section=save ' +
-    'Note="Has advantage vs. poison and resistance to poison damage"',
+    'Note="Has advantage vs. poison and resistance to poison"',
   'Steady':'Section=ability Note="Suffers no speed penalty in heavy armor"',
   'Stonecunning':
     'Section=skill ' +
@@ -639,7 +639,7 @@ SRD5E.FEATURES = {
   'High Elf Ability Adjustment':'Section=ability Note="+1 Intelligence"',
 
   // Halfling
-  'Brave':'Section=save Note="Has advantage vs. fright"',
+  'Brave':'Section=save Note="Has advantage vs. frightened"',
   'Halfling Ability Adjustment':'Section=ability Note="+2 Dexterity"',
   'Halfling Nimbleness':
     'Section=ability ' +
@@ -671,7 +671,7 @@ SRD5E.FEATURES = {
   'Gnome Ability Adjustment':'Section=ability Note="+2 Intelligence"',
   'Gnome Cunning':
     'Section=save ' +
-    'Note="Has advantage on Charisma, Intelligence, and Wisdom vs. magic"',
+    'Note="Has advantage on Charisma, Intelligence, and Wisdom saves vs. magic"',
   // Rock Gnome
   "Artificer's Lore":
     'Section=skill ' +
@@ -990,7 +990,7 @@ SRD5E.FEATURES = {
     'Section=combat Note="Unarmed attacks count as magical"',
   'Martial Arts':
     'Section=combat ' +
-    'Note="When unarmored and wielding only monk weapons, gains +%1 attack and damage with unarmed strikes and weapon attacks, raises their damage dice to 1d%V, and can use a bonus action to make an unarmed strike after attacking"',
+    'Note="When unarmored and wielding only Monk weapons, gains +%1 attack and damage with unarmed strikes and weapon attacks, raises their damage dice to 1d%V, and can use a bonus action to make an unarmed strike after attacking"',
   'Monastic Tradition':'Section=feature Note="1 selection"',
   'Patient Defense':
     'Section=combat Note="Can spend 1 ki point to Dodge as a bonus action"',
@@ -1261,7 +1261,7 @@ SRD5E.FEATURES = {
     'Note="Can cast %{levels.Warlock>12?\'chosen K6\'+(levels.Warlock<15?\' and K7\':levels.Warlock<17?\', K7, and K8\':\', K7, K8, and K9\')+\' spells\':\'a chosen K6 spell\'} without using a spell slot once per long rest"',
   'Pact Boon':'Section=feature Note="1 selection"',
   'Pact Magic':
-    'Section=magic Note="Can cast spells from the warlock spell list"',
+    'Section=magic Note="Can cast spells from the Warlock spell list"',
   'Pact Of The Blade':
     'Section=magic ' +
     'Note="Can use an action to conjure a magic weapon or use a 1 hr ritual to make a magic weapon summonable"',
@@ -1379,7 +1379,7 @@ SRD5E.FEATURES = {
     'Spells="Bestow Curse"',
   'Thief Of Five Fates':
     'Section=magic ' +
-    'Note="Can use a warlock spell slot to cast <i>Bane</i> once per long rest" ' +
+    'Note="Can use a Warlock spell slot to cast <i>Bane</i> once per long rest" ' +
     'Spells=Bane',
   'Thirsting Blade':
     'Section=combat Note="Attack action with a pact blade allows 2 attacks"',
@@ -1645,16 +1645,16 @@ SRD5E.RACES = {
       '"1:Breath Weapon","1:Damage Resistance",' +
       '"1:Language (Common; Draconic)" ' +
     'Selectables=' +
-      '"1:Black Dragon Ancestry:Draconic Ancestry",' +
-      '"1:Blue Dragon Ancestry:Draconic Ancestry",' +
-      '"1:Brass Dragon Ancestry:Draconic Ancestry",' +
-      '"1:Bronze Dragon Ancestry:Draconic Ancestry",'+
-      '"1:Copper Dragon Ancestry:Draconic Ancestry",' +
-      '"1:Gold Dragon Ancestry:Draconic Ancestry",' +
-      '"1:Green Dragon Ancestry:Draconic Ancestry",' +
-      '"1:Red Dragon Ancestry:Draconic Ancestry",' +
-      '"1:Silver Dragon Ancestry:Draconic Ancestry",' +
-      '"1:White Dragon Ancestry:Draconic Ancestry"',
+      '"1:Black Dragon:Draconic Ancestry",' +
+      '"1:Blue Dragon:Draconic Ancestry",' +
+      '"1:Brass Dragon:Draconic Ancestry",' +
+      '"1:Bronze Dragon:Draconic Ancestry",'+
+      '"1:Copper Dragon:Draconic Ancestry",' +
+      '"1:Gold Dragon:Draconic Ancestry",' +
+      '"1:Green Dragon:Draconic Ancestry",' +
+      '"1:Red Dragon:Draconic Ancestry",' +
+      '"1:Silver Dragon:Draconic Ancestry",' +
+      '"1:White Dragon:Draconic Ancestry"',
   'Rock Gnome':
     'Size=Small ' +
     'Speed=25 ' +
@@ -2308,7 +2308,7 @@ SRD5E.SPELLS = {
     'School=Enchantment ' +
     'Level=B8,D8,K8,W8 ' +
     'Description=' +
-      '"R150\' Target suffers 4d6 HP psychic and reduction of Charisma and Intelligence to 1 (save Intelligence HP only; failure allows additional saves every 30 days)"',
+      '"R150\' Target suffers 4d6 HP psychic and reduction of Charisma and Intelligence to 1 (save Intelligence HP only; additional saves every 30 days end)"',
   'Find Familiar':
     'School=Conjuration ' +
     'Level=W1 ' +
@@ -2981,7 +2981,7 @@ SRD5E.SPELLS = {
     'School=Abjuration ' +
     'Level=C2,D2,P2,R2 ' +
     'Description=' +
-      '"Touched recovers from 1 poison and gains advantage on saves vs. being poisoned and resistance to poison damage for 1 hr"',
+      '"Touched recovers from 1 poison and gains advantage on saves vs. being poisoned and resistance to poison for 1 hr"',
   'Purify Food And Drink':
     'School=Transmutation ' +
     'Level=C1,D1,P1 ' +
@@ -3588,6 +3588,9 @@ SRD5E.abilityRules = function(rules, abilities) {
   rules.defineRule('carry', 'strength', '=', 'source * 15');
   rules.defineRule('lift', 'strength', '=', 'source * 30');
   rules.defineRule('speed', 'abilityNotes.armorSpeedAdjustment', '+', null);
+  rules.defineChoice('notes', 'abilityNotes.abilityBoosts:%V to distribute');
+  rules.defineRule
+    ('abilityNotes.abilityBoosts', 'abilityBoostChoiceCount', '=', null);
   QuilvynRules.validAllocationRules
     (rules, 'abilityBoost', 'abilityBoostChoiceCount', 'Sum "^abilityBoosts\\."');
 
@@ -4510,6 +4513,8 @@ SRD5E.classRulesExtra = function(rules, name) {
   } else if(name == 'Fighter') {
 
     rules.defineRule
+      ('armorClass', 'combatNotes.fightingStyle(Defense).1', '+', null);
+    rules.defineRule
       ('attackBonus.Ranged', 'combatNotes.fightingStyle(Archery)', '+=', '2');
     // Show Fighting Style (Defense) note even if armor == None
     rules.defineRule('combatNotes.fightingStyle(Defense).1',
@@ -4895,12 +4900,12 @@ SRD5E.featRules = function(rules, name, requires, implies, categories) {
  */
 SRD5E.featRulesExtra = function(rules, name) {
   if(name == 'Ability Score Improvement') {
-    rules.defineChoice('notes', 'abilityNotes.abilityBoosts:%V to distribute');
     rules.defineRule('abilityNotes.abilityScoreImprovement',
-      'feats.Ability Score Improvement', '=', null
+      'feats.Ability Score Improvement', '+=', 'source * 2',
     );
-    rules.defineRule
-      ('abilityNotes.abilityBoosts', 'abilityBoostChoiceCount', '=', null);
+    rules.defineRule('abilityBoostChoiceCount',
+      'abilityNotes.abilityScoreImprovement', '+=', null
+    );
   }
 };
 
@@ -5380,21 +5385,21 @@ SRD5E.raceRulesExtra = function(rules, name) {
   if(name == 'Dragonborn') {
     rules.defineRule('breathWeaponEnergy',
       'features.Breath Weapon', '=', '"fire"',
-      'features.Black Dragon Ancestry', '=', '"acid"',
-      'features.Blue Dragon Ancestry', '=', '"lightning"',
-      'features.Bronze Dragon Ancestry', '=', '"lightning"',
-      'features.Copper Dragon Ancestry', '=', '"acid"',
-      'features.Green Dragon Ancestry', '=', '"poison"',
-      'features.Silver Dragon Ancestry', '=', '"cold"',
-      'features.White Dragon Ancestry', '=', '"cold"'
+      'features.Black Dragon', '=', '"acid"',
+      'features.Blue Dragon', '=', '"lightning"',
+      'features.Bronze Dragon', '=', '"lightning"',
+      'features.Copper Dragon', '=', '"acid"',
+      'features.Green Dragon', '=', '"poison"',
+      'features.Silver Dragon', '=', '"cold"',
+      'features.White Dragon', '=', '"cold"'
     );
     rules.defineRule('breathWeaponShape',
       'features.Breath Weapon', '=', '"5\'x30\' line"',
-      'features.Gold Dragon Ancestry', '=', '"15\' cone"',
-      'features.Green Dragon Ancestry', '=', '"15\' cone"',
-      'features.Red Dragon Ancestry', '=', '"15\' cone"',
-      'features.Silver Dragon Ancestry', '=', '"15\' cone"',
-      'features.White Dragon Ancestry', '=', '"15\' cone"'
+      'features.Gold Dragon', '=', '"15\' cone"',
+      'features.Green Dragon', '=', '"15\' cone"',
+      'features.Red Dragon', '=', '"15\' cone"',
+      'features.Silver Dragon', '=', '"15\' cone"',
+      'features.White Dragon', '=', '"15\' cone"'
     );
     rules.defineRule('selectableFeatureCount.Dragonborn (Draconic Ancestry)',
       'featureNotes.draconicAncestry', '=', '1'
@@ -5404,8 +5409,7 @@ SRD5E.raceRulesExtra = function(rules, name) {
       ('abilityNotes.armorSpeedAdjustment', 'abilityNotes.steady', '^', '0');
   } else if(name == 'High Elf') {
     rules.defineRule
-      ('casterLevels.W', 'magicNotes.cantrip(HighElf)', '^=', '1');
-    rules.defineRule('spellSlots.W0', 'magicNotes.cantrip(HighElf)', '+=', '1');
+      ('casterLevels.W', 'features.Cantrip (High Elf)', '^=', '1');
   }
 
 };
@@ -5659,7 +5663,7 @@ SRD5E.toolRules = function(rules, name, category, cost, weight, ability) {
  * specified, the weapon can be used as a ranged weapon with a range increment
  * of #range# feet. The weapon costs #cost# gp and weighs #weight# lbs; both
  * of these may be decimals. The #isMonkWeapon# boolean indicates whether or
- * not this weapon benefits from the monk's Martial Arts feature.
+ * not this weapon benefits from the Monk's Martial Arts feature.
  */
 SRD5E.weaponRules = function(
   rules, name, category, properties, damage, range, cost, weight, isMonkWeapon

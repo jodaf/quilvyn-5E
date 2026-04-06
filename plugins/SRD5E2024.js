@@ -885,7 +885,6 @@ SRD5E2024.FEATURES_CHANGED = {
     'Section=combat ' +
     // changed effects
     'Note="Can use a bonus action to Dash, optionally spending 1 focus point to Disengage and to double jump distance%{combatNotes.heightenedFocus?\'; can bring along 1 Large creature when moving\':\'\'}"',
-  // TODO advantage on next attack on target?
   'Stunning Strike':
     SRD5E.FEATURES['Stunning Strike']
     .replace('negates', 'inflicts half Speed and advantage on the next foe attack')
@@ -1282,7 +1281,6 @@ SRD5E2024.FEATURES_CHANGED = {
   "Dark One's Blessing":
     SRD5E.FEATURES["Dark One's Blessing"]
     .replace('temporary hit points', 'temporary hit points; others reducing a foe within 10\' to 0 hit points gives the same benefit'),
-  // TODO align feature name w/2014 version
   'Fiend Spells':
     'Spells=' +
       '"3:Burning Hands","3:Command","3:Scorching Ray","3:Suggestion",' +
@@ -1898,7 +1896,7 @@ SRD5E2024.SPELLS_CHANGED = {
   'Elementalism': // new
     'School=Transmutation ' +
     'Level=D0,S0,W0 ' +
-    'Description="TODO"',
+    'Description="R30\' Moves air or dust in a 5\' cube, creates smoke or mist in a 5\' cube for 1 min, or scuplts a 1\' cube of dirt, sand, fire, smoke, mist, or water for 1 hr"',
   'Enhance Ability':
     SRD5E.SPELLS['Enhance Ability']
     .replace('B2,C2,D2,S2', 'B2,C2,D2,R2,S2,W2')
@@ -2754,7 +2752,7 @@ SRD5E2024.classRulesExtra = function(rules, name) {
       'combatNotes.improvedBrutalStrike', '+', 'null' // italics
     );
     rules.defineRule
-      ('combatNotes.extraAttack', classLevel, '+=', 'source<5 ? null : 1');
+      ('combatNotes.extraAttack', classLevel, '^=', 'source<5 ? null : 2');
     rules.defineRule('combatNotes.unarmoredDefense',
       'combatNotes.unarmoredDefense.2', '+=', null
     );
@@ -2871,9 +2869,9 @@ SRD5E2024.classRulesExtra = function(rules, name) {
   } else if(name == 'Fighter') {
 
     rules.defineRule('combatNotes.extraAttack',
-      classLevel, '+=', 'source<5 ? null : 1',
-      'combatNotes.twoExtraAttacks', '+', '1',
-      'combatNotes.threeExtraAttacks', '+', '1'
+      classLevel, '^=', 'source<5 ? null : 2',
+      'combatNotes.twoExtraAttacks', '^', '3',
+      'combatNotes.threeExtraAttacks', '^', '4'
     );
     rules.defineRule('combatNotes.secondWind',
       classLevel, '+=', 'source<4 ? 2 : source<10 ? 3 : 4'
@@ -2903,7 +2901,7 @@ SRD5E2024.classRulesExtra = function(rules, name) {
       'combatNotes.deflectEnergy', '+', 'null' // italics
     );
     rules.defineRule
-      ('combatNotes.extraAttack', classLevel, '+=', 'source<5 ? null : 1');
+      ('combatNotes.extraAttack', classLevel, '^=', 'source<5 ? null : 2');
     rules.defineRule('combatNotes.flurryOfBlows',
       'combatNotes.heightenedFocus', '+', 'null' // italics
     );
@@ -2946,7 +2944,7 @@ SRD5E2024.classRulesExtra = function(rules, name) {
 
     rules.defineRule('combatNotes.weaponMastery', classLevel, '+=', '2');
     rules.defineRule
-      ('combatNotes.extraAttack', classLevel, '+=', 'source<5 ? null : 1');
+      ('combatNotes.extraAttack', classLevel, '^=', 'source<5 ? null : 2');
     rules.defineRule('magicNotes.channelDivinity.1',
       'levels.Paladin', '+=', 'source<3 ? null : source<11 ? 2 : 3'
     );
@@ -2971,7 +2969,7 @@ SRD5E2024.classRulesExtra = function(rules, name) {
       'armorCategory', '=', 'source=="Heavy" ? null : 10'
     );
     rules.defineRule
-      ('combatNotes.extraAttack', classLevel, '+=', 'source<5 ? null : 1');
+      ('combatNotes.extraAttack', classLevel, '^=', 'source<5 ? null : 2');
     rules.defineRule('combatNotes.weaponMastery', classLevel, '+=', '2');
     rules.defineRule('features.Colossus Slayer',
       "combatNotes.hunter'sPrey", '=', '1'
@@ -3360,7 +3358,15 @@ SRD5E2024.weaponRules = function(
   SRD5E.weaponRules(
     rules, name, category, properties, damage, range, cost, weight, isMonkWeapon
   );
-  // TODO do anything with mastery?
+  if(mastery != null) {
+    // add mastery to weapon format
+    let weaponName = 'weapons.' + name;
+    let format = rules.getChoices('notes')[weaponName];
+    delete rules.choices.notes[weaponName];
+    rules.defineChoice('notes',
+      weaponName + ':' + format.replace(')', '; ' + mastery + ')')
+    );
+  }
   // Handle property-based proficiency new to the 2024 rules. Could easily
   // generalize this to additional properties, but presently no class or other
   // feature gives general proficiency for any of these weapon properties:

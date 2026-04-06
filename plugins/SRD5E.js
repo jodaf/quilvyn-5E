@@ -723,8 +723,8 @@ SRD5E.FEATURES = {
     'Note="Melee critical hits inflict %{(levels.Barbarian-5)//4} additional %{levels.Barbarian<13?\'die\':\'dice\'} of damage"',
   'Danger Sense':
     'Section=save Note="Has advantage on Dexterity vs. visible dangers"',
-  // TODO rephrase in terms of the Attack action?
-  'Extra Attack':'Section=combat Note="+%V Attacks Per Round"',
+  'Extra Attack':
+    'Section=combat Note="Can make %V attacks during an Attack action"',
   'Fast Movement':'Section=ability Note="+10 Speed; heavy armor negates"',
   'Feral Instinct':
     'Section=combat ' +
@@ -3644,7 +3644,6 @@ SRD5E.combatRules = function(rules, armors, shields, weapons) {
     'armorStrRequirement', '=', null,
     'strength', '+', '-source'
   );
-  rules.defineRule('attacksPerRound', '', '=', '1');
   rules.defineRule('betterAttackAdjustment',
     'combatNotes.dexterityAttackAdjustment', '=', null,
     'combatNotes.strengthAttackAdjustment', '^', null
@@ -4428,7 +4427,7 @@ SRD5E.classRulesExtra = function(rules, name) {
     );
     rules.defineRule('armorClass', 'combatNotes.unarmoredDefense.1', '+', null);
     rules.defineRule
-      ('combatNotes.extraAttack', classLevel, '+=', 'source<5 ? null : 1');
+      ('combatNotes.extraAttack', classLevel, '^=', 'source<5 ? null : 2');
     rules.defineRule('combatNotes.unarmoredDefense',
       'combatNotes.unarmoredDefense.2', '+=', null
     );
@@ -4522,7 +4521,7 @@ SRD5E.classRulesExtra = function(rules, name) {
       'armor', '=', 'source == "None" ? null : 1'
     );
     rules.defineRule('combatNotes.extraAttack',
-      classLevel, '+=', 'source<5 ? null : source<11 ? 1 : source<20 ? 2 : 3'
+      classLevel, '^=', 'source<5 ? null : source<11 ? 2 : source<20 ? 3 : 4'
     );
     rules.defineRule('featCount.General',
       classLevel, '+=', 'Math.min(Math.floor(source / 4), 5) + (source<6 ? 0 : source<14 ? 1 : 2)'
@@ -4555,7 +4554,7 @@ SRD5E.classRulesExtra = function(rules, name) {
     );
     rules.defineRule('armorClass', 'combatNotes.unarmoredDefense.1', '+', null);
     rules.defineRule
-      ('combatNotes.extraAttack', classLevel, '+=', 'source<5 ? null : 1');
+      ('combatNotes.extraAttack', classLevel, '+=', 'source<5 ? null : 2');
     rules.defineRule('combatNotes.martialArts',
       classLevel, '=', '4 + Math.floor((source + 1)/ 6) * 2'
     );
@@ -4612,7 +4611,7 @@ SRD5E.classRulesExtra = function(rules, name) {
       'armor', '=', 'source == "None" ? null : 1'
     );
     rules.defineRule
-      ('combatNotes.extraAttack', classLevel, '+=', 'source<5 ? null : 1');
+      ('combatNotes.extraAttack', classLevel, '+=', 'source<5 ? null : 2');
     rules.defineRule('featureNotes.fightingStyle',
       'paladinFeatures.Fighting Style', '+=', '1'
     );
@@ -4639,7 +4638,7 @@ SRD5E.classRulesExtra = function(rules, name) {
       'armor', '=', 'source == "None" ? null : 1'
     );
     rules.defineRule
-      ('combatNotes.extraAttack', classLevel, '+=', 'source<5 ? null : 1');
+      ('combatNotes.extraAttack', classLevel, '+=', 'source<5 ? null : 2');
     rules.defineRule
       ('attackBonus.Ranged', 'combatNotes.fightingStyle(Archery)', '+=', '2');
     rules.defineRule('featureNotes.fightingStyle',
@@ -6035,7 +6034,6 @@ SRD5E.createViewers = function(rules, viewers) {
               {name: 'Hit Points', within: 'CombatStats'},
               {name: 'Initiative', within: 'CombatStats'},
               {name: 'Armor Class', within: 'CombatStats'},
-              {name: 'Attacks Per Round', within: 'CombatStats'},
             {name: 'CombatProfs', within: 'CombatPart', separator: innerSep},
               {name: 'Armor Proficiency', within: 'CombatProfs', separator: listSep},
               {name: 'Weapon Proficiency', within: 'CombatProfs', separator: listSep},
@@ -7004,13 +7002,6 @@ SRD5E.ruleNotes = function() {
     '<h3>Usage Notes</h3>\n' +
     '<ul>\n' +
     '  <li>\n' +
-    '  To allow feats to be taken instead of Ability Score Improvements,' +
-    '  the latter is presented as a new feat, named Ability Score ' +
-    '  Improvement, that can be taken multiple times.\n' +
-    '  </li><li>\n' +
-    '  Quilvyn presents sub-race choices (e.g., Lightfoot Halfling)' +
-    '  as separate races in the editor Race menu.\n' +
-    '  </li><li>\n' +
     '  You can use homebrew spell definitions to support class features that' +
     "  allow characters to learn spells from other classes' spell lists. For" +
     '  example, if a Bard with the Magical Secrets feature learns' +

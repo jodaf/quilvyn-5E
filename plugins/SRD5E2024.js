@@ -17,7 +17,7 @@ Place, Suite 330, Boston, MA 02111-1307 USA.
 
 /* jshint esversion: 6 */
 /* jshint forin: false */
-/* globals Expr, ObjectViewer, PHB5E, Quilvyn, QuilvynRules, QuilvynUtils */
+/* globals Quilvyn, QuilvynRules, QuilvynUtils, SRD5E */
 "use strict";
 
 /*
@@ -1367,6 +1367,7 @@ SRD5E2024.FEATURES_CHANGED = {
       '"Has increased Darkvision effects",' +
       '"Knows the <i>Dancing Lights</i> cantrip%{level>2?\' and can cast <i>Faerie Fire</i>\'+(level>4?\' and <i>Darkness</i>\':\'\')+\' once per long rest\':\'\'}" ' +
     'Spells="Dancing Lights","3:Faerie Fire","5:Darkness"',
+  'Elf Spellcasting Ability':'Section=feature Note="1 selection"',
   'Elven Lineage':'Section=feature Note="1 selection"',
   'Fey Ancestry':
     // changed effects
@@ -1401,10 +1402,8 @@ SRD5E2024.FEATURES_CHANGED = {
     .replace(' vs. magic', ''),
   'Gnomish Lineage':'Section=feature Note="1 selection"',
   'Rock Gnome':
-    'Section=magic,magic ' +
-    'Note=' +
-      '"Knows the <i>Mending</i> and <i>Prestidigitation</i> cantrips",' +
-      '"Can spend 10 min and use <i>Prestidigitation</i> to create a Tiny clockwork device that lasts 8 hr" ' +
+    'Section=magic ' +
+    'Note="Knows the <i>Mending</i> and <i>Prestidigitation</i> cantrips and can spend 10 min and use <i>Prestidigitation</i> to create a Tiny clockwork device that lasts 8 hr" ' +
     'Spells="Mending","Prestidigitation"',
 
   // Goliath
@@ -1488,12 +1487,6 @@ SRD5E2024.FEATURES_CHANGED = {
     'Spells=Thaumaturgy',
 
   // Feats
-  'Ability Boost':'Section=ability Note="Ability Boost (Choose %V from any)"',
-  'Grappler':
-    'Section=combat ' +
-    // errata removes grapple larger foes benefit
-    'Note="Has advantage on attacks on a grappled foe and can restrain a grappled foe with an additional successful grapple"',
-
   'Alert':
     'Section=combat,combat ' +
     'Note=' +
@@ -1627,9 +1620,12 @@ SRD5E2024.SPECIES = {
     'Size=Medium ' +
     'Speed=30 ' +
     'Features=' +
-      '"1:Darkvision","1:Elven Lineage","1:Fey Ancestry","1:Keen Senses",' +
-      '"1:Trance" ' +
+      '"1:Darkvision","1:Elf Spellcasting Ability","1:Elven Lineage",' +
+      '"1:Fey Ancestry","1:Keen Senses","1:Trance" ' +
     'Selectables=' +
+      '"1:Charisma:Elf Spellcasting Ability",' +
+      '"1:Intelligence:Elf Spellcasting Ability",' +
+      '"1:Wisdom:Elf Spellcasting Ability",' +
       '"1:Drow:Elven Lineage",' +
       '"1:High Elf:Elven Lineage",' +
       '"1:Wood Elf:Elven Lineage"',
@@ -1637,8 +1633,12 @@ SRD5E2024.SPECIES = {
     'Size=Small ' +
     'Speed=30 ' +
     'Features=' +
-      '"1:Darkvision","1:Gnomish Cunning","1:Gnomish Lineage" ' +
+      '"1:Darkvision","1:Gnome Spellcasting Ability","1:Gnomish Cunning",' +
+      '"1:Gnomish Lineage" ' +
     'Selectables=' +
+      '"1:Charisma:Gnome Spellcasting Ability",' +
+      '"1:Intelligence:Gnome Spellcasting Ability",' +
+      '"1:Wisdom:Gnome Spellcasting Ability",' +
       '"1:Forest Gnome:Gnomish Lineage",' +
       '"1:Rock Gnome:Gnomish Lineage"',
   'Goliath':
@@ -1672,8 +1672,12 @@ SRD5E2024.SPECIES = {
     'Size=Medium ' +
     'Speed=30 ' +
     'Features=' +
-      '"1:Darkvision","1:Fiendish Legacy","1:Otherworldly Presence" ' +
+      '"1:Darkvision","1:Fiendish Legacy","1:Otherworldly Presence",' +
+      '"1:Tiefling Spellcasting Ability" ' +
     'Selectables=' +
+      '"1:Charisma:Tiefling Spellcasting Ability",' +
+      '"1:Intelligence:Tiefling Spellcasting Ability",' +
+      '"1:Wisdom:Tiefling Spellcasting Ability",' +
       '"1:Abyssal:Fiendish Legacy",' +
       '"1:Chthonic:Fiendish Legacy",' +
       '"1:Infernal:Fiendish Legacy"'
@@ -1730,10 +1734,6 @@ SRD5E2024.SPELLS_CHANGED = {
   'Augury':
     SRD5E.SPELLS.Augury
     .replace('C2', 'C2,D2,W2'),
-  'Aura Of Life': // new
-    'School=Abjuration ' +
-    'Level=C4,P4 ' +
-    'Description="30\' radius gives allies resistance to necrotic"',
   'Aura Of Life': // ref PHB5E
     'School=Abjuration ' +
     'Level=C4,P4 ' +
@@ -1931,7 +1931,7 @@ SRD5E2024.SPELLS_CHANGED = {
 
   'Faithful Hound':
     SRD5E.SPELLS['Faithful Hound']
-    .replace('%{mdf+proficiencyBonus} ', '',)
+    .replace('%{mdf+proficiencyBonus} ', '')
     .replace('HP piercing', 'HP force (Dexterity negates)'),
   'False Life':
     SRD5E.SPELLS['False Life']
@@ -3119,11 +3119,9 @@ SRD5E2024.featRules = function(rules, name, requires, implies, categories) {
  * derived directly from the attributes passed to featRules.
  */
 SRD5E2024.featRulesExtra = function(rules, name) {
-  let prefix =
-    name.charAt(0).toLowerCase() + name.substring(1).replaceAll(' ', '');
   if(name == 'Ability Score Improvement') {
     rules.defineRule('abilityNotes.abilityScoreImprovement',
-      'feats.Ability Score Improvement', '+=', 'source * 2',
+      'feats.Ability Score Improvement', '+=', 'source * 2'
     );
     rules.defineRule('abilityBoostChoiceCount',
       'abilityNotes.abilityScoreImprovement', '+=', null
@@ -3261,14 +3259,49 @@ SRD5E2024.speciesRulesExtra = function(rules, name) {
   } else if(name.match(/Dwarf/)) {
     rules.defineRule('featureNotes.darkvision', speciesLevel, '^=', '120');
   } else if(name.match(/Elf/)) {
+    rules.defineRule('casterLevels.Elf', speciesLevel, '=', null);
+    rules.defineRule
+      ('featureNotes.darkvision', 'featureNotes.drow', '^=', '120');
+    rules.defineRule('selectableFeatureCount.Elf (Elf Spellcasting Ability)',
+      'featureNotes.elfSpellcastingAbility', '=', '1'
+    );
     rules.defineRule('selectableFeatureCount.Elf (Elven Lineage)',
       'featureNotes.elvenLineage', '=', '1'
     );
-    rules.defineRule
-      ('featureNotes.darkvision', 'featureNotes.drow', '^=', '120');
+    rules.defineRule('spellAttackModifier.Elf',
+      'spellModifier.Elf', '=', null,
+      'proficiencyBonus', '+', null
+    );
+    rules.defineRule('spellDifficultyClass.Elf',
+      'spellAttackModifier.Elf', '=', 'source + 8'
+    );
+    rules.defineRule('spellModifier.Elf',
+      'charismaModifier', '+', 'null', // recomputation trigger
+      'intelligenceModifier', '+', 'null', // recomputation trigger
+      'wisdomModifier', '+', 'null', // recomputation trigger
+      'elfFeatures.Charisma', '=', 'dict.charismaModifier',
+      'elfFeatures.Intelligence', '=', 'dict.intelligenceModifier',
+      'elfFeatures.Wisdom', '=', 'dict.wisdomModifier'
+    );
   } else if(name.match(/Gnome/)) {
+    rules.defineRule('casterLevels.Gnome', speciesLevel, '=', null);
     rules.defineRule('selectableFeatureCount.Gnome (Gnomish Lineage)',
       'featureNotes.gnomishLineage', '=', '1'
+    );
+    rules.defineRule('spellAttackModifier.Gnome',
+      'spellModifier.Gnome', '=', null,
+      'proficiencyBonus', '+', null
+    );
+    rules.defineRule('spellDifficultyClass.Gnome',
+      'spellAttackModifier.Gnome', '=', 'source + 8'
+    );
+    rules.defineRule('spellModifier.Gnome',
+      'charismaModifier', '+', 'null', // recomputation trigger
+      'intelligenceModifier', '+', 'null', // recomputation trigger
+      'wisdomModifier', '+', 'null', // recomputation trigger
+      'gnomeFeatures.Charisma', '=', 'dict.charismaModifier',
+      'gnomeFeatures.Intelligence', '=', 'dict.intelligenceModifier',
+      'gnomeFeatures.Wisdom', '=', 'dict.wisdomModifier'
     );
   } else if(name.match(/Goliath/)) {
     rules.defineRule
@@ -3291,6 +3324,21 @@ SRD5E2024.speciesRulesExtra = function(rules, name) {
   } else if(name.match(/Tiefling/)) {
     rules.defineRule('selectableFeatureCount.Tiefling (Fiendish Legacy)',
       'featureNotes.fiendishLegacy', '=', '1'
+    );
+    rules.defineRule('spellAttackModifier.Tiefling',
+      'spellModifier.Tiefling', '=', null,
+      'proficiencyBonus', '+', null
+    );
+    rules.defineRule('spellDifficultyClass.Tiefling',
+      'spellAttackModifier.Tiefling', '=', 'source + 8'
+    );
+    rules.defineRule('spellModifier.Tiefling',
+      'charismaModifier', '+', 'null', // recomputation trigger
+      'intelligenceModifier', '+', 'null', // recomputation trigger
+      'wisdomModifier', '+', 'null', // recomputation trigger
+      'tieflingFeatures.Charisma', '=', 'dict.charismaModifier',
+      'tieflingFeatures.Intelligence', '=', 'dict.intelligenceModifier',
+      'tieflingFeatures.Wisdom', '=', 'dict.wisdomModifier'
     );
   }
 

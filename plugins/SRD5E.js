@@ -4900,7 +4900,7 @@ SRD5E.featRules = function(rules, name, requires, implies, categories) {
 SRD5E.featRulesExtra = function(rules, name) {
   if(name == 'Ability Score Improvement') {
     rules.defineRule('abilityNotes.abilityScoreImprovement',
-      'feats.Ability Score Improvement', '+=', 'source * 2',
+      'feats.Ability Score Improvement', '+=', 'source * 2'
     );
     rules.defineRule('abilityBoostChoiceCount',
       'abilityNotes.abilityScoreImprovement', '+=', null

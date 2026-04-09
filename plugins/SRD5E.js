@@ -766,7 +766,7 @@ SRD5E.FEATURES = {
   'Bard College':'Section=feature Note="1 selection"',
   'Bardic Inspiration':
     'Section=combat ' +
-    'Note="R60\' Can use a bonus action to give an ally +1d%{bardicInspirationDie} on an ability check, attack, or save within 10 min %{charismaModifier>1?charismaModifier + \' times\':\'once\'} per %{combatNotes.fontOfInspiration?\'short\':\'long\'} rest"',
+    'Note="R60\' Can use a bonus action %{charismaModifier>1?charismaModifier + \' times\':\'once\'} per %{combatNotes.fontOfInspiration?\'short\':\'long\'} rest to give an ally +1d%{bardicInspirationDie} on an ability check, attack, or save within 10 min"',
   'Countercharm':
     'Section=skill ' +
     'Note="R30\' Performance gives friendly listeners advantage on saves vs. charmed and frightened for 1 rd"',
@@ -1009,7 +1009,7 @@ SRD5E.FEATURES = {
     'Note="Can use an action to end charm or fright affecting self"',
   'Stunning Strike':
     'Section=combat ' +
-    'Note="Can spend 1 ki point after a successful attack to stun the target (save DC %{monkSaveDC} Constitution negates) until the end of the next turn"',
+    'Note="Can spend 1 ki point after a successful attack to stun the target until the end of the next turn (save DC %{monkSaveDC} Constitution negates)"',
   'Timeless Body (Monk)':
     'Section=feature ' +
     'Note="Suffers no debility from aging and needs no food or water"',
@@ -1072,7 +1072,7 @@ SRD5E.FEATURES = {
   'Holy Nimbus':
     'Section=combat ' +
     'Note=' +
-      '"Can emit a 30\' bright light that inflicts 10 HP radiant to foes and gives self advantage on saves vs. spells by fiends and undead for 1 min once per long rest"',
+      '"Can emit a 30\' bright light that inflicts 10 HP radiant on foes and gives self advantage on saves vs. spells by fiends and undead for 1 min once per long rest"',
   'Oath Of Devotion Spells':
     'Spells=' +
       '"3:Protection From Evil And Good","3:Sanctuary",' +
@@ -1423,7 +1423,7 @@ SRD5E.FEATURES = {
     'Section=magic Note="Cantrips inflict half HP on a successful save"',
   'Sculpt Spells':
     'Section=magic ' +
-    'Note="Can give spell level + 1 creatures a successful save and no damage instead of half on a self evocation spell"',
+    'Note="On a self evocation spell, can give spell level + 1 creatures a successful save and no damage instead of half"',
 
   // Backgrounds
   'Shelter Of The Faithful':
@@ -1796,7 +1796,7 @@ SRD5E.SPELLS = {
     'School=Divination ' +
     'Level=W4 ' +
     'Description=' +
-      '"R30\' Self sees with darkvision through a remote invisible eye that can move 30\' per rd for concentration up to 1 hr"',
+      '"R30\' Self sees with Darkvision through a remote invisible eye that can move 30\' per rd for concentration up to 1 hr"',
   'Arcane Hand':
     'School=Evocation ' +
     'Level=W5 ' +
@@ -5036,7 +5036,7 @@ SRD5E.featureRules = function(
       // Generate rules for common notes:
       // X Proficiency (item [; item ...])
       matchInfo =
-        effect.match(/([A-Z]\w*)\s(Proficiency|Training)\s\((([^\(]|\([^\)]*\))*)\)/);
+        effect.match(/^([A-Z]\w*)\s(Proficiency|Training)\s\((([^\(]|\([^\)]*\))*)\)/);
       if(matchInfo) {
         let group = matchInfo[1].toLowerCase();
         matchInfo[3].split(/\/|;\s*/).forEach(affected => {

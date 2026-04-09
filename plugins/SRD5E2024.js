@@ -785,6 +785,7 @@ SRD5E2024.FEATURES_CHANGED = {
   // Action Surge as SRD5E
   // Epic Boon as above
   // Extra Attack as above
+  'Fighter Primary Ability':'Section=feature Note="1 selection"',
   'Fighter Subclass':SRD5E.FEATURES['Martial Archetype'],
   'Fighting Style':'Section=feature Note="+1 Fighting Style Feat"',
   'Indomitable':
@@ -843,7 +844,7 @@ SRD5E2024.FEATURES_CHANGED = {
     SRD5E.FEATURES['Deflect Missiles']
     .replace(' missile', "%{combatNotes.deflectEnergy?'':' bludgeoning, piercing, or slashing'}")
     .replace('ki point', 'focus point')
-    .replace('make an immediate attack with the missile', 'redirect 2d%{combatNotes.martialArts}+%{dexterityModifier} HP (DC %{monkSaveDC} save Dexterity negates) to an adjacent creature, or to a creature within 60\' if the damage came from a ranged attack'),
+    .replace('make an immediate attack with the missile', 'redirect 2d%{combatNotes.martialArts}+%{dexterityModifier} HP (save DC %{monkSaveDC} Dexterity negates) to an adjacent creature, or to a creature within 60\' if the damage came from a ranged attack'),
   'Deflect Energy':
     'Section=combat Note="Has increased Deflect Attacks effects"',
   'Disciplined Survivor':
@@ -873,7 +874,7 @@ SRD5E2024.FEATURES_CHANGED = {
   'Patient Defense':
     'Section=combat ' +
     // changed effects
-    'Note="Can use a bonus action to Disengage, optionally spending 1 focus point to Dodge%{combatNotes.heightenedFocus?\' and gain 2d\'+combatNotes.martialArts+\' temporary hit points\':\'\'}"',
+    'Note="Can use a bonus action to Disengage, optionally spending 1 focus point to Dodge%{combatNotes.heightenedFocus?\' and to gain 2d\'+combatNotes.martialArts+\' temporary hit points\':\'\'}"',
   'Perfect Focus':
     SRD5E.FEATURES['Perfect Self']
     .replace('ki', 'focus'),
@@ -887,6 +888,7 @@ SRD5E2024.FEATURES_CHANGED = {
     'Note="Can use a bonus action to Dash, optionally spending 1 focus point to Disengage and to double jump distance%{combatNotes.heightenedFocus?\'; can bring along 1 Large creature when moving\':\'\'}"',
   'Stunning Strike':
     SRD5E.FEATURES['Stunning Strike']
+    .replace('ki point', 'focus point')
     .replace('negates', 'inflicts half Speed and advantage on the next foe attack')
     .replace('end of', 'start of'),
   'Superior Defense':
@@ -997,7 +999,7 @@ SRD5E2024.FEATURES_CHANGED = {
   // Extra Attack as above
   'Feral Senses':
     // changed effects
-    'Section=skill Note="Has 30\' blindsight"',
+    'Section=skill Note="Has 30\' Blindsight"',
   'Foe Slayer':
     // changed effects
     'Section=magic Note="<i>Hunter\'s Mark</i> inflicts d10 damage"',
@@ -1218,7 +1220,7 @@ SRD5E2024.FEATURES_CHANGED = {
     'Section=save ' +
     'Note="Has advantage on Constitution saves to maintain concentration"',
   'Eldritch Smite':
-    'Section=combat Note="Can spend a spell slot on a pact weapon hit to inflict +1d8 HP force plus +1d8 HP force per spell level and to inflict prone on a Huge or smaller target"',
+    'Section=combat Note="Can spend a spell slot upon a pact weapon hit to inflict +1d8 HP force plus +1d8 HP force per spell level and to inflict prone on a Huge or smaller target"',
   'Eldritch Spear':
     // changed effects
     'Section=magic ' +
@@ -1252,7 +1254,7 @@ SRD5E2024.FEATURES_CHANGED = {
   'One With Shadows':
     'Section=magic ' +
     // changed effects
-    'Note="Can cast Invisibility on self in dim light at will" ' +
+    'Note="Can cast <i>Invisibility</i> on self in dim light at will" ' +
     'Spells=Invisibility',
   // Otherworldly Leap as SRD5E
   'Pact Of The Blade':
@@ -1508,8 +1510,9 @@ SRD5E2024.FEATURES_CHANGED = {
     'Note="Knows 2 Wizard cantrips and can cast a chosen W1 spell once per long rest"',
   'Savage Attacker':
     'Section=combat Note="Can use the better of 2 damage rolls once per turn"',
-  // TODO or Tool
-  'Skilled':'Section=skill Note="Skill Proficiency (Choose %V from any)"',
+  'Skilled':
+    'Section=skill ' +
+    'Note="Skill Proficiency or Tool Proficiency (Choose %V from any)"',
   // Ability Score Improvement as SRD5E
   'Grappler':
     // changed effects
@@ -3138,6 +3141,22 @@ SRD5E2024.featRulesExtra = function(rules, name) {
     );
   } else if(name == 'Skilled') {
     rules.defineRule('skillNotes.skilled', 'feats.Skilled', '=', 'source * 3');
+    // Since the proficiencies from Skilled can be applied to either skills or
+    // tools, we no longer have a fixed allocation for either. Instead, the
+    // choice count for each represents a minimum allocation, and the sum of
+    // the two, plus the value of skillNotes.skilled, is a fixed allocation
+    // that can be tested.
+    rules.defineRule
+      ('validationNotes.skillProficiencyAllocation', 'feats.Skilled', 'v', '0');
+    rules.defineRule
+      ('validationNotes.toolProficiencyAllocation', 'feats.Skilled', 'v', '0');
+    rules.defineRule('skillAndToolChoiceCount',
+      'skillChoiceCount', '+=', null,
+      'toolChoiceCount', '+=', null,
+      'skillNotes.skilled', '+=', null
+    );
+    QuilvynRules.validAllocationRules
+      (rules, 'skillAndToolProficiency', 'skillAndToolChoiceCount', 'Sum "^skillsChosen\\.|toolsChosen\\."');
   }
 };
 
@@ -3415,6 +3434,33 @@ SRD5E2024.initialEditorElements = function() {
 /* Sets #attributes#'s #attribute# attribute to a random value. */
 SRD5E2024.randomizeOneAttribute = function(attributes, attribute) {
   SRD5E.randomizeOneAttribute.apply(this, [attributes, attribute]);
+  // Handle allocations for Skilled feat when randomizing tools because tools
+  // appears after skills in RANDOMIZABLE_ATTRIBUTES
+  if(attribute == 'tools' && attributes['feats.Skilled']) {
+    let attrs = this.applyRules(attributes);
+    let skillAndToolChoiceCount =
+      (attrs.skillChoiceCount || 0) +
+      (attrs.toolChoiceCount || 0) +
+      attrs['skillNotes.skilled'];
+    for(let a in attributes) {
+      if(a.startsWith('skillsChosen.') || a.startsWith('toolsChosen.'))
+        skillAndToolChoiceCount--;
+    }
+    if(skillAndToolChoiceCount > 0) {
+      let skills = this.getChoices('skills');
+      let tools = this.getChoices('tools');
+      let skillsAndTools = Object.keys(skills).concat(Object.keys(tools));
+      while(skillAndToolChoiceCount > 0 && skillsAndTools.length > 0) {
+        let choice = QuilvynUtils.randomElement(skillsAndTools);
+        skillsAndTools = skillsAndTools.filter(x => x != choice);
+        if(!('skillsChosen.' + choice in attributes) &&
+           !('toolsChosen.' + choice in attributes)) {
+          attributes[(choice in skills ? 'skills' : 'tools') + 'Chosen.' + choice] = 1;
+          skillAndToolChoiceCount--;
+        }
+      }
+    }
+  }
 };
 
 /* Returns HTML body content for user notes associated with this rule set. */

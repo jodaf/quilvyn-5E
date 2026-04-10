@@ -772,10 +772,7 @@ SRD5E.FEATURES = {
     'Note="R30\' Performance gives friendly listeners advantage on saves vs. charmed and frightened for 1 rd"',
   'Expertise':
     'Section=skill ' +
-    'Note="+%{proficiencyBonus} on %V chosen proficient skills%{levels.Rogue?\\" or Thieves\' Tools\\":\'\'}"',
-  'Expertise (Rogue)':
-    'Section=skill ' +
-    'Note="+%{proficiencyBonus} on %{levels.Rogue<6?2:4} chosen proficient skills or Thieves\' Tools"',
+    'Note="Double Proficiency Bonus on %V chosen proficient skills%{levels.Rogue?\\" or Thieves\' Tools\\":\'\'}"',
   'Font Of Inspiration':
     'Section=combat Note="Bardic Inspiration refreshes after a short rest"',
   'Jack Of All Trades':
@@ -3840,6 +3837,8 @@ SRD5E.talentRules = function(
     (rules, 'skillProficiency', 'skillChoiceCount', 'Sum "^skillsChosen\\."');
   QuilvynRules.validAllocationRules
     (rules, 'toolProficiency', 'toolChoiceCount', 'Sum "^toolsChosen\\."');
+  QuilvynRules.validAllocationRules
+    (rules, 'expertise', 'expertiseCount', 'Sum "^expertise\\."');
 
 };
 
@@ -4013,6 +4012,8 @@ SRD5E.choiceRules = function(rules, type, name, attrs) {
     console.log('Unknown choice type "' + type + '"');
     return;
   }
+  if(type == 'Skill' || type == 'Tool')
+    rules.addChoice('skillsAndTools', name, attrs);
   if(type != 'Spell') {
     type = type == 'Class' ? 'levels' :
     (type.charAt(0).toLowerCase() + type.substring(1).replaceAll(' ', '') + 's');
@@ -4385,6 +4386,7 @@ SRD5E.classRules = function(
         'casterLevels.' + spellType, '?', null,
         spellAbility + 'Modifier', '=', null
       );
+      rules.defineChoice('notes', 'spellAttackModifier.' + spellType + ':%S');
       rules.defineRule('spellAttackModifier.' + spellType,
         'spellModifier.' + spellType, '=', null,
         'proficiencyBonus', '+', null
@@ -4455,6 +4457,7 @@ SRD5E.classRulesExtra = function(rules, name) {
     rules.defineRule('combatNotes.bardicInspiration',
       'combatNotes.fontOfInspiration', '+', 'null' // italics
     );
+    rules.defineRule('expertiseCount', 'skillNotes.expertise', '+=', null);
     rules.defineRule('magicNotes.spellcasting.1', classLevel, '=', '1');
     rules.defineRule('selectableFeatureCount.Bard (Bard College)',
       'featureNotes.bardCollege', '=', '1'
@@ -4666,6 +4669,7 @@ SRD5E.classRulesExtra = function(rules, name) {
 
   } else if(name == 'Rogue') {
 
+    rules.defineRule('expertiseCount', 'skillNotes.expertise', '+=', null);
     rules.defineRule('featCount.General',
       classLevel, '+=', 'Math.min(Math.floor(source / 4), 5) + (source<10 ? 0 : 1)'
     );
@@ -5126,6 +5130,7 @@ SRD5E.featureRules = function(
             spellAbility + 'Modifier', '=', null
           );
         }
+        rules.defineChoice('notes', 'spellAttackModifier.' + spellType + ':%S');
         rules.defineRule('spellAttackModifier.' + spellType,
           'features.' + name, '=', '0',
           'spellModifier.' + spellType, '+', null,
@@ -5295,6 +5300,7 @@ SRD5E.pathRules = function(
         'casterLevels.' + spellType, '?', null,
         spellAbility + 'Modifier', '=', null
       );
+      rules.defineChoice('notes', 'spellAttackModifier.' + spellType + ':%S');
       rules.defineRule('spellAttackModifier.' + spellType,
         spellAbility + 'Modifier', '=', null,
         'proficiencyBonus', '+', null
@@ -5569,13 +5575,21 @@ SRD5E.skillRules = function(rules, name, ability, classes) {
   );
   rules.defineRule('skillBonus.' + name,
     'skillProficiency.' + name, '?', null,
-    'proficiencyBonus', '=', null
+    'proficiencyBonus', '=', null,
+    'expertise.' + name, '*', '2'
   );
   rules.defineChoice
       ('notes', 'skills.' + name + ':(' + ability.substring(0, 3) + ') %S');
   rules.defineRule('skills.' + name,
     ability + 'Modifier', '=', null,
     'skillBonus.' + name, '+', null
+  );
+  let note =
+    'validationNotes.' + name.charAt(0).toLowerCase() + name.substring(1).replaceAll(' ', '') + 'SkillExpertise';
+  rules.defineChoice('notes', note + ':Requires proficiency in the skill');
+  rules.defineRule(note,
+    'expertise.' + name, '=', '-1',
+    'skillProficiency.' + name, '+', '1'
   );
 
 };
@@ -6017,6 +6031,7 @@ SRD5E.createViewers = function(rules, viewers) {
       }
       viewer.addElements(
           {name: 'Skill Proficiency', within: 'FeaturesAndSkills', separator: listSep},
+          {name: 'Expertise', within: 'FeaturesAndSkills', separator: listSep},
           {name: 'Skills', within: 'FeaturesAndSkills', columns: '3LE', separator: null},
           {name: 'Tool Proficiency', within: 'FeaturesAndSkills', separator: listSep},
           {name: 'Languages', within: 'FeaturesAndSkills', separator: listSep}
@@ -6266,6 +6281,7 @@ SRD5E.initialEditorElements = function() {
     ['feats', 'Feats', 'setbag', 'feats'],
     ['selectableFeatures', 'Selectable Features', 'setbag', 'selectableFeatures'],
     ['skillsChosen', 'Skills', 'set', 'skills'],
+    ['expertise', 'Expertise', 'set', 'skillsAndTools'],
     ['toolsChosen', 'Tools', 'set', 'tools'],
     ['languagesChosen', 'Languages', 'set', 'languages'],
     ['hitPoints', 'Hit Points', 'text', [4, '(\\+?\\d+)']],
@@ -6696,6 +6712,25 @@ SRD5E.randomizeOneAttribute = function(attributes, attribute) {
       attrs[attribute.replace(/s$/, '') + 'ChoiceCount'] -
       QuilvynUtils.sumMatching(attributes, '^' + attribute + 'Chosen'), 1
     );
+    if(attribute == 'skills') {
+      // Handle expertise immediately after skill proficiency selection
+      howMany = attrs.expertiseCount;
+      choices = [];
+      for(let s in this.getChoices('skills')) {
+        if(attributes['expertise.' + s])
+          howMany--;
+        else if(attrs['skillProficiency.' + s])
+          choices.push(s);
+      }
+      for(let t in this.getChoices('tools')) {
+        // The user menu allows selecting tools, and the rules allow rogues
+        // expertise in Thieves' Tools, but we only randomly select skills
+        if(attributes['expertise.' + t])
+          howMany--;
+      }
+      if(howMany > 0)
+        pickAttrs(attributes, 'expertise.', choices, howMany, 1);
+    }
   } else if(attribute == 'spells') {
     let availableSpellsByGroupAndLevel = {};
     let groupAndLevel;

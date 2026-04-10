@@ -2665,6 +2665,8 @@ SRD5E2024.choiceRules = function(rules, type, name, attrs) {
     console.log('Unknown choice type "' + type + '"');
     return;
   }
+  if(type == 'Skill' || type == 'Tool')
+    rules.addChoice('skillsAndTools', name, attrs);
   if(type != 'Spell') {
     type = type == 'Class' ? 'levels' :
            type == 'Race' || type == 'Species' ? 'species' :
@@ -2783,6 +2785,7 @@ SRD5E2024.classRulesExtra = function(rules, name) {
     rules.defineRule('combatNotes.bardicInspiration',
       'combatNotes.fontOfInspiration', '+', 'null' // italics
     );
+    rules.defineRule('expertiseCount', 'skillNotes.expertise', '+=', null);
     rules.defineRule('magicNotes.spellcasting.1', classLevel, '=', '1');
     rules.defineRule('selectableFeatureCount.Bard (Bard Subclass)',
       'featureNotes.bardSubclass', '=', '1'
@@ -2971,6 +2974,7 @@ SRD5E2024.classRulesExtra = function(rules, name) {
       'abilityNotes.roving', '?', null,
       'armorCategory', '=', 'source=="Heavy" ? null : 10'
     );
+    rules.defineRule('expertiseCount', 'skillNotes.expertise', '+=', null);
     rules.defineRule
       ('combatNotes.extraAttack', classLevel, '^=', 'source<5 ? null : 2');
     rules.defineRule('combatNotes.weaponMastery', classLevel, '+=', '2');
@@ -3008,6 +3012,7 @@ SRD5E2024.classRulesExtra = function(rules, name) {
       'combatNotes.improvedCunningStrike', '+', 'null' // italics
     );
     rules.defineRule('combatNotes.weaponMastery', classLevel, '+=', '2');
+    rules.defineRule('expertiseCount', 'skillNotes.expertise', '+=', null);
     rules.defineRule('featCount.General',
       classLevel, '+=', 'Math.min(Math.floor(source / 4), 5) + (source<10 ? 0 : 1)'
     );

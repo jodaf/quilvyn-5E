@@ -1723,7 +1723,7 @@ SRD5E.SPELLS = {
     'Level=W2 ' +
     'AtHigherLevels="inflicts +1d4 HP initial and secondary" ' +
     'Description=' +
-      '"R90\' Ranged spell inflicts 4d4 HP acid, plus 2d4 HP the following rd (miss half initial HP only)"',
+      '"R90\' Ranged spell inflicts 4d4 HP acid, plus 2d4 HP at the end of the target\'s next turn (miss half initial HP only)"',
   'Acid Splash':
     'School=Conjuration ' +
     'Level=S0,W0 ' +
@@ -1732,8 +1732,8 @@ SRD5E.SPELLS = {
   'Aid':
     'School=Abjuration ' +
     'Level=C2,P2 ' +
-    'AtHigherLevels="gives +5 temporary hit points" ' +
-    'Description="R30\' 3 targets gain +5 hit points for 8 hr"',
+    'AtHigherLevels="gives +5 hit points" ' +
+    'Description="R30\' 3 targets gain +5 current and maximum hit points for 8 hr"',
   'Alarm':
     'School=Abjuration ' +
     'Level=R1,W1 ' +
@@ -1788,7 +1788,7 @@ SRD5E.SPELLS = {
     'School=Enchantment ' +
     'Level=D8,W8 ' +
     'Description=' +
-      '"R60\' Target creature, object, or 200\' cubic area repels or attracts specified creature type for 10 days"',
+      '"R60\' Target creature, object, or 200\' cubic area repels or attracts a specified creature type within 60\' (save Wisdom negates; additional saves when no longer within 60\' end and give immunity for 1 min) for 10 days"',
   'Arcane Eye':
     'School=Divination ' +
     'Level=W4 ' +
@@ -1799,7 +1799,7 @@ SRD5E.SPELLS = {
     'Level=W5 ' +
     'AtHigherLevels="inflicts +2d8 HP force and +2d6 HP bludgeoning" ' +
     'Description=' +
-      '"R120\' Large force hand (Armor Class 20, %{hitPoints} hit points, Strength 26, Dexterity 10) can move 60\' per rd and can punch (inflicts 4d8 HP force), push 5\' (save DC 26 Athletics negates), grapple (may crush, inflicting 2d6+%{mdf} HP bludgeoning), provide half cover, and inflict difficult terrain for concentration up to 1 min"',
+      '"R120\' Large force hand (Armor Class 20; %{hitPoints} hit points; Strength 26; Dexterity 10) can move 60\' per rd and can punch (inflicts 4d8 HP force), push %{5+5*mdf}\' (save DC 26 Athletics negates), grapple (may crush, inflicting 2d6+%{mdf} HP bludgeoning), provide half cover, and inflict difficult terrain for concentration up to 1 min"',
   'Arcane Lock':
     'School=Abjuration ' +
     'Level=W2 ' +
@@ -1814,17 +1814,18 @@ SRD5E.SPELLS = {
     'School=Illusion ' +
     'Level=W2 ' +
     'Description=' +
-      '"Magic cast on a willing target reports false auras and takes effect as a different creature type for 24 hr"',
+      '"Magic cast on the target object or willing creature reports false auras and takes effect as a different creature type for 24 hr; casting every day for 30 days makes the effects permanent"',
   'Astral Projection':
     'School=Necromancy ' +
     'Level=C9,K9,W9 ' +
-    'Description="R10\' Self and 8 willing targets project to astral plane"',
+    'Description=' +
+      '"R10\' Self and 8 willing targets project to the Astral Plane"',
   'Augury':
     'School=Divination ' +
     'Level=C2 ' +
     'Ritual=true ' +
     'Description=' +
-      '"Reveals the weal or woe outcome of a proposed act up to 30 min in the future"',
+      '"Reveals the weal or woe outcome of a proposed act up to 30 min in the future; additional uses before a long rest impose a cumulative 25% chance of receiving a random respose"',
   'Awaken':
     'School=Transmutation ' +
     'Level=B5,D5 ' +
@@ -1836,13 +1837,13 @@ SRD5E.SPELLS = {
     'Level=B1,C1 ' +
     'AtHigherLevels="affects +1 target" ' +
     'Description=' +
-      '"R30\' 3 targets suffer -1d4 on attacks and saving throws (save Charisma negates) for concentration up to 1 min"',
+      '"R30\' 3 targets suffer -1d4 on attacks and saves (save Charisma negates) for concentration up to 1 min"',
   'Banishment':
     'School=Abjuration ' +
     'Level=C4,K4,P4,S4,W4 ' +
     'AtHigherLevels="affects +1 target" ' +
     'Description=' +
-      '"R60\' Banishes the target to its home plane or to a demiplane (save Charisma negates) for concentration up to 1 min"',
+      '"R60\' Banishes the target to its home plane or to a demiplane (save Charisma negates) for concentration up to 1 min; extraplanar creatures don\'t return if the spell is maintained for a full min"',
   'Barkskin':
     'School=Transmutation ' +
     'Level=D2,R2 ' +
@@ -1856,14 +1857,14 @@ SRD5E.SPELLS = {
   'Bestow Curse':
     'School=Necromancy ' +
     'Level=B3,C3,W3 ' +
-    'AtHigherLevels="extends the maximum duration to 10 min, 8 hr, 24 hr, or permanently at level 4, 5, 7, or 9; levels above 4 require no concentration" ' +
+    'AtHigherLevels="extends the maximum duration to 10 min, 8 hr, 24 hr, or permanent at level 4, 5, 7, or 9; levels above 4 require no concentration" ' +
     'Description=' +
       '"Touched suffers a choice of disadvantage on specified ability rolls, disadvantage on attacks on self, requiring a successful Wisdom save to take any action, or +1d8 HP necrotic from self attacks (save Wisdom negates) for concentration up to 1 min"',
   'Black Tentacles':
     'School=Conjuration ' +
     'Level=W4 ' +
     'Description=' +
-      '"R90\' 20\' sq inflicts 3d6 HP bludgeoning and restrains (save Dexterity negates, Strength or Dexterity breaks free) for concentration up to 1 min"',
+      '"R90\' 20\' sq inflicts difficult terrain, 3d6 HP bludgeoning, and restrained (save Dexterity negates, Strength or Dexterity breaks free) for concentration up to 1 min"',
   'Blade Barrier':
     'School=Evocation ' +
     'Level=C6 ' +
@@ -1874,7 +1875,7 @@ SRD5E.SPELLS = {
     'Level=C1,P1 ' +
     'AtHigherLevels="affects +1 target" ' +
     'Description=' +
-      '"R30\' 3 targets gain +1d4 on attacks and saving throws for concentration up to 1 min"',
+      '"R30\' 3 targets gain +1d4 on attacks and saves for concentration up to 1 min"',
   'Blight':
     'School=Necromancy ' +
     'Level=D4,K4,S4,W4 ' +
@@ -1886,12 +1887,12 @@ SRD5E.SPELLS = {
     'Level=B2,C2,"K2 [The Fiend]",S2,W2 ' +
     'AtHigherLevels="affects +1 target" ' +
     'Description=' +
-      '"R30\' Inflicts a choice of blindness or deafness (save Constitution ends) for 1 min"',
+      '"R30\' Inflicts a choice of blindness or deafness (save Constitution negates; additional saves each rd end) for 1 min"',
   'Blink':
     'School=Transmutation ' +
     'Level=S3,W3 ' +
     'Description=' +
-      '"Self has a 50% chance of becoming ethereal at the end each turn, returning to a spot within 10\' at the start of the next turn, for 1 min"',
+      '"Self has a 50% chance of becoming ethereal at the end each turn, returning to a choice of spot within 10\' at the start of the next turn, for 1 min"',
   'Blur':
     'School=Illusion ' +
     'Level=S2,W2 ' +
@@ -2407,7 +2408,7 @@ SRD5E.SPELLS = {
     'School=Divination ' +
     'Level=B9,D9,K9,W9 ' +
     'Description=' +
-      '"Touched gains immunity to surprise and advantage on attack, ability, and saving throws, and foes suffer disadvantage on attacks, for 8 hr"',
+      '"Touched gains immunity to surprise and advantage on attack, ability, and saves, and foes suffer disadvantage on attacks, for 8 hr"',
   'Freedom Of Movement':
     'School=Abjuration ' +
     'Level=B4,C4,D4,R4 ' +
@@ -7037,6 +7038,10 @@ SRD5E.ruleNotes = function() {
     '<h3>Usage Notes</h3>\n' +
     '<ul>\n' +
     '  <li>\n' +
+    '  Quilvyn allows Expertise to be applied to tools as well as skills,' +
+    '  although the modifiers for tool use do not appear on the character' +
+    '  sheet.\n' +
+    '  <li></li>\n' +
     '  You can use homebrew spell definitions to support class features that' +
     "  allow characters to learn spells from other classes' spell lists. For" +
     '  example, if a Bard with the Magical Secrets feature learns' +

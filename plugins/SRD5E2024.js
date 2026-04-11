@@ -815,7 +815,7 @@ SRD5E2024.FEATURES_CHANGED = {
   'Additional Fighting Style':'Section=feature Note="+1 Fighting Style Feat"',
   'Defy Death':
     'Section=save ' +
-    'Note="Has advantage on death saving throws, and a roll of 18-19 on one gains the benefits of a 20"',
+    'Note="Has advantage on death saves, and a roll of 18-19 on one gains the benefits of a 20"',
   'Heroic Rally':
     'Section=combat ' +
     'Note=' +
@@ -1707,29 +1707,40 @@ SRD5E2024.SPELLS_CHANGED = {
     .replace('C2,P2', 'B2,C2,D2,P2,R2'),
   'Alter Self':
     SRD5E.SPELLS['Alter Self']
-    .replaceAll('strengthModifier+1', 'mdf+1'),
+    .replace('magic natural', 'natural')
+    .replaceAll('strengthModifier+1', 'mdf'),
+  'Animal Friendship':
+    SRD5E.SPELLS['Animal Friendship'] + ' ' +
+    'Description=' +
+      '"R30\' Charms a target beast (save Wisdom negates) for 24 hr or until harmed"',
   'Animal Messenger':
     SRD5E.SPELLS['Animal Messenger']
-    .replace('moves', 'moves (save Charisma negates; CR greater than 0 automatically succeeds)'),
+    .replace('recipient', 'recipient (save Charisma negates; CR greater than 0 automatically succeeds)'),
   'Animal Shapes':
-    SRD5E.SPELLS['Animal Shapes']
-    .replace('beasts', 'beasts, gaining temporary hit points appropriate to the animal,'),
+    SRD5E.SPELLS['Animal Shapes'] + ' ' +
+    'Description=' +
+      '"R30\' Willing targets become CR 4, Large or smaller beasts, gaining temporary hit points appropriate to the beasts, for 24 hr or until ended by each target"',
   'Animate Objects':
     SRD5E.SPELLS['Animate Objects']
-    .replace(/10 Tiny.*objects/, '%{mdf} Medium (10 hit points; Armor Class 15; +%{mdf} attack inflicts 1d4+3 force), %{mdf//2} Large (20 hit points; Armor Class 15; +%{mdf} attack inflicts 2d6+%{mdf+3} HP), or %{mdf//3} Huge (40 hit points, Armor Class 15; +%{mdf} attack inflicts 2d12+%{mdf+3} HP) objects'),
+    .replace(/10 Tiny.*objects/, '%{mdf} Medium (10 hit points; Armor Class 15; +%{mdf} attack inflicts 1d4+3 force), %{mdf//2} Large (20 hit points; Armor Class 15; +%{mdf} attack inflicts 2d6+%{mdf+3} HP), or %{mdf//3} Huge (40 hit points, Armor Class 15; +%{mdf} attack inflicts 2d12+%{mdf+3} HP) objects') + ' ' +
+    'AtHigherLevels=' +
+      '"Medium objects inflict +1d4 HP, Large +1d6 HP, or Huge +1d12 HP"',
   'Antipathy/Sympathy':
     SRD5E.SPELLS['Antipathy/Sympathy']
     .replace('D8,W8', 'B8,D8,W8')
-    .replace(/, object.*repels/, ' repels'),
+    .replace(/, object.*repels or attracts/, ' or object charms or frightens')
+    .replaceAll('within 60', 'within 120'),
   'Arcane Hand':
     SRD5E.SPELLS['Arcane Hand']
     .replace('W5', 'S5,W5')
+    .replace('; Strength 26; Dexterity 10', '')
     .replace('4d8', '5d8')
     .replace('DC 26 Athletics', 'Strength')
-    .replace('2d6', '4d6'),
+    .replace('inflicting 2d6', 'inflicting 4d6'),
   'Arcane Sword':
     SRD5E.SPELLS['Arcane Sword']
-    .replace('3d10', '4d12')
+    .replace("60'", "90'")
+    .replace('3d10', '4d12+%{mdf}')
     .replace('20', '30'),
   'Augury':
     SRD5E.SPELLS.Augury
@@ -1746,16 +1757,21 @@ SRD5E2024.SPELLS_CHANGED = {
   'Banishment':
     SRD5E.SPELLS.Banishment
     .replace("60'", "30'"),
+  'Barkskin':
+    SRD5E.SPELLS.Barkskin
+    .replace('16', '17')
+    .replace('concentration up to ', ''),
   'Befuddlement': // new
     'School=Enchantment ' +
     'Level=B8,D8,K8,W8 ' +
     'Description=' +
-      '"R150\' Target suffers 10d6 HP psychic and loss of spells and Magic actions (save Intelligence half HP only; saves every 30 days end)"',
+      '"R150\' Target suffers 10d6 HP psychic and loss of spells and Magic actions (save Intelligence half HP only; additional saves every 30 days end)"',
   'Bestow Curse':
     SRD5E.SPELLS['Bestow Curse']
     .replace('any action', 'any action other than Dodge'),
   'Black Tentacles':
     SRD5E.SPELLS['Black Tentacles']
+    .replace('Dexterity', 'Strength')
     .replace('Strength or Dexterity', 'Athletics'),
   'Blade Barrier':
     SRD5E.SPELLS['Blade Barrier']

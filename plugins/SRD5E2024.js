@@ -1787,30 +1787,36 @@ SRD5E2024.SPELLS_CHANGED = {
 
   'Charm Monster': // new
     SRD5E.SPELLS['Charm Person']
-    .replace('B1,D1,K1,S1,W1', 'B4,D4,K4,S4,W4'),
+    .replace('B1,D1,K1,S1,W1', 'B4,D4,K4,S4,W4')
+    .replace('humanoid ', ''),
   'Chill Touch':
     SRD5E.SPELLS['Chill Touch']
     .replace("R120' Ranged spell", 'Touch')
-    .replace('d8', 'd10'),
+    .replace('d8', 'd10')
+    .replace('start', 'end')
+    .replace(/;[^"]*/, ''),
   'Chromatic Orb': // ref PHB5E
     'School=Evocation ' +
     'Level=S1,W1 ' +
     'AtHigherLevels="inflicts +1d8 HP and can leap +1 times" ' +
     'Description=' +
-      '"R90\' Ranged spell inflicts 3d8 HP of a choice of acid, cold, fire, lightning, poison, or thunder; rolling the same number on 2 damage die indicates that the spell leaps to another target within 30\' of the first"',
+      '"R90\' Ranged spell inflicts 3d8 HP of a choice of acid, cold, fire, lightning, poison, or thunder; rolling the same number on 2 damage dice indicates that the spell leaps to attack another target within 30\' of the first"',
   'Circle Of Death':
     SRD5E.SPELLS['Circle Of Death']
     .replaceAll('d6', 'd8'),
   'Color Spray': // changed
     'School=Illusion ' +
     'Level=B1,S1,W1 ' +
-    'Description="15\' cone blinds (save Constitution negates) until the start of the next turn"',
+    'Description="15\' cone blinds (save Constitution negates) until the end of the next turn"',
   'Command':
     SRD5E.SPELLS.Command
     .replace('C1,"K1 [The Fiend]",P1', 'B1,C1,"K1 [The Fiend]",P1'),
   'Cone Of Cold':
     SRD5E.SPELLS['Cone Of Cold']
     .replace('S5,W5', 'D5,S5,W5'),
+  'Confusion':
+    SRD5E.SPELLS.Confusion
+    .replace('reactions', 'reactions and bonus actions'),
   'Conjure Animals':
     SRD5E.SPELLS['Conjure Animals'] + ' ' +
     'AtHigherLevels="inflicts +1d10 HP" ' +
@@ -1820,7 +1826,7 @@ SRD5E2024.SPELLS_CHANGED = {
     SRD5E.SPELLS['Conjure Celestial'] + ' ' +
     'AtHigherLevels="restores or inflicts +1d12 hit points" ' +
     'Description=' +
-       '"R90\' 10\' radius either restores 4d12+%{mdf} or inflicts 6d12 HP radiant (save Dexterity half) on each target for concentration up to 10 min; can be moved 30\' each turn"',
+       '"R90\' 10\' radius either restores 4d12+%{mdf} hit points or inflicts 6d12 HP radiant (save Dexterity half) on each target for concentration up to 10 min; can be moved 30\' each turn"',
   'Conjure Elemental':
     SRD5E.SPELLS['Conjure Elemental'] + ' ' +
     'AtHigherLevels="inflicts +1d8 HP" ' +
@@ -1831,7 +1837,7 @@ SRD5E2024.SPELLS_CHANGED = {
     'Level=D6 ' +
     'AtHigherLevels="inflicts +1d12 HP" ' +
     'Description=' +
-      '"R60\' Melee spell attacks by a summoned spirit inflict 3d12+%{mdf} HP psychic for concentration up to 10 min; can be moved 30\' each turn as a bonus action"',
+      '"R60\' Melee spell attacks by a summoned spirit inflict 3d12+%{mdf} HP psychic and frightened until the start of the next turn for concentration up to 10 min; can be moved 30\' each turn as a bonus action"',
   'Conjure Minor Elementals':
     SRD5E.SPELLS['Conjure Minor Elementals'] + ' ' +
     'AtHigherLevels="inflicts +1d8 HP" ' +
@@ -1848,7 +1854,7 @@ SRD5E2024.SPELLS_CHANGED = {
   'Contagion':
     SRD5E.SPELLS.Contagion + ' ' +
     'Description=' +
-      '"Touch inflicts 11d8 HP necrotic, poisoned, and disadvantage on chosen ability saves (save Constitution negates; subsequent saves each turn either ends after three saves or extends to 7 days after 3 failures; other effects that would end poisoned require a successful Constitution save to succeed)"',
+      '"Touch inflicts 11d8 HP necrotic, poisoned, and disadvantage on chosen ability saves (save Constitution negates; subsequent saves each turn either end after three successes or extend to 7 days after 3 failures; other effects that would end poisoned require a successful Constitution save to succeed)"',
   'Contingency':
     SRD5E.SPELLS.Contingency
     .replace('Evocation', 'Abjuration'),
@@ -1859,6 +1865,9 @@ SRD5E2024.SPELLS_CHANGED = {
     SRD5E.SPELLS.Counterspell + ' ' +
     'AtHigherLevels="" ' +
     'Description="R60\' Negates foe casting (save Constitution negates)"',
+  'Creation':
+    SRD5E.SPELLS.Creation
+    .replace('1 day', '24 hr'),
   'Cure Wounds':
     SRD5E.SPELLS['Cure Wounds']
     .replace('Evocation', 'Abjuration')
@@ -1872,16 +1881,23 @@ SRD5E2024.SPELLS_CHANGED = {
     .replace('K8,W8', 'K8,S8,W8'),
   'Detect Evil And Good':
     SRD5E.SPELLS['Detect Evil And Good']
-    .replace('consecration, and desecration', 'and <i>Hallow</i> effects'),
+    .replace('consecration, and desecration', 'and <i>Hallow</i> effects')
+    .replace("3' of wood or dirt, 1' of", "1' of wood, dirt, or"),
   'Detect Magic':
     SRD5E.SPELLS['Detect Magic']
-    .replace('B1,C1,D1,P1,R1,S1,W1','B1,C1,D1,K1,P1,R1,S1,W1'),
+    .replace('B1,C1,D1,P1,R1,S1,W1','B1,C1,D1,K1,P1,R1,S1,W1')
+    .replace("3' of wood or dirt, 1' of", "1' of wood, dirt, or"),
+  'Detect Poison And Disease':
+    SRD5E.SPELLS['Detect Poison And Disease']
+    .replace('diseases', 'magical contagions')
+    .replace("3' of wood or dirt, 1' of", "1' of wood, dirt, or"),
+  'Detect Thoughts':
+    SRD5E.SPELLS['Detect Thoughts']
+    .replace('contested Intelligence attempts', 'Arcana checks')
+    .replace("2' of rock, 2", "1' of stone, dirt, or wood, 1"),
   'Dispel Magic':
     SRD5E.SPELLS['Dispel Magic']
     .replace('B3,C3,D3,K3,P3,S3,W3', 'B3,C3,D3,K3,P3,R3,S3,W3'),
-  'Detect Poison And Disease':
-    SRD5E.SPELLS['Detect Poison And Disease']
-    .replace('diseases', 'magical contagions'),
   'Dissonant Whispers': // ref PHB5E
     'School=Enchantment ' +
     'Level=B1 ' +
@@ -1893,7 +1909,8 @@ SRD5E2024.SPELLS_CHANGED = {
     .replace('C4', 'C4,D4,W4'),
   'Divine Favor':
     SRD5E.SPELLS['Divine Favor']
-    .replace('Evocation', 'Transmutation'),
+    .replace('Evocation', 'Transmutation')
+    .replace('concentration up to ', ''),
   'Divine Smite': // new
     'School=Evocation ' +
     'Level=P1 ' +
@@ -1906,12 +1923,15 @@ SRD5E2024.SPELLS_CHANGED = {
     'School=Transmutation ' +
     'Level=S2,W2 ' +
     'AtHigherLevels="inflicts +1d6 HP" ' +
-    'Description="Touch can use a Magic action to inflict 3d6 HP of a choice of acid, cold, fire, lightning, or poison (save Dexterity half) in a 15\' cone for concentration up to 1 min"',
+    'Description="Touched can use a Magic action to inflict 3d6 HP of a choice of acid, cold, fire, lightning, or poison (save Dexterity half) in a 15\' cone for concentration up to 1 min"',
 
   'Earthquake':
     SRD5E.SPELLS.Earthquake
     .replace('Evocation', 'Transmutation')
     .replace('Constitution', 'Dexterity'),
+  'Eldritch Blast':
+    SRD5E.SPELLS['Eldritch Blast']
+    .replace('300', '120'),
   'Elementalism': // new
     'School=Transmutation ' +
     'Level=D0,S0,W0 ' +
@@ -1929,25 +1949,26 @@ SRD5E2024.SPELLS_CHANGED = {
     'Level=R1 ' +
     'AtHigherLevels="inflicts +1d6 HP" ' +
     'Description=' +
-      '"Next successful self attack restrains the foe and inflicts 1d6 HP per rd piercing (save Athletics ends; Large creatures have advantage on the save) for concentration up to 1 min"',
+      '"Cast as a bonus action after hitting a target, restrains the foe (save Strength negates; Large creatures have advantage on the save) and inflicts 1d6 HP per rd piercing (save Athletics each rd end) for concentration up to 1 min"',
   'Entangle':
     SRD5E.SPELLS.Entangle
     .replace('D1', 'D1,R1')
-    .replace('Strength ends', 'Strength negates; Athletics ends'),
+    .replace('additional', 'additional Athletics'),
   'Enthrall':
     SRD5E.SPELLS.Enthrall + ' ' +
     'Description=' +
-      '"R60\' Target suffers -10 Perception (save Wisdom negates) for concentration up to 1 min"',
+      '"R60\' Target suffers -10 Perception (save Wisdom negates; targets in battle automatically succeed) for concentration up to 1 min"',
   'Etherealness':
     SRD5E.SPELLS.Etherealness
     .replace('Transmutation', 'Conjuration'),
   'Eyebite':
     SRD5E.SPELLS.Eyebite
-    .replace('sickened', 'poisoned'),
+    .replace('sickened (disadvantage on attack and ability rolls)', 'poisoned'),
 
   'Faithful Hound':
     SRD5E.SPELLS['Faithful Hound']
     .replace('%{mdf+proficiencyBonus} ', '')
+    .replace(/ with a.*inflicts/, ', inflicting')
     .replace('HP piercing', 'HP force (Dexterity negates)'),
   'False Life':
     SRD5E.SPELLS['False Life']
@@ -1956,14 +1977,15 @@ SRD5E2024.SPELLS_CHANGED = {
   // Feeblemind deleted
   'Find Steed':
     SRD5E.SPELLS['Find Steed']
-    .replace('it has', "it has Armor Class 12, 25 hit points, a 60' Speed, and' and can communicate telepathically with self up to 1 mile") + ' ' +
-    'AtHigherLevels="increases the Armor Class by 1 and hit points by 10; level 4 also gives a 60\' fly Speed"',
+    .replace('can understand at least 1 language', "Armor Class 12, 25 hit points, and 60' Speed, regains an equal number of hit points from magical healing applied to self when within 5', makes a +%{mdf} attack that inflicts 1d8+2 HP of radiant, psychic, or necrotic, depending on spirit type, can use a bonus action to frighten within 60', teleport 60', or heal 2d8+2 hit points within 5', depending on spirit type") + ' ' +
+    'AtHigherLevels="increases the Armor Class by 1, hit points by 10, damage by 1, and healing by 1; level 4 also gives a 60\' fly Speed"',
   'Fire Shield':
     SRD5E.SPELLS['Fire Shield']
     .replace('"K4 [The Fiend]",W4','D4,"K4 [The Fiend]",S4,W4'),
   'Flame Blade':
     SRD5E.SPELLS['Flame Blade']
     .replace('D2', 'D2,S2')
+    .replace('3d6', '3d6+%{mdf}')
     .replace(' per 2 levels', ''),
   'Flame Strike':
     SRD5E.SPELLS['Flame Strike']
@@ -1978,12 +2000,16 @@ SRD5E2024.SPELLS_CHANGED = {
   'Forbiddance':
     SRD5E.SPELLS.Forbiddance
     .replace('celestials', 'aberrations, celestials'),
+  'Forcecage':
+    SRD5E.SPELLS.Forcecage
+    .replace('1 hr', 'concentration up to 1 hr'),
   'Foresight':
     SRD5E.SPELLS.Foresight
     .replace('immunity to surprise and ', ''),
   'Freedom Of Movement':
     SRD5E.SPELLS['Freedom Of Movement']
-    .replace('and can', 'and a %{speed} swim Speed and can'),
+    .replace('and can', "and a %{speed}' swim Speed and can") + ' ' +
+    'AtHigherLevels="affects +1 target"',
   'Freezing Sphere':
     SRD5E.SPELLS['Freezing Sphere']
     .replace('W6', 'S6,W6'),
@@ -2004,9 +2030,9 @@ SRD5E2024.SPELLS_CHANGED = {
   'Giant Insect':
     SRD5E.SPELLS['Giant Insect']
     .replace('Transmutation', 'Conjuration') + ' ' +
-    'AtHigherLevels="increases the Armor Class by 1, hit points by 10, number of attacks by 1 per 2 levels, and piercing damage by 1" ' +
+    'AtHigherLevels="increases the Armor Class by 1, hit points by 10, number of attacks by 1 per 2 levels, piercing damage by 1, and spider\'s bludgeoning damage by 1" ' +
     'Description=' +
-      '"R60\' Summons a choice of an obedient giant centipede, spider, or wasp for concentration up to 10 min ; it has Armor Class 15, 30 hit points, 40\' Speed, understanding of self languages, 2 attacks per rd that inflict 1d6 + 7 HP piercing and 1d4 HP poison"',
+      '"R60\' Summons a choice of an obedient giant centipede, spider, or wasp for concentration up to 10 min; it has Armor Class 15, 30 hit points, a 40\' Speed, understanding of self languages, and 2 +%{mdf} attacks per rd that inflict 1d6+7 HP piercing and 1d4 HP poison; centipedes also have a R10\' attack that inflicts poisoned for 1 rd, spiders a range 60\' attack that inflicts 1d10+7 bludgeoning and loss of movement for 1 rd, and wasps a 40\' fly Speed"',
   'Glibness':
     SRD5E.SPELLS.Glibness
     .replace('Transmutation', 'Enchantment'),
@@ -2029,13 +2055,15 @@ SRD5E2024.SPELLS_CHANGED = {
 
   'Hallow':
     SRD5E.SPELLS.Hallow
-    .replace('celestials', 'aberrations, celestials'),
+    .replace('celestials', 'aberrations, celestials')
+    .replace(' (save Charisma negates)', ''),
   'Harm':
     SRD5E.SPELLS.Harm
     .replace(' for 1 hr', ''),
   'Heal':
     SRD5E.SPELLS.Heal
-    .replace('Evocation', 'Abjuration'),
+    .replace('Evocation', 'Abjuration')
+    .replace('diseased', 'poisoned'),
   'Healing Word':
     SRD5E.SPELLS['Healing Word']
     .replace('Evocation', 'Abjuration')
@@ -2067,28 +2095,37 @@ SRD5E2024.SPELLS_CHANGED = {
     'Level=D1,S1,W1 ' +
     'AtHigherLevels="inflicts +1d6 HP cold" ' +
     'Description=' +
-      '"R60\' Ranged spell attack inflicts 1d10 HP piercing on a hit and 2d6 HP cold in a 5\' radius (save Dexterity negates)"',
+      '"R60\' Ranged spell inflicts 1d10 HP piercing on a hit and 2d6 HP cold in a 5\' radius (save Dexterity negates cold)"',
   'Ice Storm':
     SRD5E.SPELLS['Ice Storm']
     .replaceAll('d8', 'd10'),
+  'Imprisonment':
+    SRD5E.SPELLS.Imprisonment
+    .replace('permanently', 'and gives the target 24 hr immunity'),
   'Incendiary Cloud':
     SRD5E.SPELLS['Incendiary Cloud']
     .replace('S8,W8', 'D8,S8,W8'),
   'Inflict Wounds':
     SRD5E.SPELLS['Inflict Wounds']
     .replace('3d10 HP necrotic', '2d10 HP necrotic (save Constitution half)'),
+  'Invisibility':
+    SRD5E.SPELLS.Invisibility
+    .replace('attacking', 'attacking, causing damage,'),
+  'Irresistible Dance':
+    SRD5E.SPELLS['Irresistible Dance']
+    .replace('each rd after the first ends', 'ends after 1 rd; additional saves each rd end'),
 
   'Jump':
     SRD5E.SPELLS.Jump
-    .replace('triple jump distance', "30' jump after a 10' move"),
+    .replace('gains triple jump distance', "can jump 30' after a 10' move"),
 
-  'Lesser Restoration':
-    SRD5E.SPELLS['Lesser Restoration']
-    .replace(', disease', ''),
   'Light':
     SRD5E.SPELLS.Light
     .replace('object', 'unattended object')
     .replace(' (save Dexterity negates)', ''),
+  'Lightning Bolt':
+    SRD5E.SPELLS['Lightning Bolt']
+    .replace(' and ignites unattended flammable objects', ''),
   'Locate Creature':
     SRD5E.SPELLS['Locate Creature']
     .replace('running water', 'lead'),

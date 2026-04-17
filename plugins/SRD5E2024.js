@@ -2110,7 +2110,7 @@ SRD5E2024.SPELLS_CHANGED = {
     .replace('3d10 HP necrotic', '2d10 HP necrotic (save Constitution half)'),
   'Invisibility':
     SRD5E.SPELLS.Invisibility
-    .replace('attacking', 'attacking, causing damage,'),
+    .replace('attacking', 'attacking, inflicting damage,'),
   'Irresistible Dance':
     SRD5E.SPELLS['Irresistible Dance']
     .replace('each rd after the first ends', 'ends after 1 rd; additional saves each rd end'),
@@ -2153,19 +2153,22 @@ SRD5E2024.SPELLS_CHANGED = {
     SRD5E.SPELLS['Mass Healing Word']
     .replace('Evocation', 'Abjuration')
     .replace('C3', 'B3,C3')
-    .replace('1d4', '2d4'),
+    .replace('regain 1d4', 'regain 2d4'),
   'Mass Suggestion':
     SRD5E.SPELLS['Mass Suggestion']
     .replace('B6,K6,S6,W6', 'B6,S6,W6'),
   'Maze':
     SRD5E.SPELLS.Maze
+    .replace('Intelligence', 'Investigation')
     .replace('; minotaurs and goristro demons automatically succeed', ''),
   'Meld Into Stone':
     SRD5E.SPELLS['Meld Into Stone']
-    .replace('C3,D3', 'C3,D3,R3'),
+    .replace('C3,D3', 'C3,D3,R3')
+    .replace('bludgeoning', 'force'),
   'Message':
     SRD5E.SPELLS.Message
-    .replace('B0,S0,W0', 'B0,D0,S0,W0'),
+    .replace('B0,S0,W0', 'B0,D0,S0,W0')
+    .replace('3\' of wood, 1\' of stone, 1\\" of metal,', "1' of wood, stone, or metal"),
   'Mind Spike': // new
     'School=Divination ' +
     'Level=K2,S2,W2 ' +
@@ -2174,10 +2177,12 @@ SRD5E2024.SPELLS_CHANGED = {
   'Mirror Image':
     SRD5E.SPELLS['Mirror Image']
     .replace('K2,S2,W2', 'B2,K2,S2,W2')
+    .replace(/with Armor Class.*allow/, 'allow')
     .replace('with an 11, 8, or 6 on a d20 while 1, 2, or 3 duplicates remain', 'with a 3 or higher on a d6 for each remaining duplicate'),
   'Mislead':
     SRD5E.SPELLS.Mislead
-    .replace('B5,W5', 'B5,K5,W5'),
+    .replace('B5,W5', 'B5,K5,W5')
+    .replace('attacking', 'attacking, inflicting damage,'),
   'Moonbeam':
     SRD5E.SPELLS.Moonbeam
     .replace('have disadvantage and ', ''),
@@ -2190,7 +2195,9 @@ SRD5E2024.SPELLS_CHANGED = {
       '"R60\' Target perceives an illusion (save Intelligence negates; Investigation ends) that can inflict 2d8 HP psychic per rd for concentration up to 1 min"',
   'Phantasmal Killer':
     SRD5E.SPELLS['Phantasmal Killer']
-    .replace('W4', 'B4,W4'),
+    .replace('W4', 'B4,W4')
+    .replace('negates', 'half initial HP only')
+    .replace('frightened', 'disadvantage on attacks and ability checks'),
   'Planar Binding':
     SRD5E.SPELLS['Planar Binding']
     .replace('B5,C5,D5,W5', 'B5,C5,D5,K5,W5'),
@@ -2202,16 +2209,18 @@ SRD5E2024.SPELLS_CHANGED = {
     .replace('1 year', '365 days'),
   'Poison Spray':
     SRD5E.SPELLS['Poison Spray']
-    .replace('Conjuration', 'Necromancy')
-    .replace("R10'", "R30'"),
+    .replace('Conjuration', 'Necromancy') + ' ' +
+    'Description="R30\' Ranged spell inflicts %{(level+7)//6}d12 HP poison"',
   'Polymorph':
     SRD5E.SPELLS.Polymorph
-    .replace('; shapechangers automatically succeed', ''),
+    .replace('beast', 'beast, with temporary hit points appropriate to the beast,')
+    .replace('; shapechangers automatically succeed', '')
+    .replace('0 hit points', '0 temporary hit points'),
   'Power Word Heal': // ref PHB5E
     'School=Enchantment ' +
     'Level=B9,C9 ' +
     'Description=' +
-      '"R60\' Target regains all hit points, recovers from charm, fright, paralysis, poison, and stunning, and can use a reaction to stand from prone"',
+      '"R60\' Target regains all hit points, recovers from charmed, frightened, paralyzed, poisoned, and stunned, and can use a reaction to stand from prone"',
   'Power Word Kill':
     SRD5E.SPELLS['Power Word Kill']
     .replace('are unaffected', 'suffer 12d12 HP psychic'),
@@ -2222,7 +2231,7 @@ SRD5E2024.SPELLS_CHANGED = {
     SRD5E.SPELLS['Prayer Of Healing']
     .replace('C2', 'C2,P2') + ' ' +
     'Description=' +
-      '"R30\' 5 targets gain the benefits of a short rest and regain 2d8 hit points"',
+      '"R30\' 5 targets gain the benefits of a short rest and regain 2d8 hit points after 10 min of casting; additional castings have no effect on a target until it completes a long rest"',
   'Prismatic Spray':
     SRD5E.SPELLS['Prismatic Spray']
     .replace('S7,W7', 'B7,S7,W7')
@@ -2234,12 +2243,17 @@ SRD5E2024.SPELLS_CHANGED = {
   'Private Sanctum':
     SRD5E.SPELLS['Private Sanctum']
     .replace('1 year', '365 days'),
+  'Produce Flame':
+    SRD5E.SPELLS['Produce Flame']
+    .replace("R30'", "R60'")
+    .replace('spell attack', 'spell attack each rd')
+    .replace(' and ends the spell', ''),
   'Protection From Evil And Good':
     SRD5E.SPELLS['Protection From Evil And Good']
     .replace('C1,K1,P1,W1', 'C1,D1,K1,P1,W1'),
   'Protection From Poison':
     SRD5E.SPELLS['Protection From Poison']
-    .replace('1 poison', 'poisoned condition'),
+    .replace('1 poison', 'the poisoned condition'),
 
   'Raise Dead':
     SRD5E.SPELLS['Raise Dead']
@@ -2254,6 +2268,9 @@ SRD5E2024.SPELLS_CHANGED = {
     'AtHigherLevels="inflicts +1d8 HP" ' +
     'Description=' +
       '"R60\' Ranged spell inflicts 2d8 HP poison and poisoned until the end of the next turn",',
+  'Regenerate':
+    SRD5E.SPELLS.Regenerate
+    .replace('reattaches or ', ''),
   'Reincarnate':
     SRD5E.SPELLS.Reincarnate
     .replace('Transmutation', 'Necromancy'),
@@ -2266,24 +2283,28 @@ SRD5E2024.SPELLS_CHANGED = {
       '"Touched reduces by 1d4 HP any damage taken from a choice of acid, bludgeoning, cold, fire, lightning, necrotic, piercing, poison, radiant, slashing, or thunder for concentration up to 1 min"',
   'Resurrection':
     SRD5E.SPELLS.Resurrection
-    .replace('nonmagical diseases and ', ''),
+    .replace('nonmagical diseases, ', '')
+    .replace('1 year', '365 days'),
   'Revivify':
     SRD5E.SPELLS.Revivify
     .replace('C3,P3', 'C3,D3,P3,R3'),
 
+  'Sacred Flame':
+    SRD5E.SPELLS['Sacred Flame']
+    .replace('cover', 'half and three-quarters cover'),
+  'Sanctuary':
+    SRD5E.SPELLS.Sanctuary
+    .replace('attacking', 'attacking, inflicting damage, or casting'),
   'Searing Smite': // ref PHB5E
     'School=Evocation ' +
     'Level=P1 ' +
-    'AtHigherLevels="inflicts +1d6 HP initial and subsequent" ' +
+    'AtHigherLevels="inflicts +1d6 HP initial and per rd" ' +
     'Description=' +
-      '"Cast as a bonus action after a successful self weapon attack, inflicts +1d6 HP fire, plus 1d6 HP fire per rd (save Constitution ends) for 1 min"',
-  'Sending':
-    SRD5E.SPELLS.Sending + ' ' +
-    'Description="Sends a telepathic 25-word message to a familiar target"',
+      '"Cast as a bonus action after a successful self melee attack, inflicts +1d6 HP fire, plus 1d6 HP fire per rd (save Constitution ends) for 1 min"',
   'Shapechange':
-    SRD5E.SPELLS.Shapechange + ' ' +
-    'Description=' +
-      '"Allows self to polymorph repeatedly into a familiar living creature of equal or lesser CR, initially gaining temporary hit points of the first creature, for concentration up to 1 hr"',
+    SRD5E.SPELLS.Shapechange
+    .replace('gaining the hit points and hit dice of that', 'initially gaining temporary hit points of the first')
+    .replace(' or until reduced to 0 hit points', ''),
   'Shatter':
     SRD5E.SPELLS.Shatter
     .replace('B2,K2,S2,W2', 'B2,S2,W2')
@@ -2291,13 +2312,13 @@ SRD5E2024.SPELLS_CHANGED = {
   'Shillelagh':
     SRD5E.SPELLS.Shillelagh + ' ' +
     'Description=' +
-      '"Held club gains +%{proficiencyBonus+mdf} attacks and inflicts %{levels.Druid<5?\'1d8\':levels.Druid<11?\'1d10\':levels.Druid<17?\'1d12\':\'2d6\'}+%{mdf} HP of a choice of force or weapon damage for 1 min"',
+      '"Held club gains +%{proficiencyBonus+mdf} attacks that inflict %{level<5?\'1d8\':level<11?\'1d10\':level<17?\'1d12\':\'2d6\'}+%{mdf} HP of a choice of force or weapon damage for 1 min"',
   'Shining Smite': // new
     'School=Transmutation ' +
     'Level=P2 ' +
     'AtHigherLevels="inflicts +1d6 HP" ' +
     'Description=' +
-      '"Cast as a bonus action after a successful self weapon attack, inflicts +2d6 HP radiant and causes the target to emit a 5\' bright light, negating invisibility and giving its foes advantage on attacks, for concentration up to 1 min"',
+      '"Cast as a bonus action after a successful self melee attack, inflicts +2d6 HP radiant and causes the target to emit a 5\' bright light, negating invisibility and giving its foes advantage on attacks, for concentration up to 1 min"',
   'Shocking Grasp':
     SRD5E.SPELLS['Shocking Grasp']
     .replace('reactions', 'opportunity attacks'),
@@ -2305,7 +2326,10 @@ SRD5E2024.SPELLS_CHANGED = {
     SRD5E.SPELLS.Sleep + ' ' +
     'AtHigherLevels="" ' +
     'Description=' +
-      '"R60\' Each target in a 5\' radius becomes incapacitated (save Wisdom negates) until the end of its next turn, then unconscious (save Wisdom negates) for concentration up to 1 min (damage or shaking wakens)"',
+      '"R60\' Each target in a 5\' radius becomes incapacitated (save Wisdom negates) until the end of its next turn, then unconscious (save Wisdom negates) for concentration up to 1 min (damage or shaking awakens)"',
+  'Sleet Storm':
+    SRD5E.SPELLS['Sleet Storm']
+    .replace("40'", "20'"),
   'Slow':
     SRD5E.SPELLS.Slow
     .replace('S3,W3', 'B3,S3,W3')
@@ -2314,7 +2338,7 @@ SRD5E2024.SPELLS_CHANGED = {
     'School=Evocation ' +
     'Level=S0 ' +
     'Description=' +
-      '"R120\' Ranged spell inflicts %{(level+7)//6}d8 HP of a choice of acid, cold, fire, lightning, poison, psychic, or thunder; rolled 8s on the damage allow adding up to +%{mdf}d8 damage"',
+      '"R120\' Ranged spell inflicts %{(level+7)//6}d8 HP of a choice of acid, cold, fire, lightning, poison, psychic, or thunder; rolled 8s on the damage each inflict +1d8 HP, to a maximum of +%{mdf}d8 HP"',
   'Spare The Dying':
     SRD5E.SPELLS['Spare The Dying']
     .replace('C0', 'C0,D0')
@@ -2328,6 +2352,10 @@ SRD5E2024.SPELLS_CHANGED = {
   'Spider Climb':
     SRD5E.SPELLS['Spider Climb'] + ' ' +
     'AtHigherLevels="affects +1 target"',
+  'Spiritual Weapon':
+    SRD5E.SPELLS['Spiritual Weapon']
+    .replace('for 1 min', 'for concentration up to 1 min')
+    .replace(' per 2 levels', ''),
   'Starry Wisp': // new
     'School=Evocation ' +
     'Level=B0,D0 ' +
@@ -2349,7 +2377,7 @@ SRD5E2024.SPELLS_CHANGED = {
     'Level=W5 ' +
     'AtHigherLevels="increases the Armor Class by 1, hit points by 10, number of attacks by 1 per 2 levels, and piercing damage by 1" ' +
     'Description=' +
-      '"R60\' Summons an obedient draconic spirit for concentration up to 1 hr; it has Armor Class 19, 50 hit points, 30\' Speed, 60\' fly Speed, 30\' swim Speed, 2 attacks per rd that inflict 1d6 + 19 HP piercing, and a breath weapon that inflicts 2d6 HP of a choice of acid, cold, fire, lightning, or poison in a 30\' cone"',
+      '"R60\' Summons an obedient draconic spirit for concentration up to 1 hr; it has Armor Class 19, 50 hit points, 30\' Speed, 60\' fly Speed, 30\' swim Speed, 2 attacks per rd that inflict 1d6 + 9 HP piercing, a breath weapon that inflicts 2d6 HP of a choice of acid, cold, fire, lightning, or poison in a 30\' cone, and resistance to the same damage type; self also gains this resistance"',
   'Sunbeam':
     SRD5E.SPELLS.Sunbeam
     .replace('D6,S6,W6', 'C6,D6,S6,W6'),
@@ -2359,6 +2387,7 @@ SRD5E2024.SPELLS_CHANGED = {
   'Symbol':
     SRD5E.SPELLS.Symbol
     .replace('B7,C7,W7', 'B7,C7,D7,W7')
+    .replace(/overwhelmed.*incapacitated/, 'incapacitated')
     .replace('Constitution negates', 'Wisdom negates'),
 
   'Telekinesis':

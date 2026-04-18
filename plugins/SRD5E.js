@@ -1799,7 +1799,7 @@ SRD5E.SPELLS = {
     'Level=W5 ' +
     'AtHigherLevels="inflicts +2d8 HP force and +2d6 HP bludgeoning" ' +
     'Description=' +
-      '"R120\' Large force hand (Armor Class 20; %{hitPoints} hit points; Strength 26; Dexterity 10) can move 60\' per rd and can punch (inflicts 4d8 HP force), push %{5+5*mdf}\' (save DC 26 Athletics negates), grapple (may crush, inflicting 2d6+%{mdf} HP bludgeoning), provide half cover, and inflict difficult terrain for concentration up to 1 min"',
+      '"R120\' Large force hand (Armor Class 20; %{hitPoints} hit points; Strength 26; Dexterity 10) can move 60\' per rd and can punch (inflicts 4d8 HP force), push %{5+5*mdf}\' (save DC 26 Athletics negates), grapple (may crush, inflicting 2d6+%{mdf} HP bludgeoning), provide 1/2 cover, and inflict difficult terrain for concentration up to 1 min"',
   'Arcane Lock':
     'School=Abjuration ' +
     'Level=W2 ' +
@@ -1825,7 +1825,7 @@ SRD5E.SPELLS = {
     'Level=C2 ' +
     'Ritual=true ' +
     'Description=' +
-      '"Reveals the weal or woe outcome of a proposed act up to 30 min in the future; additional uses before a long rest impose a cumulative 25% chance of receiving a random respose"',
+      '"Reveals the weal or woe outcome of a proposed act up to 30 min in the future; additional uses before a long rest impose a cumulative 25% chance of receiving a random response"',
   'Awaken':
     'School=Transmutation ' +
     'Level=B5,D5 ' +
@@ -2007,7 +2007,7 @@ SRD5E.SPELLS = {
     'Level=D3,R3 ' +
     'AtHigherLevels="doubles, triples, or quadruples the number of animals at level 5, 7, or 9" ' +
     'Description=' +
-      '"R60\' Summons a choice of 1, 2, 4, or 8 obedient CR 2, 1, half, or quarter fey spirits in beast form for concentration up to 1 hr"',
+      '"R60\' Summons a choice of 1, 2, 4, or 8 obedient CR 2, 1, 1/2, or 1/4 fey spirits in beast form for concentration up to 1 hr"',
   'Conjure Celestial':
     'School=Conjuration ' +
     'Level=C7 ' +
@@ -2031,13 +2031,13 @@ SRD5E.SPELLS = {
     'Level=D4,W4 ' +
     'AtHigherLevels="doubles or triples the number of elementals at level 6 or 8" ' +
     'Description=' +
-      '"R90\' Summons a choice of 1, 2, 4, or 8 obedient CR 2, 1, half, or quarter elementals for concentration up to 1 hr"',
+      '"R90\' Summons a choice of 1, 2, 4, or 8 obedient CR 2, 1, 1/2, or 1/4 elementals for concentration up to 1 hr"',
   'Conjure Woodland Beings':
     'School=Conjuration ' +
     'Level=D4,R4 ' +
     'AtHigherLevels="doubles or triples the number of creatures at level 6 or 8" ' +
     'Description=' +
-      '"R60\' Summons a choice of 1, 2, 4, or 8 obedient CR 2, 1, half, or quarter fey creatures for concentration up to 1 hr"',
+      '"R60\' Summons a choice of 1, 2, 4, or 8 obedient CR 2, 1, 1/2, or 1/4 fey creatures for concentration up to 1 hr"',
   'Contact Other Plane':
     'School=Divination ' +
     'Level=K5,W5 ' +
@@ -2346,7 +2346,7 @@ SRD5E.SPELLS = {
     'School=Evocation ' +
     'Level=C7,D7,S7 ' +
     'Description=' +
-      '"R150\' 10 connected 10\' cubes inflict 7d10 HP fire (save Dexterity half) and ignite unattended flammable objects"',
+      '"R150\' 10 contiguous 10\' cubes inflict 7d10 HP fire (save Dexterity half) and ignite unattended flammable objects"',
   'Fireball':
     'School=Evocation ' +
     'Level="K3 [The Fiend]",S3,W3 ' +
@@ -2907,7 +2907,7 @@ SRD5E.SPELLS = {
     'School=Transmutation ' +
     'Level=B3,D3,R3 ' +
     'Description=' +
-      '"R150\' Causes plants in a 100\' radius to overgrow, slowing movement to 1/4 Speed, or enriches a 1/2 mile radius for 1 year"',
+      '"R150\' Causes plants in a 100\' radius to overgrow, slowing movement to 1/4 Speed, or enriches a half-mile radius for 1 year"',
   'Poison Spray':
     'School=Conjuration ' +
     'Level=D0,K0,S0,W0 ' +
@@ -2937,7 +2937,7 @@ SRD5E.SPELLS = {
   'Prestidigitation':
     'School=Transmutation ' +
     'Level=B0,K0,S0,W0 ' +
-    'Description="R10\' Creates a minor magic effect for 1 hr"',
+    'Description="R10\' Creates a minor magic effect: a brief, harmless sensory effect; lighting or snuffing a flame; cleaning or soiling a 1\' cube; chilling, warming, or flavoring a 1\' cube for 1 hr; marking an object for 1 hr; creating a nonmagical trinket or illusion until the end of the next turn"',
   'Prismatic Spray':
     'School=Evocation ' +
     'Level=S7,W7 ' +
@@ -3245,7 +3245,7 @@ SRD5E.SPELLS = {
     'School=Transmutation ' +
     'Level=S5,W5 ' +
     'Description=' +
-      '"R60\' Self can mentally move a 1000 lb object 30\' per rd (save Strength negates) for concentration up to 10 min"',
+      '"R60\' Self can mentally restrain and move 1 Huge creature or 1000 lb object 30\' (save Strength negates) each rd for concentration up to 10 min"',
   'Telepathic Bond':
     'School=Divination ' +
     'Level=W5 ' +
@@ -3255,7 +3255,7 @@ SRD5E.SPELLS = {
     'School=Conjuration ' +
     'Level=B7,S7,W7 ' +
     'Description=' +
-      '"R10\' Teleports an unattended object or self and 8 allies any distance; greater familiarity with the destination improves accuracy"',
+      '"R10\' Teleports an unattended 10\' cube object or self and 8 willing creatures any distance; greater familiarity with the destination improves accuracy"',
   'Teleportation Circle':
     'School=Conjuration ' +
     'Level=B5,S5,W5 ' +
@@ -3264,7 +3264,7 @@ SRD5E.SPELLS = {
   'Thaumaturgy':
     'School=Transmutation ' +
     'Level=C0 ' +
-    'Description="R30\' Creates minor magic effects&mdash;a booming voice, modification of flames, harmless tremors, an illusory sound, movement of a door or window, or a change in eye appearance&mdash;for 1 min"',
+    'Description="R30\' Creates a minor magic effect: a booming voice for 1 min; a modification of flames for 1 min; harmless ground tremors for 1 min; an illusory sound; movement of a door or window; a change in eye appearance for 1 min"',
   'Thunderwave':
     'School=Evocation ' +
     'Level=B1,D1,S1,W1 ' +
@@ -3281,7 +3281,7 @@ SRD5E.SPELLS = {
     'Level=B3,W3 ' +
     'Ritual=true ' +
     'Description=' +
-      '"Creates a 10\' radius dome, impassable by objects and spells, for 8 hr"',
+      '"Creates a 10\' radius dome, impassable by outside creatures and objects and by spells, for 8 hr"',
   'Tongues':
     'School=Divination ' +
     'Level=B3,C3,K3,S3,W3 ' +
@@ -3291,17 +3291,17 @@ SRD5E.SPELLS = {
     'School=Conjuration ' +
     'Level=D6 ' +
     'Description=' +
-      '"R10\' Allows creatures to teleport from a Large plant target to another for 1 rd"',
+      '"R10\' Allows creatures to use 5\' of movement to teleport any distance from the targeted Large plant to a specified familiar Large plant for 1 rd"',
   'Tree Stride':
     'School=Conjuration ' +
     'Level=D5,R5 ' +
     'Description=' +
-      '"Allows self to teleport 500\' between like trees once per rd for concentration up to 1 min"',
+      '"Allows self to use 10\' of movement to teleport 500\' between like trees once per rd for concentration up to 1 min"',
   'True Polymorph':
     'School=Transmutation ' +
     'Level=B9,K9,W9 ' +
     'Description=' +
-      '"R30\' Transforms the target creature (save Wisdom negates) or object for concentration up to 1 hr or until reduced to 0 HP; concentrating for a full hr makes the change permanent"',
+      '"R30\' Transforms the target creature into another creature or object (save Wisdom negates), or the target object into a creature, for concentration up to 1 hr or until reduced to 0 hit points; concentrating for a full hr makes the change permanent"',
   'True Resurrection':
     'School=Necromancy ' +
     'Level=C9,D9 ' +
@@ -3323,19 +3323,19 @@ SRD5E.SPELLS = {
     'Level=B1,K1,W1 ' +
     'Ritual=true ' +
     'Description=' +
-      '"R60\' Invisible force with Armor Class 10, 1 hit point, and Strength 2 can move 15\' per rd and performs simple tasks for 1 hr or until damaged"',
+      '"R60\' Creates an invisible force with Armor Class 10, 1 hit point, and Strength 2; a bonus action each rd can move it 15\' and use it to perform simple tasks for 1 hr or until it is damaged"',
 
   'Vampiric Touch':
     'School=Necromancy ' +
     'Level=K3,W3 ' +
     'AtHigherLevels="inflicts +1d6 HP" ' +
     'Description=' +
-      '"Touch inflicts 3d6 HP, and self regains half as many, for concentration up to 1 min"',
+      '"Touch inflicts 3d6 HP necrotic, and self regains half as many hit points, for concentration up to 1 min"',
   'Vicious Mockery':
     'School=Enchantment ' +
     'Level=B0 ' +
     'Description=' +
-      '"R60\' Inflicts %{(level+7)//6}d4 HP psychic and disadvantage on the next attack (save Wisdom negates) for 1 rd"',
+      '"R60\' Target suffers %{(level+7)//6}d4 HP psychic and disadvantage on its next attack before the end of its next turn (save Wisdom negates)"',
 
   'Wall Of Fire':
     'School=Evocation ' +
@@ -3347,18 +3347,18 @@ SRD5E.SPELLS = {
     'School=Evocation ' +
     'Level=W5 ' +
     'Description=' +
-      '"R120\' Creates 10 10\'x10\' impassable force panels or a 10\' radius impassible sphere for concentration up to 10 min"',
+      '"R120\' Creates 10 contiguous 10\'x10\' impassable force panels or a 10\' radius impassible force dome or globe for concentration up to 10 min; the effect extends into the ethereal plane"',
   'Wall Of Ice':
     'School=Evocation ' +
     'Level=W6 ' +
-    'AtHigherLevels="inflicts +2d6 HP initially and +1d6 HP when passing" ' +
+    'AtHigherLevels="inflicts +2d6 HP initial and +1d6 HP when passing" ' +
     'Description=' +
-      '"R120\' Creates a 10\' radius sphere or 10 10\'x10\'x1\' panels, with Armor Class 12 and 30 hit points each, that inflict 10d6 HP cold (save Dexterity half) initially and, if broken, 5d6 HP cold to creatures passing through (save Constitution half) for concentration up to 10 min"',
+      '"R120\' Creates 10 contiguous 10\'x10\'x1\' panels or a 10\' radius dome or globe, with Armor Class 12 and 30 hit points per section, that inflicts 10d6 HP cold (save Dexterity half) initially and, if broken, 5d6 HP cold to creatures passing through (save Constitution half) for concentration up to 10 min"',
   'Wall Of Stone':
     'School=Evocation ' +
     'Level=D5,S5,W5 ' +
     'Description=' +
-      '"R120\' Creates 10 10\'x10\'x6\\" or 10\'x20\'x3\\" stone panels, with Armor Class 15 and 30 hit points each, for concentration up to 10 min; concentrating for 10 min makes the wall permanent"',
+      '"R120\' Creates 10 contiguous 10\'x10\'x6\\" or 10\'x20\'x3\\" stone panels (save Dexterity avoids entrapment), with Armor Class 15 and 30 hit points each, for concentration up to 10 min; concentrating for 10 min makes the wall permanent"',
   'Wall Of Thorns':
     'School=Conjuration ' +
     'Level=D6 ' +
@@ -3369,22 +3369,22 @@ SRD5E.SPELLS = {
     'School=Abjuration ' +
     'Level=C2 ' +
     'Description=' +
-      '"Touched gains +1 Armor Class, +1 saves, and resistance to all damage while within 60\' of self, and any damage to the target also affects self, for 1 hr"',
+      '"Willing touched gains +1 Armor Class, +1 saves, and resistance to all damage, and any damage to the target also affects self, for 1 hr or until separated from self by more than 60\'"',
   'Water Breathing':
     'School=Transmutation ' +
     'Level=D3,R3,S3,W3 ' +
     'Ritual=true ' +
-    'Description="R30\' 10 targets can breathe underwater for 24 hr"',
+    'Description="R30\' 10 willing targets can breathe underwater for 24 hr"',
   'Water Walk':
     'School=Transmutation ' +
     'Level=C3,D3,R3,S3 ' +
     'Ritual=true ' +
-    'Description="R30\' 10 targets can traverse liquids for 1 hr"',
+    'Description="R30\' 10 willing targets can traverse liquids for 1 hr"',
   'Web':
     'School=Conjuration ' +
     'Level=S2,W2 ' +
     'Description=' +
-      '"R60\' 20\' cube restrains creatures (save Dexterity negates and Strength frees) for concentration up to 1 hr; burning the web inflicts 2d4 HP fire"',
+      '"R60\' 20\' cube inflicts difficult terrain and restrains creatures (save Dexterity negates; Strength frees) for concentration up to 1 hr; burning the web inflicts 2d4 HP fire"',
   'Weird':
     'School=Illusion ' +
     'Level=W9 ' +
@@ -3394,7 +3394,7 @@ SRD5E.SPELLS = {
     'School=Transmutation ' +
     'Level=D6 ' +
     'Description=' +
-      '"R30\' Self and 10 others can become gaseous, gaining a 300\' fly Speed and resistance to nonmagical weapons, at will for 8 hr; converting to or from gas inflicts incapacitation for 1 min"',
+      '"R30\' Self and 10 willing others can become gaseous, gaining a 300\' fly Speed and resistance to nonmagical weapons, at will for 8 hr; converting to or from gas inflicts incapacitation for 1 min"',
   'Wind Wall':
     'School=Evocation ' +
     'Level=D3,R3 ' +
@@ -3404,7 +3404,7 @@ SRD5E.SPELLS = {
     'School=Conjuration ' +
     'Level=S9,W9 ' +
     'Description=' +
-      '"Mimics an 8th level spell or otherwise alters reality with few limits"',
+      '"Mimics an 8th level spell or alters reality with few limits; casting to alter reality reduces Strength to 3 for 2d4 days and causes later spellcasting before a long rest to inflict 1d10 HP necrotic per spell level"',
   'Word Of Recall':
     'School=Conjuration ' +
     'Level=C6 ' +

@@ -775,7 +775,7 @@ SRD5E2024.FEATURES_CHANGED = {
   "Nature's Sanctuary":
     'Section=magic ' +
     // changed effects
-    'Note="R120\' Creates a 15\' cube of spectral vines and trees that can move 60\' as a bonus action, gives allies Nature\'s Ward resistance, and gives self and allies half cover, for 1 min"',
+    'Note="R120\' Creates a 15\' cube of spectral vines and trees that can move 60\' as a bonus action, gives allies Nature\'s Ward resistance, and gives self and allies 1/2 cover, for 1 min"',
   "Nature's Ward":
     'Section=save ' +
     // changed effects
@@ -978,7 +978,7 @@ SRD5E2024.FEATURES_CHANGED = {
     .replace('attack and', 'attack, normal or radiant damage, and'),
   'Smite Of Protection':
     'Section=combat ' +
-    'Note="R%{levels.Paladin<18?10:30}\' Divine Smite gives self and allies half cover until the start of the next turn"',
+    'Note="R%{levels.Paladin<18?10:30}\' Divine Smite gives self and allies 1/2 cover until the start of the next turn"',
 
   // Ranger
   'Deft Explorer':
@@ -1935,7 +1935,7 @@ SRD5E2024.SPELLS_CHANGED = {
   'Elementalism': // new
     'School=Transmutation ' +
     'Level=D0,S0,W0 ' +
-    'Description="R30\' Moves air or dust in a 5\' cube, creates smoke or mist in a 5\' cube for 1 min, or scuplts a 1\' cube of dirt, sand, fire, smoke, mist, or water for 1 hr"',
+    'Description="R30\' Moves air or dust in a 5\' cube, creates smoke or mist in a 5\' cube for 1 min, or sculpts a 1\' cube of dirt, sand, fire, smoke, mist, or water for 1 hr"',
   'Enhance Ability':
     SRD5E.SPELLS['Enhance Ability']
     .replace('B2,C2,D2,S2', 'B2,C2,D2,R2,S2,W2')
@@ -2291,7 +2291,7 @@ SRD5E2024.SPELLS_CHANGED = {
 
   'Sacred Flame':
     SRD5E.SPELLS['Sacred Flame']
-    .replace('cover', 'half and three-quarters cover'),
+    .replace('cover', '1/2 and 3/4 cover'),
   'Sanctuary':
     SRD5E.SPELLS.Sanctuary
     .replace('attacking', 'attacking, inflicting damage, or casting'),
@@ -2392,10 +2392,13 @@ SRD5E2024.SPELLS_CHANGED = {
 
   'Telekinesis':
     SRD5E.SPELLS.Telekinesis
-    .replace('1000 lb', 'Huge or smaller'),
+    .replace('1000 lb ', ''),
   'Telepathic Bond':
     SRD5E.SPELLS['Telepathic Bond']
     .replace('W5', 'B5,W5'),
+  'Teleport':
+    SRD5E.SPELLS.Teleport
+    .replace("10' cube", 'Large or smaller'),
   'Teleportation Circle':
     SRD5E.SPELLS['Teleportation Circle']
     .replace('B5,S5,W5', 'B5,K5,S5,W5')
@@ -2406,18 +2409,21 @@ SRD5E2024.SPELLS_CHANGED = {
   'Transport Via Plants':
     SRD5E.SPELLS['Transport Via Plants']
     .replace('1 rd', '1 min'),
+  'True Polymorph':
+    SRD5E.SPELLS['True Polymorph']
+    .replace(' or until reduced to 0 hit points', ''),
   'True Seeing':
     SRD5E.SPELLS['True Seeing']
     .replace(/truesight.*for 1 hr/, 'truesight for 1 hr'),
   'True Strike':
     SRD5E.SPELLS['True Strike'] + ' ' +
     'Description=' +
-      '"+%{proficiencyBonus+mdf} attack with held weapon inflicts%{level<5?\'\':level<11?\' +1d6 HP of\':level<17?\' +2d6 HP of\':\' +3d6 HP of\'} a choice of radiant or normal weapon damage"',
+      '"Proficient weapon attack made simultaneously with casting has a +%{proficiencyBonus+mdf} attack bonus and inflicts%{level<5?\'\':level<11?\' +1d6 HP of\':level<17?\' +2d6 HP of\':\' +3d6 HP of\'} a choice of radiant or normal weapon damage"',
   'Tsunami': // ref PHB5E
     'School=Conjuration ' +
     'Level=D8 ' +
     'Description=' +
-      '"300\'x300\'x50\' wall of water within sight inflicts 6d10 HP bludgeoning (save Strength half); it moves away 50\' per rd, reducing its height by 50\' and its damage by 1d10 HP each rd, for concentration up to 6 rd"',
+      '"R1 mile 300\'x300\'x50\' wall of water inflicts 5d10 HP bludgeoning (save Strength half); it moves away 50\' per rd, reducing its height by 50\' and its damage by 1d10 HP each rd, for concentration up to 6 rd"',
 
   'Vampiric Touch':
     SRD5E.SPELLS['Vampiric Touch']
@@ -2430,7 +2436,7 @@ SRD5E2024.SPELLS_CHANGED = {
     'Level=S4,W4 ' +
     'AtHigherLevels="inflicts +2d4 HP initial" ' +
     'Description=' +
-      '"R150\' 20\' radius inflicts 10d4 HP acid, then 5d4 HP acid next rd (save Dexterity half initial HP only)"',
+      '"R150\' 20\' radius inflicts 10d4 HP acid, then 5d4 HP acid at the end of each affected creature\'s next turn (save Dexterity half initial HP only)"',
 
   'Warding Bond':
     SRD5E.SPELLS['Warding Bond']
@@ -2441,7 +2447,7 @@ SRD5E2024.SPELLS_CHANGED = {
   'Weird':
     SRD5E.SPELLS.Weird
     .replace('W9', 'K9,W9')
-    .replace('4d10 HP psychic', '10d10 HP psychic (save Wisdom negates), then 5d10 HP psychic'),
+    .replace('4d10 HP psychic', '10d10 HP psychic (save Wisdom half HP only), then 5d10 HP psychic'),
   'Wind Walk':
     SRD5E.SPELLS['Wind Walk']
     .replace('nonmagical weapons', 'bludgeoning, piercing, and slashing')

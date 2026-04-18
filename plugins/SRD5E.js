@@ -70,7 +70,7 @@ function SRD5E() {
 
 }
 
-SRD5E.VERSION = '2.4.2.1';
+SRD5E.VERSION = '2.4.3.1';
 
 /* List of choices that can be expanded by house rules. */
 // Note: Left Goody out of this list for now because inclusion would require

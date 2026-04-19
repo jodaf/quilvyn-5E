@@ -40,11 +40,12 @@ function SRD5E2024() {
   rules.plugin = SRD5E2024;
 
   rules.defineChoice('choices', SRD5E2024.CHOICES);
-  rules.choiceEditorElements = SRD5E.choiceEditorElements;
+  rules.choiceEditorElements = SRD5E2024.choiceEditorElements;
   rules.choiceRules = SRD5E2024.choiceRules;
   rules.removeChoice = SRD5E.removeChoice;
   rules.editorElements = SRD5E2024.initialEditorElements();
   rules.getFormats = SRD5E.getFormats;
+  rules.getPlugins = SRD5E2024.getPlugins;
   rules.makeValid = SRD5E.makeValid;
   rules.randomizeOneAttribute = SRD5E2024.randomizeOneAttribute;
   rules.defineChoice('random', SRD5E.RANDOMIZABLE_ATTRIBUTES);
@@ -61,6 +62,16 @@ function SRD5E2024() {
     'species:Species,select-one,species', 'levels:Class Levels,bag,levels'
   );
 
+/*
+SRD5E2024.FEATURES =
+  Object.assign({}, SRD5E.FEATURES, SRD5E2024.FEATURES_CHANGED);
+// Delete SRD5E features that cause errors
+for(let f in SRD5E2024.FEATURES) {
+  if(f.startsWith('Circle Of The Land ('))
+    delete SRD5E2024.FEATURES[f];
+}
+SRD5E2024.SPELLS = Object.assign({}, SRD5E.SPELLS, SRD5E2024.SPELLS_CHANGED);
+*/
   SRD5E2024.abilityRules(rules, SRD5E.ABILITIES);
   SRD5E2024.combatRules
     (rules, SRD5E2024.ARMORS, SRD5E2024.SHIELDS, SRD5E2024.WEAPONS);
@@ -518,7 +529,7 @@ SRD5E2024.FEATS = {
   'Boon Of The Night Spirit':'Category="Epic Boon"',
   'Boon Of Truesight':'Category="Epic Boon"'
 };
-SRD5E2024.FEATURES_CHANGED = {
+SRD5E2024.FEATURES = {
 
   // Class
 
@@ -536,14 +547,14 @@ SRD5E2024.FEATURES_CHANGED = {
     SRD5E.FEATURES['Danger Sense']
     .replace('vs. visible dangers', 'saves'),
   'Epic Boon':'Section=feature Note="+1 Epic Boon Feat"',
-  // Extra Attack as SRD5E
-  // Fast Movement as SRD5E
+  'Extra Attack':SRD5E.FEATURES['Extra Attack'],
+  'Fast Movement':SRD5E.FEATURES['Fast Movement'],
   'Feral Instinct':
     SRD5E.FEATURES['Feral Instinct']
     .replace(/\/[^"]*/, ''),
   'Improved Brutal Strike':
     'Section=combat Note="Has increased Brutal Strike effects"',
-  // Indomitable Might as SRD5E
+  'Indomitable Might':SRD5E.FEATURES['Indomitable Might'],
   'Instinctive Pounce':
     'Section=combat Note="Can move %{speed//2}\' when entering rage"',
   'Persistent Rage':
@@ -556,11 +567,11 @@ SRD5E2024.FEATURES_CHANGED = {
     .replace('1 min', 'up to 10 min (attacking, forcing a save, or using a bonus action each rd extends the rage)')
     .replace('unlimited', '6')
     .replace('long rest', 'long rest, regaining 1 use after a short rest'),
-  // Reckless Attack as SRD5E
+  'Reckless Attack':SRD5E.FEATURES['Reckless Attack'],
   'Relentless Rage':
     SRD5E.FEATURES['Relentless Rage']
     .replace('1 hit point', '%{levels.Barbarian*2} hit points'),
-  // Unarmored Defense as SRD5E
+  'Unarmored Defense':SRD5E.FEATURES['Unarmored Defense'],
   'Weapon Mastery':
     'Section=combat '+
     'Note="Can use the mastery properties of %V chosen Simple or Martial Melee weapons"',
@@ -573,8 +584,8 @@ SRD5E2024.FEATURES_CHANGED = {
     // changed effects
     'Section=combat ' +
     'Note="R30\' Can use a bonus action to inflict frightened (DC %{8+strengthModifier+proficiencyBonus} ends) on targets for 1 min once per long rest; can expend uses of Rage for additional uses"',
-  // Mindless Rage as SRD5E
-  // Retaliation as SRD5E
+  'Mindless Rage':SRD5E.FEATURES['Mindless Rage'],
+  'Retaliation':SRD5E.FEATURES.Retaliation,
 
   // Bard
   'Bard Subclass':SRD5E.FEATURES['Bard College'],
@@ -601,7 +612,7 @@ SRD5E2024.FEATURES_CHANGED = {
   'Magical Secrets':
     SRD5E.FEATURES['Magical Secrets']
     .replace(/learn.*spells/, 'learn spells'),
-  // Spellcasting as SRD5E
+  'Spellcasting':SRD5E.FEATURES.Spellcasting,
   'Superior Inspiration':
     SRD5E.FEATURES['Superior Inspiration']
     .replace('1 use', '2 uses'),
@@ -612,8 +623,9 @@ SRD5E2024.FEATURES_CHANGED = {
       '"Can target 2 creatures within 10\' of each other with <i>Power Word Heal</i> and <i>Power Word Kill</i>" ' +
     'Spells="Power Word Heal","Power Word Kill"',
   // College Of Lore
-  // Bonus Proficiencies (College Of Lore) as SRD5E
-  // Cutting Words as SRD5E
+  'Bonus Proficiencies (College Of Lore)':
+    SRD5E.FEATURES['Bonus Proficiencies (College Of Lore)'],
+  'Cutting Words':SRD5E.FEATURES['Cutting Words'],
   'Magical Discoveries':SRD5E.FEATURES['Additional Magical Secrets'],
   'Peerless Skill':
     // changed effects
@@ -637,7 +649,7 @@ SRD5E2024.FEATURES_CHANGED = {
   'Divine Spark':
     'Section=combat ' +
     'Note="R30\' Can use Channel Divinity to restore %Vd8 hit points or to inflict %Vd8 HP of a choice of necrotic or radiant (save Constitution half)"',
-  // Divine Strike as SRD5E
+  'Divine Strike':SRD5E.FEATURES['Divine Strike'],
   // Epic Boon as above
   'Greater Divine Intervention':
     'Section=magic ' +
@@ -662,7 +674,7 @@ SRD5E2024.FEATURES_CHANGED = {
     'Note=' +
       '"Knows +1 Cleric cantrip",' +
       '"+%V Arcana/+%V Religion"',
-  // Turn Undead as SRD5E
+  'Turn Undead':SRD5E.FEATURES['Turn Undead'],
   // Life Domain
   'Blessed Healer':
     SRD5E.FEATURES['Blessed Healer']
@@ -677,17 +689,15 @@ SRD5E2024.FEATURES_CHANGED = {
       '"5:Mass Healing Word","5:Revivify",' +
       '"7:Aura Of Life","7:Death Ward",' +
       '"9:Mass Cure Wounds","9:Mass Cure Wounds"',
-  // Preserve Life as SRD5E
-  'Supreme Healer':
-    'Section=magic ' +
-    'Note="Healing spells restore the maximum possible hit points"',
+  'Preserve Life':SRD5E.FEATURES['Preserve Life'],
+  'Supreme Healing':SRD5E.FEATURES['Supreme Healing'],
 
   // Druid
   'Archdruid':
     // changed effects
     'Section=feature ' +
     'Note="Has the Evergreen Wild Shape, Nature Magician, and Longevity features"',
-  // Beast Spells as SRD5E
+  'Beast Spells':SRD5E.FEATURES['Beast Spells'],
   'Druidic':
     // changed effects
     'Section=magic,skill ' +
@@ -782,7 +792,7 @@ SRD5E2024.FEATURES_CHANGED = {
     'Note="Has immunity to poisoned and resistance to fire, cold, lightning, or poison depending on whether Circle Spells are currently taken from Arid, Polar, Temperate, or Tropical Land"',
 
   // Fighter
-  // Action Surge as SRD5E
+  'Action Surge':SRD5E.FEATURES['Action Surge'],
   // Epic Boon as above
   // Extra Attack as above
   'Fighter Primary Ability':'Section=feature Note="1 selection"',
@@ -823,14 +833,14 @@ SRD5E2024.FEATURES_CHANGED = {
   'Heroic Warrior':
     'Section=combat ' +
     'Note="Can give self Heroic Inspiration at the start of each turn"',
-  // Improved Critical as SRD5E
+  'Improved Critical':SRD5E.FEATURES['Improved Critical'],
   'Remarkable Athlete':
     // changed effects
     'Section=combat,skill ' +
     'Note=' +
       '"Has advantage on initiative and can move %{speed//2}\' after scoring a critical hit without provoking opportunity attacks",' +
       '"Has advantage on Athletics"',
-  // Superior Critical as SRD5E
+  'Superior Critical':SRD5E.FEATURES['Superior Critical'],
   'Survivor':
     // changed effects
     'Section=combat Note="Has the Defy Death and Heroic Rally features"',
@@ -854,7 +864,7 @@ SRD5E2024.FEATURES_CHANGED = {
   // Extra Attack as above
   'Empowered Strikes':
     'Section=combat Note="Can inflict force damage with Unarmed Strikes"',
-  // Evasion as SRD5E
+  'Evasion':SRD5E.FEATURES.Evasion,
   'Flurry Of Blows':
     SRD5E.FEATURES['Flurry Of Blows']
     .replace('ki point', 'focus point')
@@ -881,11 +891,12 @@ SRD5E2024.FEATURES_CHANGED = {
   'Self-Restoration':
     'Section=save ' +
     'Note="Can end a charmed, frightened, or poisoned condition affecting self at the end of each turn, and does not suffer exhaustion from lack of food or drink"',
-  // Slow Fall as SRD5E
+  'Slow Fall':SRD5E.FEATURES['Slow Fall'],
   'Step Of The Wind':
     'Section=combat ' +
     // changed effects
     'Note="Can use a bonus action to Dash, optionally spending 1 focus point to Disengage and to double jump distance%{combatNotes.heightenedFocus?\'; can bring along 1 Large creature when moving\':\'\'}"',
+  'Stillness Of Mind':SRD5E.FEATURES['Stillness Of Mind'],
   'Stunning Strike':
     SRD5E.FEATURES['Stunning Strike']
     .replace('ki point', 'focus point')
@@ -897,7 +908,7 @@ SRD5E2024.FEATURES_CHANGED = {
   'Unarmored Movement':
     // changed effects
     'Section=ability Note="+%{(levels.Monk+6)//4*5} Speed in no armor"',
-  // Unarmored Defense as SRD5E
+  // Unarmored Defense as above
   'Uncanny Metabolism':
     'Section=combat ' +
     'Note="Can regain all focus points and 1d%{combatNotes.martialArts}+%{levels.Monk} hit points at initiative once per long rest"',
@@ -923,8 +934,8 @@ SRD5E2024.FEATURES_CHANGED = {
     'Section=combat ' +
     'Note="R60\' Can use Channel Divinity to frighten %{charismaModifier>1?charismaModifier+\' targets\':\'1 target\'} (save DC %{spellDifficultyClass.P} Wisdom negates), limiting %{charismaModifier>1?\'them\':\'it\'} to one move or action each turn, for 1 min or until damaged"',
   'Aura Expansion':'Section=save Note="Has increased Aura effects"',
-  // Aura Of Courage as SRD5E
-  // Aura Of Protection as SRD5E
+  'Aura Of Courage':SRD5E.FEATURES['Aura Of Courage'],
+  'Aura Of Protection':SRD5E.FEATURES['Aura Of Protection'],
   'Blessed Warrior':
     'Section=magic ' +
     'Note="Knows 2 Cleric cantrips; can replace 1 of them when gaining a Paladin level"',
@@ -957,7 +968,7 @@ SRD5E2024.FEATURES_CHANGED = {
   // Spellcasting as above
   // Weapon Mastery as above
   // Oath Of Devotion
-  // Aura Of Devotion as SRD5E
+  'Aura Of Devotion':SRD5E.FEATURES['Aura Of Devotion'],
   'Holy Nimbus':
     SRD5E.FEATURES['Holy Nimbus']
     .replace('emit', 'use a bonus action to emit')
@@ -1027,15 +1038,15 @@ SRD5E2024.FEATURES_CHANGED = {
       '"Exhaustion level decreases by 1 after a short rest"',
   // Weapon Mastery as above
   // Hunter
-  // Colossus Slayer as SRD5E
+  'Colossus Slayer':SRD5E.FEATURES['Colossus Slayer'],
   'Defensive Tactics':
    'Section=combat,combat ' +
    // changed effects
    'Note=' +
      '"Has the Escape The Horde and Multiattack Defense features",' +
      '"Can choose Escape The Horde or Multiattack Defense to be active after each rest"',
-  // Escape The Horde as SRD5E
-  // Horde Breaker as SRD5E
+  'Escape The Horde':SRD5E.FEATURES['Escape The Horde'],
+  'Horde Breaker':SRD5E.FEATURES['Horde Breaker'],
   "Hunter's Lore":
     'Section=combat ' +
     'Note="Knows any immunities, resistances, or vulnerabilities of a <i>Hunter\'s Mark</i> target"',
@@ -1057,13 +1068,13 @@ SRD5E2024.FEATURES_CHANGED = {
     'Note="Can use a reaction upon taking damage to gain resistance to that type of damage until the end of the current turn"',
 
   // Rogue
-  // Cunning Action as SRD5E
+  'Cunning Action':SRD5E.FEATURES['Cunning Action'],
   'Cunning Strike':
     'Section=combat ' +
     'Note="Can reduce Sneak Attack damage to inflict %{combatNotes.improvedCunningStrike?\'2 choices of\':\'a choice of\'}: %{combatNotes.deviousStrikes?\\"limitation to 1 action or move on the target\'s next turn (save Constitution negates) (reduces damage by 2d6 HP), unconsciousness (save Constitution negates; additional saves each rd end) for 1 min (reduces damage by 6d6 HP), blindness until the end of its next turn (save Dexterity negates) (reduces damage by 3d6), \\":\'\'}poisoned (save Constitution negates; additional saves each rd end) for 1 min (reduces damage by 1d6 HP), prone (save Dexterity negates) (reduces damage by 1d6 HP), or to move %{speed//2}\' after attacking without provoking opportunity attacks (reduces damage by 1d6 HP)"',
   'Devious Strikes':
     'Section=combat Note="Has increased Cunning Strike effects"',
-  // Elusive as SRD5E
+  'Elusive':SRD5E.FEATURES.Elusive,
   // Epic Boon as above
   // Evasion as above
   // Expertise as above
@@ -1077,7 +1088,7 @@ SRD5E2024.FEATURES_CHANGED = {
   'Slippery Mind':
     SRD5E.FEATURES['Slippery Mind']
     .replace('Wisdom', 'Charisma; Wisdom'),
-  // Sneak Attack as SRD5E
+  'Sneak Attack':SRD5E.FEATURES['Sneak Attack'],
   'Steady Aim':
     'Section=combat ' +
     'Note="Can use a bonus action and forego moving to gain advantage on the next attack in the same turn"',
@@ -1108,7 +1119,7 @@ SRD5E2024.FEATURES_CHANGED = {
     'Section=combat ' +
     // changed effects
     'Note="Can use Cunning Strike to attack while invisible from hiding without becoming visible; reduces the damage by 1d6 HP"',
-  // Thief's Reflexes as SRD5E
+  "Thief's Reflexes":SRD5E.FEATURES["Thief's Reflexes"],
   'Use Magic Device':
     'Section=skill ' +
     // changed effects
@@ -1126,7 +1137,7 @@ SRD5E2024.FEATURES_CHANGED = {
   'Innate Sorcery':
     'Section=magic ' +
     'Note="Can use a bonus action to gain +1 spell DC and advantage on spell attacks for 1 min 2 times per long rest"',
-  // Metamagic as SRD5E
+  'Metamagic':SRD5E.FEATURES.Metamagic,
   'Sorcerer Subclass':SRD5E.FEATURES['Sorcerous Origin'],
   'Sorcerous Restoration':
     SRD5E.FEATURES['Sorcerous Restoration']
@@ -1140,8 +1151,8 @@ SRD5E2024.FEATURES_CHANGED = {
   'Careful Spell':
     SRD5E.FEATURES['Careful Spell']
     .replace('successful save', 'successful save and no damage instead of half'),
-  // Distant Spell as SRD5E
-  // Empowered Spell as SRD5E
+  'Distant Spell':SRD5E.FEATURES['Distant Spell'],
+  'Empowered Spell':SRD5E.FEATURES['Empowered Spell'],
   'Extended Spell':
     SRD5E.FEATURES['Extended Spell']
     .replace('maximum', 'maximum, and to gain advantage on any concentration saves'),
@@ -1149,7 +1160,7 @@ SRD5E2024.FEATURES_CHANGED = {
     SRD5E.FEATURES['Heightened Spell']
     .replace('3', '2')
     .replace('initial save', 'saves'),
-  // Quickened Spell as SRD5E
+  'Quickened Spell':SRD5E.FEATURES['Quickened Spell'],
   'Seeking Spell':
     'Section=magic ' +
     'Note="Can spend 1 Sorcery Point to reroll a failed spell attack"',
@@ -1201,7 +1212,7 @@ SRD5E2024.FEATURES_CHANGED = {
   'Magical Cunning':
     'Section=magic ' +
     'Note="Can use a 1 min process to regain %{magicNotes.eldritchMaster?\'all\':levels.Warlock>10?2:1} Pact Magic spell slot%{levels.Warlock>10?\'s\':\'\'} once per long rest"',
-  // Mystic Arcanum as SRD5E
+  'Mystic Arcanum':SRD5E.FEATURES['Mystic Arcanum'],
   'Pact Magic':
     'Section=magic ' +
     // changed effects
@@ -1211,9 +1222,9 @@ SRD5E2024.FEATURES_CHANGED = {
   'Agonizing Blast':
     SRD5E.FEATURES['Agonizing Blast']
     .replace('<i>Eldritch Blast</i> inflicts', "%{$$'features.Agonizing Blast'>1?$$'features.Agonizing Blast'+' chosen Warlock cantrips inflict':'Chosen Warlock cantrip inflicts'}"),
-  // Armor Of Shadows as SRD5E
-  // Ascendant Step as SRD5E
-  // Devil's Sight as SRD5E
+  'Armor Of Shadows':SRD5E.FEATURES['Armor Of Shadows'],
+  'Ascendant Step':SRD5E.FEATURES['Ascendant Step'],
+  "Devil's Sight":SRD5E.FEATURES["Devil's Sight"],
   'Devouring Blade':
     'Section=combat Note="Has increased Thirsting Blade effects"',
   'Eldritch Mind': // ref Tasha
@@ -1248,15 +1259,15 @@ SRD5E2024.FEATURES_CHANGED = {
     'Section=combat ' +
     // changed effects
     'Note="Can inflict +1d6 HP of a choice of necrotic, psychic, or radiant with a pact weapon, plus expend a Hit Point Die to regain hit points, once per turn"',
-  // Mask Of Many Faces as SRD5E
-  // Master Of Myriad Forms as SRD5E
-  // Misty Visions as SRD5E
+  'Mask Of Many Faces':SRD5E.FEATURES['Mask Of Many Faces'],
+  'Master Of Myriad Forms':SRD5E.FEATURES['Master Of Myriad Forms'],
+  'Misty Visions':SRD5E.FEATURES['Misty Visions'],
   'One With Shadows':
     'Section=magic ' +
     // changed effects
     'Note="Can cast <i>Invisibility</i> on self in dim light at will" ' +
     'Spells=Invisibility',
-  // Otherworldly Leap as SRD5E
+  'Otherworldly Leap':SRD5E.FEATURES['Otherworldly Leap'],
   'Pact Of The Blade':
     'Section=magic ' +
     // changed effects
@@ -1274,8 +1285,8 @@ SRD5E2024.FEATURES_CHANGED = {
   'Thirsting Blade':
     SRD5E.FEATURES['Thirsting Blade']
     .replace('2', '%{combatNotes.devouringBlade?3:2}'),
-  // Visions Of Distant Realms as SRD5E
-  // Whispers Of The Grave as SRD5E
+  'Visions Of Distant Realms':SRD5E.FEATURES['Visions Of Distant Realms'],
+  'Whispers Of The Grave':SRD5E.FEATURES['Whispers Of The Grave'],
   'Witch Sight':
     // changed effects
     'Section=skill Note="Has 30\' Truesight"',
@@ -1303,7 +1314,7 @@ SRD5E2024.FEATURES_CHANGED = {
     .replace('long rest', 'long rest; can expend spell slots for additional uses'),
 
   // Wizard
-  // Arcane Recovery as SRD5E
+  'Arcane Recovery':SRD5E.FEATURES['Arcane Recovery'],
   'Memorize Spell':
     'Section=magic ' +
     'Note="Can replace a prepared spell at the end of a short rest"',
@@ -1313,7 +1324,7 @@ SRD5E2024.FEATURES_CHANGED = {
   'Scholar':
     'Section=skill ' +
     'Note="+%{proficiencyBonus} in a choice of proficient Arcana, History, Investigation, Medicine, Nature, or Religion"',
-  // Signature Spells as SRD5E
+  'Signature Spells':SRD5E.FEATURES['Signature Spells'],
   'Spell Mastery':
     SRD5E.FEATURES['Spell Mastery']
     .replace('the choices', 'one choice')
@@ -1321,16 +1332,16 @@ SRD5E2024.FEATURES_CHANGED = {
   // Spellcasting as above
   'Wizard Subclass':SRD5E.FEATURES['Arcane Tradition'],
   // Evoker
-  // Empowered Evocation as SRD5E
+  'Empowered Evocation':SRD5E.FEATURES['Empowered Evocation'],
   'Evocation Savant':
     'Section=magic ' +
     // changed effects
     'Note="Can copy %{spellSlots.W9?9:spellSlots.W8?8:spellSlots.W7?7:spellSlots.W6?6:spellSlots.W5?5:spellSlots.W4?4:spellSlots.W3?3:2} evocation spells into spellbook for free"',
-  // Overchannel as SRD5E
+  'Overchannel':SRD5E.FEATURES.Overchannel,
   'Potent Cantrip':
     SRD5E.FEATURES['Potent Cantrip']
     .replace('successful save', 'miss or successful save'),
-  // Sculpt Spells as SRD5E
+  'Sculpt Spells':SRD5E.FEATURES['Sculpt Spells'],
 
   // Species
   'Small':
@@ -1353,7 +1364,7 @@ SRD5E2024.FEATURES_CHANGED = {
   'Dwarven Resilience':
     SRD5E.FEATURES['Dwarven Resilience']
     .replace('poison', 'poisoned'),
-  // Dwarven Toughness as SRD5E
+  'Dwarven Toughness':SRD5E.FEATURES['Dwarven Toughness'],
   'Stonecunning':
     // changed effects
     'Section=skill ' +
@@ -1442,10 +1453,10 @@ SRD5E2024.FEATURES_CHANGED = {
     'Note="Can use a reaction in response to damage from a foe within 60\' to inflict 1d8 HP thunder on it %{proficiencyBonus} times per long rest"',
 
   // Halfling
-  // Brave as SRD5E
-  // Halfling Nimbleness as SRD5E
+  'Brave':SRD5E.FEATURES.Brave,
+  'Halfling Nimbleness':SRD5E.FEATURES['Halfling Nimbleness'],
   'Luck':SRD5E.FEATURES['Lucky (Halfling)'],
-  // Naturally Stealthy as SRD5E
+  'Naturally Stealthy':SRD5E.FEATURES['Naturally Stealthy'],
 
   // Human
   'Resourceful':
@@ -1458,7 +1469,7 @@ SRD5E2024.FEATURES_CHANGED = {
     'Section=combat ' +
     'Note="Can use a bonus action to Dash and gain %{proficiencyBonus} temporary hit points %{proficiencyBonus} times per short rest"',
   // Darkvision as above
-  // Relentless Endurance as SRD5E
+  'Relentless Endurance':SRD5E.FEATURES['Relentless Endurance'],
 
   // Tiefling
   'Abyssal':
@@ -1506,7 +1517,7 @@ SRD5E2024.FEATURES_CHANGED = {
   'Skilled':
     'Section=skill ' +
     'Note="Skill Proficiency or Tool Proficiency (Choose %V from any)"',
-  // Ability Score Improvement as SRD5E
+  'Ability Score Improvement':SRD5E.FEATURES['Ability Score Improvement'],
   'Grappler':
     // changed effects
     'Section=ability,combat ' +
@@ -1560,16 +1571,12 @@ SRD5E2024.FEATURES_CHANGED = {
     'Section=ability,skill ' +
     'Note=' +
       '"Ability Boost (Choose 1 from any)",' +
-      '"Has 60\' Truesight"'
+      '"Has 60\' Truesight"',
+
+  // Sanity, Validation and Miscellaneous
+  'Bulky Armor':SRD5E.FEATURES['Bulky Armor']
 
 };
-SRD5E2024.FEATURES =
-  Object.assign({}, SRD5E.FEATURES, SRD5E2024.FEATURES_CHANGED);
-// Delete SRD5E features that cause errors
-for(let f in SRD5E2024.FEATURES) {
-  if(f.startsWith('Circle Of The Land ('))
-    delete SRD5E2024.FEATURES[f];
-}
 SRD5E2024.GOODIES = Object.assign({}, SRD5E.GOODIES);
 SRD5E2024.LANGUAGES = {
   // Standard
@@ -1682,22 +1689,14 @@ SRD5E2024.SPECIES = {
       '"1:Chthonic:Fiendish Legacy",' +
       '"1:Infernal:Fiendish Legacy"'
 };
-SRD5E2024.SCHOOLS = {
-  'Abjuration':'',
-  'Conjuration':'',
-  'Divination':'',
-  'Enchantment':'',
-  'Evocation':'',
-  'Illusion':'',
-  'Necromancy':'',
-  'Transmutation':''
-};
+SRD5E2024.SCHOOLS = Object.assign({}, SRD5E.SCHOOLS);
 SRD5E2024.SHIELDS = Object.assign({}, SRD5E.SHIELDS);
 SRD5E2024.SKILLS = Object.assign({}, SRD5E.SKILLS);
 // Note that spellRules replaces lvl and mdf in the spell descriptions with the
 // appropriate caster level and ability modifier.
-SRD5E2024.SPELLS_CHANGED = {
+SRD5E2024.SPELLS = {
 
+  'Acid Arrow':SRD5E.SPELLS['Acid Arrow'],
   'Acid Splash':
     SRD5E.SPELLS['Acid Splash']
     .replace('Conjuration', 'Evocation')
@@ -1705,6 +1704,7 @@ SRD5E2024.SPELLS_CHANGED = {
   'Aid':
     SRD5E.SPELLS.Aid
     .replace('C2,P2', 'B2,C2,D2,P2,R2'),
+  'Alarm':SRD5E.SPELLS.Alarm,
   'Alter Self':
     SRD5E.SPELLS['Alter Self']
     .replace('magic natural', 'natural')
@@ -1720,16 +1720,20 @@ SRD5E2024.SPELLS_CHANGED = {
     SRD5E.SPELLS['Animal Shapes'] + ' ' +
     'Description=' +
       '"R30\' Willing targets become CR 4, Large or smaller beasts, gaining temporary hit points appropriate to the beasts, for 24 hr or until ended by each target"',
+  'Animate Dead':SRD5E.SPELLS['Animate Dead'],
   'Animate Objects':
     SRD5E.SPELLS['Animate Objects']
     .replace(/10 Tiny.*objects/, '%{mdf} Medium (10 hit points; Armor Class 15; +%{mdf} attack inflicts 1d4+3 force), %{mdf//2} Large (20 hit points; Armor Class 15; +%{mdf} attack inflicts 2d6+%{mdf+3} HP), or %{mdf//3} Huge (40 hit points, Armor Class 15; +%{mdf} attack inflicts 2d12+%{mdf+3} HP) objects') + ' ' +
     'AtHigherLevels=' +
       '"Medium objects inflict +1d4 HP, Large +1d6 HP, or Huge +1d12 HP"',
+  'Antilife Shell':SRD5E.SPELLS['Antilife Shell'],
+  'Antimagic Field':SRD5E.SPELLS['Antimagic Field'],
   'Antipathy/Sympathy':
     SRD5E.SPELLS['Antipathy/Sympathy']
     .replace('D8,W8', 'B8,D8,W8')
     .replace(/, object.*repels or attracts/, ' or object charms or frightens')
     .replaceAll('within 60', 'within 120'),
+  'Arcane Eye':SRD5E.SPELLS['Arcane Eye'],
   'Arcane Hand':
     SRD5E.SPELLS['Arcane Hand']
     .replace('W5', 'S5,W5')
@@ -1737,11 +1741,14 @@ SRD5E2024.SPELLS_CHANGED = {
     .replace('4d8', '5d8')
     .replace('DC 26 Athletics', 'Strength')
     .replace('inflicting 2d6', 'inflicting 4d6'),
+  'Arcane Lock':SRD5E.SPELLS['Arcane Lock'],
   'Arcane Sword':
     SRD5E.SPELLS['Arcane Sword']
     .replace("60'", "90'")
     .replace('3d10', '4d12+%{mdf}')
     .replace('20', '30'),
+  "Arcanist's Magic Aura":SRD5E.SPELLS["Arcanist's Magic Aura"],
+  'Astral Projection':SRD5E.SPELLS['Astral Projection'],
   'Augury':
     SRD5E.SPELLS.Augury
     .replace('C2', 'C2,D2,W2'),
@@ -1750,6 +1757,7 @@ SRD5E2024.SPELLS_CHANGED = {
     'Level=C4,P4 ' +
     'Description=' +
       '"30\' radius gives allies resistance to necrotic damage and immunity to maximum hit point reduction, and raises those with 0 hit points to 1 hit point, for concentration up to 10 min"',
+  'Awaken':SRD5E.SPELLS.Awaken,
 
   'Bane':
     SRD5E.SPELLS.Bane
@@ -1761,6 +1769,7 @@ SRD5E2024.SPELLS_CHANGED = {
     SRD5E.SPELLS.Barkskin
     .replace('16', '17')
     .replace('concentration up to ', ''),
+  'Beacon Of Hope':SRD5E.SPELLS['Beacon Of Hope'],
   'Befuddlement': // new
     'School=Enchantment ' +
     'Level=B8,D8,K8,W8 ' +
@@ -1776,6 +1785,7 @@ SRD5E2024.SPELLS_CHANGED = {
   'Blade Barrier':
     SRD5E.SPELLS['Blade Barrier']
     .replace('slashing', 'force'),
+  'Bless':SRD5E.SPELLS.Bless,
   'Blight':
     SRD5E.SPELLS.Blight
     .replace(/has disadvantage.*failure/, 'automatically fails'),
@@ -1783,12 +1793,19 @@ SRD5E2024.SPELLS_CHANGED = {
     SRD5E.SPELLS['Blindness/Deafness']
     .replace('Necromancy', 'Transmutation')
     .replace("30'", "120'"),
+  'Blink':SRD5E.SPELLS.Blink,
+  'Blur':SRD5E.SPELLS.Blur,
   // Branding Smite deleted
+  'Burning Hands':SRD5E.SPELLS['Burning Hands'],
 
+  'Call Lightning':SRD5E.SPELLS['Call Lightning'],
+  'Calm Emotions':SRD5E.SPELLS['Calm Emotions'],
+  'Chain Lightning':SRD5E.SPELLS['Chain Lightning'],
   'Charm Monster': // new
     SRD5E.SPELLS['Charm Person']
     .replace('B1,D1,K1,S1,W1', 'B4,D4,K4,S4,W4')
     .replace('humanoid ', ''),
+  'Charm Person':SRD5E.SPELLS['Charm Person'],
   'Chill Touch':
     SRD5E.SPELLS['Chill Touch']
     .replace("R120' Ranged spell", 'Touch')
@@ -1804,6 +1821,9 @@ SRD5E2024.SPELLS_CHANGED = {
   'Circle Of Death':
     SRD5E.SPELLS['Circle Of Death']
     .replaceAll('d6', 'd8'),
+  'Clairvoyance':SRD5E.SPELLS.Clairvoyance,
+  'Clone':SRD5E.SPELLS.Clone,
+  'Cloudkill':SRD5E.SPELLS.Cloudkill,
   'Color Spray': // changed
     'School=Illusion ' +
     'Level=B1,S1,W1 ' +
@@ -1811,6 +1831,10 @@ SRD5E2024.SPELLS_CHANGED = {
   'Command':
     SRD5E.SPELLS.Command
     .replace('C1,"K1 [The Fiend]",P1', 'B1,C1,"K1 [The Fiend]",P1'),
+  'Commune':SRD5E.SPELLS.Commune,
+  'Commune With Nature':SRD5E.SPELLS['Commune With Nature'],
+  'Comprehend Languages':SRD5E.SPELLS['Comprehend Languages'],
+  'Compulsion':SRD5E.SPELLS.Compulsion,
   'Cone Of Cold':
     SRD5E.SPELLS['Cone Of Cold']
     .replace('S5,W5', 'D5,S5,W5'),
@@ -1861,10 +1885,15 @@ SRD5E2024.SPELLS_CHANGED = {
   'Continual Flame':
     SRD5E.SPELLS['Continual Flame']
     .replace('C2,W2', 'C2,D2,W2'),
+  'Control Water':SRD5E.SPELLS['Control Water'],
+  'Control Weather':SRD5E.SPELLS['Control Weather'],
   'Counterspell':
     SRD5E.SPELLS.Counterspell + ' ' +
     'AtHigherLevels="" ' +
     'Description="R60\' Negates foe casting (save Constitution negates)"',
+  'Create Food And Water':SRD5E.SPELLS['Create Food And Water'],
+  'Create Or Destroy Water':SRD5E.SPELLS['Create Or Destroy Water'],
+  'Create Undead':SRD5E.SPELLS['Create Undead'],
   'Creation':
     SRD5E.SPELLS.Creation
     .replace('1 day', '24 hr'),
@@ -1873,9 +1902,14 @@ SRD5E2024.SPELLS_CHANGED = {
     .replace('Evocation', 'Abjuration')
     .replaceAll('1d8', '2d8'),
 
+  'Dancing Lights':SRD5E.SPELLS['Dancing Lights'],
+  'Darkness':SRD5E.SPELLS.Darkness,
   'Darkvision':
     SRD5E.SPELLS.Darkvision
     .replace("60'", "150'"),
+  'Daylight':SRD5E.SPELLS.Daylight,
+  'Death Ward':SRD5E.SPELLS['Death Ward'],
+  'Delayed Blast Fireball':SRD5E.SPELLS['Delayed Blast Fireball'],
   'Demiplane':
     SRD5E.SPELLS.Demiplane
     .replace('K8,W8', 'K8,S8,W8'),
@@ -1895,6 +1929,10 @@ SRD5E2024.SPELLS_CHANGED = {
     SRD5E.SPELLS['Detect Thoughts']
     .replace('contested Intelligence attempts', 'Arcana checks')
     .replace("2' of rock, 2", "1' of stone, dirt, or wood, 1"),
+  'Dimension Door':SRD5E.SPELLS['Dimension Door'],
+  'Disguise Self':SRD5E.SPELLS['Disguise Self'],
+  'Disintegrate':SRD5E.SPELLS.Disintegrate,
+  'Dispel Evil And Good':SRD5E.SPELLS['Dispel Evil And Good'],
   'Dispel Magic':
     SRD5E.SPELLS['Dispel Magic']
     .replace('B3,C3,D3,K3,P3,S3,W3', 'B3,C3,D3,K3,P3,R3,S3,W3'),
@@ -1916,14 +1954,19 @@ SRD5E2024.SPELLS_CHANGED = {
     'Level=P1 ' +
     'AtHigherLevels="inflicts +1d8 HP" ' +
     'Description="Cast as a bonus action after hitting a target, causes the attack inflict +2d8 HP radiant, or +3d8 HP radiant on a fiend or undead"',
+  'Divine Word':SRD5E.SPELLS['Divine Word'],
   'Dominate Beast':
     SRD5E.SPELLS['Dominate Beast']
     .replace('D4,S4', 'D4,R4,S4'),
+  'Dominate Monster':SRD5E.SPELLS['Dominate Monster'],
+  'Dominate Person':SRD5E.SPELLS['Dominate Person'],
   "Dragon's Breath": // new
     'School=Transmutation ' +
     'Level=S2,W2 ' +
     'AtHigherLevels="inflicts +1d6 HP" ' +
     'Description="Touched can use a Magic action to inflict 3d6 HP of a choice of acid, cold, fire, lightning, or poison (save Dexterity half) in a 15\' cone for concentration up to 1 min"',
+  'Dream':SRD5E.SPELLS.Dream,
+  'Druidcraft':SRD5E.SPELLS.Druidcraft,
 
   'Earthquake':
     SRD5E.SPELLS.Earthquake
@@ -1961,10 +2004,13 @@ SRD5E2024.SPELLS_CHANGED = {
   'Etherealness':
     SRD5E.SPELLS.Etherealness
     .replace('Transmutation', 'Conjuration'),
+  'Expeditious Retreat':SRD5E.SPELLS['Expeditious Retreat'],
   'Eyebite':
     SRD5E.SPELLS.Eyebite
     .replace('sickened (disadvantage on attack and ability rolls)', 'poisoned'),
 
+  'Fabricate':SRD5E.SPELLS.Fabricate,
+  'Faerie Fire':SRD5E.SPELLS['Faerie Fire'],
   'Faithful Hound':
     SRD5E.SPELLS['Faithful Hound']
     .replace('%{mdf+proficiencyBonus} ', '')
@@ -1974,14 +2020,23 @@ SRD5E2024.SPELLS_CHANGED = {
     SRD5E.SPELLS['False Life']
     .replace('1d4', '2d4')
     .replace(' for 1 hr', ''),
+  'Fear':SRD5E.SPELLS.Fear,
+  'Feather Fall':SRD5E.SPELLS['Feather Fall'],
   // Feeblemind deleted
+  'Find Familiar':SRD5E.SPELLS['Find Familiar'],
   'Find Steed':
     SRD5E.SPELLS['Find Steed']
     .replace('can understand at least 1 language', "Armor Class 12, 25 hit points, and 60' Speed, regains an equal number of hit points from magical healing applied to self when within 5', makes a +%{mdf} attack that inflicts 1d8+2 HP of radiant, psychic, or necrotic, depending on spirit type, can use a bonus action to frighten within 60', teleport 60', or heal 2d8+2 hit points within 5', depending on spirit type") + ' ' +
     'AtHigherLevels="increases the Armor Class by 1, hit points by 10, damage by 1, and healing by 1; level 4 also gives a 60\' fly Speed"',
+  'Find The Path':SRD5E.SPELLS['Find The Path'],
+  'Find Traps':SRD5E.SPELLS['Find Traps'],
+  'Finger Of Death':SRD5E.SPELLS['Finger Of Death'],
+  'Fireball':SRD5E.SPELLS.Fireball,
+  'Fire Bolt':SRD5E.SPELLS['Fire Bolt'],
   'Fire Shield':
     SRD5E.SPELLS['Fire Shield']
     .replace('"K4 [The Fiend]",W4','D4,"K4 [The Fiend]",S4,W4'),
+  'Fire Storm':SRD5E.SPELLS['Fire Storm'],
   'Flame Blade':
     SRD5E.SPELLS['Flame Blade']
     .replace('D2', 'D2,S2')
@@ -1997,6 +2052,9 @@ SRD5E2024.SPELLS_CHANGED = {
   'Flesh To Stone':
     SRD5E.SPELLS['Flesh To Stone']
     .replace('K6,W6', 'D6,S6,W6'),
+  'Floating Disk':SRD5E.SPELLS['Floating Disk'],
+  'Fly':SRD5E.SPELLS.Fly,
+  'Fog Cloud':SRD5E.SPELLS['Fog Cloud'],
   'Forbiddance':
     SRD5E.SPELLS.Forbiddance
     .replace('celestials', 'aberrations, celestials'),
@@ -2036,19 +2094,25 @@ SRD5E2024.SPELLS_CHANGED = {
   'Glibness':
     SRD5E.SPELLS.Glibness
     .replace('Transmutation', 'Enchantment'),
+  'Globe Of Invulnerability':SRD5E.SPELLS['Globe Of Invulnerability'],
+  'Glyph Of Warding':SRD5E.SPELLS['Glyph Of Warding'],
   'Goodberry':
     SRD5E.SPELLS.Goodberry
     .replace('Transmutation', 'Conjuration'),
   'Grease':
     SRD5E.SPELLS.Grease
     .replace('W1', 'S1,W1'),
+  'Greater Invisibility':SRD5E.SPELLS['Greater Invisibility'],
   'Greater Restoration':
     SRD5E.SPELLS['Greater Restoration']
     .replace('B5,C5,D5', 'B5,C5,D5,P5,R5'),
+  'Guardian Of Faith':SRD5E.SPELLS['Guardian Of Faith'],
+  'Guards And Wards':SRD5E.SPELLS['Guards And Wards'],
   'Guidance':
     SRD5E.SPELLS.Guidance + ' ' +
     'Description=' +
       '"Touched gains +1d4 on a choice of skill for concentration up to 1 min"',
+  'Guiding Bolt':SRD5E.SPELLS['Guiding Bolt'],
   'Gust Of Wind':
     SRD5E.SPELLS['Gust Of Wind']
     .replace('D2,S2,W2', 'D2,R2,S2,W2'),
@@ -2057,9 +2121,11 @@ SRD5E2024.SPELLS_CHANGED = {
     SRD5E.SPELLS.Hallow
     .replace('celestials', 'aberrations, celestials')
     .replace(' (save Charisma negates)', ''),
+  'Hallucinatory Terrain':SRD5E.SPELLS['Hallucinatory Terrain'],
   'Harm':
     SRD5E.SPELLS.Harm
     .replace(' for 1 hr', ''),
+  'Haste':SRD5E.SPELLS.Haste,
   'Heal':
     SRD5E.SPELLS.Heal
     .replace('Evocation', 'Abjuration')
@@ -2068,10 +2134,13 @@ SRD5E2024.SPELLS_CHANGED = {
     SRD5E.SPELLS['Healing Word']
     .replace('Evocation', 'Abjuration')
     .replaceAll('1d4', '2d4'),
+  'Heat Metal':SRD5E.SPELLS['Heat Metal'],
+  'Hellish Rebuke':SRD5E.SPELLS['Hellish Rebuke'],
   "Heroes' Feast":
     SRD5E.SPELLS["Heroes' Feast"]
     .replace('C6,D6', 'B6,C6,D6')
     .replace(/recover.*Wisdom/, 'gain resistance to poison, immunity to becoming poisoned and frightened'),
+  'Heroism':SRD5E.SPELLS.Heroism,
   'Hex': // ref PHB5E
     'School=Enchantment ' +
     'Level=K1 ' +
@@ -2082,6 +2151,8 @@ SRD5E2024.SPELLS_CHANGED = {
     SRD5E.SPELLS['Hideous Laughter']
     .replace('B1,W1', 'B1,K1,W1') + ' ' +
     'AtHigherLevels="affects +1 target"',
+  'Hold Monster':SRD5E.SPELLS['Hold Monster'],
+  'Hold Person':SRD5E.SPELLS['Hold Person'],
   'Holy Aura':
     SRD5E.SPELLS['Holy Aura']
     .replace('negates)', 'negates) until the end of its next turn'),
@@ -2089,6 +2160,7 @@ SRD5E2024.SPELLS_CHANGED = {
     SRD5E.SPELLS["Hunter's Mark"]
     .replace('1d6', '1d%{magicNotes.foeSlayer?10:6}')
     .replace('weapon damage', 'force'),
+  'Hypnotic Pattern':SRD5E.SPELLS['Hypnotic Pattern'],
 
   'Ice Knife': // ref Xanathar
     'School=Conjuration ' +
@@ -2099,6 +2171,8 @@ SRD5E2024.SPELLS_CHANGED = {
   'Ice Storm':
     SRD5E.SPELLS['Ice Storm']
     .replaceAll('d8', 'd10'),
+  'Identify':SRD5E.SPELLS.Identify,
+  'Illusory Script':SRD5E.SPELLS['Illusory Script'],
   'Imprisonment':
     SRD5E.SPELLS.Imprisonment
     .replace('permanently', 'and gives the target 24 hr immunity'),
@@ -2108,6 +2182,8 @@ SRD5E2024.SPELLS_CHANGED = {
   'Inflict Wounds':
     SRD5E.SPELLS['Inflict Wounds']
     .replace('3d10 HP necrotic', '2d10 HP necrotic (save Constitution half)'),
+  'Insect Plague':SRD5E.SPELLS['Insect Plague'],
+  'Instant Summons':SRD5E.SPELLS['Instant Summons'],
   'Invisibility':
     SRD5E.SPELLS.Invisibility
     .replace('attacking', 'attacking, inflicting damage,'),
@@ -2119,6 +2195,11 @@ SRD5E2024.SPELLS_CHANGED = {
     SRD5E.SPELLS.Jump
     .replace('gains triple jump distance', "can jump 30' after a 10' move"),
 
+  'Knock':SRD5E.SPELLS.Knock,
+
+  'Legend Lore':SRD5E.SPELLS['Legend Lore'],
+  'Lesser Restoration':SRD5E.SPELLS['Lesser Restoration'],
+  'Levitate':SRD5E.SPELLS.Levitate,
   'Light':
     SRD5E.SPELLS.Light
     .replace('object', 'unattended object')
@@ -2126,18 +2207,27 @@ SRD5E2024.SPELLS_CHANGED = {
   'Lightning Bolt':
     SRD5E.SPELLS['Lightning Bolt']
     .replace(' and ignites unattended flammable objects', ''),
+  'Locate Animals Or Plants':SRD5E.SPELLS['Locate Animals Or Plants'],
   'Locate Creature':
     SRD5E.SPELLS['Locate Creature']
     .replace('running water', 'lead'),
+  'Locate Object':SRD5E.SPELLS['Locate Object'],
+  'Longstrider':SRD5E.SPELLS.Longstrider,
 
+  'Mage Armor':SRD5E.SPELLS['Mage Armor'],
+  'Mage Hand':SRD5E.SPELLS['Mage Hand'],
   'Magic Circle':
     SRD5E.SPELLS['Magic Circle']
     .replace('celestials', 'celestials, elementals'),
+  'Magic Jar':SRD5E.SPELLS['Magic Jar'],
+  'Magic Missile':SRD5E.SPELLS['Magic Missile'],
+  'Magic Mouth':SRD5E.SPELLS['Magic Mouth'],
   'Magic Weapon':
     SRD5E.SPELLS['Magic Weapon']
     .replace('P2,W2', 'P2,R2,S2,W2')
     .replace('level 4', 'level 3')
     .replace('concentration up to ', ''),
+  'Magnificent Mansion':SRD5E.SPELLS['Magnificent Mansion'],
   'Major Image':
     SRD5E.SPELLS['Major Image']
     .replace('level 6', 'level 4'),
@@ -2165,15 +2255,20 @@ SRD5E2024.SPELLS_CHANGED = {
     SRD5E.SPELLS['Meld Into Stone']
     .replace('C3,D3', 'C3,D3,R3')
     .replace('bludgeoning', 'force'),
+  'Mending':SRD5E.SPELLS.Mending,
   'Message':
     SRD5E.SPELLS.Message
     .replace('B0,S0,W0', 'B0,D0,S0,W0')
     .replace('3\' of wood, 1\' of stone, 1\\" of metal,', "1' of wood, stone, or metal"),
+  'Meteor Swarm':SRD5E.SPELLS['Meteor Swarm'],
+  'Mind Blank':SRD5E.SPELLS['Mind Blank'],
   'Mind Spike': // new
     'School=Divination ' +
     'Level=K2,S2,W2 ' +
     'AtHigherLevels="inflicts +1d8 HP" ' +
     'Description="R120\' Inflicts 3d8 HP psychic and reveals the target\'s location for concentration up to 1 hr (save Wisdom half HP only)"',
+  'Minor Illusion':SRD5E.SPELLS['Minor Illusion'],
+  'Mirage Arcane':SRD5E.SPELLS['Mirage Arcane'],
   'Mirror Image':
     SRD5E.SPELLS['Mirror Image']
     .replace('K2,S2,W2', 'B2,K2,S2,W2')
@@ -2183,10 +2278,17 @@ SRD5E2024.SPELLS_CHANGED = {
     SRD5E.SPELLS.Mislead
     .replace('B5,W5', 'B5,K5,W5')
     .replace('attacking', 'attacking, inflicting damage,'),
+  'Misty Step':SRD5E.SPELLS['Misty Step'],
+  'Modify Memory':SRD5E.SPELLS['Modify Memory'],
   'Moonbeam':
     SRD5E.SPELLS.Moonbeam
     .replace('have disadvantage and ', ''),
+  'Move Earth':SRD5E.SPELLS['Move Earth'],
 
+  'Nondetection':SRD5E.SPELLS.Nondetection,
+
+  'Pass Without Trace':SRD5E.SPELLS['Pass Without Trace'],
+  'Passwall':SRD5E.SPELLS.Passwall,
   'Phantasmal Force': // ref PHB5E
     'School=Illusion ' +
     // Spell description shows B2,S2,W2, but not on the spell lists?
@@ -2198,6 +2300,8 @@ SRD5E2024.SPELLS_CHANGED = {
     .replace('W4', 'B4,W4')
     .replace('negates', 'half initial HP only')
     .replace('frightened', 'disadvantage on attacks and ability checks'),
+  'Phantom Steed':SRD5E.SPELLS['Phantom Steed'],
+  'Planar Ally':SRD5E.SPELLS['Planar Ally'],
   'Planar Binding':
     SRD5E.SPELLS['Planar Binding']
     .replace('B5,C5,D5,W5', 'B5,C5,D5,K5,W5'),
@@ -2232,6 +2336,7 @@ SRD5E2024.SPELLS_CHANGED = {
     .replace('C2', 'C2,P2') + ' ' +
     'Description=' +
       '"R30\' 5 targets gain the benefits of a short rest and regain 2d8 hit points after 10 min of casting; additional castings have no effect on a target until it completes a long rest"',
+  'Prestidigitation':SRD5E.SPELLS.Prestidigitation,
   'Prismatic Spray':
     SRD5E.SPELLS['Prismatic Spray']
     .replace('S7,W7', 'B7,S7,W7')
@@ -2248,12 +2353,16 @@ SRD5E2024.SPELLS_CHANGED = {
     .replace("R30'", "R60'")
     .replace('spell attack', 'spell attack each rd')
     .replace(' and ends the spell', ''),
+  'Programmed Illusion':SRD5E.SPELLS['Programmed Illusion'],
+  'Project Image':SRD5E.SPELLS['Project Image'],
+  'Protection From Energy':SRD5E.SPELLS['Protection From Energy'],
   'Protection From Evil And Good':
     SRD5E.SPELLS['Protection From Evil And Good']
     .replace('C1,K1,P1,W1', 'C1,D1,K1,P1,W1'),
   'Protection From Poison':
     SRD5E.SPELLS['Protection From Poison']
     .replace('1 poison', 'the poisoned condition'),
+  'Purify Food And Drink':SRD5E.SPELLS['Purify Food And Drink'],
 
   'Raise Dead':
     SRD5E.SPELLS['Raise Dead']
@@ -2262,6 +2371,7 @@ SRD5E2024.SPELLS_CHANGED = {
     SRD5E.SPELLS['Ray Of Enfeeblement'] + ' ' +
     'Description=' +
       '"R60\' Ranged spell inflicts disadvantage on Strength checks and -1d8 damage with Strength weapons (save Constitution disadvantage on the first attack before the start of the next turn only; additional saves each rd ends) for concentration up to 1 min"',
+  'Ray Of Frost':SRD5E.SPELLS['Ray Of Frost'],
   'Ray Of Sickness': // ref PHB5E
     'School=Necromancy ' +
     'Level=S1,W1 ' +
@@ -2274,6 +2384,7 @@ SRD5E2024.SPELLS_CHANGED = {
   'Reincarnate':
     SRD5E.SPELLS.Reincarnate
     .replace('Transmutation', 'Necromancy'),
+  'Remove Curse':SRD5E.SPELLS['Remove Curse'],
   'Resilient Sphere':
     SRD5E.SPELLS['Resilient Sphere']
     .replace('Evocation', 'Abjuration'),
@@ -2285,9 +2396,11 @@ SRD5E2024.SPELLS_CHANGED = {
     SRD5E.SPELLS.Resurrection
     .replace('nonmagical diseases, ', '')
     .replace('1 year', '365 days'),
+  'Reverse Gravity':SRD5E.SPELLS['Reverse Gravity'],
   'Revivify':
     SRD5E.SPELLS.Revivify
     .replace('C3,P3', 'C3,D3,P3,R3'),
+  'Rope Trick':SRD5E.SPELLS['Rope Trick'],
 
   'Sacred Flame':
     SRD5E.SPELLS['Sacred Flame']
@@ -2295,12 +2408,19 @@ SRD5E2024.SPELLS_CHANGED = {
   'Sanctuary':
     SRD5E.SPELLS.Sanctuary
     .replace('attacking', 'attacking, inflicting damage, or casting'),
+  'Scorching Ray':SRD5E.SPELLS['Scorching Ray'],
+  'Scrying':SRD5E.SPELLS.Scrying,
   'Searing Smite': // ref PHB5E
     'School=Evocation ' +
     'Level=P1 ' +
     'AtHigherLevels="inflicts +1d6 HP initial and per rd" ' +
     'Description=' +
       '"Cast as a bonus action after a successful self melee attack, inflicts +1d6 HP fire, plus 1d6 HP fire per rd (save Constitution ends) for 1 min"',
+  'Secret Chest':SRD5E.SPELLS['Secret Chest'],
+  'See Invisibility':SRD5E.SPELLS['See Invisibility'],
+  'Seeming':SRD5E.SPELLS.Seeming,
+  'Sending':SRD5E.SPELLS.Sending,
+  'Sequester':SRD5E.SPELLS.Sequester,
   'Shapechange':
     SRD5E.SPELLS.Shapechange
     .replace('gaining the hit points and hit dice of that', 'initially gaining temporary hit points of the first')
@@ -2309,6 +2429,8 @@ SRD5E2024.SPELLS_CHANGED = {
     SRD5E.SPELLS.Shatter
     .replace('B2,K2,S2,W2', 'B2,S2,W2')
     .replace('inorganic creatures', 'constructs'),
+  'Shield':SRD5E.SPELLS.Shield,
+  'Shield Of Faith':SRD5E.SPELLS['Shield Of Faith'],
   'Shillelagh':
     SRD5E.SPELLS.Shillelagh + ' ' +
     'Description=' +
@@ -2322,6 +2444,9 @@ SRD5E2024.SPELLS_CHANGED = {
   'Shocking Grasp':
     SRD5E.SPELLS['Shocking Grasp']
     .replace('reactions', 'opportunity attacks'),
+  'Silence':SRD5E.SPELLS.Silence,
+  'Silent Image':SRD5E.SPELLS['Silent Image'],
+  'Simulacrum':SRD5E.SPELLS.Simulacrum,
   'Sleep':
     SRD5E.SPELLS.Sleep + ' ' +
     'AtHigherLevels="" ' +
@@ -2349,9 +2474,12 @@ SRD5E2024.SPELLS_CHANGED = {
   'Speak With Dead':
     SRD5E.SPELLS['Speak With Dead']
     .replace('B3,C3', 'B3,C3,W3'),
+  'Speak With Plants':SRD5E.SPELLS['Speak With Plants'],
   'Spider Climb':
     SRD5E.SPELLS['Spider Climb'] + ' ' +
     'AtHigherLevels="affects +1 target"',
+  'Spike Growth':SRD5E.SPELLS['Spike Growth'],
+  'Spirit Guardians':SRD5E.SPELLS['Spirit Guardians'],
   'Spiritual Weapon':
     SRD5E.SPELLS['Spiritual Weapon']
     .replace('for 1 min', 'for concentration up to 1 min')
@@ -2364,6 +2492,7 @@ SRD5E2024.SPELLS_CHANGED = {
   'Stinking Cloud':
     SRD5E.SPELLS['Stinking Cloud']
     .replace('loss', 'poisoned and loss'),
+  'Stone Shape':SRD5E.SPELLS['Stone Shape'],
   'Stoneskin':
     SRD5E.SPELLS.Stoneskin
     .replace('Abjuration', 'Transmutation'),
@@ -2372,6 +2501,7 @@ SRD5E2024.SPELLS_CHANGED = {
     .replace('sight', '1 mile')
     .replace('360', '300')
     .replace('1d6', '4d6'),
+  'Suggestion':SRD5E.SPELLS.Suggestion,
   'Summon Dragon': // new
     'School=Conjuration ' +
     'Level=W5 ' +
@@ -2403,18 +2533,24 @@ SRD5E2024.SPELLS_CHANGED = {
     SRD5E.SPELLS['Teleportation Circle']
     .replace('B5,S5,W5', 'B5,K5,S5,W5')
     .replace('1 year', '365 days'),
+  'Thaumaturgy':SRD5E.SPELLS.Thaumaturgy,
+  'Thunderwave':SRD5E.SPELLS.Thunderwave,
+  'Time Stop':SRD5E.SPELLS['Time Stop'],
   'Tiny Hut':
     SRD5E.SPELLS['Tiny Hut']
     .replace('spells', 'spells up to level 3'),
+  'Tongues':SRD5E.SPELLS.Tongues,
   'Transport Via Plants':
     SRD5E.SPELLS['Transport Via Plants']
     .replace('1 rd', '1 min'),
+  'Tree Stride':SRD5E.SPELLS['Tree Stride'],
   'True Polymorph':
     SRD5E.SPELLS['True Polymorph']
     .replace(' or until reduced to 0 hit points', ''),
   'True Seeing':
     SRD5E.SPELLS['True Seeing']
     .replace(/truesight.*for 1 hr/, 'truesight for 1 hr'),
+  'True Resurrection':SRD5E.SPELLS['True Resurrection'],
   'True Strike':
     SRD5E.SPELLS['True Strike'] + ' ' +
     'Description=' +
@@ -2424,6 +2560,8 @@ SRD5E2024.SPELLS_CHANGED = {
     'Level=D8 ' +
     'Description=' +
       '"R1 mile 300\'x300\'x50\' wall of water inflicts 5d10 HP bludgeoning (save Strength half); it moves away 50\' per rd, reducing its height by 50\' and its damage by 1d10 HP each rd, for concentration up to 6 rd"',
+
+  'Unseen Servant':SRD5E.SPELLS['Unseen Servant'],
 
   'Vampiric Touch':
     SRD5E.SPELLS['Vampiric Touch']
@@ -2438,9 +2576,16 @@ SRD5E2024.SPELLS_CHANGED = {
     'Description=' +
       '"R150\' 20\' radius inflicts 10d4 HP acid, then 5d4 HP acid at the end of each affected creature\'s next turn (save Dexterity half initial HP only)"',
 
+  'Wall Of Fire':SRD5E.SPELLS['Wall Of Fire'],
+  'Wall Of Force':SRD5E.SPELLS['Wall Of Force'],
+  'Wall Of Ice':SRD5E.SPELLS['Wall Of Ice'],
+  'Wall Of Stone':SRD5E.SPELLS['Wall Of Stone'],
+  'Wall Of Thorns':SRD5E.SPELLS['Wall Of Thorns'],
   'Warding Bond':
     SRD5E.SPELLS['Warding Bond']
     .replace('C2', 'C2,P2'),
+  'Water Walk':SRD5E.SPELLS['Water Walk'],
+  'Water Breathing':SRD5E.SPELLS['Water Breathing'],
   'Web':
     SRD5E.SPELLS.Web
     .replace('Strength', 'Athletics'),
@@ -2454,10 +2599,13 @@ SRD5E2024.SPELLS_CHANGED = {
     .replace('incapacitation', 'stunned'),
   'Wind Wall':
     SRD5E.SPELLS['Wind Wall']
-    .replace('3d8', '4d8')
+    .replace('3d8', '4d8'),
+  'Wish':SRD5E.SPELLS.Wish,
+  'Word Of Recall':SRD5E.SPELLS['Word Of Recall'],
+
+  'Zone Of Truth':SRD5E.SPELLS['Zone Of Truth']
 
 };
-SRD5E2024.SPELLS = Object.assign({}, SRD5E.SPELLS, SRD5E2024.SPELLS_CHANGED);
 SRD5E2024.TOOLS = {
   "Alchemist's Supplies":
     SRD5E.TOOLS["Alchemist's Supplies"] + ' Ability=Intelligence',
@@ -2578,6 +2726,7 @@ SRD5E2024.identityRules = function(
 ) {
   SRD5E.identityRules
     (rules, alignments, backgrounds, classes, deities, {}, species);
+  // Easiest way to make sure SRD5E rules that apply to race are applied
   rules.defineRule('race', 'species', '=', null);
 };
 
@@ -2695,7 +2844,7 @@ SRD5E2024.choiceRules = function(rules, type, name, attrs) {
       QuilvynUtils.getAttrValue(attrs, 'Speed')
     );
     SRD5E2024.speciesRulesExtra(rules, name);
-  } else if(type == 'Species Feature')
+  } else if(type == 'Species Feature' || type == 'Race Feature')
     SRD5E2024.speciesFeatureRules(rules, name,
       QuilvynUtils.getAttrValueArray(attrs, 'Require'),
       QuilvynUtils.getAttrValue(attrs, 'Species'),
@@ -3559,6 +3708,14 @@ SRD5E2024.createViewers = function(rules, viewers) {
   });
 };
 
+/*
+ * Returns the list of editing elements needed by #choiceRules# to add a #type#
+ * item to #rules#.
+ */
+SRD5E2024.choiceEditorElements = function(rules, type) {
+  return SRD5E.choiceEditorElements(rules, type.replace('Species', 'Race'));
+};
+
 /* Returns the elements in a basic 5E character editor. */
 SRD5E2024.initialEditorElements = function() {
   let result = [].concat(SRD5E.initialEditorElements());
@@ -3604,61 +3761,35 @@ SRD5E2024.randomizeOneAttribute = function(attributes, attribute) {
   }
 };
 
+/* Returns an array of plugins upon which this one depends. */
+SRD5E2024.getPlugins = function() {
+  let result = [SRD5E];
+  return result;
+};
+
 /* Returns HTML body content for user notes associated with this rule set. */
 SRD5E2024.ruleNotes = function() {
   return '' +
-    '<h2>SRD5E Quilvyn Module Notes</h2>\n' +
-    'SRD5E Quilvyn Module Version ' + SRD5E2024.VERSION + '\n' +
+    '<h2>SRD5.5E Quilvyn Module Notes</h2>\n' +
+    'SRD5.5E Quilvyn Module Version ' + SRD5E2024.VERSION + '\n' +
     '<h3>Usage Notes</h3>\n' +
     '<ul>\n' +
     '  <li>\n' +
-    '  To allow feats to be taken instead of Ability Score Improvements,' +
-    '  the latter is presented as a new feat, named Ability Boost, that' +
-    '  can be taken multiple times.\n' +
-    '  </li><li>\n' +
-    '  Quilvyn presents sub-race choices (e.g., Lightfoot Halfling)' +
-    '  as separate races in the editor Race menu.\n' +
-    '  </li><li>\n' +
-    '  You can use homebrew spell definitions to support class features that' +
-    "  allow characters to learn spells from other classes' spell lists. For" +
-    '  example, if a Bard with the Magical Secrets feature learns' +
-    '  <i>Bless</i>, you can define a homebrew B1 <i>Bless</i> spell.\n' +
+    '  The SRD5.5E plugin includes the deities from the Celtic, Greek, ' +
+    '  Egyptian, and Norse pantheons that are included in the SRD5E plugin\n' +
     '  </li><li>\n' +
     '  Discussion of adding different types of homebrew options to the' +
-    '  SRD5E rule set can be found in <a href="plugins/homebrew-srd5e.html">SRD5E Homebrew Examples</a>.\n' +
+    '  SRD5.5E rule set can be found in <a href="plugins/homebrew-srd5e.html">SRD5E Homebrew Examples</a>.\n' +
     '  </li>\n' +
     '</ul>\n' +
     '\n' +
-    '<h3>Limitations</h3>\n' +
-    '<ul>\n' +
-    '  <li>\n' +
-    '  Quilvyn does not report background traits, ideals, bonds, flaws, or' +
-    '  equipment. These items can be entered in the Notes section.\n' +
-    '  </li>\n' +
-    '</ul>\n' +
-    '\n' +
-    '<h3>Known Bugs</h3>\n' +
-    '<ul>\n' +
-    '  <li>\n' +
-    '  Quilvyn gives multiclass characters the complete set of proficiencies' +
-    '  for each class.\n' +
-    '  </li>\n' +
-    '</ul>\n' +
     '<h3>Copyrights and Licensing</h3>\n' +
     '<p>\n' +
-    'System Reference Document material is Open Game Content released by ' +
-    'Wizards of the Coast under the Open Game License. ' +
-    'System Reference Document 5.1 Copyright 2016, Wizards of the Coast, ' +
-    'Inc.; Authors Mike Mearls, Jeremy Crawford, Chris Perkins, Rodney ' +
-    'Thompson, Peter Lee, James Wyatt, Robert J. Schwalb, Bruce R. Cordell, ' +
-    'Chris Sims, and Steve Townshend, based on original material by E. Gary ' +
-    'Gygax and Dave Arneson.\n' +
-    '</p><p>\n' +
-    'Open Game License v 1.0a Copyright 2000, Wizards of the Coast, LLC. You ' +
-    'should have received a copy of the Open Game License with this program; ' +
-    'if not, you can obtain one from ' +
-    'https://media.wizards.com/2016/downloads/SRD-OGL_V1.1.pdf. ' +
-    '<a href="plugins/ogl-srd5e.txt">Click here</a> to see the license.<br/>\n'+
+    'This work includes material from the System Reference Document 5.2.1 ' +
+    '(“SRD 5.2.1”) by Wizards of the Coast LLC, available at ' +
+    'https://www.dndbeyond.com/srd. The SRD 5.2.1 is licensed under the ' +
+    'Creative Commons Attribution 4.0 International License, available at ' +
+    'https://creativecommons.org/licenses/by/4.0/legalcode\n' +
     '</p><p>\n' +
     'Quilvyn is not approved or endorsed by Wizards of the Coast. Portions ' +
     'of the materials used are property of Wizards of the Coast. ©Wizards of ' +

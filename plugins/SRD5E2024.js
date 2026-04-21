@@ -62,16 +62,6 @@ function SRD5E2024() {
     'species:Species,select-one,species', 'levels:Class Levels,bag,levels'
   );
 
-/*
-SRD5E2024.FEATURES =
-  Object.assign({}, SRD5E.FEATURES, SRD5E2024.FEATURES_CHANGED);
-// Delete SRD5E features that cause errors
-for(let f in SRD5E2024.FEATURES) {
-  if(f.startsWith('Circle Of The Land ('))
-    delete SRD5E2024.FEATURES[f];
-}
-SRD5E2024.SPELLS = Object.assign({}, SRD5E.SPELLS, SRD5E2024.SPELLS_CHANGED);
-*/
   SRD5E2024.abilityRules(rules, SRD5E.ABILITIES);
   SRD5E2024.combatRules
     (rules, SRD5E2024.ARMORS, SRD5E2024.SHIELDS, SRD5E2024.WEAPONS);
@@ -130,6 +120,7 @@ SRD5E2024.BACKGROUNDS = {
       '"1:Tool Proficiency (Choose 1 from any Gaming)",' +
       '"1:Savage Attacker"'
 };
+// TODO Add spells known/prepared
 SRD5E2024.CLASSES = {
   'Barbarian':
     'HitDie=d12 ' +
@@ -203,7 +194,8 @@ SRD5E2024.CLASSES = {
     'Selectables=' +
       '"1:Protector:Divine Order",' +
       '"1:Thaumaturge:Divine Order",' +
-      '"deityDomains =~ \'Life\' ? 1:Life Domain:Divine Domain",' +
+      // Note: 5.5 removed the requirement that selected domain matches deity's
+      '"1:Life Domain:Cleric Subclass",' +
       '"7:Divine Strike:Blessed Strikes",' +
       '"7:Potent Spellcasting:Blessed Strikes" ' +
     'SpellAbility=Wisdom ' +
@@ -617,10 +609,8 @@ SRD5E2024.FEATURES = {
     SRD5E.FEATURES['Superior Inspiration']
     .replace('1 use', '2 uses'),
   'Words Of Creation':
-    'Section=magic,magic ' +
-    'Note=' +
-      '"Knows the <i>Power Word Heal</i> and <i>Power Word Kill</i> spells",' +
-      '"Can target 2 creatures within 10\' of each other with <i>Power Word Heal</i> and <i>Power Word Kill</i>" ' +
+    'Section=magic ' +
+    'Note="Knows the <i>Power Word Heal</i> and <i>Power Word Kill</i> spells; can target 2 creatures within 10\' of each other when casting them" ' +
     'Spells="Power Word Heal","Power Word Kill"',
   // College Of Lore
   'Bonus Proficiencies (College Of Lore)':
@@ -2996,7 +2986,7 @@ SRD5E2024.classRulesExtra = function(rules, name) {
     rules.defineRule
       ('combatNotes.extraAttack', classLevel, '^=', 'source<5 ? null : 2');
     rules.defineRule('combatNotes.unarmoredDefense',
-      'combatNotes.unarmoredDefense.2', '+=', null
+      'combatNotes.unarmoredDefense.2', '^=', null
     );
     rules.defineRule('combatNotes.unarmoredDefense.1',
       'armor', '?', 'source == "None"',
@@ -3032,12 +3022,10 @@ SRD5E2024.classRulesExtra = function(rules, name) {
     rules.defineRule('skillNotes.jackOfAllTrades',
       'proficiencyBonus', '=', 'Math.floor(source / 2)'
     );
-    rules.defineRule('spells.Power Word Heal(B9 Ench)',
-      'magicNotes.wordsOfCreation', '+', 'null' // italics
-    );
 
   } else if(name == 'Cleric') {
 
+    rules.defineRule('clericHasDivineStrike', 'features.Life Domain', '=', '1');
     rules.defineRule('combatNotes.divineStrike',
       'combatNotes.improvedBlessedStrikes', '+', 'null' // italics
     );
@@ -3047,49 +3035,38 @@ SRD5E2024.classRulesExtra = function(rules, name) {
     rules.defineRule('combatNotes.improvedBlessedStrikes',
       'clericFeatures.Blessed Strikes', '?', null
     );
+    rules.defineRule('divineStrikeDamageType',
+      'features.Divine Strike', '?', null,
+      'features.Life Domain', '=', '"of a choice of necrotic or radiant"'
+    );
+    rules.defineRule('magicNotes.channelDivinity.1',
+      'features.Channel Divinity', '?', null,
+      'levels.Cleric', '+=', 'source<6 ? 2 : source<18 ? 3 : 4'
+    );
     rules.defineRule('magicNotes.improvedBlessedStrikes',
       'clericFeatures.Potent Spellcasting', '?', null
     );
     rules.defineRule('magicNotes.spellcasting.1', classLevel, '=', '1');
+    rules.defineRule('selectableFeatureCount.Cleric (Blessed Strikes)',
+      'featureNotes.blessedStrikes', '=', '1'
+    );
     rules.defineRule('selectableFeatureCount.Cleric (Cleric Subclass)',
       'featureNotes.clericSubclass', '=', '1'
+    );
+    rules.defineRule('selectableFeatureCount.Cleric (Divine Order)',
+      'featureNotes.divineOrder', '=', '1'
     );
     rules.defineRule
       ('skillNotes.thaumaturge', 'wisdomModifier', '=', 'Math.max(source, 1)');
     rules.defineRule('spellSlots.C0', 'magicNotes.thaumaturge', '+', '1');
 
-    rules.defineRule('clericHasDivineStrike', 'features.Life Domain', '=', '1');
-    rules.defineRule('magicNotes.channelDivinity.1',
-      'features.Channel Divinity', '?', null,
-      'levels.Cleric', '+=', 'source<6 ? 2 : source<18 ? 3 : 4'
-    );
-    rules.defineRule('divineStrikeDamageType',
-      'features.Divine Strike', '?', null,
-      'features.Life Domain', '=', '"of a choice of necrotic or radiant"'
-    );
-    rules.defineRule('selectableFeatureCount.Cleric (Blessed Strikes)',
-      'featureNotes.blessedStrikes', '=', '1'
-    );
-    rules.defineRule('selectableFeatureCount.Cleric (Divine Order)',
-      'featureNotes.divineOrder', '=', '1'
-    );
-    for(let s in rules.getChoices('selectableFeatures')) {
-      if(s.match(/Cleric - .* Domain/)) {
-        let domain = s.replace('Cleric - ', '').replace(' Domain', '');
-        // Clerics w/no deity don't need to match deity domain
-        rules.defineRule('validationNotes.cleric-' + domain.replaceAll(' ', '') + 'DomainSelectableFeature',
-          'deity', '+', 'source == "None" ? 1 : null'
-        );
-      }
-    }
-
   } else if(name == 'Druid') {
 
-    rules.defineRule('combatNotes.primalStrike',
-      'combatNotes.improvedElementalFury', '+', 'null' // italics
-    );
     rules.defineRule('combatNotes.improvedElementalFury',
       'druidFeatures.Primal Strike', '?', null
+    );
+    rules.defineRule('combatNotes.primalStrike',
+      'combatNotes.improvedElementalFury', '+', 'null' // italics
     );
     rules.defineRule('magicNotes.improvedElementalFury',
       'druidFeatures.Potent Spellcasting', '?', null
@@ -3140,6 +3117,7 @@ SRD5E2024.classRulesExtra = function(rules, name) {
       'shield', '?', 'source == "None"',
       classLevel, '=', 'Math.floor((source + 6) / 4) * 5'
     );
+    rules.defineRule('armorClass', 'combatNotes.unarmoredDefense.1', '+', null);
     rules.defineRule('combatNotes.deflectAttacks',
       'combatNotes.deflectEnergy', '+', 'null' // italics
     );
@@ -3157,9 +3135,8 @@ SRD5E2024.classRulesExtra = function(rules, name) {
       'strengthModifier', '+', '-source',
       '', '^', '0'
     );
-    rules.defineRule('armorClass', 'combatNotes.unarmoredDefense.1', '+', null);
     rules.defineRule('combatNotes.unarmoredDefense',
-      'combatNotes.unarmoredDefense.3', '+=', null
+      'combatNotes.unarmoredDefense.3', '^=', null
     );
     rules.defineRule('combatNotes.unarmoredDefense.1',
       'armor', '?', 'source == "None"',
@@ -3168,6 +3145,18 @@ SRD5E2024.classRulesExtra = function(rules, name) {
     rules.defineRule('combatNotes.unarmoredDefense.3',
       'monkFeatures.Unarmored Defense', '?', null,
       'wisdomModifier', '=', null
+    );
+    rules.defineRule('monkMeleeAttackBonus',
+      'armor', '?', 'source == "None"',
+      'combatNotes.martialArts.1', '=', null
+    );
+    rules.defineRule('monkMeleeDamageBonus',
+      'armor', '?', 'source == "None"',
+      'combatNotes.martialArts.1', '=', null
+    );
+    rules.defineRule('monkMeleeDieBonus',
+      'armor', '?', 'source == "None"',
+      'combatNotes.martialArts', '=', '"1d" + source'
     );
     rules.defineRule('monkSaveDC',
       "monkFeatures.Monk's Focus", '?', null,
@@ -3211,10 +3200,10 @@ SRD5E2024.classRulesExtra = function(rules, name) {
       'abilityNotes.roving', '?', null,
       'armorCategory', '=', 'source=="Heavy" ? null : 10'
     );
-    rules.defineRule('expertiseCount', 'skillNotes.expertise', '+=', null);
     rules.defineRule
       ('combatNotes.extraAttack', classLevel, '^=', 'source<5 ? null : 2');
     rules.defineRule('combatNotes.weaponMastery', classLevel, '+=', '2');
+    rules.defineRule('expertiseCount', 'skillNotes.expertise', '+=', null);
     rules.defineRule('features.Colossus Slayer',
       "combatNotes.hunter'sPrey", '=', '1'
     );
@@ -3289,7 +3278,7 @@ SRD5E2024.classRulesExtra = function(rules, name) {
       'warlockFeatures.Lessons Of The First Ones', '=', null
     );
     rules.defineRule('magicNotes.eldritchInvocations',
-      classLevel, '=', 'source==1 ? 1 : source<5 ? 3 : source<9 ? Math.floor((source + 5) / 2) : Math.floor((source + 12) / 3)'
+      classLevel, '=', 'source==1 ? 1 : source<5 ? 3 : source<7 ? 5 : source<9 ? 6 : Math.floor((source + 12) / 3)'
     );
     rules.defineRule('magicNotes.magicalCunning',
       'magicNotes.eldritchMaster', '+', 'null' // italics
@@ -3297,12 +3286,11 @@ SRD5E2024.classRulesExtra = function(rules, name) {
     rules.defineRule('selectableFeatureCount.Warlock (Eldritch Invocation)',
       'magicNotes.eldritchInvocations', '=', null
     );
-    rules.defineRule('selectableFeatureCount.Warlock (Warlock Subclass)',
-      'featureNotes.warlockSubclass', '=', '1'
-    );
-
     rules.defineRule('selectableFeatureCount.Warlock (Pact Boon)',
       'featureNotes.pactBoon', '=', '1'
+    );
+    rules.defineRule('selectableFeatureCount.Warlock (Warlock Subclass)',
+      'featureNotes.warlockSubclass', '=', '1'
     );
     rules.defineRule('maxKSlot',
       'casterLevels.K', '=', 'Math.min(Math.floor((source + 1) / 2), 5)'

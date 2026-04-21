@@ -400,21 +400,23 @@ SRD5E.CLASSES = {
       '"1:Skill Proficiency (Choose 2 from Arcana, Deception, Insight, Intimidation, Persuasion, Religion)",' +
       '"1:Spellcasting","1:Sorcerous Origin","2:Font Of Magic","3:Metamagic",' +
       '"20:Sorcerous Restoration",' +
+      '"features.Draconic Bloodline ? 1:Dragon Ancestor",' +
       '"features.Draconic Bloodline ? 1:Draconic Resilience",' +
       '"features.Draconic Bloodline ? 6:Elemental Affinity",' +
       '"features.Draconic Bloodline ? 14:Dragon Wings",' +
       '"features.Draconic Bloodline ? 18:Draconic Presence" ' +
     'Selectables=' +
-      '"1:Draconic Bloodline (Black):Sorcerous Origin",' +
-      '"1:Draconic Bloodline (Blue):Sorcerous Origin",' +
-      '"1:Draconic Bloodline (Brass):Sorcerous Origin",' +
-      '"1:Draconic Bloodline (Bronze):Sorcerous Origin",' +
-      '"1:Draconic Bloodline (Copper):Sorcerous Origin",' +
-      '"1:Draconic Bloodline (Gold):Sorcerous Origin",' +
-      '"1:Draconic Bloodline (Green):Sorcerous Origin",' +
-      '"1:Draconic Bloodline (Red):Sorcerous Origin",' +
-      '"1:Draconic Bloodline (Silver):Sorcerous Origin",' +
-      '"1:Draconic Bloodline (White):Sorcerous Origin",' +
+      '"1:Black Dragon:Dragon Ancestor",' +
+      '"1:Blue Dragon:Dragon Ancestor",' +
+      '"1:Brass Dragon:Dragon Ancestor",' +
+      '"1:Bronze Dragon:Dragon Ancestor",' +
+      '"1:Copper Dragon:Dragon Ancestor",' +
+      '"1:Gold Dragon:Dragon Ancestor",' +
+      '"1:Green Dragon:Dragon Ancestor",' +
+      '"1:Red Dragon:Dragon Ancestor",' +
+      '"1:Silver Dragon:Dragon Ancestor",' +
+      '"1:White Dragon:Dragon Ancestor",' +
+      '"1:Draconic Bloodline:Sorcerous Origin",' +
       '"3:Careful Spell:Metamagic","3:Distant Spell:Metamagic",' +
       '"3:Empowered Spell:Metamagic","3:Extended Spell:Metamagic",' +
       '"3:Heightened Spell:Metamagic","3:Quickened Spell:Metamagic",' +
@@ -1238,6 +1240,7 @@ SRD5E.FEATURES = {
   'Draconic Resilience':
     'Section=combat ' +
     'Note="+%{levels.Sorcerer} Hit Points/+3 Armor Class in no armor"',
+  'Dragon Ancestor':'Section=feature Note="1 selection"',
   'Dragon Wings':
     'Section=ability ' +
     'Note="Can use a bonus action to gain a %{speed}\' fly Speed"',
@@ -4437,7 +4440,7 @@ SRD5E.classRulesExtra = function(rules, name) {
     rules.defineRule
       ('combatNotes.extraAttack', classLevel, '^=', 'source<5 ? null : 2');
     rules.defineRule('combatNotes.unarmoredDefense',
-      'combatNotes.unarmoredDefense.2', '+=', null
+      'combatNotes.unarmoredDefense.2', '^=', null
     );
     rules.defineRule('combatNotes.unarmoredDefense.1',
       'armor', '?', 'source == "None"',
@@ -4474,6 +4477,10 @@ SRD5E.classRulesExtra = function(rules, name) {
   } else if(name == 'Cleric') {
 
     rules.defineRule('clericHasDivineStrike', 'features.Life Domain', '=', '1');
+    rules.defineRule('divineStrikeDamageType',
+      'features.Divine Strike', '?', null,
+      'features.Life Domain', '=', '"radiant"'
+    );
     rules.defineRule('magicNotes.channelDivinity.1',
       'features.Channel Divinity', '?', null,
       'levels.Cleric', '+=', 'source<6 ? 1 : source<18 ? 2 : 3'
@@ -4481,10 +4488,6 @@ SRD5E.classRulesExtra = function(rules, name) {
     rules.defineRule('magicNotes.spellcasting.1', classLevel, '=', '1');
     rules.defineRule('selectableFeatureCount.Cleric (Divine Domain)',
       'featureNotes.divineDomain', '=', '1'
-    );
-    rules.defineRule('divineStrikeDamageType',
-      'features.Divine Strike', '?', null,
-      'features.Life Domain', '=', '"radiant"'
     );
     for(let s in rules.getChoices('selectableFeatures')) {
       if(s.match(/Cleric - .* Domain/)) {
@@ -4498,8 +4501,6 @@ SRD5E.classRulesExtra = function(rules, name) {
 
   } else if(name == 'Druid') {
 
-    rules.defineRule // italics
-      ('spellSlots.D0', 'magicNotes.circleSpells', '+', 'null');
     rules.defineRule('magicNotes.spellcasting.1', classLevel, '=', '1');
     rules.defineRule('magicNotes.wildShape',
       classLevel, '=', 'source<4 ? "1/4" : source<8 ? "1/2" : "1"',
@@ -4524,13 +4525,13 @@ SRD5E.classRulesExtra = function(rules, name) {
       ('armorClass', 'combatNotes.fightingStyle(Defense).1', '+', null);
     rules.defineRule
       ('attackBonus.Ranged', 'combatNotes.fightingStyle(Archery)', '+=', '2');
+    rules.defineRule('combatNotes.extraAttack',
+      classLevel, '^=', 'source<5 ? null : source<11 ? 2 : source<20 ? 3 : 4'
+    );
     // Show Fighting Style (Defense) note even if armor == None
     rules.defineRule('combatNotes.fightingStyle(Defense).1',
       'combatNotes.fightingStyle(Defense)', '?', null,
       'armor', '=', 'source == "None" ? null : 1'
-    );
-    rules.defineRule('combatNotes.extraAttack',
-      classLevel, '^=', 'source<5 ? null : source<11 ? 2 : source<20 ? 3 : 4'
     );
     rules.defineRule('featCount.General',
       classLevel, '+=', 'Math.min(Math.floor(source / 4), 5) + (source<6 ? 0 : source<14 ? 1 : 2)'
@@ -4563,7 +4564,7 @@ SRD5E.classRulesExtra = function(rules, name) {
     );
     rules.defineRule('armorClass', 'combatNotes.unarmoredDefense.1', '+', null);
     rules.defineRule
-      ('combatNotes.extraAttack', classLevel, '+=', 'source<5 ? null : 2');
+      ('combatNotes.extraAttack', classLevel, '^=', 'source<5 ? null : 2');
     rules.defineRule('combatNotes.martialArts',
       classLevel, '=', '4 + Math.floor((source + 1)/ 6) * 2'
     );
@@ -4574,7 +4575,7 @@ SRD5E.classRulesExtra = function(rules, name) {
       '', '^', '0'
     );
     rules.defineRule('combatNotes.unarmoredDefense',
-      'combatNotes.unarmoredDefense.3', '+=', null
+      'combatNotes.unarmoredDefense.3', '^=', null
     );
     rules.defineRule('combatNotes.unarmoredDefense.1',
       'armor', '?', 'source == "None"',
@@ -4620,7 +4621,7 @@ SRD5E.classRulesExtra = function(rules, name) {
       'armor', '=', 'source == "None" ? null : 1'
     );
     rules.defineRule
-      ('combatNotes.extraAttack', classLevel, '+=', 'source<5 ? null : 2');
+      ('combatNotes.extraAttack', classLevel, '^=', 'source<5 ? null : 2');
     rules.defineRule('featureNotes.fightingStyle',
       'paladinFeatures.Fighting Style', '+=', '1'
     );
@@ -4641,13 +4642,13 @@ SRD5E.classRulesExtra = function(rules, name) {
 
     rules.defineRule
       ('armorClass', 'combatNotes.fightingStyle(Defense).1', '+', null);
+    rules.defineRule
+      ('combatNotes.extraAttack', classLevel, '^=', 'source<5 ? null : 2');
     // Show Fighting Style (Defense) note even if armor == None
     rules.defineRule('combatNotes.fightingStyle(Defense).1',
       'combatNotes.fightingStyle(Defense)', '?', null,
       'armor', '=', 'source == "None" ? null : 1'
     );
-    rules.defineRule
-      ('combatNotes.extraAttack', classLevel, '+=', 'source<5 ? null : 2');
     rules.defineRule
       ('attackBonus.Ranged', 'combatNotes.fightingStyle(Archery)', '+=', '2');
     rules.defineRule('featureNotes.fightingStyle',
@@ -4687,24 +4688,21 @@ SRD5E.classRulesExtra = function(rules, name) {
 
   } else if(name == 'Sorcerer') {
 
-    let allSelectables = rules.getChoices('selectableFeatures');
-    let origins =
-      Object.keys(allSelectables).filter(x => allSelectables[x].includes('Sorcerous Origin')).map(x => x.replace('Sorcerer - ', ''));
-    origins.forEach(o => {
-      if(o.includes('(')) {
-        let originGroup = o.replace(/\s*\(.*/, '');
-        rules.defineRule('features.' + originGroup, 'features.' + o, '=', '1');
-      }
-    });
+    rules.defineRule
+      ('armorClass', 'combatNotes.draconicResilience.2', '+', null);
+    rules.defineRule('combatNotes.draconicResilience.2',
+      'armor', '?', 'source == "None"',
+      'features.Draconic Resilience', '=', '3'
+    );
     rules.defineRule('draconicDamage',
       'features.Draconic Bloodline', '=', '"fire"',
-      'features.Draconic Bloodline (Black)', '=', '"acid"',
-      'features.Draconic Bloodline (Blue)', '=', '"lightning"',
-      'features.Draconic Bloodline (Bronze)', '=', '"lightning"',
-      'features.Draconic Bloodline (Copper)', '=', '"acid"',
-      'features.Draconic Bloodline (Green)', '=', '"poison"',
-      'features.Draconic Bloodline (Silver)', '=', '"cold"',
-      'features.Draconic Bloodline (White)', '=', '"cold"'
+      'features.Black Dragon', '=', '"acid"',
+      'features.Blue Dragon', '=', '"lightning"',
+      'features.Bronze Dragon', '=', '"lightning"',
+      'features.Copper Dragon', '=', '"acid"',
+      'features.Green Dragon', '=', '"poison"',
+      'features.Silver Dragon', '=', '"cold"',
+      'features.White Dragon', '=', '"cold"'
     );
     rules.defineRule('featureNotes.metamagic',
       classLevel, '=', 'source<10 ? 2 : source<17 ? 3 : 4'
@@ -4713,15 +4711,11 @@ SRD5E.classRulesExtra = function(rules, name) {
     rules.defineRule('selectableFeatureCount.Sorcerer (Metamagic)',
       'featureNotes.metamagic', '=', null
     );
+    rules.defineRule('selectableFeatureCount.Sorcerer (Dragon Ancestor)',
+      'featureNotes.dragonAncestor', '=', '1'
+    );
     rules.defineRule('selectableFeatureCount.Sorcerer (Sorcerous Origin)',
       'featureNotes.sorcerousOrigin', '=', '1'
-    );
-
-    rules.defineRule
-      ('armorClass', 'combatNotes.draconicResilience.2', '+', null);
-    rules.defineRule('combatNotes.draconicResilience.2',
-      'armor', '?', 'source == "None"',
-      'features.Draconic Resilience', '=', '3'
     );
 
   } else if(name == 'Warlock') {
@@ -5822,12 +5816,10 @@ SRD5E.weaponRules = function(
     'weaponsChosen.' + name, '=', 'source ? 1 : null'
   );
   // Have to be careful here. Using the ^ operation won't work, because the
-  // comparison is lexical and, e.g., "1d10" < "1d8". monkMeleeDieBonus tops
-  // out at 1d10, so there's no need to check for override if the weapon
-  // already does that much damage.
-  if(isMonkWeapon && !damage.match(/d1[02]/))
+  // comparison is lexical and, e.g., "1d10" < "1d8".
+  if(isMonkWeapon && !damage.includes('d12'))
     rules.defineRule(weaponName + '.2',
-      'monkMeleeDieBonus', '=', 'source=="1d10" || source>"' + damage + '" ? source : null'
+      'monkMeleeDieBonus', '=', 'source=="1d12" || source=="1d10" || source>"' + damage + '" ? source : null'
     );
 
 };

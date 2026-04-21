@@ -1340,6 +1340,7 @@ SRD5E2024.FEATURES = {
   // Dragonborn
   'Breath Weapon':
     'Section=combat ' +
+    // changed effects
     'Note="Choice of a 15\' cone or a 5\'x30\' line inflicts %{(level+7)//6}d10 HP %{breathWeaponEnergy} (save DC %{8+constitutionModifier+proficiencyBonus} Dexterity half) %{proficiencyBonus} times per long rest"',
   'Damage Resistance':
     'Section=save Note="Has resistance to %{breathWeaponEnergy}"',
@@ -3498,6 +3499,7 @@ SRD5E2024.speciesRulesExtra = function(rules, name) {
     rules.defineRule('selectableFeatureCount.Elf (Elven Lineage)',
       'featureNotes.elvenLineage', '=', '1'
     );
+    rules.defineChoice('notes', 'spellAttackModifier.Elf:%S');
     rules.defineRule('spellAttackModifier.Elf',
       'spellModifier.Elf', '=', null,
       'proficiencyBonus', '+', null
@@ -3518,6 +3520,7 @@ SRD5E2024.speciesRulesExtra = function(rules, name) {
     rules.defineRule('selectableFeatureCount.Gnome (Gnomish Lineage)',
       'featureNotes.gnomishLineage', '=', '1'
     );
+    rules.defineChoice('notes', 'spellAttackModifier.Gnome:%S');
     rules.defineRule('spellAttackModifier.Gnome',
       'spellModifier.Gnome', '=', null,
       'proficiencyBonus', '+', null
@@ -3534,18 +3537,6 @@ SRD5E2024.speciesRulesExtra = function(rules, name) {
       'gnomeFeatures.Wisdom', '=', 'dict.wisdomModifier'
     );
   } else if(name.match(/Goliath/)) {
-    rules.defineRule
-      ("combatNotes.cloud'sJaunt", 'combatNotes.cloudGiant', '=', '1');
-    rules.defineRule
-      ("combatNotes.fire'sBurn", 'combatNotes.fireGiant', '=', '1');
-    rules.defineRule
-      ("combatNotes.frost'sChill", 'combatNotes.frostGiant', '=', '1');
-    rules.defineRule
-      ("combatNotes.hill'sTumble", 'combatNotes.hillGiant', '=', '1');
-    rules.defineRule
-      ("combatNotes.stone'sEndurance", 'combatNotes.stoneGiant', '=', '1');
-    rules.defineRule
-      ("combatNotes.storm'sThunder", 'combatNotes.stormGiant', '=', '1');
     rules.defineRule('selectableFeatureCount.Goliath (Giant Ancestry)',
       'featureNotes.giantAncestry', '=', '1'
     );
@@ -3555,6 +3546,7 @@ SRD5E2024.speciesRulesExtra = function(rules, name) {
     rules.defineRule('selectableFeatureCount.Tiefling (Fiendish Legacy)',
       'featureNotes.fiendishLegacy', '=', '1'
     );
+    rules.defineChoice('notes', 'spellAttackModifier.Tiefling:%S');
     rules.defineRule('spellAttackModifier.Tiefling',
       'spellModifier.Tiefling', '=', null,
       'proficiencyBonus', '+', null
@@ -3666,7 +3658,7 @@ SRD5E2024.weaponRules = function(
   }
   // Handle property-based proficiency new to the 2024 rules. Could easily
   // generalize this to additional properties, but presently no class or other
-  // feature gives general proficiency for any of these weapon properties:
+  // feature gives global proficiency for any of these weapon properties:
   // Ammunition,Loading,Heavy,Reach,Thrown,Two-Handed,Versatile (ndn)
   // Also note that all characters are proficient in Unarmed, and all classes
   // give at least Simple Weapon proficiency, so there's no need to add tests

@@ -4828,7 +4828,7 @@ SRD5E.deityRules = function(rules, name, alignment, domains) {
     console.log('Empty deity name');
     return;
   }
-  if(name != 'None' &&
+  if(alignment &&
      !((alignment + '') in SRD5E.ALIGNMENTS) &&
      !(alignment+'').match(/^(N|[LNC]G|[LNC]E|[LC]N)$/i)) {
     console.log('Bad alignment "' + alignment + '" for deity ' + name);
@@ -6473,20 +6473,22 @@ SRD5E.randomizeOneAttribute = function(attributes, attribute) {
     }
   } else if(attribute == 'deity') {
     /* Pick a deity that's no more than one alignment position removed. */
-    let aliInfo = attributes.alignment.match(/^([CLN]).*\s([GEN])/);
-    let aliPat;
-    if(aliInfo == null) /* Neutral character */
-      aliPat = 'N[EG]?|[CL]N';
-    else if(aliInfo[1] == 'N') /* NG or NE */
-      aliPat = 'N|[CLN]' + aliInfo[2];
-    else if(aliInfo[2] == 'N') /* CN or LN */
-      aliPat = 'N|' + aliInfo[1] + '[GNE]';
-    else /* [LC]G or [LC]E */
-      aliPat = aliInfo[1] + '[N' + aliInfo[2] + ']|N' + aliInfo[2];
-    choices = [];
+    let alignment = (attributes.alignment || 'N').replaceAll(/[a-z\s]/g, '');
+    let adjacentPat =
+      alignment == 'N' ? /N/ :
+      alignment == 'LG' ? /L[GN]|NG/ :
+      alignment == 'NG' ? /G$|^N$/ :
+      alignment == 'CG' ? /C[GN]|NG/ :
+      alignment == 'LN' ? /^L|^N$/ :
+      alignment == 'CN' ? /^C|^N$/ :
+      alignment == 'LE' ? /L[EN]|NE/ :
+      alignment == 'NE' ? /E$|^N$/ : /C[EN]|NE/;
     let deities = this.getChoices('deitys');
+    choices = [];
     for(attr in deities) {
-      if(deities[attr].match('=' + aliPat + '\\b'))
+      let deityAlignment =
+        (QuilvynUtils.getAttrValue(deities[attr], 'Alignment') || '').replaceAll(/[a-z\s]/g, '');
+      if(!deityAlignment || deityAlignment.match(adjacentPat))
         choices.push(attr);
     }
     if(choices.length > 0)

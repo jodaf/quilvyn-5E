@@ -498,7 +498,9 @@ SRD5E2024.CLASSES = {
       'W9:1@17 ' +
     'MulticlassPrerequisite="intelligence >= 13"'
 };
-SRD5E2024.DEITIES = Object.assign({}, SRD5E.DEITIES);
+SRD5E2024.DEITIES = {
+  'None':''
+};
 SRD5E2024.FEATS = {
   'Alert':'Category=Origin',
   'Magic Initiate (Cleric)':'Category=Origin',
@@ -3755,9 +3757,6 @@ SRD5E2024.ruleNotes = function() {
     '<h3>Usage Notes</h3>\n' +
     '<ul>\n' +
     '  <li>\n' +
-    '  The SRD5.5E plugin includes the deities from the Celtic, Greek, ' +
-    '  Egyptian, and Norse pantheons that are included in the SRD5E plugin\n' +
-    '  </li><li>\n' +
     '  Discussion of adding different types of homebrew options to the' +
     '  SRD5.5E rule set can be found in <a href="plugins/homebrew-srd5e.html">SRD5E Homebrew Examples</a>.\n' +
     '  </li>\n' +

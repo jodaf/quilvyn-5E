@@ -162,8 +162,10 @@ SRD5E2024.CLASSES = {
     'Selectables=' +
       '"3:College Of Lore:Bard Subclass" ' +
     'SpellAbility=Charisma ' +
-    'SpellSlots=' +
+    'SpellsAvailable=' +
       'B0:2@1;3@4;4@10,' +
+      'B:4@1;5@2;6@3;7@4;9@5;10@6;11@7;12@8;14@9;15@10;16@11;17@13;18@15;19@17;20@18;21@19;22@20 ' +
+    'SpellSlots=' +
       'B1:2@1;3@2;4@3,' +
       'B2:2@3;3@4,' +
       'B3:2@5;3@6,' +
@@ -199,8 +201,10 @@ SRD5E2024.CLASSES = {
       '"7:Divine Strike:Blessed Strikes",' +
       '"7:Potent Spellcasting:Blessed Strikes" ' +
     'SpellAbility=Wisdom ' +
-    'SpellSlots=' +
+    'SpellsAvailable=' +
       'C0:3@1;4@4;5@10,' +
+      'C:4@1;5@2;6@3;7@4;9@5;10@6;11@7;12@8;14@9;15@10;16@11;17@13;18@15;19@17;20@18;21@19;22@20 ' +
+    'SpellSlots=' +
       'C1:2@1;3@2;4@3,' +
       'C2:2@3;3@4,' +
       'C3:2@5;3@6,' +
@@ -235,8 +239,10 @@ SRD5E2024.CLASSES = {
       '"7:Potent Spellcasting:Elemental Fury",' +
       '"7:Primal Strike:Elemental Fury" ' +
     'SpellAbility=Wisdom ' +
-    'SpellSlots=' +
+    'SpellsAvailable=' +
       'D0:2@1;3@4;4@10,' +
+      'D:4@1;5@2;6@3;7@4;9@5;10@6;11@7;12@8;14@9;15@10;16@11;17@13;18@15;19@17;20@18;21@19;22@20 ' +
+    'SpellSlots=' +
       'D1:2@1;3@2;4@3,' +
       'D2:2@3;3@4,' +
       'D3:2@5;3@6,' +
@@ -317,6 +323,8 @@ SRD5E2024.CLASSES = {
       '"2:Fighting Style:Paladin Fighting Style",' +
       '"3:Oath Of Devotion:Paladin Subclass" ' +
     'SpellAbility=Charisma ' +
+    'SpellsAvailable=' +
+      'P:2@1;3@2;4@3;5@4;6@5;7@7;9@9;10@11;11@13;12@15;14@17;15@19 ' +
     'SpellSlots=' +
       'P1:2@1;3@3;4@5,' +
       'P2:2@5;3@7,' +
@@ -351,6 +359,8 @@ SRD5E2024.CLASSES = {
       '"features.Hunter ? 15:Stand Against The Tide:Superior Hunter\'s Defense",' +
       '"features.Hunter ? 15:Uncanny Dodge:Superior Hunter\'s Defense" ' +
     'SpellAbility=Wisdom ' +
+    'SpellsAvailable=' +
+      'R:2@1;3@2;4@3;5@4;6@5;7@7;9@9;10@11;11@13;12@15;14@17;15@19 ' +
     'SpellSlots=' +
       'R1:2@1;3@3;4@5,' +
       'R2:2@5;3@7,' +
@@ -402,8 +412,10 @@ SRD5E2024.CLASSES = {
       '"2:Seeking Spell:Metamagic","2:Subtle Spell:Metamagic",' +
       '"2:Transmuted Spell:Metamagic","2:Twinned Spell:Metamagic" ' +
     'SpellAbility=Charisma ' +
-    'SpellSlots=' +
+    'SpellsAvailable=' +
       'S0:4@1;5@4;6@10,' +
+      'S:2@1;4@2;6@3;7@4;9@5;10@6;11@7;12@8;14@9;15@10;16@11;17@13;18@15;19@17;20@18;21@19;22@20 ' +
+    'SpellSlots=' +
       'S1:2@1;3@2;4@3,' +
       'S2:2@3;3@4,' +
       'S3:2@5;3@6,' +
@@ -460,8 +472,10 @@ SRD5E2024.CLASSES = {
       '"7:Whispers Of The Grave:Eldritch Invocation",' +
       '"15:Witch Sight:Eldritch Invocation" ' +
     'SpellAbility=Charisma ' +
-    'SpellSlots=' +
+    'SpellsAvailable=' +
       'K0:2@1;3@4;4@10,' +
+      'K:2@1;3@2;4@3;5@4;6@5;7@6;8@7;9@8;10@9;11@11;12@13;13@15;14@17;15@19 ' +
+    'SpellSlots=' +
       'K1:1@1;2@2,' +
       'K2:2@3,' +
       'K3:2@5,' +
@@ -485,8 +499,10 @@ SRD5E2024.CLASSES = {
     'Selectables=' +
       '"2:Evoker:Wizard Subclass" ' +
     'SpellAbility=Intelligence ' +
-    'SpellSlots=' +
+    'SpellsAvailable=' +
       'W0:3@1;4@4;5@10,' +
+      'W:4@1;5@2;6@3;7@4;9@5;10@6;11@7;12@8;14@9;15@10;16@11;17@13;18@14;19@15;21@16;22@17;23@18;24@19;25@20 ' +
+    'SpellSlots=' +
       'W1:2@1;3@2;4@3,' +
       'W2:2@3;3@4,' +
       'W3:2@5;3@6,' +
@@ -2771,6 +2787,7 @@ SRD5E2024.choiceRules = function(rules, type, name, attrs) {
       QuilvynUtils.getAttrValueArray(attrs, 'Features'),
       QuilvynUtils.getAttrValueArray(attrs, 'Selectables'),
       QuilvynUtils.getAttrValue(attrs, 'SpellAbility'),
+      QuilvynUtils.getAttrValueArray(attrs, 'SpellsAvailable'),
       QuilvynUtils.getAttrValueArray(attrs, 'SpellSlots'),
       QuilvynUtils.getAttrValueArray(attrs, 'MulticlassPrerequisite')
     );
@@ -2954,17 +2971,18 @@ SRD5E2024.backgroundFeatureRules = function(
  * additional hit points with each level advance. #features# and #selectables#
  * list the fixed and selectable features acquired as the character advances in
  * class level. #spellAbility# names the ability for computing spell difficulty
- * class, and #spellSlots# lists the number of spells per level per day that
- * the class can cast. #multiclassPrerequisite# specifies any prerequisites
- * for adding the class to an existing character of another class.
+ * class, #spellsAvailable# lists the number of spells known or prepared and
+ * #spellSlots# lists the number of spells per level per day that the class can
+ * cast. #multiclassPrerequisite# specifies any prerequisites for adding the
+ * class to an existing character of another class.
  */
 SRD5E2024.classRules = function(
   rules, name, requires, hitDie, features, selectables, spellAbility,
-  spellSlots, multiclassPrerequisite
+  spellsAvailable, spellSlots, multiclassPrerequisite
 ) {
   SRD5E.classRules
     (rules, name, requires, hitDie, features, selectables, spellAbility,
-     spellSlots, multiclassPrerequisite);
+     spellsAvailable, spellSlots, multiclassPrerequisite);
   // No changes needed to SRD5E
 };
 

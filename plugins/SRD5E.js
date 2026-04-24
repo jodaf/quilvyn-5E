@@ -174,8 +174,10 @@ SRD5E.CLASSES = {
     'Selectables=' +
       '"3:College Of Lore:Bard College" ' +
     'SpellAbility=Charisma ' +
-    'SpellSlots=' +
+    'SpellsAvailable=' +
       'B0:2@1;3@4;4@10,' +
+      'B:4@1;5@2;6@3;7@4;8@5;9@6;10@7;11@8;12@9;14@10;15@11;16@13;18@14;19@15;20@17;22@18 ' +
+    'SpellSlots=' +
       'B1:2@1;3@2;4@3,' +
       'B2:2@3;3@4,' +
       'B3:2@5;3@6,' +
@@ -205,8 +207,10 @@ SRD5E.CLASSES = {
     'Selectables=' +
       '"deityDomains =~ \'Life\' ? 1:Life Domain:Divine Domain" ' +
     'SpellAbility=Wisdom ' +
-    'SpellSlots=' +
+    'SpellsAvailable=' +
       'C0:3@1;4@4;5@10,' +
+      'C:1@1;2@2;3@3;4@4;5@5;6@6;7@7;8@8;9@9;10@10;11@11;12@12;13@13;14@14;15@15;16@16;17@17;18@18;19@19;20@20 ' +
+    'SpellSlots=' +
       'C1:2@1;3@2;4@3,' +
       'C2:2@3;3@4,' +
       'C3:2@5;3@6,' +
@@ -242,8 +246,10 @@ SRD5E.CLASSES = {
       '"2:Circle Of The Land (Mountain):Druid Circle",' +
       '"2:Circle Of The Land (Swamp):Druid Circle" ' +
     'SpellAbility=Wisdom ' +
-    'SpellSlots=' +
+    'SpellsAvailable=' +
       'D0:2@1;3@4;4@10,' +
+      'D:1@1;2@2;3@3;4@4;5@5;6@6;7@7;8@8;9@9;10@10;11@11;12@12;13@13;14@14;15@15;16@16;17@17;18@18;19@19;20@20 ' +
+    'SpellSlots=' +
       'D1:2@1;3@2;4@3,' +
       'D2:2@3;3@4,' +
       'D3:2@5;3@6,' +
@@ -324,6 +330,8 @@ SRD5E.CLASSES = {
       '"2:Fighting Style (Protection):Fighting Style",' +
       '"3:Oath Of Devotion:Sacred Oath" ' +
     'SpellAbility=Charisma ' +
+    'SpellsAvailable=' +
+      'P:1@2;2@4;3@6;4@8;5@10;6@12;7@14;8@16;9@18;10@20 ' +
     'SpellSlots=' +
       'P1:2@2;3@3;4@5,' +
       'P2:2@5;3@7,' +
@@ -364,6 +372,8 @@ SRD5E.CLASSES = {
       '"features.Hunter ? 15:Stand Against The Tide:Superior Hunter\'s Defense",' +
       '"features.Hunter ? 15:Uncanny Dodge:Superior Hunter\'s Defense" ' +
     'SpellAbility=Wisdom ' +
+    'SpellsAvailable=' +
+      'R:2@2;3@3;4@5;5@7;6@9;7@11;8@13;9@15;10@17;11@19 ' +
     'SpellSlots=' +
       'R1:2@2;3@3;4@5,' +
       'R2:2@5;3@7,' +
@@ -422,8 +432,10 @@ SRD5E.CLASSES = {
       '"3:Heightened Spell:Metamagic","3:Quickened Spell:Metamagic",' +
       '"3:Subtle Spell:Metamagic","3:Twinned Spell:Metamagic" ' +
     'SpellAbility=Charisma ' +
-    'SpellSlots=' +
+    'SpellsAvailable=' +
       'S0:4@1;5@4;6@10,' +
+      'S:2@1;3@2;4@3;5@4;6@5;7@6;8@7;9@8;10@9;11@10;12@11;13@13;14@15;15@17 ' +
+    'SpellSlots=' +
       'S1:2@1;3@2;4@3,' +
       'S2:2@3;3@4,' +
       'S3:2@5;3@6,' +
@@ -485,8 +497,10 @@ SRD5E.CLASSES = {
       '"15:Visions Of Distant Realms:Eldritch Invocation",' +
       '"15:Witch Sight:Eldritch Invocation" ' +
     'SpellAbility=Charisma ' +
-    'SpellSlots=' +
+    'SpellsAvailable=' +
       'K0:2@1;3@4;4@10,' +
+      'K:2@1;3@2;4@3;5@4;6@5;7@6;8@7;9@8;10@9;11@11;12@13;13@15;14@17;15@19 ' +
+    'SpellSlots=' +
       'K1:1@1;2@2,' +
       'K2:2@3,' +
       'K3:2@5,' +
@@ -509,8 +523,10 @@ SRD5E.CLASSES = {
     'Selectables=' +
       '"2:School Of Evocation:Arcane Tradition" ' +
     'SpellAbility=Intelligence ' +
-    'SpellSlots=' +
+    'SpellsAvailable=' +
       'W0:3@1;4@4;5@10,' +
+      'W:1@1;2@2;3@3;4@4;5@5;6@6;7@7;8@8;9@9;10@10;11@11;12@12;13@13;14@14;15@15;16@16;17@17;18@18;19@19;20@20 ' +
+    'SpellSlots=' +
       'W1:2@1;3@2;4@3,' +
       'W2:2@3;3@4,' +
       'W3:2@5;3@6,' +
@@ -3722,7 +3738,7 @@ SRD5E.identityRules = function(
   QuilvynUtils.checkAttrTable
     (backgrounds, ['Equipment', 'Features']);
   QuilvynUtils.checkAttrTable
-    (classes, ['Require', 'HitDie', 'Features', 'Selectables', 'SpellAbility', 'SpellSlots', 'MulticlassPrerequisite']);
+    (classes, ['Require', 'HitDie', 'Features', 'Selectables', 'SpellAbility', 'SpellsAvailable', 'SpellSlots', 'MulticlassPrerequisite']);
   QuilvynUtils.checkAttrTable(deities, ['Alignment', 'Domain']);
   QuilvynUtils.checkAttrTable
     (paths, ['Features', 'Selectables', 'Group', 'Level', 'SpellAbility', 'SpellSlots', 'Spells']);
@@ -3887,6 +3903,7 @@ SRD5E.choiceRules = function(rules, type, name, attrs) {
       QuilvynUtils.getAttrValueArray(attrs, 'Features'),
       QuilvynUtils.getAttrValueArray(attrs, 'Selectables'),
       QuilvynUtils.getAttrValue(attrs, 'SpellAbility'),
+      QuilvynUtils.getAttrValueArray(attrs, 'SpellsAvailable'),
       QuilvynUtils.getAttrValueArray(attrs, 'SpellSlots'),
       QuilvynUtils.getAttrValueArray(attrs, 'MulticlassPrerequisite')
     );
@@ -4304,14 +4321,23 @@ SRD5E.backgroundFeatureRules = function(
  * additional hit points with each level advance. #features# and #selectables#
  * list the fixed and selectable features acquired as the character advances in
  * class level. #spellAbility# names the ability for computing spell difficulty
- * class, and #spellSlots# lists the number of spells per level per day that
- * the class can cast. #multiclassPrerequisite# specifies any prerequisites
- * for adding the class to an existing character of another class.
+ * class, #spellsAvailable# lists the number of spells known or prepared and
+ * #spellSlots# lists the number of spells per level per day that the class can
+ * cast. #multiclassPrerequisite# specifies any prerequisites for adding the
+ * class to an existing character of another class.
  */
 SRD5E.classRules = function(
   rules, name, requires, hitDie, features, selectables, spellAbility,
-  spellSlots, multiclassPrerequisite
+  spellsAvailable, spellSlots, multiclassPrerequisite
 ) {
+
+  if(multiclassPrerequisite == null) {
+    // backwards compatibility for dependent plugins that predate the addition
+    // of the spellsAvailable parameter
+    multiclassPrerequisite = spellSlots;
+    spellSlots = spellsAvailable;
+    spellsAvailable = [];
+  }
 
   if(!name) {
     console.log('Empty class name');
@@ -4336,6 +4362,10 @@ SRD5E.classRules = function(
   spellAbility = (spellAbility + '').toLowerCase();
   if(!(spellAbility.charAt(0).toUpperCase() + spellAbility.substring(1) in SRD5E.ABILITIES)) {
     console.log('Bad spell ability "' + spellAbility + '" for class ' + name);
+    return;
+  }
+  if(!Array.isArray(spellsAvailable)) {
+    console.log('Bad spellsAvailable list "' + spellsAvailable + '" for class ' + name);
     return;
   }
   if(!Array.isArray(spellSlots)) {
@@ -4378,6 +4408,28 @@ SRD5E.classRules = function(
     'casterLevels.' + name, '?', null,
     spellAbility + 'Modifier', '=', null
   );
+
+  if(spellsAvailable.length > 0) {
+    spellsAvailable.forEach(s => {
+      let pieces = s.split(/[:;]/);
+      for(i = 1; i < pieces.length; i++) {
+        let matchInfo = pieces[i].match(/^(\d+)@(\d+)$/);
+        if(!matchInfo) {
+          console.log('Bad spells available "' + pieces[i] + '"');
+          pieces[i] = '';
+        } else {
+          pieces[i] = 'source>=' + matchInfo[2] + ' ? ' + matchInfo[1] + ' : ';
+        }
+      }
+      if(pieces[1].startsWith('source>=1 ?'))
+        pieces[1] = pieces[1].replace('source>=1 ? ', '').replace(' : ', '');
+      else
+        pieces[1] += 'null';
+      rules.defineRule('spellsAvailable.' + pieces.shift(),
+        classLevel, '=', pieces.reverse().join('')
+      );
+    });
+  }
 
   if(spellSlots.length > 0) {
 
@@ -4498,6 +4550,10 @@ SRD5E.classRulesExtra = function(rules, name) {
         );
       }
     }
+    rules.defineRule('spellsAvailable.C',
+      'wisdomModifier', '+', null,
+      '', '^', '1'
+    );
 
   } else if(name == 'Druid') {
 
@@ -4518,6 +4574,10 @@ SRD5E.classRulesExtra = function(rules, name) {
           ('features.Circle Of The Land', 'features.' + circle, '=', '1');
       }
     }
+    rules.defineRule('spellsAvailable.D',
+      'wisdomModifier', '+', null,
+      '', '^', '1'
+    );
 
   } else if(name == 'Fighter') {
 
@@ -4637,6 +4697,10 @@ SRD5E.classRulesExtra = function(rules, name) {
     rules.defineRule('selectableFeatureCount.Paladin (Sacred Oath)',
       'featureNotes.sacredOath', '=', '1'
     );
+    rules.defineRule('spellsAvailable.P',
+      'charismaModifier', '+', null,
+      '', '^', '1'
+    );
 
   } else if(name == 'Ranger') {
 
@@ -4747,6 +4811,10 @@ SRD5E.classRulesExtra = function(rules, name) {
     rules.defineRule('magicNotes.spellcasting.1', classLevel, '=', '1');
     rules.defineRule('selectableFeatureCount.Wizard (Arcane Tradition)',
       'featureNotes.arcaneTradition', '=', '1'
+    );
+    rules.defineRule('spellsAvailable.W',
+      'intelligenceModifier', '+', null,
+      '', '^', '1'
     );
 
   }
@@ -6076,6 +6144,8 @@ SRD5E.createViewers = function(rules, viewers) {
           {name: 'SpellPart', within: 'Magic', separator: '\n'},
             {name: 'SpellStats', within: 'SpellPart', separator: innerSep},
               {name: 'Spells Known', within: 'SpellStats', separator: listSep},
+              {name: 'Spells Available', within: 'SpellStats',
+               separator:listSep, format: '<b>Spells Known/Prepared</b>: %V'},
               {name: 'Spell Slots', within: 'SpellStats', separator:listSep},
               {name: 'Spell Points', within: 'SpellStats'},
               {name: 'Spell Attack Modifier', within: 'SpellStats',
@@ -6161,6 +6231,7 @@ SRD5E.choiceEditorElements = function(rules, type) {
       ['Features', 'Features', 'text', [40]],
       ['Selectables', 'Selectable Features', 'text', [40]],
       ['SpellAbility', 'Spell Ability', 'select-one', abilities],
+      ['SpellsAvailable', 'Spells Known/Prepared', 'text', [40]],
       ['SpellSlots', 'Spells Slots', 'text', [40]],
       ['MulticlassPrerequisite', 'Multiclass Prerequisite', 'text', [40]]
     );
@@ -6732,33 +6803,43 @@ SRD5E.randomizeOneAttribute = function(attributes, attribute) {
         pickAttrs(attributes, 'expertise.', choices, howMany, 1);
     }
   } else if(attribute == 'spells') {
-    let availableSpellsByGroupAndLevel = {};
+    let spellsByGroupAndLevel = {};
     let groupAndLevel;
     attrs = this.applyRules(attributes);
     for(attr in this.getChoices('spells')) {
+      if(attr.includes('['))
+        continue; // feature-linked spell
       groupAndLevel = attr.split('(')[1].split(' ')[0];
-      if(availableSpellsByGroupAndLevel[groupAndLevel] == null)
-        availableSpellsByGroupAndLevel[groupAndLevel] = [];
-      availableSpellsByGroupAndLevel[groupAndLevel].push(attr);
+      if(spellsByGroupAndLevel[groupAndLevel] == null)
+        spellsByGroupAndLevel[groupAndLevel] = [];
+      spellsByGroupAndLevel[groupAndLevel].push(attr);
     }
     for(attr in attrs) {
-      if((matchInfo = attr.match(/^spellSlots\.(.*)/)) == null)
+      if((matchInfo = attr.match(/^spellsAvailable\.(.*)/)) == null)
         continue;
-      groupAndLevel = matchInfo[1];
+      groupAndLevel = matchInfo[1]; // e.g., 'B0' for cantrips; 'B' for level 1+
       howMany = attrs[attr];
-      choices = availableSpellsByGroupAndLevel[groupAndLevel];
-      if(choices != null) {
-        choices = choices.filter(
-          x => !x.includes('[') || attrs['features.' + x.replace(/^.*\[|\].*$/g, '')] != null
-        );
-        let slots = attrs['spellSlots.' + groupAndLevel];
-        if(slots != null && slots < howMany) {
-          howMany = slots;
+      if(groupAndLevel.match(/\d$/)) // 'B0'
+        choices = spellsByGroupAndLevel[groupAndLevel] || [];
+      else { // 'B'
+        choices = [];
+        let highestSlot = 1;
+        for(i = 2; i < 10; i++)
+          if(attrs['spellSlots.' + groupAndLevel + i])
+            highestSlot = i;
+        for(let spellGroup in spellsByGroupAndLevel) {
+          if(spellGroup.match(groupAndLevel + '[1-' + highestSlot + ']'))
+            choices = choices.concat(spellsByGroupAndLevel[spellGroup]);
         }
-        pickAttrs
-          (attributes, 'spells.', choices, howMany -
-           QuilvynUtils.sumMatching(attributes, '^spells\\..*[(]' + groupAndLevel + '[^0]'), 1);
       }
+      for(i = choices.length - 1; i >= 0; i--) {
+        if(attributes['spells.' + choices[i]]) {
+          choices.splice(i, 1);
+          howMany--;
+        }
+      }
+      if(howMany > 0 && choices.length > 0)
+        pickAttrs(attributes, 'spells.', choices, howMany, 1);
     }
   } else if(attribute == 'weapons') {
     notes = this.getChoices('notes');

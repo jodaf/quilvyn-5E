@@ -42,14 +42,14 @@ function SRD5E2024() {
   rules.defineChoice('choices', SRD5E2024.CHOICES);
   rules.choiceEditorElements = SRD5E2024.choiceEditorElements;
   rules.choiceRules = SRD5E2024.choiceRules;
-  rules.removeChoice = SRD5E.removeChoice;
+  rules.removeChoice = SRD5E2024.removeChoice;
   rules.editorElements = SRD5E2024.initialEditorElements();
-  rules.getFormats = SRD5E.getFormats;
+  rules.getFormats = SRD5E2024.getFormats;
   rules.getPlugins = SRD5E2024.getPlugins;
-  rules.makeValid = SRD5E.makeValid;
+  rules.makeValid = SRD5E2024.makeValid;
   rules.randomizeOneAttribute = SRD5E2024.randomizeOneAttribute;
-  rules.defineChoice('random', SRD5E.RANDOMIZABLE_ATTRIBUTES);
-  rules.getChoices = SRD5E.getChoices;
+  rules.defineChoice('random', SRD5E2024.RANDOMIZABLE_ATTRIBUTES);
+  rules.getChoices = SRD5E2024.getChoices;
   rules.ruleNotes = SRD5E2024.ruleNotes;
 
   SRD5E2024.createViewers(rules, SRD5E.VIEWERS);
@@ -62,12 +62,12 @@ function SRD5E2024() {
     'species:Species,select-one,species', 'levels:Class Levels,bag,levels'
   );
 
-  SRD5E2024.abilityRules(rules, SRD5E.ABILITIES);
+  SRD5E2024.abilityRules(rules, SRD5E2024.ABILITIES);
   SRD5E2024.combatRules
     (rules, SRD5E2024.ARMORS, SRD5E2024.SHIELDS, SRD5E2024.WEAPONS);
   SRD5E2024.magicRules(rules, SRD5E2024.SCHOOLS, SRD5E2024.SPELLS);
   SRD5E2024.identityRules(
-    rules, SRD5E.ALIGNMENTS, SRD5E2024.BACKGROUNDS, SRD5E2024.CLASSES,
+    rules, SRD5E2024.ALIGNMENTS, SRD5E2024.BACKGROUNDS, SRD5E2024.CLASSES,
     SRD5E2024.DEITIES, SRD5E2024.SPECIES
   );
   SRD5E2024.talentRules
@@ -79,8 +79,12 @@ function SRD5E2024() {
 }
 
 SRD5E2024.CHOICES = SRD5E.CHOICES.map(x => x.replace('Race', 'Species'));
+SRD5E2024.RANDOMIZABLE_ATTRIBUTES = [].concat(SRD5E.RANDOMIZABLE_ATTRIBUTES);
 SRD5E2024.VERSION = '2.4.1.0';
+SRD5E2024.VIEWERS = [].concat(SRD5E.VIEWERS);
 
+SRD5E2024.ABILITIES = Object.assign({}, SRD5E.ABILITIES);
+SRD5E2024.ALIGNMENTS = Object.assign({}, SRD5E.ALIGNMENTS);
 SRD5E2024.ARMORS = Object.assign({}, SRD5E.ARMORS);
 SRD5E2024.BACKGROUNDS = {
   'Acolyte':
@@ -117,10 +121,9 @@ SRD5E2024.BACKGROUNDS = {
     'Features=' +
       '"1:Ability Boost (Choose 3 from Strength, Dexterity, Constitution)",' +
       '"1:Skill Proficiency (Athletics; Intimidation)",' +
-      '"1:Tool Proficiency (Choose 1 from any Gaming)",' +
+      '"1:Tool Proficiency (Choose 1 from any Gaming Set)",' +
       '"1:Savage Attacker"'
 };
-// TODO Add spells known/prepared
 SRD5E2024.CLASSES = {
   'Barbarian':
     'HitDie=d12 ' +
@@ -148,7 +151,7 @@ SRD5E2024.CLASSES = {
     'Features=' +
       '"1:Armor Training (Light)",' +
       '"1:Weapon Proficiency (Simple Weapons)",' +
-      '"1:Tool Proficiency (Choose 3 from any Musical)",' +
+      '"1:Tool Proficiency (Choose 3 from any Musical Instrument)",' +
       '"1:Save Proficiency (Dexterity; Charisma)",' +
       '"1:Skill Proficiency (Choose 3 from any)",' +
       '"1:Bardic Inspiration","1:Spellcasting","2:Expertise",' +
@@ -282,7 +285,7 @@ SRD5E2024.CLASSES = {
     'HitDie=d8 ' +
     'Features=' +
       '"1:Weapon Proficiency (Simple Weapons; Light Weapons)",' +
-      '"1:Tool Proficiency (Choose 1 from any Artisan, any Musical)",' +
+      '"1:Tool Proficiency (Choose 1 from any Artisan\'s Tools, any Musical Instrument)",' +
       '"1:Save Proficiency (Strength; Dexterity)",' +
       '"1:Skill Proficiency (Choose 2 from Acrobatics, Athletics, History, Insight, Religion, Stealth)",' +
       '"1:Martial Arts","1:Unarmored Defense","2:Monk\'s Focus",' +
@@ -524,20 +527,25 @@ SRD5E2024.FEATS = {
   'Magic Initiate (Wizard)':'Category=Origin',
   'Savage Attacker':'Category=Origin',
   'Skilled':'Category=Origin',
-  'Ability Score Improvement':'Category=General',
-  'Grappler':'Require="strength >= 13" Category=General',
-  'Archery':'Category="Fighting Style"',
-  'Defense':'Category="Fighting Style"',
-  'Great Weapon Fighting':'Category="Fighting Style"',
-  'Two-Weapon Fighting':'Category="Fighting Style"',
-  'Boon Of Combat Prowess':'Category="Epic Boon"',
-  'Boon Of Dimensional Travel':'Category="Epic Boon"',
-  'Boon Of Fate':'Category="Epic Boon"',
-  'Boon Of Irresistible Offense (Dexterity)':'Category="Epic Boon"',
-  'Boon Of Irresistible Offense (Strength)':'Category="Epic Boon"',
-  'Boon Of Spell Recall':'Category="Epic Boon"',
-  'Boon Of The Night Spirit':'Category="Epic Boon"',
-  'Boon Of Truesight':'Category="Epic Boon"'
+  'Ability Score Improvement':'Category=General Require="level >= 4"',
+  'Grappler':'Category=General Require="level >= 4","strength >= 13"',
+  'Archery':'Category="Fighting Style" Require="features.Fighting Style"',
+  'Defense':'Category="Fighting Style" Require="features.Fighting Style"',
+  'Great Weapon Fighting':
+    'Category="Fighting Style" Require="features.Fighting Style"',
+  'Two-Weapon Fighting':
+    'Category="Fighting Style" Require="features.Fighting Style"',
+  'Boon Of Combat Prowess':'Category="Epic Boon" Require="level >= 19"',
+  'Boon Of Dimensional Travel':'Category="Epic Boon" Require="level >= 19"',
+  'Boon Of Fate':'Category="Epic Boon" Require="level >= 19"',
+  'Boon Of Irresistible Offense (Dexterity)':
+    'Category="Epic Boon" Require="level >= 19"',
+  'Boon Of Irresistible Offense (Strength)':
+    'Category="Epic Boon" Require="level >= 19"',
+  'Boon Of Spell Recall':
+    'Category="Epic Boon" Require="level >= 19","features.Spellcasting"',
+  'Boon Of The Night Spirit':'Category="Epic Boon" Require="level >= 19"',
+  'Boon Of Truesight':'Category="Epic Boon" Require="level >= 19"'
 };
 SRD5E2024.FEATURES = {
 
@@ -3761,10 +3769,39 @@ SRD5E2024.randomizeOneAttribute = function(attributes, attribute) {
   }
 };
 
+/*
+ * Returns an object that contains all the choices for #name# previously
+ * defined for this rule set via addChoice.
+ */
+SRD5E2024.getChoices = function(name) {
+  return SRD5E.getChoices.apply(this, [name]);
+};
+
+/*
+ * Returns the dictionary of attribute formats associated with character sheet
+ * format #viewer# in #rules#.
+ */
+SRD5E2024.getFormats = function(rules, viewer) {
+  return SRD5E.getFormats(rules, viewer);
+}
+
 /* Returns an array of plugins upon which this one depends. */
 SRD5E2024.getPlugins = function() {
   let result = [SRD5E];
   return result;
+};
+
+/*
+ * Removes #name# from the set of user #type# choices, reversing the effects of
+ * choiceRules.
+ */
+SRD5E2024.removeChoice = function(rules, type, name) {
+  return SRD5E.removeChoice(rules, type, name);
+};
+
+/* Fixes as many validation errors in #attributes# as possible. */
+SRD5E2024.makeValid = function(attributes) {
+  return SRD5E.makeValid(attributes);
 };
 
 /* Returns HTML body content for user notes associated with this rule set. */

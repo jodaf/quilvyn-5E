@@ -582,7 +582,7 @@ SRD5E2024.FEATURES = {
   'Rage':
     SRD5E.FEATURES.Rage
     .replace(' melee', '')
-    .replace('1 min', 'up to 10 min (attacking, forcing a save, or using a bonus action each rd extends the rage)')
+    .replace('1 min', '1 rd (attacking, forcing a save, or using a bonus action each rd extends the rage for up to 10 min)')
     .replace('unlimited', '6')
     .replace('long rest', 'long rest, regaining 1 use after a short rest')
     .replace('negates the benefits', 'ends the rage'),
@@ -710,7 +710,7 @@ SRD5E2024.FEATURES = {
       '"3:Aid","3:Bless","3:Cure Wounds","3:Lesser Restoration",' +
       '"5:Mass Healing Word","5:Revivify",' +
       '"7:Aura Of Life","7:Death Ward",' +
-      '"9:Mass Cure Wounds","9:Mass Cure Wounds"',
+      '"9:Greater Restoration","9:Mass Cure Wounds"',
   'Preserve Life':SRD5E.FEATURES['Preserve Life'],
   'Supreme Healing':SRD5E.FEATURES['Supreme Healing'],
 
@@ -1035,7 +1035,7 @@ SRD5E2024.FEATURES = {
     'Section=skill Note="Has 30\' Blindsight"',
   'Foe Slayer':
     // changed effects
-    'Section=magic Note="<i>Hunter\'s Mark</i> inflicts d10 damage"',
+    'Section=magic Note="Has increased Hunter\'s Mark effects"',
   "Nature's Veil":
     'Section=combat ' +
     'Note="Can use a bonus action to become invisible until the end of the next turn %{wisdomModifier>1?wisdomModifier+\' times\':\'once\'} per long rest"',
@@ -3015,9 +3015,6 @@ SRD5E2024.classRulesExtra = function(rules, name) {
       'armorCategory', '=', 'source != "Heavy" ? 10 : null'
     );
     rules.defineRule('armorClass', 'combatNotes.unarmoredDefense.1', '+', null);
-    rules.defineRule('combatNotes.brutalStrike',
-      'combatNotes.improvedBrutalStrike', '+', 'null' // italics
-    );
     rules.defineRule
       ('combatNotes.extraAttack', classLevel, '^=', 'source<5 ? null : 2');
     rules.defineRule('combatNotes.unarmoredDefense',
@@ -3044,9 +3041,6 @@ SRD5E2024.classRulesExtra = function(rules, name) {
     rules.defineRule('bardicInspirationDie',
       classLevel, '=', 'source<20 ? 6 + Math.floor(source / 5) * 2 : 12'
     );
-    rules.defineRule('combatNotes.bardicInspiration',
-      'combatNotes.fontOfInspiration', '+', 'null' // italics
-    );
     rules.defineRule('expertiseCount', 'skillNotes.expertise', '+=', null);
     rules.defineRule('magicNotes.spellcasting.1', classLevel, '=', '1');
     rules.defineRule('selectableFeatureCount.Bard (Bard Subclass)',
@@ -3061,9 +3055,6 @@ SRD5E2024.classRulesExtra = function(rules, name) {
   } else if(name == 'Cleric') {
 
     rules.defineRule('clericHasDivineStrike', 'features.Life Domain', '=', '1');
-    rules.defineRule('combatNotes.divineStrike',
-      'combatNotes.improvedBlessedStrikes', '+', 'null' // italics
-    );
     rules.defineRule('combatNotes.divineSpark',
       'levels.Cleric', '=', 'source<7 ? 1 : source<13 ? 2 : source<18 ? 3 : 4'
     );
@@ -3099,9 +3090,6 @@ SRD5E2024.classRulesExtra = function(rules, name) {
 
     rules.defineRule('combatNotes.improvedElementalFury',
       'druidFeatures.Primal Strike', '?', null
-    );
-    rules.defineRule('combatNotes.primalStrike',
-      'combatNotes.improvedElementalFury', '+', 'null' // italics
     );
     rules.defineRule('magicNotes.improvedElementalFury',
       'druidFeatures.Potent Spellcasting', '?', null
@@ -3153,14 +3141,8 @@ SRD5E2024.classRulesExtra = function(rules, name) {
       classLevel, '=', 'Math.floor((source + 6) / 4) * 5'
     );
     rules.defineRule('armorClass', 'combatNotes.unarmoredDefense.1', '+', null);
-    rules.defineRule('combatNotes.deflectAttacks',
-      'combatNotes.deflectEnergy', '+', 'null' // italics
-    );
     rules.defineRule
       ('combatNotes.extraAttack', classLevel, '^=', 'source<5 ? null : 2');
-    rules.defineRule('combatNotes.flurryOfBlows',
-      'combatNotes.heightenedFocus', '+', 'null' // italics
-    );
     rules.defineRule('combatNotes.martialArts',
       classLevel, '=', '6 + Math.floor((source + 1)/ 6) * 2'
     );
@@ -3216,9 +3198,6 @@ SRD5E2024.classRulesExtra = function(rules, name) {
       'levels.Paladin', '+=', 'source<3 ? null : source<11 ? 2 : 3'
     );
     rules.defineRule('magicNotes.spellcasting.1', classLevel, '=', '1');
-    rules.defineRule('saveNotes.auraOfCourage',
-      'saveNotes.auraExpansion', '+', 'null' // italics
-    );
     for(let a in SRD5E.ABILITIES)
       rules.defineRule('save.' + a, 'saveNotes.auraOfProtection', '+', '2');
     rules.defineRule('selectableFeatureCount.Paladin (Paladin Fighting Style)',
@@ -3251,9 +3230,6 @@ SRD5E2024.classRulesExtra = function(rules, name) {
     rules.defineRule('features.Multiattack Defense',
       'combatNotes.defensiveTactics', '=', '1'
     );
-    rules.defineRule('magicNotes.favoredEnemy',
-      'magicNotes.foeSlayer', '+', 'null' // italics
-    );
     rules.defineRule('magicNotes.spellcasting.1', classLevel, '=', '1');
     rules.defineRule('selectableFeatureCount.Ranger (Ranger Fighting Style)',
       'featureNotes.rangerFightingStyle', '=', '1'
@@ -3268,10 +3244,6 @@ SRD5E2024.classRulesExtra = function(rules, name) {
 
   } else if(name == 'Rogue') {
 
-    rules.defineRule('combatNotes.cunningStrike',
-      'combatNotes.deviousStrikes', '+', 'null', // italics
-      'combatNotes.improvedCunningStrike', '+', 'null' // italics
-    );
     rules.defineRule('combatNotes.weaponMastery', classLevel, '+=', '2');
     rules.defineRule('expertiseCount', 'skillNotes.expertise', '+=', null);
     rules.defineRule('featCount.General',
@@ -3306,17 +3278,11 @@ SRD5E2024.classRulesExtra = function(rules, name) {
 
   } else if(name == 'Warlock') {
 
-    rules.defineRule('combatNotes.thirstingBlade',
-      'combatNotes.devouringBlade', '+', 'null' // italics
-    );
     rules.defineRule('featureNotes.lessonsOfTheFirstOnes',
       'warlockFeatures.Lessons Of The First Ones', '=', null
     );
     rules.defineRule('magicNotes.eldritchInvocations',
       classLevel, '=', 'source==1 ? 1 : source<5 ? 3 : source<7 ? 5 : source<9 ? 6 : Math.floor((source + 12) / 3)'
-    );
-    rules.defineRule('magicNotes.magicalCunning',
-      'magicNotes.eldritchMaster', '+', 'null' // italics
     );
     rules.defineRule('selectableFeatureCount.Warlock (Eldritch Invocation)',
       'magicNotes.eldritchInvocations', '=', null
@@ -3789,7 +3755,7 @@ SRD5E2024.getChoices = function(name) {
  */
 SRD5E2024.getFormats = function(rules, viewer) {
   return SRD5E.getFormats(rules, viewer);
-}
+};
 
 /* Returns an array of plugins upon which this one depends. */
 SRD5E2024.getPlugins = function() {

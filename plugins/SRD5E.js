@@ -792,7 +792,7 @@ SRD5E.FEATURES = {
     'Section=skill ' +
     'Note="Double Proficiency Bonus on %V chosen proficient skills%{levels.Rogue?\\" or Thieves\' Tools\\":\'\'}"',
   'Font Of Inspiration':
-    'Section=combat Note="Bardic Inspiration refreshes after a short rest"',
+    'Section=combat Note="Has increased Bardic Inspiration effects"',
   'Jack Of All Trades':
     'Section=ability Note="+%V on non-proficient ability checks"',
   'Magical Secrets':
@@ -859,13 +859,13 @@ SRD5E.FEATURES = {
       '"9:Mass Cure Wounds","9:Raise Dead"',
   'Preserve Life':
     'Section=magic ' +
-    'Note="R30\' Can use Channel Divinity to restore %{levels.Cleric*5} hit points among targets, raising each to up to half its maximum hit points"',
+    'Note="R30\' Can use Channel Divinity to restore %{levels.Cleric*5} hit points among targets, raising each to up to half its hit point maximum"',
 
   // Druid
   'Archdruid':
     'Section=magic,magic ' +
     'Note=' +
-      '"Can use Wild Shape at will",' +
+      '"Has increased Wild Shape effects",' +
       '"Casting spells requires no verbal, somatic, or cost-free material components"',
   'Beast Spells':'Section=magic Note="Can cast spells during Wild Shape"',
   'Druid Circle':'Section=feature Note="1 selection"',
@@ -1344,7 +1344,7 @@ SRD5E.FEATURES = {
     'Note="Can cast <i>Detect Magic</i> at will" ' +
     'Spells="Detect Magic"',
   'Eldritch Spear':
-    'Section=magic Note="Increases <i>Eldritch Blast</i> range to 300\'"',
+    'Section=magic Note="Has increased Eldritch Blast effects"',
   'Eyes Of The Rune Keeper':'Section=skill Note="Can read all writing"',
   'Fiendish Vigor':
     'Section=magic ' +
@@ -4516,9 +4516,6 @@ SRD5E.classRulesExtra = function(rules, name) {
     rules.defineRule('bardicInspirationDie',
       classLevel, '=', 'source<20 ? 6 + Math.floor(source / 5) * 2 : 12'
     );
-    rules.defineRule('combatNotes.bardicInspiration',
-      'combatNotes.fontOfInspiration', '+', 'null' // italics
-    );
     rules.defineRule('expertiseCount', 'skillNotes.expertise', '+=', null);
     rules.defineRule('magicNotes.spellcasting.1', classLevel, '=', '1');
     rules.defineRule('selectableFeatureCount.Bard (Bard College)',
@@ -4560,8 +4557,7 @@ SRD5E.classRulesExtra = function(rules, name) {
 
     rules.defineRule('magicNotes.spellcasting.1', classLevel, '=', '1');
     rules.defineRule('magicNotes.wildShape',
-      classLevel, '=', 'source<4 ? "1/4" : source<8 ? "1/2" : "1"',
-      'magicNotes.archdruid', '+', 'null' // italics
+      classLevel, '=', 'source<4 ? "1/4" : source<8 ? "1/2" : "1"'
     );
     rules.defineRule('selectableFeatureCount.Druid (Druid Circle)',
       'featureNotes.druidCircle', '=', '1'
@@ -4796,9 +4792,6 @@ SRD5E.classRulesExtra = function(rules, name) {
     );
     rules.defineRule('selectableFeatureCount.Warlock (Pact Boon)',
       'featureNotes.pactBoon', '=', '1'
-    );
-    rules.defineRule('spells.Eldritch Blast (K0 Evoc)',
-      'magicNotes.eldritchSpear', '=', 'null' // italics
     );
     rules.defineRule('maxKSlot',
       'casterLevels.K', '=', 'Math.min(Math.floor((source + 1) / 2), 5)'
@@ -5140,6 +5133,10 @@ SRD5E.featureRules = function(
           note, '+=', totalBoosts + (addSource ? ' + source' : '')
         );
       }
+
+      // Has increased ... effects
+      if(effect.match(/^Has increased .* effects$/))
+        rules.defineRule('italics', note, '=', 'null');
 
       // Language (language [; language ...])
       matchInfo = effect.match(/Language \((([^\(]|\([^\)]*\))*)\)/i);
@@ -6097,9 +6094,9 @@ SRD5E.createViewers = function(rules, viewers) {
         );
       }
       viewer.addElements(
+          {name: 'Skills', within: 'FeaturesAndSkills', columns: '3LE', separator: null},
           {name: 'Skill Proficiency', within: 'FeaturesAndSkills', separator: listSep},
           {name: 'Expertise', within: 'FeaturesAndSkills', separator: listSep},
-          {name: 'Skills', within: 'FeaturesAndSkills', columns: '3LE', separator: null},
           {name: 'Tool Proficiency', within: 'FeaturesAndSkills', separator: listSep},
           {name: 'Languages', within: 'FeaturesAndSkills', separator: listSep}
       );

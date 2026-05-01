@@ -765,7 +765,7 @@ SRD5E.FEATURES = {
     'Note="Can suffer foe advantage on attacks to gain advantage on Strength melee attacks until the start of the next turn"',
   'Relentless Rage':
     'Section=save ' +
-    'Note="Can make a DC 10 Constitution save to retain 1 hit point when brought to 0 hit points during rage; each use adds 5 to the DC until a short rest"',
+    'Note="Can make a DC 10 Constitution save to retain 1 hit point when brought to 0 hit points during rage; additional uses each add 5 to the DC until a short rest"',
   'Unarmored Defense':'Section=combat Note="+%V Armor Class in no armor"',
   // Berserker
   'Frenzy':
@@ -1002,7 +1002,7 @@ SRD5E.FEATURES = {
     'Note="Can spend 1 ki point to make 2 unarmed strikes as a bonus action"',
   'Ki':'Section=combat Note="Can use %{levels.Monk} ki points per short rest"',
   'Ki-Empowered Strikes':
-    'Section=combat Note="Unarmed attacks count as magical"',
+    'Section=combat Note="Unarmed strikes count as magical"',
   'Martial Arts':
     'Section=combat ' +
     'Note="When unarmored and wielding only Monk weapons, gains +%1 attack and damage with unarmed strikes and weapon attacks, raises their damage dice to 1d%V, and can use a bonus action to make an unarmed strike after attacking"',
@@ -3707,8 +3707,9 @@ SRD5E.combatRules = function(rules, armors, shields, weapons) {
   );
   rules.defineChoice('notes', 'initiative:%S');
   rules.defineRule('initiative', 'dexterityModifier', '=', null);
-  SRD5E.weaponRules(rules, 'Unarmed', 'Unarmed', [], '1 B', null, 0, 0, true);
-  rules.defineRule('weapons.Unarmed', '', '=', '1');
+  SRD5E.weaponRules
+    (rules, 'Unarmed Strike', 'Unarmed', [], '1 B', null, 0, 0, true);
+  rules.defineRule('weapons.Unarmed Strike', '', '=', '1');
 
   for(let ability in SRD5E.ABILITIES) {
     rules.defineRule('saveBonus.' + ability,

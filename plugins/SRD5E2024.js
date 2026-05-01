@@ -555,12 +555,7 @@ SRD5E2024.FEATURES = {
   'Barbarian Subclass':SRD5E.FEATURES['Primal Path'],
   'Brutal Strike':
     'Section=combat ' +
-    'Note="Can forego Reckless Attack advantage on a Strength-based attack to inflict +%{levels.Barbarian<17?1:2}d10 HP weapon damage and %{levels.Barbarian<17?\'a choice\':\'2 choices\'} of: %{combatNotes.improvedBrutalStrike?\\"disadvantage on the target\'s next save and loss of opportunity attacks until the start of the next turn; a +5 bonus to the next attack on the target before the start of the next turn; \\":\'\'}a 15\' push and optional move along with the target; -15 Speed until the start of the next turn"',
-  'Primal Knowledge':
-    'Section=skill,skill ' +
-    'Note=' +
-      '"Skill Proficiency (Choose 1 from Animal Handling, Athletics, Intimidation, Nature, Perception, Survival)",' +
-      '"Can use Strength for Acrobatics, Intimidation, Perception, Stealth, and Survival"',
+    'Note="Can forego Reckless Attack advantage on a Strength-based attack to inflict +%{levels.Barbarian<17?1:2}d10 HP weapon damage and %{levels.Barbarian<17?\'a choice\':\'2 choices\'} of: %{combatNotes.improvedBrutalStrike?\\"disadvantage on the target\'s next save and loss of opportunity attacks until the start of the next turn; a +5 bonus to the next attack on the target before the start of the next turn; \\":\'\'}a 15\' push, optionally moving with the target; -15 Speed until the start of the next turn"',
   'Danger Sense':
     SRD5E.FEATURES['Danger Sense']
     .replace('vs. visible dangers', 'saves'),
@@ -579,29 +574,37 @@ SRD5E2024.FEATURES = {
     SRD5E.FEATURES['Persistent Rage']
     .replace('Can', 'Can recover all uses of Rage during initiative once per long rest and can'),
   'Primal Champion':SRD5E.FEATURES['Primal Champion'],
+  'Primal Knowledge':
+    'Section=skill,skill ' +
+    'Note=' +
+      '"Skill Proficiency (Choose 1 from Animal Handling, Athletics, Intimidation, Nature, Perception, Survival)",' +
+      '"Can use Strength for Acrobatics, Intimidation, Perception, Stealth, and Survival during rage"',
   'Rage':
     SRD5E.FEATURES.Rage
     .replace(' melee', '')
     .replace('1 min', 'up to 10 min (attacking, forcing a save, or using a bonus action each rd extends the rage)')
     .replace('unlimited', '6')
-    .replace('long rest', 'long rest, regaining 1 use after a short rest'),
-  'Reckless Attack':SRD5E.FEATURES['Reckless Attack'],
+    .replace('long rest', 'long rest, regaining 1 use after a short rest')
+    .replace('negates the benefits', 'ends the rage'),
+  'Reckless Attack':
+    SRD5E.FEATURES['Reckless Attack']
+    .replace('melee ', ''),
   'Relentless Rage':
     SRD5E.FEATURES['Relentless Rage']
     .replace('1 hit point', '%{levels.Barbarian*2} hit points'),
   'Unarmored Defense':SRD5E.FEATURES['Unarmored Defense'],
   'Weapon Mastery':
     'Section=combat '+
-    'Note="Can use the mastery properties of %V chosen Simple or Martial Melee weapons"',
+    'Note="Can use the mastery properties of %V chosen kinds of Simple or Martial Melee weapons"',
   // Berserker
   'Frenzy':
     // changed effects
     'Section=combat ' +
-    'Note="Reckless Attack inflicts +%{levels.Barbarian<9?2:levels.Barbarian<16?3:4}d6 HP to the first target each turn"',
+    'Note="First attack during Reckless Attack inflicts +%{levels.Barbarian<9?2:levels.Barbarian<16?3:4}d6 HP"',
   'Intimidating Presence':
     // changed effects
     'Section=combat ' +
-    'Note="R30\' Can use a bonus action to inflict frightened (DC %{8+strengthModifier+proficiencyBonus} ends) on targets for 1 min once per long rest; can expend uses of Rage for additional uses"',
+    'Note="R30\' Can use a bonus action to inflict frightened (DC %{8+strengthModifier+proficiencyBonus} Wisdom negates; additional saves each rd end) on targets for 1 min once per long rest; can expend uses of Rage for additional uses"',
   'Mindless Rage':SRD5E.FEATURES['Mindless Rage'],
   'Retaliation':SRD5E.FEATURES.Retaliation,
 
@@ -629,7 +632,8 @@ SRD5E2024.FEATURES = {
     'Section=skill Note="+%V on non-proficient skill checks"',
   'Magical Secrets':
     SRD5E.FEATURES['Magical Secrets']
-    .replace(/learn.*spells/, 'learn spells'),
+    .replace(/learn.*spells/, 'learn spells')
+    .replace('any class', 'the Cleric, Druid, and Wizard spell lists'),
   'Spellcasting':SRD5E.FEATURES.Spellcasting,
   'Superior Inspiration':
     SRD5E.FEATURES['Superior Inspiration']
@@ -642,7 +646,9 @@ SRD5E2024.FEATURES = {
   'Bonus Proficiencies (College Of Lore)':
     SRD5E.FEATURES['Bonus Proficiencies (College Of Lore)'],
   'Cutting Words':SRD5E.FEATURES['Cutting Words'],
-  'Magical Discoveries':SRD5E.FEATURES['Additional Magical Secrets'],
+  'Magical Discoveries':
+    SRD5E.FEATURES['Additional Magical Secrets']
+    .replace('any class', 'the Cleric, Druid, and Wizard spell lists'),
   'Peerless Skill':
     // changed effects
     'Section=ability,combat ' +
@@ -879,7 +885,7 @@ SRD5E2024.FEATURES = {
   // Epic Boon as above
   // Extra Attack as above
   'Empowered Strikes':
-    'Section=combat Note="Can inflict force damage with Unarmed Strikes"',
+    'Section=combat Note="Can inflict force damage with unarmed strikes"',
   'Evasion':SRD5E.FEATURES.Evasion,
   'Flurry Of Blows':
     SRD5E.FEATURES['Flurry Of Blows']

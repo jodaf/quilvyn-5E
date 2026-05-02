@@ -723,7 +723,7 @@ SRD5E2024.FEATURES = {
   'Druidic':
     // changed effects
     'Section=skill ' +
-    'Note="Speaks a secret language known only by druids" ' +
+    'Note="Language (Druidic)" ' +
     'Spells="Speak With Animals"',
   'Druid Subclass':SRD5E.FEATURES['Druid Circle'],
   'Elemental Fury':'Section=feature Note="1 selection"',
@@ -1117,9 +1117,8 @@ SRD5E2024.FEATURES = {
     'Section=ability ' +
     'Note="Can take an automatic 20 on an ability check once per short rest"',
   "Thieves' Cant":
-    SRD5E.FEATURES["Thieves' Cant"]
-    .replace('skill', 'skill,skill')
-    .replace('Note=', 'Note="Language (Choose 1 from any)",'),
+    // Changed effects
+    'Section=skill Note="Language (Thieves\' Cant; Choose 1 from any)"',
   'Uncanny Dodge':
     'Section=combat ' +
     'Note="Can use a reaction to reduce the damage from a seen attacker by half"',
@@ -1615,9 +1614,11 @@ SRD5E2024.LANGUAGES = {
   'Abyssal':'',
   'Celestial':'',
   'Deep Speech':'',
+  'Druidic':'',
   'Infernal':'',
   'Primordial':'',
   'Sylvan':'',
+  "Thieves' Cant":'',
   'Undercommon':''
 };
 SRD5E2024.SPECIES = {
@@ -2745,10 +2746,13 @@ SRD5E2024.combatRules = function(rules, armors, shields, weapons) {
 SRD5E2024.identityRules = function(
   rules, alignments, backgrounds, classes, deities, species
 ) {
-  SRD5E.identityRules
-    (rules, alignments, backgrounds, classes, deities, {}, species);
+  // languages are no longer species-based
+  rules.defineRule('languages.Common', '', '=', '1');
+  rules.defineRule('languageChoiceCount', '', '=', '2');
   // Easiest way to make sure SRD5E rules that apply to race are applied
   rules.defineRule('race', 'species', '=', null);
+  SRD5E.identityRules
+    (rules, alignments, backgrounds, classes, deities, {}, species);
 };
 
 /* Defines rules related to magic use. */

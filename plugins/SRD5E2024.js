@@ -634,7 +634,9 @@ SRD5E2024.FEATURES = {
     SRD5E.FEATURES['Magical Secrets']
     .replace(/learn.*spells/, 'learn spells')
     .replace('any class', 'the Cleric, Druid, and Wizard spell lists'),
-  'Spellcasting':SRD5E.FEATURES.Spellcasting,
+  'Spellcasting':
+    SRD5E.FEATURES.Spellcasting
+    .replace('magicNotes.spellcasting.1', '1'),
   'Superior Inspiration':
     SRD5E.FEATURES['Superior Inspiration']
     .replace('1 use', '2 uses'),
@@ -671,7 +673,9 @@ SRD5E2024.FEATURES = {
   'Divine Spark':
     'Section=combat ' +
     'Note="R30\' Can use Channel Divinity to restore %Vd8 hit points or to inflict %Vd8 HP of a choice of necrotic or radiant (save Constitution half)"',
-  'Divine Strike':SRD5E.FEATURES['Divine Strike'],
+  'Divine Strike':
+    SRD5E.FEATURES['Divine Strike']
+    .replace('%{divineStrikeDamageType}', 'of a choice of necrotic or radiant'),
   // Epic Boon as above
   'Greater Divine Intervention':
     'Section=magic ' +
@@ -803,9 +807,9 @@ SRD5E2024.FEATURES = {
     SRD5E.FEATURES['Natural Recovery']
     .replace('recover', 'cast 1 Druid spell without using a spell slot and recover'),
   "Nature's Sanctuary":
-    'Section=magic ' +
+    'Section=combat ' +
     // changed effects
-    'Note="R120\' Creates a 15\' cube of spectral vines and trees that gives allies Nature\'s Ward resistance and gives self and allies 1/2 cover, for 1 min; can use a bonus action each rd to move it 60\'"',
+    'Note="R120\' Creates a 15\' cube of spectral vines and trees that gives allies Nature\'s Ward resistance, and gives self and allies 1/2 cover, for 1 min; can use a bonus action each rd to move it 60\'"',
   "Nature's Ward":
     'Section=save ' +
     // changed effects
@@ -3044,7 +3048,6 @@ SRD5E2024.classRulesExtra = function(rules, name) {
       classLevel, '=', 'source<20 ? 6 + Math.floor(source / 5) * 2 : 12'
     );
     rules.defineRule('expertiseCount', 'skillNotes.expertise', '+=', null);
-    rules.defineRule('magicNotes.spellcasting.1', classLevel, '=', '1');
     rules.defineRule('selectableFeatureCount.Bard (Bard Subclass)',
       'featureNotes.bardSubclass', '=', '1'
     );
@@ -3056,16 +3059,11 @@ SRD5E2024.classRulesExtra = function(rules, name) {
 
   } else if(name == 'Cleric') {
 
-    rules.defineRule('clericHasDivineStrike', 'features.Life Domain', '=', '1');
     rules.defineRule('combatNotes.divineSpark',
       'levels.Cleric', '=', 'source<7 ? 1 : source<13 ? 2 : source<18 ? 3 : 4'
     );
     rules.defineRule('combatNotes.improvedBlessedStrikes',
       'clericFeatures.Blessed Strikes', '?', null
-    );
-    rules.defineRule('divineStrikeDamageType',
-      'features.Divine Strike', '?', null,
-      'features.Life Domain', '=', '"of a choice of necrotic or radiant"'
     );
     rules.defineRule('magicNotes.channelDivinity.1',
       'features.Channel Divinity', '?', null,
@@ -3074,7 +3072,6 @@ SRD5E2024.classRulesExtra = function(rules, name) {
     rules.defineRule('magicNotes.improvedBlessedStrikes',
       'clericFeatures.Potent Spellcasting', '?', null
     );
-    rules.defineRule('magicNotes.spellcasting.1', classLevel, '=', '1');
     rules.defineRule('selectableFeatureCount.Cleric (Blessed Strikes)',
       'featureNotes.blessedStrikes', '=', '1'
     );
@@ -3096,7 +3093,6 @@ SRD5E2024.classRulesExtra = function(rules, name) {
     rules.defineRule('magicNotes.improvedElementalFury',
       'druidFeatures.Potent Spellcasting', '?', null
     );
-    rules.defineRule('magicNotes.spellcasting.1', classLevel, '=', '1');
     rules.defineRule('magicNotes.wildShape',
       classLevel, '=', 'source<4 ? "1/4" : source<8 ? "1/2" : "1"'
     );
@@ -3200,7 +3196,6 @@ SRD5E2024.classRulesExtra = function(rules, name) {
     rules.defineRule('magicNotes.channelDivinity.1',
       'levels.Paladin', '+=', 'source<3 ? null : source<11 ? 2 : 3'
     );
-    rules.defineRule('magicNotes.spellcasting.1', classLevel, '=', '1');
     for(let a in SRD5E.ABILITIES)
       rules.defineRule('save.' + a, 'saveNotes.auraOfProtection', '+', '2');
     rules.defineRule('selectableFeatureCount.Paladin (Paladin Fighting Style)',
@@ -3233,7 +3228,6 @@ SRD5E2024.classRulesExtra = function(rules, name) {
     rules.defineRule('features.Multiattack Defense',
       'combatNotes.defensiveTactics', '=', '1'
     );
-    rules.defineRule('magicNotes.spellcasting.1', classLevel, '=', '1');
     rules.defineRule('selectableFeatureCount.Ranger (Ranger Fighting Style)',
       'featureNotes.rangerFightingStyle', '=', '1'
     );
@@ -3271,7 +3265,6 @@ SRD5E2024.classRulesExtra = function(rules, name) {
       classLevel, '=', 'source<10 ? 2 : source<17 ? 3 : 4'
     );
     rules.defineRule('magicNotes.fontOfMagic', classLevel, '=', null);
-    rules.defineRule('magicNotes.spellcasting.1', classLevel, '=', '1');
     rules.defineRule('selectableFeatureCount.Sorcerer (Metamagic)',
       'featureNotes.metamagic', '=', null
     );
@@ -3305,7 +3298,6 @@ SRD5E2024.classRulesExtra = function(rules, name) {
 
   } else if(name == 'Wizard') {
 
-    rules.defineRule('magicNotes.spellcasting.1', classLevel, '=', '1');
     rules.defineRule('selectableFeatureCount.Wizard (Wizard Subclass)',
       'featureNotes.wizardSubclass', '=', '1'
     );

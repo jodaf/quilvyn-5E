@@ -681,10 +681,10 @@ SRD5E2024.FEATURES = {
     'Section=combat,magic ' +
     'Note=' +
       '"Has increased Divine Strike effects",' +
-      '"Damaging cantrips give %{wisdomModifier*2} temporary hit points to a target within 60\'"',
+      '"Has increased Potent Spellcasting effects"', 
   'Potent Spellcasting':
     'Section=magic ' +
-    'Note="%{levels.Cleric?\'Cleric\':\'Druid\'} cantrips inflict +%{wisdomModifier} HP"',
+    'Note="%{levels.Cleric?\'Cleric\':\'Druid\'} cantrips inflict +%{wisdomModifier} HP%{magicNotes.improvedBlessedStrikes?\' and give \'+(wisdomModifier*2)+\\" temporary hit points to a target within 60\'\\":\'\'}%{magicNotes.improvedElementalFury?\\", and those with a range of 10\' or more can be cast at 300\'\\":\'\'}"',
   'Protector':
     'Section=combat ' +
     'Note="Armor Training (Heavy)/Weapon Proficiency (Martial Weapons)"',
@@ -722,10 +722,8 @@ SRD5E2024.FEATURES = {
   'Beast Spells':SRD5E.FEATURES['Beast Spells'],
   'Druidic':
     // changed effects
-    'Section=magic,skill ' +
-    'Note=' +
-      '"Knows the <i>Speak With Animals</i> spell",' +
-      '"Speaks a secret language known only by druids" ' +
+    'Section=skill ' +
+    'Note="Speaks a secret language known only by druids" ' +
     'Spells="Speak With Animals"',
   'Druid Subclass':SRD5E.FEATURES['Druid Circle'],
   'Elemental Fury':'Section=feature Note="1 selection"',
@@ -737,7 +735,7 @@ SRD5E2024.FEATURES = {
     'Section=combat,magic ' +
     'Note=' +
       '"Has increased Primal Strike effects",' +
-      '"Cantrips with a range of 10\' or more can be cast at 300\'"',
+      '"Has increased Potent Spellcasting effects"',
   'Longevity':'Section=feature Note="Ages at 1/10 normal rate"',
   'Magician':
     'Section=magic,skill ' +
@@ -752,7 +750,7 @@ SRD5E2024.FEATURES = {
   'Primal Order':'Section=feature Note="1 selection"',
   'Primal Strike':
     'Section=combat ' +
-    'Note="Weapon or natural attacks inflict +%{combatNotes.improvedElementalFury?2:1}d8 HP of a choice of cold, fire, lightning, or thunder once per turn"',
+    'Note="Weapon attacks and attacks during Wild Shape inflict +%{combatNotes.improvedElementalFury?2:1}d8 HP of a choice of cold, fire, lightning, or thunder once per turn"',
   // Spellcasting as above
   'Warden':
     'Section=combat ' +
@@ -767,7 +765,7 @@ SRD5E2024.FEATURES = {
   'Wild Shape':
     'Section=magic ' +
     // changed effects
-    'Note="Can transform into a CR %V%{levels.Druid<8?\' (non-flying)\':\'\'} creature with %{levels.Druid} temporary hit points for %{levels.Druid//2} hr %{levels.Druid<6?2:levels.Druid<17?3:4} times per long rest; a short rest restores 1 use"',
+    'Note="Can use a bonus action to transform into a CR %V%{levels.Druid<8?\' (non-flying)\':\'\'} creature with %1 temporary hit points for %{levels.Druid//2} hr %{levels.Druid<6?2:levels.Druid<17?3:4} times per long rest; a short rest restores 1 use"',
   // Circle Of The Land
   'Arid Land':
     'Spells=' +
@@ -807,7 +805,7 @@ SRD5E2024.FEATURES = {
   "Nature's Sanctuary":
     'Section=magic ' +
     // changed effects
-    'Note="R120\' Creates a 15\' cube of spectral vines and trees that can move 60\' as a bonus action, gives allies Nature\'s Ward resistance, and gives self and allies 1/2 cover, for 1 min"',
+    'Note="R120\' Creates a 15\' cube of spectral vines and trees that gives allies Nature\'s Ward resistance and gives self and allies 1/2 cover, for 1 min; can use a bonus action each rd to move it 60\'"',
   "Nature's Ward":
     'Section=save ' +
     // changed effects
@@ -3098,6 +3096,7 @@ SRD5E2024.classRulesExtra = function(rules, name) {
     rules.defineRule('magicNotes.wildShape',
       classLevel, '=', 'source<4 ? "1/4" : source<8 ? "1/2" : "1"'
     );
+    rules.defineRule('magicNotes.wildShape.1', classLevel, '=', null);
     rules.defineRule('selectableFeatureCount.Druid (Druid Subclass)',
       'featureNotes.druidSubclass', '=', '1'
     );

@@ -851,7 +851,7 @@ SRD5E2024.FEATURES = {
   'Additional Fighting Style':'Section=feature Note="+1 Fighting Style Feat"',
   'Defy Death':
     'Section=save ' +
-    'Note="Has advantage on death saves, and a roll of 18-19 on a death save gains the benefits of a 20"',
+    'Note="Has advantage on death saves, and a roll of 18-19 on a death save gives the benefits of a 20"',
   'Heroic Rally':
     'Section=combat ' +
     'Note=' +
@@ -874,7 +874,7 @@ SRD5E2024.FEATURES = {
   // Monk
   'Acrobatic Movement':
     'Section=ability ' +
-    'Note="Can move across vertical surfaces and liquids when unarmored"',
+    'Note="Can move across vertical surfaces and liquids when unarmored and not using a shield"',
   'Body And Mind':'Section=ability Note="+4 Dexterity/+4 Wisdom"',
   'Deflect Attacks':
     SRD5E.FEATURES['Deflect Missiles']
@@ -900,7 +900,7 @@ SRD5E2024.FEATURES = {
     'Note="Has increased Flurry Of Blows, Patient Defense, and Step Of The Wind effects"',
   'Martial Arts':
     SRD5E.FEATURES['Martial Arts']
-    .replace(' after attacking', ''),
+    .replace('after attacking', ' and can use Dexterity instead of Strength to Grapple and Shove'),
   'Monk Subclass':SRD5E.FEATURES['Monastic Tradition'],
   "Monk's Focus":
     'Section=combat,combat ' +
@@ -921,7 +921,7 @@ SRD5E2024.FEATURES = {
   'Step Of The Wind':
     'Section=combat ' +
     // changed effects
-    'Note="Can use a bonus action to Dash, optionally spending 1 focus point to Disengage and to double jump distance%{combatNotes.heightenedFocus?\'; can bring along 1 Large creature when moving\':\'\'}"',
+    'Note="Can use a bonus action to Dash, optionally spending 1 focus point to Disengage and to double jump distance%{combatNotes.heightenedFocus?\'; can bring along 1 willing Large creature when moving without provoking opportunity attacks\':\'\'}"',
   'Stillness Of Mind':SRD5E.FEATURES['Stillness Of Mind'],
   'Stunning Strike':
     SRD5E.FEATURES['Stunning Strike']
@@ -937,7 +937,7 @@ SRD5E2024.FEATURES = {
   // Unarmored Defense as above
   'Uncanny Metabolism':
     'Section=combat ' +
-    'Note="Can regain all focus points and 1d%{combatNotes.martialArts}+%{levels.Monk} hit points at initiative once per long rest"',
+    'Note="Can regain all focus points and 1d%{combatNotes.martialArts}+%{levels.Monk} hit points during initiative once per long rest"',
   // Warrior Of The Open Hand
   'Fleet Step':
     'Section=combat ' +
@@ -2918,7 +2918,7 @@ SRD5E2024.choiceRules = function(rules, type, name, attrs) {
     let category = QuilvynUtils.getAttrValue(attrs, 'Category');
     let properties = QuilvynUtils.getAttrValueArray(attrs, 'Property');
     let isMonkWeapon =
-      category == 'Unarmed' || category == 'Simple' ||
+      category == 'Unarmed' || category.includes('Simple') ||
       properties.includes('Light');
     SRD5E2024.weaponRules(rules, name,
       category,
@@ -3085,7 +3085,7 @@ SRD5E2024.classRulesExtra = function(rules, name) {
     );
     rules.defineRule
       ('skillNotes.thaumaturge', 'wisdomModifier', '=', 'Math.max(source, 1)');
-    rules.defineRule('spellSlots.C0', 'magicNotes.thaumaturge', '+', '1');
+    rules.defineRule('spellsAvailable.C0', 'magicNotes.thaumaturge', '+', '1');
 
   } else if(name == 'Druid') {
 
@@ -3108,7 +3108,7 @@ SRD5E2024.classRulesExtra = function(rules, name) {
     rules.defineRule('selectableFeatureCount.Druid (Primal Order)',
       'featureNotes.primalOrder', '=', '1'
     );
-    rules.defineRule('spellSlots.D0', 'magicNotes.magician', '+', '1');
+    rules.defineRule('spellsAvailable.D0', 'magicNotes.magician', '+', '1');
 
   } else if(name == 'Fighter') {
 
@@ -3206,7 +3206,8 @@ SRD5E2024.classRulesExtra = function(rules, name) {
     rules.defineRule('selectableFeatureCount.Paladin (Paladin Subclass)',
       'featureNotes.paladinSubclass', '=', '1'
     );
-    rules.defineRule('spellSlots.C0', 'magicNotes.blessedWarrior', '+=', '2');
+    rules.defineRule
+      ('spellsAvailable.C0', 'magicNotes.blessedWarrior', '+=', '2');
 
   } else if(name == 'Ranger') {
 
@@ -3239,7 +3240,8 @@ SRD5E2024.classRulesExtra = function(rules, name) {
     rules.defineRule
       ('skillNotes.expertise', classLevel, '+=', 'source<9 ? null : 2');
     rules.defineRule('speed', 'abilityNotes.roving.1', '+', null);
-    rules.defineRule('spellSlots.D0', 'magicNotes.druidicWarrior', '+=', '2');
+    rules.defineRule
+      ('spellsAvailable.D0', 'magicNotes.druidicWarrior', '+=', '2');
 
   } else if(name == 'Rogue') {
 
@@ -3362,9 +3364,13 @@ SRD5E2024.featRulesExtra = function(rules, name) {
     );
   } else if(name.match(/^Magic Initiate \(.*\)$/)) {
     let c = name.replace('Magic Initiate (', '').replace(')', '');
-    rules.defineRule('casterLevels.' + (c == 'Warlock' ? 'K' : c.charAt(0)),
-      'features.' + name, '^=', '1'
-    );
+    let spellChar = c == 'Warlock' ? 'K' : c.charAt(0);
+    rules.defineRule
+      ('casterLevels.' + spellChar, 'features.' + name, '^=', '1');
+    rules.defineRule
+      ('spellsAvailable.' + spellChar + '0', 'features.' + name, '+=', '2');
+    rules.defineRule
+      ('spellsAvailable.' + spellChar, 'features.' + name, '+=', '1');
   } else if(name == 'Skilled') {
     rules.defineRule('skillNotes.skilled', 'feats.Skilled', '=', 'source * 3');
     // Since the proficiencies from Skilled can be applied to either skills or
@@ -3670,6 +3676,8 @@ SRD5E2024.weaponRules = function(
     });
   }
 };
+
+SRD5E2024.spellsAvailableRules = SRD5E.spellsAvailableRules;
 
 /* Returns an ObjectViewer loaded with the default character sheet format. */
 SRD5E2024.createViewers = function(rules, viewers) {

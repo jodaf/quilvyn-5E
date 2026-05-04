@@ -983,7 +983,7 @@ SRD5E.FEATURES = {
   // Monk
   'Deflect Missiles':
     'Section=combat ' +
-    'Note="Can use a reaction to reduce suffered missile damage by 1d10+%{levels.Monk+dexterityModifier} HP; reducing it to 0 HP allows spending 1 ki point to make an immediate attack with the missile"',
+    'Note="Can use a reaction to reduce suffered missile damage by 1d10+%{levels.Monk+dexterityModifier} HP; reducing it to 0 HP allows expending 1 ki point to make an immediate attack with the missile"',
   'Diamond Soul':
     'Section=save,save ' +
     'Note=' +
@@ -1004,8 +1004,10 @@ SRD5E.FEATURES = {
   'Ki-Empowered Strikes':
     'Section=combat Note="Unarmed strikes count as magical"',
   'Martial Arts':
-    'Section=combat ' +
-    'Note="When unarmored and wielding only Monk weapons, gains +%1 attack and damage with unarmed strikes and weapon attacks, raises their damage dice to 1d%V, and can use a bonus action to make an unarmed strike after attacking"',
+    'Section=combat,combat ' +
+    'Note=' +
+      '"When unarmored and wielding only Monk weapons, gains +%1 attack and damage with unarmed strikes and weapon attacks and raises their damage dice to 1d%V",' +
+      '"Can use a bonus action to make an unarmed strike after attacking"',
   'Monastic Tradition':'Section=feature Note="1 selection"',
   'Patient Defense':
     'Section=combat Note="Can spend 1 ki point to Dodge as a bonus action"',
@@ -1024,7 +1026,7 @@ SRD5E.FEATURES = {
     'Note="Can use an action to end charm or fright affecting self"',
   'Stunning Strike':
     'Section=combat ' +
-    'Note="Can spend 1 ki point after a successful attack to stun the target until the end of the next turn (save DC %{monkSaveDC} Constitution negates)"',
+    'Note="Can spend 1 ki point after a successful attack to stun the target (save DC %{monkSaveDC} Constitution negates) until the end of the next turn"',
   'Timeless Body (Monk)':
     'Section=feature ' +
     'Note="Suffers no debility from aging and needs no food or water"',

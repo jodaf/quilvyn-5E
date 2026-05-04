@@ -968,14 +968,14 @@ SRD5E.FEATURES = {
   'Additional Fighting Style':
     'Section=feature Note="Can select a second Fighting Style"',
   'Improved Critical':
-    'Section=combat Note="Scores a possible critical on a natural 19"',
+    'Section=combat Note="Scores a critical hit on a natural 19"',
   'Remarkable Athlete':
     'Section=ability,skill ' +
     'Note=' +
       '"+%{proficiencyBonus//2} on non-proficient Strength, Dexterity, and Constitution checks",' +
       '"+%{strengthModifier}\' running jump distance"',
   'Superior Critical':
-    'Section=combat Note="Scores a potential critical on a natural 18"',
+    'Section=combat Note="Scores a critical hit on a natural 18"',
   'Survivor':
     'Section=combat ' +
     'Note="Regains %{constitutionModifier+5} hit points each rd when between 1 and %{hitPoints//2} hit points"',
@@ -4410,27 +4410,8 @@ SRD5E.classRules = function(
     spellAbility + 'Modifier', '=', null
   );
 
-  if(spellsAvailable.length > 0) {
-    spellsAvailable.forEach(s => {
-      let pieces = s.split(/[:;]/);
-      for(i = 1; i < pieces.length; i++) {
-        let matchInfo = pieces[i].match(/^(\d+)@(\d+)$/);
-        if(!matchInfo) {
-          console.log('Bad spells available "' + pieces[i] + '"');
-          pieces[i] = '';
-        } else {
-          pieces[i] = 'source>=' + matchInfo[2] + ' ? ' + matchInfo[1] + ' : ';
-        }
-      }
-      if(pieces[1].startsWith('source>=1 ?'))
-        pieces[1] = pieces[1].replace('source>=1 ? ', '').replace(' : ', '');
-      else
-        pieces[1] += 'null';
-      rules.defineRule('spellsAvailable.' + pieces.shift(),
-        classLevel, '=', pieces.reverse().join('')
-      );
-    });
-  }
+  if(spellsAvailable.length > 0)
+    SRD5E.spellsAvailableRules(rules, classLevel, spellsAvailable);
 
   if(spellSlots.length > 0) {
 
@@ -4802,12 +4783,17 @@ SRD5E.classRulesExtra = function(rules, name) {
 
   } else if(name == 'Wizard') {
 
+    rules.defineRule('intelligenceSpellsAvailableBoost',
+      // Exclude Eldritch Knight + Arcane Trickster from spellsAvailable.W boost
+      classLevel, '?', null,
+      'intelligenceModifier', '=', null
+    );
     rules.defineRule('magicNotes.spellcasting.1', classLevel, '=', '1');
     rules.defineRule('selectableFeatureCount.Wizard (Arcane Tradition)',
       'featureNotes.arcaneTradition', '=', '1'
     );
     rules.defineRule('spellsAvailable.W',
-      'intelligenceModifier', '+', null,
+      'intelligenceSpellsAvailableBoost', '+', null,
       '', '^', '1'
     );
 
@@ -5264,6 +5250,39 @@ SRD5E.featureSpells = function(rules, feature, spellType, levelAttr, spellList){
     }
   }
 
+};
+
+/*
+ * Parallel function to QuilvynRules.spellSlotRules that performs the same
+ * steps for spellsAvailable; should be merged when QuilvynRules is updated.
+ * Defines in #rules# the rules required to allocate the list of spells
+ * available #spellsAvailable# to the character. #levelAttr# is the name of the
+ * attribute that holds the character's level for acquiring these spells. Each
+ * element of #spellsAvailable# has the format
+ * "type:count@level[;count@level...]", where type indicates the spell type and
+ * level (e.g., "C0") and each count/level pair gives the number of that type
+ * of spell acquired at the given level.
+ */
+SRD5E.spellsAvailableRules = function(rules, levelAttr, spellsAvailable) {
+  spellsAvailable.forEach(s => {
+    let pieces = s.split(/[:;]/);
+    for(let i = 1; i < pieces.length; i++) {
+      let matchInfo = pieces[i].match(/^(\d+)@(\d+)$/);
+      if(!matchInfo) {
+        console.log('Bad spells available "' + pieces[i] + '"');
+        pieces[i] = '';
+      } else {
+        pieces[i] = 'source>=' + matchInfo[2] + ' ? ' + matchInfo[1] + ' : ';
+      }
+    }
+    if(pieces[1].startsWith('source>=1 ?'))
+      pieces[1] = pieces[1].replace('source>=1 ? ', '').replace(' : ', '');
+    else
+      pieces[1] += 'null';
+    rules.defineRule('spellsAvailable.' + pieces.shift(),
+      levelAttr, '+=', pieces.reverse().join('')
+    );
+  });
 };
 
 /*

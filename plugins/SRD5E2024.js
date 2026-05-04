@@ -584,7 +584,7 @@ SRD5E2024.FEATURES = {
     .replace(' melee', '')
     .replace('1 min', '1 rd (attacking, forcing a save, or using a bonus action each rd extends the rage for up to 10 min)')
     .replace('unlimited', '6')
-    .replace('long rest', 'long rest, regaining 1 use after a short rest')
+    .replace('long rest', 'long rest; regains 1 use after a short rest')
     .replace('negates the benefits', 'ends the rage'),
   'Reckless Attack':
     SRD5E.FEATURES['Reckless Attack']
@@ -595,7 +595,7 @@ SRD5E2024.FEATURES = {
   'Unarmored Defense':SRD5E.FEATURES['Unarmored Defense'],
   'Weapon Mastery':
     'Section=combat '+
-    'Note="Can use the mastery properties of %V chosen kinds of Simple or Martial Melee weapons"',
+    'Note="Can use the mastery properties of %V chosen kinds of simple or martial melee weapons"',
   // Berserker
   'Frenzy':
     // changed effects
@@ -769,7 +769,7 @@ SRD5E2024.FEATURES = {
   'Wild Shape':
     'Section=magic ' +
     // changed effects
-    'Note="Can use a bonus action to transform into a CR %V%{levels.Druid<8?\' (non-flying)\':\'\'} creature with %1 temporary hit points for %{levels.Druid//2} hr %{levels.Druid<6?2:levels.Druid<17?3:4} times per long rest; a short rest restores 1 use"',
+    'Note="Can use a bonus action to transform into a CR %V%{levels.Druid<8?\' (non-flying)\':\'\'} creature with %1 temporary hit points for %{levels.Druid//2} hr %{levels.Druid<6?2:levels.Druid<17?3:4} times per long rest; regains 1 use after a short rest"',
   // Circle Of The Land
   'Arid Land':
     'Spells=' +
@@ -816,7 +816,9 @@ SRD5E2024.FEATURES = {
     'Note="Has immunity to poisoned and resistance to fire, cold, lightning, or poison depending on whether Circle Spells are currently taken from Arid, Polar, Temperate, or Tropical Land"',
 
   // Fighter
-  'Action Surge':SRD5E.FEATURES['Action Surge'],
+  'Action Surge':
+    SRD5E.FEATURES['Action Surge']
+    .replace('action', 'non-magic action'),
   // Epic Boon as above
   // Extra Attack as above
   'Fighter Primary Ability':'Section=feature Note="1 selection"',
@@ -828,7 +830,7 @@ SRD5E2024.FEATURES = {
   'Second Wind':
     'Section=combat ' +
     // changed effects
-    'Note="Can use a bonus action to regain 1d10+%{levels.Fighter} hit points %V times per long rest; can regain 1 use after a short rest"',
+    'Note="Can use a bonus action to regain 1d10+%{levels.Fighter} hit points %V times per long rest; regains 1 use after a short rest"',
   'Studied Attacks':
     'Section=combat ' +
     'Note="Missed attack gives advantage on the next attack on the same target before the end of the next turn"',
@@ -849,7 +851,7 @@ SRD5E2024.FEATURES = {
   'Additional Fighting Style':'Section=feature Note="+1 Fighting Style Feat"',
   'Defy Death':
     'Section=save ' +
-    'Note="Has advantage on death saves, and a roll of 18-19 on one gains the benefits of a 20"',
+    'Note="Has advantage on death saves, and a roll of 18-19 on a death save gains the benefits of a 20"',
   'Heroic Rally':
     'Section=combat ' +
     'Note=' +

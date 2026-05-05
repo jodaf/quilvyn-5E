@@ -974,7 +974,7 @@ SRD5E2024.FEATURES = {
   // Extra Attack as above
   'Faithful Steed':
     'Section=magic ' +
-    'Note="Can cast <i>Find Steed</i> once per long rest" ' +
+    'Note="Can cast <i>Find Steed</i> without expending a spell slot once per long rest" ' +
     'Spells="Find Steed"',
   // Fighting Style as above
   'Lay On Hands':
@@ -984,7 +984,7 @@ SRD5E2024.FEATURES = {
   'Paladin Fighting Style':'Section=feature Note="1 selection"',
   "Paladin's Smite":
     'Section=magic ' +
-    'Note="Can cast <i>Divine Smite</i> once per long rest" ' +
+    'Note="Can cast <i>Divine Smite</i> without expending a spell slot once per long rest" ' +
     'Spells="Divine Smite"',
   'Paladin Subclass':SRD5E.FEATURES['Sacred Oath'],
   'Radiant Strikes':SRD5E.FEATURES['Improved Divine Smite'],

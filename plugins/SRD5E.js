@@ -1061,7 +1061,7 @@ SRD5E.FEATURES = {
     'Section=save,save ' +
     'Note=' +
       '"+%{charismaModifier>?1} on all saves",' +
-      '"R%{levels.Paladin<18?10:30}\' Gives allies +%{charismaModifier>?1} on all saves"',
+      '"R%{levels.Paladin<18?10:30}\' Allies have +%{charismaModifier>?1} on all saves"',
   // Channel Divinity as above
   'Cleansing Touch':
     'Section=magic ' +
@@ -1089,7 +1089,7 @@ SRD5E.FEATURES = {
   'Holy Nimbus':
     'Section=combat ' +
     'Note=' +
-      '"Can emit a 30\' bright light that inflicts 10 HP radiant on foes and gives self advantage on saves vs. spells by fiends and undead for 1 min once per long rest"',
+      '"Can emit a 30\' bright sunlight that inflicts 10 HP radiant on foes and gives self advantage on saves vs. spells by fiends and undead for 1 min once per long rest"',
   'Oath Of Devotion Spells':
     'Spells=' +
       '"3:Protection From Evil And Good","3:Sanctuary",' +

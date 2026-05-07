@@ -593,9 +593,17 @@ SRD5E2024.FEATURES = {
     SRD5E.FEATURES['Relentless Rage']
     .replace('1 hit point', '%{levels.Barbarian*2} hit points'),
   'Unarmored Defense':SRD5E.FEATURES['Unarmored Defense'],
+  // Note: the kinds of weapons allowed by Weapon Mastery differ by class:
+  // Fighter: simple or martial
+  // Barbarian: simple or martial melee
+  // Paladin, Ranger, Rogue: proficient
+  // Since Barbarians and Fighters have proficiency in simple and martial
+  // weapons, these are equivalent except for the Barbarian melee limitation.
+  // Could use %1, filled in by classRulesExtra, but that seems overly complex
+  // and more difficult to get right when multiclassing
   'Weapon Mastery':
     'Section=combat '+
-    'Note="Can use the mastery properties of %V chosen kinds of simple or martial melee weapons"',
+    'Note="Can use the mastery properties of %V chosen kinds of proficient%{level==levels.Barbarian?\' melee\':\'\'} weapons"',
   // Berserker
   'Frenzy':
     // changed effects
@@ -620,7 +628,7 @@ SRD5E2024.FEATURES = {
   // Epic Boon as above
   'Expertise':
     // changed effects
-    'Section=skill Note="+%{proficiencyBonus} on %V chosen proficient skills"',
+    'Section=skill Note="Has expertise with %V chosen proficient skills"',
   'Font Of Inspiration':
     'Section=combat,magic ' +
     // changed effects
@@ -1000,7 +1008,7 @@ SRD5E2024.FEATURES = {
     .replace('emit', 'use a bonus action to emit')
     .replace('1 min', '10 min')
     .replace('spells by ', '')
-    .replace('long rest', 'long rest; can spend level 5 spell slots for additional uses')
+    .replace('long rest', 'long rest; can expend level 5 spell slots for additional uses')
     .replace('10 HP', '%{charismaModifier+proficiencyBonus} HP'),
   'Oath Of Devotion Spells':
     'Spells=' +
@@ -1019,10 +1027,8 @@ SRD5E2024.FEATURES = {
 
   // Ranger
   'Deft Explorer':
-    'Section=skill,skill ' +
-    'Note=' +
-      '"Language (Choose 2 from any)",' +
-      '"+%{proficiencyBonus} on a choice of proficient skill"',
+    'Section=skill ' +
+    'Note="Language (Choose 2 from any)/Has expertise with 1 chosen proficient skill"',
   'Druidic Warrior':
     'Section=magic ' +
     'Note="Knows 2 Druid cantrips; can replace 1 of them when gaining a Ranger level"',
@@ -1030,7 +1036,7 @@ SRD5E2024.FEATURES = {
   'Favored Enemy':
     'Section=magic ' +
     // changed effects
-    'Note="Can cast <i>Hunter\'s Mark</i> %{(levels.Ranger+7)//4} times per long rest" ' +
+    'Note="Can cast <i>Hunter\'s Mark</i> without expending a spell slot %{(levels.Ranger+7)//4} times per long rest" ' +
     'Spells="Hunter\'s Mark"',
   // Epic Boon as above
   // Extra Attack as above
@@ -1087,7 +1093,7 @@ SRD5E2024.FEATURES = {
     // changed effects
     'Note="Successful attackers suffer disadvantage on additional attacks on self in the same turn"',
   "Superior Hunter's Prey":
-    'Section=magic ' +
+    'Section=combat ' +
     'Note="Can inflict <i>Hunter\'s Mark</i> damage to a second creature within 30\' of the target once per turn"',
   "Superior Hunter's Defense":
     'Section=save ' +
@@ -1097,7 +1103,7 @@ SRD5E2024.FEATURES = {
   'Cunning Action':SRD5E.FEATURES['Cunning Action'],
   'Cunning Strike':
     'Section=combat ' +
-    'Note="Can reduce Sneak Attack damage to inflict %{combatNotes.improvedCunningStrike?\'2 choices of\':\'a choice of\'}: %{combatNotes.deviousStrikes?\\"limitation to 1 action or move on the target\'s next turn (save Constitution negates) (reduces damage by 2d6 HP), unconsciousness (save Constitution negates; additional saves each rd end) for 1 min (reduces damage by 6d6 HP), blindness until the end of its next turn (save Dexterity negates) (reduces damage by 3d6), \\":\'\'}poisoned (save Constitution negates; additional saves each rd end) for 1 min (reduces damage by 1d6 HP), prone (save Dexterity negates) (reduces damage by 1d6 HP), or to move %{speed//2}\' after attacking without provoking opportunity attacks (reduces damage by 1d6 HP)"',
+    'Note="Can reduce Sneak Attack damage to inflict %{combatNotes.improvedCunningStrike?\'2 choices of\':\'a choice of\'}: %{combatNotes.deviousStrikes?\\"limitation to 1 action or move on the target\'s next turn (save Constitution negates) (reduces damage by 2d6 HP), unconsciousness (save Constitution negates; additional saves each rd end) for 1 min (reduces damage by 6d6 HP), blindness until the end of the target\'s next turn (save Dexterity negates) (reduces damage by 3d6), \\":\'\'}poisoned (save Constitution negates; additional saves each rd end) for 1 min (reduces damage by 1d6 HP), prone (save Dexterity negates; Huge and larger targets are unaffected) (reduces damage by 1d6 HP), or to move %{speed//2}\' after attacking without provoking opportunity attacks (reduces damage by 1d6 HP)"',
   'Devious Strikes':
     'Section=combat Note="Has increased Cunning Strike effects"',
   'Elusive':SRD5E.FEATURES.Elusive,
@@ -1109,7 +1115,7 @@ SRD5E2024.FEATURES = {
   'Reliable Talent':
     // changed effects
     'Section=skill ' +
-    'Note="Scores at least a 10 on proficient skill and tool checks"',
+    'Note="Scores at least a 10 on proficient skill and tool check rolls"',
   'Rogue Subclass':SRD5E.FEATURES['Roguish Archetype'],
   'Slippery Mind':
     SRD5E.FEATURES['Slippery Mind']
@@ -1117,17 +1123,15 @@ SRD5E2024.FEATURES = {
   'Sneak Attack':SRD5E.FEATURES['Sneak Attack'],
   'Steady Aim':
     'Section=combat ' +
-    'Note="Can use a bonus action and forego moving to gain advantage on the next attack in the same turn"',
+    'Note="Can use a bonus action%{combatNotes.infiltrationExpertise?\'\':\' and forego moving\'} to gain advantage on the next attack in the same turn"',
   'Stroke Of Luck':
     // changed effects
     'Section=ability ' +
-    'Note="Can take an automatic 20 on an ability check once per short rest"',
+    'Note="Can change a failed ability check roll to a 20 once per short rest"',
   "Thieves' Cant":
     // Changed effects
     'Section=skill Note="Language (Thieves\' Cant; Choose 1 from any)"',
-  'Uncanny Dodge':
-    'Section=combat ' +
-    'Note="Can use a reaction to reduce the damage from a seen attacker by half"',
+  'Uncanny Dodge':SRD5E.FEATURES['Uncanny Dodge'],
   // Weapon Mastery as above
   // Thief
   'Fast Hands':
@@ -1139,7 +1143,7 @@ SRD5E2024.FEATURES = {
     'Note=' +
       // changed effects
       '"Has a %{speed}\' climb Speed",' +
-      '"+%{dexterityModifier-strengthModifier}\' running jump distance"',
+      '"+%{dexterity-strength}\' running jump distance"',
   'Supreme Sneak':
     'Section=combat ' +
     // changed effects
@@ -1148,7 +1152,7 @@ SRD5E2024.FEATURES = {
   'Use Magic Device':
     'Section=skill ' +
     // changed effects
-    'Note="Has a 1 in 6 chance of using a magic item without expending a charge and can attune 4 magic items, use cantrip and level 1 spell scrolls reliably, and use higher-level spell scrolls with a successful DC 10 + spell level Arcana check"',
+    'Note="Has a 1 in 6 chance of using a magic item without expending a charge and can attune 4 magic items, use cantrip and level 1 spell scrolls reliably, and use a higher-level spell scroll with a successful DC 10 + spell level Arcana check"',
 
   // Sorcerer
   'Arcane Apotheosis':
@@ -1216,7 +1220,7 @@ SRD5E2024.FEATURES = {
   'Dragon Wings':
     'Section=ability ' +
     // changed effects
-    'Note="Can use a bonus action to gain a 60\' fly Speed for 1 hr once per long rest; can spend 3 sorcery points for additional uses"',
+    'Note="Can use a bonus action to gain a 60\' fly Speed for 1 hr once per long rest; can expend 3 sorcery points for additional uses"',
   'Elemental Affinity':
     'Section=magic,save ' +
     // changed effects
@@ -3218,7 +3222,10 @@ SRD5E2024.classRulesExtra = function(rules, name) {
     rules.defineRule
       ('combatNotes.extraAttack', classLevel, '^=', 'source<5 ? null : 2');
     rules.defineRule('combatNotes.weaponMastery', classLevel, '+=', '2');
-    rules.defineRule('expertiseCount', 'skillNotes.expertise', '+=', null);
+    rules.defineRule('expertiseCount',
+      'skillNotes.deftExplorer', '+=', '1',
+      'skillNotes.expertise', '+=', null
+    );
     rules.defineRule('features.Colossus Slayer',
       "combatNotes.hunter'sPrey", '=', '1'
     );

@@ -1151,7 +1151,7 @@ SRD5E.FEATURES = {
     'Note="Can use a reaction to attack an adjacent Large or larger foe after it misses self"',
   'Horde Breaker':
     'Section=combat ' +
-    'Note="Can make a second weapon attack on a different adjacent foe once per turn"',
+    'Note="Can make a second weapon attack on a foe adjacent to the first target once per turn"',
   "Hunter's Prey":'Section=feature Note="1 selection"',
   'Multiattack':'Section=feature Note="1 selection"',
   'Multiattack Defense':
@@ -1164,7 +1164,7 @@ SRD5E.FEATURES = {
   "Superior Hunter's Defense":'Section=feature Note="1 selection"',
   'Uncanny Dodge':
     'Section=combat ' +
-    'Note="Can use a reaction to reduce the damage taken from an attack by half"',
+    'Note="Can use a reaction to reduce the damage taken from a seen attacker by half"',
   'Volley':
     'Section=combat ' +
     'Note="Can make a ranged attack on any number of foes in a 10\' radius"',
@@ -1187,10 +1187,10 @@ SRD5E.FEATURES = {
   'Slippery Mind':'Section=save Note="Save Proficiency (Wisdom)"',
   'Sneak Attack':
     'Section=combat ' +
-    'Note="Inflicts +%{(levels.Rogue+1)//2}d6 HP on attacks with advantage or on a foe threatened by another adjacent creature once per turn"',
+    'Note="Once per turn, inflicts +%{(levels.Rogue+1)//2}d6 HP on an attack using a finesse or ranged weapon with advantage or on a foe threatened by another adjacent creature"',
   'Stroke Of Luck':
     'Section=combat ' +
-    'Note="Can change a miss into a hit or take an automatic 20 on an ability check once per short rest"',
+    'Note="Can change a miss into a hit or a failed ability check roll to a 20 once per short rest"',
   "Thieves' Cant":
     'Section=skill Note="Understands jargon and signs known only by rogues"',
   // Uncanny Dodge as above
@@ -1207,7 +1207,7 @@ SRD5E.FEATURES = {
     'Section=skill Note="Has advantage on Stealth when moving at half speed"',
   "Thief's Reflexes":
     'Section=combat ' +
-    'Note="Can take an second turn during the first combat round at initiative - 10"',
+    'Note="Can take an second turn during the first combat rd at initiative - 10"',
   'Use Magic Device':
     'Section=skill ' +
     'Note="Ignores class, race, and level restrictions on magic device use"',

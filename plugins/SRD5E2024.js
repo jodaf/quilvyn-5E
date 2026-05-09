@@ -423,9 +423,9 @@ SRD5E2024.CLASSES = {
       'S2:2@3;3@4,' +
       'S3:2@5;3@6,' +
       'S4:1@7;2@8;3@9,' +
-      'S5:1@9;2@10,' +
-      'S6:1@11,' +
-      'S7:1@13,' +
+      'S5:1@9;2@10;3@18,' +
+      'S6:1@11;2@19,' +
+      'S7:1@13;2@20,' +
       'S8:1@15,' +
       'S9:1@17 ' +
     'MulticlassPrerequisite="charisma >= 13"',
@@ -1157,24 +1157,24 @@ SRD5E2024.FEATURES = {
   // Sorcerer
   'Arcane Apotheosis':
     'Section=magic ' +
-    'Note="While using Innate Sorcery, can use 1 Metamagic option each turn without spending Sorcery Points"',
+    'Note="While using Innate Sorcery, can use 1 Metamagic option each turn without spending sorcery points"',
   // Epic Boon as above
   'Font Of Magic':
     'Section=magic ' +
     // changed effects
-    'Note="Can use %V Sorcery Points per long rest, convert spell slots to Sorcery Points, and use a bonus action to convert Sorcery Points to a spell slot"',
+    'Note="Can use %V sorcery points per long rest, convert spell slots to sorcery points, and use a bonus action to convert sorcery points to a spell slot"',
   'Innate Sorcery':
     'Section=magic ' +
     'Note="Can use a bonus action to gain +1 spell DC and advantage on spell attacks for 1 min 2 times per long rest"',
   'Metamagic':SRD5E.FEATURES.Metamagic,
   'Sorcerer Subclass':SRD5E.FEATURES['Sorcerous Origin'],
   'Sorcerous Restoration':
-    SRD5E.FEATURES['Sorcerous Restoration']
-    .replace('4', '%{levels.Sorcerer//2}')
-    .replace('Points', 'Points once per long rest'),
+    'Section=magic ' +
+    // changed effects
+    'Note="Can regain %{levels.Sorcerer//2} sorcery points after a short rest once per long rest"',
   'Sorcery Incarnate':
     'Section=magic ' +
-    'Note="Can spend 2 Sorcery Points for additional uses of Innate Sorcery, and can use 2 Metamagic options on each spell"',
+    'Note="Can spend 2 sorcery points for additional uses of Innate Sorcery, and can use 2 Metamagic options on each spell"',
   // Spellcasting as above
   // Metamagic
   'Careful Spell':
@@ -1189,20 +1189,22 @@ SRD5E2024.FEATURES = {
     SRD5E.FEATURES['Heightened Spell']
     .replace('3', '2')
     .replace('initial save', 'saves'),
-  'Quickened Spell':SRD5E.FEATURES['Quickened Spell'],
+  'Quickened Spell':
+    SRD5E.FEATURES['Quickened Spell']
+    .replace('spell', 'spell; cannot cast additional spells in the same turn'),
   'Seeking Spell':
     'Section=magic ' +
-    'Note="Can spend 1 Sorcery Point to reroll a failed spell attack"',
+    'Note="Can spend 1 sorcery point to reroll a failed spell attack; can be used in addition to another Metamagic option"',
   'Subtle Spell':
     SRD5E.FEATURES['Subtle Spell']
     .replace('somatic', 'somatic, material,'),
   'Transmuted Spell':
     'Section=magic ' +
-    'Note="Can spend 1 Sorcery Point to change the damage type of an acid, cold, fire, lightning, poison, or thunder spell to a different type from that list"',
+    'Note="Can spend 1 sorcery point to change the damage type of an acid, cold, fire, lightning, poison, or thunder spell to a different type from that list"',
   'Twinned Spell':
     'Section=magic ' +
     // changed effects
-    'Note="Can spend 1 Sorcery Point to increase a spell\'s level by 1 so that it affects a second target"',
+    'Note="Can spend 1 sorcery point to increase a spell\'s level by 1 so that it affects a second target"',
   // Draconic Sorcery
   'Draconic Resilience':
     SRD5E.FEATURES['Draconic Resilience']
@@ -3273,7 +3275,7 @@ SRD5E2024.classRulesExtra = function(rules, name) {
       'charismaModifier', '=', null
     );
     rules.defineRule('featureNotes.metamagic',
-      classLevel, '=', 'source<10 ? 2 : source<17 ? 3 : 4'
+      classLevel, '=', 'source<10 ? 2 : source<17 ? 4 : 6'
     );
     rules.defineRule('magicNotes.fontOfMagic', classLevel, '=', null);
     rules.defineRule('selectableFeatureCount.Sorcerer (Metamagic)',

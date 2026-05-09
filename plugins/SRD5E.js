@@ -1215,37 +1215,37 @@ SRD5E.FEATURES = {
   // Sorcerer
   'Font Of Magic':
     'Section=magic ' +
-    'Note="Can use %V Sorcery Points per long rest and can use a bonus action to convert between Sorcery Points and spell slots"',
+    'Note="Can use %V sorcery points per long rest and can use a bonus action to convert between sorcery points and spell slots"',
   'Metamagic':'Section=feature Note="%V selections"',
   'Sorcerous Origin':'Section=feature Note="1 selection"',
   'Sorcerous Restoration':
-    'Section=magic Note="Taking a short rest restores 4 Sorcery Points"',
+    'Section=magic Note="Taking a short rest restores 4 sorcery points"',
   // Spellcasting as above
   // Metamagic
   'Careful Spell':
     'Section=magic ' +
-    'Note="Can spend 1 Sorcery Point to give %{charismaModifier>1?charismaModifier+\' creatures\':\'1 creature\'} a successful save on a self spell"',
+    'Note="Can spend 1 sorcery point to give %{charismaModifier>1?charismaModifier+\' creatures\':\'1 creature\'} a successful save on a self spell"',
   'Distant Spell':
     'Section=magic ' +
-    'Note="Can spend 1 Sorcery Point to double the range of a spell or to give a touch spell a 30\' range"',
+    'Note="Can spend 1 sorcery point to double the range of a spell or to give a touch spell a 30\' range"',
   'Empowered Spell':
     'Section=magic ' +
-    'Note="Can spend 1 Sorcery Point to reroll %{charismaModifier>?1} spell damage %{charismaModifier>1?\'dice\':\'die\'}"',
+    'Note="Can spend 1 sorcery point to reroll %{charismaModifier>?1} spell damage %{charismaModifier>1?\'dice\':\'die\'}; can be used in addition to another Metamagic option"',
   'Extended Spell':
     'Section=magic ' +
-    'Note="Can spend 1 Sorcery Point to double the duration of a spell, up to a 24 hr maximum"',
+    'Note="Can spend 1 sorcery point to double the duration of a spell, up to a 24 hr maximum"',
   'Heightened Spell':
     'Section=magic ' +
-    'Note="Can spend 3 Sorcery Points to inflict disadvantage on a target\'s initial save vs. a self spell"',
+    'Note="Can spend 3 sorcery points to inflict disadvantage on a target\'s initial save vs. a self spell"',
   'Quickened Spell':
     'Section=magic ' +
-    'Note="Can spend 2 Sorcery Points to use a bonus action to cast a 1-action spell"',
+    'Note="Can spend 2 sorcery points to use a bonus action to cast a 1-action spell"',
   'Subtle Spell':
     'Section=magic ' +
-    'Note="Can spend 1 Sorcery Point to cast a spell without somatic or verbal components"',
+    'Note="Can spend 1 sorcery point to cast a spell without somatic or verbal components"',
   'Twinned Spell':
     'Section=magic ' +
-    'Note="Can spend Sorcery Points equal to the level of a spell to add a second target"',
+    'Note="Can spend sorcery points equal to the level of a spell to add a second target"',
   // Draconic Bloodline
   'Draconic Bloodline':
     'Section=skill,skill ' +
@@ -1254,7 +1254,7 @@ SRD5E.FEATURES = {
       '"+%{proficiencyBonus} on proficient Charisma checks with dragons"',
   'Draconic Presence':
     'Section=magic ' +
-    'Note="R60\' Can spend 5 Sorcery Points to gain an aura that inflicts a choice of charm or fright (save DC %{spellDifficultyClass.S} Wisdom negates for 24 hr) for concentration up to 1 min"',
+    'Note="R60\' Can spend 5 sorcery points to gain an aura that inflicts a choice of charm or fright (save DC %{spellDifficultyClass.S} Wisdom negates for 24 hr) for concentration up to 1 min"',
   'Draconic Resilience':
     'Section=combat ' +
     'Note="+%{levels.Sorcerer} Hit Points/+3 Armor Class in no armor"',
@@ -1266,7 +1266,7 @@ SRD5E.FEATURES = {
     'Section=magic,save ' +
     'Note=' +
       '"Spells that deal %{draconicDamage} damage inflict +%{charismaModifier} HP",' +
-      '"Can spend 1 Sorcery Point to gain resistance to %{draconicDamage} for 1 hr"',
+      '"Can spend 1 sorcery point to gain resistance to %{draconicDamage} for 1 hr"',
 
   // Warlock
   'Eldritch Invocations':'Section=magic Note="%V selections"',

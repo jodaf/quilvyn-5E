@@ -628,7 +628,7 @@ SRD5E2024.FEATURES = {
   // Epic Boon as above
   'Expertise':
     // changed effects
-    'Section=skill Note="Has expertise with %V chosen proficient skills"',
+    'Section=skill Note="Has expertise in %V chosen proficient skills"',
   'Font Of Inspiration':
     'Section=combat,magic ' +
     // changed effects
@@ -676,7 +676,7 @@ SRD5E2024.FEATURES = {
   'Divine Intervention':
     'Section=magic ' +
     // changed effects
-    'Note="Can cast a level 5 Cleric spell without using a spell slot or material components once per long rest"',
+    'Note="Can cast a level 5 Cleric spell without expending a spell slot or material components once per long rest"',
   'Divine Order':'Section=feature Note="1 selection"',
   'Divine Spark':
     'Section=combat ' +
@@ -813,7 +813,7 @@ SRD5E2024.FEATURES = {
     'Note="R60\' Can expend a Wild Shape use to inflict %{levels.Druid<10?2:levels.Druid<14?3:4}d6 HP necrotic to targets in a 10\' radius; an additional target regains an equal number of hit points"',
   'Natural Recovery':
     SRD5E.FEATURES['Natural Recovery']
-    .replace('recover', 'cast 1 Druid spell without using a spell slot and recover'),
+    .replace('recover', 'cast 1 Druid spell without expending a spell slot and recover'),
   "Nature's Sanctuary":
     'Section=combat ' +
     // changed effects
@@ -1028,7 +1028,7 @@ SRD5E2024.FEATURES = {
   // Ranger
   'Deft Explorer':
     'Section=skill ' +
-    'Note="Language (Choose 2 from any)/Has expertise with 1 chosen proficient skill"',
+    'Note="Language (Choose 2 from any)/Has expertise in 1 chosen proficient skill"',
   'Druidic Warrior':
     'Section=magic ' +
     'Note="Knows 2 Druid cantrips; can replace 1 of them when gaining a Ranger level"',
@@ -1217,7 +1217,7 @@ SRD5E2024.FEATURES = {
       '"9:Legend Lore","9:Summon Dragon"',
   'Dragon Companion':
     'Section=magic ' +
-    'Note="Can cast <i>Summon Dragon</i> without material components once per long rest and can make its duration 1 min instead of concentration" ' +
+    'Note="Can cast <i>Summon Dragon</i> without expending a spell slot once per long rest, can cast it without material components, and can make its duration 1 min instead of concentration" ' +
     'Spells="Summon Dragon"',
   'Dragon Wings':
     'Section=ability ' +
@@ -1233,7 +1233,7 @@ SRD5E2024.FEATURES = {
   // Warlock
   'Contact Patron':
     'Section=magic ' +
-    'Note="Can use <i>Contact Other Plane</i> to contact patron once per long rest" ' +
+    'Note="Can cast <i>Contact Other Plane</i> without expending a spell slot to contact patron once per long rest" ' +
     'Spells="Contact Other Plane"',
   'Eldritch Invocations':'Section=magic Note="%V selections"',
   'Eldritch Master':
@@ -1262,29 +1262,30 @@ SRD5E2024.FEATURES = {
     'Section=save ' +
     'Note="Has advantage on Constitution saves to maintain concentration"',
   'Eldritch Smite':
-    'Section=combat Note="Can spend a spell slot upon a pact weapon hit to inflict +1d8 HP force plus +1d8 HP force per spell level and to inflict prone on a Huge or smaller target"',
+    'Section=combat Note="Can expend a spell slot upon a pact weapon hit to inflict +1d8 HP force plus +1d8 HP force per slot level and to inflict prone on a Huge or smaller target"',
   'Eldritch Spear':
     // changed effects
     'Section=magic ' +
-    'Note="Increases the range of %{$\'features.Eldritch Spear\'>1?$\'features.Eldritch Spear\'+\' chosen ranged Warlock cantrips\':\'a chosen ranged Warlock cantrip\'} by %{30*levels.Warlock}\'"',
+    'Note="Increases the range of %{$\'features.Eldritch Spear\'>1?$\'features.Eldritch Spear\':\'a\'} chosen damaging Warlock cantrip%{$\'features.Eldritch Spear\'>1?\'s\':\'\'} by %{30*levels.Warlock}\'"',
   'Fiendish Vigor':
     SRD5E.FEATURES['Fiendish Vigor']
-    .replace('at will', 'at will, gaining the maximum possible temporary hit points'),
+    .replace('slot', 'slot, gaining the maximum possible temporary hit points'),
   'Gaze Of Two Minds':
     SRD5E.FEATURES['Gaze Of Two Minds']
-    .replace('humanoid', "humanoid, and cast spells through it when within 60',"),
+    .replace('humanoid', "humanoid, and cast spells through it when within 60',")
+    .replace('extended', 'extended using bonus actions'),
   'Gift Of The Depths':
     'Section=ability,magic ' +
     'Note=' +
       '"Has a %{speed}\' swim Speed and can breathe water",' +
-      '"Can cast <i>Water Breathing</i> once per long rest" ' +
+      '"Can cast <i>Water Breathing</i> without expending a spell slot once per long rest" ' +
     'Spells="Water Breathing"',
   'Gift Of The Protectors': // ref Tasha
     'Section=magic ' +
     'Note="A creature who has written its name in the Book Of Shadows retains 1 hit point when reduced to 0 hit points once per long rest"',
   'Investment Of The Chain Master': // modified from Tasha
     'Section=magic ' +
-    'Note="Familiar gains a 40\' fly or swim Speed, can inflict a choice of necrotic or radiant damage, and inflicts DC %{spellDifficultyClass.K} saves; self can use a bonus action to command it to attack and a reaction to give it resistance to damage"',
+    'Note="Familiar gains a 40\' fly or swim Speed, can inflict a choice of necrotic or radiant damage, and inflicts DC %{spellDifficultyClass.K} saves, and self can use a bonus action to command it to attack and a reaction to give it resistance to damage"',
   'Lessons Of The First Ones':'Section=feature Note="+%V Origin Feat"',
   'Lifedrinker':
     'Section=combat ' +
@@ -1296,13 +1297,13 @@ SRD5E2024.FEATURES = {
   'One With Shadows':
     'Section=magic ' +
     // changed effects
-    'Note="Can cast <i>Invisibility</i> on self in dim light at will" ' +
+    'Note="Can cast <i>Invisibility</i> on self in dim light or darkness without expending a spell slot" ' +
     'Spells=Invisibility',
   'Otherworldly Leap':SRD5E.FEATURES['Otherworldly Leap'],
   'Pact Of The Blade':
     'Section=magic ' +
     // changed effects
-    'Note="Can use a bonus action to create a bonded simple or martial pact weapon or to bond with a touched magic weapon and gain proficiency with it; it can be used as a spellcasting focus, and its Charisma-based attacks inflict a choice of necrotic, psychic, radiant, or normal weapon damage; moving 5\' away from the weapon for 1 min ends the bond"',
+    'Note="Can use a bonus action to conjure a bonded simple or martial pact weapon or to bond with a touched magic weapon and gain proficiency with it; it can be used as a spellcasting focus, and its Charisma-based attacks inflict a choice of necrotic, psychic, radiant, or normal weapon damage; moving 5\' away from the weapon for 1 min ends the bond"',
   'Pact Of The Chain':
     SRD5E.FEATURES['Pact Of The Chain']
     .replace('as a ritual', 'without expending a spell slot'),
@@ -1324,7 +1325,7 @@ SRD5E2024.FEATURES = {
   // Fiend Patron
   "Dark One's Blessing":
     SRD5E.FEATURES["Dark One's Blessing"]
-    .replace('temporary hit points', 'temporary hit points; others reducing a foe within 10\' to 0 hit points gives the same benefit'),
+    .replace('temporary hit points', 'temporary hit points; others reducing a foe within 10\' to 0 hit points gives self the same benefit'),
   'Fiend Spells':
     'Spells=' +
       '"3:Burning Hands","3:Command","3:Scorching Ray","3:Suggestion",' +
@@ -1351,15 +1352,16 @@ SRD5E2024.FEATURES = {
     'Note="Can replace a prepared spell at the end of a short rest"',
   'Ritual Adept':
     'Section=magic ' +
-    'Note="Can cast spells marked with [R] as rituals without preparation"',
+    'Note="Can cast spells marked with [R] as rituals directly from spellbook"',
   'Scholar':
     'Section=skill ' +
-    'Note="+%{proficiencyBonus} in a choice of proficient Arcana, History, Investigation, Medicine, Nature, or Religion"',
+    // TODO likely doesn't work with randomizeOneAttribute
+    'Note="Has expertise in a choice of proficient Arcana, History, Investigation, Medicine, Nature, or Religion"',
   'Signature Spells':SRD5E.FEATURES['Signature Spells'],
   'Spell Mastery':
     SRD5E.FEATURES['Spell Mastery']
-    .replace('the choices', 'one choice')
-    .replace('8 hr or study', 'a long rest'),
+    .replace('the choices', 'a choice')
+    .replace('8 hr of study', 'a long rest'),
   // Spellcasting as above
   'Wizard Subclass':SRD5E.FEATURES['Arcane Tradition'],
   // Evoker
@@ -1367,7 +1369,7 @@ SRD5E2024.FEATURES = {
   'Evocation Savant':
     'Section=magic ' +
     // changed effects
-    'Note="Can copy %{spellSlots.W9?9:spellSlots.W8?8:spellSlots.W7?7:spellSlots.W6?6:spellSlots.W5?5:spellSlots.W4?4:spellSlots.W3?3:2} evocation spells into spellbook for free"',
+    'Note="Spellbook contains 1 additional evocation spell per available spell slot level"',
   'Overchannel':SRD5E.FEATURES.Overchannel,
   'Potent Cantrip':
     SRD5E.FEATURES['Potent Cantrip']
@@ -1408,7 +1410,7 @@ SRD5E2024.FEATURES = {
     'Section=feature,magic ' +
     'Note=' +
       '"Has increased Darkvision effects",' +
-      '"Knows the <i>Dancing Lights</i> cantrip%{level>2?\' and can cast <i>Faerie Fire</i>\'+(level>4?\' and <i>Darkness</i>\':\'\')+\' once per long rest\':\'\'}" ' +
+      '"Knows the <i>Dancing Lights</i> cantrip%{level>2?\' and can cast <i>Faerie Fire</i>\'+(level>4?\' and <i>Darkness</i>\':\'\')+\' without expending a spell slot once per long rest\':\'\'}" ' +
     'Spells="Dancing Lights","3:Faerie Fire","5:Darkness"',
   'Elf Spellcasting Ability':'Section=feature Note="1 selection"',
   'Elven Lineage':'Section=feature Note="1 selection"',
@@ -1418,7 +1420,7 @@ SRD5E2024.FEATURES = {
   'High Elf':
     'Section=magic ' +
     'Note=' +
-      '"Knows the <i>Prestidigitation</i> cantrip%{level>2?\' and can cast <i>Detect Magic</i>\'+(level>4?\' and <i>Misty Step</i>\':\'\')+\' once per long rest\':\'\'}" ' +
+      '"Knows the <i>Prestidigitation</i> cantrip%{level>2?\' and can cast <i>Detect Magic</i>\'+(level>4?\' and <i>Misty Step</i>\':\'\')+\' without expending a spell slot once per long rest\':\'\'}" ' +
     'Spells=Prestidigitation,"3:Detect Magic","5:Misty Step"',
   'Keen Senses':
     // changed effects
@@ -1431,14 +1433,14 @@ SRD5E2024.FEATURES = {
     'Section=Ability,magic ' +
     'Note=' +
       '"+5 Speed",' +
-      '"Knows the <i>Druidcraft</i> cantrip%{level>2?\' and can cast <i>Longstrider</i>\'+(level>4?\' and <i>Pass Without Trace</i>\':\'\')+\' once per long rest\':\'\'}" ' +
+      '"Knows the <i>Druidcraft</i> cantrip%{level>2?\' and can cast <i>Longstrider</i>\'+(level>4?\' and <i>Pass Without Trace</i>\':\'\')+\' without expending a spell slot once per long rest\':\'\'}" ' +
     'Spells="Druidcraft","3:Longstrider","5:Pass Without Trace"',
 
   // Gnome
   // Darkvision as above
   'Forest Gnome':
     'Section=magic ' +
-    'Note="Knows the <i>Minor Illusion</i> cantrip and can cast <i>Speak With Animals</i> %{proficiencyBonus} times per long rest" ' +
+    'Note="Knows the <i>Minor Illusion</i> cantrip and can cast <i>Speak With Animals</i> without expending a spell slot %{proficiencyBonus} times per long rest" ' +
     'Spells="Minor Illusion","Speak With Animals"',
   'Gnomish Cunning':
     SRD5E.FEATURES['Gnome Cunning']
@@ -1507,13 +1509,13 @@ SRD5E2024.FEATURES = {
   'Abyssal':
     'Section=magic,save ' +
     'Note=' +
-      '"Knows the <i>Poison Spray</i> cantrip%{level>2?\' and can cast <i>Ray Of Sickness</i>\'+(level>4?\' and <i>Hold Person</i>\':\'\')+\' once per long rest\':\'\'}",' +
+      '"Knows the <i>Poison Spray</i> cantrip%{level>2?\' and can cast <i>Ray Of Sickness</i>\'+(level>4?\' and <i>Hold Person</i>\':\'\')+\' without expending a spell slot once per long rest\':\'\'}",' +
       '"Has resistance to poison" ' +
     'Spells="Poison Spray","3:Ray Of Sickness","5:Hold Person"',
   'Chthonic':
     'Section=magic,save ' +
     'Note=' +
-      '"Knows the <i>Chill Touch</i> cantrip%{level>2?\' and can cast <i>False Life</i>\'+(level>4?\' and <i>Ray Of Enfeeblement</i>\':\'\')+\' once per long rest\':\'\'}",' +
+      '"Knows the <i>Chill Touch</i> cantrip%{level>2?\' and can cast <i>False Life</i>\'+(level>4?\' and <i>Ray Of Enfeeblement</i>\':\'\')+\' without expending a spell slot once per long rest\':\'\'}",' +
       '"Has resistance to necrotic" ' +
     'Spells="Chill Touch","3:False Life","5:Ray Of Enfeeblement"',
   // Darkvision as above
@@ -1521,7 +1523,7 @@ SRD5E2024.FEATURES = {
   'Infernal':
     'Section=magic,save ' +
     'Note=' +
-      '"Knows the <i>Fire Bolt</i> cantrip%{level>2?\' and can cast <i>Hellish Rebuke</i>\'+(level>4?\' and <i>Darkness</i>\':\'\')+\' once per long rest\':\'\'}",' +
+      '"Knows the <i>Fire Bolt</i> cantrip%{level>2?\' and can cast <i>Hellish Rebuke</i>\'+(level>4?\' and <i>Darkness</i>\':\'\')+\' without expending a spell slot once per long rest\':\'\'}",' +
       '"Has resistance to fire" ' +
     'Spells="Fire Bolt","3:Hellish Rebuke","5:Darkness"',
   'Otherworldly Presence':
@@ -1537,13 +1539,13 @@ SRD5E2024.FEATURES = {
       '"Can swap initiatives with a willing ally"',
   'Magic Initiate (Cleric)': // ref PHB5E
     'Section=magic ' +
-    'Note="Knows 2 Cleric cantrips and can cast a chosen C1 spell once per long rest"',
+    'Note="Knows 2 Cleric cantrips and can cast a chosen C1 spell without expending a spell slot once per long rest"',
   'Magic Initiate (Druid)': // ref PHB5E
     'Section=magic ' +
-    'Note="Knows 2 Druid cantrips and can cast a chosen D1 spell once per long rest"',
+    'Note="Knows 2 Druid cantrips and can cast a chosen D1 spell without expending a spell slot once per long rest"',
   'Magic Initiate (Wizard)': // ref PHB5E
     'Section=magic ' +
-    'Note="Knows 2 Wizard cantrips and can cast a chosen W1 spell once per long rest"',
+    'Note="Knows 2 Wizard cantrips and can cast a chosen W1 spell without expending a spell slot once per long rest"',
   'Savage Attacker':
     'Section=combat Note="Can use the better of 2 damage rolls once per turn"',
   'Skilled':
@@ -3311,6 +3313,7 @@ SRD5E2024.classRulesExtra = function(rules, name) {
 
   } else if(name == 'Wizard') {
 
+    rules.defineRule('expertiseCount', 'skillNotes.scholar', '+=', null);
     rules.defineRule('selectableFeatureCount.Wizard (Wizard Subclass)',
       'featureNotes.wizardSubclass', '=', '1'
     );
@@ -3678,7 +3681,7 @@ SRD5E2024.weaponRules = function(
   if(!category.match(/unarmed|simple/i)) {
     ['Finesse', 'Light'].forEach(p => {
       if(properties.includes(p)) {
-        rules.defineRule('sanityNotes.nonproficientWeaponPenalty.' + name,
+        rules.defineRule('sanityNotes.unproficientWeaponPenalty.' + name,
           'weaponProficiency.' + p + ' Weapons', '^', '0'
         );
       }

@@ -729,7 +729,7 @@ SRD5E.FEATURES = {
   'Infernal Legacy':
     'Section=magic ' +
     // errata replaces once per day with once per long rest
-    'Note="Knows the <i>Thaumaturgy</i> cantrip%{level<3?\'\':level<5?\' and can cast <i>Hellish Rebuke</i> once per long rest\':\' and can cast <i>Hellish Rebuke</i> and <i>Darkness</i> once per long rest\'}" ' +
+    'Note="Knows the <i>Thaumaturgy</i> cantrip%{level<3?\'\':level<5?\' and can cast <i>Hellish Rebuke</i> without expending a spell slot once per long rest\':\' and can cast <i>Hellish Rebuke</i> and <i>Darkness</i> without expending a spell slot once per long rest\'}" ' +
     'Spells=Thaumaturgy,"3:Hellish Rebuke",5:Darkness ' +
     'SpellAbility=Charisma',
 
@@ -790,7 +790,7 @@ SRD5E.FEATURES = {
     'Note="R30\' Performance gives friendly listeners advantage on saves vs. charmed and frightened for 1 rd"',
   'Expertise':
     'Section=skill ' +
-    'Note="Double Proficiency Bonus on %V chosen proficient skills%{levels.Rogue?\\" or Thieves\' Tools\\":\'\'}"',
+    'Note="Has expertise in %V chosen proficient skills%{levels.Rogue?\\" or Thieves\' Tools\\":\'\'}"',
   'Font Of Inspiration':
     'Section=combat Note="Has increased Bardic Inspiration effects"',
   'Jack Of All Trades':
@@ -804,7 +804,7 @@ SRD5E.FEATURES = {
     'Note="Friendly listeners regain +1d%{levels.Bard>=9?6+(levels.Bard-5)//4*2:6} hit points from spending Hit Dice after a short rest"',
   'Spellcasting':
     'Section=magic ' +
-    'Note="Can cast spells from the %V spell list%{magicNotes.spellcasting.1?\' and cast spells marked with [R] using a ritual\':\'\'}"',
+    'Note="Can cast spells from the %V spell list%{magicNotes.spellcasting.1?\' and cast spells marked with [R] using a ritual\':\'\'}; regains expended spell slots after a long rest"',
   'Superior Inspiration':
     'Section=combat ' +
     'Note="Has a minimum of 1 use of Bardic Inspiration available after initiative"',
@@ -1072,7 +1072,7 @@ SRD5E.FEATURES = {
     'Note="R60\' Can discern the location of celestials, fiends, undead, consecration, and desecration until the end of the next turn %{charismaModifier!=0?(charismaModifier+1)+\' times\':\'once\'} per long rest"',
   'Divine Smite':
     'Section=combat ' +
-    'Note="Can spend a spell slot after a successful melee attack to inflict 1d8 HP radiant plus 1d8 HP per slot level, up to a maximum of 5d8 HP; undead and fiends suffer an additional 1d8 HP"',
+    'Note="Can expend a spell slot after a successful melee attack to inflict 1d8 HP radiant plus 1d8 HP per slot level, up to a maximum of 5d8 HP; undead and fiends suffer an additional 1d8 HP"',
   // Extra Attack as above
   // Fighting Style as above
   'Improved Divine Smite':
@@ -1131,7 +1131,7 @@ SRD5E.FEATURES = {
     'Note="In %{levels.Ranger<6?1:levels.Ranger<10?2:3} chosen terrain types, gains +%{proficiencyBonus} on related proficient Intelligence and Wisdom skills, moves normally through difficult terrain, never becomes lost, always remains alert, can stealth alone at full speed, locates twice the amount of food when foraging, and gains extra info from tracking"',
   'Primeval Awareness':
     'Section=magic ' +
-    'Note="Can spend a spell slot to sense creatures in a 1 mile radius, or in a 6 mile radius of favored terrain, for 1 min per slot level"',
+    'Note="Can expend a spell slot to sense creatures in a 1 mile radius, or in a 6 mile radius of favored terrain, for 1 min per slot level"',
   'Ranger Archetype':'Section=feature Note="1 selection"',
   // Spellcasting as above
   'Vanish':
@@ -1276,10 +1276,11 @@ SRD5E.FEATURES = {
   'Otherworldly Patron':'Section=feature Note="1 selection"',
   'Mystic Arcanum':
     'Section=magic ' +
-    'Note="Can cast %{levels.Warlock>12?\'chosen K6\'+(levels.Warlock<15?\' and K7\':levels.Warlock<17?\', K7, and K8\':\', K7, K8, and K9\')+\' spells\':\'a chosen K6 spell\'} without using a spell slot once per long rest"',
+    'Note="Can cast %{levels.Warlock>12?\'chosen K6\'+(levels.Warlock<15?\' and K7\':levels.Warlock<17?\', K7, and K8\':\', K7, K8, and K9\')+\' spells\':\'a chosen K6 spell\'} without expending a spell slot once per long rest"',
   'Pact Boon':'Section=feature Note="1 selection"',
   'Pact Magic':
-    'Section=magic Note="Can cast spells from the Warlock spell list"',
+    'Section=magic ' +
+    'Note="Can cast spells from the Warlock spell list; regains expended spell slots after a short rest"',
   'Pact Of The Blade':
     'Section=magic ' +
     'Note="Can use an action to conjure a magic weapon or use a 1 hr ritual to make a magic weapon summonable"',
@@ -1313,15 +1314,15 @@ SRD5E.FEATURES = {
     'Note="<i>Eldritch Blast</i> inflicts +%{charismaModifier} HP"',
   'Armor Of Shadows':
     'Section=magic ' +
-    'Note="Can cast <i>Mage Armor</i> on self at will" ' +
+    'Note="Can cast <i>Mage Armor</i> on self without expending a spell slot" ' +
     'Spells="Mage Armor"',
   'Ascendant Step':
     'Section=magic ' +
-    'Note="Can cast <i>Levitate</i> on self at will" ' +
+    'Note="Can cast <i>Levitate</i> on self without expending a spell slot" ' +
     'Spells=Levitate',
   'Beast Speech':
     'Section=magic ' +
-    'Note="Can cast <i>Speak With Animals</i> at will" ' +
+    'Note="Can cast <i>Speak With Animals</i> without expending a spell slot" ' +
     'Spells="Speak With Animals"',
   'Beguiling Influence':
     'Section=skill Note="Skill Proficiency (Deception; Persuasion)"',
@@ -1334,7 +1335,7 @@ SRD5E.FEATURES = {
     'Note="Has 2 1st-level spell rituals inscribed in a <i>Book Of Shadows</i> and can inscribe additional rituals"',
   'Chains Of Carceri':
     'Section=magic ' +
-    'Note="Can cast <i>Hold Monster</i> at will on celestials, elementals, and fiends once per creature per long rest" ' +
+    'Note="Can cast <i>Hold Monster</i> without expending a spell slot on celestials, elementals, and fiends once per creature per long rest" ' +
     'Spells="Hold Monster"',
   "Devil's Sight":'Section=feature Note="R120\' Sees normally in darkness"',
   'Dreadful Word':
@@ -1343,28 +1344,28 @@ SRD5E.FEATURES = {
     'Spells=Confusion',
   'Eldritch Sight':
     'Section=magic ' +
-    'Note="Can cast <i>Detect Magic</i> at will" ' +
+    'Note="Can cast <i>Detect Magic</i> without expending a spell slot" ' +
     'Spells="Detect Magic"',
   'Eldritch Spear':
     'Section=magic Note="Has increased Eldritch Blast effects"',
   'Eyes Of The Rune Keeper':'Section=skill Note="Can read all writing"',
   'Fiendish Vigor':
     'Section=magic ' +
-    'Note="Can cast <i>False Life</i> on self at will" ' +
+    'Note="Can cast <i>False Life</i> on self without expending a spell slot" ' +
     'Spells="False Life"',
   'Gaze Of Two Minds':
     'Section=magic ' +
-    'Note="Touch allows self to perceive through the senses of a willing humanoid while maintained"',
+    'Note="Touch allows self to perceive through the senses of a willing humanoid while extended"',
   'Lifedrinker':
     'Section=combat ' +
     'Note="Pact weapon inflicts +%{charismaModifier>?1} HP necrotic"',
   'Mask Of Many Faces':
     'Section=magic ' +
-    'Note="Can cast <i>Disguise Self</i> at will" ' +
+    'Note="Can cast <i>Disguise Self</i> without expending a spell slot" ' +
     'Spells="Disguise Self"',
   'Master Of Myriad Forms':
     'Section=magic ' +
-    'Note="Can cast <i>Alter Self</i> at will" ' +
+    'Note="Can cast <i>Alter Self</i> without expending a spell slot" ' +
     'Spells="Alter Self"',
   'Minions Of Chaos':
     'Section=magic ' +
@@ -1376,14 +1377,14 @@ SRD5E.FEATURES = {
     'Spells=Slow',
   'Misty Visions':
     'Section=magic ' +
-    'Note="Can cast <i>Silent Image</i> at will" ' +
+    'Note="Can cast <i>Silent Image</i> without expending a spell slot" ' +
     'Spells="Silent Image"',
   'One With Shadows':
     'Section=magic ' +
-    'Note="Can become invisible in dim light; moving or taking an action or reaction ends"',
+    'Note="Can become invisible in dim light or darkness; moving or taking an action or reaction ends"',
   'Otherworldly Leap':
     'Section=magic ' +
-    'Note="Can cast <i>Jump</i> on self at will" ' +
+    'Note="Can cast <i>Jump</i> on self without expending a spell slot" ' +
     'Spells=Jump',
   'Repelling Blast':
     'Section=magic Note="Can inflict a 10\' push with a successful <i>Eldritch Blast</i>"',
@@ -1403,14 +1404,14 @@ SRD5E.FEATURES = {
     'Section=combat Note="Attack action with a pact blade allows 2 attacks"',
   'Visions Of Distant Realms':
     'Section=magic ' +
-    'Note="Can cast <i>Arcane Eye</i> at will" ' +
+    'Note="Can cast <i>Arcane Eye</i> without expending a spell slot" ' +
     'Spells="Arcane Eye"',
   'Voice Of The Chain Master':
     'Section=magic ' +
     'Note="Can perceive and speak through familiar and communicate telepathically with it"',
   'Whispers Of The Grave':
     'Section=magic ' +
-    'Note="Can cast <i>Speak With Dead</i> at will" ' +
+    'Note="Can cast <i>Speak With Dead</i> without expending a spell slot" ' +
     'Spells="Speak With Dead"',
   'Witch Sight':
     'Section=skill ' +
@@ -1426,7 +1427,7 @@ SRD5E.FEATURES = {
     'Note="Can cast 2 chosen W3 spells without expending a spell slot once per short rest"',
   'Spell Mastery':
     'Section=magic ' +
-    'Note="Can cast a chosen 1-action W1 spell and a chosen 1-action W2 spell at will and change the choices after 8 hr of study"',
+    'Note="Can cast a chosen 1-action W1 spell and a chosen 1-action W2 spell without expending a spell slot and change the choices after 8 hr of study"',
   // Spellcasting as above
   // School Of Evocation
   'Empowered Evocation':
@@ -1436,12 +1437,12 @@ SRD5E.FEATURES = {
     'Note="Requires half the normal time and cost to copy evocation spells into spellbook"',
   'Overchannel':
     'Section=magic ' +
-    'Note="Can inflict maximum damage from evocation spells up to level 5; additional uses before a long rest also inflict damage on self, starting at 2d12 HP necrotic and increasing by 1d12 HP on each successive use"',
+    'Note="Can inflict maximum damage when casting an evocation spell of up to level 5; additional uses before a long rest also inflict damage on self, starting at 2d12 HP necrotic and increasing by 1d12 HP on each successive use"',
   'Potent Cantrip':
     'Section=magic Note="Cantrips inflict half HP on a successful save"',
   'Sculpt Spells':
     'Section=magic ' +
-    'Note="On a self evocation spell, can give spell level + 1 creatures a successful save and no damage instead of half"',
+    'Note="When casting an evocation spell, can give spell level + 1 creatures a successful save and no damage instead of half"',
 
   // Backgrounds
   'Shelter Of The Faithful':
@@ -1458,7 +1459,7 @@ SRD5E.FEATURES = {
 
   // Sanity, Validation and Miscellaneous
   'Bulky Armor':'Section=skill Note="Has disadvantage on Stealth"',
-  'Nonproficient Armor':
+  'Unproficient Armor':
     'Section=sanity ' +
     'Note="Has disadvantage on Dexterity and Strength rolls and cannot cast spells"',
   'Two-Handed Weapon With Shield':
@@ -3692,7 +3693,7 @@ SRD5E.combatRules = function(rules, armors, shields, weapons) {
     ('combatNotes.strengthAttackAdjustment', 'strengthModifier', '=', null);
   rules.defineRule
     ('combatNotes.strengthDamageAdjustment', 'strengthModifier', '=', null);
-  rules.defineRule('features.Nonproficient Armor',
+  rules.defineRule('features.Unproficient Armor',
     'armorCategory', '=', 'source=="Heavy" ? 4 : source=="Medium" ? 2 : source=="Light" ? 1 : 0',
     'armorProficiency.Light', '+', '-1',
     'armorProficiency.Medium', '+', '-2',
@@ -5835,18 +5836,18 @@ SRD5E.weaponRules = function(
 
   rules.defineChoice('notes',
     weaponName + ':' + format,
-    'sanityNotes.nonproficientWeaponPenalty.' + name + ':%V attack'
+    'sanityNotes.unproficientWeaponPenalty.' + name + ':%V attack'
   );
 
   if(category != 'Unarmed') {
-    rules.defineRule('sanityNotes.nonproficientWeaponPenalty.' + name,
+    rules.defineRule('sanityNotes.unproficientWeaponPenalty.' + name,
       weaponName, '?', null,
       'proficiencyBonus', '=', '-source',
       'weaponProficiency.Martial Weapons', '^', '0',
       'weaponProficiency.' + name, '^', '0'
     );
     if(isSimple) {
-      rules.defineRule('sanityNotes.nonproficientWeaponPenalty.' + name,
+      rules.defineRule('sanityNotes.unproficientWeaponPenalty.' + name,
         'weaponProficiency.Simple Weapons', '^', '0'
       );
     }
@@ -5854,7 +5855,7 @@ SRD5E.weaponRules = function(
   rules.defineRule('weaponProficiencyBonus.' + name,
     weaponName, '?', null,
     'proficiencyBonus', '=', null,
-    'sanityNotes.nonproficientWeaponPenalty.' + name, 'v', 'source == 0 ? null : 0'
+    'sanityNotes.unproficientWeaponPenalty.' + name, 'v', 'source == 0 ? null : 0'
   );
   rules.defineRule('attackBonus.' + name,
     weaponName, '=', '0',
@@ -6229,7 +6230,7 @@ SRD5E.choiceEditorElements = function(rules, type) {
       ['AC', 'AC Bonus', 'select-one', zeroToTen],
       ['Dex', 'Max Dex', 'select-one', zeroToTen],
       ['Str', 'Min Str', 'select-one', zeroToEighteen],
-      ['Bulky', 'Stealth Disadv', 'checkbox', ['']],
+      ['Bulky', 'Stealth Disadvantage', 'checkbox', ['']],
       ['Weight', 'Weight (lbs)', 'text', [5]]
     );
   } else if(type == 'Background')

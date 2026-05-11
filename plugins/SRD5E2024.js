@@ -1410,7 +1410,8 @@ SRD5E2024.FEATURES = {
     'Section=feature,magic ' +
     'Note=' +
       '"Has increased Darkvision effects",' +
-      '"Knows the <i>Dancing Lights</i> cantrip%{level>2?\' and can cast <i>Faerie Fire</i>\'+(level>4?\' and <i>Darkness</i>\':\'\')+\' without expending a spell slot once per long rest\':\'\'}" ' +
+      '"Can cast <i>Faerie Fire</i>%{level>4?\' and <i>Darkness</i>\':\'\'} without expending a spell slot once per long rest" ' +
+    'SpellAbility=Charisma ' + // modified as needed by speciesRulesExtra
     'Spells="Dancing Lights","3:Faerie Fire","5:Darkness"',
   'Elf Spellcasting Ability':'Section=feature Note="1 selection"',
   'Elven Lineage':'Section=feature Note="1 selection"',
@@ -1420,7 +1421,8 @@ SRD5E2024.FEATURES = {
   'High Elf':
     'Section=magic ' +
     'Note=' +
-      '"Knows the <i>Prestidigitation</i> cantrip%{level>2?\' and can cast <i>Detect Magic</i>\'+(level>4?\' and <i>Misty Step</i>\':\'\')+\' without expending a spell slot once per long rest\':\'\'}" ' +
+      '"Can cast <i>Detect Magic</i>%{level>4?\' and <i>Misty Step</i>\':\'\'} without expending a spell slot once per long rest" ' +
+    'SpellAbility=Charisma ' + // modified as needed by speciesRulesExtra
     'Spells=Prestidigitation,"3:Detect Magic","5:Misty Step"',
   'Keen Senses':
     // changed effects
@@ -1433,22 +1435,26 @@ SRD5E2024.FEATURES = {
     'Section=Ability,magic ' +
     'Note=' +
       '"+5 Speed",' +
-      '"Knows the <i>Druidcraft</i> cantrip%{level>2?\' and can cast <i>Longstrider</i>\'+(level>4?\' and <i>Pass Without Trace</i>\':\'\')+\' without expending a spell slot once per long rest\':\'\'}" ' +
+      '"Can cast <i>Longstrider</i>%{level>4?\' and <i>Pass Without Trace</i>\':\'\'} without expending a spell slot once per long rest" ' +
+    'SpellAbility=Charisma ' + // modified as needed by speciesRulesExtra
     'Spells="Druidcraft","3:Longstrider","5:Pass Without Trace"',
 
   // Gnome
   // Darkvision as above
   'Forest Gnome':
     'Section=magic ' +
-    'Note="Knows the <i>Minor Illusion</i> cantrip and can cast <i>Speak With Animals</i> without expending a spell slot %{proficiencyBonus} times per long rest" ' +
+    'Note="Can cast <i>Speak With Animals</i> without expending a spell slot %{proficiencyBonus} times per long rest" ' +
+    'SpellAbility=Charisma ' + // modified as needed by speciesRulesExtra
     'Spells="Minor Illusion","Speak With Animals"',
   'Gnomish Cunning':
     SRD5E.FEATURES['Gnome Cunning']
     .replace(' vs. magic', ''),
   'Gnomish Lineage':'Section=feature Note="1 selection"',
+  'Gnome Spellcasting Ability':'Section=feature Note="1 selection"',
   'Rock Gnome':
     'Section=magic ' +
-    'Note="Knows the <i>Mending</i> and <i>Prestidigitation</i> cantrips and can spend 10 min and use <i>Prestidigitation</i> to create a Tiny clockwork device that lasts 8 hr" ' +
+    'Note="Can spend 10 min and use <i>Prestidigitation</i> to create a Tiny clockwork device that lasts 8 hr" ' +
+    'SpellAbility=Charisma ' + // modified as needed by speciesRulesExtra
     'Spells="Mending","Prestidigitation"',
 
   // Goliath
@@ -1473,7 +1479,7 @@ SRD5E2024.FEATURES = {
     'Section=ability ' +
     'Note="Can use a bonus action to become Large for 10 min, gaining advantage on Strength checks and +10 Speed, once per long rest"',
   'Powerful Build':
-    'Section=ability,combat ' +
+    'Section=ability,save ' +
     'Note=' +
       '"x2 Carry/x2 Lift",' +
       '"Has advantage on checks to break a grapple"',
@@ -1501,7 +1507,7 @@ SRD5E2024.FEATURES = {
   // Orc
   'Adrenaline Rush':
     'Section=combat ' +
-    'Note="Can use a bonus action to Dash and gain %{proficiencyBonus} temporary hit points %{proficiencyBonus} times per short rest"',
+    'Note="Can use a bonus action to Dash and to gain %{proficiencyBonus} temporary hit points %{proficiencyBonus} times per short rest"',
   // Darkvision as above
   'Relentless Endurance':SRD5E.FEATURES['Relentless Endurance'],
 
@@ -1509,27 +1515,30 @@ SRD5E2024.FEATURES = {
   'Abyssal':
     'Section=magic,save ' +
     'Note=' +
-      '"Knows the <i>Poison Spray</i> cantrip%{level>2?\' and can cast <i>Ray Of Sickness</i>\'+(level>4?\' and <i>Hold Person</i>\':\'\')+\' without expending a spell slot once per long rest\':\'\'}",' +
+      '"Can cast <i>Ray Of Sickness</i>%{level>4?\' and <i>Hold Person</i>\':\'\'} without expending a spell slot once per long rest",' +
       '"Has resistance to poison" ' +
+    'SpellAbility=Charisma ' + // modified as needed by speciesRulesExtra
     'Spells="Poison Spray","3:Ray Of Sickness","5:Hold Person"',
   'Chthonic':
     'Section=magic,save ' +
     'Note=' +
-      '"Knows the <i>Chill Touch</i> cantrip%{level>2?\' and can cast <i>False Life</i>\'+(level>4?\' and <i>Ray Of Enfeeblement</i>\':\'\')+\' without expending a spell slot once per long rest\':\'\'}",' +
+      '"Can cast <i>False Life</i>%{level>4?\' and <i>Ray Of Enfeeblement</i>\':\'\'} without expending a spell slot once per long rest",' +
       '"Has resistance to necrotic" ' +
+    'SpellAbility=Charisma ' + // modified as needed by speciesRulesExtra
     'Spells="Chill Touch","3:False Life","5:Ray Of Enfeeblement"',
   // Darkvision as above
   'Fiendish Legacy':'Section=feature Note="1 selection"',
   'Infernal':
     'Section=magic,save ' +
     'Note=' +
-      '"Knows the <i>Fire Bolt</i> cantrip%{level>2?\' and can cast <i>Hellish Rebuke</i>\'+(level>4?\' and <i>Darkness</i>\':\'\')+\' without expending a spell slot once per long rest\':\'\'}",' +
+      '"Can cast <i>Hellish Rebuke</i>%{level>4?\' and <i>Darkness</i>\':\'\'} without expending a spell slot once per long rest",' +
       '"Has resistance to fire" ' +
+    'SpellAbility=Charisma ' + // modified as needed by speciesRulesExtra
     'Spells="Fire Bolt","3:Hellish Rebuke","5:Darkness"',
   'Otherworldly Presence':
-    'Section=magic ' +
-    'Note="Knows the <i>Thaumaturgy</i> cantrip" ' +
+    'SpellAbility=Charisma ' + // modified as needed by speciesRulesExtra
     'Spells=Thaumaturgy',
+  'Tiefling Spellcasting Ability':'Section=feature Note="1 selection"',
 
   // Feats
   'Alert':
@@ -3508,6 +3517,9 @@ SRD5E2024.speciesRulesExtra = function(rules, name) {
     rules.defineRule('casterLevels.Elf', speciesLevel, '=', null);
     rules.defineRule
       ('featureNotes.darkvision', 'featureNotes.drow', '^=', '120');
+    rules.defineRule('magicNotes.drow', 'level', '?', 'source >= 3');
+    rules.defineRule('magicNotes.highElf', 'level', '?', 'source >= 3');
+    rules.defineRule('magicNotes.woodElf', 'level', '?', 'source >= 3');
     rules.defineRule('selectableFeatureCount.Elf (Elf Spellcasting Ability)',
       'featureNotes.elfSpellcastingAbility', '=', '1'
     );
@@ -3515,41 +3527,30 @@ SRD5E2024.speciesRulesExtra = function(rules, name) {
       'featureNotes.elvenLineage', '=', '1'
     );
     rules.defineChoice('notes', 'spellAttackModifier.Elf:%S');
-    rules.defineRule('spellAttackModifier.Elf',
-      'spellModifier.Elf', '=', null,
-      'proficiencyBonus', '+', null
-    );
-    rules.defineRule('spellDifficultyClass.Elf',
-      'spellAttackModifier.Elf', '=', 'source + 8'
-    );
     rules.defineRule('spellModifier.Elf',
-      'charismaModifier', '+', 'null', // recomputation trigger
-      'intelligenceModifier', '+', 'null', // recomputation trigger
-      'wisdomModifier', '+', 'null', // recomputation trigger
-      'elfFeatures.Charisma', '=', 'dict.charismaModifier',
-      'elfFeatures.Intelligence', '=', 'dict.intelligenceModifier',
-      'elfFeatures.Wisdom', '=', 'dict.wisdomModifier'
+      // defaults to charisma; modified here as needed
+      'intelligenceModifier', '?', '1', // recomputation trigger
+      'wisdomModifier', '?', '1', // recomputation trigger
+      'elfFeatures.Intelligence', '+', 'dict.intelligenceModifier - dict.charismaModifier',
+      'elfFeatures.Wisdom', '+', 'dict.wisdomModifier - dict.charismaModifier'
     );
   } else if(name.match(/Gnome/)) {
     rules.defineRule('casterLevels.Gnome', speciesLevel, '=', null);
+    rules.defineRule('magicNotes.forestGnome', 'level', '?', 'source >= 3');
+    rules.defineRule('magicNotes.rockGnome', 'level', '?', 'source >= 3');
+    rules.defineRule('selectableFeatureCount.Gnome (Gnome Spellcasting Ability)',
+      'featureNotes.gnomeSpellcastingAbility', '=', '1'
+    );
     rules.defineRule('selectableFeatureCount.Gnome (Gnomish Lineage)',
       'featureNotes.gnomishLineage', '=', '1'
     );
     rules.defineChoice('notes', 'spellAttackModifier.Gnome:%S');
-    rules.defineRule('spellAttackModifier.Gnome',
-      'spellModifier.Gnome', '=', null,
-      'proficiencyBonus', '+', null
-    );
-    rules.defineRule('spellDifficultyClass.Gnome',
-      'spellAttackModifier.Gnome', '=', 'source + 8'
-    );
     rules.defineRule('spellModifier.Gnome',
-      'charismaModifier', '+', 'null', // recomputation trigger
-      'intelligenceModifier', '+', 'null', // recomputation trigger
-      'wisdomModifier', '+', 'null', // recomputation trigger
-      'gnomeFeatures.Charisma', '=', 'dict.charismaModifier',
-      'gnomeFeatures.Intelligence', '=', 'dict.intelligenceModifier',
-      'gnomeFeatures.Wisdom', '=', 'dict.wisdomModifier'
+      // defaults to charisma; modified here as needed
+      'intelligenceModifier', '?', '1', // recomputation trigger
+      'wisdomModifier', '?', '1', // recomputation trigger
+      'gnomeFeatures.Intelligence', '+', 'dict.intelligenceModifier - dict.charismaModifier',
+      'gnomeFeatures.Wisdom', '+', 'dict.wisdomModifier - dict.charismaModifier'
     );
   } else if(name.match(/Goliath/)) {
     rules.defineRule('selectableFeatureCount.Goliath (Giant Ancestry)',
@@ -3558,24 +3559,23 @@ SRD5E2024.speciesRulesExtra = function(rules, name) {
   } else if(name.match(/Orc/)) {
     rules.defineRule('featureNotes.darkvision', speciesLevel, '^=', '120');
   } else if(name.match(/Tiefling/)) {
+    rules.defineRule('casterLevels.Tiefling', speciesLevel, '=', null);
+    rules.defineRule('magicNotes.abyssal', 'level', '?', 'source >= 3');
+    rules.defineRule('magicNotes.chthonic', 'level', '?', 'source >= 3');
+    rules.defineRule('magicNotes.infernal', 'level', '?', 'source >= 3');
     rules.defineRule('selectableFeatureCount.Tiefling (Fiendish Legacy)',
       'featureNotes.fiendishLegacy', '=', '1'
     );
+    rules.defineRule('selectableFeatureCount.Tiefling (Tiefling Spellcasting Ability)',
+      'featureNotes.tieflingSpellcastingAbility', '=', '1'
+    );
     rules.defineChoice('notes', 'spellAttackModifier.Tiefling:%S');
-    rules.defineRule('spellAttackModifier.Tiefling',
-      'spellModifier.Tiefling', '=', null,
-      'proficiencyBonus', '+', null
-    );
-    rules.defineRule('spellDifficultyClass.Tiefling',
-      'spellAttackModifier.Tiefling', '=', 'source + 8'
-    );
     rules.defineRule('spellModifier.Tiefling',
-      'charismaModifier', '+', 'null', // recomputation trigger
-      'intelligenceModifier', '+', 'null', // recomputation trigger
-      'wisdomModifier', '+', 'null', // recomputation trigger
-      'tieflingFeatures.Charisma', '=', 'dict.charismaModifier',
-      'tieflingFeatures.Intelligence', '=', 'dict.intelligenceModifier',
-      'tieflingFeatures.Wisdom', '=', 'dict.wisdomModifier'
+      // defaults to charisma; modified here as needed
+      'intelligenceModifier', '?', '1', // recomputation trigger
+      'wisdomModifier', '?', '1', // recomputation trigger
+      'tieflingFeatures.Intelligence', '+', 'dict.intelligenceModifier - dict.charismaModifier',
+      'tieflingFeatures.Wisdom', '+', 'dict.wisdomModifier - dict.charismaModifier'
     );
   }
 

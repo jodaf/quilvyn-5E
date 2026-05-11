@@ -5160,7 +5160,7 @@ SRD5E.featureRules = function(
     let levelAttr = 'level';
     let spellType = name.replaceAll(/[- ]/g, '');
     let sources =
-      Object.assign({}, rules.getChoices('levels'), rules.getChoices('races'), rules.getChoices('backgrounds'));
+      Object.assign({}, rules.getChoices('levels'), rules.getChoices('races') || rules.getChoices('species'), rules.getChoices('backgrounds'));
     for(let s in sources) {
       let re = new RegExp('[,:"=]' + name.replace(/[/\-\\^$*+?.()|[\]{}]/g, '\\$&'));
       if(!sources[s].match(re))

@@ -528,7 +528,10 @@ SRD5E2024.FEATS = {
   'Savage Attacker':'Category=Origin',
   'Skilled':'Category=Origin',
   'Ability Score Improvement':'Category=General Require="level >= 4"',
-  'Grappler':'Category=General Require="level >= 4","strength >= 13"',
+  'Grappler':
+    SRD5E.FEATS.Grappler
+    .replace('Require=', 'Require="level >= 4",') + ' ' +
+    'Category=General',
   'Archery':'Category="Fighting Style" Require="features.Fighting Style"',
   'Defense':'Category="Fighting Style" Require="features.Fighting Style"',
   'Great Weapon Fighting':
@@ -1541,7 +1544,7 @@ SRD5E2024.FEATURES = {
   'Tiefling Spellcasting Ability':'Section=feature Note="1 selection"',
 
   // Feats
-  'Alert':
+  'Alert': // ref PHB5E
     'Section=combat,combat ' +
     'Note=' +
       '"+%{proficiencyBonus} Initiative",' +
@@ -1555,13 +1558,13 @@ SRD5E2024.FEATURES = {
   'Magic Initiate (Wizard)': // ref PHB5E
     'Section=magic ' +
     'Note="Knows 2 Wizard cantrips and can cast a chosen W1 spell without expending a spell slot once per long rest"',
-  'Savage Attacker':
-    'Section=combat Note="Can use the better of 2 damage rolls once per turn"',
-  'Skilled':
+  'Savage Attacker': // ref PHB5E
+    'Section=combat Note="Can take the better of 2 damage rolls once per turn"',
+  'Skilled': // ref PHB5E
     'Section=skill ' +
     'Note="Skill Proficiency or Tool Proficiency (Choose %V from any)"',
   'Ability Score Improvement':SRD5E.FEATURES['Ability Score Improvement'],
-  'Grappler':
+  'Grappler': // ref SRD5E
     // changed effects
     'Section=ability,combat ' +
     'Note=' +
@@ -1570,9 +1573,8 @@ SRD5E2024.FEATURES = {
   'Archery':SRD5E.FEATURES['Fighting Style (Archery)'],
   'Defense':SRD5E.FEATURES['Fighting Style (Defense)'],
   'Great Weapon Fighting':
-    // changed effects
-    'Section=combat ' +
-    'Note="Can treat 1s and 2s as 3s on two-handed weapon damage"',
+    SRD5E.FEATURES['Fighting Style (Great Weapon Fighting)']
+    .replace('reroll 1s and 2s', 'treat 1s and 2s as 3s'),
   'Two-Weapon Fighting':SRD5E.FEATURES['Fighting Style (Two-Weapon Fighting)'],
   'Boon Of Combat Prowess':
     'Section=ability,combat ' +

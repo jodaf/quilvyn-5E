@@ -4957,9 +4957,6 @@ SRD5E.featRulesExtra = function(rules, name) {
     rules.defineRule('abilityNotes.abilityScoreImprovement',
       'feats.Ability Score Improvement', '+=', 'source * 2'
     );
-    rules.defineRule('abilityBoostChoiceCount',
-      'abilityNotes.abilityScoreImprovement', '+=', null
-    );
   }
 };
 
@@ -5158,7 +5155,7 @@ SRD5E.featureRules = function(
 
   if(spells.length > 0) {
     let levelAttr = 'level';
-    let spellType = name.replaceAll(/[- ]/g, '');
+    let spellType = name.replaceAll(/[- ()]/g, '');
     let sources =
       Object.assign({}, rules.getChoices('levels'), rules.getChoices('races') || rules.getChoices('species'), rules.getChoices('backgrounds'));
     for(let s in sources) {

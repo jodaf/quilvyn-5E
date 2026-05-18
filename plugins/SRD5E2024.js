@@ -1549,6 +1549,7 @@ SRD5E2024.FEATURES = {
     'Note=' +
       '"+%{proficiencyBonus} Initiative",' +
       '"Can swap initiatives with a willing ally"',
+  // TODO select Intelligence, Wisdom, or Charisma as the Magic Initiate ability
   'Magic Initiate (Cleric)': // ref PHB5E
     'Section=magic ' +
     'Note="Knows 2 Cleric cantrips and can cast a chosen C1 spell without expending a spell slot once per long rest"',
@@ -1564,12 +1565,12 @@ SRD5E2024.FEATURES = {
     'Section=skill ' +
     'Note="Skill Proficiency or Tool Proficiency (Choose %V from any)"',
   'Ability Score Improvement':SRD5E.FEATURES['Ability Score Improvement'],
-  'Grappler': // ref SRD5E
+  'Grappler':
     // changed effects
     'Section=ability,combat ' +
     'Note=' +
       '"Ability Boost (Choose 1 from Strength, Dexterity)",' +
-      '"Can both Damage and Grapple with an unarmed strike once per turn, has advantage on attacks on a grappled foe, and can move at full speed with a grappled foe of %{size} size or smaller"',
+      '"Can both Damage and Grapple with an unarmed strike once per turn, has advantage on attacks on a foe while grappling it, and can move at full speed with a grappled foe of %{size} size or smaller"',
   'Archery':SRD5E.FEATURES['Fighting Style (Archery)'],
   'Defense':SRD5E.FEATURES['Fighting Style (Defense)'],
   'Great Weapon Fighting':

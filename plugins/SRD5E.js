@@ -4985,16 +4985,16 @@ SRD5E.featureRules = function(
     console.log(sections.length + ' sections, ' + notes.length + ' notes for feature ' + name);
     return;
   }
-  // Backwards compatibility for modules that don't pass spells or spellAbility
-  if(spellAbility == null)
-    spellAbility = 'intelligence';
+  // Backwards compatibility for modules that don't pass spells
   if(spells == null)
     spells = [];
-  spellAbility = (spellAbility+'').toLowerCase();
-  if(!(spellAbility.charAt(0).toUpperCase() + spellAbility.substring(1) in SRD5E.ABILITIES)) {
-    console.log
-      ('Bad spell ability "' + spellAbility + '" for feature ' + name);
-    return;
+  if(spellAbility != null) {
+    spellAbility = (spellAbility+'').toLowerCase();
+    if(!(spellAbility.charAt(0).toUpperCase() + spellAbility.substring(1) in SRD5E.ABILITIES)) {
+      console.log
+        ('Bad spell ability "' + spellAbility + '" for feature ' + name);
+      return;
+    }
   }
   if(!Array.isArray(spells)) {
     console.log('Bad spells list "' + spells + '" for feature ' + name);
@@ -5153,33 +5153,35 @@ SRD5E.featureRules = function(
 
   }
 
-  if(spells.length > 0) {
+  if(spells.length > 0 || spellAbility != null) {
     let levelAttr = 'level';
     let spellType = name.replaceAll(/[- ()]/g, '');
     let sources =
-      Object.assign({}, rules.getChoices('levels'), rules.getChoices('races') || rules.getChoices('species'), rules.getChoices('backgrounds'));
+      Object.assign({}, rules.getChoices('levels'), rules.getChoices('races') || rules.getChoices('species'), rules.getChoices('feats'), rules.getChoices('backgrounds'));
     for(let s in sources) {
       let re = new RegExp('[,:"=]' + name.replace(/[/\-\\^$*+?.()|[\]{}]/g, '\\$&'));
-      if(!sources[s].match(re))
+      if(s != name && !sources[s].match(re))
         continue;
-      spellType = s.replaceAll(/[- ]/g, '');
+      spellType = s.replaceAll(/[- ()]/g, '');
       let slot = QuilvynUtils.getAttrValue(sources[s], 'SpellSlots');
       if(slot) {
         // Spell feature for casting class. Reuse attack and DC values.
         levelAttr = 'levels.' + s;
         spellType = slot.replace(/\d.*/, '');
       } else {
-        // Spell feature for non-casting class or for a race or background.
-        // Display attack and DC values when this feature is acquired.
-        // Only need to compute casterLevels and spellModifier for races and
-        // backgrounds, since classRules computes these for classes.
+        // Spell feature for non-casting class or for a feat, race or
+        // background. Display attack and DC values when this feature is
+        // acquired. Only need to compute casterLevels and spellModifier for
+        // feats, races and backgrounds, since classRules computes these for
+        // classes.
         if(!(s in rules.getChoices('levels'))) {
-          let sourceLevel =
-            s.charAt(0).toLowerCase() + s.substring(1).replaceAll(' ', '') + 'Level';
-          rules.defineRule('casterLevels.' + spellType, sourceLevel, '=', null);
+          if(!(s in rules.getChoices('feats')))
+            levelAttr =
+              s.charAt(0).toLowerCase() + s.substring(1).replaceAll(' ', '') + 'Level';
+          rules.defineRule('casterLevels.' + spellType, levelAttr, '=', null);
           rules.defineRule('spellModifier.' + spellType,
             'casterLevels.' + spellType, '?', null,
-            spellAbility + 'Modifier', '=', null
+            (spellAbility || 'intelligence') + 'Modifier', '=', null
           );
         }
         rules.defineChoice('notes', 'spellAttackModifier.' + spellType + ':%S');

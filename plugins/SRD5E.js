@@ -945,7 +945,8 @@ SRD5E.FEATURES = {
   'Fighting Style':
     'Section=feature ' +
     'Note="%V selection%{featureNotes.fightingStyle>1?\'s\':\'\'}"',
-  'Fighting Style (Archery)':'Section=combat Note="+2 ranged attacks"',
+  'Fighting Style (Archery)':
+    'Section=combat Note="+2 attacks with Ranged weapons"',
   'Fighting Style (Defense)':'Section=combat Note="+1 Armor Class in armor"',
   'Fighting Style (Dueling)':
     'Section=combat ' +
@@ -954,9 +955,10 @@ SRD5E.FEATURES = {
     'Section=combat Note="Can reroll 1s and 2s on two-handed weapon damage"',
   'Fighting Style (Protection)':
     'Section=combat ' +
-    'Note="Can use a reaction and a shield to inflict disadvantage on attacks targeting an adjacent creature"',
+    'Note="Can use a reaction and a shield to inflict disadvantage on an attack targeting an adjacent creature"',
   'Fighting Style (Two-Weapon Fighting)':
-    'Section=combat Note="Adds ability modifier to second weapon damage"',
+    'Section=combat ' +
+    'Note="Adds the ability modifier to the damage from a second weapon attack"',
   'Indomitable':
     'Section=save ' +
     'Note="Can reroll a failed save %{levels.Fighter<13?\'once\':level.Fighter<17?\'2 times\':\'3 times\'} per long rest"',
@@ -2637,7 +2639,7 @@ SRD5E.SPELLS = {
     'Level=B1,K1,W1 ' +
     'Ritual=true ' +
     'Description=' +
-      '"Alters the appearance of self writing on the target material, making its meaning clear only to specified creatures and those with truesight, for 10 days"',
+      '"Alters the appearance of self writing on the target material, making its meaning clear only to specified creatures and those with Truesight, for 10 days"',
   'Imprisonment':
     'School=Abjuration ' +
     'Level=K9,W9 ' +
@@ -3333,7 +3335,7 @@ SRD5E.SPELLS = {
     'School=Divination ' +
     'Level=B6,C6,K6,S6,W6 ' +
     'Description=' +
-      '"Touched gains 120\' truesight, sees magically concealed doors, and can see into the Ethereal Plane for 1 hr"',
+      '"Touched gains 120\' Truesight, sees magically concealed doors, and can see into the Ethereal Plane for 1 hr"',
   'True Strike':
     'School=Divination ' +
     'Level=B0,K0,S0,W0 ' +

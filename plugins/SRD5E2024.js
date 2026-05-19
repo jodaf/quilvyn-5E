@@ -1576,17 +1576,20 @@ SRD5E2024.FEATURES = {
   'Great Weapon Fighting':
     SRD5E.FEATURES['Fighting Style (Great Weapon Fighting)']
     .replace('reroll 1s and 2s', 'treat 1s and 2s as 3s'),
-  'Two-Weapon Fighting':SRD5E.FEATURES['Fighting Style (Two-Weapon Fighting)'],
+  'Two-Weapon Fighting':
+    SRD5E.FEATURES['Fighting Style (Two-Weapon Fighting)']
+    .replace('attack', 'attack with a Light weapon'),
   'Boon Of Combat Prowess':
     'Section=ability,combat ' +
     'Note=' +
       '"Ability Boost (Choose 1 from any)",' +
-      '"Can treat an attack miss as a hit once per turn"',
+      '"Can change an attack miss into a hit once per turn"',
   'Boon Of Dimensional Travel':
-    'Section=ability,combat ' +
+    'Section=ability,combat,magic ' +
     'Note=' +
       '"Ability Boost (Choose 1 from any)",' +
-      '"Can teleport 30\' after attacking or casting"',
+      '"Can teleport 30\' after attacking",' +
+      '"Can teleport 30\' after casting"',
   'Boon Of Fate':
     'Section=ability,combat ' +
     'Note=' +
@@ -1595,24 +1598,24 @@ SRD5E2024.FEATURES = {
   'Boon Of Irresistible Offense (Dexterity)':
     'Section=ability,combat ' +
     'Note=' +
-      '"Ability Boost (Dexterity)",' +
+      '"+1 Dexterity",' +
       '"Bludgeoning, piercing, and slashing damage ignores resistance, and natural 20 hits inflict +%{dexterity} damage"',
   'Boon Of Irresistible Offense (Strength)':
     'Section=ability,combat ' +
     'Note=' +
-      '"Ability Boost (Strength)",' +
+      '"+1 Strength",' +
       '"Bludgeoning, piercing, and slashing damage ignores resistance, and natural 20 hits inflict +%{strength} damage"',
   'Boon Of Spell Recall':
     'Section=ability,magic ' +
     'Note=' +
       '"Ability Boost (Choose 1 from Intelligence, Wisdom, Charisma)",' +
-      '"Casting a level 1-4 spell does not use a spell slot if a d4 roll equals the spell level"',
+      '"Casting a level 1-4 spell does not expend a spell slot if a d4 roll equals the spell level"',
   'Boon Of The Night Spirit':
     'Section=ability,combat,save ' +
     'Note=' +
       '"Ability Boost (Choose 1 from any)",' +
-      '"Can use a bonus action to become invisible in dim or no light; taking an action, bonus action, or reaction ends",' +
-      '"In dim or no light, has resistance to all damage other than psychic and radiant"',
+      '"Can use a bonus action to become invisible in dim light or darkness; taking an action, bonus action, or reaction ends",' +
+      '"In dim light or darkness, has resistance to all damage other than psychic and radiant"',
   'Boon Of Truesight':
     'Section=ability,skill ' +
     'Note=' +
@@ -2597,7 +2600,7 @@ SRD5E2024.SPELLS = {
     .replace(' or until reduced to 0 hit points', ''),
   'True Seeing':
     SRD5E.SPELLS['True Seeing']
-    .replace(/truesight.*for 1 hr/, 'truesight for 1 hr'),
+    .replace(/Truesight.*for 1 hr/, 'Truesight for 1 hr'),
   'True Resurrection':SRD5E.SPELLS['True Resurrection'],
   'True Strike':
     SRD5E.SPELLS['True Strike'] + ' ' +
@@ -3380,6 +3383,8 @@ SRD5E2024.featRulesExtra = function(rules, name) {
     rules.defineRule('abilityBoostChoiceCount',
       'abilityNotes.abilityScoreImprovement', '+=', null
     );
+  } else if(name == 'Archery') {
+    rules.defineRule('attackBonus.Ranged', 'combatNotes.archery', '+=', '2');
   } else if(name == 'Defense') {
     rules.defineRule('armorClass', 'combatNotes.defense.1', '+', null);
     rules.defineRule('combatNotes.defense.1',

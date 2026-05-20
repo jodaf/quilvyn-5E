@@ -199,8 +199,8 @@ SRD5E.CLASSES = {
       '"2:Turn Undead","5:Destroy Undead","10:Divine Intervention",' +
       '"features.Life Domain ? 1:Bonus Proficiency (Life Domain)",' +
       '"features.Life Domain ? 1:Disciple Of Life",' +
+      '"features.Life Domain ? 1:Life Domain Spells",' +
       '"features.Life Domain ? 2:Preserve Life",' +
-      '"features.Life Domain ? 3:Life Domain Spells",' +
       '"features.Life Domain ? 6:Blessed Healer",' +
       '"clericHasDivineStrike ? 8:Divine Strike",' +
       '"features.Life Domain ? 17:Supreme Healing" ' +
@@ -233,7 +233,13 @@ SRD5E.CLASSES = {
       '"18:Timeless Body (Druid)","18:Beast Spells","20:Archdruid",' +
       '"features.Circle Of The Land ? 2:Bonus Cantrip (Circle Of The Land)",' +
       '"features.Circle Of The Land ? 2:Natural Recovery",' +
-      '"features.Circle Of The Land ? 3:Circle Spells",' +
+      '"features.Circle Of The Land (Arctic) ? 3:Circle Spells (Arctic)",' +
+      '"features.Circle Of The Land (Coast) ? 3:Circle Spells (Coast)",' +
+      '"features.Circle Of The Land (Desert) ? 3:Circle Spells (Desert)",' +
+      '"features.Circle Of The Land (Forest) ? 3:Circle Spells (Forest)",' +
+      '"features.Circle Of The Land (Grassland) ? 3:Circle Spells (Grassland)",' +
+      '"features.Circle Of The Land (Mountain) ? 3:Circle Spells (Mountain)",' +
+      '"features.Circle Of The Land (Swamp) ? 3:Circle Spells (Swamp)",' +
       '"features.Circle Of The Land ? 6:Land\'s Stride",' +
       '"features.Circle Of The Land ? 10:Nature\'s Ward",' +
       '"features.Circle Of The Land ? 14:Nature\'s Sanctuary" ' +
@@ -635,7 +641,7 @@ SRD5E.FEATURES = {
   'Steady':'Section=ability Note="Suffers no speed penalty in heavy armor"',
   'Stonecunning':
     'Section=skill ' +
-    'Note="+%{proficiencyBonus*(skillProficiency.History?1:2)} History (stonework)"',
+    'Note="+%{proficiencyBonus*(skillProficiency.History?1:2)} History when determining stonework origins"',
   // Hill Dwarf
   'Dwarven Toughness':'Section=combat Note="+%{level} Hit Points"',
   'Hill Dwarf Ability Adjustment':'Section=ability Note="+1 Wisdom"',
@@ -679,7 +685,7 @@ SRD5E.FEATURES = {
     'Section=combat ' +
     'Note="%{breathWeaponShape} inflicts %{(level+9)//5}d6 HP %{breathWeaponEnergy} (save DC %{8+constitutionModifier+proficiencyBonus} %{breathWeaponEnergy=~\'cold|poison\'?\'Constitution\':\'Dexterity\'} half) once per short rest"',
   'Damage Resistance':
-    'Section=save Note="Has resistance to %{breathWeaponEnergy} damage"',
+    'Section=save Note="Has resistance to %{breathWeaponEnergy}"',
   'Draconic Ancestry':'Section=feature Note="1 selection"',
   'Dragonborn Ability Adjustment':
     'Section=ability Note="+2 Strength/+1 Charisma"',
@@ -693,13 +699,13 @@ SRD5E.FEATURES = {
   // Rock Gnome
   "Artificer's Lore":
     'Section=skill ' +
-    'Note="+%{proficiencyBonus*(skillProficiency.History?1:2)} History (magic, alchemical, and technological objects)"',
+    'Note="+%{proficiencyBonus*(skillProficiency.History?1:2)} History concerning magic, alchemical, and technological objects"',
   'Rock Gnome Ability Adjustment':'Section=ability Note="+1 Constitution"',
   'Tinker':
     'Section=skill,skill ' +
     'Note=' +
       '"Tool Proficiency (Tinker\'s Tools)",' +
-      '"Can use Tinker\'s Tools to create a tiny clockwork device in 1 hr"',
+      '"Can spend 10 GP worth of materials and use Tinker\'s Tools for 1 hr to create a tiny clockwork device; it stops functioning after 24 hr unless another 1 hr is spent on repairs"',
 
   // Half-Elf
   'Half-Elf Ability Adjustment':
@@ -724,14 +730,13 @@ SRD5E.FEATURES = {
   // Darkvision as above
   'Tiefling Ability Adjustment':
     'Section=ability Note="+2 Charisma/+1 Intelligence"',
-  'Hellish Resistance':
-    'Section=save Note="Has resistance to fire damage"',
+  'Hellish Resistance':'Section=save Note="Has resistance to fire"',
   'Infernal Legacy':
     'Section=magic ' +
     // errata replaces once per day with once per long rest
-    'Note="Knows the <i>Thaumaturgy</i> cantrip%{level<3?\'\':level<5?\' and can cast <i>Hellish Rebuke</i> without expending a spell slot once per long rest\':\' and can cast <i>Hellish Rebuke</i> and <i>Darkness</i> without expending a spell slot once per long rest\'}" ' +
-    'Spells=Thaumaturgy,"3:Hellish Rebuke",5:Darkness ' +
-    'SpellAbility=Charisma',
+    'Note="Can cast <i>Hellish Rebuke</i>%{level<5?\'\':\' and <i>Darkness</i>\'} without expending a spell slot once per long rest" ' +
+    'SpellAbility=Charisma ' +
+    'Spells=Thaumaturgy,"3:Hellish Rebuke",5:Darkness',
 
   // Class
 
@@ -750,16 +755,17 @@ SRD5E.FEATURES = {
   'Indomitable Might':
     'Section=ability Note="Scores a minimum of %{strength} on Strength checks"',
   'Persistent Rage':
-    'Section=combat Note="Can continue raging without taking any action"',
+    'Section=combat ' +
+    'Note="Can continue raging without attacking or taking damage"',
   'Primal Champion':'Section=ability Note="+4 Strength/+4 Constitution"',
   'Primal Path':'Section=feature Note="1 selection"',
   'Rage':
     'Section=ability,combat,magic,save ' +
     'Note=' +
       '"Has advantage on Strength checks during rage",' +
-      '"Can enter a rage as a bonus action, gaining +%{levels.Barbarian<9?2:levels.Barbarian<16?3:4} damage with Strength melee weapons, for 1 min %{levels.Barbarian<3?2:levels.Barbarian<6?3:levels.Barbarian<12?4:levels.Barbarian<17?5:levels.Barbarian<20?6:\'unlimited\'} times per long rest; heavy armor negates the benefits",' +
+      '"Can use a bonus action to rage, gaining +%{levels.Barbarian<9?2:levels.Barbarian<16?3:4} damage with Strength melee weapons, for 1 min %{levels.Barbarian<3?2:levels.Barbarian<6?3:levels.Barbarian<12?4:levels.Barbarian<17?5:levels.Barbarian<20?6:\'unlimited\'} times per long rest; %{combatNotes.persistentRage?\'\':\'the rage ends at the end of a turn when no attacks have been made or damage taken for 1 rd, and \'}heavy armor negates the benefits",' +
       '"Cannot cast or concentrate on spells during rage",' +
-      '"Has advantage on Strength saves and resistance to bludgeoning, piercing, and slashing damage during rage"',
+      '"Has advantage on Strength saves and resistance to bludgeoning, piercing, and slashing during rage"',
   'Reckless Attack':
     'Section=combat ' +
     'Note="Can suffer foe advantage on attacks to gain advantage on Strength melee attacks until the start of the next turn"',
@@ -770,10 +776,10 @@ SRD5E.FEATURES = {
   // Berserker
   'Frenzy':
     'Section=combat ' +
-    'Note="Can use a bonus action to attack with a melee weapon each rd during rage; suffers 1 level of exhaustion after rage"',
+    'Note="Can use a bonus action to attack with a melee weapon each turn during rage; suffers 1 level of exhaustion after rage"',
   'Intimidating Presence':
     'Section=combat ' +
-    'Note="R30\' Can use an action to inflict frightened on a target (save DC %{charismaModifier+8+proficiencyBonus} Wisdom negates) and additional actions to extend each rd; ends if the target moves out of sight or more than 60\' away"',
+    'Note="R30\' Can use an action to inflict frightened on a target (save DC %{charismaModifier+8+proficiencyBonus} Wisdom negates) and additional actions to extend each turn; ends if the target moves out of sight or more than 60\' away"',
   'Mindless Rage':
     'Section=save Note="Has immunity to charmed and frightened during rage"',
   'Retaliation':
@@ -787,21 +793,21 @@ SRD5E.FEATURES = {
     'Note="R60\' Can use a bonus action %{charismaModifier>1?charismaModifier + \' times\':\'once\'} per %{combatNotes.fontOfInspiration?\'short\':\'long\'} rest to give an ally +1d%{bardicInspirationDie} on an ability check, attack, or save within 10 min"',
   'Countercharm':
     'Section=skill ' +
-    'Note="R30\' Performance gives friendly listeners advantage on saves vs. charmed and frightened for 1 rd"',
+    'Note="R30\' Performance gives friendly listeners advantage on saves vs. charmed and frightened until the end of the next turn"',
   'Expertise':
     'Section=skill ' +
-    'Note="Has expertise in %V chosen proficient skills%{levels.Rogue?\\" or Thieves\' Tools\\":\'\'}"',
+    'Note="Skill Expertise (Choose %V from any%{levels.Rogue?\\" or Thieves\' Tools\\":\'\'})"',
   'Font Of Inspiration':
     'Section=combat Note="Has increased Bardic Inspiration effects"',
   'Jack Of All Trades':
     'Section=ability Note="+%V on non-proficient ability checks"',
   'Magical Secrets':
     'Section=magic ' +
-    'Note="Can learn %{(levels.Bard-6)//4*2} additional spells from any class"',
+    'Note="Can learn %{(levels.Bard-6)//4*2+(magicNotes.additionalMagicalSecrets?2:0)} additional spells from any class"',
   'Song Of Rest':
     'Section=magic ' +
     // errata specifies spending Hit Dice
-    'Note="Friendly listeners regain +1d%{levels.Bard>=9?6+(levels.Bard-5)//4*2:6} hit points from spending Hit Dice after a short rest"',
+    'Note="Friendly listeners who spend Hit Dice to regain hit points after a short rest recover +1d%{levels.Bard>=9?6+(levels.Bard-5)//4*2:6} hit points"',
   'Spellcasting':
     'Section=magic ' +
     'Note="Can cast spells from the %V spell list%{magicNotes.spellcasting.1?\' and cast spells marked with [R] using a ritual\':\'\'}; regains expended spell slots after a long rest"',
@@ -810,12 +816,12 @@ SRD5E.FEATURES = {
     'Note="Has a minimum of 1 use of Bardic Inspiration available after initiative"',
   // College Of Lore
   'Additional Magical Secrets':
-    'Section=magic Note="Can learn 2 additional spells from any class"',
+    'Section=magic Note="Has increased Magical Secrets effects"',
   'Bonus Proficiencies (College Of Lore)':
     'Section=skill Note="Skill Proficiency (Choose 3 from any)"',
   'Cutting Words':
     'Section=combat ' +
-    'Note="R60\' Can use a reaction to subtract a Bardic Inspiration die from a foe roll"',
+    'Note="R60\' Can use a reaction to subtract a Bardic Inspiration die from a foe attack, ability check, or damage roll"',
   'Peerless Skill':
     'Section=ability ' +
     'Note="Can add a Bardic Inspiration die to an ability check"',
@@ -830,7 +836,7 @@ SRD5E.FEATURES = {
   'Divine Domain':'Section=feature Note="1 selection"',
   'Divine Intervention':
     'Section=magic ' +
-    'Note="Has a %{levels.Cleric<20?levels.Cleric:100}% chance to gain help from %{deity} once per week"',
+    'Note="Has a %{levels.Cleric<20?levels.Cleric:100}% chance to gain help from %{deity} once per week%{levels.Cleric<20?\'; after a failure, must wait until after a long rest before trying again\':\'\'}"',
   // Spellcasting as above
   'Supreme Healing':
     'Section=magic ' +
@@ -846,7 +852,7 @@ SRD5E.FEATURES = {
     'Section=combat Note="Armor Proficiency (Heavy)"',
   'Disciple Of Life':
     'Section=magic ' +
-    'Note="Casting a healing spell restores an additional 2 + spell level hit points"',
+    'Note="Casting a level 1 or higher healing spell restores an additional 2 + spell level hit points"',
   'Divine Strike':
     'Section=combat ' +
     'Note="Weapon inflicts +%{levels.Cleric<14?1:2}d8 HP %{divineStrikeDamageType} once per turn"',
@@ -867,7 +873,9 @@ SRD5E.FEATURES = {
     'Note=' +
       '"Has increased Wild Shape effects",' +
       '"Casting spells requires no verbal, somatic, or cost-free material components"',
-  'Beast Spells':'Section=magic Note="Can cast spells during Wild Shape"',
+  'Beast Spells':
+    'Section=magic ' +
+    'Note="Can cast spells requiring no material components during Wild Shape"',
   'Druid Circle':'Section=feature Note="1 selection"',
   'Druidic':
     'Section=skill Note="Speaks a secret language known only by druids"',
@@ -879,53 +887,52 @@ SRD5E.FEATURES = {
   // Circle Of The Land
   'Bonus Cantrip (Circle Of The Land)':
     'Section=magic Note="Knows an additional Druid cantrip"',
-  'Circle Of The Land (Arctic)':
+  'Circle Spells (Arctic)':
     'Spells=' +
       '"3:Hold Person","3:Spike Growth",' +
       '"5:Sleet Storm","5:Slow",' +
       '"7:Freedom Of Movement","7:Ice Storm",' +
       '"9:Commune With Nature","9:Cone Of Cold"',
-  'Circle Of The Land (Coast)':
+  'Circle Spells (Coast)':
     'Spells=' +
       '"3:Mirror Image","3:Misty Step",' +
       '"5:Water Breathing","5:Water Walk",' +
       '"7:Control Water","7:Freedom Of Movement",' +
       '"9:Conjure Elemental","9:Scrying"',
-  'Circle Of The Land (Desert)':
+  'Circle Spells (Desert)':
     'Spells=' +
       '"3:Blur","3:Silence",' +
       '"5:Create Food And Water","5:Protection From Energy",' +
       '"7:Blight","7:Hallucinatory Terrain",' +
       '"9:Insect Plague","9:Wall Of Stone"',
-  'Circle Of The Land (Forest)':
+  'Circle Spells (Forest)':
     'Spells=' +
       '"3:Barkskin","3:Spider Climb",' +
       '"5:Call Lightning","5:Plant Growth",' +
       '"7:Divination","7:Freedom Of Movement",' +
       '"9:Commune With Nature","9:Tree Stride"',
-  'Circle Of The Land (Grassland)':
+  'Circle Spells (Grassland)':
     'Spells=' +
       '"3:Invisibility","3:Pass Without Trace",' +
       '"5:Daylight","5:Haste",' +
       '"7:Divination","7:Freedom Of Movement",' +
       '"9:Dream","9:Insect Plague"',
-  'Circle Of The Land (Mountain)':
+  'Circle Spells (Mountain)':
     'Spells=' +
       '"3:Spider Climb","3:Spike Growth",' +
       '"5:Lightning Bolt","5:Meld Into Stone",' +
       '"7:Stone Shape","7:Stoneskin",' +
       '"9:Passwall","9:Wall Of Stone"',
-  'Circle Of The Land (Swamp)':
+  'Circle Spells (Swamp)':
     'Spells=' +
       '"3:Acid Arrow","3:Darkness",' +
       '"5:Water Walk","5:Stinking Cloud",' +
       '"7:Freedom Of Movement","7:Locate Creature",' +
       '"9:Insect Plague","9:Scrying"',
-  'Circle Spells':'Section=magic Note="Has access to terrain-specific spells"',
   "Land's Stride":
     'Section=ability,save ' +
     'Note=' +
-      '"Can move normally through difficult terrain and nonmagical plants",' +
+      '"Can move normally through nonmagical difficult terrain and plants",' +
       '"Has advantage vs. impeding plants"',
   'Natural Recovery':
     'Section=magic ' +
@@ -980,7 +987,7 @@ SRD5E.FEATURES = {
     'Section=combat Note="Scores a critical hit on a natural 18"',
   'Survivor':
     'Section=combat ' +
-    'Note="Regains %{constitutionModifier+5} hit points each rd when between 1 and %{hitPoints//2} hit points"',
+    'Note="Regains %{constitutionModifier+5} hit points at the start of each turn when between 1 and %{hitPoints//2} hit points"',
 
   // Monk
   'Deflect Missiles':
@@ -1001,7 +1008,7 @@ SRD5E.FEATURES = {
   // Extra Attack as above
   'Flurry Of Blows':
     'Section=combat ' +
-    'Note="Can spend 1 ki point to make 2 unarmed strikes as a bonus action"',
+    'Note="Can spend 1 ki point after using an Attack action to make 2 unarmed strikes as a bonus action"',
   'Ki':'Section=combat Note="Can use %{levels.Monk} ki points per short rest"',
   'Ki-Empowered Strikes':
     'Section=combat Note="Unarmed strikes count as magical"',
@@ -1009,7 +1016,7 @@ SRD5E.FEATURES = {
     'Section=combat,combat ' +
     'Note=' +
       '"When unarmored and wielding only Monk weapons, gains +%1 attack and damage with unarmed strikes and weapon attacks and raises their damage dice to 1d%V",' +
-      '"Can use a bonus action to make an unarmed strike after attacking"',
+      '"Can use a bonus action to make an unarmed strike after using an Attack action with an unarmed strike or Monk weapon"',
   'Monastic Tradition':'Section=feature Note="1 selection"',
   'Patient Defense':
     'Section=combat Note="Can spend 1 ki point to Dodge as a bonus action"',
@@ -1025,15 +1032,16 @@ SRD5E.FEATURES = {
     'Note="Can spend 1 ki point to double jump distance and to Disengage or Dash as a bonus action"',
   'Stillness Of Mind':
     'Section=save ' +
-    'Note="Can use an action to end charm or fright affecting self"',
+    'Note="Can use an action to end a charmed or frightened effect on self"',
   'Stunning Strike':
     'Section=combat ' +
-    'Note="Can spend 1 ki point after a successful attack to stun the target (save DC %{monkSaveDC} Constitution negates) until the end of the next turn"',
+    'Note="Can spend 1 ki point after a successful melee attack to stun the target (save DC %{monkSaveDC} Constitution negates) until the end of the next turn"',
   'Timeless Body (Monk)':
     'Section=feature ' +
     'Note="Suffers no debility from aging and needs no food or water"',
   'Tongue Of The Sun And Moon':
-    'Section=skill Note="Can communicate in any language"',
+    'Section=skill ' +
+    'Note="Can converse with any creature that understands a language"',
   // Unarmored Defense as above
   'Unarmored Movement':
     'Section=ability,ability ' +
@@ -4507,6 +4515,7 @@ SRD5E.classRulesExtra = function(rules, name) {
     rules.defineRule('selectableFeatureCount.Bard (Bard College)',
       'featureNotes.bardCollege', '=', '1'
     );
+    // TODO automate this
     rules.defineRule
       ('skillNotes.expertise', classLevel, '+=', 'source<10 ? 2 : 4');
 
@@ -5508,6 +5517,8 @@ SRD5E.raceRulesExtra = function(rules, name) {
   } else if(name == 'High Elf') {
     rules.defineRule
       ('casterLevels.W', 'features.Cantrip (High Elf)', '^=', '1');
+  } else if(name == 'Tiefling') {
+    rules.defineRule('magicNotes.infernalLegacy', 'level', '?', 'source >= 3');
   }
 
 };

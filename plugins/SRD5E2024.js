@@ -575,7 +575,8 @@ SRD5E2024.FEATURES = {
     'Section=combat Note="Can move %{speed//2}\' when entering rage"',
   'Persistent Rage':
     SRD5E.FEATURES['Persistent Rage']
-    .replace('Can', 'Can recover all uses of Rage during initiative once per long rest and can'),
+    .replace('Can', 'Can recover all uses of Rage during initiative once per long rest and can')
+    .replace('attacking or taking damage', 'taking any action'),
   'Primal Champion':SRD5E.FEATURES['Primal Champion'],
   'Primal Knowledge':
     'Section=skill,skill ' +
@@ -660,8 +661,9 @@ SRD5E2024.FEATURES = {
     SRD5E.FEATURES['Bonus Proficiencies (College Of Lore)'],
   'Cutting Words':SRD5E.FEATURES['Cutting Words'],
   'Magical Discoveries':
-    SRD5E.FEATURES['Additional Magical Secrets']
-    .replace('any class', 'the Cleric, Druid, and Wizard spell lists'),
+    'Section=magic ' +
+    // changed effects
+    'Note="Can learn 2 additional spells from the Cleric, Druid, and Wizard spell lists"',
   'Peerless Skill':
     // changed effects
     'Section=ability,combat ' +
@@ -718,7 +720,7 @@ SRD5E2024.FEATURES = {
     .replace('Casting', 'Using a spell slot to cast'),
   'Disciple Of Life':
     SRD5E.FEATURES['Disciple Of Life']
-    .replace('Casting', 'Using a spell slot to cast'),
+    .replace('Casting a level 1 or higher', 'Using a spell slot to cast a'),
   'Life Domain Spells':
     // changed effects
     'Spells=' +
@@ -905,13 +907,14 @@ SRD5E2024.FEATURES = {
   'Flurry Of Blows':
     SRD5E.FEATURES['Flurry Of Blows']
     .replace('ki point', 'focus point')
+    .replace('after using an Attack action ', '')
     .replace('2 unarmed', '%{combatNotes.heightenedFocus?3:2} unarmed'),
   'Heightened Focus':
     'Section=combat ' +
     'Note="Has increased Flurry Of Blows, Patient Defense, and Step Of The Wind effects"',
   'Martial Arts':
     SRD5E.FEATURES['Martial Arts']
-    .replace('after attacking', ' and can use Dexterity instead of Strength to Grapple and Shove'),
+    .replace('after using an Attack action with an unarmed strike or Monk weapon', 'and can use Dexterity instead of Strength to Grapple and Shove'),
   'Monk Subclass':SRD5E.FEATURES['Monastic Tradition'],
   "Monk's Focus":
     'Section=combat,combat ' +
@@ -937,6 +940,7 @@ SRD5E2024.FEATURES = {
   'Stunning Strike':
     SRD5E.FEATURES['Stunning Strike']
     .replace('ki point', 'focus point')
+    .replace('melee attack', 'unarmed strike or attack with a Monk weapon')
     .replace('negates', 'inflicts half Speed and advantage on the next foe attack')
     .replace('end of', 'start of'),
   'Superior Defense':
@@ -1151,7 +1155,9 @@ SRD5E2024.FEATURES = {
     'Section=combat ' +
     // changed effects
     'Note="Can use Cunning Strike to attack while invisible from hiding without becoming visible; reduces the damage by 1d6 HP"',
-  "Thief's Reflexes":SRD5E.FEATURES["Thief's Reflexes"],
+  "Thief's Reflexes":
+    SRD5E.FEATURES["Thief's Reflexes"]
+    .replace(' when not surprised', ''),
   'Use Magic Device':
     'Section=skill ' +
     // changed effects
@@ -1363,6 +1369,7 @@ SRD5E2024.FEATURES = {
   'Signature Spells':SRD5E.FEATURES['Signature Spells'],
   'Spell Mastery':
     SRD5E.FEATURES['Spell Mastery']
+    .replaceAll('chosen', 'chosen 1-action')
     .replace('the choices', 'a choice')
     .replace('8 hr of study', 'a long rest'),
   // Spellcasting as above

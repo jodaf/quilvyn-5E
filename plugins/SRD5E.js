@@ -796,7 +796,7 @@ SRD5E.FEATURES = {
     'Note="R30\' Performance gives friendly listeners advantage on saves vs. charmed and frightened until the end of the next turn"',
   'Expertise':
     'Section=skill ' +
-    'Note="Skill Expertise (Choose %V from any%{levels.Rogue?\\" or Thieves\' Tools\\":\'\'})"',
+    'Note="Expertise (Choose %V from any Skill%{levels.Rogue?\\", Thieves\' Tools\\":\'\'})"',
   'Font Of Inspiration':
     'Section=combat Note="Has increased Bardic Inspiration effects"',
   'Jack Of All Trades':
@@ -1075,7 +1075,7 @@ SRD5E.FEATURES = {
   // Channel Divinity as above
   'Cleansing Touch':
     'Section=magic ' +
-    'Note="Can dispel a spell effect on a touched willing creature %{charismaModifier>1?charismaModifier+\' times\':\'once\'} per long rest"',
+    'Note="Touch can end a spell effect on a willing creature %{charismaModifier>1?charismaModifier+\' times\':\'once\'} per long rest"',
   'Divine Health':'Section=save Note="Has immunity to disease"',
   'Divine Sense':
     'Section=skill ' +
@@ -1089,7 +1089,7 @@ SRD5E.FEATURES = {
     'Section=combat Note="Melee attacks inflict +1d8 HP radiant"',
   'Lay On Hands':
     'Section=magic ' +
-    'Note="Can heal %{levels.Paladin*5} hit points per long rest and can use 5 hit points\' worth to cure a disease or neutralize a poison"',
+    'Note="Touch can heal %{levels.Paladin*5} hit points per long rest; can use 5 hit points\' worth to cure a disease or neutralize a poison"',
   'Sacred Oath':'Section=feature Note="1 selection"',
   // Spellcasting as above
   // Oath Of Devotion
@@ -1109,20 +1109,20 @@ SRD5E.FEATURES = {
       '"17:Commune","17:Flame Strike"',
   'Purity Of Spirit':
     'Section=magic ' +
-    'Note="Has a continuous <i>Protection From Evil And Good</i> effect" ' +
+    'Note="Has continuous <i>Protection From Evil And Good</i> effects" ' +
     'Spells="Protection From Evil And Good"',
   'Sacred Weapon':
     'Section=combat ' +
     'Note="Can use Channel Divinity to give a weapon wielded by self +%{charismaModifier>?1} attack and a 20\' bright light for 1 min"',
   'Turn The Unholy':
     'Section=combat ' +
-    'Note="R30\' Can use Channel Divinity to make fiends and undead flee (save DC %{spellDifficultyClass.P} Wisdom negates) for 1 min"',
+    'Note="R30\' Can use Channel Divinity to make fiends and undead flee (save DC %{spellDifficultyClass.P} Wisdom negates) for 1 min or until damaged"',
 
   // Ranger
   // Extra Attack as above
   'Favored Enemy':
     'Section=skill ' +
-    'Note="Has advantage on Survival to track and on Intelligence to recall info about %{levels.Ranger<6?1:levels.Ranger<14?2:3} chosen creature types, and can learn any languages they speak"',
+    'Note="Has advantage on Survival to track and on Intelligence to recall info about %{levels.Ranger<6?1:levels.Ranger<14?2:3} chosen creature type%{levels.Ranger<6?\'\':\'s\'} and can learn a language %{levels.Ranger<6?\'it\':\'each one\'} speaks"',
   'Feral Senses':
     'Section=combat,skill ' +
     'Note=' +
@@ -1131,7 +1131,7 @@ SRD5E.FEATURES = {
   // Fighting Style as above
   'Foe Slayer':
     'Section=combat ' +
-    'Note="Can gain a choice of +%{wisdomModifier} attack or damage vs. a favored enemy once per rd"',
+    'Note="Can gain a choice of +%{wisdomModifier} attack or damage vs. a favored enemy once per turn"',
   'Hide In Plain Sight':
     'Section=skill ' +
     'Note="+10 Stealth to hide using prepared camouflage; moving or taking an action or reaction ends"',
@@ -1158,7 +1158,7 @@ SRD5E.FEATURES = {
   // Evasion as above
   'Giant Killer':
     'Section=combat ' +
-    'Note="Can use a reaction to attack an adjacent Large or larger foe after it misses self"',
+    'Note="Can use a reaction to attack an adjacent Large or larger foe after it attacks self"',
   'Horde Breaker':
     'Section=combat ' +
     'Note="Can make a second weapon attack on a foe adjacent to the first target once per turn"',
@@ -1170,7 +1170,7 @@ SRD5E.FEATURES = {
   'Stand Against The Tide':
     'Section=combat ' +
     'Note="Can use a reaction to redirect a foe melee miss to another creature"',
-  'Steel Will':'Section=save Note="Has advantage vs. fright"',
+  'Steel Will':'Section=save Note="Has advantage vs. frightened"',
   "Superior Hunter's Defense":'Section=feature Note="1 selection"',
   'Uncanny Dodge':
     'Section=combat ' +
@@ -1211,13 +1211,13 @@ SRD5E.FEATURES = {
   'Second-Story Work':
     'Section=ability,skill ' +
     'Note=' +
-      '"Can climb at full speed",' +
+      '"Can climb at full Speed",' +
       '"+%{dexterityModifier}\' running jump distance"',
   'Supreme Sneak':
     'Section=skill Note="Has advantage on Stealth when moving at half speed"',
   "Thief's Reflexes":
     'Section=combat ' +
-    'Note="Can take an second turn during the first combat rd at initiative - 10"',
+    'Note="Can take an second turn during the first combat rd at initiative - 10 when not surprised"',
   'Use Magic Device':
     'Section=skill ' +
     'Note="Ignores class, race, and level restrictions on magic device use"',
@@ -1264,7 +1264,7 @@ SRD5E.FEATURES = {
       '"+%{proficiencyBonus} on proficient Charisma checks with dragons"',
   'Draconic Presence':
     'Section=magic ' +
-    'Note="R60\' Can spend 5 sorcery points to gain an aura that inflicts a choice of charm or fright (save DC %{spellDifficultyClass.S} Wisdom negates for 24 hr) for concentration up to 1 min"',
+    'Note="R60\' Can spend 5 sorcery points to gain an aura that inflicts a choice of charmed or frightened (save DC %{spellDifficultyClass.S} Wisdom negates for 24 hr) on foes for concentration up to 1 min"',
   'Draconic Resilience':
     'Section=combat ' +
     'Note="+%{levels.Sorcerer} Hit Points/+3 Armor Class in no armor"',
@@ -1273,10 +1273,8 @@ SRD5E.FEATURES = {
     'Section=ability ' +
     'Note="Can use a bonus action to gain a %{speed}\' fly Speed"',
   'Elemental Affinity':
-    'Section=magic,save ' +
-    'Note=' +
-      '"Spells that deal %{draconicDamage} damage inflict +%{charismaModifier} HP",' +
-      '"Can spend 1 sorcery point to gain resistance to %{draconicDamage} for 1 hr"',
+    'Section=magic ' +
+    'Note="Spells that deal %{draconicDamage} damage inflict +%{charismaModifier} HP; can spend 1 sorcery point when casting one to gain resistance to %{draconicDamage} for 1 hr"',
 
   // Warlock
   'Eldritch Invocations':'Section=magic Note="%V selections"',
@@ -1356,8 +1354,7 @@ SRD5E.FEATURES = {
     'Section=magic ' +
     'Note="Can cast <i>Detect Magic</i> without expending a spell slot" ' +
     'Spells="Detect Magic"',
-  'Eldritch Spear':
-    'Section=magic Note="Has increased Eldritch Blast effects"',
+  'Eldritch Spear':'Section=magic Note="Eldritch Blast has a 300\' range"',
   'Eyes Of The Rune Keeper':'Section=skill Note="Can read all writing"',
   'Fiendish Vigor':
     'Section=magic ' +
@@ -1411,7 +1408,7 @@ SRD5E.FEATURES = {
     'Note="Can use a Warlock spell slot to cast <i>Bane</i> once per long rest" ' +
     'Spells=Bane',
   'Thirsting Blade':
-    'Section=combat Note="Attack action with a pact blade allows 2 attacks"',
+    'Section=combat Note="Can make 2 attacks with a pact blade during an Attack action"',
   'Visions Of Distant Realms':
     'Section=magic ' +
     'Note="Can cast <i>Arcane Eye</i> without expending a spell slot" ' +
@@ -1437,7 +1434,7 @@ SRD5E.FEATURES = {
     'Note="Can cast 2 chosen W3 spells without expending a spell slot once per short rest"',
   'Spell Mastery':
     'Section=magic ' +
-    'Note="Can cast a chosen 1-action W1 spell and a chosen 1-action W2 spell without expending a spell slot and change the choices after 8 hr of study"',
+    'Note="Can cast a chosen W1 spell and a chosen W2 spell without expending a spell slot; can change the choices after 8 hr of study"',
   // Spellcasting as above
   // School Of Evocation
   'Empowered Evocation':
@@ -4510,12 +4507,12 @@ SRD5E.classRulesExtra = function(rules, name) {
     rules.defineRule('bardicInspirationDie',
       classLevel, '=', 'source<20 ? 6 + Math.floor(source / 5) * 2 : 12'
     );
+    // TODO automate this
     rules.defineRule('expertiseCount', 'skillNotes.expertise', '+=', null);
     rules.defineRule('magicNotes.spellcasting.1', classLevel, '=', '1');
     rules.defineRule('selectableFeatureCount.Bard (Bard College)',
       'featureNotes.bardCollege', '=', '1'
     );
-    // TODO automate this
     rules.defineRule
       ('skillNotes.expertise', classLevel, '+=', 'source<10 ? 2 : 4');
 
@@ -4732,6 +4729,7 @@ SRD5E.classRulesExtra = function(rules, name) {
 
   } else if(name == 'Rogue') {
 
+    // TODO automate this
     rules.defineRule('expertiseCount', 'skillNotes.expertise', '+=', null);
     rules.defineRule('featCount.General',
       classLevel, '+=', 'Math.min(Math.floor(source / 4), 5) + (source<10 ? 0 : 1)'
@@ -4787,6 +4785,9 @@ SRD5E.classRulesExtra = function(rules, name) {
     );
     rules.defineRule('selectableFeatureCount.Warlock (Pact Boon)',
       'featureNotes.pactBoon', '=', '1'
+    );
+    rules.defineRule('spells.Eldritch Blast (K0 Evoc)',
+      'magicNotes.eldritchSpear', '+', 'null' // italics
     );
     rules.defineRule('maxKSlot',
       'casterLevels.K', '=', 'Math.min(Math.floor((source + 1) / 2), 5)'

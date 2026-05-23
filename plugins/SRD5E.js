@@ -3874,7 +3874,7 @@ SRD5E.talentRules = function(
   QuilvynRules.validAllocationRules
     (rules, 'toolProficiency', 'toolChoiceCount', 'Sum "^toolsChosen\\."');
   QuilvynRules.validAllocationRules
-    (rules, 'expertise', 'expertiseCount', 'Sum "^expertise\\."');
+    (rules, 'expertise', 'expertiseChoiceCount', 'Sum "^expertise\\."');
 
 };
 
@@ -4507,8 +4507,6 @@ SRD5E.classRulesExtra = function(rules, name) {
     rules.defineRule('bardicInspirationDie',
       classLevel, '=', 'source<20 ? 6 + Math.floor(source / 5) * 2 : 12'
     );
-    // TODO automate this
-    rules.defineRule('expertiseCount', 'skillNotes.expertise', '+=', null);
     rules.defineRule('magicNotes.spellcasting.1', classLevel, '=', '1');
     rules.defineRule('selectableFeatureCount.Bard (Bard College)',
       'featureNotes.bardCollege', '=', '1'
@@ -4729,8 +4727,6 @@ SRD5E.classRulesExtra = function(rules, name) {
 
   } else if(name == 'Rogue') {
 
-    // TODO automate this
-    rules.defineRule('expertiseCount', 'skillNotes.expertise', '+=', null);
     rules.defineRule('featCount.General',
       classLevel, '+=', 'Math.min(Math.floor(source / 4), 5) + (source<10 ? 0 : 1)'
     );
@@ -5111,6 +5107,21 @@ SRD5E.featureRules = function(
             rules.defineRule(group + 'ChoiceCount', note, '+=', null);
           else
             rules.defineRule(group + 'ChoiceCount', note, '+=', matchInfo[1]);
+        });
+      }
+
+      // Expertise (item [; item ...])
+      matchInfo =
+        effect.match(/^Expertise\s\((([^\(]|\([^\)]*\))*)\)/);
+      if(matchInfo) {
+        matchInfo[1].split(/\/|;\s*/).forEach(affected => {
+          matchInfo = affected.match(/^Choose\s(\d+|%V)/);
+          if(!matchInfo)
+            rules.defineRule('expertise.' + affected, note, '=', '1');
+          else if(matchInfo[1].startsWith('%'))
+            rules.defineRule('expertiseChoiceCount', note, '+=', null);
+          else
+            rules.defineRule('expertiseChoiceCount', note, '+=', matchInfo[1]);
         });
       }
 
@@ -6759,10 +6770,10 @@ SRD5E.randomizeOneAttribute = function(attributes, attribute) {
     pat = new RegExp(attribute + '?(?: Proficiency)? \\((.*)\\)$', 'i');
     for(attr in attrs) {
       // Choice features can be duplicated in attrs; for example, the feature
-      // note "Tool Proficiency (Disguise Kit/Choose 1 from any Musical Instrument)" shows as
+      // note "Tool Proficiency (Disguise Kit; Choose 1 from any Musical Instrument)" shows as
       //
-      // <path>Features.Tool Proficiency (Disguise Kit/Choose 1 from any Musical Instrument)
-      // features.Tool Proficiency (Disguise Kit/Choose 1 from any Musical Instrument)
+      // <path>Features.Tool Proficiency (Disguise Kit; Choose 1 from any Musical Instrument)
+      // features.Tool Proficiency (Disguise Kit; Choose 1 from any Musical Instrument)
       // features.Tool Proficiency (Disguise Kit)
       // features.Tool Proficiency (Choose 1 from any Musical Instrument)
       //
@@ -6818,7 +6829,9 @@ SRD5E.randomizeOneAttribute = function(attributes, attribute) {
     );
     if(attribute == 'skills') {
       // Handle expertise immediately after skill proficiency selection
-      howMany = attrs.expertiseCount;
+      // TODO need to run through notes similarly to above to handle
+      // Expertise (Choose 1 from ....)
+      howMany = attrs.expertiseChoiceCount;
       choices = [];
       for(let s in this.getChoices('skills')) {
         if(attributes['expertise.' + s])

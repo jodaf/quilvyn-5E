@@ -632,7 +632,7 @@ SRD5E2024.FEATURES = {
   // Epic Boon as above
   'Expertise':
     // changed effects
-    'Section=skill Note="Has expertise in %V chosen proficient skills"',
+    'Section=skill Note="Expertise (Choose %V from any Skill)"',
   'Font Of Inspiration':
     'Section=combat,magic ' +
     // changed effects
@@ -1035,7 +1035,7 @@ SRD5E2024.FEATURES = {
   // Ranger
   'Deft Explorer':
     'Section=skill ' +
-    'Note="Language (Choose 2 from any)/Has expertise in 1 chosen proficient skill"',
+    'Note="Language (Choose 2 from any)/Expertise (Choose 1 from any Skill)"',
   'Druidic Warrior':
     'Section=magic ' +
     'Note="Knows 2 Druid cantrips; can replace 1 of them when gaining a Ranger level"',
@@ -1364,8 +1364,7 @@ SRD5E2024.FEATURES = {
     'Note="Can cast spells marked with [R] as rituals directly from spellbook"',
   'Scholar':
     'Section=skill ' +
-    // TODO likely doesn't work with randomizeOneAttribute
-    'Note="Has expertise in a choice of proficient Arcana, History, Investigation, Medicine, Nature, or Religion"',
+    'Note="Expertise (Choose 1 from Arcana, History, Investigation, Medicine, Nature, Religion)"',
   'Signature Spells':SRD5E.FEATURES['Signature Spells'],
   'Spell Mastery':
     SRD5E.FEATURES['Spell Mastery']
@@ -3079,7 +3078,6 @@ SRD5E2024.classRulesExtra = function(rules, name) {
     rules.defineRule('bardicInspirationDie',
       classLevel, '=', 'source<20 ? 6 + Math.floor(source / 5) * 2 : 12'
     );
-    rules.defineRule('expertiseCount', 'skillNotes.expertise', '+=', null);
     rules.defineRule('selectableFeatureCount.Bard (Bard Subclass)',
       'featureNotes.bardSubclass', '=', '1'
     );
@@ -3248,10 +3246,6 @@ SRD5E2024.classRulesExtra = function(rules, name) {
     rules.defineRule
       ('combatNotes.extraAttack', classLevel, '^=', 'source<5 ? null : 2');
     rules.defineRule('combatNotes.weaponMastery', classLevel, '+=', '2');
-    rules.defineRule('expertiseCount',
-      'skillNotes.deftExplorer', '+=', '1',
-      'skillNotes.expertise', '+=', null
-    );
     rules.defineRule('features.Colossus Slayer',
       "combatNotes.hunter'sPrey", '=', '1'
     );
@@ -3279,7 +3273,6 @@ SRD5E2024.classRulesExtra = function(rules, name) {
   } else if(name == 'Rogue') {
 
     rules.defineRule('combatNotes.weaponMastery', classLevel, '+=', '2');
-    rules.defineRule('expertiseCount', 'skillNotes.expertise', '+=', null);
     rules.defineRule('featCount.General',
       classLevel, '+=', 'Math.min(Math.floor(source / 4), 5) + (source<10 ? 0 : 1)'
     );
@@ -3335,7 +3328,6 @@ SRD5E2024.classRulesExtra = function(rules, name) {
 
   } else if(name == 'Wizard') {
 
-    rules.defineRule('expertiseCount', 'skillNotes.scholar', '+=', null);
     rules.defineRule('selectableFeatureCount.Wizard (Wizard Subclass)',
       'featureNotes.wizardSubclass', '=', '1'
     );

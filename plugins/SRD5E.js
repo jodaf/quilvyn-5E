@@ -992,7 +992,7 @@ SRD5E.FEATURES = {
   // Monk
   'Deflect Missiles':
     'Section=combat ' +
-    'Note="Can use a reaction to reduce suffered missile damage by 1d10+%{levels.Monk+dexterityModifier} HP; reducing it to 0 HP allows expending 1 ki point to make an immediate attack with the missile"',
+    'Note="Can use a reaction to reduce suffered missile damage by 1d10+%{levels.Monk+dexterityModifier} HP; reducing it to 0 HP allows spending 1 ki point to make an immediate attack with the missile"',
   'Diamond Soul':
     'Section=save,save ' +
     'Note=' +
@@ -4588,9 +4588,9 @@ SRD5E.classRulesExtra = function(rules, name) {
       'featureNotes.additionalFightingStyle', '+', '1'
     );
     rules.defineRule('selectableFeatureCount.Fighter (Fighting Style)',
-      'fighterFeatures.Fighting Style', '?', null,
-      'featureNotes.fightingStyle', '+=', '1',
-      'featureNotes.additionalFightingStyle', '+', '1'
+      'fighterFeatures.Fighting Style', '+=', '1',
+      'featureNotes.additionalFightingStyle', '+', '1',
+      'featureNotes.fightingStyle', '+', 'null' // italics
     );
     rules.defineRule('selectableFeatureCount.Fighter (Martial Archetype)',
       'featureNotes.martialArchetype', '=', '1'
@@ -4678,8 +4678,8 @@ SRD5E.classRulesExtra = function(rules, name) {
     for(let a in SRD5E.ABILITIES)
       rules.defineRule('save.' + a, 'saveNotes.auraOfProtection', '+', '2');
     rules.defineRule('selectableFeatureCount.Paladin (Fighting Style)',
-      'paladinFeatures.Fighting Style', '?', null,
-      'featureNotes.fightingStyle', '=', '1'
+      'paladinFeatures.Fighting Style', '=', '1',
+      'featureNotes.fightingStyle', '+', 'null' // italics
     );
     rules.defineRule('selectableFeatureCount.Paladin (Sacred Oath)',
       'featureNotes.sacredOath', '=', '1'
@@ -4709,8 +4709,8 @@ SRD5E.classRulesExtra = function(rules, name) {
       'featureNotes.defensiveTactics', '=', '1'
     );
     rules.defineRule('selectableFeatureCount.Ranger (Fighting Style)',
-      'rangerFeatures.Fighting Style', '?', null,
-      'featureNotes.fightingStyle', '=', '1'
+      'rangerFeatures.Fighting Style', '=', '1',
+      'featureNotes.fightingStyle', '+', 'null' // italics
     );
     rules.defineRule("selectableFeatureCount.Ranger (Hunter's Prey)",
       "featureNotes.hunter'sPrey", '=', '1'

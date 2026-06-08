@@ -1070,7 +1070,7 @@ SRD5E.FEATURES = {
   'Aura Of Protection':
     'Section=save,save ' +
     'Note=' +
-      '"+%{charismaModifier>?1} on all saves",' +
+      '"+%V on all saves",' +
       '"R%{levels.Paladin<18?10:30}\' Allies have +%{charismaModifier>?1} on all saves"',
   // Channel Divinity as above
   'Cleansing Touch':
@@ -4675,8 +4675,11 @@ SRD5E.classRulesExtra = function(rules, name) {
     rules.defineRule('magicNotes.channelDivinity.1',
       'levels.Paladin', '+=', 'source<3 ? null : 1'
     );
+    rules.defineRule('saveNotes.auraOfProtection',
+      'charismaModifier', '=', 'Math.max(source, 1)'
+    );
     for(let a in SRD5E.ABILITIES)
-      rules.defineRule('save.' + a, 'saveNotes.auraOfProtection', '+', '2');
+      rules.defineRule('save.' + a, 'saveNotes.auraOfProtection', '+', null);
     rules.defineRule('selectableFeatureCount.Paladin (Fighting Style)',
       'paladinFeatures.Fighting Style', '=', '1',
       'featureNotes.fightingStyle', '+', 'null' // italics

@@ -1270,8 +1270,9 @@ SRD5E2024.FEATURES = {
   'Eldritch Mind': // ref Tasha
     'Section=save ' +
     'Note="Has advantage on Constitution saves to maintain concentration"',
-  'Eldritch Smite':
-    'Section=combat Note="Can expend a spell slot upon a pact weapon hit to inflict +1d8 HP force plus +1d8 HP force per slot level and to inflict prone on a Huge or smaller target"',
+  'Eldritch Smite': // ref Xanathar
+    'Section=combat ' +
+    'Note="Once per turn, can expend a spell slot upon a pact weapon hit to inflict +1d8 HP force plus +1d8 HP force per slot level and to inflict prone on a Huge or smaller target"',
   'Eldritch Spear':
     // changed effects
     'Section=magic ' +
@@ -1283,7 +1284,7 @@ SRD5E2024.FEATURES = {
     SRD5E.FEATURES['Gaze Of Two Minds']
     .replace('humanoid', "humanoid, and cast spells through it when within 60',")
     .replace('extended', 'extended using bonus actions'),
-  'Gift Of The Depths':
+  'Gift Of The Depths': // ref Xanathar
     'Section=ability,magic ' +
     'Note=' +
       '"Has a %{speed}\' swim Speed and can breathe water",' +
@@ -3225,6 +3226,9 @@ SRD5E2024.classRulesExtra = function(rules, name) {
       ('combatNotes.extraAttack', classLevel, '^=', 'source<5 ? null : 2');
     rules.defineRule('magicNotes.channelDivinity.1',
       'levels.Paladin', '+=', 'source<3 ? null : source<11 ? 2 : 3'
+    );
+    rules.defineRule('saveNotes.auraOfProtection',
+      'charismaModifier', '=', 'Math.max(source, 1)'
     );
     for(let a in SRD5E.ABILITIES)
       rules.defineRule('save.' + a, 'saveNotes.auraOfProtection', '+', '2');

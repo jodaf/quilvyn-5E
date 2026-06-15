@@ -88,7 +88,8 @@ SRD5E.RANDOMIZABLE_ATTRIBUTES = [
   'abilities', 'charisma', 'constitution', 'dexterity', 'intelligence',
   'strength', 'wisdom', 'name', 'race', 'gender', 'alignment', 'background',
   'deity', 'levels', 'selectableFeatures', 'feats', 'skills', 'languages',
-  'hitPoints', 'armor', 'shield', 'weapons', 'spells', 'tools', 'abilityBoosts'
+  'hitPoints', 'armor', 'shield', 'weapons', 'spells', 'tools', 'abilityBoosts',
+  'expertise'
 ];
 SRD5E.VIEWERS = ['Collected Notes', 'Compact', 'Standard', 'Stat Block'];
 
@@ -395,7 +396,7 @@ SRD5E.CLASSES = {
       '"1:Tool Proficiency (Thieves\' Tools)",' +
       '"1:Save Proficiency (Dexterity; Intelligence)",' +
       '"1:Skill Proficiency (Choose 4 from Acrobatics, Athletics, Deception, Insight, Intimidation, Investigation, Perception, Performance, Persuasion, Sleight Of Hand, Stealth)",' +
-      '"1:Expertise","1:Sneak Attack","1:Thieves\' Cant",' +
+      '"1:Expertise (Rogue)","1:Sneak Attack","1:Thieves\' Cant",' +
       '"2:Cunning Action","3:Roguish Archetype","5:Uncanny Dodge",' +
       '"7:Evasion","11:Reliable Talent","14:Blindsense","15:Slippery Mind",' +
       '"18:Elusive","20:Stroke Of Luck",' +
@@ -794,9 +795,7 @@ SRD5E.FEATURES = {
   'Countercharm':
     'Section=skill ' +
     'Note="R30\' Performance gives friendly listeners advantage on saves vs. charmed and frightened until the end of the next turn"',
-  'Expertise':
-    'Section=skill ' +
-    'Note="Expertise (Choose %V from any Skill%{levels.Rogue?\\", Thieves\' Tools\\":\'\'})"',
+  'Expertise':'Section=skill Note="Expertise (Choose %V from any Skill)"',
   'Font Of Inspiration':
     'Section=combat Note="Has increased Bardic Inspiration effects"',
   'Jack Of All Trades':
@@ -1190,7 +1189,9 @@ SRD5E.FEATURES = {
     'Section=combat Note="Can use a bonus action to Dash, Disengage, or Hide"',
   'Elusive':'Section=combat Note="Attacks on self never have advantage"',
   // Evasion as above
-  // Expertise as above
+  'Expertise (Rogue)':
+    'Section=skill ' +
+    'Note="Expertise (Choose %V from any Skill, Thieves\' Tools)"',
   'Reliable Talent':
     'Section=ability Note="Scores at least a 10 on proficient ability rolls"',
   'Roguish Archetype':'Section=feature Note="1 selection"',
@@ -3874,7 +3875,7 @@ SRD5E.talentRules = function(
   QuilvynRules.validAllocationRules
     (rules, 'toolProficiency', 'toolChoiceCount', 'Sum "^toolsChosen\\."');
   QuilvynRules.validAllocationRules
-    (rules, 'expertise', 'expertiseChoiceCount', 'Sum "^expertise\\."');
+    (rules, 'expertise', 'expertiseChoiceCount', 'Sum "^expertiseChosen\\."');
 
 };
 
@@ -4050,7 +4051,7 @@ SRD5E.choiceRules = function(rules, type, name, attrs) {
     return;
   }
   if(type == 'Skill' || type == 'Tool')
-    rules.addChoice('skillsAndTools', name, attrs);
+    rules.addChoice('expertise', name, 'Category=' + type + ' ' + attrs);
   if(type != 'Spell') {
     type = type == 'Class' ? 'levels' :
     (type.charAt(0).toLowerCase() + type.substring(1).replaceAll(' ', '') + 's');
@@ -4279,7 +4280,8 @@ SRD5E.backgroundRules = function(rules, name, equipment, features) {
   rules.defineSheetElement(name + ' Features', 'Feats+', null, '; ');
   rules.defineChoice('extras', prefix + 'Features');
 
-  // TODO Do anything with equipment?
+  // NOTE: Ignore equipment: it affects no rules and appears on the character
+  // sheet only if the user includes it in notes
 
 };
 
@@ -4737,7 +4739,7 @@ SRD5E.classRulesExtra = function(rules, name) {
       'featureNotes.roguishArchetype', '=', '1'
     );
     rules.defineRule
-      ('skillNotes.expertise', classLevel, '+=', 'source<6 ? 2 : 4');
+      ('skillNotes.expertise(Rogue)', classLevel, '=', 'source<6 ? 2 : 4');
 
   } else if(name == 'Sorcerer') {
 
@@ -5114,8 +5116,7 @@ SRD5E.featureRules = function(
       }
 
       // Expertise (item [; item ...])
-      matchInfo =
-        effect.match(/^Expertise\s\((([^\(]|\([^\)]*\))*)\)/);
+      matchInfo = effect.match(/^Expertise\s\((([^\(]|\([^\)]*\))*)\)/);
       if(matchInfo) {
         matchInfo[1].split(/\/|;\s*/).forEach(affected => {
           matchInfo = affected.match(/^Choose\s(\d+|%V)/);
@@ -5685,6 +5686,9 @@ SRD5E.skillRules = function(rules, name, ability, classes) {
     rules.defineRule
       ('skillProficiency.' + name, 'levels.' + classes[i], '=', '1');
   }
+  rules.defineRule('expertise.' + name,
+    'expertiseChosen.' + name, '=', 'source ? 1 : null'
+  );
   rules.defineRule('skillProficiency.' + name,
     'skillsChosen.' + name, '=', 'source ? 1 : null'
   );
@@ -5785,6 +5789,16 @@ SRD5E.toolRules = function(rules, name, category, cost, weight, ability) {
     rules.defineChoice('notes', 'toolProficiency.' + name + ': (' + ability.toLowerCase().substring(0, 3) + ')');
   rules.defineRule('toolProficiency.' + name,
     'toolsChosen.' + name, '=', 'source ? 1 : null'
+  );
+  rules.defineRule('expertise.' + name,
+    'expertiseChosen.' + name, '=', 'source ? 1 : null'
+  );
+  let note =
+    'validationNotes.' + name.charAt(0).toLowerCase() + name.substring(1).replaceAll(' ', '') + 'ToolExpertise';
+  rules.defineChoice('notes', note + ':Requires proficiency in the tool');
+  rules.defineRule(note,
+    'expertise.' + name, '=', '-1',
+    'toolProficiency.' + name, '+', '1'
   );
 };
 
@@ -5911,16 +5925,17 @@ SRD5E.weaponRules = function(
   rules.defineRule(weaponName + '.1',
     'attackBonus.' + name, '=', 'source >= 0 ? "+" + source : source'
   );
-  rules.defineRule(weaponName + '.2',
-    weaponName, '?', null,
-    '', '=', '"' + damage + '"'
-  );
+  // In the case of fixed damage values, it would be nice if we could display
+  // the sum of the fixed damage and bonus, e.g., "3" instead of "1+2".
+  // However, at least with Unarmed Strike, this is complicated by features
+  // that replace the fixed damage with a roll like 1d4.
+  rules.defineRule(weaponName + '.2', weaponName, '=', '"' + damage + '"');
   rules.defineRule(weaponName + '.3',
     'damageBonus.' + name, '=', 'source > 0 ? "+" + source : source == 0 ? "" : source'
   );
   if(range) {
     rules.defineRule('range.' + name, weaponName, '=', '"' + range + '"');
-    // TODO Any need for weaponRangeAdjustment.name?
+    // So far there seems to be no need for weaponRangeAdjustment.name
     rules.defineRule(weaponName + '.4', 'range.' + name, '=', null);
   }
   if(is2h)
@@ -6143,10 +6158,13 @@ SRD5E.createViewers = function(rules, viewers) {
         );
       }
       viewer.addElements(
-          {name: 'Skills', within: 'FeaturesAndSkills', columns: '3LE', separator: null},
-          {name: 'Skill Proficiency', within: 'FeaturesAndSkills', separator: listSep},
+          {name: 'Skills', within: 'FeaturesAndSkills', columns: '3LE',
+           separator: null},
+          {name: 'Skill Proficiency', within: 'FeaturesAndSkills',
+           separator: listSep},
           {name: 'Expertise', within: 'FeaturesAndSkills', separator: listSep},
-          {name: 'Tool Proficiency', within: 'FeaturesAndSkills', separator: listSep},
+          {name: 'Tool Proficiency', within: 'FeaturesAndSkills',
+           separator: listSep},
           {name: 'Languages', within: 'FeaturesAndSkills', separator: listSep}
       );
       if(name != 'Collected Notes') {
@@ -6397,7 +6415,7 @@ SRD5E.initialEditorElements = function() {
     ['feats', 'Feats', 'setbag', 'feats'],
     ['selectableFeatures', 'Selectable Features', 'setbag', 'selectableFeatures'],
     ['skillsChosen', 'Skills', 'set', 'skills'],
-    ['expertise', 'Expertise', 'set', 'skillsAndTools'],
+    ['expertiseChosen', 'Expertise', 'set', 'expertise'],
     ['toolsChosen', 'Tools', 'set', 'tools'],
     ['languagesChosen', 'Languages', 'set', 'languages'],
     ['hitPoints', 'Hit Points', 'text', [4, '(\\+?\\d+)']],
@@ -6762,7 +6780,8 @@ SRD5E.randomizeOneAttribute = function(attributes, attribute) {
       }
     }
     attributes.shield = choices[QuilvynUtils.random(0, choices.length - 1)];
-  } else if(attribute == 'languages' ||
+  } else if(attribute == 'expertise' ||
+            attribute == 'languages' ||
             attribute == 'skills' ||
             attribute == 'tools') {
     notes = this.getChoices('notes');
@@ -6789,10 +6808,10 @@ SRD5E.randomizeOneAttribute = function(attributes, attribute) {
         continue;
       pieces = matchInfo[1].split(/\/|;\s*/);
       for(i = 0; i < pieces.length; i++) {
-        matchInfo = pieces[i].match(/^Choose\s+(\d+)\s+from\s+(.*)$/i);
+        matchInfo = pieces[i].match(/^Choose\s+(\d+|%V)\s+from\s+(.*)$/i);
         if(!matchInfo)
           continue;
-        count = matchInfo[1] * 1;
+        count = (matchInfo[1] == '%V' ? attrs[attr] : matchInfo[1]) * 1;
         if(matchInfo[2].match(/^any$/i)) {
           choices = QuilvynUtils.getKeys(group);
         } else {
@@ -6800,11 +6819,11 @@ SRD5E.randomizeOneAttribute = function(attributes, attribute) {
           for(j = choices.length - 1; j >= 0; j--) {
             if(choices[j].match(/^any\s+/i)) {
               type = choices[j].replace(/^any\s+/, '');
+              choices.splice(j, 1);
               for(let item in group) {
                 if(group[item].includes(type))
                   choices.push(item);
               }
-              choices.splice(j, 1);
             }
           }
         }
@@ -6820,6 +6839,10 @@ SRD5E.randomizeOneAttribute = function(attributes, attribute) {
             choices.splice(k, 1);
           } else if(attrs[attribute + '.' + choices[k]]) {
             choices.splice(k, 1);
+          } else if(attribute == 'expertise' &&
+                    !attrs['skillProficiency.' + choices[k]] &&
+                    !attrs['toolProficiency.' + choices[k]]) {
+            choices.splice(k, 1);
           }
         }
       }
@@ -6830,27 +6853,6 @@ SRD5E.randomizeOneAttribute = function(attributes, attribute) {
       attrs[attribute.replace(/s$/, '') + 'ChoiceCount'] -
       QuilvynUtils.sumMatching(attributes, '^' + attribute + 'Chosen'), 1
     );
-    if(attribute == 'skills') {
-      // Handle expertise immediately after skill proficiency selection
-      // TODO need to run through notes similarly to above to handle
-      // Expertise (Choose 1 from ....)
-      howMany = attrs.expertiseChoiceCount;
-      choices = [];
-      for(let s in this.getChoices('skills')) {
-        if(attributes['expertise.' + s])
-          howMany--;
-        else if(attrs['skillProficiency.' + s])
-          choices.push(s);
-      }
-      for(let t in this.getChoices('tools')) {
-        // The user menu allows selecting tools, and the rules allow rogues
-        // expertise in Thieves' Tools, but we only randomly select skills
-        if(attributes['expertise.' + t])
-          howMany--;
-      }
-      if(howMany > 0)
-        pickAttrs(attributes, 'expertise.', choices, howMany, 1);
-    }
   } else if(attribute == 'spells') {
     let spellsByGroupAndLevel = {};
     let groupAndLevel;
@@ -7170,7 +7172,7 @@ SRD5E.ruleNotes = function() {
     '  Quilvyn allows Expertise to be applied to tools as well as skills,' +
     '  although the modifiers for tool use do not appear on the character' +
     '  sheet.\n' +
-    '  <li></li>\n' +
+    '  </li><li>\n' +
     '  You can use homebrew spell definitions to support class features that' +
     "  allow characters to learn spells from other classes' spell lists. For" +
     '  example, if a Bard with the Magical Secrets feature learns' +

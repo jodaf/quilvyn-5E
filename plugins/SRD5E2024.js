@@ -630,9 +630,7 @@ SRD5E2024.FEATURES = {
     // changed effects
     'Note="R30\' Can use a reaction to give a target a reroll with advantage on a save vs. charmed or frightened"',
   // Epic Boon as above
-  'Expertise':
-    // changed effects
-    'Section=skill Note="Expertise (Choose %V from any Skill)"',
+  'Expertise':SRD5E.FEATURES.Expertise,
   'Font Of Inspiration':
     'Section=combat,magic ' +
     // changed effects

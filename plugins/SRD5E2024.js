@@ -1760,7 +1760,9 @@ SRD5E2024.SPELLS = {
   'Aid':
     SRD5E.SPELLS.Aid
     .replace('C2,P2', 'B2,C2,D2,P2,R2'),
-  'Alarm':SRD5E.SPELLS.Alarm,
+  'Alarm':
+    SRD5E.SPELLS.Alarm
+    .replace('Tiny or larger ', ''),
   'Alter Self':
     SRD5E.SPELLS['Alter Self']
     .replace('magic natural', 'natural')
@@ -1788,7 +1790,8 @@ SRD5E2024.SPELLS = {
     SRD5E.SPELLS['Antipathy/Sympathy']
     .replace('D8,W8', 'B8,D8,W8')
     .replace(/, object.*repels or attracts/, ' or object charms or frightens')
-    .replaceAll('within 60', 'within 120'),
+    .replaceAll('within 60', 'within 120')
+    .replace('attracted', 'charmed'),
   'Arcane Eye':SRD5E.SPELLS['Arcane Eye'],
   'Arcane Hand':
     SRD5E.SPELLS['Arcane Hand']
@@ -1807,7 +1810,8 @@ SRD5E2024.SPELLS = {
   'Astral Projection':SRD5E.SPELLS['Astral Projection'],
   'Augury':
     SRD5E.SPELLS.Augury
-    .replace('C2', 'C2,D2,W2'),
+    .replace('C2', 'C2,D2,W2')
+    .replace('a random', 'no'),
   'Aura Of Life': // ref PHB5E
     'School=Abjuration ' +
     'Level=C4,P4 ' +
@@ -1871,7 +1875,7 @@ SRD5E2024.SPELLS = {
   'Chromatic Orb': // ref PHB5E
     'School=Evocation ' +
     'Level=S1,W1 ' +
-    'AtHigherLevels="inflicts +1d8 HP and can leap +1 times" ' +
+    'AtHigherLevels="inflicts +1d8 HP and can leap +1 time" ' +
     'Description=' +
       '"R90\' Ranged spell inflicts 3d8 HP of a choice of acid, cold, fire, lightning, poison, or thunder; rolling the same number on 2 damage dice indicates that the spell leaps to attack another target within 30\' of the first"',
   'Circle Of Death':
@@ -1883,7 +1887,7 @@ SRD5E2024.SPELLS = {
   'Color Spray': // changed
     'School=Illusion ' +
     'Level=B1,S1,W1 ' +
-    'Description="15\' cone blinds (save Constitution negates) until the end of the next turn"',
+    'Description="15\' cone inflicts blinded (save Constitution negates) until the end of the next turn"',
   'Command':
     SRD5E.SPELLS.Command
     .replace('C1,"K1 [The Fiend]",P1', 'B1,C1,"K1 [The Fiend]",P1'),
@@ -1901,7 +1905,7 @@ SRD5E2024.SPELLS = {
     SRD5E.SPELLS['Conjure Animals'] + ' ' +
     'AtHigherLevels="inflicts +1d10 HP" ' +
     'Description=' +
-      '"R60\' 10\' radius inflicts 3d10 HP slashing (save Dexterity negates), and 5\' radius gives self advantage on Strength saves, for concentration up to 10 min; can be moved 30\' each turn"',
+      '"R60\' 10\' radius inflicts on targets 3d10 HP slashing (save Dexterity negates), and 5\' radius gives self advantage on Strength saves, for concentration up to 10 min; can be moved 30\' each turn"',
   'Conjure Celestial':
     SRD5E.SPELLS['Conjure Celestial'] + ' ' +
     'AtHigherLevels="restores or inflicts +1d12 hit points" ' +
@@ -1909,32 +1913,32 @@ SRD5E2024.SPELLS = {
        '"R90\' 10\' radius either restores 4d12+%{mdf} hit points or inflicts 6d12 HP radiant (save Dexterity half) on each target for concentration up to 10 min; can be moved 30\' each turn"',
   'Conjure Elemental':
     SRD5E.SPELLS['Conjure Elemental'] + ' ' +
-    'AtHigherLevels="inflicts +1d8 HP" ' +
+    'AtHigherLevels="inflicts +2d8 HP" ' +
     'Description=' +
-       '"R60\' 5\' radius restrains a target and inflicts 8d8 HP of a choice of lightning, thunder, fire, or cold (save Dexterity negates), inflicting an additional 4d8 HP each rd until a successful Dexterity save, for concentration up to 10 min"',
+       '"R60\' 5\' radius restrains a target, inflicting 8d8 HP of a choice of lightning, thunder, fire, or cold (save Dexterity negates; additional saves each rd end), then inflicts an additional 4d8 HP each subsequent rd, for concentration up to 10 min"',
   'Conjure Fey':
     SRD5E.SPELLS['Conjure Fey'] + ' ' +
     'Level=D6 ' +
-    'AtHigherLevels="inflicts +1d12 HP" ' +
+    'AtHigherLevels="inflicts +2d12 HP" ' +
     'Description=' +
       '"R60\' Melee spell attacks by a summoned spirit inflict 3d12+%{mdf} HP psychic and frightened until the start of the next turn for concentration up to 10 min; can be moved 30\' each turn as a bonus action"',
   'Conjure Minor Elementals':
     SRD5E.SPELLS['Conjure Minor Elementals'] + ' ' +
-    'AtHigherLevels="inflicts +1d8 HP" ' +
+    'AtHigherLevels="inflicts +2d8 HP" ' +
     'Description=' +
-      '"Self attacks within 15\' inflict +2d8 HP of a choice of acid, cold, fire, or lightning for concentration up to 10 min"',
+      '"15\' emanation inflicts difficult terrain on foes, and self attacks within it inflict +2d8 HP of a choice of acid, cold, fire, or lightning, for concentration up to 10 min"',
   'Conjure Woodland Beings':
     SRD5E.SPELLS['Conjure Woodland Beings'] + ' ' +
     'AtHigherLevels="inflicts +1d8 HP" ' +
     'Description=' +
-      '"10\' emanation inflicts 5d8 HP force (save Wisdom half) and allows self to use a bonus action to Disengage for concentration up to 10 min"',
+      '"10\' emanation inflicts on targets 5d8 HP force (save Wisdom half) and allows self to use a bonus action to Disengage for concentration up to 10 min"',
   'Contact Other Plane':
     SRD5E.SPELLS['Contact Other Plane']
     .replace('insanity', 'incapacitated'),
   'Contagion':
     SRD5E.SPELLS.Contagion + ' ' +
     'Description=' +
-      '"Touch inflicts 11d8 HP necrotic, poisoned, and disadvantage on chosen ability saves (save Constitution negates; subsequent saves each turn either end after three successes or extend to 7 days after 3 failures; other effects that would end poisoned require a successful Constitution save to succeed)"',
+      '"Touch inflicts 11d8 HP necrotic, poisoned, and disadvantage on chosen ability saves (save Constitution negates; subsequent saves each rd either end after three successes or extend to 7 days after 3 failures; other effects that would end poisoned require a successful Constitution save to succeed)"',
   'Contingency':
     SRD5E.SPELLS.Contingency
     .replace('Evocation', 'Abjuration'),
@@ -1958,7 +1962,9 @@ SRD5E2024.SPELLS = {
     .replace('Evocation', 'Abjuration')
     .replaceAll('1d8', '2d8'),
 
-  'Dancing Lights':SRD5E.SPELLS['Dancing Lights'],
+  'Dancing Lights':
+    SRD5E.SPELLS['Dancing Lights']
+    .replace('Evocation', 'Illusion'),
   'Darkness':SRD5E.SPELLS.Darkness,
   'Darkvision':
     SRD5E.SPELLS.Darkvision
@@ -2020,7 +2026,7 @@ SRD5E2024.SPELLS = {
     'School=Transmutation ' +
     'Level=S2,W2 ' +
     'AtHigherLevels="inflicts +1d6 HP" ' +
-    'Description="Touched can use a Magic action to inflict 3d6 HP of a choice of acid, cold, fire, lightning, or poison (save Dexterity half) in a 15\' cone for concentration up to 1 min"',
+    'Description="Willing touched can use a Magic action to inflict 3d6 HP of a choice of acid, cold, fire, lightning, or poison (save Dexterity half) in a 15\' cone for concentration up to 1 min"',
   'Dream':SRD5E.SPELLS.Dream,
   'Druidcraft':SRD5E.SPELLS.Druidcraft,
 
@@ -2052,11 +2058,11 @@ SRD5E2024.SPELLS = {
   'Entangle':
     SRD5E.SPELLS.Entangle
     .replace('D1', 'D1,R1')
-    .replace('additional', 'additional Athletics'),
+    .replace('additional saves', 'additional Athletics checks'),
   'Enthrall':
     SRD5E.SPELLS.Enthrall + ' ' +
     'Description=' +
-      '"R60\' Target suffers -10 Perception (save Wisdom negates; targets in battle automatically succeed) for concentration up to 1 min"',
+      '"R60\' Targets suffer -10 Perception (save Wisdom negates; targets in battle automatically succeed) for concentration up to 1 min"',
   'Etherealness':
     SRD5E.SPELLS.Etherealness
     .replace('Transmutation', 'Conjuration'),
@@ -2122,7 +2128,7 @@ SRD5E2024.SPELLS = {
     .replace('immunity to surprise and ', ''),
   'Freedom Of Movement':
     SRD5E.SPELLS['Freedom Of Movement']
-    .replace('and can', "and a %{speed}' swim Speed and can") + ' ' +
+    .replace(' and can', ", gains a %{speed}' swim Speed, and can") + ' ' +
     'AtHigherLevels="affects +1 target"',
   'Freezing Sphere':
     SRD5E.SPELLS['Freezing Sphere']

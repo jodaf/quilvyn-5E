@@ -1818,7 +1818,7 @@ SRD5E.SPELLS = {
     'School=Enchantment ' +
     'Level=D8,W8 ' +
     'Description=' +
-      '"R60\' Target creature, object, or 200\' cubic area repels or attracts a specified creature type within 60\' (save Wisdom negates; additional saves when no longer within 60\' end and give immunity for 1 min) for 10 days"',
+      '"R60\' Target creature, object, or 200\' cubic area repels or attracts a specified creature type within 60\' (save Wisdom negates; additional saves when no longer within 60\', or when an attracted creature is harmed, end the effect and give immunity for 1 min) for 10 days"',
   'Arcane Eye':
     'School=Divination ' +
     'Level=W4 ' +
@@ -1829,7 +1829,7 @@ SRD5E.SPELLS = {
     'Level=W5 ' +
     'AtHigherLevels="inflicts +2d8 HP force and +2d6 HP bludgeoning" ' +
     'Description=' +
-      '"R120\' Large force hand (Armor Class 20; %{hitPoints} hit points; Strength 26; Dexterity 10) can move 60\' per rd and can punch (inflicts 4d8 HP force), push %{5+5*mdf}\' (save DC 26 Athletics negates), grapple (may crush, inflicting 2d6+%{mdf} HP bludgeoning), provide 1/2 cover, and inflict difficult terrain for concentration up to 1 min"',
+      '"R120\' Creates a large force hand (Armor Class 20; %{hitPoints} hit points; Strength 26; Dexterity 10) for concentration up to 1 min; can use bonus actions to move it 60\' and punch (inflicts 4d8 HP force), push %{5+5*mdf}\' (save DC 26 Athletics negates), grapple (may crush, inflicting 2d6+%{mdf} HP bludgeoning), or provide 1/2 cover and inflict difficult terrain"',
   'Arcane Lock':
     'School=Abjuration ' +
     'Level=W2 ' +
@@ -1894,7 +1894,7 @@ SRD5E.SPELLS = {
     'School=Conjuration ' +
     'Level=W4 ' +
     'Description=' +
-      '"R90\' 20\' sq inflicts difficult terrain, 3d6 HP bludgeoning, and restrained (save Dexterity negates, Strength or Dexterity breaks free) for concentration up to 1 min"',
+      '"R90\' 20\' sq inflicts difficult terrain, 3d6 HP bludgeoning, and restrained (save Dexterity negates, additional Strength or Dexterity checks each rd break free) for concentration up to 1 min"',
   'Blade Barrier':
     'School=Evocation ' +
     'Level=C6 ' +
@@ -1911,7 +1911,7 @@ SRD5E.SPELLS = {
     'Level=D4,K4,S4,W4 ' +
     'AtHigherLevels="inflicts +1d8 HP" ' +
     'Description=' +
-      '"R30\' Inflicts 8d8 HP necrotic (save Constitution half; plant target has disadvantage on the save and suffers maximum damage on failure)"',
+      '"R30\' Kills a nonmagical plant or inflicts 8d8 HP necrotic on a creature (save Constitution half; plant target has disadvantage on the save and suffers maximum damage on failure)"',
   'Blindness/Deafness':
     'School=Necromancy ' +
     'Level=B2,C2,"K2 [The Fiend]",S2,W2 ' +
@@ -1922,7 +1922,7 @@ SRD5E.SPELLS = {
     'School=Transmutation ' +
     'Level=S3,W3 ' +
     'Description=' +
-      '"Self has a 50% chance of becoming ethereal at the end each turn, returning to a choice of spot within 10\' at the start of the next turn, for 1 min"',
+      '"Self has a 50% chance of becoming ethereal at the end of each turn, returning to a choice of spot within 10\' at the start of the next turn, for 1 min"',
   'Blur':
     'School=Illusion ' +
     'Level=S2,W2 ' +
@@ -1938,19 +1938,19 @@ SRD5E.SPELLS = {
     'School=Evocation ' +
     'Level="K1 [The Fiend]",S1,W1 ' +
     'AtHigherLevels="inflicts +1d6 HP" ' +
-    'Description="15\' cone inflicts 3d6 HP fire (save Dexterity half)"',
+    'Description="15\' cone inflicts 3d6 HP fire (save Dexterity half) and lights unattended flammable objects"',
 
   'Call Lightning':
     'School=Conjuration ' +
     'Level=D3 ' +
     'AtHigherLevels="inflicts +1d10 HP" ' +
     'Description=' +
-      '"R120\' 5\' radius inflicts 3d10 HP lightning (save Dexterity half; +1d10 HP if using a natural storm) once per rd for concentration up to 10 min"',
+      '"R120\' 5\' radius inflicts 3d10 HP lightning (save Dexterity half; +1d10 HP if using a natural storm) once per turn for concentration up to 10 min"',
   'Calm Emotions':
     'School=Enchantment ' +
     'Level=B2,C2 ' +
     'Description=' +
-      '"R60\' 20\' radius suppresses a choice of charmed and frightened or hostility (save Charisma negates) for concentration up to 1 min"',
+      '"R60\' 20\' radius suppresses a choice of charmed and frightened or hostility (save Charisma negates) for concentration up to 1 min; harm to a target of suppressed hostility or its allies ends the effects on that target"',
   'Chain Lightning':
     'School=Evocation ' +
     'Level=S6,W6 ' +
@@ -1962,12 +1962,12 @@ SRD5E.SPELLS = {
     'Level=B1,D1,K1,S1,W1 ' +
     'AtHigherLevels="affects +1 target" ' +
     'Description=' +
-      '"R30\' Target humanoid becomes charmed by self (save Wisdom negates) for 1 hr or until harmed"',
+      '"R30\' Target humanoid becomes charmed by self (save Wisdom negates; active fighting gives advantage) for 1 hr or until harmed"',
   'Chill Touch':
     'School=Necromancy ' +
     'Level=K0,S0,W0 ' +
     'Description=' +
-      '"R120\' Ranged spell inflicts %{(level+7)//6}d8 HP necrotic and target cannot regain hit points until the start of the next turn; undead also suffer disadvantage vs. self attack for 1 rd"',
+      '"R120\' Ranged spell inflicts %{(level+7)//6}d8 HP necrotic, and target cannot regain hit points until the start of the next turn; undead also suffer disadvantage vs. self attack for 1 rd"',
   'Circle Of Death':
     'School=Necromancy ' +
     'Level=K6,S6,W6 ' +
@@ -1978,7 +1978,7 @@ SRD5E.SPELLS = {
     'School=Divination ' +
     'Level=B3,C3,S3,W3 ' +
     'Description=' +
-      '"R1 mile Self can choose each rd to see or hear via an invisible sensor for concentration up to 10 min"',
+      '"R1 mile Self can choose each turn to see or hear in a familiar or obvious location via an invisible sensor for concentration up to 10 min"',
   'Clone':
     'School=Necromancy ' +
     'Level=W8 ' +
@@ -1988,18 +1988,18 @@ SRD5E.SPELLS = {
     'Level=S5,W5 ' +
     'AtHigherLevels="inflicts +1d8 HP" ' +
     'Description=' +
-      '"R120\' 20\' radius inflicts 5d8 HP poison (save Constitution half) and moves away 10\' per rd for concentration up to 10 min"',
+      '"R120\' 20\' radius becomes heavily obscured, inflicts 5d8 HP poison (save Constitution half), and moves away 10\' per at the start of each turn for concentration up to 10 min"',
   'Color Spray':
     'School=Illusion ' +
     'Level=S1,W1 ' +
     'AtHigherLevels="affects +2d10 HP of targets" ' +
-    'Description="15\' cone blinds 6d10 HP of targets for 1 rd"',
+    'Description="15\' cone inflicts blinded on 6d10 HP of targets for 1 rd"',
   'Command':
     'School=Enchantment ' +
     'Level=C1,"K1 [The Fiend]",P1 ' +
     'AtHigherLevels="affects +1 target" ' +
     'Description=' +
-      '"R60\' Target obeys a one-word command from self (save Wisdom negates) for 1 rd"',
+      '"R60\' Target obeys a one-word command from self on its next turn (save Wisdom negates)"',
   'Commune':
     'School=Divination ' +
     'Level=C5 ' +
@@ -2098,7 +2098,7 @@ SRD5E.SPELLS = {
     'School=Transmutation ' +
     'Level=C8,D8,W8 ' +
     'Description=' +
-      '"Adjusts the temperature, wind, and precipitation in a 5 mile radius for concentration up to 8 hr"',
+      '"Adjusts the temperature, wind, and precipitation in a 5 mile radius after a 1d4 x 10 min delay for concentration up to 8 hr"',
   'Counterspell':
     'School=Abjuration ' +
     'Level=K3,S3,W3 ' +
@@ -2137,7 +2137,7 @@ SRD5E.SPELLS = {
     'School=Evocation ' +
     'Level=B0,S0,W0 ' +
     'Description=' +
-      '"R120\' 4 torch lights each dimly light a 10\' radius and can move 60\' per rd as a bonus action for concentration up to 1 min; moving a light more than 20\' from the others extinguishes it"',
+      '"R120\' 4 torch lights each dimly light a 10\' radius and can move 60\' per turn as a bonus action for concentration up to 1 min; moving a light more than 20\' from the others extinguishes it"',
   'Darkness':
     'School=Evocation ' +
     'Level=K2,S2,W2 ' +
@@ -2160,7 +2160,7 @@ SRD5E.SPELLS = {
     'Level=S7,W7 ' +
     'AtHigherLevels="inflicts +1d6 HP" ' +
     'Description=' +
-      '"R150\' 20\' radius inflicts 12d6 HP fire + 1d6 HP fire per rd delayed (save Dexterity half) within concentration up to 1 min"',
+      '"R150\' Creates a bead that inflicts 12d6 HP fire + 1d6 HP fire per rd delayed (save Dexterity half) in a 20\' radius when it is allowed to explode within concentration up to 1 min; a successful Reflex save allows picking up and throwing the bead 40\', causing it to explode on contact"',
   'Demiplane':
     'School=Conjuration ' +
     'Level=K8,W8 ' +
@@ -2186,7 +2186,7 @@ SRD5E.SPELLS = {
     'School=Divination ' +
     'Level=B2,S2,W2 ' +
     'Description=' +
-      '"R30\' Reveals targets\' surface thoughts and allows probing deeper (save Wisdom ends; additional contested Intelligence attempts each rd end) for concentration up to 1 min; 2\' of rock, 2\\" of metal, or a thin sheet of lead blocks the spell"',
+      '"R30\' Detects the presence of minds or reveals targets\' surface thoughts and allows probing deeper (save Wisdom negates; additional contested Intelligence attempts each rd end) for concentration up to 1 min; 2\' of rock, 2\\" of metal, or a thin sheet of lead blocks the spell"',
   'Dimension Door':
     'School=Conjuration ' +
     'Level=B4,K4,S4,W4 ' +
@@ -2206,7 +2206,7 @@ SRD5E.SPELLS = {
     'School=Abjuration ' +
     'Level=C5,P5 ' +
     'Description=' +
-      '"Celestials, elementals, fey, fiends, and undead suffer disadvantage on attacks vs. self for concentration up to 1 min; ending the spell early allows a successful spell attack on one of these creatures to return it to its home plane (save Charisma negates), or to end with a touch an enchanted, frightened, or possessed condition inflicted by one of them"',
+      '"Celestials, elementals, fey, fiends, and undead suffer disadvantage on attacks vs. self for concentration up to 1 min; ending the spell early allows a successful spell attack on one of these creatures to return it to its home plane (save Charisma negates), or a touch to end an enchanted, frightened, or possessed condition inflicted by one of them"',
   'Dispel Magic':
     'School=Abjuration ' +
     'Level=B3,C3,D3,K3,P3,S3,W3 ' +
@@ -2233,24 +2233,24 @@ SRD5E.SPELLS = {
     'Level=D4,S4 ' +
     'AtHigherLevels="extends the duration to 10 min, 1 hr, or 8 hr at level 5, 6, or 7" ' +
     'Description=' +
-      '"R60\' Target beast obeys telepathic commands (save Wisdom negates; damage allows another save) for concentration up to 1 min"',
+      '"R60\' Target beast obeys telepathic commands (save Wisdom negates; active fighting gives advantage, and damage allows another save) for concentration up to 1 min"',
   'Dominate Monster':
     'School=Enchantment ' +
     'Level=B8,K8,S8,W8 ' +
     'AtHigherLevels="extends the duration to 8 hr" ' +
     'Description=' +
-      '"R60\' Target creature obeys telepathic commands (save Wisdom negates; damage allows another save) for concentration up to 1 hr"',
+      '"R60\' Target creature obeys telepathic commands (save Wisdom negates; active fighting gives advantage, and damage allows another save) for concentration up to 1 hr"',
   'Dominate Person':
     'School=Enchantment ' +
     'Level=B5,S5,W5 ' +
     'AtHigherLevels="extends the duration to 10 min, 1 hr, or 8 hr at level 6, 7, or 8" ' +
     'Description=' +
-      '"R60\' Target humanoid obeys telepathic commands (save Wisdom negates; damage allows another save) for concentration up to 1 min"',
+      '"R60\' Target humanoid obeys telepathic commands (save Wisdom negates; active fighting gives advantage, and damage allows another save) for concentration up to 1 min"',
   'Dream':
     'School=Illusion ' +
     'Level=B5,K5,W5 ' +
     'Description=' +
-      '"Touched controls the dreams of a known target for 8 hr and can inflict 3d6 HP psychic (save Wisdom negates)"',
+      '"Willing touched controls the dreams of a known target for 8 hr and can inflict 3d6 HP psychic and loss of the benefits of rest (save Wisdom negates)"',
   'Druidcraft':
     'School=Transmutation ' +
     'Level=D0 ' +
@@ -2282,16 +2282,16 @@ SRD5E.SPELLS = {
     'School=Conjuration ' +
     'Level=D1 ' +
     'Description=' +
-      '"R90\' 20\' sq inflicts difficult terrain and restrains creatures (save Strength negates; additional saves each rd ends) for concentration up to 1 min"',
+      '"R90\' 20\' sq inflicts difficult terrain and restrains creatures (save Strength negates; additional saves each rd end) for concentration up to 1 min"',
   'Enthrall':
     'School=Enchantment ' +
     'Level=B2,K2 ' +
     'Description=' +
-      '"R60\' Target suffers disadvantage on Perception to notice others (save Wisdom negates; targets in battle have advantage on the save) for 1 min"',
+      '"R60\' Targets suffer disadvantage on Perception to notice others (save Wisdom negates; targets in battle have advantage on the save) for 1 min"',
   'Etherealness':
     'School=Transmutation ' +
     'Level=B7,C7,K7,S7,W7 ' +
-    'AtHigherLevels="affects +2 or +5 targets at level 8 or 9" ' +
+    'AtHigherLevels="affects +2 or +5 willing targets at level 8 or 9" ' +
     'Description="Self enters Ethereal Plane for up to 8 hr"',
   'Expeditious Retreat':
     'School=Transmutation ' +
@@ -2327,7 +2327,7 @@ SRD5E.SPELLS = {
   'Fear':
     'School=Illusion ' +
     'Level=B3,K3,S3,W3 ' +
-    'Description="Creatures in a 30\' cone drop held objects and flee (save Wisdom negates; additional saves each rd end) for concentration up to 1 min"',
+    'Description="Creatures in a 30\' cone drop held objects and flee (save Wisdom negates; additional saves each rd when out of sight of self end) for concentration up to 1 min"',
   'Feather Fall':
     'School=Transmutation ' +
     'Level=B1,S1,W1 ' +
@@ -2417,12 +2417,12 @@ SRD5E.SPELLS = {
     'Level=K3,S3,W3 ' +
     'AtHigherLevels="affects +1 target" ' +
     'Description=' +
-      '"Touched gains a 60\' fly speed for concentration up to 10 min"',
+      '"Touched gains a 60\' fly Speed for concentration up to 10 min"',
   'Fog Cloud':
     'School=Conjuration ' +
     'Level=D1,R1,S1,W1 ' +
     'AtHigherLevels="increases the radius by 20\'" ' +
-    'Description="R120\' 20\' radius obscures vision for concentration up to 1 hr"',
+    'Description="R120\' 20\' radius becomes heavily obscured for concentration up to 1 hr"',
   'Forbiddance':
     'School=Abjuration ' +
     'Level=C6 ' +
@@ -2438,7 +2438,7 @@ SRD5E.SPELLS = {
     'School=Divination ' +
     'Level=B9,D9,K9,W9 ' +
     'Description=' +
-      '"Touched gains immunity to surprise and advantage on attack, ability, and saves, and foes suffer disadvantage on attacks, for 8 hr"',
+      '"Touched gains immunity to surprise and advantage on attack, ability, and saves, and foes suffer disadvantage on attacks, for 8 hr or until cast again"',
   'Freedom Of Movement':
     'School=Abjuration ' +
     'Level=B4,C4,D4,R4 ' +

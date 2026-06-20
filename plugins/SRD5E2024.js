@@ -2152,7 +2152,7 @@ SRD5E2024.SPELLS = {
     .replace('Transmutation', 'Conjuration') + ' ' +
     'AtHigherLevels="increases the Armor Class by 1, hit points by 10, number of attacks by 1 per 2 levels, piercing damage by 1, and spider\'s bludgeoning damage by 1" ' +
     'Description=' +
-      '"R60\' Summons a choice of an obedient giant centipede, spider, or wasp for concentration up to 10 min; it has Armor Class 15, 30 hit points, a 40\' Speed, understanding of self languages, and 2 +%{mdf} attacks per rd that inflict 1d6+7 HP piercing and 1d4 HP poison; centipedes also have a R10\' attack that inflicts poisoned for 1 rd, spiders a range 60\' attack that inflicts 1d10+7 bludgeoning and loss of movement for 1 rd, and wasps a 40\' fly Speed"',
+      '"R60\' Summons a choice of an obedient giant centipede, spider, or wasp for concentration up to 10 min; it has Armor Class 15, 70 hit points, a 40\' Speed and climb Speed, understanding of self languages, and 2 +%{mdf} attacks per rd that inflict 1d6+7 HP piercing and 1d4 HP poison; centipedes also have a R10\' attack that inflicts poisoned (save Constitution negates) for 1 rd, spiders a range 60\' attack that inflicts 1d10+7 bludgeoning and loss of movement for 1 rd, and wasps a 40\' fly Speed"',
   'Glibness':
     SRD5E.SPELLS.Glibness
     .replace('Transmutation', 'Enchantment'),
@@ -2173,7 +2173,7 @@ SRD5E2024.SPELLS = {
   'Guidance':
     SRD5E.SPELLS.Guidance + ' ' +
     'Description=' +
-      '"Touched gains +1d4 on a choice of skill for concentration up to 1 min"',
+      '"Willing touched gains +1d4 on a choice of skill for concentration up to 1 min"',
   'Guiding Bolt':SRD5E.SPELLS['Guiding Bolt'],
   'Gust Of Wind':
     SRD5E.SPELLS['Gust Of Wind']
@@ -2181,13 +2181,15 @@ SRD5E2024.SPELLS = {
 
   'Hallow':
     SRD5E.SPELLS.Hallow
-    .replace('celestials', 'aberrations, celestials')
+    .replace('celestials', 'one or more choices of aberrations, celestials')
     .replace(' (save Charisma negates)', ''),
   'Hallucinatory Terrain':SRD5E.SPELLS['Hallucinatory Terrain'],
   'Harm':
     SRD5E.SPELLS.Harm
     .replace(' for 1 hr', ''),
-  'Haste':SRD5E.SPELLS.Haste,
+  'Haste':
+    SRD5E.SPELLS.Haste
+    .replace('Use an Object', 'Utilize'),
   'Heal':
     SRD5E.SPELLS.Heal
     .replace('Evocation', 'Abjuration')
@@ -2201,7 +2203,7 @@ SRD5E2024.SPELLS = {
   "Heroes' Feast":
     SRD5E.SPELLS["Heroes' Feast"]
     .replace('C6,D6', 'B6,C6,D6')
-    .replace(/recover.*Wisdom/, 'gain resistance to poison, immunity to becoming poisoned and frightened'),
+    .replace(/recover.*immunity/, 'gain resistance to poison, immunity'),
   'Heroism':SRD5E.SPELLS.Heroism,
   'Hex': // ref PHB5E
     'School=Enchantment ' +
@@ -2255,7 +2257,8 @@ SRD5E2024.SPELLS = {
 
   'Jump':
     SRD5E.SPELLS.Jump
-    .replace('gains triple jump distance', "can jump 30' after a 10' move"),
+    .replace('gains triple jump distance', "can spend 10' of movement to make a 30' jump") + ' ' +
+    'AtHigherLevels="affects +1 target"',
 
   'Knock':SRD5E.SPELLS.Knock,
 

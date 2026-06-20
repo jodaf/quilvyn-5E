@@ -2466,7 +2466,7 @@ SRD5E.SPELLS = {
     'Level=B5,C5,D5,P5,W5 ' +
     'AtHigherLevels="extends the duration to 1 year or permanently at level 7 or 9" ' +
     'Description=' +
-      '"R60\' Target obeys self instructions or suffers 5d10 HP psychic each day (save Wisdom negates) for 30 days"',
+      '"R60\' Target obeys self instructions or suffers 5d10 HP psychic (save Wisdom negates) each day for 30 days"',
   'Gentle Repose':
     'School=Necromancy ' +
     'Level=C2,W2 ' +
@@ -2518,16 +2518,16 @@ SRD5E.SPELLS = {
     'School=Conjuration ' +
     'Level=C4 ' +
     'Description=' +
-       '"R30\' 10\' radius inflicts 20 HP radiant on foes (save Dexterity half) for 8 hr or until 60 HP inflicted"',
+       '"R30\' 10\' radius inflicts 20 HP radiant on foes (save Dexterity half) for 8 hr or until it has inflicted 60 HP"',
   'Guards And Wards':
     'School=Abjuration ' +
     'Level=B6,W6 ' +
-    'Description="Multiple magic effects protect 2,500 sq ft for 24 hr"',
+    'Description="Multiple magic effects protect a 2,500 sq ft area for 24 hr"',
   'Guidance':
     'School=Divination ' +
     'Level=C0,D0 ' +
     'Description=' +
-      '"Touched gains +1d4 on 1 ability check within concentration up to 1 min"',
+      '"Willing touched gains +1d4 on 1 ability check within concentration up to 1 min"',
   'Guiding Bolt':
     'School=Evocation ' +
     'Level=C1 ' +
@@ -2538,7 +2538,7 @@ SRD5E.SPELLS = {
     'School=Evocation ' +
     'Level=D2,S2,W2 ' +
     'Description=' +
-      '"60\'x10\' wind pushes 15\' (save Strength negates), inflicts half movement, disperses gas and vapor, and extinguishes flames (50% chance for protected flames) for concentration up to 1 min; can use a bonus action each rd to redirect the wind"',
+      '"60\'x10\' wind pushes 15\' (save Strength negates), inflicts half movement, disperses gas and vapor, and extinguishes flames (50% chance for protected flames) for concentration up to 1 min; can use a bonus action each turn to redirect the wind"',
 
   'Hallow':
     'School=Evocation ' +
@@ -2549,7 +2549,7 @@ SRD5E.SPELLS = {
     'School=Illusion ' +
     'Level=B4,D4,K4,W4 ' +
     'Description=' +
-      '"R300\' Creates a 150\' cube terrain illusion (Investigation detects) for 24 hr"',
+      '"R300\' Creates a 150\' cube terrain illusion (contact or Investigation detects) for 24 hr"',
   'Harm':
     'School=Necromancy ' +
     'Level=C6 ' +
@@ -2559,7 +2559,7 @@ SRD5E.SPELLS = {
     'School=Transmutation ' +
     'Level=S3,W3 ' +
     'Description=' +
-      '"R30\' Willing target gains double Speed, +2 Armor Class, advantage on Dexterity, and an additional action each turn for concentration up to 1 min and suffers 1 rd of incapacitation afterward"',
+      '"R30\' Willing target gains double Speed, +2 Armor Class, advantage on Dexterity saves, and an additional action to Attack, Dash, Disengage, Hide, or Use an Object each turn for concentration up to 1 min and suffers 1 rd of incapacitation afterward"',
   'Heal':
     'School=Evocation ' +
     'Level=C6,D6 ' +
@@ -2576,7 +2576,7 @@ SRD5E.SPELLS = {
     'Level=B2,D2 ' +
     'AtHigherLevels="inflicts +1d8 HP" ' +
     'Description=' +
-      '"R60\' Touching the target metal inflicts 2d8 HP fire, plus attack and ability disadvantage if the the target is worn or held (save Constitution negates disadvantage), for concentration up to 1 min; can use a bonus action each rd to repeat the initial damage"',
+      '"R60\' Touching the target metal object inflicts 2d8 HP fire, forces dropping it if possible (save Constitution negates), and inflicts attack and ability check disadvantage until the start of the next turn if the object is not dropped; can use a bonus action each turn to repeat the effects for concentration up to 1 min"',
   'Hellish Rebuke':
     'School=Evocation ' +
     'Level=K1 ' +
@@ -2588,13 +2588,13 @@ SRD5E.SPELLS = {
     'Level=C6,D6 ' +
     // errata changes description
     'Description=' +
-      '"12 diners who consume a 1-hr meal recover from disease and poison and gain immunity to poison and fright, advantage on Wisdom, and +2d10 hit points and maximum hit points for 24 hr"',
+      '"12 diners who consume a 1-hr meal recover from disease and poison and gain advantage on Wisdom saves, immunity to poisoned and frightened, and +2d10 hit points and maximum hit points for 24 hr"',
   'Heroism':
     'School=Enchantment ' +
     'Level=B1,P1 ' +
     'AtHigherLevels="affects +1 target" ' +
     'Description=' +
-      '"Touched gains immunity to becoming frightened and +%{mdf} temporary hit points each rd for concentration up to 1 min"',
+      '"Willing touched gains immunity to frightened and %{mdf} temporary hit points each rd for concentration up to 1 min"',
   'Hideous Laughter':
     'School=Enchantment ' +
     'Level=B1,W1 ' +
@@ -2650,12 +2650,12 @@ SRD5E.SPELLS = {
     'School=Abjuration ' +
     'Level=K9,W9 ' +
     'Description=' +
-      '"R30\' Restrains the target in a chosen type of prison (save Wisdom negates permanently)"',
+      '"R30\' Restrains the target in a chosen type of prison until a specified trigger occurs (save Wisdom negates permanently)"',
   'Incendiary Cloud':
     'School=Conjuration ' +
     'Level=S8,W8 ' +
     'Description=' +
-      '"R150\' 20\' radius inflicts 10d8 HP fire (save Dexterity half), obscures, and moves away 10\' per rd for concentration up to 1 min"',
+      '"R150\' 20\' radius becomes heavily obscured, inflicts 10d8 HP fire (save Dexterity half), and moves away 10\' per rd for concentration up to 1 min"',
   'Inflict Wounds':
     'School=Necromancy ' +
     'Level=C1 ' +
@@ -2710,7 +2710,7 @@ SRD5E.SPELLS = {
     'School=Transmutation ' +
     'Level=S2,W2 ' +
     'Description=' +
-      '"R60\' Target 500 lb object or creature rises 20\' (save Constitution negates) and can be moved up or down 20\' each rd for concentration up to 10 min"',
+      '"R60\' Target 500 lb object or creature rises 20\' (save Constitution negates) and can be moved up or down 20\' each turn for concentration up to 10 min"',
   'Light':
     'School=Evocation ' +
     'Level=B0,C0,S0,W0 ' +

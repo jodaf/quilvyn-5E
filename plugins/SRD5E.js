@@ -1839,7 +1839,7 @@ SRD5E.SPELLS = {
     'School=Evocation ' +
     'Level=B7,W7 ' +
     'Description=' +
-      '"R60\' Creates a force weapon that inflicts 3d10 HP force and can move 20\' per rd for concentration up to 1 min"',
+      '"R60\' Creates a force weapon that inflicts 3d10 HP force; can use bonus actions to move it 20\' and attack for concentration up to 1 min"',
   "Arcanist's Magic Aura":
     'School=Illusion ' +
     'Level=W2 ' +
@@ -1967,7 +1967,7 @@ SRD5E.SPELLS = {
     'School=Necromancy ' +
     'Level=K0,S0,W0 ' +
     'Description=' +
-      '"R120\' Ranged spell inflicts %{(level+7)//6}d8 HP necrotic, and target cannot regain hit points until the start of the next turn; undead also suffer disadvantage vs. self attack for 1 rd"',
+      '"R120\' Ranged spell inflicts %{(level+7)//6}d8 HP necrotic, and the target cannot regain hit points until the start of the next turn; undead also suffer disadvantage vs. self attack for 1 rd"',
   'Circle Of Death':
     'School=Necromancy ' +
     'Level=K6,S6,W6 ' +
@@ -1988,7 +1988,7 @@ SRD5E.SPELLS = {
     'Level=S5,W5 ' +
     'AtHigherLevels="inflicts +1d8 HP" ' +
     'Description=' +
-      '"R120\' 20\' radius becomes heavily obscured, inflicts 5d8 HP poison (save Constitution half), and moves away 10\' per at the start of each turn for concentration up to 10 min"',
+      '"R120\' 20\' radius becomes heavily obscured, inflicts 5d8 HP poison (save Constitution half), and moves away 10\' at the start of each turn for concentration up to 10 min"',
   'Color Spray':
     'School=Illusion ' +
     'Level=S1,W1 ' +
@@ -2318,7 +2318,7 @@ SRD5E.SPELLS = {
     'School=Conjuration ' +
     'Level=W4 ' +
     'Description=' +
-      '"R30\' Creates an invisible watchdog that barks at Small or larger intruders within 30\' and attacks those within 5\' (password negates) with a +%{mdf+proficiencyBonus} bite that inflicts 4d8 HP piercing for 8 hr"',
+      '"R30\' Creates an invisible watchdog that barks at Small or larger intruders within 30\' and attacks those within 5\' (password negates) with a +%{mdf+proficiencyBonus} bite that inflicts 4d8 HP piercing, for 8 hr"',
   'False Life':
     'School=Necromancy ' +
     'Level=S1,W1 ' +
@@ -2789,7 +2789,7 @@ SRD5E.SPELLS = {
     'Level=B3,K3,S3,W3 ' +
     'AtHigherLevels="extends the duration to permanent at level 6" ' +
     'Description=' +
-      '"R120\' Creates a 20\' cube sight, sound, smell, and temperature illusion (Investigation detects) for concentration up to 10 min"',
+      '"R120\' Creates a 20\' cube sight, sound, smell, and temperature illusion (contact or Investigation detects) that can be changed and moved for concentration up to 10 min"',
   'Mass Cure Wounds':
     'School=Evocation ' + // from errata
     'Level=B5,C5,D5 ' +
@@ -2810,7 +2810,7 @@ SRD5E.SPELLS = {
     'Level=B6,K6,S6,W6 ' +
     'AtHigherLevels="extends the duration to 10, 30, or 366 days at level 7, 8, or 9" ' +
     'Description=' +
-      '"R60\' 12 targets follow a reasonable suggestion (save Wisdom negates) for 24 hr; damage from self or any ally ends the effects"',
+      '"R60\' 12 targets follow a reasonable suggestion (save Wisdom negates) for 24 hr; damage from self or an ally ends the effects"',
   'Maze':
     'School=Conjuration ' +
     'Level=W8 ' +
@@ -2821,7 +2821,7 @@ SRD5E.SPELLS = {
     'Level=C3,D3 ' +
     'Ritual=true ' +
     'Description=' +
-      '"Self steps into rock, losing sight and suffering disadvantage on hearing Perception but allowing casting spells on self, for up to 8 hr; significant partial destruction of the stone inflicts 6d6 HP bludgeoning, expulsion, and prone to self, and complete destruction increases the damage to 50 HP"',
+      '"Self steps into rock, losing sight and suffering disadvantage on hearing Perception but allowing casting spells on self, for up to 8 hr; significant partial destruction of the stone inflicts 6d6 HP bludgeoning, expulsion, and prone on self, and complete destruction increases the damage to 50 HP"',
   'Mending':
     'School=Transmutation ' +
     'Level=B0,C0,D0,S0,W0 ' +
@@ -2840,18 +2840,12 @@ SRD5E.SPELLS = {
     'School=Abjuration ' +
     'Level=B8,W8 ' +
     'Description=' +
-      '"Touched gains immunity to psychic damage, emotion and thought detection, divination, and charm for 24 hr"',
-  'Mind Spike': // ref Xanathar
-    'School=Divination ' +
-    'Level=K2,S2,W2 ' +
-    'AtHigherLevels="inflicts +1d8 HP" ' +
-    'Description=' +
-      '"R60\' Inflicts 3d8 HP psychic, and self knows the target\'s location (save Wisdom half HP only) for concentration up to 1 hr"',
+      '"Touched gains immunity to psychic damage, emotion and thought detection, divination, and charmed for 24 hr"',
   'Minor Illusion':
     'School=Illusion ' +
     'Level=B0,K0,S0,W0 ' +
     'Description=' +
-      '"R30\' Creates the sound of 1 creature or a 5\' cube image (Investigation detects) for 1 min"',
+      '"R30\' Creates the sound of 1 creature or a 5\' cube image (Investigation detects) for 1 min or until cast again"',
   'Mirage Arcane':
     'School=Illusion ' +
     'Level=B7,D7,W7 ' +
@@ -2876,7 +2870,7 @@ SRD5E.SPELLS = {
     'AtHigherLevels=' +
       '"changes the memory of an event from the past 7, 30, 365, or unlimited days at level 6, 7, 8, or 9" ' +
     'Description=' +
-      '"R30\' Incapacitates the target for concentration up to 1 min and allows changing the target\'s memory of a 10-min event from the past 24 hr (save Wisdom negates; a target in battle has advantage); damaging or additional casting on the target ends the spell"',
+      '"R30\' Incapacitates the target for concentration up to 1 min and allows changing the target\'s memory of a 10-min event from the past 24 hr (save Wisdom negates; active fighting gives advantage); damaging or additional casting on the target ends the spell"',
   'Moonbeam':
     'School=Evocation ' +
     'Level=D2 ' +

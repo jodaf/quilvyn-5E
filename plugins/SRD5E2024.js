@@ -2382,8 +2382,8 @@ SRD5E2024.SPELLS = {
     'Description="R30\' Ranged spell inflicts %{(level+7)//6}d12 HP poison"',
   'Polymorph':
     SRD5E.SPELLS.Polymorph
-    .replace('beast', 'beast, with temporary hit points appropriate to the beast,')
     .replace('; shapechangers automatically succeed', '')
+    .replace(')', '), with temporary hit points appropriate to the beast,')
     .replace('0 hit points', '0 temporary hit points'),
   'Power Word Heal': // ref PHB5E
     'School=Enchantment ' +
@@ -2395,7 +2395,7 @@ SRD5E2024.SPELLS = {
     .replace('are unaffected', 'suffer 12d12 HP psychic'),
   'Power Word Stun':
     SRD5E.SPELLS['Power Word Stun']
-    .replace('unaffected', 'have Speed 0 until the start of the next turn'),
+    .replace('are unaffected', 'have Speed 0 until the start of the next turn'),
   'Prayer Of Healing':
     SRD5E.SPELLS['Prayer Of Healing']
     .replace('C2', 'C2,P2') + ' ' +
@@ -2416,7 +2416,8 @@ SRD5E2024.SPELLS = {
   'Produce Flame':
     SRD5E.SPELLS['Produce Flame']
     .replace("R30'", "R60'")
-    .replace('spell attack', 'spell attack each rd')
+    .replace("10'", "20'")
+    .replace('spell attack', 'spell attack each turn')
     .replace(' and ends the spell', ''),
   'Programmed Illusion':SRD5E.SPELLS['Programmed Illusion'],
   'Project Image':SRD5E.SPELLS['Project Image'],
@@ -2427,7 +2428,9 @@ SRD5E2024.SPELLS = {
   'Protection From Poison':
     SRD5E.SPELLS['Protection From Poison']
     .replace('1 poison', 'the poisoned condition'),
-  'Purify Food And Drink':SRD5E.SPELLS['Purify Food And Drink'],
+  'Purify Food And Drink':
+    SRD5E.SPELLS['Purify Food And Drink']
+    .replace('disease', 'rot'),
 
   'Raise Dead':
     SRD5E.SPELLS['Raise Dead']
@@ -2435,7 +2438,7 @@ SRD5E2024.SPELLS = {
   'Ray Of Enfeeblement':
     SRD5E.SPELLS['Ray Of Enfeeblement'] + ' ' +
     'Description=' +
-      '"R60\' Ranged spell inflicts disadvantage on Strength checks and -1d8 damage with Strength weapons (save Constitution disadvantage on the first attack before the start of the next turn only; additional saves each rd ends) for concentration up to 1 min"',
+      '"R60\' Ranged spell inflicts disadvantage on Strength checks and -1d8 HP damage from attacks (save Constitution inflicts disadvantage on the first attack before the start of the next turn only; additional saves each rd ends) for concentration up to 1 min"',
   'Ray Of Frost':SRD5E.SPELLS['Ray Of Frost'],
   'Ray Of Sickness': // ref PHB5E
     'School=Necromancy ' +
@@ -2516,7 +2519,7 @@ SRD5E2024.SPELLS = {
     SRD5E.SPELLS.Sleep + ' ' +
     'AtHigherLevels="" ' +
     'Description=' +
-      '"R60\' Each target in a 5\' radius becomes incapacitated (save Wisdom negates) until the end of its next turn, then unconscious (save Wisdom negates) for concentration up to 1 min (damage or shaking awakens)"',
+      '"R60\' Each target in a 5\' radius becomes incapacitated (save Wisdom negates) until the end of its next turn, then unconscious (save Wisdom negates) for concentration up to 1 min; damage or shaking awakens"',
   'Sleet Storm':
     SRD5E.SPELLS['Sleet Storm']
     .replace("40'", "20'"),
@@ -2572,7 +2575,7 @@ SRD5E2024.SPELLS = {
     'Level=W5 ' +
     'AtHigherLevels="increases the Armor Class by 1, hit points by 10, number of attacks by 1 per 2 levels, and piercing damage by 1" ' +
     'Description=' +
-      '"R60\' Summons an obedient draconic spirit for concentration up to 1 hr; it has Armor Class 19, 50 hit points, 30\' Speed, 60\' fly Speed, 30\' swim Speed, 2 attacks per rd that inflict 1d6 + 9 HP piercing, a breath weapon that inflicts 2d6 HP of a choice of acid, cold, fire, lightning, or poison in a 30\' cone, and resistance to the same damage type; self also gains this resistance"',
+      '"R60\' Summons an obedient draconic spirit (Armor Class 19; 50 hit points; move 30\', fly 60\', and swim 30\'; 30\' blindsight and 60\' darkvision; multiattack equal to half the spell level; inflict 1d6 + 9 HP piercing; a breath weapon that inflicts 2d6 HP of a choice of acid, cold, fire, lightning, or poison in a 30\' cone; resistance to the same damage type) and gives self the same resistance, for concentration up to 1 hr"',
   'Sunbeam':
     SRD5E.SPELLS.Sunbeam
     .replace('D6,S6,W6', 'C6,D6,S6,W6'),

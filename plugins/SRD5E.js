@@ -2966,12 +2966,12 @@ SRD5E.SPELLS = {
     'School=Evocation ' +
     'Level=S7,W7 ' +
     'Description=' +
-      '"60\' cone randomly inflicts one of: 10d6 HP fire, acid, lightning, poison, or cold (save Dexterity half); restrained (save Dexterity negates) and petrified after 3 failed Constitution saves (3 successes negates); blinded (save Dexterity negates) and banished to another plane (save Wisdom negates) at the start of the next turn; 2 of the preceding effects"',
+      '"60\' cone randomly inflicts one of: 10d6 HP fire, acid, lightning, poison, or cold (save Dexterity half); restrained (save Dexterity negates) and petrified after 3 failed Constitution saves (3 successes negates); blinded (save Dexterity negates) and banished to another plane (save Wisdom negates and ends the blindness) at the start of the next turn; 2 of the preceding effects"',
   'Prismatic Wall':
     'School=Abjuration ' +
     'Level=W9 ' +
     'Description=' +
-      '"R60\' 90\'x30\'x1\\" wall or 15\' radius sphere emits 100\' bright light and blinds for 1 min non-designated creatures within 20\' (save Constitution negates) for 10 min; creatures passing through suffer 10d6 HP each fire, acid, lightning, poison, and cold (save Dexterity half), restraint (save Dexterity negates) and petrification after 3 failed Constitution saves (3 successes negates), and blindness (save Dexterity negates) and banishment to another plane (save Wisdom negates) at the start of the next turn"',
+      '"R60\' 90\'x30\'x1\\" wall or 15\' radius sphere blocks ranged attacks and spells, emits 100\' bright light, and blinds for 1 min non-designated creatures within 20\' (save Constitution negates) for 10 min; creatures passing through suffer 10d6 HP each fire, acid, lightning, poison, and cold (save Dexterity half), restraint (save Dexterity negates) and petrification after 3 failed Constitution saves (3 successes negates), and blindness (save Dexterity negates) and banishment to another plane (save Wisdom negates and ends the blindness) at the start of the next turn"',
   'Private Sanctum':
     'School=Abjuration ' +
     'Level=W4 ' +
@@ -2987,12 +2987,12 @@ SRD5E.SPELLS = {
     'School=Illusion ' +
     'Level=B6,W6 ' +
     'Description=' +
-      '"R120\' Creates a 30\' cube illusion when triggered (Investigation detects), with a 10 min pause between triggers"',
+      '"R120\' Creates a 30\' cube moving illusion (contact or Investigation detects) that appears when triggered and continues for 5 min, with a 10 min pause between triggers"',
   'Project Image':
     'School=Illusion ' +
     'Level=B7,W7 ' +
     'Description=' +
-      '"R500 miles Self can see, hear, and speak through an illusory double (Investigation detects) created in a familiar place for concentration up to 1 day or until it suffers damage"',
+      '"R500 miles Self can see, hear, and speak through an illusory double (contact or Investigation detects) created in a familiar place for concentration up to 1 day or until it suffers damage"',
   'Protection From Energy':
     'School=Abjuration ' +
     'Level=C3,D3,R3,S3,W3 ' +
@@ -3043,7 +3043,7 @@ SRD5E.SPELLS = {
     'School=Abjuration ' +
     'Level=C3,K3,P3,W3 ' +
     'Description=' +
-      '"Frees a touched creature from all curses or breaks the attunement to a touched cursed object"',
+      '"Ends all curses affecting a touched creature or breaks the attunement to a touched cursed object"',
   'Resilient Sphere':
     'School=Evocation ' +
     'Level=W4 ' +
@@ -3063,7 +3063,7 @@ SRD5E.SPELLS = {
     'School=Transmutation ' +
     'Level=D7,S7,W7 ' +
     'Description=' +
-      '"R100\' Items in a 100\'x100\' cylinder fall upward for concentration up to 1 min"',
+      '"R100\' Items in a 50\' radius, 100\' high cylinder fall upward for concentration up to 1 min"',
   'Revivify':
     // errata changes school to Necromancy
     'School=Necromancy ' +
@@ -3110,7 +3110,7 @@ SRD5E.SPELLS = {
     'School=Illusion ' +
     'Level=B5,S5,W5 ' +
     'Description=' +
-      '"R30\' Changes the appearance of targets (save Charisma negates; Investigation detects) for 8 hr"',
+      '"R30\' Changes the appearance of targets (save Charisma negates; contact or Investigation detects) for 8 hr"',
   'Sending':
     'School=Evocation ' +
     'Level=B3,C3,W3 ' +
@@ -3151,7 +3151,7 @@ SRD5E.SPELLS = {
     'School=Evocation ' +
     'Level=S0,W0 ' +
     'Description=' +
-      '"Touch inflicts %{(level+7)//6}d8 HP lightning and loss of reactions until its next turn"',
+      '"Touch inflicts %{(level+7)//6}d8 HP lightning and loss of reactions until the target\'s next turn"',
   'Silence':
     'School=Illusion ' +
     'Level=B2,C2,R2 ' +
@@ -3162,7 +3162,7 @@ SRD5E.SPELLS = {
     'School=Illusion ' +
     'Level=B1,S1,W1 ' +
     'Description=' +
-      '"R60\' Creates a 15\' cube movable illusion (Investigation detects) for concentration up to 10 min"',
+      '"R60\' Creates a 15\' cube movable illusion (contact or Investigation detects) for concentration up to 10 min"',
   'Simulacrum':
     'School=Illusion ' +
     'Level=W7 ' +
@@ -3173,21 +3173,21 @@ SRD5E.SPELLS = {
     'Level=B1,S1,W1 ' +
     'AtHigherLevels="affects +2d8 hit points of creatures" ' +
     'Description=' +
-      '"R90\' 20\' radius puts to sleep 5d8 hit points of creatures, starting with those with the least hit points, for 1 min (damage or shaking awakens)"',
+      '"R90\' 20\' radius puts to sleep 5d8 hit points of creatures, starting with those with the least hit points, for 1 min; damage or shaking awakens"',
   'Sleet Storm':
     'School=Conjuration ' +
     'Level=D3,S3,W3 ' +
     'Description=' +
-      '"R150\' 40\' radius obscures, douses exposed flames, and inflicts difficult terrain and prone (save Dexterity negates) for concentration up to 1 min"',
+      '"R150\' 40\' radius becomes heavily obscured, douses exposed flames, becomes difficult terrain, and inflicts prone (save Dexterity negates) for concentration up to 1 min"',
   'Slow':
     'School=Transmutation ' +
     'Level=S3,W3 ' +
     'Description=' +
-      '"R120\' 6 targets in a 40\' cube suffer half Speed, -2 Armor Class and Dexterity saves, loss of reactions, no more than 1 action per turn, and a 50% chance of a 1-rd delay on spell effects (save Wisdom negates; additional saves each rd end) for concentration up to 1 min"',
+      '"R120\' 6 targets in a 40\' cube suffer half Speed, -2 Armor Class and Dexterity saves, loss of reactions, no more than 1 action or attack per turn, and a 50% chance of a 1-rd delay on spell effects (save Wisdom negates; additional saves each rd end) for concentration up to 1 min"',
   'Spare The Dying':
     'School=Necromancy ' +
     'Level=C0 ' +
-    'Description="Touched dying creature becomes stable"',
+    'Description="Touched creature with 0 hit points becomes stable"',
   'Speak With Animals':
     'School=Divination ' +
     'Level=B1,D1,R1 ' +
@@ -3202,7 +3202,7 @@ SRD5E.SPELLS = {
     'School=Transmutation ' +
     'Level=B3,D3,R3 ' +
     'Description=' +
-      '"Self can talk with and command plants in a 30\' radius for 10 min"',
+      '"Self can talk with and command plants in a 30\' radius, turning difficult terrain from plant growth into normal terrain or vice versa, for 10 min"',
   'Spider Climb':
     'School=Transmutation ' +
     'Level=K2,S2,W2 ' +
@@ -3212,7 +3212,7 @@ SRD5E.SPELLS = {
     'School=Transmutation ' +
     'Level=D2,R2 ' +
     'Description=' +
-      '"R150\' 20\' radius becomes difficult terrain and inflicts 2d4 HP piercing per 5\' movement for concentration up to 10 min"',
+      '"R150\' Camouflaged spikes in a 20\' radius inflict difficult terrain and 2d4 HP piercing per 5\' movement for concentration up to 10 min"',
   'Spirit Guardians':
     'School=Conjuration ' +
     'Level=C3 ' +
@@ -3229,7 +3229,7 @@ SRD5E.SPELLS = {
     'School=Conjuration ' +
     'Level=B3,"K3 [The Fiend]",S3,W3 ' +
     'Description=' +
-      '"R90\' 20\' radius inflicts loss of actions for 1 rd (save Constitution negates) for concentration up to 1 min"',
+      '"R90\' 20\' radius becomes heavily obscured and inflicts loss of actions for 1 rd (save Constitution negates) for concentration up to 1 min"',
   'Stone Shape':
     'School=Transmutation ' +
     'Level=C4,D4,W4 ' +
@@ -3243,7 +3243,7 @@ SRD5E.SPELLS = {
     'School=Conjuration ' +
     'Level=D9 ' +
     'Description=' +
-      '"360\' radius within sight inflicts 2d6 HP thunder and deafness (save Constitution negates), then 1d6 HP acid, then 10d6 HP lightning (6 targets; save Dexterity half), then 2d6 HP bludgeoning, then 1d6 HP cold per rd, difficult terrain, and no ranged attacks for concentration up to 1 min"',
+      '"360\' radius within sight inflicts 2d6 HP thunder and deafness (save Constitution negates), then 1d6 HP acid, then 10d6 HP lightning on 6 targets (save Dexterity half), then 2d6 HP bludgeoning, then 1d6 HP cold per rd, heavy obscurement, difficult terrain, and no ranged attacks for concentration up to 1 min"',
   'Suggestion':
     'School=Enchantment ' +
     'Level=B2,K2,S2,W2 ' +
@@ -3253,17 +3253,17 @@ SRD5E.SPELLS = {
     'School=Evocation ' +
     'Level=D6,S6,W6 ' +
     'Description=' +
-      '"5\'x60\' line inflicts 6d8 HP radiant and blindness until the start of the next turn (save Constitution half HP only) each rd for concentration up to 1 min"',
+      '"Self emits a 30\' bright sunlight, and a 5\'x60\' line inflicts 6d8 HP radiant and blindness until the start of the next turn (save Constitution half HP only) each rd, for concentration up to 1 min"',
   'Sunburst':
     'School=Evocation ' +
     'Level=D8,S8,W8 ' +
     'Description=' +
-      '"R150\' 60\' radius inflicts 12d6 HP radiant and blindness for 1 min (save Constitution half HP only; an additional save each turn ends blindness)"',
+      '"R150\' 60\' radius inflicts 12d6 HP radiant and blindness for 1 min (save Constitution half HP only; additional saves each rd end)"',
   'Symbol':
     'School=Abjuration ' +
     'Level=B7,C7,W7 ' +
     'Description=' +
-      '"Inscribes a touched object with a permanent glyph that, when triggered, inflicts a choice of harmful magic effect: 10d10 HP necrotic (save Constitution half); arguing for 1 min that inflicts disadvantage on attacks and ability checks (save Constitution negates); frightened and fleeing for 1 min (save Wisdom negates); overwhelmed with despair for 1 min (save Charisma negates); insane for 1 min (save Intelligence negates); incapacitated by pain for 1 min (save Constitution negates); asleep for 10 min or until shaken or harmed (save Wisdom negates); stunned for 1 min (save Wisdom negates)"',
+      '"Inscribes a touched object with a permanent glyph that, when triggered, inflicts a choice of harmful magic effect: 10d10 HP necrotic (save Constitution half); arguing for 1 min that inflicts disadvantage on attacks and ability checks (save Constitution negates); frightened and fleeing for 1 min (save Wisdom negates); overwhelmed with despair for 1 min (save Charisma negates); insane for 1 min (save Intelligence negates); incapacitated by pain for 1 min (save Constitution negates); asleep for 10 min or until shaken or damaged (save Wisdom negates); stunned for 1 min (save Wisdom negates)"',
 
   'Telekinesis':
     'School=Transmutation ' +
@@ -3274,7 +3274,8 @@ SRD5E.SPELLS = {
     'School=Divination ' +
     'Level=W5 ' +
     'Ritual=true ' +
-    'Description="R30\' 8 willing targets can communicate mentally for 1 hr"',
+    'Description=' +
+      '"R30\' 8 willing targets can communicate telepathically for 1 hr"',
   'Teleport':
     'School=Conjuration ' +
     'Level=B7,S7,W7 ' +

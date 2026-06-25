@@ -1933,7 +1933,7 @@ SRD5E.SPELLS = {
     'Level=P2 ' +
     'AtHigherLevels="inflicts +1d6 HP" ' +
     'Description=' +
-      '"Next successful self weapon attack inflicts +2d6 HP radiant and lights the target for concentration up to 1 min"',
+      '"Next successful weapon attack within concentration up to 1 min inflicts +2d6 HP radiant and causes the target to emit a 5\' dim light until the spell ends"',
   'Burning Hands':
     'School=Evocation ' +
     'Level="K1 [The Fiend]",S1,W1 ' +
@@ -2598,7 +2598,7 @@ SRD5E.SPELLS = {
   'Hideous Laughter':
     'School=Enchantment ' +
     'Level=B1,W1 ' +
-    'Description="R30\' Inflicts ROFL (save Wisdom negates; additional saves each rd and in response to damage end, with damage giving advantage on the save) for concentration up to 1 min"',
+    'Description="R30\' Inflicts prone, incapacitated, and laughing (save Wisdom negates; additional saves each rd and in response to damage end, with damage giving advantage on the save) for concentration up to 1 min"',
   'Hold Monster':
     'School=Enchantment ' +
     'Level=B5,K5,S5,W5 ' +
@@ -3321,7 +3321,7 @@ SRD5E.SPELLS = {
     'School=Conjuration ' +
     'Level=D5,R5 ' +
     'Description=' +
-      '"Allows self to use 10\' of movement to teleport 500\' between like trees once per rd for concentration up to 1 min"',
+      '"Allows self to use 10\' of movement to step into and out of a pair of similar trees within 500\' once per turn for concentration up to 1 min"',
   'True Polymorph':
     'School=Transmutation ' +
     'Level=B9,K9,W9 ' +
@@ -3331,7 +3331,7 @@ SRD5E.SPELLS = {
     'School=Necromancy ' +
     'Level=C9,D9 ' +
     'Description=' +
-      '"Restores life and full hit points to and removes all diseases, poisons, wounds, and curses from a willing touched corpse or named creature dead up to 200 years"',
+      '"Restores life and full hit points to and removes all diseases, poisons, wounds, maims, and curses from a willing touched corpse or named creature dead up to 200 years"',
   'True Seeing':
     'School=Divination ' +
     'Level=B6,C6,K6,S6,W6 ' +
@@ -3372,7 +3372,7 @@ SRD5E.SPELLS = {
     'School=Evocation ' +
     'Level=W5 ' +
     'Description=' +
-      '"R120\' Creates 10 contiguous 10\'x10\' impassable force panels or a 10\' radius impassible force dome or globe for concentration up to 10 min; the effect extends into the ethereal plane"',
+      '"R120\' Creates 10 contiguous 10\'x10\'x1/4\\" impassable force panels or a 10\' radius impassible force dome or globe for concentration up to 10 min; the effect extends into the ethereal plane"',
   'Wall Of Ice':
     'School=Evocation ' +
     'Level=W6 ' +
@@ -3383,7 +3383,7 @@ SRD5E.SPELLS = {
     'School=Evocation ' +
     'Level=D5,S5,W5 ' +
     'Description=' +
-      '"R120\' Creates 10 contiguous 10\'x10\'x6\\" or 10\'x20\'x3\\" stone panels (save Dexterity avoids entrapment), with Armor Class 15 and 30 hit points each, for concentration up to 10 min; concentrating for 10 min makes the wall permanent"',
+      '"R120\' Creates 10 contiguous 10\'x10\'x6\\" or 10\'x20\'x3\\" stone panels (save Dexterity allows using a reaction to avoid entrapment), with Armor Class 15 and 30 hit points each, for concentration up to 10 min; concentrating for 10 min makes the wall permanent"',
   'Wall Of Thorns':
     'School=Conjuration ' +
     'Level=D6 ' +
@@ -3394,7 +3394,7 @@ SRD5E.SPELLS = {
     'School=Abjuration ' +
     'Level=C2 ' +
     'Description=' +
-      '"Willing touched gains +1 Armor Class, +1 saves, and resistance to all damage, and any damage to the target also affects self, for 1 hr or until separated from self by more than 60\'"',
+      '"Willing touched gains +1 Armor Class, +1 saves, and resistance to all damage, and any damage to the target also affects self, for 1 hr; separation by more than 60\' or casting again ends"',
   'Water Breathing':
     'School=Transmutation ' +
     'Level=D3,R3,S3,W3 ' +
@@ -3429,7 +3429,7 @@ SRD5E.SPELLS = {
     'School=Conjuration ' +
     'Level=S9,W9 ' +
     'Description=' +
-      '"Mimics an 8th level spell or alters reality with few limits; casting to alter reality reduces Strength to 3 for 2d4 days and causes later spellcasting before a long rest to inflict 1d10 HP necrotic per spell level"',
+      '"Mimics an 8th level spell or alters reality with few limits; casting to alter reality reduces Strength to 3 for 2d4 days, causes later spellcasting before a long rest to inflict 1d10 HP necrotic per spell level, and carries a 33% chance of inflicting permanent inability to cast <i>Wish</i> in the future"',
   'Word Of Recall':
     'School=Conjuration ' +
     'Level=C6 ' +

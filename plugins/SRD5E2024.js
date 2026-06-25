@@ -1270,7 +1270,7 @@ SRD5E2024.FEATURES = {
     'Note="Has advantage on Constitution saves to maintain concentration"',
   'Eldritch Smite': // ref Xanathar
     'Section=combat ' +
-    'Note="Once per turn, can expend a spell slot upon a pact weapon hit to inflict +1d8 HP force plus +1d8 HP force per slot level and to inflict prone on a Huge or smaller target"',
+    'Note="Once per turn, can expend a spell slot upon a successful pact weapon attack to inflict +1d8 HP force plus +1d8 HP force per slot level and to inflict prone on a Huge or smaller target"',
   'Eldritch Spear':
     // changed effects
     'Section=magic ' +
@@ -1776,6 +1776,7 @@ SRD5E2024.SPELLS = {
     .replace('recipient', 'recipient (save Charisma negates; CR greater than 0 automatically succeeds)'),
   'Animal Shapes':
     SRD5E.SPELLS['Animal Shapes'] + ' ' +
+    // errata negates ending when temporary HP are lost
     'Description=' +
       '"R30\' Willing targets become CR 4, Large or smaller beasts, gaining temporary hit points appropriate to the beasts, for 24 hr or until ended by each target"',
   'Animate Dead':SRD5E.SPELLS['Animate Dead'],
@@ -1855,7 +1856,7 @@ SRD5E2024.SPELLS = {
     .replace("30'", "120'"),
   'Blink':SRD5E.SPELLS.Blink,
   'Blur':SRD5E.SPELLS.Blur,
-  // Branding Smite deleted
+  // Branding Smite => Shining Smite
   'Burning Hands':SRD5E.SPELLS['Burning Hands'],
 
   'Call Lightning':SRD5E.SPELLS['Call Lightning'],
@@ -1913,13 +1914,15 @@ SRD5E2024.SPELLS = {
        '"R90\' 10\' radius either restores 4d12+%{mdf} hit points or inflicts 6d12 HP radiant (save Dexterity half) on each target for concentration up to 10 min; can be moved 30\' each turn"',
   'Conjure Elemental':
     SRD5E.SPELLS['Conjure Elemental'] + ' ' +
-    'AtHigherLevels="inflicts +2d8 HP" ' +
+    // errata reduces to +1d8
+    'AtHigherLevels="inflicts +1d8 HP" ' +
     'Description=' +
        '"R60\' 5\' radius restrains a target, inflicting 8d8 HP of a choice of lightning, thunder, fire, or cold (save Dexterity negates; additional saves each rd end), then inflicts an additional 4d8 HP each subsequent rd, for concentration up to 10 min"',
   'Conjure Fey':
     SRD5E.SPELLS['Conjure Fey'] + ' ' +
     'Level=D6 ' +
-    'AtHigherLevels="inflicts +2d12 HP" ' +
+    // errata reduces to +1d12
+    'AtHigherLevels="inflicts +1d12 HP" ' +
     'Description=' +
       '"R60\' Melee spell attacks by a summoned spirit inflict 3d12+%{mdf} HP psychic and frightened until the start of the next turn for concentration up to 10 min; can be moved 30\' each turn as a bonus action"',
   'Conjure Minor Elementals':
@@ -2015,7 +2018,7 @@ SRD5E2024.SPELLS = {
     'School=Evocation ' +
     'Level=P1 ' +
     'AtHigherLevels="inflicts +1d8 HP" ' +
-    'Description="Cast as a bonus action after hitting a target, causes the attack inflict +2d8 HP radiant, or +3d8 HP radiant on a fiend or undead"',
+    'Description="Cast as a bonus action after a successful melee attack, inflicts +2d8 HP radiant, or +3d8 HP radiant on a fiend or undead"',
   'Divine Word':SRD5E.SPELLS['Divine Word'],
   'Dominate Beast':
     SRD5E.SPELLS['Dominate Beast']
@@ -2483,7 +2486,7 @@ SRD5E2024.SPELLS = {
     'Level=P1 ' +
     'AtHigherLevels="inflicts +1d6 HP initial and per rd" ' +
     'Description=' +
-      '"Cast as a bonus action after a successful self melee attack, inflicts +1d6 HP fire, plus 1d6 HP fire per rd (save Constitution ends) for 1 min"',
+      '"Cast as a bonus action after a successful melee attack, inflicts +1d6 HP fire, plus 1d6 HP fire each rd for 1 min (Constitution saves each rd end)"',
   'Secret Chest':SRD5E.SPELLS['Secret Chest'],
   'See Invisibility':SRD5E.SPELLS['See Invisibility'],
   'Seeming':SRD5E.SPELLS.Seeming,
@@ -2491,6 +2494,7 @@ SRD5E2024.SPELLS = {
   'Sequester':SRD5E.SPELLS.Sequester,
   'Shapechange':
     SRD5E.SPELLS.Shapechange
+    // errata clarifies that temporary HP are granted only for the 1st form
     .replace('gaining the hit points and hit dice of that', 'initially gaining temporary hit points of the first')
     .replace(' or until reduced to 0 hit points', ''),
   'Shatter':
@@ -2503,12 +2507,12 @@ SRD5E2024.SPELLS = {
     SRD5E.SPELLS.Shillelagh + ' ' +
     'Description=' +
       '"Held club gains +%{proficiencyBonus+mdf} attacks that inflict %{level<5?\'1d8\':level<11?\'1d10\':level<17?\'1d12\':\'2d6\'}+%{mdf} HP of a choice of force or weapon damage for 1 min"',
-  'Shining Smite': // new
-    'School=Transmutation ' +
-    'Level=P2 ' +
-    'AtHigherLevels="inflicts +1d6 HP" ' +
-    'Description=' +
-      '"Cast as a bonus action after a successful self melee attack, inflicts +2d6 HP radiant and causes the target to emit a 5\' bright light, negating invisibility and giving its foes advantage on attacks, for concentration up to 1 min"',
+  'Shining Smite':
+    SRD5E.SPELLS['Branding Smite']
+    .replace('Evocation', 'Transmutation')
+    .replace('Next successful weapon attack within concentration up to 1 min', 'Cast as a bonus action after a successful melee attack,')
+    .replace(' dim', ' bright')
+    .replace(' until the spell ends', ', giving its foes advantage on attacks, for concentration up to 1 min'),
   'Shocking Grasp':
     SRD5E.SPELLS['Shocking Grasp']
     .replace('reactions', 'opportunity attacks'),
@@ -2614,6 +2618,7 @@ SRD5E2024.SPELLS = {
   'Tree Stride':SRD5E.SPELLS['Tree Stride'],
   'True Polymorph':
     SRD5E.SPELLS['True Polymorph']
+    // errata negates ending when temporary HP are lost
     .replace(' or until reduced to 0 hit points', ''),
   'True Seeing':
     SRD5E.SPELLS['True Seeing']
@@ -2627,7 +2632,7 @@ SRD5E2024.SPELLS = {
     'School=Conjuration ' +
     'Level=D8 ' +
     'Description=' +
-      '"R1 mile 300\'x300\'x50\' wall of water inflicts 5d10 HP bludgeoning (save Strength half); it moves away 50\' per rd, reducing its height by 50\' and its damage by 1d10 HP each rd, for concentration up to 6 rd"',
+      '"R1 mile 300\'x300\'x50\' wall of water inflicts 6d10 HP bludgeoning (save Strength half); it moves away 50\' per rd, reducing its height by 50\' and its damage by 1d10 HP each rd, for concentration up to 6 rd"',
 
   'Unseen Servant':SRD5E.SPELLS['Unseen Servant'],
 
@@ -2652,7 +2657,9 @@ SRD5E2024.SPELLS = {
   'Warding Bond':
     SRD5E.SPELLS['Warding Bond']
     .replace('C2', 'C2,P2'),
-  'Water Walk':SRD5E.SPELLS['Water Walk'],
+  'Water Walk':
+    SRD5E.SPELLS['Water Walk']
+    .replace('1 hr', '1 hr, entering a liquid only from a fall or by using a bonus action'),
   'Water Breathing':SRD5E.SPELLS['Water Breathing'],
   'Web':
     SRD5E.SPELLS.Web
@@ -2660,7 +2667,8 @@ SRD5E2024.SPELLS = {
   'Weird':
     SRD5E.SPELLS.Weird
     .replace('W9', 'K9,W9')
-    .replace('4d10 HP psychic', '10d10 HP psychic (save Wisdom half HP only), then 5d10 HP psychic'),
+    .replace(' and 4d10 HP psychic', ', 10d10 HP psychic initially, and 5d10 HP psychic')
+    .replace('ends', 'half initial HP only; additional saves each rd end'),
   'Wind Walk':
     SRD5E.SPELLS['Wind Walk']
     .replace('nonmagical weapons', 'bludgeoning, piercing, and slashing')

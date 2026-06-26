@@ -1822,6 +1822,7 @@ SRD5E2024.SPELLS = {
     .replace('C2', 'C2,D2,W2')
     .replace('a random', 'no'),
   'Aura Of Life': // ref PHB5E
+    'CastingTime=Action ' +
     'School=Abjuration ' +
     'Level=C4,P4 ' +
     'Description=' +
@@ -1840,6 +1841,7 @@ SRD5E2024.SPELLS = {
     .replace('concentration up to ', ''),
   'Beacon Of Hope':SRD5E.SPELLS['Beacon Of Hope'],
   'Befuddlement': // new
+    'CastingTime=Action ' +
     'School=Enchantment ' +
     'Level=B8,D8,K8,W8 ' +
     'Description=' +
@@ -1882,6 +1884,7 @@ SRD5E2024.SPELLS = {
     .replace('start', 'end')
     .replace(/;[^"]*/, ''),
   'Chromatic Orb': // ref PHB5E
+    'CastingTime=Action ' +
     'School=Evocation ' +
     'Level=S1,W1 ' +
     'AtHigherLevels="inflicts +1d8 HP and can leap +1 time" ' +
@@ -1894,6 +1897,7 @@ SRD5E2024.SPELLS = {
   'Clone':SRD5E.SPELLS.Clone,
   'Cloudkill':SRD5E.SPELLS.Cloudkill,
   'Color Spray': // changed
+    'CastingTime=Action ' +
     'School=Illusion ' +
     'Level=B1,S1,W1 ' +
     'Description="15\' cone inflicts blinded (save Constitution negates) until the end of the next turn"',
@@ -2010,6 +2014,7 @@ SRD5E2024.SPELLS = {
     SRD5E.SPELLS['Dispel Magic']
     .replace('B3,C3,D3,K3,P3,S3,W3', 'B3,C3,D3,K3,P3,R3,S3,W3'),
   'Dissonant Whispers': // ref PHB5E
+    'CastingTime=Action ' +
     'School=Enchantment ' +
     'Level=B1 ' +
     'AtHigherLevels="inflicts +1d6 HP" ' +
@@ -2023,6 +2028,7 @@ SRD5E2024.SPELLS = {
     .replace('Evocation', 'Transmutation')
     .replace('concentration up to ', ''),
   'Divine Smite': // new
+    'CastingTime=Bonus ' +
     'School=Evocation ' +
     'Level=P1 ' +
     'AtHigherLevels="inflicts +1d8 HP" ' +
@@ -2034,6 +2040,7 @@ SRD5E2024.SPELLS = {
   'Dominate Monster':SRD5E.SPELLS['Dominate Monster'],
   'Dominate Person':SRD5E.SPELLS['Dominate Person'],
   "Dragon's Breath": // new
+    'CastingTime=Bonus ' +
     'School=Transmutation ' +
     'Level=S2,W2 ' +
     'AtHigherLevels="inflicts +1d6 HP" ' +
@@ -2049,6 +2056,7 @@ SRD5E2024.SPELLS = {
     SRD5E.SPELLS['Eldritch Blast']
     .replace('300', '120'),
   'Elementalism': // new
+    'CastingTime=Action ' +
     'School=Transmutation ' +
     'Level=D0,S0,W0 ' +
     'Description="R30\' Moves air or dust in a 5\' cube, creates smoke or mist in a 5\' cube for 1 min, or sculpts a 1\' cube of dirt, sand, fire, smoke, mist, or water for 1 hr"',
@@ -2061,6 +2069,7 @@ SRD5E2024.SPELLS = {
     .replace('S2,W2', 'B2,D2,S2,W2')
     .replaceAll('weapon', 'weapon and unarmed'),
   'Ensnaring Strike': // ref PHB5E
+    'CastingTime=Bonus ' +
     'School=Conjuration ' +
     'Level=R1 ' +
     'AtHigherLevels="inflicts +1d6 HP" ' +
@@ -2217,6 +2226,7 @@ SRD5E2024.SPELLS = {
     .replace(/recover.*immunity/, 'gain resistance to poison, immunity'),
   'Heroism':SRD5E.SPELLS.Heroism,
   'Hex': // ref PHB5E
+    'CastingTime=Bonus ' +
     'School=Enchantment ' +
     'Level=K1 ' +
     'AtHigherLevels="extends the duration to 4, 8, or 24 hr at level 2, 3 or 5" ' +
@@ -2238,6 +2248,7 @@ SRD5E2024.SPELLS = {
   'Hypnotic Pattern':SRD5E.SPELLS['Hypnotic Pattern'],
 
   'Ice Knife': // ref Xanathar
+    'CastingTime=Action ' +
     'School=Conjuration ' +
     'Level=D1,S1,W1 ' +
     'AtHigherLevels="inflicts +1d6 HP cold" ' +
@@ -2339,6 +2350,7 @@ SRD5E2024.SPELLS = {
   'Meteor Swarm':SRD5E.SPELLS['Meteor Swarm'],
   'Mind Blank':SRD5E.SPELLS['Mind Blank'],
   'Mind Spike': // new
+    'CastingTime=Action ' +
     'School=Divination ' +
     'Level=K2,S2,W2 ' +
     'AtHigherLevels="inflicts +1d8 HP" ' +
@@ -2366,6 +2378,7 @@ SRD5E2024.SPELLS = {
   'Pass Without Trace':SRD5E.SPELLS['Pass Without Trace'],
   'Passwall':SRD5E.SPELLS.Passwall,
   'Phantasmal Force': // ref PHB5E
+    'CastingTime=Action ' +
     'School=Illusion ' +
     // Spell description shows B2,S2,W2, but not on the spell lists?
     'Level=B2,"K2 [The Archfey]","K2 [The Great Old One]",S2,W2 ' +
@@ -2397,6 +2410,7 @@ SRD5E2024.SPELLS = {
     .replace(')', '), with temporary hit points appropriate to the beast,')
     .replace('0 hit points', '0 temporary hit points'),
   'Power Word Heal': // ref PHB5E
+    'CastingTime=Action ' +
     'School=Enchantment ' +
     'Level=B9,C9 ' +
     'Description=' +
@@ -2452,6 +2466,7 @@ SRD5E2024.SPELLS = {
       '"R60\' Ranged spell inflicts disadvantage on Strength checks and -1d8 HP damage from attacks (save Constitution inflicts disadvantage on the first attack before the start of the next turn only; additional saves each rd ends) for concentration up to 1 min"',
   'Ray Of Frost':SRD5E.SPELLS['Ray Of Frost'],
   'Ray Of Sickness': // ref PHB5E
+    'CastingTime=Action ' +
     'School=Necromancy ' +
     'Level=S1,W1 ' +
     'AtHigherLevels="inflicts +1d8 HP" ' +
@@ -2490,6 +2505,7 @@ SRD5E2024.SPELLS = {
   'Scorching Ray':SRD5E.SPELLS['Scorching Ray'],
   'Scrying':SRD5E.SPELLS.Scrying,
   'Searing Smite': // ref PHB5E
+    'CastingTime=Bonus ' +
     'School=Evocation ' +
     'Level=P1 ' +
     'AtHigherLevels="inflicts +1d6 HP initial and per rd" ' +
@@ -2540,6 +2556,7 @@ SRD5E2024.SPELLS = {
     .replace('S3,W3', 'B3,S3,W3')
     .replace('50% chance of a 1-rd delay on spell effects', '25% chance of somatic spell failure'),
   'Sorcerous Burst': // new
+    'CastingTime=Action ' +
     'School=Evocation ' +
     'Level=S0 ' +
     'Description=' +
@@ -2565,6 +2582,7 @@ SRD5E2024.SPELLS = {
     .replace('for 1 min', 'for concentration up to 1 min')
     .replace(' per 2 levels', ''),
   'Starry Wisp': // new
+    'CastingTime=Action ' +
     'School=Evocation ' +
     'Level=B0,D0 ' +
     'Description=' +
@@ -2583,6 +2601,7 @@ SRD5E2024.SPELLS = {
     .replace('1d6', '4d6'),
   'Suggestion':SRD5E.SPELLS.Suggestion,
   'Summon Dragon': // new
+    'CastingTime=Action ' +
     'School=Conjuration ' +
     'Level=W5 ' +
     'AtHigherLevels="increases the Armor Class by 1, hit points by 10, number of attacks by 1 per 2 levels, and piercing damage by 1" ' +
@@ -2637,6 +2656,7 @@ SRD5E2024.SPELLS = {
     'Description=' +
       '"Proficient weapon attack made simultaneously with casting has a +%{proficiencyBonus+mdf} attack bonus and inflicts%{level<5?\'\':level<11?\' +1d6 HP of\':level<17?\' +2d6 HP of\':\' +3d6 HP of\'} a choice of radiant or normal weapon damage"',
   'Tsunami': // ref PHB5E
+    'CastingTime=Minute ' +
     'School=Conjuration ' +
     'Level=D8 ' +
     'Description=' +
@@ -2651,6 +2671,7 @@ SRD5E2024.SPELLS = {
     SRD5E.SPELLS['Vicious Mockery']
     .replaceAll('d4', 'd6'),
   'Vitriolic Sphere': // ref Xanathar
+    'CastingTime=Action ' +
     'School=Evocation ' +
     'Level=S4,W4 ' +
     'AtHigherLevels="inflicts +2d4 HP initial" ' +
@@ -2797,11 +2818,13 @@ SRD5E2024.WEAPONS = {
 /* Defines the rules related to character abilities. */
 SRD5E2024.abilityRules = function(rules, abilities) {
   SRD5E.abilityRules(rules, abilities);
+  // No changes needed to SRD5E
 };
 
 /* Defines the rules related to combat. */
 SRD5E2024.combatRules = function(rules, armors, shields, weapons) {
   SRD5E.combatRules(rules, armors, shields, weapons);
+  // No changes needed to SRD5E
 };
 
 /* Defines rules related to basic character identity. */
@@ -2820,6 +2843,7 @@ SRD5E2024.identityRules = function(
 /* Defines rules related to magic use. */
 SRD5E2024.magicRules = function(rules, schools, spells) {
   SRD5E.magicRules(rules, schools, spells);
+  // No changes needed to SRD5E
 };
 
 /* Defines rules related to character aptitudes. */
@@ -2827,6 +2851,7 @@ SRD5E2024.talentRules = function(
   rules, feats, features, goodies, languages, skills, tools
 ) {
   SRD5E.talentRules(rules, feats, features, goodies, languages, skills, tools);
+  // No changes needed to SRD5E
 };
 
 /*
@@ -2941,6 +2966,7 @@ SRD5E2024.choiceRules = function(rules, type, name, attrs) {
       QuilvynUtils.getAttrValueArray(attrs, 'Replace')
     );
   else if(type == 'Spell') {
+    let castingTime = QuilvynUtils.getAttrValue(attrs, 'CastingTime');
     let description = QuilvynUtils.getAttrValue(attrs, 'Description');
     let groupLevels = QuilvynUtils.getAttrValueArray(attrs, 'Level');
     let higher = QuilvynUtils.getAttrValue(attrs, 'AtHigherLevels');
@@ -2959,7 +2985,8 @@ SRD5E2024.choiceRules = function(rules, type, name, attrs) {
       let path = matchInfo[3] || '';
       let fullName = name + '(' + group + level + path + ' ' + schoolAbbr + ')';
       SRD5E2024.spellRules(
-        rules, fullName, school, group, level, ritual, description, higher
+        rules, fullName, school, group, level, ritual, description, higher,
+        castingTime
       );
       rules.addChoice('spells', fullName, attrs);
     }
@@ -3665,10 +3692,13 @@ SRD5E2024.skillRules = function(rules, name, ability, classes) {
  * casting the spell using a higher-level spell slot.
  */
 SRD5E2024.spellRules = function(
-  rules, name, school, casterGroup, level, ritual, description, higher
+  rules, name, school, casterGroup, level, ritual, description, higher,
+  castingTime
 ) {
-  SRD5E.spellRules
-    (rules, name, school, casterGroup, level, ritual, description, higher);
+  SRD5E.spellRules(
+    rules, name, school, casterGroup, level, ritual, description, higher,
+    castingTime
+  );
   // No changes needed to SRD5E
 };
 

@@ -522,6 +522,15 @@ SRD5E2024.DEITIES = {
 };
 SRD5E2024.FEATS = {
   'Alert':'Category=Origin',
+  // NOTE: the Magic Initiate feat allows the user to select Charisma,
+  // Intelligence, or Wisdom as the spellcasting ability. This gets messy to
+  // specify and implement. We could expand the subfeat list to 9, including
+  // choices like Magic Initiate (Cleric (Charisma)). However, this makes the
+  // calculation of Spell Attack and Spell DC dicey. For example, a Cleric
+  // with the Magic Initiate (Cleric (Charisma)) feat would need different
+  // Spell Attack/DC values for the Cleric spell gained from the feat and the
+  // others gained from the class. At this point, we punt and add an item in
+  // the rule notes to explain.
   'Magic Initiate (Cleric)':'Category=Origin',
   'Magic Initiate (Druid)':'Category=Origin',
   'Magic Initiate (Wizard)':'Category=Origin',
@@ -1554,7 +1563,6 @@ SRD5E2024.FEATURES = {
     'Note=' +
       '"+%{proficiencyBonus} Initiative",' +
       '"Can swap initiatives with a willing ally"',
-  // TODO select Intelligence, Wisdom, or Charisma as the Magic Initiate ability
   'Magic Initiate (Cleric)': // ref PHB5E
     'Section=magic ' +
     'Note="Knows 2 Cleric cantrips and can cast a chosen C1 spell without expending a spell slot once per long rest"',
@@ -3832,6 +3840,17 @@ SRD5E2024.ruleNotes = function() {
     '  <li>\n' +
     '  Discussion of adding different types of homebrew options to the' +
     '  SRD5.5E rule set can be found in <a href="plugins/homebrew-srd5e.html">SRD5E Homebrew Examples</a>.\n' +
+    '  </li>\n' +
+    '</ul>\n' +
+    '\n' +
+    '<h3>Limitations</h3>\n' +
+    '<ul>\n' +
+    '  <li>\n' +
+    '  Quilvyn assumes the standard ability modifiers for the Magic Initiate ' +
+    '  subfeats: Wisdom for Magic Initiate (Cleric) and Magic Initiate ' +
+    '  (Druid) and Intelligence for Magic Initiate (Wizard). You may have to ' +
+    "  make adjustments to the character's Spell Attack and Spell DC values " +
+    '  if you decide to use different ability modifiers.\n' +
     '  </li>\n' +
     '</ul>\n' +
     '\n' +

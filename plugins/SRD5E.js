@@ -6073,9 +6073,7 @@ SRD5E.spellRules = function(
   }
   if(!castingTime) {
     console.log('Casting time missing for spell ' + name);
-    castingTime='Action';
-  }
-  if(!(castingTime+'').match(/^(\d+\s+)?((re)?action|bonus|hour|minute)s?$/i)) {
+  } else if(!(castingTime+'').match(/^(\d+\s+)?((re)?action|bonus|hour|minute)s?$/i)) {
     console.log('Bad casting time "' + castingTime + '" for spell ' + name);
     return;
   }

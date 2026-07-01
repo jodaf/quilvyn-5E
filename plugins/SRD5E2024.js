@@ -1872,7 +1872,7 @@ SRD5E2024.SPELLS = {
   'Call Lightning':SRD5E.SPELLS['Call Lightning'],
   'Calm Emotions':SRD5E.SPELLS['Calm Emotions'],
   'Chain Lightning':SRD5E.SPELLS['Chain Lightning'],
-  'Charm Monster': // new
+  'Charm Monster': // ref Xanathar
     SRD5E.SPELLS['Charm Person']
     .replace('B1,D1,K1,S1,W1', 'B4,D4,K4,S4,W4')
     .replace('humanoid ', ''),

@@ -2167,9 +2167,9 @@ SRD5E.SPELLS = {
     'CastingTime=Reaction ' +
     'School=Abjuration ' +
     'Level=K3,S3,W3 ' +
-    'AtHigherLevels="negates any spell of equal or lesser level" ' +
+    'AtHigherLevels="automatically causes a spell of equal or lesser level to fail" ' +
     'Description=' +
-      '"R60\' Negates foe casting up to spell level 3; successful DC 10 + spell level negates a higher-level spell"',
+      '"R60\' Cast when seeing a creature cast a spell, automatically causes the spell to fail if its level is 3 or lower; counterspelling a level 4 or higher spell requires a successful DC 10 + spell level ability check"',
   'Create Food And Water':
     'CastingTime=Action ' +
     'School=Conjuration ' +
@@ -2440,7 +2440,7 @@ SRD5E.SPELLS = {
     'CastingTime=Reaction ' +
     'School=Transmutation ' +
     'Level=B1,S1,W1 ' +
-    'Description="R60\' 5 falling targets slow to 60\' per rd for 1 min"',
+    'Description="R60\' Causes 5 falling targets to slow to 60\' per rd for 1 min"',
   'Feeblemind':
     'CastingTime=Action ' +
     'School=Enchantment ' +
@@ -2738,7 +2738,7 @@ SRD5E.SPELLS = {
     'Level=K1 ' +
     'AtHigherLevels="inflicts +1d10 HP" ' +
     'Description=' +
-      '"R60\' Cast as a reaction, inflicts 2d10 HP fire on a successful attacker (save Dexterity half)"',
+      '"R60\' Cast when taking damage, inflicts 2d10 HP fire on the attacker (save Dexterity half)"',
   "Heroes' Feast":
     'CastingTime="10 Minutes" ' +
     'School=Conjuration ' +
@@ -3397,7 +3397,7 @@ SRD5E.SPELLS = {
     'School=Abjuration ' +
     'Level=S1,W1 ' +
     'Description=' +
-      '"Cast as a reaction upon taking damage, gives self +5 Armor Class and immunity to <i>Magic Missile</i> until the start of the next turn"',
+      '"Cast when taking damage, gives self +5 Armor Class and immunity to <i>Magic Missile</i> until the start of the next turn"',
   'Shield Of Faith':
     'CastingTime=Bonus ' +
     'School=Abjuration ' +
@@ -6081,8 +6081,11 @@ SRD5E.spellRules = function(
   description =
     description.replaceAll('lvl', 'casterLevels.' + casterGroup)
                .replaceAll('mdf', 'spellModifier.' + casterGroup);
+  if(castingTime)
+    description = '<b>(' + castingTime + ')</b> ' + description;
+  description = description.replaceAll(/\(save ([A-Z]\w+)/g, '(<b>save $1</b>');
   if(higher)
-    description += ' [+Level ' + higher + ']';
+    description += ' (<b>+Level</b> ' + higher + ')';
   if(ritual)
     description += ' [R]';
   rules.defineChoice('notes', 'spells.' + name + ':' + description);

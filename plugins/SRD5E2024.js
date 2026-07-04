@@ -2032,7 +2032,7 @@ SRD5E2024.SPELLS = {
     'School=Evocation ' +
     'Level=P1 ' +
     'AtHigherLevels="inflicts +1d8 HP" ' +
-    'Description="Cast as a bonus action after a successful melee attack, inflicts +2d8 HP radiant, or +3d8 HP radiant on a fiend or undead"',
+    'Description="Cast after a successful melee attack, inflicts +2d8 HP radiant, or +3d8 HP radiant on a fiend or undead"',
   'Divine Word':SRD5E.SPELLS['Divine Word'],
   'Dominate Beast':
     SRD5E.SPELLS['Dominate Beast']
@@ -2074,7 +2074,7 @@ SRD5E2024.SPELLS = {
     'Level=R1 ' +
     'AtHigherLevels="inflicts +1d6 HP" ' +
     'Description=' +
-      '"Cast as a bonus action after hitting a target, restrains the foe (save Strength negates; Large creatures have advantage on the save) and inflicts 1d6 HP per rd piercing (save Athletics each rd end) for concentration up to 1 min"',
+      '"Cast after a successful weapon attack, restrains the foe (save Strength negates; Large creatures have advantage on the save) and inflicts 1d6 HP per rd piercing (save Athletics each rd end) for concentration up to 1 min"',
   'Entangle':
     SRD5E.SPELLS.Entangle
     .replace('D1', 'D1,R1')
@@ -2510,7 +2510,7 @@ SRD5E2024.SPELLS = {
     'Level=P1 ' +
     'AtHigherLevels="inflicts +1d6 HP initial and per rd" ' +
     'Description=' +
-      '"Cast as a bonus action after a successful melee attack, inflicts +1d6 HP fire, plus 1d6 HP fire each rd for 1 min (Constitution saves each rd end)"',
+      '"Cast after a successful melee attack, inflicts +1d6 HP fire, plus 1d6 HP fire each rd for 1 min (Constitution saves each rd end)"',
   'Secret Chest':SRD5E.SPELLS['Secret Chest'],
   'See Invisibility':SRD5E.SPELLS['See Invisibility'],
   'Seeming':SRD5E.SPELLS.Seeming,
@@ -2534,7 +2534,7 @@ SRD5E2024.SPELLS = {
   'Shining Smite':
     SRD5E.SPELLS['Branding Smite']
     .replace('Evocation', 'Transmutation')
-    .replace('Next successful weapon attack within concentration up to 1 min', 'Cast as a bonus action after a successful melee attack,')
+    .replace('Next successful weapon attack within concentration up to 1 min', 'Cast after a successful melee attack,')
     .replace(' dim', ' bright')
     .replace(' until the spell ends', ', giving its foes advantage on attacks, for concentration up to 1 min'),
   'Shocking Grasp':

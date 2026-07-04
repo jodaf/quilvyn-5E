@@ -3291,6 +3291,7 @@ SRD5E2024.classRulesExtra = function(rules, name) {
     rules.defineRule('selectableFeatureCount.Paladin (Paladin Subclass)',
       'featureNotes.paladinSubclass', '=', '1'
     );
+    rules.defineRule('casterLevels.C', 'magicNotes.blessedWarrior', '^=', '1');
     rules.defineRule
       ('spellsAvailable.C0', 'magicNotes.blessedWarrior', '+=', '2');
 
@@ -3324,6 +3325,7 @@ SRD5E2024.classRulesExtra = function(rules, name) {
     rules.defineRule
       ('skillNotes.expertise', classLevel, '+=', 'source<9 ? null : 2');
     rules.defineRule('speed', 'abilityNotes.roving.1', '+', null);
+    rules.defineRule('casterLevels.D', 'magicNotes.druidicWarrior', '^=', '1');
     rules.defineRule
       ('spellsAvailable.D0', 'magicNotes.druidicWarrior', '+=', '2');
 

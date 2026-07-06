@@ -2510,7 +2510,7 @@ SRD5E2024.SPELLS = {
     'Level=P1 ' +
     'AtHigherLevels="inflicts +1d6 HP initial and per rd" ' +
     'Description=' +
-      '"Cast after a successful melee attack, inflicts +1d6 HP fire, plus 1d6 HP fire each rd for 1 min (Constitution saves each rd end)"',
+      '"Cast after a successful melee attack, inflicts +1d6 HP fire, plus 1d6 HP fire each rd for 1 min (save Constitution each rd end)"',
   'Secret Chest':SRD5E.SPELLS['Secret Chest'],
   'See Invisibility':SRD5E.SPELLS['See Invisibility'],
   'Seeming':SRD5E.SPELLS.Seeming,

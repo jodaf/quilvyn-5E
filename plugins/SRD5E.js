@@ -3952,17 +3952,14 @@ SRD5E.combatRules = function(rules, armors, shields, weapons) {
   QuilvynUtils.checkAttrTable
     (weapons, ['Category', 'Damage', 'Property', 'Range', 'Cost', 'Weight', 'Mastery']);
 
-  for(let armor in armors) {
-    rules.choiceRules(rules, 'Armor', armor, armors[armor]);
-  }
-  for(let shield in shields) {
-    rules.choiceRules(rules, 'Shield', shield, shields[shield]);
-  }
-  for(let weapon in weapons) {
-    let pattern = weapon.replace(/  */g, '\\s+');
-    let prefix =
-      weapon.charAt(0).toLowerCase() + weapon.substring(1).replaceAll(' ', '');
-    rules.choiceRules(rules, 'Goody', weapon,
+  for(let a in armors)
+    rules.choiceRules(rules, 'Armor', a, armors[a]);
+  for(let s in shields)
+    rules.choiceRules(rules, 'Shield', s, shields[s]);
+  for(let w in weapons) {
+    let pattern = w.replace(/  */g, '\\s+');
+    let prefix = w.charAt(0).toLowerCase() + w.substring(1).replaceAll(' ', '');
+    rules.choiceRules(rules, 'Goody', w,
       // To avoid triggering additional weapons with a common suffix (e.g.,
       // "* punching dagger +2" also makes regular dagger +2), require that
       // weapon goodies with a trailing value have no preceding word or be
@@ -3973,13 +3970,13 @@ SRD5E.combatRules = function(rules, armors, shields, weapons) {
       'Value="$1 || $2" ' +
       'Section=combat Note="%V Attack and damage"'
     );
-    rules.choiceRules(rules, 'Goody', weapon + ' Proficiency',
+    rules.choiceRules(rules, 'Goody', w + ' Proficiency',
       'Pattern="' + pattern + '\\s+proficiency" ' +
       'Effect=set ' +
-      'Attribute="weaponProficiency.' + weapon + '" ' +
-      'Section=combat Note="Proficiency in ' + weapon + '"'
+      'Attribute="weaponProficiency.' + w + '" ' +
+      'Section=combat Note="Proficiency in ' + w + '"'
     );
-    rules.choiceRules(rules, 'Weapon', weapon, weapons[weapon]);
+    rules.choiceRules(rules, 'Weapon', w, weapons[w]);
   }
 
   rules.defineRule('abilityNotes.armorSpeedAdjustment',
@@ -4036,16 +4033,16 @@ SRD5E.combatRules = function(rules, armors, shields, weapons) {
     (rules, 'Unarmed Strike', 'Unarmed', [], '1 B', null, 0, 0, true);
   rules.defineRule('weapons.Unarmed Strike', '', '=', '1');
 
-  for(let ability in SRD5E.ABILITIES) {
-    rules.defineRule('saveBonus.' + ability,
-      'saveProficiency.' + ability, '?', null,
+  for(let a in SRD5E.ABILITIES) {
+    rules.defineRule('saveBonus.' + a,
+      'saveProficiency.' + a, '?', null,
       'proficiencyBonus', '=', null
     );
-    rules.defineRule('save.' + ability,
-      ability.toLowerCase() + 'Modifier', '=', null,
-      'saveBonus.' + ability, '+', null
+    rules.defineRule('save.' + a,
+      a.toLowerCase() + 'Modifier', '=', null,
+      'saveBonus.' + a, '+', null
     );
-    rules.defineChoice('notes', 'save.' + ability + ':%S');
+    rules.defineChoice('notes', 'save.' + a + ':%S');
   }
 
   QuilvynRules.validAllocationRules
@@ -4071,35 +4068,28 @@ SRD5E.identityRules = function(
   QuilvynUtils.checkAttrTable
     (races, ['Require', 'Features', 'Selectables', 'Size', 'Speed']);
 
-  for(let alignment in alignments) {
-    rules.choiceRules(rules, 'Alignment', alignment, alignments[alignment]);
-  }
-  for(let background in backgrounds) {
-    rules.choiceRules(rules, 'Background', background, backgrounds[background]);
-  }
-  for(let clas in classes) {
-    rules.choiceRules(rules, 'Class', clas, classes[clas]);
-  }
-  for(let deity in deities) {
-    rules.choiceRules(rules, 'Deity', deity, deities[deity]);
-  }
-  for(let path in paths) {
-    rules.choiceRules(rules, 'Path', path, paths[path]);
-  }
-  for(let race in races) {
-    rules.choiceRules(rules, 'Race', race, races[race]);
-  }
+  for(let a in alignments)
+    rules.choiceRules(rules, 'Alignment', a, alignments[a]);
+  for(let b in backgrounds)
+    rules.choiceRules(rules, 'Background', b, backgrounds[b]);
+  for(let c in classes)
+    rules.choiceRules(rules, 'Class', c, classes[c]);
+  for(let d in deities)
+    rules.choiceRules(rules, 'Deity', d, deities[d]);
+  for(let p in paths)
+    rules.choiceRules(rules, 'Path', p, paths[p]);
+  for(let r in races)
+    rules.choiceRules(rules, 'Race', r, races[r]);
 
-  rules.defineRule('casterLevel',
-    'casterLevelArcane', '+=', null,
-    'casterLevelDivine', '+=', null
-  );
+  rules.defineChoice('notes', 'proficiencyBonus:%S');
   rules.defineRule
     ('experienceNeeded', 'level', '=', 'SRD5E.LEVELS_EXPERIENCE[source]*1000');
   rules.defineRule('features.Small', 'size', '=', 'source=="Small" ? 1 : null');
   rules.defineRule('level',
     'experience', '=', 'SRD5E.LEVELS_EXPERIENCE.findIndex(item => item * 1000 > source)'
   );
+  rules.defineRule
+    ('proficiencyBonus', 'level', '=', 'Math.floor((source + 7) / 4)');
   QuilvynRules.validAllocationRules(rules, 'level', 'level', 'levelsAllocated');
   rules.defineChoice
     ('notes', 'validationNotes.multiclassRequirements:Requires meeting the multiclass requirements for %V additional chosen class%{validationNotes.multiclassRequirements>1?\'es\':\'\'}');
@@ -4120,12 +4110,10 @@ SRD5E.magicRules = function(rules, schools, spells) {
     'CastingTime'
   ]);
 
-  for(let school in schools) {
-    rules.choiceRules(rules, 'School', school, schools[school]);
-  }
-  for(let spell in spells) {
-    rules.choiceRules(rules, 'Spell', spell, spells[spell]);
-  }
+  for(let s in schools)
+    rules.choiceRules(rules, 'School', s, schools[s]);
+  for(let s in spells)
+    rules.choiceRules(rules, 'Spell', s, spells[s]);
 
 };
 
@@ -4141,41 +4129,37 @@ SRD5E.talentRules = function(
   QuilvynUtils.checkAttrTable(skills, ['Ability', 'Class']);
   QuilvynUtils.checkAttrTable(tools, ['Category', 'Cost', 'Weight', 'Ability']);
 
-  for(let feat in feats) {
-    rules.choiceRules(rules, 'Feat', feat, feats[feat]);
-  }
-  for(let feature in features) {
-    rules.choiceRules(rules, 'Feature', feature, features[feature]);
-  }
-  for(let goody in goodies) {
-    rules.choiceRules(rules, 'Goody', goody, goodies[goody]);
-  }
-  for(let language in languages) {
-    rules.choiceRules(rules, 'Language', language, languages[language]);
-  }
-  for(let skill in skills) {
-    rules.choiceRules(rules, 'Skill', skill, skills[skill]);
-    rules.choiceRules(rules, 'Goody', skill,
-      'Pattern="([-+]\\d).*\\s+' + skill + '\\s+Skill|' + skill + '\\s+skill\\s+([-+]\\d)"' +
+  for(let f in feats)
+    rules.choiceRules(rules, 'Feat', f, feats[f]);
+  for(let f in features)
+    rules.choiceRules(rules, 'Feature', f, features[f]);
+  for(let g in goodies)
+    rules.choiceRules(rules, 'Goody', g, goodies[g]);
+  for(let l in languages)
+    rules.choiceRules(rules, 'Language', l, languages[l]);
+  for(let s in skills) {
+    rules.choiceRules(rules, 'Skill', s, skills[s]);
+    rules.choiceRules(rules, 'Goody', s,
+      'Pattern="([-+]\\d).*\\s+' + s + '\\s+Skill|' + s + '\\s+skill\\s+([-+]\\d)"' +
       'Effect=add ' +
       'Value="$1 || $2" ' +
-      'Attribute="skills.' + skill + '" ' +
-      'Section=skill Note="%V ' + skill + '"'
+      'Attribute="skills.' + s + '" ' +
+      'Section=skill Note="%V ' + s + '"'
     );
-    rules.choiceRules(rules, 'Goody', skill + ' Proficiency',
-      'Pattern="' + skill + '\\s+proficiency" ' +
+    rules.choiceRules(rules, 'Goody', s + ' Proficiency',
+      'Pattern="' + s + '\\s+proficiency" ' +
       'Effect=set ' +
-      'Attribute="skillProficiency.' + skill + '" ' +
-      'Section=skill Note="Proficiency in ' + skill + '"'
+      'Attribute="skillProficiency.' + s + '" ' +
+      'Section=skill Note="Proficiency in ' + s + '"'
     );
   }
-  for(let tool in tools) {
-    rules.choiceRules(rules, 'Tool', tool, tools[tool]);
-    rules.choiceRules(rules, 'Goody', tool + ' Proficiency',
-      'Pattern="' + tool + '\\s+proficiency" ' +
+  for(let t in tools) {
+    rules.choiceRules(rules, 'Tool', t, tools[t]);
+    rules.choiceRules(rules, 'Goody', t + ' Proficiency',
+      'Pattern="' + t + '\\s+proficiency" ' +
       'Effect=set ' +
-      'Attribute="toolProficiency.' + tool + '" ' +
-      'Section=skill Note="Proficiency in ' + tool + '"'
+      'Attribute="toolProficiency.' + t + '" ' +
+      'Section=skill Note="Proficiency in ' + t + '"'
     );
   }
 
@@ -4495,10 +4479,6 @@ SRD5E.armorRules = function(
     console.log('Bad category "' + category + '" for armor ' + name);
     return;
   }
-  if(typeof cost != 'number') {
-    console.log('Bad cost "' + cost + '" for armor ' + name);
-    return;
-  }
   if(typeof ac != 'number') {
     console.log('Bad ac "' + ac + '" for armor ' + name);
     return;
@@ -4604,8 +4584,8 @@ SRD5E.backgroundRules = function(rules, name, equipment, features) {
 
 /*
  * Defines in #rules# the rules required to give feature #name# to background
- * #backgroundName#. #replace# lists any background features that this new one
- * replaces.
+ * #backgroundName# at level #level#. #replace# lists any background features
+ * that this new one replaces.
  */
 SRD5E.backgroundFeatureRules = function(
   rules, name, backgroundName, level, replace
@@ -4636,11 +4616,11 @@ SRD5E.backgroundFeatureRules = function(
     (rules, [featureSpec], backgroundName, backgroundLevel, false);
   replace.forEach(f => {
     let hasVar = 'has' + f.replaceAll(' ', '');
-    rules.defineRule(prefix + 'Features.' + f, hasVar, '?', 'source==1');
     rules.defineRule(hasVar,
       'features.' + backgroundName, '=', '1',
       prefix + 'Features.' + name, '=', '0'
     );
+    rules.defineRule(prefix + 'Features.' + f, hasVar, '?', 'source==1');
   });
 
 };
@@ -4726,13 +4706,7 @@ SRD5E.classRules = function(
     classLevel, '+=', 'Math.min(Math.floor(source / 4), 5)'
   );
   rules.defineRule('levelsAllocated', classLevel, '+=', null);
-  rules.defineRule('proficiencyBonus',
-    'levels.' + name, '=', 'Math.floor((source + 7) / 4)'
-  );
-  rules.defineChoice('notes', 'proficiencyBonus:%S');
 
-  rules.defineRule
-    ('casterLevel' + (spellAbility=='wisdom' ? 'Divine' : 'Arcane'), classLevel, '+=', null);
   rules.defineRule('casterLevels.' + name, classLevel, '^=', null);
   rules.defineRule('spellModifier.' + name,
     'casterLevels.' + name, '?', null,
@@ -4768,6 +4742,7 @@ SRD5E.classRules = function(
       );
     }
 
+    // TODO: What about multiclass?
     rules.defineRule('magicNotes.spellcasting',
       classLevel, '=', '"' + name.toLowerCase() + '"'
     );
@@ -4802,6 +4777,10 @@ SRD5E.classRulesExtra = function(rules, name) {
     rules.defineRule('armorClass', 'combatNotes.unarmoredDefense.1', '+', null);
     rules.defineRule
       ('combatNotes.extraAttack', classLevel, '^=', 'source<5 ? null : 2');
+    // NOTE: Unarmored Defense from Barbarians (adds Constitution) and Monks
+    // (adds Wisdom) do not stack for multiclass characters. The PHB says that
+    // only the value from the first class chosen counts; since we don't know
+    // which was first, we instead use the higher of the two.
     rules.defineRule('combatNotes.unarmoredDefense',
       'combatNotes.unarmoredDefense.2', '^=', null
     );
@@ -4811,7 +4790,10 @@ SRD5E.classRulesExtra = function(rules, name) {
     );
     rules.defineRule('combatNotes.unarmoredDefense.2',
       'barbarianFeatures.Unarmored Defense', '?', null,
-      'constitutionModifier', '=', null
+      // unclear whether a negative modifier should lower AC, but the PHB says
+      // that you can pick between available ways to calculate AC, so we assume
+      // that they will pick 10+Dex over 10+Dex+Con when Con is negative
+      'constitutionModifier', '=', 'Math.max(source, 0)'
     );
     rules.defineRule('selectableFeatureCount.Barbarian (Primal Path)',
       'featureNotes.primalPath', '=', '1'
@@ -4820,6 +4802,7 @@ SRD5E.classRulesExtra = function(rules, name) {
 
   } else if(name == 'Bard') {
 
+    // Jack computed here instead of inlined to support changed effects in 5.5e
     rules.defineRule('abilityNotes.jackOfAllTrades',
       'proficiencyBonus', '=', 'Math.floor(source / 2)'
     );
@@ -4871,8 +4854,9 @@ SRD5E.classRulesExtra = function(rules, name) {
     rules.defineRule('selectableFeatureCount.Druid (Druid Circle)',
       'featureNotes.druidCircle', '=', '1'
     );
-    rules.defineRule
-      ('spellSlots.D0', 'magicNotes.bonusCantrip(CircleOfTheLand)', '+=', '1');
+    rules.defineRule('spellsAvailable.D0',
+      'magicNotes.bonusCantrip(CircleOfTheLand)', '+=', '1'
+    );
     for(let s in rules.getChoices('selectableFeatures')) {
       if(s.match(/Druid - Circle Of The Land/)) {
         let circle = s.replace('Druid - ', '');
@@ -4907,6 +4891,8 @@ SRD5E.classRulesExtra = function(rules, name) {
       'featureNotes.additionalFightingStyle', '+', '1'
     );
     rules.defineRule('selectableFeatureCount.Fighter (Fighting Style)',
+      // do a bit of extra work here to avoid having Fighting Style from other
+      // classes affect this computation
       'fighterFeatures.Fighting Style', '+=', '1',
       'featureNotes.additionalFightingStyle', '+', '1',
       'featureNotes.fightingStyle', '+', 'null' // italics
@@ -4940,6 +4926,10 @@ SRD5E.classRulesExtra = function(rules, name) {
       'strengthModifier', '+', '-source',
       '', '^', '0'
     );
+    // NOTE: Unarmored Defense from Barbarians (adds Constitution) and Monks
+    // (adds Wisdom) do not stack for multiclass characters. The PHB says that
+    // only the value from the first class chosen counts; since we don't know
+    // which was first, we instead use the higher of the two.
     rules.defineRule('combatNotes.unarmoredDefense',
       'combatNotes.unarmoredDefense.3', '^=', null
     );
@@ -4949,7 +4939,10 @@ SRD5E.classRulesExtra = function(rules, name) {
     );
     rules.defineRule('combatNotes.unarmoredDefense.3',
       'monkFeatures.Unarmored Defense', '?', null,
-      'wisdomModifier', '=', null
+      // unclear whether a negative modifier should lower AC, but the PHB says
+      // that you can pick between available ways to calculate AC, so we assume
+      // that they will pick 10+Dex over 10+Dex+Wis when Wis is negative
+      'wisdomModifier', '=', 'Math.max(source, 0)'
     );
     rules.defineRule('monkMeleeAttackBonus',
       'armor', '?', 'source == "None"',
@@ -5000,6 +4993,8 @@ SRD5E.classRulesExtra = function(rules, name) {
     for(let a in SRD5E.ABILITIES)
       rules.defineRule('save.' + a, 'saveNotes.auraOfProtection', '+', null);
     rules.defineRule('selectableFeatureCount.Paladin (Fighting Style)',
+      // do a bit of extra work here to avoid having Fighting Style from other
+      // classes affect this computation
       'paladinFeatures.Fighting Style', '=', '1',
       'featureNotes.fightingStyle', '+', 'null' // italics
     );
@@ -5031,6 +5026,8 @@ SRD5E.classRulesExtra = function(rules, name) {
       'featureNotes.defensiveTactics', '=', '1'
     );
     rules.defineRule('selectableFeatureCount.Ranger (Fighting Style)',
+      // do a bit of extra work here to avoid having Fighting Style from other
+      // classes affect this computation
       'rangerFeatures.Fighting Style', '=', '1',
       'featureNotes.fightingStyle', '+', 'null' // italics
     );
@@ -7533,6 +7530,10 @@ SRD5E.ruleNotes = function() {
     '  <li>\n' +
     '  Quilvyn gives multiclass characters the complete set of proficiencies' +
     '  for each class.\n' +
+    '  </li><li>\n' +
+    '  Quilvyn gives a multiclass Barbarian/Monk the higher of the two' +
+    '  class-based Unarmored Defense bonuses, rather than the bonus from' +
+    '  whichever class was chosen first.\n' +
     '  </li>\n' +
     '</ul>\n' +
     '<h3>Copyrights and Licensing</h3>\n' +

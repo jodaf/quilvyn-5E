@@ -6621,91 +6621,58 @@ SRD5E.initialEditorElements = function() {
   return editorElements;
 };
 
-/* Returns a random name for a character of race #race#. */
-SRD5E.randomName = function(race) {
-
-  /* Return a random character from #string#. */
-  function randomChar(string) {
-    return string.charAt(QuilvynUtils.random(0, string.length - 1));
-  }
+/* Returns a random name for a character of race #race# and gender #gender#. */
+SRD5E.randomName = function(race, gender) {
 
   if(race == null)
     race = 'Human';
-  else if(race.match(/Dragonborn/))
-    race = 'Dragonborn';
-  else if(race == 'Half-Elf')
+  race = race.split(/\s+/).pop(); // remove any subrace
+  if(race == 'Half-Elf')
     race = QuilvynUtils.random(0, 99) < 50 ? 'Elf' : 'Human';
-  else if(race.match(/Dwarf/))
-    race = 'Dwarf';
-  else if(race.match(/Elf/))
-    race = 'Elf';
-  else if(race.match(/Gnome/))
-    race = 'Gnome';
-  else if(race.match(/Halfling/))
-    race = 'Halfling';
-  else if(race.match(/Orc/))
-    race = 'Orc';
-  else if(race.match(/Tiefling/))
-    race = 'Tiefling';
-  else
-    race = 'Human';
+  else if(race == 'Half-Orc')
+    race = 'Orc'; 
+  // we presently ignore gender in name creation
 
-  let clusters = {
-    B:'lr', C:'hlr', D:'r', F:'lr', G:'lnr', K:'lnr', P:'lr', S:'chklt', T:'hr',
-    W:'h',
-    c:'hkt', l:'cfkmnptv', m: 'p', n:'cgkt', r: 'fv', s: 'kpt', t: 'h'
-  };
+  // Use arbitrary per-race subsets of consonants and vowels
   let consonants = {
     'Dragonborn':'bcdfghjklmnprstvwz', 'Dwarf':'dgkmnprst', 'Elf':'fhlmnpqswy',
     'Gnome':'bdghjlmnprstw', 'Halfling':'bdfghlmnprst',
     'Human': 'bcdfghjklmnprstvwz', 'Orc': 'dgjkprtvxz',
     'Tiefling': 'bcdfghjklmnprstvwz'
-  }[race];
-  let endConsonant = '';
-  let leading = 'ghjqvwy';
+  }[race] || 'bcdfghjklmnprstvwz';
+  let leadingOnly = 'hjqvwy';
   let vowels = {
     'Dragonborn':'aeiou', 'Dwarf':'aeiou', 'Elf':'aeioy', 'Gnome':'aeiou',
     'Halfling':'aeiou', 'Human':'aeiou', 'Orc':'aou', 'Tiefling':'aeiou'
-  }[race];
-  let diphthongs = {a:'wy', e:'aei', o: 'aiouy', u: 'ae'};
+  }[race] || 'aeiou';
+
+  let components = {
+    leading: consonants.split(''),
+    trailing: consonants.replaceAll(new RegExp('[' + leadingOnly + ']', 'g'), '').split(''),
+    vowels: vowels.split(''),
+    clusters: [
+      // Results look better with only simple vowels
+      // 'ai', 'au', 'aw', 'ay', 'ea', 'ee', 'ei', 'eu', 'ew', 'ie', 'oa', 'oi',
+      // 'oo', 'ou', 'ow', 'oy', 'ue', 'ui',
+      'Ch', 'Ph', 'Sh', 'Th', 'Wh',
+      'ch', 'ck', 'll', 'ng', 'ss', 'th',
+      'Bl', 'Br', 'Cl', 'Cr', 'Dr', 'Fl', 'Fr', 'Gl', 'Gn', 'Gr', 'Kl', 'Kn',
+      'Kr', 'Pl', 'Pr', 'Sc', 'Scr', 'Sk', 'Sl', 'Sm', 'Sp', 'St', 'Str',
+      'Thr', 'Tr',
+      'ct', 'lc', 'lf', 'lk', 'lm', 'ln', 'lp', 'lt', 'mp', 'nc', 'nk', 'nt',
+      'rf', 'rl', 'sk', 'sp', 'st'
+    ],
+  };
   let syllables = QuilvynUtils.random(0, 99);
   syllables = syllables < 50 ? 2 :
               syllables < 75 ? 3 :
               syllables < 90 ? 4 :
               syllables < 95 ? 5 :
               syllables < 99 ? 6 : 7;
-  let result = '';
-  let vowel;
+  let format = '%{Syllable}'.repeat(syllables);
 
-  for(let i = 0; i < syllables; i++) {
-    if(QuilvynUtils.random(0, 99) <= 80) {
-      endConsonant = randomChar(consonants).toUpperCase();
-      if(clusters[endConsonant] != null && QuilvynUtils.random(0, 99) < 15)
-        endConsonant += randomChar(clusters[endConsonant]);
-      result += endConsonant;
-      if(endConsonant == 'Q')
-        result += 'u';
-    }
-    else if(endConsonant.length == 1 && QuilvynUtils.random(0, 99) < 10) {
-      result += endConsonant;
-      endConsonant += endConsonant;
-    }
-    vowel = randomChar(vowels);
-    if(endConsonant.length > 0 && diphthongs[vowel] != null &&
-       QuilvynUtils.random(0, 99) < 15)
-      vowel += randomChar(diphthongs[vowel]);
-    result += vowel;
-    endConsonant = '';
-    if(QuilvynUtils.random(0, 99) <= 60) {
-      while(leading.indexOf((endConsonant = randomChar(consonants))) >= 0)
-        ; /* empty */
-      if(clusters[endConsonant] != null && QuilvynUtils.random(0, 99) < 15)
-        endConsonant += randomChar(clusters[endConsonant]);
-      result += endConsonant;
-    }
-  }
-  return result.substring(0, 1).toUpperCase() +
-         result.substring(1).toLowerCase();
+  let result = QuilvynUtils.randomString(format, components);
+  return result.charAt(0).toUpperCase() + result.substring(1);
 
 };
 
@@ -6959,7 +6926,7 @@ SRD5E.randomizeOneAttribute = function(attributes, attribute) {
     }
     delete attributes.level;
   } else if(attribute == 'name') {
-    attributes.name = SRD5E.randomName(attributes.race);
+    attributes.name = SRD5E.randomName(attributes.race, attributes.gender);
   } else if(attribute == 'shield') {
     attrs = this.applyRules(attributes);
     choices = [];

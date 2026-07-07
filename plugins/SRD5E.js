@@ -60,7 +60,7 @@ function SRD5E() {
   SRD5E.magicRules(rules, SRD5E.SCHOOLS, SRD5E.SPELLS);
   SRD5E.identityRules(
     rules, SRD5E.ALIGNMENTS, SRD5E.BACKGROUNDS, SRD5E.CLASSES, SRD5E.DEITIES,
-    SRD5E.PATHS, SRD5E.RACES
+    SRD5E.RACES
   );
   SRD5E.talentRules
     (rules, SRD5E.FEATS, SRD5E.FEATURES, SRD5E.GOODIES, SRD5E.LANGUAGES,
@@ -1627,9 +1627,6 @@ SRD5E.LANGUAGES = {
   'Primordial':'',
   'Sylvan':'',
   'Undercommon':''
-};
-// Paths are deprecated, with features absorbed into the class specs
-SRD5E.PATHS = {
 };
 SRD5E.RACES = {
   'Hill Dwarf':
@@ -3798,8 +3795,10 @@ SRD5E.TOOLS = {
   "Navigator's Tools":'Category=General Cost=25 Weight=2',
   "Poisoner's Kit":'Category=General Cost=50 Weight=2',
   "Thieves' Tools":'Category=General Cost=25 Weight=1',
-  'Vehicles (Land)':'Category=General',
-  'Vehicles (Water)':'Category=General'
+  // Cost and weight of Vehicles varies; although neither is important for the
+  // character sheet, we use the values for a cart and a rowboat
+  'Vehicles (Land)':'Category=General Cost=15 Weight=200',
+  'Vehicles (Water)':'Category=General Cost=50 Weight=100'
 };
 SRD5E.WEAPONS = {
 
@@ -3917,10 +3916,6 @@ SRD5E.LEVELS_EXPERIENCE = [
 
 /* Defines the rules related to character abilities. */
 SRD5E.abilityRules = function(rules, abilities) {
-
-  // backwards compatibility for plugins that don't pass a 2nd parameter
-  if(!abilities)
-    abilities = SRD5E.ABILITIES;
 
   for(let a in abilities) {
     a = a.toLowerCase();
@@ -4054,7 +4049,7 @@ SRD5E.combatRules = function(rules, armors, shields, weapons) {
 
 /* Defines rules related to basic character identity. */
 SRD5E.identityRules = function(
-  rules, alignments, backgrounds, classes, deities, paths, races
+  rules, alignments, backgrounds, classes, deities, races
 ) {
 
   QuilvynUtils.checkAttrTable(alignments, []);
@@ -4063,8 +4058,6 @@ SRD5E.identityRules = function(
   QuilvynUtils.checkAttrTable
     (classes, ['Require', 'HitDie', 'Features', 'Selectables', 'SpellAbility', 'SpellsAvailable', 'SpellSlots', 'MulticlassPrerequisite']);
   QuilvynUtils.checkAttrTable(deities, ['Alignment', 'Domain']);
-  QuilvynUtils.checkAttrTable
-    (paths, ['Features', 'Selectables', 'Group', 'Level', 'SpellAbility', 'SpellSlots', 'Spells']);
   QuilvynUtils.checkAttrTable
     (races, ['Require', 'Features', 'Selectables', 'Size', 'Speed']);
 
@@ -4076,8 +4069,6 @@ SRD5E.identityRules = function(
     rules.choiceRules(rules, 'Class', c, classes[c]);
   for(let d in deities)
     rules.choiceRules(rules, 'Deity', d, deities[d]);
-  for(let p in paths)
-    rules.choiceRules(rules, 'Path', p, paths[p]);
   for(let r in races)
     rules.choiceRules(rules, 'Race', r, races[r]);
 
@@ -4257,16 +4248,6 @@ SRD5E.choiceRules = function(rules, type, name, attrs) {
     );
   else if(type == 'Language')
     SRD5E.languageRules(rules, name);
-  else if(type == 'Path')
-    SRD5E.pathRules(rules, name,
-      QuilvynUtils.getAttrValue(attrs, 'Group'),
-      QuilvynUtils.getAttrValue(attrs, 'Level'),
-      QuilvynUtils.getAttrValueArray(attrs, 'Features'),
-      QuilvynUtils.getAttrValueArray(attrs, 'Selectables'),
-      QuilvynUtils.getAttrValue(attrs, 'SpellAbility'),
-      QuilvynUtils.getAttrValueArray(attrs, 'SpellSlots'),
-      QuilvynUtils.getAttrValueArray(attrs, 'Spells')
-    );
   else if(type == 'Race') {
     SRD5E.raceRules(rules, name,
       QuilvynUtils.getAttrValueArray(attrs, 'Require'),
@@ -4285,9 +4266,7 @@ SRD5E.choiceRules = function(rules, type, name, attrs) {
       QuilvynUtils.getAttrValueArray(attrs, 'Replace')
     );
   else if(type == 'School')
-    SRD5E.schoolRules(rules, name,
-      QuilvynUtils.getAttrValueArray(attrs, 'Features')
-    );
+    SRD5E.schoolRules(rules, name);
   else if(type == 'Shield')
     SRD5E.shieldRules(rules, name,
       QuilvynUtils.getAttrValue(attrs, 'AC'),
@@ -4296,8 +4275,7 @@ SRD5E.choiceRules = function(rules, type, name, attrs) {
     );
   else if(type == 'Skill')
     SRD5E.skillRules(rules, name,
-      QuilvynUtils.getAttrValue(attrs, 'Ability'),
-      QuilvynUtils.getAttrValueArray(attrs, 'Class')
+      QuilvynUtils.getAttrValue(attrs, 'Ability')
     );
   else if(type == 'Spell') {
     let castingTime = QuilvynUtils.getAttrValue(attrs, 'CastingTime');
@@ -4494,16 +4472,12 @@ SRD5E.armorRules = function(
     console.log('Bad min str "' + minStr + '" for armor ' + name);
     return;
   }
-  if(cost == null) // backward compatibility
-    cost = 0;
   if(typeof cost == 'string' && cost.match(/^0\.\d+$/))
     cost = +cost;
   if(typeof cost != 'number') {
     console.log('Bad cost "' + cost + '" for armor ' + name);
     return;
   }
-  if(weight == null) // backward compatibility
-    weight = 0;
   if(typeof weight == 'string' && weight.match(/^0\.\d+$/))
     weight = +weight;
   if(typeof weight != 'number') {
@@ -4640,14 +4614,6 @@ SRD5E.classRules = function(
   rules, name, requires, hitDie, features, selectables, spellAbility,
   spellsAvailable, spellSlots, multiclassPrerequisite
 ) {
-
-  if(multiclassPrerequisite == null) {
-    // backwards compatibility for dependent plugins that predate the addition
-    // of the spellsAvailable parameter
-    multiclassPrerequisite = spellSlots;
-    spellSlots = spellsAvailable;
-    spellsAvailable = [];
-  }
 
   if(!name) {
     console.log('Empty class name');
@@ -5241,7 +5207,7 @@ SRD5E.deityRules = function(rules, name, alignment, domains) {
 /*
  * Defines in #rules# the rules associated with feat #name#. #require# and
  * #implies# list any hard and soft prerequisites for the feat, and
- * #categories# lists the categories to which the feat belongs.
+ * #categories# lists the categories (in 5.5e) to which the feat belongs.
  */
 SRD5E.featRules = function(rules, name, requires, implies, categories) {
 
@@ -5290,7 +5256,9 @@ SRD5E.featRulesExtra = function(rules, name) {
 /*
  * Defines in #rules# the rules associated with feature #name#. #sections# lists
  * the sections of the notes related to the feature and #notes# the note texts;
- * the two must have the same number of elements.
+ * the two must have the same number of elements. #spells# lists any spells
+ * acquired as part of the feature, and #spellAbility# is the ability used to
+ * calculate attack and difficulty class for these spells.
  */
 SRD5E.featureRules = function(
   rules, name, sections, notes, spells, spellAbility
@@ -5312,9 +5280,6 @@ SRD5E.featureRules = function(
     console.log(sections.length + ' sections, ' + notes.length + ' notes for feature ' + name);
     return;
   }
-  // Backwards compatibility for modules that don't pass spells
-  if(spells == null)
-    spells = [];
   if(spellAbility != null) {
     spellAbility = (spellAbility+'').toLowerCase();
     if(!(spellAbility.charAt(0).toUpperCase() + spellAbility.substring(1) in SRD5E.ABILITIES)) {
@@ -5351,8 +5316,6 @@ SRD5E.featureRules = function(
     rules.defineRule
       (note, 'features.' + name, effects.indexOf('%V') >= 0 ? '?' : '=', null);
 
-    let addSource = false;
-
     while(effects.length > 0) {
 
       let m = effects.match(/^((%\{[^\}]*\}|\([^\)]*\)|[^\/])*)\/?(.*)$/);
@@ -5365,24 +5328,32 @@ SRD5E.featureRules = function(
         let adjusted = matchInfo[4];
 
         // Support +%{expr} by evaling expr for each id it contains
-        if(adjust.match(/%{/) && !adjusted.match(/\b[a-z]/)) {
+        if(adjust.match(/%\{/) && !adjusted.match(/\b[a-z]/)) {
           let expression = adjust.substring(3, adjust.length - 1);
           let ids = new Expr(expression).identifiers();
-          // TODO What if ids.length==0?
           let sn = ++maxSubnote;
           let target = sn>0 ? note + '.' + sn : note;
+          // Make the expr evaluation dependent on the feature. Note that, in
+          // the case of sn==0, we're deliberatly overriding the '=' rule for
+          // note that we defined above, before the while loop.
           rules.defineRule(target, 'features.' + name, '?', null);
-          ids.forEach(id => {
-            if(expression.trim() == id)
-              rules.defineRule(target, id, '=', null);
-            else
-              rules.defineRule
-                (target, id, '=', 'new Expr("' + expression + '").eval(dict)');
-          });
+          if(ids.length == 0) {
+            // Degenerate case where expr contains only constants--probably
+            // won't happen in practice, but handle it anyway
+            rules.defineRule
+              (target, '', '=', '"' + new Expr(expression).eval() + '"');
+          } else {
+            ids.forEach(id => {
+              if(expression.trim() == id)
+                // can simplify when expr consists of a single id reference
+                rules.defineRule(target, id, '=', null);
+              else
+                rules.defineRule(target,
+                  id, '=', 'new Expr("' + expression + '").eval(dict)'
+                );
+            });
+          }
           adjust = '%' + (sn==0 ? 'V' : sn);
-          if(sn == 0)
-            // Override '=' feature dependency rule created above
-            rules.defineRule(note, 'features.' + name, '?', null);
         }
 
         let adjuster =
@@ -5398,6 +5369,7 @@ SRD5E.featureRules = function(
         } else if(adjusted.match(/^[A-Z][a-z]*(\s[A-Z][a-z]*)*\sFeats?$/)) {
           adjusted = 'featCount.' + adjusted.replace(/\sFeats?/, '');
           if(op == '+')
+            // allow bonus feats before the character gains feats via level
             op = '+=';
         } else if(adjusted.match(/^[A-Z][a-z]*(\s[A-Z][a-z]*)*$/)) {
           adjusted = adjusted.charAt(0).toLowerCase() + adjusted.substring(1).replaceAll(' ', '');
@@ -5407,13 +5379,13 @@ SRD5E.featureRules = function(
         rules.defineRule(adjusted,
           adjuster, op, !adjust.includes('%') ? adjust : adjust.startsWith('-') ? '-source' : 'source'
         );
-        if(adjust == '%1' && !effect.includes(adjust))
-          rules.defineRule(adjuster, note, '?', null);
 
       }
 
       // Generate rules for common notes:
+
       // X Proficiency (item [; item ...])
+      // X Training (item [; item ...]) -- to support 5.5e
       matchInfo =
         effect.match(/^([A-Z]\w*)\s(Proficiency|Training)\s\((([^\(]|\([^\)]*\))*)\)/);
       if(matchInfo) {
@@ -5446,6 +5418,7 @@ SRD5E.featureRules = function(
       // Ability Boost (ability [; ability ...])
       matchInfo = effect.match(/Ability Boost \((([^\(]|\([^\)]*\))*)\)/i);
       if(matchInfo) {
+        let addSource = false;
         let totalBoosts = 0;
         matchInfo[1].split(/\/|;\s*/).forEach(boosted => {
           matchInfo = boosted.match(/Choose (\d+|%V)/i);
@@ -5494,10 +5467,13 @@ SRD5E.featureRules = function(
 
   }
 
+  // Providing a spellAbility value with no spells allows computing attack and
+  // DC for spells to be determined later. Not sure if this is still used.
   if(spells.length > 0 || spellAbility != null) {
     let levelAttr = 'level';
     let spellType = name.replaceAll(/[- ()]/g, '');
     let sources =
+      // Note inclusion of species for 5.5e support
       Object.assign({}, rules.getChoices('levels'), rules.getChoices('races') || rules.getChoices('species'), rules.getChoices('feats'), rules.getChoices('backgrounds'));
     for(let s in sources) {
       let re = new RegExp('[,:"=]' + name.replace(/[/\-\\^$*+?.()|[\]{}]/g, '\\$&'));
@@ -5506,7 +5482,7 @@ SRD5E.featureRules = function(
       spellType = s.replaceAll(/[- ()]/g, '');
       let slot = QuilvynUtils.getAttrValue(sources[s], 'SpellSlots');
       if(slot) {
-        // Spell feature for casting class. Reuse attack and DC values.
+        // Spell feature for casting class; reuse attack and DC values
         levelAttr = 'levels.' + s;
         spellType = slot.replace(/\d.*/, '');
       } else {
@@ -5659,96 +5635,6 @@ SRD5E.languageRules = function(rules, name) {
 };
 
 /*
- * Defines in #rules# the rules associated with path #name#, which is a
- * selection for characters belonging to #group# and tracks path level via
- * #levelAttr#. The path grants the features listed in #features#. If the path
- * grants spell slots, #spellAbility# names the ability for computing spell
- * difficulty class, and #spellSlots# lists the number of spells per level per
- * day granted.
- */
-SRD5E.pathRules = function(
-  rules, name, group, levelAttr, features, selectables, spellAbility,
-  spellSlots, spells
-) {
-
-  if(!name) {
-    console.log('Empty path name');
-    return;
-  }
-  if(!group) {
-    console.log('Bad group "' + group + '" for path ' + name);
-    return;
-  }
-  if(!(levelAttr + '').startsWith('level')) {
-    console.log('Bad level "' + levelAttr + '" for path ' + name);
-    return;
-  }
-  if(!Array.isArray(features)) {
-    console.log('Bad features list "' + features + '" for path ' + name);
-    return;
-  }
-  if(!Array.isArray(selectables)) {
-    console.log('Bad selectables list "' + selectables + '" for path ' + name);
-    return;
-  }
-  if(spellAbility) {
-    spellAbility = spellAbility.toLowerCase();
-    if(!(spellAbility.charAt(0).toUpperCase() + spellAbility.substring(1) in SRD5E.ABILITIES)) {
-      console.log('Bad spell ability "' + spellAbility + '" for class ' + name);
-      return;
-    }
-  }
-
-  let pathLevel =
-    name.charAt(0).toLowerCase() + name.substring(1).replaceAll(' ', '') + 'Level';
-
-  rules.defineRule(pathLevel,
-    'features.' + name, '?', null,
-    levelAttr, '=', null
-  );
-
-  SRD5E.featureListRules(rules, features, group, pathLevel, false);
-  SRD5E.featureListRules(rules, selectables, group, pathLevel, true);
-
-  if(spellSlots.length > 0) {
-
-    rules.defineRule('casterLevels.' + name, pathLevel, '=', null);
-    QuilvynRules.spellSlotRules(rules, 'casterLevels.' + name, spellSlots);
-
-    for(let i = 0; i < spellSlots.length; i++) {
-      let matchInfo = spellSlots[i].match(/^(\D+)\d:/);
-      if(!matchInfo) {
-        console.log('Bad format for spell slot "' + spellSlots[i] + '"');
-        continue;
-      }
-      let spellType = matchInfo[1];
-      if(spellType != name)
-        rules.defineRule
-          ('casterLevels.' + spellType, 'casterLevels.' + name, '^=', null);
-      rules.defineRule('spellModifier.' + spellType,
-        'casterLevels.' + spellType, '?', null,
-        spellAbility + 'Modifier', '=', null
-      );
-      rules.defineChoice('notes', 'spellAttackModifier.' + spellType + ':%S');
-      rules.defineRule('spellAttackModifier.' + spellType,
-        spellAbility + 'Modifier', '=', null,
-        'proficiencyBonus', '+', null
-      );
-      rules.defineRule('spellDifficultyClass.' + spellType,
-        'spellAttackModifier.' + spellType, '=', '8 + source'
-      );
-    }
-  }
-
-  if(spells.length > 0) {
-    SRD5E.featureSpells
-      (rules, name, group == 'Warlock' ? 'K' : group.charAt(0), pathLevel,
-       spells);
-  }
-
-};
-
-/*
  * Defines in #rules# the rules associated with race #name#, which has the list
  * of hard prerequisites #requires#. #features# and #selectables# list
  * associated features, #size# gives the racial size and #speed# gives the
@@ -5774,17 +5660,9 @@ SRD5E.raceRules = function(
     console.log('Bad selectables list "' + selectables + '" for race ' + name);
     return;
   }
-  if(size == null) {
-    // Backwards compatibility
-    size = features.filter(x => x.match(/^(\d+:)?Small$/)).length > 0 ? 'Small' : 'Medium';
-  }
   if(!(size+'').match(/^(Large|Medium|Small)$/)) {
     console.log('Bad size "' + size + '" for race ' + name);
     return;
-  }
-  if(speed == null) {
-    // Backwards compatibility
-    speed = features.filter(x => x.match(/^(\d+:)?Slow$/)).length > 0 ? 25 : 30;
   }
   if(typeof(speed) != 'number') {
     console.log('Bad speed "' + speed + '" for race ' + name);
@@ -5848,6 +5726,8 @@ SRD5E.raceRulesExtra = function(rules, name) {
   } else if(name == 'High Elf') {
     rules.defineRule
       ('casterLevels.W', 'features.Cantrip (High Elf)', '^=', '1');
+    rules.defineRule
+      ('spellsAvailable.W0', 'magicNotes.cantrip(HighElf)', '+=', '1');
   } else if(name == 'Tiefling') {
     rules.defineRule('magicNotes.infernalLegacy', 'level', '?', 'source >= 3');
   }
@@ -5919,10 +5799,7 @@ SRD5E.raceFeatureRules = function(
 
 };
 
-/*
- * Defines in #rules# the rules associated with magic school #name#, which
- * grants the list of #features#.
- */
+/* Defines in #rules# the rules associated with magic school #name#. */
 SRD5E.schoolRules = function(rules, name) {
   if(!name) {
     console.log('Empty school name');
@@ -5945,16 +5822,12 @@ SRD5E.shieldRules = function(rules, name, ac, cost, weight) {
     console.log('Bad ac "' + ac + '" for shield ' + name);
     return;
   }
-  if(cost == null) // backward compatibility
-    cost = 0;
   if(typeof cost == 'string' && cost.match(/^0\.\d+$/))
     cost = +cost;
   if(typeof cost != 'number') {
     console.log('Bad cost "' + cost + '" for shield ' + name);
     return;
   }
-  if(weight == null) // backward compatibility
-    weight = 0;
   if(typeof weight == 'string' && weight.match(/^0\.\d+$/))
     weight = +weight;
   if(typeof weight != 'number') {
@@ -5978,10 +5851,9 @@ SRD5E.shieldRules = function(rules, name, ac, cost, weight) {
 
 /*
  * Defines in #rules# the rules associated with skill #name#, associated with
- * #ability# (one of 'strength', 'intelligence', etc.). #classes# lists any
- * classes that are proficient in this skill.
+ * #ability# (one of 'strength', 'intelligence', etc.).
  */
-SRD5E.skillRules = function(rules, name, ability, classes) {
+SRD5E.skillRules = function(rules, name, ability) {
 
   if(!name) {
     console.log('Empty skill name');
@@ -5992,15 +5864,7 @@ SRD5E.skillRules = function(rules, name, ability, classes) {
     console.log('Bad ability "' + ability + '" for skill ' + name);
     return;
   }
-  if(!Array.isArray(classes)) {
-    console.log('Bad classes list "' + classes + '" for skill ' + name);
-    return;
-  }
 
-  for(let i = 0; i < classes.length; i++) {
-    rules.defineRule
-      ('skillProficiency.' + name, 'levels.' + classes[i], '=', '1');
-  }
   rules.defineRule('expertise.' + name,
     'expertiseChosen.' + name, '=', 'source ? 1 : null'
   );
@@ -6099,16 +5963,12 @@ SRD5E.toolRules = function(rules, name, category, cost, weight, ability) {
     console.log('Empty tool name');
     return;
   }
-  if(cost == null) // backward compatibility
-    cost = 0;
   if(typeof cost == 'string' && cost.match(/^0\.\d+$/))
     cost = +cost;
   if(typeof cost != 'number') {
     console.log('Bad cost "' + cost + '" for tool ' + name);
     return;
   }
-  if(weight == null) // backward compatibility
-    weight = 0;
   if(typeof weight == 'string' && weight.match(/^0\.\d+$/))
     weight = +weight;
   if(typeof weight != 'number') {
@@ -6150,7 +6010,7 @@ SRD5E.weaponRules = function(
 ) {
 
   if(!name) {
-    console.log('Bad name for weapon  "' + name + '"');
+    console.log('Empty weapon name');
     return;
   }
   if(typeof category != 'string' ||
@@ -6170,16 +6030,12 @@ SRD5E.weaponRules = function(
   if(range && !(range + '').match(/^\d+\/\d+$/)) {
     console.log('Bad range "' + range + '" for weapon ' + name);
   }
-  if(cost == null) // backward compatibility
-    cost = 0;
   if(typeof cost == 'string' && cost.match(/^0\.\d+$/))
     cost = +cost;
   if(typeof cost != 'number') {
     console.log('Bad cost "' + cost + '" for weapon ' + name);
     return;
   }
-  if(weight == null) // backward compatibility
-    weight = 0;
   if(typeof weight == 'string' && weight.match(/^0\.\d+$/))
     weight = +weight;
   if(typeof weight != 'number') {
@@ -6235,8 +6091,8 @@ SRD5E.weaponRules = function(
   rules.defineRule('attackBonus.' + name,
     weaponName, '=', '0',
     isFinesse ? 'betterAttackAdjustment' :
-     isRanged ? 'combatNotes.dexterityAttackAdjustment' :
-                'combatNotes.strengthAttackAdjustment', '+', null,
+    isRanged ? 'combatNotes.dexterityAttackAdjustment' :
+               'combatNotes.strengthAttackAdjustment', '+', null,
     isRanged ? 'attackBonus.Ranged' : 'attackBonus.Melee', '+', null,
     'weaponProficiencyBonus.' + name, '+', null,
     'weaponAttackAdjustment.' + name, '+', null
@@ -6248,8 +6104,8 @@ SRD5E.weaponRules = function(
   if(damage != 'None')
     rules.defineRule('damageBonus.' + name,
       isFinesse ? 'betterDamageAdjustment' :
-       isRanged ? 'combatNotes.dexterityDamageAdjustment' :
-                  'combatNotes.strengthDamageAdjustment', '+', null
+      isRanged ? 'combatNotes.dexterityDamageAdjustment' :
+                 'combatNotes.strengthDamageAdjustment', '+', null
     );
   if(isMonkWeapon) {
     rules.defineRule('attackBonus.' + name, 'monkMeleeAttackBonus', '+', null);
@@ -6691,13 +6547,14 @@ SRD5E.choiceEditorElements = function(rules, type) {
     );
   else if(type == 'Skill')
     result.push(
-      ['Ability', 'Ability', 'select-one', abilities],
-      ['Class', 'Proficient Classes', 'text', [30]]
+      ['Ability', 'Ability', 'select-one', abilities]
     );
   else if(type == 'Spell') {
     result.push(
-      ['School', 'School', 'select-one', QuilvynUtils.getKeys(rules.getChoices('schools'))],
       ['Level', 'Caster Group and Level', 'text', [15]],
+      ['School', 'School', 'select-one', QuilvynUtils.getKeys(rules.getChoices('schools'))],
+      ['CastingTime', 'Casting Time', 'text', [20]],
+      ['Ritual', 'Ritual', 'checkbox', ['']],
       ['Description', 'Description', 'text', [60]],
       ['AtHigherLevels', 'At Higher Levels', 'text', [60]]
     );

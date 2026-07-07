@@ -2510,7 +2510,7 @@ SRD5E2024.SPELLS = {
     'Level=P1 ' +
     'AtHigherLevels="inflicts +1d6 HP initial and per rd" ' +
     'Description=' +
-      '"Cast after a successful melee attack, inflicts +1d6 HP fire, plus 1d6 HP fire each rd for 1 min (save Constitution each rd end)"',
+      '"Cast after a successful melee attack, inflicts +1d6 HP fire, plus 1d6 HP fire each rd for 1 min (save Constitution each rd ends)"',
   'Secret Chest':SRD5E.SPELLS['Secret Chest'],
   'See Invisibility':SRD5E.SPELLS['See Invisibility'],
   'Seeming':SRD5E.SPELLS.Seeming,
@@ -2808,10 +2808,10 @@ SRD5E2024.WEAPONS = {
   'Longbow':SRD5E.WEAPONS.Longbow + ' Mastery=Slow',
   'Musket':
     'Category="Martial Ranged" Property=Ammunition,Loading,Two-Handed ' +
-    'Damage="1d12 P" Range=40/120 Mastery=Slow',
+    'Damage="1d12 P" Range=40/120 Mastery=Slow Cost=500 Weight=10',
   'Pistol':
     'Category="Martial Ranged" Property=Ammunition,Loading Damage="1d10 P"' +
-    'Range=30/90 Mastery=Vex'
+    'Range=30/90 Mastery=Vex Cost=250 Weight=3'
 
 };
 
@@ -2837,7 +2837,7 @@ SRD5E2024.identityRules = function(
   // Easiest way to make sure SRD5E rules that apply to race are applied
   rules.defineRule('race', 'species', '=', null);
   SRD5E.identityRules
-    (rules, alignments, backgrounds, classes, deities, {}, species);
+    (rules, alignments, backgrounds, classes, deities, species);
 };
 
 /* Defines rules related to magic use. */
@@ -2934,9 +2934,7 @@ SRD5E2024.choiceRules = function(rules, type, name, attrs) {
   else if(type == 'Language')
     SRD5E2024.languageRules(rules, name);
   else if(type == 'School')
-    SRD5E2024.schoolRules(rules, name,
-      QuilvynUtils.getAttrValueArray(attrs, 'Features')
-    );
+    SRD5E2024.schoolRules(rules, name);
   else if(type == 'Shield')
     SRD5E2024.shieldRules(rules, name,
       QuilvynUtils.getAttrValue(attrs, 'AC'),
@@ -2945,8 +2943,7 @@ SRD5E2024.choiceRules = function(rules, type, name, attrs) {
     );
   else if(type == 'Skill')
     SRD5E2024.skillRules(rules, name,
-      QuilvynUtils.getAttrValue(attrs, 'Ability'),
-      QuilvynUtils.getAttrValueArray(attrs, 'Class')
+      QuilvynUtils.getAttrValue(attrs, 'Ability')
     );
   else if(type == 'Species' || type == 'Race') {
     SRD5E2024.speciesRules(rules, name,
@@ -3530,10 +3527,7 @@ SRD5E2024.languageRules = function(rules, name) {
   // No changes needed to SRD5E
 };
 
-/*
- * Defines in #rules# the rules associated with magic school #name#, which
- * grants the list of #features#.
- */
+/* Defines in #rules# the rules associated with magic school #name#. */
 SRD5E2024.schoolRules = function(rules, name) {
   SRD5E.schoolRules(rules, name);
   // No changes needed to SRD5E
@@ -3673,11 +3667,10 @@ SRD5E2024.shieldRules = function(rules, name, ac, cost, weight) {
 
 /*
  * Defines in #rules# the rules associated with skill #name#, associated with
- * #ability# (one of 'strength', 'intelligence', etc.). #classes# lists any
- * classes that are proficient in this skill.
+ * #ability# (one of 'strength', 'intelligence', etc.).
  */
-SRD5E2024.skillRules = function(rules, name, ability, classes) {
-  SRD5E.skillRules(rules, name, ability, classes);
+SRD5E2024.skillRules = function(rules, name, ability) {
+  SRD5E.skillRules(rules, name, ability);
   rules.defineRule('jackOfAllTrades.' + name,
     'skillBonus.' + name, '?', '!source',
     'skillNotes.jackOfAllTrades', '=', null
@@ -3735,10 +3728,12 @@ SRD5E2024.weaponRules = function(
     // add mastery to weapon format
     let weaponName = 'weapons.' + name;
     let format = rules.getChoices('notes')[weaponName];
-    delete rules.choices.notes[weaponName];
-    rules.defineChoice('notes',
-      weaponName + ':' + format.replace(')', '; ' + mastery + ')')
-    );
+    if(format) {
+      delete rules.choices.notes[weaponName];
+      rules.defineChoice('notes',
+        weaponName + ':' + format.replace(')', '; ' + mastery + ')')
+      );
+    }
   }
   // Handle property-based proficiency new to the 2024 rules. Could easily
   // generalize this to additional properties, but presently no class or other

@@ -4293,7 +4293,7 @@ SRD5E.choiceRules = function(rules, type, name, attrs) {
         continue;
       }
       let group = matchInfo[1];
-      let level = matchInfo[2] * 1;
+      let level = matchInfo[2] - 0;
       let path = matchInfo[3] || '';
       let fullName = name + '(' + group + level + path + ' ' + schoolAbbr + ')';
       SRD5E.spellRules(
@@ -5334,7 +5334,7 @@ SRD5E.featureRules = function(
           let sn = ++maxSubnote;
           let target = sn>0 ? note + '.' + sn : note;
           // Make the expr evaluation dependent on the feature. Note that, in
-          // the case of sn==0, we're deliberatly overriding the '=' rule for
+          // the case of sn==0, we're deliberately overriding the '=' rule for
           // note that we defined above, before the while loop.
           rules.defineRule(target, 'features.' + name, '?', null);
           if(ids.length == 0) {
@@ -6699,18 +6699,28 @@ SRD5E.randomizeOneAttribute = function(attributes, attribute) {
   let howMany;
   let i,j,k;
   let matchInfo;
-  let notes;
-  let pat;
   let pieces;
   let type;
   let which;
 
-  if(attribute == 'armor') {
-    let armors = this.getChoices('armors');
+  if(attribute == 'abilities' ||
+     attribute.charAt(0).toUpperCase() + attribute.substring(1) in SRD5E.ABILITIES) {
+    for(attr in SRD5E.ABILITIES) {
+      attr = attr.toLowerCase();
+      if(attr != attribute && attribute != 'abilities')
+        continue;
+      let rolls = [];
+      for(i = 0; i < 4; i++)
+        rolls.push(QuilvynUtils.random(1, 6));
+      rolls.sort();
+      attributes[attr] = rolls[1] + rolls[2] + rolls[3];
+    }
+  } else if(attribute == 'armor') {
     attrs = this.applyRules(attributes);
+    let allArmors = this.getChoices('armors');
     choices = [];
-    for(attr in armors) {
-      let category = QuilvynUtils.getAttrValue(armors[attr], 'Category');
+    for(attr in allArmors) {
+      let category = QuilvynUtils.getAttrValue(allArmors[attr], 'Category');
       if(category == 'None' ||
          attrs['armorProficiency.Heavy'] ||
          attrs['armorProficiency.Medium'] && ['Light', 'Medium'].includes(category) ||
@@ -6721,16 +6731,16 @@ SRD5E.randomizeOneAttribute = function(attributes, attribute) {
     attributes.armor = choices[QuilvynUtils.random(0, choices.length - 1)];
   } else if(attribute == 'abilityBoosts') {
     attrs = this.applyRules(attributes);
-    notes = this.getChoices('notes');
     howMany = attrs.abilityBoostChoiceCount || 0;
+    let allNotes = this.getChoices('notes');
     let potentialBoosts = {};
     for(attr in SRD5E.ABILITIES)
       potentialBoosts[attr] = 0;
     potentialBoosts.Any = 0;
     for(attr in attrs) {
       matchInfo = attr.match(/Ability\s+Boost\s+\((.*)\)/gi);
-      if(!matchInfo && notes[attr])
-        matchInfo = notes[attr].match(/Ability\s+Boost\s+\((.*)\)/gi);
+      if(!matchInfo && allNotes[attr])
+        matchInfo = allNotes[attr].match(/Ability\s+Boost\s+\((.*)\)/gi);
       if(!matchInfo)
         continue;
       matchInfo.forEach(matched => {
@@ -6835,34 +6845,33 @@ SRD5E.randomizeOneAttribute = function(attributes, attribute) {
           'Pick ' + howMany + ' from ' +
           QuilvynUtils.getKeys(availableChoicesInType).length
         );
-        let pick;
         let picks = {};
         pickAttrs(picks, '', choices, howMany, 1);
         debug.push('From ' + QuilvynUtils.getKeys(picks).join(", ") + ' reject');
-        for(pick in picks) {
-          attributes[prefix + '.' + pick] = 1;
-          delete availableChoicesInType[pick];
+        for(let p in picks) {
+          attributes[prefix + '.' + p] = 1;
+          delete availableChoicesInType[p];
         }
         let validate = this.applyRules(attributes);
-        for(pick in picks) {
-          let name = pick.charAt(0).toLowerCase() +
-                     pick.substring(1).replaceAll(' ', '').
+        for(let p in picks) {
+          let name = p.charAt(0).toLowerCase() +
+                     p.substring(1).replaceAll(' ', '').
                      replace(/\(/g, '\\(').replace(/\)/g, '\\)');
           if(QuilvynUtils.sumMatching
                (validate,
                 new RegExp('^(sanity|validation)Notes.'+name+suffix)) != 0) {
-            delete attributes[prefix + '.' + pick];
+            delete attributes[prefix + '.' + p];
             debug[debug.length - 1] += ' ' + name;
           } else {
             howMany--;
-            delete availableChoices[pick];
+            delete availableChoices[p];
           }
         }
       }
       debug.push('xxxxxxx');
     }
     if(window.DEBUG) {
-      notes = attributes.notes;
+      let notes = attributes.notes;
       attributes.notes =
         (notes != null ? attributes.notes + '\n' : '') + debug.join('\n');
     }
@@ -6942,34 +6951,32 @@ SRD5E.randomizeOneAttribute = function(attributes, attribute) {
             attribute == 'languages' ||
             attribute == 'skills' ||
             attribute == 'tools') {
-    notes = this.getChoices('notes');
     attrs = this.applyRules(attributes);
+    let allNotes = this.getChoices('notes');
     howMany = attrs[attribute.replace(/s$/) + 'ChoiceCount'];
     count = 0;
     let group = this.getChoices(attribute);
-    pat = new RegExp(attribute + '?(?: Proficiency)? \\((.*)\\)$', 'i');
+    let pat = new RegExp(attribute + '?(?: Proficiency)? \\((.*)\\)$', 'i');
     for(attr in attrs) {
       // Choice features can be duplicated in attrs; for example, the feature
       // note "Tool Proficiency (Disguise Kit; Choose 1 from any Musical Instrument)" shows as
       //
       // <path>Features.Tool Proficiency (Disguise Kit; Choose 1 from any Musical Instrument)
       // features.Tool Proficiency (Disguise Kit; Choose 1 from any Musical Instrument)
-      // features.Tool Proficiency (Disguise Kit)
-      // features.Tool Proficiency (Choose 1 from any Musical Instrument)
       //
       // By ignoring the ones that begin with 'features.', we ensure that we
       // don't choose too many proficiencies.
       matchInfo = attr.startsWith('features.') ? null : attr.match(pat);
-      if(matchInfo == null && notes[attr] != null)
-        matchInfo = notes[attr].match(pat);
+      if(matchInfo == null && allNotes[attr] != null)
+        matchInfo = allNotes[attr].match(pat);
       if(matchInfo == null || !matchInfo[1].match(/\bChoose\b/i))
         continue;
-      pieces = matchInfo[1].split(/\/|;\s*/);
+      pieces = matchInfo[1].split(/;\s*/);
       for(i = 0; i < pieces.length; i++) {
         matchInfo = pieces[i].match(/^Choose\s+(\d+|%V)\s+from\s+(.*)$/i);
         if(!matchInfo)
           continue;
-        count = (matchInfo[1] == '%V' ? attrs[attr] : matchInfo[1]) * 1;
+        count = (matchInfo[1] == '%V' ? attrs[attr] : matchInfo[1]) - 0;
         if(matchInfo[2].match(/^any$/i)) {
           choices = QuilvynUtils.getKeys(group);
         } else {
@@ -7012,16 +7019,16 @@ SRD5E.randomizeOneAttribute = function(attributes, attribute) {
       QuilvynUtils.sumMatching(attributes, '^' + attribute + 'Chosen'), 1
     );
   } else if(attribute == 'spells') {
-    let spellsByGroupAndLevel = {};
+    let availableSpellsByGroupAndLevel = {};
     let groupAndLevel;
     attrs = this.applyRules(attributes);
     for(attr in this.getChoices('spells')) {
       if(attr.includes('['))
         continue; // feature-linked spell
       groupAndLevel = attr.split('(')[1].split(' ')[0];
-      if(spellsByGroupAndLevel[groupAndLevel] == null)
-        spellsByGroupAndLevel[groupAndLevel] = [];
-      spellsByGroupAndLevel[groupAndLevel].push(attr);
+      if(availableSpellsByGroupAndLevel[groupAndLevel] == null)
+        availableSpellsByGroupAndLevel[groupAndLevel] = [];
+      availableSpellsByGroupAndLevel[groupAndLevel].push(attr);
     }
     for(attr in attrs) {
       if((matchInfo = attr.match(/^spellsAvailable\.(.*)/)) == null)
@@ -7029,16 +7036,17 @@ SRD5E.randomizeOneAttribute = function(attributes, attribute) {
       groupAndLevel = matchInfo[1]; // e.g., 'B0' for cantrips; 'B' for level 1+
       howMany = attrs[attr];
       if(groupAndLevel.match(/\d$/)) // 'B0'
-        choices = spellsByGroupAndLevel[groupAndLevel] || [];
+        choices = availableSpellsByGroupAndLevel[groupAndLevel] || [];
       else { // 'B'
         choices = [];
         let highestSlot = 1;
         for(i = 2; i < 10; i++)
           if(attrs['spellSlots.' + groupAndLevel + i])
             highestSlot = i;
-        for(let spellGroup in spellsByGroupAndLevel) {
+        for(let spellGroup in availableSpellsByGroupAndLevel) {
           if(spellGroup.match(groupAndLevel + '[1-' + highestSlot + ']'))
-            choices = choices.concat(spellsByGroupAndLevel[spellGroup]);
+            choices =
+              choices.concat(availableSpellsByGroupAndLevel[spellGroup]);
         }
       }
       for(i = choices.length - 1; i >= 0; i--) {
@@ -7051,15 +7059,15 @@ SRD5E.randomizeOneAttribute = function(attributes, attribute) {
         pickAttrs(attributes, 'spells.', choices, howMany, 1);
     }
   } else if(attribute == 'weapons') {
-    notes = this.getChoices('notes');
-    let weapons = this.getChoices('weapons');
     attrs = this.applyRules(attributes);
-    pat = /Weapon Proficiency \((([^\(]|\([^\)]*\))*)\)$/i;
+    let allNotes = this.getChoices('notes');
+    let allWeapons = this.getChoices('weapons');
+    let pat = /Weapon Proficiency \((([^\(]|\([^\)]*\))*)\)$/i;
     for(attr in attrs) {
       // See note for skills and tools, above
       matchInfo = attr.startsWith('features.') ? null : attr.match(pat);
-      if(matchInfo == null && notes[attr] != null)
-        matchInfo = notes[attr].match(pat);
+      if(matchInfo == null && allNotes[attr] != null)
+        matchInfo = allNotes[attr].match(pat);
       if(matchInfo == null || !matchInfo[1].match(/\bChoose\b/i))
         continue;
       pieces = matchInfo[1].split(/\/|;\s*/);
@@ -7067,9 +7075,9 @@ SRD5E.randomizeOneAttribute = function(attributes, attribute) {
         matchInfo = pieces[i].match(/^Choose\s+(\d+)\s+from\s+(.*)$/i);
         if(!matchInfo)
           continue;
-        count = matchInfo[1] * 1;
+        count = matchInfo[1] - 0;
         if(matchInfo[2].match(/^any$/i)) {
-          choices = QuilvynUtils.getKeys(weapons);
+          choices = QuilvynUtils.getKeys(allWeapons);
         } else {
           choices = matchInfo[2].split(/\s*,\s*/);
           for(j = choices.length - 1; j >= 0; j--) {
@@ -7081,8 +7089,8 @@ SRD5E.randomizeOneAttribute = function(attributes, attribute) {
                      type.match(/two-handed/i) ? /two-handed/i :
                      type.match(/versatile/i) ? /versatile/i :
                      type.match(/heavy/i) ? /heavy/i : /./;
-              for(let weapon in weapons) {
-                if(weapons[weapon].match(type))
+              for(let weapon in allWeapons) {
+                if(allWeapons[weapon].match(type))
                   choices.push(weapon);
               }
               choices.splice(j, 1);
@@ -7099,8 +7107,8 @@ SRD5E.randomizeOneAttribute = function(attributes, attribute) {
       pickAttrs(attributes, 'weaponsChosen.', choices, count, 1);
     }
     choices = [];
-    for(attr in weapons) {
-      let category = QuilvynUtils.getAttrValue(weapons[attr], 'Category');
+    for(attr in allWeapons) {
+      let category = QuilvynUtils.getAttrValue(allWeapons[attr], 'Category');
       if(attrs['weaponProficiency.Martial Weapons'] ||
          category.match(/simple/i) && attrs['weaponProficiency.Simple Weapons'] ||
          attrs['weaponProficiency.' + attr]) {
@@ -7109,18 +7117,6 @@ SRD5E.randomizeOneAttribute = function(attributes, attribute) {
     }
     pickAttrs(attributes, 'weapons.', choices,
               3 - QuilvynUtils.sumMatching(attributes, /^weapons\./), 1);
-  } else if(attribute == 'abilities' ||
-            attribute.charAt(0).toUpperCase() + attribute.substring(1) in SRD5E.ABILITIES) {
-    for(attr in SRD5E.ABILITIES) {
-      attr = attr.toLowerCase();
-      if(attr != attribute && attribute != 'abilities')
-        continue;
-      let rolls = [];
-      for(i = 0; i < 4; i++)
-        rolls.push(QuilvynUtils.random(1, 6));
-      rolls.sort();
-      attributes[attr] = rolls[1] + rolls[2] + rolls[3];
-    }
   } else if(this.getChoices(attribute + 's') != null) {
     attributes[attribute] =
       QuilvynUtils.randomKey(this.getChoices(attribute + 's'));

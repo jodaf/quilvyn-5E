@@ -4684,10 +4684,11 @@ SRD5E.classRules = function(
   rules.defineRule('featCount.General',
     classLevel, '+=', 'Math.min(Math.floor(source / 4), 5)'
   );
-  if(features.filter(x => x.includes('Spellcasting (' + name + ')')).length > 0)
-    rules.defineRule('features.Spellcasting',
-      'features.Spellcasting (' + name + ')', '=', '1'
-    );
+  let spellcastingFeatures =
+    features.map(x => x.replace(/^.*\d+:/, '').replace(/:.*$/, '')).filter(x => x.match(/^Spellcasting \(.*\)$/));
+  spellcastingFeatures.forEach(f => {
+    rules.defineRule('features.Spellcasting', 'features.' + f, '=', '1');
+  });
   rules.defineRule('levelsAllocated', classLevel, '+=', null);
 
   rules.defineRule('casterLevels.' + name, classLevel, '^=', null);

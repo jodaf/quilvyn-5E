@@ -164,7 +164,7 @@ SRD5E.CLASSES = {
       '"1:Tool Proficiency (Choose 3 from any Musical Instrument)",' +
       '"1:Save Proficiency (Dexterity; Charisma)",' +
       '"1:Skill Proficiency (Choose 3 from any)",' +
-      '"1:Spellcasting","1:Bardic Inspiration","2:Jack Of All Trades",' +
+      '"1:Spellcasting (Bard)","1:Bardic Inspiration","2:Jack Of All Trades",' +
       '"2:Song Of Rest","3:Bard College","3:Expertise",' +
       '"5:Font Of Inspiration","6:Countercharm","10:Magical Secrets",' +
       '"20:Superior Inspiration",' +
@@ -196,7 +196,7 @@ SRD5E.CLASSES = {
       '"1:Weapon Proficiency (Simple Weapons)",' +
       '"1:Save Proficiency (Wisdom; Charisma)",' +
       '"1:Skill Proficiency (Choose 2 from History, Insight, Medicine, Persuasion, Religion)",' +
-      '"1:Spellcasting","1:Divine Domain","2:Channel Divinity",' +
+      '"1:Spellcasting (Cleric)","1:Divine Domain","2:Channel Divinity",' +
       '"2:Turn Undead","5:Destroy Undead","10:Divine Intervention",' +
       '"features.Life Domain ? 1:Bonus Proficiency (Life Domain)",' +
       '"features.Life Domain ? 1:Disciple Of Life",' +
@@ -230,7 +230,7 @@ SRD5E.CLASSES = {
       '"1:Tool Proficiency (Herbalism Kit)",' +
       '"1:Save Proficiency (Intelligence; Wisdom)",' +
       '"1:Skill Proficiency (Choose 2 from Arcana, Animal Handling, Insight, Medicine, Nature, Perception, Religion, Survival)",' +
-      '"1:Druidic","1:Spellcasting","2:Wild Shape","2:Druid Circle",' +
+      '"1:Druidic","1:Spellcasting (Druid)","2:Wild Shape","2:Druid Circle",' +
       '"18:Timeless Body (Druid)","18:Beast Spells","20:Archdruid",' +
       '"features.Circle Of The Land ? 2:Bonus Cantrip (Circle Of The Land)",' +
       '"features.Circle Of The Land ? 2:Natural Recovery",' +
@@ -320,10 +320,11 @@ SRD5E.CLASSES = {
       '"1:Weapon Proficiency (Simple Weapons; Martial Weapons)",' +
       '"1:Save Proficiency (Wisdom; Charisma)",' +
       '"1:Skill Proficiency (Choose 2 from Athletics, Insight, Intimidation, Medicine, Persuasion, Religion)",' +
-      '"1:Divine Sense","1:Lay On Hands","2:Fighting Style","2:Spellcasting",' +
-      '"2:Divine Smite","3:Divine Health","3:Sacred Oath",' +
-      '"3:Channel Divinity","5:Extra Attack","6:Aura Of Protection",' +
-      '"10:Aura Of Courage","11:Improved Divine Smite","14:Cleansing Touch",' +
+      '"1:Divine Sense","1:Lay On Hands","2:Fighting Style",' +
+      '"2:Spellcasting (Paladin)","2:Divine Smite","3:Divine Health",' +
+      '"3:Sacred Oath","3:Channel Divinity","5:Extra Attack",' +
+      '"6:Aura Of Protection","10:Aura Of Courage",' +
+      '"11:Improved Divine Smite","14:Cleansing Touch",' +
       '"features.Oath Of Devotion ? 3:Oath Of Devotion Spells",' +
       '"features.Oath Of Devotion ? 3:Sacred Weapon",' +
       '"features.Oath Of Devotion ? 3:Turn The Unholy",' +
@@ -354,7 +355,7 @@ SRD5E.CLASSES = {
       '"1:Save Proficiency (Strength; Dexterity)",' +
       '"1:Skill Proficiency (Choose 3 from Animal Handling, Athletics, Insight, Investigation, Nature, Perception, Stealth, Survival)",' +
       '"1:Favored Enemy","1:Natural Explorer","1:Fighting Style",' +
-      '"2:Spellcasting","3:Ranger Archetype","3:Primeval Awareness",' +
+      '"2:Spellcasting (Ranger)","3:Ranger Archetype","3:Primeval Awareness",' +
       '"5:Extra Attack","8:Land\'s Stride","10:Hide In Plain Sight",' +
       '"14:Vanish","18:Feral Senses","20:Foe Slayer",' +
       '"features.Hunter ? 3:Hunter\'s Prey",' +
@@ -415,8 +416,8 @@ SRD5E.CLASSES = {
       '"1:Weapon Proficiency (Dagger; Dart; Sling; Quarterstaff; Light Crossbow)",' +
       '"1:Save Proficiency (Constitution; Charisma)",' +
       '"1:Skill Proficiency (Choose 2 from Arcana, Deception, Insight, Intimidation, Persuasion, Religion)",' +
-      '"1:Spellcasting","1:Sorcerous Origin","2:Font Of Magic","3:Metamagic",' +
-      '"20:Sorcerous Restoration",' +
+      '"1:Spellcasting (Sorcerer)","1:Sorcerous Origin","2:Font Of Magic",' +
+      '"3:Metamagic","20:Sorcerous Restoration",' +
       '"features.Draconic Bloodline ? 1:Dragon Ancestor",' +
       '"features.Draconic Bloodline ? 1:Draconic Resilience",' +
       '"features.Draconic Bloodline ? 6:Elemental Affinity",' +
@@ -520,7 +521,7 @@ SRD5E.CLASSES = {
       '"1:Weapon Proficiency (Dagger; Dart; Light Crossbow; Quarterstaff; Sling)",' +
       '"1:Save Proficiency (Intelligence; Wisdom)",' +
       '"1:Skill Proficiency (Choose 2 from Arcana, History, Insight, Investigation, Medicine, Religion)",' +
-      '"1:Spellcasting","1:Arcane Recovery","2:Arcane Tradition",' +
+      '"1:Spellcasting (Wizard)","1:Arcane Recovery","2:Arcane Tradition",' +
       '"18:Spell Mastery","20:Signature Spells",' +
       '"features.School Of Evocation ? 2:Evocation Savant",' +
       '"features.School Of Evocation ? 2:Sculpt Spells",' +
@@ -807,9 +808,9 @@ SRD5E.FEATURES = {
     'Section=magic ' +
     // errata specifies spending Hit Dice
     'Note="Friendly listeners who spend Hit Dice to regain hit points after a short rest recover +1d%{levels.Bard>=9?6+(levels.Bard-5)//4*2:6} hit points"',
-  'Spellcasting':
+  'Spellcasting (Bard)':
     'Section=magic ' +
-    'Note="Can cast spells from the %V spell list%{magicNotes.spellcasting.1?\' and cast spells marked with [R] using a ritual\':\'\'}; regains expended spell slots after a long rest"',
+    'Note="Can cast spells from the bard spell list and cast spells marked with [R] using a ritual; regains expended spell slots after a long rest"',
   'Superior Inspiration':
     'Section=combat ' +
     'Note="Has a minimum of 1 use of Bardic Inspiration available after initiative"',
@@ -836,7 +837,9 @@ SRD5E.FEATURES = {
   'Divine Intervention':
     'Section=magic ' +
     'Note="Has a %{levels.Cleric<20?levels.Cleric:100}% chance to gain help from %{deity} once per week%{levels.Cleric<20?\'; after a failure, must wait until after a long rest before trying again\':\'\'}"',
-  // Spellcasting as above
+  'Spellcasting (Cleric)':
+    'Section=magic ' +
+    'Note="Can cast spells from the cleric spell list and cast spells marked with [R] using a ritual; regains expended spell slots after a long rest"',
   'Supreme Healing':
     'Section=magic ' +
     'Note="Healing spells restore the maximum possible hit points"',
@@ -878,7 +881,9 @@ SRD5E.FEATURES = {
   'Druid Circle':'Section=feature Note="1 selection"',
   'Druidic':
     'Section=skill Note="Speaks a secret language known only by druids"',
-  // Spellcasting as above
+  'Spellcasting (Druid)':
+    'Section=magic ' +
+    'Note="Can cast spells from the druid spell list and cast spells marked with [R] using a ritual; regains expended spell slots after a long rest"',
   'Timeless Body (Druid)':'Section=feature Note="Ages at 1/10 normal rate"',
   'Wild Shape':
     'Section=magic ' +
@@ -1090,7 +1095,9 @@ SRD5E.FEATURES = {
     'Section=magic ' +
     'Note="Touch can heal %{levels.Paladin*5} hit points per long rest; can use 5 hit points\' worth to cure a disease or neutralize a poison"',
   'Sacred Oath':'Section=feature Note="1 selection"',
-  // Spellcasting as above
+  'Spellcasting (Paladin)':
+    'Section=magic ' +
+    'Note="Can cast spells from the paladin spell list; regains expended spell slots after a long rest"',
   // Oath Of Devotion
   'Aura Of Devotion':
     'Section=save ' +
@@ -1142,7 +1149,9 @@ SRD5E.FEATURES = {
     'Section=magic ' +
     'Note="Can expend a spell slot to sense creatures in a 1 mile radius, or in a 6 mile radius of favored terrain, for 1 min per slot level"',
   'Ranger Archetype':'Section=feature Note="1 selection"',
-  // Spellcasting as above
+  'Spellcasting (Ranger)':
+    'Section=magic ' +
+    'Note="Can cast spells from the ranger spell list; regains expended spell slots after a long rest"',
   'Vanish':
     'Section=skill ' +
     'Note="Can hide as a bonus action and can be tracked only via magic"',
@@ -1231,7 +1240,9 @@ SRD5E.FEATURES = {
   'Sorcerous Origin':'Section=feature Note="1 selection"',
   'Sorcerous Restoration':
     'Section=magic Note="Taking a short rest restores 4 sorcery points"',
-  // Spellcasting as above
+  'Spellcasting (Sorcerer)':
+    'Section=magic ' +
+    'Note="Can cast spells from the sorcerer spell list; regains expended spell slots after a long rest"',
   // Metamagic
   'Careful Spell':
     'Section=magic ' +
@@ -1436,7 +1447,9 @@ SRD5E.FEATURES = {
   'Spell Mastery':
     'Section=magic ' +
     'Note="Can cast a chosen W1 spell and a chosen W2 spell without expending a spell slot; can change the choices after 8 hr of study"',
-  // Spellcasting as above
+  'Spellcasting (Wizard)':
+    'Section=magic ' +
+    'Note="Can cast spells from the wizard spell list and cast spells marked with [R] using a ritual; regains expended spell slots after a long rest"',
   // School Of Evocation
   'Empowered Evocation':
     'Section=magic Note="Evocation spells inflict +%{intelligenceModifier} HP"',
@@ -4671,6 +4684,10 @@ SRD5E.classRules = function(
   rules.defineRule('featCount.General',
     classLevel, '+=', 'Math.min(Math.floor(source / 4), 5)'
   );
+  if(features.filter(x => x.includes('Spellcasting (' + name + ')')).length > 0)
+    rules.defineRule('features.Spellcasting',
+      'features.Spellcasting (' + name + ')', '=', '1'
+    );
   rules.defineRule('levelsAllocated', classLevel, '+=', null);
 
   rules.defineRule('casterLevels.' + name, classLevel, '^=', null);
@@ -4707,11 +4724,6 @@ SRD5E.classRules = function(
         'spellAttackModifier.' + spellType, '=', '8 + source'
       );
     }
-
-    // TODO: What about multiclass?
-    rules.defineRule('magicNotes.spellcasting',
-      classLevel, '=', '"' + name.toLowerCase() + '"'
-    );
 
   }
 
@@ -4775,7 +4787,6 @@ SRD5E.classRulesExtra = function(rules, name) {
     rules.defineRule('bardicInspirationDie',
       classLevel, '=', 'source<20 ? 6 + Math.floor(source / 5) * 2 : 12'
     );
-    rules.defineRule('magicNotes.spellcasting.1', classLevel, '=', '1');
     rules.defineRule('selectableFeatureCount.Bard (Bard College)',
       'featureNotes.bardCollege', '=', '1'
     );
@@ -4793,7 +4804,6 @@ SRD5E.classRulesExtra = function(rules, name) {
       'features.Channel Divinity', '?', null,
       'levels.Cleric', '+=', 'source<6 ? 1 : source<18 ? 2 : 3'
     );
-    rules.defineRule('magicNotes.spellcasting.1', classLevel, '=', '1');
     rules.defineRule('selectableFeatureCount.Cleric (Divine Domain)',
       'featureNotes.divineDomain', '=', '1'
     );
@@ -4813,7 +4823,6 @@ SRD5E.classRulesExtra = function(rules, name) {
 
   } else if(name == 'Druid') {
 
-    rules.defineRule('magicNotes.spellcasting.1', classLevel, '=', '1');
     rules.defineRule('magicNotes.wildShape',
       classLevel, '=', 'source<4 ? "1/4" : source<8 ? "1/2" : "1"'
     );
@@ -5084,7 +5093,6 @@ SRD5E.classRulesExtra = function(rules, name) {
       classLevel, '?', null,
       'intelligenceModifier', '=', null
     );
-    rules.defineRule('magicNotes.spellcasting.1', classLevel, '=', '1');
     rules.defineRule('selectableFeatureCount.Wizard (Arcane Tradition)',
       'featureNotes.arcaneTradition', '=', '1'
     );

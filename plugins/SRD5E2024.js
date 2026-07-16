@@ -154,7 +154,7 @@ SRD5E2024.CLASSES = {
       '"1:Tool Proficiency (Choose 3 from any Musical Instrument)",' +
       '"1:Save Proficiency (Dexterity; Charisma)",' +
       '"1:Skill Proficiency (Choose 3 from any)",' +
-      '"1:Bardic Inspiration","1:Spellcasting","2:Expertise",' +
+      '"1:Bardic Inspiration","1:Spellcasting (Bard)","2:Expertise",' +
       '"2:Jack Of All Trades","3:Bard Subclass","5:Font Of Inspiration",' +
       '"7:Countercharm","10:Magical Secrets",' +
       '"18:Superior Inspiration","19:Epic Boon","20:Words Of Creation",' +
@@ -186,7 +186,7 @@ SRD5E2024.CLASSES = {
       '"1:Weapon Proficiency (Simple Weapons)",' +
       '"1:Save Proficiency (Wisdom; Charisma)",' +
       '"1:Skill Proficiency (Choose 2 from History, Insight, Medicine, Persuasion, Religion)",' +
-      '"1:Spellcasting","1:Divine Order","2:Channel Divinity",' +
+      '"1:Spellcasting (Cleric)","1:Divine Order","2:Channel Divinity",' +
       '"2:Divine Spark","2:Turn Undead","3:Cleric Subclass","5:Sear Undead",' +
       '"7:Blessed Strikes","10:Divine Intervention",' +
       '"14:Improved Blessed Strikes","19:Epic Boon",' +
@@ -226,7 +226,7 @@ SRD5E2024.CLASSES = {
       '"1:Tool Proficiency (Herbalism Kit)",' +
       '"1:Save Proficiency (Intelligence; Wisdom)",' +
       '"1:Skill Proficiency (Choose 2 from Animal Handling, Arcana, Insight, Medicine, Nature, Perception, Religion, Survival)",' +
-      '"1:Druidic","1:Spellcasting","1:Primal Order","2:Wild Shape",' +
+      '"1:Druidic","1:Spellcasting (Druid)","1:Primal Order","2:Wild Shape",' +
       '"2:Wild Companion","3:Druid Subclass","5:Wild Resurgence",' +
       '"7:Elemental Fury","15:Improved Elemental Fury","18:Beast Spells",' +
       '"19:Epic Boon","20:Archdruid",' +
@@ -310,7 +310,7 @@ SRD5E2024.CLASSES = {
       '"1:Weapon Proficiency (Simple Weapons; Martial Weapons)",' +
       '"1:Save Proficiency (Wisdom; Charisma)",' +
       '"1:Skill Proficiency (Choose 2 from Athletics, Insight, Intimidation, Medicine, Persuasion, Religion)",' +
-      '"1:Lay On Hands","1:Spellcasting","1:Weapon Mastery",' +
+      '"1:Lay On Hands","1:Spellcasting (Paladin)","1:Weapon Mastery",' +
       '"2:Paladin Fighting Style","2:Paladin\'s Smite","3:Channel Divinity",' +
       '"3:Divine Sense","3:Paladin Subclass","5:Extra Attack",' +
       '"5:Faithful Steed","6:Aura Of Protection","9:Abjure Foes",' +
@@ -342,7 +342,7 @@ SRD5E2024.CLASSES = {
       '"1:Weapon Proficiency (Simple Weapons; Martial Weapons)",' +
       '"1:Save Proficiency (Strength; Dexterity)",' +
       '"1:Skill Proficiency (Choose 3 from Animal Handling, Athletics, Insight, Investigation, Nature, Perception, Stealth, Survival)",' +
-      '"1:Favored Enemy","1:Spellcasting","1:Weapon Mastery",' +
+      '"1:Favored Enemy","1:Spellcasting (Ranger)","1:Weapon Mastery",' +
       '"2:Deft Explorer","2:Ranger Fighting Style","3:Ranger Subclass",' +
       '"5:Extra Attack","6:Roving","9:Expertise","10:Tireless",' +
       '"13:Relentless Hunter","14:Nature\'s Veil","17:Precise Hunter",' +
@@ -399,9 +399,9 @@ SRD5E2024.CLASSES = {
       '"1:Weapon Proficiency (Simple Weapons)",' +
       '"1:Save Proficiency (Constitution; Charisma)",' +
       '"1:Skill Proficiency (Choose 2 from Arcana, Deception, Insight, Intimidation, Persuasion, Religion)",' +
-      '"1:Spellcasting","1:Innate Sorcery","2:Font Of Magic","2:Metamagic",' +
-      '"3:Sorcerer Subclass","5:Sorcerous Restoration","7:Sorcery Incarnate",' +
-      '"19:Epic Boon","20:Arcane Apotheosis",' +
+      '"1:Spellcasting (Sorcerer)","1:Innate Sorcery","2:Font Of Magic",' +
+      '"2:Metamagic","3:Sorcerer Subclass","5:Sorcerous Restoration",' +
+      '"7:Sorcery Incarnate","19:Epic Boon","20:Arcane Apotheosis",' +
       '"features.Draconic Sorcery ? 3:Draconic Resilience",' +
       '"features.Draconic Sorcery ? 3:Draconic Spells",' +
       '"features.Draconic Sorcery ? 6:Elemental Affinity",' +
@@ -491,8 +491,8 @@ SRD5E2024.CLASSES = {
       '"1:Weapon Proficiency (Simple Weapons)",' +
       '"1:Save Proficiency (Intelligence; Wisdom)",' +
       '"1:Skill Proficiency (Choose 2 from Arcana, History, Insight, Investigation, Medicine, Nature, Religion)",' +
-      '"1:Spellcasting","1:Ritual Adept","1:Arcane Recovery","2:Scholar",' +
-      '"3:Wizard Subclass","5:Memorize Spell","18:Spell Mastery",' +
+      '"1:Spellcasting (Wizard)","1:Ritual Adept","1:Arcane Recovery",' +
+      '"2:Scholar","3:Wizard Subclass","5:Memorize Spell","18:Spell Mastery",' +
       '"19:Epic Boon","20:Signature Spells",' +
       '"features.Evoker ? 3:Evocation Savant",' +
       '"features.Evoker ? 3:Potent Cantrip",' +
@@ -653,9 +653,7 @@ SRD5E2024.FEATURES = {
     SRD5E.FEATURES['Magical Secrets']
     .replace(/learn.*spells/, 'learn spells')
     .replace('any class', 'the Cleric, Druid, and Wizard spell lists'),
-  'Spellcasting':
-    SRD5E.FEATURES.Spellcasting
-    .replace('magicNotes.spellcasting.1', '1'),
+  'Spellcasting (Bard)':SRD5E.FEATURES['Spellcasting (Bard)'],
   'Superior Inspiration':
     SRD5E.FEATURES['Superior Inspiration']
     .replace('1 use', '2 uses'),
@@ -715,6 +713,7 @@ SRD5E2024.FEATURES = {
   'Sear Undead':
     'Section=combat ' +
     'Note="Successful Turn Undead also inflicts %{wisdomModifier>?1}d8 HP radiant"',
+  'Spellcasting (Cleric)':SRD5E.FEATURES['Spellcasting (Cleric)'],
   'Thaumaturge':
     'Section=magic,skill ' +
     'Note=' +
@@ -775,7 +774,7 @@ SRD5E2024.FEATURES = {
   'Primal Strike':
     'Section=combat ' +
     'Note="Weapon attacks and attacks during Wild Shape inflict +%{combatNotes.improvedElementalFury?2:1}d8 HP of a choice of cold, fire, lightning, or thunder once per turn"',
-  // Spellcasting as above
+  'Spellcasting (Druid)':SRD5E.FEATURES['Spellcasting (Druid)'],
   'Warden':
     'Section=combat ' +
     'Note="Armor Training (Medium)/Weapon Proficiency (Martial Weapons)"',
@@ -1013,7 +1012,9 @@ SRD5E2024.FEATURES = {
   'Restoring Touch':
     'Section=magic ' +
     'Note="Can use 5 hit points\' worth of Lay On Hands to remove a blinded, charmed, deafened, frightened, paralyzed, or stunned condition"',
-  // Spellcasting as above
+  'Spellcasting (Paladin)':
+    SRD5E.FEATURES['Spellcasting (Bard)'] // 5.5 paladins can use rituals
+    .replace('bard', 'paladin'),
   // Weapon Mastery as above
   // Oath Of Devotion
   'Aura Of Devotion':SRD5E.FEATURES['Aura Of Devotion'],
@@ -1076,7 +1077,9 @@ SRD5E2024.FEATURES = {
   'Relentless Hunter':
     'Section=magic ' +
     'Note="Damage does not break concentration on <i>Hunter\'s Mark</i>"',
-  // Spellcasting as above
+  'Spellcasting (Ranger)':
+    SRD5E.FEATURES['Spellcasting (Bard)'] // 5.5 rangers can use rituals
+    .replace('bard', 'ranger'),
   'Tireless':
     'Section=combat,save ' +
     'Note=' +
@@ -1191,7 +1194,9 @@ SRD5E2024.FEATURES = {
   'Sorcery Incarnate':
     'Section=magic ' +
     'Note="Can spend 2 sorcery points for additional uses of Innate Sorcery, and can use 2 Metamagic options on each spell"',
-  // Spellcasting as above
+  'Spellcasting (Sorcerer)':
+    SRD5E.FEATURES['Spellcasting (Bard)'] // 5.5 sorcerers can use rituals
+    .replace('bard', 'sorcerer'),
   // Metamagic
   'Careful Spell':
     SRD5E.FEATURES['Careful Spell']
@@ -1379,7 +1384,7 @@ SRD5E2024.FEATURES = {
     .replaceAll('chosen', 'chosen 1-action')
     .replace('the choices', 'a choice')
     .replace('8 hr of study', 'a long rest'),
-  // Spellcasting as above
+  'Spellcasting (Wizard)':SRD5E.FEATURES['Spellcasting (Wizard)'],
   'Wizard Subclass':SRD5E.FEATURES['Arcane Tradition'],
   // Evoker
   'Empowered Evocation':SRD5E.FEATURES['Empowered Evocation'],

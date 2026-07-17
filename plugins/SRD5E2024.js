@@ -3258,13 +3258,14 @@ SRD5E2024.classRulesExtra = function(rules, name) {
     );
     rules.defineRule('monkMeleeDieBonus',
       'armor', '?', 'source == "None"',
-      'combatNotes.martialArts', '=', '"1d" + source'
+      'combatNotes.martialArts', '=', null
     );
     rules.defineRule('monkSaveDC',
       "monkFeatures.Monk's Focus", '?', null,
       'proficiencyBonus', '=', '8 + source',
       'wisdomModifier', '+', null
     );
+    rules.defineRule('unarmedStrikeDamageDie', 'monkMeleeDieBonus', '^=', null);
     for(let a in SRD5E.ABILITIES) {
       rules.defineRule
         ('saveProficiency.' + a, 'saveNotes.disciplinedSurvivor', '=', '1');
@@ -3859,7 +3860,7 @@ SRD5E2024.removeChoice = function(rules, type, name) {
 
 /* Fixes as many validation errors in #attributes# as possible. */
 SRD5E2024.makeValid = function(attributes) {
-  return SRD5E.makeValid(attributes);
+  return SRD5E.makeValid.apply(this, [attributes]);
 };
 
 /* Returns HTML body content for user notes associated with this rule set. */

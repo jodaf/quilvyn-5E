@@ -4930,13 +4930,14 @@ SRD5E.classRulesExtra = function(rules, name) {
     );
     rules.defineRule('monkMeleeDieBonus',
       'armor', '?', 'source == "None"',
-      'combatNotes.martialArts', '=', '"1d" + source'
+      'combatNotes.martialArts', '=', null
     );
     rules.defineRule('monkSaveDC',
       'monkFeatures.Ki', '?', null,
       'proficiencyBonus', '=', '8 + source',
       'wisdomModifier', '+', null
     );
+    rules.defineRule('unarmedStrikeDamageDie', 'monkMeleeDieBonus', '^=', null);
     for(let a in SRD5E.ABILITIES) {
       rules.defineRule
         ('saveProficiency.' + a, 'saveNotes.diamondSoul', '=', '1');
@@ -6144,11 +6145,14 @@ SRD5E.weaponRules = function(
   rules.defineRule('weaponProficiency.' + name,
     'weaponsChosen.' + name, '=', 'source ? 1 : null'
   );
-  // Have to be careful here. Using the ^ operation won't work, because the
-  // comparison is lexical and, e.g., "1d10" < "1d8".
-  if(isMonkWeapon && !damage.includes('d12'))
+  if(name == 'Unarmed Strike')
+    rules.defineRule
+      (weaponName + '.2', 'unarmedStrikeDamageDie', '=', '"1d" + source');
+  else if(isMonkWeapon && !damage.includes('d12'))
+    // Have to be careful here. Using the ^ operation won't work, because the
+    // comparison is lexical and, e.g., "1d10" < "1d8".
     rules.defineRule(weaponName + '.2',
-      'monkMeleeDieBonus', '=', 'source=="1d12" || source=="1d10" || source>"' + damage + '" ? source : null'
+      'monkMeleeDieBonus', '=', 'source>=10 || ("1d"+source)>"' + damage + '" ? ("1d"+source) : null'
     );
 
 };

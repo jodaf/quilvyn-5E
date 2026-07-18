@@ -4485,17 +4485,17 @@ SRD5E.armorRules = function(
     console.log('Bad min str "' + minStr + '" for armor ' + name);
     return;
   }
+  // Since cost and weight affect no rules and are not displayed on the
+  // character sheet, we allow improper values after logging a warning
   if(typeof cost == 'string' && cost.match(/^0\.\d+$/))
     cost = +cost;
   if(typeof cost != 'number') {
     console.log('Bad cost "' + cost + '" for armor ' + name);
-    return;
   }
   if(typeof weight == 'string' && weight.match(/^0\.\d+$/))
     weight = +weight;
   if(typeof weight != 'number') {
     console.log('Bad weight "' + weight + '" for armor ' + name);
-    return;
   }
 
   if(rules.armorStats == null) {
@@ -5832,17 +5832,17 @@ SRD5E.shieldRules = function(rules, name, ac, cost, weight) {
     console.log('Bad ac "' + ac + '" for shield ' + name);
     return;
   }
+  // Since cost and weight affect no rules and are not displayed on the
+  // character sheet, we allow improper values after logging a warning
   if(typeof cost == 'string' && cost.match(/^0\.\d+$/))
     cost = +cost;
   if(typeof cost != 'number') {
     console.log('Bad cost "' + cost + '" for shield ' + name);
-    return;
   }
   if(typeof weight == 'string' && weight.match(/^0\.\d+$/))
     weight = +weight;
   if(typeof weight != 'number') {
     console.log('Bad weight "' + weight + '" for shield ' + name);
-    return;
   }
 
   if(rules.shieldStats == null) {
@@ -5973,17 +5973,21 @@ SRD5E.toolRules = function(rules, name, category, cost, weight, ability) {
     console.log('Empty tool name');
     return;
   }
+  if(typeof category != 'string') {
+    console.log('Bad category "' + category + '" for tool ' + name);
+    return;
+  }
+  // Since cost and weight affect no rules and are not displayed on the
+  // character sheet, we allow improper values after logging a warning
   if(typeof cost == 'string' && cost.match(/^0\.\d+$/))
     cost = +cost;
   if(typeof cost != 'number') {
     console.log('Bad cost "' + cost + '" for tool ' + name);
-    return;
   }
   if(typeof weight == 'string' && weight.match(/^0\.\d+$/))
     weight = +weight;
   if(typeof weight != 'number') {
     console.log('Bad weight "' + weight + '" for tool ' + name);
-    return;
   }
   if(ability != null && !(ability in SRD5E.ABILITIES)) {
     console.log('Bad ability "' + ability + '" for tool ' + name);
@@ -6040,17 +6044,17 @@ SRD5E.weaponRules = function(
   if(range && !(range + '').match(/^\d+\/\d+$/)) {
     console.log('Bad range "' + range + '" for weapon ' + name);
   }
+  // Since cost and weight affect no rules and are not displayed on the
+  // character sheet, we allow improper values after logging a warning
   if(typeof cost == 'string' && cost.match(/^0\.\d+$/))
     cost = +cost;
   if(typeof cost != 'number') {
     console.log('Bad cost "' + cost + '" for weapon ' + name);
-    return;
   }
   if(typeof weight == 'string' && weight.match(/^0\.\d+$/))
     weight = +weight;
   if(typeof weight != 'number') {
     console.log('Bad weight "' + weight + '" for weapon ' + name);
-    return;
   }
 
   let damageType =

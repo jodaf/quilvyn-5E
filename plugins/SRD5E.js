@@ -3808,7 +3808,7 @@ SRD5E.TOOLS = {
   "Navigator's Tools":'Category=General Cost=25 Weight=2',
   "Poisoner's Kit":'Category=General Cost=50 Weight=2',
   "Thieves' Tools":'Category=General Cost=25 Weight=1',
-  // Cost and weight of Vehicles varies; although neither is important for the
+  // Cost and weight of Vehicles varies; since neither is important for the
   // character sheet, we use the values for a cart and a rowboat
   'Vehicles (Land)':'Category=General Cost=15 Weight=200',
   'Vehicles (Water)':'Category=General Cost=50 Weight=100'
@@ -5481,7 +5481,7 @@ SRD5E.featureRules = function(
   // DC for spells to be determined later. Not sure if this is still used.
   if(spells.length > 0 || spellAbility != null) {
     let levelAttr = 'level';
-    let spellType = name.replaceAll(/[- ()]/g, '');
+    let spellType = name.replaceAll(/[-' ()]/g, '');
     let sources =
       // Note inclusion of species for 5.5e support
       Object.assign({}, rules.getChoices('levels'), rules.getChoices('races') || rules.getChoices('species'), rules.getChoices('feats'), rules.getChoices('backgrounds'));
@@ -6474,11 +6474,11 @@ SRD5E.choiceEditorElements = function(rules, type) {
     ];
     result.push(
       ['Category', 'Category', 'select-one', ['None', 'Light', 'Medium', 'Heavy']],
-      ['Cost', 'Cost (gp)', 'text', [5]],
       ['AC', 'AC Bonus', 'select-one', zeroToTen],
       ['Dex', 'Max Dex', 'select-one', zeroToTen],
       ['Str', 'Min Str', 'select-one', zeroToEighteen],
       ['Bulky', 'Stealth Disadvantage', 'checkbox', ['']],
+      ['Cost', 'Cost (gp)', 'text', [5]],
       ['Weight', 'Weight (lbs)', 'text', [5]]
     );
   } else if(type == 'Background')

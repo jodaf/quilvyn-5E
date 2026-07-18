@@ -20,7 +20,7 @@ lines to the file plugins/plugins.js:
       group:'5E'
     };
     RULESETS['D&D 5.5E (SRD only)'] = {
-      url:'plugins/SRD5E2024.js',
+      url:'plugins/SRD55E.js',
       group:'5E'
     };
 
